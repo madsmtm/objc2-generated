@@ -20,6 +20,4 @@ extern_protocol!(
             feature_name: &NSString,
         ) -> Option<Retained<MLFeatureValue>>;
     }
-
-    unsafe impl ProtocolType for dyn MLFeatureProvider {}
 );

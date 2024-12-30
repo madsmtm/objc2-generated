@@ -187,9 +187,6 @@ extern_protocol!(
             section: NSInteger,
         ) -> NSSize;
     }
-
-    #[cfg(feature = "NSCollectionView")]
-    unsafe impl ProtocolType for dyn NSCollectionViewDelegateFlowLayout {}
 );
 
 extern_class!(

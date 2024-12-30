@@ -89,6 +89,4 @@ extern_protocol!(
             target: Option<&AnyObject>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIMenuLeaf {}
 );

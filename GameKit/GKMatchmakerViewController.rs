@@ -312,6 +312,4 @@ extern_protocol!(
             player_id: &NSString,
         );
     }
-
-    unsafe impl ProtocolType for dyn GKMatchmakerViewControllerDelegate {}
 );

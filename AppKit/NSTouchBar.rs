@@ -174,8 +174,6 @@ extern_protocol!(
             identifier: &NSTouchBarItemIdentifier,
         ) -> Option<Retained<NSTouchBarItem>>;
     }
-
-    unsafe impl ProtocolType for dyn NSTouchBarDelegate {}
 );
 
 extern_protocol!(
@@ -184,8 +182,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other touchBar)]
         unsafe fn touchBar(&self) -> Option<Retained<NSTouchBar>>;
     }
-
-    unsafe impl ProtocolType for dyn NSTouchBarProvider {}
 );
 
 extern_methods!(

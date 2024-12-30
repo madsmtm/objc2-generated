@@ -383,8 +383,6 @@ extern_protocol!(
             changed: bool,
         );
     }
-
-    unsafe impl ProtocolType for dyn UITabBarDelegate {}
 );
 
 extern_methods!(

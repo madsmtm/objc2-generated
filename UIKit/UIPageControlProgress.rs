@@ -40,8 +40,6 @@ extern_protocol!(
         #[method(pageControlProgressVisibilityDidChange:)]
         unsafe fn pageControlProgressVisibilityDidChange(&self, progress: &UIPageControlProgress);
     }
-
-    unsafe impl ProtocolType for dyn UIPageControlProgressDelegate {}
 );
 
 extern_class!(
@@ -116,8 +114,6 @@ extern_protocol!(
             page: NSInteger,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UIPageControlTimerProgressDelegate {}
 );
 
 extern_class!(

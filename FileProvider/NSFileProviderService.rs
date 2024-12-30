@@ -38,8 +38,6 @@ extern_protocol!(
         #[method(isRestricted)]
         unsafe fn isRestricted(&self) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderServiceSource {}
 );
 
 extern_methods!(

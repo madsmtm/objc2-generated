@@ -22,9 +22,6 @@ extern_protocol!(
         #[method(deleteBackward)]
         unsafe fn deleteBackward(&self);
     }
-
-    #[cfg(feature = "UITextInputTraits")]
-    unsafe impl ProtocolType for dyn UIKeyInput {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextstoragedirection?language=objc)
@@ -619,9 +616,6 @@ extern_protocol!(
         #[method(didDismissWritingTools)]
         unsafe fn didDismissWritingTools(&self);
     }
-
-    #[cfg(feature = "UITextInputTraits")]
-    unsafe impl ProtocolType for dyn UITextInput {}
 );
 
 extern "C" {
@@ -766,8 +760,6 @@ extern_protocol!(
         #[method(textDidChange:)]
         unsafe fn textDidChange(&self, text_input: Option<&ProtocolObject<dyn UITextInput>>);
     }
-
-    unsafe impl ProtocolType for dyn UITextInputDelegate {}
 );
 
 extern_protocol!(
@@ -805,8 +797,6 @@ extern_protocol!(
             direction: UITextDirection,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UITextInputTokenizer {}
 );
 
 extern_class!(

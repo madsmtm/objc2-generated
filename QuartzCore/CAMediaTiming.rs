@@ -80,8 +80,6 @@ extern_protocol!(
         #[method(setFillMode:)]
         unsafe fn setFillMode(&self, fill_mode: &CAMediaTimingFillMode);
     }
-
-    unsafe impl ProtocolType for dyn CAMediaTiming {}
 );
 
 extern "C" {

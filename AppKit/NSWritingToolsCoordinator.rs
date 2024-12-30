@@ -1267,8 +1267,6 @@ extern_protocol!(
             completion: &block2::Block<dyn Fn()>,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSWritingToolsCoordinatorDelegate {}
 );
 
 extern_class!(

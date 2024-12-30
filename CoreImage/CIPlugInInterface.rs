@@ -20,6 +20,4 @@ extern_protocol!(
         #[method(load:)]
         unsafe fn load(&self, host: *mut c_void) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn CIPlugInRegistration {}
 );

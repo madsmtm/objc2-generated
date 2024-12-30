@@ -180,9 +180,6 @@ extern_protocol!(
             section: NSInteger,
         ) -> CGSize;
     }
-
-    #[cfg(all(feature = "UICollectionView", feature = "UIScrollView"))]
-    unsafe impl ProtocolType for dyn UICollectionViewDelegateFlowLayout {}
 );
 
 extern_class!(

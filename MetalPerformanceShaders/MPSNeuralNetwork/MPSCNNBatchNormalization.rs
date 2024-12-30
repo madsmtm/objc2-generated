@@ -510,8 +510,6 @@ extern_protocol!(
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
     }
-
-    unsafe impl ProtocolType for dyn MPSCNNBatchNormalizationDataSource {}
 );
 
 extern_class!(

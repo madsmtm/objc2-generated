@@ -679,6 +679,4 @@ extern_protocol!(
             peripheral: &CBPeripheral,
         );
     }
-
-    unsafe impl ProtocolType for dyn CBCentralManagerDelegate {}
 );

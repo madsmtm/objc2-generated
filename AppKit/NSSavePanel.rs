@@ -471,8 +471,6 @@ extern_protocol!(
         #[method(panel:didSelectType:)]
         unsafe fn panel_didSelectType(&self, sender: &AnyObject, r#type: Option<&UTType>);
     }
-
-    unsafe impl ProtocolType for dyn NSOpenSavePanelDelegate {}
 );
 
 extern_methods!(

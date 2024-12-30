@@ -217,6 +217,4 @@ extern_protocol!(
             file_output: &AVCaptureFileOutput,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVCaptureViewDelegate {}
 );

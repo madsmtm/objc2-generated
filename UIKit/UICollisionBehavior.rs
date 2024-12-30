@@ -78,8 +78,6 @@ extern_protocol!(
             identifier: Option<&ProtocolObject<dyn NSCopying>>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UICollisionBehaviorDelegate {}
 );
 
 extern_class!(

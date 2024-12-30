@@ -821,8 +821,6 @@ extern_protocol!(
         #[method(returnTexture:)]
         unsafe fn returnTexture(&self, texture: &ProtocolObject<dyn MTLTexture>);
     }
-
-    unsafe impl ProtocolType for dyn MPSSVGFTextureAllocator {}
 );
 
 extern_class!(

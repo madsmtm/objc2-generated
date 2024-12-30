@@ -52,6 +52,4 @@ extern_protocol!(
             &self,
         ) -> Retained<ProtocolObject<dyn MEMessageSecurityHandler>>;
     }
-
-    unsafe impl ProtocolType for dyn MEExtension {}
 );

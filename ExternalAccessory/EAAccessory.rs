@@ -82,6 +82,4 @@ extern_protocol!(
         #[method(accessoryDidDisconnect:)]
         unsafe fn accessoryDidDisconnect(&self, accessory: &EAAccessory);
     }
-
-    unsafe impl ProtocolType for dyn EAAccessoryDelegate {}
 );

@@ -284,6 +284,4 @@ extern_protocol!(
         #[method(pathCell:willPopUpMenu:)]
         unsafe fn pathCell_willPopUpMenu(&self, path_cell: &NSPathCell, menu: &NSMenu);
     }
-
-    unsafe impl ProtocolType for dyn NSPathCellDelegate {}
 );

@@ -271,6 +271,4 @@ extern_protocol!(
             data_source: Option<&WebDataSource>,
         );
     }
-
-    unsafe impl ProtocolType for dyn WebResourceLoadDelegate {}
 );

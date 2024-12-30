@@ -24,8 +24,6 @@ extern_protocol!(
             mtm: MainThreadMarker,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSWindowRestoration {}
 );
 
 extern_methods!(

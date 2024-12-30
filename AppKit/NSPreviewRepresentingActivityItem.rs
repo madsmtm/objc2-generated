@@ -34,8 +34,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other iconProvider)]
         unsafe fn iconProvider(&self) -> Option<Retained<NSItemProvider>>;
     }
-
-    unsafe impl ProtocolType for dyn NSPreviewRepresentableActivityItem {}
 );
 
 extern_class!(

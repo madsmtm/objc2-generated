@@ -357,7 +357,4 @@ extern_protocol!(
             offset: NSUInteger,
         ) -> Option<Retained<ProtocolObject<dyn MTLAccelerationStructure>>>;
     }
-
-    #[cfg(feature = "MTLAllocation")]
-    unsafe impl ProtocolType for dyn MTLHeap {}
 );

@@ -99,8 +99,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other keyPathsForValuesAffectingPreview)]
         unsafe fn keyPathsForValuesAffectingPreview(&self) -> Retained<NSSet<NSString>>;
     }
-
-    unsafe impl ProtocolType for dyn NSPrintPanelAccessorizing {}
 );
 
 extern_class!(

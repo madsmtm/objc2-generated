@@ -1489,8 +1489,6 @@ extern_protocol!(
         #[method(kernelWeightsDataType)]
         unsafe fn kernelWeightsDataType(&self) -> MPSDataType;
     }
-
-    unsafe impl ProtocolType for dyn MPSCNNConvolutionDataSource {}
 );
 
 extern_class!(

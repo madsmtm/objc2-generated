@@ -59,8 +59,6 @@ extern_protocol!(
             text_container: Option<&NSTextContainer>,
         ) -> Option<Retained<NSTextAttachmentViewProvider>>;
     }
-
-    unsafe impl ProtocolType for dyn NSTextAttachmentLayout {}
 );
 
 extern_class!(
@@ -329,8 +327,6 @@ extern_protocol!(
             char_index: NSUInteger,
         ) -> CGRect;
     }
-
-    unsafe impl ProtocolType for dyn NSTextAttachmentContainer {}
 );
 
 extern_methods!(

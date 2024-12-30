@@ -47,6 +47,4 @@ extern_protocol!(
             completion: &block2::Block<dyn Fn(NonNull<ILMessageFilterQueryResponse>)>,
         );
     }
-
-    unsafe impl ProtocolType for dyn ILMessageFilterQueryHandling {}
 );

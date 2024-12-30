@@ -67,9 +67,6 @@ extern_protocol!(
             component: NSInteger,
         ) -> Retained<NSArray<NSAttributedString>>;
     }
-
-    #[cfg(feature = "UIPickerView")]
-    unsafe impl ProtocolType for dyn UIPickerViewAccessibilityDelegate {}
 );
 
 extern_protocol!(
@@ -94,9 +91,6 @@ extern_protocol!(
             scroll_view: &UIScrollView,
         ) -> Option<Retained<NSAttributedString>>;
     }
-
-    #[cfg(feature = "UIScrollView")]
-    unsafe impl ProtocolType for dyn UIScrollViewAccessibilityDelegate {}
 );
 
 extern_methods!(

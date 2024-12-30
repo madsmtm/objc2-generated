@@ -145,6 +145,4 @@ extern_protocol!(
         #[method(commit)]
         unsafe fn commit(&self);
     }
-
-    unsafe impl ProtocolType for dyn MTLResidencySet {}
 );

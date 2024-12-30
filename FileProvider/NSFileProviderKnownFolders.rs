@@ -211,6 +211,4 @@ extern_protocol!(
             >,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderKnownFolderSupporting {}
 );

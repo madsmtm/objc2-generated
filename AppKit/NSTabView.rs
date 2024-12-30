@@ -354,6 +354,4 @@ extern_protocol!(
         #[method(tabViewDidChangeNumberOfTabViewItems:)]
         unsafe fn tabViewDidChangeNumberOfTabViewItems(&self, tab_view: &NSTabView);
     }
-
-    unsafe impl ProtocolType for dyn NSTabViewDelegate {}
 );

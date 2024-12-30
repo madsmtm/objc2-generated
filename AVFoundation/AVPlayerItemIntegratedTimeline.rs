@@ -259,8 +259,6 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelineobserver?language=objc)
     pub unsafe trait AVPlayerItemIntegratedTimelineObserver: NSObjectProtocol {}
-
-    unsafe impl ProtocolType for dyn AVPlayerItemIntegratedTimelineObserver {}
 );
 
 extern_methods!(

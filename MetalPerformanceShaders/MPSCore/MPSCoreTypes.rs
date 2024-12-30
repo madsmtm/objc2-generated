@@ -544,8 +544,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other mpsMTLDevice)]
         unsafe fn mpsMTLDevice(&self) -> Option<Retained<ProtocolObject<dyn MTLDevice>>>;
     }
-
-    unsafe impl ProtocolType for dyn MPSDeviceProvider {}
 );
 
 /// An array of NSNumbers where dimension lengths provided by the user goes from slowest moving to fastest moving dimension.

@@ -51,9 +51,6 @@ extern_protocol!(
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIGaussianGradient {}
 );
 
 extern_protocol!(
@@ -97,9 +94,6 @@ extern_protocol!(
         #[method(setColorSpace:)]
         unsafe fn setColorSpace(&self, color_space: CGColorSpaceRef);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIHueSaturationValueGradient {}
 );
 
 extern_protocol!(
@@ -142,9 +136,6 @@ extern_protocol!(
         #[method(setColor1:)]
         unsafe fn setColor1(&self, color1: &CIColor);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CILinearGradient {}
 );
 
 extern_protocol!(
@@ -192,9 +183,6 @@ extern_protocol!(
         #[method(setColor1:)]
         unsafe fn setColor1(&self, color1: &CIColor);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIRadialGradient {}
 );
 
 extern_protocol!(
@@ -237,9 +225,6 @@ extern_protocol!(
         #[method(setColor1:)]
         unsafe fn setColor1(&self, color1: &CIColor);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CISmoothLinearGradient {}
 );
 
 extern_protocol!(
@@ -269,9 +254,6 @@ extern_protocol!(
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CISharpenLuminance {}
 );
 
 extern_protocol!(
@@ -301,9 +283,6 @@ extern_protocol!(
         #[method(setIntensity:)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIUnsharpMask {}
 );
 
 extern_protocol!(
@@ -342,9 +321,6 @@ extern_protocol!(
         #[method(setSharpness:)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CICircularScreen {}
 );
 
 extern_protocol!(
@@ -404,9 +380,6 @@ extern_protocol!(
         #[method(setUnderColorRemoval:)]
         unsafe fn setUnderColorRemoval(&self, under_color_removal: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CICMYKHalftone {}
 );
 
 extern_protocol!(
@@ -452,9 +425,6 @@ extern_protocol!(
         #[method(setSharpness:)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIDotScreen {}
 );
 
 extern_protocol!(
@@ -500,9 +470,6 @@ extern_protocol!(
         #[method(setSharpness:)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIHatchedScreen {}
 );
 
 extern_protocol!(
@@ -548,9 +515,6 @@ extern_protocol!(
         #[method(setSharpness:)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CILineScreen {}
 );
 
 extern_protocol!(
@@ -602,9 +566,6 @@ extern_protocol!(
         #[method(setBottomLeft:)]
         unsafe fn setBottomLeft(&self, bottom_left: CGPoint);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIFourCoordinateGeometryFilter {}
 );
 
 extern_protocol!(
@@ -648,9 +609,6 @@ extern_protocol!(
         #[method(setParameterC:)]
         unsafe fn setParameterC(&self, parameter_c: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIBicubicScaleTransform {}
 );
 
 extern_protocol!(
@@ -689,9 +647,6 @@ extern_protocol!(
         #[method(setLumaSigma:)]
         unsafe fn setLumaSigma(&self, luma_sigma: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIEdgePreserveUpsample {}
 );
 
 extern_protocol!(
@@ -705,9 +660,6 @@ extern_protocol!(
         #[method(setFocalLength:)]
         unsafe fn setFocalLength(&self, focal_length: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIKeystoneCorrectionCombined {}
 );
 
 extern_protocol!(
@@ -721,9 +673,6 @@ extern_protocol!(
         #[method(setFocalLength:)]
         unsafe fn setFocalLength(&self, focal_length: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIKeystoneCorrectionHorizontal {}
 );
 
 extern_protocol!(
@@ -737,9 +686,6 @@ extern_protocol!(
         #[method(setFocalLength:)]
         unsafe fn setFocalLength(&self, focal_length: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIKeystoneCorrectionVertical {}
 );
 
 extern_protocol!(
@@ -769,9 +715,6 @@ extern_protocol!(
         #[method(setAspectRatio:)]
         unsafe fn setAspectRatio(&self, aspect_ratio: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CILanczosScaleTransform {}
 );
 
 extern_protocol!(
@@ -801,9 +744,6 @@ extern_protocol!(
         #[method(setAspectRatio:)]
         unsafe fn setAspectRatio(&self, aspect_ratio: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIMaximumScaleTransform {}
 );
 
 extern_protocol!(
@@ -817,9 +757,6 @@ extern_protocol!(
         #[method(setCrop:)]
         unsafe fn setCrop(&self, crop: bool);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIPerspectiveCorrection {}
 );
 
 extern_protocol!(
@@ -863,18 +800,12 @@ extern_protocol!(
         #[method(setRoll:)]
         unsafe fn setRoll(&self, roll: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIPerspectiveRotate {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciperspectivetransform?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPerspectiveTransform: CIFourCoordinateGeometryFilter {}
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIPerspectiveTransform {}
 );
 
 extern_protocol!(
@@ -892,9 +823,6 @@ extern_protocol!(
         #[method(setExtent:)]
         unsafe fn setExtent(&self, extent: CGRect);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIPerspectiveTransformWithExtent {}
 );
 
 extern_protocol!(
@@ -917,9 +845,6 @@ extern_protocol!(
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIStraighten {}
 );
 
 extern_protocol!(
@@ -951,9 +876,6 @@ extern_protocol!(
         #[method(setTime:)]
         unsafe fn setTime(&self, time: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CITransitionFilter {}
 );
 
 extern_protocol!(
@@ -981,9 +903,6 @@ extern_protocol!(
         #[method(setFoldShadowAmount:)]
         unsafe fn setFoldShadowAmount(&self, fold_shadow_amount: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIAccordionFoldTransition {}
 );
 
 extern_protocol!(
@@ -1011,9 +930,6 @@ extern_protocol!(
         #[method(setBarOffset:)]
         unsafe fn setBarOffset(&self, bar_offset: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIBarsSwipeTransition {}
 );
 
 extern_protocol!(
@@ -1059,9 +975,6 @@ extern_protocol!(
         #[method(setOpacity:)]
         unsafe fn setOpacity(&self, opacity: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CICopyMachineTransition {}
 );
 
 extern_protocol!(
@@ -1100,18 +1013,12 @@ extern_protocol!(
         #[method(setShadowOffset:)]
         unsafe fn setShadowOffset(&self, shadow_offset: CGPoint);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIDisintegrateWithMaskTransition {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidissolvetransition?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDissolveTransition: CITransitionFilter {}
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIDissolveTransition {}
 );
 
 extern_protocol!(
@@ -1173,9 +1080,6 @@ extern_protocol!(
         #[method(setFadeThreshold:)]
         unsafe fn setFadeThreshold(&self, fade_threshold: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIFlashTransition {}
 );
 
 extern_protocol!(
@@ -1212,9 +1116,6 @@ extern_protocol!(
         #[method(setCompression:)]
         unsafe fn setCompression(&self, compression: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIModTransition {}
 );
 
 extern_protocol!(
@@ -1262,9 +1163,6 @@ extern_protocol!(
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIPageCurlTransition {}
 );
 
 extern_protocol!(
@@ -1326,9 +1224,6 @@ extern_protocol!(
         #[method(setShadowExtent:)]
         unsafe fn setShadowExtent(&self, shadow_extent: CGRect);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIPageCurlWithShadowTransition {}
 );
 
 extern_protocol!(
@@ -1376,9 +1271,6 @@ extern_protocol!(
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIRippleTransition {}
 );
 
 extern_protocol!(
@@ -1424,9 +1316,6 @@ extern_protocol!(
         #[method(setOpacity:)]
         unsafe fn setOpacity(&self, opacity: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CISwipeTransition {}
 );
 
 extern_protocol!(
@@ -1451,9 +1340,6 @@ extern_protocol!(
         #[method(setBackgroundImage:)]
         unsafe fn setBackgroundImage(&self, background_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CICompositeOperation {}
 );
 
 extern_protocol!(
@@ -1478,9 +1364,6 @@ extern_protocol!(
         #[method(setInputImage2:)]
         unsafe fn setInputImage2(&self, input_image2: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIColorAbsoluteDifference {}
 );
 
 extern_protocol!(
@@ -1514,9 +1397,6 @@ extern_protocol!(
         #[method(setMaxComponents:)]
         unsafe fn setMaxComponents(&self, max_components: &CIVector);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIColorClamp {}
 );
 
 extern_protocol!(
@@ -1553,9 +1433,6 @@ extern_protocol!(
         #[method(setContrast:)]
         unsafe fn setContrast(&self, contrast: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIColorControls {}
 );
 
 extern_protocol!(
@@ -1616,9 +1493,6 @@ extern_protocol!(
         #[method(setBiasVector:)]
         unsafe fn setBiasVector(&self, bias_vector: &CIVector);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIColorMatrix {}
 );
 
 extern_protocol!(
@@ -1670,9 +1544,6 @@ extern_protocol!(
         #[method(setAlphaCoefficients:)]
         unsafe fn setAlphaCoefficients(&self, alpha_coefficients: &CIVector);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIColorPolynomial {}
 );
 
 extern_protocol!(
@@ -1695,9 +1566,6 @@ extern_protocol!(
         #[method(setThreshold:)]
         unsafe fn setThreshold(&self, threshold: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIColorThreshold {}
 );
 
 extern_protocol!(
@@ -1713,9 +1581,6 @@ extern_protocol!(
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIColorThresholdOtsu {}
 );
 
 extern_protocol!(
@@ -1731,9 +1596,6 @@ extern_protocol!(
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIDepthToDisparity {}
 );
 
 extern_protocol!(
@@ -1749,9 +1611,6 @@ extern_protocol!(
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIDisparityToDepth {}
 );
 
 extern_protocol!(
@@ -1774,9 +1633,6 @@ extern_protocol!(
         #[method(setEV:)]
         unsafe fn setEV(&self, ev: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIExposureAdjust {}
 );
 
 extern_protocol!(
@@ -1799,9 +1655,6 @@ extern_protocol!(
         #[method(setPower:)]
         unsafe fn setPower(&self, power: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIGammaAdjust {}
 );
 
 extern_protocol!(
@@ -1824,9 +1677,6 @@ extern_protocol!(
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIHueAdjust {}
 );
 
 extern_protocol!(
@@ -1842,9 +1692,6 @@ extern_protocol!(
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CILinearToSRGBToneCurve {}
 );
 
 extern_protocol!(
@@ -1860,9 +1707,6 @@ extern_protocol!(
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CISRGBToneCurveToLinear {}
 );
 
 extern_protocol!(
@@ -1896,9 +1740,6 @@ extern_protocol!(
         #[method(setTargetNeutral:)]
         unsafe fn setTargetNeutral(&self, target_neutral: &CIVector);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CITemperatureAndTint {}
 );
 
 extern_protocol!(
@@ -1959,9 +1800,6 @@ extern_protocol!(
         #[method(setPoint4:)]
         unsafe fn setPoint4(&self, point4: CGPoint);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIToneCurve {}
 );
 
 extern_protocol!(
@@ -1991,9 +1829,6 @@ extern_protocol!(
         #[method(setTargetHeadroom:)]
         unsafe fn setTargetHeadroom(&self, target_headroom: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIToneMapHeadroom {}
 );
 
 extern_protocol!(
@@ -2016,9 +1851,6 @@ extern_protocol!(
         #[method(setAmount:)]
         unsafe fn setAmount(&self, amount: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIVibrance {}
 );
 
 extern_protocol!(
@@ -2043,9 +1875,6 @@ extern_protocol!(
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIWhitePointAdjust {}
 );
 
 extern_protocol!(
@@ -2088,9 +1917,6 @@ extern_protocol!(
         #[method(setBlueCoefficients:)]
         unsafe fn setBlueCoefficients(&self, blue_coefficients: &CIVector);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIColorCrossPolynomial {}
 );
 
 extern_protocol!(
@@ -2127,9 +1953,6 @@ extern_protocol!(
         #[method(setExtrapolate:)]
         unsafe fn setExtrapolate(&self, extrapolate: bool);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIColorCube {}
 );
 
 extern_protocol!(
@@ -2191,9 +2014,6 @@ extern_protocol!(
         #[method(setExtrapolate:)]
         unsafe fn setExtrapolate(&self, extrapolate: bool);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIColorCubesMixedWithMask {}
 );
 
 extern_protocol!(
@@ -2239,9 +2059,6 @@ extern_protocol!(
         #[method(setExtrapolate:)]
         unsafe fn setExtrapolate(&self, extrapolate: bool);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIColorCubeWithColorSpace {}
 );
 
 extern_protocol!(
@@ -2282,9 +2099,6 @@ extern_protocol!(
         #[method(setColorSpace:)]
         unsafe fn setColorSpace(&self, color_space: CGColorSpaceRef);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIColorCurves {}
 );
 
 extern_protocol!(
@@ -2300,9 +2114,6 @@ extern_protocol!(
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIColorInvert {}
 );
 
 extern_protocol!(
@@ -2327,9 +2138,6 @@ extern_protocol!(
         #[method(setGradientImage:)]
         unsafe fn setGradientImage(&self, gradient_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIColorMap {}
 );
 
 extern_protocol!(
@@ -2361,9 +2169,6 @@ extern_protocol!(
         #[method(setIntensity:)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIColorMonochrome {}
 );
 
 extern_protocol!(
@@ -2386,9 +2191,6 @@ extern_protocol!(
         #[method(setLevels:)]
         unsafe fn setLevels(&self, levels: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIColorPosterize {}
 );
 
 extern_protocol!(
@@ -2411,9 +2213,6 @@ extern_protocol!(
         #[method(setNormalize:)]
         unsafe fn setNormalize(&self, normalize: bool);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIConvertLab {}
 );
 
 extern_protocol!(
@@ -2436,9 +2235,6 @@ extern_protocol!(
         #[method(setIntensity:)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIDither {}
 );
 
 extern_protocol!(
@@ -2461,9 +2257,6 @@ extern_protocol!(
         #[method(setAmount:)]
         unsafe fn setAmount(&self, amount: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIDocumentEnhancer {}
 );
 
 extern_protocol!(
@@ -2497,9 +2290,6 @@ extern_protocol!(
         #[method(setColor1:)]
         unsafe fn setColor1(&self, color1: &CIColor);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIFalseColor {}
 );
 
 extern_protocol!(
@@ -2524,9 +2314,6 @@ extern_protocol!(
         #[method(setImage2:)]
         unsafe fn setImage2(&self, image2: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CILabDeltaE {}
 );
 
 extern_protocol!(
@@ -2542,9 +2329,6 @@ extern_protocol!(
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIMaskToAlpha {}
 );
 
 extern_protocol!(
@@ -2560,9 +2344,6 @@ extern_protocol!(
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIMaximumComponent {}
 );
 
 extern_protocol!(
@@ -2578,9 +2359,6 @@ extern_protocol!(
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIMinimumComponent {}
 );
 
 extern_protocol!(
@@ -2612,9 +2390,6 @@ extern_protocol!(
         #[method(setPerceptual:)]
         unsafe fn setPerceptual(&self, perceptual: bool);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIPaletteCentroid {}
 );
 
 extern_protocol!(
@@ -2646,9 +2421,6 @@ extern_protocol!(
         #[method(setPerceptual:)]
         unsafe fn setPerceptual(&self, perceptual: bool);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIPalettize {}
 );
 
 extern_protocol!(
@@ -2671,9 +2443,6 @@ extern_protocol!(
         #[method(setExtrapolate:)]
         unsafe fn setExtrapolate(&self, extrapolate: bool);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIPhotoEffect {}
 );
 
 extern_protocol!(
@@ -2696,9 +2465,6 @@ extern_protocol!(
         #[method(setIntensity:)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CISepiaTone {}
 );
 
 extern_protocol!(
@@ -2714,9 +2480,6 @@ extern_protocol!(
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIThermal {}
 );
 
 extern_protocol!(
@@ -2746,9 +2509,6 @@ extern_protocol!(
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIVignette {}
 );
 
 extern_protocol!(
@@ -2794,9 +2554,6 @@ extern_protocol!(
         #[method(setFalloff:)]
         unsafe fn setFalloff(&self, falloff: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIVignetteEffect {}
 );
 
 extern_protocol!(
@@ -2812,9 +2569,6 @@ extern_protocol!(
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIXRay {}
 );
 
 extern_protocol!(
@@ -2853,9 +2607,6 @@ extern_protocol!(
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIBumpDistortion {}
 );
 
 extern_protocol!(
@@ -2901,9 +2652,6 @@ extern_protocol!(
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIBumpDistortionLinear {}
 );
 
 extern_protocol!(
@@ -2935,9 +2683,6 @@ extern_protocol!(
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CICircleSplashDistortion {}
 );
 
 extern_protocol!(
@@ -2976,9 +2721,6 @@ extern_protocol!(
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CICircularWrap {}
 );
 
 extern_protocol!(
@@ -3010,9 +2752,6 @@ extern_protocol!(
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIDisplacementDistortion {}
 );
 
 extern_protocol!(
@@ -3074,9 +2813,6 @@ extern_protocol!(
         #[method(setZoom:)]
         unsafe fn setZoom(&self, zoom: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIDroste {}
 );
 
 extern_protocol!(
@@ -3117,9 +2853,6 @@ extern_protocol!(
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIGlassDistortion {}
 );
 
 extern_protocol!(
@@ -3167,9 +2900,6 @@ extern_protocol!(
         #[method(setRefraction:)]
         unsafe fn setRefraction(&self, refraction: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIGlassLozenge {}
 );
 
 extern_protocol!(
@@ -3201,9 +2931,6 @@ extern_protocol!(
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIHoleDistortion {}
 );
 
 extern_protocol!(
@@ -3242,9 +2969,6 @@ extern_protocol!(
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CILightTunnel {}
 );
 
 extern_protocol!(
@@ -3287,9 +3011,6 @@ extern_protocol!(
         #[method(setGrowAmount:)]
         unsafe fn setGrowAmount(&self, grow_amount: CGPoint);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CINinePartStretched {}
 );
 
 extern_protocol!(
@@ -3339,9 +3060,6 @@ extern_protocol!(
         #[method(setFlipYTiles:)]
         unsafe fn setFlipYTiles(&self, flip_y_tiles: bool);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CINinePartTiled {}
 );
 
 extern_protocol!(
@@ -3380,9 +3098,6 @@ extern_protocol!(
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIPinchDistortion {}
 );
 
 extern_protocol!(
@@ -3421,9 +3136,6 @@ extern_protocol!(
         #[method(setCenterStretchAmount:)]
         unsafe fn setCenterStretchAmount(&self, center_stretch_amount: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIStretchCrop {}
 );
 
 extern_protocol!(
@@ -3469,9 +3181,6 @@ extern_protocol!(
         #[method(setRefraction:)]
         unsafe fn setRefraction(&self, refraction: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CITorusLensDistortion {}
 );
 
 extern_protocol!(
@@ -3510,9 +3219,6 @@ extern_protocol!(
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CITwirlDistortion {}
 );
 
 extern_protocol!(
@@ -3551,9 +3257,6 @@ extern_protocol!(
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIVortexDistortion {}
 );
 
 extern_protocol!(
@@ -3578,9 +3281,6 @@ extern_protocol!(
         #[method(setTransform:)]
         unsafe fn setTransform(&self, transform: CGAffineTransform);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIAffineClamp {}
 );
 
 extern_protocol!(
@@ -3605,9 +3305,6 @@ extern_protocol!(
         #[method(setTransform:)]
         unsafe fn setTransform(&self, transform: CGAffineTransform);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIAffineTile {}
 );
 
 extern_protocol!(
@@ -3646,9 +3343,6 @@ extern_protocol!(
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIEightfoldReflectedTile {}
 );
 
 extern_protocol!(
@@ -3694,9 +3388,6 @@ extern_protocol!(
         #[method(setAcuteAngle:)]
         unsafe fn setAcuteAngle(&self, acute_angle: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIFourfoldReflectedTile {}
 );
 
 extern_protocol!(
@@ -3735,9 +3426,6 @@ extern_protocol!(
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIFourfoldRotatedTile {}
 );
 
 extern_protocol!(
@@ -3783,9 +3471,6 @@ extern_protocol!(
         #[method(setAcuteAngle:)]
         unsafe fn setAcuteAngle(&self, acute_angle: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIFourfoldTranslatedTile {}
 );
 
 extern_protocol!(
@@ -3824,9 +3509,6 @@ extern_protocol!(
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIGlideReflectedTile {}
 );
 
 extern_protocol!(
@@ -3865,9 +3547,6 @@ extern_protocol!(
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIKaleidoscope {}
 );
 
 extern_protocol!(
@@ -3913,9 +3592,6 @@ extern_protocol!(
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIOpTile {}
 );
 
 extern_protocol!(
@@ -3961,9 +3637,6 @@ extern_protocol!(
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIParallelogramTile {}
 );
 
 extern_protocol!(
@@ -4015,9 +3688,6 @@ extern_protocol!(
         #[method(setBottomLeft:)]
         unsafe fn setBottomLeft(&self, bottom_left: CGPoint);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIPerspectiveTile {}
 );
 
 extern_protocol!(
@@ -4056,9 +3726,6 @@ extern_protocol!(
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CISixfoldReflectedTile {}
 );
 
 extern_protocol!(
@@ -4097,9 +3764,6 @@ extern_protocol!(
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CISixfoldRotatedTile {}
 );
 
 extern_protocol!(
@@ -4145,9 +3809,6 @@ extern_protocol!(
         #[method(setDecay:)]
         unsafe fn setDecay(&self, decay: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CITriangleKaleidoscope {}
 );
 
 extern_protocol!(
@@ -4186,9 +3847,6 @@ extern_protocol!(
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CITriangleTile {}
 );
 
 extern_protocol!(
@@ -4227,9 +3885,6 @@ extern_protocol!(
         #[method(setWidth:)]
         unsafe fn setWidth(&self, width: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CITwelvefoldReflectedTile {}
 );
 
 extern_protocol!(
@@ -4257,9 +3912,6 @@ extern_protocol!(
         #[method(setPadding:)]
         unsafe fn setPadding(&self, padding: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIAttributedTextImageGenerator {}
 );
 
 extern_protocol!(
@@ -4294,9 +3946,6 @@ extern_protocol!(
         #[method(setCompactStyle:)]
         unsafe fn setCompactStyle(&self, compact_style: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIAztecCodeGenerator {}
 );
 
 extern_protocol!(
@@ -4312,9 +3961,6 @@ extern_protocol!(
         #[method(setBarcodeDescriptor:)]
         unsafe fn setBarcodeDescriptor(&self, barcode_descriptor: &CIBarcodeDescriptor);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIBarcodeGenerator {}
 );
 
 extern_protocol!(
@@ -4346,9 +3992,6 @@ extern_protocol!(
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIBlurredRectangleGenerator {}
 );
 
 extern_protocol!(
@@ -4396,9 +4039,6 @@ extern_protocol!(
         #[method(setSharpness:)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CICheckerboardGenerator {}
 );
 
 extern_protocol!(
@@ -4426,9 +4066,6 @@ extern_protocol!(
         #[method(setBarcodeHeight:)]
         unsafe fn setBarcodeHeight(&self, barcode_height: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CICode128BarcodeGenerator {}
 );
 
 extern_protocol!(
@@ -4495,9 +4132,6 @@ extern_protocol!(
         #[method(setTime:)]
         unsafe fn setTime(&self, time: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CILenticularHaloGenerator {}
 );
 
 extern_protocol!(
@@ -4527,9 +4161,6 @@ extern_protocol!(
         #[method(setMesh:)]
         unsafe fn setMesh(&self, mesh: &NSArray);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIMeshGenerator {}
 );
 
 extern_protocol!(
@@ -4620,9 +4251,6 @@ extern_protocol!(
         #[method(setAlwaysSpecifyCompaction:)]
         unsafe fn setAlwaysSpecifyCompaction(&self, always_specify_compaction: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIPDF417BarcodeGenerator {}
 );
 
 extern_protocol!(
@@ -4643,18 +4271,12 @@ extern_protocol!(
         #[method(setCorrectionLevel:)]
         unsafe fn setCorrectionLevel(&self, correction_level: &NSString);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIQRCodeGenerator {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirandomgenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIRandomGenerator: CIFilterProtocol {}
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIRandomGenerator {}
 );
 
 extern_protocol!(
@@ -4686,9 +4308,6 @@ extern_protocol!(
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIRoundedRectangleGenerator {}
 );
 
 extern_protocol!(
@@ -4727,9 +4346,6 @@ extern_protocol!(
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIRoundedRectangleStrokeGenerator {}
 );
 
 extern_protocol!(
@@ -4796,9 +4412,6 @@ extern_protocol!(
         #[method(setEpsilon:)]
         unsafe fn setEpsilon(&self, epsilon: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIStarShineGenerator {}
 );
 
 extern_protocol!(
@@ -4846,9 +4459,6 @@ extern_protocol!(
         #[method(setSharpness:)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIStripesGenerator {}
 );
 
 extern_protocol!(
@@ -4908,9 +4518,6 @@ extern_protocol!(
         #[method(setTime:)]
         unsafe fn setTime(&self, time: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CISunbeamsGenerator {}
 );
 
 extern_protocol!(
@@ -4952,9 +4559,6 @@ extern_protocol!(
         #[method(setPadding:)]
         unsafe fn setPadding(&self, padding: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CITextImageGenerator {}
 );
 
 extern_protocol!(
@@ -4988,9 +4592,6 @@ extern_protocol!(
         #[method(setMaskImage:)]
         unsafe fn setMaskImage(&self, mask_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIBlendWithMask {}
 );
 
 extern_protocol!(
@@ -5020,9 +4621,6 @@ extern_protocol!(
         #[method(setIntensity:)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIBloom {}
 );
 
 extern_protocol!(
@@ -5073,9 +4671,6 @@ extern_protocol!(
         #[method(setHysteresisPasses:)]
         unsafe fn setHysteresisPasses(&self, hysteresis_passes: NSInteger);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CICannyEdgeDetector {}
 );
 
 extern_protocol!(
@@ -5091,9 +4686,6 @@ extern_protocol!(
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIComicEffect {}
 );
 
 extern_protocol!(
@@ -5125,9 +4717,6 @@ extern_protocol!(
         #[method(setBias:)]
         unsafe fn setBias(&self, bias: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIConvolution {}
 );
 
 extern_protocol!(
@@ -5166,9 +4755,6 @@ extern_protocol!(
         #[method(setSoftmaxNormalization:)]
         unsafe fn setSoftmaxNormalization(&self, softmax_normalization: bool);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CICoreMLModel {}
 );
 
 extern_protocol!(
@@ -5200,9 +4786,6 @@ extern_protocol!(
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CICrystallize {}
 );
 
 extern_protocol!(
@@ -5264,9 +4847,6 @@ extern_protocol!(
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIDepthOfField {}
 );
 
 extern_protocol!(
@@ -5289,9 +4869,6 @@ extern_protocol!(
         #[method(setIntensity:)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIEdges {}
 );
 
 extern_protocol!(
@@ -5314,9 +4891,6 @@ extern_protocol!(
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIEdgeWork {}
 );
 
 extern_protocol!(
@@ -5332,9 +4906,6 @@ extern_protocol!(
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIGaborGradients {}
 );
 
 extern_protocol!(
@@ -5364,9 +4935,6 @@ extern_protocol!(
         #[method(setIntensity:)]
         unsafe fn setIntensity(&self, intensity: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIGloom {}
 );
 
 extern_protocol!(
@@ -5389,9 +4957,6 @@ extern_protocol!(
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIHeightFieldFromMask {}
 );
 
 extern_protocol!(
@@ -5423,9 +4988,6 @@ extern_protocol!(
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIHexagonalPixellate {}
 );
 
 extern_protocol!(
@@ -5462,9 +5024,6 @@ extern_protocol!(
         #[method(setHighlightAmount:)]
         unsafe fn setHighlightAmount(&self, highlight_amount: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIHighlightShadowAdjust {}
 );
 
 extern_protocol!(
@@ -5515,9 +5074,6 @@ extern_protocol!(
         #[method(setContrast:)]
         unsafe fn setContrast(&self, contrast: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CILineOverlay {}
 );
 
 extern_protocol!(
@@ -5549,9 +5105,6 @@ extern_protocol!(
         #[method(setAmount:)]
         unsafe fn setAmount(&self, amount: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIMix {}
 );
 
 extern_protocol!(
@@ -5574,9 +5127,6 @@ extern_protocol!(
         #[method(setQualityLevel:)]
         unsafe fn setQualityLevel(&self, quality_level: NSUInteger);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIPersonSegmentation {}
 );
 
 extern_protocol!(
@@ -5608,9 +5158,6 @@ extern_protocol!(
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIPixellate {}
 );
 
 extern_protocol!(
@@ -5642,9 +5189,6 @@ extern_protocol!(
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: CGPoint);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIPointillize {}
 );
 
 extern_protocol!(
@@ -5660,9 +5204,6 @@ extern_protocol!(
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CISaliencyMap {}
 );
 
 extern_protocol!(
@@ -5694,9 +5235,6 @@ extern_protocol!(
         #[method(setScale:)]
         unsafe fn setScale(&self, scale: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIShadedMaterial {}
 );
 
 extern_protocol!(
@@ -5712,9 +5250,6 @@ extern_protocol!(
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CISobelGradients {}
 );
 
 extern_protocol!(
@@ -5826,9 +5361,6 @@ extern_protocol!(
         #[method(setContrast3:)]
         unsafe fn setContrast3(&self, contrast3: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CISpotColor {}
 );
 
 extern_protocol!(
@@ -5885,9 +5417,6 @@ extern_protocol!(
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CISpotLight {}
 );
 
 extern_protocol!(
@@ -5931,9 +5460,6 @@ extern_protocol!(
         #[method(setSoftness:)]
         unsafe fn setSoftness(&self, softness: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIBokehBlur {}
 );
 
 extern_protocol!(
@@ -5956,9 +5482,6 @@ extern_protocol!(
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIBoxBlur {}
 );
 
 extern_protocol!(
@@ -5981,9 +5504,6 @@ extern_protocol!(
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIDiscBlur {}
 );
 
 extern_protocol!(
@@ -6006,9 +5526,6 @@ extern_protocol!(
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIGaussianBlur {}
 );
 
 extern_protocol!(
@@ -6040,9 +5557,6 @@ extern_protocol!(
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIMaskedVariableBlur {}
 );
 
 extern_protocol!(
@@ -6058,9 +5572,6 @@ extern_protocol!(
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIMedian {}
 );
 
 extern_protocol!(
@@ -6083,9 +5594,6 @@ extern_protocol!(
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIMorphologyGradient {}
 );
 
 extern_protocol!(
@@ -6108,9 +5616,6 @@ extern_protocol!(
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIMorphologyMaximum {}
 );
 
 extern_protocol!(
@@ -6133,9 +5638,6 @@ extern_protocol!(
         #[method(setRadius:)]
         unsafe fn setRadius(&self, radius: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIMorphologyMinimum {}
 );
 
 extern_protocol!(
@@ -6165,9 +5667,6 @@ extern_protocol!(
         #[method(setHeight:)]
         unsafe fn setHeight(&self, height: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIMorphologyRectangleMaximum {}
 );
 
 extern_protocol!(
@@ -6197,9 +5696,6 @@ extern_protocol!(
         #[method(setHeight:)]
         unsafe fn setHeight(&self, height: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIMorphologyRectangleMinimum {}
 );
 
 extern_protocol!(
@@ -6229,9 +5725,6 @@ extern_protocol!(
         #[method(setAngle:)]
         unsafe fn setAngle(&self, angle: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIMotionBlur {}
 );
 
 extern_protocol!(
@@ -6261,9 +5754,6 @@ extern_protocol!(
         #[method(setSharpness:)]
         unsafe fn setSharpness(&self, sharpness: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CINoiseReduction {}
 );
 
 extern_protocol!(
@@ -6295,9 +5785,6 @@ extern_protocol!(
         #[method(setAmount:)]
         unsafe fn setAmount(&self, amount: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIZoomBlur {}
 );
 
 extern_protocol!(
@@ -6322,27 +5809,18 @@ extern_protocol!(
         #[method(setExtent:)]
         unsafe fn setExtent(&self, extent: CGRect);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIAreaReductionFilter {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareaaverage?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaAverage: CIAreaReductionFilter {}
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIAreaAverage {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareaboundsred?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaBoundsRed: CIAreaReductionFilter {}
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIAreaBoundsRed {}
 );
 
 extern_protocol!(
@@ -6363,9 +5841,6 @@ extern_protocol!(
         #[method(setCount:)]
         unsafe fn setCount(&self, count: NSInteger);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIAreaHistogram {}
 );
 
 extern_protocol!(
@@ -6400,72 +5875,48 @@ extern_protocol!(
         #[method(setMaximumStop:)]
         unsafe fn setMaximumStop(&self, maximum_stop: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIAreaLogarithmicHistogram {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareamaximum?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaMaximum: CIAreaReductionFilter {}
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIAreaMaximum {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareamaximumalpha?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaMaximumAlpha: CIAreaReductionFilter {}
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIAreaMaximumAlpha {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareaminimum?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaMinimum: CIAreaReductionFilter {}
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIAreaMinimum {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareaminimumalpha?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaMinimumAlpha: CIAreaReductionFilter {}
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIAreaMinimumAlpha {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareaminmax?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaMinMax: CIAreaReductionFilter {}
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIAreaMinMax {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciareaminmaxred?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaMinMaxRed: CIAreaReductionFilter {}
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIAreaMinMaxRed {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicolumnaverage?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColumnAverage: CIAreaReductionFilter {}
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIColumnAverage {}
 );
 
 extern_protocol!(
@@ -6502,9 +5953,6 @@ extern_protocol!(
         #[method(setLowLimit:)]
         unsafe fn setLowLimit(&self, low_limit: c_float);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIHistogramDisplay {}
 );
 
 extern_protocol!(
@@ -6541,18 +5989,12 @@ extern_protocol!(
         #[method(setPerceptual:)]
         unsafe fn setPerceptual(&self, perceptual: bool);
     }
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIKMeans {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirowaverage?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIRowAverage: CIAreaReductionFilter {}
-
-    #[cfg(feature = "CIFilter")]
-    unsafe impl ProtocolType for dyn CIRowAverage {}
 );
 
 extern_methods!(

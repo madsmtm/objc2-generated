@@ -274,8 +274,6 @@ extern_protocol!(
         #[method(alertShowHelp:)]
         unsafe fn alertShowHelp(&self, alert: &NSAlert) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSAlertDelegate {}
 );
 
 extern_methods!(

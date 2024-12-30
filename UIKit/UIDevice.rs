@@ -159,8 +159,6 @@ extern_protocol!(
         #[method(enableInputClicksWhenVisible)]
         unsafe fn enableInputClicksWhenVisible(&self) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UIInputViewAudioFeedback {}
 );
 
 // TODO: pub fn UI_USER_INTERFACE_IDIOM() -> UIUserInterfaceIdiom;

@@ -409,8 +409,6 @@ extern_protocol!(
             initialization_data: Option<&NSData>,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVContentKeySessionDelegate {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequeststatus?language=objc)
@@ -708,8 +706,6 @@ extern_protocol!(
         #[method(mayRequireContentKeysForMediaDataProcessing)]
         unsafe fn mayRequireContentKeysForMediaDataProcessing(&self) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn AVContentKeyRecipient {}
 );
 
 extern_class!(

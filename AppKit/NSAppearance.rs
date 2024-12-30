@@ -144,6 +144,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other effectiveAppearance)]
         unsafe fn effectiveAppearance(&self) -> Retained<NSAppearance>;
     }
-
-    unsafe impl ProtocolType for dyn NSAppearanceCustomization {}
 );

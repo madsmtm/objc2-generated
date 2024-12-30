@@ -9,8 +9,6 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiappearancecontainer?language=objc)
     pub unsafe trait UIAppearanceContainer: NSObjectProtocol + MainThreadOnly {}
-
-    unsafe impl ProtocolType for dyn UIAppearanceContainer {}
 );
 
 extern_protocol!(
@@ -40,6 +38,4 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
     }
-
-    unsafe impl ProtocolType for dyn UIAppearance {}
 );

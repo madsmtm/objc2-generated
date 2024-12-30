@@ -8,36 +8,26 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputelementname?language=objc)
     pub unsafe trait GCPhysicalInputElementName {}
-
-    unsafe impl ProtocolType for dyn GCPhysicalInputElementName {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcbuttonelementname?language=objc)
     pub unsafe trait GCButtonElementName: GCPhysicalInputElementName {}
-
-    unsafe impl ProtocolType for dyn GCButtonElementName {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcaxiselementname?language=objc)
     pub unsafe trait GCAxisElementName: GCPhysicalInputElementName {}
-
-    unsafe impl ProtocolType for dyn GCAxisElementName {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcswitchelementname?language=objc)
     pub unsafe trait GCSwitchElementName: GCPhysicalInputElementName {}
-
-    unsafe impl ProtocolType for dyn GCSwitchElementName {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdirectionpadelementname?language=objc)
     pub unsafe trait GCDirectionPadElementName: GCPhysicalInputElementName {}
-
-    unsafe impl ProtocolType for dyn GCDirectionPadElementName {}
 );
 
 extern "C" {

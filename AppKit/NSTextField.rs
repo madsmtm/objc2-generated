@@ -456,9 +456,6 @@ extern_protocol!(
             index: NSUInteger,
         ) -> bool;
     }
-
-    #[cfg(feature = "NSControl")]
-    unsafe impl ProtocolType for dyn NSTextFieldDelegate {}
 );
 
 extern_methods!(

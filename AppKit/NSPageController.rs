@@ -234,6 +234,4 @@ extern_protocol!(
         #[method(pageControllerDidEndLiveTransition:)]
         unsafe fn pageControllerDidEndLiveTransition(&self, page_controller: &NSPageController);
     }
-
-    unsafe impl ProtocolType for dyn NSPageControllerDelegate {}
 );

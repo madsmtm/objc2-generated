@@ -79,8 +79,6 @@ extern_protocol!(
         #[method(setVolume:)]
         unsafe fn setVolume(&self, volume: c_float);
     }
-
-    unsafe impl ProtocolType for dyn AVAudioMixing {}
 );
 
 extern_protocol!(
@@ -100,8 +98,6 @@ extern_protocol!(
         #[method(setPan:)]
         unsafe fn setPan(&self, pan: c_float);
     }
-
-    unsafe impl ProtocolType for dyn AVAudioStereoMixing {}
 );
 
 /// Types of rendering algorithms available per input bus of the environment node
@@ -393,8 +389,6 @@ extern_protocol!(
         #[method(setPosition:)]
         unsafe fn setPosition(&self, position: AVAudio3DPoint);
     }
-
-    unsafe impl ProtocolType for dyn AVAudio3DMixing {}
 );
 
 extern_class!(

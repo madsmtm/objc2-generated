@@ -72,8 +72,6 @@ extern_protocol!(
             text_range: &UITextRange,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UITextPasteDelegate {}
 );
 
 extern_protocol!(
@@ -106,6 +104,4 @@ extern_protocol!(
         #[method(setDefaultResult)]
         unsafe fn setDefaultResult(&self);
     }
-
-    unsafe impl ProtocolType for dyn UITextPasteItem {}
 );

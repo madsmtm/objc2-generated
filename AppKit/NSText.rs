@@ -484,8 +484,6 @@ extern_protocol!(
         #[method(textDidChange:)]
         unsafe fn textDidChange(&self, notification: &NSNotification);
     }
-
-    unsafe impl ProtocolType for dyn NSTextDelegate {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextwritingdirectionembedding?language=objc)

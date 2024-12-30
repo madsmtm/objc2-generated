@@ -331,8 +331,6 @@ extern_protocol!(
             validation_error: &NSError,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSXMLParserDelegate {}
 );
 
 extern "C" {

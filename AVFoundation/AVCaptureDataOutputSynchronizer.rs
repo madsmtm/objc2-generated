@@ -83,8 +83,6 @@ extern_protocol!(
             synchronized_data_collection: &AVCaptureSynchronizedDataCollection,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVCaptureDataOutputSynchronizerDelegate {}
 );
 
 extern_class!(

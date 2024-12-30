@@ -105,6 +105,4 @@ extern_protocol!(
         #[method(scribbleInteractionDidFinishWriting:)]
         unsafe fn scribbleInteractionDidFinishWriting(&self, interaction: &UIScribbleInteraction);
     }
-
-    unsafe impl ProtocolType for dyn UIScribbleInteractionDelegate {}
 );

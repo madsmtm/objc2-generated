@@ -14,8 +14,6 @@ extern_protocol!(
         #[method(callObserver:callChanged:)]
         unsafe fn callObserver_callChanged(&self, call_observer: &CXCallObserver, call: &CXCall);
     }
-
-    unsafe impl ProtocolType for dyn CXCallObserverDelegate {}
 );
 
 extern_class!(

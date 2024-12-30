@@ -30,7 +30,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other touchedInput)]
         unsafe fn touchedInput(&self) -> Option<Retained<ProtocolObject<dyn GCTouchedStateInput>>>;
     }
-
-    #[cfg(feature = "GCPhysicalInputElement")]
-    unsafe impl ProtocolType for dyn GCButtonElement {}
 );

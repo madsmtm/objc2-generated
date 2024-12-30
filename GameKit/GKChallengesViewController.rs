@@ -116,6 +116,4 @@ extern_protocol!(
             view_controller: Option<&GKChallengesViewController>,
         );
     }
-
-    unsafe impl ProtocolType for dyn GKChallengesViewControllerDelegate {}
 );

@@ -33,8 +33,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other sfSymbolsName)]
         unsafe fn sfSymbolsName(&self) -> Option<Retained<NSString>>;
     }
-
-    unsafe impl ProtocolType for dyn GCPhysicalInputElement {}
 );
 
 extern_class!(

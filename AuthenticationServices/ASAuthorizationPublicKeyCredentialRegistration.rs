@@ -18,10 +18,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other rawAttestationObject)]
         unsafe fn rawAttestationObject(&self) -> Option<Retained<NSData>>;
     }
-
-    #[cfg(all(
-        feature = "ASAuthorizationCredential",
-        feature = "ASPublicKeyCredential"
-    ))]
-    unsafe impl ProtocolType for dyn ASAuthorizationPublicKeyCredentialRegistration {}
 );

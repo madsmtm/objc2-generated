@@ -35,6 +35,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other commandQueue)]
         unsafe fn commandQueue(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
     }
-
-    unsafe impl ProtocolType for dyn MTLCaptureScope {}
 );

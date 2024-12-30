@@ -433,9 +433,6 @@ extern_protocol!(
             suggestion: &ProtocolObject<dyn UISearchSuggestion>,
         );
     }
-
-    #[cfg(feature = "UITextField")]
-    unsafe impl ProtocolType for dyn UISearchTextFieldDelegate {}
 );
 
 extern_protocol!(
@@ -450,7 +447,4 @@ extern_protocol!(
         #[method(setSearchTokenResult:)]
         unsafe fn setSearchTokenResult(&self, token: &UISearchToken);
     }
-
-    #[cfg(feature = "UITextPasteDelegate")]
-    unsafe impl ProtocolType for dyn UISearchTextFieldPasteItem {}
 );

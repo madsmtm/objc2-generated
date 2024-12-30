@@ -20,9 +20,6 @@ extern_protocol!(
             response: &SKProductsResponse,
         );
     }
-
-    #[cfg(feature = "SKRequest")]
-    unsafe impl ProtocolType for dyn SKProductsRequestDelegate {}
 );
 
 extern_class!(

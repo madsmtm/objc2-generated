@@ -50,8 +50,6 @@ extern_protocol!(
             transition_context: &SKOverlayTransitionContext,
         );
     }
-
-    unsafe impl ProtocolType for dyn SKOverlayDelegate {}
 );
 
 extern_class!(

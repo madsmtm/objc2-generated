@@ -262,8 +262,6 @@ extern_protocol!(
             kernel: &MPSKernel,
         ) -> Retained<MPSNDArray>;
     }
-
-    unsafe impl ProtocolType for dyn MPSNDArrayAllocator {}
 );
 
 extern_class!(

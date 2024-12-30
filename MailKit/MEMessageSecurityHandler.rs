@@ -76,7 +76,4 @@ extern_protocol!(
             completion_handler: &block2::Block<dyn Fn(*mut MEExtensionViewController)>,
         );
     }
-
-    #[cfg(all(feature = "MEMessageDecoder", feature = "MEMessageEncoder"))]
-    unsafe impl ProtocolType for dyn MEMessageSecurityHandler {}
 );

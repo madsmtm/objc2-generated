@@ -115,8 +115,6 @@ extern_protocol!(
         #[method(setLabel:)]
         unsafe fn setLabel(&self, label: Option<&NSString>);
     }
-
-    unsafe impl ProtocolType for dyn MTLIOCommandQueue {}
 );
 
 extern_protocol!(
@@ -134,8 +132,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other buffer)]
         unsafe fn buffer(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
     }
-
-    unsafe impl ProtocolType for dyn MTLIOScratchBuffer {}
 );
 
 extern_protocol!(
@@ -162,8 +158,6 @@ extern_protocol!(
             minimum_size: NSUInteger,
         ) -> Option<Retained<ProtocolObject<dyn MTLIOScratchBuffer>>>;
     }
-
-    unsafe impl ProtocolType for dyn MTLIOScratchBufferAllocator {}
 );
 
 extern_class!(
@@ -263,6 +257,4 @@ extern_protocol!(
         #[method(setLabel:)]
         unsafe fn setLabel(&self, label: Option<&NSString>);
     }
-
-    unsafe impl ProtocolType for dyn MTLIOFileHandle {}
 );

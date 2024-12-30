@@ -22,6 +22,4 @@ extern_protocol!(
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
     }
-
-    unsafe impl ProtocolType for dyn MTLFence {}
 );

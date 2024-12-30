@@ -78,8 +78,6 @@ extern_protocol!(
         #[method(cloudSharingControllerDidStopSharing:)]
         unsafe fn cloudSharingControllerDidStopSharing(&self, csc: &UICloudSharingController);
     }
-
-    unsafe impl ProtocolType for dyn UICloudSharingControllerDelegate {}
 );
 
 extern_class!(

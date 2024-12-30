@@ -14,8 +14,6 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetriceventstreampublisher?language=objc)
     pub unsafe trait AVMetricEventStreamPublisher {}
-
-    unsafe impl ProtocolType for dyn AVMetricEventStreamPublisher {}
 );
 
 extern_protocol!(
@@ -35,8 +33,6 @@ extern_protocol!(
             event: &AVMetricEvent,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVMetricEventStreamSubscriber {}
 );
 
 extern_class!(

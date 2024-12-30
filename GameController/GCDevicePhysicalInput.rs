@@ -152,7 +152,4 @@ extern_protocol!(
             >,
         >;
     }
-
-    #[cfg(feature = "GCDevicePhysicalInputState")]
-    unsafe impl ProtocolType for dyn GCDevicePhysicalInput {}
 );

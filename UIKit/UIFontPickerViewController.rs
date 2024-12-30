@@ -28,8 +28,6 @@ extern_protocol!(
             view_controller: &UIFontPickerViewController,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIFontPickerViewControllerDelegate {}
 );
 
 extern_class!(

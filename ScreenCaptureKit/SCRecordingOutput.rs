@@ -114,8 +114,6 @@ extern_protocol!(
         #[method(recordingOutputDidFinishRecording:)]
         unsafe fn recordingOutputDidFinishRecording(&self, recording_output: &SCRecordingOutput);
     }
-
-    unsafe impl ProtocolType for dyn SCRecordingOutputDelegate {}
 );
 
 extern_class!(

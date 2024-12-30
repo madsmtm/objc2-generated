@@ -41,6 +41,4 @@ extern_protocol!(
             actions_to_translate: &block2::Block<dyn Fn() + '_>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIDataSourceTranslating {}
 );

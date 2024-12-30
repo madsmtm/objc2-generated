@@ -7958,8 +7958,6 @@ extern_protocol!(
             user_info: &NSDictionary,
         );
     }
-
-    unsafe impl ProtocolType for dyn NEAppPushDelegate {}
 );
 
 extern_class!(
@@ -8558,8 +8556,6 @@ extern_protocol!(
         #[method(shouldEvaluateTrustForConnection:)]
         unsafe fn shouldEvaluateTrustForConnection(&self, connection: &NWTCPConnection) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NWTCPConnectionAuthenticationDelegate {}
 );
 
 /// UDP session state values

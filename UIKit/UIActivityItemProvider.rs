@@ -81,8 +81,6 @@ extern_protocol!(
             size: CGSize,
         ) -> Option<Retained<UIImage>>;
     }
-
-    unsafe impl ProtocolType for dyn UIActivityItemSource {}
 );
 
 extern_class!(

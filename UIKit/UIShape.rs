@@ -49,8 +49,6 @@ extern_protocol!(
             context: &UIShapeResolutionContext,
         ) -> Retained<UIResolvedShape>;
     }
-
-    unsafe impl ProtocolType for dyn UIShapeProvider {}
 );
 
 extern_class!(

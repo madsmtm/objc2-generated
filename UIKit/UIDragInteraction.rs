@@ -20,8 +20,6 @@ extern_protocol!(
         #[method(addCompletion:)]
         unsafe fn addCompletion(&self, completion: &block2::Block<dyn Fn(UIViewAnimatingPosition)>);
     }
-
-    unsafe impl ProtocolType for dyn UIDragAnimating {}
 );
 
 extern_class!(
@@ -247,6 +245,4 @@ extern_protocol!(
             animator: &ProtocolObject<dyn UIDragAnimating>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIDragInteractionDelegate {}
 );

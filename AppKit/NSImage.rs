@@ -575,8 +575,6 @@ extern_protocol!(
             status: NSImageLoadStatus,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSImageDelegate {}
 );
 
 extern_category!(

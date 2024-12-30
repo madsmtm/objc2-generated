@@ -22,6 +22,4 @@ extern_protocol!(
             index: NSInteger,
         ) -> Retained<ProtocolObject<dyn MLFeatureProvider>>;
     }
-
-    unsafe impl ProtocolType for dyn MLBatchProvider {}
 );

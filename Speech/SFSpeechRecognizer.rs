@@ -150,6 +150,4 @@ extern_protocol!(
             available: bool,
         );
     }
-
-    unsafe impl ProtocolType for dyn SFSpeechRecognizerDelegate {}
 );

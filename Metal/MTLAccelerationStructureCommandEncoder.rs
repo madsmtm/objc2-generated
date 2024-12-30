@@ -372,9 +372,6 @@ extern_protocol!(
             barrier: bool,
         );
     }
-
-    #[cfg(feature = "MTLCommandEncoder")]
-    unsafe impl ProtocolType for dyn MTLAccelerationStructureCommandEncoder {}
 );
 
 extern_class!(

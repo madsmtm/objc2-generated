@@ -40,8 +40,6 @@ extern_protocol!(
             text_viewport_layout_controller: &NSTextViewportLayoutController,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSTextViewportLayoutControllerDelegate {}
 );
 
 extern_class!(

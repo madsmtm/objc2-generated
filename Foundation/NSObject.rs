@@ -17,8 +17,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Init initWithCoder:)]
         unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Option<Retained<Self>>;
     }
-
-    unsafe impl ProtocolType for dyn NSCoding {}
 );
 
 extern_protocol!(
@@ -27,8 +25,6 @@ extern_protocol!(
         #[method(supportsSecureCoding)]
         unsafe fn supportsSecureCoding() -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSSecureCoding {}
 );
 
 extern_category!(
@@ -70,8 +66,6 @@ extern_protocol!(
         #[method(isContentDiscarded)]
         unsafe fn isContentDiscarded(&self) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSDiscardableContent {}
 );
 
 extern_category!(

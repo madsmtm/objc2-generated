@@ -670,8 +670,6 @@ extern_protocol!(
         #[method(sessionControlsDidBecomeInactive:)]
         unsafe fn sessionControlsDidBecomeInactive(&self, session: &AVCaptureSession);
     }
-
-    unsafe impl ProtocolType for dyn AVCaptureSessionControlsDelegate {}
 );
 
 extern_class!(

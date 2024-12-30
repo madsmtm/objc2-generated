@@ -93,8 +93,6 @@ extern_protocol!(
         #[method(layoutOrientation)]
         unsafe fn layoutOrientation(&self) -> NSTextLayoutOrientation;
     }
-
-    unsafe impl ProtocolType for dyn NSTextLayoutOrientationProvider {}
 );
 
 extern_class!(
@@ -834,8 +832,6 @@ extern_protocol!(
             old_size: CGSize,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSLayoutManagerDelegate {}
 );
 
 extern_methods!(

@@ -213,6 +213,4 @@ extern_protocol!(
             view: &mut Retained<UIView>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIPopoverControllerDelegate {}
 );

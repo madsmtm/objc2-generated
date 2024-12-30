@@ -1653,6 +1653,4 @@ extern_protocol!(
             desc: &MTLResidencySetDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLResidencySet>>, Retained<NSError>>;
     }
-
-    unsafe impl ProtocolType for dyn MTLDevice {}
 );

@@ -452,8 +452,6 @@ extern_protocol!(
         #[method(setListEnvironment:)]
         unsafe fn setListEnvironment(&self, list_environment: UIListEnvironment);
     }
-
-    unsafe impl ProtocolType for dyn UIMutableTraits {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitmutations?language=objc)
@@ -554,8 +552,6 @@ extern_protocol!(
             previous_trait_collection: Option<&UITraitCollection>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UITraitEnvironment {}
 );
 
 extern_protocol!(
@@ -564,8 +560,6 @@ extern_protocol!(
         NSCopying + NSObjectProtocol + MainThreadOnly
     {
     }
-
-    unsafe impl ProtocolType for dyn UITraitChangeRegistration {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitchangehandler?language=objc)
@@ -585,8 +579,6 @@ extern_protocol!(
         #[method(removeTrait:)]
         unsafe fn removeTrait(&self, r#trait: &UITrait);
     }
-
-    unsafe impl ProtocolType for dyn UITraitOverrides {}
 );
 
 extern_protocol!(
@@ -598,8 +590,6 @@ extern_protocol!(
             registration: &ProtocolObject<dyn UITraitChangeRegistration>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UITraitChangeObservable {}
 );
 
 extern_methods!(

@@ -332,8 +332,6 @@ extern_protocol!(
             from_view_controller: &NSViewController,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSViewControllerPresentationAnimator {}
 );
 
 extern_methods!(

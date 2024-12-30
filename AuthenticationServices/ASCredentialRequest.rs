@@ -48,6 +48,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other credentialIdentity)]
         unsafe fn credentialIdentity(&self) -> Retained<ProtocolObject<dyn ASCredentialIdentity>>;
     }
-
-    unsafe impl ProtocolType for dyn ASCredentialRequest {}
 );

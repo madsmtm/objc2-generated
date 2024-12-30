@@ -59,8 +59,6 @@ extern_protocol!(
         #[method(viewDidMoveToHostWindow)]
         unsafe fn viewDidMoveToHostWindow(&self);
     }
-
-    unsafe impl ProtocolType for dyn WebDocumentView {}
 );
 
 extern_protocol!(
@@ -90,8 +88,6 @@ extern_protocol!(
             wrap_flag: bool,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn WebDocumentSearching {}
 );
 
 extern_protocol!(
@@ -135,8 +131,6 @@ extern_protocol!(
         #[method(deselectAll)]
         unsafe fn deselectAll(&self);
     }
-
-    unsafe impl ProtocolType for dyn WebDocumentText {}
 );
 
 extern_protocol!(
@@ -205,6 +199,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other title)]
         unsafe fn title(&self) -> Option<Retained<NSString>>;
     }
-
-    unsafe impl ProtocolType for dyn WebDocumentRepresentation {}
 );

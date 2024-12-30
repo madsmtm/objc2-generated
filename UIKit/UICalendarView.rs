@@ -281,6 +281,4 @@ extern_protocol!(
             previous_date_components: &NSDateComponents,
         );
     }
-
-    unsafe impl ProtocolType for dyn UICalendarViewDelegate {}
 );

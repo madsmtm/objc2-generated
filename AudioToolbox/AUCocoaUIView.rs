@@ -26,6 +26,4 @@ extern_protocol!(
         #[method(interfaceVersion)]
         unsafe fn interfaceVersion(&self) -> c_uint;
     }
-
-    unsafe impl ProtocolType for dyn AUCocoaUIBase {}
 );

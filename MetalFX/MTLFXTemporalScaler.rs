@@ -343,6 +343,4 @@ extern_protocol!(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
         );
     }
-
-    unsafe impl ProtocolType for dyn MTLFXTemporalScaler {}
 );

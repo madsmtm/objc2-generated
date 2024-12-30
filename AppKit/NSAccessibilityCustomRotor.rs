@@ -356,6 +356,4 @@ extern_protocol!(
             search_parameters: &NSAccessibilityCustomRotorSearchParameters,
         ) -> Option<Retained<NSAccessibilityCustomRotorItemResult>>;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilityCustomRotorItemSearchDelegate {}
 );

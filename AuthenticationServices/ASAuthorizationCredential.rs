@@ -11,6 +11,4 @@ extern_protocol!(
         NSCopying + NSObjectProtocol + NSSecureCoding
     {
     }
-
-    unsafe impl ProtocolType for dyn ASAuthorizationCredential {}
 );

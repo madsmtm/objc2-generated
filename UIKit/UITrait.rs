@@ -30,8 +30,6 @@ extern_protocol!(
         #[method(affectsColorAppearance)]
         unsafe fn affectsColorAppearance(mtm: MainThreadMarker) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UITraitDefinition {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitrait?language=objc)
@@ -45,8 +43,6 @@ extern_protocol!(
         #[method(defaultValue)]
         unsafe fn defaultValue(mtm: MainThreadMarker) -> CGFloat;
     }
-
-    unsafe impl ProtocolType for dyn UICGFloatTraitDefinition {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicgfloattrait?language=objc)
@@ -59,8 +55,6 @@ extern_protocol!(
         #[method(defaultValue)]
         unsafe fn defaultValue(mtm: MainThreadMarker) -> NSInteger;
     }
-
-    unsafe impl ProtocolType for dyn UINSIntegerTraitDefinition {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinsintegertrait?language=objc)
@@ -75,8 +69,6 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
     }
-
-    unsafe impl ProtocolType for dyn UIObjectTraitDefinition {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiobjecttrait?language=objc)

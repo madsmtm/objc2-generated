@@ -29,6 +29,4 @@ extern_protocol!(
             completion: &block2::Block<dyn Fn(*mut NSError)>,
         );
     }
-
-    unsafe impl ProtocolType for dyn CLSContextProvider {}
 );

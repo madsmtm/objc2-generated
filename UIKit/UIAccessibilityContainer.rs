@@ -81,8 +81,6 @@ extern_protocol!(
         #[method(accessibilityColumnRange)]
         unsafe fn accessibilityColumnRange(&self) -> NSRange;
     }
-
-    unsafe impl ProtocolType for dyn UIAccessibilityContainerDataTableCell {}
 );
 
 extern_protocol!(
@@ -117,6 +115,4 @@ extern_protocol!(
             column: NSUInteger,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn UIAccessibilityContainerDataTableCell>>>>;
     }
-
-    unsafe impl ProtocolType for dyn UIAccessibilityContainerDataTable {}
 );

@@ -98,6 +98,4 @@ extern_protocol!(
             ended: bool,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIPreviewInteractionDelegate {}
 );

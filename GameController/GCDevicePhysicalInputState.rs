@@ -111,6 +111,4 @@ extern_protocol!(
             key: &NSString,
         ) -> Option<Retained<ProtocolObject<dyn GCPhysicalInputElement>>>;
     }
-
-    unsafe impl ProtocolType for dyn GCDevicePhysicalInputState {}
 );

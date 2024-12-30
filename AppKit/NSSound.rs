@@ -193,8 +193,6 @@ extern_protocol!(
         #[method(sound:didFinishPlaying:)]
         unsafe fn sound_didFinishPlaying(&self, sound: &NSSound, flag: bool);
     }
-
-    unsafe impl ProtocolType for dyn NSSoundDelegate {}
 );
 
 extern_category!(

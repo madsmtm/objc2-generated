@@ -94,8 +94,6 @@ extern_protocol!(
         #[method(layoutOrientation)]
         unsafe fn layoutOrientation(&self) -> NSTextLayoutOrientation;
     }
-
-    unsafe impl ProtocolType for dyn NSTextLayoutOrientationProvider {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesetterbehavior?language=objc)
@@ -1121,8 +1119,6 @@ extern_protocol!(
             effective_char_range: NSRangePointer,
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
     }
-
-    unsafe impl ProtocolType for dyn NSLayoutManagerDelegate {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphattributesoft?language=objc)

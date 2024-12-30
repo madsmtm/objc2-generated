@@ -255,6 +255,4 @@ extern_protocol!(
             output_stream: &NSOutputStream,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSUserActivityDelegate {}
 );

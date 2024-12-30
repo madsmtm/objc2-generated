@@ -34,6 +34,4 @@ extern_protocol!(
             saved_games: &NSArray<GKSavedGame>,
         );
     }
-
-    unsafe impl ProtocolType for dyn GKSavedGameListener {}
 );

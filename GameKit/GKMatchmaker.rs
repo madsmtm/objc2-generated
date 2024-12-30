@@ -325,8 +325,6 @@ extern_protocol!(
             player_i_ds_to_invite: &NSArray<NSString>,
         );
     }
-
-    unsafe impl ProtocolType for dyn GKInviteEventListener {}
 );
 
 extern_class!(

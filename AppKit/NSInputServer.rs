@@ -88,8 +88,6 @@ extern_protocol!(
             new_conversation: NSInteger,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSInputServiceProvider {}
 );
 
 extern_protocol!(
@@ -128,8 +126,6 @@ extern_protocol!(
             sender: Option<&AnyObject>,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSInputServerMouseTracker {}
 );
 
 extern_class!(

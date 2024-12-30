@@ -16,8 +16,6 @@ extern_protocol!(
         #[method(duration)]
         unsafe fn duration(&self) -> NSTimeInterval;
     }
-
-    unsafe impl ProtocolType for dyn UIFocusAnimationContext {}
 );
 
 extern_class!(

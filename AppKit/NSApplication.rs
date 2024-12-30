@@ -1288,8 +1288,6 @@ extern_protocol!(
         #[method(applicationProtectedDataDidBecomeAvailable:)]
         unsafe fn applicationProtectedDataDidBecomeAvailable(&self, notification: &NSNotification);
     }
-
-    unsafe impl ProtocolType for dyn NSApplicationDelegate {}
 );
 
 extern_methods!(
@@ -1332,8 +1330,6 @@ extern_protocol!(
         #[method(readSelectionFromPasteboard:)]
         unsafe fn readSelectionFromPasteboard(&self, pboard: &NSPasteboard) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSServicesMenuRequestor {}
 );
 
 extern_methods!(

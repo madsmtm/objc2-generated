@@ -68,6 +68,4 @@ extern_protocol!(
             &self,
         ) -> Option<Retained<NSEnumerator<ProtocolObject<dyn GCPhysicalInputElement>>>>;
     }
-
-    unsafe impl ProtocolType for dyn GCDevicePhysicalInputStateDiff {}
 );

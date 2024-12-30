@@ -996,8 +996,6 @@ extern_protocol!(
             column: NSInteger,
         ) -> Retained<NSIndexSet>;
     }
-
-    unsafe impl ProtocolType for dyn NSBrowserDelegate {}
 );
 
 extern_methods!(

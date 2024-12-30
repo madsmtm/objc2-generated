@@ -86,6 +86,4 @@ extern_protocol!(
             advertiser_assistant: &MCAdvertiserAssistant,
         );
     }
-
-    unsafe impl ProtocolType for dyn MCAdvertiserAssistantDelegate {}
 );

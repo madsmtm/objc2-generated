@@ -109,8 +109,6 @@ extern_protocol!(
             coordinator: &ProtocolObject<dyn UIViewControllerTransitionCoordinator>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIContentContainer {}
 );
 
 extern "C" {
@@ -1096,8 +1094,6 @@ extern_protocol!(
         #[method(setSourceRect:)]
         unsafe fn setSourceRect(&self, source_rect: CGRect);
     }
-
-    unsafe impl ProtocolType for dyn UIViewControllerPreviewing {}
 );
 
 extern_protocol!(
@@ -1123,8 +1119,6 @@ extern_protocol!(
             view_controller_to_commit: &UIViewController,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIViewControllerPreviewingDelegate {}
 );
 
 extern_methods!(
@@ -1319,8 +1313,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other title)]
         unsafe fn title(&self) -> Retained<NSString>;
     }
-
-    unsafe impl ProtocolType for dyn UIPreviewActionItem {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewactionstyle?language=objc)

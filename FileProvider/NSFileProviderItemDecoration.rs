@@ -113,7 +113,4 @@ extern_protocol!(
             &self,
         ) -> Option<Retained<NSArray<NSFileProviderItemDecorationIdentifier>>>;
     }
-
-    #[cfg(feature = "NSFileProviderItem")]
-    unsafe impl ProtocolType for dyn NSFileProviderItemDecorating {}
 );

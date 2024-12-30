@@ -78,8 +78,6 @@ extern_protocol!(
             restriction_identifier: &NSString,
         ) -> Option<Retained<NSString>>;
     }
-
-    unsafe impl ProtocolType for dyn UIGuidedAccessRestrictionDelegate {}
 );
 
 extern "C-unwind" {

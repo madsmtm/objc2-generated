@@ -118,6 +118,4 @@ extern_protocol!(
             fall_detection_manager: &CMFallDetectionManager,
         );
     }
-
-    unsafe impl ProtocolType for dyn CMFallDetectionDelegate {}
 );

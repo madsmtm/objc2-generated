@@ -56,6 +56,4 @@ extern_protocol!(
             error: &NSError,
         );
     }
-
-    unsafe impl ProtocolType for dyn VZVirtualMachineDelegate {}
 );

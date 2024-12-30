@@ -355,8 +355,6 @@ extern_protocol!(
             represented_object: &AnyObject,
         ) -> NSTokenStyle;
     }
-
-    unsafe impl ProtocolType for dyn NSTokenFieldCellDelegate {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdefaulttokenstyle?language=objc)

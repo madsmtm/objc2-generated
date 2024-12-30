@@ -392,9 +392,6 @@ extern_protocol!(
             view_controller: &UITextFormattingViewController,
         );
     }
-
-    #[cfg(feature = "UIScrollView")]
-    unsafe impl ProtocolType for dyn UITextViewDelegate {}
 );
 
 /// The type of border around the text view.

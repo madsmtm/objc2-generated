@@ -39,6 +39,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other requiredHeaders)]
         unsafe fn requiredHeaders(&self) -> Retained<NSArray<NSString>>;
     }
-
-    unsafe impl ProtocolType for dyn MEMessageActionHandler {}
 );

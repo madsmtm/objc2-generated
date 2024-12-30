@@ -69,6 +69,4 @@ extern_protocol!(
             friend_player: &GKPlayer,
         );
     }
-
-    unsafe impl ProtocolType for dyn GKChallengeListener {}
 );

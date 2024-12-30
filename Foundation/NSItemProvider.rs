@@ -90,8 +90,6 @@ extern_protocol!(
             completion_handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
         ) -> Option<Retained<NSProgress>>;
     }
-
-    unsafe impl ProtocolType for dyn NSItemProviderWriting {}
 );
 
 extern_protocol!(
@@ -108,8 +106,6 @@ extern_protocol!(
             type_identifier: &NSString,
         ) -> Result<Retained<Self>, Retained<NSError>>;
     }
-
-    unsafe impl ProtocolType for dyn NSItemProviderReading {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovidercompletionhandler?language=objc)

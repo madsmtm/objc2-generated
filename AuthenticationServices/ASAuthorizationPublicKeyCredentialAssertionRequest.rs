@@ -60,6 +60,4 @@ extern_protocol!(
             user_verification_preference: &ASAuthorizationPublicKeyCredentialUserVerificationPreference,
         );
     }
-
-    unsafe impl ProtocolType for dyn ASAuthorizationPublicKeyCredentialAssertionRequest {}
 );

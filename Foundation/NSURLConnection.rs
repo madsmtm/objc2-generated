@@ -292,8 +292,6 @@ extern_protocol!(
             challenge: &NSURLAuthenticationChallenge,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSURLConnectionDelegate {}
 );
 
 extern_protocol!(
@@ -435,8 +433,6 @@ extern_protocol!(
         #[method(connectionDidFinishLoading:)]
         unsafe fn connectionDidFinishLoading(&self, connection: &NSURLConnection);
     }
-
-    unsafe impl ProtocolType for dyn NSURLConnectionDataDelegate {}
 );
 
 extern_protocol!(
@@ -501,8 +497,6 @@ extern_protocol!(
             destination_url: &NSURL,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSURLConnectionDownloadDelegate {}
 );
 
 extern_methods!(

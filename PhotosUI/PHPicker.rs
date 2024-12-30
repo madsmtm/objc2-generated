@@ -493,8 +493,6 @@ extern_protocol!(
             results: &NSArray<PHPickerResult>,
         );
     }
-
-    unsafe impl ProtocolType for dyn PHPickerViewControllerDelegate {}
 );
 
 extern_class!(

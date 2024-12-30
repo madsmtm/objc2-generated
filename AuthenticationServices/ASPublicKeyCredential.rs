@@ -20,7 +20,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other credentialID)]
         unsafe fn credentialID(&self) -> Retained<NSData>;
     }
-
-    #[cfg(feature = "ASAuthorizationCredential")]
-    unsafe impl ProtocolType for dyn ASPublicKeyCredential {}
 );

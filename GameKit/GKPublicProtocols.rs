@@ -57,8 +57,6 @@ extern_protocol!(
         #[method(session:didFailWithError:)]
         unsafe fn session_didFailWithError(&self, session: &GKSession, error: &NSError);
     }
-
-    unsafe impl ProtocolType for dyn GKSessionDelegate {}
 );
 
 extern_protocol!(
@@ -137,6 +135,4 @@ extern_protocol!(
             call_id: NSInteger,
         );
     }
-
-    unsafe impl ProtocolType for dyn GKVoiceChatClient {}
 );

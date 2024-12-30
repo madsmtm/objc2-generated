@@ -535,8 +535,6 @@ extern_protocol!(
         #[method(archiverDidFinish:)]
         unsafe fn archiverDidFinish(&self, archiver: &NSKeyedArchiver);
     }
-
-    unsafe impl ProtocolType for dyn NSKeyedArchiverDelegate {}
 );
 
 extern_protocol!(
@@ -572,8 +570,6 @@ extern_protocol!(
         #[method(unarchiverDidFinish:)]
         unsafe fn unarchiverDidFinish(&self, unarchiver: &NSKeyedUnarchiver);
     }
-
-    unsafe impl ProtocolType for dyn NSKeyedUnarchiverDelegate {}
 );
 
 extern_category!(

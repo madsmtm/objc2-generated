@@ -277,6 +277,4 @@ extern_protocol!(
             range: NSRange,
         );
     }
-
-    unsafe impl ProtocolType for dyn MTLArgumentEncoder {}
 );

@@ -454,8 +454,6 @@ extern_protocol!(
             activity_view_controller: &UIActivityViewController,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIDocumentBrowserViewControllerDelegate {}
 );
 
 extern_class!(

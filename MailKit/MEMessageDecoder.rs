@@ -25,6 +25,4 @@ extern_protocol!(
             data: &NSData,
         ) -> Option<Retained<MEDecodedMessage>>;
     }
-
-    unsafe impl ProtocolType for dyn MEMessageDecoder {}
 );

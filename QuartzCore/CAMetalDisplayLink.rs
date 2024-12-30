@@ -57,8 +57,6 @@ extern_protocol!(
             update: &CAMetalDisplayLinkUpdate,
         );
     }
-
-    unsafe impl ProtocolType for dyn CAMetalDisplayLinkDelegate {}
 );
 
 extern_class!(

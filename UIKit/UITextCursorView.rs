@@ -25,7 +25,4 @@ extern_protocol!(
         #[method(resetBlinkAnimation)]
         unsafe fn resetBlinkAnimation(&self);
     }
-
-    #[cfg(feature = "UIView")]
-    unsafe impl ProtocolType for dyn UITextCursorView {}
 );

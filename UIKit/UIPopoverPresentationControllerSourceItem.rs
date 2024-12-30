@@ -19,8 +19,6 @@ extern_protocol!(
         #[method(frameInView:)]
         unsafe fn frameInView(&self, reference_view: &UIView) -> CGRect;
     }
-
-    unsafe impl ProtocolType for dyn UIPopoverPresentationControllerSourceItem {}
 );
 
 extern_methods!(

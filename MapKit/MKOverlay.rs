@@ -28,7 +28,4 @@ extern_protocol!(
         #[method(canReplaceMapContent)]
         unsafe fn canReplaceMapContent(&self) -> bool;
     }
-
-    #[cfg(feature = "MKAnnotation")]
-    unsafe impl ProtocolType for dyn MKOverlay {}
 );

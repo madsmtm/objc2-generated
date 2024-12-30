@@ -52,8 +52,6 @@ extern_protocol!(
             right_operand: Option<&NSDecimalNumber>,
         ) -> Option<Retained<NSDecimalNumber>>;
     }
-
-    unsafe impl ProtocolType for dyn NSDecimalNumberBehaviors {}
 );
 
 extern_class!(

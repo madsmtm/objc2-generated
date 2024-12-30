@@ -41,8 +41,6 @@ extern_protocol!(
         #[method(layoutOptions)]
         unsafe fn layoutOptions(&self) -> NSUInteger;
     }
-
-    unsafe impl ProtocolType for dyn NSGlyphStorage {}
 );
 
 extern_class!(

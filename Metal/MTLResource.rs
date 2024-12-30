@@ -261,7 +261,4 @@ extern_protocol!(
         #[method(isAliasable)]
         fn isAliasable(&self) -> bool;
     }
-
-    #[cfg(feature = "MTLAllocation")]
-    unsafe impl ProtocolType for dyn MTLResource {}
 );

@@ -90,6 +90,4 @@ extern_protocol!(
             completion_handler: &block2::Block<dyn Fn(*mut NSData, NSInteger, CGRect)>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIScreenshotServiceDelegate {}
 );

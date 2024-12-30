@@ -127,8 +127,6 @@ extern_protocol!(
             view_controller: &SKStoreProductViewController,
         );
     }
-
-    unsafe impl ProtocolType for dyn SKStoreProductViewControllerDelegate {}
 );
 
 extern "C" {

@@ -362,8 +362,6 @@ extern_protocol!(
             preferred_edge: NonNull<NSRectEdge>,
         ) -> Option<Retained<NSView>>;
     }
-
-    unsafe impl ProtocolType for dyn NSSharingServiceDelegate {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscloudkitsharingserviceoptions?language=objc)
@@ -438,8 +436,6 @@ extern_protocol!(
             share: &CKShare,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSCloudSharingServiceDelegate {}
 );
 
 extern_category!(
@@ -592,6 +588,4 @@ extern_protocol!(
             sharing_service_picker: &NSSharingServicePicker,
         ) -> Option<Retained<NSArray<NSSharingCollaborationModeRestriction>>>;
     }
-
-    unsafe impl ProtocolType for dyn NSSharingServicePickerDelegate {}
 );

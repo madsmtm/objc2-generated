@@ -156,8 +156,6 @@ extern_protocol!(
         #[method(showWritingTools:)]
         unsafe fn showWritingTools(&self, sender: &AnyObject);
     }
-
-    unsafe impl ProtocolType for dyn UIResponderStandardEditActions {}
 );
 
 extern_class!(

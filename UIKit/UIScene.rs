@@ -196,8 +196,6 @@ extern_protocol!(
             user_activity: &NSUserActivity,
         );
     }
-
-    unsafe impl ProtocolType for dyn UISceneDelegate {}
 );
 
 extern "C" {

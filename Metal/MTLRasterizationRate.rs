@@ -431,6 +431,4 @@ extern_protocol!(
             layer_index: NSUInteger,
         ) -> MTLCoordinate2D;
     }
-
-    unsafe impl ProtocolType for dyn MTLRasterizationRateMap {}
 );

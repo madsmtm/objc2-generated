@@ -197,6 +197,4 @@ extern_protocol!(
             status: EAWiFiUnconfiguredAccessoryConfigurationStatus,
         );
     }
-
-    unsafe impl ProtocolType for dyn EAWiFiUnconfiguredAccessoryBrowserDelegate {}
 );

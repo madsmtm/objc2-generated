@@ -913,6 +913,4 @@ extern_protocol!(
             member_annotations: &NSArray<ProtocolObject<dyn MKAnnotation>>,
         ) -> Retained<MKClusterAnnotation>;
     }
-
-    unsafe impl ProtocolType for dyn MKMapViewDelegate {}
 );

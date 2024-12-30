@@ -543,8 +543,6 @@ extern_protocol!(
         #[method(imagePickerControllerDidCancel:)]
         unsafe fn imagePickerControllerDidCancel(&self, picker: &UIImagePickerController);
     }
-
-    unsafe impl ProtocolType for dyn UIImagePickerControllerDelegate {}
 );
 
 extern "C-unwind" {

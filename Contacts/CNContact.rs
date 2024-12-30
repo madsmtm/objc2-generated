@@ -60,8 +60,6 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnkeydescriptor?language=objc)
     pub unsafe trait CNKeyDescriptor: NSCopying + NSObjectProtocol + NSSecureCoding {}
-
-    unsafe impl ProtocolType for dyn CNKeyDescriptor {}
 );
 
 unsafe impl CNKeyDescriptor for NSString {}

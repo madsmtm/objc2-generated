@@ -60,8 +60,6 @@ extern_protocol!(
             performance_time: NSHapticFeedbackPerformanceTime,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSHapticFeedbackPerformer {}
 );
 
 extern_class!(

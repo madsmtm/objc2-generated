@@ -13,8 +13,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityName)]
         unsafe fn accessibilityName(&self) -> Retained<NSString>;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilityColor {}
 );
 
 extern_methods!(

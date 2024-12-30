@@ -178,6 +178,4 @@ extern_protocol!(
             r#match: &GKTurnBasedMatch,
         );
     }
-
-    unsafe impl ProtocolType for dyn GKTurnBasedMatchmakerViewControllerDelegate {}
 );

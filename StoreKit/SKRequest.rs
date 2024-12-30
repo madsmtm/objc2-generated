@@ -64,6 +64,4 @@ extern_protocol!(
         #[method(request:didFailWithError:)]
         unsafe fn request_didFailWithError(&self, request: &SKRequest, error: &NSError);
     }
-
-    unsafe impl ProtocolType for dyn SKRequestDelegate {}
 );

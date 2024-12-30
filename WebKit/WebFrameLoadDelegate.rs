@@ -314,6 +314,4 @@ extern_protocol!(
             window_script_object: Option<&WebScriptObject>,
         );
     }
-
-    unsafe impl ProtocolType for dyn WebFrameLoadDelegate {}
 );

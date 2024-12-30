@@ -13,6 +13,4 @@ extern_protocol!(
         #[method(beginRequestWithExtensionContext:)]
         unsafe fn beginRequestWithExtensionContext(&self, context: &NSExtensionContext);
     }
-
-    unsafe impl ProtocolType for dyn NSExtensionRequestHandling {}
 );

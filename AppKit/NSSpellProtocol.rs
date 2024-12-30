@@ -11,8 +11,6 @@ extern_protocol!(
         #[method(changeSpelling:)]
         unsafe fn changeSpelling(&self, sender: Option<&AnyObject>);
     }
-
-    unsafe impl ProtocolType for dyn NSChangeSpelling {}
 );
 
 extern_protocol!(
@@ -21,6 +19,4 @@ extern_protocol!(
         #[method(ignoreSpelling:)]
         unsafe fn ignoreSpelling(&self, sender: Option<&AnyObject>);
     }
-
-    unsafe impl ProtocolType for dyn NSIgnoreMisspelledWords {}
 );

@@ -10,6 +10,4 @@ extern_protocol!(
         NSObjectProtocol
     {
     }
-
-    unsafe impl ProtocolType for dyn ASAuthorizationWebBrowserExternallyAuthenticatableRequest {}
 );

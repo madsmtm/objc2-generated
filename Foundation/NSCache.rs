@@ -92,6 +92,4 @@ extern_protocol!(
         #[method(cache:willEvictObject:)]
         unsafe fn cache_willEvictObject(&self, cache: &NSCache, obj: &AnyObject);
     }
-
-    unsafe impl ProtocolType for dyn NSCacheDelegate {}
 );

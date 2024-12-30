@@ -79,8 +79,6 @@ extern_protocol!(
         #[method(targetTransform)]
         unsafe fn targetTransform(&self) -> CGAffineTransform;
     }
-
-    unsafe impl ProtocolType for dyn UIViewControllerTransitionCoordinatorContext {}
 );
 
 extern_protocol!(
@@ -148,8 +146,6 @@ extern_protocol!(
             >,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIViewControllerTransitionCoordinator {}
 );
 
 extern_methods!(

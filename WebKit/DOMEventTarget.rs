@@ -57,6 +57,4 @@ extern_protocol!(
             use_capture: bool,
         );
     }
-
-    unsafe impl ProtocolType for dyn DOMEventTarget {}
 );

@@ -67,8 +67,6 @@ extern_protocol!(
         #[method(download:finishedWithFileURL:)]
         unsafe fn download_finishedWithFileURL(&self, download: &BADownload, file_url: &NSURL);
     }
-
-    unsafe impl ProtocolType for dyn BADownloadManagerDelegate {}
 );
 
 extern_class!(

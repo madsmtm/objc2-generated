@@ -30,8 +30,6 @@ extern_protocol!(
         #[method(showAllHelpTopicsForSearchString:)]
         unsafe fn showAllHelpTopicsForSearchString(&self, search_string: &NSString);
     }
-
-    unsafe impl ProtocolType for dyn NSUserInterfaceItemSearching {}
 );
 
 extern_methods!(

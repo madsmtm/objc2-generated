@@ -313,8 +313,6 @@ extern_protocol!(
             page_view_controller: &UIPageViewController,
         ) -> UIInterfaceOrientation;
     }
-
-    unsafe impl ProtocolType for dyn UIPageViewControllerDelegate {}
 );
 
 extern_protocol!(
@@ -354,6 +352,4 @@ extern_protocol!(
             page_view_controller: &UIPageViewController,
         ) -> NSInteger;
     }
-
-    unsafe impl ProtocolType for dyn UIPageViewControllerDataSource {}
 );

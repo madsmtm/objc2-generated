@@ -19,8 +19,6 @@ extern_protocol!(
             conversion_handler: UITextAttributesConversionHandler,
         );
     }
-
-    unsafe impl ProtocolType for dyn UITextFormattingCoordinatorDelegate {}
 );
 
 extern_class!(

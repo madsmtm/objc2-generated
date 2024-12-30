@@ -214,8 +214,6 @@ extern_protocol!(
         #[method(outputSequenceWasFlushed:)]
         unsafe fn outputSequenceWasFlushed(&self, output: &AVPlayerItemOutput);
     }
-
-    unsafe impl ProtocolType for dyn AVPlayerItemOutputPullDelegate {}
 );
 
 extern_class!(
@@ -366,8 +364,6 @@ extern_protocol!(
             item_time: CMTime,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVPlayerItemLegibleOutputPushDelegate {}
 );
 
 extern_protocol!(
@@ -382,8 +378,6 @@ extern_protocol!(
         #[method(outputSequenceWasFlushed:)]
         unsafe fn outputSequenceWasFlushed(&self, output: &AVPlayerItemOutput);
     }
-
-    unsafe impl ProtocolType for dyn AVPlayerItemOutputPushDelegate {}
 );
 
 extern_class!(
@@ -477,8 +471,6 @@ extern_protocol!(
             track: Option<&AVPlayerItemTrack>,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVPlayerItemMetadataOutputPushDelegate {}
 );
 
 extern_class!(
@@ -573,6 +565,4 @@ extern_protocol!(
             item_time: CMTime,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVPlayerItemRenderedLegibleOutputPushDelegate {}
 );

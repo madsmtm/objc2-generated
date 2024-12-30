@@ -25,7 +25,4 @@ extern_protocol!(
             paste_delegate: Option<&ProtocolObject<dyn UITextPasteDelegate>>,
         );
     }
-
-    #[cfg(feature = "UIPasteConfigurationSupporting")]
-    unsafe impl ProtocolType for dyn UITextPasteConfigurationSupporting {}
 );

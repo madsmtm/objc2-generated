@@ -199,8 +199,6 @@ extern_protocol!(
         #[method(addCompletion:)]
         unsafe fn addCompletion(&self, completion: &block2::Block<dyn Fn()>);
     }
-
-    unsafe impl ProtocolType for dyn UITabBarControllerSidebarAnimating {}
 );
 
 extern_protocol!(
@@ -345,6 +343,4 @@ extern_protocol!(
             tab: &UITab,
         ) -> Option<Retained<UIContextMenuConfiguration>>;
     }
-
-    unsafe impl ProtocolType for dyn UITabBarControllerSidebarDelegate {}
 );

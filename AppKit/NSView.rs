@@ -973,8 +973,6 @@ extern_protocol!(
             window: &NSWindow,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSViewLayerContentScaleDelegate {}
 );
 
 extern_protocol!(
@@ -990,8 +988,6 @@ extern_protocol!(
             data: *mut c_void,
         ) -> Retained<NSString>;
     }
-
-    unsafe impl ProtocolType for dyn NSViewToolTipOwner {}
 );
 
 extern_protocol!(
@@ -1004,8 +1000,6 @@ extern_protocol!(
         #[method(selectionAnchorRect)]
         unsafe fn selectionAnchorRect(&self) -> NSRect;
     }
-
-    unsafe impl ProtocolType for dyn NSViewContentSelectionInfo {}
 );
 
 extern_methods!(

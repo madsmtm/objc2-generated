@@ -237,7 +237,4 @@ extern_protocol!(
             command_index: NSUInteger,
         ) -> Retained<ProtocolObject<dyn MTLIndirectComputeCommand>>;
     }
-
-    #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
-    unsafe impl ProtocolType for dyn MTLIndirectCommandBuffer {}
 );

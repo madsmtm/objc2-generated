@@ -34,8 +34,6 @@ extern_protocol!(
             error: &NSError,
         );
     }
-
-    unsafe impl ProtocolType for dyn ASAccountAuthenticationModificationControllerDelegate {}
 );
 
 extern_protocol!(
@@ -51,11 +49,6 @@ extern_protocol!(
             &self,
             controller: &ASAccountAuthenticationModificationController,
         ) -> Retained<ASPresentationAnchor>;
-    }
-
-    unsafe impl ProtocolType
-        for dyn ASAccountAuthenticationModificationControllerPresentationContextProviding
-    {
     }
 );
 

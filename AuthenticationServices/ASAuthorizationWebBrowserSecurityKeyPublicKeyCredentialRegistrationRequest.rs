@@ -11,9 +11,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other clientData)]
         unsafe fn clientData(&self) -> Option<Retained<ASPublicKeyCredentialClientData>>;
     }
-
-    unsafe impl ProtocolType
-        for dyn ASAuthorizationWebBrowserSecurityKeyPublicKeyCredentialRegistrationRequest
-    {
-    }
 );

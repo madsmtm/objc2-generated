@@ -331,8 +331,6 @@ extern_protocol!(
             doreq: &NSDistantObjectRequest,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSConnectionDelegate {}
 );
 
 extern "C" {

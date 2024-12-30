@@ -382,8 +382,6 @@ extern_protocol!(
         #[method(toolbarDidRemoveItem:)]
         unsafe fn toolbarDidRemoveItem(&self, notification: &NSNotification);
     }
-
-    unsafe impl ProtocolType for dyn NSToolbarDelegate {}
 );
 
 extern "C" {

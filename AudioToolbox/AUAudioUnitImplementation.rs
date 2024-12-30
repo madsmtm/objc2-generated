@@ -444,6 +444,4 @@ extern_protocol!(
             desc: AudioComponentDescription,
         ) -> Result<Retained<AUAudioUnit>, Retained<NSError>>;
     }
-
-    unsafe impl ProtocolType for dyn AUAudioUnitFactory {}
 );

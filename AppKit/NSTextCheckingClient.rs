@@ -213,8 +213,6 @@ extern_protocol!(
             allowed_writing_tools_result_options: NSWritingToolsResultOptions,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSTextInputTraits {}
 );
 
 extern_protocol!(
@@ -280,7 +278,4 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> Option<Retained<NSCandidateListTouchBarItem>>;
     }
-
-    #[cfg(feature = "NSTextInputClient")]
-    unsafe impl ProtocolType for dyn NSTextCheckingClient {}
 );

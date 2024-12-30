@@ -255,8 +255,6 @@ extern_protocol!(
             touch: &NSTouch,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSGestureRecognizerDelegate {}
 );
 
 extern_methods!(

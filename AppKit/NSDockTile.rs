@@ -81,6 +81,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other dockMenu)]
         unsafe fn dockMenu(&self, mtm: MainThreadMarker) -> Option<Retained<NSMenu>>;
     }
-
-    unsafe impl ProtocolType for dyn NSDockTilePlugIn {}
 );

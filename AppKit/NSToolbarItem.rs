@@ -311,8 +311,6 @@ extern_protocol!(
         #[method(validateToolbarItem:)]
         unsafe fn validateToolbarItem(&self, item: &NSToolbarItem) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSToolbarItemValidation {}
 );
 
 extern_protocol!(
@@ -329,8 +327,6 @@ extern_protocol!(
             item: &ProtocolObject<dyn NSValidatedUserInterfaceItem>,
         ) -> Option<Retained<CKShare>>;
     }
-
-    unsafe impl ProtocolType for dyn NSCloudSharingValidation {}
 );
 
 extern "C" {

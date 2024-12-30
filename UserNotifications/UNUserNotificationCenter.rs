@@ -216,6 +216,4 @@ extern_protocol!(
             notification: Option<&UNNotification>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UNUserNotificationCenterDelegate {}
 );

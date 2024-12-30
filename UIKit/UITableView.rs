@@ -935,9 +935,6 @@ extern_protocol!(
             animator: Option<&ProtocolObject<dyn UIContextMenuInteractionAnimating>>,
         );
     }
-
-    #[cfg(feature = "UIScrollView")]
-    unsafe impl ProtocolType for dyn UITableViewDelegate {}
 );
 
 extern "C" {
@@ -1898,8 +1895,6 @@ extern_protocol!(
             destination_index_path: &NSIndexPath,
         );
     }
-
-    unsafe impl ProtocolType for dyn UITableViewDataSource {}
 );
 
 extern_protocol!(
@@ -1924,8 +1919,6 @@ extern_protocol!(
             index_paths: &NSArray<NSIndexPath>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UITableViewDataSourcePrefetching {}
 );
 
 extern_protocol!(
@@ -2035,8 +2028,6 @@ extern_protocol!(
             session: &ProtocolObject<dyn UIDragSession>,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UITableViewDragDelegate {}
 );
 
 extern_protocol!(
@@ -2137,8 +2128,6 @@ extern_protocol!(
             index_path: &NSIndexPath,
         ) -> Option<Retained<UIDragPreviewParameters>>;
     }
-
-    unsafe impl ProtocolType for dyn UITableViewDropDelegate {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropintent?language=objc)
@@ -2277,8 +2266,6 @@ extern_protocol!(
             target: &UIDragPreviewTarget,
         ) -> Retained<ProtocolObject<dyn UIDragAnimating>>;
     }
-
-    unsafe impl ProtocolType for dyn UITableViewDropCoordinator {}
 );
 
 extern_class!(
@@ -2412,8 +2399,6 @@ extern_protocol!(
         #[method(previewSize)]
         unsafe fn previewSize(&self) -> CGSize;
     }
-
-    unsafe impl ProtocolType for dyn UITableViewDropItem {}
 );
 
 extern_protocol!(
@@ -2436,7 +2421,4 @@ extern_protocol!(
         #[method(deletePlaceholder)]
         unsafe fn deletePlaceholder(&self) -> bool;
     }
-
-    #[cfg(feature = "UIDragInteraction")]
-    unsafe impl ProtocolType for dyn UITableViewDropPlaceholderContext {}
 );

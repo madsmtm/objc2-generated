@@ -154,6 +154,4 @@ extern_protocol!(
             view_controller: &GKFriendRequestComposeViewController,
         );
     }
-
-    unsafe impl ProtocolType for dyn GKFriendRequestComposeViewControllerDelegate {}
 );

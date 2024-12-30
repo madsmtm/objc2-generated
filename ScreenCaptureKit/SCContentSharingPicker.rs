@@ -281,6 +281,4 @@ extern_protocol!(
         #[method(contentSharingPickerStartDidFailWithError:)]
         unsafe fn contentSharingPickerStartDidFailWithError(&self, error: &NSError);
     }
-
-    unsafe impl ProtocolType for dyn SCContentSharingPickerObserver {}
 );

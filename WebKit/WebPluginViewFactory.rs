@@ -71,6 +71,4 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> Option<Retained<NSView>>;
     }
-
-    unsafe impl ProtocolType for dyn WebPlugInViewFactory {}
 );

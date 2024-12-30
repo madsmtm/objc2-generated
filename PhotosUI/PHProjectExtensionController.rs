@@ -78,6 +78,4 @@ extern_protocol!(
         #[method(finishProjectWithCompletionHandler:)]
         unsafe fn finishProjectWithCompletionHandler(&self, completion: &block2::Block<dyn Fn()>);
     }
-
-    unsafe impl ProtocolType for dyn PHProjectExtensionController {}
 );

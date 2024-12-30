@@ -43,6 +43,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other springTimingParameters)]
         unsafe fn springTimingParameters(&self) -> Option<Retained<UISpringTimingParameters>>;
     }
-
-    unsafe impl ProtocolType for dyn UITimingCurveProvider {}
 );

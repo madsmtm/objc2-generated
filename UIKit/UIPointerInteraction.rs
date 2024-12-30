@@ -142,8 +142,6 @@ extern_protocol!(
             animator: &ProtocolObject<dyn UIPointerInteractionAnimating>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIPointerInteractionDelegate {}
 );
 
 extern_class!(
@@ -194,6 +192,4 @@ extern_protocol!(
         #[method(addCompletion:)]
         unsafe fn addCompletion(&self, completion: &block2::Block<dyn Fn(Bool)>);
     }
-
-    unsafe impl ProtocolType for dyn UIPointerInteractionAnimating {}
 );

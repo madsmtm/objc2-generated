@@ -27,10 +27,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other signature)]
         unsafe fn signature(&self) -> Retained<NSData>;
     }
-
-    #[cfg(all(
-        feature = "ASAuthorizationCredential",
-        feature = "ASPublicKeyCredential"
-    ))]
-    unsafe impl ProtocolType for dyn ASAuthorizationPublicKeyCredentialAssertion {}
 );

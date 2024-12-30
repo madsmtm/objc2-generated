@@ -135,8 +135,6 @@ extern_protocol!(
         #[method(handlePortMessage:)]
         unsafe fn handlePortMessage(&self, message: &NSPortMessage);
     }
-
-    unsafe impl ProtocolType for dyn NSPortDelegate {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachportoptions?language=objc)
@@ -241,8 +239,6 @@ extern_protocol!(
         #[method(handleMachMessage:)]
         unsafe fn handleMachMessage(&self, msg: NonNull<c_void>);
     }
-
-    unsafe impl ProtocolType for dyn NSMachPortDelegate {}
 );
 
 extern_class!(

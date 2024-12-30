@@ -873,8 +873,6 @@ extern_protocol!(
             url: &NSURL,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSFileManagerDelegate {}
 );
 
 extern_class!(

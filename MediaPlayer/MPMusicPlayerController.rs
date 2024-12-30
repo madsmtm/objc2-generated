@@ -91,8 +91,6 @@ extern_protocol!(
         #[method(openToPlayQueueDescriptor:)]
         unsafe fn openToPlayQueueDescriptor(&self, queue_descriptor: &MPMusicPlayerQueueDescriptor);
     }
-
-    unsafe impl ProtocolType for dyn MPSystemMusicPlayerController {}
 );
 
 extern_class!(

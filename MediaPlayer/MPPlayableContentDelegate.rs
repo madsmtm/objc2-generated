@@ -82,6 +82,4 @@ extern_protocol!(
             context: &MPPlayableContentManagerContext,
         );
     }
-
-    unsafe impl ProtocolType for dyn MPPlayableContentDelegate {}
 );

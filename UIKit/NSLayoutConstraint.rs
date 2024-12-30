@@ -300,6 +300,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other heightAnchor)]
         unsafe fn heightAnchor(&self) -> Retained<NSLayoutDimension>;
     }
-
-    unsafe impl ProtocolType for dyn UILayoutSupport {}
 );

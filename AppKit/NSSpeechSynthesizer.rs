@@ -418,8 +418,6 @@ extern_protocol!(
             message: &NSString,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSSpeechSynthesizerDelegate {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechmode?language=objc)

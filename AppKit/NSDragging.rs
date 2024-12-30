@@ -225,8 +225,6 @@ extern_protocol!(
         #[method(resetSpringLoading)]
         unsafe fn resetSpringLoading(&self);
     }
-
-    unsafe impl ProtocolType for dyn NSDraggingInfo {}
 );
 
 extern_protocol!(
@@ -280,8 +278,6 @@ extern_protocol!(
             sender: Option<&ProtocolObject<dyn NSDraggingInfo>>,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSDraggingDestination {}
 );
 
 extern_protocol!(
@@ -328,8 +324,6 @@ extern_protocol!(
         #[method(ignoreModifierKeysForDraggingSession:)]
         unsafe fn ignoreModifierKeysForDraggingSession(&self, session: &NSDraggingSession) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSDraggingSource {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadingoptions?language=objc)
@@ -392,6 +386,4 @@ extern_protocol!(
         #[method(draggingEnded:)]
         unsafe fn draggingEnded(&self, dragging_info: &ProtocolObject<dyn NSDraggingInfo>);
     }
-
-    unsafe impl ProtocolType for dyn NSSpringLoadingDestination {}
 );

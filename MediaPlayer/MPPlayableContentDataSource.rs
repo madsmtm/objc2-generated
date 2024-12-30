@@ -78,6 +78,4 @@ extern_protocol!(
             index_path: &NSIndexPath,
         ) -> Option<Retained<MPContentItem>>;
     }
-
-    unsafe impl ProtocolType for dyn MPPlayableContentDataSource {}
 );

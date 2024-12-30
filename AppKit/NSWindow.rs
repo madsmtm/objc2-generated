@@ -2293,8 +2293,6 @@ extern_protocol!(
         #[method(windowDidChangeOcclusionState:)]
         unsafe fn windowDidChangeOcclusionState(&self, notification: &NSNotification);
     }
-
-    unsafe impl ProtocolType for dyn NSWindowDelegate {}
 );
 
 extern "C" {

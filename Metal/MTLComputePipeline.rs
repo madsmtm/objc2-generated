@@ -342,6 +342,4 @@ extern_protocol!(
         #[method(shaderValidation)]
         unsafe fn shaderValidation(&self) -> MTLShaderValidation;
     }
-
-    unsafe impl ProtocolType for dyn MTLComputePipelineState {}
 );

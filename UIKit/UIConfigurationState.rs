@@ -61,6 +61,4 @@ extern_protocol!(
             key: &UIConfigurationStateCustomKey,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIConfigurationState {}
 );

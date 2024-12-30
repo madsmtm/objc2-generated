@@ -409,6 +409,4 @@ extern_protocol!(
         #[method(webView:didFailLoadWithError:)]
         unsafe fn webView_didFailLoadWithError(&self, web_view: &UIWebView, error: &NSError);
     }
-
-    unsafe impl ProtocolType for dyn UIWebViewDelegate {}
 );

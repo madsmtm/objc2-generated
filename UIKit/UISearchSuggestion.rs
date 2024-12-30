@@ -37,8 +37,6 @@ extern_protocol!(
         #[method(setRepresentedObject:)]
         unsafe fn setRepresentedObject(&self, represented_object: Option<&AnyObject>);
     }
-
-    unsafe impl ProtocolType for dyn UISearchSuggestion {}
 );
 
 extern_class!(

@@ -43,6 +43,4 @@ extern_protocol!(
         #[method(contactPickerDidClose:)]
         unsafe fn contactPickerDidClose(&self, picker: &CNContactPicker);
     }
-
-    unsafe impl ProtocolType for dyn CNContactPickerDelegate {}
 );

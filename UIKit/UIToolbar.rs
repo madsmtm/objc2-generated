@@ -249,7 +249,4 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitoolbardelegate?language=objc)
     #[cfg(feature = "UIBarCommon")]
     pub unsafe trait UIToolbarDelegate: UIBarPositioningDelegate + MainThreadOnly {}
-
-    #[cfg(feature = "UIBarCommon")]
-    unsafe impl ProtocolType for dyn UIToolbarDelegate {}
 );

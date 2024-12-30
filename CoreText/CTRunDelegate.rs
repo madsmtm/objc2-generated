@@ -192,7 +192,4 @@ extern_protocol!(
             out_image_size: NonNull<CGSize>,
         ) -> CGImageRef;
     }
-
-    #[cfg(feature = "objc2")]
-    unsafe impl ProtocolType for dyn CTAdaptiveImageProviding {}
 );

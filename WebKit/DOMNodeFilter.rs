@@ -67,6 +67,4 @@ extern_protocol!(
         #[method(acceptNode:)]
         unsafe fn acceptNode(&self, n: Option<&DOMNode>) -> c_short;
     }
-
-    unsafe impl ProtocolType for dyn DOMNodeFilter {}
 );

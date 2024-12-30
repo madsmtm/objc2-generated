@@ -20,6 +20,4 @@ extern_protocol!(
             adjusts_font_for_content_size_category: bool,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIContentSizeCategoryAdjusting {}
 );

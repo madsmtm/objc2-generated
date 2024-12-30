@@ -89,8 +89,6 @@ extern_protocol!(
         #[method(finishedSearching)]
         unsafe fn finishedSearching(&self);
     }
-
-    unsafe impl ProtocolType for dyn UITextSearchAggregator {}
 );
 
 extern_protocol!(
@@ -279,6 +277,4 @@ extern_protocol!(
             to_document: &UITextSearchDocumentIdentifier,
         ) -> NSComparisonResult;
     }
-
-    unsafe impl ProtocolType for dyn UITextSearching {}
 );

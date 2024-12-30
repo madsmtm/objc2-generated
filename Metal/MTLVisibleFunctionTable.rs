@@ -74,7 +74,4 @@ extern_protocol!(
             range: NSRange,
         );
     }
-
-    #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
-    unsafe impl ProtocolType for dyn MTLVisibleFunctionTable {}
 );

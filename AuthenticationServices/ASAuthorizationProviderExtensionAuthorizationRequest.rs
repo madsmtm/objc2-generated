@@ -47,8 +47,6 @@ extern_protocol!(
             request: &ASAuthorizationProviderExtensionAuthorizationRequest,
         );
     }
-
-    unsafe impl ProtocolType for dyn ASAuthorizationProviderExtensionAuthorizationRequestHandler {}
 );
 
 extern_class!(

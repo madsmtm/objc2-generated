@@ -368,6 +368,4 @@ extern_protocol!(
         #[method(download:didFailWithError:)]
         unsafe fn download_didFailWithError(&self, download: &NSURLDownload, error: &NSError);
     }
-
-    unsafe impl ProtocolType for dyn NSURLDownloadDelegate {}
 );

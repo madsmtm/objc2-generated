@@ -349,8 +349,6 @@ extern_protocol!(
             error: Option<&NSError>,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVCaptureFileOutputRecordingDelegate {}
 );
 
 extern_protocol!(
@@ -405,8 +403,6 @@ extern_protocol!(
             connection: &AVCaptureConnection,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVCaptureFileOutputDelegate {}
 );
 
 extern_class!(

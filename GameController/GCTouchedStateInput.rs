@@ -81,6 +81,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other sources)]
         unsafe fn sources(&self) -> Retained<NSSet<ProtocolObject<dyn GCPhysicalInputSource>>>;
     }
-
-    unsafe impl ProtocolType for dyn GCTouchedStateInput {}
 );

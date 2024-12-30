@@ -265,6 +265,4 @@ extern_protocol!(
             route_picker_view: &AVRoutePickerView,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVRoutePickerViewDelegate {}
 );

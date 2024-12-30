@@ -397,6 +397,4 @@ extern_protocol!(
         #[method(drawInMTKView:)]
         unsafe fn drawInMTKView(&self, view: &MTKView);
     }
-
-    unsafe impl ProtocolType for dyn MTKViewDelegate {}
 );

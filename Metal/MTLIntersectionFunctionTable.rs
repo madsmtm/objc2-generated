@@ -201,7 +201,4 @@ extern_protocol!(
             buffer_range: NSRange,
         );
     }
-
-    #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
-    unsafe impl ProtocolType for dyn MTLIntersectionFunctionTable {}
 );

@@ -174,8 +174,6 @@ extern_protocol!(
         #[method(addCompletion:)]
         unsafe fn addCompletion(&self, completion: &block2::Block<dyn Fn()>);
     }
-
-    unsafe impl ProtocolType for dyn UIEditMenuInteractionAnimating {}
 );
 
 extern_protocol!(
@@ -262,6 +260,4 @@ extern_protocol!(
             animator: &ProtocolObject<dyn UIEditMenuInteractionAnimating>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIEditMenuInteractionDelegate {}
 );

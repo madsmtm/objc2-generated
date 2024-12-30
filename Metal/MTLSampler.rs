@@ -336,6 +336,4 @@ extern_protocol!(
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
     }
-
-    unsafe impl ProtocolType for dyn MTLSamplerState {}
 );

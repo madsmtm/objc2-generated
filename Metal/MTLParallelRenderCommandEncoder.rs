@@ -72,7 +72,4 @@ extern_protocol!(
         #[method(setStencilStoreActionOptions:)]
         unsafe fn setStencilStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
     }
-
-    #[cfg(feature = "MTLCommandEncoder")]
-    unsafe impl ProtocolType for dyn MTLParallelRenderCommandEncoder {}
 );

@@ -223,6 +223,4 @@ extern_protocol!(
             view_controller: &MKLookAroundViewController,
         );
     }
-
-    unsafe impl ProtocolType for dyn MKLookAroundViewControllerDelegate {}
 );

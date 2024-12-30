@@ -158,8 +158,6 @@ extern_protocol!(
         #[method(showPreferences:)]
         unsafe fn showPreferences(&self, sender: Option<&AnyObject>);
     }
-
-    unsafe impl ProtocolType for dyn IMKStateSetting {}
 );
 
 extern_protocol!(
@@ -198,8 +196,6 @@ extern_protocol!(
             sender: Option<&AnyObject>,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn IMKMouseHandling {}
 );
 
 extern_class!(

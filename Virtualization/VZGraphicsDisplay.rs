@@ -127,6 +127,4 @@ extern_protocol!(
         #[method(displayDidEndReconfiguration:)]
         unsafe fn displayDidEndReconfiguration(&self, display: &VZGraphicsDisplay);
     }
-
-    unsafe impl ProtocolType for dyn VZGraphicsDisplayObserver {}
 );

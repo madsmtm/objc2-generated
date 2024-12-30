@@ -17,8 +17,6 @@ extern_protocol!(
             error: &NSError,
         );
     }
-
-    unsafe impl ProtocolType for dyn CXCallDirectoryExtensionContextDelegate {}
 );
 
 extern_class!(

@@ -17,8 +17,6 @@ extern_protocol!(
             len: NSUInteger,
         ) -> NSUInteger;
     }
-
-    unsafe impl ProtocolType for dyn NSFastEnumeration {}
 );
 
 extern_class!(

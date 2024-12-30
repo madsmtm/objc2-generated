@@ -43,8 +43,6 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> Option<Retained<UIViewController>>;
     }
-
-    unsafe impl ProtocolType for dyn UIViewControllerRestoration {}
 );
 
 extern_protocol!(
@@ -66,8 +64,6 @@ extern_protocol!(
             view: &UIView,
         ) -> Option<Retained<NSIndexPath>>;
     }
-
-    unsafe impl ProtocolType for dyn UIDataSourceModelAssociation {}
 );
 
 extern_protocol!(
@@ -95,8 +91,6 @@ extern_protocol!(
         #[method(applicationFinishedRestoringState)]
         unsafe fn applicationFinishedRestoringState(&self);
     }
-
-    unsafe impl ProtocolType for dyn UIStateRestoring {}
 );
 
 extern_protocol!(
@@ -109,6 +103,4 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn UIStateRestoring>>>;
     }
-
-    unsafe impl ProtocolType for dyn UIObjectRestoration {}
 );

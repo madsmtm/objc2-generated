@@ -60,8 +60,6 @@ extern_protocol!(
         #[method(validModesForFontPanel:)]
         unsafe fn validModesForFontPanel(&self, font_panel: &NSFontPanel) -> NSFontPanelModeMask;
     }
-
-    unsafe impl ProtocolType for dyn NSFontChanging {}
 );
 
 extern_class!(

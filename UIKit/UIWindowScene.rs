@@ -198,9 +198,6 @@ extern_protocol!(
             cloud_kit_share_metadata: &CKShareMetadata,
         );
     }
-
-    #[cfg(feature = "UIScene")]
-    unsafe impl ProtocolType for dyn UIWindowSceneDelegate {}
 );
 
 extern "C" {

@@ -84,8 +84,6 @@ extern_protocol!(
         #[method(inputIsAvailableChanged:)]
         unsafe fn inputIsAvailableChanged(&self, is_input_available: bool);
     }
-
-    unsafe impl ProtocolType for dyn AVAudioSessionDelegate {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionflags_shouldresume?language=objc)

@@ -134,9 +134,6 @@ extern_protocol!(
             layout_attributes: &NSCollectionViewLayoutAttributes,
         ) -> Retained<NSCollectionViewLayoutAttributes>;
     }
-
-    #[cfg(feature = "NSUserInterfaceItemIdentification")]
-    unsafe impl ProtocolType for dyn NSCollectionViewElement {}
 );
 
 extern_protocol!(
@@ -167,9 +164,6 @@ extern_protocol!(
         #[method(setSectionCollapseButton:)]
         unsafe fn setSectionCollapseButton(&self, section_collapse_button: Option<&NSButton>);
     }
-
-    #[cfg(feature = "NSUserInterfaceItemIdentification")]
-    unsafe impl ProtocolType for dyn NSCollectionViewSectionHeaderView {}
 );
 
 extern_class!(
@@ -799,8 +793,6 @@ extern_protocol!(
             index_path: &NSIndexPath,
         ) -> Retained<NSView>;
     }
-
-    unsafe impl ProtocolType for dyn NSCollectionViewDataSource {}
 );
 
 extern_protocol!(
@@ -823,8 +815,6 @@ extern_protocol!(
             index_paths: &NSArray<NSIndexPath>,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSCollectionViewPrefetching {}
 );
 
 extern_protocol!(
@@ -1169,8 +1159,6 @@ extern_protocol!(
             to_layout: &NSCollectionViewLayout,
         ) -> Retained<NSCollectionViewTransitionLayout>;
     }
-
-    unsafe impl ProtocolType for dyn NSCollectionViewDelegate {}
 );
 
 extern_category!(

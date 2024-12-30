@@ -168,6 +168,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other error)]
         unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
-
-    unsafe impl ProtocolType for dyn MTLIOCommandBuffer {}
 );

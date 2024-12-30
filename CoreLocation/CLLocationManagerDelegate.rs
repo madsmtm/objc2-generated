@@ -203,6 +203,4 @@ extern_protocol!(
         #[method(locationManager:didVisit:)]
         unsafe fn locationManager_didVisit(&self, manager: &CLLocationManager, visit: &CLVisit);
     }
-
-    unsafe impl ProtocolType for dyn CLLocationManagerDelegate {}
 );

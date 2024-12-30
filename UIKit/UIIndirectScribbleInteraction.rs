@@ -177,6 +177,4 @@ extern_protocol!(
             element_identifier: &UIScribbleElementIdentifier,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIIndirectScribbleInteractionDelegate {}
 );

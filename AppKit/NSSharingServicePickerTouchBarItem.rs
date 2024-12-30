@@ -107,7 +107,4 @@ extern_protocol!(
             picker_touch_bar_item: &NSSharingServicePickerTouchBarItem,
         ) -> Retained<NSArray>;
     }
-
-    #[cfg(feature = "NSSharingService")]
-    unsafe impl ProtocolType for dyn NSSharingServicePickerTouchBarItemDelegate {}
 );

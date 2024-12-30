@@ -26,9 +26,6 @@ extern_protocol!(
         #[method(searchFieldDidEndSearching:)]
         unsafe fn searchFieldDidEndSearching(&self, sender: &NSSearchField);
     }
-
-    #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
-    unsafe impl ProtocolType for dyn NSSearchFieldDelegate {}
 );
 
 extern_class!(

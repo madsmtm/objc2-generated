@@ -24,6 +24,4 @@ extern_protocol!(
             input_face_observations: Option<&NSArray<VNFaceObservation>>,
         );
     }
-
-    unsafe impl ProtocolType for dyn VNFaceObservationAccepting {}
 );

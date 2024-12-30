@@ -207,6 +207,4 @@ extern_protocol!(
             controller: &EKEventEditViewController,
         ) -> Retained<EKCalendar>;
     }
-
-    unsafe impl ProtocolType for dyn EKEventEditViewDelegate {}
 );

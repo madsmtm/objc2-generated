@@ -27,8 +27,6 @@ extern_protocol!(
         #[method(arrowHeight)]
         unsafe fn arrowHeight() -> CGFloat;
     }
-
-    unsafe impl ProtocolType for dyn UIPopoverBackgroundViewMethods {}
 );
 
 extern_class!(

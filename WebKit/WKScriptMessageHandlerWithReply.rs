@@ -91,6 +91,4 @@ extern_protocol!(
             reply_handler: &block2::Block<dyn Fn(*mut AnyObject, *mut NSString)>,
         );
     }
-
-    unsafe impl ProtocolType for dyn WKScriptMessageHandlerWithReply {}
 );

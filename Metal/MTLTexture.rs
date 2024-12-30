@@ -652,7 +652,4 @@ extern_protocol!(
             swizzle: MTLTextureSwizzleChannels,
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
     }
-
-    #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
-    unsafe impl ProtocolType for dyn MTLTexture {}
 );

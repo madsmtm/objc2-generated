@@ -177,7 +177,4 @@ extern_protocol!(
             destination_origin: MTLOrigin,
         );
     }
-
-    #[cfg(feature = "MTLCommandEncoder")]
-    unsafe impl ProtocolType for dyn MTLResourceStateCommandEncoder {}
 );

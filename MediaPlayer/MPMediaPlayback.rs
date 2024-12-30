@@ -47,8 +47,6 @@ extern_protocol!(
         #[method(endSeeking)]
         unsafe fn endSeeking(&self);
     }
-
-    unsafe impl ProtocolType for dyn MPMediaPlayback {}
 );
 
 extern "C" {

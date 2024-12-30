@@ -97,6 +97,4 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> Option<Retained<NSWindow>>;
     }
-
-    unsafe impl ProtocolType for dyn WebDownloadDelegate {}
 );

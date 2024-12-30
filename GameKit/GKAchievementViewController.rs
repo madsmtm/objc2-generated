@@ -127,6 +127,4 @@ extern_protocol!(
             view_controller: Option<&GKAchievementViewController>,
         );
     }
-
-    unsafe impl ProtocolType for dyn GKAchievementViewControllerDelegate {}
 );

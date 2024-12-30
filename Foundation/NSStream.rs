@@ -345,8 +345,6 @@ extern_protocol!(
         #[method(stream:handleEvent:)]
         unsafe fn stream_handleEvent(&self, a_stream: &NSStream, event_code: NSStreamEvent);
     }
-
-    unsafe impl ProtocolType for dyn NSStreamDelegate {}
 );
 
 extern "C" {

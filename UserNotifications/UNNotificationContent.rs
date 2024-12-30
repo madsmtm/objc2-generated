@@ -10,8 +10,6 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcontentproviding?language=objc)
     pub unsafe trait UNNotificationContentProviding: NSObjectProtocol {}
-
-    unsafe impl ProtocolType for dyn UNNotificationContentProviding {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationinterruptionlevel?language=objc)

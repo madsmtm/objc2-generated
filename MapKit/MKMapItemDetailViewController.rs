@@ -23,8 +23,6 @@ extern_protocol!(
             detail_view_controller: &MKMapItemDetailViewController,
         );
     }
-
-    unsafe impl ProtocolType for dyn MKMapItemDetailViewControllerDelegate {}
 );
 
 extern_class!(

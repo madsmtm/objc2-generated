@@ -460,8 +460,6 @@ extern_protocol!(
             variants: &NSArray<AVAssetVariant>,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVAssetDownloadDelegate {}
 );
 
 extern_class!(

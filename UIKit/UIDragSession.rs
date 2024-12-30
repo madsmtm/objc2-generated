@@ -39,8 +39,6 @@ extern_protocol!(
         #[method(canLoadObjectsOfClass:)]
         unsafe fn canLoadObjectsOfClass(&self, a_class: &AnyClass) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UIDragDropSession {}
 );
 
 extern_protocol!(
@@ -53,8 +51,6 @@ extern_protocol!(
         #[method(setLocalContext:)]
         unsafe fn setLocalContext(&self, local_context: Option<&AnyObject>);
     }
-
-    unsafe impl ProtocolType for dyn UIDragSession {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropsessionprogressindicatorstyle?language=objc)
@@ -105,6 +101,4 @@ extern_protocol!(
             >,
         ) -> Retained<NSProgress>;
     }
-
-    unsafe impl ProtocolType for dyn UIDropSession {}
 );

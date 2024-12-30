@@ -44,8 +44,6 @@ extern_protocol!(
         #[method(maximumDetentValue)]
         unsafe fn maximumDetentValue(&self) -> CGFloat;
     }
-
-    unsafe impl ProtocolType for dyn UISheetPresentationControllerDetentResolutionContext {}
 );
 
 extern_class!(
@@ -117,9 +115,6 @@ extern_protocol!(
             sheet_presentation_controller: &UISheetPresentationController,
         );
     }
-
-    #[cfg(feature = "UIPresentationController")]
-    unsafe impl ProtocolType for dyn UISheetPresentationControllerDelegate {}
 );
 
 extern_class!(

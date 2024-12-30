@@ -182,8 +182,6 @@ extern_protocol!(
             audio_session: &AVAudioSession,
         );
     }
-
-    unsafe impl ProtocolType for dyn CXProviderDelegate {}
 );
 
 extern_class!(

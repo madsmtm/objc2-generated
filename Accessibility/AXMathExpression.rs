@@ -534,6 +534,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityMathExpression)]
         unsafe fn accessibilityMathExpression(&self) -> Option<Retained<AXMathExpression>>;
     }
-
-    unsafe impl ProtocolType for dyn AXMathExpressionProvider {}
 );

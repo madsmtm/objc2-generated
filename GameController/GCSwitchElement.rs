@@ -19,7 +19,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other positionInput)]
         unsafe fn positionInput(&self) -> Retained<ProtocolObject<dyn GCSwitchPositionInput>>;
     }
-
-    #[cfg(feature = "GCPhysicalInputElement")]
-    unsafe impl ProtocolType for dyn GCSwitchElement {}
 );

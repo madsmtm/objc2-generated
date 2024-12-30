@@ -69,8 +69,6 @@ extern_protocol!(
         #[method(setLookToDictateEnabled:)]
         unsafe fn setLookToDictateEnabled(&self, look_to_dictate_enabled: bool);
     }
-
-    unsafe impl ProtocolType for dyn UILookToDictateCapable {}
 );
 
 extern_class!(
@@ -565,7 +563,4 @@ extern_protocol!(
             selected_scope: NSInteger,
         );
     }
-
-    #[cfg(feature = "UIBarCommon")]
-    unsafe impl ProtocolType for dyn UISearchBarDelegate {}
 );

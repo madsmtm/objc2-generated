@@ -16,6 +16,4 @@ extern_protocol!(
             prefix: Option<&NSString>,
         ) -> Option<Retained<NSString>>;
     }
-
-    unsafe impl ProtocolType for dyn DOMXPathNSResolver {}
 );

@@ -38,14 +38,6 @@ extern_protocol!(
         #[method(isTextDropActive)]
         unsafe fn isTextDropActive(&self) -> bool;
     }
-
-    #[cfg(all(
-        feature = "UIPasteConfigurationSupporting",
-        feature = "UITextInput",
-        feature = "UITextInputTraits",
-        feature = "UITextPasteConfigurationSupporting"
-    ))]
-    unsafe impl ProtocolType for dyn UITextDroppable {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropeditability?language=objc)
@@ -209,8 +201,6 @@ extern_protocol!(
             session: &ProtocolObject<dyn UIDropSession>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UITextDropDelegate {}
 );
 
 extern_protocol!(
@@ -231,6 +221,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other dropSession)]
         unsafe fn dropSession(&self) -> Retained<ProtocolObject<dyn UIDropSession>>;
     }
-
-    unsafe impl ProtocolType for dyn UITextDropRequest {}
 );

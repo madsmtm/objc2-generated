@@ -37,8 +37,6 @@ extern_protocol!(
         #[method(manager:errorOccurred:)]
         unsafe fn manager_errorOccurred(&self, manager: &CMWaterSubmersionManager, error: &NSError);
     }
-
-    unsafe impl ProtocolType for dyn CMWaterSubmersionManagerDelegate {}
 );
 
 extern_class!(

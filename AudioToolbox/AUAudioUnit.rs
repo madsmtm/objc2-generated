@@ -1644,6 +1644,4 @@ extern_protocol!(
         #[method(setCallHostBlock:)]
         unsafe fn setCallHostBlock(&self, call_host_block: CallHostBlock);
     }
-
-    unsafe impl ProtocolType for dyn AUMessageChannel {}
 );

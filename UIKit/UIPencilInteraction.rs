@@ -312,6 +312,4 @@ extern_protocol!(
             squeeze: &UIPencilInteractionSqueeze,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIPencilInteractionDelegate {}
 );

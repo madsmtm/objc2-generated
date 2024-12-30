@@ -140,6 +140,4 @@ extern_protocol!(
             point: CGPoint,
         ) -> Option<Retained<UIToolTipConfiguration>>;
     }
-
-    unsafe impl ProtocolType for dyn UIToolTipInteractionDelegate {}
 );

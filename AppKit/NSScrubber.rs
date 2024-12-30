@@ -28,8 +28,6 @@ extern_protocol!(
             index: NSInteger,
         ) -> Retained<NSScrubberItemView>;
     }
-
-    unsafe impl ProtocolType for dyn NSScrubberDataSource {}
 );
 
 extern_protocol!(
@@ -77,8 +75,6 @@ extern_protocol!(
         #[method(didCancelInteractingWithScrubber:)]
         unsafe fn didCancelInteractingWithScrubber(&self, scrubber: &NSScrubber);
     }
-
-    unsafe impl ProtocolType for dyn NSScrubberDelegate {}
 );
 
 /// Determines the interaction mode for a NSScrubber control.

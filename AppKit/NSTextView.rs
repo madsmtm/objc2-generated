@@ -1809,9 +1809,6 @@ extern_protocol!(
             event: Option<&NSEvent>,
         );
     }
-
-    #[cfg(feature = "NSText")]
-    unsafe impl ProtocolType for dyn NSTextViewDelegate {}
 );
 
 extern "C" {

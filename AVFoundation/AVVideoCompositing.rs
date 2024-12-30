@@ -278,8 +278,6 @@ extern_protocol!(
         #[method(prerollForRenderingUsingHint:)]
         unsafe fn prerollForRenderingUsingHint(&self, render_hint: &AVVideoCompositionRenderHint);
     }
-
-    unsafe impl ProtocolType for dyn AVVideoCompositing {}
 );
 
 extern_class!(
@@ -432,6 +430,7 @@ extern_protocol!(
     /// The AVVideoCompositionInstruction protocol is implemented by objects to represent operations to be performed by a compositor.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositioninstructionprotocol?language=objc)
+    #[name = "AVVideoCompositionInstruction"]
     pub unsafe trait AVVideoCompositionInstructionProtocol: NSObjectProtocol {
         #[cfg(feature = "objc2-core-media")]
         #[method(timeRange)]
@@ -453,9 +452,5 @@ extern_protocol!(
         #[optional]
         #[method_id(@__retain_semantics Other requiredSourceSampleDataTrackIDs)]
         unsafe fn requiredSourceSampleDataTrackIDs(&self) -> Retained<NSArray<NSNumber>>;
-    }
-
-    unsafe impl ProtocolType for dyn AVVideoCompositionInstructionProtocol {
-        const NAME: &'static str = "AVVideoCompositionInstruction";
     }
 );

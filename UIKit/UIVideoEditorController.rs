@@ -217,6 +217,4 @@ extern_protocol!(
         #[method(videoEditorControllerDidCancel:)]
         unsafe fn videoEditorControllerDidCancel(&self, editor: &UIVideoEditorController);
     }
-
-    unsafe impl ProtocolType for dyn UIVideoEditorControllerDelegate {}
 );

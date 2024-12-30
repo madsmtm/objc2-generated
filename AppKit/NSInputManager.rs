@@ -69,8 +69,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other validAttributesForMarkedText)]
         unsafe fn validAttributesForMarkedText(&self) -> Option<Retained<NSArray>>;
     }
-
-    unsafe impl ProtocolType for dyn NSTextInput {}
 );
 
 extern_class!(

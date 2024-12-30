@@ -124,9 +124,6 @@ extern_protocol!(
             represented_object: &AnyObject,
         ) -> NSTokenStyle;
     }
-
-    #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
-    unsafe impl ProtocolType for dyn NSTokenFieldDelegate {}
 );
 
 extern_class!(

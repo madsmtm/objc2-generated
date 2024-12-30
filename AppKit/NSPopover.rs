@@ -340,6 +340,4 @@ extern_protocol!(
         #[method(popoverDidClose:)]
         unsafe fn popoverDidClose(&self, notification: &NSNotification);
     }
-
-    unsafe impl ProtocolType for dyn NSPopoverDelegate {}
 );

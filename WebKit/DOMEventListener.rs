@@ -18,6 +18,4 @@ extern_protocol!(
         #[method(handleEvent:)]
         unsafe fn handleEvent(&self, event: Option<&DOMEvent>);
     }
-
-    unsafe impl ProtocolType for dyn DOMEventListener {}
 );

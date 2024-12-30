@@ -292,8 +292,6 @@ extern_protocol!(
         #[method(errorState)]
         unsafe fn errorState(&self) -> MTLCommandEncoderErrorState;
     }
-
-    unsafe impl ProtocolType for dyn MTLCommandBufferEncoderInfo {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferhandler?language=objc)
@@ -597,6 +595,4 @@ extern_protocol!(
             count: NSUInteger,
         );
     }
-
-    unsafe impl ProtocolType for dyn MTLCommandBuffer {}
 );

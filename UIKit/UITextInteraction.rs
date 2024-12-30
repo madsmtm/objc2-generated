@@ -49,8 +49,6 @@ extern_protocol!(
         #[method(interactionDidEnd:)]
         unsafe fn interactionDidEnd(&self, interaction: &UITextInteraction);
     }
-
-    unsafe impl ProtocolType for dyn UITextInteractionDelegate {}
 );
 
 extern_class!(

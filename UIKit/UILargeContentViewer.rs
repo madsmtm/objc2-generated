@@ -38,8 +38,6 @@ extern_protocol!(
         #[method(largeContentImageInsets)]
         unsafe fn largeContentImageInsets(&self) -> UIEdgeInsets;
     }
-
-    unsafe impl ProtocolType for dyn UILargeContentViewerItem {}
 );
 
 extern_methods!(
@@ -190,8 +188,6 @@ extern_protocol!(
             interaction: &UILargeContentViewerInteraction,
         ) -> Retained<UIViewController>;
     }
-
-    unsafe impl ProtocolType for dyn UILargeContentViewerInteractionDelegate {}
 );
 
 extern "C" {

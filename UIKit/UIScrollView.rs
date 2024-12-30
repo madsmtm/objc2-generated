@@ -705,6 +705,4 @@ extern_protocol!(
         #[method(scrollViewDidChangeAdjustedContentInset:)]
         unsafe fn scrollViewDidChangeAdjustedContentInset(&self, scroll_view: &UIScrollView);
     }
-
-    unsafe impl ProtocolType for dyn UIScrollViewDelegate {}
 );

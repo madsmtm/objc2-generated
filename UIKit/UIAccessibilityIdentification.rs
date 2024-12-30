@@ -18,8 +18,6 @@ extern_protocol!(
         #[method(setAccessibilityIdentifier:)]
         unsafe fn setAccessibilityIdentifier(&self, accessibility_identifier: Option<&NSString>);
     }
-
-    unsafe impl ProtocolType for dyn UIAccessibilityIdentification {}
 );
 
 extern_methods!(

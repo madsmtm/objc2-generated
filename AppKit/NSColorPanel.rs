@@ -297,8 +297,6 @@ extern_protocol!(
         #[method(changeColor:)]
         unsafe fn changeColor(&self, sender: Option<&NSColorPanel>);
     }
-
-    unsafe impl ProtocolType for dyn NSColorChanging {}
 );
 
 extern "C" {

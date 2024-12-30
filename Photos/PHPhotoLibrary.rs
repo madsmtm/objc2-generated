@@ -60,8 +60,6 @@ extern_protocol!(
         #[method(photoLibraryDidChange:)]
         unsafe fn photoLibraryDidChange(&self, change_instance: &PHChange);
     }
-
-    unsafe impl ProtocolType for dyn PHPhotoLibraryChangeObserver {}
 );
 
 extern_protocol!(
@@ -70,8 +68,6 @@ extern_protocol!(
         #[method(photoLibraryDidBecomeUnavailable:)]
         unsafe fn photoLibraryDidBecomeUnavailable(&self, photo_library: &PHPhotoLibrary);
     }
-
-    unsafe impl ProtocolType for dyn PHPhotoLibraryAvailabilityObserver {}
 );
 
 extern_class!(

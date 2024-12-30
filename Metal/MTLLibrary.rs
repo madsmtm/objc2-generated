@@ -260,8 +260,6 @@ extern_protocol!(
         #[method(options)]
         fn options(&self) -> MTLFunctionOptions;
     }
-
-    unsafe impl ProtocolType for dyn MTLFunction {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllanguageversion?language=objc)
@@ -766,6 +764,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other installName)]
         fn installName(&self) -> Option<Retained<NSString>>;
     }
-
-    unsafe impl ProtocolType for dyn MTLLibrary {}
 );

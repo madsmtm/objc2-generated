@@ -186,8 +186,6 @@ extern_protocol!(
             component: NSInteger,
         ) -> NSInteger;
     }
-
-    unsafe impl ProtocolType for dyn UIPickerViewDataSource {}
 );
 
 extern_protocol!(
@@ -260,6 +258,4 @@ extern_protocol!(
             component: NSInteger,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIPickerViewDelegate {}
 );

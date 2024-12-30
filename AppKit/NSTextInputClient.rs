@@ -147,6 +147,4 @@ extern_protocol!(
             replacement_range: NSRange,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSTextInputClient {}
 );

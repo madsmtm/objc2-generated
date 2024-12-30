@@ -35,6 +35,4 @@ extern_protocol!(
             options: &MLPredictionOptions,
         ) -> Result<Retained<ProtocolObject<dyn MLBatchProvider>>, Retained<NSError>>;
     }
-
-    unsafe impl ProtocolType for dyn MLCustomModel {}
 );

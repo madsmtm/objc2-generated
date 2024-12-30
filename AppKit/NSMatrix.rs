@@ -571,7 +571,4 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmatrixdelegate?language=objc)
     #[cfg(feature = "NSControl")]
     pub unsafe trait NSMatrixDelegate: NSControlTextEditingDelegate {}
-
-    #[cfg(feature = "NSControl")]
-    unsafe impl ProtocolType for dyn NSMatrixDelegate {}
 );

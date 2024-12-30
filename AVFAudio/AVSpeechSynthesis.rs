@@ -615,8 +615,6 @@ extern_protocol!(
             utterance: &AVSpeechUtterance,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVSpeechSynthesizerDelegate {}
 );
 
 extern_class!(

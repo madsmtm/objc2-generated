@@ -28,6 +28,4 @@ extern_protocol!(
         #[method(setCoordinate:)]
         unsafe fn setCoordinate(&self, new_coordinate: CLLocationCoordinate2D);
     }
-
-    unsafe impl ProtocolType for dyn MKAnnotation {}
 );

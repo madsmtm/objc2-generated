@@ -78,6 +78,4 @@ extern_protocol!(
             attestation_preference: &ASAuthorizationPublicKeyCredentialAttestationKind,
         );
     }
-
-    unsafe impl ProtocolType for dyn ASAuthorizationPublicKeyCredentialRegistrationRequest {}
 );

@@ -69,8 +69,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other collisionBoundingPath)]
         unsafe fn collisionBoundingPath(&self) -> Retained<UIBezierPath>;
     }
-
-    unsafe impl ProtocolType for dyn UIDynamicItem {}
 );
 
 extern_class!(

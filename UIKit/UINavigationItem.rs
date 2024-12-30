@@ -157,8 +157,6 @@ extern_protocol!(
             title: &NSString,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UINavigationItemRenameDelegate {}
 );
 
 extern_class!(

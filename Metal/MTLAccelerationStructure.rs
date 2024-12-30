@@ -2170,7 +2170,4 @@ extern_protocol!(
         #[method(gpuResourceID)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
     }
-
-    #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
-    unsafe impl ProtocolType for dyn MTLAccelerationStructure {}
 );

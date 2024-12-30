@@ -10,6 +10,4 @@ extern_protocol!(
         #[method(allocatedSize)]
         unsafe fn allocatedSize(&self) -> NSUInteger;
     }
-
-    unsafe impl ProtocolType for dyn MTLAllocation {}
 );

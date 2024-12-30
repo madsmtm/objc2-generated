@@ -103,6 +103,4 @@ extern_protocol!(
             week_of_year_components: Option<&NSDateComponents>,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UICalendarSelectionWeekOfYearDelegate {}
 );

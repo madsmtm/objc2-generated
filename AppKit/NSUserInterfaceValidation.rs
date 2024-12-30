@@ -14,8 +14,6 @@ extern_protocol!(
         #[method(tag)]
         unsafe fn tag(&self) -> NSInteger;
     }
-
-    unsafe impl ProtocolType for dyn NSValidatedUserInterfaceItem {}
 );
 
 extern_protocol!(
@@ -27,6 +25,4 @@ extern_protocol!(
             item: &ProtocolObject<dyn NSValidatedUserInterfaceItem>,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSUserInterfaceValidations {}
 );

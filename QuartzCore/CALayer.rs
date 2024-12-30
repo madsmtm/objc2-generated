@@ -792,8 +792,6 @@ extern_protocol!(
         #[method(layoutSublayersOfLayer:)]
         unsafe fn layoutSublayersOfLayer(&self, layer: &CALayer);
     }
-
-    unsafe impl ProtocolType for dyn CALayoutManager {}
 );
 
 extern_protocol!(
@@ -809,8 +807,6 @@ extern_protocol!(
             dict: Option<&NSDictionary>,
         );
     }
-
-    unsafe impl ProtocolType for dyn CAAction {}
 );
 
 unsafe impl CAAction for NSNull {}
@@ -845,8 +841,6 @@ extern_protocol!(
             event: &NSString,
         ) -> Option<Retained<ProtocolObject<dyn CAAction>>>;
     }
-
-    unsafe impl ProtocolType for dyn CALayerDelegate {}
 );
 
 extern "C" {

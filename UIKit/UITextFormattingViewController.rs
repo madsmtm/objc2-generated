@@ -81,8 +81,6 @@ extern_protocol!(
         #[method(textFormattingDidFinish:)]
         unsafe fn textFormattingDidFinish(&self, view_controller: &UITextFormattingViewController);
     }
-
-    unsafe impl ProtocolType for dyn UITextFormattingViewControllerDelegate {}
 );
 
 extern_class!(

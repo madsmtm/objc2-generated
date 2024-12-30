@@ -426,6 +426,4 @@ extern_protocol!(
             notification: &NSUserNotification,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSUserNotificationCenterDelegate {}
 );

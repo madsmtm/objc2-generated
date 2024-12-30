@@ -309,8 +309,6 @@ extern_protocol!(
         #[method(pathControl:willPopUpMenu:)]
         unsafe fn pathControl_willPopUpMenu(&self, path_control: &NSPathControl, menu: &NSMenu);
     }
-
-    unsafe impl ProtocolType for dyn NSPathControlDelegate {}
 );
 
 extern_methods!(

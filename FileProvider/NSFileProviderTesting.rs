@@ -113,8 +113,6 @@ extern_protocol!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFileProviderTestingCollisionResolution>>>;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderTestingOperation {}
 );
 
 extern_methods!(
@@ -213,8 +211,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other item)]
         unsafe fn item(&self) -> Option<Retained<NSFileProviderItem>>;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderTestingIngestion {}
 );
 
 extern_protocol!(
@@ -231,8 +227,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other itemIdentifier)]
         unsafe fn itemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderTestingLookup {}
 );
 
 extern_protocol!(
@@ -254,8 +248,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other domainVersion)]
         unsafe fn domainVersion(&self) -> Option<Retained<NSFileProviderDomainVersion>>;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderTestingCreation {}
 );
 
 extern_protocol!(
@@ -296,8 +288,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other domainVersion)]
         unsafe fn domainVersion(&self) -> Option<Retained<NSFileProviderDomainVersion>>;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderTestingModification {}
 );
 
 extern_protocol!(
@@ -331,8 +321,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other domainVersion)]
         unsafe fn domainVersion(&self) -> Option<Retained<NSFileProviderDomainVersion>>;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderTestingDeletion {}
 );
 
 extern_protocol!(
@@ -351,8 +339,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other itemIdentifier)]
         unsafe fn itemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderTestingContentFetch {}
 );
 
 extern_protocol!(
@@ -371,8 +357,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other itemIdentifier)]
         unsafe fn itemIdentifier(&self) -> Retained<NSFileProviderItemIdentifier>;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderTestingChildrenEnumeration {}
 );
 
 extern_protocol!(
@@ -397,6 +381,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other renamedItem)]
         unsafe fn renamedItem(&self) -> Retained<NSFileProviderItem>;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderTestingCollisionResolution {}
 );

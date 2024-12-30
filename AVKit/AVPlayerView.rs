@@ -489,8 +489,6 @@ extern_protocol!(
             completion_handler: &block2::Block<dyn Fn(Bool)>,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVPlayerViewDelegate {}
 );
 
 extern_protocol!(
@@ -574,6 +572,4 @@ extern_protocol!(
             player_view: &AVPlayerView,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn AVPlayerViewPictureInPictureDelegate {}
 );

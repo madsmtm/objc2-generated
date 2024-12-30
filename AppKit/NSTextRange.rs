@@ -15,8 +15,6 @@ extern_protocol!(
             location: &ProtocolObject<dyn NSTextLocation>,
         ) -> NSComparisonResult;
     }
-
-    unsafe impl ProtocolType for dyn NSTextLocation {}
 );
 
 extern_class!(

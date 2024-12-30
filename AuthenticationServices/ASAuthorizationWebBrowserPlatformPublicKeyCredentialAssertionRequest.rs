@@ -19,9 +19,4 @@ extern_protocol!(
         #[method(setShouldShowHybridTransport:)]
         unsafe fn setShouldShowHybridTransport(&self, should_show_hybrid_transport: bool);
     }
-
-    unsafe impl ProtocolType
-        for dyn ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest
-    {
-    }
 );

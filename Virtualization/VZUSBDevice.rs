@@ -34,6 +34,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other uuid)]
         unsafe fn uuid(&self) -> Retained<NSUUID>;
     }
-
-    unsafe impl ProtocolType for dyn VZUSBDevice {}
 );

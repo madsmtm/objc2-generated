@@ -140,8 +140,6 @@ extern_protocol!(
             cloud_service_setup_view_controller: &SKCloudServiceSetupViewController,
         );
     }
-
-    unsafe impl ProtocolType for dyn SKCloudServiceSetupViewControllerDelegate {}
 );
 
 extern "C" {

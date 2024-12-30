@@ -720,8 +720,6 @@ extern_protocol!(
             svc: &UISplitViewController,
         );
     }
-
-    unsafe impl ProtocolType for dyn UISplitViewControllerDelegate {}
 );
 
 extern_methods!(

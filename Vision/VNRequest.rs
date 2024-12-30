@@ -283,6 +283,4 @@ extern_protocol!(
         #[method(indeterminate)]
         unsafe fn indeterminate(&self) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn VNRequestProgressProviding {}
 );

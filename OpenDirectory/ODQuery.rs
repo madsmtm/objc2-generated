@@ -26,8 +26,6 @@ extern_protocol!(
             in_error: Option<&NSError>,
         );
     }
-
-    unsafe impl ProtocolType for dyn ODQueryDelegate {}
 );
 
 extern_class!(

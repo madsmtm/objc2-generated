@@ -57,6 +57,4 @@ extern_protocol!(
             url_scheme_task: &ProtocolObject<dyn WKURLSchemeTask>,
         );
     }
-
-    unsafe impl ProtocolType for dyn WKURLSchemeHandler {}
 );

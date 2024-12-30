@@ -233,6 +233,7 @@ extern_protocol!(
     /// The group of methods to implement for modifying the Finder user interface to express file synchronization status and control.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fifindersyncprotocol?language=objc)
+    #[name = "FIFinderSync"]
     pub unsafe trait FIFinderSyncProtocol {
         #[cfg(feature = "objc2-app-kit")]
         /// Requests a custom menu from the extension.
@@ -366,10 +367,6 @@ extern_protocol!(
                 dyn Fn(NonNull<NSDictionary<NSURLResourceKey, AnyObject>>, *mut NSError),
             >,
         );
-    }
-
-    unsafe impl ProtocolType for dyn FIFinderSyncProtocol {
-        const NAME: &'static str = "FIFinderSync";
     }
 );
 

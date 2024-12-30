@@ -78,8 +78,6 @@ extern_protocol!(
             printer_picker_controller: &UIPrinterPickerController,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIPrinterPickerControllerDelegate {}
 );
 
 extern_class!(

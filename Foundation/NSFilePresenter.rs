@@ -144,6 +144,4 @@ extern_protocol!(
             version: &NSFileVersion,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSFilePresenter {}
 );

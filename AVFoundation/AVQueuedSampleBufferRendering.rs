@@ -103,6 +103,4 @@ extern_protocol!(
         #[method(hasSufficientMediaDataForReliablePlaybackStart)]
         unsafe fn hasSufficientMediaDataForReliablePlaybackStart(&self) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn AVQueuedSampleBufferRendering {}
 );

@@ -90,6 +90,4 @@ extern_protocol!(
             command: &NSString,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSSpeechRecognizerDelegate {}
 );

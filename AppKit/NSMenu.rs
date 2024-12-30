@@ -468,8 +468,6 @@ extern_protocol!(
         #[method(validateMenuItem:)]
         unsafe fn validateMenuItem(&self, menu_item: &NSMenuItem) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSMenuItemValidation {}
 );
 
 extern_protocol!(
@@ -516,8 +514,6 @@ extern_protocol!(
             screen: Option<&NSScreen>,
         ) -> NSRect;
     }
-
-    unsafe impl ProtocolType for dyn NSMenuDelegate {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuproperties?language=objc)

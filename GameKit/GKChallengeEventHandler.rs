@@ -70,8 +70,6 @@ extern_protocol!(
         #[method(remotePlayerDidCompleteChallenge:)]
         unsafe fn remotePlayerDidCompleteChallenge(&self, challenge: Option<&GKChallenge>);
     }
-
-    unsafe impl ProtocolType for dyn GKChallengeEventHandlerDelegate {}
 );
 
 extern_class!(

@@ -254,6 +254,4 @@ extern_protocol!(
             playback_style: PHLivePhotoViewPlaybackStyle,
         );
     }
-
-    unsafe impl ProtocolType for dyn PHLivePhotoViewDelegate {}
 );

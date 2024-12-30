@@ -357,8 +357,6 @@ extern_protocol!(
             error: &NSError,
         );
     }
-
-    unsafe impl ProtocolType for dyn AEAssessmentSessionDelegate {}
 );
 
 extern "C" {

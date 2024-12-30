@@ -292,6 +292,4 @@ extern_protocol!(
             search_option: NSInteger,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UISearchDisplayDelegate {}
 );

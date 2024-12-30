@@ -145,8 +145,6 @@ extern_protocol!(
         #[method(interactionDidFinish:)]
         unsafe fn interactionDidFinish(&self, interaction: &UISpringLoadedInteraction);
     }
-
-    unsafe impl ProtocolType for dyn UISpringLoadedInteractionBehavior {}
 );
 
 extern_protocol!(
@@ -170,8 +168,6 @@ extern_protocol!(
             context: &ProtocolObject<dyn UISpringLoadedInteractionContext>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UISpringLoadedInteractionEffect {}
 );
 
 extern_protocol!(
@@ -218,6 +214,4 @@ extern_protocol!(
         #[method(locationInView:)]
         unsafe fn locationInView(&self, view: Option<&UIView>) -> CGPoint;
     }
-
-    unsafe impl ProtocolType for dyn UISpringLoadedInteractionContext {}
 );

@@ -435,6 +435,4 @@ extern_protocol!(
             error: Option<&NSError>,
         );
     }
-
-    unsafe impl ProtocolType for dyn HKWorkoutSessionDelegate {}
 );

@@ -16,6 +16,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other contentRulesJSON)]
         unsafe fn contentRulesJSON(&self) -> Retained<NSData>;
     }
-
-    unsafe impl ProtocolType for dyn MEContentBlocker {}
 );

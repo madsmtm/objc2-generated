@@ -227,8 +227,6 @@ extern_protocol!(
             player_id: &NSString,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn GKMatchDelegate {}
 );
 
 extern_methods!(

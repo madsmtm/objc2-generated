@@ -411,8 +411,6 @@ extern_protocol!(
         #[method(ruleEditorRowsDidChange:)]
         unsafe fn ruleEditorRowsDidChange(&self, notification: &NSNotification);
     }
-
-    unsafe impl ProtocolType for dyn NSRuleEditorDelegate {}
 );
 
 extern "C" {

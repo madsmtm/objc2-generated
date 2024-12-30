@@ -12,6 +12,4 @@ extern_protocol!(
         #[method(writeToURL:error:_)]
         unsafe fn writeToURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
     }
-
-    unsafe impl ProtocolType for dyn MLWritable {}
 );

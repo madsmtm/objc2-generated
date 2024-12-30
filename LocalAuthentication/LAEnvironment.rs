@@ -68,6 +68,4 @@ extern_protocol!(
             old_state: &LAEnvironmentState,
         );
     }
-
-    unsafe impl ProtocolType for dyn LAEnvironmentObserver {}
 );

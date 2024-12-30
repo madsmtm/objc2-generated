@@ -227,6 +227,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other device)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
     }
-
-    unsafe impl ProtocolType for dyn MTLDepthStencilState {}
 );

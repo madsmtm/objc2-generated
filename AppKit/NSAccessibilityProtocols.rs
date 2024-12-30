@@ -11,6 +11,7 @@ use crate::*;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityelementprotocol?language=objc)
+    #[name = "NSAccessibilityElement"]
     pub unsafe trait NSAccessibilityElementProtocol: NSObjectProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityFrame)]
@@ -27,17 +28,11 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityIdentifier)]
         unsafe fn accessibilityIdentifier(&self) -> Retained<NSString>;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilityElementProtocol {
-        const NAME: &'static str = "NSAccessibilityElement";
-    }
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitygroup?language=objc)
     pub unsafe trait NSAccessibilityGroup: NSAccessibilityElementProtocol {}
-
-    unsafe impl ProtocolType for dyn NSAccessibilityGroup {}
 );
 
 extern_protocol!(
@@ -49,8 +44,6 @@ extern_protocol!(
         #[method(accessibilityPerformPress)]
         unsafe fn accessibilityPerformPress(&self) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilityButton {}
 );
 
 extern_protocol!(
@@ -67,8 +60,6 @@ extern_protocol!(
         #[method(accessibilityPerformDecrement)]
         unsafe fn accessibilityPerformDecrement(&self) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilitySwitch {}
 );
 
 extern_protocol!(
@@ -77,8 +68,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Retained<NSNumber>>;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilityRadioButton {}
 );
 
 extern_protocol!(
@@ -87,8 +76,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Retained<NSNumber>>;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilityCheckBox {}
 );
 
 extern_protocol!(
@@ -108,8 +95,6 @@ extern_protocol!(
         #[method(accessibilityVisibleCharacterRange)]
         unsafe fn accessibilityVisibleCharacterRange(&self) -> NSRange;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilityStaticText {}
 );
 
 extern_protocol!(
@@ -128,8 +113,6 @@ extern_protocol!(
         #[method(accessibilityFrameForRange:)]
         unsafe fn accessibilityFrameForRange(&self, range: NSRange) -> NSRect;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilityNavigableStaticText {}
 );
 
 extern_protocol!(
@@ -138,8 +121,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Retained<NSNumber>>;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilityProgressIndicator {}
 );
 
 extern_protocol!(
@@ -158,8 +139,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityValue)]
         unsafe fn accessibilityValue(&self) -> Option<Retained<AnyObject>>;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilityStepper {}
 );
 
 extern_protocol!(
@@ -177,8 +156,6 @@ extern_protocol!(
         #[method(accessibilityPerformDecrement)]
         unsafe fn accessibilityPerformDecrement(&self) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilitySlider {}
 );
 
 extern_protocol!(
@@ -187,8 +164,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self) -> Option<Retained<NSString>>;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilityImage {}
 );
 
 extern_protocol!(
@@ -205,8 +180,6 @@ extern_protocol!(
         #[method(isAccessibilityAlternateUIVisible)]
         unsafe fn isAccessibilityAlternateUIVisible(&self) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilityContainsTransientUI {}
 );
 
 extern_protocol!(
@@ -272,22 +245,16 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityColumnHeaderUIElements)]
         unsafe fn accessibilityColumnHeaderUIElements(&self) -> Option<Retained<NSArray>>;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilityTable {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityoutline?language=objc)
     pub unsafe trait NSAccessibilityOutline: NSAccessibilityTable {}
-
-    unsafe impl ProtocolType for dyn NSAccessibilityOutline {}
 );
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylist?language=objc)
     pub unsafe trait NSAccessibilityList: NSAccessibilityTable {}
-
-    unsafe impl ProtocolType for dyn NSAccessibilityList {}
 );
 
 extern_protocol!(
@@ -300,8 +267,6 @@ extern_protocol!(
         #[method(accessibilityDisclosureLevel)]
         unsafe fn accessibilityDisclosureLevel(&self) -> NSInteger;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilityRow {}
 );
 
 extern_protocol!(
@@ -319,8 +284,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityFocusedUIElement)]
         unsafe fn accessibilityFocusedUIElement(&self) -> Retained<AnyObject>;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilityLayoutArea {}
 );
 
 extern_protocol!(
@@ -331,8 +294,6 @@ extern_protocol!(
         #[method(setAccessibilityFrame:)]
         unsafe fn setAccessibilityFrame(&self, frame: NSRect);
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilityLayoutItem {}
 );
 
 extern_protocol!(
@@ -364,8 +325,6 @@ extern_protocol!(
             token: &NSAccessibilityLoadingToken,
         ) -> NSRange;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibilityElementLoading {}
 );
 
 extern_protocol!(
@@ -1580,6 +1539,4 @@ extern_protocol!(
         #[method(isAccessibilitySelectorAllowed:)]
         unsafe fn isAccessibilitySelectorAllowed(&self, selector: Sel) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSAccessibility {}
 );

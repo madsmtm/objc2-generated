@@ -344,8 +344,6 @@ extern_protocol!(
             count: NSUInteger,
         ) -> Retained<MPSImageBatch>;
     }
-
-    unsafe impl ProtocolType for dyn MPSImageAllocator {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspurgeablestate?language=objc)

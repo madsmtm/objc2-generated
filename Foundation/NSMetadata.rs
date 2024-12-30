@@ -205,8 +205,6 @@ extern_protocol!(
             attr_value: &AnyObject,
         ) -> Retained<AnyObject>;
     }
-
-    unsafe impl ProtocolType for dyn NSMetadataQueryDelegate {}
 );
 
 extern "C" {

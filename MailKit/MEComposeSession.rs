@@ -161,6 +161,4 @@ extern_protocol!(
             session: &MEComposeSession,
         ) -> Retained<NSDictionary<NSString, NSArray<NSString>>>;
     }
-
-    unsafe impl ProtocolType for dyn MEComposeSessionHandler {}
 );

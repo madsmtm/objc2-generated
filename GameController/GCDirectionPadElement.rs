@@ -53,7 +53,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other right)]
         unsafe fn right(&self) -> Retained<AnyObject /* GCLinearInput+ GCPressedStateInput */>;
     }
-
-    #[cfg(feature = "GCPhysicalInputElement")]
-    unsafe impl ProtocolType for dyn GCDirectionPadElement {}
 );

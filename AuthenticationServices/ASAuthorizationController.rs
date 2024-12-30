@@ -40,8 +40,6 @@ extern_protocol!(
             method: &ASAuthorizationCustomMethod,
         );
     }
-
-    unsafe impl ProtocolType for dyn ASAuthorizationControllerDelegate {}
 );
 
 extern_protocol!(
@@ -58,8 +56,6 @@ extern_protocol!(
             controller: &ASAuthorizationController,
         ) -> Retained<ASPresentationAnchor>;
     }
-
-    unsafe impl ProtocolType for dyn ASAuthorizationControllerPresentationContextProviding {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontrollerrequestoptions?language=objc)

@@ -1215,6 +1215,4 @@ extern_protocol!(
             asset: &AVAsset,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn AVVideoCompositionValidationHandling {}
 );

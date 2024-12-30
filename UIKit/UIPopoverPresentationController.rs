@@ -52,9 +52,6 @@ extern_protocol!(
             view: &mut Retained<UIView>,
         );
     }
-
-    #[cfg(feature = "UIPresentationController")]
-    unsafe impl ProtocolType for dyn UIPopoverPresentationControllerDelegate {}
 );
 
 extern_class!(

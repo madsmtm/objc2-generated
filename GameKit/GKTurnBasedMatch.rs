@@ -250,8 +250,6 @@ extern_protocol!(
             player_i_ds_to_invite: &NSArray<NSString>,
         );
     }
-
-    unsafe impl ProtocolType for dyn GKTurnBasedEventListener {}
 );
 
 extern "C" {
@@ -686,8 +684,6 @@ extern_protocol!(
         #[method(handleMatchEnded:)]
         unsafe fn handleMatchEnded(&self, r#match: &GKTurnBasedMatch);
     }
-
-    unsafe impl ProtocolType for dyn GKTurnBasedEventHandlerDelegate {}
 );
 
 extern_class!(

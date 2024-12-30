@@ -102,6 +102,4 @@ extern_protocol!(
         #[method(extensionWillTerminate)]
         unsafe fn extensionWillTerminate(&self);
     }
-
-    unsafe impl ProtocolType for dyn BADownloaderExtension {}
 );

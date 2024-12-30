@@ -200,8 +200,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other name)]
         unsafe fn name(&self) -> Retained<NSString>;
     }
-
-    unsafe impl ProtocolType for dyn MTLCounter {}
 );
 
 extern_protocol!(
@@ -221,8 +219,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other counters)]
         unsafe fn counters(&self) -> Retained<NSArray<ProtocolObject<dyn MTLCounter>>>;
     }
-
-    unsafe impl ProtocolType for dyn MTLCounterSet {}
 );
 
 extern_class!(
@@ -320,8 +316,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other resolveCounterRange:)]
         unsafe fn resolveCounterRange(&self, range: NSRange) -> Option<Retained<NSData>>;
     }
-
-    unsafe impl ProtocolType for dyn MTLCounterSampleBuffer {}
 );
 
 extern "C" {

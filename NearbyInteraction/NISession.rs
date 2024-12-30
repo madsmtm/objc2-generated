@@ -299,6 +299,4 @@ extern_protocol!(
         #[method(sessionDidStartRunning:)]
         unsafe fn sessionDidStartRunning(&self, session: &NISession);
     }
-
-    unsafe impl ProtocolType for dyn NISessionDelegate {}
 );

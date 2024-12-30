@@ -267,6 +267,4 @@ extern_protocol!(
         #[method(alertViewShouldEnableFirstOtherButton:)]
         unsafe fn alertViewShouldEnableFirstOtherButton(&self, alert_view: &UIAlertView) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UIAlertViewDelegate {}
 );

@@ -271,8 +271,6 @@ extern_protocol!(
         #[method(drawCharactersInRange:forContentView:)]
         unsafe fn drawCharactersInRange_forContentView(&self, range: NSRange, view: &NSView);
     }
-
-    unsafe impl ProtocolType for dyn NSTextFinderClient {}
 );
 
 extern_protocol!(
@@ -302,6 +300,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other contentView)]
         unsafe fn contentView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
     }
-
-    unsafe impl ProtocolType for dyn NSTextFinderBarContainer {}
 );

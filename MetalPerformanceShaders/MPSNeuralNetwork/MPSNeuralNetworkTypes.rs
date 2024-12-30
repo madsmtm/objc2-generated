@@ -339,8 +339,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other inverse)]
         unsafe fn inverse(&self) -> Option<Retained<Self>>;
     }
-
-    unsafe impl ProtocolType for dyn MPSNNPadding {}
 );
 
 extern_class!(
@@ -456,6 +454,4 @@ extern_protocol!(
         #[method(sourceHeight)]
         unsafe fn sourceHeight(&self) -> NSUInteger;
     }
-
-    unsafe impl ProtocolType for dyn MPSImageSizeEncodingState {}
 );

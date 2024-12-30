@@ -253,6 +253,4 @@ extern_protocol!(
             event: &UIEvent,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UIGestureRecognizerDelegate {}
 );

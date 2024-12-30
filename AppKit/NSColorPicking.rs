@@ -67,8 +67,6 @@ extern_protocol!(
         #[method(minContentSize)]
         unsafe fn minContentSize(&self) -> NSSize;
     }
-
-    unsafe impl ProtocolType for dyn NSColorPickingDefault {}
 );
 
 extern_protocol!(
@@ -90,6 +88,4 @@ extern_protocol!(
         #[method(setColor:)]
         unsafe fn setColor(&self, new_color: &NSColor);
     }
-
-    unsafe impl ProtocolType for dyn NSColorPickingCustom {}
 );

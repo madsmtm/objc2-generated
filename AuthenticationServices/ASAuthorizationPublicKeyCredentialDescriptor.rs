@@ -20,6 +20,4 @@ extern_protocol!(
         #[method(setCredentialID:)]
         unsafe fn setCredentialID(&self, credential_id: &NSData);
     }
-
-    unsafe impl ProtocolType for dyn ASAuthorizationPublicKeyCredentialDescriptor {}
 );

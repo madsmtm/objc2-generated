@@ -277,6 +277,4 @@ extern_protocol!(
             completion_handler: &block2::Block<dyn Fn(Bool)>,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVPictureInPictureControllerDelegate {}
 );

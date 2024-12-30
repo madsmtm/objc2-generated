@@ -898,8 +898,6 @@ extern_protocol!(
             r#type: SCStreamOutputType,
         );
     }
-
-    unsafe impl ProtocolType for dyn SCStreamOutput {}
 );
 
 extern_protocol!(
@@ -956,6 +954,4 @@ extern_protocol!(
         #[method(streamDidBecomeInactive:)]
         unsafe fn streamDidBecomeInactive(&self, stream: &SCStream);
     }
-
-    unsafe impl ProtocolType for dyn SCStreamDelegate {}
 );

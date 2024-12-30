@@ -337,8 +337,6 @@ extern_protocol!(
             properties: &NSArray<OSSystemExtensionProperties>,
         );
     }
-
-    unsafe impl ProtocolType for dyn OSSystemExtensionRequestDelegate {}
 );
 
 extern_class!(
@@ -445,8 +443,6 @@ extern_protocol!(
             system_extension_info: &OSSystemExtensionInfo,
         );
     }
-
-    unsafe impl ProtocolType for dyn OSSystemExtensionsWorkspaceObserver {}
 );
 
 extern_class!(

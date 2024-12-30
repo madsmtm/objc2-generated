@@ -47,6 +47,4 @@ extern_protocol!(
             client_data: &ASPublicKeyCredentialClientData,
         ) -> Retained<ASAuthorizationPlatformPublicKeyCredentialAssertionRequest>;
     }
-
-    unsafe impl ProtocolType for dyn ASAuthorizationWebBrowserPlatformPublicKeyCredentialProvider {}
 );

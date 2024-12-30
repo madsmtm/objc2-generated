@@ -555,6 +555,4 @@ extern_protocol!(
             event: &CNChangeHistoryRemoveSubgroupFromGroupEvent,
         );
     }
-
-    unsafe impl ProtocolType for dyn CNChangeHistoryEventVisitor {}
 );

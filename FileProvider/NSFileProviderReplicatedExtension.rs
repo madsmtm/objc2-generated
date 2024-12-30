@@ -236,8 +236,6 @@ extern_protocol!(
             request: &NSFileProviderRequest,
         ) -> Result<Retained<ProtocolObject<dyn NSFileProviderEnumerator>>, Retained<NSError>>;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderEnumerating {}
 );
 
 extern_protocol!(
@@ -1078,8 +1076,6 @@ extern_protocol!(
             completion_handler: &block2::Block<dyn Fn()>,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderReplicatedExtension {}
 );
 
 extern_protocol!(
@@ -1112,8 +1108,6 @@ extern_protocol!(
             >,
         ) -> Retained<NSProgress>;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderIncrementalContentFetching {}
 );
 
 extern_protocol!(
@@ -1152,8 +1146,6 @@ extern_protocol!(
             >,
         ) -> Retained<NSProgress>;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderServicing {}
 );
 
 extern_protocol!(
@@ -1225,8 +1217,6 @@ extern_protocol!(
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         ) -> Retained<NSProgress>;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderThumbnailing {}
 );
 
 extern_protocol!(
@@ -1257,8 +1247,6 @@ extern_protocol!(
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         ) -> Retained<NSProgress>;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderCustomAction {}
 );
 
 extern_protocol!(
@@ -1301,8 +1289,6 @@ extern_protocol!(
             suppression_identifier: &NSString,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderUserInteractionSuppressing {}
 );
 
 extern_protocol!(
@@ -1342,8 +1328,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other userInfo)]
         unsafe fn userInfo(&self) -> Retained<NSDictionary>;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderDomainState {}
 );
 
 extern_protocol!(
@@ -1482,8 +1466,6 @@ extern_protocol!(
             >,
         ) -> Retained<NSProgress>;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderPartialContentFetching {}
 );
 
 extern_protocol!(
@@ -1517,6 +1499,4 @@ extern_protocol!(
             completion_handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderExternalVolumeHandling {}
 );

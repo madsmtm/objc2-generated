@@ -26,6 +26,4 @@ extern_protocol!(
             message: &WKScriptMessage,
         );
     }
-
-    unsafe impl ProtocolType for dyn WKScriptMessageHandler {}
 );

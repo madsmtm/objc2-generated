@@ -146,8 +146,6 @@ extern_protocol!(
         #[method(addCompletion:)]
         unsafe fn addCompletion(&self, completion: &block2::Block<dyn Fn()>);
     }
-
-    unsafe impl ProtocolType for dyn UIContextMenuInteractionAnimating {}
 );
 
 extern_protocol!(
@@ -166,8 +164,6 @@ extern_protocol!(
             preferred_commit_style: UIContextMenuInteractionCommitStyle,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIContextMenuInteractionCommitAnimating {}
 );
 
 extern_protocol!(
@@ -325,6 +321,4 @@ extern_protocol!(
             configuration: &UIContextMenuConfiguration,
         ) -> Option<Retained<UITargetedPreview>>;
     }
-
-    unsafe impl ProtocolType for dyn UIContextMenuInteractionDelegate {}
 );

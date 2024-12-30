@@ -24,9 +24,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other layer)]
         unsafe fn layer(&self) -> Retained<CAMetalLayer>;
     }
-
-    #[cfg(feature = "objc2-metal")]
-    unsafe impl ProtocolType for dyn CAMetalDrawable {}
 );
 
 extern_class!(

@@ -553,9 +553,6 @@ extern_protocol!(
         #[method(isMaximumSizeReached)]
         unsafe fn isMaximumSizeReached(&self) -> bool;
     }
-
-    #[cfg(feature = "NSFileProviderEnumerating")]
-    unsafe impl ProtocolType for dyn NSFileProviderPendingSetEnumerator {}
 );
 
 extern_methods!(

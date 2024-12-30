@@ -127,8 +127,6 @@ extern_protocol!(
             challenge: &NSURLAuthenticationChallenge,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSURLProtocolClient {}
 );
 
 extern_class!(

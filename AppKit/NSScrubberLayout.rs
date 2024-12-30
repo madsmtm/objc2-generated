@@ -210,9 +210,6 @@ extern_protocol!(
             item_index: NSInteger,
         ) -> NSSize;
     }
-
-    #[cfg(feature = "NSScrubber")]
-    unsafe impl ProtocolType for dyn NSScrubberFlowLayoutDelegate {}
 );
 
 extern_class!(

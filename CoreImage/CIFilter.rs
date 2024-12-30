@@ -620,6 +620,7 @@ extern_methods!(
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifilterprotocol?language=objc)
+    #[name = "CIFilter"]
     pub unsafe trait CIFilterProtocol {
         #[cfg(feature = "CIImage")]
         #[method_id(@__retain_semantics Other outputImage)]
@@ -628,10 +629,6 @@ extern_protocol!(
         #[optional]
         #[method_id(@__retain_semantics Other customAttributes)]
         unsafe fn customAttributes() -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
-    }
-
-    unsafe impl ProtocolType for dyn CIFilterProtocol {
-        const NAME: &'static str = "CIFilter";
     }
 );
 

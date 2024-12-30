@@ -336,8 +336,6 @@ extern_protocol!(
         #[method(pasteboardChangedOwner:)]
         unsafe fn pasteboardChangedOwner(&self, sender: &NSPasteboard);
     }
-
-    unsafe impl ProtocolType for dyn NSPasteboardTypeOwner {}
 );
 
 /// * NSPasteboardWriting and NSPasteboardReading Protocols **
@@ -384,8 +382,6 @@ extern_protocol!(
             r#type: &NSPasteboardType,
         ) -> Option<Retained<AnyObject>>;
     }
-
-    unsafe impl ProtocolType for dyn NSPasteboardWriting {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardreadingoptions?language=objc)
@@ -433,8 +429,6 @@ extern_protocol!(
             r#type: &NSPasteboardType,
         ) -> Option<Retained<Self>>;
     }
-
-    unsafe impl ProtocolType for dyn NSPasteboardReading {}
 );
 
 extern_category!(

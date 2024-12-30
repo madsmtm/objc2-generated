@@ -55,6 +55,4 @@ extern_protocol!(
         #[method(didFailWithError:)]
         unsafe fn didFailWithError(&self, error: &NSError);
     }
-
-    unsafe impl ProtocolType for dyn WKURLSchemeTask {}
 );

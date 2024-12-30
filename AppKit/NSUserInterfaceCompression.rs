@@ -112,6 +112,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other activeCompressionOptions)]
         unsafe fn activeCompressionOptions(&self) -> Retained<NSUserInterfaceCompressionOptions>;
     }
-
-    unsafe impl ProtocolType for dyn NSUserInterfaceCompression {}
 );

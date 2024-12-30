@@ -9,8 +9,6 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkgeojsonobject?language=objc)
     pub unsafe trait MKGeoJSONObject: NSObjectProtocol {}
-
-    unsafe impl ProtocolType for dyn MKGeoJSONObject {}
 );
 
 extern_class!(

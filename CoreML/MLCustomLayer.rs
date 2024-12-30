@@ -49,6 +49,4 @@ extern_protocol!(
             outputs: &NSArray<ProtocolObject<dyn MTLTexture>>,
         ) -> Result<(), Retained<NSError>>;
     }
-
-    unsafe impl ProtocolType for dyn MLCustomLayer {}
 );

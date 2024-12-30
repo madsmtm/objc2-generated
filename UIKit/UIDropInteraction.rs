@@ -214,6 +214,4 @@ extern_protocol!(
             animator: &ProtocolObject<dyn UIDragAnimating>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIDropInteractionDelegate {}
 );

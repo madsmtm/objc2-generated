@@ -122,8 +122,6 @@ extern_protocol!(
         #[method(roiTileCount)]
         unsafe fn roiTileCount(&self) -> NSUInteger;
     }
-
-    unsafe impl ProtocolType for dyn CIImageProcessorInput {}
 );
 
 extern_protocol!(
@@ -164,6 +162,4 @@ extern_protocol!(
         #[method(digest)]
         unsafe fn digest(&self) -> u64;
     }
-
-    unsafe impl ProtocolType for dyn CIImageProcessorOutput {}
 );

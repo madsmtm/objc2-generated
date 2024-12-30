@@ -118,6 +118,4 @@ extern_protocol!(
             accessibility_custom_content_block: AXCustomContentReturnBlock,
         );
     }
-
-    unsafe impl ProtocolType for dyn AXCustomContentProvider {}
 );

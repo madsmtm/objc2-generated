@@ -43,6 +43,4 @@ extern_protocol!(
         #[method(shouldShowCancelConfirmation)]
         unsafe fn shouldShowCancelConfirmation(&self) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn PHContentEditingController {}
 );

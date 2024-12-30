@@ -94,6 +94,4 @@ extern_protocol!(
         #[method(popDebugGroup)]
         fn popDebugGroup(&self);
     }
-
-    unsafe impl ProtocolType for dyn MTLCommandEncoder {}
 );

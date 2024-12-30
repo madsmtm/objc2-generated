@@ -126,8 +126,6 @@ extern_protocol!(
             reason: Option<&NSString>,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSURLHandleClient {}
 );
 
 extern_class!(

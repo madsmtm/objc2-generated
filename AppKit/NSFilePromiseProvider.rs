@@ -96,6 +96,4 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> Retained<NSOperationQueue>;
     }
-
-    unsafe impl ProtocolType for dyn NSFilePromiseProviderDelegate {}
 );

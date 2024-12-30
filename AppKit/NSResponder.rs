@@ -678,8 +678,6 @@ extern_protocol!(
         #[method(showContextMenuForSelection:)]
         unsafe fn showContextMenuForSelection(&self, sender: Option<&AnyObject>);
     }
-
-    unsafe impl ProtocolType for dyn NSStandardKeyBindingResponding {}
 );
 
 extern_methods!(

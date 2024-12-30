@@ -23,6 +23,4 @@ extern_protocol!(
         #[method(supportsExtendedDistanceMeasurement)]
         unsafe fn supportsExtendedDistanceMeasurement(&self) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NIDeviceCapability {}
 );

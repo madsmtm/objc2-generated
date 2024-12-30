@@ -1238,8 +1238,6 @@ extern_protocol!(
         #[method(effectiveContentInsets)]
         unsafe fn effectiveContentInsets(&self) -> NSDirectionalEdgeInsets;
     }
-
-    unsafe impl ProtocolType for dyn NSCollectionLayoutContainer {}
 );
 
 extern_protocol!(
@@ -1254,8 +1252,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other traitCollection)]
         unsafe fn traitCollection(&self) -> Retained<UITraitCollection>;
     }
-
-    unsafe impl ProtocolType for dyn NSCollectionLayoutEnvironment {}
 );
 
 extern_protocol!(
@@ -1337,9 +1333,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other representedElementKind)]
         unsafe fn representedElementKind(&self) -> Option<Retained<NSString>>;
     }
-
-    #[cfg(feature = "UIDynamicBehavior")]
-    unsafe impl ProtocolType for dyn NSCollectionLayoutVisibleItem {}
 );
 
 extern_methods!(

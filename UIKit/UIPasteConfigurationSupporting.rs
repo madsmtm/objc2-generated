@@ -29,6 +29,4 @@ extern_protocol!(
         #[method(canPasteItemProviders:)]
         unsafe fn canPasteItemProviders(&self, item_providers: &NSArray<NSItemProvider>) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UIPasteConfigurationSupporting {}
 );

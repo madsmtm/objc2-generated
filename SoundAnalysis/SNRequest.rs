@@ -11,6 +11,4 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snrequest?language=objc)
     pub unsafe trait SNRequest: NSObjectProtocol {}
-
-    unsafe impl ProtocolType for dyn SNRequest {}
 );

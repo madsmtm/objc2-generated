@@ -369,8 +369,6 @@ extern_protocol!(
             output_stream: &NSOutputStream,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSNetServiceDelegate {}
 );
 
 extern_protocol!(
@@ -431,6 +429,4 @@ extern_protocol!(
             more_coming: bool,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSNetServiceBrowserDelegate {}
 );

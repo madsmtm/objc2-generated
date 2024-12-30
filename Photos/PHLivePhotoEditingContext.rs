@@ -174,8 +174,6 @@ extern_protocol!(
         #[method(renderScale)]
         unsafe fn renderScale(&self) -> CGFloat;
     }
-
-    unsafe impl ProtocolType for dyn PHLivePhotoFrame {}
 );
 
 extern "C" {

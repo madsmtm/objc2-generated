@@ -72,8 +72,6 @@ extern_protocol!(
         #[method(suggestedPageSize)]
         unsafe fn suggestedPageSize(&self) -> NSInteger;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderEnumerationObserver {}
 );
 
 extern_protocol!(
@@ -143,8 +141,6 @@ extern_protocol!(
         #[method(suggestedBatchSize)]
         unsafe fn suggestedBatchSize(&self) -> NSInteger;
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderChangeObserver {}
 );
 
 extern_protocol!(
@@ -247,8 +243,6 @@ extern_protocol!(
             completion_handler: &block2::Block<dyn Fn(*mut NSFileProviderSyncAnchor)>,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSFileProviderEnumerator {}
 );
 
 extern_methods!(

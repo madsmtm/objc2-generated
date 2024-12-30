@@ -32,8 +32,6 @@ unsafe impl RefEncode for NSFetchRequestResultType {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchrequestresult?language=objc)
     pub unsafe trait NSFetchRequestResult: NSObjectProtocol {}
-
-    unsafe impl ProtocolType for dyn NSFetchRequestResult {}
 );
 
 unsafe impl NSFetchRequestResult for NSNumber {}

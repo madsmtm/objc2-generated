@@ -349,8 +349,6 @@ extern_protocol!(
             context: &CKSyncEngineFetchChangesContext,
         ) -> Retained<CKSyncEngineFetchChangesOptions>;
     }
-
-    unsafe impl ProtocolType for dyn CKSyncEngineDelegate {}
 );
 
 extern_class!(

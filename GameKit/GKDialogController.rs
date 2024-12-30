@@ -13,8 +13,6 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkviewcontroller?language=objc)
     pub unsafe trait GKViewController {}
-
-    unsafe impl ProtocolType for dyn GKViewController {}
 );
 
 extern_class!(

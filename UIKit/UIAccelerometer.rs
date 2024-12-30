@@ -119,6 +119,4 @@ extern_protocol!(
             acceleration: &UIAcceleration,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIAccelerometerDelegate {}
 );

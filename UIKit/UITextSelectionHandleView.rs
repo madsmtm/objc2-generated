@@ -49,7 +49,4 @@ extern_protocol!(
         #[method(preferredFrameForRect:)]
         unsafe fn preferredFrameForRect(&self, rect: CGRect) -> CGRect;
     }
-
-    #[cfg(feature = "UIView")]
-    unsafe impl ProtocolType for dyn UITextSelectionHandleView {}
 );

@@ -93,8 +93,6 @@ extern_protocol!(
         #[method(finishAnimationAtPosition:)]
         unsafe fn finishAnimationAtPosition(&self, final_position: UIViewAnimatingPosition);
     }
-
-    unsafe impl ProtocolType for dyn UIViewAnimating {}
 );
 
 extern_protocol!(
@@ -128,6 +126,4 @@ extern_protocol!(
             duration_factor: CGFloat,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIViewImplicitlyAnimating {}
 );

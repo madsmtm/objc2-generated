@@ -1286,9 +1286,6 @@ extern_protocol!(
         #[method(tableViewSelectionIsChanging:)]
         unsafe fn tableViewSelectionIsChanging(&self, notification: &NSNotification);
     }
-
-    #[cfg(feature = "NSControl")]
-    unsafe impl ProtocolType for dyn NSTableViewDelegate {}
 );
 
 extern "C" {
@@ -1487,8 +1484,6 @@ extern_protocol!(
             index_set: &NSIndexSet,
         ) -> Retained<NSArray<NSString>>;
     }
-
-    unsafe impl ProtocolType for dyn NSTableViewDataSource {}
 );
 
 extern_methods!(

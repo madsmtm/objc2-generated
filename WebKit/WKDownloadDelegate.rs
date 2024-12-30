@@ -122,6 +122,4 @@ extern_protocol!(
         #[method(download:didReceiveFinalURL:)]
         unsafe fn download_didReceiveFinalURL(&self, download: &WKDownload, url: &NSURL);
     }
-
-    unsafe impl ProtocolType for dyn WKDownloadDelegate {}
 );

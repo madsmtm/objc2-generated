@@ -150,14 +150,6 @@ extern_protocol!(
         GKChallengeListener + GKInviteEventListener + GKSavedGameListener + GKTurnBasedEventListener
     {
     }
-
-    #[cfg(all(
-        feature = "GKEventListener",
-        feature = "GKMatchmaker",
-        feature = "GKSavedGameListener",
-        feature = "GKTurnBasedMatch"
-    ))]
-    unsafe impl ProtocolType for dyn GKLocalPlayerListener {}
 );
 
 extern_methods!(

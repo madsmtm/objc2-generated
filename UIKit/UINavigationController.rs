@@ -361,8 +361,6 @@ extern_protocol!(
             to_vc: &UIViewController,
         ) -> Option<Retained<ProtocolObject<dyn UIViewControllerAnimatedTransitioning>>>;
     }
-
-    unsafe impl ProtocolType for dyn UINavigationControllerDelegate {}
 );
 
 extern_methods!(

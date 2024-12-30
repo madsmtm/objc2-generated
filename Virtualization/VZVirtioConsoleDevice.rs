@@ -49,8 +49,6 @@ extern_protocol!(
             console_port: &VZVirtioConsolePort,
         );
     }
-
-    unsafe impl ProtocolType for dyn VZVirtioConsoleDeviceDelegate {}
 );
 
 extern_class!(

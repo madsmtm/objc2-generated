@@ -44,8 +44,6 @@ extern_protocol!(
             session: &UIFindSession,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIFindInteractionDelegate {}
 );
 
 extern_class!(

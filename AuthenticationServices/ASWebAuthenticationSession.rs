@@ -203,6 +203,4 @@ extern_protocol!(
             session: &ASWebAuthenticationSession,
         ) -> Retained<ASPresentationAnchor>;
     }
-
-    unsafe impl ProtocolType for dyn ASWebAuthenticationPresentationContextProviding {}
 );

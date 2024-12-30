@@ -22,6 +22,4 @@ extern_protocol!(
         #[method(serviceExtensionWillTerminate)]
         unsafe fn serviceExtensionWillTerminate(&self);
     }
-
-    unsafe impl ProtocolType for dyn CLLocationPushServiceExtension {}
 );

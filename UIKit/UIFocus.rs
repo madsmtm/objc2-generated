@@ -168,8 +168,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other focusGroupIdentifier)]
         unsafe fn focusGroupIdentifier(&self) -> Option<Retained<NSString>>;
     }
-
-    unsafe impl ProtocolType for dyn UIFocusEnvironment {}
 );
 
 extern_protocol!(
@@ -222,8 +220,6 @@ extern_protocol!(
         #[method(didHintFocusMovement:)]
         unsafe fn didHintFocusMovement(&self, hint: &UIFocusMovementHint);
     }
-
-    unsafe impl ProtocolType for dyn UIFocusItem {}
 );
 
 extern_protocol!(
@@ -251,8 +247,6 @@ extern_protocol!(
             rect: CGRect,
         ) -> Retained<NSArray<ProtocolObject<dyn UIFocusItem>>>;
     }
-
-    unsafe impl ProtocolType for dyn UIFocusItemContainer {}
 );
 
 extern_protocol!(
@@ -284,8 +278,6 @@ extern_protocol!(
         #[method(visibleSize)]
         unsafe fn visibleSize(&self) -> CGSize;
     }
-
-    unsafe impl ProtocolType for dyn UIFocusItemScrollableContainer {}
 );
 
 extern_class!(

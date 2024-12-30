@@ -26,7 +26,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other relativeInput)]
         unsafe fn relativeInput(&self) -> Retained<ProtocolObject<dyn GCRelativeInput>>;
     }
-
-    #[cfg(feature = "GCPhysicalInputElement")]
-    unsafe impl ProtocolType for dyn GCAxisElement {}
 );

@@ -132,6 +132,4 @@ extern_protocol!(
             date_components: &NSDateComponents,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UICalendarSelectionMultiDateDelegate {}
 );

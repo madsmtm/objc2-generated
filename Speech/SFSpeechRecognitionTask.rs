@@ -124,6 +124,4 @@ extern_protocol!(
             duration: NSTimeInterval,
         );
     }
-
-    unsafe impl ProtocolType for dyn SFSpeechRecognitionTaskDelegate {}
 );

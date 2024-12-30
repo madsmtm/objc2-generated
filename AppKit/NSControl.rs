@@ -447,8 +447,6 @@ extern_protocol!(
             index: NonNull<NSInteger>,
         ) -> Retained<NSArray<NSString>>;
     }
-
-    unsafe impl ProtocolType for dyn NSControlTextEditingDelegate {}
 );
 
 extern "C" {

@@ -39,9 +39,6 @@ extern_protocol!(
         #[method(unmarkText)]
         unsafe fn unmarkText(&self);
     }
-
-    #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
-    unsafe impl ProtocolType for dyn UITextDocumentProxy {}
 );
 
 extern_class!(

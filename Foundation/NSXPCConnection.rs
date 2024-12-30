@@ -27,8 +27,6 @@ extern_protocol!(
             handler: &block2::Block<dyn Fn(NonNull<NSError>)>,
         ) -> Retained<AnyObject>;
     }
-
-    unsafe impl ProtocolType for dyn NSXPCProxyCreating {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectionoptions?language=objc)
@@ -289,8 +287,6 @@ extern_protocol!(
             new_connection: &NSXPCConnection,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSXPCListenerDelegate {}
 );
 
 extern_class!(

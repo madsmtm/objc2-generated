@@ -228,8 +228,6 @@ extern_protocol!(
             certificate_handler: &block2::Block<dyn Fn(Bool)>,
         );
     }
-
-    unsafe impl ProtocolType for dyn MCSessionDelegate {}
 );
 
 extern_methods!(

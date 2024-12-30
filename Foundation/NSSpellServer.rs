@@ -183,6 +183,4 @@ extern_protocol!(
             language: &NSString,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSSpellServerDelegate {}
 );

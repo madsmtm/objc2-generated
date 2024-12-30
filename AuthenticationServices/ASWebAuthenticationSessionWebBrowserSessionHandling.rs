@@ -22,6 +22,4 @@ extern_protocol!(
             request: Option<&ASWebAuthenticationSessionRequest>,
         );
     }
-
-    unsafe impl ProtocolType for dyn ASWebAuthenticationSessionWebBrowserSessionHandling {}
 );

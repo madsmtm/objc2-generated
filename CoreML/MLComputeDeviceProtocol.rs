@@ -11,6 +11,4 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputedeviceprotocol?language=objc)
     pub unsafe trait MLComputeDeviceProtocol: NSObjectProtocol {}
-
-    unsafe impl ProtocolType for dyn MLComputeDeviceProtocol {}
 );

@@ -34,6 +34,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other physicalInputProfile)]
         unsafe fn physicalInputProfile(&self) -> Retained<GCPhysicalInputProfile>;
     }
-
-    unsafe impl ProtocolType for dyn GCDevice {}
 );

@@ -1016,8 +1016,6 @@ extern_protocol!(
         #[method(isAssociatedWithFragmentMinder)]
         unsafe fn isAssociatedWithFragmentMinder(&self) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn AVFragmentMinding {}
 );
 
 extern_class!(

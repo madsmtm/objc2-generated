@@ -375,8 +375,6 @@ extern_protocol!(
             player_item: &AVPlayerItem,
         ) -> Retained<NSArray<NSValue>>;
     }
-
-    unsafe impl ProtocolType for dyn AVPlayerPlaybackCoordinatorDelegate {}
 );
 
 /// Configuration for a call to [AVDelegatingPlaybackCoordinator coordinateRateChangeToRate:options:].
@@ -636,8 +634,6 @@ extern_protocol!(
             completion_handler: &block2::Block<dyn Fn()>,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVPlaybackCoordinatorPlaybackControlDelegate {}
 );
 
 extern_class!(

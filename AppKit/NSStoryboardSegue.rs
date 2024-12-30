@@ -90,6 +90,4 @@ extern_protocol!(
             sender: Option<&AnyObject>,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSSeguePerforming {}
 );

@@ -74,8 +74,6 @@ extern_protocol!(
         #[method(preferredPresentationSizeForItemProvider)]
         unsafe fn preferredPresentationSizeForItemProvider(&self) -> CGSize;
     }
-
-    unsafe impl ProtocolType for dyn UIItemProviderPresentationSizeProviding {}
 );
 
 extern_protocol!(
@@ -96,8 +94,6 @@ extern_protocol!(
         unsafe fn additionalTrailingReadableTypeIdentifiersForItemProvider(
         ) -> Retained<NSArray<NSString>>;
     }
-
-    unsafe impl ProtocolType for dyn UIItemProviderReadingAugmentationProviding {}
 );
 
 extern_protocol!(
@@ -108,6 +104,4 @@ extern_protocol!(
         #[method(_ui_augmentingNSItemProviderReadingClass)]
         unsafe fn _ui_augmentingNSItemProviderReadingClass() -> &'static AnyClass;
     }
-
-    unsafe impl ProtocolType for dyn UIItemProviderReadingAugmentationDesignating {}
 );

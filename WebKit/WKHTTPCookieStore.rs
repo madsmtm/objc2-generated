@@ -34,8 +34,6 @@ extern_protocol!(
         #[method(cookiesDidChangeInCookieStore:)]
         unsafe fn cookiesDidChangeInCookieStore(&self, cookie_store: &WKHTTPCookieStore);
     }
-
-    unsafe impl ProtocolType for dyn WKHTTPCookieStoreObserver {}
 );
 
 extern_class!(

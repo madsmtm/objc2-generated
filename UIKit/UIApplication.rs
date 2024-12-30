@@ -1230,8 +1230,6 @@ extern_protocol!(
             application: &UIApplication,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UIApplicationDelegate {}
 );
 
 extern_methods!(

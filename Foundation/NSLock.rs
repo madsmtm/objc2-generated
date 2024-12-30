@@ -15,8 +15,6 @@ extern_protocol!(
         #[method(unlock)]
         unsafe fn unlock(&self);
     }
-
-    unsafe impl ProtocolType for dyn NSLocking {}
 );
 
 extern_class!(

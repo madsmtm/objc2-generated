@@ -232,6 +232,4 @@ extern_protocol!(
             web_view: Option<&WebView>,
         ) -> Option<Retained<NSUndoManager>>;
     }
-
-    unsafe impl ProtocolType for dyn WebEditingDelegate {}
 );

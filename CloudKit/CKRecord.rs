@@ -74,8 +74,6 @@ extern "C" {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordvalue?language=objc)
     pub unsafe trait CKRecordValue: NSObjectProtocol {}
-
-    unsafe impl ProtocolType for dyn CKRecordValue {}
 );
 
 extern_class!(
@@ -396,8 +394,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other changedKeys)]
         unsafe fn changedKeys(&self) -> Retained<NSArray<CKRecordFieldKey>>;
     }
-
-    unsafe impl ProtocolType for dyn CKRecordKeyValueSetting {}
 );
 
 extern_methods!(

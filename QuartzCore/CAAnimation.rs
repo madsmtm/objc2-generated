@@ -127,8 +127,6 @@ extern_protocol!(
         #[method(animationDidStop:finished:)]
         unsafe fn animationDidStop_finished(&self, anim: &CAAnimation, flag: bool);
     }
-
-    unsafe impl ProtocolType for dyn CAAnimationDelegate {}
 );
 
 extern_class!(

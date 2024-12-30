@@ -729,8 +729,6 @@ extern_protocol!(
             syntax_elements: &NSArray<NSString>,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVAssetReaderCaptionValidationHandling {}
 );
 
 extern_class!(

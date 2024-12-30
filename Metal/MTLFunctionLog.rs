@@ -26,8 +26,6 @@ unsafe impl RefEncode for MTLFunctionLogType {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogcontainer?language=objc)
     pub unsafe trait MTLLogContainer: NSFastEnumeration + NSObjectProtocol {}
-
-    unsafe impl ProtocolType for dyn MTLLogContainer {}
 );
 
 extern_protocol!(
@@ -45,8 +43,6 @@ extern_protocol!(
         #[method(column)]
         unsafe fn column(&self) -> NSUInteger;
     }
-
-    unsafe impl ProtocolType for dyn MTLFunctionLogDebugLocation {}
 );
 
 extern_protocol!(
@@ -67,6 +63,4 @@ extern_protocol!(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLFunctionLogDebugLocation>>>;
     }
-
-    unsafe impl ProtocolType for dyn MTLFunctionLog {}
 );

@@ -46,8 +46,6 @@ extern_protocol!(
             parent_identifier_path: &NSArray<NSString>,
         ) -> Option<Retained<CLSContext>>;
     }
-
-    unsafe impl ProtocolType for dyn CLSDataStoreDelegate {}
 );
 
 extern_class!(

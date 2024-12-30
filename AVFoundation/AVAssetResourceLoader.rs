@@ -123,8 +123,6 @@ extern_protocol!(
             authentication_challenge: &NSURLAuthenticationChallenge,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVAssetResourceLoaderDelegate {}
 );
 
 extern_class!(

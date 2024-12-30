@@ -11,6 +11,7 @@ use crate::*;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachmentcellprotocol?language=objc)
+    #[name = "NSTextAttachmentCell"]
     pub unsafe trait NSTextAttachmentCellProtocol: NSObjectProtocol {
         #[cfg(all(
             feature = "NSResponder",
@@ -147,10 +148,6 @@ extern_protocol!(
             position: NSPoint,
             char_index: NSUInteger,
         ) -> NSRect;
-    }
-
-    unsafe impl ProtocolType for dyn NSTextAttachmentCellProtocol {
-        const NAME: &'static str = "NSTextAttachmentCell";
     }
 );
 

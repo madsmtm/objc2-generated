@@ -227,8 +227,6 @@ extern_protocol!(
         #[method(setAspectRatio:)]
         unsafe fn setAspectRatio(&self, aspect_ratio: CGFloat);
     }
-
-    unsafe impl ProtocolType for dyn UILayoutGuideAspectFitting {}
 );
 
 extern_methods!(

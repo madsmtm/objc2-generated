@@ -36,8 +36,6 @@ extern_protocol!(
             url: &NSURL,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIDocumentPickerDelegate {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentpickermode?language=objc)

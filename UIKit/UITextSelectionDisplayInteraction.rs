@@ -23,8 +23,6 @@ extern_protocol!(
             interaction: &UITextSelectionDisplayInteraction,
         ) -> Option<Retained<UIView>>;
     }
-
-    unsafe impl ProtocolType for dyn UITextSelectionDisplayInteractionDelegate {}
 );
 
 extern_class!(

@@ -89,6 +89,4 @@ extern_protocol!(
             accessibility_braille_map_renderer: &block2::Block<dyn Fn(NonNull<AXBrailleMap>)>,
         );
     }
-
-    unsafe impl ProtocolType for dyn AXBrailleMapRenderer {}
 );

@@ -471,7 +471,4 @@ extern_protocol!(
             destination_offset: NSUInteger,
         );
     }
-
-    #[cfg(feature = "MTLCommandEncoder")]
-    unsafe impl ProtocolType for dyn MTLBlitCommandEncoder {}
 );

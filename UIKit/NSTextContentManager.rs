@@ -87,8 +87,6 @@ extern_protocol!(
             for_editing_text_selection: bool,
         ) -> Option<Retained<NSTextRange>>;
     }
-
-    unsafe impl ProtocolType for dyn NSTextElementProvider {}
 );
 
 extern_class!(
@@ -238,8 +236,6 @@ extern_protocol!(
             options: NSTextContentManagerEnumerationOptions,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn NSTextContentManagerDelegate {}
 );
 
 extern_protocol!(
@@ -254,8 +250,6 @@ extern_protocol!(
             range: NSRange,
         ) -> Option<Retained<NSTextParagraph>>;
     }
-
-    unsafe impl ProtocolType for dyn NSTextContentStorageDelegate {}
 );
 
 extern_class!(

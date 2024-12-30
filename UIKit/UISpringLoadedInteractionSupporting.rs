@@ -17,6 +17,4 @@ extern_protocol!(
         #[method(setSpringLoaded:)]
         unsafe fn setSpringLoaded(&self, spring_loaded: bool);
     }
-
-    unsafe impl ProtocolType for dyn UISpringLoadedInteractionSupporting {}
 );

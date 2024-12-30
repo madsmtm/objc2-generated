@@ -219,8 +219,6 @@ extern_protocol!(
             index: NSInteger,
         ) -> Retained<NSIndexPath>;
     }
-
-    unsafe impl ProtocolType for dyn UICollectionViewDataSource {}
 );
 
 extern_protocol!(
@@ -245,8 +243,6 @@ extern_protocol!(
             index_paths: &NSArray<NSIndexPath>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UICollectionViewDataSourcePrefetching {}
 );
 
 extern_protocol!(
@@ -862,9 +858,6 @@ extern_protocol!(
             configuration: &UIContextMenuConfiguration,
         ) -> Option<Retained<UITargetedPreview>>;
     }
-
-    #[cfg(feature = "UIScrollView")]
-    unsafe impl ProtocolType for dyn UICollectionViewDelegate {}
 );
 
 extern_class!(
@@ -1618,8 +1611,6 @@ extern_protocol!(
             session: &ProtocolObject<dyn UIDragSession>,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UICollectionViewDragDelegate {}
 );
 
 extern_protocol!(
@@ -1722,8 +1713,6 @@ extern_protocol!(
             index_path: &NSIndexPath,
         ) -> Option<Retained<UIDragPreviewParameters>>;
     }
-
-    unsafe impl ProtocolType for dyn UICollectionViewDropDelegate {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropintent?language=objc)
@@ -1862,8 +1851,6 @@ extern_protocol!(
             target: &UIDragPreviewTarget,
         ) -> Retained<ProtocolObject<dyn UIDragAnimating>>;
     }
-
-    unsafe impl ProtocolType for dyn UICollectionViewDropCoordinator {}
 );
 
 extern_class!(
@@ -1995,8 +1982,6 @@ extern_protocol!(
         #[method(previewSize)]
         unsafe fn previewSize(&self) -> CGSize;
     }
-
-    unsafe impl ProtocolType for dyn UICollectionViewDropItem {}
 );
 
 extern_protocol!(
@@ -2022,7 +2007,4 @@ extern_protocol!(
         #[method(setNeedsCellUpdate)]
         unsafe fn setNeedsCellUpdate(&self);
     }
-
-    #[cfg(feature = "UIDragInteraction")]
-    unsafe impl ProtocolType for dyn UICollectionViewDropPlaceholderContext {}
 );

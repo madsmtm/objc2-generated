@@ -62,6 +62,4 @@ extern_protocol!(
             completion_handler: &block2::Block<dyn Fn(NonNull<MEMessageEncodingResult>)>,
         );
     }
-
-    unsafe impl ProtocolType for dyn MEMessageEncoder {}
 );

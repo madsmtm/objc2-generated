@@ -95,8 +95,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other label)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
     }
-
-    unsafe impl ProtocolType for dyn MPSHandle {}
 );
 
 extern_protocol!(
@@ -114,8 +112,6 @@ extern_protocol!(
         #[method(setTrainingStyle:)]
         unsafe fn setTrainingStyle(&self, training_style: MPSNNTrainingStyle);
     }
-
-    unsafe impl ProtocolType for dyn MPSNNTrainableNode {}
 );
 
 extern_class!(
@@ -6126,8 +6122,6 @@ extern_protocol!(
             handle: Option<&ProtocolObject<dyn MPSHandle>>,
         ) -> MPSScaleTransform;
     }
-
-    unsafe impl ProtocolType for dyn MPSImageTransformProvider {}
 );
 
 extern_class!(
@@ -8815,8 +8809,6 @@ extern_protocol!(
             destination_image: &MPSImage,
         ) -> c_float;
     }
-
-    unsafe impl ProtocolType for dyn MPSNNGramMatrixCallback {}
 );
 
 extern_class!(
@@ -9007,8 +8999,6 @@ extern_protocol!(
             destination_image: &MPSImage,
         ) -> c_float;
     }
-
-    unsafe impl ProtocolType for dyn MPSNNLossCallback {}
 );
 
 extern_class!(

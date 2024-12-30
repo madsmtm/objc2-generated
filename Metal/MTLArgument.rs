@@ -718,8 +718,6 @@ extern_protocol!(
         #[method(isArgument)]
         unsafe fn isArgument(&self) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn MTLBinding {}
 );
 
 extern_protocol!(
@@ -740,8 +738,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other bufferPointerType)]
         unsafe fn bufferPointerType(&self) -> Option<Retained<MTLPointerType>>;
     }
-
-    unsafe impl ProtocolType for dyn MTLBufferBinding {}
 );
 
 extern_protocol!(
@@ -753,8 +749,6 @@ extern_protocol!(
         #[method(threadgroupMemoryDataSize)]
         unsafe fn threadgroupMemoryDataSize(&self) -> NSUInteger;
     }
-
-    unsafe impl ProtocolType for dyn MTLThreadgroupBinding {}
 );
 
 extern_protocol!(
@@ -773,8 +767,6 @@ extern_protocol!(
         #[method(arrayLength)]
         unsafe fn arrayLength(&self) -> NSUInteger;
     }
-
-    unsafe impl ProtocolType for dyn MTLTextureBinding {}
 );
 
 extern_protocol!(
@@ -786,6 +778,4 @@ extern_protocol!(
         #[method(objectPayloadDataSize)]
         unsafe fn objectPayloadDataSize(&self) -> NSUInteger;
     }
-
-    unsafe impl ProtocolType for dyn MTLObjectPayloadBinding {}
 );

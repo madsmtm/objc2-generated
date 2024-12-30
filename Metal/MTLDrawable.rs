@@ -54,6 +54,4 @@ extern_protocol!(
         #[method(drawableID)]
         fn drawableID(&self) -> NSUInteger;
     }
-
-    unsafe impl ProtocolType for dyn MTLDrawable {}
 );

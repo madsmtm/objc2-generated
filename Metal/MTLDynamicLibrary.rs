@@ -93,6 +93,4 @@ extern_protocol!(
         #[method(serializeToURL:error:_)]
         fn serializeToURL_error(&self, url: &NSURL) -> Result<(), Retained<NSError>>;
     }
-
-    unsafe impl ProtocolType for dyn MTLDynamicLibrary {}
 );

@@ -170,6 +170,4 @@ extern_protocol!(
             info: Option<&NSDictionary<NSString, NSString>>,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn MCBrowserViewControllerDelegate {}
 );

@@ -313,6 +313,4 @@ extern_protocol!(
             uncompleted_string: &NSString,
         ) -> Option<Retained<NSString>>;
     }
-
-    unsafe impl ProtocolType for dyn NSComboBoxCellDataSource {}
 );

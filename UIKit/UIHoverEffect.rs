@@ -13,8 +13,6 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihovereffect?language=objc)
     pub unsafe trait UIHoverEffect: NSCopying + NSObjectProtocol + MainThreadOnly {}
-
-    unsafe impl ProtocolType for dyn UIHoverEffect {}
 );
 
 extern_class!(

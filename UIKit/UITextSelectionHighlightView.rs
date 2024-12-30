@@ -29,7 +29,4 @@ extern_protocol!(
         #[method(setSelectionRects:)]
         unsafe fn setSelectionRects(&self, selection_rects: &NSArray<UITextSelectionRect>);
     }
-
-    #[cfg(feature = "UIView")]
-    unsafe impl ProtocolType for dyn UITextSelectionHighlightView {}
 );

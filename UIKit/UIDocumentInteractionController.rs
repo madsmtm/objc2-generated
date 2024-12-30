@@ -246,6 +246,4 @@ extern_protocol!(
             action: Option<Sel>,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UIDocumentInteractionControllerDelegate {}
 );

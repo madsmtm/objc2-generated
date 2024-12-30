@@ -151,6 +151,4 @@ extern_protocol!(
             view_controller: Option<&GKLeaderboardViewController>,
         );
     }
-
-    unsafe impl ProtocolType for dyn GKLeaderboardViewControllerDelegate {}
 );

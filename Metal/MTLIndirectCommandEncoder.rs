@@ -192,8 +192,6 @@ extern_protocol!(
         #[method(reset)]
         unsafe fn reset(&self);
     }
-
-    unsafe impl ProtocolType for dyn MTLIndirectRenderCommand {}
 );
 
 extern_protocol!(
@@ -271,6 +269,4 @@ extern_protocol!(
         #[method(setStageInRegion:)]
         unsafe fn setStageInRegion(&self, region: MTLRegion);
     }
-
-    unsafe impl ProtocolType for dyn MTLIndirectComputeCommand {}
 );

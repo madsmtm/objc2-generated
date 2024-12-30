@@ -178,8 +178,6 @@ extern_protocol!(
         #[method(commitEditingAndReturnError:_)]
         unsafe fn commitEditingAndReturnError(&self) -> Result<(), Retained<NSError>>;
     }
-
-    unsafe impl ProtocolType for dyn NSEditor {}
 );
 
 extern_protocol!(
@@ -193,8 +191,6 @@ extern_protocol!(
         #[method(objectDidEndEditing:)]
         unsafe fn objectDidEndEditing(&self, editor: &ProtocolObject<dyn NSEditor>);
     }
-
-    unsafe impl ProtocolType for dyn NSEditorRegistration {}
 );
 
 extern "C" {

@@ -381,8 +381,6 @@ extern_protocol!(
         #[method(splitViewDidResizeSubviews:)]
         unsafe fn splitViewDidResizeSubviews(&self, notification: &NSNotification);
     }
-
-    unsafe impl ProtocolType for dyn NSSplitViewDelegate {}
 );
 
 extern "C" {

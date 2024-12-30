@@ -25,8 +25,6 @@ extern_protocol!(
             state: &ProtocolObject<dyn UIConfigurationState>,
         ) -> Retained<Self>;
     }
-
-    unsafe impl ProtocolType for dyn UIContentConfiguration {}
 );
 
 extern_protocol!(
@@ -54,6 +52,4 @@ extern_protocol!(
             configuration: &ProtocolObject<dyn UIContentConfiguration>,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UIContentView {}
 );

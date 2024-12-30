@@ -12,8 +12,6 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalignmentfeedbacktoken?language=objc)
     pub unsafe trait NSAlignmentFeedbackToken: NSObjectProtocol {}
-
-    unsafe impl ProtocolType for dyn NSAlignmentFeedbackToken {}
 );
 
 extern_class!(

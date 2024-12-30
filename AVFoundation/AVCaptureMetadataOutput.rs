@@ -118,6 +118,4 @@ extern_protocol!(
             connection: &AVCaptureConnection,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVCaptureMetadataOutputObjectsDelegate {}
 );

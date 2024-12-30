@@ -906,8 +906,6 @@ extern_protocol!(
             capture_readiness: AVCapturePhotoOutputCaptureReadiness,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVCapturePhotoOutputReadinessCoordinatorDelegate {}
 );
 
 extern_methods!(
@@ -1166,8 +1164,6 @@ extern_protocol!(
             error: Option<&NSError>,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVCapturePhotoCaptureDelegate {}
 );
 
 extern_class!(
@@ -2653,6 +2649,4 @@ extern_protocol!(
             maximum_bit_depth: NSInteger,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
     }
-
-    unsafe impl ProtocolType for dyn AVCapturePhotoFileDataRepresentationCustomizer {}
 );

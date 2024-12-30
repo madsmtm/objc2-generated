@@ -53,8 +53,6 @@ extern_protocol!(
         #[method(documentMenuWasCancelled:)]
         unsafe fn documentMenuWasCancelled(&self, document_menu: &UIDocumentMenuViewController);
     }
-
-    unsafe impl ProtocolType for dyn UIDocumentMenuDelegate {}
 );
 
 extern_class!(

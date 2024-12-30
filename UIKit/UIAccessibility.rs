@@ -1037,8 +1037,6 @@ extern_protocol!(
         unsafe fn accessibilityAttributedPageContent(&self)
             -> Option<Retained<NSAttributedString>>;
     }
-
-    unsafe impl ProtocolType for dyn UIAccessibilityReadingContent {}
 );
 
 extern_category!(

@@ -19,6 +19,4 @@ extern_protocol!(
         #[method(headphoneMotionManagerDidDisconnect:)]
         unsafe fn headphoneMotionManagerDidDisconnect(&self, manager: &CMHeadphoneMotionManager);
     }
-
-    unsafe impl ProtocolType for dyn CMHeadphoneMotionManagerDelegate {}
 );

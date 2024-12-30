@@ -159,8 +159,6 @@ extern_protocol!(
         unsafe fn paymentQueueShouldShowPriceConsent(&self, payment_queue: &SKPaymentQueue)
             -> bool;
     }
-
-    unsafe impl ProtocolType for dyn SKPaymentQueueDelegate {}
 );
 
 extern_protocol!(
@@ -235,6 +233,4 @@ extern_protocol!(
             product_identifiers: &NSArray<NSString>,
         );
     }
-
-    unsafe impl ProtocolType for dyn SKPaymentTransactionObserver {}
 );

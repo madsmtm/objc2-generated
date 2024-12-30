@@ -12,8 +12,6 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snresult?language=objc)
     pub unsafe trait SNResult: NSObjectProtocol {}
-
-    unsafe impl ProtocolType for dyn SNResult {}
 );
 
 extern_protocol!(
@@ -52,6 +50,4 @@ extern_protocol!(
         #[method(requestDidComplete:)]
         unsafe fn requestDidComplete(&self, request: &ProtocolObject<dyn SNRequest>);
     }
-
-    unsafe impl ProtocolType for dyn SNResultsObserving {}
 );

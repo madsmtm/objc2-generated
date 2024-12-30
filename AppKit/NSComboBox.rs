@@ -84,8 +84,6 @@ extern_protocol!(
             string: &NSString,
         ) -> Option<Retained<NSString>>;
     }
-
-    unsafe impl ProtocolType for dyn NSComboBoxDataSource {}
 );
 
 extern_protocol!(
@@ -108,9 +106,6 @@ extern_protocol!(
         #[method(comboBoxSelectionIsChanging:)]
         unsafe fn comboBoxSelectionIsChanging(&self, notification: &NSNotification);
     }
-
-    #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
-    unsafe impl ProtocolType for dyn NSComboBoxDelegate {}
 );
 
 extern_class!(

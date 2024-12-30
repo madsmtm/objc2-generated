@@ -227,6 +227,4 @@ extern_protocol!(
             &self,
         ) -> Retained<NSArray<ASAuthorizationProviderExtensionSigningAlgorithm>>;
     }
-
-    unsafe impl ProtocolType for dyn ASAuthorizationProviderExtensionRegistrationHandler {}
 );

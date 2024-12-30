@@ -129,6 +129,4 @@ extern_protocol!(
             indexes_of_modified_groups: &NSIndexSet,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVPlayerItemMetadataCollectorPushDelegate {}
 );

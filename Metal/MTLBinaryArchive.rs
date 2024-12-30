@@ -216,6 +216,4 @@ extern_protocol!(
             library: &ProtocolObject<dyn MTLLibrary>,
         ) -> Result<(), Retained<NSError>>;
     }
-
-    unsafe impl ProtocolType for dyn MTLBinaryArchive {}
 );

@@ -20,6 +20,4 @@ extern_protocol!(
         #[method(setIdentifier:)]
         unsafe fn setIdentifier(&self, identifier: Option<&NSUserInterfaceItemIdentifier>);
     }
-
-    unsafe impl ProtocolType for dyn NSUserInterfaceItemIdentification {}
 );

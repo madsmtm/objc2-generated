@@ -120,8 +120,6 @@ extern_protocol!(
         #[method(ignore)]
         unsafe fn ignore(&self);
     }
-
-    unsafe impl ProtocolType for dyn WebPolicyDecisionListener {}
 );
 
 extern_protocol!(
@@ -253,6 +251,4 @@ extern_protocol!(
             frame: Option<&WebFrame>,
         );
     }
-
-    unsafe impl ProtocolType for dyn WebPolicyDelegate {}
 );

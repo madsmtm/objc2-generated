@@ -303,6 +303,4 @@ extern_protocol!(
             available_behaviors: &NSArray,
         ) -> UIPrinterCutterBehavior;
     }
-
-    unsafe impl ProtocolType for dyn UIPrintInteractionControllerDelegate {}
 );

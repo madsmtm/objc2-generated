@@ -23,8 +23,6 @@ extern_protocol!(
         #[method(setLabel:)]
         fn setLabel(&self, label: Option<&NSString>);
     }
-
-    unsafe impl ProtocolType for dyn MTLEvent {}
 );
 
 extern_class!(
@@ -90,8 +88,6 @@ extern_protocol!(
         #[method(setSignaledValue:)]
         unsafe fn setSignaledValue(&self, signaled_value: u64);
     }
-
-    unsafe impl ProtocolType for dyn MTLSharedEvent {}
 );
 
 extern_class!(

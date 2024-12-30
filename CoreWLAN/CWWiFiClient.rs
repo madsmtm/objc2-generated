@@ -141,8 +141,6 @@ extern_protocol!(
         #[method(scanCacheUpdatedForWiFiInterfaceWithName:)]
         unsafe fn scanCacheUpdatedForWiFiInterfaceWithName(&self, interface_name: &NSString);
     }
-
-    unsafe impl ProtocolType for dyn CWEventDelegate {}
 );
 
 extern_class!(

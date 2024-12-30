@@ -7,6 +7,4 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationprovider?language=objc)
     pub unsafe trait ASAuthorizationProvider: NSObjectProtocol {}
-
-    unsafe impl ProtocolType for dyn ASAuthorizationProvider {}
 );

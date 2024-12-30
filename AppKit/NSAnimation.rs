@@ -232,8 +232,6 @@ extern_protocol!(
             progress: NSAnimationProgress,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSAnimationDelegate {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimationkey?language=objc)
@@ -372,8 +370,6 @@ extern_protocol!(
             key: &NSAnimatablePropertyKey,
         ) -> Option<Retained<AnyObject>>;
     }
-
-    unsafe impl ProtocolType for dyn NSAnimatablePropertyContainer {}
 );
 
 extern "C" {

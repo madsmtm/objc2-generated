@@ -339,8 +339,6 @@ extern_protocol!(
             views: &NSArray<NSView>,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSStackViewDelegate {}
 );
 
 extern_methods!(

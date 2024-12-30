@@ -13,6 +13,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other filterWithName:)]
         unsafe fn filterWithName(&self, name: &NSString) -> Option<Retained<CIFilter>>;
     }
-
-    unsafe impl ProtocolType for dyn CIFilterConstructor {}
 );

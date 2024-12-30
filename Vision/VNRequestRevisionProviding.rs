@@ -11,6 +11,4 @@ extern_protocol!(
         #[method(requestRevision)]
         unsafe fn requestRevision(&self) -> NSUInteger;
     }
-
-    unsafe impl ProtocolType for dyn VNRequestRevisionProviding {}
 );

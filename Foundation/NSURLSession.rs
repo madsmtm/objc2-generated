@@ -1352,8 +1352,6 @@ extern_protocol!(
         #[method(URLSessionDidFinishEventsForBackgroundURLSession:)]
         unsafe fn URLSessionDidFinishEventsForBackgroundURLSession(&self, session: &NSURLSession);
     }
-
-    unsafe impl ProtocolType for dyn NSURLSessionDelegate {}
 );
 
 extern_protocol!(
@@ -1485,8 +1483,6 @@ extern_protocol!(
             error: Option<&NSError>,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSURLSessionTaskDelegate {}
 );
 
 extern_protocol!(
@@ -1542,8 +1538,6 @@ extern_protocol!(
             completion_handler: &block2::Block<dyn Fn(*mut NSCachedURLResponse)>,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSURLSessionDataDelegate {}
 );
 
 extern_protocol!(
@@ -1579,8 +1573,6 @@ extern_protocol!(
             expected_total_bytes: i64,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSURLSessionDownloadDelegate {}
 );
 
 extern_protocol!(
@@ -1621,8 +1613,6 @@ extern_protocol!(
             output_stream: &NSOutputStream,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSURLSessionStreamDelegate {}
 );
 
 extern_protocol!(
@@ -1649,8 +1639,6 @@ extern_protocol!(
             reason: Option<&NSData>,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSURLSessionWebSocketDelegate {}
 );
 
 extern "C" {

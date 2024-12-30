@@ -305,8 +305,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other progress)]
         unsafe fn progress(&self) -> Retained<NSProgress>;
     }
-
-    unsafe impl ProtocolType for dyn NSProgressReporting {}
 );
 
 extern "C" {

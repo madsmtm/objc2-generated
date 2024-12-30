@@ -549,8 +549,6 @@ extern_protocol!(
             allowed_writing_tools_result_options: UIWritingToolsResultOptions,
         );
     }
-
-    unsafe impl ProtocolType for dyn UITextInputTraits {}
 );
 
 extern "C" {

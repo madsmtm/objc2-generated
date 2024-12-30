@@ -82,8 +82,6 @@ extern_protocol!(
             count: NSUInteger,
         );
     }
-
-    unsafe impl ProtocolType for dyn MTLCommandQueue {}
 );
 
 extern_class!(

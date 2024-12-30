@@ -153,8 +153,6 @@ extern_protocol!(
             delta: NSInteger,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSTextStorageDelegate {}
 );
 
 extern "C" {
@@ -197,6 +195,4 @@ extern_protocol!(
             transaction: &block2::Block<dyn Fn() + '_>,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSTextStorageObserving {}
 );

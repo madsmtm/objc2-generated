@@ -13,8 +13,6 @@ extern_protocol!(
         #[method(restoreUserActivityState:)]
         unsafe fn restoreUserActivityState(&self, user_activity: &NSUserActivity);
     }
-
-    unsafe impl ProtocolType for dyn NSUserActivityRestoring {}
 );
 
 extern_methods!(

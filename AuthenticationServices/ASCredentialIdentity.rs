@@ -41,6 +41,4 @@ extern_protocol!(
         #[method(setRank:)]
         unsafe fn setRank(&self, rank: NSInteger);
     }
-
-    unsafe impl ProtocolType for dyn ASCredentialIdentity {}
 );

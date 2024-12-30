@@ -116,6 +116,4 @@ extern_protocol!(
         #[method(didReceiveDiagnosticPayloads:)]
         unsafe fn didReceiveDiagnosticPayloads(&self, payloads: &NSArray<MXDiagnosticPayload>);
     }
-
-    unsafe impl ProtocolType for dyn MXMetricManagerSubscriber {}
 );

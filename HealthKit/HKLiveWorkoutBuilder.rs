@@ -64,8 +64,6 @@ extern_protocol!(
             workout_activity: &HKWorkoutActivity,
         );
     }
-
-    unsafe impl ProtocolType for dyn HKLiveWorkoutBuilderDelegate {}
 );
 
 extern_class!(

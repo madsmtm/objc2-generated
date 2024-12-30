@@ -56,8 +56,6 @@ extern_protocol!(
         #[method(extensionWillDiscardDataSource)]
         unsafe fn extensionWillDiscardDataSource(&self);
     }
-
-    unsafe impl ProtocolType for dyn PHProjectTypeDescriptionDataSource {}
 );
 
 extern_protocol!(
@@ -81,6 +79,4 @@ extern_protocol!(
         #[method(invalidateFooterTextForSubtypesOfProjectType:)]
         unsafe fn invalidateFooterTextForSubtypesOfProjectType(&self, project_type: &PHProjectType);
     }
-
-    unsafe impl ProtocolType for dyn PHProjectTypeDescriptionInvalidator {}
 );

@@ -92,8 +92,6 @@ extern_protocol!(
             player: &GKCloudPlayer,
         );
     }
-
-    unsafe impl ProtocolType for dyn GKGameSessionEventListener {}
 );
 
 extern_methods!(

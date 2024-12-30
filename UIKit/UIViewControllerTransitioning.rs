@@ -112,8 +112,6 @@ extern_protocol!(
         #[method(finalFrameForViewController:)]
         unsafe fn finalFrameForViewController(&self, vc: &UIViewController) -> CGRect;
     }
-
-    unsafe impl ProtocolType for dyn UIViewControllerContextTransitioning {}
 );
 
 extern_protocol!(
@@ -149,8 +147,6 @@ extern_protocol!(
         #[method(animationEnded:)]
         unsafe fn animationEnded(&self, transition_completed: bool);
     }
-
-    unsafe impl ProtocolType for dyn UIViewControllerAnimatedTransitioning {}
 );
 
 extern_protocol!(
@@ -183,8 +179,6 @@ extern_protocol!(
         #[method(wantsInteractiveStart)]
         unsafe fn wantsInteractiveStart(&self) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn UIViewControllerInteractiveTransitioning {}
 );
 
 extern_protocol!(
@@ -238,8 +232,6 @@ extern_protocol!(
             source: &UIViewController,
         ) -> Option<Retained<UIPresentationController>>;
     }
-
-    unsafe impl ProtocolType for dyn UIViewControllerTransitioningDelegate {}
 );
 
 extern_class!(

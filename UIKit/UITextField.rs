@@ -681,8 +681,6 @@ extern_protocol!(
             animator: &ProtocolObject<dyn UIEditMenuInteractionAnimating>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UITextFieldDelegate {}
 );
 
 extern "C" {

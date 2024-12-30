@@ -59,9 +59,6 @@ extern_protocol!(
         #[method(setTextDragOptions:)]
         unsafe fn setTextDragOptions(&self, text_drag_options: UITextDragOptions);
     }
-
-    #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
-    unsafe impl ProtocolType for dyn UITextDraggable {}
 );
 
 extern_protocol!(
@@ -150,8 +147,6 @@ extern_protocol!(
             operation: UIDropOperation,
         );
     }
-
-    unsafe impl ProtocolType for dyn UITextDragDelegate {}
 );
 
 extern_protocol!(
@@ -176,6 +171,4 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other dragSession)]
         unsafe fn dragSession(&self) -> Retained<ProtocolObject<dyn UIDragSession>>;
     }
-
-    unsafe impl ProtocolType for dyn UITextDragRequest {}
 );

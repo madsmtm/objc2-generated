@@ -29,6 +29,4 @@ extern_protocol!(
         #[method(setUuid:)]
         unsafe fn setUuid(&self, uuid: &NSUUID);
     }
-
-    unsafe impl ProtocolType for dyn VZUSBDeviceConfiguration {}
 );

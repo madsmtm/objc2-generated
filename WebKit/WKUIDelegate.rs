@@ -326,6 +326,4 @@ extern_protocol!(
             completion_handler: &block2::Block<dyn Fn(*mut NSArray<NSURL>)>,
         );
     }
-
-    unsafe impl ProtocolType for dyn WKUIDelegate {}
 );

@@ -124,8 +124,6 @@ extern_protocol!(
             picture_in_picture_controller: &AVPictureInPictureController,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn AVPictureInPictureSampleBufferPlaybackDelegate {}
 );
 
 extern_methods!(

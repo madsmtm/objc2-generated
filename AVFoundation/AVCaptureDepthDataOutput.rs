@@ -138,6 +138,4 @@ extern_protocol!(
             reason: AVCaptureOutputDataDroppedReason,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVCaptureDepthDataOutputDelegate {}
 );

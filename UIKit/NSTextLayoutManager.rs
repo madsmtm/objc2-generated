@@ -373,6 +373,4 @@ extern_protocol!(
             rendering_attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
     }
-
-    unsafe impl ProtocolType for dyn NSTextLayoutManagerDelegate {}
 );

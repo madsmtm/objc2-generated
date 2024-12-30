@@ -22,8 +22,6 @@ extern_protocol!(
         #[method(didMoveToView:)]
         unsafe fn didMoveToView(&self, view: Option<&UIView>);
     }
-
-    unsafe impl ProtocolType for dyn UIInteraction {}
 );
 
 extern_methods!(

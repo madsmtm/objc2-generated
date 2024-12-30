@@ -247,8 +247,6 @@ extern_protocol!(
         #[method(drawerDidClose:)]
         unsafe fn drawerDidClose(&self, notification: &NSNotification);
     }
-
-    unsafe impl ProtocolType for dyn NSDrawerDelegate {}
 );
 
 extern "C" {

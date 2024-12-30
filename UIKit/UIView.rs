@@ -314,8 +314,6 @@ extern_protocol!(
         #[method(bounds)]
         fn bounds(&self) -> CGRect;
     }
-
-    unsafe impl ProtocolType for dyn UICoordinateSpace {}
 );
 
 extern_class!(

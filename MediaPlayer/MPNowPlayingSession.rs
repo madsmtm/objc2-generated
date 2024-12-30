@@ -166,6 +166,4 @@ extern_protocol!(
             now_playing_session: &MPNowPlayingSession,
         );
     }
-
-    unsafe impl ProtocolType for dyn MPNowPlayingSessionDelegate {}
 );

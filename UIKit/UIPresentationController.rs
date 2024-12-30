@@ -90,8 +90,6 @@ extern_protocol!(
             presentation_controller: &UIPresentationController,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIAdaptivePresentationControllerDelegate {}
 );
 
 extern_class!(

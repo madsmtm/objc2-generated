@@ -464,7 +464,4 @@ extern_protocol!(
             navigation_bar: &UINavigationBar,
         ) -> UINavigationBarNSToolbarSection;
     }
-
-    #[cfg(feature = "UIBarCommon")]
-    unsafe impl ProtocolType for dyn UINavigationBarDelegate {}
 );

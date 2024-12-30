@@ -190,6 +190,4 @@ extern_protocol!(
         #[method(calendarChooserDidCancel:)]
         unsafe fn calendarChooserDidCancel(&self, calendar_chooser: &EKCalendarChooser);
     }
-
-    unsafe impl ProtocolType for dyn EKCalendarChooserDelegate {}
 );

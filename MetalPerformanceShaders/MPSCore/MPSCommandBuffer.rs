@@ -144,8 +144,6 @@ extern_protocol!(
             seconds: c_double,
         );
     }
-
-    unsafe impl ProtocolType for dyn MPSHeapProvider {}
 );
 
 extern_class!(

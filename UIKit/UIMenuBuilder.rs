@@ -153,6 +153,4 @@ extern_protocol!(
         #[method(removeMenuForIdentifier:)]
         unsafe fn removeMenuForIdentifier(&self, removed_identifier: &UIMenuIdentifier);
     }
-
-    unsafe impl ProtocolType for dyn UIMenuBuilder {}
 );

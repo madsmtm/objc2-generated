@@ -48,6 +48,4 @@ extern_protocol!(
         #[method(setSizingRule:)]
         unsafe fn setSizingRule(&self, sizing_rule: UILetterformAwareSizingRule);
     }
-
-    unsafe impl ProtocolType for dyn UILetterformAwareAdjusting {}
 );

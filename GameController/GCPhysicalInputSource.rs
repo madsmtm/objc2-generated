@@ -90,6 +90,4 @@ extern_protocol!(
         #[method(direction)]
         unsafe fn direction(&self) -> GCPhysicalInputSourceDirection;
     }
-
-    unsafe impl ProtocolType for dyn GCPhysicalInputSource {}
 );

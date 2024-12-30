@@ -20,8 +20,6 @@ extern_protocol!(
             adjusts_image_size_for_accessibility_content_size_category: bool,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIAccessibilityContentSizeCategoryImageAdjusting {}
 );
 
 extern_methods!(

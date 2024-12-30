@@ -365,6 +365,4 @@ extern_protocol!(
             download: &WKDownload,
         );
     }
-
-    unsafe impl ProtocolType for dyn WKNavigationDelegate {}
 );

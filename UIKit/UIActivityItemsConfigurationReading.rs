@@ -112,8 +112,6 @@ extern_protocol!(
             &self,
         ) -> Option<Retained<NSArray<UIActivity>>>;
     }
-
-    unsafe impl ProtocolType for dyn UIActivityItemsConfigurationReading {}
 );
 
 extern_protocol!(
@@ -127,6 +125,4 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn UIActivityItemsConfigurationReading>>>;
     }
-
-    unsafe impl ProtocolType for dyn UIActivityItemsConfigurationProviding {}
 );

@@ -742,6 +742,4 @@ extern_protocol!(
             segment_type: AVAssetSegmentType,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVAssetWriterDelegate {}
 );

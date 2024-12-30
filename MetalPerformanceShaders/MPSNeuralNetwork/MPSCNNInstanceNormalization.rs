@@ -284,8 +284,6 @@ extern_protocol!(
         #[method(purge)]
         unsafe fn purge(&self);
     }
-
-    unsafe impl ProtocolType for dyn MPSCNNInstanceNormalizationDataSource {}
 );
 
 extern_class!(

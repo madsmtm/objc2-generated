@@ -339,6 +339,4 @@ extern_protocol!(
             location: &ProtocolObject<dyn NSTextLocation>,
         ) -> NSTextSelectionNavigationLayoutOrientation;
     }
-
-    unsafe impl ProtocolType for dyn NSTextSelectionDataSource {}
 );

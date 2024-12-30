@@ -93,6 +93,4 @@ extern_protocol!(
             socket_device: &VZVirtioSocketDevice,
         ) -> bool;
     }
-
-    unsafe impl ProtocolType for dyn VZVirtioSocketListenerDelegate {}
 );

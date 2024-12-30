@@ -296,6 +296,4 @@ extern_protocol!(
             button_index: NSInteger,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIActionSheetDelegate {}
 );

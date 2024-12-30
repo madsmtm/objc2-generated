@@ -24,8 +24,6 @@ extern_protocol!(
             accessibility_chart_descriptor: Option<&AXChartDescriptor>,
         );
     }
-
-    unsafe impl ProtocolType for dyn AXChart {}
 );
 
 extern_protocol!(
@@ -52,8 +50,6 @@ extern_protocol!(
         #[method(setAttributedTitle:)]
         unsafe fn setAttributedTitle(&self, attributed_title: &NSAttributedString);
     }
-
-    unsafe impl ProtocolType for dyn AXDataAxisDescriptor {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptorscale?language=objc)

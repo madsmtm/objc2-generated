@@ -180,6 +180,4 @@ extern_protocol!(
             action: EKEventViewAction,
         );
     }
-
-    unsafe impl ProtocolType for dyn EKEventViewDelegate {}
 );

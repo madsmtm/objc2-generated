@@ -59,6 +59,4 @@ extern_protocol!(
             handler: Option<&block2::Block<dyn Fn()>>,
         );
     }
-
-    unsafe impl ProtocolType for dyn AVAsynchronousKeyValueLoading {}
 );

@@ -56,8 +56,6 @@ extern_protocol!(
             view_controller: &UIColorPickerViewController,
         );
     }
-
-    unsafe impl ProtocolType for dyn UIColorPickerViewControllerDelegate {}
 );
 
 extern_class!(

@@ -51,8 +51,6 @@ extern_protocol!(
             >,
         );
     }
-
-    unsafe impl ProtocolType for dyn MTLLogState {}
 );
 
 extern_class!(

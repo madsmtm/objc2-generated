@@ -483,7 +483,4 @@ extern_protocol!(
             barrier: bool,
         );
     }
-
-    #[cfg(feature = "MTLCommandEncoder")]
-    unsafe impl ProtocolType for dyn MTLComputeCommandEncoder {}
 );

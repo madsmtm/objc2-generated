@@ -236,6 +236,4 @@ extern_protocol!(
         #[method(setContentType:)]
         unsafe fn setContentType(&self, content_type: Option<&NSTextContentType>);
     }
-
-    unsafe impl ProtocolType for dyn NSTextContent {}
 );

@@ -674,8 +674,6 @@ extern_protocol!(
             items: &NSArray,
         ) -> Retained<NSArray<NSString>>;
     }
-
-    unsafe impl ProtocolType for dyn NSOutlineViewDataSource {}
 );
 
 extern_protocol!(
@@ -1126,9 +1124,6 @@ extern_protocol!(
         #[method(outlineViewItemDidCollapse:)]
         unsafe fn outlineViewItemDidCollapse(&self, notification: &NSNotification);
     }
-
-    #[cfg(feature = "NSControl")]
-    unsafe impl ProtocolType for dyn NSOutlineViewDelegate {}
 );
 
 extern "C" {

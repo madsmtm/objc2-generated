@@ -358,6 +358,7 @@ unsafe impl RefEncode for NSFileProviderContentPolicy {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemprotocol?language=objc)
+    #[name = "NSFileProviderItem"]
     pub unsafe trait NSFileProviderItemProtocol: NSObjectProtocol {
         /// The identifier of the item.
         ///
@@ -1061,10 +1062,6 @@ extern_protocol!(
         #[optional]
         #[method(contentPolicy)]
         unsafe fn contentPolicy(&self) -> NSFileProviderContentPolicy;
-    }
-
-    unsafe impl ProtocolType for dyn NSFileProviderItemProtocol {
-        const NAME: &'static str = "NSFileProviderItem";
     }
 );
 

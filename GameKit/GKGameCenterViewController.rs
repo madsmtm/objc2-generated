@@ -242,6 +242,4 @@ extern_protocol!(
             game_center_view_controller: &GKGameCenterViewController,
         );
     }
-
-    unsafe impl ProtocolType for dyn GKGameCenterControllerDelegate {}
 );

@@ -42,8 +42,6 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionstitchingattribute?language=objc)
     pub unsafe trait MTLFunctionStitchingAttribute: NSObjectProtocol {}
-
-    unsafe impl ProtocolType for dyn MTLFunctionStitchingAttribute {}
 );
 
 extern_class!(
@@ -79,8 +77,6 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionstitchingnode?language=objc)
     pub unsafe trait MTLFunctionStitchingNode: NSCopying + NSObjectProtocol {}
-
-    unsafe impl ProtocolType for dyn MTLFunctionStitchingNode {}
 );
 
 extern_class!(

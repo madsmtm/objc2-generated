@@ -109,6 +109,4 @@ extern_protocol!(
         #[method(pasteboardFinishedWithDataProvider:)]
         unsafe fn pasteboardFinishedWithDataProvider(&self, pasteboard: &NSPasteboard);
     }
-
-    unsafe impl ProtocolType for dyn NSPasteboardItemDataProvider {}
 );

@@ -125,8 +125,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other objects)]
         unsafe fn objects(&self) -> Option<Retained<NSArray>>;
     }
-
-    unsafe impl ProtocolType for dyn NSFetchedResultsSectionInfo {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchedresultschangetype?language=objc)
@@ -198,6 +196,4 @@ extern_protocol!(
             section_name: &NSString,
         ) -> Option<Retained<NSString>>;
     }
-
-    unsafe impl ProtocolType for dyn NSFetchedResultsControllerDelegate {}
 );

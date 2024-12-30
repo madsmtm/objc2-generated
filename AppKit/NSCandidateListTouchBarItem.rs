@@ -200,8 +200,6 @@ extern_protocol!(
             is_visible: bool,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSCandidateListTouchBarItemDelegate {}
 );
 
 extern_methods!(

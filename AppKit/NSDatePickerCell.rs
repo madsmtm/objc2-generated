@@ -273,8 +273,6 @@ extern_protocol!(
             proposed_time_interval: *mut NSTimeInterval,
         );
     }
-
-    unsafe impl ProtocolType for dyn NSDatePickerCellDelegate {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfieldandstepperdatepickerstyle?language=objc)

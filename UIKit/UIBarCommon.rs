@@ -65,8 +65,6 @@ extern_protocol!(
         #[method(barPosition)]
         unsafe fn barPosition(&self) -> UIBarPosition;
     }
-
-    unsafe impl ProtocolType for dyn UIBarPositioning {}
 );
 
 extern_protocol!(
@@ -79,6 +77,4 @@ extern_protocol!(
             bar: &ProtocolObject<dyn UIBarPositioning>,
         ) -> UIBarPosition;
     }
-
-    unsafe impl ProtocolType for dyn UIBarPositioningDelegate {}
 );

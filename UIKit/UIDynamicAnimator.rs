@@ -20,8 +20,6 @@ extern_protocol!(
         #[method(dynamicAnimatorDidPause:)]
         unsafe fn dynamicAnimatorDidPause(&self, animator: &UIDynamicAnimator);
     }
-
-    unsafe impl ProtocolType for dyn UIDynamicAnimatorDelegate {}
 );
 
 extern_class!(

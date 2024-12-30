@@ -89,8 +89,6 @@ extern_protocol!(
             previous_placement: UINavigationItemSearchBarPlacement,
         );
     }
-
-    unsafe impl ProtocolType for dyn UISearchControllerDelegate {}
 );
 
 extern_protocol!(
@@ -116,8 +114,6 @@ extern_protocol!(
             search_suggestion: &ProtocolObject<dyn UISearchSuggestion>,
         );
     }
-
-    unsafe impl ProtocolType for dyn UISearchResultsUpdating {}
 );
 
 extern_class!(
