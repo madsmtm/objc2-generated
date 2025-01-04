@@ -370,11 +370,11 @@ pub type CGEventTapCallBack = Option<
     ) -> CGEventRef,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/__cgeventtapinformation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapinformation?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub struct __CGEventTapInformation {
+pub struct CGEventTapInformation {
     pub eventTapID: u32,
     pub tapPoint: CGEventTapLocation,
     pub options: CGEventTapOptions,
@@ -388,7 +388,7 @@ pub struct __CGEventTapInformation {
 }
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
-unsafe impl Encode for __CGEventTapInformation {
+unsafe impl Encode for CGEventTapInformation {
     const ENCODING: Encoding = Encoding::Struct(
         "__CGEventTapInformation",
         &[
@@ -407,13 +407,9 @@ unsafe impl Encode for __CGEventTapInformation {
 }
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
-unsafe impl RefEncode for __CGEventTapInformation {
+unsafe impl RefEncode for CGEventTapInformation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
-
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapinformation?language=objc)
-#[cfg(feature = "libc")]
-pub type CGEventTapInformation = __CGEventTapInformation;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourceref?language=objc)
 pub type CGEventSourceRef = *mut c_void;

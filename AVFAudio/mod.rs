@@ -355,8 +355,6 @@ pub use self::__AVAudioSequencer::AVMusicSequenceLoadOptions;
 pub use self::__AVAudioSequencer::AVMusicTrack;
 #[cfg(feature = "AVAudioSequencer")]
 pub use self::__AVAudioSequencer::AVMusicTrackLoopCount;
-#[cfg(all(feature = "AVAudioSequencer", feature = "AVAudioTypes"))]
-pub(crate) use self::__AVAudioSequencer::_AVBeatRange;
 #[cfg(feature = "AVAudioSession")]
 pub use self::__AVAudioSession::AVAudioSession;
 #[cfg(feature = "AVAudioSession")]

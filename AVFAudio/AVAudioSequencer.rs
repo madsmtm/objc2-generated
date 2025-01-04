@@ -42,17 +42,17 @@ unsafe impl RefEncode for AVMusicSequenceLoadOptions {
 
 /// Used to describe a specific time range within an AVMusicTrack.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/_avbeatrange?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avbeatrange?language=objc)
 #[cfg(feature = "AVAudioTypes")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub struct _AVBeatRange {
+pub struct AVBeatRange {
     pub start: AVMusicTimeStamp,
     pub length: AVMusicTimeStamp,
 }
 
 #[cfg(feature = "AVAudioTypes")]
-unsafe impl Encode for _AVBeatRange {
+unsafe impl Encode for AVBeatRange {
     const ENCODING: Encoding = Encoding::Struct(
         "_AVBeatRange",
         &[<AVMusicTimeStamp>::ENCODING, <AVMusicTimeStamp>::ENCODING],
@@ -60,15 +60,9 @@ unsafe impl Encode for _AVBeatRange {
 }
 
 #[cfg(feature = "AVAudioTypes")]
-unsafe impl RefEncode for _AVBeatRange {
+unsafe impl RefEncode for AVBeatRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
-
-/// Used to describe a specific time range within an AVMusicTrack.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avbeatrange?language=objc)
-#[cfg(feature = "AVAudioTypes")]
-pub type AVBeatRange = _AVBeatRange;
 
 // TODO: pub fn AVMakeBeatRange(start_beat: AVMusicTimeStamp,length_in_beats: AVMusicTimeStamp,) -> AVBeatRange;
 

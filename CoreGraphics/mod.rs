@@ -1551,8 +1551,6 @@ pub use self::__CGEventTypes::CGMouseButton;
 pub use self::__CGEventTypes::CGScrollEventUnit;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::CGScrollPhase;
-#[cfg(all(feature = "CGEventTypes", feature = "libc"))]
-pub(crate) use self::__CGEventTypes::__CGEventTapInformation;
 #[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
 pub use self::__CGFont::kCGFontVariationAxisDefaultValue;
 #[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]

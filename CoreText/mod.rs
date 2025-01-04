@@ -2887,6 +2887,7 @@ pub use self::__SFNTTypes::FontPlatformCode;
 pub use self::__SFNTTypes::FontScriptCode;
 #[cfg(feature = "SFNTTypes")]
 pub use self::__SFNTTypes::FontVariation;
+
 use crate::*;
 
 extern "C-unwind" {

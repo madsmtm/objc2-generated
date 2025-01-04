@@ -288,10 +288,6 @@ pub use self::__MTLAccelerationStructureTypes::MTLComponentTransform;
 pub use self::__MTLAccelerationStructureTypes::MTLPackedFloat4x3;
 #[cfg(feature = "MTLAccelerationStructureTypes")]
 pub use self::__MTLAccelerationStructureTypes::MTLPackedFloatQuaternion;
-#[cfg(feature = "MTLAccelerationStructureTypes")]
-pub(crate) use self::__MTLAccelerationStructureTypes::_MTLAxisAlignedBoundingBox;
-#[cfg(feature = "MTLAccelerationStructureTypes")]
-pub(crate) use self::__MTLAccelerationStructureTypes::_MTLPackedFloat4x3;
 #[cfg(feature = "MTLAllocation")]
 pub use self::__MTLAllocation::MTLAllocation;
 #[cfg(feature = "MTLArgument")]
