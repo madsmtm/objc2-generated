@@ -82,22 +82,37 @@ pub struct CFCalendarUnit(pub CFOptionFlags);
 #[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFCalendarUnit: CFOptionFlags {
-        const kCFCalendarUnitEra = 1<<1;
-        const kCFCalendarUnitYear = 1<<2;
-        const kCFCalendarUnitMonth = 1<<3;
-        const kCFCalendarUnitDay = 1<<4;
-        const kCFCalendarUnitHour = 1<<5;
-        const kCFCalendarUnitMinute = 1<<6;
-        const kCFCalendarUnitSecond = 1<<7;
+        #[doc(alias = "kCFCalendarUnitEra")]
+        const Era = 1<<1;
+        #[doc(alias = "kCFCalendarUnitYear")]
+        const Year = 1<<2;
+        #[doc(alias = "kCFCalendarUnitMonth")]
+        const Month = 1<<3;
+        #[doc(alias = "kCFCalendarUnitDay")]
+        const Day = 1<<4;
+        #[doc(alias = "kCFCalendarUnitHour")]
+        const Hour = 1<<5;
+        #[doc(alias = "kCFCalendarUnitMinute")]
+        const Minute = 1<<6;
+        #[doc(alias = "kCFCalendarUnitSecond")]
+        const Second = 1<<7;
 #[deprecated = "Use kCFCalendarUnitWeekOfYear or kCFCalendarUnitWeekOfMonth instead"]
-        const kCFCalendarUnitWeek = 1<<8;
-        const kCFCalendarUnitWeekday = 1<<9;
-        const kCFCalendarUnitWeekdayOrdinal = 1<<10;
-        const kCFCalendarUnitQuarter = 1<<11;
-        const kCFCalendarUnitWeekOfMonth = 1<<12;
-        const kCFCalendarUnitWeekOfYear = 1<<13;
-        const kCFCalendarUnitYearForWeekOfYear = 1<<14;
-        const kCFCalendarUnitDayOfYear = 1<<16;
+        #[doc(alias = "kCFCalendarUnitWeek")]
+        const Week = 1<<8;
+        #[doc(alias = "kCFCalendarUnitWeekday")]
+        const Weekday = 1<<9;
+        #[doc(alias = "kCFCalendarUnitWeekdayOrdinal")]
+        const WeekdayOrdinal = 1<<10;
+        #[doc(alias = "kCFCalendarUnitQuarter")]
+        const Quarter = 1<<11;
+        #[doc(alias = "kCFCalendarUnitWeekOfMonth")]
+        const WeekOfMonth = 1<<12;
+        #[doc(alias = "kCFCalendarUnitWeekOfYear")]
+        const WeekOfYear = 1<<13;
+        #[doc(alias = "kCFCalendarUnitYearForWeekOfYear")]
+        const YearForWeekOfYear = 1<<14;
+        #[doc(alias = "kCFCalendarUnitDayOfYear")]
+        const DayOfYear = 1<<16;
     }
 }
 

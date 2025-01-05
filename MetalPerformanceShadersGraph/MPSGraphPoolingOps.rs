@@ -18,23 +18,32 @@ use crate::*;
 pub struct MPSGraphPoolingReturnIndicesMode(pub NSUInteger);
 impl MPSGraphPoolingReturnIndicesMode {
     /// No indices returned.
-    pub const MPSGraphPoolingReturnIndicesNone: Self = Self(0);
+    #[doc(alias = "MPSGraphPoolingReturnIndicesNone")]
+    pub const None: Self = Self(0);
     /// Returns indices flattened in inner most (last) dimension.
-    pub const MPSGraphPoolingReturnIndicesGlobalFlatten1D: Self = Self(1);
+    #[doc(alias = "MPSGraphPoolingReturnIndicesGlobalFlatten1D")]
+    pub const GlobalFlatten1D: Self = Self(1);
     /// Returns indices flattened in 2 innermost dimensions. eg: HW in NCHW.
-    pub const MPSGraphPoolingReturnIndicesGlobalFlatten2D: Self = Self(2);
+    #[doc(alias = "MPSGraphPoolingReturnIndicesGlobalFlatten2D")]
+    pub const GlobalFlatten2D: Self = Self(2);
     /// Returns indices flattened in 3 innernost dimensions. eg: HWC in NHWC.
-    pub const MPSGraphPoolingReturnIndicesGlobalFlatten3D: Self = Self(3);
+    #[doc(alias = "MPSGraphPoolingReturnIndicesGlobalFlatten3D")]
+    pub const GlobalFlatten3D: Self = Self(3);
     /// Returns indices flattened in 4 innermost dimensions.
-    pub const MPSGraphPoolingReturnIndicesGlobalFlatten4D: Self = Self(4);
+    #[doc(alias = "MPSGraphPoolingReturnIndicesGlobalFlatten4D")]
+    pub const GlobalFlatten4D: Self = Self(4);
     /// Returns indices within pooling window, flattened in inner most dimension.
-    pub const MPSGraphPoolingReturnIndicesLocalFlatten1D: Self = Self(5);
+    #[doc(alias = "MPSGraphPoolingReturnIndicesLocalFlatten1D")]
+    pub const LocalFlatten1D: Self = Self(5);
     /// Returns indices within pooling window, flattened in 2 innermost dimensions. eg: HW in NCHW.
-    pub const MPSGraphPoolingReturnIndicesLocalFlatten2D: Self = Self(6);
+    #[doc(alias = "MPSGraphPoolingReturnIndicesLocalFlatten2D")]
+    pub const LocalFlatten2D: Self = Self(6);
     /// Returns indices within pooling window, flattened in 3 innernost dimensions. eg: HWC in NHWC.
-    pub const MPSGraphPoolingReturnIndicesLocalFlatten3D: Self = Self(7);
+    #[doc(alias = "MPSGraphPoolingReturnIndicesLocalFlatten3D")]
+    pub const LocalFlatten3D: Self = Self(7);
     /// Returns indices within pooling window, flattened in 4 innermost dimensions.
-    pub const MPSGraphPoolingReturnIndicesLocalFlatten4D: Self = Self(8);
+    #[doc(alias = "MPSGraphPoolingReturnIndicesLocalFlatten4D")]
+    pub const LocalFlatten4D: Self = Self(8);
 }
 
 unsafe impl Encode for MPSGraphPoolingReturnIndicesMode {

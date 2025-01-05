@@ -96,11 +96,16 @@ unsafe impl RefEncode for UITouchType {
 pub struct UITouchProperties(pub NSInteger);
 bitflags::bitflags! {
     impl UITouchProperties: NSInteger {
-        const UITouchPropertyForce = 1<<0;
-        const UITouchPropertyAzimuth = 1<<1;
-        const UITouchPropertyAltitude = 1<<2;
-        const UITouchPropertyLocation = 1<<3;
-        const UITouchPropertyRoll = 1<<4;
+        #[doc(alias = "UITouchPropertyForce")]
+        const Force = 1<<0;
+        #[doc(alias = "UITouchPropertyAzimuth")]
+        const Azimuth = 1<<1;
+        #[doc(alias = "UITouchPropertyAltitude")]
+        const Altitude = 1<<2;
+        #[doc(alias = "UITouchPropertyLocation")]
+        const Location = 1<<3;
+        #[doc(alias = "UITouchPropertyRoll")]
+        const Roll = 1<<4;
     }
 }
 

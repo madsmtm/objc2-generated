@@ -17,14 +17,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPErrorCode(pub NSInteger);
 impl MPErrorCode {
-    pub const MPErrorUnknown: Self = Self(0);
-    pub const MPErrorPermissionDenied: Self = Self(1);
-    pub const MPErrorCloudServiceCapabilityMissing: Self = Self(2);
-    pub const MPErrorNetworkConnectionFailed: Self = Self(3);
-    pub const MPErrorNotFound: Self = Self(4);
-    pub const MPErrorNotSupported: Self = Self(5);
-    pub const MPErrorCancelled: Self = Self(6);
-    pub const MPErrorRequestTimedOut: Self = Self(7);
+    #[doc(alias = "MPErrorUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "MPErrorPermissionDenied")]
+    pub const PermissionDenied: Self = Self(1);
+    #[doc(alias = "MPErrorCloudServiceCapabilityMissing")]
+    pub const CloudServiceCapabilityMissing: Self = Self(2);
+    #[doc(alias = "MPErrorNetworkConnectionFailed")]
+    pub const NetworkConnectionFailed: Self = Self(3);
+    #[doc(alias = "MPErrorNotFound")]
+    pub const NotFound: Self = Self(4);
+    #[doc(alias = "MPErrorNotSupported")]
+    pub const NotSupported: Self = Self(5);
+    #[doc(alias = "MPErrorCancelled")]
+    pub const Cancelled: Self = Self(6);
+    #[doc(alias = "MPErrorRequestTimedOut")]
+    pub const RequestTimedOut: Self = Self(7);
 }
 
 unsafe impl Encode for MPErrorCode {

@@ -13,20 +13,34 @@ use crate::*;
 pub struct NSISO8601DateFormatOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSISO8601DateFormatOptions: NSUInteger {
-        const NSISO8601DateFormatWithYear = 1;
-        const NSISO8601DateFormatWithMonth = 2;
-        const NSISO8601DateFormatWithWeekOfYear = 4;
-        const NSISO8601DateFormatWithDay = 16;
-        const NSISO8601DateFormatWithTime = 32;
-        const NSISO8601DateFormatWithTimeZone = 64;
-        const NSISO8601DateFormatWithSpaceBetweenDateAndTime = 128;
-        const NSISO8601DateFormatWithDashSeparatorInDate = 256;
-        const NSISO8601DateFormatWithColonSeparatorInTime = 512;
-        const NSISO8601DateFormatWithColonSeparatorInTimeZone = 1024;
-        const NSISO8601DateFormatWithFractionalSeconds = 2048;
-        const NSISO8601DateFormatWithFullDate = 275;
-        const NSISO8601DateFormatWithFullTime = 1632;
-        const NSISO8601DateFormatWithInternetDateTime = 1907;
+        #[doc(alias = "NSISO8601DateFormatWithYear")]
+        const WithYear = 1;
+        #[doc(alias = "NSISO8601DateFormatWithMonth")]
+        const WithMonth = 2;
+        #[doc(alias = "NSISO8601DateFormatWithWeekOfYear")]
+        const WithWeekOfYear = 4;
+        #[doc(alias = "NSISO8601DateFormatWithDay")]
+        const WithDay = 16;
+        #[doc(alias = "NSISO8601DateFormatWithTime")]
+        const WithTime = 32;
+        #[doc(alias = "NSISO8601DateFormatWithTimeZone")]
+        const WithTimeZone = 64;
+        #[doc(alias = "NSISO8601DateFormatWithSpaceBetweenDateAndTime")]
+        const WithSpaceBetweenDateAndTime = 128;
+        #[doc(alias = "NSISO8601DateFormatWithDashSeparatorInDate")]
+        const WithDashSeparatorInDate = 256;
+        #[doc(alias = "NSISO8601DateFormatWithColonSeparatorInTime")]
+        const WithColonSeparatorInTime = 512;
+        #[doc(alias = "NSISO8601DateFormatWithColonSeparatorInTimeZone")]
+        const WithColonSeparatorInTimeZone = 1024;
+        #[doc(alias = "NSISO8601DateFormatWithFractionalSeconds")]
+        const WithFractionalSeconds = 2048;
+        #[doc(alias = "NSISO8601DateFormatWithFullDate")]
+        const WithFullDate = 275;
+        #[doc(alias = "NSISO8601DateFormatWithFullTime")]
+        const WithFullTime = 1632;
+        #[doc(alias = "NSISO8601DateFormatWithInternetDateTime")]
+        const WithInternetDateTime = 1907;
     }
 }
 

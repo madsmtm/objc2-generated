@@ -15,15 +15,20 @@ use crate::*;
 pub struct GKVoiceChatPlayerState(pub NSInteger);
 impl GKVoiceChatPlayerState {
     #[deprecated = "No longer supported"]
-    pub const GKVoiceChatPlayerConnected: Self = Self(0);
+    #[doc(alias = "GKVoiceChatPlayerConnected")]
+    pub const Connected: Self = Self(0);
     #[deprecated = "No longer supported"]
-    pub const GKVoiceChatPlayerDisconnected: Self = Self(1);
+    #[doc(alias = "GKVoiceChatPlayerDisconnected")]
+    pub const Disconnected: Self = Self(1);
     #[deprecated = "No longer supported"]
-    pub const GKVoiceChatPlayerSpeaking: Self = Self(2);
+    #[doc(alias = "GKVoiceChatPlayerSpeaking")]
+    pub const Speaking: Self = Self(2);
     #[deprecated = "No longer supported"]
-    pub const GKVoiceChatPlayerSilent: Self = Self(3);
+    #[doc(alias = "GKVoiceChatPlayerSilent")]
+    pub const Silent: Self = Self(3);
     #[deprecated = "No longer supported"]
-    pub const GKVoiceChatPlayerConnecting: Self = Self(4);
+    #[doc(alias = "GKVoiceChatPlayerConnecting")]
+    pub const Connecting: Self = Self(4);
 }
 
 unsafe impl Encode for GKVoiceChatPlayerState {

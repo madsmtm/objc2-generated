@@ -48,8 +48,10 @@ unsafe impl RefEncode for NSNotificationSuspensionBehavior {
 pub struct NSDistributedNotificationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDistributedNotificationOptions: NSUInteger {
-        const NSDistributedNotificationDeliverImmediately = 1<<0;
-        const NSDistributedNotificationPostToAllSessions = 1<<1;
+        #[doc(alias = "NSDistributedNotificationDeliverImmediately")]
+        const DeliverImmediately = 1<<0;
+        #[doc(alias = "NSDistributedNotificationPostToAllSessions")]
+        const PostToAllSessions = 1<<1;
     }
 }
 
@@ -63,15 +65,11 @@ unsafe impl RefEncode for NSDistributedNotificationOptions {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotificationdeliverimmediately?language=objc)
 pub static NSNotificationDeliverImmediately: NSDistributedNotificationOptions =
-    NSDistributedNotificationOptions(
-        NSDistributedNotificationOptions::NSDistributedNotificationDeliverImmediately.0,
-    );
+    NSDistributedNotificationOptions(NSDistributedNotificationOptions::DeliverImmediately.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotificationposttoallsessions?language=objc)
 pub static NSNotificationPostToAllSessions: NSDistributedNotificationOptions =
-    NSDistributedNotificationOptions(
-        NSDistributedNotificationOptions::NSDistributedNotificationPostToAllSessions.0,
-    );
+    NSDistributedNotificationOptions(NSDistributedNotificationOptions::PostToAllSessions.0);
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistributednotificationcenter?language=objc)

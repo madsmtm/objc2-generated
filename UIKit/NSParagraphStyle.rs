@@ -15,12 +15,18 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSLineBreakMode(pub NSInteger);
 impl NSLineBreakMode {
-    pub const NSLineBreakByWordWrapping: Self = Self(0);
-    pub const NSLineBreakByCharWrapping: Self = Self(1);
-    pub const NSLineBreakByClipping: Self = Self(2);
-    pub const NSLineBreakByTruncatingHead: Self = Self(3);
-    pub const NSLineBreakByTruncatingTail: Self = Self(4);
-    pub const NSLineBreakByTruncatingMiddle: Self = Self(5);
+    #[doc(alias = "NSLineBreakByWordWrapping")]
+    pub const ByWordWrapping: Self = Self(0);
+    #[doc(alias = "NSLineBreakByCharWrapping")]
+    pub const ByCharWrapping: Self = Self(1);
+    #[doc(alias = "NSLineBreakByClipping")]
+    pub const ByClipping: Self = Self(2);
+    #[doc(alias = "NSLineBreakByTruncatingHead")]
+    pub const ByTruncatingHead: Self = Self(3);
+    #[doc(alias = "NSLineBreakByTruncatingTail")]
+    pub const ByTruncatingTail: Self = Self(4);
+    #[doc(alias = "NSLineBreakByTruncatingMiddle")]
+    pub const ByTruncatingMiddle: Self = Self(5);
 }
 
 unsafe impl Encode for NSLineBreakMode {

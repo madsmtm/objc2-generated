@@ -17,27 +17,48 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SCStreamErrorCode(pub NSInteger);
 impl SCStreamErrorCode {
-    pub const SCStreamErrorUserDeclined: Self = Self(-3801);
-    pub const SCStreamErrorFailedToStart: Self = Self(-3802);
-    pub const SCStreamErrorMissingEntitlements: Self = Self(-3803);
-    pub const SCStreamErrorFailedApplicationConnectionInvalid: Self = Self(-3804);
-    pub const SCStreamErrorFailedApplicationConnectionInterrupted: Self = Self(-3805);
-    pub const SCStreamErrorFailedNoMatchingApplicationContext: Self = Self(-3806);
-    pub const SCStreamErrorAttemptToStartStreamState: Self = Self(-3807);
-    pub const SCStreamErrorAttemptToStopStreamState: Self = Self(-3808);
-    pub const SCStreamErrorAttemptToUpdateFilterState: Self = Self(-3809);
-    pub const SCStreamErrorAttemptToConfigState: Self = Self(-3810);
-    pub const SCStreamErrorInternalError: Self = Self(-3811);
-    pub const SCStreamErrorInvalidParameter: Self = Self(-3812);
-    pub const SCStreamErrorNoWindowList: Self = Self(-3813);
-    pub const SCStreamErrorNoDisplayList: Self = Self(-3814);
-    pub const SCStreamErrorNoCaptureSource: Self = Self(-3815);
-    pub const SCStreamErrorRemovingStream: Self = Self(-3816);
-    pub const SCStreamErrorUserStopped: Self = Self(-3817);
-    pub const SCStreamErrorFailedToStartAudioCapture: Self = Self(-3818);
-    pub const SCStreamErrorFailedToStopAudioCapture: Self = Self(-3819);
-    pub const SCStreamErrorFailedToStartMicrophoneCapture: Self = Self(-3820);
-    pub const SCStreamErrorSystemStoppedStream: Self = Self(-3821);
+    #[doc(alias = "SCStreamErrorUserDeclined")]
+    pub const UserDeclined: Self = Self(-3801);
+    #[doc(alias = "SCStreamErrorFailedToStart")]
+    pub const FailedToStart: Self = Self(-3802);
+    #[doc(alias = "SCStreamErrorMissingEntitlements")]
+    pub const MissingEntitlements: Self = Self(-3803);
+    #[doc(alias = "SCStreamErrorFailedApplicationConnectionInvalid")]
+    pub const FailedApplicationConnectionInvalid: Self = Self(-3804);
+    #[doc(alias = "SCStreamErrorFailedApplicationConnectionInterrupted")]
+    pub const FailedApplicationConnectionInterrupted: Self = Self(-3805);
+    #[doc(alias = "SCStreamErrorFailedNoMatchingApplicationContext")]
+    pub const FailedNoMatchingApplicationContext: Self = Self(-3806);
+    #[doc(alias = "SCStreamErrorAttemptToStartStreamState")]
+    pub const AttemptToStartStreamState: Self = Self(-3807);
+    #[doc(alias = "SCStreamErrorAttemptToStopStreamState")]
+    pub const AttemptToStopStreamState: Self = Self(-3808);
+    #[doc(alias = "SCStreamErrorAttemptToUpdateFilterState")]
+    pub const AttemptToUpdateFilterState: Self = Self(-3809);
+    #[doc(alias = "SCStreamErrorAttemptToConfigState")]
+    pub const AttemptToConfigState: Self = Self(-3810);
+    #[doc(alias = "SCStreamErrorInternalError")]
+    pub const InternalError: Self = Self(-3811);
+    #[doc(alias = "SCStreamErrorInvalidParameter")]
+    pub const InvalidParameter: Self = Self(-3812);
+    #[doc(alias = "SCStreamErrorNoWindowList")]
+    pub const NoWindowList: Self = Self(-3813);
+    #[doc(alias = "SCStreamErrorNoDisplayList")]
+    pub const NoDisplayList: Self = Self(-3814);
+    #[doc(alias = "SCStreamErrorNoCaptureSource")]
+    pub const NoCaptureSource: Self = Self(-3815);
+    #[doc(alias = "SCStreamErrorRemovingStream")]
+    pub const RemovingStream: Self = Self(-3816);
+    #[doc(alias = "SCStreamErrorUserStopped")]
+    pub const UserStopped: Self = Self(-3817);
+    #[doc(alias = "SCStreamErrorFailedToStartAudioCapture")]
+    pub const FailedToStartAudioCapture: Self = Self(-3818);
+    #[doc(alias = "SCStreamErrorFailedToStopAudioCapture")]
+    pub const FailedToStopAudioCapture: Self = Self(-3819);
+    #[doc(alias = "SCStreamErrorFailedToStartMicrophoneCapture")]
+    pub const FailedToStartMicrophoneCapture: Self = Self(-3820);
+    #[doc(alias = "SCStreamErrorSystemStoppedStream")]
+    pub const SystemStoppedStream: Self = Self(-3821);
 }
 
 unsafe impl Encode for SCStreamErrorCode {

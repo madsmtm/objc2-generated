@@ -86,10 +86,14 @@ unsafe impl RefEncode for UIScrollViewIndexDisplayMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIScrollViewContentInsetAdjustmentBehavior(pub NSInteger);
 impl UIScrollViewContentInsetAdjustmentBehavior {
-    pub const UIScrollViewContentInsetAdjustmentAutomatic: Self = Self(0);
-    pub const UIScrollViewContentInsetAdjustmentScrollableAxes: Self = Self(1);
-    pub const UIScrollViewContentInsetAdjustmentNever: Self = Self(2);
-    pub const UIScrollViewContentInsetAdjustmentAlways: Self = Self(3);
+    #[doc(alias = "UIScrollViewContentInsetAdjustmentAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "UIScrollViewContentInsetAdjustmentScrollableAxes")]
+    pub const ScrollableAxes: Self = Self(1);
+    #[doc(alias = "UIScrollViewContentInsetAdjustmentNever")]
+    pub const Never: Self = Self(2);
+    #[doc(alias = "UIScrollViewContentInsetAdjustmentAlways")]
+    pub const Always: Self = Self(3);
 }
 
 unsafe impl Encode for UIScrollViewContentInsetAdjustmentBehavior {

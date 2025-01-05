@@ -13,20 +13,33 @@ use crate::*;
 pub struct NSPointerFunctionsOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPointerFunctionsOptions: NSUInteger {
-        const NSPointerFunctionsStrongMemory = 0<<0;
+        #[doc(alias = "NSPointerFunctionsStrongMemory")]
+        const StrongMemory = 0<<0;
 #[deprecated = "GC no longer supported"]
-        const NSPointerFunctionsZeroingWeakMemory = 1<<0;
-        const NSPointerFunctionsOpaqueMemory = 2<<0;
-        const NSPointerFunctionsMallocMemory = 3<<0;
-        const NSPointerFunctionsMachVirtualMemory = 4<<0;
-        const NSPointerFunctionsWeakMemory = 5<<0;
-        const NSPointerFunctionsObjectPersonality = 0<<8;
-        const NSPointerFunctionsOpaquePersonality = 1<<8;
-        const NSPointerFunctionsObjectPointerPersonality = 2<<8;
-        const NSPointerFunctionsCStringPersonality = 3<<8;
-        const NSPointerFunctionsStructPersonality = 4<<8;
-        const NSPointerFunctionsIntegerPersonality = 5<<8;
-        const NSPointerFunctionsCopyIn = 1<<16;
+        #[doc(alias = "NSPointerFunctionsZeroingWeakMemory")]
+        const ZeroingWeakMemory = 1<<0;
+        #[doc(alias = "NSPointerFunctionsOpaqueMemory")]
+        const OpaqueMemory = 2<<0;
+        #[doc(alias = "NSPointerFunctionsMallocMemory")]
+        const MallocMemory = 3<<0;
+        #[doc(alias = "NSPointerFunctionsMachVirtualMemory")]
+        const MachVirtualMemory = 4<<0;
+        #[doc(alias = "NSPointerFunctionsWeakMemory")]
+        const WeakMemory = 5<<0;
+        #[doc(alias = "NSPointerFunctionsObjectPersonality")]
+        const ObjectPersonality = 0<<8;
+        #[doc(alias = "NSPointerFunctionsOpaquePersonality")]
+        const OpaquePersonality = 1<<8;
+        #[doc(alias = "NSPointerFunctionsObjectPointerPersonality")]
+        const ObjectPointerPersonality = 2<<8;
+        #[doc(alias = "NSPointerFunctionsCStringPersonality")]
+        const CStringPersonality = 3<<8;
+        #[doc(alias = "NSPointerFunctionsStructPersonality")]
+        const StructPersonality = 4<<8;
+        #[doc(alias = "NSPointerFunctionsIntegerPersonality")]
+        const IntegerPersonality = 5<<8;
+        #[doc(alias = "NSPointerFunctionsCopyIn")]
+        const CopyIn = 1<<16;
     }
 }
 

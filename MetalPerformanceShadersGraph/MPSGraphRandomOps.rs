@@ -45,9 +45,11 @@ unsafe impl RefEncode for MPSGraphRandomDistribution {
 pub struct MPSGraphRandomNormalSamplingMethod(pub u64);
 impl MPSGraphRandomNormalSamplingMethod {
     /// Use inverse erf to convert uniform values to values in the normal distribution
-    pub const MPSGraphRandomNormalSamplingInvCDF: Self = Self(0);
+    #[doc(alias = "MPSGraphRandomNormalSamplingInvCDF")]
+    pub const InvCDF: Self = Self(0);
     /// Use Box Muller transform to convert uniform values to values in the normal distribution. For bounded distributions this is a rejection sampling method.
-    pub const MPSGraphRandomNormalSamplingBoxMuller: Self = Self(1);
+    #[doc(alias = "MPSGraphRandomNormalSamplingBoxMuller")]
+    pub const BoxMuller: Self = Self(1);
 }
 
 unsafe impl Encode for MPSGraphRandomNormalSamplingMethod {

@@ -15,14 +15,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAConstraintAttribute(pub c_int);
 impl CAConstraintAttribute {
-    pub const kCAConstraintMinX: Self = Self(0);
-    pub const kCAConstraintMidX: Self = Self(1);
-    pub const kCAConstraintMaxX: Self = Self(2);
-    pub const kCAConstraintWidth: Self = Self(3);
-    pub const kCAConstraintMinY: Self = Self(4);
-    pub const kCAConstraintMidY: Self = Self(5);
-    pub const kCAConstraintMaxY: Self = Self(6);
-    pub const kCAConstraintHeight: Self = Self(7);
+    #[doc(alias = "kCAConstraintMinX")]
+    pub const MinX: Self = Self(0);
+    #[doc(alias = "kCAConstraintMidX")]
+    pub const MidX: Self = Self(1);
+    #[doc(alias = "kCAConstraintMaxX")]
+    pub const MaxX: Self = Self(2);
+    #[doc(alias = "kCAConstraintWidth")]
+    pub const Width: Self = Self(3);
+    #[doc(alias = "kCAConstraintMinY")]
+    pub const MinY: Self = Self(4);
+    #[doc(alias = "kCAConstraintMidY")]
+    pub const MidY: Self = Self(5);
+    #[doc(alias = "kCAConstraintMaxY")]
+    pub const MaxY: Self = Self(6);
+    #[doc(alias = "kCAConstraintHeight")]
+    pub const Height: Self = Self(7);
 }
 
 unsafe impl Encode for CAConstraintAttribute {

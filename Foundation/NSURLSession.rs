@@ -1267,9 +1267,12 @@ extern_methods!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSURLSessionDelayedRequestDisposition(pub NSInteger);
 impl NSURLSessionDelayedRequestDisposition {
-    pub const NSURLSessionDelayedRequestContinueLoading: Self = Self(0);
-    pub const NSURLSessionDelayedRequestUseNewRequest: Self = Self(1);
-    pub const NSURLSessionDelayedRequestCancel: Self = Self(2);
+    #[doc(alias = "NSURLSessionDelayedRequestContinueLoading")]
+    pub const ContinueLoading: Self = Self(0);
+    #[doc(alias = "NSURLSessionDelayedRequestUseNewRequest")]
+    pub const UseNewRequest: Self = Self(1);
+    #[doc(alias = "NSURLSessionDelayedRequestCancel")]
+    pub const Cancel: Self = Self(2);
 }
 
 unsafe impl Encode for NSURLSessionDelayedRequestDisposition {
@@ -1286,10 +1289,14 @@ unsafe impl RefEncode for NSURLSessionDelayedRequestDisposition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSURLSessionAuthChallengeDisposition(pub NSInteger);
 impl NSURLSessionAuthChallengeDisposition {
-    pub const NSURLSessionAuthChallengeUseCredential: Self = Self(0);
-    pub const NSURLSessionAuthChallengePerformDefaultHandling: Self = Self(1);
-    pub const NSURLSessionAuthChallengeCancelAuthenticationChallenge: Self = Self(2);
-    pub const NSURLSessionAuthChallengeRejectProtectionSpace: Self = Self(3);
+    #[doc(alias = "NSURLSessionAuthChallengeUseCredential")]
+    pub const UseCredential: Self = Self(0);
+    #[doc(alias = "NSURLSessionAuthChallengePerformDefaultHandling")]
+    pub const PerformDefaultHandling: Self = Self(1);
+    #[doc(alias = "NSURLSessionAuthChallengeCancelAuthenticationChallenge")]
+    pub const CancelAuthenticationChallenge: Self = Self(2);
+    #[doc(alias = "NSURLSessionAuthChallengeRejectProtectionSpace")]
+    pub const RejectProtectionSpace: Self = Self(3);
 }
 
 unsafe impl Encode for NSURLSessionAuthChallengeDisposition {
@@ -1306,10 +1313,14 @@ unsafe impl RefEncode for NSURLSessionAuthChallengeDisposition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSURLSessionResponseDisposition(pub NSInteger);
 impl NSURLSessionResponseDisposition {
-    pub const NSURLSessionResponseCancel: Self = Self(0);
-    pub const NSURLSessionResponseAllow: Self = Self(1);
-    pub const NSURLSessionResponseBecomeDownload: Self = Self(2);
-    pub const NSURLSessionResponseBecomeStream: Self = Self(3);
+    #[doc(alias = "NSURLSessionResponseCancel")]
+    pub const Cancel: Self = Self(0);
+    #[doc(alias = "NSURLSessionResponseAllow")]
+    pub const Allow: Self = Self(1);
+    #[doc(alias = "NSURLSessionResponseBecomeDownload")]
+    pub const BecomeDownload: Self = Self(2);
+    #[doc(alias = "NSURLSessionResponseBecomeStream")]
+    pub const BecomeStream: Self = Self(3);
 }
 
 unsafe impl Encode for NSURLSessionResponseDisposition {

@@ -52,8 +52,10 @@ pub type MusicEventType = u32;
 pub struct MusicSequenceLoadFlags(pub u32);
 bitflags::bitflags! {
     impl MusicSequenceLoadFlags: u32 {
-        const kMusicSequenceLoadSMF_PreserveTracks = 0;
-        const kMusicSequenceLoadSMF_ChannelsToTracks = 1<<0;
+        #[doc(alias = "kMusicSequenceLoadSMF_PreserveTracks")]
+        const SMF_PreserveTracks = 0;
+        #[doc(alias = "kMusicSequenceLoadSMF_ChannelsToTracks")]
+        const SMF_ChannelsToTracks = 1<<0;
     }
 }
 
@@ -87,9 +89,12 @@ unsafe impl RefEncode for MusicSequenceLoadFlags {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MusicSequenceType(pub u32);
 impl MusicSequenceType {
-    pub const kMusicSequenceType_Beats: Self = Self(0x62656174);
-    pub const kMusicSequenceType_Seconds: Self = Self(0x73656373);
-    pub const kMusicSequenceType_Samples: Self = Self(0x73616d70);
+    #[doc(alias = "kMusicSequenceType_Beats")]
+    pub const Beats: Self = Self(0x62656174);
+    #[doc(alias = "kMusicSequenceType_Seconds")]
+    pub const Seconds: Self = Self(0x73656373);
+    #[doc(alias = "kMusicSequenceType_Samples")]
+    pub const Samples: Self = Self(0x73616d70);
 }
 
 unsafe impl Encode for MusicSequenceType {
@@ -114,9 +119,12 @@ unsafe impl RefEncode for MusicSequenceType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MusicSequenceFileTypeID(pub u32);
 impl MusicSequenceFileTypeID {
-    pub const kMusicSequenceFile_AnyType: Self = Self(0);
-    pub const kMusicSequenceFile_MIDIType: Self = Self(0x6d696469);
-    pub const kMusicSequenceFile_iMelodyType: Self = Self(0x696d656c);
+    #[doc(alias = "kMusicSequenceFile_AnyType")]
+    pub const AnyType: Self = Self(0);
+    #[doc(alias = "kMusicSequenceFile_MIDIType")]
+    pub const MIDIType: Self = Self(0x6d696469);
+    #[doc(alias = "kMusicSequenceFile_iMelodyType")]
+    pub const iMelodyType: Self = Self(0x696d656c);
 }
 
 unsafe impl Encode for MusicSequenceFileTypeID {
@@ -141,8 +149,10 @@ unsafe impl RefEncode for MusicSequenceFileTypeID {
 pub struct MusicSequenceFileFlags(pub u32);
 bitflags::bitflags! {
     impl MusicSequenceFileFlags: u32 {
-        const kMusicSequenceFileFlags_Default = 0;
-        const kMusicSequenceFileFlags_EraseFile = 1;
+        #[doc(alias = "kMusicSequenceFileFlags_Default")]
+        const Default = 0;
+        #[doc(alias = "kMusicSequenceFileFlags_EraseFile")]
+        const EraseFile = 1;
     }
 }
 

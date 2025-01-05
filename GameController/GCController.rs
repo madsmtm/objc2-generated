@@ -105,11 +105,15 @@ extern "C" {
 pub struct GCControllerPlayerIndex(pub NSInteger);
 impl GCControllerPlayerIndex {
     #[doc(alias = "GCControllerPlayerIndexUnset")]
-    pub const Unset: Self = Self(-1);
-    pub const GCControllerPlayerIndex1: Self = Self(0);
-    pub const GCControllerPlayerIndex2: Self = Self(1);
-    pub const GCControllerPlayerIndex3: Self = Self(2);
-    pub const GCControllerPlayerIndex4: Self = Self(3);
+    pub const IndexUnset: Self = Self(-1);
+    #[doc(alias = "GCControllerPlayerIndex1")]
+    pub const Index1: Self = Self(0);
+    #[doc(alias = "GCControllerPlayerIndex2")]
+    pub const Index2: Self = Self(1);
+    #[doc(alias = "GCControllerPlayerIndex3")]
+    pub const Index3: Self = Self(2);
+    #[doc(alias = "GCControllerPlayerIndex4")]
+    pub const Index4: Self = Self(3);
 }
 
 unsafe impl Encode for GCControllerPlayerIndex {

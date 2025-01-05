@@ -13,10 +13,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSAnimationCurve(pub NSUInteger);
 impl NSAnimationCurve {
-    pub const NSAnimationEaseInOut: Self = Self(0);
-    pub const NSAnimationEaseIn: Self = Self(1);
-    pub const NSAnimationEaseOut: Self = Self(2);
-    pub const NSAnimationLinear: Self = Self(3);
+    #[doc(alias = "NSAnimationEaseInOut")]
+    pub const EaseInOut: Self = Self(0);
+    #[doc(alias = "NSAnimationEaseIn")]
+    pub const EaseIn: Self = Self(1);
+    #[doc(alias = "NSAnimationEaseOut")]
+    pub const EaseOut: Self = Self(2);
+    #[doc(alias = "NSAnimationLinear")]
+    pub const Linear: Self = Self(3);
 }
 
 unsafe impl Encode for NSAnimationCurve {
@@ -33,9 +37,12 @@ unsafe impl RefEncode for NSAnimationCurve {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSAnimationBlockingMode(pub NSUInteger);
 impl NSAnimationBlockingMode {
-    pub const NSAnimationBlocking: Self = Self(0);
-    pub const NSAnimationNonblocking: Self = Self(1);
-    pub const NSAnimationNonblockingThreaded: Self = Self(2);
+    #[doc(alias = "NSAnimationBlocking")]
+    pub const Blocking: Self = Self(0);
+    #[doc(alias = "NSAnimationNonblocking")]
+    pub const Nonblocking: Self = Self(1);
+    #[doc(alias = "NSAnimationNonblockingThreaded")]
+    pub const NonblockingThreaded: Self = Self(2);
 }
 
 unsafe impl Encode for NSAnimationBlockingMode {

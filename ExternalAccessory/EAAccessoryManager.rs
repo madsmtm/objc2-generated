@@ -13,10 +13,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct EABluetoothAccessoryPickerErrorCode(pub NSInteger);
 impl EABluetoothAccessoryPickerErrorCode {
-    pub const EABluetoothAccessoryPickerAlreadyConnected: Self = Self(0);
-    pub const EABluetoothAccessoryPickerResultNotFound: Self = Self(1);
-    pub const EABluetoothAccessoryPickerResultCancelled: Self = Self(2);
-    pub const EABluetoothAccessoryPickerResultFailed: Self = Self(3);
+    #[doc(alias = "EABluetoothAccessoryPickerAlreadyConnected")]
+    pub const AlreadyConnected: Self = Self(0);
+    #[doc(alias = "EABluetoothAccessoryPickerResultNotFound")]
+    pub const ResultNotFound: Self = Self(1);
+    #[doc(alias = "EABluetoothAccessoryPickerResultCancelled")]
+    pub const ResultCancelled: Self = Self(2);
+    #[doc(alias = "EABluetoothAccessoryPickerResultFailed")]
+    pub const ResultFailed: Self = Self(3);
 }
 
 unsafe impl Encode for EABluetoothAccessoryPickerErrorCode {

@@ -226,14 +226,22 @@ pub const kAudioUnitSubType_AudioFilePlayer: u32 = 0x6166706c;
 pub struct AudioUnitRenderActionFlags(pub u32);
 bitflags::bitflags! {
     impl AudioUnitRenderActionFlags: u32 {
-        const kAudioUnitRenderAction_PreRender = 1<<2;
-        const kAudioUnitRenderAction_PostRender = 1<<3;
-        const kAudioUnitRenderAction_OutputIsSilence = 1<<4;
-        const kAudioOfflineUnitRenderAction_Preflight = 1<<5;
-        const kAudioOfflineUnitRenderAction_Render = 1<<6;
-        const kAudioOfflineUnitRenderAction_Complete = 1<<7;
-        const kAudioUnitRenderAction_PostRenderError = 1<<8;
-        const kAudioUnitRenderAction_DoNotCheckRenderArgs = 1<<9;
+        #[doc(alias = "kAudioUnitRenderAction_PreRender")]
+        const UnitRenderAction_PreRender = 1<<2;
+        #[doc(alias = "kAudioUnitRenderAction_PostRender")]
+        const UnitRenderAction_PostRender = 1<<3;
+        #[doc(alias = "kAudioUnitRenderAction_OutputIsSilence")]
+        const UnitRenderAction_OutputIsSilence = 1<<4;
+        #[doc(alias = "kAudioOfflineUnitRenderAction_Preflight")]
+        const OfflineUnitRenderAction_Preflight = 1<<5;
+        #[doc(alias = "kAudioOfflineUnitRenderAction_Render")]
+        const OfflineUnitRenderAction_Render = 1<<6;
+        #[doc(alias = "kAudioOfflineUnitRenderAction_Complete")]
+        const OfflineUnitRenderAction_Complete = 1<<7;
+        #[doc(alias = "kAudioUnitRenderAction_PostRenderError")]
+        const UnitRenderAction_PostRenderError = 1<<8;
+        #[doc(alias = "kAudioUnitRenderAction_DoNotCheckRenderArgs")]
+        const UnitRenderAction_DoNotCheckRenderArgs = 1<<9;
     }
 }
 
@@ -371,8 +379,10 @@ pub type AudioUnitParameterValue = f32;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AUParameterEventType(pub u32);
 impl AUParameterEventType {
-    pub const kParameterEvent_Immediate: Self = Self(1);
-    pub const kParameterEvent_Ramped: Self = Self(2);
+    #[doc(alias = "kParameterEvent_Immediate")]
+    pub const ParameterEvent_Immediate: Self = Self(1);
+    #[doc(alias = "kParameterEvent_Ramped")]
+    pub const ParameterEvent_Ramped: Self = Self(2);
 }
 
 unsafe impl Encode for AUParameterEventType {

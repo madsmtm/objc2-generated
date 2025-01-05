@@ -686,7 +686,8 @@ extern "C" {
 pub struct UIApplicationCategoryDefaultErrorCode(pub NSInteger);
 impl UIApplicationCategoryDefaultErrorCode {
     /// The application is rate-limited.
-    pub const UIApplicationCategoryDefaultErrorRateLimited: Self = Self(1);
+    #[doc(alias = "UIApplicationCategoryDefaultErrorRateLimited")]
+    pub const RateLimited: Self = Self(1);
 }
 
 unsafe impl Encode for UIApplicationCategoryDefaultErrorCode {

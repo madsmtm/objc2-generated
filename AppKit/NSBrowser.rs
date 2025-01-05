@@ -26,9 +26,12 @@ pub type NSBrowserColumnsAutosaveName = NSString;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSBrowserColumnResizingType(pub NSUInteger);
 impl NSBrowserColumnResizingType {
-    pub const NSBrowserNoColumnResizing: Self = Self(0);
-    pub const NSBrowserAutoColumnResizing: Self = Self(1);
-    pub const NSBrowserUserColumnResizing: Self = Self(2);
+    #[doc(alias = "NSBrowserNoColumnResizing")]
+    pub const NoColumnResizing: Self = Self(0);
+    #[doc(alias = "NSBrowserAutoColumnResizing")]
+    pub const AutoColumnResizing: Self = Self(1);
+    #[doc(alias = "NSBrowserUserColumnResizing")]
+    pub const UserColumnResizing: Self = Self(2);
 }
 
 unsafe impl Encode for NSBrowserColumnResizingType {
@@ -45,8 +48,10 @@ unsafe impl RefEncode for NSBrowserColumnResizingType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSBrowserDropOperation(pub NSUInteger);
 impl NSBrowserDropOperation {
-    pub const NSBrowserDropOn: Self = Self(0);
-    pub const NSBrowserDropAbove: Self = Self(1);
+    #[doc(alias = "NSBrowserDropOn")]
+    pub const On: Self = Self(0);
+    #[doc(alias = "NSBrowserDropAbove")]
+    pub const Above: Self = Self(1);
 }
 
 unsafe impl Encode for NSBrowserDropOperation {

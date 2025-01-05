@@ -14,12 +14,18 @@ use crate::*;
 pub struct NLTaggerOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NLTaggerOptions: NSUInteger {
-        const NLTaggerOmitWords = 1<<0;
-        const NLTaggerOmitPunctuation = 1<<1;
-        const NLTaggerOmitWhitespace = 1<<2;
-        const NLTaggerOmitOther = 1<<3;
-        const NLTaggerJoinNames = 1<<4;
-        const NLTaggerJoinContractions = 1<<5;
+        #[doc(alias = "NLTaggerOmitWords")]
+        const OmitWords = 1<<0;
+        #[doc(alias = "NLTaggerOmitPunctuation")]
+        const OmitPunctuation = 1<<1;
+        #[doc(alias = "NLTaggerOmitWhitespace")]
+        const OmitWhitespace = 1<<2;
+        #[doc(alias = "NLTaggerOmitOther")]
+        const OmitOther = 1<<3;
+        #[doc(alias = "NLTaggerJoinNames")]
+        const JoinNames = 1<<4;
+        #[doc(alias = "NLTaggerJoinContractions")]
+        const JoinContractions = 1<<5;
     }
 }
 

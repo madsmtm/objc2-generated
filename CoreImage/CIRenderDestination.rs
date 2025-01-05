@@ -23,9 +23,12 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CIRenderDestinationAlphaMode(pub NSUInteger);
 impl CIRenderDestinationAlphaMode {
-    pub const CIRenderDestinationAlphaNone: Self = Self(0);
-    pub const CIRenderDestinationAlphaPremultiplied: Self = Self(1);
-    pub const CIRenderDestinationAlphaUnpremultiplied: Self = Self(2);
+    #[doc(alias = "CIRenderDestinationAlphaNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "CIRenderDestinationAlphaPremultiplied")]
+    pub const Premultiplied: Self = Self(1);
+    #[doc(alias = "CIRenderDestinationAlphaUnpremultiplied")]
+    pub const Unpremultiplied: Self = Self(2);
 }
 
 unsafe impl Encode for CIRenderDestinationAlphaMode {

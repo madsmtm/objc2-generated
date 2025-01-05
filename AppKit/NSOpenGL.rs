@@ -12,15 +12,20 @@ use crate::*;
 pub struct NSOpenGLGlobalOption(pub u32);
 impl NSOpenGLGlobalOption {
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-    pub const NSOpenGLGOFormatCacheSize: Self = Self(501);
+    #[doc(alias = "NSOpenGLGOFormatCacheSize")]
+    pub const GLGOFormatCacheSize: Self = Self(501);
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-    pub const NSOpenGLGOClearFormatCache: Self = Self(502);
+    #[doc(alias = "NSOpenGLGOClearFormatCache")]
+    pub const GLGOClearFormatCache: Self = Self(502);
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-    pub const NSOpenGLGORetainRenderers: Self = Self(503);
+    #[doc(alias = "NSOpenGLGORetainRenderers")]
+    pub const GLGORetainRenderers: Self = Self(503);
     #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-    pub const NSOpenGLGOUseBuildCache: Self = Self(506);
+    #[doc(alias = "NSOpenGLGOUseBuildCache")]
+    pub const GLGOUseBuildCache: Self = Self(506);
     #[deprecated]
-    pub const NSOpenGLGOResetLibrary: Self = Self(504);
+    #[doc(alias = "NSOpenGLGOResetLibrary")]
+    pub const GLGOResetLibrary: Self = Self(504);
 }
 
 unsafe impl Encode for NSOpenGLGlobalOption {

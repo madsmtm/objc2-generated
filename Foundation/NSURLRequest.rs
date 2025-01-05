@@ -56,14 +56,21 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSURLRequestCachePolicy(pub NSUInteger);
 impl NSURLRequestCachePolicy {
-    pub const NSURLRequestUseProtocolCachePolicy: Self = Self(0);
-    pub const NSURLRequestReloadIgnoringLocalCacheData: Self = Self(1);
-    pub const NSURLRequestReloadIgnoringLocalAndRemoteCacheData: Self = Self(4);
-    pub const NSURLRequestReloadIgnoringCacheData: Self =
-        Self(NSURLRequestCachePolicy::NSURLRequestReloadIgnoringLocalCacheData.0);
-    pub const NSURLRequestReturnCacheDataElseLoad: Self = Self(2);
-    pub const NSURLRequestReturnCacheDataDontLoad: Self = Self(3);
-    pub const NSURLRequestReloadRevalidatingCacheData: Self = Self(5);
+    #[doc(alias = "NSURLRequestUseProtocolCachePolicy")]
+    pub const UseProtocolCachePolicy: Self = Self(0);
+    #[doc(alias = "NSURLRequestReloadIgnoringLocalCacheData")]
+    pub const ReloadIgnoringLocalCacheData: Self = Self(1);
+    #[doc(alias = "NSURLRequestReloadIgnoringLocalAndRemoteCacheData")]
+    pub const ReloadIgnoringLocalAndRemoteCacheData: Self = Self(4);
+    #[doc(alias = "NSURLRequestReloadIgnoringCacheData")]
+    pub const ReloadIgnoringCacheData: Self =
+        Self(NSURLRequestCachePolicy::ReloadIgnoringLocalCacheData.0);
+    #[doc(alias = "NSURLRequestReturnCacheDataElseLoad")]
+    pub const ReturnCacheDataElseLoad: Self = Self(2);
+    #[doc(alias = "NSURLRequestReturnCacheDataDontLoad")]
+    pub const ReturnCacheDataDontLoad: Self = Self(3);
+    #[doc(alias = "NSURLRequestReloadRevalidatingCacheData")]
+    pub const ReloadRevalidatingCacheData: Self = Self(5);
 }
 
 unsafe impl Encode for NSURLRequestCachePolicy {
@@ -97,16 +104,25 @@ unsafe impl RefEncode for NSURLRequestCachePolicy {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSURLRequestNetworkServiceType(pub NSUInteger);
 impl NSURLRequestNetworkServiceType {
-    pub const NSURLNetworkServiceTypeDefault: Self = Self(0);
+    #[doc(alias = "NSURLNetworkServiceTypeDefault")]
+    pub const NetworkServiceTypeDefault: Self = Self(0);
     #[deprecated = "Use PushKit for VoIP control purposes"]
-    pub const NSURLNetworkServiceTypeVoIP: Self = Self(1);
-    pub const NSURLNetworkServiceTypeVideo: Self = Self(2);
-    pub const NSURLNetworkServiceTypeBackground: Self = Self(3);
-    pub const NSURLNetworkServiceTypeVoice: Self = Self(4);
-    pub const NSURLNetworkServiceTypeResponsiveData: Self = Self(6);
-    pub const NSURLNetworkServiceTypeAVStreaming: Self = Self(8);
-    pub const NSURLNetworkServiceTypeResponsiveAV: Self = Self(9);
-    pub const NSURLNetworkServiceTypeCallSignaling: Self = Self(11);
+    #[doc(alias = "NSURLNetworkServiceTypeVoIP")]
+    pub const NetworkServiceTypeVoIP: Self = Self(1);
+    #[doc(alias = "NSURLNetworkServiceTypeVideo")]
+    pub const NetworkServiceTypeVideo: Self = Self(2);
+    #[doc(alias = "NSURLNetworkServiceTypeBackground")]
+    pub const NetworkServiceTypeBackground: Self = Self(3);
+    #[doc(alias = "NSURLNetworkServiceTypeVoice")]
+    pub const NetworkServiceTypeVoice: Self = Self(4);
+    #[doc(alias = "NSURLNetworkServiceTypeResponsiveData")]
+    pub const NetworkServiceTypeResponsiveData: Self = Self(6);
+    #[doc(alias = "NSURLNetworkServiceTypeAVStreaming")]
+    pub const NetworkServiceTypeAVStreaming: Self = Self(8);
+    #[doc(alias = "NSURLNetworkServiceTypeResponsiveAV")]
+    pub const NetworkServiceTypeResponsiveAV: Self = Self(9);
+    #[doc(alias = "NSURLNetworkServiceTypeCallSignaling")]
+    pub const NetworkServiceTypeCallSignaling: Self = Self(11);
 }
 
 unsafe impl Encode for NSURLRequestNetworkServiceType {

@@ -170,8 +170,10 @@ unsafe impl RefEncode for NSUnderlineStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSWritingDirectionFormatType(pub NSInteger);
 impl NSWritingDirectionFormatType {
-    pub const NSWritingDirectionEmbedding: Self = Self(0 << 1);
-    pub const NSWritingDirectionOverride: Self = Self(1 << 1);
+    #[doc(alias = "NSWritingDirectionEmbedding")]
+    pub const Embedding: Self = Self(0 << 1);
+    #[doc(alias = "NSWritingDirectionOverride")]
+    pub const Override: Self = Self(1 << 1);
 }
 
 unsafe impl Encode for NSWritingDirectionFormatType {
@@ -291,8 +293,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTextScalingType(pub NSInteger);
 impl NSTextScalingType {
-    pub const NSTextScalingStandard: Self = Self(0);
-    pub const NSTextScalingiOS: Self = Self(1);
+    #[doc(alias = "NSTextScalingStandard")]
+    pub const ScalingStandard: Self = Self(0);
+    #[doc(alias = "NSTextScalingiOS")]
+    pub const ScalingiOS: Self = Self(1);
 }
 
 unsafe impl Encode for NSTextScalingType {

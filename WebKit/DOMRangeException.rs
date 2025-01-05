@@ -18,9 +18,11 @@ extern "C" {
 pub struct DOMRangeExceptionCode(pub c_uint);
 impl DOMRangeExceptionCode {
     #[deprecated]
-    pub const DOM_BAD_BOUNDARYPOINTS_ERR: Self = Self(1);
+    #[doc(alias = "DOM_BAD_BOUNDARYPOINTS_ERR")]
+    pub const BAD_BOUNDARYPOINTS_ERR: Self = Self(1);
     #[deprecated]
-    pub const DOM_INVALID_NODE_TYPE_ERR: Self = Self(2);
+    #[doc(alias = "DOM_INVALID_NODE_TYPE_ERR")]
+    pub const INVALID_NODE_TYPE_ERR: Self = Self(2);
 }
 
 unsafe impl Encode for DOMRangeExceptionCode {

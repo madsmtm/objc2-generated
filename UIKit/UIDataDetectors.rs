@@ -11,17 +11,28 @@ use crate::*;
 pub struct UIDataDetectorTypes(pub NSUInteger);
 bitflags::bitflags! {
     impl UIDataDetectorTypes: NSUInteger {
-        const UIDataDetectorTypePhoneNumber = 1<<0;
-        const UIDataDetectorTypeLink = 1<<1;
-        const UIDataDetectorTypeAddress = 1<<2;
-        const UIDataDetectorTypeCalendarEvent = 1<<3;
-        const UIDataDetectorTypeShipmentTrackingNumber = 1<<4;
-        const UIDataDetectorTypeFlightNumber = 1<<5;
-        const UIDataDetectorTypeLookupSuggestion = 1<<6;
-        const UIDataDetectorTypeMoney = 1<<7;
-        const UIDataDetectorTypePhysicalValue = 1<<8;
-        const UIDataDetectorTypeNone = 0;
-        const UIDataDetectorTypeAll = NSUIntegerMax as _;
+        #[doc(alias = "UIDataDetectorTypePhoneNumber")]
+        const PhoneNumber = 1<<0;
+        #[doc(alias = "UIDataDetectorTypeLink")]
+        const Link = 1<<1;
+        #[doc(alias = "UIDataDetectorTypeAddress")]
+        const Address = 1<<2;
+        #[doc(alias = "UIDataDetectorTypeCalendarEvent")]
+        const CalendarEvent = 1<<3;
+        #[doc(alias = "UIDataDetectorTypeShipmentTrackingNumber")]
+        const ShipmentTrackingNumber = 1<<4;
+        #[doc(alias = "UIDataDetectorTypeFlightNumber")]
+        const FlightNumber = 1<<5;
+        #[doc(alias = "UIDataDetectorTypeLookupSuggestion")]
+        const LookupSuggestion = 1<<6;
+        #[doc(alias = "UIDataDetectorTypeMoney")]
+        const Money = 1<<7;
+        #[doc(alias = "UIDataDetectorTypePhysicalValue")]
+        const PhysicalValue = 1<<8;
+        #[doc(alias = "UIDataDetectorTypeNone")]
+        const None = 0;
+        #[doc(alias = "UIDataDetectorTypeAll")]
+        const All = NSUIntegerMax as _;
     }
 }
 

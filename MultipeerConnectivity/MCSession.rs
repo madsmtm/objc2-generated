@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MCSessionSendDataMode(pub NSInteger);
 impl MCSessionSendDataMode {
-    pub const MCSessionSendDataReliable: Self = Self(0);
-    pub const MCSessionSendDataUnreliable: Self = Self(1);
+    #[doc(alias = "MCSessionSendDataReliable")]
+    pub const Reliable: Self = Self(0);
+    #[doc(alias = "MCSessionSendDataUnreliable")]
+    pub const Unreliable: Self = Self(1);
 }
 
 unsafe impl Encode for MCSessionSendDataMode {
@@ -53,9 +55,12 @@ unsafe impl RefEncode for MCSessionState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MCEncryptionPreference(pub NSInteger);
 impl MCEncryptionPreference {
-    pub const MCEncryptionOptional: Self = Self(0);
-    pub const MCEncryptionRequired: Self = Self(1);
-    pub const MCEncryptionNone: Self = Self(2);
+    #[doc(alias = "MCEncryptionOptional")]
+    pub const Optional: Self = Self(0);
+    #[doc(alias = "MCEncryptionRequired")]
+    pub const Required: Self = Self(1);
+    #[doc(alias = "MCEncryptionNone")]
+    pub const None: Self = Self(2);
 }
 
 unsafe impl Encode for MCEncryptionPreference {

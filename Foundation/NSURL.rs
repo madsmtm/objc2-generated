@@ -938,12 +938,18 @@ pub struct NSURLBookmarkCreationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSURLBookmarkCreationOptions: NSUInteger {
 #[deprecated = "Not supported"]
-        const NSURLBookmarkCreationPreferFileIDResolution = 1<<8;
-        const NSURLBookmarkCreationMinimalBookmark = 1<<9;
-        const NSURLBookmarkCreationSuitableForBookmarkFile = 1<<10;
-        const NSURLBookmarkCreationWithSecurityScope = 1<<11;
-        const NSURLBookmarkCreationSecurityScopeAllowOnlyReadAccess = 1<<12;
-        const NSURLBookmarkCreationWithoutImplicitSecurityScope = 1<<29;
+        #[doc(alias = "NSURLBookmarkCreationPreferFileIDResolution")]
+        const PreferFileIDResolution = 1<<8;
+        #[doc(alias = "NSURLBookmarkCreationMinimalBookmark")]
+        const MinimalBookmark = 1<<9;
+        #[doc(alias = "NSURLBookmarkCreationSuitableForBookmarkFile")]
+        const SuitableForBookmarkFile = 1<<10;
+        #[doc(alias = "NSURLBookmarkCreationWithSecurityScope")]
+        const WithSecurityScope = 1<<11;
+        #[doc(alias = "NSURLBookmarkCreationSecurityScopeAllowOnlyReadAccess")]
+        const SecurityScopeAllowOnlyReadAccess = 1<<12;
+        #[doc(alias = "NSURLBookmarkCreationWithoutImplicitSecurityScope")]
+        const WithoutImplicitSecurityScope = 1<<29;
     }
 }
 
@@ -962,10 +968,14 @@ unsafe impl RefEncode for NSURLBookmarkCreationOptions {
 pub struct NSURLBookmarkResolutionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSURLBookmarkResolutionOptions: NSUInteger {
-        const NSURLBookmarkResolutionWithoutUI = 1<<8;
-        const NSURLBookmarkResolutionWithoutMounting = 1<<9;
-        const NSURLBookmarkResolutionWithSecurityScope = 1<<10;
-        const NSURLBookmarkResolutionWithoutImplicitStartAccessing = 1<<15;
+        #[doc(alias = "NSURLBookmarkResolutionWithoutUI")]
+        const WithoutUI = 1<<8;
+        #[doc(alias = "NSURLBookmarkResolutionWithoutMounting")]
+        const WithoutMounting = 1<<9;
+        #[doc(alias = "NSURLBookmarkResolutionWithSecurityScope")]
+        const WithSecurityScope = 1<<10;
+        #[doc(alias = "NSURLBookmarkResolutionWithoutImplicitStartAccessing")]
+        const WithoutImplicitStartAccessing = 1<<15;
     }
 }
 

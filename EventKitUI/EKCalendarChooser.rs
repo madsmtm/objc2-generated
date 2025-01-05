@@ -37,8 +37,10 @@ unsafe impl RefEncode for EKCalendarChooserSelectionStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct EKCalendarChooserDisplayStyle(pub NSInteger);
 impl EKCalendarChooserDisplayStyle {
-    pub const EKCalendarChooserDisplayAllCalendars: Self = Self(0);
-    pub const EKCalendarChooserDisplayWritableCalendarsOnly: Self = Self(1);
+    #[doc(alias = "EKCalendarChooserDisplayAllCalendars")]
+    pub const AllCalendars: Self = Self(0);
+    #[doc(alias = "EKCalendarChooserDisplayWritableCalendarsOnly")]
+    pub const WritableCalendarsOnly: Self = Self(1);
 }
 
 unsafe impl Encode for EKCalendarChooserDisplayStyle {

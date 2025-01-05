@@ -17,19 +17,26 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLTextureType(pub NSUInteger);
 impl MTLTextureType {
-    pub const MTLTextureType1D: Self = Self(0);
-    pub const MTLTextureType1DArray: Self = Self(1);
-    pub const MTLTextureType2D: Self = Self(2);
-    pub const MTLTextureType2DArray: Self = Self(3);
-    pub const MTLTextureType2DMultisample: Self = Self(4);
+    #[doc(alias = "MTLTextureType1D")]
+    pub const Type1D: Self = Self(0);
+    #[doc(alias = "MTLTextureType1DArray")]
+    pub const Type1DArray: Self = Self(1);
+    #[doc(alias = "MTLTextureType2D")]
+    pub const Type2D: Self = Self(2);
+    #[doc(alias = "MTLTextureType2DArray")]
+    pub const Type2DArray: Self = Self(3);
+    #[doc(alias = "MTLTextureType2DMultisample")]
+    pub const Type2DMultisample: Self = Self(4);
     #[doc(alias = "MTLTextureTypeCube")]
-    pub const Cube: Self = Self(5);
+    pub const TypeCube: Self = Self(5);
     #[doc(alias = "MTLTextureTypeCubeArray")]
-    pub const CubeArray: Self = Self(6);
-    pub const MTLTextureType3D: Self = Self(7);
-    pub const MTLTextureType2DMultisampleArray: Self = Self(8);
+    pub const TypeCubeArray: Self = Self(6);
+    #[doc(alias = "MTLTextureType3D")]
+    pub const Type3D: Self = Self(7);
+    #[doc(alias = "MTLTextureType2DMultisampleArray")]
+    pub const Type2DMultisampleArray: Self = Self(8);
     #[doc(alias = "MTLTextureTypeTextureBuffer")]
-    pub const TextureBuffer: Self = Self(9);
+    pub const TypeTextureBuffer: Self = Self(9);
 }
 
 unsafe impl Encode for MTLTextureType {

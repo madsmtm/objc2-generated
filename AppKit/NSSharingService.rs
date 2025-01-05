@@ -372,15 +372,20 @@ pub struct NSCloudKitSharingServiceOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCloudKitSharingServiceOptions: NSUInteger {
 /// Allow the user to configure the share with the standard set of options.
-        const NSCloudKitSharingServiceStandard = 0;
+        #[doc(alias = "NSCloudKitSharingServiceStandard")]
+        const Standard = 0;
 /// The user is allowed to share publicly.
-        const NSCloudKitSharingServiceAllowPublic = 1<<0;
+        #[doc(alias = "NSCloudKitSharingServiceAllowPublic")]
+        const AllowPublic = 1<<0;
 /// The user is allowed to share privately.
-        const NSCloudKitSharingServiceAllowPrivate = 1<<1;
+        #[doc(alias = "NSCloudKitSharingServiceAllowPrivate")]
+        const AllowPrivate = 1<<1;
 /// The user is allowed to grant participants read-only permissions.
-        const NSCloudKitSharingServiceAllowReadOnly = 1<<4;
+        #[doc(alias = "NSCloudKitSharingServiceAllowReadOnly")]
+        const AllowReadOnly = 1<<4;
 /// The user is allowed to grant participants read/write permissions.
-        const NSCloudKitSharingServiceAllowReadWrite = 1<<5;
+        #[doc(alias = "NSCloudKitSharingServiceAllowReadWrite")]
+        const AllowReadWrite = 1<<5;
     }
 }
 

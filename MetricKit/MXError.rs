@@ -24,12 +24,18 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MXErrorCode(pub NSInteger);
 impl MXErrorCode {
-    pub const MXErrorLaunchTaskInvalidID: Self = Self(0);
-    pub const MXErrorLaunchTaskMaxCount: Self = Self(1);
-    pub const MXErrorLaunchTaskPastDeadline: Self = Self(2);
-    pub const MXErrorLaunchTaskDuplicated: Self = Self(3);
-    pub const MXErrorLaunchTaskUnknown: Self = Self(4);
-    pub const MXErrorLaunchTaskInternalFailure: Self = Self(5);
+    #[doc(alias = "MXErrorLaunchTaskInvalidID")]
+    pub const LaunchTaskInvalidID: Self = Self(0);
+    #[doc(alias = "MXErrorLaunchTaskMaxCount")]
+    pub const LaunchTaskMaxCount: Self = Self(1);
+    #[doc(alias = "MXErrorLaunchTaskPastDeadline")]
+    pub const LaunchTaskPastDeadline: Self = Self(2);
+    #[doc(alias = "MXErrorLaunchTaskDuplicated")]
+    pub const LaunchTaskDuplicated: Self = Self(3);
+    #[doc(alias = "MXErrorLaunchTaskUnknown")]
+    pub const LaunchTaskUnknown: Self = Self(4);
+    #[doc(alias = "MXErrorLaunchTaskInternalFailure")]
+    pub const LaunchTaskInternalFailure: Self = Self(5);
 }
 
 unsafe impl Encode for MXErrorCode {

@@ -39,7 +39,8 @@ unsafe impl RefEncode for NSPersonNameComponentsFormatterStyle {
 pub struct NSPersonNameComponentsFormatterOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPersonNameComponentsFormatterOptions: NSUInteger {
-        const NSPersonNameComponentsFormatterPhonetic = 1<<1;
+        #[doc(alias = "NSPersonNameComponentsFormatterPhonetic")]
+        const Phonetic = 1<<1;
     }
 }
 

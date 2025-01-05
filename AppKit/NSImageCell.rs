@@ -13,15 +13,24 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSImageAlignment(pub NSUInteger);
 impl NSImageAlignment {
-    pub const NSImageAlignCenter: Self = Self(0);
-    pub const NSImageAlignTop: Self = Self(1);
-    pub const NSImageAlignTopLeft: Self = Self(2);
-    pub const NSImageAlignTopRight: Self = Self(3);
-    pub const NSImageAlignLeft: Self = Self(4);
-    pub const NSImageAlignBottom: Self = Self(5);
-    pub const NSImageAlignBottomLeft: Self = Self(6);
-    pub const NSImageAlignBottomRight: Self = Self(7);
-    pub const NSImageAlignRight: Self = Self(8);
+    #[doc(alias = "NSImageAlignCenter")]
+    pub const AlignCenter: Self = Self(0);
+    #[doc(alias = "NSImageAlignTop")]
+    pub const AlignTop: Self = Self(1);
+    #[doc(alias = "NSImageAlignTopLeft")]
+    pub const AlignTopLeft: Self = Self(2);
+    #[doc(alias = "NSImageAlignTopRight")]
+    pub const AlignTopRight: Self = Self(3);
+    #[doc(alias = "NSImageAlignLeft")]
+    pub const AlignLeft: Self = Self(4);
+    #[doc(alias = "NSImageAlignBottom")]
+    pub const AlignBottom: Self = Self(5);
+    #[doc(alias = "NSImageAlignBottomLeft")]
+    pub const AlignBottomLeft: Self = Self(6);
+    #[doc(alias = "NSImageAlignBottomRight")]
+    pub const AlignBottomRight: Self = Self(7);
+    #[doc(alias = "NSImageAlignRight")]
+    pub const AlignRight: Self = Self(8);
 }
 
 unsafe impl Encode for NSImageAlignment {
@@ -38,11 +47,16 @@ unsafe impl RefEncode for NSImageAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSImageFrameStyle(pub NSUInteger);
 impl NSImageFrameStyle {
-    pub const NSImageFrameNone: Self = Self(0);
-    pub const NSImageFramePhoto: Self = Self(1);
-    pub const NSImageFrameGrayBezel: Self = Self(2);
-    pub const NSImageFrameGroove: Self = Self(3);
-    pub const NSImageFrameButton: Self = Self(4);
+    #[doc(alias = "NSImageFrameNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSImageFramePhoto")]
+    pub const Photo: Self = Self(1);
+    #[doc(alias = "NSImageFrameGrayBezel")]
+    pub const GrayBezel: Self = Self(2);
+    #[doc(alias = "NSImageFrameGroove")]
+    pub const Groove: Self = Self(3);
+    #[doc(alias = "NSImageFrameButton")]
+    pub const Button: Self = Self(4);
 }
 
 unsafe impl Encode for NSImageFrameStyle {

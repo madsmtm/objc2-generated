@@ -203,7 +203,8 @@ unsafe impl RefEncode for AudioConverterPrimeInfo {
 pub struct AudioConverterOptions(pub u32);
 bitflags::bitflags! {
     impl AudioConverterOptions: u32 {
-        const kAudioConverterOption_Unbuffered = 1<<16;
+        #[doc(alias = "kAudioConverterOption_Unbuffered")]
+        const Unbuffered = 1<<16;
     }
 }
 

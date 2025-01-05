@@ -46,12 +46,14 @@ bitflags::bitflags! {
 ///
 /// When all the items pending reimport have been processed, the system
 /// will call -[NSFileProviderExtension importDidFinishWithCompletionHandler:].
-        const NSFileProviderCreateItemMayAlreadyExist = 1<<0;
+        #[doc(alias = "NSFileProviderCreateItemMayAlreadyExist")]
+        const MayAlreadyExist = 1<<0;
 /// This item is recreated after the system failed to apply a deletion requested
 /// by the extension because the item was found to be edited locally.
 /// This happens only if the edit wasn't yet known by the system at the time the
 /// deletion was requested.
-        const NSFileProviderCreateItemDeletionConflicted = 1<<1;
+        #[doc(alias = "NSFileProviderCreateItemDeletionConflicted")]
+        const DeletionConflicted = 1<<1;
     }
 }
 
@@ -73,7 +75,8 @@ pub struct NSFileProviderDeleteItemOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderDeleteItemOptions: NSUInteger {
 /// The deletion of the item is recursive.
-        const NSFileProviderDeleteItemRecursive = 1<<0;
+        #[doc(alias = "NSFileProviderDeleteItemRecursive")]
+        const Recursive = 1<<0;
     }
 }
 

@@ -153,19 +153,30 @@ unsafe impl RefEncode for MTLHazardTrackingMode {
 pub struct MTLResourceOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLResourceOptions: NSUInteger {
-        const MTLResourceCPUCacheModeDefaultCache = MTLCPUCacheMode::DefaultCache.0<<MTLResourceCPUCacheModeShift;
-        const MTLResourceCPUCacheModeWriteCombined = MTLCPUCacheMode::WriteCombined.0<<MTLResourceCPUCacheModeShift;
-        const MTLResourceStorageModeShared = MTLStorageMode::Shared.0<<MTLResourceStorageModeShift;
-        const MTLResourceStorageModeManaged = MTLStorageMode::Managed.0<<MTLResourceStorageModeShift;
-        const MTLResourceStorageModePrivate = MTLStorageMode::Private.0<<MTLResourceStorageModeShift;
-        const MTLResourceStorageModeMemoryless = MTLStorageMode::Memoryless.0<<MTLResourceStorageModeShift;
-        const MTLResourceHazardTrackingModeDefault = MTLHazardTrackingMode::Default.0<<MTLResourceHazardTrackingModeShift;
-        const MTLResourceHazardTrackingModeUntracked = MTLHazardTrackingMode::Untracked.0<<MTLResourceHazardTrackingModeShift;
-        const MTLResourceHazardTrackingModeTracked = MTLHazardTrackingMode::Tracked.0<<MTLResourceHazardTrackingModeShift;
+        #[doc(alias = "MTLResourceCPUCacheModeDefaultCache")]
+        const CPUCacheModeDefaultCache = MTLCPUCacheMode::DefaultCache.0<<MTLResourceCPUCacheModeShift;
+        #[doc(alias = "MTLResourceCPUCacheModeWriteCombined")]
+        const CPUCacheModeWriteCombined = MTLCPUCacheMode::WriteCombined.0<<MTLResourceCPUCacheModeShift;
+        #[doc(alias = "MTLResourceStorageModeShared")]
+        const StorageModeShared = MTLStorageMode::Shared.0<<MTLResourceStorageModeShift;
+        #[doc(alias = "MTLResourceStorageModeManaged")]
+        const StorageModeManaged = MTLStorageMode::Managed.0<<MTLResourceStorageModeShift;
+        #[doc(alias = "MTLResourceStorageModePrivate")]
+        const StorageModePrivate = MTLStorageMode::Private.0<<MTLResourceStorageModeShift;
+        #[doc(alias = "MTLResourceStorageModeMemoryless")]
+        const StorageModeMemoryless = MTLStorageMode::Memoryless.0<<MTLResourceStorageModeShift;
+        #[doc(alias = "MTLResourceHazardTrackingModeDefault")]
+        const HazardTrackingModeDefault = MTLHazardTrackingMode::Default.0<<MTLResourceHazardTrackingModeShift;
+        #[doc(alias = "MTLResourceHazardTrackingModeUntracked")]
+        const HazardTrackingModeUntracked = MTLHazardTrackingMode::Untracked.0<<MTLResourceHazardTrackingModeShift;
+        #[doc(alias = "MTLResourceHazardTrackingModeTracked")]
+        const HazardTrackingModeTracked = MTLHazardTrackingMode::Tracked.0<<MTLResourceHazardTrackingModeShift;
 #[deprecated]
-        const MTLResourceOptionCPUCacheModeDefault = MTLResourceOptions::MTLResourceCPUCacheModeDefaultCache.0;
+        #[doc(alias = "MTLResourceOptionCPUCacheModeDefault")]
+        const OptionCPUCacheModeDefault = MTLResourceOptions::CPUCacheModeDefaultCache.0;
 #[deprecated]
-        const MTLResourceOptionCPUCacheModeWriteCombined = MTLResourceOptions::MTLResourceCPUCacheModeWriteCombined.0;
+        #[doc(alias = "MTLResourceOptionCPUCacheModeWriteCombined")]
+        const OptionCPUCacheModeWriteCombined = MTLResourceOptions::CPUCacheModeWriteCombined.0;
     }
 }
 

@@ -67,12 +67,18 @@ extern_methods!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSCharacterCollection(pub NSUInteger);
 impl NSCharacterCollection {
-    pub const NSIdentityMappingCharacterCollection: Self = Self(0);
-    pub const NSAdobeCNS1CharacterCollection: Self = Self(1);
-    pub const NSAdobeGB1CharacterCollection: Self = Self(2);
-    pub const NSAdobeJapan1CharacterCollection: Self = Self(3);
-    pub const NSAdobeJapan2CharacterCollection: Self = Self(4);
-    pub const NSAdobeKorea1CharacterCollection: Self = Self(5);
+    #[doc(alias = "NSIdentityMappingCharacterCollection")]
+    pub const IdentityMappingCharacterCollection: Self = Self(0);
+    #[doc(alias = "NSAdobeCNS1CharacterCollection")]
+    pub const AdobeCNS1CharacterCollection: Self = Self(1);
+    #[doc(alias = "NSAdobeGB1CharacterCollection")]
+    pub const AdobeGB1CharacterCollection: Self = Self(2);
+    #[doc(alias = "NSAdobeJapan1CharacterCollection")]
+    pub const AdobeJapan1CharacterCollection: Self = Self(3);
+    #[doc(alias = "NSAdobeJapan2CharacterCollection")]
+    pub const AdobeJapan2CharacterCollection: Self = Self(4);
+    #[doc(alias = "NSAdobeKorea1CharacterCollection")]
+    pub const AdobeKorea1CharacterCollection: Self = Self(5);
 }
 
 unsafe impl Encode for NSCharacterCollection {

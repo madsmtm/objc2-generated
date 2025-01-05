@@ -111,8 +111,10 @@ unsafe impl RefEncode for CAF_UUID_ChunkHeader {
 pub struct CAFFormatFlags(pub u32);
 bitflags::bitflags! {
     impl CAFFormatFlags: u32 {
-        const kCAFLinearPCMFormatFlagIsFloat = 1<<0;
-        const kCAFLinearPCMFormatFlagIsLittleEndian = 1<<1;
+        #[doc(alias = "kCAFLinearPCMFormatFlagIsFloat")]
+        const LinearPCMFormatFlagIsFloat = 1<<0;
+        #[doc(alias = "kCAFLinearPCMFormatFlagIsLittleEndian")]
+        const LinearPCMFormatFlagIsLittleEndian = 1<<1;
     }
 }
 
@@ -377,9 +379,12 @@ unsafe impl RefEncode for CAFMarkerChunk {
 pub struct CAFRegionFlags(pub u32);
 bitflags::bitflags! {
     impl CAFRegionFlags: u32 {
-        const kCAFRegionFlag_LoopEnable = 1;
-        const kCAFRegionFlag_PlayForward = 2;
-        const kCAFRegionFlag_PlayBackward = 4;
+        #[doc(alias = "kCAFRegionFlag_LoopEnable")]
+        const LoopEnable = 1;
+        #[doc(alias = "kCAFRegionFlag_PlayForward")]
+        const PlayForward = 2;
+        #[doc(alias = "kCAFRegionFlag_PlayBackward")]
+        const PlayBackward = 4;
     }
 }
 

@@ -91,9 +91,12 @@ impl<ObjectType: Message> DefaultRetained for NSArray<ObjectType> {
 pub struct NSBinarySearchingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSBinarySearchingOptions: NSUInteger {
-        const NSBinarySearchingFirstEqual = 1<<8;
-        const NSBinarySearchingLastEqual = 1<<9;
-        const NSBinarySearchingInsertionIndex = 1<<10;
+        #[doc(alias = "NSBinarySearchingFirstEqual")]
+        const FirstEqual = 1<<8;
+        #[doc(alias = "NSBinarySearchingLastEqual")]
+        const LastEqual = 1<<9;
+        #[doc(alias = "NSBinarySearchingInsertionIndex")]
+        const InsertionIndex = 1<<10;
     }
 }
 

@@ -19,15 +19,20 @@ extern "C" {
 pub struct LPErrorCode(pub NSInteger);
 impl LPErrorCode {
     /// An unknown error.
-    pub const LPErrorUnknown: Self = Self(1);
+    #[doc(alias = "LPErrorUnknown")]
+    pub const Unknown: Self = Self(1);
     /// An error indicating that a metadata fetch failed.
-    pub const LPErrorMetadataFetchFailed: Self = Self(2);
+    #[doc(alias = "LPErrorMetadataFetchFailed")]
+    pub const MetadataFetchFailed: Self = Self(2);
     /// An error indicating that the metadata fetch was canceled by the client.
-    pub const LPErrorMetadataFetchCancelled: Self = Self(3);
+    #[doc(alias = "LPErrorMetadataFetchCancelled")]
+    pub const MetadataFetchCancelled: Self = Self(3);
     /// An error indicating that the metadata fetch took longer than allowed.
-    pub const LPErrorMetadataFetchTimedOut: Self = Self(4);
+    #[doc(alias = "LPErrorMetadataFetchTimedOut")]
+    pub const MetadataFetchTimedOut: Self = Self(4);
     /// An error indicating that the metadata fetch was not allowed due to system policies.
-    pub const LPErrorMetadataFetchNotAllowed: Self = Self(5);
+    #[doc(alias = "LPErrorMetadataFetchNotAllowed")]
+    pub const MetadataFetchNotAllowed: Self = Self(5);
 }
 
 unsafe impl Encode for LPErrorCode {

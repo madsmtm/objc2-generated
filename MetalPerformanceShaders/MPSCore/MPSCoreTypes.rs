@@ -155,9 +155,12 @@ unsafe impl RefEncode for MPSImageFeatureChannelFormat {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSFloatDataTypeBit(pub u32);
 impl MPSFloatDataTypeBit {
-    pub const MPSFloatDataTypeSignBit: Self = Self(0x00800000);
-    pub const MPSFloatDataTypeExponentBit: Self = Self(0x007C0000);
-    pub const MPSFloatDataTypeMantissaBit: Self = Self(0x0003FC00);
+    #[doc(alias = "MPSFloatDataTypeSignBit")]
+    pub const SignBit: Self = Self(0x00800000);
+    #[doc(alias = "MPSFloatDataTypeExponentBit")]
+    pub const ExponentBit: Self = Self(0x007C0000);
+    #[doc(alias = "MPSFloatDataTypeMantissaBit")]
+    pub const MantissaBit: Self = Self(0x0003FC00);
 }
 
 unsafe impl Encode for MPSFloatDataTypeBit {
@@ -174,9 +177,12 @@ unsafe impl RefEncode for MPSFloatDataTypeBit {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSFloatDataTypeShift(pub u32);
 impl MPSFloatDataTypeShift {
-    pub const MPSFloatDataTypeSignShift: Self = Self(23);
-    pub const MPSFloatDataTypeExponentShift: Self = Self(18);
-    pub const MPSFloatDataTypeMantissaShift: Self = Self(10);
+    #[doc(alias = "MPSFloatDataTypeSignShift")]
+    pub const SignShift: Self = Self(23);
+    #[doc(alias = "MPSFloatDataTypeExponentShift")]
+    pub const ExponentShift: Self = Self(18);
+    #[doc(alias = "MPSFloatDataTypeMantissaShift")]
+    pub const MantissaShift: Self = Self(10);
 }
 
 unsafe impl Encode for MPSFloatDataTypeShift {

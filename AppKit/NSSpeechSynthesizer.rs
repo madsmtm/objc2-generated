@@ -209,11 +209,14 @@ extern "C" {
 pub struct NSSpeechBoundary(pub NSUInteger);
 impl NSSpeechBoundary {
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
-    pub const NSSpeechImmediateBoundary: Self = Self(0);
+    #[doc(alias = "NSSpeechImmediateBoundary")]
+    pub const ImmediateBoundary: Self = Self(0);
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
-    pub const NSSpeechWordBoundary: Self = Self(1);
+    #[doc(alias = "NSSpeechWordBoundary")]
+    pub const WordBoundary: Self = Self(1);
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
-    pub const NSSpeechSentenceBoundary: Self = Self(2);
+    #[doc(alias = "NSSpeechSentenceBoundary")]
+    pub const SentenceBoundary: Self = Self(2);
 }
 
 unsafe impl Encode for NSSpeechBoundary {

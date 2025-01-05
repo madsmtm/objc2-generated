@@ -46,12 +46,18 @@ pub type CMTimeEpoch = i64;
 pub struct CMTimeFlags(pub u32);
 bitflags::bitflags! {
     impl CMTimeFlags: u32 {
-        const kCMTimeFlags_Valid = 1<<0;
-        const kCMTimeFlags_HasBeenRounded = 1<<1;
-        const kCMTimeFlags_PositiveInfinity = 1<<2;
-        const kCMTimeFlags_NegativeInfinity = 1<<3;
-        const kCMTimeFlags_Indefinite = 1<<4;
-        const kCMTimeFlags_ImpliedValueFlagsMask = CMTimeFlags::kCMTimeFlags_PositiveInfinity.0|CMTimeFlags::kCMTimeFlags_NegativeInfinity.0|CMTimeFlags::kCMTimeFlags_Indefinite.0;
+        #[doc(alias = "kCMTimeFlags_Valid")]
+        const Valid = 1<<0;
+        #[doc(alias = "kCMTimeFlags_HasBeenRounded")]
+        const HasBeenRounded = 1<<1;
+        #[doc(alias = "kCMTimeFlags_PositiveInfinity")]
+        const PositiveInfinity = 1<<2;
+        #[doc(alias = "kCMTimeFlags_NegativeInfinity")]
+        const NegativeInfinity = 1<<3;
+        #[doc(alias = "kCMTimeFlags_Indefinite")]
+        const Indefinite = 1<<4;
+        #[doc(alias = "kCMTimeFlags_ImpliedValueFlagsMask")]
+        const ImpliedValueFlagsMask = CMTimeFlags::PositiveInfinity.0|CMTimeFlags::NegativeInfinity.0|CMTimeFlags::Indefinite.0;
     }
 }
 
@@ -190,14 +196,20 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMTimeRoundingMethod(pub u32);
 impl CMTimeRoundingMethod {
-    pub const kCMTimeRoundingMethod_RoundHalfAwayFromZero: Self = Self(1);
-    pub const kCMTimeRoundingMethod_RoundTowardZero: Self = Self(2);
-    pub const kCMTimeRoundingMethod_RoundAwayFromZero: Self = Self(3);
-    pub const kCMTimeRoundingMethod_QuickTime: Self = Self(4);
-    pub const kCMTimeRoundingMethod_RoundTowardPositiveInfinity: Self = Self(5);
-    pub const kCMTimeRoundingMethod_RoundTowardNegativeInfinity: Self = Self(6);
-    pub const kCMTimeRoundingMethod_Default: Self =
-        Self(CMTimeRoundingMethod::kCMTimeRoundingMethod_RoundHalfAwayFromZero.0);
+    #[doc(alias = "kCMTimeRoundingMethod_RoundHalfAwayFromZero")]
+    pub const RoundHalfAwayFromZero: Self = Self(1);
+    #[doc(alias = "kCMTimeRoundingMethod_RoundTowardZero")]
+    pub const RoundTowardZero: Self = Self(2);
+    #[doc(alias = "kCMTimeRoundingMethod_RoundAwayFromZero")]
+    pub const RoundAwayFromZero: Self = Self(3);
+    #[doc(alias = "kCMTimeRoundingMethod_QuickTime")]
+    pub const QuickTime: Self = Self(4);
+    #[doc(alias = "kCMTimeRoundingMethod_RoundTowardPositiveInfinity")]
+    pub const RoundTowardPositiveInfinity: Self = Self(5);
+    #[doc(alias = "kCMTimeRoundingMethod_RoundTowardNegativeInfinity")]
+    pub const RoundTowardNegativeInfinity: Self = Self(6);
+    #[doc(alias = "kCMTimeRoundingMethod_Default")]
+    pub const Default: Self = Self(CMTimeRoundingMethod::RoundHalfAwayFromZero.0);
 }
 
 #[cfg(feature = "objc2")]

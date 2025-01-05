@@ -34,14 +34,22 @@ unsafe impl RefEncode for NSPrintPanelResult {
 pub struct NSPrintPanelOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPrintPanelOptions: NSUInteger {
-        const NSPrintPanelShowsCopies = 1<<0;
-        const NSPrintPanelShowsPageRange = 1<<1;
-        const NSPrintPanelShowsPaperSize = 1<<2;
-        const NSPrintPanelShowsOrientation = 1<<3;
-        const NSPrintPanelShowsScaling = 1<<4;
-        const NSPrintPanelShowsPrintSelection = 1<<5;
-        const NSPrintPanelShowsPageSetupAccessory = 1<<8;
-        const NSPrintPanelShowsPreview = 1<<17;
+        #[doc(alias = "NSPrintPanelShowsCopies")]
+        const ShowsCopies = 1<<0;
+        #[doc(alias = "NSPrintPanelShowsPageRange")]
+        const ShowsPageRange = 1<<1;
+        #[doc(alias = "NSPrintPanelShowsPaperSize")]
+        const ShowsPaperSize = 1<<2;
+        #[doc(alias = "NSPrintPanelShowsOrientation")]
+        const ShowsOrientation = 1<<3;
+        #[doc(alias = "NSPrintPanelShowsScaling")]
+        const ShowsScaling = 1<<4;
+        #[doc(alias = "NSPrintPanelShowsPrintSelection")]
+        const ShowsPrintSelection = 1<<5;
+        #[doc(alias = "NSPrintPanelShowsPageSetupAccessory")]
+        const ShowsPageSetupAccessory = 1<<8;
+        #[doc(alias = "NSPrintPanelShowsPreview")]
+        const ShowsPreview = 1<<17;
     }
 }
 

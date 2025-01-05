@@ -15,9 +15,12 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSSelectionGranularity(pub NSUInteger);
 impl NSSelectionGranularity {
-    pub const NSSelectByCharacter: Self = Self(0);
-    pub const NSSelectByWord: Self = Self(1);
-    pub const NSSelectByParagraph: Self = Self(2);
+    #[doc(alias = "NSSelectByCharacter")]
+    pub const SelectByCharacter: Self = Self(0);
+    #[doc(alias = "NSSelectByWord")]
+    pub const SelectByWord: Self = Self(1);
+    #[doc(alias = "NSSelectByParagraph")]
+    pub const SelectByParagraph: Self = Self(2);
 }
 
 unsafe impl Encode for NSSelectionGranularity {

@@ -48,17 +48,22 @@ pub struct MTLAccelerationStructureInstanceOptions(pub u32);
 bitflags::bitflags! {
     impl MTLAccelerationStructureInstanceOptions: u32 {
 /// No options
-        const MTLAccelerationStructureInstanceOptionNone = 0;
+        #[doc(alias = "MTLAccelerationStructureInstanceOptionNone")]
+        const None = 0;
 /// Disable triangle back or front face culling
-        const MTLAccelerationStructureInstanceOptionDisableTriangleCulling = 1<<0;
+        #[doc(alias = "MTLAccelerationStructureInstanceOptionDisableTriangleCulling")]
+        const DisableTriangleCulling = 1<<0;
 /// Override triangle front-facing winding. By default, the winding is
 /// assumed to be clockwise unless overridden by the intersector object. This overrides
 /// the intersector's winding order.
-        const MTLAccelerationStructureInstanceOptionTriangleFrontFacingWindingCounterClockwise = 1<<1;
+        #[doc(alias = "MTLAccelerationStructureInstanceOptionTriangleFrontFacingWindingCounterClockwise")]
+        const TriangleFrontFacingWindingCounterClockwise = 1<<1;
 /// Geometry is opaque
-        const MTLAccelerationStructureInstanceOptionOpaque = 1<<2;
+        #[doc(alias = "MTLAccelerationStructureInstanceOptionOpaque")]
+        const Opaque = 1<<2;
 /// Geometry is non-opaque
-        const MTLAccelerationStructureInstanceOptionNonOpaque = 1<<3;
+        #[doc(alias = "MTLAccelerationStructureInstanceOptionNonOpaque")]
+        const NonOpaque = 1<<3;
     }
 }
 

@@ -16,16 +16,26 @@ use crate::*;
 pub struct NSTrackingAreaOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTrackingAreaOptions: NSUInteger {
-        const NSTrackingMouseEnteredAndExited = 0x01;
-        const NSTrackingMouseMoved = 0x02;
-        const NSTrackingCursorUpdate = 0x04;
-        const NSTrackingActiveWhenFirstResponder = 0x10;
-        const NSTrackingActiveInKeyWindow = 0x20;
-        const NSTrackingActiveInActiveApp = 0x40;
-        const NSTrackingActiveAlways = 0x80;
-        const NSTrackingAssumeInside = 0x100;
-        const NSTrackingInVisibleRect = 0x200;
-        const NSTrackingEnabledDuringMouseDrag = 0x400;
+        #[doc(alias = "NSTrackingMouseEnteredAndExited")]
+        const MouseEnteredAndExited = 0x01;
+        #[doc(alias = "NSTrackingMouseMoved")]
+        const MouseMoved = 0x02;
+        #[doc(alias = "NSTrackingCursorUpdate")]
+        const CursorUpdate = 0x04;
+        #[doc(alias = "NSTrackingActiveWhenFirstResponder")]
+        const ActiveWhenFirstResponder = 0x10;
+        #[doc(alias = "NSTrackingActiveInKeyWindow")]
+        const ActiveInKeyWindow = 0x20;
+        #[doc(alias = "NSTrackingActiveInActiveApp")]
+        const ActiveInActiveApp = 0x40;
+        #[doc(alias = "NSTrackingActiveAlways")]
+        const ActiveAlways = 0x80;
+        #[doc(alias = "NSTrackingAssumeInside")]
+        const AssumeInside = 0x100;
+        #[doc(alias = "NSTrackingInVisibleRect")]
+        const InVisibleRect = 0x200;
+        #[doc(alias = "NSTrackingEnabledDuringMouseDrag")]
+        const EnabledDuringMouseDrag = 0x400;
     }
 }
 

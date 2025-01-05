@@ -13,17 +13,28 @@ use crate::*;
 pub struct NSAppleEventSendOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSAppleEventSendOptions: NSUInteger {
-        const NSAppleEventSendNoReply = 1;
-        const NSAppleEventSendQueueReply = 2;
-        const NSAppleEventSendWaitForReply = 3;
-        const NSAppleEventSendNeverInteract = 16;
-        const NSAppleEventSendCanInteract = 32;
-        const NSAppleEventSendAlwaysInteract = 48;
-        const NSAppleEventSendCanSwitchLayer = 64;
-        const NSAppleEventSendDontRecord = 4096;
-        const NSAppleEventSendDontExecute = 8192;
-        const NSAppleEventSendDontAnnotate = 65536;
-        const NSAppleEventSendDefaultOptions = 35;
+        #[doc(alias = "NSAppleEventSendNoReply")]
+        const NoReply = 1;
+        #[doc(alias = "NSAppleEventSendQueueReply")]
+        const QueueReply = 2;
+        #[doc(alias = "NSAppleEventSendWaitForReply")]
+        const WaitForReply = 3;
+        #[doc(alias = "NSAppleEventSendNeverInteract")]
+        const NeverInteract = 16;
+        #[doc(alias = "NSAppleEventSendCanInteract")]
+        const CanInteract = 32;
+        #[doc(alias = "NSAppleEventSendAlwaysInteract")]
+        const AlwaysInteract = 48;
+        #[doc(alias = "NSAppleEventSendCanSwitchLayer")]
+        const CanSwitchLayer = 64;
+        #[doc(alias = "NSAppleEventSendDontRecord")]
+        const DontRecord = 4096;
+        #[doc(alias = "NSAppleEventSendDontExecute")]
+        const DontExecute = 8192;
+        #[doc(alias = "NSAppleEventSendDontAnnotate")]
+        const DontAnnotate = 65536;
+        #[doc(alias = "NSAppleEventSendDefaultOptions")]
+        const DefaultOptions = 35;
     }
 }
 

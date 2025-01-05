@@ -182,7 +182,8 @@ bitflags::bitflags! {
     impl CKApplicationPermissions: NSUInteger {
 /// Allows the user's record in CloudKit to be discoverable via the user's email address
 #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        const CKApplicationPermissionUserDiscoverability = 1<<0;
+        #[doc(alias = "CKApplicationPermissionUserDiscoverability")]
+        const UserDiscoverability = 1<<0;
     }
 }
 

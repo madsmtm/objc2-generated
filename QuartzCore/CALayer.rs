@@ -34,13 +34,20 @@ pub type CALayerCornerCurve = NSString;
 pub struct CAAutoresizingMask(pub c_uint);
 bitflags::bitflags! {
     impl CAAutoresizingMask: c_uint {
-        const kCALayerNotSizable = 0;
-        const kCALayerMinXMargin = 1<<0;
-        const kCALayerWidthSizable = 1<<1;
-        const kCALayerMaxXMargin = 1<<2;
-        const kCALayerMinYMargin = 1<<3;
-        const kCALayerHeightSizable = 1<<4;
-        const kCALayerMaxYMargin = 1<<5;
+        #[doc(alias = "kCALayerNotSizable")]
+        const LayerNotSizable = 0;
+        #[doc(alias = "kCALayerMinXMargin")]
+        const LayerMinXMargin = 1<<0;
+        #[doc(alias = "kCALayerWidthSizable")]
+        const LayerWidthSizable = 1<<1;
+        #[doc(alias = "kCALayerMaxXMargin")]
+        const LayerMaxXMargin = 1<<2;
+        #[doc(alias = "kCALayerMinYMargin")]
+        const LayerMinYMargin = 1<<3;
+        #[doc(alias = "kCALayerHeightSizable")]
+        const LayerHeightSizable = 1<<4;
+        #[doc(alias = "kCALayerMaxYMargin")]
+        const LayerMaxYMargin = 1<<5;
     }
 }
 
@@ -78,10 +85,14 @@ extern "C" {
 pub struct CAEdgeAntialiasingMask(pub c_uint);
 bitflags::bitflags! {
     impl CAEdgeAntialiasingMask: c_uint {
-        const kCALayerLeftEdge = 1<<0;
-        const kCALayerRightEdge = 1<<1;
-        const kCALayerBottomEdge = 1<<2;
-        const kCALayerTopEdge = 1<<3;
+        #[doc(alias = "kCALayerLeftEdge")]
+        const LayerLeftEdge = 1<<0;
+        #[doc(alias = "kCALayerRightEdge")]
+        const LayerRightEdge = 1<<1;
+        #[doc(alias = "kCALayerBottomEdge")]
+        const LayerBottomEdge = 1<<2;
+        #[doc(alias = "kCALayerTopEdge")]
+        const LayerTopEdge = 1<<3;
     }
 }
 
@@ -100,10 +111,14 @@ unsafe impl RefEncode for CAEdgeAntialiasingMask {
 pub struct CACornerMask(pub NSUInteger);
 bitflags::bitflags! {
     impl CACornerMask: NSUInteger {
-        const kCALayerMinXMinYCorner = 1<<0;
-        const kCALayerMaxXMinYCorner = 1<<1;
-        const kCALayerMinXMaxYCorner = 1<<2;
-        const kCALayerMaxXMaxYCorner = 1<<3;
+        #[doc(alias = "kCALayerMinXMinYCorner")]
+        const LayerMinXMinYCorner = 1<<0;
+        #[doc(alias = "kCALayerMaxXMinYCorner")]
+        const LayerMaxXMinYCorner = 1<<1;
+        #[doc(alias = "kCALayerMinXMaxYCorner")]
+        const LayerMinXMaxYCorner = 1<<2;
+        #[doc(alias = "kCALayerMaxXMaxYCorner")]
+        const LayerMaxXMaxYCorner = 1<<3;
     }
 }
 

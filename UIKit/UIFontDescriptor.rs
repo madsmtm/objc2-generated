@@ -16,27 +16,48 @@ use crate::*;
 pub struct UIFontDescriptorSymbolicTraits(pub u32);
 bitflags::bitflags! {
     impl UIFontDescriptorSymbolicTraits: u32 {
-        const UIFontDescriptorTraitItalic = 1<<0;
-        const UIFontDescriptorTraitBold = 1<<1;
-        const UIFontDescriptorTraitExpanded = 1<<5;
-        const UIFontDescriptorTraitCondensed = 1<<6;
-        const UIFontDescriptorTraitMonoSpace = 1<<10;
-        const UIFontDescriptorTraitVertical = 1<<11;
-        const UIFontDescriptorTraitUIOptimized = 1<<12;
-        const UIFontDescriptorTraitTightLeading = 1<<15;
-        const UIFontDescriptorTraitLooseLeading = 1<<16;
-        const UIFontDescriptorClassMask = 0xF0000000;
-        const UIFontDescriptorClassUnknown = 0<<28;
-        const UIFontDescriptorClassOldStyleSerifs = 1<<28;
-        const UIFontDescriptorClassTransitionalSerifs = 2<<28;
-        const UIFontDescriptorClassModernSerifs = 3<<28;
-        const UIFontDescriptorClassClarendonSerifs = 4<<28;
-        const UIFontDescriptorClassSlabSerifs = 5<<28;
-        const UIFontDescriptorClassFreeformSerifs = 7<<28;
-        const UIFontDescriptorClassSansSerif = 8<<28;
-        const UIFontDescriptorClassOrnamentals = 9<<28;
-        const UIFontDescriptorClassScripts = 10<<28;
-        const UIFontDescriptorClassSymbolic = 12<<28;
+        #[doc(alias = "UIFontDescriptorTraitItalic")]
+        const TraitItalic = 1<<0;
+        #[doc(alias = "UIFontDescriptorTraitBold")]
+        const TraitBold = 1<<1;
+        #[doc(alias = "UIFontDescriptorTraitExpanded")]
+        const TraitExpanded = 1<<5;
+        #[doc(alias = "UIFontDescriptorTraitCondensed")]
+        const TraitCondensed = 1<<6;
+        #[doc(alias = "UIFontDescriptorTraitMonoSpace")]
+        const TraitMonoSpace = 1<<10;
+        #[doc(alias = "UIFontDescriptorTraitVertical")]
+        const TraitVertical = 1<<11;
+        #[doc(alias = "UIFontDescriptorTraitUIOptimized")]
+        const TraitUIOptimized = 1<<12;
+        #[doc(alias = "UIFontDescriptorTraitTightLeading")]
+        const TraitTightLeading = 1<<15;
+        #[doc(alias = "UIFontDescriptorTraitLooseLeading")]
+        const TraitLooseLeading = 1<<16;
+        #[doc(alias = "UIFontDescriptorClassMask")]
+        const ClassMask = 0xF0000000;
+        #[doc(alias = "UIFontDescriptorClassUnknown")]
+        const ClassUnknown = 0<<28;
+        #[doc(alias = "UIFontDescriptorClassOldStyleSerifs")]
+        const ClassOldStyleSerifs = 1<<28;
+        #[doc(alias = "UIFontDescriptorClassTransitionalSerifs")]
+        const ClassTransitionalSerifs = 2<<28;
+        #[doc(alias = "UIFontDescriptorClassModernSerifs")]
+        const ClassModernSerifs = 3<<28;
+        #[doc(alias = "UIFontDescriptorClassClarendonSerifs")]
+        const ClassClarendonSerifs = 4<<28;
+        #[doc(alias = "UIFontDescriptorClassSlabSerifs")]
+        const ClassSlabSerifs = 5<<28;
+        #[doc(alias = "UIFontDescriptorClassFreeformSerifs")]
+        const ClassFreeformSerifs = 7<<28;
+        #[doc(alias = "UIFontDescriptorClassSansSerif")]
+        const ClassSansSerif = 8<<28;
+        #[doc(alias = "UIFontDescriptorClassOrnamentals")]
+        const ClassOrnamentals = 9<<28;
+        #[doc(alias = "UIFontDescriptorClassScripts")]
+        const ClassScripts = 10<<28;
+        #[doc(alias = "UIFontDescriptorClassSymbolic")]
+        const ClassSymbolic = 12<<28;
     }
 }
 

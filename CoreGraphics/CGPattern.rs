@@ -17,9 +17,12 @@ pub type CGPatternRef = *mut c_void;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGPatternTiling(pub i32);
 impl CGPatternTiling {
-    pub const kCGPatternTilingNoDistortion: Self = Self(0);
-    pub const kCGPatternTilingConstantSpacingMinimalDistortion: Self = Self(1);
-    pub const kCGPatternTilingConstantSpacing: Self = Self(2);
+    #[doc(alias = "kCGPatternTilingNoDistortion")]
+    pub const NoDistortion: Self = Self(0);
+    #[doc(alias = "kCGPatternTilingConstantSpacingMinimalDistortion")]
+    pub const ConstantSpacingMinimalDistortion: Self = Self(1);
+    #[doc(alias = "kCGPatternTilingConstantSpacing")]
+    pub const ConstantSpacing: Self = Self(2);
 }
 
 #[cfg(feature = "objc2")]

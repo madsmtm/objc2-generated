@@ -13,9 +13,11 @@ use crate::*;
 pub struct NSNumberFormatterBehavior(pub NSUInteger);
 impl NSNumberFormatterBehavior {
     #[doc(alias = "NSNumberFormatterBehaviorDefault")]
-    pub const Default: Self = Self(0);
-    pub const NSNumberFormatterBehavior10_0: Self = Self(1000);
-    pub const NSNumberFormatterBehavior10_4: Self = Self(1040);
+    pub const BehaviorDefault: Self = Self(0);
+    #[doc(alias = "NSNumberFormatterBehavior10_0")]
+    pub const Behavior10_0: Self = Self(1000);
+    #[doc(alias = "NSNumberFormatterBehavior10_4")]
+    pub const Behavior10_4: Self = Self(1040);
 }
 
 unsafe impl Encode for NSNumberFormatterBehavior {
@@ -32,16 +34,26 @@ unsafe impl RefEncode for NSNumberFormatterBehavior {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSNumberFormatterStyle(pub NSUInteger);
 impl NSNumberFormatterStyle {
-    pub const NSNumberFormatterNoStyle: Self = Self(0);
-    pub const NSNumberFormatterDecimalStyle: Self = Self(1);
-    pub const NSNumberFormatterCurrencyStyle: Self = Self(2);
-    pub const NSNumberFormatterPercentStyle: Self = Self(3);
-    pub const NSNumberFormatterScientificStyle: Self = Self(4);
-    pub const NSNumberFormatterSpellOutStyle: Self = Self(5);
-    pub const NSNumberFormatterOrdinalStyle: Self = Self(6);
-    pub const NSNumberFormatterCurrencyISOCodeStyle: Self = Self(8);
-    pub const NSNumberFormatterCurrencyPluralStyle: Self = Self(9);
-    pub const NSNumberFormatterCurrencyAccountingStyle: Self = Self(10);
+    #[doc(alias = "NSNumberFormatterNoStyle")]
+    pub const NoStyle: Self = Self(0);
+    #[doc(alias = "NSNumberFormatterDecimalStyle")]
+    pub const DecimalStyle: Self = Self(1);
+    #[doc(alias = "NSNumberFormatterCurrencyStyle")]
+    pub const CurrencyStyle: Self = Self(2);
+    #[doc(alias = "NSNumberFormatterPercentStyle")]
+    pub const PercentStyle: Self = Self(3);
+    #[doc(alias = "NSNumberFormatterScientificStyle")]
+    pub const ScientificStyle: Self = Self(4);
+    #[doc(alias = "NSNumberFormatterSpellOutStyle")]
+    pub const SpellOutStyle: Self = Self(5);
+    #[doc(alias = "NSNumberFormatterOrdinalStyle")]
+    pub const OrdinalStyle: Self = Self(6);
+    #[doc(alias = "NSNumberFormatterCurrencyISOCodeStyle")]
+    pub const CurrencyISOCodeStyle: Self = Self(8);
+    #[doc(alias = "NSNumberFormatterCurrencyPluralStyle")]
+    pub const CurrencyPluralStyle: Self = Self(9);
+    #[doc(alias = "NSNumberFormatterCurrencyAccountingStyle")]
+    pub const CurrencyAccountingStyle: Self = Self(10);
 }
 
 unsafe impl Encode for NSNumberFormatterStyle {
@@ -58,10 +70,14 @@ unsafe impl RefEncode for NSNumberFormatterStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSNumberFormatterPadPosition(pub NSUInteger);
 impl NSNumberFormatterPadPosition {
-    pub const NSNumberFormatterPadBeforePrefix: Self = Self(0);
-    pub const NSNumberFormatterPadAfterPrefix: Self = Self(1);
-    pub const NSNumberFormatterPadBeforeSuffix: Self = Self(2);
-    pub const NSNumberFormatterPadAfterSuffix: Self = Self(3);
+    #[doc(alias = "NSNumberFormatterPadBeforePrefix")]
+    pub const BeforePrefix: Self = Self(0);
+    #[doc(alias = "NSNumberFormatterPadAfterPrefix")]
+    pub const AfterPrefix: Self = Self(1);
+    #[doc(alias = "NSNumberFormatterPadBeforeSuffix")]
+    pub const BeforeSuffix: Self = Self(2);
+    #[doc(alias = "NSNumberFormatterPadAfterSuffix")]
+    pub const AfterSuffix: Self = Self(3);
 }
 
 unsafe impl Encode for NSNumberFormatterPadPosition {
@@ -78,13 +94,20 @@ unsafe impl RefEncode for NSNumberFormatterPadPosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSNumberFormatterRoundingMode(pub NSUInteger);
 impl NSNumberFormatterRoundingMode {
-    pub const NSNumberFormatterRoundCeiling: Self = Self(0);
-    pub const NSNumberFormatterRoundFloor: Self = Self(1);
-    pub const NSNumberFormatterRoundDown: Self = Self(2);
-    pub const NSNumberFormatterRoundUp: Self = Self(3);
-    pub const NSNumberFormatterRoundHalfEven: Self = Self(4);
-    pub const NSNumberFormatterRoundHalfDown: Self = Self(5);
-    pub const NSNumberFormatterRoundHalfUp: Self = Self(6);
+    #[doc(alias = "NSNumberFormatterRoundCeiling")]
+    pub const RoundCeiling: Self = Self(0);
+    #[doc(alias = "NSNumberFormatterRoundFloor")]
+    pub const RoundFloor: Self = Self(1);
+    #[doc(alias = "NSNumberFormatterRoundDown")]
+    pub const RoundDown: Self = Self(2);
+    #[doc(alias = "NSNumberFormatterRoundUp")]
+    pub const RoundUp: Self = Self(3);
+    #[doc(alias = "NSNumberFormatterRoundHalfEven")]
+    pub const RoundHalfEven: Self = Self(4);
+    #[doc(alias = "NSNumberFormatterRoundHalfDown")]
+    pub const RoundHalfDown: Self = Self(5);
+    #[doc(alias = "NSNumberFormatterRoundHalfUp")]
+    pub const RoundHalfUp: Self = Self(6);
 }
 
 unsafe impl Encode for NSNumberFormatterRoundingMode {

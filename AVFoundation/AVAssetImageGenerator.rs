@@ -78,9 +78,12 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAssetImageGeneratorResult(pub NSInteger);
 impl AVAssetImageGeneratorResult {
-    pub const AVAssetImageGeneratorSucceeded: Self = Self(0);
-    pub const AVAssetImageGeneratorFailed: Self = Self(1);
-    pub const AVAssetImageGeneratorCancelled: Self = Self(2);
+    #[doc(alias = "AVAssetImageGeneratorSucceeded")]
+    pub const Succeeded: Self = Self(0);
+    #[doc(alias = "AVAssetImageGeneratorFailed")]
+    pub const Failed: Self = Self(1);
+    #[doc(alias = "AVAssetImageGeneratorCancelled")]
+    pub const Cancelled: Self = Self(2);
 }
 
 unsafe impl Encode for AVAssetImageGeneratorResult {

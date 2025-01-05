@@ -133,10 +133,14 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFetchedResultsChangeType(pub NSUInteger);
 impl NSFetchedResultsChangeType {
-    pub const NSFetchedResultsChangeInsert: Self = Self(1);
-    pub const NSFetchedResultsChangeDelete: Self = Self(2);
-    pub const NSFetchedResultsChangeMove: Self = Self(3);
-    pub const NSFetchedResultsChangeUpdate: Self = Self(4);
+    #[doc(alias = "NSFetchedResultsChangeInsert")]
+    pub const Insert: Self = Self(1);
+    #[doc(alias = "NSFetchedResultsChangeDelete")]
+    pub const Delete: Self = Self(2);
+    #[doc(alias = "NSFetchedResultsChangeMove")]
+    pub const Move: Self = Self(3);
+    #[doc(alias = "NSFetchedResultsChangeUpdate")]
+    pub const Update: Self = Self(4);
 }
 
 unsafe impl Encode for NSFetchedResultsChangeType {

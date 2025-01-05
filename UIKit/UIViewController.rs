@@ -39,17 +39,28 @@ unsafe impl RefEncode for UIModalTransitionStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIModalPresentationStyle(pub NSInteger);
 impl UIModalPresentationStyle {
-    pub const UIModalPresentationFullScreen: Self = Self(0);
-    pub const UIModalPresentationPageSheet: Self = Self(1);
-    pub const UIModalPresentationFormSheet: Self = Self(2);
-    pub const UIModalPresentationCurrentContext: Self = Self(3);
-    pub const UIModalPresentationCustom: Self = Self(4);
-    pub const UIModalPresentationOverFullScreen: Self = Self(5);
-    pub const UIModalPresentationOverCurrentContext: Self = Self(6);
-    pub const UIModalPresentationPopover: Self = Self(7);
-    pub const UIModalPresentationBlurOverFullScreen: Self = Self(8);
-    pub const UIModalPresentationNone: Self = Self(-1);
-    pub const UIModalPresentationAutomatic: Self = Self(-2);
+    #[doc(alias = "UIModalPresentationFullScreen")]
+    pub const FullScreen: Self = Self(0);
+    #[doc(alias = "UIModalPresentationPageSheet")]
+    pub const PageSheet: Self = Self(1);
+    #[doc(alias = "UIModalPresentationFormSheet")]
+    pub const FormSheet: Self = Self(2);
+    #[doc(alias = "UIModalPresentationCurrentContext")]
+    pub const CurrentContext: Self = Self(3);
+    #[doc(alias = "UIModalPresentationCustom")]
+    pub const Custom: Self = Self(4);
+    #[doc(alias = "UIModalPresentationOverFullScreen")]
+    pub const OverFullScreen: Self = Self(5);
+    #[doc(alias = "UIModalPresentationOverCurrentContext")]
+    pub const OverCurrentContext: Self = Self(6);
+    #[doc(alias = "UIModalPresentationPopover")]
+    pub const Popover: Self = Self(7);
+    #[doc(alias = "UIModalPresentationBlurOverFullScreen")]
+    pub const BlurOverFullScreen: Self = Self(8);
+    #[doc(alias = "UIModalPresentationNone")]
+    pub const None: Self = Self(-1);
+    #[doc(alias = "UIModalPresentationAutomatic")]
+    pub const Automatic: Self = Self(-2);
 }
 
 unsafe impl Encode for UIModalPresentationStyle {

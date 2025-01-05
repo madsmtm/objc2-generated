@@ -523,12 +523,18 @@ extern_protocol!(
 pub struct NSMenuProperties(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMenuProperties: NSUInteger {
-        const NSMenuPropertyItemTitle = 1<<0;
-        const NSMenuPropertyItemAttributedTitle = 1<<1;
-        const NSMenuPropertyItemKeyEquivalent = 1<<2;
-        const NSMenuPropertyItemImage = 1<<3;
-        const NSMenuPropertyItemEnabled = 1<<4;
-        const NSMenuPropertyItemAccessibilityDescription = 1<<5;
+        #[doc(alias = "NSMenuPropertyItemTitle")]
+        const ItemTitle = 1<<0;
+        #[doc(alias = "NSMenuPropertyItemAttributedTitle")]
+        const ItemAttributedTitle = 1<<1;
+        #[doc(alias = "NSMenuPropertyItemKeyEquivalent")]
+        const ItemKeyEquivalent = 1<<2;
+        #[doc(alias = "NSMenuPropertyItemImage")]
+        const ItemImage = 1<<3;
+        #[doc(alias = "NSMenuPropertyItemEnabled")]
+        const ItemEnabled = 1<<4;
+        #[doc(alias = "NSMenuPropertyItemAccessibilityDescription")]
+        const ItemAccessibilityDescription = 1<<5;
     }
 }
 

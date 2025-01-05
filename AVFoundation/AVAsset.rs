@@ -116,13 +116,20 @@ extern_methods!(
 pub struct AVAssetReferenceRestrictions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAssetReferenceRestrictions: NSUInteger {
-        const AVAssetReferenceRestrictionForbidNone = 0;
-        const AVAssetReferenceRestrictionForbidRemoteReferenceToLocal = 1<<0;
-        const AVAssetReferenceRestrictionForbidLocalReferenceToRemote = 1<<1;
-        const AVAssetReferenceRestrictionForbidCrossSiteReference = 1<<2;
-        const AVAssetReferenceRestrictionForbidLocalReferenceToLocal = 1<<3;
-        const AVAssetReferenceRestrictionForbidAll = 0xFFFF;
-        const AVAssetReferenceRestrictionDefaultPolicy = AVAssetReferenceRestrictions::AVAssetReferenceRestrictionForbidLocalReferenceToRemote.0;
+        #[doc(alias = "AVAssetReferenceRestrictionForbidNone")]
+        const ForbidNone = 0;
+        #[doc(alias = "AVAssetReferenceRestrictionForbidRemoteReferenceToLocal")]
+        const ForbidRemoteReferenceToLocal = 1<<0;
+        #[doc(alias = "AVAssetReferenceRestrictionForbidLocalReferenceToRemote")]
+        const ForbidLocalReferenceToRemote = 1<<1;
+        #[doc(alias = "AVAssetReferenceRestrictionForbidCrossSiteReference")]
+        const ForbidCrossSiteReference = 1<<2;
+        #[doc(alias = "AVAssetReferenceRestrictionForbidLocalReferenceToLocal")]
+        const ForbidLocalReferenceToLocal = 1<<3;
+        #[doc(alias = "AVAssetReferenceRestrictionForbidAll")]
+        const ForbidAll = 0xFFFF;
+        #[doc(alias = "AVAssetReferenceRestrictionDefaultPolicy")]
+        const DefaultPolicy = AVAssetReferenceRestrictions::ForbidLocalReferenceToRemote.0;
     }
 }
 

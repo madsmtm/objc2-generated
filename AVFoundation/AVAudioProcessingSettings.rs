@@ -75,10 +75,14 @@ extern "C" {
 pub struct AVAudioSpatializationFormats(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioSpatializationFormats: NSUInteger {
-        const AVAudioSpatializationFormatNone = 0;
-        const AVAudioSpatializationFormatMonoAndStereo = 0x3;
-        const AVAudioSpatializationFormatMultichannel = 0x4;
-        const AVAudioSpatializationFormatMonoStereoAndMultichannel = 0x7;
+        #[doc(alias = "AVAudioSpatializationFormatNone")]
+        const None = 0;
+        #[doc(alias = "AVAudioSpatializationFormatMonoAndStereo")]
+        const MonoAndStereo = 0x3;
+        #[doc(alias = "AVAudioSpatializationFormatMultichannel")]
+        const Multichannel = 0x4;
+        #[doc(alias = "AVAudioSpatializationFormatMonoStereoAndMultichannel")]
+        const MonoStereoAndMultichannel = 0x7;
     }
 }
 

@@ -363,12 +363,18 @@ extern_methods!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CIDataMatrixCodeECCVersion(pub NSInteger);
 impl CIDataMatrixCodeECCVersion {
-    pub const CIDataMatrixCodeECCVersion000: Self = Self(0);
-    pub const CIDataMatrixCodeECCVersion050: Self = Self(50);
-    pub const CIDataMatrixCodeECCVersion080: Self = Self(80);
-    pub const CIDataMatrixCodeECCVersion100: Self = Self(100);
-    pub const CIDataMatrixCodeECCVersion140: Self = Self(140);
-    pub const CIDataMatrixCodeECCVersion200: Self = Self(200);
+    #[doc(alias = "CIDataMatrixCodeECCVersion000")]
+    pub const Version000: Self = Self(0);
+    #[doc(alias = "CIDataMatrixCodeECCVersion050")]
+    pub const Version050: Self = Self(50);
+    #[doc(alias = "CIDataMatrixCodeECCVersion080")]
+    pub const Version080: Self = Self(80);
+    #[doc(alias = "CIDataMatrixCodeECCVersion100")]
+    pub const Version100: Self = Self(100);
+    #[doc(alias = "CIDataMatrixCodeECCVersion140")]
+    pub const Version140: Self = Self(140);
+    #[doc(alias = "CIDataMatrixCodeECCVersion200")]
+    pub const Version200: Self = Self(200);
 }
 
 unsafe impl Encode for CIDataMatrixCodeECCVersion {

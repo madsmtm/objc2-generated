@@ -27,11 +27,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioCommonFormat(pub NSUInteger);
 impl AVAudioCommonFormat {
-    pub const AVAudioOtherFormat: Self = Self(0);
-    pub const AVAudioPCMFormatFloat32: Self = Self(1);
-    pub const AVAudioPCMFormatFloat64: Self = Self(2);
-    pub const AVAudioPCMFormatInt16: Self = Self(3);
-    pub const AVAudioPCMFormatInt32: Self = Self(4);
+    #[doc(alias = "AVAudioOtherFormat")]
+    pub const OtherFormat: Self = Self(0);
+    #[doc(alias = "AVAudioPCMFormatFloat32")]
+    pub const PCMFormatFloat32: Self = Self(1);
+    #[doc(alias = "AVAudioPCMFormatFloat64")]
+    pub const PCMFormatFloat64: Self = Self(2);
+    #[doc(alias = "AVAudioPCMFormatInt16")]
+    pub const PCMFormatInt16: Self = Self(3);
+    #[doc(alias = "AVAudioPCMFormatInt32")]
+    pub const PCMFormatInt32: Self = Self(4);
 }
 
 unsafe impl Encode for AVAudioCommonFormat {

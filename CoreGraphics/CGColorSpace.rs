@@ -18,11 +18,16 @@ pub type CGColorSpaceRef = *mut c_void;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGColorRenderingIntent(pub i32);
 impl CGColorRenderingIntent {
-    pub const kCGRenderingIntentDefault: Self = Self(0);
-    pub const kCGRenderingIntentAbsoluteColorimetric: Self = Self(1);
-    pub const kCGRenderingIntentRelativeColorimetric: Self = Self(2);
-    pub const kCGRenderingIntentPerceptual: Self = Self(3);
-    pub const kCGRenderingIntentSaturation: Self = Self(4);
+    #[doc(alias = "kCGRenderingIntentDefault")]
+    pub const RenderingIntentDefault: Self = Self(0);
+    #[doc(alias = "kCGRenderingIntentAbsoluteColorimetric")]
+    pub const RenderingIntentAbsoluteColorimetric: Self = Self(1);
+    #[doc(alias = "kCGRenderingIntentRelativeColorimetric")]
+    pub const RenderingIntentRelativeColorimetric: Self = Self(2);
+    #[doc(alias = "kCGRenderingIntentPerceptual")]
+    pub const RenderingIntentPerceptual: Self = Self(3);
+    #[doc(alias = "kCGRenderingIntentSaturation")]
+    pub const RenderingIntentSaturation: Self = Self(4);
 }
 
 #[cfg(feature = "objc2")]
@@ -41,15 +46,24 @@ unsafe impl RefEncode for CGColorRenderingIntent {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGColorSpaceModel(pub i32);
 impl CGColorSpaceModel {
-    pub const kCGColorSpaceModelUnknown: Self = Self(-1);
-    pub const kCGColorSpaceModelMonochrome: Self = Self(0);
-    pub const kCGColorSpaceModelRGB: Self = Self(1);
-    pub const kCGColorSpaceModelCMYK: Self = Self(2);
-    pub const kCGColorSpaceModelLab: Self = Self(3);
-    pub const kCGColorSpaceModelDeviceN: Self = Self(4);
-    pub const kCGColorSpaceModelIndexed: Self = Self(5);
-    pub const kCGColorSpaceModelPattern: Self = Self(6);
-    pub const kCGColorSpaceModelXYZ: Self = Self(7);
+    #[doc(alias = "kCGColorSpaceModelUnknown")]
+    pub const Unknown: Self = Self(-1);
+    #[doc(alias = "kCGColorSpaceModelMonochrome")]
+    pub const Monochrome: Self = Self(0);
+    #[doc(alias = "kCGColorSpaceModelRGB")]
+    pub const RGB: Self = Self(1);
+    #[doc(alias = "kCGColorSpaceModelCMYK")]
+    pub const CMYK: Self = Self(2);
+    #[doc(alias = "kCGColorSpaceModelLab")]
+    pub const Lab: Self = Self(3);
+    #[doc(alias = "kCGColorSpaceModelDeviceN")]
+    pub const DeviceN: Self = Self(4);
+    #[doc(alias = "kCGColorSpaceModelIndexed")]
+    pub const Indexed: Self = Self(5);
+    #[doc(alias = "kCGColorSpaceModelPattern")]
+    pub const Pattern: Self = Self(6);
+    #[doc(alias = "kCGColorSpaceModelXYZ")]
+    pub const XYZ: Self = Self(7);
 }
 
 #[cfg(feature = "objc2")]

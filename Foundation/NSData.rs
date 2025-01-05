@@ -15,15 +15,19 @@ use crate::*;
 pub struct NSDataReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDataReadingOptions: NSUInteger {
-        const NSDataReadingMappedIfSafe = 1<<0;
-        const NSDataReadingUncached = 1<<1;
-        const NSDataReadingMappedAlways = 1<<3;
+        #[doc(alias = "NSDataReadingMappedIfSafe")]
+        const MappedIfSafe = 1<<0;
+        #[doc(alias = "NSDataReadingUncached")]
+        const Uncached = 1<<1;
+        #[doc(alias = "NSDataReadingMappedAlways")]
+        const MappedAlways = 1<<3;
 #[deprecated]
-        const NSDataReadingMapped = NSDataReadingOptions::NSDataReadingMappedIfSafe.0;
+        #[doc(alias = "NSDataReadingMapped")]
+        const Mapped = NSDataReadingOptions::MappedIfSafe.0;
 #[deprecated]
-        const NSMappedRead = NSDataReadingOptions::NSDataReadingMapped.0;
+        const NSMappedRead = NSDataReadingOptions::Mapped.0;
 #[deprecated]
-        const NSUncachedRead = NSDataReadingOptions::NSDataReadingUncached.0;
+        const NSUncachedRead = NSDataReadingOptions::Uncached.0;
     }
 }
 
@@ -42,16 +46,24 @@ unsafe impl RefEncode for NSDataReadingOptions {
 pub struct NSDataWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDataWritingOptions: NSUInteger {
-        const NSDataWritingAtomic = 1<<0;
-        const NSDataWritingWithoutOverwriting = 1<<1;
-        const NSDataWritingFileProtectionNone = 0x10000000;
-        const NSDataWritingFileProtectionComplete = 0x20000000;
-        const NSDataWritingFileProtectionCompleteUnlessOpen = 0x30000000;
-        const NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication = 0x40000000;
-        const NSDataWritingFileProtectionCompleteWhenUserInactive = 0x50000000;
-        const NSDataWritingFileProtectionMask = 0xf0000000;
+        #[doc(alias = "NSDataWritingAtomic")]
+        const Atomic = 1<<0;
+        #[doc(alias = "NSDataWritingWithoutOverwriting")]
+        const WithoutOverwriting = 1<<1;
+        #[doc(alias = "NSDataWritingFileProtectionNone")]
+        const FileProtectionNone = 0x10000000;
+        #[doc(alias = "NSDataWritingFileProtectionComplete")]
+        const FileProtectionComplete = 0x20000000;
+        #[doc(alias = "NSDataWritingFileProtectionCompleteUnlessOpen")]
+        const FileProtectionCompleteUnlessOpen = 0x30000000;
+        #[doc(alias = "NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication")]
+        const FileProtectionCompleteUntilFirstUserAuthentication = 0x40000000;
+        #[doc(alias = "NSDataWritingFileProtectionCompleteWhenUserInactive")]
+        const FileProtectionCompleteWhenUserInactive = 0x50000000;
+        #[doc(alias = "NSDataWritingFileProtectionMask")]
+        const FileProtectionMask = 0xf0000000;
 #[deprecated]
-        const NSAtomicWrite = NSDataWritingOptions::NSDataWritingAtomic.0;
+        const NSAtomicWrite = NSDataWritingOptions::Atomic.0;
     }
 }
 
@@ -72,8 +84,10 @@ unsafe impl RefEncode for NSDataWritingOptions {
 pub struct NSDataSearchOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDataSearchOptions: NSUInteger {
-        const NSDataSearchBackwards = 1<<0;
-        const NSDataSearchAnchored = 1<<1;
+        #[doc(alias = "NSDataSearchBackwards")]
+        const Backwards = 1<<0;
+        #[doc(alias = "NSDataSearchAnchored")]
+        const Anchored = 1<<1;
     }
 }
 
@@ -94,10 +108,14 @@ unsafe impl RefEncode for NSDataSearchOptions {
 pub struct NSDataBase64EncodingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDataBase64EncodingOptions: NSUInteger {
-        const NSDataBase64Encoding64CharacterLineLength = 1<<0;
-        const NSDataBase64Encoding76CharacterLineLength = 1<<1;
-        const NSDataBase64EncodingEndLineWithCarriageReturn = 1<<4;
-        const NSDataBase64EncodingEndLineWithLineFeed = 1<<5;
+        #[doc(alias = "NSDataBase64Encoding64CharacterLineLength")]
+        const Encoding64CharacterLineLength = 1<<0;
+        #[doc(alias = "NSDataBase64Encoding76CharacterLineLength")]
+        const Encoding76CharacterLineLength = 1<<1;
+        #[doc(alias = "NSDataBase64EncodingEndLineWithCarriageReturn")]
+        const EncodingEndLineWithCarriageReturn = 1<<4;
+        #[doc(alias = "NSDataBase64EncodingEndLineWithLineFeed")]
+        const EncodingEndLineWithLineFeed = 1<<5;
     }
 }
 
@@ -116,7 +134,8 @@ unsafe impl RefEncode for NSDataBase64EncodingOptions {
 pub struct NSDataBase64DecodingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDataBase64DecodingOptions: NSUInteger {
-        const NSDataBase64DecodingIgnoreUnknownCharacters = 1<<0;
+        #[doc(alias = "NSDataBase64DecodingIgnoreUnknownCharacters")]
+        const IgnoreUnknownCharacters = 1<<0;
     }
 }
 

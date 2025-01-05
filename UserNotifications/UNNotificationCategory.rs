@@ -13,12 +13,17 @@ use crate::*;
 pub struct UNNotificationCategoryOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UNNotificationCategoryOptions: NSUInteger {
-        const UNNotificationCategoryOptionCustomDismissAction = 1<<0;
-        const UNNotificationCategoryOptionAllowInCarPlay = 1<<1;
-        const UNNotificationCategoryOptionHiddenPreviewsShowTitle = 1<<2;
-        const UNNotificationCategoryOptionHiddenPreviewsShowSubtitle = 1<<3;
+        #[doc(alias = "UNNotificationCategoryOptionCustomDismissAction")]
+        const CustomDismissAction = 1<<0;
+        #[doc(alias = "UNNotificationCategoryOptionAllowInCarPlay")]
+        const AllowInCarPlay = 1<<1;
+        #[doc(alias = "UNNotificationCategoryOptionHiddenPreviewsShowTitle")]
+        const HiddenPreviewsShowTitle = 1<<2;
+        #[doc(alias = "UNNotificationCategoryOptionHiddenPreviewsShowSubtitle")]
+        const HiddenPreviewsShowSubtitle = 1<<3;
 #[deprecated = "Announcement option is ignored"]
-        const UNNotificationCategoryOptionAllowAnnouncement = 1<<4;
+        #[doc(alias = "UNNotificationCategoryOptionAllowAnnouncement")]
+        const AllowAnnouncement = 1<<4;
     }
 }
 

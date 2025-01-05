@@ -13,8 +13,10 @@ use crate::*;
 pub struct NSFileWrapperReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileWrapperReadingOptions: NSUInteger {
-        const NSFileWrapperReadingImmediate = 1<<0;
-        const NSFileWrapperReadingWithoutMapping = 1<<1;
+        #[doc(alias = "NSFileWrapperReadingImmediate")]
+        const Immediate = 1<<0;
+        #[doc(alias = "NSFileWrapperReadingWithoutMapping")]
+        const WithoutMapping = 1<<1;
     }
 }
 
@@ -33,8 +35,10 @@ unsafe impl RefEncode for NSFileWrapperReadingOptions {
 pub struct NSFileWrapperWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileWrapperWritingOptions: NSUInteger {
-        const NSFileWrapperWritingAtomic = 1<<0;
-        const NSFileWrapperWritingWithNameUpdating = 1<<1;
+        #[doc(alias = "NSFileWrapperWritingAtomic")]
+        const Atomic = 1<<0;
+        #[doc(alias = "NSFileWrapperWritingWithNameUpdating")]
+        const WithNameUpdating = 1<<1;
     }
 }
 

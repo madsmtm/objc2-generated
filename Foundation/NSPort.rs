@@ -144,9 +144,12 @@ extern_protocol!(
 pub struct NSMachPortOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMachPortOptions: NSUInteger {
-        const NSMachPortDeallocateNone = 0;
-        const NSMachPortDeallocateSendRight = 1<<0;
-        const NSMachPortDeallocateReceiveRight = 1<<1;
+        #[doc(alias = "NSMachPortDeallocateNone")]
+        const DeallocateNone = 0;
+        #[doc(alias = "NSMachPortDeallocateSendRight")]
+        const DeallocateSendRight = 1<<0;
+        #[doc(alias = "NSMachPortDeallocateReceiveRight")]
+        const DeallocateReceiveRight = 1<<1;
     }
 }
 

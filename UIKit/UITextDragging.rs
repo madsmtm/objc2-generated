@@ -15,8 +15,9 @@ pub struct UITextDragOptions(pub NSInteger);
 bitflags::bitflags! {
     impl UITextDragOptions: NSInteger {
         #[doc(alias = "UITextDragOptionsNone")]
-        const None = 0;
-        const UITextDragOptionStripTextColorFromPreviews = 1<<0;
+        const OptionsNone = 0;
+        #[doc(alias = "UITextDragOptionStripTextColorFromPreviews")]
+        const OptionStripTextColorFromPreviews = 1<<0;
     }
 }
 

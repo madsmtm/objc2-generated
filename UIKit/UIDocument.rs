@@ -13,10 +13,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIDocumentChangeKind(pub NSInteger);
 impl UIDocumentChangeKind {
-    pub const UIDocumentChangeDone: Self = Self(0);
-    pub const UIDocumentChangeUndone: Self = Self(1);
-    pub const UIDocumentChangeRedone: Self = Self(2);
-    pub const UIDocumentChangeCleared: Self = Self(3);
+    #[doc(alias = "UIDocumentChangeDone")]
+    pub const Done: Self = Self(0);
+    #[doc(alias = "UIDocumentChangeUndone")]
+    pub const Undone: Self = Self(1);
+    #[doc(alias = "UIDocumentChangeRedone")]
+    pub const Redone: Self = Self(2);
+    #[doc(alias = "UIDocumentChangeCleared")]
+    pub const Cleared: Self = Self(3);
 }
 
 unsafe impl Encode for UIDocumentChangeKind {
@@ -33,8 +37,10 @@ unsafe impl RefEncode for UIDocumentChangeKind {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIDocumentSaveOperation(pub NSInteger);
 impl UIDocumentSaveOperation {
-    pub const UIDocumentSaveForCreating: Self = Self(0);
-    pub const UIDocumentSaveForOverwriting: Self = Self(1);
+    #[doc(alias = "UIDocumentSaveForCreating")]
+    pub const ForCreating: Self = Self(0);
+    #[doc(alias = "UIDocumentSaveForOverwriting")]
+    pub const ForOverwriting: Self = Self(1);
 }
 
 unsafe impl Encode for UIDocumentSaveOperation {

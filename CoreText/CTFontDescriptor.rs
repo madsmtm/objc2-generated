@@ -278,18 +278,18 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTFontOrientation(pub u32);
 impl CTFontOrientation {
-    pub const kCTFontOrientationDefault: Self = Self(0);
-    pub const kCTFontOrientationHorizontal: Self = Self(1);
-    pub const kCTFontOrientationVertical: Self = Self(2);
+    #[doc(alias = "kCTFontOrientationDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "kCTFontOrientationHorizontal")]
+    pub const Horizontal: Self = Self(1);
+    #[doc(alias = "kCTFontOrientationVertical")]
+    pub const Vertical: Self = Self(2);
     #[deprecated = "Deprecated"]
-    pub const kCTFontDefaultOrientation: Self =
-        Self(CTFontOrientation::kCTFontOrientationDefault.0);
+    pub const kCTFontDefaultOrientation: Self = Self(CTFontOrientation::Default.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontHorizontalOrientation: Self =
-        Self(CTFontOrientation::kCTFontOrientationHorizontal.0);
+    pub const kCTFontHorizontalOrientation: Self = Self(CTFontOrientation::Horizontal.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontVerticalOrientation: Self =
-        Self(CTFontOrientation::kCTFontOrientationVertical.0);
+    pub const kCTFontVerticalOrientation: Self = Self(CTFontOrientation::Vertical.0);
 }
 
 #[cfg(feature = "objc2")]
@@ -332,12 +332,18 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTFontFormat(pub u32);
 impl CTFontFormat {
-    pub const kCTFontFormatUnrecognized: Self = Self(0);
-    pub const kCTFontFormatOpenTypePostScript: Self = Self(1);
-    pub const kCTFontFormatOpenTypeTrueType: Self = Self(2);
-    pub const kCTFontFormatTrueType: Self = Self(3);
-    pub const kCTFontFormatPostScript: Self = Self(4);
-    pub const kCTFontFormatBitmap: Self = Self(5);
+    #[doc(alias = "kCTFontFormatUnrecognized")]
+    pub const Unrecognized: Self = Self(0);
+    #[doc(alias = "kCTFontFormatOpenTypePostScript")]
+    pub const OpenTypePostScript: Self = Self(1);
+    #[doc(alias = "kCTFontFormatOpenTypeTrueType")]
+    pub const OpenTypeTrueType: Self = Self(2);
+    #[doc(alias = "kCTFontFormatTrueType")]
+    pub const TrueType: Self = Self(3);
+    #[doc(alias = "kCTFontFormatPostScript")]
+    pub const PostScript: Self = Self(4);
+    #[doc(alias = "kCTFontFormatBitmap")]
+    pub const Bitmap: Self = Self(5);
 }
 
 #[cfg(feature = "objc2")]
@@ -631,15 +637,24 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTFontDescriptorMatchingState(pub u32);
 impl CTFontDescriptorMatchingState {
-    pub const kCTFontDescriptorMatchingDidBegin: Self = Self(0);
-    pub const kCTFontDescriptorMatchingDidFinish: Self = Self(1);
-    pub const kCTFontDescriptorMatchingWillBeginQuerying: Self = Self(2);
-    pub const kCTFontDescriptorMatchingStalled: Self = Self(3);
-    pub const kCTFontDescriptorMatchingWillBeginDownloading: Self = Self(4);
-    pub const kCTFontDescriptorMatchingDownloading: Self = Self(5);
-    pub const kCTFontDescriptorMatchingDidFinishDownloading: Self = Self(6);
-    pub const kCTFontDescriptorMatchingDidMatch: Self = Self(7);
-    pub const kCTFontDescriptorMatchingDidFailWithError: Self = Self(8);
+    #[doc(alias = "kCTFontDescriptorMatchingDidBegin")]
+    pub const DidBegin: Self = Self(0);
+    #[doc(alias = "kCTFontDescriptorMatchingDidFinish")]
+    pub const DidFinish: Self = Self(1);
+    #[doc(alias = "kCTFontDescriptorMatchingWillBeginQuerying")]
+    pub const WillBeginQuerying: Self = Self(2);
+    #[doc(alias = "kCTFontDescriptorMatchingStalled")]
+    pub const Stalled: Self = Self(3);
+    #[doc(alias = "kCTFontDescriptorMatchingWillBeginDownloading")]
+    pub const WillBeginDownloading: Self = Self(4);
+    #[doc(alias = "kCTFontDescriptorMatchingDownloading")]
+    pub const Downloading: Self = Self(5);
+    #[doc(alias = "kCTFontDescriptorMatchingDidFinishDownloading")]
+    pub const DidFinishDownloading: Self = Self(6);
+    #[doc(alias = "kCTFontDescriptorMatchingDidMatch")]
+    pub const DidMatch: Self = Self(7);
+    #[doc(alias = "kCTFontDescriptorMatchingDidFailWithError")]
+    pub const DidFailWithError: Self = Self(8);
 }
 
 #[cfg(feature = "objc2")]

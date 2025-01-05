@@ -12,20 +12,34 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFStringEncoding(pub u32);
 impl CFStringEncoding {
-    pub const kCFStringEncodingMacRoman: Self = Self(0);
-    pub const kCFStringEncodingWindowsLatin1: Self = Self(0x0500);
-    pub const kCFStringEncodingISOLatin1: Self = Self(0x0201);
-    pub const kCFStringEncodingNextStepLatin: Self = Self(0x0B01);
-    pub const kCFStringEncodingASCII: Self = Self(0x0600);
-    pub const kCFStringEncodingUnicode: Self = Self(0x0100);
-    pub const kCFStringEncodingUTF8: Self = Self(0x08000100);
-    pub const kCFStringEncodingNonLossyASCII: Self = Self(0x0BFF);
-    pub const kCFStringEncodingUTF16: Self = Self(0x0100);
-    pub const kCFStringEncodingUTF16BE: Self = Self(0x10000100);
-    pub const kCFStringEncodingUTF16LE: Self = Self(0x14000100);
-    pub const kCFStringEncodingUTF32: Self = Self(0x0c000100);
-    pub const kCFStringEncodingUTF32BE: Self = Self(0x18000100);
-    pub const kCFStringEncodingUTF32LE: Self = Self(0x1c000100);
+    #[doc(alias = "kCFStringEncodingMacRoman")]
+    pub const MacRoman: Self = Self(0);
+    #[doc(alias = "kCFStringEncodingWindowsLatin1")]
+    pub const WindowsLatin1: Self = Self(0x0500);
+    #[doc(alias = "kCFStringEncodingISOLatin1")]
+    pub const ISOLatin1: Self = Self(0x0201);
+    #[doc(alias = "kCFStringEncodingNextStepLatin")]
+    pub const NextStepLatin: Self = Self(0x0B01);
+    #[doc(alias = "kCFStringEncodingASCII")]
+    pub const ASCII: Self = Self(0x0600);
+    #[doc(alias = "kCFStringEncodingUnicode")]
+    pub const Unicode: Self = Self(0x0100);
+    #[doc(alias = "kCFStringEncodingUTF8")]
+    pub const UTF8: Self = Self(0x08000100);
+    #[doc(alias = "kCFStringEncodingNonLossyASCII")]
+    pub const NonLossyASCII: Self = Self(0x0BFF);
+    #[doc(alias = "kCFStringEncodingUTF16")]
+    pub const UTF16: Self = Self(0x0100);
+    #[doc(alias = "kCFStringEncodingUTF16BE")]
+    pub const UTF16BE: Self = Self(0x10000100);
+    #[doc(alias = "kCFStringEncodingUTF16LE")]
+    pub const UTF16LE: Self = Self(0x14000100);
+    #[doc(alias = "kCFStringEncodingUTF32")]
+    pub const UTF32: Self = Self(0x0c000100);
+    #[doc(alias = "kCFStringEncodingUTF32BE")]
+    pub const UTF32BE: Self = Self(0x18000100);
+    #[doc(alias = "kCFStringEncodingUTF32LE")]
+    pub const UTF32LE: Self = Self(0x1c000100);
 }
 
 #[cfg(feature = "objc2")]
@@ -307,15 +321,24 @@ pub struct CFStringCompareFlags(pub CFOptionFlags);
 #[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFStringCompareFlags: CFOptionFlags {
-        const kCFCompareCaseInsensitive = 1;
-        const kCFCompareBackwards = 4;
-        const kCFCompareAnchored = 8;
-        const kCFCompareNonliteral = 16;
-        const kCFCompareLocalized = 32;
-        const kCFCompareNumerically = 64;
-        const kCFCompareDiacriticInsensitive = 128;
-        const kCFCompareWidthInsensitive = 256;
-        const kCFCompareForcedOrdering = 512;
+        #[doc(alias = "kCFCompareCaseInsensitive")]
+        const CompareCaseInsensitive = 1;
+        #[doc(alias = "kCFCompareBackwards")]
+        const CompareBackwards = 4;
+        #[doc(alias = "kCFCompareAnchored")]
+        const CompareAnchored = 8;
+        #[doc(alias = "kCFCompareNonliteral")]
+        const CompareNonliteral = 16;
+        #[doc(alias = "kCFCompareLocalized")]
+        const CompareLocalized = 32;
+        #[doc(alias = "kCFCompareNumerically")]
+        const CompareNumerically = 64;
+        #[doc(alias = "kCFCompareDiacriticInsensitive")]
+        const CompareDiacriticInsensitive = 128;
+        #[doc(alias = "kCFCompareWidthInsensitive")]
+        const CompareWidthInsensitive = 256;
+        #[doc(alias = "kCFCompareForcedOrdering")]
+        const CompareForcedOrdering = 512;
     }
 }
 
@@ -699,10 +722,14 @@ extern "C-unwind" {
 pub struct CFStringNormalizationForm(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFStringNormalizationForm {
-    pub const kCFStringNormalizationFormD: Self = Self(0);
-    pub const kCFStringNormalizationFormKD: Self = Self(1);
-    pub const kCFStringNormalizationFormC: Self = Self(2);
-    pub const kCFStringNormalizationFormKC: Self = Self(3);
+    #[doc(alias = "kCFStringNormalizationFormD")]
+    pub const D: Self = Self(0);
+    #[doc(alias = "kCFStringNormalizationFormKD")]
+    pub const KD: Self = Self(1);
+    #[doc(alias = "kCFStringNormalizationFormC")]
+    pub const C: Self = Self(2);
+    #[doc(alias = "kCFStringNormalizationFormKC")]
+    pub const KC: Self = Self(3);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]

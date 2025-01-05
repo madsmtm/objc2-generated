@@ -27,9 +27,12 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSURLCacheStoragePolicy(pub NSUInteger);
 impl NSURLCacheStoragePolicy {
-    pub const NSURLCacheStorageAllowed: Self = Self(0);
-    pub const NSURLCacheStorageAllowedInMemoryOnly: Self = Self(1);
-    pub const NSURLCacheStorageNotAllowed: Self = Self(2);
+    #[doc(alias = "NSURLCacheStorageAllowed")]
+    pub const Allowed: Self = Self(0);
+    #[doc(alias = "NSURLCacheStorageAllowedInMemoryOnly")]
+    pub const AllowedInMemoryOnly: Self = Self(1);
+    #[doc(alias = "NSURLCacheStorageNotAllowed")]
+    pub const NotAllowed: Self = Self(2);
 }
 
 unsafe impl Encode for NSURLCacheStoragePolicy {

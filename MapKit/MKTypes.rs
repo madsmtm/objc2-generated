@@ -45,12 +45,18 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MKErrorCode(pub NSUInteger);
 impl MKErrorCode {
-    pub const MKErrorUnknown: Self = Self(1);
-    pub const MKErrorServerFailure: Self = Self(2);
-    pub const MKErrorLoadingThrottled: Self = Self(3);
-    pub const MKErrorPlacemarkNotFound: Self = Self(4);
-    pub const MKErrorDirectionsNotFound: Self = Self(5);
-    pub const MKErrorDecodingFailed: Self = Self(6);
+    #[doc(alias = "MKErrorUnknown")]
+    pub const Unknown: Self = Self(1);
+    #[doc(alias = "MKErrorServerFailure")]
+    pub const ServerFailure: Self = Self(2);
+    #[doc(alias = "MKErrorLoadingThrottled")]
+    pub const LoadingThrottled: Self = Self(3);
+    #[doc(alias = "MKErrorPlacemarkNotFound")]
+    pub const PlacemarkNotFound: Self = Self(4);
+    #[doc(alias = "MKErrorDirectionsNotFound")]
+    pub const DirectionsNotFound: Self = Self(5);
+    #[doc(alias = "MKErrorDecodingFailed")]
+    pub const DecodingFailed: Self = Self(6);
 }
 
 unsafe impl Encode for MKErrorCode {

@@ -114,40 +114,74 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CWErr(pub NSInteger);
 impl CWErr {
-    pub const kCWNoErr: Self = Self(0);
-    pub const kCWEAPOLErr: Self = Self(1);
-    pub const kCWInvalidParameterErr: Self = Self(-3900);
-    pub const kCWNoMemoryErr: Self = Self(-3901);
-    pub const kCWUnknownErr: Self = Self(-3902);
-    pub const kCWNotSupportedErr: Self = Self(-3903);
-    pub const kCWInvalidFormatErr: Self = Self(-3904);
-    pub const kCWTimeoutErr: Self = Self(-3905);
-    pub const kCWUnspecifiedFailureErr: Self = Self(-3906);
-    pub const kCWUnsupportedCapabilitiesErr: Self = Self(-3907);
-    pub const kCWReassociationDeniedErr: Self = Self(-3908);
-    pub const kCWAssociationDeniedErr: Self = Self(-3909);
-    pub const kCWAuthenticationAlgorithmUnsupportedErr: Self = Self(-3910);
-    pub const kCWInvalidAuthenticationSequenceNumberErr: Self = Self(-3911);
-    pub const kCWChallengeFailureErr: Self = Self(-3912);
-    pub const kCWAPFullErr: Self = Self(-3913);
-    pub const kCWUnsupportedRateSetErr: Self = Self(-3914);
-    pub const kCWShortSlotUnsupportedErr: Self = Self(-3915);
-    pub const kCWDSSSOFDMUnsupportedErr: Self = Self(-3916);
-    pub const kCWInvalidInformationElementErr: Self = Self(-3917);
-    pub const kCWInvalidGroupCipherErr: Self = Self(-3918);
-    pub const kCWInvalidPairwiseCipherErr: Self = Self(-3919);
-    pub const kCWInvalidAKMPErr: Self = Self(-3920);
-    pub const kCWUnsupportedRSNVersionErr: Self = Self(-3921);
-    pub const kCWInvalidRSNCapabilitiesErr: Self = Self(-3922);
-    pub const kCWCipherSuiteRejectedErr: Self = Self(-3923);
-    pub const kCWInvalidPMKErr: Self = Self(-3924);
-    pub const kCWSupplicantTimeoutErr: Self = Self(-3925);
-    pub const kCWHTFeaturesNotSupportedErr: Self = Self(-3926);
-    pub const kCWPCOTransitionTimeNotSupportedErr: Self = Self(-3927);
-    pub const kCWReferenceNotBoundErr: Self = Self(-3928);
-    pub const kCWIPCFailureErr: Self = Self(-3929);
-    pub const kCWOperationNotPermittedErr: Self = Self(-3930);
-    pub const kCWErr: Self = Self(-3931);
+    #[doc(alias = "kCWNoErr")]
+    pub const CWNoErr: Self = Self(0);
+    #[doc(alias = "kCWEAPOLErr")]
+    pub const CWEAPOLErr: Self = Self(1);
+    #[doc(alias = "kCWInvalidParameterErr")]
+    pub const CWInvalidParameterErr: Self = Self(-3900);
+    #[doc(alias = "kCWNoMemoryErr")]
+    pub const CWNoMemoryErr: Self = Self(-3901);
+    #[doc(alias = "kCWUnknownErr")]
+    pub const CWUnknownErr: Self = Self(-3902);
+    #[doc(alias = "kCWNotSupportedErr")]
+    pub const CWNotSupportedErr: Self = Self(-3903);
+    #[doc(alias = "kCWInvalidFormatErr")]
+    pub const CWInvalidFormatErr: Self = Self(-3904);
+    #[doc(alias = "kCWTimeoutErr")]
+    pub const CWTimeoutErr: Self = Self(-3905);
+    #[doc(alias = "kCWUnspecifiedFailureErr")]
+    pub const CWUnspecifiedFailureErr: Self = Self(-3906);
+    #[doc(alias = "kCWUnsupportedCapabilitiesErr")]
+    pub const CWUnsupportedCapabilitiesErr: Self = Self(-3907);
+    #[doc(alias = "kCWReassociationDeniedErr")]
+    pub const CWReassociationDeniedErr: Self = Self(-3908);
+    #[doc(alias = "kCWAssociationDeniedErr")]
+    pub const CWAssociationDeniedErr: Self = Self(-3909);
+    #[doc(alias = "kCWAuthenticationAlgorithmUnsupportedErr")]
+    pub const CWAuthenticationAlgorithmUnsupportedErr: Self = Self(-3910);
+    #[doc(alias = "kCWInvalidAuthenticationSequenceNumberErr")]
+    pub const CWInvalidAuthenticationSequenceNumberErr: Self = Self(-3911);
+    #[doc(alias = "kCWChallengeFailureErr")]
+    pub const CWChallengeFailureErr: Self = Self(-3912);
+    #[doc(alias = "kCWAPFullErr")]
+    pub const CWAPFullErr: Self = Self(-3913);
+    #[doc(alias = "kCWUnsupportedRateSetErr")]
+    pub const CWUnsupportedRateSetErr: Self = Self(-3914);
+    #[doc(alias = "kCWShortSlotUnsupportedErr")]
+    pub const CWShortSlotUnsupportedErr: Self = Self(-3915);
+    #[doc(alias = "kCWDSSSOFDMUnsupportedErr")]
+    pub const CWDSSSOFDMUnsupportedErr: Self = Self(-3916);
+    #[doc(alias = "kCWInvalidInformationElementErr")]
+    pub const CWInvalidInformationElementErr: Self = Self(-3917);
+    #[doc(alias = "kCWInvalidGroupCipherErr")]
+    pub const CWInvalidGroupCipherErr: Self = Self(-3918);
+    #[doc(alias = "kCWInvalidPairwiseCipherErr")]
+    pub const CWInvalidPairwiseCipherErr: Self = Self(-3919);
+    #[doc(alias = "kCWInvalidAKMPErr")]
+    pub const CWInvalidAKMPErr: Self = Self(-3920);
+    #[doc(alias = "kCWUnsupportedRSNVersionErr")]
+    pub const CWUnsupportedRSNVersionErr: Self = Self(-3921);
+    #[doc(alias = "kCWInvalidRSNCapabilitiesErr")]
+    pub const CWInvalidRSNCapabilitiesErr: Self = Self(-3922);
+    #[doc(alias = "kCWCipherSuiteRejectedErr")]
+    pub const CWCipherSuiteRejectedErr: Self = Self(-3923);
+    #[doc(alias = "kCWInvalidPMKErr")]
+    pub const CWInvalidPMKErr: Self = Self(-3924);
+    #[doc(alias = "kCWSupplicantTimeoutErr")]
+    pub const CWSupplicantTimeoutErr: Self = Self(-3925);
+    #[doc(alias = "kCWHTFeaturesNotSupportedErr")]
+    pub const CWHTFeaturesNotSupportedErr: Self = Self(-3926);
+    #[doc(alias = "kCWPCOTransitionTimeNotSupportedErr")]
+    pub const CWPCOTransitionTimeNotSupportedErr: Self = Self(-3927);
+    #[doc(alias = "kCWReferenceNotBoundErr")]
+    pub const CWReferenceNotBoundErr: Self = Self(-3928);
+    #[doc(alias = "kCWIPCFailureErr")]
+    pub const CWIPCFailureErr: Self = Self(-3929);
+    #[doc(alias = "kCWOperationNotPermittedErr")]
+    pub const CWOperationNotPermittedErr: Self = Self(-3930);
+    #[doc(alias = "kCWErr")]
+    pub const CWErr: Self = Self(-3931);
 }
 
 unsafe impl Encode for CWErr {
@@ -185,13 +219,20 @@ unsafe impl RefEncode for CWErr {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CWPHYMode(pub NSInteger);
 impl CWPHYMode {
-    pub const kCWPHYModeNone: Self = Self(0);
-    pub const kCWPHYMode11a: Self = Self(1);
-    pub const kCWPHYMode11b: Self = Self(2);
-    pub const kCWPHYMode11g: Self = Self(3);
-    pub const kCWPHYMode11n: Self = Self(4);
-    pub const kCWPHYMode11ac: Self = Self(5);
-    pub const kCWPHYMode11ax: Self = Self(6);
+    #[doc(alias = "kCWPHYModeNone")]
+    pub const ModeNone: Self = Self(0);
+    #[doc(alias = "kCWPHYMode11a")]
+    pub const Mode11a: Self = Self(1);
+    #[doc(alias = "kCWPHYMode11b")]
+    pub const Mode11b: Self = Self(2);
+    #[doc(alias = "kCWPHYMode11g")]
+    pub const Mode11g: Self = Self(3);
+    #[doc(alias = "kCWPHYMode11n")]
+    pub const Mode11n: Self = Self(4);
+    #[doc(alias = "kCWPHYMode11ac")]
+    pub const Mode11ac: Self = Self(5);
+    #[doc(alias = "kCWPHYMode11ax")]
+    pub const Mode11ax: Self = Self(6);
 }
 
 unsafe impl Encode for CWPHYMode {
@@ -222,10 +263,14 @@ unsafe impl RefEncode for CWPHYMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CWInterfaceMode(pub NSInteger);
 impl CWInterfaceMode {
-    pub const kCWInterfaceModeNone: Self = Self(0);
-    pub const kCWInterfaceModeStation: Self = Self(1);
-    pub const kCWInterfaceModeIBSS: Self = Self(2);
-    pub const kCWInterfaceModeHostAP: Self = Self(3);
+    #[doc(alias = "kCWInterfaceModeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "kCWInterfaceModeStation")]
+    pub const Station: Self = Self(1);
+    #[doc(alias = "kCWInterfaceModeIBSS")]
+    pub const IBSS: Self = Self(2);
+    #[doc(alias = "kCWInterfaceModeHostAP")]
+    pub const HostAP: Self = Self(3);
 }
 
 unsafe impl Encode for CWInterfaceMode {
@@ -289,23 +334,40 @@ unsafe impl RefEncode for CWInterfaceMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CWSecurity(pub NSInteger);
 impl CWSecurity {
-    pub const kCWSecurityNone: Self = Self(0);
-    pub const kCWSecurityWEP: Self = Self(1);
-    pub const kCWSecurityWPAPersonal: Self = Self(2);
-    pub const kCWSecurityWPAPersonalMixed: Self = Self(3);
-    pub const kCWSecurityWPA2Personal: Self = Self(4);
-    pub const kCWSecurityPersonal: Self = Self(5);
-    pub const kCWSecurityDynamicWEP: Self = Self(6);
-    pub const kCWSecurityWPAEnterprise: Self = Self(7);
-    pub const kCWSecurityWPAEnterpriseMixed: Self = Self(8);
-    pub const kCWSecurityWPA2Enterprise: Self = Self(9);
-    pub const kCWSecurityEnterprise: Self = Self(10);
-    pub const kCWSecurityWPA3Personal: Self = Self(11);
-    pub const kCWSecurityWPA3Enterprise: Self = Self(12);
-    pub const kCWSecurityWPA3Transition: Self = Self(13);
-    pub const kCWSecurityOWE: Self = Self(14);
-    pub const kCWSecurityOWETransition: Self = Self(15);
-    pub const kCWSecurityUnknown: Self = Self(NSIntegerMax as _);
+    #[doc(alias = "kCWSecurityNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "kCWSecurityWEP")]
+    pub const WEP: Self = Self(1);
+    #[doc(alias = "kCWSecurityWPAPersonal")]
+    pub const WPAPersonal: Self = Self(2);
+    #[doc(alias = "kCWSecurityWPAPersonalMixed")]
+    pub const WPAPersonalMixed: Self = Self(3);
+    #[doc(alias = "kCWSecurityWPA2Personal")]
+    pub const WPA2Personal: Self = Self(4);
+    #[doc(alias = "kCWSecurityPersonal")]
+    pub const Personal: Self = Self(5);
+    #[doc(alias = "kCWSecurityDynamicWEP")]
+    pub const DynamicWEP: Self = Self(6);
+    #[doc(alias = "kCWSecurityWPAEnterprise")]
+    pub const WPAEnterprise: Self = Self(7);
+    #[doc(alias = "kCWSecurityWPAEnterpriseMixed")]
+    pub const WPAEnterpriseMixed: Self = Self(8);
+    #[doc(alias = "kCWSecurityWPA2Enterprise")]
+    pub const WPA2Enterprise: Self = Self(9);
+    #[doc(alias = "kCWSecurityEnterprise")]
+    pub const Enterprise: Self = Self(10);
+    #[doc(alias = "kCWSecurityWPA3Personal")]
+    pub const WPA3Personal: Self = Self(11);
+    #[doc(alias = "kCWSecurityWPA3Enterprise")]
+    pub const WPA3Enterprise: Self = Self(12);
+    #[doc(alias = "kCWSecurityWPA3Transition")]
+    pub const WPA3Transition: Self = Self(13);
+    #[doc(alias = "kCWSecurityOWE")]
+    pub const OWE: Self = Self(14);
+    #[doc(alias = "kCWSecurityOWETransition")]
+    pub const OWETransition: Self = Self(15);
+    #[doc(alias = "kCWSecurityUnknown")]
+    pub const Unknown: Self = Self(NSIntegerMax as _);
 }
 
 unsafe impl Encode for CWSecurity {
@@ -335,11 +397,14 @@ unsafe impl RefEncode for CWSecurity {
 pub struct CWIBSSModeSecurity(pub NSInteger);
 impl CWIBSSModeSecurity {
     #[deprecated]
-    pub const kCWIBSSModeSecurityNone: Self = Self(0);
+    #[doc(alias = "kCWIBSSModeSecurityNone")]
+    pub const None: Self = Self(0);
     #[deprecated]
-    pub const kCWIBSSModeSecurityWEP40: Self = Self(1);
+    #[doc(alias = "kCWIBSSModeSecurityWEP40")]
+    pub const WEP40: Self = Self(1);
     #[deprecated]
-    pub const kCWIBSSModeSecurityWEP104: Self = Self(2);
+    #[doc(alias = "kCWIBSSModeSecurityWEP104")]
+    pub const WEP104: Self = Self(2);
 }
 
 unsafe impl Encode for CWIBSSModeSecurity {
@@ -373,11 +438,16 @@ unsafe impl RefEncode for CWIBSSModeSecurity {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CWChannelWidth(pub NSInteger);
 impl CWChannelWidth {
-    pub const kCWChannelWidthUnknown: Self = Self(0);
-    pub const kCWChannelWidth20MHz: Self = Self(1);
-    pub const kCWChannelWidth40MHz: Self = Self(2);
-    pub const kCWChannelWidth80MHz: Self = Self(3);
-    pub const kCWChannelWidth160MHz: Self = Self(4);
+    #[doc(alias = "kCWChannelWidthUnknown")]
+    pub const WidthUnknown: Self = Self(0);
+    #[doc(alias = "kCWChannelWidth20MHz")]
+    pub const Width20MHz: Self = Self(1);
+    #[doc(alias = "kCWChannelWidth40MHz")]
+    pub const Width40MHz: Self = Self(2);
+    #[doc(alias = "kCWChannelWidth80MHz")]
+    pub const Width80MHz: Self = Self(3);
+    #[doc(alias = "kCWChannelWidth160MHz")]
+    pub const Width160MHz: Self = Self(4);
 }
 
 unsafe impl Encode for CWChannelWidth {
@@ -408,10 +478,14 @@ unsafe impl RefEncode for CWChannelWidth {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CWChannelBand(pub NSInteger);
 impl CWChannelBand {
-    pub const kCWChannelBandUnknown: Self = Self(0);
-    pub const kCWChannelBand2GHz: Self = Self(1);
-    pub const kCWChannelBand5GHz: Self = Self(2);
-    pub const kCWChannelBand6GHz: Self = Self(3);
+    #[doc(alias = "kCWChannelBandUnknown")]
+    pub const BandUnknown: Self = Self(0);
+    #[doc(alias = "kCWChannelBand2GHz")]
+    pub const Band2GHz: Self = Self(1);
+    #[doc(alias = "kCWChannelBand5GHz")]
+    pub const Band5GHz: Self = Self(2);
+    #[doc(alias = "kCWChannelBand6GHz")]
+    pub const Band6GHz: Self = Self(3);
 }
 
 unsafe impl Encode for CWChannelBand {
@@ -446,11 +520,16 @@ unsafe impl RefEncode for CWChannelBand {
 pub struct CWCipherKeyFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl CWCipherKeyFlags: NSUInteger {
-        const kCWCipherKeyFlagsNone = 0;
-        const kCWCipherKeyFlagsUnicast = 1<<1;
-        const kCWCipherKeyFlagsMulticast = 1<<2;
-        const kCWCipherKeyFlagsTx = 1<<3;
-        const kCWCipherKeyFlagsRx = 1<<4;
+        #[doc(alias = "kCWCipherKeyFlagsNone")]
+        const None = 0;
+        #[doc(alias = "kCWCipherKeyFlagsUnicast")]
+        const Unicast = 1<<1;
+        #[doc(alias = "kCWCipherKeyFlagsMulticast")]
+        const Multicast = 1<<2;
+        #[doc(alias = "kCWCipherKeyFlagsTx")]
+        const Tx = 1<<3;
+        #[doc(alias = "kCWCipherKeyFlagsRx")]
+        const Rx = 1<<4;
     }
 }
 
@@ -479,9 +558,12 @@ unsafe impl RefEncode for CWCipherKeyFlags {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CWKeychainDomain(pub NSInteger);
 impl CWKeychainDomain {
-    pub const kCWKeychainDomainNone: Self = Self(0);
-    pub const kCWKeychainDomainUser: Self = Self(1);
-    pub const kCWKeychainDomainSystem: Self = Self(2);
+    #[doc(alias = "kCWKeychainDomainNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "kCWKeychainDomainUser")]
+    pub const User: Self = Self(1);
+    #[doc(alias = "kCWKeychainDomainSystem")]
+    pub const System: Self = Self(2);
 }
 
 unsafe impl Encode for CWKeychainDomain {

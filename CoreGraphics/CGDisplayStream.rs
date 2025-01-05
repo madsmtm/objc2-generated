@@ -39,10 +39,14 @@ pub type CGDisplayStreamUpdateRef = *const c_void;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGDisplayStreamUpdateRectType(pub i32);
 impl CGDisplayStreamUpdateRectType {
-    pub const kCGDisplayStreamUpdateRefreshedRects: Self = Self(0);
-    pub const kCGDisplayStreamUpdateMovedRects: Self = Self(1);
-    pub const kCGDisplayStreamUpdateDirtyRects: Self = Self(2);
-    pub const kCGDisplayStreamUpdateReducedDirtyRects: Self = Self(3);
+    #[doc(alias = "kCGDisplayStreamUpdateRefreshedRects")]
+    pub const RefreshedRects: Self = Self(0);
+    #[doc(alias = "kCGDisplayStreamUpdateMovedRects")]
+    pub const MovedRects: Self = Self(1);
+    #[doc(alias = "kCGDisplayStreamUpdateDirtyRects")]
+    pub const DirtyRects: Self = Self(2);
+    #[doc(alias = "kCGDisplayStreamUpdateReducedDirtyRects")]
+    pub const ReducedDirtyRects: Self = Self(3);
 }
 
 #[cfg(feature = "objc2")]
@@ -63,10 +67,14 @@ unsafe impl RefEncode for CGDisplayStreamUpdateRectType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGDisplayStreamFrameStatus(pub i32);
 impl CGDisplayStreamFrameStatus {
-    pub const kCGDisplayStreamFrameStatusFrameComplete: Self = Self(0);
-    pub const kCGDisplayStreamFrameStatusFrameIdle: Self = Self(1);
-    pub const kCGDisplayStreamFrameStatusFrameBlank: Self = Self(2);
-    pub const kCGDisplayStreamFrameStatusStopped: Self = Self(3);
+    #[doc(alias = "kCGDisplayStreamFrameStatusFrameComplete")]
+    pub const FrameComplete: Self = Self(0);
+    #[doc(alias = "kCGDisplayStreamFrameStatusFrameIdle")]
+    pub const FrameIdle: Self = Self(1);
+    #[doc(alias = "kCGDisplayStreamFrameStatusFrameBlank")]
+    pub const FrameBlank: Self = Self(2);
+    #[doc(alias = "kCGDisplayStreamFrameStatusStopped")]
+    pub const Stopped: Self = Self(3);
 }
 
 #[cfg(feature = "objc2")]

@@ -18,14 +18,22 @@ pub struct CFXMLParserOptions(pub CFOptionFlags);
 #[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFXMLParserOptions: CFOptionFlags {
-        const kCFXMLParserValidateDocument = 1<<0;
-        const kCFXMLParserSkipMetaData = 1<<1;
-        const kCFXMLParserReplacePhysicalEntities = 1<<2;
-        const kCFXMLParserSkipWhitespace = 1<<3;
-        const kCFXMLParserResolveExternalEntities = 1<<4;
-        const kCFXMLParserAddImpliedAttributes = 1<<5;
-        const kCFXMLParserAllOptions = 0x00FFFFFF;
-        const kCFXMLParserNoOptions = 0;
+        #[doc(alias = "kCFXMLParserValidateDocument")]
+        const ValidateDocument = 1<<0;
+        #[doc(alias = "kCFXMLParserSkipMetaData")]
+        const SkipMetaData = 1<<1;
+        #[doc(alias = "kCFXMLParserReplacePhysicalEntities")]
+        const ReplacePhysicalEntities = 1<<2;
+        #[doc(alias = "kCFXMLParserSkipWhitespace")]
+        const SkipWhitespace = 1<<3;
+        #[doc(alias = "kCFXMLParserResolveExternalEntities")]
+        const ResolveExternalEntities = 1<<4;
+        #[doc(alias = "kCFXMLParserAddImpliedAttributes")]
+        const AddImpliedAttributes = 1<<5;
+        #[doc(alias = "kCFXMLParserAllOptions")]
+        const AllOptions = 0x00FFFFFF;
+        #[doc(alias = "kCFXMLParserNoOptions")]
+        const NoOptions = 0;
     }
 }
 
@@ -48,24 +56,42 @@ pub struct CFXMLParserStatusCode(pub CFIndex);
 #[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFXMLParserStatusCode: CFIndex {
-        const kCFXMLStatusParseNotBegun = -2;
-        const kCFXMLStatusParseInProgress = -1;
-        const kCFXMLStatusParseSuccessful = 0;
-        const kCFXMLErrorUnexpectedEOF = 1;
-        const kCFXMLErrorUnknownEncoding = 2;
-        const kCFXMLErrorEncodingConversionFailure = 3;
-        const kCFXMLErrorMalformedProcessingInstruction = 4;
-        const kCFXMLErrorMalformedDTD = 5;
-        const kCFXMLErrorMalformedName = 6;
-        const kCFXMLErrorMalformedCDSect = 7;
-        const kCFXMLErrorMalformedCloseTag = 8;
-        const kCFXMLErrorMalformedStartTag = 9;
-        const kCFXMLErrorMalformedDocument = 10;
-        const kCFXMLErrorElementlessDocument = 11;
-        const kCFXMLErrorMalformedComment = 12;
-        const kCFXMLErrorMalformedCharacterReference = 13;
-        const kCFXMLErrorMalformedParsedCharacterData = 14;
-        const kCFXMLErrorNoData = 15;
+        #[doc(alias = "kCFXMLStatusParseNotBegun")]
+        const StatusParseNotBegun = -2;
+        #[doc(alias = "kCFXMLStatusParseInProgress")]
+        const StatusParseInProgress = -1;
+        #[doc(alias = "kCFXMLStatusParseSuccessful")]
+        const StatusParseSuccessful = 0;
+        #[doc(alias = "kCFXMLErrorUnexpectedEOF")]
+        const ErrorUnexpectedEOF = 1;
+        #[doc(alias = "kCFXMLErrorUnknownEncoding")]
+        const ErrorUnknownEncoding = 2;
+        #[doc(alias = "kCFXMLErrorEncodingConversionFailure")]
+        const ErrorEncodingConversionFailure = 3;
+        #[doc(alias = "kCFXMLErrorMalformedProcessingInstruction")]
+        const ErrorMalformedProcessingInstruction = 4;
+        #[doc(alias = "kCFXMLErrorMalformedDTD")]
+        const ErrorMalformedDTD = 5;
+        #[doc(alias = "kCFXMLErrorMalformedName")]
+        const ErrorMalformedName = 6;
+        #[doc(alias = "kCFXMLErrorMalformedCDSect")]
+        const ErrorMalformedCDSect = 7;
+        #[doc(alias = "kCFXMLErrorMalformedCloseTag")]
+        const ErrorMalformedCloseTag = 8;
+        #[doc(alias = "kCFXMLErrorMalformedStartTag")]
+        const ErrorMalformedStartTag = 9;
+        #[doc(alias = "kCFXMLErrorMalformedDocument")]
+        const ErrorMalformedDocument = 10;
+        #[doc(alias = "kCFXMLErrorElementlessDocument")]
+        const ErrorElementlessDocument = 11;
+        #[doc(alias = "kCFXMLErrorMalformedComment")]
+        const ErrorMalformedComment = 12;
+        #[doc(alias = "kCFXMLErrorMalformedCharacterReference")]
+        const ErrorMalformedCharacterReference = 13;
+        #[doc(alias = "kCFXMLErrorMalformedParsedCharacterData")]
+        const ErrorMalformedParsedCharacterData = 14;
+        #[doc(alias = "kCFXMLErrorNoData")]
+        const ErrorNoData = 15;
     }
 }
 

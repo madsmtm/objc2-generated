@@ -18,11 +18,14 @@ use crate::*;
 pub struct MPSGraphSparseStorageType(pub u64);
 impl MPSGraphSparseStorageType {
     /// COO Storage
-    pub const MPSGraphSparseStorageCOO: Self = Self(0);
+    #[doc(alias = "MPSGraphSparseStorageCOO")]
+    pub const COO: Self = Self(0);
     /// CSC Storage
-    pub const MPSGraphSparseStorageCSC: Self = Self(1);
+    #[doc(alias = "MPSGraphSparseStorageCSC")]
+    pub const CSC: Self = Self(1);
     /// CSR Storage
-    pub const MPSGraphSparseStorageCSR: Self = Self(2);
+    #[doc(alias = "MPSGraphSparseStorageCSR")]
+    pub const CSR: Self = Self(2);
 }
 
 unsafe impl Encode for MPSGraphSparseStorageType {

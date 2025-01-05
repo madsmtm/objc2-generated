@@ -15,11 +15,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AURenderEventType(pub u8);
 impl AURenderEventType {
-    pub const AURenderEventParameter: Self = Self(1);
-    pub const AURenderEventParameterRamp: Self = Self(2);
-    pub const AURenderEventMIDI: Self = Self(8);
-    pub const AURenderEventMIDISysEx: Self = Self(9);
-    pub const AURenderEventMIDIEventList: Self = Self(10);
+    #[doc(alias = "AURenderEventParameter")]
+    pub const Parameter: Self = Self(1);
+    #[doc(alias = "AURenderEventParameterRamp")]
+    pub const ParameterRamp: Self = Self(2);
+    #[doc(alias = "AURenderEventMIDI")]
+    pub const MIDI: Self = Self(8);
+    #[doc(alias = "AURenderEventMIDISysEx")]
+    pub const MIDISysEx: Self = Self(9);
+    #[doc(alias = "AURenderEventMIDIEventList")]
+    pub const MIDIEventList: Self = Self(10);
 }
 
 unsafe impl Encode for AURenderEventType {

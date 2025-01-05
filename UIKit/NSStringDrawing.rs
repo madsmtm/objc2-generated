@@ -107,10 +107,14 @@ extern_category!(
 pub struct NSStringDrawingOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSStringDrawingOptions: NSInteger {
-        const NSStringDrawingUsesLineFragmentOrigin = 1<<0;
-        const NSStringDrawingUsesFontLeading = 1<<1;
-        const NSStringDrawingUsesDeviceMetrics = 1<<3;
-        const NSStringDrawingTruncatesLastVisibleLine = 1<<5;
+        #[doc(alias = "NSStringDrawingUsesLineFragmentOrigin")]
+        const UsesLineFragmentOrigin = 1<<0;
+        #[doc(alias = "NSStringDrawingUsesFontLeading")]
+        const UsesFontLeading = 1<<1;
+        #[doc(alias = "NSStringDrawingUsesDeviceMetrics")]
+        const UsesDeviceMetrics = 1<<3;
+        #[doc(alias = "NSStringDrawingTruncatesLastVisibleLine")]
+        const TruncatesLastVisibleLine = 1<<5;
     }
 }
 

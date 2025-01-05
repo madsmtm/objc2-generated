@@ -22,16 +22,25 @@ use crate::*;
 pub struct HKStatisticsOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl HKStatisticsOptions: NSUInteger {
-        const HKStatisticsOptionNone = 0;
-        const HKStatisticsOptionSeparateBySource = 1<<0;
-        const HKStatisticsOptionDiscreteAverage = 1<<1;
-        const HKStatisticsOptionDiscreteMin = 1<<2;
-        const HKStatisticsOptionDiscreteMax = 1<<3;
-        const HKStatisticsOptionCumulativeSum = 1<<4;
-        const HKStatisticsOptionMostRecent = 1<<5;
+        #[doc(alias = "HKStatisticsOptionNone")]
+        const None = 0;
+        #[doc(alias = "HKStatisticsOptionSeparateBySource")]
+        const SeparateBySource = 1<<0;
+        #[doc(alias = "HKStatisticsOptionDiscreteAverage")]
+        const DiscreteAverage = 1<<1;
+        #[doc(alias = "HKStatisticsOptionDiscreteMin")]
+        const DiscreteMin = 1<<2;
+        #[doc(alias = "HKStatisticsOptionDiscreteMax")]
+        const DiscreteMax = 1<<3;
+        #[doc(alias = "HKStatisticsOptionCumulativeSum")]
+        const CumulativeSum = 1<<4;
+        #[doc(alias = "HKStatisticsOptionMostRecent")]
+        const MostRecent = 1<<5;
 #[deprecated]
-        const HKStatisticsOptionDiscreteMostRecent = HKStatisticsOptions::HKStatisticsOptionMostRecent.0;
-        const HKStatisticsOptionDuration = 1<<6;
+        #[doc(alias = "HKStatisticsOptionDiscreteMostRecent")]
+        const DiscreteMostRecent = HKStatisticsOptions::MostRecent.0;
+        #[doc(alias = "HKStatisticsOptionDuration")]
+        const Duration = 1<<6;
     }
 }
 

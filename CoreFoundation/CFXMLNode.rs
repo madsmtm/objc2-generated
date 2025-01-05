@@ -25,21 +25,36 @@ pub type CFXMLTreeRef = CFTreeRef;
 pub struct CFXMLNodeTypeCode(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFXMLNodeTypeCode {
-    pub const kCFXMLNodeTypeDocument: Self = Self(1);
-    pub const kCFXMLNodeTypeElement: Self = Self(2);
-    pub const kCFXMLNodeTypeAttribute: Self = Self(3);
-    pub const kCFXMLNodeTypeProcessingInstruction: Self = Self(4);
-    pub const kCFXMLNodeTypeComment: Self = Self(5);
-    pub const kCFXMLNodeTypeText: Self = Self(6);
-    pub const kCFXMLNodeTypeCDATASection: Self = Self(7);
-    pub const kCFXMLNodeTypeDocumentFragment: Self = Self(8);
-    pub const kCFXMLNodeTypeEntity: Self = Self(9);
-    pub const kCFXMLNodeTypeEntityReference: Self = Self(10);
-    pub const kCFXMLNodeTypeDocumentType: Self = Self(11);
-    pub const kCFXMLNodeTypeWhitespace: Self = Self(12);
-    pub const kCFXMLNodeTypeNotation: Self = Self(13);
-    pub const kCFXMLNodeTypeElementTypeDeclaration: Self = Self(14);
-    pub const kCFXMLNodeTypeAttributeListDeclaration: Self = Self(15);
+    #[doc(alias = "kCFXMLNodeTypeDocument")]
+    pub const Document: Self = Self(1);
+    #[doc(alias = "kCFXMLNodeTypeElement")]
+    pub const Element: Self = Self(2);
+    #[doc(alias = "kCFXMLNodeTypeAttribute")]
+    pub const Attribute: Self = Self(3);
+    #[doc(alias = "kCFXMLNodeTypeProcessingInstruction")]
+    pub const ProcessingInstruction: Self = Self(4);
+    #[doc(alias = "kCFXMLNodeTypeComment")]
+    pub const Comment: Self = Self(5);
+    #[doc(alias = "kCFXMLNodeTypeText")]
+    pub const Text: Self = Self(6);
+    #[doc(alias = "kCFXMLNodeTypeCDATASection")]
+    pub const CDATASection: Self = Self(7);
+    #[doc(alias = "kCFXMLNodeTypeDocumentFragment")]
+    pub const DocumentFragment: Self = Self(8);
+    #[doc(alias = "kCFXMLNodeTypeEntity")]
+    pub const Entity: Self = Self(9);
+    #[doc(alias = "kCFXMLNodeTypeEntityReference")]
+    pub const EntityReference: Self = Self(10);
+    #[doc(alias = "kCFXMLNodeTypeDocumentType")]
+    pub const DocumentType: Self = Self(11);
+    #[doc(alias = "kCFXMLNodeTypeWhitespace")]
+    pub const Whitespace: Self = Self(12);
+    #[doc(alias = "kCFXMLNodeTypeNotation")]
+    pub const Notation: Self = Self(13);
+    #[doc(alias = "kCFXMLNodeTypeElementTypeDeclaration")]
+    pub const ElementTypeDeclaration: Self = Self(14);
+    #[doc(alias = "kCFXMLNodeTypeAttributeListDeclaration")]
+    pub const AttributeListDeclaration: Self = Self(15);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -253,11 +268,16 @@ unsafe impl RefEncode for CFXMLAttributeListDeclarationInfo {
 pub struct CFXMLEntityTypeCode(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFXMLEntityTypeCode {
-    pub const kCFXMLEntityTypeParameter: Self = Self(0);
-    pub const kCFXMLEntityTypeParsedInternal: Self = Self(1);
-    pub const kCFXMLEntityTypeParsedExternal: Self = Self(2);
-    pub const kCFXMLEntityTypeUnparsed: Self = Self(3);
-    pub const kCFXMLEntityTypeCharacter: Self = Self(4);
+    #[doc(alias = "kCFXMLEntityTypeParameter")]
+    pub const Parameter: Self = Self(0);
+    #[doc(alias = "kCFXMLEntityTypeParsedInternal")]
+    pub const ParsedInternal: Self = Self(1);
+    #[doc(alias = "kCFXMLEntityTypeParsedExternal")]
+    pub const ParsedExternal: Self = Self(2);
+    #[doc(alias = "kCFXMLEntityTypeUnparsed")]
+    pub const Unparsed: Self = Self(3);
+    #[doc(alias = "kCFXMLEntityTypeCharacter")]
+    pub const Character: Self = Self(4);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]

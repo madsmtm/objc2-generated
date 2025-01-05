@@ -41,8 +41,10 @@ unsafe impl RefEncode for CBPeripheralState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CBCharacteristicWriteType(pub NSInteger);
 impl CBCharacteristicWriteType {
-    pub const CBCharacteristicWriteWithResponse: Self = Self(0);
-    pub const CBCharacteristicWriteWithoutResponse: Self = Self(1);
+    #[doc(alias = "CBCharacteristicWriteWithResponse")]
+    pub const WithResponse: Self = Self(0);
+    #[doc(alias = "CBCharacteristicWriteWithoutResponse")]
+    pub const WithoutResponse: Self = Self(1);
 }
 
 unsafe impl Encode for CBCharacteristicWriteType {

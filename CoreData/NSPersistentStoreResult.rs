@@ -35,9 +35,12 @@ unsafe impl RefEncode for NSBatchInsertRequestResultType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSBatchUpdateRequestResultType(pub NSUInteger);
 impl NSBatchUpdateRequestResultType {
-    pub const NSStatusOnlyResultType: Self = Self(0x0);
-    pub const NSUpdatedObjectIDsResultType: Self = Self(0x1);
-    pub const NSUpdatedObjectsCountResultType: Self = Self(0x2);
+    #[doc(alias = "NSStatusOnlyResultType")]
+    pub const StatusOnlyResultType: Self = Self(0x0);
+    #[doc(alias = "NSUpdatedObjectIDsResultType")]
+    pub const UpdatedObjectIDsResultType: Self = Self(0x1);
+    #[doc(alias = "NSUpdatedObjectsCountResultType")]
+    pub const UpdatedObjectsCountResultType: Self = Self(0x2);
 }
 
 unsafe impl Encode for NSBatchUpdateRequestResultType {
@@ -54,9 +57,12 @@ unsafe impl RefEncode for NSBatchUpdateRequestResultType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSBatchDeleteRequestResultType(pub NSUInteger);
 impl NSBatchDeleteRequestResultType {
-    pub const NSBatchDeleteResultTypeStatusOnly: Self = Self(0x0);
-    pub const NSBatchDeleteResultTypeObjectIDs: Self = Self(0x1);
-    pub const NSBatchDeleteResultTypeCount: Self = Self(0x2);
+    #[doc(alias = "NSBatchDeleteResultTypeStatusOnly")]
+    pub const ResultTypeStatusOnly: Self = Self(0x0);
+    #[doc(alias = "NSBatchDeleteResultTypeObjectIDs")]
+    pub const ResultTypeObjectIDs: Self = Self(0x1);
+    #[doc(alias = "NSBatchDeleteResultTypeCount")]
+    pub const ResultTypeCount: Self = Self(0x2);
 }
 
 unsafe impl Encode for NSBatchDeleteRequestResultType {

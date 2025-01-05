@@ -19,11 +19,13 @@ bitflags::bitflags! {
 /// By default, activation brings only the main and key
 /// windows forward. If you specify `activateAllWindows`,
 /// all of the application's windows are brought forward.
-        const NSApplicationActivateAllWindows = 1<<0;
+        #[doc(alias = "NSApplicationActivateAllWindows")]
+        const ActivateAllWindows = 1<<0;
 /// The application is activated regardless of the currently
 /// active app.
 #[deprecated = "ignoringOtherApps is deprecated in macOS 14 and will have no effect."]
-        const NSApplicationActivateIgnoringOtherApps = 1<<1;
+        #[doc(alias = "NSApplicationActivateIgnoringOtherApps")]
+        const ActivateIgnoringOtherApps = 1<<1;
     }
 }
 

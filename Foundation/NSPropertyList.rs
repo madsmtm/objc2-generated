@@ -12,9 +12,12 @@ use crate::*;
 pub struct NSPropertyListMutabilityOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPropertyListMutabilityOptions: NSUInteger {
-        const NSPropertyListImmutable = 0;
-        const NSPropertyListMutableContainers = 1;
-        const NSPropertyListMutableContainersAndLeaves = 2;
+        #[doc(alias = "NSPropertyListImmutable")]
+        const Immutable = 0;
+        #[doc(alias = "NSPropertyListMutableContainers")]
+        const MutableContainers = 1;
+        #[doc(alias = "NSPropertyListMutableContainersAndLeaves")]
+        const MutableContainersAndLeaves = 2;
     }
 }
 
@@ -32,9 +35,12 @@ unsafe impl RefEncode for NSPropertyListMutabilityOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPropertyListFormat(pub NSUInteger);
 impl NSPropertyListFormat {
-    pub const NSPropertyListOpenStepFormat: Self = Self(1);
-    pub const NSPropertyListXMLFormat_v1_0: Self = Self(100);
-    pub const NSPropertyListBinaryFormat_v1_0: Self = Self(200);
+    #[doc(alias = "NSPropertyListOpenStepFormat")]
+    pub const OpenStepFormat: Self = Self(1);
+    #[doc(alias = "NSPropertyListXMLFormat_v1_0")]
+    pub const XMLFormat_v1_0: Self = Self(100);
+    #[doc(alias = "NSPropertyListBinaryFormat_v1_0")]
+    pub const BinaryFormat_v1_0: Self = Self(200);
 }
 
 unsafe impl Encode for NSPropertyListFormat {

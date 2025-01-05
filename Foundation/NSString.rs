@@ -16,15 +16,24 @@ pub type unichar = c_ushort;
 pub struct NSStringCompareOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStringCompareOptions: NSUInteger {
-        const NSCaseInsensitiveSearch = 1;
-        const NSLiteralSearch = 2;
-        const NSBackwardsSearch = 4;
-        const NSAnchoredSearch = 8;
-        const NSNumericSearch = 64;
-        const NSDiacriticInsensitiveSearch = 128;
-        const NSWidthInsensitiveSearch = 256;
-        const NSForcedOrderingSearch = 512;
-        const NSRegularExpressionSearch = 1024;
+        #[doc(alias = "NSCaseInsensitiveSearch")]
+        const CaseInsensitiveSearch = 1;
+        #[doc(alias = "NSLiteralSearch")]
+        const LiteralSearch = 2;
+        #[doc(alias = "NSBackwardsSearch")]
+        const BackwardsSearch = 4;
+        #[doc(alias = "NSAnchoredSearch")]
+        const AnchoredSearch = 8;
+        #[doc(alias = "NSNumericSearch")]
+        const NumericSearch = 64;
+        #[doc(alias = "NSDiacriticInsensitiveSearch")]
+        const DiacriticInsensitiveSearch = 128;
+        #[doc(alias = "NSWidthInsensitiveSearch")]
+        const WidthInsensitiveSearch = 256;
+        #[doc(alias = "NSForcedOrderingSearch")]
+        const ForcedOrderingSearch = 512;
+        #[doc(alias = "NSRegularExpressionSearch")]
+        const RegularExpressionSearch = 1024;
     }
 }
 
@@ -93,8 +102,10 @@ pub const NSUTF32LittleEndianStringEncoding: NSStringEncoding = 0x9c000100;
 pub struct NSStringEncodingConversionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStringEncodingConversionOptions: NSUInteger {
-        const NSStringEncodingConversionAllowLossy = 1;
-        const NSStringEncodingConversionExternalRepresentation = 2;
+        #[doc(alias = "NSStringEncodingConversionAllowLossy")]
+        const AllowLossy = 1;
+        #[doc(alias = "NSStringEncodingConversionExternalRepresentation")]
+        const ExternalRepresentation = 2;
     }
 }
 
@@ -179,16 +190,26 @@ impl DefaultRetained for NSString {
 pub struct NSStringEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStringEnumerationOptions: NSUInteger {
-        const NSStringEnumerationByLines = 0;
-        const NSStringEnumerationByParagraphs = 1;
-        const NSStringEnumerationByComposedCharacterSequences = 2;
-        const NSStringEnumerationByWords = 3;
-        const NSStringEnumerationBySentences = 4;
-        const NSStringEnumerationByCaretPositions = 5;
-        const NSStringEnumerationByDeletionClusters = 6;
-        const NSStringEnumerationReverse = 1<<8;
-        const NSStringEnumerationSubstringNotRequired = 1<<9;
-        const NSStringEnumerationLocalized = 1<<10;
+        #[doc(alias = "NSStringEnumerationByLines")]
+        const ByLines = 0;
+        #[doc(alias = "NSStringEnumerationByParagraphs")]
+        const ByParagraphs = 1;
+        #[doc(alias = "NSStringEnumerationByComposedCharacterSequences")]
+        const ByComposedCharacterSequences = 2;
+        #[doc(alias = "NSStringEnumerationByWords")]
+        const ByWords = 3;
+        #[doc(alias = "NSStringEnumerationBySentences")]
+        const BySentences = 4;
+        #[doc(alias = "NSStringEnumerationByCaretPositions")]
+        const ByCaretPositions = 5;
+        #[doc(alias = "NSStringEnumerationByDeletionClusters")]
+        const ByDeletionClusters = 6;
+        #[doc(alias = "NSStringEnumerationReverse")]
+        const Reverse = 1<<8;
+        #[doc(alias = "NSStringEnumerationSubstringNotRequired")]
+        const SubstringNotRequired = 1<<9;
+        #[doc(alias = "NSStringEnumerationLocalized")]
+        const Localized = 1<<10;
     }
 }
 

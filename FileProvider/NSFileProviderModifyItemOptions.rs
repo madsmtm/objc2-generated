@@ -16,7 +16,8 @@ bitflags::bitflags! {
 /// same directory and we end up in a situation where the merged contains may also exist.
 ///
 /// This is similar to NSFileProviderCreateItemMayAlreadyExist
-        const NSFileProviderModifyItemMayAlreadyExist = 1<<0;
+        #[doc(alias = "NSFileProviderModifyItemMayAlreadyExist")]
+        const MayAlreadyExist = 1<<0;
     }
 }
 

@@ -14,10 +14,13 @@ use crate::*;
 pub struct CFURLPathStyle(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFURLPathStyle {
-    pub const kCFURLPOSIXPathStyle: Self = Self(0);
+    #[doc(alias = "kCFURLPOSIXPathStyle")]
+    pub const CFURLPOSIXPathStyle: Self = Self(0);
     #[deprecated = "Carbon File Manager is deprecated, use kCFURLPOSIXPathStyle where possible"]
-    pub const kCFURLHFSPathStyle: Self = Self(1);
-    pub const kCFURLWindowsPathStyle: Self = Self(2);
+    #[doc(alias = "kCFURLHFSPathStyle")]
+    pub const CFURLHFSPathStyle: Self = Self(1);
+    #[doc(alias = "kCFURLWindowsPathStyle")]
+    pub const CFURLWindowsPathStyle: Self = Self(2);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -285,18 +288,30 @@ extern "C-unwind" {
 pub struct CFURLComponentType(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFURLComponentType {
-    pub const kCFURLComponentScheme: Self = Self(1);
-    pub const kCFURLComponentNetLocation: Self = Self(2);
-    pub const kCFURLComponentPath: Self = Self(3);
-    pub const kCFURLComponentResourceSpecifier: Self = Self(4);
-    pub const kCFURLComponentUser: Self = Self(5);
-    pub const kCFURLComponentPassword: Self = Self(6);
-    pub const kCFURLComponentUserInfo: Self = Self(7);
-    pub const kCFURLComponentHost: Self = Self(8);
-    pub const kCFURLComponentPort: Self = Self(9);
-    pub const kCFURLComponentParameterString: Self = Self(10);
-    pub const kCFURLComponentQuery: Self = Self(11);
-    pub const kCFURLComponentFragment: Self = Self(12);
+    #[doc(alias = "kCFURLComponentScheme")]
+    pub const Scheme: Self = Self(1);
+    #[doc(alias = "kCFURLComponentNetLocation")]
+    pub const NetLocation: Self = Self(2);
+    #[doc(alias = "kCFURLComponentPath")]
+    pub const Path: Self = Self(3);
+    #[doc(alias = "kCFURLComponentResourceSpecifier")]
+    pub const ResourceSpecifier: Self = Self(4);
+    #[doc(alias = "kCFURLComponentUser")]
+    pub const User: Self = Self(5);
+    #[doc(alias = "kCFURLComponentPassword")]
+    pub const Password: Self = Self(6);
+    #[doc(alias = "kCFURLComponentUserInfo")]
+    pub const UserInfo: Self = Self(7);
+    #[doc(alias = "kCFURLComponentHost")]
+    pub const Host: Self = Self(8);
+    #[doc(alias = "kCFURLComponentPort")]
+    pub const Port: Self = Self(9);
+    #[doc(alias = "kCFURLComponentParameterString")]
+    pub const ParameterString: Self = Self(10);
+    #[doc(alias = "kCFURLComponentQuery")]
+    pub const Query: Self = Self(11);
+    #[doc(alias = "kCFURLComponentFragment")]
+    pub const Fragment: Self = Self(12);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -1228,13 +1243,19 @@ pub struct CFURLBookmarkCreationOptions(pub CFOptionFlags);
 #[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFURLBookmarkCreationOptions: CFOptionFlags {
-        const kCFURLBookmarkCreationMinimalBookmarkMask = 1<<9;
-        const kCFURLBookmarkCreationSuitableForBookmarkFile = 1<<10;
-        const kCFURLBookmarkCreationWithSecurityScope = 1<<11;
-        const kCFURLBookmarkCreationSecurityScopeAllowOnlyReadAccess = 1<<12;
-        const kCFURLBookmarkCreationWithoutImplicitSecurityScope = 1<<29;
+        #[doc(alias = "kCFURLBookmarkCreationMinimalBookmarkMask")]
+        const MinimalBookmarkMask = 1<<9;
+        #[doc(alias = "kCFURLBookmarkCreationSuitableForBookmarkFile")]
+        const SuitableForBookmarkFile = 1<<10;
+        #[doc(alias = "kCFURLBookmarkCreationWithSecurityScope")]
+        const WithSecurityScope = 1<<11;
+        #[doc(alias = "kCFURLBookmarkCreationSecurityScopeAllowOnlyReadAccess")]
+        const SecurityScopeAllowOnlyReadAccess = 1<<12;
+        #[doc(alias = "kCFURLBookmarkCreationWithoutImplicitSecurityScope")]
+        const WithoutImplicitSecurityScope = 1<<29;
 #[deprecated = "kCFURLBookmarkCreationPreferFileIDResolutionMask does nothing and has no effect on bookmark resolution"]
-        const kCFURLBookmarkCreationPreferFileIDResolutionMask = 1<<8;
+        #[doc(alias = "kCFURLBookmarkCreationPreferFileIDResolutionMask")]
+        const PreferFileIDResolutionMask = 1<<8;
     }
 }
 
@@ -1257,12 +1278,18 @@ pub struct CFURLBookmarkResolutionOptions(pub CFOptionFlags);
 #[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFURLBookmarkResolutionOptions: CFOptionFlags {
-        const kCFURLBookmarkResolutionWithoutUIMask = 1<<8;
-        const kCFURLBookmarkResolutionWithoutMountingMask = 1<<9;
-        const kCFURLBookmarkResolutionWithSecurityScope = 1<<10;
-        const kCFURLBookmarkResolutionWithoutImplicitStartAccessing = 1<<15;
-        const kCFBookmarkResolutionWithoutUIMask = CFURLBookmarkResolutionOptions::kCFURLBookmarkResolutionWithoutUIMask.0;
-        const kCFBookmarkResolutionWithoutMountingMask = CFURLBookmarkResolutionOptions::kCFURLBookmarkResolutionWithoutMountingMask.0;
+        #[doc(alias = "kCFURLBookmarkResolutionWithoutUIMask")]
+        const CFURLBookmarkResolutionWithoutUIMask = 1<<8;
+        #[doc(alias = "kCFURLBookmarkResolutionWithoutMountingMask")]
+        const CFURLBookmarkResolutionWithoutMountingMask = 1<<9;
+        #[doc(alias = "kCFURLBookmarkResolutionWithSecurityScope")]
+        const CFURLBookmarkResolutionWithSecurityScope = 1<<10;
+        #[doc(alias = "kCFURLBookmarkResolutionWithoutImplicitStartAccessing")]
+        const CFURLBookmarkResolutionWithoutImplicitStartAccessing = 1<<15;
+        #[doc(alias = "kCFBookmarkResolutionWithoutUIMask")]
+        const CFBookmarkResolutionWithoutUIMask = CFURLBookmarkResolutionOptions::CFURLBookmarkResolutionWithoutUIMask.0;
+        #[doc(alias = "kCFBookmarkResolutionWithoutMountingMask")]
+        const CFBookmarkResolutionWithoutMountingMask = CFURLBookmarkResolutionOptions::CFURLBookmarkResolutionWithoutMountingMask.0;
     }
 }
 

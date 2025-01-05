@@ -21,9 +21,12 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UICollectionViewFlowLayoutSectionInsetReference(pub NSInteger);
 impl UICollectionViewFlowLayoutSectionInsetReference {
-    pub const UICollectionViewFlowLayoutSectionInsetFromContentInset: Self = Self(0);
-    pub const UICollectionViewFlowLayoutSectionInsetFromSafeArea: Self = Self(1);
-    pub const UICollectionViewFlowLayoutSectionInsetFromLayoutMargins: Self = Self(2);
+    #[doc(alias = "UICollectionViewFlowLayoutSectionInsetFromContentInset")]
+    pub const FromContentInset: Self = Self(0);
+    #[doc(alias = "UICollectionViewFlowLayoutSectionInsetFromSafeArea")]
+    pub const FromSafeArea: Self = Self(1);
+    #[doc(alias = "UICollectionViewFlowLayoutSectionInsetFromLayoutMargins")]
+    pub const FromLayoutMargins: Self = Self(2);
 }
 
 unsafe impl Encode for UICollectionViewFlowLayoutSectionInsetReference {

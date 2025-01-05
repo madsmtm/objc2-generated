@@ -230,13 +230,16 @@ bitflags::bitflags! {
     impl MPSRayMaskOptions: NSUInteger {
 /// Disable primitive and instance masks
 #[deprecated]
-        const MPSRayMaskOptionNone = 0;
+        #[doc(alias = "MPSRayMaskOptionNone")]
+        const None = 0;
 /// Enable primitive masks
 #[deprecated]
-        const MPSRayMaskOptionPrimitive = 1;
+        #[doc(alias = "MPSRayMaskOptionPrimitive")]
+        const Primitive = 1;
 /// Enable instance masks
 #[deprecated]
-        const MPSRayMaskOptionInstance = 2;
+        #[doc(alias = "MPSRayMaskOptionInstance")]
+        const Instance = 2;
     }
 }
 

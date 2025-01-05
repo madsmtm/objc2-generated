@@ -36,7 +36,8 @@ extern_protocol!(
 pub struct NSXPCConnectionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSXPCConnectionOptions: NSUInteger {
-        const NSXPCConnectionPrivileged = 1<<12;
+        #[doc(alias = "NSXPCConnectionPrivileged")]
+        const Privileged = 1<<12;
     }
 }
 

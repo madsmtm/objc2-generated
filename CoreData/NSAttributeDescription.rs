@@ -13,22 +13,38 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSAttributeType(pub NSUInteger);
 impl NSAttributeType {
-    pub const NSUndefinedAttributeType: Self = Self(0);
-    pub const NSInteger16AttributeType: Self = Self(100);
-    pub const NSInteger32AttributeType: Self = Self(200);
-    pub const NSInteger64AttributeType: Self = Self(300);
-    pub const NSDecimalAttributeType: Self = Self(400);
-    pub const NSDoubleAttributeType: Self = Self(500);
-    pub const NSFloatAttributeType: Self = Self(600);
-    pub const NSStringAttributeType: Self = Self(700);
-    pub const NSBooleanAttributeType: Self = Self(800);
-    pub const NSDateAttributeType: Self = Self(900);
-    pub const NSBinaryDataAttributeType: Self = Self(1000);
-    pub const NSUUIDAttributeType: Self = Self(1100);
-    pub const NSURIAttributeType: Self = Self(1200);
-    pub const NSTransformableAttributeType: Self = Self(1800);
-    pub const NSObjectIDAttributeType: Self = Self(2000);
-    pub const NSCompositeAttributeType: Self = Self(2100);
+    #[doc(alias = "NSUndefinedAttributeType")]
+    pub const UndefinedAttributeType: Self = Self(0);
+    #[doc(alias = "NSInteger16AttributeType")]
+    pub const Integer16AttributeType: Self = Self(100);
+    #[doc(alias = "NSInteger32AttributeType")]
+    pub const Integer32AttributeType: Self = Self(200);
+    #[doc(alias = "NSInteger64AttributeType")]
+    pub const Integer64AttributeType: Self = Self(300);
+    #[doc(alias = "NSDecimalAttributeType")]
+    pub const DecimalAttributeType: Self = Self(400);
+    #[doc(alias = "NSDoubleAttributeType")]
+    pub const DoubleAttributeType: Self = Self(500);
+    #[doc(alias = "NSFloatAttributeType")]
+    pub const FloatAttributeType: Self = Self(600);
+    #[doc(alias = "NSStringAttributeType")]
+    pub const StringAttributeType: Self = Self(700);
+    #[doc(alias = "NSBooleanAttributeType")]
+    pub const BooleanAttributeType: Self = Self(800);
+    #[doc(alias = "NSDateAttributeType")]
+    pub const DateAttributeType: Self = Self(900);
+    #[doc(alias = "NSBinaryDataAttributeType")]
+    pub const BinaryDataAttributeType: Self = Self(1000);
+    #[doc(alias = "NSUUIDAttributeType")]
+    pub const UUIDAttributeType: Self = Self(1100);
+    #[doc(alias = "NSURIAttributeType")]
+    pub const URIAttributeType: Self = Self(1200);
+    #[doc(alias = "NSTransformableAttributeType")]
+    pub const TransformableAttributeType: Self = Self(1800);
+    #[doc(alias = "NSObjectIDAttributeType")]
+    pub const ObjectIDAttributeType: Self = Self(2000);
+    #[doc(alias = "NSCompositeAttributeType")]
+    pub const CompositeAttributeType: Self = Self(2100);
 }
 
 unsafe impl Encode for NSAttributeType {

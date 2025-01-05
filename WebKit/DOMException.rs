@@ -18,35 +18,50 @@ extern "C" {
 pub struct DOMExceptionCode(pub c_uint);
 impl DOMExceptionCode {
     #[deprecated]
-    pub const DOM_INDEX_SIZE_ERR: Self = Self(1);
+    #[doc(alias = "DOM_INDEX_SIZE_ERR")]
+    pub const INDEX_SIZE_ERR: Self = Self(1);
     #[deprecated]
-    pub const DOM_DOMSTRING_SIZE_ERR: Self = Self(2);
+    #[doc(alias = "DOM_DOMSTRING_SIZE_ERR")]
+    pub const DOMSTRING_SIZE_ERR: Self = Self(2);
     #[deprecated]
-    pub const DOM_HIERARCHY_REQUEST_ERR: Self = Self(3);
+    #[doc(alias = "DOM_HIERARCHY_REQUEST_ERR")]
+    pub const HIERARCHY_REQUEST_ERR: Self = Self(3);
     #[deprecated]
-    pub const DOM_WRONG_DOCUMENT_ERR: Self = Self(4);
+    #[doc(alias = "DOM_WRONG_DOCUMENT_ERR")]
+    pub const WRONG_DOCUMENT_ERR: Self = Self(4);
     #[deprecated]
-    pub const DOM_INVALID_CHARACTER_ERR: Self = Self(5);
+    #[doc(alias = "DOM_INVALID_CHARACTER_ERR")]
+    pub const INVALID_CHARACTER_ERR: Self = Self(5);
     #[deprecated]
-    pub const DOM_NO_DATA_ALLOWED_ERR: Self = Self(6);
+    #[doc(alias = "DOM_NO_DATA_ALLOWED_ERR")]
+    pub const NO_DATA_ALLOWED_ERR: Self = Self(6);
     #[deprecated]
-    pub const DOM_NO_MODIFICATION_ALLOWED_ERR: Self = Self(7);
+    #[doc(alias = "DOM_NO_MODIFICATION_ALLOWED_ERR")]
+    pub const NO_MODIFICATION_ALLOWED_ERR: Self = Self(7);
     #[deprecated]
-    pub const DOM_NOT_FOUND_ERR: Self = Self(8);
+    #[doc(alias = "DOM_NOT_FOUND_ERR")]
+    pub const NOT_FOUND_ERR: Self = Self(8);
     #[deprecated]
-    pub const DOM_NOT_SUPPORTED_ERR: Self = Self(9);
+    #[doc(alias = "DOM_NOT_SUPPORTED_ERR")]
+    pub const NOT_SUPPORTED_ERR: Self = Self(9);
     #[deprecated]
-    pub const DOM_INUSE_ATTRIBUTE_ERR: Self = Self(10);
+    #[doc(alias = "DOM_INUSE_ATTRIBUTE_ERR")]
+    pub const INUSE_ATTRIBUTE_ERR: Self = Self(10);
     #[deprecated]
-    pub const DOM_INVALID_STATE_ERR: Self = Self(11);
+    #[doc(alias = "DOM_INVALID_STATE_ERR")]
+    pub const INVALID_STATE_ERR: Self = Self(11);
     #[deprecated]
-    pub const DOM_SYNTAX_ERR: Self = Self(12);
+    #[doc(alias = "DOM_SYNTAX_ERR")]
+    pub const SYNTAX_ERR: Self = Self(12);
     #[deprecated]
-    pub const DOM_INVALID_MODIFICATION_ERR: Self = Self(13);
+    #[doc(alias = "DOM_INVALID_MODIFICATION_ERR")]
+    pub const INVALID_MODIFICATION_ERR: Self = Self(13);
     #[deprecated]
-    pub const DOM_NAMESPACE_ERR: Self = Self(14);
+    #[doc(alias = "DOM_NAMESPACE_ERR")]
+    pub const NAMESPACE_ERR: Self = Self(14);
     #[deprecated]
-    pub const DOM_INVALID_ACCESS_ERR: Self = Self(15);
+    #[doc(alias = "DOM_INVALID_ACCESS_ERR")]
+    pub const INVALID_ACCESS_ERR: Self = Self(15);
 }
 
 unsafe impl Encode for DOMExceptionCode {

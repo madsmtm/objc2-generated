@@ -13,13 +13,20 @@ use crate::*;
 pub struct NSRegularExpressionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSRegularExpressionOptions: NSUInteger {
-        const NSRegularExpressionCaseInsensitive = 1<<0;
-        const NSRegularExpressionAllowCommentsAndWhitespace = 1<<1;
-        const NSRegularExpressionIgnoreMetacharacters = 1<<2;
-        const NSRegularExpressionDotMatchesLineSeparators = 1<<3;
-        const NSRegularExpressionAnchorsMatchLines = 1<<4;
-        const NSRegularExpressionUseUnixLineSeparators = 1<<5;
-        const NSRegularExpressionUseUnicodeWordBoundaries = 1<<6;
+        #[doc(alias = "NSRegularExpressionCaseInsensitive")]
+        const CaseInsensitive = 1<<0;
+        #[doc(alias = "NSRegularExpressionAllowCommentsAndWhitespace")]
+        const AllowCommentsAndWhitespace = 1<<1;
+        #[doc(alias = "NSRegularExpressionIgnoreMetacharacters")]
+        const IgnoreMetacharacters = 1<<2;
+        #[doc(alias = "NSRegularExpressionDotMatchesLineSeparators")]
+        const DotMatchesLineSeparators = 1<<3;
+        #[doc(alias = "NSRegularExpressionAnchorsMatchLines")]
+        const AnchorsMatchLines = 1<<4;
+        #[doc(alias = "NSRegularExpressionUseUnixLineSeparators")]
+        const UseUnixLineSeparators = 1<<5;
+        #[doc(alias = "NSRegularExpressionUseUnicodeWordBoundaries")]
+        const UseUnicodeWordBoundaries = 1<<6;
     }
 }
 
@@ -109,11 +116,16 @@ extern_methods!(
 pub struct NSMatchingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMatchingOptions: NSUInteger {
-        const NSMatchingReportProgress = 1<<0;
-        const NSMatchingReportCompletion = 1<<1;
-        const NSMatchingAnchored = 1<<2;
-        const NSMatchingWithTransparentBounds = 1<<3;
-        const NSMatchingWithoutAnchoringBounds = 1<<4;
+        #[doc(alias = "NSMatchingReportProgress")]
+        const ReportProgress = 1<<0;
+        #[doc(alias = "NSMatchingReportCompletion")]
+        const ReportCompletion = 1<<1;
+        #[doc(alias = "NSMatchingAnchored")]
+        const Anchored = 1<<2;
+        #[doc(alias = "NSMatchingWithTransparentBounds")]
+        const WithTransparentBounds = 1<<3;
+        #[doc(alias = "NSMatchingWithoutAnchoringBounds")]
+        const WithoutAnchoringBounds = 1<<4;
     }
 }
 
@@ -132,11 +144,16 @@ unsafe impl RefEncode for NSMatchingOptions {
 pub struct NSMatchingFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMatchingFlags: NSUInteger {
-        const NSMatchingProgress = 1<<0;
-        const NSMatchingCompleted = 1<<1;
-        const NSMatchingHitEnd = 1<<2;
-        const NSMatchingRequiredEnd = 1<<3;
-        const NSMatchingInternalError = 1<<4;
+        #[doc(alias = "NSMatchingProgress")]
+        const Progress = 1<<0;
+        #[doc(alias = "NSMatchingCompleted")]
+        const Completed = 1<<1;
+        #[doc(alias = "NSMatchingHitEnd")]
+        const HitEnd = 1<<2;
+        #[doc(alias = "NSMatchingRequiredEnd")]
+        const RequiredEnd = 1<<3;
+        #[doc(alias = "NSMatchingInternalError")]
+        const InternalError = 1<<4;
     }
 }
 

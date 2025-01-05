@@ -220,8 +220,10 @@ extern_methods!(
 pub struct AVMovieWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVMovieWritingOptions: NSUInteger {
-        const AVMovieWritingAddMovieHeaderToDestination = 0;
-        const AVMovieWritingTruncateDestinationToMovieHeaderOnly = 1<<0;
+        #[doc(alias = "AVMovieWritingAddMovieHeaderToDestination")]
+        const AddMovieHeaderToDestination = 0;
+        #[doc(alias = "AVMovieWritingTruncateDestinationToMovieHeaderOnly")]
+        const TruncateDestinationToMovieHeaderOnly = 1<<0;
     }
 }
 

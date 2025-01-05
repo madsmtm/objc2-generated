@@ -70,11 +70,16 @@ extern "C" {
 pub struct AVCaptureSystemPressureFactors(pub NSUInteger);
 bitflags::bitflags! {
     impl AVCaptureSystemPressureFactors: NSUInteger {
-        const AVCaptureSystemPressureFactorNone = 0;
-        const AVCaptureSystemPressureFactorSystemTemperature = 1<<0;
-        const AVCaptureSystemPressureFactorPeakPower = 1<<1;
-        const AVCaptureSystemPressureFactorDepthModuleTemperature = 1<<2;
-        const AVCaptureSystemPressureFactorCameraTemperature = 1<<3;
+        #[doc(alias = "AVCaptureSystemPressureFactorNone")]
+        const None = 0;
+        #[doc(alias = "AVCaptureSystemPressureFactorSystemTemperature")]
+        const SystemTemperature = 1<<0;
+        #[doc(alias = "AVCaptureSystemPressureFactorPeakPower")]
+        const PeakPower = 1<<1;
+        #[doc(alias = "AVCaptureSystemPressureFactorDepthModuleTemperature")]
+        const DepthModuleTemperature = 1<<2;
+        #[doc(alias = "AVCaptureSystemPressureFactorCameraTemperature")]
+        const CameraTemperature = 1<<3;
     }
 }
 

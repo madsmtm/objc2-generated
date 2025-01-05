@@ -16,9 +16,11 @@ use crate::*;
 pub struct VNRequestFaceLandmarksConstellation(pub NSUInteger);
 impl VNRequestFaceLandmarksConstellation {
     #[doc(alias = "VNRequestFaceLandmarksConstellationNotDefined")]
-    pub const NotDefined: Self = Self(0);
-    pub const VNRequestFaceLandmarksConstellation65Points: Self = Self(1);
-    pub const VNRequestFaceLandmarksConstellation76Points: Self = Self(2);
+    pub const ConstellationNotDefined: Self = Self(0);
+    #[doc(alias = "VNRequestFaceLandmarksConstellation65Points")]
+    pub const Constellation65Points: Self = Self(1);
+    #[doc(alias = "VNRequestFaceLandmarksConstellation76Points")]
+    pub const Constellation76Points: Self = Self(2);
 }
 
 unsafe impl Encode for VNRequestFaceLandmarksConstellation {

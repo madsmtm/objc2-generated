@@ -16,13 +16,20 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MCErrorCode(pub NSInteger);
 impl MCErrorCode {
-    pub const MCErrorUnknown: Self = Self(0);
-    pub const MCErrorNotConnected: Self = Self(1);
-    pub const MCErrorInvalidParameter: Self = Self(2);
-    pub const MCErrorUnsupported: Self = Self(3);
-    pub const MCErrorTimedOut: Self = Self(4);
-    pub const MCErrorCancelled: Self = Self(5);
-    pub const MCErrorUnavailable: Self = Self(6);
+    #[doc(alias = "MCErrorUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "MCErrorNotConnected")]
+    pub const NotConnected: Self = Self(1);
+    #[doc(alias = "MCErrorInvalidParameter")]
+    pub const InvalidParameter: Self = Self(2);
+    #[doc(alias = "MCErrorUnsupported")]
+    pub const Unsupported: Self = Self(3);
+    #[doc(alias = "MCErrorTimedOut")]
+    pub const TimedOut: Self = Self(4);
+    #[doc(alias = "MCErrorCancelled")]
+    pub const Cancelled: Self = Self(5);
+    #[doc(alias = "MCErrorUnavailable")]
+    pub const Unavailable: Self = Self(6);
 }
 
 unsafe impl Encode for MCErrorCode {

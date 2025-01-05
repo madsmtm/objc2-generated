@@ -334,7 +334,8 @@ extern "C" {
 pub struct AVAudioSessionActivationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioSessionActivationOptions: NSUInteger {
-        const AVAudioSessionActivationOptionNone = 0;
+        #[doc(alias = "AVAudioSessionActivationOptionNone")]
+        const None = 0;
     }
 }
 
@@ -569,14 +570,22 @@ unsafe impl RefEncode for AVAudioSessionRouteChangeReason {
 pub struct AVAudioSessionCategoryOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioSessionCategoryOptions: NSUInteger {
-        const AVAudioSessionCategoryOptionMixWithOthers = 0x1;
-        const AVAudioSessionCategoryOptionDuckOthers = 0x2;
-        const AVAudioSessionCategoryOptionAllowBluetooth = 0x4;
-        const AVAudioSessionCategoryOptionDefaultToSpeaker = 0x8;
-        const AVAudioSessionCategoryOptionInterruptSpokenAudioAndMixWithOthers = 0x11;
-        const AVAudioSessionCategoryOptionAllowBluetoothA2DP = 0x20;
-        const AVAudioSessionCategoryOptionAllowAirPlay = 0x40;
-        const AVAudioSessionCategoryOptionOverrideMutedMicrophoneInterruption = 0x80;
+        #[doc(alias = "AVAudioSessionCategoryOptionMixWithOthers")]
+        const MixWithOthers = 0x1;
+        #[doc(alias = "AVAudioSessionCategoryOptionDuckOthers")]
+        const DuckOthers = 0x2;
+        #[doc(alias = "AVAudioSessionCategoryOptionAllowBluetooth")]
+        const AllowBluetooth = 0x4;
+        #[doc(alias = "AVAudioSessionCategoryOptionDefaultToSpeaker")]
+        const DefaultToSpeaker = 0x8;
+        #[doc(alias = "AVAudioSessionCategoryOptionInterruptSpokenAudioAndMixWithOthers")]
+        const InterruptSpokenAudioAndMixWithOthers = 0x11;
+        #[doc(alias = "AVAudioSessionCategoryOptionAllowBluetoothA2DP")]
+        const AllowBluetoothA2DP = 0x20;
+        #[doc(alias = "AVAudioSessionCategoryOptionAllowAirPlay")]
+        const AllowAirPlay = 0x40;
+        #[doc(alias = "AVAudioSessionCategoryOptionOverrideMutedMicrophoneInterruption")]
+        const OverrideMutedMicrophoneInterruption = 0x80;
     }
 }
 
@@ -624,7 +633,8 @@ pub struct AVAudioSessionInterruptionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioSessionInterruptionOptions: NSUInteger {
 /// Indicates that you should resume playback now that the interruption has ended.
-        const AVAudioSessionInterruptionOptionShouldResume = 1;
+        #[doc(alias = "AVAudioSessionInterruptionOptionShouldResume")]
+        const ShouldResume = 1;
     }
 }
 
@@ -691,7 +701,8 @@ bitflags::bitflags! {
     impl AVAudioSessionSetActiveOptions: NSUInteger {
 /// Notify an interrupted app that the interruption has ended and it may resume playback. Only
 /// valid on session deactivation.
-        const AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation = 1;
+        #[doc(alias = "AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation")]
+        const NotifyOthersOnDeactivation = 1;
     }
 }
 

@@ -19,14 +19,22 @@ pub type CGPDFDocumentRef = *mut c_void;
 pub struct CGPDFAccessPermissions(pub u32);
 bitflags::bitflags! {
     impl CGPDFAccessPermissions: u32 {
-        const kCGPDFAllowsLowQualityPrinting = 1<<0;
-        const kCGPDFAllowsHighQualityPrinting = 1<<1;
-        const kCGPDFAllowsDocumentChanges = 1<<2;
-        const kCGPDFAllowsDocumentAssembly = 1<<3;
-        const kCGPDFAllowsContentCopying = 1<<4;
-        const kCGPDFAllowsContentAccessibility = 1<<5;
-        const kCGPDFAllowsCommenting = 1<<6;
-        const kCGPDFAllowsFormFieldEntry = 1<<7;
+        #[doc(alias = "kCGPDFAllowsLowQualityPrinting")]
+        const AllowsLowQualityPrinting = 1<<0;
+        #[doc(alias = "kCGPDFAllowsHighQualityPrinting")]
+        const AllowsHighQualityPrinting = 1<<1;
+        #[doc(alias = "kCGPDFAllowsDocumentChanges")]
+        const AllowsDocumentChanges = 1<<2;
+        #[doc(alias = "kCGPDFAllowsDocumentAssembly")]
+        const AllowsDocumentAssembly = 1<<3;
+        #[doc(alias = "kCGPDFAllowsContentCopying")]
+        const AllowsContentCopying = 1<<4;
+        #[doc(alias = "kCGPDFAllowsContentAccessibility")]
+        const AllowsContentAccessibility = 1<<5;
+        #[doc(alias = "kCGPDFAllowsCommenting")]
+        const AllowsCommenting = 1<<6;
+        #[doc(alias = "kCGPDFAllowsFormFieldEntry")]
+        const AllowsFormFieldEntry = 1<<7;
     }
 }
 

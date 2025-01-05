@@ -16,24 +16,35 @@ use crate::*;
 pub struct GKInviteRecipientResponse(pub NSInteger);
 impl GKInviteRecipientResponse {
     #[doc(alias = "GKInviteRecipientResponseAccepted")]
-    pub const Accepted: Self = Self(0);
+    pub const InviteRecipientResponseAccepted: Self = Self(0);
     #[doc(alias = "GKInviteRecipientResponseDeclined")]
-    pub const Declined: Self = Self(1);
+    pub const InviteRecipientResponseDeclined: Self = Self(1);
     #[doc(alias = "GKInviteRecipientResponseFailed")]
-    pub const Failed: Self = Self(2);
+    pub const InviteRecipientResponseFailed: Self = Self(2);
     #[doc(alias = "GKInviteRecipientResponseIncompatible")]
-    pub const Incompatible: Self = Self(3);
+    pub const InviteRecipientResponseIncompatible: Self = Self(3);
     #[doc(alias = "GKInviteRecipientResponseUnableToConnect")]
-    pub const UnableToConnect: Self = Self(4);
+    pub const InviteRecipientResponseUnableToConnect: Self = Self(4);
     #[doc(alias = "GKInviteRecipientResponseNoAnswer")]
-    pub const NoAnswer: Self = Self(5);
-    pub const GKInviteeResponseAccepted: Self = Self(GKInviteRecipientResponse::Accepted.0);
-    pub const GKInviteeResponseDeclined: Self = Self(GKInviteRecipientResponse::Declined.0);
-    pub const GKInviteeResponseFailed: Self = Self(GKInviteRecipientResponse::Failed.0);
-    pub const GKInviteeResponseIncompatible: Self = Self(GKInviteRecipientResponse::Incompatible.0);
-    pub const GKInviteeResponseUnableToConnect: Self =
-        Self(GKInviteRecipientResponse::UnableToConnect.0);
-    pub const GKInviteeResponseNoAnswer: Self = Self(GKInviteRecipientResponse::NoAnswer.0);
+    pub const InviteRecipientResponseNoAnswer: Self = Self(5);
+    #[doc(alias = "GKInviteeResponseAccepted")]
+    pub const InviteeResponseAccepted: Self =
+        Self(GKInviteRecipientResponse::InviteRecipientResponseAccepted.0);
+    #[doc(alias = "GKInviteeResponseDeclined")]
+    pub const InviteeResponseDeclined: Self =
+        Self(GKInviteRecipientResponse::InviteRecipientResponseDeclined.0);
+    #[doc(alias = "GKInviteeResponseFailed")]
+    pub const InviteeResponseFailed: Self =
+        Self(GKInviteRecipientResponse::InviteRecipientResponseFailed.0);
+    #[doc(alias = "GKInviteeResponseIncompatible")]
+    pub const InviteeResponseIncompatible: Self =
+        Self(GKInviteRecipientResponse::InviteRecipientResponseIncompatible.0);
+    #[doc(alias = "GKInviteeResponseUnableToConnect")]
+    pub const InviteeResponseUnableToConnect: Self =
+        Self(GKInviteRecipientResponse::InviteRecipientResponseUnableToConnect.0);
+    #[doc(alias = "GKInviteeResponseNoAnswer")]
+    pub const InviteeResponseNoAnswer: Self =
+        Self(GKInviteRecipientResponse::InviteRecipientResponseNoAnswer.0);
 }
 
 unsafe impl Encode for GKInviteRecipientResponse {

@@ -11,14 +11,22 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTestComparisonOperation(pub NSUInteger);
 impl NSTestComparisonOperation {
-    pub const NSEqualToComparison: Self = Self(0);
-    pub const NSLessThanOrEqualToComparison: Self = Self(1);
-    pub const NSLessThanComparison: Self = Self(2);
-    pub const NSGreaterThanOrEqualToComparison: Self = Self(3);
-    pub const NSGreaterThanComparison: Self = Self(4);
-    pub const NSBeginsWithComparison: Self = Self(5);
-    pub const NSEndsWithComparison: Self = Self(6);
-    pub const NSContainsComparison: Self = Self(7);
+    #[doc(alias = "NSEqualToComparison")]
+    pub const EqualToComparison: Self = Self(0);
+    #[doc(alias = "NSLessThanOrEqualToComparison")]
+    pub const LessThanOrEqualToComparison: Self = Self(1);
+    #[doc(alias = "NSLessThanComparison")]
+    pub const LessThanComparison: Self = Self(2);
+    #[doc(alias = "NSGreaterThanOrEqualToComparison")]
+    pub const GreaterThanOrEqualToComparison: Self = Self(3);
+    #[doc(alias = "NSGreaterThanComparison")]
+    pub const GreaterThanComparison: Self = Self(4);
+    #[doc(alias = "NSBeginsWithComparison")]
+    pub const BeginsWithComparison: Self = Self(5);
+    #[doc(alias = "NSEndsWithComparison")]
+    pub const EndsWithComparison: Self = Self(6);
+    #[doc(alias = "NSContainsComparison")]
+    pub const ContainsComparison: Self = Self(7);
 }
 
 unsafe impl Encode for NSTestComparisonOperation {

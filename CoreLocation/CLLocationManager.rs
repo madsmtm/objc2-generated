@@ -43,14 +43,19 @@ unsafe impl RefEncode for CLDeviceOrientation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CLAuthorizationStatus(pub c_int);
 impl CLAuthorizationStatus {
-    pub const kCLAuthorizationStatusNotDetermined: Self = Self(0);
-    pub const kCLAuthorizationStatusRestricted: Self = Self(1);
-    pub const kCLAuthorizationStatusDenied: Self = Self(2);
-    pub const kCLAuthorizationStatusAuthorizedAlways: Self = Self(3);
-    pub const kCLAuthorizationStatusAuthorizedWhenInUse: Self = Self(4);
+    #[doc(alias = "kCLAuthorizationStatusNotDetermined")]
+    pub const NotDetermined: Self = Self(0);
+    #[doc(alias = "kCLAuthorizationStatusRestricted")]
+    pub const Restricted: Self = Self(1);
+    #[doc(alias = "kCLAuthorizationStatusDenied")]
+    pub const Denied: Self = Self(2);
+    #[doc(alias = "kCLAuthorizationStatusAuthorizedAlways")]
+    pub const AuthorizedAlways: Self = Self(3);
+    #[doc(alias = "kCLAuthorizationStatusAuthorizedWhenInUse")]
+    pub const AuthorizedWhenInUse: Self = Self(4);
     #[deprecated = "Use kCLAuthorizationStatusAuthorizedAlways"]
-    pub const kCLAuthorizationStatusAuthorized: Self =
-        Self(CLAuthorizationStatus::kCLAuthorizationStatusAuthorizedAlways.0);
+    #[doc(alias = "kCLAuthorizationStatusAuthorized")]
+    pub const Authorized: Self = Self(CLAuthorizationStatus::AuthorizedAlways.0);
 }
 
 unsafe impl Encode for CLAuthorizationStatus {

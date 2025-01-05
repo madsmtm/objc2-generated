@@ -33,8 +33,10 @@ pub type NSFileProviderServiceName = NSString;
 pub struct NSVolumeEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSVolumeEnumerationOptions: NSUInteger {
-        const NSVolumeEnumerationSkipHiddenVolumes = 1<<1;
-        const NSVolumeEnumerationProduceFileReferenceURLs = 1<<2;
+        #[doc(alias = "NSVolumeEnumerationSkipHiddenVolumes")]
+        const SkipHiddenVolumes = 1<<1;
+        #[doc(alias = "NSVolumeEnumerationProduceFileReferenceURLs")]
+        const ProduceFileReferenceURLs = 1<<2;
     }
 }
 
@@ -53,11 +55,16 @@ unsafe impl RefEncode for NSVolumeEnumerationOptions {
 pub struct NSDirectoryEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDirectoryEnumerationOptions: NSUInteger {
-        const NSDirectoryEnumerationSkipsSubdirectoryDescendants = 1<<0;
-        const NSDirectoryEnumerationSkipsPackageDescendants = 1<<1;
-        const NSDirectoryEnumerationSkipsHiddenFiles = 1<<2;
-        const NSDirectoryEnumerationIncludesDirectoriesPostOrder = 1<<3;
-        const NSDirectoryEnumerationProducesRelativePathURLs = 1<<4;
+        #[doc(alias = "NSDirectoryEnumerationSkipsSubdirectoryDescendants")]
+        const SkipsSubdirectoryDescendants = 1<<0;
+        #[doc(alias = "NSDirectoryEnumerationSkipsPackageDescendants")]
+        const SkipsPackageDescendants = 1<<1;
+        #[doc(alias = "NSDirectoryEnumerationSkipsHiddenFiles")]
+        const SkipsHiddenFiles = 1<<2;
+        #[doc(alias = "NSDirectoryEnumerationIncludesDirectoriesPostOrder")]
+        const IncludesDirectoriesPostOrder = 1<<3;
+        #[doc(alias = "NSDirectoryEnumerationProducesRelativePathURLs")]
+        const ProducesRelativePathURLs = 1<<4;
     }
 }
 
@@ -76,8 +83,10 @@ unsafe impl RefEncode for NSDirectoryEnumerationOptions {
 pub struct NSFileManagerItemReplacementOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileManagerItemReplacementOptions: NSUInteger {
-        const NSFileManagerItemReplacementUsingNewMetadataOnly = 1<<0;
-        const NSFileManagerItemReplacementWithoutDeletingBackupItem = 1<<1;
+        #[doc(alias = "NSFileManagerItemReplacementUsingNewMetadataOnly")]
+        const UsingNewMetadataOnly = 1<<0;
+        #[doc(alias = "NSFileManagerItemReplacementWithoutDeletingBackupItem")]
+        const WithoutDeletingBackupItem = 1<<1;
     }
 }
 
@@ -118,8 +127,10 @@ unsafe impl RefEncode for NSURLRelationship {
 pub struct NSFileManagerUnmountOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileManagerUnmountOptions: NSUInteger {
-        const NSFileManagerUnmountAllPartitionsAndEjectDisk = 1<<0;
-        const NSFileManagerUnmountWithoutUI = 1<<1;
+        #[doc(alias = "NSFileManagerUnmountAllPartitionsAndEjectDisk")]
+        const AllPartitionsAndEjectDisk = 1<<0;
+        #[doc(alias = "NSFileManagerUnmountWithoutUI")]
+        const WithoutUI = 1<<1;
     }
 }
 

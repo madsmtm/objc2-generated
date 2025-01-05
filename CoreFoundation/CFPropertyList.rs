@@ -15,9 +15,12 @@ pub struct CFPropertyListMutabilityOptions(pub CFOptionFlags);
 #[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFPropertyListMutabilityOptions: CFOptionFlags {
-        const kCFPropertyListImmutable = 0;
-        const kCFPropertyListMutableContainers = 1<<0;
-        const kCFPropertyListMutableContainersAndLeaves = 1<<1;
+        #[doc(alias = "kCFPropertyListImmutable")]
+        const Immutable = 0;
+        #[doc(alias = "kCFPropertyListMutableContainers")]
+        const MutableContainers = 1<<0;
+        #[doc(alias = "kCFPropertyListMutableContainersAndLeaves")]
+        const MutableContainersAndLeaves = 1<<1;
     }
 }
 
@@ -68,9 +71,12 @@ extern "C-unwind" {
 pub struct CFPropertyListFormat(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFPropertyListFormat {
-    pub const kCFPropertyListOpenStepFormat: Self = Self(1);
-    pub const kCFPropertyListXMLFormat_v1_0: Self = Self(100);
-    pub const kCFPropertyListBinaryFormat_v1_0: Self = Self(200);
+    #[doc(alias = "kCFPropertyListOpenStepFormat")]
+    pub const OpenStepFormat: Self = Self(1);
+    #[doc(alias = "kCFPropertyListXMLFormat_v1_0")]
+    pub const XMLFormat_v1_0: Self = Self(100);
+    #[doc(alias = "kCFPropertyListBinaryFormat_v1_0")]
+    pub const BinaryFormat_v1_0: Self = Self(200);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]

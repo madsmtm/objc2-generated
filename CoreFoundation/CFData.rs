@@ -108,8 +108,10 @@ pub struct CFDataSearchFlags(pub CFOptionFlags);
 #[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFDataSearchFlags: CFOptionFlags {
-        const kCFDataSearchBackwards = 1<<0;
-        const kCFDataSearchAnchored = 1<<1;
+        #[doc(alias = "kCFDataSearchBackwards")]
+        const Backwards = 1<<0;
+        #[doc(alias = "kCFDataSearchAnchored")]
+        const Anchored = 1<<1;
     }
 }
 

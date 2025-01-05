@@ -5448,19 +5448,32 @@ pub type AudioFileComponentGetGlobalInfoProc = Option<
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAClockPropertyID(pub u32);
 impl CAClockPropertyID {
-    pub const kCAClockProperty_InternalTimebase: Self = Self(0x696e7462);
-    pub const kCAClockProperty_TimebaseSource: Self = Self(0x69746273);
-    pub const kCAClockProperty_SyncMode: Self = Self(0x73796e6d);
-    pub const kCAClockProperty_SyncSource: Self = Self(0x73796e73);
-    pub const kCAClockProperty_SMPTEFormat: Self = Self(0x736d7066);
-    pub const kCAClockProperty_SMPTEOffset: Self = Self(0x736d706f);
-    pub const kCAClockProperty_MIDIClockDestinations: Self = Self(0x6d626364);
-    pub const kCAClockProperty_MTCDestinations: Self = Self(0x6d746364);
-    pub const kCAClockProperty_MTCFreewheelTime: Self = Self(0x6d746677);
-    pub const kCAClockProperty_TempoMap: Self = Self(0x746d706f);
-    pub const kCAClockProperty_MeterTrack: Self = Self(0x6d657472);
-    pub const kCAClockProperty_Name: Self = Self(0x6e616d65);
-    pub const kCAClockProperty_SendMIDISPP: Self = Self(0x6d737070);
+    #[doc(alias = "kCAClockProperty_InternalTimebase")]
+    pub const InternalTimebase: Self = Self(0x696e7462);
+    #[doc(alias = "kCAClockProperty_TimebaseSource")]
+    pub const TimebaseSource: Self = Self(0x69746273);
+    #[doc(alias = "kCAClockProperty_SyncMode")]
+    pub const SyncMode: Self = Self(0x73796e6d);
+    #[doc(alias = "kCAClockProperty_SyncSource")]
+    pub const SyncSource: Self = Self(0x73796e73);
+    #[doc(alias = "kCAClockProperty_SMPTEFormat")]
+    pub const SMPTEFormat: Self = Self(0x736d7066);
+    #[doc(alias = "kCAClockProperty_SMPTEOffset")]
+    pub const SMPTEOffset: Self = Self(0x736d706f);
+    #[doc(alias = "kCAClockProperty_MIDIClockDestinations")]
+    pub const MIDIClockDestinations: Self = Self(0x6d626364);
+    #[doc(alias = "kCAClockProperty_MTCDestinations")]
+    pub const MTCDestinations: Self = Self(0x6d746364);
+    #[doc(alias = "kCAClockProperty_MTCFreewheelTime")]
+    pub const MTCFreewheelTime: Self = Self(0x6d746677);
+    #[doc(alias = "kCAClockProperty_TempoMap")]
+    pub const TempoMap: Self = Self(0x746d706f);
+    #[doc(alias = "kCAClockProperty_MeterTrack")]
+    pub const MeterTrack: Self = Self(0x6d657472);
+    #[doc(alias = "kCAClockProperty_Name")]
+    pub const Name: Self = Self(0x6e616d65);
+    #[doc(alias = "kCAClockProperty_SendMIDISPP")]
+    pub const SendMIDISPP: Self = Self(0x6d737070);
 }
 
 unsafe impl Encode for CAClockPropertyID {
@@ -5497,9 +5510,12 @@ unsafe impl RefEncode for CAClockPropertyID {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAClockTimebase(pub u32);
 impl CAClockTimebase {
-    pub const kCAClockTimebase_HostTime: Self = Self(0x686f7374);
-    pub const kCAClockTimebase_AudioDevice: Self = Self(0x61756469);
-    pub const kCAClockTimebase_AudioOutputUnit: Self = Self(0x61756f75);
+    #[doc(alias = "kCAClockTimebase_HostTime")]
+    pub const HostTime: Self = Self(0x686f7374);
+    #[doc(alias = "kCAClockTimebase_AudioDevice")]
+    pub const AudioDevice: Self = Self(0x61756469);
+    #[doc(alias = "kCAClockTimebase_AudioOutputUnit")]
+    pub const AudioOutputUnit: Self = Self(0x61756f75);
 }
 
 unsafe impl Encode for CAClockTimebase {
@@ -5527,9 +5543,12 @@ unsafe impl RefEncode for CAClockTimebase {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAClockSyncMode(pub u32);
 impl CAClockSyncMode {
-    pub const kCAClockSyncMode_Internal: Self = Self(0x696e7472);
-    pub const kCAClockSyncMode_MIDIClockTransport: Self = Self(0x6d636c6b);
-    pub const kCAClockSyncMode_MTCTransport: Self = Self(0x6d6d7463);
+    #[doc(alias = "kCAClockSyncMode_Internal")]
+    pub const Internal: Self = Self(0x696e7472);
+    #[doc(alias = "kCAClockSyncMode_MIDIClockTransport")]
+    pub const MIDIClockTransport: Self = Self(0x6d636c6b);
+    #[doc(alias = "kCAClockSyncMode_MTCTransport")]
+    pub const MTCTransport: Self = Self(0x6d6d7463);
 }
 
 unsafe impl Encode for CAClockSyncMode {
@@ -5578,13 +5597,20 @@ pub type CAClockSMPTEFormat = SMPTETimeType;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAClockMessage(pub u32);
 impl CAClockMessage {
-    pub const kCAClockMessage_StartTimeSet: Self = Self(0x7374696d);
-    pub const kCAClockMessage_Started: Self = Self(0x73747274);
-    pub const kCAClockMessage_Stopped: Self = Self(0x73746f70);
-    pub const kCAClockMessage_Armed: Self = Self(0x61726d64);
-    pub const kCAClockMessage_Disarmed: Self = Self(0x6461726d);
-    pub const kCAClockMessage_PropertyChanged: Self = Self(0x70636867);
-    pub const kCAClockMessage_WrongSMPTEFormat: Self = Self(0x3f736d70);
+    #[doc(alias = "kCAClockMessage_StartTimeSet")]
+    pub const StartTimeSet: Self = Self(0x7374696d);
+    #[doc(alias = "kCAClockMessage_Started")]
+    pub const Started: Self = Self(0x73747274);
+    #[doc(alias = "kCAClockMessage_Stopped")]
+    pub const Stopped: Self = Self(0x73746f70);
+    #[doc(alias = "kCAClockMessage_Armed")]
+    pub const Armed: Self = Self(0x61726d64);
+    #[doc(alias = "kCAClockMessage_Disarmed")]
+    pub const Disarmed: Self = Self(0x6461726d);
+    #[doc(alias = "kCAClockMessage_PropertyChanged")]
+    pub const PropertyChanged: Self = Self(0x70636867);
+    #[doc(alias = "kCAClockMessage_WrongSMPTEFormat")]
+    pub const WrongSMPTEFormat: Self = Self(0x3f736d70);
 }
 
 unsafe impl Encode for CAClockMessage {
@@ -5624,13 +5650,20 @@ unsafe impl RefEncode for CAClockMessage {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CAClockTimeFormat(pub u32);
 impl CAClockTimeFormat {
-    pub const kCAClockTimeFormat_HostTime: Self = Self(0x686f7374);
-    pub const kCAClockTimeFormat_Samples: Self = Self(0x73616d70);
-    pub const kCAClockTimeFormat_Beats: Self = Self(0x62656174);
-    pub const kCAClockTimeFormat_Seconds: Self = Self(0x73656373);
-    pub const kCAClockTimeFormat_SMPTESeconds: Self = Self(0x736d7073);
-    pub const kCAClockTimeFormat_SMPTETime: Self = Self(0x736d7074);
-    pub const kCAClockTimeFormat_AbsoluteSeconds: Self = Self(0x61736563);
+    #[doc(alias = "kCAClockTimeFormat_HostTime")]
+    pub const HostTime: Self = Self(0x686f7374);
+    #[doc(alias = "kCAClockTimeFormat_Samples")]
+    pub const Samples: Self = Self(0x73616d70);
+    #[doc(alias = "kCAClockTimeFormat_Beats")]
+    pub const Beats: Self = Self(0x62656174);
+    #[doc(alias = "kCAClockTimeFormat_Seconds")]
+    pub const Seconds: Self = Self(0x73656373);
+    #[doc(alias = "kCAClockTimeFormat_SMPTESeconds")]
+    pub const SMPTESeconds: Self = Self(0x736d7073);
+    #[doc(alias = "kCAClockTimeFormat_SMPTETime")]
+    pub const SMPTETime: Self = Self(0x736d7074);
+    #[doc(alias = "kCAClockTimeFormat_AbsoluteSeconds")]
+    pub const AbsoluteSeconds: Self = Self(0x61736563);
 }
 
 unsafe impl Encode for CAClockTimeFormat {

@@ -282,9 +282,12 @@ extern "C-unwind" {
 pub struct CTFontCollectionCopyOptions(pub u32);
 bitflags::bitflags! {
     impl CTFontCollectionCopyOptions: u32 {
-        const kCTFontCollectionCopyDefaultOptions = 0;
-        const kCTFontCollectionCopyUnique = 1<<0;
-        const kCTFontCollectionCopyStandardSort = 1<<1;
+        #[doc(alias = "kCTFontCollectionCopyDefaultOptions")]
+        const DefaultOptions = 0;
+        #[doc(alias = "kCTFontCollectionCopyUnique")]
+        const Unique = 1<<0;
+        #[doc(alias = "kCTFontCollectionCopyStandardSort")]
+        const StandardSort = 1<<1;
     }
 }
 

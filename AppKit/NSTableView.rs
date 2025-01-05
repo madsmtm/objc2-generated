@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTableViewDropOperation(pub NSUInteger);
 impl NSTableViewDropOperation {
-    pub const NSTableViewDropOn: Self = Self(0);
-    pub const NSTableViewDropAbove: Self = Self(1);
+    #[doc(alias = "NSTableViewDropOn")]
+    pub const On: Self = Self(0);
+    #[doc(alias = "NSTableViewDropAbove")]
+    pub const Above: Self = Self(1);
 }
 
 unsafe impl Encode for NSTableViewDropOperation {
@@ -33,12 +35,18 @@ unsafe impl RefEncode for NSTableViewDropOperation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTableViewColumnAutoresizingStyle(pub NSUInteger);
 impl NSTableViewColumnAutoresizingStyle {
-    pub const NSTableViewNoColumnAutoresizing: Self = Self(0);
-    pub const NSTableViewUniformColumnAutoresizingStyle: Self = Self(1);
-    pub const NSTableViewSequentialColumnAutoresizingStyle: Self = Self(2);
-    pub const NSTableViewReverseSequentialColumnAutoresizingStyle: Self = Self(3);
-    pub const NSTableViewLastColumnOnlyAutoresizingStyle: Self = Self(4);
-    pub const NSTableViewFirstColumnOnlyAutoresizingStyle: Self = Self(5);
+    #[doc(alias = "NSTableViewNoColumnAutoresizing")]
+    pub const NoColumnAutoresizing: Self = Self(0);
+    #[doc(alias = "NSTableViewUniformColumnAutoresizingStyle")]
+    pub const UniformColumnAutoresizingStyle: Self = Self(1);
+    #[doc(alias = "NSTableViewSequentialColumnAutoresizingStyle")]
+    pub const SequentialColumnAutoresizingStyle: Self = Self(2);
+    #[doc(alias = "NSTableViewReverseSequentialColumnAutoresizingStyle")]
+    pub const ReverseSequentialColumnAutoresizingStyle: Self = Self(3);
+    #[doc(alias = "NSTableViewLastColumnOnlyAutoresizingStyle")]
+    pub const LastColumnOnlyAutoresizingStyle: Self = Self(4);
+    #[doc(alias = "NSTableViewFirstColumnOnlyAutoresizingStyle")]
+    pub const FirstColumnOnlyAutoresizingStyle: Self = Self(5);
 }
 
 unsafe impl Encode for NSTableViewColumnAutoresizingStyle {
@@ -56,10 +64,14 @@ unsafe impl RefEncode for NSTableViewColumnAutoresizingStyle {
 pub struct NSTableViewGridLineStyle(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTableViewGridLineStyle: NSUInteger {
-        const NSTableViewGridNone = 0;
-        const NSTableViewSolidVerticalGridLineMask = 1<<0;
-        const NSTableViewSolidHorizontalGridLineMask = 1<<1;
-        const NSTableViewDashedHorizontalGridLineMask = 1<<3;
+        #[doc(alias = "NSTableViewGridNone")]
+        const GridNone = 0;
+        #[doc(alias = "NSTableViewSolidVerticalGridLineMask")]
+        const SolidVerticalGridLineMask = 1<<0;
+        #[doc(alias = "NSTableViewSolidHorizontalGridLineMask")]
+        const SolidHorizontalGridLineMask = 1<<1;
+        #[doc(alias = "NSTableViewDashedHorizontalGridLineMask")]
+        const DashedHorizontalGridLineMask = 1<<3;
     }
 }
 
@@ -200,13 +212,20 @@ pub type NSTableViewAutosaveName = NSString;
 pub struct NSTableViewAnimationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTableViewAnimationOptions: NSUInteger {
-        const NSTableViewAnimationEffectNone = 0x0;
-        const NSTableViewAnimationEffectFade = 0x1;
-        const NSTableViewAnimationEffectGap = 0x2;
-        const NSTableViewAnimationSlideUp = 0x10;
-        const NSTableViewAnimationSlideDown = 0x20;
-        const NSTableViewAnimationSlideLeft = 0x30;
-        const NSTableViewAnimationSlideRight = 0x40;
+        #[doc(alias = "NSTableViewAnimationEffectNone")]
+        const EffectNone = 0x0;
+        #[doc(alias = "NSTableViewAnimationEffectFade")]
+        const EffectFade = 0x1;
+        #[doc(alias = "NSTableViewAnimationEffectGap")]
+        const EffectGap = 0x2;
+        #[doc(alias = "NSTableViewAnimationSlideUp")]
+        const SlideUp = 0x10;
+        #[doc(alias = "NSTableViewAnimationSlideDown")]
+        const SlideDown = 0x20;
+        #[doc(alias = "NSTableViewAnimationSlideLeft")]
+        const SlideLeft = 0x30;
+        #[doc(alias = "NSTableViewAnimationSlideRight")]
+        const SlideRight = 0x40;
     }
 }
 

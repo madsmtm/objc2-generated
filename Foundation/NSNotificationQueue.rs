@@ -12,9 +12,12 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPostingStyle(pub NSUInteger);
 impl NSPostingStyle {
-    pub const NSPostWhenIdle: Self = Self(1);
-    pub const NSPostASAP: Self = Self(2);
-    pub const NSPostNow: Self = Self(3);
+    #[doc(alias = "NSPostWhenIdle")]
+    pub const PostWhenIdle: Self = Self(1);
+    #[doc(alias = "NSPostASAP")]
+    pub const PostASAP: Self = Self(2);
+    #[doc(alias = "NSPostNow")]
+    pub const PostNow: Self = Self(3);
 }
 
 unsafe impl Encode for NSPostingStyle {
@@ -32,11 +35,12 @@ unsafe impl RefEncode for NSPostingStyle {
 pub struct NSNotificationCoalescing(pub NSUInteger);
 bitflags::bitflags! {
     impl NSNotificationCoalescing: NSUInteger {
-        const NSNotificationNoCoalescing = 0;
+        #[doc(alias = "NSNotificationNoCoalescing")]
+        const NoCoalescing = 0;
         #[doc(alias = "NSNotificationCoalescingOnName")]
-        const OnName = 1;
+        const CoalescingOnName = 1;
         #[doc(alias = "NSNotificationCoalescingOnSender")]
-        const OnSender = 2;
+        const CoalescingOnSender = 2;
     }
 }
 

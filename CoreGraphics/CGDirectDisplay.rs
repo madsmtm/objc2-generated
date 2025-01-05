@@ -256,8 +256,10 @@ extern "C-unwind" {
 pub struct CGCaptureOptions(pub u32);
 bitflags::bitflags! {
     impl CGCaptureOptions: u32 {
-        const kCGCaptureNoOptions = 0;
-        const kCGCaptureNoFill = 1<<0;
+        #[doc(alias = "kCGCaptureNoOptions")]
+        const NoOptions = 0;
+        #[doc(alias = "kCGCaptureNoFill")]
+        const NoFill = 1<<0;
     }
 }
 

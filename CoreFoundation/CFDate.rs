@@ -136,19 +136,26 @@ pub struct CFGregorianUnitFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFGregorianUnitFlags: CFOptionFlags {
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-        const kCFGregorianUnitsYears = 1<<0;
+        #[doc(alias = "kCFGregorianUnitsYears")]
+        const UnitsYears = 1<<0;
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-        const kCFGregorianUnitsMonths = 1<<1;
+        #[doc(alias = "kCFGregorianUnitsMonths")]
+        const UnitsMonths = 1<<1;
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-        const kCFGregorianUnitsDays = 1<<2;
+        #[doc(alias = "kCFGregorianUnitsDays")]
+        const UnitsDays = 1<<2;
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-        const kCFGregorianUnitsHours = 1<<3;
+        #[doc(alias = "kCFGregorianUnitsHours")]
+        const UnitsHours = 1<<3;
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-        const kCFGregorianUnitsMinutes = 1<<4;
+        #[doc(alias = "kCFGregorianUnitsMinutes")]
+        const UnitsMinutes = 1<<4;
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-        const kCFGregorianUnitsSeconds = 1<<5;
+        #[doc(alias = "kCFGregorianUnitsSeconds")]
+        const UnitsSeconds = 1<<5;
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-        const kCFGregorianAllUnits = 0x00FFFFFF;
+        #[doc(alias = "kCFGregorianAllUnits")]
+        const AllUnits = 0x00FFFFFF;
     }
 }
 

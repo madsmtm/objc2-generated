@@ -13,7 +13,8 @@ use crate::*;
 pub struct NSFileVersionAddingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileVersionAddingOptions: NSUInteger {
-        const NSFileVersionAddingByMoving = 1<<0;
+        #[doc(alias = "NSFileVersionAddingByMoving")]
+        const ByMoving = 1<<0;
     }
 }
 
@@ -32,7 +33,8 @@ unsafe impl RefEncode for NSFileVersionAddingOptions {
 pub struct NSFileVersionReplacingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileVersionReplacingOptions: NSUInteger {
-        const NSFileVersionReplacingByMoving = 1<<0;
+        #[doc(alias = "NSFileVersionReplacingByMoving")]
+        const ByMoving = 1<<0;
     }
 }
 

@@ -95,23 +95,40 @@ extern "C" {
 pub struct CTFontManagerError(pub CFIndex);
 #[cfg(feature = "objc2-core-foundation")]
 impl CTFontManagerError {
-    pub const kCTFontManagerErrorFileNotFound: Self = Self(101);
-    pub const kCTFontManagerErrorInsufficientPermissions: Self = Self(102);
-    pub const kCTFontManagerErrorUnrecognizedFormat: Self = Self(103);
-    pub const kCTFontManagerErrorInvalidFontData: Self = Self(104);
-    pub const kCTFontManagerErrorAlreadyRegistered: Self = Self(105);
-    pub const kCTFontManagerErrorExceededResourceLimit: Self = Self(106);
-    pub const kCTFontManagerErrorAssetNotFound: Self = Self(107);
-    pub const kCTFontManagerErrorNotRegistered: Self = Self(201);
-    pub const kCTFontManagerErrorInUse: Self = Self(202);
-    pub const kCTFontManagerErrorSystemRequired: Self = Self(203);
-    pub const kCTFontManagerErrorRegistrationFailed: Self = Self(301);
-    pub const kCTFontManagerErrorMissingEntitlement: Self = Self(302);
-    pub const kCTFontManagerErrorInsufficientInfo: Self = Self(303);
-    pub const kCTFontManagerErrorCancelledByUser: Self = Self(304);
-    pub const kCTFontManagerErrorDuplicatedName: Self = Self(305);
-    pub const kCTFontManagerErrorInvalidFilePath: Self = Self(306);
-    pub const kCTFontManagerErrorUnsupportedScope: Self = Self(307);
+    #[doc(alias = "kCTFontManagerErrorFileNotFound")]
+    pub const FileNotFound: Self = Self(101);
+    #[doc(alias = "kCTFontManagerErrorInsufficientPermissions")]
+    pub const InsufficientPermissions: Self = Self(102);
+    #[doc(alias = "kCTFontManagerErrorUnrecognizedFormat")]
+    pub const UnrecognizedFormat: Self = Self(103);
+    #[doc(alias = "kCTFontManagerErrorInvalidFontData")]
+    pub const InvalidFontData: Self = Self(104);
+    #[doc(alias = "kCTFontManagerErrorAlreadyRegistered")]
+    pub const AlreadyRegistered: Self = Self(105);
+    #[doc(alias = "kCTFontManagerErrorExceededResourceLimit")]
+    pub const ExceededResourceLimit: Self = Self(106);
+    #[doc(alias = "kCTFontManagerErrorAssetNotFound")]
+    pub const AssetNotFound: Self = Self(107);
+    #[doc(alias = "kCTFontManagerErrorNotRegistered")]
+    pub const NotRegistered: Self = Self(201);
+    #[doc(alias = "kCTFontManagerErrorInUse")]
+    pub const InUse: Self = Self(202);
+    #[doc(alias = "kCTFontManagerErrorSystemRequired")]
+    pub const SystemRequired: Self = Self(203);
+    #[doc(alias = "kCTFontManagerErrorRegistrationFailed")]
+    pub const RegistrationFailed: Self = Self(301);
+    #[doc(alias = "kCTFontManagerErrorMissingEntitlement")]
+    pub const MissingEntitlement: Self = Self(302);
+    #[doc(alias = "kCTFontManagerErrorInsufficientInfo")]
+    pub const InsufficientInfo: Self = Self(303);
+    #[doc(alias = "kCTFontManagerErrorCancelledByUser")]
+    pub const CancelledByUser: Self = Self(304);
+    #[doc(alias = "kCTFontManagerErrorDuplicatedName")]
+    pub const DuplicatedName: Self = Self(305);
+    #[doc(alias = "kCTFontManagerErrorInvalidFilePath")]
+    pub const InvalidFilePath: Self = Self(306);
+    #[doc(alias = "kCTFontManagerErrorUnsupportedScope")]
+    pub const UnsupportedScope: Self = Self(307);
 }
 
 #[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]

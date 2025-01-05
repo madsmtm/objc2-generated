@@ -347,8 +347,10 @@ extern_methods!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVPlayerViewTrimResult(pub NSInteger);
 impl AVPlayerViewTrimResult {
-    pub const AVPlayerViewTrimOKButton: Self = Self(0);
-    pub const AVPlayerViewTrimCancelButton: Self = Self(1);
+    #[doc(alias = "AVPlayerViewTrimOKButton")]
+    pub const OKButton: Self = Self(0);
+    #[doc(alias = "AVPlayerViewTrimCancelButton")]
+    pub const CancelButton: Self = Self(1);
 }
 
 unsafe impl Encode for AVPlayerViewTrimResult {

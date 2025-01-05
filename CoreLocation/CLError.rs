@@ -12,26 +12,46 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CLError(pub NSInteger);
 impl CLError {
-    pub const kCLErrorLocationUnknown: Self = Self(0);
-    pub const kCLErrorDenied: Self = Self(1);
-    pub const kCLErrorNetwork: Self = Self(2);
-    pub const kCLErrorHeadingFailure: Self = Self(3);
-    pub const kCLErrorRegionMonitoringDenied: Self = Self(4);
-    pub const kCLErrorRegionMonitoringFailure: Self = Self(5);
-    pub const kCLErrorRegionMonitoringSetupDelayed: Self = Self(6);
-    pub const kCLErrorRegionMonitoringResponseDelayed: Self = Self(7);
-    pub const kCLErrorGeocodeFoundNoResult: Self = Self(8);
-    pub const kCLErrorGeocodeFoundPartialResult: Self = Self(9);
-    pub const kCLErrorGeocodeCanceled: Self = Self(10);
-    pub const kCLErrorDeferredFailed: Self = Self(11);
-    pub const kCLErrorDeferredNotUpdatingLocation: Self = Self(12);
-    pub const kCLErrorDeferredAccuracyTooLow: Self = Self(13);
-    pub const kCLErrorDeferredDistanceFiltered: Self = Self(14);
-    pub const kCLErrorDeferredCanceled: Self = Self(15);
-    pub const kCLErrorRangingUnavailable: Self = Self(16);
-    pub const kCLErrorRangingFailure: Self = Self(17);
-    pub const kCLErrorPromptDeclined: Self = Self(18);
-    pub const kCLErrorHistoricalLocationError: Self = Self(19);
+    #[doc(alias = "kCLErrorLocationUnknown")]
+    pub const LocationUnknown: Self = Self(0);
+    #[doc(alias = "kCLErrorDenied")]
+    pub const Denied: Self = Self(1);
+    #[doc(alias = "kCLErrorNetwork")]
+    pub const Network: Self = Self(2);
+    #[doc(alias = "kCLErrorHeadingFailure")]
+    pub const HeadingFailure: Self = Self(3);
+    #[doc(alias = "kCLErrorRegionMonitoringDenied")]
+    pub const RegionMonitoringDenied: Self = Self(4);
+    #[doc(alias = "kCLErrorRegionMonitoringFailure")]
+    pub const RegionMonitoringFailure: Self = Self(5);
+    #[doc(alias = "kCLErrorRegionMonitoringSetupDelayed")]
+    pub const RegionMonitoringSetupDelayed: Self = Self(6);
+    #[doc(alias = "kCLErrorRegionMonitoringResponseDelayed")]
+    pub const RegionMonitoringResponseDelayed: Self = Self(7);
+    #[doc(alias = "kCLErrorGeocodeFoundNoResult")]
+    pub const GeocodeFoundNoResult: Self = Self(8);
+    #[doc(alias = "kCLErrorGeocodeFoundPartialResult")]
+    pub const GeocodeFoundPartialResult: Self = Self(9);
+    #[doc(alias = "kCLErrorGeocodeCanceled")]
+    pub const GeocodeCanceled: Self = Self(10);
+    #[doc(alias = "kCLErrorDeferredFailed")]
+    pub const DeferredFailed: Self = Self(11);
+    #[doc(alias = "kCLErrorDeferredNotUpdatingLocation")]
+    pub const DeferredNotUpdatingLocation: Self = Self(12);
+    #[doc(alias = "kCLErrorDeferredAccuracyTooLow")]
+    pub const DeferredAccuracyTooLow: Self = Self(13);
+    #[doc(alias = "kCLErrorDeferredDistanceFiltered")]
+    pub const DeferredDistanceFiltered: Self = Self(14);
+    #[doc(alias = "kCLErrorDeferredCanceled")]
+    pub const DeferredCanceled: Self = Self(15);
+    #[doc(alias = "kCLErrorRangingUnavailable")]
+    pub const RangingUnavailable: Self = Self(16);
+    #[doc(alias = "kCLErrorRangingFailure")]
+    pub const RangingFailure: Self = Self(17);
+    #[doc(alias = "kCLErrorPromptDeclined")]
+    pub const PromptDeclined: Self = Self(18);
+    #[doc(alias = "kCLErrorHistoricalLocationError")]
+    pub const HistoricalLocationError: Self = Self(19);
 }
 
 unsafe impl Encode for CLError {

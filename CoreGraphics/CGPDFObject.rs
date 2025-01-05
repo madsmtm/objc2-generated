@@ -27,15 +27,24 @@ pub type CGPDFObjectRef = *mut c_void;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGPDFObjectType(pub i32);
 impl CGPDFObjectType {
-    pub const kCGPDFObjectTypeNull: Self = Self(1);
-    pub const kCGPDFObjectTypeBoolean: Self = Self(2);
-    pub const kCGPDFObjectTypeInteger: Self = Self(3);
-    pub const kCGPDFObjectTypeReal: Self = Self(4);
-    pub const kCGPDFObjectTypeName: Self = Self(5);
-    pub const kCGPDFObjectTypeString: Self = Self(6);
-    pub const kCGPDFObjectTypeArray: Self = Self(7);
-    pub const kCGPDFObjectTypeDictionary: Self = Self(8);
-    pub const kCGPDFObjectTypeStream: Self = Self(9);
+    #[doc(alias = "kCGPDFObjectTypeNull")]
+    pub const Null: Self = Self(1);
+    #[doc(alias = "kCGPDFObjectTypeBoolean")]
+    pub const Boolean: Self = Self(2);
+    #[doc(alias = "kCGPDFObjectTypeInteger")]
+    pub const Integer: Self = Self(3);
+    #[doc(alias = "kCGPDFObjectTypeReal")]
+    pub const Real: Self = Self(4);
+    #[doc(alias = "kCGPDFObjectTypeName")]
+    pub const Name: Self = Self(5);
+    #[doc(alias = "kCGPDFObjectTypeString")]
+    pub const String: Self = Self(6);
+    #[doc(alias = "kCGPDFObjectTypeArray")]
+    pub const Array: Self = Self(7);
+    #[doc(alias = "kCGPDFObjectTypeDictionary")]
+    pub const Dictionary: Self = Self(8);
+    #[doc(alias = "kCGPDFObjectTypeStream")]
+    pub const Stream: Self = Self(9);
 }
 
 #[cfg(feature = "objc2")]

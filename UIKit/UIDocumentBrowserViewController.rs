@@ -22,8 +22,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIDocumentBrowserErrorCode(pub NSInteger);
 impl UIDocumentBrowserErrorCode {
-    pub const UIDocumentBrowserErrorGeneric: Self = Self(1);
-    pub const UIDocumentBrowserErrorNoLocationAvailable: Self = Self(2);
+    #[doc(alias = "UIDocumentBrowserErrorGeneric")]
+    pub const Generic: Self = Self(1);
+    #[doc(alias = "UIDocumentBrowserErrorNoLocationAvailable")]
+    pub const NoLocationAvailable: Self = Self(2);
 }
 
 unsafe impl Encode for UIDocumentBrowserErrorCode {

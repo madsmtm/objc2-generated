@@ -12,11 +12,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDateFormatterStyle(pub NSUInteger);
 impl NSDateFormatterStyle {
-    pub const NSDateFormatterNoStyle: Self = Self(0);
-    pub const NSDateFormatterShortStyle: Self = Self(1);
-    pub const NSDateFormatterMediumStyle: Self = Self(2);
-    pub const NSDateFormatterLongStyle: Self = Self(3);
-    pub const NSDateFormatterFullStyle: Self = Self(4);
+    #[doc(alias = "NSDateFormatterNoStyle")]
+    pub const NoStyle: Self = Self(0);
+    #[doc(alias = "NSDateFormatterShortStyle")]
+    pub const ShortStyle: Self = Self(1);
+    #[doc(alias = "NSDateFormatterMediumStyle")]
+    pub const MediumStyle: Self = Self(2);
+    #[doc(alias = "NSDateFormatterLongStyle")]
+    pub const LongStyle: Self = Self(3);
+    #[doc(alias = "NSDateFormatterFullStyle")]
+    pub const FullStyle: Self = Self(4);
 }
 
 unsafe impl Encode for NSDateFormatterStyle {
@@ -34,9 +39,11 @@ unsafe impl RefEncode for NSDateFormatterStyle {
 pub struct NSDateFormatterBehavior(pub NSUInteger);
 impl NSDateFormatterBehavior {
     #[doc(alias = "NSDateFormatterBehaviorDefault")]
-    pub const Default: Self = Self(0);
-    pub const NSDateFormatterBehavior10_0: Self = Self(1000);
-    pub const NSDateFormatterBehavior10_4: Self = Self(1040);
+    pub const BehaviorDefault: Self = Self(0);
+    #[doc(alias = "NSDateFormatterBehavior10_0")]
+    pub const Behavior10_0: Self = Self(1000);
+    #[doc(alias = "NSDateFormatterBehavior10_4")]
+    pub const Behavior10_4: Self = Self(1040);
 }
 
 unsafe impl Encode for NSDateFormatterBehavior {

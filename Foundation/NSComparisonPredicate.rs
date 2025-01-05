@@ -12,9 +12,12 @@ use crate::*;
 pub struct NSComparisonPredicateOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSComparisonPredicateOptions: NSUInteger {
-        const NSCaseInsensitivePredicateOption = 0x01;
-        const NSDiacriticInsensitivePredicateOption = 0x02;
-        const NSNormalizedPredicateOption = 0x04;
+        #[doc(alias = "NSCaseInsensitivePredicateOption")]
+        const CaseInsensitivePredicateOption = 0x01;
+        #[doc(alias = "NSDiacriticInsensitivePredicateOption")]
+        const DiacriticInsensitivePredicateOption = 0x02;
+        #[doc(alias = "NSNormalizedPredicateOption")]
+        const NormalizedPredicateOption = 0x04;
     }
 }
 
@@ -32,9 +35,12 @@ unsafe impl RefEncode for NSComparisonPredicateOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSComparisonPredicateModifier(pub NSUInteger);
 impl NSComparisonPredicateModifier {
-    pub const NSDirectPredicateModifier: Self = Self(0);
-    pub const NSAllPredicateModifier: Self = Self(1);
-    pub const NSAnyPredicateModifier: Self = Self(2);
+    #[doc(alias = "NSDirectPredicateModifier")]
+    pub const DirectPredicateModifier: Self = Self(0);
+    #[doc(alias = "NSAllPredicateModifier")]
+    pub const AllPredicateModifier: Self = Self(1);
+    #[doc(alias = "NSAnyPredicateModifier")]
+    pub const AnyPredicateModifier: Self = Self(2);
 }
 
 unsafe impl Encode for NSComparisonPredicateModifier {
@@ -51,20 +57,34 @@ unsafe impl RefEncode for NSComparisonPredicateModifier {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPredicateOperatorType(pub NSUInteger);
 impl NSPredicateOperatorType {
-    pub const NSLessThanPredicateOperatorType: Self = Self(0);
-    pub const NSLessThanOrEqualToPredicateOperatorType: Self = Self(1);
-    pub const NSGreaterThanPredicateOperatorType: Self = Self(2);
-    pub const NSGreaterThanOrEqualToPredicateOperatorType: Self = Self(3);
-    pub const NSEqualToPredicateOperatorType: Self = Self(4);
-    pub const NSNotEqualToPredicateOperatorType: Self = Self(5);
-    pub const NSMatchesPredicateOperatorType: Self = Self(6);
-    pub const NSLikePredicateOperatorType: Self = Self(7);
-    pub const NSBeginsWithPredicateOperatorType: Self = Self(8);
-    pub const NSEndsWithPredicateOperatorType: Self = Self(9);
-    pub const NSInPredicateOperatorType: Self = Self(10);
-    pub const NSCustomSelectorPredicateOperatorType: Self = Self(11);
-    pub const NSContainsPredicateOperatorType: Self = Self(99);
-    pub const NSBetweenPredicateOperatorType: Self = Self(100);
+    #[doc(alias = "NSLessThanPredicateOperatorType")]
+    pub const LessThanPredicateOperatorType: Self = Self(0);
+    #[doc(alias = "NSLessThanOrEqualToPredicateOperatorType")]
+    pub const LessThanOrEqualToPredicateOperatorType: Self = Self(1);
+    #[doc(alias = "NSGreaterThanPredicateOperatorType")]
+    pub const GreaterThanPredicateOperatorType: Self = Self(2);
+    #[doc(alias = "NSGreaterThanOrEqualToPredicateOperatorType")]
+    pub const GreaterThanOrEqualToPredicateOperatorType: Self = Self(3);
+    #[doc(alias = "NSEqualToPredicateOperatorType")]
+    pub const EqualToPredicateOperatorType: Self = Self(4);
+    #[doc(alias = "NSNotEqualToPredicateOperatorType")]
+    pub const NotEqualToPredicateOperatorType: Self = Self(5);
+    #[doc(alias = "NSMatchesPredicateOperatorType")]
+    pub const MatchesPredicateOperatorType: Self = Self(6);
+    #[doc(alias = "NSLikePredicateOperatorType")]
+    pub const LikePredicateOperatorType: Self = Self(7);
+    #[doc(alias = "NSBeginsWithPredicateOperatorType")]
+    pub const BeginsWithPredicateOperatorType: Self = Self(8);
+    #[doc(alias = "NSEndsWithPredicateOperatorType")]
+    pub const EndsWithPredicateOperatorType: Self = Self(9);
+    #[doc(alias = "NSInPredicateOperatorType")]
+    pub const InPredicateOperatorType: Self = Self(10);
+    #[doc(alias = "NSCustomSelectorPredicateOperatorType")]
+    pub const CustomSelectorPredicateOperatorType: Self = Self(11);
+    #[doc(alias = "NSContainsPredicateOperatorType")]
+    pub const ContainsPredicateOperatorType: Self = Self(99);
+    #[doc(alias = "NSBetweenPredicateOperatorType")]
+    pub const BetweenPredicateOperatorType: Self = Self(100);
 }
 
 unsafe impl Encode for NSPredicateOperatorType {

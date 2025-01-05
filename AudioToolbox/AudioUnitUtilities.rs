@@ -31,10 +31,14 @@ pub const kAUParameterListener_AnyParameter: AudioUnitParameterID = 0xFFFFFFFF;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioUnitEventType(pub u32);
 impl AudioUnitEventType {
-    pub const kAudioUnitEvent_ParameterValueChange: Self = Self(0);
-    pub const kAudioUnitEvent_BeginParameterChangeGesture: Self = Self(1);
-    pub const kAudioUnitEvent_EndParameterChangeGesture: Self = Self(2);
-    pub const kAudioUnitEvent_PropertyChange: Self = Self(3);
+    #[doc(alias = "kAudioUnitEvent_ParameterValueChange")]
+    pub const ParameterValueChange: Self = Self(0);
+    #[doc(alias = "kAudioUnitEvent_BeginParameterChangeGesture")]
+    pub const BeginParameterChangeGesture: Self = Self(1);
+    #[doc(alias = "kAudioUnitEvent_EndParameterChangeGesture")]
+    pub const EndParameterChangeGesture: Self = Self(2);
+    #[doc(alias = "kAudioUnitEvent_PropertyChange")]
+    pub const PropertyChange: Self = Self(3);
 }
 
 unsafe impl Encode for AudioUnitEventType {

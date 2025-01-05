@@ -17,16 +17,26 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMTagCollectionError(pub OSStatus);
 impl CMTagCollectionError {
-    pub const kCMTagCollectionError_ParamErr: Self = Self(-15740);
-    pub const kCMTagCollectionError_AllocationFailed: Self = Self(-15741);
-    pub const kCMTagCollectionError_InternalError: Self = Self(-15742);
-    pub const kCMTagCollectionError_InvalidTag: Self = Self(-15743);
-    pub const kCMTagCollectionError_InvalidTagCollectionDictionary: Self = Self(-15744);
-    pub const kCMTagCollectionError_InvalidTagCollectionData: Self = Self(-15745);
-    pub const kCMTagCollectionError_TagNotFound: Self = Self(-15746);
-    pub const kCMTagCollectionError_InvalidTagCollectionDataVersion: Self = Self(-15747);
-    pub const kCMTagCollectionError_ExhaustedBufferSize: Self = Self(-15748);
-    pub const kCMTagCollectionError_NotYetImplemented: Self = Self(-15749);
+    #[doc(alias = "kCMTagCollectionError_ParamErr")]
+    pub const ParamErr: Self = Self(-15740);
+    #[doc(alias = "kCMTagCollectionError_AllocationFailed")]
+    pub const AllocationFailed: Self = Self(-15741);
+    #[doc(alias = "kCMTagCollectionError_InternalError")]
+    pub const InternalError: Self = Self(-15742);
+    #[doc(alias = "kCMTagCollectionError_InvalidTag")]
+    pub const InvalidTag: Self = Self(-15743);
+    #[doc(alias = "kCMTagCollectionError_InvalidTagCollectionDictionary")]
+    pub const InvalidTagCollectionDictionary: Self = Self(-15744);
+    #[doc(alias = "kCMTagCollectionError_InvalidTagCollectionData")]
+    pub const InvalidTagCollectionData: Self = Self(-15745);
+    #[doc(alias = "kCMTagCollectionError_TagNotFound")]
+    pub const TagNotFound: Self = Self(-15746);
+    #[doc(alias = "kCMTagCollectionError_InvalidTagCollectionDataVersion")]
+    pub const InvalidTagCollectionDataVersion: Self = Self(-15747);
+    #[doc(alias = "kCMTagCollectionError_ExhaustedBufferSize")]
+    pub const ExhaustedBufferSize: Self = Self(-15748);
+    #[doc(alias = "kCMTagCollectionError_NotYetImplemented")]
+    pub const NotYetImplemented: Self = Self(-15749);
 }
 
 #[cfg(feature = "objc2")]

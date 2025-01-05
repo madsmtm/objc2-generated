@@ -948,8 +948,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UITableViewSeparatorInsetReference(pub NSInteger);
 impl UITableViewSeparatorInsetReference {
-    pub const UITableViewSeparatorInsetFromCellEdges: Self = Self(0);
-    pub const UITableViewSeparatorInsetFromAutomaticInsets: Self = Self(1);
+    #[doc(alias = "UITableViewSeparatorInsetFromCellEdges")]
+    pub const FromCellEdges: Self = Self(0);
+    #[doc(alias = "UITableViewSeparatorInsetFromAutomaticInsets")]
+    pub const FromAutomaticInsets: Self = Self(1);
 }
 
 unsafe impl Encode for UITableViewSeparatorInsetReference {

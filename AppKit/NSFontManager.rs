@@ -16,18 +16,30 @@ use crate::*;
 pub struct NSFontTraitMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFontTraitMask: NSUInteger {
-        const NSItalicFontMask = 0x00000001;
-        const NSBoldFontMask = 0x00000002;
-        const NSUnboldFontMask = 0x00000004;
-        const NSNonStandardCharacterSetFontMask = 0x00000008;
-        const NSNarrowFontMask = 0x00000010;
-        const NSExpandedFontMask = 0x00000020;
-        const NSCondensedFontMask = 0x00000040;
-        const NSSmallCapsFontMask = 0x00000080;
-        const NSPosterFontMask = 0x00000100;
-        const NSCompressedFontMask = 0x00000200;
-        const NSFixedPitchFontMask = 0x00000400;
-        const NSUnitalicFontMask = 0x01000000;
+        #[doc(alias = "NSItalicFontMask")]
+        const ItalicFontMask = 0x00000001;
+        #[doc(alias = "NSBoldFontMask")]
+        const BoldFontMask = 0x00000002;
+        #[doc(alias = "NSUnboldFontMask")]
+        const UnboldFontMask = 0x00000004;
+        #[doc(alias = "NSNonStandardCharacterSetFontMask")]
+        const NonStandardCharacterSetFontMask = 0x00000008;
+        #[doc(alias = "NSNarrowFontMask")]
+        const NarrowFontMask = 0x00000010;
+        #[doc(alias = "NSExpandedFontMask")]
+        const ExpandedFontMask = 0x00000020;
+        #[doc(alias = "NSCondensedFontMask")]
+        const CondensedFontMask = 0x00000040;
+        #[doc(alias = "NSSmallCapsFontMask")]
+        const SmallCapsFontMask = 0x00000080;
+        #[doc(alias = "NSPosterFontMask")]
+        const PosterFontMask = 0x00000100;
+        #[doc(alias = "NSCompressedFontMask")]
+        const CompressedFontMask = 0x00000200;
+        #[doc(alias = "NSFixedPitchFontMask")]
+        const FixedPitchFontMask = 0x00000400;
+        #[doc(alias = "NSUnitalicFontMask")]
+        const UnitalicFontMask = 0x01000000;
     }
 }
 
@@ -46,7 +58,8 @@ unsafe impl RefEncode for NSFontTraitMask {
 pub struct NSFontCollectionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFontCollectionOptions: NSUInteger {
-        const NSFontCollectionApplicationOnlyMask = 1<<0;
+        #[doc(alias = "NSFontCollectionApplicationOnlyMask")]
+        const ApplicationOnlyMask = 1<<0;
     }
 }
 
@@ -64,14 +77,22 @@ unsafe impl RefEncode for NSFontCollectionOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFontAction(pub NSUInteger);
 impl NSFontAction {
-    pub const NSNoFontChangeAction: Self = Self(0);
-    pub const NSViaPanelFontAction: Self = Self(1);
-    pub const NSAddTraitFontAction: Self = Self(2);
-    pub const NSSizeUpFontAction: Self = Self(3);
-    pub const NSSizeDownFontAction: Self = Self(4);
-    pub const NSHeavierFontAction: Self = Self(5);
-    pub const NSLighterFontAction: Self = Self(6);
-    pub const NSRemoveTraitFontAction: Self = Self(7);
+    #[doc(alias = "NSNoFontChangeAction")]
+    pub const NoFontChangeAction: Self = Self(0);
+    #[doc(alias = "NSViaPanelFontAction")]
+    pub const ViaPanelFontAction: Self = Self(1);
+    #[doc(alias = "NSAddTraitFontAction")]
+    pub const AddTraitFontAction: Self = Self(2);
+    #[doc(alias = "NSSizeUpFontAction")]
+    pub const SizeUpFontAction: Self = Self(3);
+    #[doc(alias = "NSSizeDownFontAction")]
+    pub const SizeDownFontAction: Self = Self(4);
+    #[doc(alias = "NSHeavierFontAction")]
+    pub const HeavierFontAction: Self = Self(5);
+    #[doc(alias = "NSLighterFontAction")]
+    pub const LighterFontAction: Self = Self(6);
+    #[doc(alias = "NSRemoveTraitFontAction")]
+    pub const RemoveTraitFontAction: Self = Self(7);
 }
 
 unsafe impl Encode for NSFontAction {

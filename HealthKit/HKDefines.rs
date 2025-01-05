@@ -27,24 +27,41 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKErrorCode(pub NSInteger);
 impl HKErrorCode {
-    pub const HKUnknownError: Self = Self(0);
+    #[doc(alias = "HKUnknownError")]
+    pub const UnknownError: Self = Self(0);
     #[deprecated]
-    pub const HKNoError: Self = Self(HKErrorCode::HKUnknownError.0);
-    pub const HKErrorHealthDataUnavailable: Self = Self(1);
-    pub const HKErrorHealthDataRestricted: Self = Self(2);
-    pub const HKErrorInvalidArgument: Self = Self(3);
-    pub const HKErrorAuthorizationDenied: Self = Self(4);
-    pub const HKErrorAuthorizationNotDetermined: Self = Self(5);
-    pub const HKErrorDatabaseInaccessible: Self = Self(6);
-    pub const HKErrorUserCanceled: Self = Self(7);
-    pub const HKErrorAnotherWorkoutSessionStarted: Self = Self(8);
-    pub const HKErrorUserExitedWorkoutSession: Self = Self(9);
-    pub const HKErrorRequiredAuthorizationDenied: Self = Self(10);
-    pub const HKErrorNoData: Self = Self(11);
-    pub const HKErrorWorkoutActivityNotAllowed: Self = Self(12);
-    pub const HKErrorDataSizeExceeded: Self = Self(13);
-    pub const HKErrorBackgroundWorkoutSessionNotAllowed: Self = Self(14);
-    pub const HKErrorNotPermissibleForGuestUserMode: Self = Self(15);
+    #[doc(alias = "HKNoError")]
+    pub const NoError: Self = Self(HKErrorCode::UnknownError.0);
+    #[doc(alias = "HKErrorHealthDataUnavailable")]
+    pub const ErrorHealthDataUnavailable: Self = Self(1);
+    #[doc(alias = "HKErrorHealthDataRestricted")]
+    pub const ErrorHealthDataRestricted: Self = Self(2);
+    #[doc(alias = "HKErrorInvalidArgument")]
+    pub const ErrorInvalidArgument: Self = Self(3);
+    #[doc(alias = "HKErrorAuthorizationDenied")]
+    pub const ErrorAuthorizationDenied: Self = Self(4);
+    #[doc(alias = "HKErrorAuthorizationNotDetermined")]
+    pub const ErrorAuthorizationNotDetermined: Self = Self(5);
+    #[doc(alias = "HKErrorDatabaseInaccessible")]
+    pub const ErrorDatabaseInaccessible: Self = Self(6);
+    #[doc(alias = "HKErrorUserCanceled")]
+    pub const ErrorUserCanceled: Self = Self(7);
+    #[doc(alias = "HKErrorAnotherWorkoutSessionStarted")]
+    pub const ErrorAnotherWorkoutSessionStarted: Self = Self(8);
+    #[doc(alias = "HKErrorUserExitedWorkoutSession")]
+    pub const ErrorUserExitedWorkoutSession: Self = Self(9);
+    #[doc(alias = "HKErrorRequiredAuthorizationDenied")]
+    pub const ErrorRequiredAuthorizationDenied: Self = Self(10);
+    #[doc(alias = "HKErrorNoData")]
+    pub const ErrorNoData: Self = Self(11);
+    #[doc(alias = "HKErrorWorkoutActivityNotAllowed")]
+    pub const ErrorWorkoutActivityNotAllowed: Self = Self(12);
+    #[doc(alias = "HKErrorDataSizeExceeded")]
+    pub const ErrorDataSizeExceeded: Self = Self(13);
+    #[doc(alias = "HKErrorBackgroundWorkoutSessionNotAllowed")]
+    pub const ErrorBackgroundWorkoutSessionNotAllowed: Self = Self(14);
+    #[doc(alias = "HKErrorNotPermissibleForGuestUserMode")]
+    pub const ErrorNotPermissibleForGuestUserMode: Self = Self(15);
 }
 
 unsafe impl Encode for HKErrorCode {

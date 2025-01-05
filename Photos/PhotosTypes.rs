@@ -350,13 +350,13 @@ pub struct PHAssetSourceType(pub NSUInteger);
 bitflags::bitflags! {
     impl PHAssetSourceType: NSUInteger {
         #[doc(alias = "PHAssetSourceTypeNone")]
-        const None = 0;
+        const TypeNone = 0;
         #[doc(alias = "PHAssetSourceTypeUserLibrary")]
-        const UserLibrary = 1<<0;
+        const TypeUserLibrary = 1<<0;
         #[doc(alias = "PHAssetSourceTypeCloudShared")]
-        const CloudShared = 1<<1;
+        const TypeCloudShared = 1<<1;
         #[doc(alias = "PHAssetSourceTypeiTunesSynced")]
-        const iTunesSynced = 1<<2;
+        const TypeiTunesSynced = 1<<2;
     }
 }
 

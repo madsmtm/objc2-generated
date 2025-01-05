@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSCollectionViewDropOperation(pub NSInteger);
 impl NSCollectionViewDropOperation {
-    pub const NSCollectionViewDropOn: Self = Self(0);
-    pub const NSCollectionViewDropBefore: Self = Self(1);
+    #[doc(alias = "NSCollectionViewDropOn")]
+    pub const On: Self = Self(0);
+    #[doc(alias = "NSCollectionViewDropBefore")]
+    pub const Before: Self = Self(1);
 }
 
 unsafe impl Encode for NSCollectionViewDropOperation {
@@ -33,10 +35,14 @@ unsafe impl RefEncode for NSCollectionViewDropOperation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSCollectionViewItemHighlightState(pub NSInteger);
 impl NSCollectionViewItemHighlightState {
-    pub const NSCollectionViewItemHighlightNone: Self = Self(0);
-    pub const NSCollectionViewItemHighlightForSelection: Self = Self(1);
-    pub const NSCollectionViewItemHighlightForDeselection: Self = Self(2);
-    pub const NSCollectionViewItemHighlightAsDropTarget: Self = Self(3);
+    #[doc(alias = "NSCollectionViewItemHighlightNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSCollectionViewItemHighlightForSelection")]
+    pub const ForSelection: Self = Self(1);
+    #[doc(alias = "NSCollectionViewItemHighlightForDeselection")]
+    pub const ForDeselection: Self = Self(2);
+    #[doc(alias = "NSCollectionViewItemHighlightAsDropTarget")]
+    pub const AsDropTarget: Self = Self(3);
 }
 
 unsafe impl Encode for NSCollectionViewItemHighlightState {

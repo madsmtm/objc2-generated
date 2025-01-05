@@ -23,16 +23,26 @@ use crate::*;
 pub struct CBCharacteristicProperties(pub NSUInteger);
 bitflags::bitflags! {
     impl CBCharacteristicProperties: NSUInteger {
-        const CBCharacteristicPropertyBroadcast = 0x01;
-        const CBCharacteristicPropertyRead = 0x02;
-        const CBCharacteristicPropertyWriteWithoutResponse = 0x04;
-        const CBCharacteristicPropertyWrite = 0x08;
-        const CBCharacteristicPropertyNotify = 0x10;
-        const CBCharacteristicPropertyIndicate = 0x20;
-        const CBCharacteristicPropertyAuthenticatedSignedWrites = 0x40;
-        const CBCharacteristicPropertyExtendedProperties = 0x80;
-        const CBCharacteristicPropertyNotifyEncryptionRequired = 0x100;
-        const CBCharacteristicPropertyIndicateEncryptionRequired = 0x200;
+        #[doc(alias = "CBCharacteristicPropertyBroadcast")]
+        const Broadcast = 0x01;
+        #[doc(alias = "CBCharacteristicPropertyRead")]
+        const Read = 0x02;
+        #[doc(alias = "CBCharacteristicPropertyWriteWithoutResponse")]
+        const WriteWithoutResponse = 0x04;
+        #[doc(alias = "CBCharacteristicPropertyWrite")]
+        const Write = 0x08;
+        #[doc(alias = "CBCharacteristicPropertyNotify")]
+        const Notify = 0x10;
+        #[doc(alias = "CBCharacteristicPropertyIndicate")]
+        const Indicate = 0x20;
+        #[doc(alias = "CBCharacteristicPropertyAuthenticatedSignedWrites")]
+        const AuthenticatedSignedWrites = 0x40;
+        #[doc(alias = "CBCharacteristicPropertyExtendedProperties")]
+        const ExtendedProperties = 0x80;
+        #[doc(alias = "CBCharacteristicPropertyNotifyEncryptionRequired")]
+        const NotifyEncryptionRequired = 0x100;
+        #[doc(alias = "CBCharacteristicPropertyIndicateEncryptionRequired")]
+        const IndicateEncryptionRequired = 0x200;
     }
 }
 

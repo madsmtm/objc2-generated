@@ -12,13 +12,19 @@ use crate::*;
 pub struct NSJSONReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSJSONReadingOptions: NSUInteger {
-        const NSJSONReadingMutableContainers = 1<<0;
-        const NSJSONReadingMutableLeaves = 1<<1;
-        const NSJSONReadingFragmentsAllowed = 1<<2;
-        const NSJSONReadingJSON5Allowed = 1<<3;
-        const NSJSONReadingTopLevelDictionaryAssumed = 1<<4;
+        #[doc(alias = "NSJSONReadingMutableContainers")]
+        const MutableContainers = 1<<0;
+        #[doc(alias = "NSJSONReadingMutableLeaves")]
+        const MutableLeaves = 1<<1;
+        #[doc(alias = "NSJSONReadingFragmentsAllowed")]
+        const FragmentsAllowed = 1<<2;
+        #[doc(alias = "NSJSONReadingJSON5Allowed")]
+        const JSON5Allowed = 1<<3;
+        #[doc(alias = "NSJSONReadingTopLevelDictionaryAssumed")]
+        const TopLevelDictionaryAssumed = 1<<4;
 #[deprecated]
-        const NSJSONReadingAllowFragments = NSJSONReadingOptions::NSJSONReadingFragmentsAllowed.0;
+        #[doc(alias = "NSJSONReadingAllowFragments")]
+        const AllowFragments = NSJSONReadingOptions::FragmentsAllowed.0;
     }
 }
 
@@ -37,10 +43,14 @@ unsafe impl RefEncode for NSJSONReadingOptions {
 pub struct NSJSONWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSJSONWritingOptions: NSUInteger {
-        const NSJSONWritingPrettyPrinted = 1<<0;
-        const NSJSONWritingSortedKeys = 1<<1;
-        const NSJSONWritingFragmentsAllowed = 1<<2;
-        const NSJSONWritingWithoutEscapingSlashes = 1<<3;
+        #[doc(alias = "NSJSONWritingPrettyPrinted")]
+        const PrettyPrinted = 1<<0;
+        #[doc(alias = "NSJSONWritingSortedKeys")]
+        const SortedKeys = 1<<1;
+        #[doc(alias = "NSJSONWritingFragmentsAllowed")]
+        const FragmentsAllowed = 1<<2;
+        #[doc(alias = "NSJSONWritingWithoutEscapingSlashes")]
+        const WithoutEscapingSlashes = 1<<3;
     }
 }
 

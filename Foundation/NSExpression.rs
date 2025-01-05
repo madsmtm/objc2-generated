@@ -12,19 +12,32 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSExpressionType(pub NSUInteger);
 impl NSExpressionType {
-    pub const NSConstantValueExpressionType: Self = Self(0);
-    pub const NSEvaluatedObjectExpressionType: Self = Self(1);
-    pub const NSVariableExpressionType: Self = Self(2);
-    pub const NSKeyPathExpressionType: Self = Self(3);
-    pub const NSFunctionExpressionType: Self = Self(4);
-    pub const NSUnionSetExpressionType: Self = Self(5);
-    pub const NSIntersectSetExpressionType: Self = Self(6);
-    pub const NSMinusSetExpressionType: Self = Self(7);
-    pub const NSSubqueryExpressionType: Self = Self(13);
-    pub const NSAggregateExpressionType: Self = Self(14);
-    pub const NSAnyKeyExpressionType: Self = Self(15);
-    pub const NSBlockExpressionType: Self = Self(19);
-    pub const NSConditionalExpressionType: Self = Self(20);
+    #[doc(alias = "NSConstantValueExpressionType")]
+    pub const ConstantValueExpressionType: Self = Self(0);
+    #[doc(alias = "NSEvaluatedObjectExpressionType")]
+    pub const EvaluatedObjectExpressionType: Self = Self(1);
+    #[doc(alias = "NSVariableExpressionType")]
+    pub const VariableExpressionType: Self = Self(2);
+    #[doc(alias = "NSKeyPathExpressionType")]
+    pub const KeyPathExpressionType: Self = Self(3);
+    #[doc(alias = "NSFunctionExpressionType")]
+    pub const FunctionExpressionType: Self = Self(4);
+    #[doc(alias = "NSUnionSetExpressionType")]
+    pub const UnionSetExpressionType: Self = Self(5);
+    #[doc(alias = "NSIntersectSetExpressionType")]
+    pub const IntersectSetExpressionType: Self = Self(6);
+    #[doc(alias = "NSMinusSetExpressionType")]
+    pub const MinusSetExpressionType: Self = Self(7);
+    #[doc(alias = "NSSubqueryExpressionType")]
+    pub const SubqueryExpressionType: Self = Self(13);
+    #[doc(alias = "NSAggregateExpressionType")]
+    pub const AggregateExpressionType: Self = Self(14);
+    #[doc(alias = "NSAnyKeyExpressionType")]
+    pub const AnyKeyExpressionType: Self = Self(15);
+    #[doc(alias = "NSBlockExpressionType")]
+    pub const BlockExpressionType: Self = Self(19);
+    #[doc(alias = "NSConditionalExpressionType")]
+    pub const ConditionalExpressionType: Self = Self(20);
 }
 
 unsafe impl Encode for NSExpressionType {

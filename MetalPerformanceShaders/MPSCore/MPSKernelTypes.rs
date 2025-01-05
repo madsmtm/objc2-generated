@@ -11,21 +11,36 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSDeviceCapsValues(pub u32);
 impl MPSDeviceCapsValues {
-    pub const MPSDeviceCapsNull: Self = Self(0);
-    pub const MPSDeviceSupportsReadableArrayOfTextures: Self = Self(1 << 0);
-    pub const MPSDeviceSupportsWritableArrayOfTextures: Self = Self(1 << 1);
-    pub const MPSDeviceSupportsReadWriteTextures: Self = Self(1 << 2);
-    pub const MPSDeviceSupportsSimdgroupBarrier: Self = Self(1 << 3);
-    pub const MPSDeviceSupportsQuadShuffle: Self = Self(1 << 4);
-    pub const MPSDeviceSupportsSimdShuffle: Self = Self(1 << 5);
-    pub const MPSDeviceSupportsSimdReduction: Self = Self(1 << 6);
-    pub const MPSDeviceSupportsFloat32Filtering: Self = Self(1 << 7);
-    pub const MPSDeviceSupportsNorm16BicubicFiltering: Self = Self(1 << 8);
-    pub const MPSDeviceSupportsFloat16BicubicFiltering: Self = Self(1 << 9);
-    pub const MPSDeviceIsAppleDevice: Self = Self(1 << 10);
-    pub const MPSDeviceSupportsSimdShuffleAndFill: Self = Self(1 << 11);
-    pub const MPSDeviceSupportsBFloat16Arithmetic: Self = Self(1 << 12);
-    pub const MPSDeviceCapsLast: Self = Self(1 << 13);
+    #[doc(alias = "MPSDeviceCapsNull")]
+    pub const CapsNull: Self = Self(0);
+    #[doc(alias = "MPSDeviceSupportsReadableArrayOfTextures")]
+    pub const SupportsReadableArrayOfTextures: Self = Self(1 << 0);
+    #[doc(alias = "MPSDeviceSupportsWritableArrayOfTextures")]
+    pub const SupportsWritableArrayOfTextures: Self = Self(1 << 1);
+    #[doc(alias = "MPSDeviceSupportsReadWriteTextures")]
+    pub const SupportsReadWriteTextures: Self = Self(1 << 2);
+    #[doc(alias = "MPSDeviceSupportsSimdgroupBarrier")]
+    pub const SupportsSimdgroupBarrier: Self = Self(1 << 3);
+    #[doc(alias = "MPSDeviceSupportsQuadShuffle")]
+    pub const SupportsQuadShuffle: Self = Self(1 << 4);
+    #[doc(alias = "MPSDeviceSupportsSimdShuffle")]
+    pub const SupportsSimdShuffle: Self = Self(1 << 5);
+    #[doc(alias = "MPSDeviceSupportsSimdReduction")]
+    pub const SupportsSimdReduction: Self = Self(1 << 6);
+    #[doc(alias = "MPSDeviceSupportsFloat32Filtering")]
+    pub const SupportsFloat32Filtering: Self = Self(1 << 7);
+    #[doc(alias = "MPSDeviceSupportsNorm16BicubicFiltering")]
+    pub const SupportsNorm16BicubicFiltering: Self = Self(1 << 8);
+    #[doc(alias = "MPSDeviceSupportsFloat16BicubicFiltering")]
+    pub const SupportsFloat16BicubicFiltering: Self = Self(1 << 9);
+    #[doc(alias = "MPSDeviceIsAppleDevice")]
+    pub const IsAppleDevice: Self = Self(1 << 10);
+    #[doc(alias = "MPSDeviceSupportsSimdShuffleAndFill")]
+    pub const SupportsSimdShuffleAndFill: Self = Self(1 << 11);
+    #[doc(alias = "MPSDeviceSupportsBFloat16Arithmetic")]
+    pub const SupportsBFloat16Arithmetic: Self = Self(1 << 12);
+    #[doc(alias = "MPSDeviceCapsLast")]
+    pub const CapsLast: Self = Self(1 << 13);
 }
 
 unsafe impl Encode for MPSDeviceCapsValues {
@@ -119,49 +134,52 @@ unsafe impl RefEncode for MPSIntegerDivisionParams {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPSImageType(pub u32);
 impl MPSImageType {
-    pub const MPSImageType2d: Self = Self(0);
-    pub const MPSImageType2d_array: Self = Self(1);
+    #[doc(alias = "MPSImageType2d")]
+    pub const Type2d: Self = Self(0);
+    #[doc(alias = "MPSImageType2d_array")]
+    pub const Type2d_array: Self = Self(1);
     #[doc(alias = "MPSImageTypeArray2d")]
-    pub const Array2d: Self = Self(2);
+    pub const TypeArray2d: Self = Self(2);
     #[doc(alias = "MPSImageTypeArray2d_array")]
-    pub const Array2d_array: Self = Self(3);
+    pub const TypeArray2d_array: Self = Self(3);
     #[doc(alias = "MPSImageType_ArrayMask")]
-    pub const _ArrayMask: Self = Self(1);
+    pub const Type_ArrayMask: Self = Self(1);
     #[doc(alias = "MPSImageType_BatchMask")]
-    pub const _BatchMask: Self = Self(2);
+    pub const Type_BatchMask: Self = Self(2);
     #[doc(alias = "MPSImageType_typeMask")]
-    pub const _typeMask: Self = Self(3);
+    pub const Type_typeMask: Self = Self(3);
     #[doc(alias = "MPSImageType_noAlpha")]
-    pub const _noAlpha: Self = Self(4);
+    pub const Type_noAlpha: Self = Self(4);
     #[doc(alias = "MPSImageType_texelFormatMask")]
-    pub const _texelFormatMask: Self = Self(0x38);
+    pub const Type_texelFormatMask: Self = Self(0x38);
     #[doc(alias = "MPSImageType_texelFormatShift")]
-    pub const _texelFormatShift: Self = Self(3);
+    pub const Type_texelFormatShift: Self = Self(3);
     #[doc(alias = "MPSImageType_texelFormatStandard")]
-    pub const _texelFormatStandard: Self = Self(0 << MPSImageType::_texelFormatShift.0);
+    pub const Type_texelFormatStandard: Self = Self(0 << MPSImageType::Type_texelFormatShift.0);
     #[doc(alias = "MPSImageType_texelFormatUnorm8")]
-    pub const _texelFormatUnorm8: Self = Self(1 << MPSImageType::_texelFormatShift.0);
+    pub const Type_texelFormatUnorm8: Self = Self(1 << MPSImageType::Type_texelFormatShift.0);
     #[doc(alias = "MPSImageType_texelFormatFloat16")]
-    pub const _texelFormatFloat16: Self = Self(2 << MPSImageType::_texelFormatShift.0);
+    pub const Type_texelFormatFloat16: Self = Self(2 << MPSImageType::Type_texelFormatShift.0);
     #[doc(alias = "MPSImageType_texelFormatBFloat16")]
-    pub const _texelFormatBFloat16: Self = Self(3 << MPSImageType::_texelFormatShift.0);
+    pub const Type_texelFormatBFloat16: Self = Self(3 << MPSImageType::Type_texelFormatShift.0);
     #[doc(alias = "MPSImageType_bitCount")]
-    pub const _bitCount: Self = Self(6);
+    pub const Type_bitCount: Self = Self(6);
     #[doc(alias = "MPSImageType_mask")]
-    pub const _mask: Self = Self((1 << MPSImageType::_bitCount.0) - 1);
-    pub const MPSImageType2d_noAlpha: Self =
-        Self(MPSImageType::MPSImageType2d.0 | MPSImageType::_noAlpha.0);
-    pub const MPSImageType2d_array_noAlpha: Self =
-        Self(MPSImageType::MPSImageType2d_array.0 | MPSImageType::_noAlpha.0);
+    pub const Type_mask: Self = Self((1 << MPSImageType::Type_bitCount.0) - 1);
+    #[doc(alias = "MPSImageType2d_noAlpha")]
+    pub const Type2d_noAlpha: Self = Self(MPSImageType::Type2d.0 | MPSImageType::Type_noAlpha.0);
+    #[doc(alias = "MPSImageType2d_array_noAlpha")]
+    pub const Type2d_array_noAlpha: Self =
+        Self(MPSImageType::Type2d_array.0 | MPSImageType::Type_noAlpha.0);
     #[doc(alias = "MPSImageTypeArray2d_noAlpha")]
-    pub const Array2d_noAlpha: Self = Self(
-        MPSImageType::MPSImageType2d.0 | MPSImageType::_BatchMask.0 | MPSImageType::_noAlpha.0,
+    pub const TypeArray2d_noAlpha: Self = Self(
+        MPSImageType::Type2d.0 | MPSImageType::Type_BatchMask.0 | MPSImageType::Type_noAlpha.0,
     );
     #[doc(alias = "MPSImageTypeArray2d_array_noAlpha")]
-    pub const Array2d_array_noAlpha: Self = Self(
-        MPSImageType::MPSImageType2d_array.0
-            | MPSImageType::_BatchMask.0
-            | MPSImageType::_noAlpha.0,
+    pub const TypeArray2d_array_noAlpha: Self = Self(
+        MPSImageType::Type2d_array.0
+            | MPSImageType::Type_BatchMask.0
+            | MPSImageType::Type_noAlpha.0,
     );
 }
 

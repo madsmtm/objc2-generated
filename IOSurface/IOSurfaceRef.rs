@@ -171,14 +171,22 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOSurfaceComponentName(pub i32);
 impl IOSurfaceComponentName {
-    pub const kIOSurfaceComponentNameUnknown: Self = Self(0);
-    pub const kIOSurfaceComponentNameAlpha: Self = Self(1);
-    pub const kIOSurfaceComponentNameRed: Self = Self(2);
-    pub const kIOSurfaceComponentNameGreen: Self = Self(3);
-    pub const kIOSurfaceComponentNameBlue: Self = Self(4);
-    pub const kIOSurfaceComponentNameLuma: Self = Self(5);
-    pub const kIOSurfaceComponentNameChromaRed: Self = Self(6);
-    pub const kIOSurfaceComponentNameChromaBlue: Self = Self(7);
+    #[doc(alias = "kIOSurfaceComponentNameUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "kIOSurfaceComponentNameAlpha")]
+    pub const Alpha: Self = Self(1);
+    #[doc(alias = "kIOSurfaceComponentNameRed")]
+    pub const Red: Self = Self(2);
+    #[doc(alias = "kIOSurfaceComponentNameGreen")]
+    pub const Green: Self = Self(3);
+    #[doc(alias = "kIOSurfaceComponentNameBlue")]
+    pub const Blue: Self = Self(4);
+    #[doc(alias = "kIOSurfaceComponentNameLuma")]
+    pub const Luma: Self = Self(5);
+    #[doc(alias = "kIOSurfaceComponentNameChromaRed")]
+    pub const ChromaRed: Self = Self(6);
+    #[doc(alias = "kIOSurfaceComponentNameChromaBlue")]
+    pub const ChromaBlue: Self = Self(7);
 }
 
 #[cfg(feature = "objc2")]
@@ -203,11 +211,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOSurfaceComponentType(pub i32);
 impl IOSurfaceComponentType {
-    pub const kIOSurfaceComponentTypeUnknown: Self = Self(0);
-    pub const kIOSurfaceComponentTypeUnsignedInteger: Self = Self(1);
-    pub const kIOSurfaceComponentTypeSignedInteger: Self = Self(2);
-    pub const kIOSurfaceComponentTypeFloat: Self = Self(3);
-    pub const kIOSurfaceComponentTypeSignedNormalized: Self = Self(4);
+    #[doc(alias = "kIOSurfaceComponentTypeUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "kIOSurfaceComponentTypeUnsignedInteger")]
+    pub const UnsignedInteger: Self = Self(1);
+    #[doc(alias = "kIOSurfaceComponentTypeSignedInteger")]
+    pub const SignedInteger: Self = Self(2);
+    #[doc(alias = "kIOSurfaceComponentTypeFloat")]
+    pub const Float: Self = Self(3);
+    #[doc(alias = "kIOSurfaceComponentTypeSignedNormalized")]
+    pub const SignedNormalized: Self = Self(4);
 }
 
 #[cfg(feature = "objc2")]
@@ -232,10 +245,14 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOSurfaceComponentRange(pub i32);
 impl IOSurfaceComponentRange {
-    pub const kIOSurfaceComponentRangeUnknown: Self = Self(0);
-    pub const kIOSurfaceComponentRangeFullRange: Self = Self(1);
-    pub const kIOSurfaceComponentRangeVideoRange: Self = Self(2);
-    pub const kIOSurfaceComponentRangeWideRange: Self = Self(3);
+    #[doc(alias = "kIOSurfaceComponentRangeUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "kIOSurfaceComponentRangeFullRange")]
+    pub const FullRange: Self = Self(1);
+    #[doc(alias = "kIOSurfaceComponentRangeVideoRange")]
+    pub const VideoRange: Self = Self(2);
+    #[doc(alias = "kIOSurfaceComponentRangeWideRange")]
+    pub const WideRange: Self = Self(3);
 }
 
 #[cfg(feature = "objc2")]
@@ -260,11 +277,16 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOSurfaceSubsampling(pub i32);
 impl IOSurfaceSubsampling {
-    pub const kIOSurfaceSubsamplingUnknown: Self = Self(0);
-    pub const kIOSurfaceSubsamplingNone: Self = Self(1);
-    pub const kIOSurfaceSubsampling422: Self = Self(2);
-    pub const kIOSurfaceSubsampling420: Self = Self(3);
-    pub const kIOSurfaceSubsampling411: Self = Self(4);
+    #[doc(alias = "kIOSurfaceSubsamplingUnknown")]
+    pub const SubsamplingUnknown: Self = Self(0);
+    #[doc(alias = "kIOSurfaceSubsamplingNone")]
+    pub const SubsamplingNone: Self = Self(1);
+    #[doc(alias = "kIOSurfaceSubsampling422")]
+    pub const Subsampling422: Self = Self(2);
+    #[doc(alias = "kIOSurfaceSubsampling420")]
+    pub const Subsampling420: Self = Self(3);
+    #[doc(alias = "kIOSurfaceSubsampling411")]
+    pub const Subsampling411: Self = Self(4);
 }
 
 #[cfg(feature = "objc2")]
@@ -552,11 +574,16 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOSurfaceMemoryLedgerTags(pub c_int);
 impl IOSurfaceMemoryLedgerTags {
-    pub const kIOSurfaceMemoryLedgerTagDefault: Self = Self(0x00000001);
-    pub const kIOSurfaceMemoryLedgerTagNetwork: Self = Self(0x00000002);
-    pub const kIOSurfaceMemoryLedgerTagMedia: Self = Self(0x00000003);
-    pub const kIOSurfaceMemoryLedgerTagGraphics: Self = Self(0x00000004);
-    pub const kIOSurfaceMemoryLedgerTagNeural: Self = Self(0x00000005);
+    #[doc(alias = "kIOSurfaceMemoryLedgerTagDefault")]
+    pub const Default: Self = Self(0x00000001);
+    #[doc(alias = "kIOSurfaceMemoryLedgerTagNetwork")]
+    pub const Network: Self = Self(0x00000002);
+    #[doc(alias = "kIOSurfaceMemoryLedgerTagMedia")]
+    pub const Media: Self = Self(0x00000003);
+    #[doc(alias = "kIOSurfaceMemoryLedgerTagGraphics")]
+    pub const Graphics: Self = Self(0x00000004);
+    #[doc(alias = "kIOSurfaceMemoryLedgerTagNeural")]
+    pub const Neural: Self = Self(0x00000005);
 }
 
 #[cfg(feature = "objc2")]
@@ -576,7 +603,8 @@ unsafe impl RefEncode for IOSurfaceMemoryLedgerTags {
 pub struct IOSurfaceMemoryLedgerFlags(pub u32);
 bitflags::bitflags! {
     impl IOSurfaceMemoryLedgerFlags: u32 {
-        const kIOSurfaceMemoryLedgerFlagNoFootprint = 1<<0;
+        #[doc(alias = "kIOSurfaceMemoryLedgerFlagNoFootprint")]
+        const NoFootprint = 1<<0;
     }
 }
 

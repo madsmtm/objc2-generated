@@ -78,7 +78,8 @@ extern_methods!(
 pub struct GCMicroGamepadSnapshotDataVersion(pub NSInteger);
 impl GCMicroGamepadSnapshotDataVersion {
     #[deprecated = "GCMicroGamepadSnapshot has been deprecated, use [GCController controllerWithMicroGamepad] instead"]
-    pub const GCMicroGamepadSnapshotDataVersion1: Self = Self(0x0100);
+    #[doc(alias = "GCMicroGamepadSnapshotDataVersion1")]
+    pub const Version1: Self = Self(0x0100);
 }
 
 unsafe impl Encode for GCMicroGamepadSnapshotDataVersion {

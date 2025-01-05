@@ -19,27 +19,48 @@ use crate::*;
 pub struct UIControlEvents(pub NSUInteger);
 bitflags::bitflags! {
     impl UIControlEvents: NSUInteger {
-        const UIControlEventTouchDown = 1<<0;
-        const UIControlEventTouchDownRepeat = 1<<1;
-        const UIControlEventTouchDragInside = 1<<2;
-        const UIControlEventTouchDragOutside = 1<<3;
-        const UIControlEventTouchDragEnter = 1<<4;
-        const UIControlEventTouchDragExit = 1<<5;
-        const UIControlEventTouchUpInside = 1<<6;
-        const UIControlEventTouchUpOutside = 1<<7;
-        const UIControlEventTouchCancel = 1<<8;
-        const UIControlEventValueChanged = 1<<12;
-        const UIControlEventPrimaryActionTriggered = 1<<13;
-        const UIControlEventMenuActionTriggered = 1<<14;
-        const UIControlEventEditingDidBegin = 1<<16;
-        const UIControlEventEditingChanged = 1<<17;
-        const UIControlEventEditingDidEnd = 1<<18;
-        const UIControlEventEditingDidEndOnExit = 1<<19;
-        const UIControlEventAllTouchEvents = 0x00000FFF;
-        const UIControlEventAllEditingEvents = 0x000F0000;
-        const UIControlEventApplicationReserved = 0x0F000000;
-        const UIControlEventSystemReserved = 0xF0000000;
-        const UIControlEventAllEvents = 0xFFFFFFFF;
+        #[doc(alias = "UIControlEventTouchDown")]
+        const TouchDown = 1<<0;
+        #[doc(alias = "UIControlEventTouchDownRepeat")]
+        const TouchDownRepeat = 1<<1;
+        #[doc(alias = "UIControlEventTouchDragInside")]
+        const TouchDragInside = 1<<2;
+        #[doc(alias = "UIControlEventTouchDragOutside")]
+        const TouchDragOutside = 1<<3;
+        #[doc(alias = "UIControlEventTouchDragEnter")]
+        const TouchDragEnter = 1<<4;
+        #[doc(alias = "UIControlEventTouchDragExit")]
+        const TouchDragExit = 1<<5;
+        #[doc(alias = "UIControlEventTouchUpInside")]
+        const TouchUpInside = 1<<6;
+        #[doc(alias = "UIControlEventTouchUpOutside")]
+        const TouchUpOutside = 1<<7;
+        #[doc(alias = "UIControlEventTouchCancel")]
+        const TouchCancel = 1<<8;
+        #[doc(alias = "UIControlEventValueChanged")]
+        const ValueChanged = 1<<12;
+        #[doc(alias = "UIControlEventPrimaryActionTriggered")]
+        const PrimaryActionTriggered = 1<<13;
+        #[doc(alias = "UIControlEventMenuActionTriggered")]
+        const MenuActionTriggered = 1<<14;
+        #[doc(alias = "UIControlEventEditingDidBegin")]
+        const EditingDidBegin = 1<<16;
+        #[doc(alias = "UIControlEventEditingChanged")]
+        const EditingChanged = 1<<17;
+        #[doc(alias = "UIControlEventEditingDidEnd")]
+        const EditingDidEnd = 1<<18;
+        #[doc(alias = "UIControlEventEditingDidEndOnExit")]
+        const EditingDidEndOnExit = 1<<19;
+        #[doc(alias = "UIControlEventAllTouchEvents")]
+        const AllTouchEvents = 0x00000FFF;
+        #[doc(alias = "UIControlEventAllEditingEvents")]
+        const AllEditingEvents = 0x000F0000;
+        #[doc(alias = "UIControlEventApplicationReserved")]
+        const ApplicationReserved = 0x0F000000;
+        #[doc(alias = "UIControlEventSystemReserved")]
+        const SystemReserved = 0xF0000000;
+        #[doc(alias = "UIControlEventAllEvents")]
+        const AllEvents = 0xFFFFFFFF;
     }
 }
 

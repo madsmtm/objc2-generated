@@ -92,8 +92,10 @@ unsafe impl RefEncode for MTLStoreAction {
 pub struct MTLStoreActionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLStoreActionOptions: NSUInteger {
-        const MTLStoreActionOptionNone = 0;
-        const MTLStoreActionOptionCustomSamplePositions = 1<<0;
+        #[doc(alias = "MTLStoreActionOptionNone")]
+        const None = 0;
+        #[doc(alias = "MTLStoreActionOptionCustomSamplePositions")]
+        const CustomSamplePositions = 1<<0;
     }
 }
 

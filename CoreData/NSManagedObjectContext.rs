@@ -99,9 +99,12 @@ extern "C" {
 pub struct NSManagedObjectContextConcurrencyType(pub NSUInteger);
 impl NSManagedObjectContextConcurrencyType {
     #[deprecated = "Use another NSManagedObjectContextConcurrencyType"]
-    pub const NSConfinementConcurrencyType: Self = Self(0x00);
-    pub const NSPrivateQueueConcurrencyType: Self = Self(0x01);
-    pub const NSMainQueueConcurrencyType: Self = Self(0x02);
+    #[doc(alias = "NSConfinementConcurrencyType")]
+    pub const ConfinementConcurrencyType: Self = Self(0x00);
+    #[doc(alias = "NSPrivateQueueConcurrencyType")]
+    pub const PrivateQueueConcurrencyType: Self = Self(0x01);
+    #[doc(alias = "NSMainQueueConcurrencyType")]
+    pub const MainQueueConcurrencyType: Self = Self(0x02);
 }
 
 unsafe impl Encode for NSManagedObjectContextConcurrencyType {

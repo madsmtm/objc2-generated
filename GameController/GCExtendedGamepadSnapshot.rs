@@ -77,9 +77,11 @@ extern_methods!(
 pub struct GCExtendedGamepadSnapshotDataVersion(pub NSInteger);
 impl GCExtendedGamepadSnapshotDataVersion {
     #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
-    pub const GCExtendedGamepadSnapshotDataVersion1: Self = Self(0x0100);
+    #[doc(alias = "GCExtendedGamepadSnapshotDataVersion1")]
+    pub const Version1: Self = Self(0x0100);
     #[deprecated = "GCExtendedGamepadSnapshot has been deprecated, use [GCController controllerWithExtendedGamepad] instead"]
-    pub const GCExtendedGamepadSnapshotDataVersion2: Self = Self(0x0101);
+    #[doc(alias = "GCExtendedGamepadSnapshotDataVersion2")]
+    pub const Version2: Self = Self(0x0101);
 }
 
 unsafe impl Encode for GCExtendedGamepadSnapshotDataVersion {

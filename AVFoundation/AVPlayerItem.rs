@@ -761,8 +761,10 @@ extern_methods!(
 pub struct AVVariantPreferences(pub NSUInteger);
 bitflags::bitflags! {
     impl AVVariantPreferences: NSUInteger {
-        const AVVariantPreferenceNone = 0;
-        const AVVariantPreferenceScalabilityToLosslessAudio = 1<<0;
+        #[doc(alias = "AVVariantPreferenceNone")]
+        const None = 0;
+        #[doc(alias = "AVVariantPreferenceScalabilityToLosslessAudio")]
+        const ScalabilityToLosslessAudio = 1<<0;
     }
 }
 

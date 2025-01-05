@@ -899,8 +899,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKAppleECGAlgorithmVersion(pub NSInteger);
 impl HKAppleECGAlgorithmVersion {
-    pub const HKAppleECGAlgorithmVersion1: Self = Self(1);
-    pub const HKAppleECGAlgorithmVersion2: Self = Self(2);
+    #[doc(alias = "HKAppleECGAlgorithmVersion1")]
+    pub const Version1: Self = Self(1);
+    #[doc(alias = "HKAppleECGAlgorithmVersion2")]
+    pub const Version2: Self = Self(2);
 }
 
 unsafe impl Encode for HKAppleECGAlgorithmVersion {

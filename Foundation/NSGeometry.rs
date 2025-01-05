@@ -74,28 +74,50 @@ unsafe impl Sync for NSEdgeInsets {}
 pub struct NSAlignmentOptions(pub c_ulonglong);
 bitflags::bitflags! {
     impl NSAlignmentOptions: c_ulonglong {
-        const NSAlignMinXInward = 1<<0;
-        const NSAlignMinYInward = 1<<1;
-        const NSAlignMaxXInward = 1<<2;
-        const NSAlignMaxYInward = 1<<3;
-        const NSAlignWidthInward = 1<<4;
-        const NSAlignHeightInward = 1<<5;
-        const NSAlignMinXOutward = 1<<8;
-        const NSAlignMinYOutward = 1<<9;
-        const NSAlignMaxXOutward = 1<<10;
-        const NSAlignMaxYOutward = 1<<11;
-        const NSAlignWidthOutward = 1<<12;
-        const NSAlignHeightOutward = 1<<13;
-        const NSAlignMinXNearest = 1<<16;
-        const NSAlignMinYNearest = 1<<17;
-        const NSAlignMaxXNearest = 1<<18;
-        const NSAlignMaxYNearest = 1<<19;
-        const NSAlignWidthNearest = 1<<20;
-        const NSAlignHeightNearest = 1<<21;
-        const NSAlignRectFlipped = 1<<63;
-        const NSAlignAllEdgesInward = NSAlignmentOptions::NSAlignMinXInward.0|NSAlignmentOptions::NSAlignMaxXInward.0|NSAlignmentOptions::NSAlignMinYInward.0|NSAlignmentOptions::NSAlignMaxYInward.0;
-        const NSAlignAllEdgesOutward = NSAlignmentOptions::NSAlignMinXOutward.0|NSAlignmentOptions::NSAlignMaxXOutward.0|NSAlignmentOptions::NSAlignMinYOutward.0|NSAlignmentOptions::NSAlignMaxYOutward.0;
-        const NSAlignAllEdgesNearest = NSAlignmentOptions::NSAlignMinXNearest.0|NSAlignmentOptions::NSAlignMaxXNearest.0|NSAlignmentOptions::NSAlignMinYNearest.0|NSAlignmentOptions::NSAlignMaxYNearest.0;
+        #[doc(alias = "NSAlignMinXInward")]
+        const AlignMinXInward = 1<<0;
+        #[doc(alias = "NSAlignMinYInward")]
+        const AlignMinYInward = 1<<1;
+        #[doc(alias = "NSAlignMaxXInward")]
+        const AlignMaxXInward = 1<<2;
+        #[doc(alias = "NSAlignMaxYInward")]
+        const AlignMaxYInward = 1<<3;
+        #[doc(alias = "NSAlignWidthInward")]
+        const AlignWidthInward = 1<<4;
+        #[doc(alias = "NSAlignHeightInward")]
+        const AlignHeightInward = 1<<5;
+        #[doc(alias = "NSAlignMinXOutward")]
+        const AlignMinXOutward = 1<<8;
+        #[doc(alias = "NSAlignMinYOutward")]
+        const AlignMinYOutward = 1<<9;
+        #[doc(alias = "NSAlignMaxXOutward")]
+        const AlignMaxXOutward = 1<<10;
+        #[doc(alias = "NSAlignMaxYOutward")]
+        const AlignMaxYOutward = 1<<11;
+        #[doc(alias = "NSAlignWidthOutward")]
+        const AlignWidthOutward = 1<<12;
+        #[doc(alias = "NSAlignHeightOutward")]
+        const AlignHeightOutward = 1<<13;
+        #[doc(alias = "NSAlignMinXNearest")]
+        const AlignMinXNearest = 1<<16;
+        #[doc(alias = "NSAlignMinYNearest")]
+        const AlignMinYNearest = 1<<17;
+        #[doc(alias = "NSAlignMaxXNearest")]
+        const AlignMaxXNearest = 1<<18;
+        #[doc(alias = "NSAlignMaxYNearest")]
+        const AlignMaxYNearest = 1<<19;
+        #[doc(alias = "NSAlignWidthNearest")]
+        const AlignWidthNearest = 1<<20;
+        #[doc(alias = "NSAlignHeightNearest")]
+        const AlignHeightNearest = 1<<21;
+        #[doc(alias = "NSAlignRectFlipped")]
+        const AlignRectFlipped = 1<<63;
+        #[doc(alias = "NSAlignAllEdgesInward")]
+        const AlignAllEdgesInward = NSAlignmentOptions::AlignMinXInward.0|NSAlignmentOptions::AlignMaxXInward.0|NSAlignmentOptions::AlignMinYInward.0|NSAlignmentOptions::AlignMaxYInward.0;
+        #[doc(alias = "NSAlignAllEdgesOutward")]
+        const AlignAllEdgesOutward = NSAlignmentOptions::AlignMinXOutward.0|NSAlignmentOptions::AlignMaxXOutward.0|NSAlignmentOptions::AlignMinYOutward.0|NSAlignmentOptions::AlignMaxYOutward.0;
+        #[doc(alias = "NSAlignAllEdgesNearest")]
+        const AlignAllEdgesNearest = NSAlignmentOptions::AlignMinXNearest.0|NSAlignmentOptions::AlignMaxXNearest.0|NSAlignmentOptions::AlignMinYNearest.0|NSAlignmentOptions::AlignMaxYNearest.0;
     }
 }
 

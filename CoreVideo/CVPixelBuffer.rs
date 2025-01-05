@@ -218,7 +218,8 @@ pub struct CVPixelBufferLockFlags(pub CVOptionFlags);
 #[cfg(feature = "CVBase")]
 bitflags::bitflags! {
     impl CVPixelBufferLockFlags: CVOptionFlags {
-        const kCVPixelBufferLock_ReadOnly = 0x00000001;
+        #[doc(alias = "kCVPixelBufferLock_ReadOnly")]
+        const ReadOnly = 0x00000001;
     }
 }
 

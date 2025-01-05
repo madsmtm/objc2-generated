@@ -131,11 +131,16 @@ unsafe impl RefEncode for UITableViewCellEditingStyle {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UITableViewCellAccessoryType(pub NSInteger);
 impl UITableViewCellAccessoryType {
-    pub const UITableViewCellAccessoryNone: Self = Self(0);
-    pub const UITableViewCellAccessoryDisclosureIndicator: Self = Self(1);
-    pub const UITableViewCellAccessoryDetailDisclosureButton: Self = Self(2);
-    pub const UITableViewCellAccessoryCheckmark: Self = Self(3);
-    pub const UITableViewCellAccessoryDetailButton: Self = Self(4);
+    #[doc(alias = "UITableViewCellAccessoryNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "UITableViewCellAccessoryDisclosureIndicator")]
+    pub const DisclosureIndicator: Self = Self(1);
+    #[doc(alias = "UITableViewCellAccessoryDetailDisclosureButton")]
+    pub const DetailDisclosureButton: Self = Self(2);
+    #[doc(alias = "UITableViewCellAccessoryCheckmark")]
+    pub const Checkmark: Self = Self(3);
+    #[doc(alias = "UITableViewCellAccessoryDetailButton")]
+    pub const DetailButton: Self = Self(4);
 }
 
 unsafe impl Encode for UITableViewCellAccessoryType {
@@ -153,9 +158,12 @@ unsafe impl RefEncode for UITableViewCellAccessoryType {
 pub struct UITableViewCellStateMask(pub NSUInteger);
 bitflags::bitflags! {
     impl UITableViewCellStateMask: NSUInteger {
-        const UITableViewCellStateDefaultMask = 0;
-        const UITableViewCellStateShowingEditControlMask = 1<<0;
-        const UITableViewCellStateShowingDeleteConfirmationMask = 1<<1;
+        #[doc(alias = "UITableViewCellStateDefaultMask")]
+        const DefaultMask = 0;
+        #[doc(alias = "UITableViewCellStateShowingEditControlMask")]
+        const ShowingEditControlMask = 1<<0;
+        #[doc(alias = "UITableViewCellStateShowingDeleteConfirmationMask")]
+        const ShowingDeleteConfirmationMask = 1<<1;
     }
 }
 

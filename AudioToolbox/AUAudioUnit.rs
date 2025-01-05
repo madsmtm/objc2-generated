@@ -281,10 +281,14 @@ pub type AUHostMusicalContextBlock = *mut block2::Block<
 pub struct AUHostTransportStateFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl AUHostTransportStateFlags: NSUInteger {
-        const AUHostTransportStateChanged = 1;
-        const AUHostTransportStateMoving = 2;
-        const AUHostTransportStateRecording = 4;
-        const AUHostTransportStateCycling = 8;
+        #[doc(alias = "AUHostTransportStateChanged")]
+        const Changed = 1;
+        #[doc(alias = "AUHostTransportStateMoving")]
+        const Moving = 2;
+        #[doc(alias = "AUHostTransportStateRecording")]
+        const Recording = 4;
+        #[doc(alias = "AUHostTransportStateCycling")]
+        const Cycling = 8;
     }
 }
 

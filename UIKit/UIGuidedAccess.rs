@@ -18,8 +18,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIGuidedAccessErrorCode(pub NSInteger);
 impl UIGuidedAccessErrorCode {
-    pub const UIGuidedAccessErrorPermissionDenied: Self = Self(0);
-    pub const UIGuidedAccessErrorFailed: Self = Self(NSIntegerMax as _);
+    #[doc(alias = "UIGuidedAccessErrorPermissionDenied")]
+    pub const PermissionDenied: Self = Self(0);
+    #[doc(alias = "UIGuidedAccessErrorFailed")]
+    pub const Failed: Self = Self(NSIntegerMax as _);
 }
 
 unsafe impl Encode for UIGuidedAccessErrorCode {

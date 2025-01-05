@@ -16,9 +16,12 @@ pub type CGEventRef = *mut c_void;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGMouseButton(pub u32);
 impl CGMouseButton {
-    pub const kCGMouseButtonLeft: Self = Self(0);
-    pub const kCGMouseButtonRight: Self = Self(1);
-    pub const kCGMouseButtonCenter: Self = Self(2);
+    #[doc(alias = "kCGMouseButtonLeft")]
+    pub const Left: Self = Self(0);
+    #[doc(alias = "kCGMouseButtonRight")]
+    pub const Right: Self = Self(1);
+    #[doc(alias = "kCGMouseButtonCenter")]
+    pub const Center: Self = Self(2);
 }
 
 #[cfg(feature = "objc2")]
@@ -37,8 +40,10 @@ unsafe impl RefEncode for CGMouseButton {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGScrollEventUnit(pub u32);
 impl CGScrollEventUnit {
-    pub const kCGScrollEventUnitPixel: Self = Self(0);
-    pub const kCGScrollEventUnitLine: Self = Self(1);
+    #[doc(alias = "kCGScrollEventUnitPixel")]
+    pub const Pixel: Self = Self(0);
+    #[doc(alias = "kCGScrollEventUnitLine")]
+    pub const Line: Self = Self(1);
 }
 
 #[cfg(feature = "objc2")]
@@ -57,10 +62,14 @@ unsafe impl RefEncode for CGScrollEventUnit {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGMomentumScrollPhase(pub u32);
 impl CGMomentumScrollPhase {
-    pub const kCGMomentumScrollPhaseNone: Self = Self(0);
-    pub const kCGMomentumScrollPhaseBegin: Self = Self(1);
-    pub const kCGMomentumScrollPhaseContinue: Self = Self(2);
-    pub const kCGMomentumScrollPhaseEnd: Self = Self(3);
+    #[doc(alias = "kCGMomentumScrollPhaseNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "kCGMomentumScrollPhaseBegin")]
+    pub const Begin: Self = Self(1);
+    #[doc(alias = "kCGMomentumScrollPhaseContinue")]
+    pub const Continue: Self = Self(2);
+    #[doc(alias = "kCGMomentumScrollPhaseEnd")]
+    pub const End: Self = Self(3);
 }
 
 #[cfg(feature = "objc2")]
@@ -79,11 +88,16 @@ unsafe impl RefEncode for CGMomentumScrollPhase {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGScrollPhase(pub u32);
 impl CGScrollPhase {
-    pub const kCGScrollPhaseBegan: Self = Self(1);
-    pub const kCGScrollPhaseChanged: Self = Self(2);
-    pub const kCGScrollPhaseEnded: Self = Self(4);
-    pub const kCGScrollPhaseCancelled: Self = Self(8);
-    pub const kCGScrollPhaseMayBegin: Self = Self(128);
+    #[doc(alias = "kCGScrollPhaseBegan")]
+    pub const Began: Self = Self(1);
+    #[doc(alias = "kCGScrollPhaseChanged")]
+    pub const Changed: Self = Self(2);
+    #[doc(alias = "kCGScrollPhaseEnded")]
+    pub const Ended: Self = Self(4);
+    #[doc(alias = "kCGScrollPhaseCancelled")]
+    pub const Cancelled: Self = Self(8);
+    #[doc(alias = "kCGScrollPhaseMayBegin")]
+    pub const MayBegin: Self = Self(128);
 }
 
 #[cfg(feature = "objc2")]
@@ -102,12 +116,18 @@ unsafe impl RefEncode for CGScrollPhase {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGGesturePhase(pub u32);
 impl CGGesturePhase {
-    pub const kCGGesturePhaseNone: Self = Self(0);
-    pub const kCGGesturePhaseBegan: Self = Self(1);
-    pub const kCGGesturePhaseChanged: Self = Self(2);
-    pub const kCGGesturePhaseEnded: Self = Self(4);
-    pub const kCGGesturePhaseCancelled: Self = Self(8);
-    pub const kCGGesturePhaseMayBegin: Self = Self(128);
+    #[doc(alias = "kCGGesturePhaseNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "kCGGesturePhaseBegan")]
+    pub const Began: Self = Self(1);
+    #[doc(alias = "kCGGesturePhaseChanged")]
+    pub const Changed: Self = Self(2);
+    #[doc(alias = "kCGGesturePhaseEnded")]
+    pub const Ended: Self = Self(4);
+    #[doc(alias = "kCGGesturePhaseCancelled")]
+    pub const Cancelled: Self = Self(8);
+    #[doc(alias = "kCGGesturePhaseMayBegin")]
+    pub const MayBegin: Self = Self(128);
 }
 
 #[cfg(feature = "objc2")]
@@ -127,15 +147,24 @@ unsafe impl RefEncode for CGGesturePhase {
 pub struct CGEventFlags(pub u64);
 bitflags::bitflags! {
     impl CGEventFlags: u64 {
-        const kCGEventFlagMaskAlphaShift = 65536;
-        const kCGEventFlagMaskShift = 131072;
-        const kCGEventFlagMaskControl = 262144;
-        const kCGEventFlagMaskAlternate = 524288;
-        const kCGEventFlagMaskCommand = 1048576;
-        const kCGEventFlagMaskHelp = 4194304;
-        const kCGEventFlagMaskSecondaryFn = 8388608;
-        const kCGEventFlagMaskNumericPad = 2097152;
-        const kCGEventFlagMaskNonCoalesced = 256;
+        #[doc(alias = "kCGEventFlagMaskAlphaShift")]
+        const MaskAlphaShift = 65536;
+        #[doc(alias = "kCGEventFlagMaskShift")]
+        const MaskShift = 131072;
+        #[doc(alias = "kCGEventFlagMaskControl")]
+        const MaskControl = 262144;
+        #[doc(alias = "kCGEventFlagMaskAlternate")]
+        const MaskAlternate = 524288;
+        #[doc(alias = "kCGEventFlagMaskCommand")]
+        const MaskCommand = 1048576;
+        #[doc(alias = "kCGEventFlagMaskHelp")]
+        const MaskHelp = 4194304;
+        #[doc(alias = "kCGEventFlagMaskSecondaryFn")]
+        const MaskSecondaryFn = 8388608;
+        #[doc(alias = "kCGEventFlagMaskNumericPad")]
+        const MaskNumericPad = 2097152;
+        #[doc(alias = "kCGEventFlagMaskNonCoalesced")]
+        const MaskNonCoalesced = 256;
     }
 }
 
@@ -155,25 +184,44 @@ unsafe impl RefEncode for CGEventFlags {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGEventType(pub u32);
 impl CGEventType {
-    pub const kCGEventNull: Self = Self(0);
-    pub const kCGEventLeftMouseDown: Self = Self(1);
-    pub const kCGEventLeftMouseUp: Self = Self(2);
-    pub const kCGEventRightMouseDown: Self = Self(3);
-    pub const kCGEventRightMouseUp: Self = Self(4);
-    pub const kCGEventMouseMoved: Self = Self(5);
-    pub const kCGEventLeftMouseDragged: Self = Self(6);
-    pub const kCGEventRightMouseDragged: Self = Self(7);
-    pub const kCGEventKeyDown: Self = Self(10);
-    pub const kCGEventKeyUp: Self = Self(11);
-    pub const kCGEventFlagsChanged: Self = Self(12);
-    pub const kCGEventScrollWheel: Self = Self(22);
-    pub const kCGEventTabletPointer: Self = Self(23);
-    pub const kCGEventTabletProximity: Self = Self(24);
-    pub const kCGEventOtherMouseDown: Self = Self(25);
-    pub const kCGEventOtherMouseUp: Self = Self(26);
-    pub const kCGEventOtherMouseDragged: Self = Self(27);
-    pub const kCGEventTapDisabledByTimeout: Self = Self(0xFFFFFFFE);
-    pub const kCGEventTapDisabledByUserInput: Self = Self(0xFFFFFFFF);
+    #[doc(alias = "kCGEventNull")]
+    pub const Null: Self = Self(0);
+    #[doc(alias = "kCGEventLeftMouseDown")]
+    pub const LeftMouseDown: Self = Self(1);
+    #[doc(alias = "kCGEventLeftMouseUp")]
+    pub const LeftMouseUp: Self = Self(2);
+    #[doc(alias = "kCGEventRightMouseDown")]
+    pub const RightMouseDown: Self = Self(3);
+    #[doc(alias = "kCGEventRightMouseUp")]
+    pub const RightMouseUp: Self = Self(4);
+    #[doc(alias = "kCGEventMouseMoved")]
+    pub const MouseMoved: Self = Self(5);
+    #[doc(alias = "kCGEventLeftMouseDragged")]
+    pub const LeftMouseDragged: Self = Self(6);
+    #[doc(alias = "kCGEventRightMouseDragged")]
+    pub const RightMouseDragged: Self = Self(7);
+    #[doc(alias = "kCGEventKeyDown")]
+    pub const KeyDown: Self = Self(10);
+    #[doc(alias = "kCGEventKeyUp")]
+    pub const KeyUp: Self = Self(11);
+    #[doc(alias = "kCGEventFlagsChanged")]
+    pub const FlagsChanged: Self = Self(12);
+    #[doc(alias = "kCGEventScrollWheel")]
+    pub const ScrollWheel: Self = Self(22);
+    #[doc(alias = "kCGEventTabletPointer")]
+    pub const TabletPointer: Self = Self(23);
+    #[doc(alias = "kCGEventTabletProximity")]
+    pub const TabletProximity: Self = Self(24);
+    #[doc(alias = "kCGEventOtherMouseDown")]
+    pub const OtherMouseDown: Self = Self(25);
+    #[doc(alias = "kCGEventOtherMouseUp")]
+    pub const OtherMouseUp: Self = Self(26);
+    #[doc(alias = "kCGEventOtherMouseDragged")]
+    pub const OtherMouseDragged: Self = Self(27);
+    #[doc(alias = "kCGEventTapDisabledByTimeout")]
+    pub const TapDisabledByTimeout: Self = Self(0xFFFFFFFE);
+    #[doc(alias = "kCGEventTapDisabledByUserInput")]
+    pub const TapDisabledByUserInput: Self = Self(0xFFFFFFFF);
 }
 
 #[cfg(feature = "objc2")]
@@ -195,71 +243,136 @@ pub type CGEventTimestamp = u64;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGEventField(pub u32);
 impl CGEventField {
-    pub const kCGMouseEventNumber: Self = Self(0);
-    pub const kCGMouseEventClickState: Self = Self(1);
-    pub const kCGMouseEventPressure: Self = Self(2);
-    pub const kCGMouseEventButtonNumber: Self = Self(3);
-    pub const kCGMouseEventDeltaX: Self = Self(4);
-    pub const kCGMouseEventDeltaY: Self = Self(5);
-    pub const kCGMouseEventInstantMouser: Self = Self(6);
-    pub const kCGMouseEventSubtype: Self = Self(7);
-    pub const kCGKeyboardEventAutorepeat: Self = Self(8);
-    pub const kCGKeyboardEventKeycode: Self = Self(9);
-    pub const kCGKeyboardEventKeyboardType: Self = Self(10);
-    pub const kCGScrollWheelEventDeltaAxis1: Self = Self(11);
-    pub const kCGScrollWheelEventDeltaAxis2: Self = Self(12);
-    pub const kCGScrollWheelEventDeltaAxis3: Self = Self(13);
-    pub const kCGScrollWheelEventFixedPtDeltaAxis1: Self = Self(93);
-    pub const kCGScrollWheelEventFixedPtDeltaAxis2: Self = Self(94);
-    pub const kCGScrollWheelEventFixedPtDeltaAxis3: Self = Self(95);
-    pub const kCGScrollWheelEventPointDeltaAxis1: Self = Self(96);
-    pub const kCGScrollWheelEventPointDeltaAxis2: Self = Self(97);
-    pub const kCGScrollWheelEventPointDeltaAxis3: Self = Self(98);
-    pub const kCGScrollWheelEventScrollPhase: Self = Self(99);
-    pub const kCGScrollWheelEventScrollCount: Self = Self(100);
-    pub const kCGScrollWheelEventMomentumPhase: Self = Self(123);
-    pub const kCGScrollWheelEventInstantMouser: Self = Self(14);
-    pub const kCGTabletEventPointX: Self = Self(15);
-    pub const kCGTabletEventPointY: Self = Self(16);
-    pub const kCGTabletEventPointZ: Self = Self(17);
-    pub const kCGTabletEventPointButtons: Self = Self(18);
-    pub const kCGTabletEventPointPressure: Self = Self(19);
-    pub const kCGTabletEventTiltX: Self = Self(20);
-    pub const kCGTabletEventTiltY: Self = Self(21);
-    pub const kCGTabletEventRotation: Self = Self(22);
-    pub const kCGTabletEventTangentialPressure: Self = Self(23);
-    pub const kCGTabletEventDeviceID: Self = Self(24);
-    pub const kCGTabletEventVendor1: Self = Self(25);
-    pub const kCGTabletEventVendor2: Self = Self(26);
-    pub const kCGTabletEventVendor3: Self = Self(27);
-    pub const kCGTabletProximityEventVendorID: Self = Self(28);
-    pub const kCGTabletProximityEventTabletID: Self = Self(29);
-    pub const kCGTabletProximityEventPointerID: Self = Self(30);
-    pub const kCGTabletProximityEventDeviceID: Self = Self(31);
-    pub const kCGTabletProximityEventSystemTabletID: Self = Self(32);
-    pub const kCGTabletProximityEventVendorPointerType: Self = Self(33);
-    pub const kCGTabletProximityEventVendorPointerSerialNumber: Self = Self(34);
-    pub const kCGTabletProximityEventVendorUniqueID: Self = Self(35);
-    pub const kCGTabletProximityEventCapabilityMask: Self = Self(36);
-    pub const kCGTabletProximityEventPointerType: Self = Self(37);
-    pub const kCGTabletProximityEventEnterProximity: Self = Self(38);
-    pub const kCGEventTargetProcessSerialNumber: Self = Self(39);
-    pub const kCGEventTargetUnixProcessID: Self = Self(40);
-    pub const kCGEventSourceUnixProcessID: Self = Self(41);
-    pub const kCGEventSourceUserData: Self = Self(42);
-    pub const kCGEventSourceUserID: Self = Self(43);
-    pub const kCGEventSourceGroupID: Self = Self(44);
-    pub const kCGEventSourceStateID: Self = Self(45);
-    pub const kCGScrollWheelEventIsContinuous: Self = Self(88);
-    pub const kCGMouseEventWindowUnderMousePointer: Self = Self(91);
-    pub const kCGMouseEventWindowUnderMousePointerThatCanHandleThisEvent: Self = Self(92);
-    pub const kCGEventUnacceleratedPointerMovementX: Self = Self(170);
-    pub const kCGEventUnacceleratedPointerMovementY: Self = Self(171);
-    pub const kCGScrollWheelEventMomentumOptionPhase: Self = Self(173);
-    pub const kCGScrollWheelEventAcceleratedDeltaAxis1: Self = Self(176);
-    pub const kCGScrollWheelEventAcceleratedDeltaAxis2: Self = Self(175);
-    pub const kCGScrollWheelEventRawDeltaAxis1: Self = Self(178);
-    pub const kCGScrollWheelEventRawDeltaAxis2: Self = Self(177);
+    #[doc(alias = "kCGMouseEventNumber")]
+    pub const MouseEventNumber: Self = Self(0);
+    #[doc(alias = "kCGMouseEventClickState")]
+    pub const MouseEventClickState: Self = Self(1);
+    #[doc(alias = "kCGMouseEventPressure")]
+    pub const MouseEventPressure: Self = Self(2);
+    #[doc(alias = "kCGMouseEventButtonNumber")]
+    pub const MouseEventButtonNumber: Self = Self(3);
+    #[doc(alias = "kCGMouseEventDeltaX")]
+    pub const MouseEventDeltaX: Self = Self(4);
+    #[doc(alias = "kCGMouseEventDeltaY")]
+    pub const MouseEventDeltaY: Self = Self(5);
+    #[doc(alias = "kCGMouseEventInstantMouser")]
+    pub const MouseEventInstantMouser: Self = Self(6);
+    #[doc(alias = "kCGMouseEventSubtype")]
+    pub const MouseEventSubtype: Self = Self(7);
+    #[doc(alias = "kCGKeyboardEventAutorepeat")]
+    pub const KeyboardEventAutorepeat: Self = Self(8);
+    #[doc(alias = "kCGKeyboardEventKeycode")]
+    pub const KeyboardEventKeycode: Self = Self(9);
+    #[doc(alias = "kCGKeyboardEventKeyboardType")]
+    pub const KeyboardEventKeyboardType: Self = Self(10);
+    #[doc(alias = "kCGScrollWheelEventDeltaAxis1")]
+    pub const ScrollWheelEventDeltaAxis1: Self = Self(11);
+    #[doc(alias = "kCGScrollWheelEventDeltaAxis2")]
+    pub const ScrollWheelEventDeltaAxis2: Self = Self(12);
+    #[doc(alias = "kCGScrollWheelEventDeltaAxis3")]
+    pub const ScrollWheelEventDeltaAxis3: Self = Self(13);
+    #[doc(alias = "kCGScrollWheelEventFixedPtDeltaAxis1")]
+    pub const ScrollWheelEventFixedPtDeltaAxis1: Self = Self(93);
+    #[doc(alias = "kCGScrollWheelEventFixedPtDeltaAxis2")]
+    pub const ScrollWheelEventFixedPtDeltaAxis2: Self = Self(94);
+    #[doc(alias = "kCGScrollWheelEventFixedPtDeltaAxis3")]
+    pub const ScrollWheelEventFixedPtDeltaAxis3: Self = Self(95);
+    #[doc(alias = "kCGScrollWheelEventPointDeltaAxis1")]
+    pub const ScrollWheelEventPointDeltaAxis1: Self = Self(96);
+    #[doc(alias = "kCGScrollWheelEventPointDeltaAxis2")]
+    pub const ScrollWheelEventPointDeltaAxis2: Self = Self(97);
+    #[doc(alias = "kCGScrollWheelEventPointDeltaAxis3")]
+    pub const ScrollWheelEventPointDeltaAxis3: Self = Self(98);
+    #[doc(alias = "kCGScrollWheelEventScrollPhase")]
+    pub const ScrollWheelEventScrollPhase: Self = Self(99);
+    #[doc(alias = "kCGScrollWheelEventScrollCount")]
+    pub const ScrollWheelEventScrollCount: Self = Self(100);
+    #[doc(alias = "kCGScrollWheelEventMomentumPhase")]
+    pub const ScrollWheelEventMomentumPhase: Self = Self(123);
+    #[doc(alias = "kCGScrollWheelEventInstantMouser")]
+    pub const ScrollWheelEventInstantMouser: Self = Self(14);
+    #[doc(alias = "kCGTabletEventPointX")]
+    pub const TabletEventPointX: Self = Self(15);
+    #[doc(alias = "kCGTabletEventPointY")]
+    pub const TabletEventPointY: Self = Self(16);
+    #[doc(alias = "kCGTabletEventPointZ")]
+    pub const TabletEventPointZ: Self = Self(17);
+    #[doc(alias = "kCGTabletEventPointButtons")]
+    pub const TabletEventPointButtons: Self = Self(18);
+    #[doc(alias = "kCGTabletEventPointPressure")]
+    pub const TabletEventPointPressure: Self = Self(19);
+    #[doc(alias = "kCGTabletEventTiltX")]
+    pub const TabletEventTiltX: Self = Self(20);
+    #[doc(alias = "kCGTabletEventTiltY")]
+    pub const TabletEventTiltY: Self = Self(21);
+    #[doc(alias = "kCGTabletEventRotation")]
+    pub const TabletEventRotation: Self = Self(22);
+    #[doc(alias = "kCGTabletEventTangentialPressure")]
+    pub const TabletEventTangentialPressure: Self = Self(23);
+    #[doc(alias = "kCGTabletEventDeviceID")]
+    pub const TabletEventDeviceID: Self = Self(24);
+    #[doc(alias = "kCGTabletEventVendor1")]
+    pub const TabletEventVendor1: Self = Self(25);
+    #[doc(alias = "kCGTabletEventVendor2")]
+    pub const TabletEventVendor2: Self = Self(26);
+    #[doc(alias = "kCGTabletEventVendor3")]
+    pub const TabletEventVendor3: Self = Self(27);
+    #[doc(alias = "kCGTabletProximityEventVendorID")]
+    pub const TabletProximityEventVendorID: Self = Self(28);
+    #[doc(alias = "kCGTabletProximityEventTabletID")]
+    pub const TabletProximityEventTabletID: Self = Self(29);
+    #[doc(alias = "kCGTabletProximityEventPointerID")]
+    pub const TabletProximityEventPointerID: Self = Self(30);
+    #[doc(alias = "kCGTabletProximityEventDeviceID")]
+    pub const TabletProximityEventDeviceID: Self = Self(31);
+    #[doc(alias = "kCGTabletProximityEventSystemTabletID")]
+    pub const TabletProximityEventSystemTabletID: Self = Self(32);
+    #[doc(alias = "kCGTabletProximityEventVendorPointerType")]
+    pub const TabletProximityEventVendorPointerType: Self = Self(33);
+    #[doc(alias = "kCGTabletProximityEventVendorPointerSerialNumber")]
+    pub const TabletProximityEventVendorPointerSerialNumber: Self = Self(34);
+    #[doc(alias = "kCGTabletProximityEventVendorUniqueID")]
+    pub const TabletProximityEventVendorUniqueID: Self = Self(35);
+    #[doc(alias = "kCGTabletProximityEventCapabilityMask")]
+    pub const TabletProximityEventCapabilityMask: Self = Self(36);
+    #[doc(alias = "kCGTabletProximityEventPointerType")]
+    pub const TabletProximityEventPointerType: Self = Self(37);
+    #[doc(alias = "kCGTabletProximityEventEnterProximity")]
+    pub const TabletProximityEventEnterProximity: Self = Self(38);
+    #[doc(alias = "kCGEventTargetProcessSerialNumber")]
+    pub const EventTargetProcessSerialNumber: Self = Self(39);
+    #[doc(alias = "kCGEventTargetUnixProcessID")]
+    pub const EventTargetUnixProcessID: Self = Self(40);
+    #[doc(alias = "kCGEventSourceUnixProcessID")]
+    pub const EventSourceUnixProcessID: Self = Self(41);
+    #[doc(alias = "kCGEventSourceUserData")]
+    pub const EventSourceUserData: Self = Self(42);
+    #[doc(alias = "kCGEventSourceUserID")]
+    pub const EventSourceUserID: Self = Self(43);
+    #[doc(alias = "kCGEventSourceGroupID")]
+    pub const EventSourceGroupID: Self = Self(44);
+    #[doc(alias = "kCGEventSourceStateID")]
+    pub const EventSourceStateID: Self = Self(45);
+    #[doc(alias = "kCGScrollWheelEventIsContinuous")]
+    pub const ScrollWheelEventIsContinuous: Self = Self(88);
+    #[doc(alias = "kCGMouseEventWindowUnderMousePointer")]
+    pub const MouseEventWindowUnderMousePointer: Self = Self(91);
+    #[doc(alias = "kCGMouseEventWindowUnderMousePointerThatCanHandleThisEvent")]
+    pub const MouseEventWindowUnderMousePointerThatCanHandleThisEvent: Self = Self(92);
+    #[doc(alias = "kCGEventUnacceleratedPointerMovementX")]
+    pub const EventUnacceleratedPointerMovementX: Self = Self(170);
+    #[doc(alias = "kCGEventUnacceleratedPointerMovementY")]
+    pub const EventUnacceleratedPointerMovementY: Self = Self(171);
+    #[doc(alias = "kCGScrollWheelEventMomentumOptionPhase")]
+    pub const ScrollWheelEventMomentumOptionPhase: Self = Self(173);
+    #[doc(alias = "kCGScrollWheelEventAcceleratedDeltaAxis1")]
+    pub const ScrollWheelEventAcceleratedDeltaAxis1: Self = Self(176);
+    #[doc(alias = "kCGScrollWheelEventAcceleratedDeltaAxis2")]
+    pub const ScrollWheelEventAcceleratedDeltaAxis2: Self = Self(175);
+    #[doc(alias = "kCGScrollWheelEventRawDeltaAxis1")]
+    pub const ScrollWheelEventRawDeltaAxis1: Self = Self(178);
+    #[doc(alias = "kCGScrollWheelEventRawDeltaAxis2")]
+    pub const ScrollWheelEventRawDeltaAxis2: Self = Self(177);
 }
 
 #[cfg(feature = "objc2")]
@@ -278,9 +391,12 @@ unsafe impl RefEncode for CGEventField {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGEventMouseSubtype(pub u32);
 impl CGEventMouseSubtype {
-    pub const kCGEventMouseSubtypeDefault: Self = Self(0);
-    pub const kCGEventMouseSubtypeTabletPoint: Self = Self(1);
-    pub const kCGEventMouseSubtypeTabletProximity: Self = Self(2);
+    #[doc(alias = "kCGEventMouseSubtypeDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "kCGEventMouseSubtypeTabletPoint")]
+    pub const TabletPoint: Self = Self(1);
+    #[doc(alias = "kCGEventMouseSubtypeTabletProximity")]
+    pub const TabletProximity: Self = Self(2);
 }
 
 #[cfg(feature = "objc2")]
@@ -299,9 +415,12 @@ unsafe impl RefEncode for CGEventMouseSubtype {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGEventTapLocation(pub u32);
 impl CGEventTapLocation {
-    pub const kCGHIDEventTap: Self = Self(0);
-    pub const kCGSessionEventTap: Self = Self(1);
-    pub const kCGAnnotatedSessionEventTap: Self = Self(2);
+    #[doc(alias = "kCGHIDEventTap")]
+    pub const HIDEventTap: Self = Self(0);
+    #[doc(alias = "kCGSessionEventTap")]
+    pub const SessionEventTap: Self = Self(1);
+    #[doc(alias = "kCGAnnotatedSessionEventTap")]
+    pub const AnnotatedSessionEventTap: Self = Self(2);
 }
 
 #[cfg(feature = "objc2")]
@@ -320,8 +439,10 @@ unsafe impl RefEncode for CGEventTapLocation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGEventTapPlacement(pub u32);
 impl CGEventTapPlacement {
-    pub const kCGHeadInsertEventTap: Self = Self(0);
-    pub const kCGTailAppendEventTap: Self = Self(1);
+    #[doc(alias = "kCGHeadInsertEventTap")]
+    pub const HeadInsertEventTap: Self = Self(0);
+    #[doc(alias = "kCGTailAppendEventTap")]
+    pub const TailAppendEventTap: Self = Self(1);
 }
 
 #[cfg(feature = "objc2")]
@@ -340,8 +461,10 @@ unsafe impl RefEncode for CGEventTapPlacement {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGEventTapOptions(pub u32);
 impl CGEventTapOptions {
-    pub const kCGEventTapOptionDefault: Self = Self(0x00000000);
-    pub const kCGEventTapOptionListenOnly: Self = Self(0x00000001);
+    #[doc(alias = "kCGEventTapOptionDefault")]
+    pub const Default: Self = Self(0x00000000);
+    #[doc(alias = "kCGEventTapOptionListenOnly")]
+    pub const ListenOnly: Self = Self(0x00000001);
 }
 
 #[cfg(feature = "objc2")]
@@ -420,9 +543,12 @@ pub type CGEventSourceRef = *mut c_void;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGEventSourceStateID(pub i32);
 impl CGEventSourceStateID {
-    pub const kCGEventSourceStatePrivate: Self = Self(-1);
-    pub const kCGEventSourceStateCombinedSessionState: Self = Self(0);
-    pub const kCGEventSourceStateHIDSystemState: Self = Self(1);
+    #[doc(alias = "kCGEventSourceStatePrivate")]
+    pub const Private: Self = Self(-1);
+    #[doc(alias = "kCGEventSourceStateCombinedSessionState")]
+    pub const CombinedSessionState: Self = Self(0);
+    #[doc(alias = "kCGEventSourceStateHIDSystemState")]
+    pub const HIDSystemState: Self = Self(1);
 }
 
 #[cfg(feature = "objc2")]

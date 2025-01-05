@@ -14,10 +14,14 @@ use crate::*;
 pub struct NSFetchRequestResultType(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFetchRequestResultType: NSUInteger {
-        const NSManagedObjectResultType = 0x00;
-        const NSManagedObjectIDResultType = 0x01;
-        const NSDictionaryResultType = 0x02;
-        const NSCountResultType = 0x04;
+        #[doc(alias = "NSManagedObjectResultType")]
+        const ManagedObjectResultType = 0x00;
+        #[doc(alias = "NSManagedObjectIDResultType")]
+        const ManagedObjectIDResultType = 0x01;
+        #[doc(alias = "NSDictionaryResultType")]
+        const DictionaryResultType = 0x02;
+        #[doc(alias = "NSCountResultType")]
+        const CountResultType = 0x04;
     }
 }
 

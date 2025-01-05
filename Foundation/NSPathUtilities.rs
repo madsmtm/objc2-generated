@@ -169,33 +169,60 @@ pub unsafe extern "C-unwind" fn NSOpenStepRootDirectory() -> Retained<NSString> 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSSearchPathDirectory(pub NSUInteger);
 impl NSSearchPathDirectory {
-    pub const NSApplicationDirectory: Self = Self(1);
-    pub const NSDemoApplicationDirectory: Self = Self(2);
-    pub const NSDeveloperApplicationDirectory: Self = Self(3);
-    pub const NSAdminApplicationDirectory: Self = Self(4);
-    pub const NSLibraryDirectory: Self = Self(5);
-    pub const NSDeveloperDirectory: Self = Self(6);
-    pub const NSUserDirectory: Self = Self(7);
-    pub const NSDocumentationDirectory: Self = Self(8);
-    pub const NSDocumentDirectory: Self = Self(9);
-    pub const NSCoreServiceDirectory: Self = Self(10);
-    pub const NSAutosavedInformationDirectory: Self = Self(11);
-    pub const NSDesktopDirectory: Self = Self(12);
-    pub const NSCachesDirectory: Self = Self(13);
-    pub const NSApplicationSupportDirectory: Self = Self(14);
-    pub const NSDownloadsDirectory: Self = Self(15);
-    pub const NSInputMethodsDirectory: Self = Self(16);
-    pub const NSMoviesDirectory: Self = Self(17);
-    pub const NSMusicDirectory: Self = Self(18);
-    pub const NSPicturesDirectory: Self = Self(19);
-    pub const NSPrinterDescriptionDirectory: Self = Self(20);
-    pub const NSSharedPublicDirectory: Self = Self(21);
-    pub const NSPreferencePanesDirectory: Self = Self(22);
-    pub const NSApplicationScriptsDirectory: Self = Self(23);
-    pub const NSItemReplacementDirectory: Self = Self(99);
-    pub const NSAllApplicationsDirectory: Self = Self(100);
-    pub const NSAllLibrariesDirectory: Self = Self(101);
-    pub const NSTrashDirectory: Self = Self(102);
+    #[doc(alias = "NSApplicationDirectory")]
+    pub const ApplicationDirectory: Self = Self(1);
+    #[doc(alias = "NSDemoApplicationDirectory")]
+    pub const DemoApplicationDirectory: Self = Self(2);
+    #[doc(alias = "NSDeveloperApplicationDirectory")]
+    pub const DeveloperApplicationDirectory: Self = Self(3);
+    #[doc(alias = "NSAdminApplicationDirectory")]
+    pub const AdminApplicationDirectory: Self = Self(4);
+    #[doc(alias = "NSLibraryDirectory")]
+    pub const LibraryDirectory: Self = Self(5);
+    #[doc(alias = "NSDeveloperDirectory")]
+    pub const DeveloperDirectory: Self = Self(6);
+    #[doc(alias = "NSUserDirectory")]
+    pub const UserDirectory: Self = Self(7);
+    #[doc(alias = "NSDocumentationDirectory")]
+    pub const DocumentationDirectory: Self = Self(8);
+    #[doc(alias = "NSDocumentDirectory")]
+    pub const DocumentDirectory: Self = Self(9);
+    #[doc(alias = "NSCoreServiceDirectory")]
+    pub const CoreServiceDirectory: Self = Self(10);
+    #[doc(alias = "NSAutosavedInformationDirectory")]
+    pub const AutosavedInformationDirectory: Self = Self(11);
+    #[doc(alias = "NSDesktopDirectory")]
+    pub const DesktopDirectory: Self = Self(12);
+    #[doc(alias = "NSCachesDirectory")]
+    pub const CachesDirectory: Self = Self(13);
+    #[doc(alias = "NSApplicationSupportDirectory")]
+    pub const ApplicationSupportDirectory: Self = Self(14);
+    #[doc(alias = "NSDownloadsDirectory")]
+    pub const DownloadsDirectory: Self = Self(15);
+    #[doc(alias = "NSInputMethodsDirectory")]
+    pub const InputMethodsDirectory: Self = Self(16);
+    #[doc(alias = "NSMoviesDirectory")]
+    pub const MoviesDirectory: Self = Self(17);
+    #[doc(alias = "NSMusicDirectory")]
+    pub const MusicDirectory: Self = Self(18);
+    #[doc(alias = "NSPicturesDirectory")]
+    pub const PicturesDirectory: Self = Self(19);
+    #[doc(alias = "NSPrinterDescriptionDirectory")]
+    pub const PrinterDescriptionDirectory: Self = Self(20);
+    #[doc(alias = "NSSharedPublicDirectory")]
+    pub const SharedPublicDirectory: Self = Self(21);
+    #[doc(alias = "NSPreferencePanesDirectory")]
+    pub const PreferencePanesDirectory: Self = Self(22);
+    #[doc(alias = "NSApplicationScriptsDirectory")]
+    pub const ApplicationScriptsDirectory: Self = Self(23);
+    #[doc(alias = "NSItemReplacementDirectory")]
+    pub const ItemReplacementDirectory: Self = Self(99);
+    #[doc(alias = "NSAllApplicationsDirectory")]
+    pub const AllApplicationsDirectory: Self = Self(100);
+    #[doc(alias = "NSAllLibrariesDirectory")]
+    pub const AllLibrariesDirectory: Self = Self(101);
+    #[doc(alias = "NSTrashDirectory")]
+    pub const TrashDirectory: Self = Self(102);
 }
 
 unsafe impl Encode for NSSearchPathDirectory {
@@ -213,11 +240,16 @@ unsafe impl RefEncode for NSSearchPathDirectory {
 pub struct NSSearchPathDomainMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSSearchPathDomainMask: NSUInteger {
-        const NSUserDomainMask = 1;
-        const NSLocalDomainMask = 2;
-        const NSNetworkDomainMask = 4;
-        const NSSystemDomainMask = 8;
-        const NSAllDomainsMask = 0x0ffff;
+        #[doc(alias = "NSUserDomainMask")]
+        const UserDomainMask = 1;
+        #[doc(alias = "NSLocalDomainMask")]
+        const LocalDomainMask = 2;
+        #[doc(alias = "NSNetworkDomainMask")]
+        const NetworkDomainMask = 4;
+        #[doc(alias = "NSSystemDomainMask")]
+        const SystemDomainMask = 8;
+        #[doc(alias = "NSAllDomainsMask")]
+        const AllDomainsMask = 0x0ffff;
     }
 }
 

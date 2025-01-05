@@ -332,11 +332,16 @@ unsafe impl RefEncode for MTLTriangleTessellationFactorsHalf {
 pub struct MTLRenderStages(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLRenderStages: NSUInteger {
-        const MTLRenderStageVertex = 1<<0;
-        const MTLRenderStageFragment = 1<<1;
-        const MTLRenderStageTile = 1<<2;
-        const MTLRenderStageObject = 1<<3;
-        const MTLRenderStageMesh = 1<<4;
+        #[doc(alias = "MTLRenderStageVertex")]
+        const Vertex = 1<<0;
+        #[doc(alias = "MTLRenderStageFragment")]
+        const Fragment = 1<<1;
+        #[doc(alias = "MTLRenderStageTile")]
+        const Tile = 1<<2;
+        #[doc(alias = "MTLRenderStageObject")]
+        const Object = 1<<3;
+        #[doc(alias = "MTLRenderStageMesh")]
+        const Mesh = 1<<4;
     }
 }
 

@@ -4072,13 +4072,20 @@ extern_methods!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEHotspotHelperCommandType(pub NSInteger);
 impl NEHotspotHelperCommandType {
-    pub const kNEHotspotHelperCommandTypeNone: Self = Self(0);
-    pub const kNEHotspotHelperCommandTypeFilterScanList: Self = Self(1);
-    pub const kNEHotspotHelperCommandTypeEvaluate: Self = Self(2);
-    pub const kNEHotspotHelperCommandTypeAuthenticate: Self = Self(3);
-    pub const kNEHotspotHelperCommandTypePresentUI: Self = Self(4);
-    pub const kNEHotspotHelperCommandTypeMaintain: Self = Self(5);
-    pub const kNEHotspotHelperCommandTypeLogoff: Self = Self(6);
+    #[doc(alias = "kNEHotspotHelperCommandTypeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "kNEHotspotHelperCommandTypeFilterScanList")]
+    pub const FilterScanList: Self = Self(1);
+    #[doc(alias = "kNEHotspotHelperCommandTypeEvaluate")]
+    pub const Evaluate: Self = Self(2);
+    #[doc(alias = "kNEHotspotHelperCommandTypeAuthenticate")]
+    pub const Authenticate: Self = Self(3);
+    #[doc(alias = "kNEHotspotHelperCommandTypePresentUI")]
+    pub const PresentUI: Self = Self(4);
+    #[doc(alias = "kNEHotspotHelperCommandTypeMaintain")]
+    pub const Maintain: Self = Self(5);
+    #[doc(alias = "kNEHotspotHelperCommandTypeLogoff")]
+    pub const Logoff: Self = Self(6);
 }
 
 unsafe impl Encode for NEHotspotHelperCommandType {
@@ -4121,13 +4128,20 @@ unsafe impl RefEncode for NEHotspotHelperCommandType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEHotspotHelperResult(pub NSInteger);
 impl NEHotspotHelperResult {
-    pub const kNEHotspotHelperResultSuccess: Self = Self(0);
-    pub const kNEHotspotHelperResultFailure: Self = Self(1);
-    pub const kNEHotspotHelperResultUIRequired: Self = Self(2);
-    pub const kNEHotspotHelperResultCommandNotRecognized: Self = Self(3);
-    pub const kNEHotspotHelperResultAuthenticationRequired: Self = Self(4);
-    pub const kNEHotspotHelperResultUnsupportedNetwork: Self = Self(5);
-    pub const kNEHotspotHelperResultTemporaryFailure: Self = Self(6);
+    #[doc(alias = "kNEHotspotHelperResultSuccess")]
+    pub const Success: Self = Self(0);
+    #[doc(alias = "kNEHotspotHelperResultFailure")]
+    pub const Failure: Self = Self(1);
+    #[doc(alias = "kNEHotspotHelperResultUIRequired")]
+    pub const UIRequired: Self = Self(2);
+    #[doc(alias = "kNEHotspotHelperResultCommandNotRecognized")]
+    pub const CommandNotRecognized: Self = Self(3);
+    #[doc(alias = "kNEHotspotHelperResultAuthenticationRequired")]
+    pub const AuthenticationRequired: Self = Self(4);
+    #[doc(alias = "kNEHotspotHelperResultUnsupportedNetwork")]
+    pub const UnsupportedNetwork: Self = Self(5);
+    #[doc(alias = "kNEHotspotHelperResultTemporaryFailure")]
+    pub const TemporaryFailure: Self = Self(6);
 }
 
 unsafe impl Encode for NEHotspotHelperResult {
@@ -4155,9 +4169,12 @@ unsafe impl RefEncode for NEHotspotHelperResult {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEHotspotHelperConfidence(pub NSInteger);
 impl NEHotspotHelperConfidence {
-    pub const kNEHotspotHelperConfidenceNone: Self = Self(0);
-    pub const kNEHotspotHelperConfidenceLow: Self = Self(1);
-    pub const kNEHotspotHelperConfidenceHigh: Self = Self(2);
+    #[doc(alias = "kNEHotspotHelperConfidenceNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "kNEHotspotHelperConfidenceLow")]
+    pub const Low: Self = Self(1);
+    #[doc(alias = "kNEHotspotHelperConfidenceHigh")]
+    pub const High: Self = Self(2);
 }
 
 unsafe impl Encode for NEHotspotHelperConfidence {
@@ -4485,11 +4502,16 @@ unsafe impl RefEncode for NEHotspotConfigurationEAPType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEHotspotConfigurationTTLSInnerAuthenticationType(pub NSInteger);
 impl NEHotspotConfigurationTTLSInnerAuthenticationType {
-    pub const NEHotspotConfigurationEAPTTLSInnerAuthenticationPAP: Self = Self(0);
-    pub const NEHotspotConfigurationEAPTTLSInnerAuthenticationCHAP: Self = Self(1);
-    pub const NEHotspotConfigurationEAPTTLSInnerAuthenticationMSCHAP: Self = Self(2);
-    pub const NEHotspotConfigurationEAPTTLSInnerAuthenticationMSCHAPv2: Self = Self(3);
-    pub const NEHotspotConfigurationEAPTTLSInnerAuthenticationEAP: Self = Self(4);
+    #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationPAP")]
+    pub const EAPTTLSInnerAuthenticationPAP: Self = Self(0);
+    #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationCHAP")]
+    pub const EAPTTLSInnerAuthenticationCHAP: Self = Self(1);
+    #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationMSCHAP")]
+    pub const EAPTTLSInnerAuthenticationMSCHAP: Self = Self(2);
+    #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationMSCHAPv2")]
+    pub const EAPTTLSInnerAuthenticationMSCHAPv2: Self = Self(3);
+    #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationEAP")]
+    pub const EAPTTLSInnerAuthenticationEAP: Self = Self(4);
 }
 
 unsafe impl Encode for NEHotspotConfigurationTTLSInnerAuthenticationType {
@@ -4497,30 +4519,6 @@ unsafe impl Encode for NEHotspotConfigurationTTLSInnerAuthenticationType {
 }
 
 unsafe impl RefEncode for NEHotspotConfigurationTTLSInnerAuthenticationType {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
-/// TLS version to use during TLS handshke.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationeaptlsversion?language=objc)
-// NS_ENUM
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct NEHotspotConfigurationEAPTLSVersion(pub NSInteger);
-impl NEHotspotConfigurationEAPTLSVersion {
-    #[doc(alias = "NEHotspotConfigurationEAPTLSVersion_1_0")]
-    pub const _1_0: Self = Self(0);
-    #[doc(alias = "NEHotspotConfigurationEAPTLSVersion_1_1")]
-    pub const _1_1: Self = Self(1);
-    #[doc(alias = "NEHotspotConfigurationEAPTLSVersion_1_2")]
-    pub const _1_2: Self = Self(2);
-}
-
-unsafe impl Encode for NEHotspotConfigurationEAPTLSVersion {
-    const ENCODING: Encoding = NSInteger::ENCODING;
-}
-
-unsafe impl RefEncode for NEHotspotConfigurationEAPTLSVersion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
@@ -7195,41 +7193,6 @@ extern_methods!(
     }
 );
 
-/// IKEv2 Encryption Algorithms
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2encryptionalgorithm?language=objc)
-// NS_ENUM
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct NEVPNIKEv2EncryptionAlgorithm(pub NSInteger);
-impl NEVPNIKEv2EncryptionAlgorithm {
-    #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
-    #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmDES")]
-    pub const DES: Self = Self(1);
-    #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
-    pub const NEVPNIKEv2EncryptionAlgorithm3DES: Self = Self(2);
-    #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
-    #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES128")]
-    pub const AES128: Self = Self(3);
-    #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES256")]
-    pub const AES256: Self = Self(4);
-    #[deprecated = "Use an encryption algorithm with 256-bit keys instead"]
-    #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES128GCM")]
-    pub const AES128GCM: Self = Self(5);
-    #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmAES256GCM")]
-    pub const AES256GCM: Self = Self(6);
-    #[doc(alias = "NEVPNIKEv2EncryptionAlgorithmChaCha20Poly1305")]
-    pub const ChaCha20Poly1305: Self = Self(7);
-}
-
-unsafe impl Encode for NEVPNIKEv2EncryptionAlgorithm {
-    const ENCODING: Encoding = NSInteger::ENCODING;
-}
-
-unsafe impl RefEncode for NEVPNIKEv2EncryptionAlgorithm {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// IKEv2 Integrity Algorithms
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2integrityalgorithm?language=objc)
@@ -7295,23 +7258,36 @@ unsafe impl RefEncode for NEVPNIKEv2DeadPeerDetectionRate {
 pub struct NEVPNIKEv2DiffieHellmanGroup(pub NSInteger);
 impl NEVPNIKEv2DiffieHellmanGroup {
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroupInvalid")]
-    pub const Invalid: Self = Self(0);
+    pub const GroupInvalid: Self = Self(0);
     #[deprecated = "Use Diffie Hellman group 14 or greater instead"]
-    pub const NEVPNIKEv2DiffieHellmanGroup1: Self = Self(1);
+    #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup1")]
+    pub const Group1: Self = Self(1);
     #[deprecated = "Use Diffie Hellman group 14 or greater instead"]
-    pub const NEVPNIKEv2DiffieHellmanGroup2: Self = Self(2);
+    #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup2")]
+    pub const Group2: Self = Self(2);
     #[deprecated = "Use Diffie Hellman group 14 or greater instead"]
-    pub const NEVPNIKEv2DiffieHellmanGroup5: Self = Self(5);
-    pub const NEVPNIKEv2DiffieHellmanGroup14: Self = Self(14);
-    pub const NEVPNIKEv2DiffieHellmanGroup15: Self = Self(15);
-    pub const NEVPNIKEv2DiffieHellmanGroup16: Self = Self(16);
-    pub const NEVPNIKEv2DiffieHellmanGroup17: Self = Self(17);
-    pub const NEVPNIKEv2DiffieHellmanGroup18: Self = Self(18);
-    pub const NEVPNIKEv2DiffieHellmanGroup19: Self = Self(19);
-    pub const NEVPNIKEv2DiffieHellmanGroup20: Self = Self(20);
-    pub const NEVPNIKEv2DiffieHellmanGroup21: Self = Self(21);
-    pub const NEVPNIKEv2DiffieHellmanGroup31: Self = Self(31);
-    pub const NEVPNIKEv2DiffieHellmanGroup32: Self = Self(32);
+    #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup5")]
+    pub const Group5: Self = Self(5);
+    #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup14")]
+    pub const Group14: Self = Self(14);
+    #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup15")]
+    pub const Group15: Self = Self(15);
+    #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup16")]
+    pub const Group16: Self = Self(16);
+    #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup17")]
+    pub const Group17: Self = Self(17);
+    #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup18")]
+    pub const Group18: Self = Self(18);
+    #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup19")]
+    pub const Group19: Self = Self(19);
+    #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup20")]
+    pub const Group20: Self = Self(20);
+    #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup21")]
+    pub const Group21: Self = Self(21);
+    #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup31")]
+    pub const Group31: Self = Self(31);
+    #[doc(alias = "NEVPNIKEv2DiffieHellmanGroup32")]
+    pub const Group32: Self = Self(32);
 }
 
 unsafe impl Encode for NEVPNIKEv2DiffieHellmanGroup {
@@ -7361,10 +7337,13 @@ unsafe impl RefEncode for NEVPNIKEv2CertificateType {
 pub struct NEVPNIKEv2TLSVersion(pub NSInteger);
 impl NEVPNIKEv2TLSVersion {
     #[doc(alias = "NEVPNIKEv2TLSVersionDefault")]
-    pub const Default: Self = Self(0);
-    pub const NEVPNIKEv2TLSVersion1_0: Self = Self(1);
-    pub const NEVPNIKEv2TLSVersion1_1: Self = Self(2);
-    pub const NEVPNIKEv2TLSVersion1_2: Self = Self(3);
+    pub const VersionDefault: Self = Self(0);
+    #[doc(alias = "NEVPNIKEv2TLSVersion1_0")]
+    pub const Version1_0: Self = Self(1);
+    #[doc(alias = "NEVPNIKEv2TLSVersion1_1")]
+    pub const Version1_1: Self = Self(2);
+    #[doc(alias = "NEVPNIKEv2TLSVersion1_2")]
+    pub const Version1_2: Self = Self(3);
 }
 
 unsafe impl Encode for NEVPNIKEv2TLSVersion {

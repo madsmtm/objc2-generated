@@ -19,11 +19,13 @@ bitflags::bitflags! {
 /// Refitting shall result in updated vertex data from the provided geometry descriptor.
 /// If not set, vertex buffers shall be ignored on the geometry descriptor and vertex data previously
 /// encoded shall be copied.
-        const MTLAccelerationStructureRefitOptionVertexData = 1<<0;
+        #[doc(alias = "MTLAccelerationStructureRefitOptionVertexData")]
+        const VertexData = 1<<0;
 /// Refitting shall result in updated per primitive data from the provided geometry descriptor.
 /// If not set, per primitive data buffers shall be ignored on the geometry descriptor and per primitive
 /// data previously encoded shall be copied.
-        const MTLAccelerationStructureRefitOptionPerPrimitiveData = 1<<1;
+        #[doc(alias = "MTLAccelerationStructureRefitOptionPerPrimitiveData")]
+        const PerPrimitiveData = 1<<1;
     }
 }
 

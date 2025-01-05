@@ -13,12 +13,18 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSEntityMappingType(pub NSUInteger);
 impl NSEntityMappingType {
-    pub const NSUndefinedEntityMappingType: Self = Self(0x00);
-    pub const NSCustomEntityMappingType: Self = Self(0x01);
-    pub const NSAddEntityMappingType: Self = Self(0x02);
-    pub const NSRemoveEntityMappingType: Self = Self(0x03);
-    pub const NSCopyEntityMappingType: Self = Self(0x04);
-    pub const NSTransformEntityMappingType: Self = Self(0x05);
+    #[doc(alias = "NSUndefinedEntityMappingType")]
+    pub const UndefinedEntityMappingType: Self = Self(0x00);
+    #[doc(alias = "NSCustomEntityMappingType")]
+    pub const CustomEntityMappingType: Self = Self(0x01);
+    #[doc(alias = "NSAddEntityMappingType")]
+    pub const AddEntityMappingType: Self = Self(0x02);
+    #[doc(alias = "NSRemoveEntityMappingType")]
+    pub const RemoveEntityMappingType: Self = Self(0x03);
+    #[doc(alias = "NSCopyEntityMappingType")]
+    pub const CopyEntityMappingType: Self = Self(0x04);
+    #[doc(alias = "NSTransformEntityMappingType")]
+    pub const TransformEntityMappingType: Self = Self(0x05);
 }
 
 unsafe impl Encode for NSEntityMappingType {

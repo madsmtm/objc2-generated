@@ -44,9 +44,12 @@ pub type CFPropertyListRef = CFTypeRef;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFComparisonResult(pub CFIndex);
 impl CFComparisonResult {
-    pub const kCFCompareLessThan: Self = Self(-1);
-    pub const kCFCompareEqualTo: Self = Self(0);
-    pub const kCFCompareGreaterThan: Self = Self(1);
+    #[doc(alias = "kCFCompareLessThan")]
+    pub const CompareLessThan: Self = Self(-1);
+    #[doc(alias = "kCFCompareEqualTo")]
+    pub const CompareEqualTo: Self = Self(0);
+    #[doc(alias = "kCFCompareGreaterThan")]
+    pub const CompareGreaterThan: Self = Self(1);
 }
 
 #[cfg(feature = "objc2")]

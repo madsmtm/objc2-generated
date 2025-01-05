@@ -198,14 +198,22 @@ unsafe impl RefEncode for NSCalendarUnit {
 pub struct NSCalendarOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCalendarOptions: NSUInteger {
-        const NSCalendarWrapComponents = 1<<0;
-        const NSCalendarMatchStrictly = 1<<1;
-        const NSCalendarSearchBackwards = 1<<2;
-        const NSCalendarMatchPreviousTimePreservingSmallerUnits = 1<<8;
-        const NSCalendarMatchNextTimePreservingSmallerUnits = 1<<9;
-        const NSCalendarMatchNextTime = 1<<10;
-        const NSCalendarMatchFirst = 1<<12;
-        const NSCalendarMatchLast = 1<<13;
+        #[doc(alias = "NSCalendarWrapComponents")]
+        const WrapComponents = 1<<0;
+        #[doc(alias = "NSCalendarMatchStrictly")]
+        const MatchStrictly = 1<<1;
+        #[doc(alias = "NSCalendarSearchBackwards")]
+        const SearchBackwards = 1<<2;
+        #[doc(alias = "NSCalendarMatchPreviousTimePreservingSmallerUnits")]
+        const MatchPreviousTimePreservingSmallerUnits = 1<<8;
+        #[doc(alias = "NSCalendarMatchNextTimePreservingSmallerUnits")]
+        const MatchNextTimePreservingSmallerUnits = 1<<9;
+        #[doc(alias = "NSCalendarMatchNextTime")]
+        const MatchNextTime = 1<<10;
+        #[doc(alias = "NSCalendarMatchFirst")]
+        const MatchFirst = 1<<12;
+        #[doc(alias = "NSCalendarMatchLast")]
+        const MatchLast = 1<<13;
     }
 }
 

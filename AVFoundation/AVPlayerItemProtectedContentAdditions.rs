@@ -25,13 +25,20 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVContentAuthorizationStatus(pub NSInteger);
 impl AVContentAuthorizationStatus {
-    pub const AVContentAuthorizationUnknown: Self = Self(0);
-    pub const AVContentAuthorizationCompleted: Self = Self(1);
-    pub const AVContentAuthorizationCancelled: Self = Self(2);
-    pub const AVContentAuthorizationTimedOut: Self = Self(3);
-    pub const AVContentAuthorizationBusy: Self = Self(4);
-    pub const AVContentAuthorizationNotAvailable: Self = Self(5);
-    pub const AVContentAuthorizationNotPossible: Self = Self(6);
+    #[doc(alias = "AVContentAuthorizationUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "AVContentAuthorizationCompleted")]
+    pub const Completed: Self = Self(1);
+    #[doc(alias = "AVContentAuthorizationCancelled")]
+    pub const Cancelled: Self = Self(2);
+    #[doc(alias = "AVContentAuthorizationTimedOut")]
+    pub const TimedOut: Self = Self(3);
+    #[doc(alias = "AVContentAuthorizationBusy")]
+    pub const Busy: Self = Self(4);
+    #[doc(alias = "AVContentAuthorizationNotAvailable")]
+    pub const NotAvailable: Self = Self(5);
+    #[doc(alias = "AVContentAuthorizationNotPossible")]
+    pub const NotPossible: Self = Self(6);
 }
 
 unsafe impl Encode for AVContentAuthorizationStatus {

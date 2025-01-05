@@ -749,34 +749,62 @@ pub type AUEventSampleTime = i64;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioUnitParameterUnit(pub u32);
 impl AudioUnitParameterUnit {
-    pub const kAudioUnitParameterUnit_Generic: Self = Self(0);
-    pub const kAudioUnitParameterUnit_Indexed: Self = Self(1);
-    pub const kAudioUnitParameterUnit_Boolean: Self = Self(2);
-    pub const kAudioUnitParameterUnit_Percent: Self = Self(3);
-    pub const kAudioUnitParameterUnit_Seconds: Self = Self(4);
-    pub const kAudioUnitParameterUnit_SampleFrames: Self = Self(5);
-    pub const kAudioUnitParameterUnit_Phase: Self = Self(6);
-    pub const kAudioUnitParameterUnit_Rate: Self = Self(7);
-    pub const kAudioUnitParameterUnit_Hertz: Self = Self(8);
-    pub const kAudioUnitParameterUnit_Cents: Self = Self(9);
-    pub const kAudioUnitParameterUnit_RelativeSemiTones: Self = Self(10);
-    pub const kAudioUnitParameterUnit_MIDINoteNumber: Self = Self(11);
-    pub const kAudioUnitParameterUnit_MIDIController: Self = Self(12);
-    pub const kAudioUnitParameterUnit_Decibels: Self = Self(13);
-    pub const kAudioUnitParameterUnit_LinearGain: Self = Self(14);
-    pub const kAudioUnitParameterUnit_Degrees: Self = Self(15);
-    pub const kAudioUnitParameterUnit_EqualPowerCrossfade: Self = Self(16);
-    pub const kAudioUnitParameterUnit_MixerFaderCurve1: Self = Self(17);
-    pub const kAudioUnitParameterUnit_Pan: Self = Self(18);
-    pub const kAudioUnitParameterUnit_Meters: Self = Self(19);
-    pub const kAudioUnitParameterUnit_AbsoluteCents: Self = Self(20);
-    pub const kAudioUnitParameterUnit_Octaves: Self = Self(21);
-    pub const kAudioUnitParameterUnit_BPM: Self = Self(22);
-    pub const kAudioUnitParameterUnit_Beats: Self = Self(23);
-    pub const kAudioUnitParameterUnit_Milliseconds: Self = Self(24);
-    pub const kAudioUnitParameterUnit_Ratio: Self = Self(25);
-    pub const kAudioUnitParameterUnit_CustomUnit: Self = Self(26);
-    pub const kAudioUnitParameterUnit_MIDI2Controller: Self = Self(27);
+    #[doc(alias = "kAudioUnitParameterUnit_Generic")]
+    pub const Generic: Self = Self(0);
+    #[doc(alias = "kAudioUnitParameterUnit_Indexed")]
+    pub const Indexed: Self = Self(1);
+    #[doc(alias = "kAudioUnitParameterUnit_Boolean")]
+    pub const Boolean: Self = Self(2);
+    #[doc(alias = "kAudioUnitParameterUnit_Percent")]
+    pub const Percent: Self = Self(3);
+    #[doc(alias = "kAudioUnitParameterUnit_Seconds")]
+    pub const Seconds: Self = Self(4);
+    #[doc(alias = "kAudioUnitParameterUnit_SampleFrames")]
+    pub const SampleFrames: Self = Self(5);
+    #[doc(alias = "kAudioUnitParameterUnit_Phase")]
+    pub const Phase: Self = Self(6);
+    #[doc(alias = "kAudioUnitParameterUnit_Rate")]
+    pub const Rate: Self = Self(7);
+    #[doc(alias = "kAudioUnitParameterUnit_Hertz")]
+    pub const Hertz: Self = Self(8);
+    #[doc(alias = "kAudioUnitParameterUnit_Cents")]
+    pub const Cents: Self = Self(9);
+    #[doc(alias = "kAudioUnitParameterUnit_RelativeSemiTones")]
+    pub const RelativeSemiTones: Self = Self(10);
+    #[doc(alias = "kAudioUnitParameterUnit_MIDINoteNumber")]
+    pub const MIDINoteNumber: Self = Self(11);
+    #[doc(alias = "kAudioUnitParameterUnit_MIDIController")]
+    pub const MIDIController: Self = Self(12);
+    #[doc(alias = "kAudioUnitParameterUnit_Decibels")]
+    pub const Decibels: Self = Self(13);
+    #[doc(alias = "kAudioUnitParameterUnit_LinearGain")]
+    pub const LinearGain: Self = Self(14);
+    #[doc(alias = "kAudioUnitParameterUnit_Degrees")]
+    pub const Degrees: Self = Self(15);
+    #[doc(alias = "kAudioUnitParameterUnit_EqualPowerCrossfade")]
+    pub const EqualPowerCrossfade: Self = Self(16);
+    #[doc(alias = "kAudioUnitParameterUnit_MixerFaderCurve1")]
+    pub const MixerFaderCurve1: Self = Self(17);
+    #[doc(alias = "kAudioUnitParameterUnit_Pan")]
+    pub const Pan: Self = Self(18);
+    #[doc(alias = "kAudioUnitParameterUnit_Meters")]
+    pub const Meters: Self = Self(19);
+    #[doc(alias = "kAudioUnitParameterUnit_AbsoluteCents")]
+    pub const AbsoluteCents: Self = Self(20);
+    #[doc(alias = "kAudioUnitParameterUnit_Octaves")]
+    pub const Octaves: Self = Self(21);
+    #[doc(alias = "kAudioUnitParameterUnit_BPM")]
+    pub const BPM: Self = Self(22);
+    #[doc(alias = "kAudioUnitParameterUnit_Beats")]
+    pub const Beats: Self = Self(23);
+    #[doc(alias = "kAudioUnitParameterUnit_Milliseconds")]
+    pub const Milliseconds: Self = Self(24);
+    #[doc(alias = "kAudioUnitParameterUnit_Ratio")]
+    pub const Ratio: Self = Self(25);
+    #[doc(alias = "kAudioUnitParameterUnit_CustomUnit")]
+    pub const CustomUnit: Self = Self(26);
+    #[doc(alias = "kAudioUnitParameterUnit_MIDI2Controller")]
+    pub const MIDI2Controller: Self = Self(27);
 }
 
 unsafe impl Encode for AudioUnitParameterUnit {
@@ -832,28 +860,50 @@ unsafe impl RefEncode for AudioUnitParameterUnit {
 pub struct AudioUnitParameterOptions(pub u32);
 bitflags::bitflags! {
     impl AudioUnitParameterOptions: u32 {
-        const kAudioUnitParameterFlag_CFNameRelease = 1<<4;
-        const kAudioUnitParameterFlag_OmitFromPresets = 1<<13;
-        const kAudioUnitParameterFlag_PlotHistory = 1<<14;
-        const kAudioUnitParameterFlag_MeterReadOnly = 1<<15;
-        const kAudioUnitParameterFlag_DisplayMask = (7<<16)|(1<<22);
-        const kAudioUnitParameterFlag_DisplaySquareRoot = 1<<16;
-        const kAudioUnitParameterFlag_DisplaySquared = 2<<16;
-        const kAudioUnitParameterFlag_DisplayCubed = 3<<16;
-        const kAudioUnitParameterFlag_DisplayCubeRoot = 4<<16;
-        const kAudioUnitParameterFlag_DisplayExponential = 5<<16;
-        const kAudioUnitParameterFlag_HasClump = 1<<20;
-        const kAudioUnitParameterFlag_ValuesHaveStrings = 1<<21;
-        const kAudioUnitParameterFlag_DisplayLogarithmic = 1<<22;
-        const kAudioUnitParameterFlag_IsHighResolution = 1<<23;
-        const kAudioUnitParameterFlag_NonRealTime = 1<<24;
-        const kAudioUnitParameterFlag_CanRamp = 1<<25;
-        const kAudioUnitParameterFlag_ExpertMode = 1<<26;
-        const kAudioUnitParameterFlag_HasCFNameString = 1<<27;
-        const kAudioUnitParameterFlag_IsGlobalMeta = 1<<28;
-        const kAudioUnitParameterFlag_IsElementMeta = 1<<29;
-        const kAudioUnitParameterFlag_IsReadable = 1<<30;
-        const kAudioUnitParameterFlag_IsWritable = 1<<31;
+        #[doc(alias = "kAudioUnitParameterFlag_CFNameRelease")]
+        const Flag_CFNameRelease = 1<<4;
+        #[doc(alias = "kAudioUnitParameterFlag_OmitFromPresets")]
+        const Flag_OmitFromPresets = 1<<13;
+        #[doc(alias = "kAudioUnitParameterFlag_PlotHistory")]
+        const Flag_PlotHistory = 1<<14;
+        #[doc(alias = "kAudioUnitParameterFlag_MeterReadOnly")]
+        const Flag_MeterReadOnly = 1<<15;
+        #[doc(alias = "kAudioUnitParameterFlag_DisplayMask")]
+        const Flag_DisplayMask = (7<<16)|(1<<22);
+        #[doc(alias = "kAudioUnitParameterFlag_DisplaySquareRoot")]
+        const Flag_DisplaySquareRoot = 1<<16;
+        #[doc(alias = "kAudioUnitParameterFlag_DisplaySquared")]
+        const Flag_DisplaySquared = 2<<16;
+        #[doc(alias = "kAudioUnitParameterFlag_DisplayCubed")]
+        const Flag_DisplayCubed = 3<<16;
+        #[doc(alias = "kAudioUnitParameterFlag_DisplayCubeRoot")]
+        const Flag_DisplayCubeRoot = 4<<16;
+        #[doc(alias = "kAudioUnitParameterFlag_DisplayExponential")]
+        const Flag_DisplayExponential = 5<<16;
+        #[doc(alias = "kAudioUnitParameterFlag_HasClump")]
+        const Flag_HasClump = 1<<20;
+        #[doc(alias = "kAudioUnitParameterFlag_ValuesHaveStrings")]
+        const Flag_ValuesHaveStrings = 1<<21;
+        #[doc(alias = "kAudioUnitParameterFlag_DisplayLogarithmic")]
+        const Flag_DisplayLogarithmic = 1<<22;
+        #[doc(alias = "kAudioUnitParameterFlag_IsHighResolution")]
+        const Flag_IsHighResolution = 1<<23;
+        #[doc(alias = "kAudioUnitParameterFlag_NonRealTime")]
+        const Flag_NonRealTime = 1<<24;
+        #[doc(alias = "kAudioUnitParameterFlag_CanRamp")]
+        const Flag_CanRamp = 1<<25;
+        #[doc(alias = "kAudioUnitParameterFlag_ExpertMode")]
+        const Flag_ExpertMode = 1<<26;
+        #[doc(alias = "kAudioUnitParameterFlag_HasCFNameString")]
+        const Flag_HasCFNameString = 1<<27;
+        #[doc(alias = "kAudioUnitParameterFlag_IsGlobalMeta")]
+        const Flag_IsGlobalMeta = 1<<28;
+        #[doc(alias = "kAudioUnitParameterFlag_IsElementMeta")]
+        const Flag_IsElementMeta = 1<<29;
+        #[doc(alias = "kAudioUnitParameterFlag_IsReadable")]
+        const Flag_IsReadable = 1<<30;
+        #[doc(alias = "kAudioUnitParameterFlag_IsWritable")]
+        const Flag_IsWritable = 1<<31;
     }
 }
 
@@ -1047,9 +1097,12 @@ unsafe impl RefEncode for AudioUnitParameterValueFromString {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioUnitRemoteControlEvent(pub u32);
 impl AudioUnitRemoteControlEvent {
-    pub const kAudioUnitRemoteControlEvent_TogglePlayPause: Self = Self(1);
-    pub const kAudioUnitRemoteControlEvent_ToggleRecord: Self = Self(2);
-    pub const kAudioUnitRemoteControlEvent_Rewind: Self = Self(3);
+    #[doc(alias = "kAudioUnitRemoteControlEvent_TogglePlayPause")]
+    pub const TogglePlayPause: Self = Self(1);
+    #[doc(alias = "kAudioUnitRemoteControlEvent_ToggleRecord")]
+    pub const ToggleRecord: Self = Self(2);
+    #[doc(alias = "kAudioUnitRemoteControlEvent_Rewind")]
+    pub const Rewind: Self = Self(3);
 }
 
 unsafe impl Encode for AudioUnitRemoteControlEvent {
@@ -1131,12 +1184,18 @@ pub const kAudioUnitProperty_HotMapParameterMIDIMapping: AudioUnitPropertyID = 4
 pub struct AUParameterMIDIMappingFlags(pub u32);
 bitflags::bitflags! {
     impl AUParameterMIDIMappingFlags: u32 {
-        const kAUParameterMIDIMapping_AnyChannelFlag = 1<<0;
-        const kAUParameterMIDIMapping_AnyNoteFlag = 1<<1;
-        const kAUParameterMIDIMapping_SubRange = 1<<2;
-        const kAUParameterMIDIMapping_Toggle = 1<<3;
-        const kAUParameterMIDIMapping_Bipolar = 1<<4;
-        const kAUParameterMIDIMapping_Bipolar_On = 1<<5;
+        #[doc(alias = "kAUParameterMIDIMapping_AnyChannelFlag")]
+        const AnyChannelFlag = 1<<0;
+        #[doc(alias = "kAUParameterMIDIMapping_AnyNoteFlag")]
+        const AnyNoteFlag = 1<<1;
+        #[doc(alias = "kAUParameterMIDIMapping_SubRange")]
+        const SubRange = 1<<2;
+        #[doc(alias = "kAUParameterMIDIMapping_Toggle")]
+        const Toggle = 1<<3;
+        #[doc(alias = "kAUParameterMIDIMapping_Bipolar")]
+        const Bipolar = 1<<4;
+        #[doc(alias = "kAUParameterMIDIMapping_Bipolar_On")]
+        const Bipolar_On = 1<<5;
     }
 }
 
@@ -1514,8 +1573,10 @@ pub const kAUVoiceIOProperty_MuteOutput: AudioUnitPropertyID = 2104;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AUVoiceIOSpeechActivityEvent(pub u32);
 impl AUVoiceIOSpeechActivityEvent {
-    pub const kAUVoiceIOSpeechActivityHasStarted: Self = Self(0);
-    pub const kAUVoiceIOSpeechActivityHasEnded: Self = Self(1);
+    #[doc(alias = "kAUVoiceIOSpeechActivityHasStarted")]
+    pub const HasStarted: Self = Self(0);
+    #[doc(alias = "kAUVoiceIOSpeechActivityHasEnded")]
+    pub const HasEnded: Self = Self(1);
 }
 
 unsafe impl Encode for AUVoiceIOSpeechActivityEvent {
@@ -1550,10 +1611,14 @@ pub const kAUVoiceIOProperty_MutedSpeechActivityEventListener: AudioUnitProperty
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AUVoiceIOOtherAudioDuckingLevel(pub u32);
 impl AUVoiceIOOtherAudioDuckingLevel {
-    pub const kAUVoiceIOOtherAudioDuckingLevelDefault: Self = Self(0);
-    pub const kAUVoiceIOOtherAudioDuckingLevelMin: Self = Self(10);
-    pub const kAUVoiceIOOtherAudioDuckingLevelMid: Self = Self(20);
-    pub const kAUVoiceIOOtherAudioDuckingLevelMax: Self = Self(30);
+    #[doc(alias = "kAUVoiceIOOtherAudioDuckingLevelDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "kAUVoiceIOOtherAudioDuckingLevelMin")]
+    pub const Min: Self = Self(10);
+    #[doc(alias = "kAUVoiceIOOtherAudioDuckingLevelMid")]
+    pub const Mid: Self = Self(20);
+    #[doc(alias = "kAUVoiceIOOtherAudioDuckingLevelMax")]
+    pub const Max: Self = Self(30);
 }
 
 unsafe impl Encode for AUVoiceIOOtherAudioDuckingLevel {
@@ -1704,14 +1769,22 @@ pub const kAudioUnitProperty_SpatialMixerAnyInputIsUsingPersonalizedHRTF: AudioU
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AUSpatializationAlgorithm(pub u32);
 impl AUSpatializationAlgorithm {
-    pub const kSpatializationAlgorithm_EqualPowerPanning: Self = Self(0);
-    pub const kSpatializationAlgorithm_SphericalHead: Self = Self(1);
-    pub const kSpatializationAlgorithm_HRTF: Self = Self(2);
-    pub const kSpatializationAlgorithm_SoundField: Self = Self(3);
-    pub const kSpatializationAlgorithm_VectorBasedPanning: Self = Self(4);
-    pub const kSpatializationAlgorithm_StereoPassThrough: Self = Self(5);
-    pub const kSpatializationAlgorithm_HRTFHQ: Self = Self(6);
-    pub const kSpatializationAlgorithm_UseOutputType: Self = Self(7);
+    #[doc(alias = "kSpatializationAlgorithm_EqualPowerPanning")]
+    pub const SpatializationAlgorithm_EqualPowerPanning: Self = Self(0);
+    #[doc(alias = "kSpatializationAlgorithm_SphericalHead")]
+    pub const SpatializationAlgorithm_SphericalHead: Self = Self(1);
+    #[doc(alias = "kSpatializationAlgorithm_HRTF")]
+    pub const SpatializationAlgorithm_HRTF: Self = Self(2);
+    #[doc(alias = "kSpatializationAlgorithm_SoundField")]
+    pub const SpatializationAlgorithm_SoundField: Self = Self(3);
+    #[doc(alias = "kSpatializationAlgorithm_VectorBasedPanning")]
+    pub const SpatializationAlgorithm_VectorBasedPanning: Self = Self(4);
+    #[doc(alias = "kSpatializationAlgorithm_StereoPassThrough")]
+    pub const SpatializationAlgorithm_StereoPassThrough: Self = Self(5);
+    #[doc(alias = "kSpatializationAlgorithm_HRTFHQ")]
+    pub const SpatializationAlgorithm_HRTFHQ: Self = Self(6);
+    #[doc(alias = "kSpatializationAlgorithm_UseOutputType")]
+    pub const SpatializationAlgorithm_UseOutputType: Self = Self(7);
 }
 
 unsafe impl Encode for AUSpatializationAlgorithm {
@@ -1754,10 +1827,14 @@ unsafe impl RefEncode for AUSpatializationAlgorithm {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AUSpatialMixerSourceMode(pub u32);
 impl AUSpatialMixerSourceMode {
-    pub const kSpatialMixerSourceMode_SpatializeIfMono: Self = Self(0);
-    pub const kSpatialMixerSourceMode_Bypass: Self = Self(1);
-    pub const kSpatialMixerSourceMode_PointSource: Self = Self(2);
-    pub const kSpatialMixerSourceMode_AmbienceBed: Self = Self(3);
+    #[doc(alias = "kSpatialMixerSourceMode_SpatializeIfMono")]
+    pub const SpatialMixerSourceMode_SpatializeIfMono: Self = Self(0);
+    #[doc(alias = "kSpatialMixerSourceMode_Bypass")]
+    pub const SpatialMixerSourceMode_Bypass: Self = Self(1);
+    #[doc(alias = "kSpatialMixerSourceMode_PointSource")]
+    pub const SpatialMixerSourceMode_PointSource: Self = Self(2);
+    #[doc(alias = "kSpatialMixerSourceMode_AmbienceBed")]
+    pub const SpatialMixerSourceMode_AmbienceBed: Self = Self(3);
 }
 
 unsafe impl Encode for AUSpatialMixerSourceMode {
@@ -1777,19 +1854,32 @@ unsafe impl RefEncode for AUSpatialMixerSourceMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AUReverbRoomType(pub u32);
 impl AUReverbRoomType {
-    pub const kReverbRoomType_SmallRoom: Self = Self(0);
-    pub const kReverbRoomType_MediumRoom: Self = Self(1);
-    pub const kReverbRoomType_LargeRoom: Self = Self(2);
-    pub const kReverbRoomType_MediumHall: Self = Self(3);
-    pub const kReverbRoomType_LargeHall: Self = Self(4);
-    pub const kReverbRoomType_Plate: Self = Self(5);
-    pub const kReverbRoomType_MediumChamber: Self = Self(6);
-    pub const kReverbRoomType_LargeChamber: Self = Self(7);
-    pub const kReverbRoomType_Cathedral: Self = Self(8);
-    pub const kReverbRoomType_LargeRoom2: Self = Self(9);
-    pub const kReverbRoomType_MediumHall2: Self = Self(10);
-    pub const kReverbRoomType_MediumHall3: Self = Self(11);
-    pub const kReverbRoomType_LargeHall2: Self = Self(12);
+    #[doc(alias = "kReverbRoomType_SmallRoom")]
+    pub const ReverbRoomType_SmallRoom: Self = Self(0);
+    #[doc(alias = "kReverbRoomType_MediumRoom")]
+    pub const ReverbRoomType_MediumRoom: Self = Self(1);
+    #[doc(alias = "kReverbRoomType_LargeRoom")]
+    pub const ReverbRoomType_LargeRoom: Self = Self(2);
+    #[doc(alias = "kReverbRoomType_MediumHall")]
+    pub const ReverbRoomType_MediumHall: Self = Self(3);
+    #[doc(alias = "kReverbRoomType_LargeHall")]
+    pub const ReverbRoomType_LargeHall: Self = Self(4);
+    #[doc(alias = "kReverbRoomType_Plate")]
+    pub const ReverbRoomType_Plate: Self = Self(5);
+    #[doc(alias = "kReverbRoomType_MediumChamber")]
+    pub const ReverbRoomType_MediumChamber: Self = Self(6);
+    #[doc(alias = "kReverbRoomType_LargeChamber")]
+    pub const ReverbRoomType_LargeChamber: Self = Self(7);
+    #[doc(alias = "kReverbRoomType_Cathedral")]
+    pub const ReverbRoomType_Cathedral: Self = Self(8);
+    #[doc(alias = "kReverbRoomType_LargeRoom2")]
+    pub const ReverbRoomType_LargeRoom2: Self = Self(9);
+    #[doc(alias = "kReverbRoomType_MediumHall2")]
+    pub const ReverbRoomType_MediumHall2: Self = Self(10);
+    #[doc(alias = "kReverbRoomType_MediumHall3")]
+    pub const ReverbRoomType_MediumHall3: Self = Self(11);
+    #[doc(alias = "kReverbRoomType_LargeHall2")]
+    pub const ReverbRoomType_LargeHall2: Self = Self(12);
 }
 
 unsafe impl Encode for AUReverbRoomType {
@@ -1806,10 +1896,14 @@ unsafe impl RefEncode for AUReverbRoomType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AUSpatialMixerAttenuationCurve(pub u32);
 impl AUSpatialMixerAttenuationCurve {
-    pub const kSpatialMixerAttenuationCurve_Power: Self = Self(0);
-    pub const kSpatialMixerAttenuationCurve_Exponential: Self = Self(1);
-    pub const kSpatialMixerAttenuationCurve_Inverse: Self = Self(2);
-    pub const kSpatialMixerAttenuationCurve_Linear: Self = Self(3);
+    #[doc(alias = "kSpatialMixerAttenuationCurve_Power")]
+    pub const SpatialMixerAttenuationCurve_Power: Self = Self(0);
+    #[doc(alias = "kSpatialMixerAttenuationCurve_Exponential")]
+    pub const SpatialMixerAttenuationCurve_Exponential: Self = Self(1);
+    #[doc(alias = "kSpatialMixerAttenuationCurve_Inverse")]
+    pub const SpatialMixerAttenuationCurve_Inverse: Self = Self(2);
+    #[doc(alias = "kSpatialMixerAttenuationCurve_Linear")]
+    pub const SpatialMixerAttenuationCurve_Linear: Self = Self(3);
 }
 
 unsafe impl Encode for AUSpatialMixerAttenuationCurve {
@@ -1847,8 +1941,10 @@ unsafe impl RefEncode for MixerDistanceParams {
 pub struct AUSpatialMixerRenderingFlags(pub u32);
 bitflags::bitflags! {
     impl AUSpatialMixerRenderingFlags: u32 {
-        const kSpatialMixerRenderingFlags_InterAuralDelay = 1<<0;
-        const kSpatialMixerRenderingFlags_DistanceAttenuation = 1<<2;
+        #[doc(alias = "kSpatialMixerRenderingFlags_InterAuralDelay")]
+        const SpatialMixerRenderingFlags_InterAuralDelay = 1<<0;
+        #[doc(alias = "kSpatialMixerRenderingFlags_DistanceAttenuation")]
+        const SpatialMixerRenderingFlags_DistanceAttenuation = 1<<2;
     }
 }
 
@@ -1877,9 +1973,12 @@ unsafe impl RefEncode for AUSpatialMixerRenderingFlags {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AUSpatialMixerPersonalizedHRTFMode(pub u32);
 impl AUSpatialMixerPersonalizedHRTFMode {
-    pub const kSpatialMixerPersonalizedHRTFMode_Off: Self = Self(0);
-    pub const kSpatialMixerPersonalizedHRTFMode_On: Self = Self(1);
-    pub const kSpatialMixerPersonalizedHRTFMode_Auto: Self = Self(2);
+    #[doc(alias = "kSpatialMixerPersonalizedHRTFMode_Off")]
+    pub const SpatialMixerPersonalizedHRTFMode_Off: Self = Self(0);
+    #[doc(alias = "kSpatialMixerPersonalizedHRTFMode_On")]
+    pub const SpatialMixerPersonalizedHRTFMode_On: Self = Self(1);
+    #[doc(alias = "kSpatialMixerPersonalizedHRTFMode_Auto")]
+    pub const SpatialMixerPersonalizedHRTFMode_Auto: Self = Self(2);
 }
 
 unsafe impl Encode for AUSpatialMixerPersonalizedHRTFMode {
@@ -1909,9 +2008,12 @@ unsafe impl RefEncode for AUSpatialMixerPersonalizedHRTFMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AUSpatialMixerOutputType(pub u32);
 impl AUSpatialMixerOutputType {
-    pub const kSpatialMixerOutputType_Headphones: Self = Self(1);
-    pub const kSpatialMixerOutputType_BuiltInSpeakers: Self = Self(2);
-    pub const kSpatialMixerOutputType_ExternalSpeakers: Self = Self(3);
+    #[doc(alias = "kSpatialMixerOutputType_Headphones")]
+    pub const SpatialMixerOutputType_Headphones: Self = Self(1);
+    #[doc(alias = "kSpatialMixerOutputType_BuiltInSpeakers")]
+    pub const SpatialMixerOutputType_BuiltInSpeakers: Self = Self(2);
+    #[doc(alias = "kSpatialMixerOutputType_ExternalSpeakers")]
+    pub const SpatialMixerOutputType_ExternalSpeakers: Self = Self(3);
 }
 
 unsafe impl Encode for AUSpatialMixerOutputType {
@@ -1942,8 +2044,10 @@ unsafe impl RefEncode for AUSpatialMixerOutputType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AUSpatialMixerPointSourceInHeadMode(pub u32);
 impl AUSpatialMixerPointSourceInHeadMode {
-    pub const kSpatialMixerPointSourceInHeadMode_Mono: Self = Self(0);
-    pub const kSpatialMixerPointSourceInHeadMode_Bypass: Self = Self(1);
+    #[doc(alias = "kSpatialMixerPointSourceInHeadMode_Mono")]
+    pub const SpatialMixerPointSourceInHeadMode_Mono: Self = Self(0);
+    #[doc(alias = "kSpatialMixerPointSourceInHeadMode_Bypass")]
+    pub const SpatialMixerPointSourceInHeadMode_Bypass: Self = Self(1);
 }
 
 unsafe impl Encode for AUSpatialMixerPointSourceInHeadMode {
@@ -2059,12 +2163,18 @@ pub const kAudioUnitProperty_CurrentPlayTime: AudioUnitPropertyID = 3302;
 pub struct AUScheduledAudioSliceFlags(pub u32);
 bitflags::bitflags! {
     impl AUScheduledAudioSliceFlags: u32 {
-        const kScheduledAudioSliceFlag_Complete = 0x01;
-        const kScheduledAudioSliceFlag_BeganToRender = 0x02;
-        const kScheduledAudioSliceFlag_BeganToRenderLate = 0x04;
-        const kScheduledAudioSliceFlag_Loop = 0x08;
-        const kScheduledAudioSliceFlag_Interrupt = 0x10;
-        const kScheduledAudioSliceFlag_InterruptAtLoop = 0x20;
+        #[doc(alias = "kScheduledAudioSliceFlag_Complete")]
+        const ScheduledAudioSliceFlag_Complete = 0x01;
+        #[doc(alias = "kScheduledAudioSliceFlag_BeganToRender")]
+        const ScheduledAudioSliceFlag_BeganToRender = 0x02;
+        #[doc(alias = "kScheduledAudioSliceFlag_BeganToRenderLate")]
+        const ScheduledAudioSliceFlag_BeganToRenderLate = 0x04;
+        #[doc(alias = "kScheduledAudioSliceFlag_Loop")]
+        const ScheduledAudioSliceFlag_Loop = 0x08;
+        #[doc(alias = "kScheduledAudioSliceFlag_Interrupt")]
+        const ScheduledAudioSliceFlag_Interrupt = 0x10;
+        #[doc(alias = "kScheduledAudioSliceFlag_InterruptAtLoop")]
+        const ScheduledAudioSliceFlag_InterruptAtLoop = 0x20;
     }
 }
 
@@ -2338,7 +2448,7 @@ pub const kAudioUnitParameterFlag_Group: c_uint = 1 << 3;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitparameterflag_hasname?language=objc)
 pub const kAudioUnitParameterFlag_HasName: c_uint =
-    AudioUnitParameterOptions::kAudioUnitParameterFlag_ValuesHaveStrings.0;
+    AudioUnitParameterOptions::Flag_ValuesHaveStrings.0;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitproperty_srcalgorithm?language=objc)
 #[cfg(feature = "AUComponent")]

@@ -27,11 +27,16 @@ pub const NSOperationNotSupportedForKeySpecifierError: NSInteger = 6;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSInsertionPosition(pub NSUInteger);
 impl NSInsertionPosition {
-    pub const NSPositionAfter: Self = Self(0);
-    pub const NSPositionBefore: Self = Self(1);
-    pub const NSPositionBeginning: Self = Self(2);
-    pub const NSPositionEnd: Self = Self(3);
-    pub const NSPositionReplace: Self = Self(4);
+    #[doc(alias = "NSPositionAfter")]
+    pub const PositionAfter: Self = Self(0);
+    #[doc(alias = "NSPositionBefore")]
+    pub const PositionBefore: Self = Self(1);
+    #[doc(alias = "NSPositionBeginning")]
+    pub const PositionBeginning: Self = Self(2);
+    #[doc(alias = "NSPositionEnd")]
+    pub const PositionEnd: Self = Self(3);
+    #[doc(alias = "NSPositionReplace")]
+    pub const PositionReplace: Self = Self(4);
 }
 
 unsafe impl Encode for NSInsertionPosition {
@@ -48,8 +53,10 @@ unsafe impl RefEncode for NSInsertionPosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSRelativePosition(pub NSUInteger);
 impl NSRelativePosition {
-    pub const NSRelativeAfter: Self = Self(0);
-    pub const NSRelativeBefore: Self = Self(1);
+    #[doc(alias = "NSRelativeAfter")]
+    pub const After: Self = Self(0);
+    #[doc(alias = "NSRelativeBefore")]
+    pub const Before: Self = Self(1);
 }
 
 unsafe impl Encode for NSRelativePosition {
@@ -66,11 +73,16 @@ unsafe impl RefEncode for NSRelativePosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSWhoseSubelementIdentifier(pub NSUInteger);
 impl NSWhoseSubelementIdentifier {
-    pub const NSIndexSubelement: Self = Self(0);
-    pub const NSEverySubelement: Self = Self(1);
-    pub const NSMiddleSubelement: Self = Self(2);
-    pub const NSRandomSubelement: Self = Self(3);
-    pub const NSNoSubelement: Self = Self(4);
+    #[doc(alias = "NSIndexSubelement")]
+    pub const IndexSubelement: Self = Self(0);
+    #[doc(alias = "NSEverySubelement")]
+    pub const EverySubelement: Self = Self(1);
+    #[doc(alias = "NSMiddleSubelement")]
+    pub const MiddleSubelement: Self = Self(2);
+    #[doc(alias = "NSRandomSubelement")]
+    pub const RandomSubelement: Self = Self(3);
+    #[doc(alias = "NSNoSubelement")]
+    pub const NoSubelement: Self = Self(4);
 }
 
 unsafe impl Encode for NSWhoseSubelementIdentifier {

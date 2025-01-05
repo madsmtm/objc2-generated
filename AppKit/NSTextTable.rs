@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTextBlockValueType(pub NSUInteger);
 impl NSTextBlockValueType {
-    pub const NSTextBlockAbsoluteValueType: Self = Self(0);
-    pub const NSTextBlockPercentageValueType: Self = Self(1);
+    #[doc(alias = "NSTextBlockAbsoluteValueType")]
+    pub const AbsoluteValueType: Self = Self(0);
+    #[doc(alias = "NSTextBlockPercentageValueType")]
+    pub const PercentageValueType: Self = Self(1);
 }
 
 unsafe impl Encode for NSTextBlockValueType {
@@ -33,12 +35,18 @@ unsafe impl RefEncode for NSTextBlockValueType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTextBlockDimension(pub NSUInteger);
 impl NSTextBlockDimension {
-    pub const NSTextBlockWidth: Self = Self(0);
-    pub const NSTextBlockMinimumWidth: Self = Self(1);
-    pub const NSTextBlockMaximumWidth: Self = Self(2);
-    pub const NSTextBlockHeight: Self = Self(4);
-    pub const NSTextBlockMinimumHeight: Self = Self(5);
-    pub const NSTextBlockMaximumHeight: Self = Self(6);
+    #[doc(alias = "NSTextBlockWidth")]
+    pub const Width: Self = Self(0);
+    #[doc(alias = "NSTextBlockMinimumWidth")]
+    pub const MinimumWidth: Self = Self(1);
+    #[doc(alias = "NSTextBlockMaximumWidth")]
+    pub const MaximumWidth: Self = Self(2);
+    #[doc(alias = "NSTextBlockHeight")]
+    pub const Height: Self = Self(4);
+    #[doc(alias = "NSTextBlockMinimumHeight")]
+    pub const MinimumHeight: Self = Self(5);
+    #[doc(alias = "NSTextBlockMaximumHeight")]
+    pub const MaximumHeight: Self = Self(6);
 }
 
 unsafe impl Encode for NSTextBlockDimension {
@@ -55,9 +63,12 @@ unsafe impl RefEncode for NSTextBlockDimension {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTextBlockLayer(pub NSInteger);
 impl NSTextBlockLayer {
-    pub const NSTextBlockPadding: Self = Self(-1);
-    pub const NSTextBlockBorder: Self = Self(0);
-    pub const NSTextBlockMargin: Self = Self(1);
+    #[doc(alias = "NSTextBlockPadding")]
+    pub const Padding: Self = Self(-1);
+    #[doc(alias = "NSTextBlockBorder")]
+    pub const Border: Self = Self(0);
+    #[doc(alias = "NSTextBlockMargin")]
+    pub const Margin: Self = Self(1);
 }
 
 unsafe impl Encode for NSTextBlockLayer {
@@ -74,10 +85,14 @@ unsafe impl RefEncode for NSTextBlockLayer {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTextBlockVerticalAlignment(pub NSUInteger);
 impl NSTextBlockVerticalAlignment {
-    pub const NSTextBlockTopAlignment: Self = Self(0);
-    pub const NSTextBlockMiddleAlignment: Self = Self(1);
-    pub const NSTextBlockBottomAlignment: Self = Self(2);
-    pub const NSTextBlockBaselineAlignment: Self = Self(3);
+    #[doc(alias = "NSTextBlockTopAlignment")]
+    pub const TopAlignment: Self = Self(0);
+    #[doc(alias = "NSTextBlockMiddleAlignment")]
+    pub const MiddleAlignment: Self = Self(1);
+    #[doc(alias = "NSTextBlockBottomAlignment")]
+    pub const BottomAlignment: Self = Self(2);
+    #[doc(alias = "NSTextBlockBaselineAlignment")]
+    pub const BaselineAlignment: Self = Self(3);
 }
 
 unsafe impl Encode for NSTextBlockVerticalAlignment {
@@ -94,8 +109,10 @@ unsafe impl RefEncode for NSTextBlockVerticalAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTextTableLayoutAlgorithm(pub NSUInteger);
 impl NSTextTableLayoutAlgorithm {
-    pub const NSTextTableAutomaticLayoutAlgorithm: Self = Self(0);
-    pub const NSTextTableFixedLayoutAlgorithm: Self = Self(1);
+    #[doc(alias = "NSTextTableAutomaticLayoutAlgorithm")]
+    pub const AutomaticLayoutAlgorithm: Self = Self(0);
+    #[doc(alias = "NSTextTableFixedLayoutAlgorithm")]
+    pub const FixedLayoutAlgorithm: Self = Self(1);
 }
 
 unsafe impl Encode for NSTextTableLayoutAlgorithm {

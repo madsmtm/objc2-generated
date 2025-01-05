@@ -76,20 +76,32 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OSSystemExtensionErrorCode(pub NSInteger);
 impl OSSystemExtensionErrorCode {
-    pub const OSSystemExtensionErrorUnknown: Self = Self(1);
-    pub const OSSystemExtensionErrorMissingEntitlement: Self = Self(2);
-    pub const OSSystemExtensionErrorUnsupportedParentBundleLocation: Self = Self(3);
-    pub const OSSystemExtensionErrorExtensionNotFound: Self = Self(4);
-    pub const OSSystemExtensionErrorExtensionMissingIdentifier: Self = Self(5);
-    pub const OSSystemExtensionErrorDuplicateExtensionIdentifer: Self = Self(6);
-    pub const OSSystemExtensionErrorUnknownExtensionCategory: Self = Self(7);
+    #[doc(alias = "OSSystemExtensionErrorUnknown")]
+    pub const Unknown: Self = Self(1);
+    #[doc(alias = "OSSystemExtensionErrorMissingEntitlement")]
+    pub const MissingEntitlement: Self = Self(2);
+    #[doc(alias = "OSSystemExtensionErrorUnsupportedParentBundleLocation")]
+    pub const UnsupportedParentBundleLocation: Self = Self(3);
+    #[doc(alias = "OSSystemExtensionErrorExtensionNotFound")]
+    pub const ExtensionNotFound: Self = Self(4);
+    #[doc(alias = "OSSystemExtensionErrorExtensionMissingIdentifier")]
+    pub const ExtensionMissingIdentifier: Self = Self(5);
+    #[doc(alias = "OSSystemExtensionErrorDuplicateExtensionIdentifer")]
+    pub const DuplicateExtensionIdentifer: Self = Self(6);
+    #[doc(alias = "OSSystemExtensionErrorUnknownExtensionCategory")]
+    pub const UnknownExtensionCategory: Self = Self(7);
     #[doc(alias = "OSSystemExtensionErrorCodeSignatureInvalid")]
-    pub const SignatureInvalid: Self = Self(8);
-    pub const OSSystemExtensionErrorValidationFailed: Self = Self(9);
-    pub const OSSystemExtensionErrorForbiddenBySystemPolicy: Self = Self(10);
-    pub const OSSystemExtensionErrorRequestCanceled: Self = Self(11);
-    pub const OSSystemExtensionErrorRequestSuperseded: Self = Self(12);
-    pub const OSSystemExtensionErrorAuthorizationRequired: Self = Self(13);
+    pub const CodeSignatureInvalid: Self = Self(8);
+    #[doc(alias = "OSSystemExtensionErrorValidationFailed")]
+    pub const ValidationFailed: Self = Self(9);
+    #[doc(alias = "OSSystemExtensionErrorForbiddenBySystemPolicy")]
+    pub const ForbiddenBySystemPolicy: Self = Self(10);
+    #[doc(alias = "OSSystemExtensionErrorRequestCanceled")]
+    pub const RequestCanceled: Self = Self(11);
+    #[doc(alias = "OSSystemExtensionErrorRequestSuperseded")]
+    pub const RequestSuperseded: Self = Self(12);
+    #[doc(alias = "OSSystemExtensionErrorAuthorizationRequired")]
+    pub const AuthorizationRequired: Self = Self(13);
 }
 
 unsafe impl Encode for OSSystemExtensionErrorCode {
@@ -133,9 +145,11 @@ unsafe impl RefEncode for OSSystemExtensionReplacementAction {
 pub struct OSSystemExtensionRequestResult(pub NSInteger);
 impl OSSystemExtensionRequestResult {
     /// The request was successfully completed.
-    pub const OSSystemExtensionRequestCompleted: Self = Self(0);
+    #[doc(alias = "OSSystemExtensionRequestCompleted")]
+    pub const Completed: Self = Self(0);
     /// The request will be successfully completed after a reboot.
-    pub const OSSystemExtensionRequestWillCompleteAfterReboot: Self = Self(1);
+    #[doc(alias = "OSSystemExtensionRequestWillCompleteAfterReboot")]
+    pub const WillCompleteAfterReboot: Self = Self(1);
 }
 
 unsafe impl Encode for OSSystemExtensionRequestResult {

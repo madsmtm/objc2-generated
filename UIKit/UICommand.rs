@@ -14,12 +14,18 @@ use crate::*;
 pub struct UIKeyModifierFlags(pub NSInteger);
 bitflags::bitflags! {
     impl UIKeyModifierFlags: NSInteger {
-        const UIKeyModifierAlphaShift = 1<<16;
-        const UIKeyModifierShift = 1<<17;
-        const UIKeyModifierControl = 1<<18;
-        const UIKeyModifierAlternate = 1<<19;
-        const UIKeyModifierCommand = 1<<20;
-        const UIKeyModifierNumericPad = 1<<21;
+        #[doc(alias = "UIKeyModifierAlphaShift")]
+        const AlphaShift = 1<<16;
+        #[doc(alias = "UIKeyModifierShift")]
+        const Shift = 1<<17;
+        #[doc(alias = "UIKeyModifierControl")]
+        const Control = 1<<18;
+        #[doc(alias = "UIKeyModifierAlternate")]
+        const Alternate = 1<<19;
+        #[doc(alias = "UIKeyModifierCommand")]
+        const Command = 1<<20;
+        #[doc(alias = "UIKeyModifierNumericPad")]
+        const NumericPad = 1<<21;
     }
 }
 

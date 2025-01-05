@@ -13,8 +13,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTextFieldBezelStyle(pub NSUInteger);
 impl NSTextFieldBezelStyle {
-    pub const NSTextFieldSquareBezel: Self = Self(0);
-    pub const NSTextFieldRoundedBezel: Self = Self(1);
+    #[doc(alias = "NSTextFieldSquareBezel")]
+    pub const SquareBezel: Self = Self(0);
+    #[doc(alias = "NSTextFieldRoundedBezel")]
+    pub const RoundedBezel: Self = Self(1);
 }
 
 unsafe impl Encode for NSTextFieldBezelStyle {

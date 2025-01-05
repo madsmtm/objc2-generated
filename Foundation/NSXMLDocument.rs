@@ -14,10 +14,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSXMLDocumentContentKind(pub NSUInteger);
 impl NSXMLDocumentContentKind {
-    pub const NSXMLDocumentXMLKind: Self = Self(0);
-    pub const NSXMLDocumentXHTMLKind: Self = Self(1);
-    pub const NSXMLDocumentHTMLKind: Self = Self(2);
-    pub const NSXMLDocumentTextKind: Self = Self(3);
+    #[doc(alias = "NSXMLDocumentXMLKind")]
+    pub const XMLKind: Self = Self(0);
+    #[doc(alias = "NSXMLDocumentXHTMLKind")]
+    pub const XHTMLKind: Self = Self(1);
+    #[doc(alias = "NSXMLDocumentHTMLKind")]
+    pub const HTMLKind: Self = Self(2);
+    #[doc(alias = "NSXMLDocumentTextKind")]
+    pub const TextKind: Self = Self(3);
 }
 
 unsafe impl Encode for NSXMLDocumentContentKind {

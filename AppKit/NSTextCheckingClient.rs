@@ -62,11 +62,16 @@ unsafe impl RefEncode for NSWritingToolsBehavior {
 pub struct NSWritingToolsResultOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWritingToolsResultOptions: NSUInteger {
-        const NSWritingToolsResultDefault = 0;
-        const NSWritingToolsResultPlainText = 1<<0;
-        const NSWritingToolsResultRichText = 1<<1;
-        const NSWritingToolsResultList = 1<<2;
-        const NSWritingToolsResultTable = 1<<3;
+        #[doc(alias = "NSWritingToolsResultDefault")]
+        const Default = 0;
+        #[doc(alias = "NSWritingToolsResultPlainText")]
+        const PlainText = 1<<0;
+        #[doc(alias = "NSWritingToolsResultRichText")]
+        const RichText = 1<<1;
+        #[doc(alias = "NSWritingToolsResultList")]
+        const List = 1<<2;
+        #[doc(alias = "NSWritingToolsResultTable")]
+        const Table = 1<<3;
     }
 }
 

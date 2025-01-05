@@ -117,72 +117,71 @@ extern "C-unwind" {
 pub struct MTLFeatureSet(pub NSUInteger);
 impl MTLFeatureSet {
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v1")]
-    pub const _iOS_GPUFamily1_v1: Self = Self(0);
+    pub const iOS_GPUFamily1_v1: Self = Self(0);
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v1")]
-    pub const _iOS_GPUFamily2_v1: Self = Self(1);
+    pub const iOS_GPUFamily2_v1: Self = Self(1);
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v2")]
-    pub const _iOS_GPUFamily1_v2: Self = Self(2);
+    pub const iOS_GPUFamily1_v2: Self = Self(2);
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v2")]
-    pub const _iOS_GPUFamily2_v2: Self = Self(3);
+    pub const iOS_GPUFamily2_v2: Self = Self(3);
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v1")]
-    pub const _iOS_GPUFamily3_v1: Self = Self(4);
+    pub const iOS_GPUFamily3_v1: Self = Self(4);
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v3")]
-    pub const _iOS_GPUFamily1_v3: Self = Self(5);
+    pub const iOS_GPUFamily1_v3: Self = Self(5);
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v3")]
-    pub const _iOS_GPUFamily2_v3: Self = Self(6);
+    pub const iOS_GPUFamily2_v3: Self = Self(6);
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v2")]
-    pub const _iOS_GPUFamily3_v2: Self = Self(7);
+    pub const iOS_GPUFamily3_v2: Self = Self(7);
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v4")]
-    pub const _iOS_GPUFamily1_v4: Self = Self(8);
+    pub const iOS_GPUFamily1_v4: Self = Self(8);
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v4")]
-    pub const _iOS_GPUFamily2_v4: Self = Self(9);
+    pub const iOS_GPUFamily2_v4: Self = Self(9);
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v3")]
-    pub const _iOS_GPUFamily3_v3: Self = Self(10);
+    pub const iOS_GPUFamily3_v3: Self = Self(10);
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily4_v1")]
-    pub const _iOS_GPUFamily4_v1: Self = Self(11);
+    pub const iOS_GPUFamily4_v1: Self = Self(11);
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v5")]
-    pub const _iOS_GPUFamily1_v5: Self = Self(12);
+    pub const iOS_GPUFamily1_v5: Self = Self(12);
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily2_v5")]
-    pub const _iOS_GPUFamily2_v5: Self = Self(13);
+    pub const iOS_GPUFamily2_v5: Self = Self(13);
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily3_v4")]
-    pub const _iOS_GPUFamily3_v4: Self = Self(14);
+    pub const iOS_GPUFamily3_v4: Self = Self(14);
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily4_v2")]
-    pub const _iOS_GPUFamily4_v2: Self = Self(15);
+    pub const iOS_GPUFamily4_v2: Self = Self(15);
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily5_v1")]
-    pub const _iOS_GPUFamily5_v1: Self = Self(16);
+    pub const iOS_GPUFamily5_v1: Self = Self(16);
     #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v1")]
-    pub const _macOS_GPUFamily1_v1: Self = Self(10000);
+    pub const macOS_GPUFamily1_v1: Self = Self(10000);
     #[doc(alias = "MTLFeatureSet_OSX_GPUFamily1_v1")]
-    pub const _OSX_GPUFamily1_v1: Self = Self(MTLFeatureSet::_macOS_GPUFamily1_v1.0);
+    pub const OSX_GPUFamily1_v1: Self = Self(MTLFeatureSet::macOS_GPUFamily1_v1.0);
     #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v2")]
-    pub const _macOS_GPUFamily1_v2: Self = Self(10001);
+    pub const macOS_GPUFamily1_v2: Self = Self(10001);
     #[doc(alias = "MTLFeatureSet_OSX_GPUFamily1_v2")]
-    pub const _OSX_GPUFamily1_v2: Self = Self(MTLFeatureSet::_macOS_GPUFamily1_v2.0);
+    pub const OSX_GPUFamily1_v2: Self = Self(MTLFeatureSet::macOS_GPUFamily1_v2.0);
     #[doc(alias = "MTLFeatureSet_macOS_ReadWriteTextureTier2")]
-    pub const _macOS_ReadWriteTextureTier2: Self = Self(10002);
+    pub const macOS_ReadWriteTextureTier2: Self = Self(10002);
     #[doc(alias = "MTLFeatureSet_OSX_ReadWriteTextureTier2")]
-    pub const _OSX_ReadWriteTextureTier2: Self =
-        Self(MTLFeatureSet::_macOS_ReadWriteTextureTier2.0);
+    pub const OSX_ReadWriteTextureTier2: Self = Self(MTLFeatureSet::macOS_ReadWriteTextureTier2.0);
     #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v3")]
-    pub const _macOS_GPUFamily1_v3: Self = Self(10003);
+    pub const macOS_GPUFamily1_v3: Self = Self(10003);
     #[doc(alias = "MTLFeatureSet_macOS_GPUFamily1_v4")]
-    pub const _macOS_GPUFamily1_v4: Self = Self(10004);
+    pub const macOS_GPUFamily1_v4: Self = Self(10004);
     #[doc(alias = "MTLFeatureSet_macOS_GPUFamily2_v1")]
-    pub const _macOS_GPUFamily2_v1: Self = Self(10005);
+    pub const macOS_GPUFamily2_v1: Self = Self(10005);
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v1")]
-    pub const _tvOS_GPUFamily1_v1: Self = Self(30000);
+    pub const tvOS_GPUFamily1_v1: Self = Self(30000);
     #[doc(alias = "MTLFeatureSet_TVOS_GPUFamily1_v1")]
-    pub const _TVOS_GPUFamily1_v1: Self = Self(MTLFeatureSet::_tvOS_GPUFamily1_v1.0);
+    pub const TVOS_GPUFamily1_v1: Self = Self(MTLFeatureSet::tvOS_GPUFamily1_v1.0);
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v2")]
-    pub const _tvOS_GPUFamily1_v2: Self = Self(30001);
+    pub const tvOS_GPUFamily1_v2: Self = Self(30001);
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v3")]
-    pub const _tvOS_GPUFamily1_v3: Self = Self(30002);
+    pub const tvOS_GPUFamily1_v3: Self = Self(30002);
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily2_v1")]
-    pub const _tvOS_GPUFamily2_v1: Self = Self(30003);
+    pub const tvOS_GPUFamily2_v1: Self = Self(30003);
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily1_v4")]
-    pub const _tvOS_GPUFamily1_v4: Self = Self(30004);
+    pub const tvOS_GPUFamily1_v4: Self = Self(30004);
     #[doc(alias = "MTLFeatureSet_tvOS_GPUFamily2_v2")]
-    pub const _tvOS_GPUFamily2_v2: Self = Self(30005);
+    pub const tvOS_GPUFamily2_v2: Self = Self(30005);
 }
 
 unsafe impl Encode for MTLFeatureSet {
@@ -312,9 +311,11 @@ unsafe impl RefEncode for MTLPipelineOption {
 pub struct MTLReadWriteTextureTier(pub NSUInteger);
 impl MTLReadWriteTextureTier {
     #[doc(alias = "MTLReadWriteTextureTierNone")]
-    pub const None: Self = Self(0);
-    pub const MTLReadWriteTextureTier1: Self = Self(1);
-    pub const MTLReadWriteTextureTier2: Self = Self(2);
+    pub const TierNone: Self = Self(0);
+    #[doc(alias = "MTLReadWriteTextureTier1")]
+    pub const Tier1: Self = Self(1);
+    #[doc(alias = "MTLReadWriteTextureTier2")]
+    pub const Tier2: Self = Self(2);
 }
 
 unsafe impl Encode for MTLReadWriteTextureTier {
@@ -333,8 +334,10 @@ unsafe impl RefEncode for MTLReadWriteTextureTier {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLArgumentBuffersTier(pub NSUInteger);
 impl MTLArgumentBuffersTier {
-    pub const MTLArgumentBuffersTier1: Self = Self(0);
-    pub const MTLArgumentBuffersTier2: Self = Self(1);
+    #[doc(alias = "MTLArgumentBuffersTier1")]
+    pub const Tier1: Self = Self(0);
+    #[doc(alias = "MTLArgumentBuffersTier2")]
+    pub const Tier2: Self = Self(1);
 }
 
 unsafe impl Encode for MTLArgumentBuffersTier {
@@ -375,9 +378,12 @@ unsafe impl RefEncode for MTLSparseTextureRegionAlignmentMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLSparsePageSize(pub NSInteger);
 impl MTLSparsePageSize {
-    pub const MTLSparsePageSize16: Self = Self(101);
-    pub const MTLSparsePageSize64: Self = Self(102);
-    pub const MTLSparsePageSize256: Self = Self(103);
+    #[doc(alias = "MTLSparsePageSize16")]
+    pub const Size16: Self = Self(101);
+    #[doc(alias = "MTLSparsePageSize64")]
+    pub const Size64: Self = Self(102);
+    #[doc(alias = "MTLSparsePageSize256")]
+    pub const Size256: Self = Self(103);
 }
 
 unsafe impl Encode for MTLSparsePageSize {

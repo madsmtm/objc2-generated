@@ -95,14 +95,22 @@ unsafe impl RefEncode for CVSMPTETime {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CVSMPTETimeType(pub u32);
 impl CVSMPTETimeType {
-    pub const kCVSMPTETimeType24: Self = Self(0);
-    pub const kCVSMPTETimeType25: Self = Self(1);
-    pub const kCVSMPTETimeType30Drop: Self = Self(2);
-    pub const kCVSMPTETimeType30: Self = Self(3);
-    pub const kCVSMPTETimeType2997: Self = Self(4);
-    pub const kCVSMPTETimeType2997Drop: Self = Self(5);
-    pub const kCVSMPTETimeType60: Self = Self(6);
-    pub const kCVSMPTETimeType5994: Self = Self(7);
+    #[doc(alias = "kCVSMPTETimeType24")]
+    pub const Type24: Self = Self(0);
+    #[doc(alias = "kCVSMPTETimeType25")]
+    pub const Type25: Self = Self(1);
+    #[doc(alias = "kCVSMPTETimeType30Drop")]
+    pub const Type30Drop: Self = Self(2);
+    #[doc(alias = "kCVSMPTETimeType30")]
+    pub const Type30: Self = Self(3);
+    #[doc(alias = "kCVSMPTETimeType2997")]
+    pub const Type2997: Self = Self(4);
+    #[doc(alias = "kCVSMPTETimeType2997Drop")]
+    pub const Type2997Drop: Self = Self(5);
+    #[doc(alias = "kCVSMPTETimeType60")]
+    pub const Type60: Self = Self(6);
+    #[doc(alias = "kCVSMPTETimeType5994")]
+    pub const Type5994: Self = Self(7);
 }
 
 #[cfg(feature = "objc2")]
@@ -128,8 +136,10 @@ unsafe impl RefEncode for CVSMPTETimeType {
 pub struct CVSMPTETimeFlags(pub u32);
 bitflags::bitflags! {
     impl CVSMPTETimeFlags: u32 {
-        const kCVSMPTETimeValid = 1<<0;
-        const kCVSMPTETimeRunning = 1<<1;
+        #[doc(alias = "kCVSMPTETimeValid")]
+        const Valid = 1<<0;
+        #[doc(alias = "kCVSMPTETimeRunning")]
+        const Running = 1<<1;
     }
 }
 
@@ -150,7 +160,8 @@ unsafe impl RefEncode for CVSMPTETimeFlags {
 pub struct CVTimeFlags(pub i32);
 bitflags::bitflags! {
     impl CVTimeFlags: i32 {
-        const kCVTimeIsIndefinite = 1<<0;
+        #[doc(alias = "kCVTimeIsIndefinite")]
+        const IsIndefinite = 1<<0;
     }
 }
 
@@ -254,15 +265,24 @@ unsafe impl RefEncode for CVTimeStamp {
 pub struct CVTimeStampFlags(pub u64);
 bitflags::bitflags! {
     impl CVTimeStampFlags: u64 {
-        const kCVTimeStampVideoTimeValid = 1<<0;
-        const kCVTimeStampHostTimeValid = 1<<1;
-        const kCVTimeStampSMPTETimeValid = 1<<2;
-        const kCVTimeStampVideoRefreshPeriodValid = 1<<3;
-        const kCVTimeStampRateScalarValid = 1<<4;
-        const kCVTimeStampTopField = 1<<16;
-        const kCVTimeStampBottomField = 1<<17;
-        const kCVTimeStampVideoHostTimeValid = CVTimeStampFlags::kCVTimeStampVideoTimeValid.0|CVTimeStampFlags::kCVTimeStampHostTimeValid.0;
-        const kCVTimeStampIsInterlaced = CVTimeStampFlags::kCVTimeStampTopField.0|CVTimeStampFlags::kCVTimeStampBottomField.0;
+        #[doc(alias = "kCVTimeStampVideoTimeValid")]
+        const VideoTimeValid = 1<<0;
+        #[doc(alias = "kCVTimeStampHostTimeValid")]
+        const HostTimeValid = 1<<1;
+        #[doc(alias = "kCVTimeStampSMPTETimeValid")]
+        const SMPTETimeValid = 1<<2;
+        #[doc(alias = "kCVTimeStampVideoRefreshPeriodValid")]
+        const VideoRefreshPeriodValid = 1<<3;
+        #[doc(alias = "kCVTimeStampRateScalarValid")]
+        const RateScalarValid = 1<<4;
+        #[doc(alias = "kCVTimeStampTopField")]
+        const TopField = 1<<16;
+        #[doc(alias = "kCVTimeStampBottomField")]
+        const BottomField = 1<<17;
+        #[doc(alias = "kCVTimeStampVideoHostTimeValid")]
+        const VideoHostTimeValid = CVTimeStampFlags::VideoTimeValid.0|CVTimeStampFlags::HostTimeValid.0;
+        #[doc(alias = "kCVTimeStampIsInterlaced")]
+        const IsInterlaced = CVTimeStampFlags::TopField.0|CVTimeStampFlags::BottomField.0;
     }
 }
 

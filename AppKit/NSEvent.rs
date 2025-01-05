@@ -332,15 +332,24 @@ pub static NSAnyEventMask: NSEventMask = NSEventMask(NSUIntegerMax as _);
 pub struct NSEventModifierFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEventModifierFlags: NSUInteger {
-        const NSEventModifierFlagCapsLock = 1<<16;
-        const NSEventModifierFlagShift = 1<<17;
-        const NSEventModifierFlagControl = 1<<18;
-        const NSEventModifierFlagOption = 1<<19;
-        const NSEventModifierFlagCommand = 1<<20;
-        const NSEventModifierFlagNumericPad = 1<<21;
-        const NSEventModifierFlagHelp = 1<<22;
-        const NSEventModifierFlagFunction = 1<<23;
-        const NSEventModifierFlagDeviceIndependentFlagsMask = 0xffff0000;
+        #[doc(alias = "NSEventModifierFlagCapsLock")]
+        const CapsLock = 1<<16;
+        #[doc(alias = "NSEventModifierFlagShift")]
+        const Shift = 1<<17;
+        #[doc(alias = "NSEventModifierFlagControl")]
+        const Control = 1<<18;
+        #[doc(alias = "NSEventModifierFlagOption")]
+        const Option = 1<<19;
+        #[doc(alias = "NSEventModifierFlagCommand")]
+        const Command = 1<<20;
+        #[doc(alias = "NSEventModifierFlagNumericPad")]
+        const NumericPad = 1<<21;
+        #[doc(alias = "NSEventModifierFlagHelp")]
+        const Help = 1<<22;
+        #[doc(alias = "NSEventModifierFlagFunction")]
+        const Function = 1<<23;
+        #[doc(alias = "NSEventModifierFlagDeviceIndependentFlagsMask")]
+        const DeviceIndependentFlagsMask = 0xffff0000;
     }
 }
 
@@ -354,39 +363,38 @@ unsafe impl RefEncode for NSEventModifierFlags {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalphashiftkeymask?language=objc)
 pub static NSAlphaShiftKeyMask: NSEventModifierFlags =
-    NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagCapsLock.0);
+    NSEventModifierFlags(NSEventModifierFlags::CapsLock.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshiftkeymask?language=objc)
 pub static NSShiftKeyMask: NSEventModifierFlags =
-    NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagShift.0);
+    NSEventModifierFlags(NSEventModifierFlags::Shift.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolkeymask?language=objc)
 pub static NSControlKeyMask: NSEventModifierFlags =
-    NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagControl.0);
+    NSEventModifierFlags(NSEventModifierFlags::Control.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalternatekeymask?language=objc)
 pub static NSAlternateKeyMask: NSEventModifierFlags =
-    NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagOption.0);
+    NSEventModifierFlags(NSEventModifierFlags::Option.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscommandkeymask?language=objc)
 pub static NSCommandKeyMask: NSEventModifierFlags =
-    NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagCommand.0);
+    NSEventModifierFlags(NSEventModifierFlags::Command.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnumericpadkeymask?language=objc)
 pub static NSNumericPadKeyMask: NSEventModifierFlags =
-    NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagNumericPad.0);
+    NSEventModifierFlags(NSEventModifierFlags::NumericPad.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpkeymask?language=objc)
-pub static NSHelpKeyMask: NSEventModifierFlags =
-    NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagHelp.0);
+pub static NSHelpKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlags::Help.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfunctionkeymask?language=objc)
 pub static NSFunctionKeyMask: NSEventModifierFlags =
-    NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagFunction.0);
+    NSEventModifierFlags(NSEventModifierFlags::Function.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeviceindependentmodifierflagsmask?language=objc)
 pub static NSDeviceIndependentModifierFlagsMask: NSEventModifierFlags =
-    NSEventModifierFlags(NSEventModifierFlags::NSEventModifierFlagDeviceIndependentFlagsMask.0);
+    NSEventModifierFlags(NSEventModifierFlags::DeviceIndependentFlagsMask.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspointingdevicetype?language=objc)
 // NS_ENUM
@@ -524,8 +532,10 @@ unsafe impl RefEncode for NSEventGestureAxis {
 pub struct NSEventSwipeTrackingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEventSwipeTrackingOptions: NSUInteger {
-        const NSEventSwipeTrackingLockDirection = 0x1<<0;
-        const NSEventSwipeTrackingClampGestureAmount = 0x1<<1;
+        #[doc(alias = "NSEventSwipeTrackingLockDirection")]
+        const LockDirection = 0x1<<0;
+        #[doc(alias = "NSEventSwipeTrackingClampGestureAmount")]
+        const ClampGestureAmount = 0x1<<1;
     }
 }
 

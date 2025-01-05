@@ -275,11 +275,16 @@ unsafe impl RefEncode for NSLinguisticTaggerUnit {
 pub struct NSLinguisticTaggerOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSLinguisticTaggerOptions: NSUInteger {
-        const NSLinguisticTaggerOmitWords = 1<<0;
-        const NSLinguisticTaggerOmitPunctuation = 1<<1;
-        const NSLinguisticTaggerOmitWhitespace = 1<<2;
-        const NSLinguisticTaggerOmitOther = 1<<3;
-        const NSLinguisticTaggerJoinNames = 1<<4;
+        #[doc(alias = "NSLinguisticTaggerOmitWords")]
+        const OmitWords = 1<<0;
+        #[doc(alias = "NSLinguisticTaggerOmitPunctuation")]
+        const OmitPunctuation = 1<<1;
+        #[doc(alias = "NSLinguisticTaggerOmitWhitespace")]
+        const OmitWhitespace = 1<<2;
+        #[doc(alias = "NSLinguisticTaggerOmitOther")]
+        const OmitOther = 1<<3;
+        #[doc(alias = "NSLinguisticTaggerJoinNames")]
+        const JoinNames = 1<<4;
     }
 }
 

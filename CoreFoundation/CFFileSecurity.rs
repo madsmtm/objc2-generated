@@ -98,12 +98,18 @@ pub struct CFFileSecurityClearOptions(pub CFOptionFlags);
 #[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFFileSecurityClearOptions: CFOptionFlags {
-        const kCFFileSecurityClearOwner = 1<<0;
-        const kCFFileSecurityClearGroup = 1<<1;
-        const kCFFileSecurityClearMode = 1<<2;
-        const kCFFileSecurityClearOwnerUUID = 1<<3;
-        const kCFFileSecurityClearGroupUUID = 1<<4;
-        const kCFFileSecurityClearAccessControlList = 1<<5;
+        #[doc(alias = "kCFFileSecurityClearOwner")]
+        const Owner = 1<<0;
+        #[doc(alias = "kCFFileSecurityClearGroup")]
+        const Group = 1<<1;
+        #[doc(alias = "kCFFileSecurityClearMode")]
+        const Mode = 1<<2;
+        #[doc(alias = "kCFFileSecurityClearOwnerUUID")]
+        const OwnerUUID = 1<<3;
+        #[doc(alias = "kCFFileSecurityClearGroupUUID")]
+        const GroupUUID = 1<<4;
+        #[doc(alias = "kCFFileSecurityClearAccessControlList")]
+        const AccessControlList = 1<<5;
     }
 }
 

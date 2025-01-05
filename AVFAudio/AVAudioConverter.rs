@@ -17,13 +17,13 @@ pub struct AVAudioConverterPrimeMethod(pub NSInteger);
 impl AVAudioConverterPrimeMethod {
     /// Primes with leading + trailing input frames.
     #[doc(alias = "AVAudioConverterPrimeMethod_Pre")]
-    pub const _Pre: Self = Self(0);
+    pub const Pre: Self = Self(0);
     /// Only primes with trailing (zero latency). Leading frames are assumed to be silence.
     #[doc(alias = "AVAudioConverterPrimeMethod_Normal")]
-    pub const _Normal: Self = Self(1);
+    pub const Normal: Self = Self(1);
     /// Acts in "latency" mode. Both leading and trailing frames assumed to be silence.
     #[doc(alias = "AVAudioConverterPrimeMethod_None")]
-    pub const _None: Self = Self(2);
+    pub const None: Self = Self(2);
 }
 
 unsafe impl Encode for AVAudioConverterPrimeMethod {
@@ -118,18 +118,18 @@ pub struct AVAudioConverterInputStatus(pub NSInteger);
 impl AVAudioConverterInputStatus {
     /// This is the normal case where you supply data to the converter.
     #[doc(alias = "AVAudioConverterInputStatus_HaveData")]
-    pub const _HaveData: Self = Self(0);
+    pub const HaveData: Self = Self(0);
     /// If you are out of data for now, set *ioNumberOfPackets = 0 and return
     /// AVAudioConverterInputStatus_NoDataNow; it is possible that some of the supplied input data
     /// may not be converted to output immediately, but instead may be converted to output only
     /// if/when more input is provided or the end-of-stream is indicated with the
     /// AVAudioConverterInputStatus_EndOfStream status code.
     #[doc(alias = "AVAudioConverterInputStatus_NoDataNow")]
-    pub const _NoDataNow: Self = Self(1);
+    pub const NoDataNow: Self = Self(1);
     /// If you are at the end of stream, set *ioNumberOfPackets = 0 and return
     /// AVAudioConverterInputStatus_EndOfStream.
     #[doc(alias = "AVAudioConverterInputStatus_EndOfStream")]
-    pub const _EndOfStream: Self = Self(2);
+    pub const EndOfStream: Self = Self(2);
 }
 
 unsafe impl Encode for AVAudioConverterInputStatus {
@@ -150,17 +150,17 @@ pub struct AVAudioConverterOutputStatus(pub NSInteger);
 impl AVAudioConverterOutputStatus {
     /// All of the requested data was returned.
     #[doc(alias = "AVAudioConverterOutputStatus_HaveData")]
-    pub const _HaveData: Self = Self(0);
+    pub const HaveData: Self = Self(0);
     /// Not enough input was available to satisfy the request at the current time. The output buffer
     /// contains as much as could be converted.
     #[doc(alias = "AVAudioConverterOutputStatus_InputRanDry")]
-    pub const _InputRanDry: Self = Self(1);
+    pub const InputRanDry: Self = Self(1);
     /// The end of stream has been reached. No data was returned.
     #[doc(alias = "AVAudioConverterOutputStatus_EndOfStream")]
-    pub const _EndOfStream: Self = Self(2);
+    pub const EndOfStream: Self = Self(2);
     /// An error occurred.
     #[doc(alias = "AVAudioConverterOutputStatus_Error")]
-    pub const _Error: Self = Self(3);
+    pub const Error: Self = Self(3);
 }
 
 unsafe impl Encode for AVAudioConverterOutputStatus {

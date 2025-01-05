@@ -14,7 +14,8 @@ use crate::*;
 pub struct NSFontAssetRequestOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFontAssetRequestOptions: NSUInteger {
-        const NSFontAssetRequestOptionUsesStandardUI = 1<<0;
+        #[doc(alias = "NSFontAssetRequestOptionUsesStandardUI")]
+        const UsesStandardUI = 1<<0;
     }
 }
 

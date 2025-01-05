@@ -38,9 +38,12 @@ unsafe impl RefEncode for NLTokenUnit {
 pub struct NLTokenizerAttributes(pub NSUInteger);
 bitflags::bitflags! {
     impl NLTokenizerAttributes: NSUInteger {
-        const NLTokenizerAttributeNumeric = 1<<0;
-        const NLTokenizerAttributeSymbolic = 1<<1;
-        const NLTokenizerAttributeEmoji = 1<<2;
+        #[doc(alias = "NLTokenizerAttributeNumeric")]
+        const Numeric = 1<<0;
+        #[doc(alias = "NLTokenizerAttributeSymbolic")]
+        const Symbolic = 1<<1;
+        #[doc(alias = "NLTokenizerAttributeEmoji")]
+        const Emoji = 1<<2;
     }
 }
 

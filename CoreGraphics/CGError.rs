@@ -12,17 +12,28 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGError(pub i32);
 impl CGError {
-    pub const kCGErrorSuccess: Self = Self(0);
-    pub const kCGErrorFailure: Self = Self(1000);
-    pub const kCGErrorIllegalArgument: Self = Self(1001);
-    pub const kCGErrorInvalidConnection: Self = Self(1002);
-    pub const kCGErrorInvalidContext: Self = Self(1003);
-    pub const kCGErrorCannotComplete: Self = Self(1004);
-    pub const kCGErrorNotImplemented: Self = Self(1006);
-    pub const kCGErrorRangeCheck: Self = Self(1007);
-    pub const kCGErrorTypeCheck: Self = Self(1008);
-    pub const kCGErrorInvalidOperation: Self = Self(1010);
-    pub const kCGErrorNoneAvailable: Self = Self(1011);
+    #[doc(alias = "kCGErrorSuccess")]
+    pub const Success: Self = Self(0);
+    #[doc(alias = "kCGErrorFailure")]
+    pub const Failure: Self = Self(1000);
+    #[doc(alias = "kCGErrorIllegalArgument")]
+    pub const IllegalArgument: Self = Self(1001);
+    #[doc(alias = "kCGErrorInvalidConnection")]
+    pub const InvalidConnection: Self = Self(1002);
+    #[doc(alias = "kCGErrorInvalidContext")]
+    pub const InvalidContext: Self = Self(1003);
+    #[doc(alias = "kCGErrorCannotComplete")]
+    pub const CannotComplete: Self = Self(1004);
+    #[doc(alias = "kCGErrorNotImplemented")]
+    pub const NotImplemented: Self = Self(1006);
+    #[doc(alias = "kCGErrorRangeCheck")]
+    pub const RangeCheck: Self = Self(1007);
+    #[doc(alias = "kCGErrorTypeCheck")]
+    pub const TypeCheck: Self = Self(1008);
+    #[doc(alias = "kCGErrorInvalidOperation")]
+    pub const InvalidOperation: Self = Self(1010);
+    #[doc(alias = "kCGErrorNoneAvailable")]
+    pub const NoneAvailable: Self = Self(1011);
 }
 
 #[cfg(feature = "objc2")]

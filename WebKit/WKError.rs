@@ -19,23 +19,40 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKErrorCode(pub NSInteger);
 impl WKErrorCode {
-    pub const WKErrorUnknown: Self = Self(1);
-    pub const WKErrorWebContentProcessTerminated: Self = Self(2);
-    pub const WKErrorWebViewInvalidated: Self = Self(3);
-    pub const WKErrorJavaScriptExceptionOccurred: Self = Self(4);
-    pub const WKErrorJavaScriptResultTypeIsUnsupported: Self = Self(5);
-    pub const WKErrorContentRuleListStoreCompileFailed: Self = Self(6);
-    pub const WKErrorContentRuleListStoreLookUpFailed: Self = Self(7);
-    pub const WKErrorContentRuleListStoreRemoveFailed: Self = Self(8);
-    pub const WKErrorContentRuleListStoreVersionMismatch: Self = Self(9);
-    pub const WKErrorAttributedStringContentFailedToLoad: Self = Self(10);
-    pub const WKErrorAttributedStringContentLoadTimedOut: Self = Self(11);
-    pub const WKErrorJavaScriptInvalidFrameTarget: Self = Self(12);
-    pub const WKErrorNavigationAppBoundDomain: Self = Self(13);
-    pub const WKErrorJavaScriptAppBoundDomain: Self = Self(14);
-    pub const WKErrorDuplicateCredential: Self = Self(15);
-    pub const WKErrorMalformedCredential: Self = Self(16);
-    pub const WKErrorCredentialNotFound: Self = Self(17);
+    #[doc(alias = "WKErrorUnknown")]
+    pub const Unknown: Self = Self(1);
+    #[doc(alias = "WKErrorWebContentProcessTerminated")]
+    pub const WebContentProcessTerminated: Self = Self(2);
+    #[doc(alias = "WKErrorWebViewInvalidated")]
+    pub const WebViewInvalidated: Self = Self(3);
+    #[doc(alias = "WKErrorJavaScriptExceptionOccurred")]
+    pub const JavaScriptExceptionOccurred: Self = Self(4);
+    #[doc(alias = "WKErrorJavaScriptResultTypeIsUnsupported")]
+    pub const JavaScriptResultTypeIsUnsupported: Self = Self(5);
+    #[doc(alias = "WKErrorContentRuleListStoreCompileFailed")]
+    pub const ContentRuleListStoreCompileFailed: Self = Self(6);
+    #[doc(alias = "WKErrorContentRuleListStoreLookUpFailed")]
+    pub const ContentRuleListStoreLookUpFailed: Self = Self(7);
+    #[doc(alias = "WKErrorContentRuleListStoreRemoveFailed")]
+    pub const ContentRuleListStoreRemoveFailed: Self = Self(8);
+    #[doc(alias = "WKErrorContentRuleListStoreVersionMismatch")]
+    pub const ContentRuleListStoreVersionMismatch: Self = Self(9);
+    #[doc(alias = "WKErrorAttributedStringContentFailedToLoad")]
+    pub const AttributedStringContentFailedToLoad: Self = Self(10);
+    #[doc(alias = "WKErrorAttributedStringContentLoadTimedOut")]
+    pub const AttributedStringContentLoadTimedOut: Self = Self(11);
+    #[doc(alias = "WKErrorJavaScriptInvalidFrameTarget")]
+    pub const JavaScriptInvalidFrameTarget: Self = Self(12);
+    #[doc(alias = "WKErrorNavigationAppBoundDomain")]
+    pub const NavigationAppBoundDomain: Self = Self(13);
+    #[doc(alias = "WKErrorJavaScriptAppBoundDomain")]
+    pub const JavaScriptAppBoundDomain: Self = Self(14);
+    #[doc(alias = "WKErrorDuplicateCredential")]
+    pub const DuplicateCredential: Self = Self(15);
+    #[doc(alias = "WKErrorMalformedCredential")]
+    pub const MalformedCredential: Self = Self(16);
+    #[doc(alias = "WKErrorCredentialNotFound")]
+    pub const CredentialNotFound: Self = Self(17);
 }
 
 unsafe impl Encode for WKErrorCode {

@@ -734,10 +734,14 @@ unsafe impl RefEncode for AVCapturePrimaryConstituentDeviceSwitchingBehavior {
 pub struct AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions: NSUInteger {
-        const AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionNone = 0;
-        const AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionVideoZoomChanged = 1<<0;
-        const AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionFocusModeChanged = 1<<1;
-        const AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionExposureModeChanged = 1<<2;
+        #[doc(alias = "AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionNone")]
+        const None = 0;
+        #[doc(alias = "AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionVideoZoomChanged")]
+        const VideoZoomChanged = 1<<0;
+        #[doc(alias = "AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionFocusModeChanged")]
+        const FocusModeChanged = 1<<1;
+        #[doc(alias = "AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionExposureModeChanged")]
+        const ExposureModeChanged = 1<<2;
     }
 }
 
@@ -2016,8 +2020,10 @@ pub type AVCaptureDeviceTransportControlsSpeed = c_float;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVCaptureDeviceTransportControlsPlaybackMode(pub NSInteger);
 impl AVCaptureDeviceTransportControlsPlaybackMode {
-    pub const AVCaptureDeviceTransportControlsNotPlayingMode: Self = Self(0);
-    pub const AVCaptureDeviceTransportControlsPlayingMode: Self = Self(1);
+    #[doc(alias = "AVCaptureDeviceTransportControlsNotPlayingMode")]
+    pub const NotPlayingMode: Self = Self(0);
+    #[doc(alias = "AVCaptureDeviceTransportControlsPlayingMode")]
+    pub const PlayingMode: Self = Self(1);
 }
 
 unsafe impl Encode for AVCaptureDeviceTransportControlsPlaybackMode {
@@ -2127,13 +2133,13 @@ extern_methods!(
 pub struct AVCaptureColorSpace(pub NSInteger);
 impl AVCaptureColorSpace {
     #[doc(alias = "AVCaptureColorSpace_sRGB")]
-    pub const _sRGB: Self = Self(0);
+    pub const sRGB: Self = Self(0);
     #[doc(alias = "AVCaptureColorSpace_P3_D65")]
-    pub const _P3_D65: Self = Self(1);
+    pub const P3_D65: Self = Self(1);
     #[doc(alias = "AVCaptureColorSpace_HLG_BT2020")]
-    pub const _HLG_BT2020: Self = Self(2);
+    pub const HLG_BT2020: Self = Self(2);
     #[doc(alias = "AVCaptureColorSpace_AppleLog")]
-    pub const _AppleLog: Self = Self(3);
+    pub const AppleLog: Self = Self(3);
 }
 
 unsafe impl Encode for AVCaptureColorSpace {

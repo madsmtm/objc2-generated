@@ -21,9 +21,12 @@ pub type CGPathRef = *const c_void;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGLineJoin(pub i32);
 impl CGLineJoin {
-    pub const kCGLineJoinMiter: Self = Self(0);
-    pub const kCGLineJoinRound: Self = Self(1);
-    pub const kCGLineJoinBevel: Self = Self(2);
+    #[doc(alias = "kCGLineJoinMiter")]
+    pub const Miter: Self = Self(0);
+    #[doc(alias = "kCGLineJoinRound")]
+    pub const Round: Self = Self(1);
+    #[doc(alias = "kCGLineJoinBevel")]
+    pub const Bevel: Self = Self(2);
 }
 
 #[cfg(feature = "objc2")]
@@ -42,9 +45,12 @@ unsafe impl RefEncode for CGLineJoin {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGLineCap(pub i32);
 impl CGLineCap {
-    pub const kCGLineCapButt: Self = Self(0);
-    pub const kCGLineCapRound: Self = Self(1);
-    pub const kCGLineCapSquare: Self = Self(2);
+    #[doc(alias = "kCGLineCapButt")]
+    pub const Butt: Self = Self(0);
+    #[doc(alias = "kCGLineCapRound")]
+    pub const Round: Self = Self(1);
+    #[doc(alias = "kCGLineCapSquare")]
+    pub const Square: Self = Self(2);
 }
 
 #[cfg(feature = "objc2")]
@@ -331,11 +337,16 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGPathElementType(pub i32);
 impl CGPathElementType {
-    pub const kCGPathElementMoveToPoint: Self = Self(0);
-    pub const kCGPathElementAddLineToPoint: Self = Self(1);
-    pub const kCGPathElementAddQuadCurveToPoint: Self = Self(2);
-    pub const kCGPathElementAddCurveToPoint: Self = Self(3);
-    pub const kCGPathElementCloseSubpath: Self = Self(4);
+    #[doc(alias = "kCGPathElementMoveToPoint")]
+    pub const MoveToPoint: Self = Self(0);
+    #[doc(alias = "kCGPathElementAddLineToPoint")]
+    pub const AddLineToPoint: Self = Self(1);
+    #[doc(alias = "kCGPathElementAddQuadCurveToPoint")]
+    pub const AddQuadCurveToPoint: Self = Self(2);
+    #[doc(alias = "kCGPathElementAddCurveToPoint")]
+    pub const AddCurveToPoint: Self = Self(3);
+    #[doc(alias = "kCGPathElementCloseSubpath")]
+    pub const CloseSubpath: Self = Self(4);
 }
 
 #[cfg(feature = "objc2")]

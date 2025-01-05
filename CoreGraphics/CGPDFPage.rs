@@ -17,11 +17,16 @@ pub type CGPDFPageRef = *mut c_void;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGPDFBox(pub i32);
 impl CGPDFBox {
-    pub const kCGPDFMediaBox: Self = Self(0);
-    pub const kCGPDFCropBox: Self = Self(1);
-    pub const kCGPDFBleedBox: Self = Self(2);
-    pub const kCGPDFTrimBox: Self = Self(3);
-    pub const kCGPDFArtBox: Self = Self(4);
+    #[doc(alias = "kCGPDFMediaBox")]
+    pub const MediaBox: Self = Self(0);
+    #[doc(alias = "kCGPDFCropBox")]
+    pub const CropBox: Self = Self(1);
+    #[doc(alias = "kCGPDFBleedBox")]
+    pub const BleedBox: Self = Self(2);
+    #[doc(alias = "kCGPDFTrimBox")]
+    pub const TrimBox: Self = Self(3);
+    #[doc(alias = "kCGPDFArtBox")]
+    pub const ArtBox: Self = Self(4);
 }
 
 #[cfg(feature = "objc2")]

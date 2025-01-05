@@ -18,11 +18,16 @@ pub type CGContextRef = *mut c_void;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGPathDrawingMode(pub i32);
 impl CGPathDrawingMode {
-    pub const kCGPathFill: Self = Self(0);
-    pub const kCGPathEOFill: Self = Self(1);
-    pub const kCGPathStroke: Self = Self(2);
-    pub const kCGPathFillStroke: Self = Self(3);
-    pub const kCGPathEOFillStroke: Self = Self(4);
+    #[doc(alias = "kCGPathFill")]
+    pub const Fill: Self = Self(0);
+    #[doc(alias = "kCGPathEOFill")]
+    pub const EOFill: Self = Self(1);
+    #[doc(alias = "kCGPathStroke")]
+    pub const Stroke: Self = Self(2);
+    #[doc(alias = "kCGPathFillStroke")]
+    pub const FillStroke: Self = Self(3);
+    #[doc(alias = "kCGPathEOFillStroke")]
+    pub const EOFillStroke: Self = Self(4);
 }
 
 #[cfg(feature = "objc2")]
@@ -41,14 +46,22 @@ unsafe impl RefEncode for CGPathDrawingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGTextDrawingMode(pub i32);
 impl CGTextDrawingMode {
-    pub const kCGTextFill: Self = Self(0);
-    pub const kCGTextStroke: Self = Self(1);
-    pub const kCGTextFillStroke: Self = Self(2);
-    pub const kCGTextInvisible: Self = Self(3);
-    pub const kCGTextFillClip: Self = Self(4);
-    pub const kCGTextStrokeClip: Self = Self(5);
-    pub const kCGTextFillStrokeClip: Self = Self(6);
-    pub const kCGTextClip: Self = Self(7);
+    #[doc(alias = "kCGTextFill")]
+    pub const Fill: Self = Self(0);
+    #[doc(alias = "kCGTextStroke")]
+    pub const Stroke: Self = Self(1);
+    #[doc(alias = "kCGTextFillStroke")]
+    pub const FillStroke: Self = Self(2);
+    #[doc(alias = "kCGTextInvisible")]
+    pub const Invisible: Self = Self(3);
+    #[doc(alias = "kCGTextFillClip")]
+    pub const FillClip: Self = Self(4);
+    #[doc(alias = "kCGTextStrokeClip")]
+    pub const StrokeClip: Self = Self(5);
+    #[doc(alias = "kCGTextFillStrokeClip")]
+    pub const FillStrokeClip: Self = Self(6);
+    #[doc(alias = "kCGTextClip")]
+    pub const Clip: Self = Self(7);
 }
 
 #[cfg(feature = "objc2")]
@@ -69,9 +82,11 @@ unsafe impl RefEncode for CGTextDrawingMode {
 pub struct CGTextEncoding(pub i32);
 impl CGTextEncoding {
     #[deprecated = "No longer supported"]
-    pub const kCGEncodingFontSpecific: Self = Self(0);
+    #[doc(alias = "kCGEncodingFontSpecific")]
+    pub const EncodingFontSpecific: Self = Self(0);
     #[deprecated = "No longer supported"]
-    pub const kCGEncodingMacRoman: Self = Self(1);
+    #[doc(alias = "kCGEncodingMacRoman")]
+    pub const EncodingMacRoman: Self = Self(1);
 }
 
 #[cfg(feature = "objc2")]
@@ -90,11 +105,16 @@ unsafe impl RefEncode for CGTextEncoding {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGInterpolationQuality(pub i32);
 impl CGInterpolationQuality {
-    pub const kCGInterpolationDefault: Self = Self(0);
-    pub const kCGInterpolationNone: Self = Self(1);
-    pub const kCGInterpolationLow: Self = Self(2);
-    pub const kCGInterpolationMedium: Self = Self(4);
-    pub const kCGInterpolationHigh: Self = Self(3);
+    #[doc(alias = "kCGInterpolationDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "kCGInterpolationNone")]
+    pub const None: Self = Self(1);
+    #[doc(alias = "kCGInterpolationLow")]
+    pub const Low: Self = Self(2);
+    #[doc(alias = "kCGInterpolationMedium")]
+    pub const Medium: Self = Self(4);
+    #[doc(alias = "kCGInterpolationHigh")]
+    pub const High: Self = Self(3);
 }
 
 #[cfg(feature = "objc2")]
@@ -113,34 +133,62 @@ unsafe impl RefEncode for CGInterpolationQuality {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGBlendMode(pub i32);
 impl CGBlendMode {
-    pub const kCGBlendModeNormal: Self = Self(0);
-    pub const kCGBlendModeMultiply: Self = Self(1);
-    pub const kCGBlendModeScreen: Self = Self(2);
-    pub const kCGBlendModeOverlay: Self = Self(3);
-    pub const kCGBlendModeDarken: Self = Self(4);
-    pub const kCGBlendModeLighten: Self = Self(5);
-    pub const kCGBlendModeColorDodge: Self = Self(6);
-    pub const kCGBlendModeColorBurn: Self = Self(7);
-    pub const kCGBlendModeSoftLight: Self = Self(8);
-    pub const kCGBlendModeHardLight: Self = Self(9);
-    pub const kCGBlendModeDifference: Self = Self(10);
-    pub const kCGBlendModeExclusion: Self = Self(11);
-    pub const kCGBlendModeHue: Self = Self(12);
-    pub const kCGBlendModeSaturation: Self = Self(13);
-    pub const kCGBlendModeColor: Self = Self(14);
-    pub const kCGBlendModeLuminosity: Self = Self(15);
-    pub const kCGBlendModeClear: Self = Self(16);
-    pub const kCGBlendModeCopy: Self = Self(17);
-    pub const kCGBlendModeSourceIn: Self = Self(18);
-    pub const kCGBlendModeSourceOut: Self = Self(19);
-    pub const kCGBlendModeSourceAtop: Self = Self(20);
-    pub const kCGBlendModeDestinationOver: Self = Self(21);
-    pub const kCGBlendModeDestinationIn: Self = Self(22);
-    pub const kCGBlendModeDestinationOut: Self = Self(23);
-    pub const kCGBlendModeDestinationAtop: Self = Self(24);
-    pub const kCGBlendModeXOR: Self = Self(25);
-    pub const kCGBlendModePlusDarker: Self = Self(26);
-    pub const kCGBlendModePlusLighter: Self = Self(27);
+    #[doc(alias = "kCGBlendModeNormal")]
+    pub const Normal: Self = Self(0);
+    #[doc(alias = "kCGBlendModeMultiply")]
+    pub const Multiply: Self = Self(1);
+    #[doc(alias = "kCGBlendModeScreen")]
+    pub const Screen: Self = Self(2);
+    #[doc(alias = "kCGBlendModeOverlay")]
+    pub const Overlay: Self = Self(3);
+    #[doc(alias = "kCGBlendModeDarken")]
+    pub const Darken: Self = Self(4);
+    #[doc(alias = "kCGBlendModeLighten")]
+    pub const Lighten: Self = Self(5);
+    #[doc(alias = "kCGBlendModeColorDodge")]
+    pub const ColorDodge: Self = Self(6);
+    #[doc(alias = "kCGBlendModeColorBurn")]
+    pub const ColorBurn: Self = Self(7);
+    #[doc(alias = "kCGBlendModeSoftLight")]
+    pub const SoftLight: Self = Self(8);
+    #[doc(alias = "kCGBlendModeHardLight")]
+    pub const HardLight: Self = Self(9);
+    #[doc(alias = "kCGBlendModeDifference")]
+    pub const Difference: Self = Self(10);
+    #[doc(alias = "kCGBlendModeExclusion")]
+    pub const Exclusion: Self = Self(11);
+    #[doc(alias = "kCGBlendModeHue")]
+    pub const Hue: Self = Self(12);
+    #[doc(alias = "kCGBlendModeSaturation")]
+    pub const Saturation: Self = Self(13);
+    #[doc(alias = "kCGBlendModeColor")]
+    pub const Color: Self = Self(14);
+    #[doc(alias = "kCGBlendModeLuminosity")]
+    pub const Luminosity: Self = Self(15);
+    #[doc(alias = "kCGBlendModeClear")]
+    pub const Clear: Self = Self(16);
+    #[doc(alias = "kCGBlendModeCopy")]
+    pub const Copy: Self = Self(17);
+    #[doc(alias = "kCGBlendModeSourceIn")]
+    pub const SourceIn: Self = Self(18);
+    #[doc(alias = "kCGBlendModeSourceOut")]
+    pub const SourceOut: Self = Self(19);
+    #[doc(alias = "kCGBlendModeSourceAtop")]
+    pub const SourceAtop: Self = Self(20);
+    #[doc(alias = "kCGBlendModeDestinationOver")]
+    pub const DestinationOver: Self = Self(21);
+    #[doc(alias = "kCGBlendModeDestinationIn")]
+    pub const DestinationIn: Self = Self(22);
+    #[doc(alias = "kCGBlendModeDestinationOut")]
+    pub const DestinationOut: Self = Self(23);
+    #[doc(alias = "kCGBlendModeDestinationAtop")]
+    pub const DestinationAtop: Self = Self(24);
+    #[doc(alias = "kCGBlendModeXOR")]
+    pub const XOR: Self = Self(25);
+    #[doc(alias = "kCGBlendModePlusDarker")]
+    pub const PlusDarker: Self = Self(26);
+    #[doc(alias = "kCGBlendModePlusLighter")]
+    pub const PlusLighter: Self = Self(27);
 }
 
 #[cfg(feature = "objc2")]

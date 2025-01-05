@@ -44,9 +44,12 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTFrameProgression(pub u32);
 impl CTFrameProgression {
-    pub const kCTFrameProgressionTopToBottom: Self = Self(0);
-    pub const kCTFrameProgressionRightToLeft: Self = Self(1);
-    pub const kCTFrameProgressionLeftToRight: Self = Self(2);
+    #[doc(alias = "kCTFrameProgressionTopToBottom")]
+    pub const TopToBottom: Self = Self(0);
+    #[doc(alias = "kCTFrameProgressionRightToLeft")]
+    pub const RightToLeft: Self = Self(1);
+    #[doc(alias = "kCTFrameProgressionLeftToRight")]
+    pub const LeftToRight: Self = Self(2);
 }
 
 #[cfg(feature = "objc2")]
@@ -94,8 +97,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTFramePathFillRule(pub u32);
 impl CTFramePathFillRule {
-    pub const kCTFramePathFillEvenOdd: Self = Self(0);
-    pub const kCTFramePathFillWindingNumber: Self = Self(1);
+    #[doc(alias = "kCTFramePathFillEvenOdd")]
+    pub const EvenOdd: Self = Self(0);
+    #[doc(alias = "kCTFramePathFillWindingNumber")]
+    pub const WindingNumber: Self = Self(1);
 }
 
 #[cfg(feature = "objc2")]

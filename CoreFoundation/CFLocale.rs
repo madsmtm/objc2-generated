@@ -110,11 +110,16 @@ extern "C-unwind" {
 pub struct CFLocaleLanguageDirection(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFLocaleLanguageDirection {
-    pub const kCFLocaleLanguageDirectionUnknown: Self = Self(0);
-    pub const kCFLocaleLanguageDirectionLeftToRight: Self = Self(1);
-    pub const kCFLocaleLanguageDirectionRightToLeft: Self = Self(2);
-    pub const kCFLocaleLanguageDirectionTopToBottom: Self = Self(3);
-    pub const kCFLocaleLanguageDirectionBottomToTop: Self = Self(4);
+    #[doc(alias = "kCFLocaleLanguageDirectionUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "kCFLocaleLanguageDirectionLeftToRight")]
+    pub const LeftToRight: Self = Self(1);
+    #[doc(alias = "kCFLocaleLanguageDirectionRightToLeft")]
+    pub const RightToLeft: Self = Self(2);
+    #[doc(alias = "kCFLocaleLanguageDirectionTopToBottom")]
+    pub const TopToBottom: Self = Self(3);
+    #[doc(alias = "kCFLocaleLanguageDirectionBottomToTop")]
+    pub const BottomToTop: Self = Self(4);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]

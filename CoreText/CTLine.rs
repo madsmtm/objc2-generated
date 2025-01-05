@@ -57,12 +57,18 @@ pub struct CTLineBoundsOptions(pub CFOptionFlags);
 #[cfg(feature = "objc2-core-foundation")]
 bitflags::bitflags! {
     impl CTLineBoundsOptions: CFOptionFlags {
-        const kCTLineBoundsExcludeTypographicLeading = 1<<0;
-        const kCTLineBoundsExcludeTypographicShifts = 1<<1;
-        const kCTLineBoundsUseHangingPunctuation = 1<<2;
-        const kCTLineBoundsUseGlyphPathBounds = 1<<3;
-        const kCTLineBoundsUseOpticalBounds = 1<<4;
-        const kCTLineBoundsIncludeLanguageExtents = 1<<5;
+        #[doc(alias = "kCTLineBoundsExcludeTypographicLeading")]
+        const ExcludeTypographicLeading = 1<<0;
+        #[doc(alias = "kCTLineBoundsExcludeTypographicShifts")]
+        const ExcludeTypographicShifts = 1<<1;
+        #[doc(alias = "kCTLineBoundsUseHangingPunctuation")]
+        const UseHangingPunctuation = 1<<2;
+        #[doc(alias = "kCTLineBoundsUseGlyphPathBounds")]
+        const UseGlyphPathBounds = 1<<3;
+        #[doc(alias = "kCTLineBoundsUseOpticalBounds")]
+        const UseOpticalBounds = 1<<4;
+        #[doc(alias = "kCTLineBoundsIncludeLanguageExtents")]
+        const IncludeLanguageExtents = 1<<5;
     }
 }
 
@@ -98,9 +104,12 @@ unsafe impl RefEncode for CTLineBoundsOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTLineTruncationType(pub u32);
 impl CTLineTruncationType {
-    pub const kCTLineTruncationStart: Self = Self(0);
-    pub const kCTLineTruncationEnd: Self = Self(1);
-    pub const kCTLineTruncationMiddle: Self = Self(2);
+    #[doc(alias = "kCTLineTruncationStart")]
+    pub const Start: Self = Self(0);
+    #[doc(alias = "kCTLineTruncationEnd")]
+    pub const End: Self = Self(1);
+    #[doc(alias = "kCTLineTruncationMiddle")]
+    pub const Middle: Self = Self(2);
 }
 
 #[cfg(feature = "objc2")]

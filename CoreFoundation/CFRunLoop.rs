@@ -29,10 +29,14 @@ pub type CFRunLoopTimerRef = *mut c_void;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFRunLoopRunResult(pub i32);
 impl CFRunLoopRunResult {
-    pub const kCFRunLoopRunFinished: Self = Self(1);
-    pub const kCFRunLoopRunStopped: Self = Self(2);
-    pub const kCFRunLoopRunTimedOut: Self = Self(3);
-    pub const kCFRunLoopRunHandledSource: Self = Self(4);
+    #[doc(alias = "kCFRunLoopRunFinished")]
+    pub const Finished: Self = Self(1);
+    #[doc(alias = "kCFRunLoopRunStopped")]
+    pub const Stopped: Self = Self(2);
+    #[doc(alias = "kCFRunLoopRunTimedOut")]
+    pub const TimedOut: Self = Self(3);
+    #[doc(alias = "kCFRunLoopRunHandledSource")]
+    pub const HandledSource: Self = Self(4);
 }
 
 #[cfg(feature = "objc2")]
@@ -54,13 +58,20 @@ pub struct CFRunLoopActivity(pub CFOptionFlags);
 #[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFRunLoopActivity: CFOptionFlags {
-        const kCFRunLoopEntry = 1<<0;
-        const kCFRunLoopBeforeTimers = 1<<1;
-        const kCFRunLoopBeforeSources = 1<<2;
-        const kCFRunLoopBeforeWaiting = 1<<5;
-        const kCFRunLoopAfterWaiting = 1<<6;
-        const kCFRunLoopExit = 1<<7;
-        const kCFRunLoopAllActivities = 0x0FFFFFFF;
+        #[doc(alias = "kCFRunLoopEntry")]
+        const Entry = 1<<0;
+        #[doc(alias = "kCFRunLoopBeforeTimers")]
+        const BeforeTimers = 1<<1;
+        #[doc(alias = "kCFRunLoopBeforeSources")]
+        const BeforeSources = 1<<2;
+        #[doc(alias = "kCFRunLoopBeforeWaiting")]
+        const BeforeWaiting = 1<<5;
+        #[doc(alias = "kCFRunLoopAfterWaiting")]
+        const AfterWaiting = 1<<6;
+        #[doc(alias = "kCFRunLoopExit")]
+        const Exit = 1<<7;
+        #[doc(alias = "kCFRunLoopAllActivities")]
+        const AllActivities = 0x0FFFFFFF;
     }
 }
 

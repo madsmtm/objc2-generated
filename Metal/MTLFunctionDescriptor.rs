@@ -15,25 +15,30 @@ pub struct MTLFunctionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLFunctionOptions: NSUInteger {
 /// Default usage
-        const MTLFunctionOptionNone = 0;
+        #[doc(alias = "MTLFunctionOptionNone")]
+        const None = 0;
 /// Compiles the found function. This enables dynamic linking of this `MTLFunction`.
 /// Only supported for `visible` functions.
-        const MTLFunctionOptionCompileToBinary = 1<<0;
+        #[doc(alias = "MTLFunctionOptionCompileToBinary")]
+        const CompileToBinary = 1<<0;
 /// stores and tracks this function in a Metal Pipelines Script
 /// This flag is optional and only supported in the context of binary archives.
 ///
 /// This flag is required for inspecting and consuming binary archives with specialized MTLFunctions via the metal-source tool. It is not required for recompilation, nor for storing functions in binary archives. Set this flag only if you intend to use metal-source on a serialized binary archive.
-        const MTLFunctionOptionStoreFunctionInMetalPipelinesScript = 1<<1;
+        #[doc(alias = "MTLFunctionOptionStoreFunctionInMetalPipelinesScript")]
+        const StoreFunctionInMetalPipelinesScript = 1<<1;
 /// stores and tracks this function in a Metal Pipelines Script
 /// This flag is optional and only supported in the context of binary archives.
 ///
 /// This flag is required for inspecting and consuming binary archives with specialized MTLFunctions via the metal-source tool. It is not required for recompilation, nor for storing functions in binary archives. Set this flag only if you intend to use metal-source on a serialized binary archive.
 #[deprecated]
-        const MTLFunctionOptionStoreFunctionInMetalScript = 1<<1;
+        #[doc(alias = "MTLFunctionOptionStoreFunctionInMetalScript")]
+        const StoreFunctionInMetalScript = 1<<1;
 /// Function creation fails (i.e nil is returned) if:
 /// - A lookup binary archive has been specified
 /// - The function has not been found in the archive
-        const MTLFunctionOptionFailOnBinaryArchiveMiss = 1<<2;
+        #[doc(alias = "MTLFunctionOptionFailOnBinaryArchiveMiss")]
+        const FailOnBinaryArchiveMiss = 1<<2;
     }
 }
 

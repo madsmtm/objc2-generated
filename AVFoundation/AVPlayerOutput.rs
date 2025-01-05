@@ -88,8 +88,10 @@ extern_methods!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMTagCollectionVideoOutputPreset(pub u32);
 impl CMTagCollectionVideoOutputPreset {
-    pub const kCMTagCollectionVideoOutputPreset_Monoscopic: Self = Self(0);
-    pub const kCMTagCollectionVideoOutputPreset_Stereoscopic: Self = Self(1);
+    #[doc(alias = "kCMTagCollectionVideoOutputPreset_Monoscopic")]
+    pub const Monoscopic: Self = Self(0);
+    #[doc(alias = "kCMTagCollectionVideoOutputPreset_Stereoscopic")]
+    pub const Stereoscopic: Self = Self(1);
 }
 
 unsafe impl Encode for CMTagCollectionVideoOutputPreset {

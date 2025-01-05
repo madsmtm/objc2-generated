@@ -19,15 +19,24 @@ use crate::*;
 pub struct UIPrinterJobTypes(pub NSInteger);
 bitflags::bitflags! {
     impl UIPrinterJobTypes: NSInteger {
-        const UIPrinterJobTypeUnknown = 0;
-        const UIPrinterJobTypeDocument = 1<<0;
-        const UIPrinterJobTypeEnvelope = 1<<1;
-        const UIPrinterJobTypeLabel = 1<<2;
-        const UIPrinterJobTypePhoto = 1<<3;
-        const UIPrinterJobTypeReceipt = 1<<4;
-        const UIPrinterJobTypeRoll = 1<<5;
-        const UIPrinterJobTypeLargeFormat = 1<<6;
-        const UIPrinterJobTypePostcard = 1<<7;
+        #[doc(alias = "UIPrinterJobTypeUnknown")]
+        const Unknown = 0;
+        #[doc(alias = "UIPrinterJobTypeDocument")]
+        const Document = 1<<0;
+        #[doc(alias = "UIPrinterJobTypeEnvelope")]
+        const Envelope = 1<<1;
+        #[doc(alias = "UIPrinterJobTypeLabel")]
+        const Label = 1<<2;
+        #[doc(alias = "UIPrinterJobTypePhoto")]
+        const Photo = 1<<3;
+        #[doc(alias = "UIPrinterJobTypeReceipt")]
+        const Receipt = 1<<4;
+        #[doc(alias = "UIPrinterJobTypeRoll")]
+        const Roll = 1<<5;
+        #[doc(alias = "UIPrinterJobTypeLargeFormat")]
+        const LargeFormat = 1<<6;
+        #[doc(alias = "UIPrinterJobTypePostcard")]
+        const Postcard = 1<<7;
     }
 }
 

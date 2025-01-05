@@ -27,16 +27,26 @@ extern "C-unwind" {
 pub struct CFNumberFormatterStyle(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFNumberFormatterStyle {
-    pub const kCFNumberFormatterNoStyle: Self = Self(0);
-    pub const kCFNumberFormatterDecimalStyle: Self = Self(1);
-    pub const kCFNumberFormatterCurrencyStyle: Self = Self(2);
-    pub const kCFNumberFormatterPercentStyle: Self = Self(3);
-    pub const kCFNumberFormatterScientificStyle: Self = Self(4);
-    pub const kCFNumberFormatterSpellOutStyle: Self = Self(5);
-    pub const kCFNumberFormatterOrdinalStyle: Self = Self(6);
-    pub const kCFNumberFormatterCurrencyISOCodeStyle: Self = Self(8);
-    pub const kCFNumberFormatterCurrencyPluralStyle: Self = Self(9);
-    pub const kCFNumberFormatterCurrencyAccountingStyle: Self = Self(10);
+    #[doc(alias = "kCFNumberFormatterNoStyle")]
+    pub const NoStyle: Self = Self(0);
+    #[doc(alias = "kCFNumberFormatterDecimalStyle")]
+    pub const DecimalStyle: Self = Self(1);
+    #[doc(alias = "kCFNumberFormatterCurrencyStyle")]
+    pub const CurrencyStyle: Self = Self(2);
+    #[doc(alias = "kCFNumberFormatterPercentStyle")]
+    pub const PercentStyle: Self = Self(3);
+    #[doc(alias = "kCFNumberFormatterScientificStyle")]
+    pub const ScientificStyle: Self = Self(4);
+    #[doc(alias = "kCFNumberFormatterSpellOutStyle")]
+    pub const SpellOutStyle: Self = Self(5);
+    #[doc(alias = "kCFNumberFormatterOrdinalStyle")]
+    pub const OrdinalStyle: Self = Self(6);
+    #[doc(alias = "kCFNumberFormatterCurrencyISOCodeStyle")]
+    pub const CurrencyISOCodeStyle: Self = Self(8);
+    #[doc(alias = "kCFNumberFormatterCurrencyPluralStyle")]
+    pub const CurrencyPluralStyle: Self = Self(9);
+    #[doc(alias = "kCFNumberFormatterCurrencyAccountingStyle")]
+    pub const CurrencyAccountingStyle: Self = Self(10);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -106,7 +116,8 @@ pub struct CFNumberFormatterOptionFlags(pub CFOptionFlags);
 #[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFNumberFormatterOptionFlags: CFOptionFlags {
-        const kCFNumberFormatterParseIntegersOnly = 1;
+        #[doc(alias = "kCFNumberFormatterParseIntegersOnly")]
+        const ParseIntegersOnly = 1;
     }
 }
 
@@ -401,13 +412,20 @@ extern "C" {
 pub struct CFNumberFormatterRoundingMode(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFNumberFormatterRoundingMode {
-    pub const kCFNumberFormatterRoundCeiling: Self = Self(0);
-    pub const kCFNumberFormatterRoundFloor: Self = Self(1);
-    pub const kCFNumberFormatterRoundDown: Self = Self(2);
-    pub const kCFNumberFormatterRoundUp: Self = Self(3);
-    pub const kCFNumberFormatterRoundHalfEven: Self = Self(4);
-    pub const kCFNumberFormatterRoundHalfDown: Self = Self(5);
-    pub const kCFNumberFormatterRoundHalfUp: Self = Self(6);
+    #[doc(alias = "kCFNumberFormatterRoundCeiling")]
+    pub const RoundCeiling: Self = Self(0);
+    #[doc(alias = "kCFNumberFormatterRoundFloor")]
+    pub const RoundFloor: Self = Self(1);
+    #[doc(alias = "kCFNumberFormatterRoundDown")]
+    pub const RoundDown: Self = Self(2);
+    #[doc(alias = "kCFNumberFormatterRoundUp")]
+    pub const RoundUp: Self = Self(3);
+    #[doc(alias = "kCFNumberFormatterRoundHalfEven")]
+    pub const RoundHalfEven: Self = Self(4);
+    #[doc(alias = "kCFNumberFormatterRoundHalfDown")]
+    pub const RoundHalfDown: Self = Self(5);
+    #[doc(alias = "kCFNumberFormatterRoundHalfUp")]
+    pub const RoundHalfUp: Self = Self(6);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -428,10 +446,14 @@ unsafe impl RefEncode for CFNumberFormatterRoundingMode {
 pub struct CFNumberFormatterPadPosition(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFNumberFormatterPadPosition {
-    pub const kCFNumberFormatterPadBeforePrefix: Self = Self(0);
-    pub const kCFNumberFormatterPadAfterPrefix: Self = Self(1);
-    pub const kCFNumberFormatterPadBeforeSuffix: Self = Self(2);
-    pub const kCFNumberFormatterPadAfterSuffix: Self = Self(3);
+    #[doc(alias = "kCFNumberFormatterPadBeforePrefix")]
+    pub const BeforePrefix: Self = Self(0);
+    #[doc(alias = "kCFNumberFormatterPadAfterPrefix")]
+    pub const AfterPrefix: Self = Self(1);
+    #[doc(alias = "kCFNumberFormatterPadBeforeSuffix")]
+    pub const BeforeSuffix: Self = Self(2);
+    #[doc(alias = "kCFNumberFormatterPadAfterSuffix")]
+    pub const AfterSuffix: Self = Self(3);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]

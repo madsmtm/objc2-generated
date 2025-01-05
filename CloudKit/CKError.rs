@@ -90,80 +90,116 @@ extern "C" {
 pub struct CKErrorCode(pub NSInteger);
 impl CKErrorCode {
     /// CloudKit.framework encountered an error.  This is a non-recoverable error.
-    pub const CKErrorInternalError: Self = Self(1);
+    #[doc(alias = "CKErrorInternalError")]
+    pub const InternalError: Self = Self(1);
     /// Some items failed, but the operation succeeded overall. Check CKPartialErrorsByItemIDKey in the userInfo dictionary for more details.
     /// This error is only returned from CKOperation completion blocks, which are deprecated in swift.
     /// It will not be returned from (swift-only) CKOperation result blocks, which are their replacements
-    pub const CKErrorPartialFailure: Self = Self(2);
+    #[doc(alias = "CKErrorPartialFailure")]
+    pub const PartialFailure: Self = Self(2);
     /// Network not available
-    pub const CKErrorNetworkUnavailable: Self = Self(3);
+    #[doc(alias = "CKErrorNetworkUnavailable")]
+    pub const NetworkUnavailable: Self = Self(3);
     /// Network error (available but CFNetwork gave us an error)
-    pub const CKErrorNetworkFailure: Self = Self(4);
+    #[doc(alias = "CKErrorNetworkFailure")]
+    pub const NetworkFailure: Self = Self(4);
     /// Un-provisioned or unauthorized container. Try provisioning the container before retrying the operation.
-    pub const CKErrorBadContainer: Self = Self(5);
+    #[doc(alias = "CKErrorBadContainer")]
+    pub const BadContainer: Self = Self(5);
     /// Service unavailable
-    pub const CKErrorServiceUnavailable: Self = Self(6);
+    #[doc(alias = "CKErrorServiceUnavailable")]
+    pub const ServiceUnavailable: Self = Self(6);
     /// Client is being rate limited
-    pub const CKErrorRequestRateLimited: Self = Self(7);
+    #[doc(alias = "CKErrorRequestRateLimited")]
+    pub const RequestRateLimited: Self = Self(7);
     /// Missing entitlement
-    pub const CKErrorMissingEntitlement: Self = Self(8);
+    #[doc(alias = "CKErrorMissingEntitlement")]
+    pub const MissingEntitlement: Self = Self(8);
     /// Not authenticated (writing without being logged in, no user record)
-    pub const CKErrorNotAuthenticated: Self = Self(9);
+    #[doc(alias = "CKErrorNotAuthenticated")]
+    pub const NotAuthenticated: Self = Self(9);
     /// Access failure (save, fetch, or shareAccept)
-    pub const CKErrorPermissionFailure: Self = Self(10);
+    #[doc(alias = "CKErrorPermissionFailure")]
+    pub const PermissionFailure: Self = Self(10);
     /// Record does not exist
-    pub const CKErrorUnknownItem: Self = Self(11);
+    #[doc(alias = "CKErrorUnknownItem")]
+    pub const UnknownItem: Self = Self(11);
     /// Bad client request (bad record graph, malformed predicate)
-    pub const CKErrorInvalidArguments: Self = Self(12);
+    #[doc(alias = "CKErrorInvalidArguments")]
+    pub const InvalidArguments: Self = Self(12);
     /// Bad client request (bad record graph, malformed predicate)
     #[deprecated = "Will not be returned"]
-    pub const CKErrorResultsTruncated: Self = Self(13);
+    #[doc(alias = "CKErrorResultsTruncated")]
+    pub const ResultsTruncated: Self = Self(13);
     /// The record was rejected because the version on the server was different
-    pub const CKErrorServerRecordChanged: Self = Self(14);
+    #[doc(alias = "CKErrorServerRecordChanged")]
+    pub const ServerRecordChanged: Self = Self(14);
     /// The server rejected this request. This is a non-recoverable error
-    pub const CKErrorServerRejectedRequest: Self = Self(15);
+    #[doc(alias = "CKErrorServerRejectedRequest")]
+    pub const ServerRejectedRequest: Self = Self(15);
     /// Asset file was not found
-    pub const CKErrorAssetFileNotFound: Self = Self(16);
+    #[doc(alias = "CKErrorAssetFileNotFound")]
+    pub const AssetFileNotFound: Self = Self(16);
     /// Asset file content was modified while being saved
-    pub const CKErrorAssetFileModified: Self = Self(17);
+    #[doc(alias = "CKErrorAssetFileModified")]
+    pub const AssetFileModified: Self = Self(17);
     /// App version is less than the minimum allowed version
-    pub const CKErrorIncompatibleVersion: Self = Self(18);
+    #[doc(alias = "CKErrorIncompatibleVersion")]
+    pub const IncompatibleVersion: Self = Self(18);
     /// The server rejected the request because there was a conflict with a unique field.
-    pub const CKErrorConstraintViolation: Self = Self(19);
+    #[doc(alias = "CKErrorConstraintViolation")]
+    pub const ConstraintViolation: Self = Self(19);
     /// A CKOperation was explicitly cancelled
-    pub const CKErrorOperationCancelled: Self = Self(20);
+    #[doc(alias = "CKErrorOperationCancelled")]
+    pub const OperationCancelled: Self = Self(20);
     /// The previousServerChangeToken value is too old and the client must re-sync from scratch
-    pub const CKErrorChangeTokenExpired: Self = Self(21);
+    #[doc(alias = "CKErrorChangeTokenExpired")]
+    pub const ChangeTokenExpired: Self = Self(21);
     /// One of the items in this batch operation failed in a zone with atomic updates, so the entire batch was rejected.
-    pub const CKErrorBatchRequestFailed: Self = Self(22);
+    #[doc(alias = "CKErrorBatchRequestFailed")]
+    pub const BatchRequestFailed: Self = Self(22);
     /// The server is too busy to handle this zone operation. Try the operation again in a few seconds.
-    pub const CKErrorZoneBusy: Self = Self(23);
+    #[doc(alias = "CKErrorZoneBusy")]
+    pub const ZoneBusy: Self = Self(23);
     /// Operation could not be completed on the given database. Likely caused by attempting to modify zones in the public database.
-    pub const CKErrorBadDatabase: Self = Self(24);
+    #[doc(alias = "CKErrorBadDatabase")]
+    pub const BadDatabase: Self = Self(24);
     /// Saving a record would exceed quota
-    pub const CKErrorQuotaExceeded: Self = Self(25);
+    #[doc(alias = "CKErrorQuotaExceeded")]
+    pub const QuotaExceeded: Self = Self(25);
     /// The specified zone does not exist on the server
-    pub const CKErrorZoneNotFound: Self = Self(26);
+    #[doc(alias = "CKErrorZoneNotFound")]
+    pub const ZoneNotFound: Self = Self(26);
     /// The request to the server was too large. Retry this request as a smaller batch.
-    pub const CKErrorLimitExceeded: Self = Self(27);
+    #[doc(alias = "CKErrorLimitExceeded")]
+    pub const LimitExceeded: Self = Self(27);
     /// The user deleted this zone through the settings UI. Your client should either remove its local data or prompt the user before attempting to re-upload any data to this zone.
-    pub const CKErrorUserDeletedZone: Self = Self(28);
+    #[doc(alias = "CKErrorUserDeletedZone")]
+    pub const UserDeletedZone: Self = Self(28);
     /// A share cannot be saved because there are too many participants attached to the share
-    pub const CKErrorTooManyParticipants: Self = Self(29);
+    #[doc(alias = "CKErrorTooManyParticipants")]
+    pub const TooManyParticipants: Self = Self(29);
     /// A record/share cannot be saved, doing so would cause a hierarchy of records to exist in multiple shares
-    pub const CKErrorAlreadyShared: Self = Self(30);
+    #[doc(alias = "CKErrorAlreadyShared")]
+    pub const AlreadyShared: Self = Self(30);
     /// The target of a record's parent or share reference was not found
-    pub const CKErrorReferenceViolation: Self = Self(31);
+    #[doc(alias = "CKErrorReferenceViolation")]
+    pub const ReferenceViolation: Self = Self(31);
     /// Request was rejected due to a managed account restriction
-    pub const CKErrorManagedAccountRestricted: Self = Self(32);
+    #[doc(alias = "CKErrorManagedAccountRestricted")]
+    pub const ManagedAccountRestricted: Self = Self(32);
     /// Share Metadata cannot be determined, because the user is not a member of the share.  There are invited participants on the share with email addresses or phone numbers not associated with any iCloud account. The user may be able to join the share if they can associate one of those email addresses or phone numbers with their iCloud account via the system Share Accept UI. Call UIApplication's openURL on this share URL to have the user attempt to verify their information.
-    pub const CKErrorParticipantMayNeedVerification: Self = Self(33);
+    #[doc(alias = "CKErrorParticipantMayNeedVerification")]
+    pub const ParticipantMayNeedVerification: Self = Self(33);
     /// The server received and processed this request, but the response was lost due to a network failure.  There is no guarantee that this request succeeded.  Your client should re-issue the request (if it is idempotent), or fetch data from the server to determine if the request succeeded.
-    pub const CKErrorServerResponseLost: Self = Self(34);
+    #[doc(alias = "CKErrorServerResponseLost")]
+    pub const ServerResponseLost: Self = Self(34);
     /// The file for this asset could not be accessed. It is likely your application does not have permission to open the file, or the file may be temporarily unavailable due to its data protection class. This operation can be retried after it is able to be opened in your process.
-    pub const CKErrorAssetNotAvailable: Self = Self(35);
+    #[doc(alias = "CKErrorAssetNotAvailable")]
+    pub const AssetNotAvailable: Self = Self(35);
     /// The current account is in a state that may need user intervention to recover from. The user should be directed to check the Settings app. Listen for CKAccountChangedNotifications to know when to re-check account status and retry.
-    pub const CKErrorAccountTemporarilyUnavailable: Self = Self(36);
+    #[doc(alias = "CKErrorAccountTemporarilyUnavailable")]
+    pub const AccountTemporarilyUnavailable: Self = Self(36);
 }
 
 unsafe impl Encode for CKErrorCode {

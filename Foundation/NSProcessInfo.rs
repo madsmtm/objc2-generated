@@ -181,17 +181,28 @@ extern_methods!(
 pub struct NSActivityOptions(pub u64);
 bitflags::bitflags! {
     impl NSActivityOptions: u64 {
-        const NSActivityIdleDisplaySleepDisabled = 1<<40;
-        const NSActivityIdleSystemSleepDisabled = 1<<20;
-        const NSActivitySuddenTerminationDisabled = 1<<14;
-        const NSActivityAutomaticTerminationDisabled = 1<<15;
-        const NSActivityAnimationTrackingEnabled = 1<<45;
-        const NSActivityTrackingEnabled = 1<<46;
-        const NSActivityUserInitiated = 0x00FFFFFF|NSActivityOptions::NSActivityIdleSystemSleepDisabled.0;
-        const NSActivityUserInitiatedAllowingIdleSystemSleep = NSActivityOptions::NSActivityUserInitiated.0&!NSActivityOptions::NSActivityIdleSystemSleepDisabled.0;
-        const NSActivityBackground = 0x000000FF;
-        const NSActivityLatencyCritical = 0xFF00000000;
-        const NSActivityUserInteractive = NSActivityOptions::NSActivityUserInitiated.0|NSActivityOptions::NSActivityLatencyCritical.0;
+        #[doc(alias = "NSActivityIdleDisplaySleepDisabled")]
+        const IdleDisplaySleepDisabled = 1<<40;
+        #[doc(alias = "NSActivityIdleSystemSleepDisabled")]
+        const IdleSystemSleepDisabled = 1<<20;
+        #[doc(alias = "NSActivitySuddenTerminationDisabled")]
+        const SuddenTerminationDisabled = 1<<14;
+        #[doc(alias = "NSActivityAutomaticTerminationDisabled")]
+        const AutomaticTerminationDisabled = 1<<15;
+        #[doc(alias = "NSActivityAnimationTrackingEnabled")]
+        const AnimationTrackingEnabled = 1<<45;
+        #[doc(alias = "NSActivityTrackingEnabled")]
+        const TrackingEnabled = 1<<46;
+        #[doc(alias = "NSActivityUserInitiated")]
+        const UserInitiated = 0x00FFFFFF|NSActivityOptions::IdleSystemSleepDisabled.0;
+        #[doc(alias = "NSActivityUserInitiatedAllowingIdleSystemSleep")]
+        const UserInitiatedAllowingIdleSystemSleep = NSActivityOptions::UserInitiated.0&!NSActivityOptions::IdleSystemSleepDisabled.0;
+        #[doc(alias = "NSActivityBackground")]
+        const Background = 0x000000FF;
+        #[doc(alias = "NSActivityLatencyCritical")]
+        const LatencyCritical = 0xFF00000000;
+        #[doc(alias = "NSActivityUserInteractive")]
+        const UserInteractive = NSActivityOptions::UserInitiated.0|NSActivityOptions::LatencyCritical.0;
     }
 }
 

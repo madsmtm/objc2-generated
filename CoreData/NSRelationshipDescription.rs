@@ -13,10 +13,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDeleteRule(pub NSUInteger);
 impl NSDeleteRule {
-    pub const NSNoActionDeleteRule: Self = Self(0);
-    pub const NSNullifyDeleteRule: Self = Self(1);
-    pub const NSCascadeDeleteRule: Self = Self(2);
-    pub const NSDenyDeleteRule: Self = Self(3);
+    #[doc(alias = "NSNoActionDeleteRule")]
+    pub const NoActionDeleteRule: Self = Self(0);
+    #[doc(alias = "NSNullifyDeleteRule")]
+    pub const NullifyDeleteRule: Self = Self(1);
+    #[doc(alias = "NSCascadeDeleteRule")]
+    pub const CascadeDeleteRule: Self = Self(2);
+    #[doc(alias = "NSDenyDeleteRule")]
+    pub const DenyDeleteRule: Self = Self(3);
 }
 
 unsafe impl Encode for NSDeleteRule {

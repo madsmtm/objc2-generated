@@ -13,11 +13,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPersistentStoreRequestType(pub NSUInteger);
 impl NSPersistentStoreRequestType {
-    pub const NSFetchRequestType: Self = Self(1);
-    pub const NSSaveRequestType: Self = Self(2);
-    pub const NSBatchInsertRequestType: Self = Self(5);
-    pub const NSBatchUpdateRequestType: Self = Self(6);
-    pub const NSBatchDeleteRequestType: Self = Self(7);
+    #[doc(alias = "NSFetchRequestType")]
+    pub const FetchRequestType: Self = Self(1);
+    #[doc(alias = "NSSaveRequestType")]
+    pub const SaveRequestType: Self = Self(2);
+    #[doc(alias = "NSBatchInsertRequestType")]
+    pub const BatchInsertRequestType: Self = Self(5);
+    #[doc(alias = "NSBatchUpdateRequestType")]
+    pub const BatchUpdateRequestType: Self = Self(6);
+    #[doc(alias = "NSBatchDeleteRequestType")]
+    pub const BatchDeleteRequestType: Self = Self(7);
 }
 
 unsafe impl Encode for NSPersistentStoreRequestType {

@@ -12,19 +12,32 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSXMLNodeKind(pub NSUInteger);
 impl NSXMLNodeKind {
-    pub const NSXMLInvalidKind: Self = Self(0);
-    pub const NSXMLDocumentKind: Self = Self(1);
-    pub const NSXMLElementKind: Self = Self(2);
-    pub const NSXMLAttributeKind: Self = Self(3);
-    pub const NSXMLNamespaceKind: Self = Self(4);
-    pub const NSXMLProcessingInstructionKind: Self = Self(5);
-    pub const NSXMLCommentKind: Self = Self(6);
-    pub const NSXMLTextKind: Self = Self(7);
-    pub const NSXMLDTDKind: Self = Self(8);
-    pub const NSXMLEntityDeclarationKind: Self = Self(9);
-    pub const NSXMLAttributeDeclarationKind: Self = Self(10);
-    pub const NSXMLElementDeclarationKind: Self = Self(11);
-    pub const NSXMLNotationDeclarationKind: Self = Self(12);
+    #[doc(alias = "NSXMLInvalidKind")]
+    pub const InvalidKind: Self = Self(0);
+    #[doc(alias = "NSXMLDocumentKind")]
+    pub const DocumentKind: Self = Self(1);
+    #[doc(alias = "NSXMLElementKind")]
+    pub const ElementKind: Self = Self(2);
+    #[doc(alias = "NSXMLAttributeKind")]
+    pub const AttributeKind: Self = Self(3);
+    #[doc(alias = "NSXMLNamespaceKind")]
+    pub const NamespaceKind: Self = Self(4);
+    #[doc(alias = "NSXMLProcessingInstructionKind")]
+    pub const ProcessingInstructionKind: Self = Self(5);
+    #[doc(alias = "NSXMLCommentKind")]
+    pub const CommentKind: Self = Self(6);
+    #[doc(alias = "NSXMLTextKind")]
+    pub const TextKind: Self = Self(7);
+    #[doc(alias = "NSXMLDTDKind")]
+    pub const DTDKind: Self = Self(8);
+    #[doc(alias = "NSXMLEntityDeclarationKind")]
+    pub const EntityDeclarationKind: Self = Self(9);
+    #[doc(alias = "NSXMLAttributeDeclarationKind")]
+    pub const AttributeDeclarationKind: Self = Self(10);
+    #[doc(alias = "NSXMLElementDeclarationKind")]
+    pub const ElementDeclarationKind: Self = Self(11);
+    #[doc(alias = "NSXMLNotationDeclarationKind")]
+    pub const NotationDeclarationKind: Self = Self(12);
 }
 
 unsafe impl Encode for NSXMLNodeKind {

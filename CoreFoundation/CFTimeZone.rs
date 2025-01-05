@@ -120,12 +120,18 @@ extern "C-unwind" {
 pub struct CFTimeZoneNameStyle(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFTimeZoneNameStyle {
-    pub const kCFTimeZoneNameStyleStandard: Self = Self(0);
-    pub const kCFTimeZoneNameStyleShortStandard: Self = Self(1);
-    pub const kCFTimeZoneNameStyleDaylightSaving: Self = Self(2);
-    pub const kCFTimeZoneNameStyleShortDaylightSaving: Self = Self(3);
-    pub const kCFTimeZoneNameStyleGeneric: Self = Self(4);
-    pub const kCFTimeZoneNameStyleShortGeneric: Self = Self(5);
+    #[doc(alias = "kCFTimeZoneNameStyleStandard")]
+    pub const Standard: Self = Self(0);
+    #[doc(alias = "kCFTimeZoneNameStyleShortStandard")]
+    pub const ShortStandard: Self = Self(1);
+    #[doc(alias = "kCFTimeZoneNameStyleDaylightSaving")]
+    pub const DaylightSaving: Self = Self(2);
+    #[doc(alias = "kCFTimeZoneNameStyleShortDaylightSaving")]
+    pub const ShortDaylightSaving: Self = Self(3);
+    #[doc(alias = "kCFTimeZoneNameStyleGeneric")]
+    pub const Generic: Self = Self(4);
+    #[doc(alias = "kCFTimeZoneNameStyleShortGeneric")]
+    pub const ShortGeneric: Self = Self(5);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]

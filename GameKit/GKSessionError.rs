@@ -18,22 +18,38 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GKSessionError(pub c_int);
 impl GKSessionError {
-    pub const GKSessionInvalidParameterError: Self = Self(30500);
-    pub const GKSessionPeerNotFoundError: Self = Self(30501);
-    pub const GKSessionDeclinedError: Self = Self(30502);
-    pub const GKSessionTimedOutError: Self = Self(30503);
-    pub const GKSessionCancelledError: Self = Self(30504);
-    pub const GKSessionConnectionFailedError: Self = Self(30505);
-    pub const GKSessionConnectionClosedError: Self = Self(30506);
-    pub const GKSessionDataTooBigError: Self = Self(30507);
-    pub const GKSessionNotConnectedError: Self = Self(30508);
-    pub const GKSessionCannotEnableError: Self = Self(30509);
-    pub const GKSessionInProgressError: Self = Self(30510);
-    pub const GKSessionConnectivityError: Self = Self(30201);
-    pub const GKSessionTransportError: Self = Self(30202);
-    pub const GKSessionInternalError: Self = Self(30203);
-    pub const GKSessionUnknownError: Self = Self(30204);
-    pub const GKSessionSystemError: Self = Self(30205);
+    #[doc(alias = "GKSessionInvalidParameterError")]
+    pub const InvalidParameterError: Self = Self(30500);
+    #[doc(alias = "GKSessionPeerNotFoundError")]
+    pub const PeerNotFoundError: Self = Self(30501);
+    #[doc(alias = "GKSessionDeclinedError")]
+    pub const DeclinedError: Self = Self(30502);
+    #[doc(alias = "GKSessionTimedOutError")]
+    pub const TimedOutError: Self = Self(30503);
+    #[doc(alias = "GKSessionCancelledError")]
+    pub const CancelledError: Self = Self(30504);
+    #[doc(alias = "GKSessionConnectionFailedError")]
+    pub const ConnectionFailedError: Self = Self(30505);
+    #[doc(alias = "GKSessionConnectionClosedError")]
+    pub const ConnectionClosedError: Self = Self(30506);
+    #[doc(alias = "GKSessionDataTooBigError")]
+    pub const DataTooBigError: Self = Self(30507);
+    #[doc(alias = "GKSessionNotConnectedError")]
+    pub const NotConnectedError: Self = Self(30508);
+    #[doc(alias = "GKSessionCannotEnableError")]
+    pub const CannotEnableError: Self = Self(30509);
+    #[doc(alias = "GKSessionInProgressError")]
+    pub const InProgressError: Self = Self(30510);
+    #[doc(alias = "GKSessionConnectivityError")]
+    pub const ConnectivityError: Self = Self(30201);
+    #[doc(alias = "GKSessionTransportError")]
+    pub const TransportError: Self = Self(30202);
+    #[doc(alias = "GKSessionInternalError")]
+    pub const InternalError: Self = Self(30203);
+    #[doc(alias = "GKSessionUnknownError")]
+    pub const UnknownError: Self = Self(30204);
+    #[doc(alias = "GKSessionSystemError")]
+    pub const SystemError: Self = Self(30205);
 }
 
 unsafe impl Encode for GKSessionError {

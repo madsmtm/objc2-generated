@@ -15,13 +15,20 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTitlePosition(pub NSUInteger);
 impl NSTitlePosition {
-    pub const NSNoTitle: Self = Self(0);
-    pub const NSAboveTop: Self = Self(1);
-    pub const NSAtTop: Self = Self(2);
-    pub const NSBelowTop: Self = Self(3);
-    pub const NSAboveBottom: Self = Self(4);
-    pub const NSAtBottom: Self = Self(5);
-    pub const NSBelowBottom: Self = Self(6);
+    #[doc(alias = "NSNoTitle")]
+    pub const NoTitle: Self = Self(0);
+    #[doc(alias = "NSAboveTop")]
+    pub const AboveTop: Self = Self(1);
+    #[doc(alias = "NSAtTop")]
+    pub const AtTop: Self = Self(2);
+    #[doc(alias = "NSBelowTop")]
+    pub const BelowTop: Self = Self(3);
+    #[doc(alias = "NSAboveBottom")]
+    pub const AboveBottom: Self = Self(4);
+    #[doc(alias = "NSAtBottom")]
+    pub const AtBottom: Self = Self(5);
+    #[doc(alias = "NSBelowBottom")]
+    pub const BelowBottom: Self = Self(6);
 }
 
 unsafe impl Encode for NSTitlePosition {
@@ -38,9 +45,12 @@ unsafe impl RefEncode for NSTitlePosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSBoxType(pub NSUInteger);
 impl NSBoxType {
-    pub const NSBoxPrimary: Self = Self(0);
-    pub const NSBoxSeparator: Self = Self(2);
-    pub const NSBoxCustom: Self = Self(4);
+    #[doc(alias = "NSBoxPrimary")]
+    pub const Primary: Self = Self(0);
+    #[doc(alias = "NSBoxSeparator")]
+    pub const Separator: Self = Self(2);
+    #[doc(alias = "NSBoxCustom")]
+    pub const Custom: Self = Self(4);
 }
 
 unsafe impl Encode for NSBoxType {

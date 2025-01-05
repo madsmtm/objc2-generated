@@ -14,14 +14,22 @@ use crate::*;
 pub struct OSALanguageFeatures(pub NSUInteger);
 bitflags::bitflags! {
     impl OSALanguageFeatures: NSUInteger {
-        const OSASupportsCompiling = 0x0002;
-        const OSASupportsGetSource = 0x0004;
-        const OSASupportsAECoercion = 0x0008;
-        const OSASupportsAESending = 0x0010;
-        const OSASupportsRecording = 0x0020;
-        const OSASupportsConvenience = 0x0040;
-        const OSASupportsDialects = 0x0080;
-        const OSASupportsEventHandling = 0x0100;
+        #[doc(alias = "OSASupportsCompiling")]
+        const SupportsCompiling = 0x0002;
+        #[doc(alias = "OSASupportsGetSource")]
+        const SupportsGetSource = 0x0004;
+        #[doc(alias = "OSASupportsAECoercion")]
+        const SupportsAECoercion = 0x0008;
+        #[doc(alias = "OSASupportsAESending")]
+        const SupportsAESending = 0x0010;
+        #[doc(alias = "OSASupportsRecording")]
+        const SupportsRecording = 0x0020;
+        #[doc(alias = "OSASupportsConvenience")]
+        const SupportsConvenience = 0x0040;
+        #[doc(alias = "OSASupportsDialects")]
+        const SupportsDialects = 0x0080;
+        #[doc(alias = "OSASupportsEventHandling")]
+        const SupportsEventHandling = 0x0100;
     }
 }
 

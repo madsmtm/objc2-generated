@@ -18,8 +18,10 @@ pub type CGGradientRef = *mut c_void;
 pub struct CGGradientDrawingOptions(pub u32);
 bitflags::bitflags! {
     impl CGGradientDrawingOptions: u32 {
-        const kCGGradientDrawsBeforeStartLocation = 1<<0;
-        const kCGGradientDrawsAfterEndLocation = 1<<1;
+        #[doc(alias = "kCGGradientDrawsBeforeStartLocation")]
+        const DrawsBeforeStartLocation = 1<<0;
+        #[doc(alias = "kCGGradientDrawsAfterEndLocation")]
+        const DrawsAfterEndLocation = 1<<1;
     }
 }
 

@@ -16,29 +16,52 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ACErrorCode(pub c_uint);
 impl ACErrorCode {
-    pub const ACErrorUnknown: Self = Self(1);
-    pub const ACErrorAccountMissingRequiredProperty: Self = Self(2);
-    pub const ACErrorAccountAuthenticationFailed: Self = Self(3);
-    pub const ACErrorAccountTypeInvalid: Self = Self(4);
-    pub const ACErrorAccountAlreadyExists: Self = Self(5);
-    pub const ACErrorAccountNotFound: Self = Self(6);
-    pub const ACErrorPermissionDenied: Self = Self(7);
-    pub const ACErrorAccessInfoInvalid: Self = Self(8);
-    pub const ACErrorClientPermissionDenied: Self = Self(9);
-    pub const ACErrorAccessDeniedByProtectionPolicy: Self = Self(10);
-    pub const ACErrorCredentialNotFound: Self = Self(11);
-    pub const ACErrorFetchCredentialFailed: Self = Self(12);
-    pub const ACErrorStoreCredentialFailed: Self = Self(13);
-    pub const ACErrorRemoveCredentialFailed: Self = Self(14);
-    pub const ACErrorUpdatingNonexistentAccount: Self = Self(15);
-    pub const ACErrorInvalidClientBundleID: Self = Self(16);
-    pub const ACErrorDeniedByPlugin: Self = Self(17);
-    pub const ACErrorCoreDataSaveFailed: Self = Self(18);
-    pub const ACErrorFailedSerializingAccountInfo: Self = Self(19);
-    pub const ACErrorInvalidCommand: Self = Self(20);
-    pub const ACErrorMissingTransportMessageID: Self = Self(21);
-    pub const ACErrorCredentialItemNotFound: Self = Self(22);
-    pub const ACErrorCredentialItemNotExpired: Self = Self(23);
+    #[doc(alias = "ACErrorUnknown")]
+    pub const Unknown: Self = Self(1);
+    #[doc(alias = "ACErrorAccountMissingRequiredProperty")]
+    pub const AccountMissingRequiredProperty: Self = Self(2);
+    #[doc(alias = "ACErrorAccountAuthenticationFailed")]
+    pub const AccountAuthenticationFailed: Self = Self(3);
+    #[doc(alias = "ACErrorAccountTypeInvalid")]
+    pub const AccountTypeInvalid: Self = Self(4);
+    #[doc(alias = "ACErrorAccountAlreadyExists")]
+    pub const AccountAlreadyExists: Self = Self(5);
+    #[doc(alias = "ACErrorAccountNotFound")]
+    pub const AccountNotFound: Self = Self(6);
+    #[doc(alias = "ACErrorPermissionDenied")]
+    pub const PermissionDenied: Self = Self(7);
+    #[doc(alias = "ACErrorAccessInfoInvalid")]
+    pub const AccessInfoInvalid: Self = Self(8);
+    #[doc(alias = "ACErrorClientPermissionDenied")]
+    pub const ClientPermissionDenied: Self = Self(9);
+    #[doc(alias = "ACErrorAccessDeniedByProtectionPolicy")]
+    pub const AccessDeniedByProtectionPolicy: Self = Self(10);
+    #[doc(alias = "ACErrorCredentialNotFound")]
+    pub const CredentialNotFound: Self = Self(11);
+    #[doc(alias = "ACErrorFetchCredentialFailed")]
+    pub const FetchCredentialFailed: Self = Self(12);
+    #[doc(alias = "ACErrorStoreCredentialFailed")]
+    pub const StoreCredentialFailed: Self = Self(13);
+    #[doc(alias = "ACErrorRemoveCredentialFailed")]
+    pub const RemoveCredentialFailed: Self = Self(14);
+    #[doc(alias = "ACErrorUpdatingNonexistentAccount")]
+    pub const UpdatingNonexistentAccount: Self = Self(15);
+    #[doc(alias = "ACErrorInvalidClientBundleID")]
+    pub const InvalidClientBundleID: Self = Self(16);
+    #[doc(alias = "ACErrorDeniedByPlugin")]
+    pub const DeniedByPlugin: Self = Self(17);
+    #[doc(alias = "ACErrorCoreDataSaveFailed")]
+    pub const CoreDataSaveFailed: Self = Self(18);
+    #[doc(alias = "ACErrorFailedSerializingAccountInfo")]
+    pub const FailedSerializingAccountInfo: Self = Self(19);
+    #[doc(alias = "ACErrorInvalidCommand")]
+    pub const InvalidCommand: Self = Self(20);
+    #[doc(alias = "ACErrorMissingTransportMessageID")]
+    pub const MissingTransportMessageID: Self = Self(21);
+    #[doc(alias = "ACErrorCredentialItemNotFound")]
+    pub const CredentialItemNotFound: Self = Self(22);
+    #[doc(alias = "ACErrorCredentialItemNotExpired")]
+    pub const CredentialItemNotExpired: Self = Self(23);
 }
 
 unsafe impl Encode for ACErrorCode {

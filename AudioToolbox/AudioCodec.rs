@@ -268,10 +268,14 @@ unsafe impl RefEncode for AudioCodecPrimeInfo {
 pub struct AudioSettingsFlags(pub u32);
 bitflags::bitflags! {
     impl AudioSettingsFlags: u32 {
-        const kAudioSettingsFlags_ExpertParameter = 1<<0;
-        const kAudioSettingsFlags_InvisibleParameter = 1<<1;
-        const kAudioSettingsFlags_MetaParameter = 1<<2;
-        const kAudioSettingsFlags_UserInterfaceParameter = 1<<3;
+        #[doc(alias = "kAudioSettingsFlags_ExpertParameter")]
+        const ExpertParameter = 1<<0;
+        #[doc(alias = "kAudioSettingsFlags_InvisibleParameter")]
+        const InvisibleParameter = 1<<1;
+        #[doc(alias = "kAudioSettingsFlags_MetaParameter")]
+        const MetaParameter = 1<<2;
+        #[doc(alias = "kAudioSettingsFlags_UserInterfaceParameter")]
+        const UserInterfaceParameter = 1<<3;
     }
 }
 

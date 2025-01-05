@@ -109,12 +109,18 @@ extern "C" {
 pub struct OSAStorageOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl OSAStorageOptions: NSUInteger {
-        const OSANull = 0x00000000;
-        const OSAPreventGetSource = 0x00000001;
-        const OSACompileIntoContext = 0x00000002;
-        const OSADontSetScriptLocation = 0x01000000;
-        const OSAStayOpenApplet = 0x10000000;
-        const OSAShowStartupScreen = 0x20000000;
+        #[doc(alias = "OSANull")]
+        const Null = 0x00000000;
+        #[doc(alias = "OSAPreventGetSource")]
+        const PreventGetSource = 0x00000001;
+        #[doc(alias = "OSACompileIntoContext")]
+        const CompileIntoContext = 0x00000002;
+        #[doc(alias = "OSADontSetScriptLocation")]
+        const DontSetScriptLocation = 0x01000000;
+        #[doc(alias = "OSAStayOpenApplet")]
+        const StayOpenApplet = 0x10000000;
+        #[doc(alias = "OSAShowStartupScreen")]
+        const ShowStartupScreen = 0x20000000;
     }
 }
 

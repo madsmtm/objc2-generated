@@ -185,11 +185,16 @@ pub const kAudioQueueParam_Pan: AudioQueueParameterID = 13;
 pub struct AudioQueueProcessingTapFlags(pub u32);
 bitflags::bitflags! {
     impl AudioQueueProcessingTapFlags: u32 {
-        const kAudioQueueProcessingTap_PreEffects = 1<<0;
-        const kAudioQueueProcessingTap_PostEffects = 1<<1;
-        const kAudioQueueProcessingTap_Siphon = 1<<2;
-        const kAudioQueueProcessingTap_StartOfStream = 1<<8;
-        const kAudioQueueProcessingTap_EndOfStream = 1<<9;
+        #[doc(alias = "kAudioQueueProcessingTap_PreEffects")]
+        const PreEffects = 1<<0;
+        #[doc(alias = "kAudioQueueProcessingTap_PostEffects")]
+        const PostEffects = 1<<1;
+        #[doc(alias = "kAudioQueueProcessingTap_Siphon")]
+        const Siphon = 1<<2;
+        #[doc(alias = "kAudioQueueProcessingTap_StartOfStream")]
+        const StartOfStream = 1<<8;
+        #[doc(alias = "kAudioQueueProcessingTap_EndOfStream")]
+        const EndOfStream = 1<<9;
     }
 }
 

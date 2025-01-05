@@ -102,8 +102,10 @@ unsafe impl RefEncode for NSDraggingContext {
 pub struct NSDraggingItemEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDraggingItemEnumerationOptions: NSUInteger {
-        const NSDraggingItemEnumerationConcurrent = NSEnumerationOptions::NSEnumerationConcurrent.0;
-        const NSDraggingItemEnumerationClearNonenumeratedImages = 1<<16;
+        #[doc(alias = "NSDraggingItemEnumerationConcurrent")]
+        const Concurrent = NSEnumerationOptions::Concurrent.0;
+        #[doc(alias = "NSDraggingItemEnumerationClearNonenumeratedImages")]
+        const ClearNonenumeratedImages = 1<<16;
     }
 }
 
@@ -333,10 +335,14 @@ extern_protocol!(
 pub struct NSSpringLoadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSSpringLoadingOptions: NSUInteger {
-        const NSSpringLoadingDisabled = 0;
-        const NSSpringLoadingEnabled = 1<<0;
-        const NSSpringLoadingContinuousActivation = 1<<1;
-        const NSSpringLoadingNoHover = 1<<3;
+        #[doc(alias = "NSSpringLoadingDisabled")]
+        const Disabled = 0;
+        #[doc(alias = "NSSpringLoadingEnabled")]
+        const Enabled = 1<<0;
+        #[doc(alias = "NSSpringLoadingContinuousActivation")]
+        const ContinuousActivation = 1<<1;
+        #[doc(alias = "NSSpringLoadingNoHover")]
+        const NoHover = 1<<3;
     }
 }
 

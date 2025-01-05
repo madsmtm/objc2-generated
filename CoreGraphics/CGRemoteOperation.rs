@@ -61,9 +61,12 @@ extern "C-unwind" {
 pub struct CGScreenUpdateOperation(pub u32);
 bitflags::bitflags! {
     impl CGScreenUpdateOperation: u32 {
-        const kCGScreenUpdateOperationRefresh = 0;
-        const kCGScreenUpdateOperationMove = 1<<0;
-        const kCGScreenUpdateOperationReducedDirtyRectangleCount = 1<<31;
+        #[doc(alias = "kCGScreenUpdateOperationRefresh")]
+        const Refresh = 0;
+        #[doc(alias = "kCGScreenUpdateOperationMove")]
+        const Move = 1<<0;
+        #[doc(alias = "kCGScreenUpdateOperationReducedDirtyRectangleCount")]
+        const ReducedDirtyRectangleCount = 1<<31;
     }
 }
 
@@ -196,9 +199,12 @@ extern "C-unwind" {
 pub struct CGEventFilterMask(pub u32);
 bitflags::bitflags! {
     impl CGEventFilterMask: u32 {
-        const kCGEventFilterMaskPermitLocalMouseEvents = 0x00000001;
-        const kCGEventFilterMaskPermitLocalKeyboardEvents = 0x00000002;
-        const kCGEventFilterMaskPermitSystemDefinedEvents = 0x00000004;
+        #[doc(alias = "kCGEventFilterMaskPermitLocalMouseEvents")]
+        const PermitLocalMouseEvents = 0x00000001;
+        #[doc(alias = "kCGEventFilterMaskPermitLocalKeyboardEvents")]
+        const PermitLocalKeyboardEvents = 0x00000002;
+        #[doc(alias = "kCGEventFilterMaskPermitSystemDefinedEvents")]
+        const PermitSystemDefinedEvents = 0x00000004;
     }
 }
 
@@ -218,9 +224,12 @@ unsafe impl RefEncode for CGEventFilterMask {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGEventSuppressionState(pub u32);
 impl CGEventSuppressionState {
-    pub const kCGEventSuppressionStateSuppressionInterval: Self = Self(0);
-    pub const kCGEventSuppressionStateRemoteMouseDrag: Self = Self(1);
-    pub const kCGNumberOfEventSuppressionStates: Self = Self(2);
+    #[doc(alias = "kCGEventSuppressionStateSuppressionInterval")]
+    pub const EventSuppressionStateSuppressionInterval: Self = Self(0);
+    #[doc(alias = "kCGEventSuppressionStateRemoteMouseDrag")]
+    pub const EventSuppressionStateRemoteMouseDrag: Self = Self(1);
+    #[doc(alias = "kCGNumberOfEventSuppressionStates")]
+    pub const NumberOfEventSuppressionStates: Self = Self(2);
 }
 
 #[cfg(feature = "objc2")]

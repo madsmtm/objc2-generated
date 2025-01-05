@@ -11,29 +11,27 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablestrongmemory?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSMapTableStrongMemory: NSPointerFunctionsOptions =
-    NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsStrongMemory.0);
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::StrongMemory.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablezeroingweakmemory?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSMapTableZeroingWeakMemory: NSPointerFunctionsOptions =
-    NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsZeroingWeakMemory.0);
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::ZeroingWeakMemory.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablecopyin?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSMapTableCopyIn: NSPointerFunctionsOptions =
-    NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsCopyIn.0);
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::CopyIn.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptableobjectpointerpersonality?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSMapTableObjectPointerPersonality: NSPointerFunctionsOptions =
-    NSPointerFunctionsOptions(
-        NSPointerFunctionsOptions::NSPointerFunctionsObjectPointerPersonality.0,
-    );
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::ObjectPointerPersonality.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptableweakmemory?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSMapTableWeakMemory: NSPointerFunctionsOptions =
-    NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsWeakMemory.0);
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::WeakMemory.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptableoptions?language=objc)
 pub type NSMapTableOptions = NSUInteger;

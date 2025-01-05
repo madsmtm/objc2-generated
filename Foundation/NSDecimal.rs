@@ -14,10 +14,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSRoundingMode(pub NSUInteger);
 impl NSRoundingMode {
-    pub const NSRoundPlain: Self = Self(0);
-    pub const NSRoundDown: Self = Self(1);
-    pub const NSRoundUp: Self = Self(2);
-    pub const NSRoundBankers: Self = Self(3);
+    #[doc(alias = "NSRoundPlain")]
+    pub const RoundPlain: Self = Self(0);
+    #[doc(alias = "NSRoundDown")]
+    pub const RoundDown: Self = Self(1);
+    #[doc(alias = "NSRoundUp")]
+    pub const RoundUp: Self = Self(2);
+    #[doc(alias = "NSRoundBankers")]
+    pub const RoundBankers: Self = Self(3);
 }
 
 unsafe impl Encode for NSRoundingMode {
@@ -34,11 +38,16 @@ unsafe impl RefEncode for NSRoundingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSCalculationError(pub NSUInteger);
 impl NSCalculationError {
-    pub const NSCalculationNoError: Self = Self(0);
-    pub const NSCalculationLossOfPrecision: Self = Self(1);
-    pub const NSCalculationUnderflow: Self = Self(2);
-    pub const NSCalculationOverflow: Self = Self(3);
-    pub const NSCalculationDivideByZero: Self = Self(4);
+    #[doc(alias = "NSCalculationNoError")]
+    pub const NoError: Self = Self(0);
+    #[doc(alias = "NSCalculationLossOfPrecision")]
+    pub const LossOfPrecision: Self = Self(1);
+    #[doc(alias = "NSCalculationUnderflow")]
+    pub const Underflow: Self = Self(2);
+    #[doc(alias = "NSCalculationOverflow")]
+    pub const Overflow: Self = Self(3);
+    #[doc(alias = "NSCalculationDivideByZero")]
+    pub const DivideByZero: Self = Self(4);
 }
 
 unsafe impl Encode for NSCalculationError {

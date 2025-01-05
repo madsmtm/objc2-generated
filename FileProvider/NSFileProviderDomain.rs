@@ -74,7 +74,8 @@ pub struct NSFileProviderDomainTestingModes(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderDomainTestingModes: NSUInteger {
 /// Enable the domain without any user action required.
-        const NSFileProviderDomainTestingModeAlwaysEnabled = 1<<0;
+        #[doc(alias = "NSFileProviderDomainTestingModeAlwaysEnabled")]
+        const AlwaysEnabled = 1<<0;
 /// Enable interactive mode.
 ///
 /// Disable the automatic scheduling from the system and allow external tools to
@@ -87,7 +88,8 @@ bitflags::bitflags! {
 /// If that mode is enabled, some crash recovery guarantees are lost. For instance,
 /// the system may lose any event that hasn't been ingested. The system does not
 /// support removing this mode from a domain on which it has been enabled.
-        const NSFileProviderDomainTestingModeInteractive = 1<<1;
+        #[doc(alias = "NSFileProviderDomainTestingModeInteractive")]
+        const Interactive = 1<<1;
     }
 }
 
@@ -108,8 +110,10 @@ unsafe impl RefEncode for NSFileProviderDomainTestingModes {
 pub struct NSFileProviderKnownFolders(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderKnownFolders: NSUInteger {
-        const NSFileProviderDesktop = 1<<0;
-        const NSFileProviderDocuments = 1<<1;
+        #[doc(alias = "NSFileProviderDesktop")]
+        const Desktop = 1<<0;
+        #[doc(alias = "NSFileProviderDocuments")]
+        const Documents = 1<<1;
     }
 }
 

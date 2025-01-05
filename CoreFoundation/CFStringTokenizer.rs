@@ -98,27 +98,34 @@ pub struct CFStringTokenizerTokenType(pub CFOptionFlags);
 #[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFStringTokenizerTokenType: CFOptionFlags {
-        const kCFStringTokenizerTokenNone = 0;
-        const kCFStringTokenizerTokenNormal = 1<<0;
+        #[doc(alias = "kCFStringTokenizerTokenNone")]
+        const None = 0;
+        #[doc(alias = "kCFStringTokenizerTokenNormal")]
+        const Normal = 1<<0;
 /// Compound token which may contain subtokens but with no derived subtokens.
 /// Its subtokens can be obtained by calling CFStringTokenizerGetCurrentSubTokens.
-        const kCFStringTokenizerTokenHasSubTokensMask = 1<<1;
+        #[doc(alias = "kCFStringTokenizerTokenHasSubTokensMask")]
+        const HasSubTokensMask = 1<<1;
 /// Compound token which may contain derived subtokens.
 /// Its subtokens and derived subtokens can be obtained by calling
 /// CFStringTokenizerGetCurrentSubTokens.
-        const kCFStringTokenizerTokenHasDerivedSubTokensMask = 1<<2;
+        #[doc(alias = "kCFStringTokenizerTokenHasDerivedSubTokensMask")]
+        const HasDerivedSubTokensMask = 1<<2;
 /// Compound token which may contain derived subtokens.
 /// Its subtokens and derived subtokens can be obtained by calling
 /// CFStringTokenizerGetCurrentSubTokens.
-        const kCFStringTokenizerTokenHasHasNumbersMask = 1<<3;
+        #[doc(alias = "kCFStringTokenizerTokenHasHasNumbersMask")]
+        const HasHasNumbersMask = 1<<3;
 /// Compound token which may contain derived subtokens.
 /// Its subtokens and derived subtokens can be obtained by calling
 /// CFStringTokenizerGetCurrentSubTokens.
-        const kCFStringTokenizerTokenHasNonLettersMask = 1<<4;
+        #[doc(alias = "kCFStringTokenizerTokenHasNonLettersMask")]
+        const HasNonLettersMask = 1<<4;
 /// Compound token which may contain derived subtokens.
 /// Its subtokens and derived subtokens can be obtained by calling
 /// CFStringTokenizerGetCurrentSubTokens.
-        const kCFStringTokenizerTokenIsCJWordMask = 1<<5;
+        #[doc(alias = "kCFStringTokenizerTokenIsCJWordMask")]
+        const IsCJWordMask = 1<<5;
     }
 }
 

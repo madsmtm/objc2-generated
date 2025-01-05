@@ -257,18 +257,30 @@ unsafe impl RefEncode for UIKeyboardAppearance {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIReturnKeyType(pub NSInteger);
 impl UIReturnKeyType {
-    pub const UIReturnKeyDefault: Self = Self(0);
-    pub const UIReturnKeyGo: Self = Self(1);
-    pub const UIReturnKeyGoogle: Self = Self(2);
-    pub const UIReturnKeyJoin: Self = Self(3);
-    pub const UIReturnKeyNext: Self = Self(4);
-    pub const UIReturnKeyRoute: Self = Self(5);
-    pub const UIReturnKeySearch: Self = Self(6);
-    pub const UIReturnKeySend: Self = Self(7);
-    pub const UIReturnKeyYahoo: Self = Self(8);
-    pub const UIReturnKeyDone: Self = Self(9);
-    pub const UIReturnKeyEmergencyCall: Self = Self(10);
-    pub const UIReturnKeyContinue: Self = Self(11);
+    #[doc(alias = "UIReturnKeyDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "UIReturnKeyGo")]
+    pub const Go: Self = Self(1);
+    #[doc(alias = "UIReturnKeyGoogle")]
+    pub const Google: Self = Self(2);
+    #[doc(alias = "UIReturnKeyJoin")]
+    pub const Join: Self = Self(3);
+    #[doc(alias = "UIReturnKeyNext")]
+    pub const Next: Self = Self(4);
+    #[doc(alias = "UIReturnKeyRoute")]
+    pub const Route: Self = Self(5);
+    #[doc(alias = "UIReturnKeySearch")]
+    pub const Search: Self = Self(6);
+    #[doc(alias = "UIReturnKeySend")]
+    pub const Send: Self = Self(7);
+    #[doc(alias = "UIReturnKeyYahoo")]
+    pub const Yahoo: Self = Self(8);
+    #[doc(alias = "UIReturnKeyDone")]
+    pub const Done: Self = Self(9);
+    #[doc(alias = "UIReturnKeyEmergencyCall")]
+    pub const EmergencyCall: Self = Self(10);
+    #[doc(alias = "UIReturnKeyContinue")]
+    pub const Continue: Self = Self(11);
 }
 
 unsafe impl Encode for UIReturnKeyType {
@@ -315,15 +327,20 @@ pub struct UIWritingToolsResultOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIWritingToolsResultOptions: NSUInteger {
 /// System-defined behavior
-        const UIWritingToolsResultDefault = 0;
+        #[doc(alias = "UIWritingToolsResultDefault")]
+        const Default = 0;
 /// Writing Tools will provide plain text in proofreading suggestions or rewrites
-        const UIWritingToolsResultPlainText = 1<<0;
+        #[doc(alias = "UIWritingToolsResultPlainText")]
+        const PlainText = 1<<0;
 /// As well as plain text, Writing Tools will provide text attributes in proofreading suggestions or rewrites that are natively supported or known to be easily adopted (such as lists)
-        const UIWritingToolsResultRichText = 1<<1;
+        #[doc(alias = "UIWritingToolsResultRichText")]
+        const RichText = 1<<1;
 /// implies `RichText`,  and Writing Tools may provide attributes for list layout
-        const UIWritingToolsResultList = 1<<2;
+        #[doc(alias = "UIWritingToolsResultList")]
+        const List = 1<<2;
 /// implies `RichText`,  and Writing Tools may provide attributes for tabular layout
-        const UIWritingToolsResultTable = 1<<3;
+        #[doc(alias = "UIWritingToolsResultTable")]
+        const Table = 1<<3;
     }
 }
 

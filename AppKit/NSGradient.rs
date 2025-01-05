@@ -16,8 +16,10 @@ use crate::*;
 pub struct NSGradientDrawingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSGradientDrawingOptions: NSUInteger {
-        const NSGradientDrawsBeforeStartingLocation = 1<<0;
-        const NSGradientDrawsAfterEndingLocation = 1<<1;
+        #[doc(alias = "NSGradientDrawsBeforeStartingLocation")]
+        const DrawsBeforeStartingLocation = 1<<0;
+        #[doc(alias = "NSGradientDrawsAfterEndingLocation")]
+        const DrawsAfterEndingLocation = 1<<1;
     }
 }
 

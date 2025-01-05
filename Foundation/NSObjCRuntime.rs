@@ -96,8 +96,10 @@ pub type NSComparator =
 pub struct NSEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEnumerationOptions: NSUInteger {
-        const NSEnumerationConcurrent = 1<<0;
-        const NSEnumerationReverse = 1<<1;
+        #[doc(alias = "NSEnumerationConcurrent")]
+        const Concurrent = 1<<0;
+        #[doc(alias = "NSEnumerationReverse")]
+        const Reverse = 1<<1;
     }
 }
 
@@ -116,8 +118,10 @@ unsafe impl RefEncode for NSEnumerationOptions {
 pub struct NSSortOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSSortOptions: NSUInteger {
-        const NSSortConcurrent = 1<<0;
-        const NSSortStable = 1<<4;
+        #[doc(alias = "NSSortConcurrent")]
+        const Concurrent = 1<<0;
+        #[doc(alias = "NSSortStable")]
+        const Stable = 1<<4;
     }
 }
 

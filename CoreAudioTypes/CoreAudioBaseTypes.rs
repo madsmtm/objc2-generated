@@ -452,18 +452,30 @@ unsafe impl RefEncode for AudioStreamPacketDescription {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SMPTETimeType(pub u32);
 impl SMPTETimeType {
-    pub const kSMPTETimeType24: Self = Self(0);
-    pub const kSMPTETimeType25: Self = Self(1);
-    pub const kSMPTETimeType30Drop: Self = Self(2);
-    pub const kSMPTETimeType30: Self = Self(3);
-    pub const kSMPTETimeType2997: Self = Self(4);
-    pub const kSMPTETimeType2997Drop: Self = Self(5);
-    pub const kSMPTETimeType60: Self = Self(6);
-    pub const kSMPTETimeType5994: Self = Self(7);
-    pub const kSMPTETimeType60Drop: Self = Self(8);
-    pub const kSMPTETimeType5994Drop: Self = Self(9);
-    pub const kSMPTETimeType50: Self = Self(10);
-    pub const kSMPTETimeType2398: Self = Self(11);
+    #[doc(alias = "kSMPTETimeType24")]
+    pub const Type24: Self = Self(0);
+    #[doc(alias = "kSMPTETimeType25")]
+    pub const Type25: Self = Self(1);
+    #[doc(alias = "kSMPTETimeType30Drop")]
+    pub const Type30Drop: Self = Self(2);
+    #[doc(alias = "kSMPTETimeType30")]
+    pub const Type30: Self = Self(3);
+    #[doc(alias = "kSMPTETimeType2997")]
+    pub const Type2997: Self = Self(4);
+    #[doc(alias = "kSMPTETimeType2997Drop")]
+    pub const Type2997Drop: Self = Self(5);
+    #[doc(alias = "kSMPTETimeType60")]
+    pub const Type60: Self = Self(6);
+    #[doc(alias = "kSMPTETimeType5994")]
+    pub const Type5994: Self = Self(7);
+    #[doc(alias = "kSMPTETimeType60Drop")]
+    pub const Type60Drop: Self = Self(8);
+    #[doc(alias = "kSMPTETimeType5994Drop")]
+    pub const Type5994Drop: Self = Self(9);
+    #[doc(alias = "kSMPTETimeType50")]
+    pub const Type50: Self = Self(10);
+    #[doc(alias = "kSMPTETimeType2398")]
+    pub const Type2398: Self = Self(11);
 }
 
 #[cfg(feature = "objc2")]
@@ -489,9 +501,12 @@ unsafe impl RefEncode for SMPTETimeType {
 pub struct SMPTETimeFlags(pub u32);
 bitflags::bitflags! {
     impl SMPTETimeFlags: u32 {
-        const kSMPTETimeUnknown = 0;
-        const kSMPTETimeValid = 1<<0;
-        const kSMPTETimeRunning = 1<<1;
+        #[doc(alias = "kSMPTETimeUnknown")]
+        const Unknown = 0;
+        #[doc(alias = "kSMPTETimeValid")]
+        const Valid = 1<<0;
+        #[doc(alias = "kSMPTETimeRunning")]
+        const Running = 1<<1;
     }
 }
 
@@ -584,13 +599,20 @@ unsafe impl RefEncode for SMPTETime {
 pub struct AudioTimeStampFlags(pub u32);
 bitflags::bitflags! {
     impl AudioTimeStampFlags: u32 {
-        const kAudioTimeStampNothingValid = 0;
-        const kAudioTimeStampSampleTimeValid = 1<<0;
-        const kAudioTimeStampHostTimeValid = 1<<1;
-        const kAudioTimeStampRateScalarValid = 1<<2;
-        const kAudioTimeStampWordClockTimeValid = 1<<3;
-        const kAudioTimeStampSMPTETimeValid = 1<<4;
-        const kAudioTimeStampSampleHostTimeValid = AudioTimeStampFlags::kAudioTimeStampSampleTimeValid.0|AudioTimeStampFlags::kAudioTimeStampHostTimeValid.0;
+        #[doc(alias = "kAudioTimeStampNothingValid")]
+        const NothingValid = 0;
+        #[doc(alias = "kAudioTimeStampSampleTimeValid")]
+        const SampleTimeValid = 1<<0;
+        #[doc(alias = "kAudioTimeStampHostTimeValid")]
+        const HostTimeValid = 1<<1;
+        #[doc(alias = "kAudioTimeStampRateScalarValid")]
+        const RateScalarValid = 1<<2;
+        #[doc(alias = "kAudioTimeStampWordClockTimeValid")]
+        const WordClockTimeValid = 1<<3;
+        #[doc(alias = "kAudioTimeStampSMPTETimeValid")]
+        const SMPTETimeValid = 1<<4;
+        #[doc(alias = "kAudioTimeStampSampleHostTimeValid")]
+        const SampleHostTimeValid = AudioTimeStampFlags::SampleTimeValid.0|AudioTimeStampFlags::HostTimeValid.0;
     }
 }
 
@@ -950,33 +972,60 @@ pub const kAudioChannelLabel_EndReserved: AudioChannelLabel = 0xFFFFFFFE;
 pub struct AudioChannelBitmap(pub u32);
 bitflags::bitflags! {
     impl AudioChannelBitmap: u32 {
-        const kAudioChannelBit_Left = 1<<0;
-        const kAudioChannelBit_Right = 1<<1;
-        const kAudioChannelBit_Center = 1<<2;
-        const kAudioChannelBit_LFEScreen = 1<<3;
-        const kAudioChannelBit_LeftSurround = 1<<4;
-        const kAudioChannelBit_RightSurround = 1<<5;
-        const kAudioChannelBit_LeftCenter = 1<<6;
-        const kAudioChannelBit_RightCenter = 1<<7;
-        const kAudioChannelBit_CenterSurround = 1<<8;
-        const kAudioChannelBit_LeftSurroundDirect = 1<<9;
-        const kAudioChannelBit_RightSurroundDirect = 1<<10;
-        const kAudioChannelBit_TopCenterSurround = 1<<11;
-        const kAudioChannelBit_VerticalHeightLeft = 1<<12;
-        const kAudioChannelBit_VerticalHeightCenter = 1<<13;
-        const kAudioChannelBit_VerticalHeightRight = 1<<14;
-        const kAudioChannelBit_TopBackLeft = 1<<15;
-        const kAudioChannelBit_TopBackCenter = 1<<16;
-        const kAudioChannelBit_TopBackRight = 1<<17;
-        const kAudioChannelBit_LeftTopFront = AudioChannelBitmap::kAudioChannelBit_VerticalHeightLeft.0;
-        const kAudioChannelBit_CenterTopFront = AudioChannelBitmap::kAudioChannelBit_VerticalHeightCenter.0;
-        const kAudioChannelBit_RightTopFront = AudioChannelBitmap::kAudioChannelBit_VerticalHeightRight.0;
-        const kAudioChannelBit_LeftTopMiddle = 1<<21;
-        const kAudioChannelBit_CenterTopMiddle = AudioChannelBitmap::kAudioChannelBit_TopCenterSurround.0;
-        const kAudioChannelBit_RightTopMiddle = 1<<23;
-        const kAudioChannelBit_LeftTopRear = 1<<24;
-        const kAudioChannelBit_CenterTopRear = 1<<25;
-        const kAudioChannelBit_RightTopRear = 1<<26;
+        #[doc(alias = "kAudioChannelBit_Left")]
+        const Bit_Left = 1<<0;
+        #[doc(alias = "kAudioChannelBit_Right")]
+        const Bit_Right = 1<<1;
+        #[doc(alias = "kAudioChannelBit_Center")]
+        const Bit_Center = 1<<2;
+        #[doc(alias = "kAudioChannelBit_LFEScreen")]
+        const Bit_LFEScreen = 1<<3;
+        #[doc(alias = "kAudioChannelBit_LeftSurround")]
+        const Bit_LeftSurround = 1<<4;
+        #[doc(alias = "kAudioChannelBit_RightSurround")]
+        const Bit_RightSurround = 1<<5;
+        #[doc(alias = "kAudioChannelBit_LeftCenter")]
+        const Bit_LeftCenter = 1<<6;
+        #[doc(alias = "kAudioChannelBit_RightCenter")]
+        const Bit_RightCenter = 1<<7;
+        #[doc(alias = "kAudioChannelBit_CenterSurround")]
+        const Bit_CenterSurround = 1<<8;
+        #[doc(alias = "kAudioChannelBit_LeftSurroundDirect")]
+        const Bit_LeftSurroundDirect = 1<<9;
+        #[doc(alias = "kAudioChannelBit_RightSurroundDirect")]
+        const Bit_RightSurroundDirect = 1<<10;
+        #[doc(alias = "kAudioChannelBit_TopCenterSurround")]
+        const Bit_TopCenterSurround = 1<<11;
+        #[doc(alias = "kAudioChannelBit_VerticalHeightLeft")]
+        const Bit_VerticalHeightLeft = 1<<12;
+        #[doc(alias = "kAudioChannelBit_VerticalHeightCenter")]
+        const Bit_VerticalHeightCenter = 1<<13;
+        #[doc(alias = "kAudioChannelBit_VerticalHeightRight")]
+        const Bit_VerticalHeightRight = 1<<14;
+        #[doc(alias = "kAudioChannelBit_TopBackLeft")]
+        const Bit_TopBackLeft = 1<<15;
+        #[doc(alias = "kAudioChannelBit_TopBackCenter")]
+        const Bit_TopBackCenter = 1<<16;
+        #[doc(alias = "kAudioChannelBit_TopBackRight")]
+        const Bit_TopBackRight = 1<<17;
+        #[doc(alias = "kAudioChannelBit_LeftTopFront")]
+        const Bit_LeftTopFront = AudioChannelBitmap::Bit_VerticalHeightLeft.0;
+        #[doc(alias = "kAudioChannelBit_CenterTopFront")]
+        const Bit_CenterTopFront = AudioChannelBitmap::Bit_VerticalHeightCenter.0;
+        #[doc(alias = "kAudioChannelBit_RightTopFront")]
+        const Bit_RightTopFront = AudioChannelBitmap::Bit_VerticalHeightRight.0;
+        #[doc(alias = "kAudioChannelBit_LeftTopMiddle")]
+        const Bit_LeftTopMiddle = 1<<21;
+        #[doc(alias = "kAudioChannelBit_CenterTopMiddle")]
+        const Bit_CenterTopMiddle = AudioChannelBitmap::Bit_TopCenterSurround.0;
+        #[doc(alias = "kAudioChannelBit_RightTopMiddle")]
+        const Bit_RightTopMiddle = 1<<23;
+        #[doc(alias = "kAudioChannelBit_LeftTopRear")]
+        const Bit_LeftTopRear = 1<<24;
+        #[doc(alias = "kAudioChannelBit_CenterTopRear")]
+        const Bit_CenterTopRear = 1<<25;
+        #[doc(alias = "kAudioChannelBit_RightTopRear")]
+        const Bit_RightTopRear = 1<<26;
     }
 }
 
@@ -1011,10 +1060,14 @@ unsafe impl RefEncode for AudioChannelBitmap {
 pub struct AudioChannelFlags(pub u32);
 bitflags::bitflags! {
     impl AudioChannelFlags: u32 {
-        const kAudioChannelFlags_AllOff = 0;
-        const kAudioChannelFlags_RectangularCoordinates = 1<<0;
-        const kAudioChannelFlags_SphericalCoordinates = 1<<1;
-        const kAudioChannelFlags_Meters = 1<<2;
+        #[doc(alias = "kAudioChannelFlags_AllOff")]
+        const AllOff = 0;
+        #[doc(alias = "kAudioChannelFlags_RectangularCoordinates")]
+        const RectangularCoordinates = 1<<0;
+        #[doc(alias = "kAudioChannelFlags_SphericalCoordinates")]
+        const SphericalCoordinates = 1<<1;
+        #[doc(alias = "kAudioChannelFlags_Meters")]
+        const Meters = 1<<2;
     }
 }
 
@@ -1052,12 +1105,18 @@ unsafe impl RefEncode for AudioChannelFlags {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioChannelCoordinateIndex(pub u32);
 impl AudioChannelCoordinateIndex {
-    pub const kAudioChannelCoordinates_LeftRight: Self = Self(0);
-    pub const kAudioChannelCoordinates_BackFront: Self = Self(1);
-    pub const kAudioChannelCoordinates_DownUp: Self = Self(2);
-    pub const kAudioChannelCoordinates_Azimuth: Self = Self(0);
-    pub const kAudioChannelCoordinates_Elevation: Self = Self(1);
-    pub const kAudioChannelCoordinates_Distance: Self = Self(2);
+    #[doc(alias = "kAudioChannelCoordinates_LeftRight")]
+    pub const Coordinates_LeftRight: Self = Self(0);
+    #[doc(alias = "kAudioChannelCoordinates_BackFront")]
+    pub const Coordinates_BackFront: Self = Self(1);
+    #[doc(alias = "kAudioChannelCoordinates_DownUp")]
+    pub const Coordinates_DownUp: Self = Self(2);
+    #[doc(alias = "kAudioChannelCoordinates_Azimuth")]
+    pub const Coordinates_Azimuth: Self = Self(0);
+    #[doc(alias = "kAudioChannelCoordinates_Elevation")]
+    pub const Coordinates_Elevation: Self = Self(1);
+    #[doc(alias = "kAudioChannelCoordinates_Distance")]
+    pub const Coordinates_Distance: Self = Self(2);
 }
 
 #[cfg(feature = "objc2")]
@@ -2058,15 +2117,24 @@ unsafe impl RefEncode for AudioFormatListItem {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPEG4ObjectID(pub c_long);
 impl MPEG4ObjectID {
-    pub const kMPEG4Object_AAC_Main: Self = Self(1);
-    pub const kMPEG4Object_AAC_LC: Self = Self(2);
-    pub const kMPEG4Object_AAC_SSR: Self = Self(3);
-    pub const kMPEG4Object_AAC_LTP: Self = Self(4);
-    pub const kMPEG4Object_AAC_SBR: Self = Self(5);
-    pub const kMPEG4Object_AAC_Scalable: Self = Self(6);
-    pub const kMPEG4Object_TwinVQ: Self = Self(7);
-    pub const kMPEG4Object_CELP: Self = Self(8);
-    pub const kMPEG4Object_HVXC: Self = Self(9);
+    #[doc(alias = "kMPEG4Object_AAC_Main")]
+    pub const AAC_Main: Self = Self(1);
+    #[doc(alias = "kMPEG4Object_AAC_LC")]
+    pub const AAC_LC: Self = Self(2);
+    #[doc(alias = "kMPEG4Object_AAC_SSR")]
+    pub const AAC_SSR: Self = Self(3);
+    #[doc(alias = "kMPEG4Object_AAC_LTP")]
+    pub const AAC_LTP: Self = Self(4);
+    #[doc(alias = "kMPEG4Object_AAC_SBR")]
+    pub const AAC_SBR: Self = Self(5);
+    #[doc(alias = "kMPEG4Object_AAC_Scalable")]
+    pub const AAC_Scalable: Self = Self(6);
+    #[doc(alias = "kMPEG4Object_TwinVQ")]
+    pub const TwinVQ: Self = Self(7);
+    #[doc(alias = "kMPEG4Object_CELP")]
+    pub const CELP: Self = Self(8);
+    #[doc(alias = "kMPEG4Object_HVXC")]
+    pub const HVXC: Self = Self(9);
 }
 
 #[cfg(feature = "objc2")]

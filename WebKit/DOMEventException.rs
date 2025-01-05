@@ -18,7 +18,8 @@ extern "C" {
 pub struct DOMEventExceptionCode(pub c_uint);
 impl DOMEventExceptionCode {
     #[deprecated]
-    pub const DOM_UNSPECIFIED_EVENT_TYPE_ERR: Self = Self(0);
+    #[doc(alias = "DOM_UNSPECIFIED_EVENT_TYPE_ERR")]
+    pub const UNSPECIFIED_EVENT_TYPE_ERR: Self = Self(0);
 }
 
 unsafe impl Encode for DOMEventExceptionCode {

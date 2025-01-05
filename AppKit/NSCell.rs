@@ -15,9 +15,12 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSCellType(pub NSUInteger);
 impl NSCellType {
-    pub const NSNullCellType: Self = Self(0);
-    pub const NSTextCellType: Self = Self(1);
-    pub const NSImageCellType: Self = Self(2);
+    #[doc(alias = "NSNullCellType")]
+    pub const NullCellType: Self = Self(0);
+    #[doc(alias = "NSTextCellType")]
+    pub const TextCellType: Self = Self(1);
+    #[doc(alias = "NSImageCellType")]
+    pub const ImageCellType: Self = Self(2);
 }
 
 unsafe impl Encode for NSCellType {
@@ -34,23 +37,40 @@ unsafe impl RefEncode for NSCellType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSCellAttribute(pub NSUInteger);
 impl NSCellAttribute {
-    pub const NSCellDisabled: Self = Self(0);
-    pub const NSCellState: Self = Self(1);
-    pub const NSPushInCell: Self = Self(2);
-    pub const NSCellEditable: Self = Self(3);
-    pub const NSChangeGrayCell: Self = Self(4);
-    pub const NSCellHighlighted: Self = Self(5);
-    pub const NSCellLightsByContents: Self = Self(6);
-    pub const NSCellLightsByGray: Self = Self(7);
-    pub const NSChangeBackgroundCell: Self = Self(8);
-    pub const NSCellLightsByBackground: Self = Self(9);
-    pub const NSCellIsBordered: Self = Self(10);
-    pub const NSCellHasOverlappingImage: Self = Self(11);
-    pub const NSCellHasImageHorizontal: Self = Self(12);
-    pub const NSCellHasImageOnLeftOrBottom: Self = Self(13);
-    pub const NSCellChangesContents: Self = Self(14);
-    pub const NSCellIsInsetButton: Self = Self(15);
-    pub const NSCellAllowsMixedState: Self = Self(16);
+    #[doc(alias = "NSCellDisabled")]
+    pub const CellDisabled: Self = Self(0);
+    #[doc(alias = "NSCellState")]
+    pub const CellState: Self = Self(1);
+    #[doc(alias = "NSPushInCell")]
+    pub const PushInCell: Self = Self(2);
+    #[doc(alias = "NSCellEditable")]
+    pub const CellEditable: Self = Self(3);
+    #[doc(alias = "NSChangeGrayCell")]
+    pub const ChangeGrayCell: Self = Self(4);
+    #[doc(alias = "NSCellHighlighted")]
+    pub const CellHighlighted: Self = Self(5);
+    #[doc(alias = "NSCellLightsByContents")]
+    pub const CellLightsByContents: Self = Self(6);
+    #[doc(alias = "NSCellLightsByGray")]
+    pub const CellLightsByGray: Self = Self(7);
+    #[doc(alias = "NSChangeBackgroundCell")]
+    pub const ChangeBackgroundCell: Self = Self(8);
+    #[doc(alias = "NSCellLightsByBackground")]
+    pub const CellLightsByBackground: Self = Self(9);
+    #[doc(alias = "NSCellIsBordered")]
+    pub const CellIsBordered: Self = Self(10);
+    #[doc(alias = "NSCellHasOverlappingImage")]
+    pub const CellHasOverlappingImage: Self = Self(11);
+    #[doc(alias = "NSCellHasImageHorizontal")]
+    pub const CellHasImageHorizontal: Self = Self(12);
+    #[doc(alias = "NSCellHasImageOnLeftOrBottom")]
+    pub const CellHasImageOnLeftOrBottom: Self = Self(13);
+    #[doc(alias = "NSCellChangesContents")]
+    pub const CellChangesContents: Self = Self(14);
+    #[doc(alias = "NSCellIsInsetButton")]
+    pub const CellIsInsetButton: Self = Self(15);
+    #[doc(alias = "NSCellAllowsMixedState")]
+    pub const CellAllowsMixedState: Self = Self(16);
 }
 
 unsafe impl Encode for NSCellAttribute {
@@ -67,15 +87,24 @@ unsafe impl RefEncode for NSCellAttribute {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSCellImagePosition(pub NSUInteger);
 impl NSCellImagePosition {
-    pub const NSNoImage: Self = Self(0);
-    pub const NSImageOnly: Self = Self(1);
-    pub const NSImageLeft: Self = Self(2);
-    pub const NSImageRight: Self = Self(3);
-    pub const NSImageBelow: Self = Self(4);
-    pub const NSImageAbove: Self = Self(5);
-    pub const NSImageOverlaps: Self = Self(6);
-    pub const NSImageLeading: Self = Self(7);
-    pub const NSImageTrailing: Self = Self(8);
+    #[doc(alias = "NSNoImage")]
+    pub const NoImage: Self = Self(0);
+    #[doc(alias = "NSImageOnly")]
+    pub const ImageOnly: Self = Self(1);
+    #[doc(alias = "NSImageLeft")]
+    pub const ImageLeft: Self = Self(2);
+    #[doc(alias = "NSImageRight")]
+    pub const ImageRight: Self = Self(3);
+    #[doc(alias = "NSImageBelow")]
+    pub const ImageBelow: Self = Self(4);
+    #[doc(alias = "NSImageAbove")]
+    pub const ImageAbove: Self = Self(5);
+    #[doc(alias = "NSImageOverlaps")]
+    pub const ImageOverlaps: Self = Self(6);
+    #[doc(alias = "NSImageLeading")]
+    pub const ImageLeading: Self = Self(7);
+    #[doc(alias = "NSImageTrailing")]
+    pub const ImageTrailing: Self = Self(8);
 }
 
 unsafe impl Encode for NSCellImagePosition {
@@ -92,10 +121,14 @@ unsafe impl RefEncode for NSCellImagePosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSImageScaling(pub NSUInteger);
 impl NSImageScaling {
-    pub const NSImageScaleProportionallyDown: Self = Self(0);
-    pub const NSImageScaleAxesIndependently: Self = Self(1);
-    pub const NSImageScaleNone: Self = Self(2);
-    pub const NSImageScaleProportionallyUpOrDown: Self = Self(3);
+    #[doc(alias = "NSImageScaleProportionallyDown")]
+    pub const ScaleProportionallyDown: Self = Self(0);
+    #[doc(alias = "NSImageScaleAxesIndependently")]
+    pub const ScaleAxesIndependently: Self = Self(1);
+    #[doc(alias = "NSImageScaleNone")]
+    pub const ScaleNone: Self = Self(2);
+    #[doc(alias = "NSImageScaleProportionallyUpOrDown")]
+    pub const ScaleProportionallyUpOrDown: Self = Self(3);
     #[deprecated = "Use NSImageScaleProportionallyDown instead"]
     pub const NSScaleProportionally: Self = Self(0);
     #[deprecated = "Use NSImageScaleAxesIndependently instead"]
@@ -132,11 +165,16 @@ pub static NSControlStateValueOn: NSControlStateValue = 1;
 pub struct NSCellStyleMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCellStyleMask: NSUInteger {
-        const NSNoCellMask = 0;
-        const NSContentsCellMask = 1;
-        const NSPushInCellMask = 2;
-        const NSChangeGrayCellMask = 4;
-        const NSChangeBackgroundCellMask = 8;
+        #[doc(alias = "NSNoCellMask")]
+        const NoCellMask = 0;
+        #[doc(alias = "NSContentsCellMask")]
+        const ContentsCellMask = 1;
+        #[doc(alias = "NSPushInCellMask")]
+        const PushInCellMask = 2;
+        #[doc(alias = "NSChangeGrayCellMask")]
+        const ChangeGrayCellMask = 4;
+        #[doc(alias = "NSChangeBackgroundCellMask")]
+        const ChangeBackgroundCellMask = 8;
     }
 }
 
@@ -154,10 +192,14 @@ unsafe impl RefEncode for NSCellStyleMask {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSControlTint(pub NSUInteger);
 impl NSControlTint {
-    pub const NSDefaultControlTint: Self = Self(0);
-    pub const NSBlueControlTint: Self = Self(1);
-    pub const NSGraphiteControlTint: Self = Self(6);
-    pub const NSClearControlTint: Self = Self(7);
+    #[doc(alias = "NSDefaultControlTint")]
+    pub const DefaultControlTint: Self = Self(0);
+    #[doc(alias = "NSBlueControlTint")]
+    pub const BlueControlTint: Self = Self(1);
+    #[doc(alias = "NSGraphiteControlTint")]
+    pub const GraphiteControlTint: Self = Self(6);
+    #[doc(alias = "NSClearControlTint")]
+    pub const ClearControlTint: Self = Self(7);
 }
 
 unsafe impl Encode for NSControlTint {
@@ -906,10 +948,14 @@ extern_methods!(
 pub struct NSCellHitResult(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCellHitResult: NSUInteger {
-        const NSCellHitNone = 0;
-        const NSCellHitContentArea = 1<<0;
-        const NSCellHitEditableTextArea = 1<<1;
-        const NSCellHitTrackableArea = 1<<2;
+        #[doc(alias = "NSCellHitNone")]
+        const None = 0;
+        #[doc(alias = "NSCellHitContentArea")]
+        const ContentArea = 1<<0;
+        #[doc(alias = "NSCellHitEditableTextArea")]
+        const EditableTextArea = 1<<1;
+        #[doc(alias = "NSCellHitTrackableArea")]
+        const TrackableArea = 1<<2;
     }
 }
 

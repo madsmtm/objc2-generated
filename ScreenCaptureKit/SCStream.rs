@@ -127,9 +127,12 @@ unsafe impl RefEncode for SCStreamType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SCCaptureResolutionType(pub NSInteger);
 impl SCCaptureResolutionType {
-    pub const SCCaptureResolutionAutomatic: Self = Self(0);
-    pub const SCCaptureResolutionBest: Self = Self(1);
-    pub const SCCaptureResolutionNominal: Self = Self(2);
+    #[doc(alias = "SCCaptureResolutionAutomatic")]
+    pub const Automatic: Self = Self(0);
+    #[doc(alias = "SCCaptureResolutionBest")]
+    pub const Best: Self = Self(1);
+    #[doc(alias = "SCCaptureResolutionNominal")]
+    pub const Nominal: Self = Self(2);
 }
 
 unsafe impl Encode for SCCaptureResolutionType {

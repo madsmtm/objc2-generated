@@ -14,9 +14,12 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OSAScriptState(pub NSInteger);
 impl OSAScriptState {
-    pub const OSAScriptStopped: Self = Self(0);
-    pub const OSAScriptRunning: Self = Self(1);
-    pub const OSAScriptRecording: Self = Self(2);
+    #[doc(alias = "OSAScriptStopped")]
+    pub const Stopped: Self = Self(0);
+    #[doc(alias = "OSAScriptRunning")]
+    pub const Running: Self = Self(1);
+    #[doc(alias = "OSAScriptRecording")]
+    pub const Recording: Self = Self(2);
 }
 
 unsafe impl Encode for OSAScriptState {

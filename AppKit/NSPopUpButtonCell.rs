@@ -15,9 +15,12 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPopUpArrowPosition(pub NSUInteger);
 impl NSPopUpArrowPosition {
-    pub const NSPopUpNoArrow: Self = Self(0);
-    pub const NSPopUpArrowAtCenter: Self = Self(1);
-    pub const NSPopUpArrowAtBottom: Self = Self(2);
+    #[doc(alias = "NSPopUpNoArrow")]
+    pub const NoArrow: Self = Self(0);
+    #[doc(alias = "NSPopUpArrowAtCenter")]
+    pub const ArrowAtCenter: Self = Self(1);
+    #[doc(alias = "NSPopUpArrowAtBottom")]
+    pub const ArrowAtBottom: Self = Self(2);
 }
 
 unsafe impl Encode for NSPopUpArrowPosition {

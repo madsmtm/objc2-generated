@@ -323,10 +323,14 @@ extern "C" {
 pub struct CTUnderlineStyle(pub i32);
 bitflags::bitflags! {
     impl CTUnderlineStyle: i32 {
-        const kCTUnderlineStyleNone = 0x00;
-        const kCTUnderlineStyleSingle = 0x01;
-        const kCTUnderlineStyleThick = 0x02;
-        const kCTUnderlineStyleDouble = 0x09;
+        #[doc(alias = "kCTUnderlineStyleNone")]
+        const None = 0x00;
+        #[doc(alias = "kCTUnderlineStyleSingle")]
+        const Single = 0x01;
+        #[doc(alias = "kCTUnderlineStyleThick")]
+        const Thick = 0x02;
+        #[doc(alias = "kCTUnderlineStyleDouble")]
+        const Double = 0x09;
     }
 }
 
@@ -354,11 +358,16 @@ unsafe impl RefEncode for CTUnderlineStyle {
 pub struct CTUnderlineStyleModifiers(pub i32);
 bitflags::bitflags! {
     impl CTUnderlineStyleModifiers: i32 {
-        const kCTUnderlinePatternSolid = 0x0000;
-        const kCTUnderlinePatternDot = 0x0100;
-        const kCTUnderlinePatternDash = 0x0200;
-        const kCTUnderlinePatternDashDot = 0x0300;
-        const kCTUnderlinePatternDashDotDot = 0x0400;
+        #[doc(alias = "kCTUnderlinePatternSolid")]
+        const PatternSolid = 0x0000;
+        #[doc(alias = "kCTUnderlinePatternDot")]
+        const PatternDot = 0x0100;
+        #[doc(alias = "kCTUnderlinePatternDash")]
+        const PatternDash = 0x0200;
+        #[doc(alias = "kCTUnderlinePatternDashDot")]
+        const PatternDashDot = 0x0300;
+        #[doc(alias = "kCTUnderlinePatternDashDotDot")]
+        const PatternDashDotDot = 0x0400;
     }
 }
 

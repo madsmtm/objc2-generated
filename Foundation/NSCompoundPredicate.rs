@@ -11,9 +11,12 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSCompoundPredicateType(pub NSUInteger);
 impl NSCompoundPredicateType {
-    pub const NSNotPredicateType: Self = Self(0);
-    pub const NSAndPredicateType: Self = Self(1);
-    pub const NSOrPredicateType: Self = Self(2);
+    #[doc(alias = "NSNotPredicateType")]
+    pub const NotPredicateType: Self = Self(0);
+    #[doc(alias = "NSAndPredicateType")]
+    pub const AndPredicateType: Self = Self(1);
+    #[doc(alias = "NSOrPredicateType")]
+    pub const OrPredicateType: Self = Self(2);
 }
 
 unsafe impl Encode for NSCompoundPredicateType {

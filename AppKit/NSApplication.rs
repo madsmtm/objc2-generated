@@ -285,35 +285,49 @@ pub const NSUpdateWindowsRunLoopOrdering: c_uint = 500000;
 pub struct NSApplicationPresentationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSApplicationPresentationOptions: NSUInteger {
-        const NSApplicationPresentationDefault = 0;
+        #[doc(alias = "NSApplicationPresentationDefault")]
+        const Default = 0;
 /// Dock appears when moused to.
-        const NSApplicationPresentationAutoHideDock = 1<<0;
+        #[doc(alias = "NSApplicationPresentationAutoHideDock")]
+        const AutoHideDock = 1<<0;
 /// Dock is entirely unavailable.
-        const NSApplicationPresentationHideDock = 1<<1;
+        #[doc(alias = "NSApplicationPresentationHideDock")]
+        const HideDock = 1<<1;
 /// Menu Bar appears when moused to.
-        const NSApplicationPresentationAutoHideMenuBar = 1<<2;
+        #[doc(alias = "NSApplicationPresentationAutoHideMenuBar")]
+        const AutoHideMenuBar = 1<<2;
 /// Menu Bar is entirely unavailable.
-        const NSApplicationPresentationHideMenuBar = 1<<3;
+        #[doc(alias = "NSApplicationPresentationHideMenuBar")]
+        const HideMenuBar = 1<<3;
 /// All Apple menu items are disabled.
-        const NSApplicationPresentationDisableAppleMenu = 1<<4;
+        #[doc(alias = "NSApplicationPresentationDisableAppleMenu")]
+        const DisableAppleMenu = 1<<4;
 /// Cmd+Tab UI is disabled.
-        const NSApplicationPresentationDisableProcessSwitching = 1<<5;
+        #[doc(alias = "NSApplicationPresentationDisableProcessSwitching")]
+        const DisableProcessSwitching = 1<<5;
 /// Cmd+Opt+Esc panel is disabled.
-        const NSApplicationPresentationDisableForceQuit = 1<<6;
+        #[doc(alias = "NSApplicationPresentationDisableForceQuit")]
+        const DisableForceQuit = 1<<6;
 /// PowerKey panel and Restart/Shut Down/Log Out disabled.
-        const NSApplicationPresentationDisableSessionTermination = 1<<7;
+        #[doc(alias = "NSApplicationPresentationDisableSessionTermination")]
+        const DisableSessionTermination = 1<<7;
 /// Application "Hide" menu item is disabled.
-        const NSApplicationPresentationDisableHideApplication = 1<<8;
+        #[doc(alias = "NSApplicationPresentationDisableHideApplication")]
+        const DisableHideApplication = 1<<8;
 /// Menu Bar's transparent appearance is disabled.
-        const NSApplicationPresentationDisableMenuBarTransparency = 1<<9;
+        #[doc(alias = "NSApplicationPresentationDisableMenuBarTransparency")]
+        const DisableMenuBarTransparency = 1<<9;
 /// Application is in fullscreen mode.
-        const NSApplicationPresentationFullScreen = 1<<10;
+        #[doc(alias = "NSApplicationPresentationFullScreen")]
+        const FullScreen = 1<<10;
 /// Fullscreen window toolbar is detached from window and hides/shows on rollover.
 /// May be used only when both
 /// `NSApplicationPresentationFullScreen`is also set.
-        const NSApplicationPresentationAutoHideToolbar = 1<<11;
+        #[doc(alias = "NSApplicationPresentationAutoHideToolbar")]
+        const AutoHideToolbar = 1<<11;
 /// "Shake mouse pointer to locate" is disabled for this application.
-        const NSApplicationPresentationDisableCursorLocationAssistance = 1<<12;
+        #[doc(alias = "NSApplicationPresentationDisableCursorLocationAssistance")]
+        const DisableCursorLocationAssistance = 1<<12;
     }
 }
 
@@ -354,7 +368,8 @@ pub struct NSWindowListOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSWindowListOptions: NSInteger {
 /// Onscreen application windows in front to back order. By default, -[NSApp windows] is used.
-        const NSWindowListOrderedFrontToBack = 1<<0;
+        #[doc(alias = "NSWindowListOrderedFrontToBack")]
+        const OrderedFrontToBack = 1<<0;
     }
 }
 
@@ -377,8 +392,10 @@ pub type NSModalSession = *mut c_void;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSRequestUserAttentionType(pub NSUInteger);
 impl NSRequestUserAttentionType {
-    pub const NSCriticalRequest: Self = Self(0);
-    pub const NSInformationalRequest: Self = Self(10);
+    #[doc(alias = "NSCriticalRequest")]
+    pub const CriticalRequest: Self = Self(0);
+    #[doc(alias = "NSInformationalRequest")]
+    pub const InformationalRequest: Self = Self(10);
 }
 
 unsafe impl Encode for NSRequestUserAttentionType {
@@ -894,9 +911,12 @@ extern_methods!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSApplicationTerminateReply(pub NSUInteger);
 impl NSApplicationTerminateReply {
-    pub const NSTerminateCancel: Self = Self(0);
-    pub const NSTerminateNow: Self = Self(1);
-    pub const NSTerminateLater: Self = Self(2);
+    #[doc(alias = "NSTerminateCancel")]
+    pub const TerminateCancel: Self = Self(0);
+    #[doc(alias = "NSTerminateNow")]
+    pub const TerminateNow: Self = Self(1);
+    #[doc(alias = "NSTerminateLater")]
+    pub const TerminateLater: Self = Self(2);
 }
 
 unsafe impl Encode for NSApplicationTerminateReply {
@@ -915,10 +935,14 @@ unsafe impl RefEncode for NSApplicationTerminateReply {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSApplicationPrintReply(pub NSUInteger);
 impl NSApplicationPrintReply {
-    pub const NSPrintingCancelled: Self = Self(0);
-    pub const NSPrintingSuccess: Self = Self(1);
-    pub const NSPrintingReplyLater: Self = Self(2);
-    pub const NSPrintingFailure: Self = Self(3);
+    #[doc(alias = "NSPrintingCancelled")]
+    pub const PrintingCancelled: Self = Self(0);
+    #[doc(alias = "NSPrintingSuccess")]
+    pub const PrintingSuccess: Self = Self(1);
+    #[doc(alias = "NSPrintingReplyLater")]
+    pub const PrintingReplyLater: Self = Self(2);
+    #[doc(alias = "NSPrintingFailure")]
+    pub const PrintingFailure: Self = Self(3);
 }
 
 unsafe impl Encode for NSApplicationPrintReply {

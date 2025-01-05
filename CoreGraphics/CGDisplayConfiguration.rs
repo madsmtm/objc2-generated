@@ -72,9 +72,12 @@ extern "C-unwind" {
 pub struct CGConfigureOption(pub u32);
 bitflags::bitflags! {
     impl CGConfigureOption: u32 {
-        const kCGConfigureForAppOnly = 0;
-        const kCGConfigureForSession = 1;
-        const kCGConfigurePermanently = 2;
+        #[doc(alias = "kCGConfigureForAppOnly")]
+        const ForAppOnly = 0;
+        #[doc(alias = "kCGConfigureForSession")]
+        const ForSession = 1;
+        #[doc(alias = "kCGConfigurePermanently")]
+        const Permanently = 2;
     }
 }
 
@@ -107,17 +110,28 @@ extern "C-unwind" {
 pub struct CGDisplayChangeSummaryFlags(pub u32);
 bitflags::bitflags! {
     impl CGDisplayChangeSummaryFlags: u32 {
-        const kCGDisplayBeginConfigurationFlag = 1<<0;
-        const kCGDisplayMovedFlag = 1<<1;
-        const kCGDisplaySetMainFlag = 1<<2;
-        const kCGDisplaySetModeFlag = 1<<3;
-        const kCGDisplayAddFlag = 1<<4;
-        const kCGDisplayRemoveFlag = 1<<5;
-        const kCGDisplayEnabledFlag = 1<<8;
-        const kCGDisplayDisabledFlag = 1<<9;
-        const kCGDisplayMirrorFlag = 1<<10;
-        const kCGDisplayUnMirrorFlag = 1<<11;
-        const kCGDisplayDesktopShapeChangedFlag = 1<<12;
+        #[doc(alias = "kCGDisplayBeginConfigurationFlag")]
+        const BeginConfigurationFlag = 1<<0;
+        #[doc(alias = "kCGDisplayMovedFlag")]
+        const MovedFlag = 1<<1;
+        #[doc(alias = "kCGDisplaySetMainFlag")]
+        const SetMainFlag = 1<<2;
+        #[doc(alias = "kCGDisplaySetModeFlag")]
+        const SetModeFlag = 1<<3;
+        #[doc(alias = "kCGDisplayAddFlag")]
+        const AddFlag = 1<<4;
+        #[doc(alias = "kCGDisplayRemoveFlag")]
+        const RemoveFlag = 1<<5;
+        #[doc(alias = "kCGDisplayEnabledFlag")]
+        const EnabledFlag = 1<<8;
+        #[doc(alias = "kCGDisplayDisabledFlag")]
+        const DisabledFlag = 1<<9;
+        #[doc(alias = "kCGDisplayMirrorFlag")]
+        const MirrorFlag = 1<<10;
+        #[doc(alias = "kCGDisplayUnMirrorFlag")]
+        const UnMirrorFlag = 1<<11;
+        #[doc(alias = "kCGDisplayDesktopShapeChangedFlag")]
+        const DesktopShapeChangedFlag = 1<<12;
     }
 }
 

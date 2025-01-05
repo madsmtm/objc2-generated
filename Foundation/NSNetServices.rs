@@ -24,15 +24,24 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSNetServicesError(pub NSInteger);
 impl NSNetServicesError {
-    pub const NSNetServicesUnknownError: Self = Self(-72000);
-    pub const NSNetServicesCollisionError: Self = Self(-72001);
-    pub const NSNetServicesNotFoundError: Self = Self(-72002);
-    pub const NSNetServicesActivityInProgress: Self = Self(-72003);
-    pub const NSNetServicesBadArgumentError: Self = Self(-72004);
-    pub const NSNetServicesCancelledError: Self = Self(-72005);
-    pub const NSNetServicesInvalidError: Self = Self(-72006);
-    pub const NSNetServicesTimeoutError: Self = Self(-72007);
-    pub const NSNetServicesMissingRequiredConfigurationError: Self = Self(-72008);
+    #[doc(alias = "NSNetServicesUnknownError")]
+    pub const UnknownError: Self = Self(-72000);
+    #[doc(alias = "NSNetServicesCollisionError")]
+    pub const CollisionError: Self = Self(-72001);
+    #[doc(alias = "NSNetServicesNotFoundError")]
+    pub const NotFoundError: Self = Self(-72002);
+    #[doc(alias = "NSNetServicesActivityInProgress")]
+    pub const ActivityInProgress: Self = Self(-72003);
+    #[doc(alias = "NSNetServicesBadArgumentError")]
+    pub const BadArgumentError: Self = Self(-72004);
+    #[doc(alias = "NSNetServicesCancelledError")]
+    pub const CancelledError: Self = Self(-72005);
+    #[doc(alias = "NSNetServicesInvalidError")]
+    pub const InvalidError: Self = Self(-72006);
+    #[doc(alias = "NSNetServicesTimeoutError")]
+    pub const TimeoutError: Self = Self(-72007);
+    #[doc(alias = "NSNetServicesMissingRequiredConfigurationError")]
+    pub const MissingRequiredConfigurationError: Self = Self(-72008);
 }
 
 unsafe impl Encode for NSNetServicesError {
@@ -50,8 +59,10 @@ unsafe impl RefEncode for NSNetServicesError {
 pub struct NSNetServiceOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSNetServiceOptions: NSUInteger {
-        const NSNetServiceNoAutoRename = 1<<0;
-        const NSNetServiceListenForConnections = 1<<1;
+        #[doc(alias = "NSNetServiceNoAutoRename")]
+        const NoAutoRename = 1<<0;
+        #[doc(alias = "NSNetServiceListenForConnections")]
+        const ListenForConnections = 1<<1;
     }
 }
 

@@ -13,10 +13,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIPrintInfoOutputType(pub NSInteger);
 impl UIPrintInfoOutputType {
-    pub const UIPrintInfoOutputGeneral: Self = Self(0);
-    pub const UIPrintInfoOutputPhoto: Self = Self(1);
-    pub const UIPrintInfoOutputGrayscale: Self = Self(2);
-    pub const UIPrintInfoOutputPhotoGrayscale: Self = Self(3);
+    #[doc(alias = "UIPrintInfoOutputGeneral")]
+    pub const General: Self = Self(0);
+    #[doc(alias = "UIPrintInfoOutputPhoto")]
+    pub const Photo: Self = Self(1);
+    #[doc(alias = "UIPrintInfoOutputGrayscale")]
+    pub const Grayscale: Self = Self(2);
+    #[doc(alias = "UIPrintInfoOutputPhotoGrayscale")]
+    pub const PhotoGrayscale: Self = Self(3);
 }
 
 unsafe impl Encode for UIPrintInfoOutputType {

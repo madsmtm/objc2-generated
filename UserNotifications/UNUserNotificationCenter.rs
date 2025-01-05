@@ -14,17 +14,26 @@ use crate::*;
 pub struct UNAuthorizationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UNAuthorizationOptions: NSUInteger {
-        const UNAuthorizationOptionBadge = 1<<0;
-        const UNAuthorizationOptionSound = 1<<1;
-        const UNAuthorizationOptionAlert = 1<<2;
-        const UNAuthorizationOptionCarPlay = 1<<3;
-        const UNAuthorizationOptionCriticalAlert = 1<<4;
-        const UNAuthorizationOptionProvidesAppNotificationSettings = 1<<5;
-        const UNAuthorizationOptionProvisional = 1<<6;
+        #[doc(alias = "UNAuthorizationOptionBadge")]
+        const Badge = 1<<0;
+        #[doc(alias = "UNAuthorizationOptionSound")]
+        const Sound = 1<<1;
+        #[doc(alias = "UNAuthorizationOptionAlert")]
+        const Alert = 1<<2;
+        #[doc(alias = "UNAuthorizationOptionCarPlay")]
+        const CarPlay = 1<<3;
+        #[doc(alias = "UNAuthorizationOptionCriticalAlert")]
+        const CriticalAlert = 1<<4;
+        #[doc(alias = "UNAuthorizationOptionProvidesAppNotificationSettings")]
+        const ProvidesAppNotificationSettings = 1<<5;
+        #[doc(alias = "UNAuthorizationOptionProvisional")]
+        const Provisional = 1<<6;
 #[deprecated = "Announcement authorization is always included"]
-        const UNAuthorizationOptionAnnouncement = 1<<7;
+        #[doc(alias = "UNAuthorizationOptionAnnouncement")]
+        const Announcement = 1<<7;
 #[deprecated = "Use time-sensitive entitlement"]
-        const UNAuthorizationOptionTimeSensitive = 1<<8;
+        #[doc(alias = "UNAuthorizationOptionTimeSensitive")]
+        const TimeSensitive = 1<<8;
     }
 }
 
@@ -163,12 +172,17 @@ extern_methods!(
 pub struct UNNotificationPresentationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UNNotificationPresentationOptions: NSUInteger {
-        const UNNotificationPresentationOptionBadge = 1<<0;
-        const UNNotificationPresentationOptionSound = 1<<1;
+        #[doc(alias = "UNNotificationPresentationOptionBadge")]
+        const Badge = 1<<0;
+        #[doc(alias = "UNNotificationPresentationOptionSound")]
+        const Sound = 1<<1;
 #[deprecated]
-        const UNNotificationPresentationOptionAlert = 1<<2;
-        const UNNotificationPresentationOptionList = 1<<3;
-        const UNNotificationPresentationOptionBanner = 1<<4;
+        #[doc(alias = "UNNotificationPresentationOptionAlert")]
+        const Alert = 1<<2;
+        #[doc(alias = "UNNotificationPresentationOptionList")]
+        const List = 1<<3;
+        #[doc(alias = "UNNotificationPresentationOptionBanner")]
+        const Banner = 1<<4;
     }
 }
 

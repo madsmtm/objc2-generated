@@ -17,27 +17,48 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SKErrorCode(pub NSInteger);
 impl SKErrorCode {
-    pub const SKErrorUnknown: Self = Self(0);
-    pub const SKErrorClientInvalid: Self = Self(1);
-    pub const SKErrorPaymentCancelled: Self = Self(2);
-    pub const SKErrorPaymentInvalid: Self = Self(3);
-    pub const SKErrorPaymentNotAllowed: Self = Self(4);
-    pub const SKErrorStoreProductNotAvailable: Self = Self(5);
-    pub const SKErrorCloudServicePermissionDenied: Self = Self(6);
-    pub const SKErrorCloudServiceNetworkConnectionFailed: Self = Self(7);
-    pub const SKErrorCloudServiceRevoked: Self = Self(8);
-    pub const SKErrorPrivacyAcknowledgementRequired: Self = Self(9);
-    pub const SKErrorUnauthorizedRequestData: Self = Self(10);
-    pub const SKErrorInvalidOfferIdentifier: Self = Self(11);
-    pub const SKErrorInvalidSignature: Self = Self(12);
-    pub const SKErrorMissingOfferParams: Self = Self(13);
-    pub const SKErrorInvalidOfferPrice: Self = Self(14);
-    pub const SKErrorOverlayCancelled: Self = Self(15);
-    pub const SKErrorOverlayInvalidConfiguration: Self = Self(16);
-    pub const SKErrorOverlayTimeout: Self = Self(17);
-    pub const SKErrorIneligibleForOffer: Self = Self(18);
-    pub const SKErrorUnsupportedPlatform: Self = Self(19);
-    pub const SKErrorOverlayPresentedInBackgroundScene: Self = Self(20);
+    #[doc(alias = "SKErrorUnknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "SKErrorClientInvalid")]
+    pub const ClientInvalid: Self = Self(1);
+    #[doc(alias = "SKErrorPaymentCancelled")]
+    pub const PaymentCancelled: Self = Self(2);
+    #[doc(alias = "SKErrorPaymentInvalid")]
+    pub const PaymentInvalid: Self = Self(3);
+    #[doc(alias = "SKErrorPaymentNotAllowed")]
+    pub const PaymentNotAllowed: Self = Self(4);
+    #[doc(alias = "SKErrorStoreProductNotAvailable")]
+    pub const StoreProductNotAvailable: Self = Self(5);
+    #[doc(alias = "SKErrorCloudServicePermissionDenied")]
+    pub const CloudServicePermissionDenied: Self = Self(6);
+    #[doc(alias = "SKErrorCloudServiceNetworkConnectionFailed")]
+    pub const CloudServiceNetworkConnectionFailed: Self = Self(7);
+    #[doc(alias = "SKErrorCloudServiceRevoked")]
+    pub const CloudServiceRevoked: Self = Self(8);
+    #[doc(alias = "SKErrorPrivacyAcknowledgementRequired")]
+    pub const PrivacyAcknowledgementRequired: Self = Self(9);
+    #[doc(alias = "SKErrorUnauthorizedRequestData")]
+    pub const UnauthorizedRequestData: Self = Self(10);
+    #[doc(alias = "SKErrorInvalidOfferIdentifier")]
+    pub const InvalidOfferIdentifier: Self = Self(11);
+    #[doc(alias = "SKErrorInvalidSignature")]
+    pub const InvalidSignature: Self = Self(12);
+    #[doc(alias = "SKErrorMissingOfferParams")]
+    pub const MissingOfferParams: Self = Self(13);
+    #[doc(alias = "SKErrorInvalidOfferPrice")]
+    pub const InvalidOfferPrice: Self = Self(14);
+    #[doc(alias = "SKErrorOverlayCancelled")]
+    pub const OverlayCancelled: Self = Self(15);
+    #[doc(alias = "SKErrorOverlayInvalidConfiguration")]
+    pub const OverlayInvalidConfiguration: Self = Self(16);
+    #[doc(alias = "SKErrorOverlayTimeout")]
+    pub const OverlayTimeout: Self = Self(17);
+    #[doc(alias = "SKErrorIneligibleForOffer")]
+    pub const IneligibleForOffer: Self = Self(18);
+    #[doc(alias = "SKErrorUnsupportedPlatform")]
+    pub const UnsupportedPlatform: Self = Self(19);
+    #[doc(alias = "SKErrorOverlayPresentedInBackgroundScene")]
+    pub const OverlayPresentedInBackgroundScene: Self = Self(20);
 }
 
 unsafe impl Encode for SKErrorCode {

@@ -17,9 +17,11 @@ use crate::*;
 pub struct MPSGraphResizeMode(pub NSUInteger);
 impl MPSGraphResizeMode {
     /// Samples the nearest neighbor to the pixel coordinate.
-    pub const MPSGraphResizeNearest: Self = Self(0);
+    #[doc(alias = "MPSGraphResizeNearest")]
+    pub const Nearest: Self = Self(0);
     /// Samples the 4 neighbors to the pixel coordinate and uses bilinear interpolation.
-    pub const MPSGraphResizeBilinear: Self = Self(1);
+    #[doc(alias = "MPSGraphResizeBilinear")]
+    pub const Bilinear: Self = Self(1);
 }
 
 unsafe impl Encode for MPSGraphResizeMode {

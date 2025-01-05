@@ -11,8 +11,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSCollectionChangeType(pub NSInteger);
 impl NSCollectionChangeType {
-    pub const NSCollectionChangeInsert: Self = Self(0);
-    pub const NSCollectionChangeRemove: Self = Self(1);
+    #[doc(alias = "NSCollectionChangeInsert")]
+    pub const Insert: Self = Self(0);
+    #[doc(alias = "NSCollectionChangeRemove")]
+    pub const Remove: Self = Self(1);
 }
 
 unsafe impl Encode for NSCollectionChangeType {

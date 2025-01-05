@@ -211,13 +211,17 @@ extern_methods!(
 pub struct NSProgressIndicatorThickness(pub NSUInteger);
 impl NSProgressIndicatorThickness {
     #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
-    pub const NSProgressIndicatorPreferredThickness: Self = Self(14);
+    #[doc(alias = "NSProgressIndicatorPreferredThickness")]
+    pub const PreferredThickness: Self = Self(14);
     #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
-    pub const NSProgressIndicatorPreferredSmallThickness: Self = Self(10);
+    #[doc(alias = "NSProgressIndicatorPreferredSmallThickness")]
+    pub const PreferredSmallThickness: Self = Self(10);
     #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
-    pub const NSProgressIndicatorPreferredLargeThickness: Self = Self(18);
+    #[doc(alias = "NSProgressIndicatorPreferredLargeThickness")]
+    pub const PreferredLargeThickness: Self = Self(18);
     #[deprecated = "These constants do not accurately represent the geometry of NSProgressIndicator.  Use `controlSize` and `sizeToFit` instead."]
-    pub const NSProgressIndicatorPreferredAquaThickness: Self = Self(12);
+    #[doc(alias = "NSProgressIndicatorPreferredAquaThickness")]
+    pub const PreferredAquaThickness: Self = Self(12);
 }
 
 unsafe impl Encode for NSProgressIndicatorThickness {

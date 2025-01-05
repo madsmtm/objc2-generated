@@ -65,10 +65,14 @@ unsafe impl RefEncode for NSImageLoadStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSImageCacheMode(pub NSUInteger);
 impl NSImageCacheMode {
-    pub const NSImageCacheDefault: Self = Self(0);
-    pub const NSImageCacheAlways: Self = Self(1);
-    pub const NSImageCacheBySize: Self = Self(2);
-    pub const NSImageCacheNever: Self = Self(3);
+    #[doc(alias = "NSImageCacheDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "NSImageCacheAlways")]
+    pub const Always: Self = Self(1);
+    #[doc(alias = "NSImageCacheBySize")]
+    pub const BySize: Self = Self(2);
+    #[doc(alias = "NSImageCacheNever")]
+    pub const Never: Self = Self(3);
 }
 
 unsafe impl Encode for NSImageCacheMode {

@@ -14,8 +14,10 @@ use crate::*;
 pub struct NSTextStorageEditActions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTextStorageEditActions: NSUInteger {
-        const NSTextStorageEditedAttributes = 1<<0;
-        const NSTextStorageEditedCharacters = 1<<1;
+        #[doc(alias = "NSTextStorageEditedAttributes")]
+        const EditedAttributes = 1<<0;
+        #[doc(alias = "NSTextStorageEditedCharacters")]
+        const EditedCharacters = 1<<1;
     }
 }
 

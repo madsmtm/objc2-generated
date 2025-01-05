@@ -56,9 +56,12 @@ extern_methods!(
 pub struct HKQueryOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl HKQueryOptions: NSUInteger {
-        const HKQueryOptionNone = 0;
-        const HKQueryOptionStrictStartDate = 1<<0;
-        const HKQueryOptionStrictEndDate = 1<<1;
+        #[doc(alias = "HKQueryOptionNone")]
+        const None = 0;
+        #[doc(alias = "HKQueryOptionStrictStartDate")]
+        const StrictStartDate = 1<<0;
+        #[doc(alias = "HKQueryOptionStrictEndDate")]
+        const StrictEndDate = 1<<1;
     }
 }
 

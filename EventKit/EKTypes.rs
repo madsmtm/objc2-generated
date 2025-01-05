@@ -297,11 +297,16 @@ unsafe impl RefEncode for EKCalendarType {
 pub struct EKCalendarEventAvailabilityMask(pub NSUInteger);
 bitflags::bitflags! {
     impl EKCalendarEventAvailabilityMask: NSUInteger {
-        const EKCalendarEventAvailabilityNone = 0;
-        const EKCalendarEventAvailabilityBusy = 1<<0;
-        const EKCalendarEventAvailabilityFree = 1<<1;
-        const EKCalendarEventAvailabilityTentative = 1<<2;
-        const EKCalendarEventAvailabilityUnavailable = 1<<3;
+        #[doc(alias = "EKCalendarEventAvailabilityNone")]
+        const None = 0;
+        #[doc(alias = "EKCalendarEventAvailabilityBusy")]
+        const Busy = 1<<0;
+        #[doc(alias = "EKCalendarEventAvailabilityFree")]
+        const Free = 1<<1;
+        #[doc(alias = "EKCalendarEventAvailabilityTentative")]
+        const Tentative = 1<<2;
+        #[doc(alias = "EKCalendarEventAvailabilityUnavailable")]
+        const Unavailable = 1<<3;
     }
 }
 

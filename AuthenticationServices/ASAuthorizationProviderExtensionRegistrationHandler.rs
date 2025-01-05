@@ -119,8 +119,10 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionSupportedGrantTypes {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASAuthorizationProviderExtensionPlatformSSOProtocolVersion(pub NSInteger);
 impl ASAuthorizationProviderExtensionPlatformSSOProtocolVersion {
-    pub const ASAuthorizationProviderExtensionPlatformSSOProtocolVersion1_0: Self = Self(0);
-    pub const ASAuthorizationProviderExtensionPlatformSSOProtocolVersion2_0: Self = Self(1);
+    #[doc(alias = "ASAuthorizationProviderExtensionPlatformSSOProtocolVersion1_0")]
+    pub const Version1_0: Self = Self(0);
+    #[doc(alias = "ASAuthorizationProviderExtensionPlatformSSOProtocolVersion2_0")]
+    pub const Version2_0: Self = Self(1);
 }
 
 unsafe impl Encode for ASAuthorizationProviderExtensionPlatformSSOProtocolVersion {

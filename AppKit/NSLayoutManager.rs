@@ -102,16 +102,18 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTypesetterBehavior(pub NSInteger);
 impl NSTypesetterBehavior {
-    pub const NSTypesetterLatestBehavior: Self = Self(-1);
-    pub const NSTypesetterOriginalBehavior: Self = Self(0);
+    #[doc(alias = "NSTypesetterLatestBehavior")]
+    pub const LatestBehavior: Self = Self(-1);
+    #[doc(alias = "NSTypesetterOriginalBehavior")]
+    pub const OriginalBehavior: Self = Self(0);
     #[doc(alias = "NSTypesetterBehavior_10_2_WithCompatibility")]
-    pub const _10_2_WithCompatibility: Self = Self(1);
+    pub const Behavior_10_2_WithCompatibility: Self = Self(1);
     #[doc(alias = "NSTypesetterBehavior_10_2")]
-    pub const _10_2: Self = Self(2);
+    pub const Behavior_10_2: Self = Self(2);
     #[doc(alias = "NSTypesetterBehavior_10_3")]
-    pub const _10_3: Self = Self(3);
+    pub const Behavior_10_3: Self = Self(3);
     #[doc(alias = "NSTypesetterBehavior_10_4")]
-    pub const _10_4: Self = Self(4);
+    pub const Behavior_10_4: Self = Self(4);
 }
 
 unsafe impl Encode for NSTypesetterBehavior {
@@ -1142,15 +1144,20 @@ pub const NSGlyphAttributeInscribe: c_uint = 5;
 pub struct NSGlyphInscription(pub NSUInteger);
 impl NSGlyphInscription {
     #[deprecated]
-    pub const NSGlyphInscribeBase: Self = Self(0);
+    #[doc(alias = "NSGlyphInscribeBase")]
+    pub const InscribeBase: Self = Self(0);
     #[deprecated]
-    pub const NSGlyphInscribeBelow: Self = Self(1);
+    #[doc(alias = "NSGlyphInscribeBelow")]
+    pub const InscribeBelow: Self = Self(1);
     #[deprecated]
-    pub const NSGlyphInscribeAbove: Self = Self(2);
+    #[doc(alias = "NSGlyphInscribeAbove")]
+    pub const InscribeAbove: Self = Self(2);
     #[deprecated]
-    pub const NSGlyphInscribeOverstrike: Self = Self(3);
+    #[doc(alias = "NSGlyphInscribeOverstrike")]
+    pub const InscribeOverstrike: Self = Self(3);
     #[deprecated]
-    pub const NSGlyphInscribeOverBelow: Self = Self(4);
+    #[doc(alias = "NSGlyphInscribeOverBelow")]
+    pub const InscribeOverBelow: Self = Self(4);
 }
 
 unsafe impl Encode for NSGlyphInscription {

@@ -15,9 +15,12 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTabState(pub NSUInteger);
 impl NSTabState {
-    pub const NSSelectedTab: Self = Self(0);
-    pub const NSBackgroundTab: Self = Self(1);
-    pub const NSPressedTab: Self = Self(2);
+    #[doc(alias = "NSSelectedTab")]
+    pub const SelectedTab: Self = Self(0);
+    #[doc(alias = "NSBackgroundTab")]
+    pub const BackgroundTab: Self = Self(1);
+    #[doc(alias = "NSPressedTab")]
+    pub const PressedTab: Self = Self(2);
 }
 
 unsafe impl Encode for NSTabState {

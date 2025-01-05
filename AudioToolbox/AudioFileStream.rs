@@ -24,8 +24,10 @@ use crate::*;
 pub struct AudioFileStreamPropertyFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileStreamPropertyFlags: u32 {
-        const kAudioFileStreamPropertyFlag_PropertyIsCached = 1;
-        const kAudioFileStreamPropertyFlag_CacheProperty = 2;
+        #[doc(alias = "kAudioFileStreamPropertyFlag_PropertyIsCached")]
+        const PropertyIsCached = 1;
+        #[doc(alias = "kAudioFileStreamPropertyFlag_CacheProperty")]
+        const CacheProperty = 2;
     }
 }
 
@@ -48,7 +50,8 @@ unsafe impl RefEncode for AudioFileStreamPropertyFlags {
 pub struct AudioFileStreamParseFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileStreamParseFlags: u32 {
-        const kAudioFileStreamParseFlag_Discontinuity = 1;
+        #[doc(alias = "kAudioFileStreamParseFlag_Discontinuity")]
+        const Discontinuity = 1;
     }
 }
 
@@ -69,7 +72,8 @@ unsafe impl RefEncode for AudioFileStreamParseFlags {
 pub struct AudioFileStreamSeekFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileStreamSeekFlags: u32 {
-        const kAudioFileStreamSeekFlag_OffsetIsEstimated = 1;
+        #[doc(alias = "kAudioFileStreamSeekFlag_OffsetIsEstimated")]
+        const OffsetIsEstimated = 1;
     }
 }
 

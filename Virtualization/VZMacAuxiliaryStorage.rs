@@ -16,7 +16,8 @@ pub struct VZMacAuxiliaryStorageInitializationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl VZMacAuxiliaryStorageInitializationOptions: NSUInteger {
 /// Overwrite an existing auxiliary storage.
-        const VZMacAuxiliaryStorageInitializationOptionAllowOverwrite = 1<<0;
+        #[doc(alias = "VZMacAuxiliaryStorageInitializationOptionAllowOverwrite")]
+        const AllowOverwrite = 1<<0;
     }
 }
 

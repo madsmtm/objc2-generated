@@ -26,21 +26,36 @@ pub type CFMutableCharacterSetRef = *mut c_void;
 pub struct CFCharacterSetPredefinedSet(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFCharacterSetPredefinedSet {
-    pub const kCFCharacterSetControl: Self = Self(1);
-    pub const kCFCharacterSetWhitespace: Self = Self(2);
-    pub const kCFCharacterSetWhitespaceAndNewline: Self = Self(3);
-    pub const kCFCharacterSetDecimalDigit: Self = Self(4);
-    pub const kCFCharacterSetLetter: Self = Self(5);
-    pub const kCFCharacterSetLowercaseLetter: Self = Self(6);
-    pub const kCFCharacterSetUppercaseLetter: Self = Self(7);
-    pub const kCFCharacterSetNonBase: Self = Self(8);
-    pub const kCFCharacterSetDecomposable: Self = Self(9);
-    pub const kCFCharacterSetAlphaNumeric: Self = Self(10);
-    pub const kCFCharacterSetPunctuation: Self = Self(11);
-    pub const kCFCharacterSetCapitalizedLetter: Self = Self(13);
-    pub const kCFCharacterSetSymbol: Self = Self(14);
-    pub const kCFCharacterSetNewline: Self = Self(15);
-    pub const kCFCharacterSetIllegal: Self = Self(12);
+    #[doc(alias = "kCFCharacterSetControl")]
+    pub const Control: Self = Self(1);
+    #[doc(alias = "kCFCharacterSetWhitespace")]
+    pub const Whitespace: Self = Self(2);
+    #[doc(alias = "kCFCharacterSetWhitespaceAndNewline")]
+    pub const WhitespaceAndNewline: Self = Self(3);
+    #[doc(alias = "kCFCharacterSetDecimalDigit")]
+    pub const DecimalDigit: Self = Self(4);
+    #[doc(alias = "kCFCharacterSetLetter")]
+    pub const Letter: Self = Self(5);
+    #[doc(alias = "kCFCharacterSetLowercaseLetter")]
+    pub const LowercaseLetter: Self = Self(6);
+    #[doc(alias = "kCFCharacterSetUppercaseLetter")]
+    pub const UppercaseLetter: Self = Self(7);
+    #[doc(alias = "kCFCharacterSetNonBase")]
+    pub const NonBase: Self = Self(8);
+    #[doc(alias = "kCFCharacterSetDecomposable")]
+    pub const Decomposable: Self = Self(9);
+    #[doc(alias = "kCFCharacterSetAlphaNumeric")]
+    pub const AlphaNumeric: Self = Self(10);
+    #[doc(alias = "kCFCharacterSetPunctuation")]
+    pub const Punctuation: Self = Self(11);
+    #[doc(alias = "kCFCharacterSetCapitalizedLetter")]
+    pub const CapitalizedLetter: Self = Self(13);
+    #[doc(alias = "kCFCharacterSetSymbol")]
+    pub const Symbol: Self = Self(14);
+    #[doc(alias = "kCFCharacterSetNewline")]
+    pub const Newline: Self = Self(15);
+    #[doc(alias = "kCFCharacterSetIllegal")]
+    pub const Illegal: Self = Self(12);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]

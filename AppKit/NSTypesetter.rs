@@ -365,12 +365,18 @@ extern_methods!(
 pub struct NSTypesetterControlCharacterAction(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTypesetterControlCharacterAction: NSUInteger {
-        const NSTypesetterZeroAdvancementAction = 1<<0;
-        const NSTypesetterWhitespaceAction = 1<<1;
-        const NSTypesetterHorizontalTabAction = 1<<2;
-        const NSTypesetterLineBreakAction = 1<<3;
-        const NSTypesetterParagraphBreakAction = 1<<4;
-        const NSTypesetterContainerBreakAction = 1<<5;
+        #[doc(alias = "NSTypesetterZeroAdvancementAction")]
+        const ZeroAdvancementAction = 1<<0;
+        #[doc(alias = "NSTypesetterWhitespaceAction")]
+        const WhitespaceAction = 1<<1;
+        #[doc(alias = "NSTypesetterHorizontalTabAction")]
+        const HorizontalTabAction = 1<<2;
+        #[doc(alias = "NSTypesetterLineBreakAction")]
+        const LineBreakAction = 1<<3;
+        #[doc(alias = "NSTypesetterParagraphBreakAction")]
+        const ParagraphBreakAction = 1<<4;
+        #[doc(alias = "NSTypesetterContainerBreakAction")]
+        const ContainerBreakAction = 1<<5;
     }
 }
 

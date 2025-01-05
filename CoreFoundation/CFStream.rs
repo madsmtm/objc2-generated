@@ -39,14 +39,22 @@ pub type CFStreamPropertyKey = CFStringRef;
 pub struct CFStreamStatus(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFStreamStatus {
-    pub const kCFStreamStatusNotOpen: Self = Self(0);
-    pub const kCFStreamStatusOpening: Self = Self(1);
-    pub const kCFStreamStatusOpen: Self = Self(2);
-    pub const kCFStreamStatusReading: Self = Self(3);
-    pub const kCFStreamStatusWriting: Self = Self(4);
-    pub const kCFStreamStatusAtEnd: Self = Self(5);
-    pub const kCFStreamStatusClosed: Self = Self(6);
-    pub const kCFStreamStatusError: Self = Self(7);
+    #[doc(alias = "kCFStreamStatusNotOpen")]
+    pub const NotOpen: Self = Self(0);
+    #[doc(alias = "kCFStreamStatusOpening")]
+    pub const Opening: Self = Self(1);
+    #[doc(alias = "kCFStreamStatusOpen")]
+    pub const Open: Self = Self(2);
+    #[doc(alias = "kCFStreamStatusReading")]
+    pub const Reading: Self = Self(3);
+    #[doc(alias = "kCFStreamStatusWriting")]
+    pub const Writing: Self = Self(4);
+    #[doc(alias = "kCFStreamStatusAtEnd")]
+    pub const AtEnd: Self = Self(5);
+    #[doc(alias = "kCFStreamStatusClosed")]
+    pub const Closed: Self = Self(6);
+    #[doc(alias = "kCFStreamStatusError")]
+    pub const Error: Self = Self(7);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -68,12 +76,18 @@ pub struct CFStreamEventType(pub CFOptionFlags);
 #[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFStreamEventType: CFOptionFlags {
-        const kCFStreamEventNone = 0;
-        const kCFStreamEventOpenCompleted = 1;
-        const kCFStreamEventHasBytesAvailable = 2;
-        const kCFStreamEventCanAcceptBytes = 4;
-        const kCFStreamEventErrorOccurred = 8;
-        const kCFStreamEventEndEncountered = 16;
+        #[doc(alias = "kCFStreamEventNone")]
+        const None = 0;
+        #[doc(alias = "kCFStreamEventOpenCompleted")]
+        const OpenCompleted = 1;
+        #[doc(alias = "kCFStreamEventHasBytesAvailable")]
+        const HasBytesAvailable = 2;
+        #[doc(alias = "kCFStreamEventCanAcceptBytes")]
+        const CanAcceptBytes = 4;
+        #[doc(alias = "kCFStreamEventErrorOccurred")]
+        const ErrorOccurred = 8;
+        #[doc(alias = "kCFStreamEventEndEncountered")]
+        const EndEncountered = 16;
     }
 }
 
@@ -534,9 +548,12 @@ extern "C-unwind" {
 pub struct CFStreamErrorDomain(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFStreamErrorDomain {
-    pub const kCFStreamErrorDomainCustom: Self = Self(-1);
-    pub const kCFStreamErrorDomainPOSIX: Self = Self(1);
-    pub const kCFStreamErrorDomainMacOSStatus: Self = Self(2);
+    #[doc(alias = "kCFStreamErrorDomainCustom")]
+    pub const Custom: Self = Self(-1);
+    #[doc(alias = "kCFStreamErrorDomainPOSIX")]
+    pub const POSIX: Self = Self(1);
+    #[doc(alias = "kCFStreamErrorDomainMacOSStatus")]
+    pub const MacOSStatus: Self = Self(2);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]

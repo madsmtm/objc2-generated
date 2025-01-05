@@ -14,12 +14,18 @@ use crate::*;
 pub struct NSSnapshotEventType(pub NSUInteger);
 bitflags::bitflags! {
     impl NSSnapshotEventType: NSUInteger {
-        const NSSnapshotEventUndoInsertion = 1<<1;
-        const NSSnapshotEventUndoDeletion = 1<<2;
-        const NSSnapshotEventUndoUpdate = 1<<3;
-        const NSSnapshotEventRollback = 1<<4;
-        const NSSnapshotEventRefresh = 1<<5;
-        const NSSnapshotEventMergePolicy = 1<<6;
+        #[doc(alias = "NSSnapshotEventUndoInsertion")]
+        const UndoInsertion = 1<<1;
+        #[doc(alias = "NSSnapshotEventUndoDeletion")]
+        const UndoDeletion = 1<<2;
+        #[doc(alias = "NSSnapshotEventUndoUpdate")]
+        const UndoUpdate = 1<<3;
+        #[doc(alias = "NSSnapshotEventRollback")]
+        const Rollback = 1<<4;
+        #[doc(alias = "NSSnapshotEventRefresh")]
+        const Refresh = 1<<5;
+        #[doc(alias = "NSSnapshotEventMergePolicy")]
+        const MergePolicy = 1<<6;
     }
 }
 

@@ -17,14 +17,22 @@ pub type CGImageRef = *mut c_void;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGImageAlphaInfo(pub u32);
 impl CGImageAlphaInfo {
-    pub const kCGImageAlphaNone: Self = Self(0);
-    pub const kCGImageAlphaPremultipliedLast: Self = Self(1);
-    pub const kCGImageAlphaPremultipliedFirst: Self = Self(2);
-    pub const kCGImageAlphaLast: Self = Self(3);
-    pub const kCGImageAlphaFirst: Self = Self(4);
-    pub const kCGImageAlphaNoneSkipLast: Self = Self(5);
-    pub const kCGImageAlphaNoneSkipFirst: Self = Self(6);
-    pub const kCGImageAlphaOnly: Self = Self(7);
+    #[doc(alias = "kCGImageAlphaNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "kCGImageAlphaPremultipliedLast")]
+    pub const PremultipliedLast: Self = Self(1);
+    #[doc(alias = "kCGImageAlphaPremultipliedFirst")]
+    pub const PremultipliedFirst: Self = Self(2);
+    #[doc(alias = "kCGImageAlphaLast")]
+    pub const Last: Self = Self(3);
+    #[doc(alias = "kCGImageAlphaFirst")]
+    pub const First: Self = Self(4);
+    #[doc(alias = "kCGImageAlphaNoneSkipLast")]
+    pub const NoneSkipLast: Self = Self(5);
+    #[doc(alias = "kCGImageAlphaNoneSkipFirst")]
+    pub const NoneSkipFirst: Self = Self(6);
+    #[doc(alias = "kCGImageAlphaOnly")]
+    pub const Only: Self = Self(7);
 }
 
 #[cfg(feature = "objc2")]
@@ -43,12 +51,18 @@ unsafe impl RefEncode for CGImageAlphaInfo {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGImageByteOrderInfo(pub u32);
 impl CGImageByteOrderInfo {
-    pub const kCGImageByteOrderMask: Self = Self(0x7000);
-    pub const kCGImageByteOrderDefault: Self = Self(0 << 12);
-    pub const kCGImageByteOrder16Little: Self = Self(1 << 12);
-    pub const kCGImageByteOrder32Little: Self = Self(2 << 12);
-    pub const kCGImageByteOrder16Big: Self = Self(3 << 12);
-    pub const kCGImageByteOrder32Big: Self = Self(4 << 12);
+    #[doc(alias = "kCGImageByteOrderMask")]
+    pub const OrderMask: Self = Self(0x7000);
+    #[doc(alias = "kCGImageByteOrderDefault")]
+    pub const OrderDefault: Self = Self(0 << 12);
+    #[doc(alias = "kCGImageByteOrder16Little")]
+    pub const Order16Little: Self = Self(1 << 12);
+    #[doc(alias = "kCGImageByteOrder32Little")]
+    pub const Order32Little: Self = Self(2 << 12);
+    #[doc(alias = "kCGImageByteOrder16Big")]
+    pub const Order16Big: Self = Self(3 << 12);
+    #[doc(alias = "kCGImageByteOrder32Big")]
+    pub const Order32Big: Self = Self(4 << 12);
 }
 
 #[cfg(feature = "objc2")]
@@ -67,12 +81,18 @@ unsafe impl RefEncode for CGImageByteOrderInfo {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGImagePixelFormatInfo(pub u32);
 impl CGImagePixelFormatInfo {
-    pub const kCGImagePixelFormatMask: Self = Self(0xF0000);
-    pub const kCGImagePixelFormatPacked: Self = Self(0 << 16);
-    pub const kCGImagePixelFormatRGB555: Self = Self(1 << 16);
-    pub const kCGImagePixelFormatRGB565: Self = Self(2 << 16);
-    pub const kCGImagePixelFormatRGB101010: Self = Self(3 << 16);
-    pub const kCGImagePixelFormatRGBCIF10: Self = Self(4 << 16);
+    #[doc(alias = "kCGImagePixelFormatMask")]
+    pub const Mask: Self = Self(0xF0000);
+    #[doc(alias = "kCGImagePixelFormatPacked")]
+    pub const Packed: Self = Self(0 << 16);
+    #[doc(alias = "kCGImagePixelFormatRGB555")]
+    pub const RGB555: Self = Self(1 << 16);
+    #[doc(alias = "kCGImagePixelFormatRGB565")]
+    pub const RGB565: Self = Self(2 << 16);
+    #[doc(alias = "kCGImagePixelFormatRGB101010")]
+    pub const RGB101010: Self = Self(3 << 16);
+    #[doc(alias = "kCGImagePixelFormatRGBCIF10")]
+    pub const RGBCIF10: Self = Self(4 << 16);
 }
 
 #[cfg(feature = "objc2")]
@@ -92,15 +112,24 @@ unsafe impl RefEncode for CGImagePixelFormatInfo {
 pub struct CGBitmapInfo(pub u32);
 bitflags::bitflags! {
     impl CGBitmapInfo: u32 {
-        const kCGBitmapAlphaInfoMask = 0x1F;
-        const kCGBitmapFloatInfoMask = 0xF00;
-        const kCGBitmapFloatComponents = 1<<8;
-        const kCGBitmapByteOrderMask = CGImageByteOrderInfo::kCGImageByteOrderMask.0;
-        const kCGBitmapByteOrderDefault = CGImageByteOrderInfo::kCGImageByteOrderDefault.0;
-        const kCGBitmapByteOrder16Little = CGImageByteOrderInfo::kCGImageByteOrder16Little.0;
-        const kCGBitmapByteOrder32Little = CGImageByteOrderInfo::kCGImageByteOrder32Little.0;
-        const kCGBitmapByteOrder16Big = CGImageByteOrderInfo::kCGImageByteOrder16Big.0;
-        const kCGBitmapByteOrder32Big = CGImageByteOrderInfo::kCGImageByteOrder32Big.0;
+        #[doc(alias = "kCGBitmapAlphaInfoMask")]
+        const AlphaInfoMask = 0x1F;
+        #[doc(alias = "kCGBitmapFloatInfoMask")]
+        const FloatInfoMask = 0xF00;
+        #[doc(alias = "kCGBitmapFloatComponents")]
+        const FloatComponents = 1<<8;
+        #[doc(alias = "kCGBitmapByteOrderMask")]
+        const ByteOrderMask = CGImageByteOrderInfo::OrderMask.0;
+        #[doc(alias = "kCGBitmapByteOrderDefault")]
+        const ByteOrderDefault = CGImageByteOrderInfo::OrderDefault.0;
+        #[doc(alias = "kCGBitmapByteOrder16Little")]
+        const ByteOrder16Little = CGImageByteOrderInfo::Order16Little.0;
+        #[doc(alias = "kCGBitmapByteOrder32Little")]
+        const ByteOrder32Little = CGImageByteOrderInfo::Order32Little.0;
+        #[doc(alias = "kCGBitmapByteOrder16Big")]
+        const ByteOrder16Big = CGImageByteOrderInfo::Order16Big.0;
+        #[doc(alias = "kCGBitmapByteOrder32Big")]
+        const ByteOrder32Big = CGImageByteOrderInfo::Order32Big.0;
     }
 }
 
@@ -115,12 +144,10 @@ unsafe impl RefEncode for CGBitmapInfo {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgbitmapbyteorder16host?language=objc)
-pub static kCGBitmapByteOrder16Host: CGBitmapInfo =
-    CGBitmapInfo(CGBitmapInfo::kCGBitmapByteOrder16Little.0);
+pub static kCGBitmapByteOrder16Host: CGBitmapInfo = CGBitmapInfo(CGBitmapInfo::ByteOrder16Little.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgbitmapbyteorder32host?language=objc)
-pub static kCGBitmapByteOrder32Host: CGBitmapInfo =
-    CGBitmapInfo(CGBitmapInfo::kCGBitmapByteOrder32Little.0);
+pub static kCGBitmapByteOrder32Host: CGBitmapInfo = CGBitmapInfo(CGBitmapInfo::ByteOrder32Little.0);
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]

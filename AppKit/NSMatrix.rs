@@ -15,10 +15,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSMatrixMode(pub NSUInteger);
 impl NSMatrixMode {
-    pub const NSRadioModeMatrix: Self = Self(0);
-    pub const NSHighlightModeMatrix: Self = Self(1);
-    pub const NSListModeMatrix: Self = Self(2);
-    pub const NSTrackModeMatrix: Self = Self(3);
+    #[doc(alias = "NSRadioModeMatrix")]
+    pub const RadioModeMatrix: Self = Self(0);
+    #[doc(alias = "NSHighlightModeMatrix")]
+    pub const HighlightModeMatrix: Self = Self(1);
+    #[doc(alias = "NSListModeMatrix")]
+    pub const ListModeMatrix: Self = Self(2);
+    #[doc(alias = "NSTrackModeMatrix")]
+    pub const TrackModeMatrix: Self = Self(3);
 }
 
 unsafe impl Encode for NSMatrixMode {

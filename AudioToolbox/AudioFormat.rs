@@ -25,8 +25,10 @@ pub type AudioFormatPropertyID = u32;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioPanningMode(pub u32);
 impl AudioPanningMode {
-    pub const kPanningMode_SoundField: Self = Self(3);
-    pub const kPanningMode_VectorBasedPanning: Self = Self(4);
+    #[doc(alias = "kPanningMode_SoundField")]
+    pub const PanningMode_SoundField: Self = Self(3);
+    #[doc(alias = "kPanningMode_VectorBasedPanning")]
+    pub const PanningMode_VectorBasedPanning: Self = Self(4);
 }
 
 unsafe impl Encode for AudioPanningMode {
@@ -96,8 +98,10 @@ unsafe impl RefEncode for AudioPanningInfo {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioBalanceFadeType(pub u32);
 impl AudioBalanceFadeType {
-    pub const kAudioBalanceFadeType_MaxUnityGain: Self = Self(0);
-    pub const kAudioBalanceFadeType_EqualPower: Self = Self(1);
+    #[doc(alias = "kAudioBalanceFadeType_MaxUnityGain")]
+    pub const MaxUnityGain: Self = Self(0);
+    #[doc(alias = "kAudioBalanceFadeType_EqualPower")]
+    pub const EqualPower: Self = Self(1);
 }
 
 unsafe impl Encode for AudioBalanceFadeType {

@@ -18,9 +18,12 @@ pub type CGWindowID = u32;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGWindowSharingType(pub u32);
 impl CGWindowSharingType {
-    pub const kCGWindowSharingNone: Self = Self(0);
-    pub const kCGWindowSharingReadOnly: Self = Self(1);
-    pub const kCGWindowSharingReadWrite: Self = Self(2);
+    #[doc(alias = "kCGWindowSharingNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "kCGWindowSharingReadOnly")]
+    pub const ReadOnly: Self = Self(1);
+    #[doc(alias = "kCGWindowSharingReadWrite")]
+    pub const ReadWrite: Self = Self(2);
 }
 
 #[cfg(feature = "objc2")]
@@ -39,9 +42,12 @@ unsafe impl RefEncode for CGWindowSharingType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGWindowBackingType(pub u32);
 impl CGWindowBackingType {
-    pub const kCGBackingStoreRetained: Self = Self(0);
-    pub const kCGBackingStoreNonretained: Self = Self(1);
-    pub const kCGBackingStoreBuffered: Self = Self(2);
+    #[doc(alias = "kCGBackingStoreRetained")]
+    pub const BackingStoreRetained: Self = Self(0);
+    #[doc(alias = "kCGBackingStoreNonretained")]
+    pub const BackingStoreNonretained: Self = Self(1);
+    #[doc(alias = "kCGBackingStoreBuffered")]
+    pub const BackingStoreBuffered: Self = Self(2);
 }
 
 #[cfg(feature = "objc2")]
@@ -139,12 +145,18 @@ extern "C" {
 pub struct CGWindowListOption(pub u32);
 bitflags::bitflags! {
     impl CGWindowListOption: u32 {
-        const kCGWindowListOptionAll = 0;
-        const kCGWindowListOptionOnScreenOnly = 1<<0;
-        const kCGWindowListOptionOnScreenAboveWindow = 1<<1;
-        const kCGWindowListOptionOnScreenBelowWindow = 1<<2;
-        const kCGWindowListOptionIncludingWindow = 1<<3;
-        const kCGWindowListExcludeDesktopElements = 1<<4;
+        #[doc(alias = "kCGWindowListOptionAll")]
+        const OptionAll = 0;
+        #[doc(alias = "kCGWindowListOptionOnScreenOnly")]
+        const OptionOnScreenOnly = 1<<0;
+        #[doc(alias = "kCGWindowListOptionOnScreenAboveWindow")]
+        const OptionOnScreenAboveWindow = 1<<1;
+        #[doc(alias = "kCGWindowListOptionOnScreenBelowWindow")]
+        const OptionOnScreenBelowWindow = 1<<2;
+        #[doc(alias = "kCGWindowListOptionIncludingWindow")]
+        const OptionIncludingWindow = 1<<3;
+        #[doc(alias = "kCGWindowListExcludeDesktopElements")]
+        const ExcludeDesktopElements = 1<<4;
     }
 }
 
@@ -186,12 +198,18 @@ extern "C-unwind" {
 pub struct CGWindowImageOption(pub u32);
 bitflags::bitflags! {
     impl CGWindowImageOption: u32 {
-        const kCGWindowImageDefault = 0;
-        const kCGWindowImageBoundsIgnoreFraming = 1<<0;
-        const kCGWindowImageShouldBeOpaque = 1<<1;
-        const kCGWindowImageOnlyShadows = 1<<2;
-        const kCGWindowImageBestResolution = 1<<3;
-        const kCGWindowImageNominalResolution = 1<<4;
+        #[doc(alias = "kCGWindowImageDefault")]
+        const Default = 0;
+        #[doc(alias = "kCGWindowImageBoundsIgnoreFraming")]
+        const BoundsIgnoreFraming = 1<<0;
+        #[doc(alias = "kCGWindowImageShouldBeOpaque")]
+        const ShouldBeOpaque = 1<<1;
+        #[doc(alias = "kCGWindowImageOnlyShadows")]
+        const OnlyShadows = 1<<2;
+        #[doc(alias = "kCGWindowImageBestResolution")]
+        const BestResolution = 1<<3;
+        #[doc(alias = "kCGWindowImageNominalResolution")]
+        const NominalResolution = 1<<4;
     }
 }
 

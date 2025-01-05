@@ -45,8 +45,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CVAttachmentMode(pub u32);
 impl CVAttachmentMode {
-    pub const kCVAttachmentMode_ShouldNotPropagate: Self = Self(0);
-    pub const kCVAttachmentMode_ShouldPropagate: Self = Self(1);
+    #[doc(alias = "kCVAttachmentMode_ShouldNotPropagate")]
+    pub const ShouldNotPropagate: Self = Self(0);
+    #[doc(alias = "kCVAttachmentMode_ShouldPropagate")]
+    pub const ShouldPropagate: Self = Self(1);
 }
 
 #[cfg(feature = "objc2")]

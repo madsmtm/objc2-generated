@@ -151,7 +151,8 @@ pub struct CVPixelBufferPoolFlushFlags(pub CVOptionFlags);
 #[cfg(feature = "CVBase")]
 bitflags::bitflags! {
     impl CVPixelBufferPoolFlushFlags: CVOptionFlags {
-        const kCVPixelBufferPoolFlushExcessBuffers = 1;
+        #[doc(alias = "kCVPixelBufferPoolFlushExcessBuffers")]
+        const ExcessBuffers = 1;
     }
 }
 

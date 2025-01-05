@@ -15,10 +15,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASAuthorizationAppleIDProviderCredentialState(pub NSInteger);
 impl ASAuthorizationAppleIDProviderCredentialState {
-    pub const ASAuthorizationAppleIDProviderCredentialRevoked: Self = Self(0);
-    pub const ASAuthorizationAppleIDProviderCredentialAuthorized: Self = Self(1);
-    pub const ASAuthorizationAppleIDProviderCredentialNotFound: Self = Self(2);
-    pub const ASAuthorizationAppleIDProviderCredentialTransferred: Self = Self(3);
+    #[doc(alias = "ASAuthorizationAppleIDProviderCredentialRevoked")]
+    pub const Revoked: Self = Self(0);
+    #[doc(alias = "ASAuthorizationAppleIDProviderCredentialAuthorized")]
+    pub const Authorized: Self = Self(1);
+    #[doc(alias = "ASAuthorizationAppleIDProviderCredentialNotFound")]
+    pub const NotFound: Self = Self(2);
+    #[doc(alias = "ASAuthorizationAppleIDProviderCredentialTransferred")]
+    pub const Transferred: Self = Self(3);
 }
 
 unsafe impl Encode for ASAuthorizationAppleIDProviderCredentialState {

@@ -13,13 +13,20 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDocumentChangeType(pub NSUInteger);
 impl NSDocumentChangeType {
-    pub const NSChangeDone: Self = Self(0);
-    pub const NSChangeUndone: Self = Self(1);
-    pub const NSChangeRedone: Self = Self(5);
-    pub const NSChangeCleared: Self = Self(2);
-    pub const NSChangeReadOtherContents: Self = Self(3);
-    pub const NSChangeAutosaved: Self = Self(4);
-    pub const NSChangeDiscardable: Self = Self(256);
+    #[doc(alias = "NSChangeDone")]
+    pub const ChangeDone: Self = Self(0);
+    #[doc(alias = "NSChangeUndone")]
+    pub const ChangeUndone: Self = Self(1);
+    #[doc(alias = "NSChangeRedone")]
+    pub const ChangeRedone: Self = Self(5);
+    #[doc(alias = "NSChangeCleared")]
+    pub const ChangeCleared: Self = Self(2);
+    #[doc(alias = "NSChangeReadOtherContents")]
+    pub const ChangeReadOtherContents: Self = Self(3);
+    #[doc(alias = "NSChangeAutosaved")]
+    pub const ChangeAutosaved: Self = Self(4);
+    #[doc(alias = "NSChangeDiscardable")]
+    pub const ChangeDiscardable: Self = Self(256);
 }
 
 unsafe impl Encode for NSDocumentChangeType {
@@ -36,14 +43,21 @@ unsafe impl RefEncode for NSDocumentChangeType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSSaveOperationType(pub NSUInteger);
 impl NSSaveOperationType {
-    pub const NSSaveOperation: Self = Self(0);
-    pub const NSSaveAsOperation: Self = Self(1);
-    pub const NSSaveToOperation: Self = Self(2);
-    pub const NSAutosaveInPlaceOperation: Self = Self(4);
-    pub const NSAutosaveElsewhereOperation: Self = Self(3);
-    pub const NSAutosaveAsOperation: Self = Self(5);
+    #[doc(alias = "NSSaveOperation")]
+    pub const SaveOperation: Self = Self(0);
+    #[doc(alias = "NSSaveAsOperation")]
+    pub const SaveAsOperation: Self = Self(1);
+    #[doc(alias = "NSSaveToOperation")]
+    pub const SaveToOperation: Self = Self(2);
+    #[doc(alias = "NSAutosaveInPlaceOperation")]
+    pub const AutosaveInPlaceOperation: Self = Self(4);
+    #[doc(alias = "NSAutosaveElsewhereOperation")]
+    pub const AutosaveElsewhereOperation: Self = Self(3);
+    #[doc(alias = "NSAutosaveAsOperation")]
+    pub const AutosaveAsOperation: Self = Self(5);
     #[deprecated = "Use NSAutosaveElsewhereOperation instead"]
-    pub const NSAutosaveOperation: Self = Self(3);
+    #[doc(alias = "NSAutosaveOperation")]
+    pub const AutosaveOperation: Self = Self(3);
 }
 
 unsafe impl Encode for NSSaveOperationType {

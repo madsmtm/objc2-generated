@@ -11,12 +11,18 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGToneMapping(pub u32);
 impl CGToneMapping {
-    pub const kCGToneMappingDefault: Self = Self(0);
-    pub const kCGToneMappingImageSpecificLumaScaling: Self = Self(1);
-    pub const kCGToneMappingReferenceWhiteBased: Self = Self(2);
-    pub const kCGToneMappingITURecommended: Self = Self(3);
-    pub const kCGToneMappingEXRGamma: Self = Self(4);
-    pub const kCGToneMappingNone: Self = Self(5);
+    #[doc(alias = "kCGToneMappingDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "kCGToneMappingImageSpecificLumaScaling")]
+    pub const ImageSpecificLumaScaling: Self = Self(1);
+    #[doc(alias = "kCGToneMappingReferenceWhiteBased")]
+    pub const ReferenceWhiteBased: Self = Self(2);
+    #[doc(alias = "kCGToneMappingITURecommended")]
+    pub const ITURecommended: Self = Self(3);
+    #[doc(alias = "kCGToneMappingEXRGamma")]
+    pub const EXRGamma: Self = Self(4);
+    #[doc(alias = "kCGToneMappingNone")]
+    pub const None: Self = Self(5);
 }
 
 #[cfg(feature = "objc2")]

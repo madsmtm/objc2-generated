@@ -15,8 +15,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSRulerOrientation(pub NSUInteger);
 impl NSRulerOrientation {
-    pub const NSHorizontalRuler: Self = Self(0);
-    pub const NSVerticalRuler: Self = Self(1);
+    #[doc(alias = "NSHorizontalRuler")]
+    pub const HorizontalRuler: Self = Self(0);
+    #[doc(alias = "NSVerticalRuler")]
+    pub const VerticalRuler: Self = Self(1);
 }
 
 unsafe impl Encode for NSRulerOrientation {

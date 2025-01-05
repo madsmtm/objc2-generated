@@ -17,8 +17,10 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMTagError(pub OSStatus);
 impl CMTagError {
-    pub const kCMTagError_ParamErr: Self = Self(-15730);
-    pub const kCMTagError_AllocationFailed: Self = Self(-15731);
+    #[doc(alias = "kCMTagError_ParamErr")]
+    pub const ParamErr: Self = Self(-15730);
+    #[doc(alias = "kCMTagError_AllocationFailed")]
+    pub const AllocationFailed: Self = Self(-15731);
 }
 
 #[cfg(feature = "objc2")]
@@ -41,17 +43,28 @@ unsafe impl RefEncode for CMTagError {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMTagCategory(pub FourCharCode);
 impl CMTagCategory {
-    pub const kCMTagCategory_Undefined: Self = Self(0);
-    pub const kCMTagCategory_MediaType: Self = Self(0x6d646961);
-    pub const kCMTagCategory_MediaSubType: Self = Self(0x6d737562);
-    pub const kCMTagCategory_TrackID: Self = Self(0x7472616b);
-    pub const kCMTagCategory_ChannelID: Self = Self(0x7663686e);
-    pub const kCMTagCategory_VideoLayerID: Self = Self(0x766c6179);
-    pub const kCMTagCategory_PixelFormat: Self = Self(0x70697866);
-    pub const kCMTagCategory_PackingType: Self = Self(0x7061636b);
-    pub const kCMTagCategory_ProjectionType: Self = Self(0x70726f6a);
-    pub const kCMTagCategory_StereoView: Self = Self(0x65796573);
-    pub const kCMTagCategory_StereoViewInterpretation: Self = Self(0x65796970);
+    #[doc(alias = "kCMTagCategory_Undefined")]
+    pub const Undefined: Self = Self(0);
+    #[doc(alias = "kCMTagCategory_MediaType")]
+    pub const MediaType: Self = Self(0x6d646961);
+    #[doc(alias = "kCMTagCategory_MediaSubType")]
+    pub const MediaSubType: Self = Self(0x6d737562);
+    #[doc(alias = "kCMTagCategory_TrackID")]
+    pub const TrackID: Self = Self(0x7472616b);
+    #[doc(alias = "kCMTagCategory_ChannelID")]
+    pub const ChannelID: Self = Self(0x7663686e);
+    #[doc(alias = "kCMTagCategory_VideoLayerID")]
+    pub const VideoLayerID: Self = Self(0x766c6179);
+    #[doc(alias = "kCMTagCategory_PixelFormat")]
+    pub const PixelFormat: Self = Self(0x70697866);
+    #[doc(alias = "kCMTagCategory_PackingType")]
+    pub const PackingType: Self = Self(0x7061636b);
+    #[doc(alias = "kCMTagCategory_ProjectionType")]
+    pub const ProjectionType: Self = Self(0x70726f6a);
+    #[doc(alias = "kCMTagCategory_StereoView")]
+    pub const StereoView: Self = Self(0x65796573);
+    #[doc(alias = "kCMTagCategory_StereoViewInterpretation")]
+    pub const StereoViewInterpretation: Self = Self(0x65796970);
 }
 
 #[cfg(feature = "objc2")]
@@ -72,11 +85,16 @@ unsafe impl RefEncode for CMTagCategory {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMTagDataType(pub u32);
 impl CMTagDataType {
-    pub const kCMTagDataType_Invalid: Self = Self(0);
-    pub const kCMTagDataType_SInt64: Self = Self(2);
-    pub const kCMTagDataType_Float64: Self = Self(3);
-    pub const kCMTagDataType_OSType: Self = Self(5);
-    pub const kCMTagDataType_Flags: Self = Self(7);
+    #[doc(alias = "kCMTagDataType_Invalid")]
+    pub const Invalid: Self = Self(0);
+    #[doc(alias = "kCMTagDataType_SInt64")]
+    pub const SInt64: Self = Self(2);
+    #[doc(alias = "kCMTagDataType_Float64")]
+    pub const Float64: Self = Self(3);
+    #[doc(alias = "kCMTagDataType_OSType")]
+    pub const OSType: Self = Self(5);
+    #[doc(alias = "kCMTagDataType_Flags")]
+    pub const Flags: Self = Self(7);
 }
 
 #[cfg(feature = "objc2")]
@@ -191,9 +209,12 @@ extern "C" {
 pub struct CMStereoViewComponents(pub u64);
 bitflags::bitflags! {
     impl CMStereoViewComponents: u64 {
-        const kCMStereoView_None = 0;
-        const kCMStereoView_LeftEye = 1<<0;
-        const kCMStereoView_RightEye = 1<<1;
+        #[doc(alias = "kCMStereoView_None")]
+        const None = 0;
+        #[doc(alias = "kCMStereoView_LeftEye")]
+        const LeftEye = 1<<0;
+        #[doc(alias = "kCMStereoView_RightEye")]
+        const RightEye = 1<<1;
     }
 }
 
@@ -246,9 +267,12 @@ extern "C" {
 pub struct CMStereoViewInterpretationOptions(pub u64);
 bitflags::bitflags! {
     impl CMStereoViewInterpretationOptions: u64 {
-        const kCMStereoViewInterpretation_Default = 0;
-        const kCMStereoViewInterpretation_StereoOrderReversed = 1<<0;
-        const kCMStereoViewInterpretation_AdditionalViews = 1<<1;
+        #[doc(alias = "kCMStereoViewInterpretation_Default")]
+        const Default = 0;
+        #[doc(alias = "kCMStereoViewInterpretation_StereoOrderReversed")]
+        const StereoOrderReversed = 1<<0;
+        #[doc(alias = "kCMStereoViewInterpretation_AdditionalViews")]
+        const AdditionalViews = 1<<1;
     }
 }
 
@@ -279,10 +303,14 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMProjectionType(pub u64);
 impl CMProjectionType {
-    pub const kCMProjectionType_Rectangular: Self = Self(0x72656374);
-    pub const kCMProjectionType_Equirectangular: Self = Self(0x65717569);
-    pub const kCMProjectionType_HalfEquirectangular: Self = Self(0x68657175);
-    pub const kCMProjectionType_Fisheye: Self = Self(0x66697368);
+    #[doc(alias = "kCMProjectionType_Rectangular")]
+    pub const Rectangular: Self = Self(0x72656374);
+    #[doc(alias = "kCMProjectionType_Equirectangular")]
+    pub const Equirectangular: Self = Self(0x65717569);
+    #[doc(alias = "kCMProjectionType_HalfEquirectangular")]
+    pub const HalfEquirectangular: Self = Self(0x68657175);
+    #[doc(alias = "kCMProjectionType_Fisheye")]
+    pub const Fisheye: Self = Self(0x66697368);
 }
 
 #[cfg(feature = "objc2")]
@@ -333,9 +361,12 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMPackingType(pub u64);
 impl CMPackingType {
-    pub const kCMPackingType_None: Self = Self(0x6e6f6e65);
-    pub const kCMPackingType_SideBySide: Self = Self(0x73696465);
-    pub const kCMPackingType_OverUnder: Self = Self(0x6f766572);
+    #[doc(alias = "kCMPackingType_None")]
+    pub const None: Self = Self(0x6e6f6e65);
+    #[doc(alias = "kCMPackingType_SideBySide")]
+    pub const SideBySide: Self = Self(0x73696465);
+    #[doc(alias = "kCMPackingType_OverUnder")]
+    pub const OverUnder: Self = Self(0x6f766572);
 }
 
 #[cfg(feature = "objc2")]

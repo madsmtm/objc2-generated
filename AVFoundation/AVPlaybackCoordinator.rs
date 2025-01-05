@@ -389,7 +389,8 @@ extern_protocol!(
 pub struct AVDelegatingPlaybackCoordinatorRateChangeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVDelegatingPlaybackCoordinatorRateChangeOptions: NSUInteger {
-        const AVDelegatingPlaybackCoordinatorRateChangeOptionPlayImmediately = 1<<0;
+        #[doc(alias = "AVDelegatingPlaybackCoordinatorRateChangeOptionPlayImmediately")]
+        const PlayImmediately = 1<<0;
     }
 }
 
@@ -413,7 +414,8 @@ unsafe impl RefEncode for AVDelegatingPlaybackCoordinatorRateChangeOptions {
 pub struct AVDelegatingPlaybackCoordinatorSeekOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVDelegatingPlaybackCoordinatorSeekOptions: NSUInteger {
-        const AVDelegatingPlaybackCoordinatorSeekOptionResumeImmediately = 1<<0;
+        #[doc(alias = "AVDelegatingPlaybackCoordinatorSeekOptionResumeImmediately")]
+        const ResumeImmediately = 1<<0;
     }
 }
 

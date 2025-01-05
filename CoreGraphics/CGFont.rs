@@ -24,9 +24,12 @@ pub type CGGlyph = CGFontIndex;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGFontPostScriptFormat(pub i32);
 impl CGFontPostScriptFormat {
-    pub const kCGFontPostScriptFormatType1: Self = Self(1);
-    pub const kCGFontPostScriptFormatType3: Self = Self(3);
-    pub const kCGFontPostScriptFormatType42: Self = Self(42);
+    #[doc(alias = "kCGFontPostScriptFormatType1")]
+    pub const Type1: Self = Self(1);
+    #[doc(alias = "kCGFontPostScriptFormatType3")]
+    pub const Type3: Self = Self(3);
+    #[doc(alias = "kCGFontPostScriptFormatType42")]
+    pub const Type42: Self = Self(42);
 }
 
 #[cfg(feature = "objc2")]
@@ -217,8 +220,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGGlyphDeprecatedEnum(pub i32);
 impl CGGlyphDeprecatedEnum {
-    pub const CGGlyphMin: Self = Self(0);
-    pub const CGGlyphMax: Self = Self(1);
+    #[doc(alias = "CGGlyphMin")]
+    pub const Min: Self = Self(0);
+    #[doc(alias = "CGGlyphMax")]
+    pub const Max: Self = Self(1);
 }
 
 #[cfg(feature = "objc2")]

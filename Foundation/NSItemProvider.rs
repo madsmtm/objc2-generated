@@ -37,7 +37,8 @@ unsafe impl RefEncode for NSItemProviderRepresentationVisibility {
 pub struct NSItemProviderFileOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSItemProviderFileOptions: NSInteger {
-        const NSItemProviderFileOptionOpenInPlace = 1;
+        #[doc(alias = "NSItemProviderFileOptionOpenInPlace")]
+        const OpenInPlace = 1;
     }
 }
 
@@ -395,10 +396,14 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSItemProviderErrorCode(pub NSInteger);
 impl NSItemProviderErrorCode {
-    pub const NSItemProviderUnknownError: Self = Self(-1);
-    pub const NSItemProviderItemUnavailableError: Self = Self(-1000);
-    pub const NSItemProviderUnexpectedValueClassError: Self = Self(-1100);
-    pub const NSItemProviderUnavailableCoercionError: Self = Self(-1200);
+    #[doc(alias = "NSItemProviderUnknownError")]
+    pub const UnknownError: Self = Self(-1);
+    #[doc(alias = "NSItemProviderItemUnavailableError")]
+    pub const ItemUnavailableError: Self = Self(-1000);
+    #[doc(alias = "NSItemProviderUnexpectedValueClassError")]
+    pub const UnexpectedValueClassError: Self = Self(-1100);
+    #[doc(alias = "NSItemProviderUnavailableCoercionError")]
+    pub const UnavailableCoercionError: Self = Self(-1200);
 }
 
 unsafe impl Encode for NSItemProviderErrorCode {

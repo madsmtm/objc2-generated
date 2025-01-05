@@ -16,13 +16,17 @@ use crate::*;
 pub struct NSDrawerState(pub NSUInteger);
 impl NSDrawerState {
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
-    pub const NSDrawerClosedState: Self = Self(0);
+    #[doc(alias = "NSDrawerClosedState")]
+    pub const ClosedState: Self = Self(0);
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
-    pub const NSDrawerOpeningState: Self = Self(1);
+    #[doc(alias = "NSDrawerOpeningState")]
+    pub const OpeningState: Self = Self(1);
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
-    pub const NSDrawerOpenState: Self = Self(2);
+    #[doc(alias = "NSDrawerOpenState")]
+    pub const OpenState: Self = Self(2);
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
-    pub const NSDrawerClosingState: Self = Self(3);
+    #[doc(alias = "NSDrawerClosingState")]
+    pub const ClosingState: Self = Self(3);
 }
 
 unsafe impl Encode for NSDrawerState {

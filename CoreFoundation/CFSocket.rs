@@ -17,9 +17,12 @@ pub type CFSocketRef = *mut c_void;
 pub struct CFSocketError(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFSocketError {
-    pub const kCFSocketSuccess: Self = Self(0);
-    pub const kCFSocketError: Self = Self(-1);
-    pub const kCFSocketTimeout: Self = Self(-2);
+    #[doc(alias = "kCFSocketSuccess")]
+    pub const Success: Self = Self(0);
+    #[doc(alias = "kCFSocketError")]
+    pub const Error: Self = Self(-1);
+    #[doc(alias = "kCFSocketTimeout")]
+    pub const Timeout: Self = Self(-2);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -70,12 +73,18 @@ pub struct CFSocketCallBackType(pub CFOptionFlags);
 #[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFSocketCallBackType: CFOptionFlags {
-        const kCFSocketNoCallBack = 0;
-        const kCFSocketReadCallBack = 1;
-        const kCFSocketAcceptCallBack = 2;
-        const kCFSocketDataCallBack = 3;
-        const kCFSocketConnectCallBack = 4;
-        const kCFSocketWriteCallBack = 8;
+        #[doc(alias = "kCFSocketNoCallBack")]
+        const NoCallBack = 0;
+        #[doc(alias = "kCFSocketReadCallBack")]
+        const ReadCallBack = 1;
+        #[doc(alias = "kCFSocketAcceptCallBack")]
+        const AcceptCallBack = 2;
+        #[doc(alias = "kCFSocketDataCallBack")]
+        const DataCallBack = 3;
+        #[doc(alias = "kCFSocketConnectCallBack")]
+        const ConnectCallBack = 4;
+        #[doc(alias = "kCFSocketWriteCallBack")]
+        const WriteCallBack = 8;
     }
 }
 

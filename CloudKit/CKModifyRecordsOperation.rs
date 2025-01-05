@@ -48,10 +48,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CKRecordSavePolicy(pub NSInteger);
 impl CKRecordSavePolicy {
-    pub const CKRecordSaveIfServerRecordUnchanged: Self = Self(0);
-    pub const CKRecordSaveChangedKeys: Self = Self(1);
+    #[doc(alias = "CKRecordSaveIfServerRecordUnchanged")]
+    pub const IfServerRecordUnchanged: Self = Self(0);
+    #[doc(alias = "CKRecordSaveChangedKeys")]
+    pub const ChangedKeys: Self = Self(1);
     /// Does not compare record change tags
-    pub const CKRecordSaveAllKeys: Self = Self(2);
+    #[doc(alias = "CKRecordSaveAllKeys")]
+    pub const AllKeys: Self = Self(2);
 }
 
 unsafe impl Encode for CKRecordSavePolicy {

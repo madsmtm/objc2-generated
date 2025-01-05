@@ -1835,9 +1835,12 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSAccessibilityPriorityLevel(pub NSInteger);
 impl NSAccessibilityPriorityLevel {
-    pub const NSAccessibilityPriorityLow: Self = Self(10);
-    pub const NSAccessibilityPriorityMedium: Self = Self(50);
-    pub const NSAccessibilityPriorityHigh: Self = Self(90);
+    #[doc(alias = "NSAccessibilityPriorityLow")]
+    pub const Low: Self = Self(10);
+    #[doc(alias = "NSAccessibilityPriorityMedium")]
+    pub const Medium: Self = Self(50);
+    #[doc(alias = "NSAccessibilityPriorityHigh")]
+    pub const High: Self = Self(90);
 }
 
 unsafe impl Encode for NSAccessibilityPriorityLevel {

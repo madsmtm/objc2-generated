@@ -15,9 +15,12 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPrinterTableStatus(pub NSUInteger);
 impl NSPrinterTableStatus {
-    pub const NSPrinterTableOK: Self = Self(0);
-    pub const NSPrinterTableNotFound: Self = Self(1);
-    pub const NSPrinterTableError: Self = Self(2);
+    #[doc(alias = "NSPrinterTableOK")]
+    pub const OK: Self = Self(0);
+    #[doc(alias = "NSPrinterTableNotFound")]
+    pub const NotFound: Self = Self(1);
+    #[doc(alias = "NSPrinterTableError")]
+    pub const Error: Self = Self(2);
 }
 
 unsafe impl Encode for NSPrinterTableStatus {

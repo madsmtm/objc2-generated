@@ -22,8 +22,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MEMessageSecurityErrorCode(pub NSInteger);
 impl MEMessageSecurityErrorCode {
-    pub const MEMessageSecurityEncodingError: Self = Self(0);
-    pub const MEMessageSecurityDecodingError: Self = Self(1);
+    #[doc(alias = "MEMessageSecurityEncodingError")]
+    pub const EncodingError: Self = Self(0);
+    #[doc(alias = "MEMessageSecurityDecodingError")]
+    pub const DecodingError: Self = Self(1);
 }
 
 unsafe impl Encode for MEMessageSecurityErrorCode {

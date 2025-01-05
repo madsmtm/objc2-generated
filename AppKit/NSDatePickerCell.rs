@@ -56,12 +56,18 @@ unsafe impl RefEncode for NSDatePickerMode {
 pub struct NSDatePickerElementFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDatePickerElementFlags: NSUInteger {
-        const NSDatePickerElementFlagHourMinute = 0x000c;
-        const NSDatePickerElementFlagHourMinuteSecond = 0x000e;
-        const NSDatePickerElementFlagTimeZone = 0x0010;
-        const NSDatePickerElementFlagYearMonth = 0x00c0;
-        const NSDatePickerElementFlagYearMonthDay = 0x00e0;
-        const NSDatePickerElementFlagEra = 0x0100;
+        #[doc(alias = "NSDatePickerElementFlagHourMinute")]
+        const HourMinute = 0x000c;
+        #[doc(alias = "NSDatePickerElementFlagHourMinuteSecond")]
+        const HourMinuteSecond = 0x000e;
+        #[doc(alias = "NSDatePickerElementFlagTimeZone")]
+        const TimeZone = 0x0010;
+        #[doc(alias = "NSDatePickerElementFlagYearMonth")]
+        const YearMonth = 0x00c0;
+        #[doc(alias = "NSDatePickerElementFlagYearMonthDay")]
+        const YearMonthDay = 0x00e0;
+        #[doc(alias = "NSDatePickerElementFlagEra")]
+        const Era = 0x0100;
     }
 }
 
@@ -295,24 +301,24 @@ pub static NSRangeDateMode: NSDatePickerMode = NSDatePickerMode(NSDatePickerMode
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshourminutedatepickerelementflag?language=objc)
 pub static NSHourMinuteDatePickerElementFlag: NSDatePickerElementFlags =
-    NSDatePickerElementFlags(NSDatePickerElementFlags::NSDatePickerElementFlagHourMinute.0);
+    NSDatePickerElementFlags(NSDatePickerElementFlags::HourMinute.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshourminuteseconddatepickerelementflag?language=objc)
 pub static NSHourMinuteSecondDatePickerElementFlag: NSDatePickerElementFlags =
-    NSDatePickerElementFlags(NSDatePickerElementFlags::NSDatePickerElementFlagHourMinuteSecond.0);
+    NSDatePickerElementFlags(NSDatePickerElementFlags::HourMinuteSecond.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstimezonedatepickerelementflag?language=objc)
 pub static NSTimeZoneDatePickerElementFlag: NSDatePickerElementFlags =
-    NSDatePickerElementFlags(NSDatePickerElementFlags::NSDatePickerElementFlagTimeZone.0);
+    NSDatePickerElementFlags(NSDatePickerElementFlags::TimeZone.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsyearmonthdatepickerelementflag?language=objc)
 pub static NSYearMonthDatePickerElementFlag: NSDatePickerElementFlags =
-    NSDatePickerElementFlags(NSDatePickerElementFlags::NSDatePickerElementFlagYearMonth.0);
+    NSDatePickerElementFlags(NSDatePickerElementFlags::YearMonth.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsyearmonthdaydatepickerelementflag?language=objc)
 pub static NSYearMonthDayDatePickerElementFlag: NSDatePickerElementFlags =
-    NSDatePickerElementFlags(NSDatePickerElementFlags::NSDatePickerElementFlagYearMonthDay.0);
+    NSDatePickerElementFlags(NSDatePickerElementFlags::YearMonthDay.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseradatepickerelementflag?language=objc)
 pub static NSEraDatePickerElementFlag: NSDatePickerElementFlags =
-    NSDatePickerElementFlags(NSDatePickerElementFlags::NSDatePickerElementFlagEra.0);
+    NSDatePickerElementFlags(NSDatePickerElementFlags::Era.0);

@@ -78,10 +78,14 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSURLHandleStatus(pub NSUInteger);
 impl NSURLHandleStatus {
-    pub const NSURLHandleNotLoaded: Self = Self(0);
-    pub const NSURLHandleLoadSucceeded: Self = Self(1);
-    pub const NSURLHandleLoadInProgress: Self = Self(2);
-    pub const NSURLHandleLoadFailed: Self = Self(3);
+    #[doc(alias = "NSURLHandleNotLoaded")]
+    pub const NotLoaded: Self = Self(0);
+    #[doc(alias = "NSURLHandleLoadSucceeded")]
+    pub const LoadSucceeded: Self = Self(1);
+    #[doc(alias = "NSURLHandleLoadInProgress")]
+    pub const LoadInProgress: Self = Self(2);
+    #[doc(alias = "NSURLHandleLoadFailed")]
+    pub const LoadFailed: Self = Self(3);
 }
 
 unsafe impl Encode for NSURLHandleStatus {

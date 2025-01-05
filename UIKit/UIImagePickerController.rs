@@ -40,16 +40,17 @@ unsafe impl RefEncode for UIImagePickerControllerSourceType {
 pub struct UIImagePickerControllerQualityType(pub NSInteger);
 impl UIImagePickerControllerQualityType {
     #[doc(alias = "UIImagePickerControllerQualityTypeHigh")]
-    pub const High: Self = Self(0);
+    pub const TypeHigh: Self = Self(0);
     #[doc(alias = "UIImagePickerControllerQualityTypeMedium")]
-    pub const Medium: Self = Self(1);
+    pub const TypeMedium: Self = Self(1);
     #[doc(alias = "UIImagePickerControllerQualityTypeLow")]
-    pub const Low: Self = Self(2);
-    pub const UIImagePickerControllerQualityType640x480: Self = Self(3);
+    pub const TypeLow: Self = Self(2);
+    #[doc(alias = "UIImagePickerControllerQualityType640x480")]
+    pub const Type640x480: Self = Self(3);
     #[doc(alias = "UIImagePickerControllerQualityTypeIFrame1280x720")]
-    pub const IFrame1280x720: Self = Self(4);
+    pub const TypeIFrame1280x720: Self = Self(4);
     #[doc(alias = "UIImagePickerControllerQualityTypeIFrame960x540")]
-    pub const IFrame960x540: Self = Self(5);
+    pub const TypeIFrame960x540: Self = Self(5);
 }
 
 unsafe impl Encode for UIImagePickerControllerQualityType {

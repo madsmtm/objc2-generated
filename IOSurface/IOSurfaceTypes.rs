@@ -16,8 +16,10 @@ pub type IOSurfaceID = u32;
 pub struct IOSurfaceLockOptions(pub u32);
 bitflags::bitflags! {
     impl IOSurfaceLockOptions: u32 {
-        const kIOSurfaceLockReadOnly = 0x00000001;
-        const kIOSurfaceLockAvoidSync = 0x00000002;
+        #[doc(alias = "kIOSurfaceLockReadOnly")]
+        const ReadOnly = 0x00000001;
+        #[doc(alias = "kIOSurfaceLockAvoidSync")]
+        const AvoidSync = 0x00000002;
     }
 }
 
@@ -38,10 +40,14 @@ unsafe impl RefEncode for IOSurfaceLockOptions {
 pub struct IOSurfacePurgeabilityState(pub u32);
 bitflags::bitflags! {
     impl IOSurfacePurgeabilityState: u32 {
-        const kIOSurfacePurgeableNonVolatile = 0;
-        const kIOSurfacePurgeableVolatile = 1;
-        const kIOSurfacePurgeableEmpty = 2;
-        const kIOSurfacePurgeableKeepCurrent = 3;
+        #[doc(alias = "kIOSurfacePurgeableNonVolatile")]
+        const PurgeableNonVolatile = 0;
+        #[doc(alias = "kIOSurfacePurgeableVolatile")]
+        const PurgeableVolatile = 1;
+        #[doc(alias = "kIOSurfacePurgeableEmpty")]
+        const PurgeableEmpty = 2;
+        #[doc(alias = "kIOSurfacePurgeableKeepCurrent")]
+        const PurgeableKeepCurrent = 3;
     }
 }
 

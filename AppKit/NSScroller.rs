@@ -15,10 +15,13 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSUsableScrollerParts(pub NSUInteger);
 impl NSUsableScrollerParts {
-    pub const NSNoScrollerParts: Self = Self(0);
+    #[doc(alias = "NSNoScrollerParts")]
+    pub const NoScrollerParts: Self = Self(0);
     #[deprecated = "Scroller arrows are not used anymore."]
-    pub const NSOnlyScrollerArrows: Self = Self(1);
-    pub const NSAllScrollerParts: Self = Self(2);
+    #[doc(alias = "NSOnlyScrollerArrows")]
+    pub const OnlyScrollerArrows: Self = Self(1);
+    #[doc(alias = "NSAllScrollerParts")]
+    pub const AllScrollerParts: Self = Self(2);
 }
 
 unsafe impl Encode for NSUsableScrollerParts {
@@ -35,15 +38,22 @@ unsafe impl RefEncode for NSUsableScrollerParts {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSScrollerPart(pub NSUInteger);
 impl NSScrollerPart {
-    pub const NSScrollerNoPart: Self = Self(0);
-    pub const NSScrollerDecrementPage: Self = Self(1);
-    pub const NSScrollerKnob: Self = Self(2);
-    pub const NSScrollerIncrementPage: Self = Self(3);
+    #[doc(alias = "NSScrollerNoPart")]
+    pub const NoPart: Self = Self(0);
+    #[doc(alias = "NSScrollerDecrementPage")]
+    pub const DecrementPage: Self = Self(1);
+    #[doc(alias = "NSScrollerKnob")]
+    pub const Knob: Self = Self(2);
+    #[doc(alias = "NSScrollerIncrementPage")]
+    pub const IncrementPage: Self = Self(3);
     #[deprecated = "Scroller arrows are not used anymore."]
-    pub const NSScrollerDecrementLine: Self = Self(4);
+    #[doc(alias = "NSScrollerDecrementLine")]
+    pub const DecrementLine: Self = Self(4);
     #[deprecated = "Scroller arrows are not used anymore."]
-    pub const NSScrollerIncrementLine: Self = Self(5);
-    pub const NSScrollerKnobSlot: Self = Self(6);
+    #[doc(alias = "NSScrollerIncrementLine")]
+    pub const IncrementLine: Self = Self(5);
+    #[doc(alias = "NSScrollerKnobSlot")]
+    pub const KnobSlot: Self = Self(6);
 }
 
 unsafe impl Encode for NSScrollerPart {
@@ -283,10 +293,14 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSScrollArrowPosition(pub NSUInteger);
 impl NSScrollArrowPosition {
-    pub const NSScrollerArrowsMaxEnd: Self = Self(0);
-    pub const NSScrollerArrowsMinEnd: Self = Self(1);
-    pub const NSScrollerArrowsDefaultSetting: Self = Self(0);
-    pub const NSScrollerArrowsNone: Self = Self(2);
+    #[doc(alias = "NSScrollerArrowsMaxEnd")]
+    pub const ScrollerArrowsMaxEnd: Self = Self(0);
+    #[doc(alias = "NSScrollerArrowsMinEnd")]
+    pub const ScrollerArrowsMinEnd: Self = Self(1);
+    #[doc(alias = "NSScrollerArrowsDefaultSetting")]
+    pub const ScrollerArrowsDefaultSetting: Self = Self(0);
+    #[doc(alias = "NSScrollerArrowsNone")]
+    pub const ScrollerArrowsNone: Self = Self(2);
 }
 
 unsafe impl Encode for NSScrollArrowPosition {
@@ -304,8 +318,10 @@ unsafe impl RefEncode for NSScrollArrowPosition {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSScrollerArrow(pub NSUInteger);
 impl NSScrollerArrow {
-    pub const NSScrollerIncrementArrow: Self = Self(0);
-    pub const NSScrollerDecrementArrow: Self = Self(1);
+    #[doc(alias = "NSScrollerIncrementArrow")]
+    pub const IncrementArrow: Self = Self(0);
+    #[doc(alias = "NSScrollerDecrementArrow")]
+    pub const DecrementArrow: Self = Self(1);
 }
 
 unsafe impl Encode for NSScrollerArrow {

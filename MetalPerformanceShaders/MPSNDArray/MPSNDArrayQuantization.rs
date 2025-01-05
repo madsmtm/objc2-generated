@@ -14,9 +14,12 @@ use crate::*;
 pub struct MPSNDArrayQuantizationScheme(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSNDArrayQuantizationScheme: NSUInteger {
-        const MPSNDArrayQuantizationTypeNone = 0;
-        const MPSNDArrayQuantizationTypeAffine = 1;
-        const MPSNDArrayQuantizationTypeLUT = 2;
+        #[doc(alias = "MPSNDArrayQuantizationTypeNone")]
+        const TypeNone = 0;
+        #[doc(alias = "MPSNDArrayQuantizationTypeAffine")]
+        const TypeAffine = 1;
+        #[doc(alias = "MPSNDArrayQuantizationTypeLUT")]
+        const TypeLUT = 2;
     }
 }
 

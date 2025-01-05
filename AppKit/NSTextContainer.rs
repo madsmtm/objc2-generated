@@ -171,10 +171,14 @@ unsafe impl NSTextLayoutOrientationProvider for NSTextContainer {}
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSLineSweepDirection(pub NSUInteger);
 impl NSLineSweepDirection {
-    pub const NSLineSweepLeft: Self = Self(0);
-    pub const NSLineSweepRight: Self = Self(1);
-    pub const NSLineSweepDown: Self = Self(2);
-    pub const NSLineSweepUp: Self = Self(3);
+    #[doc(alias = "NSLineSweepLeft")]
+    pub const Left: Self = Self(0);
+    #[doc(alias = "NSLineSweepRight")]
+    pub const Right: Self = Self(1);
+    #[doc(alias = "NSLineSweepDown")]
+    pub const Down: Self = Self(2);
+    #[doc(alias = "NSLineSweepUp")]
+    pub const Up: Self = Self(3);
 }
 
 unsafe impl Encode for NSLineSweepDirection {
@@ -191,11 +195,16 @@ unsafe impl RefEncode for NSLineSweepDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSLineMovementDirection(pub NSUInteger);
 impl NSLineMovementDirection {
-    pub const NSLineDoesntMove: Self = Self(0);
-    pub const NSLineMovesLeft: Self = Self(1);
-    pub const NSLineMovesRight: Self = Self(2);
-    pub const NSLineMovesDown: Self = Self(3);
-    pub const NSLineMovesUp: Self = Self(4);
+    #[doc(alias = "NSLineDoesntMove")]
+    pub const DoesntMove: Self = Self(0);
+    #[doc(alias = "NSLineMovesLeft")]
+    pub const MovesLeft: Self = Self(1);
+    #[doc(alias = "NSLineMovesRight")]
+    pub const MovesRight: Self = Self(2);
+    #[doc(alias = "NSLineMovesDown")]
+    pub const MovesDown: Self = Self(3);
+    #[doc(alias = "NSLineMovesUp")]
+    pub const MovesUp: Self = Self(4);
 }
 
 unsafe impl Encode for NSLineMovementDirection {

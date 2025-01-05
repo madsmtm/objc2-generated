@@ -25,10 +25,14 @@ use crate::*;
 pub struct AVPlayerInterstitialEventRestrictions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVPlayerInterstitialEventRestrictions: NSUInteger {
-        const AVPlayerInterstitialEventRestrictionNone = 0;
-        const AVPlayerInterstitialEventRestrictionConstrainsSeekingForwardInPrimaryContent = 1<<0;
-        const AVPlayerInterstitialEventRestrictionRequiresPlaybackAtPreferredRateForAdvancement = 1<<2;
-        const AVPlayerInterstitialEventRestrictionDefaultPolicy = AVPlayerInterstitialEventRestrictions::AVPlayerInterstitialEventRestrictionNone.0;
+        #[doc(alias = "AVPlayerInterstitialEventRestrictionNone")]
+        const None = 0;
+        #[doc(alias = "AVPlayerInterstitialEventRestrictionConstrainsSeekingForwardInPrimaryContent")]
+        const ConstrainsSeekingForwardInPrimaryContent = 1<<0;
+        #[doc(alias = "AVPlayerInterstitialEventRestrictionRequiresPlaybackAtPreferredRateForAdvancement")]
+        const RequiresPlaybackAtPreferredRateForAdvancement = 1<<2;
+        #[doc(alias = "AVPlayerInterstitialEventRestrictionDefaultPolicy")]
+        const DefaultPolicy = AVPlayerInterstitialEventRestrictions::None.0;
     }
 }
 

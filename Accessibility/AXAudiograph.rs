@@ -58,9 +58,12 @@ extern_protocol!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AXNumericDataAxisDescriptorScale(pub NSInteger);
 impl AXNumericDataAxisDescriptorScale {
-    pub const AXScaleTypeLinear: Self = Self(0);
-    pub const AXScaleTypeLog10: Self = Self(1);
-    pub const AXScaleTypeLn: Self = Self(2);
+    #[doc(alias = "AXScaleTypeLinear")]
+    pub const ScaleTypeLinear: Self = Self(0);
+    #[doc(alias = "AXScaleTypeLog10")]
+    pub const ScaleTypeLog10: Self = Self(1);
+    #[doc(alias = "AXScaleTypeLn")]
+    pub const ScaleTypeLn: Self = Self(2);
 }
 
 unsafe impl Encode for AXNumericDataAxisDescriptorScale {
@@ -449,12 +452,18 @@ extern_methods!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AXChartDescriptorContentDirection(pub NSInteger);
 impl AXChartDescriptorContentDirection {
-    pub const AXChartContentDirectionLeftToRight: Self = Self(0);
-    pub const AXChartContentDirectionRightToLeft: Self = Self(1);
-    pub const AXChartContentDirectionTopToBottom: Self = Self(2);
-    pub const AXChartContentDirectionBottomToTop: Self = Self(3);
-    pub const AXChartContentDirectionRadialClockwise: Self = Self(4);
-    pub const AXChartContentDirectionRadialCounterClockwise: Self = Self(5);
+    #[doc(alias = "AXChartContentDirectionLeftToRight")]
+    pub const ContentDirectionLeftToRight: Self = Self(0);
+    #[doc(alias = "AXChartContentDirectionRightToLeft")]
+    pub const ContentDirectionRightToLeft: Self = Self(1);
+    #[doc(alias = "AXChartContentDirectionTopToBottom")]
+    pub const ContentDirectionTopToBottom: Self = Self(2);
+    #[doc(alias = "AXChartContentDirectionBottomToTop")]
+    pub const ContentDirectionBottomToTop: Self = Self(3);
+    #[doc(alias = "AXChartContentDirectionRadialClockwise")]
+    pub const ContentDirectionRadialClockwise: Self = Self(4);
+    #[doc(alias = "AXChartContentDirectionRadialCounterClockwise")]
+    pub const ContentDirectionRadialCounterClockwise: Self = Self(5);
 }
 
 unsafe impl Encode for AXChartDescriptorContentDirection {

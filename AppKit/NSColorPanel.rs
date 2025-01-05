@@ -50,15 +50,24 @@ unsafe impl RefEncode for NSColorPanelMode {
 pub struct NSColorPanelOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSColorPanelOptions: NSUInteger {
-        const NSColorPanelGrayModeMask = 0x00000001;
-        const NSColorPanelRGBModeMask = 0x00000002;
-        const NSColorPanelCMYKModeMask = 0x00000004;
-        const NSColorPanelHSBModeMask = 0x00000008;
-        const NSColorPanelCustomPaletteModeMask = 0x00000010;
-        const NSColorPanelColorListModeMask = 0x00000020;
-        const NSColorPanelWheelModeMask = 0x00000040;
-        const NSColorPanelCrayonModeMask = 0x00000080;
-        const NSColorPanelAllModesMask = 0x0000ffff;
+        #[doc(alias = "NSColorPanelGrayModeMask")]
+        const GrayModeMask = 0x00000001;
+        #[doc(alias = "NSColorPanelRGBModeMask")]
+        const RGBModeMask = 0x00000002;
+        #[doc(alias = "NSColorPanelCMYKModeMask")]
+        const CMYKModeMask = 0x00000004;
+        #[doc(alias = "NSColorPanelHSBModeMask")]
+        const HSBModeMask = 0x00000008;
+        #[doc(alias = "NSColorPanelCustomPaletteModeMask")]
+        const CustomPaletteModeMask = 0x00000010;
+        #[doc(alias = "NSColorPanelColorListModeMask")]
+        const ColorListModeMask = 0x00000020;
+        #[doc(alias = "NSColorPanelWheelModeMask")]
+        const WheelModeMask = 0x00000040;
+        #[doc(alias = "NSColorPanelCrayonModeMask")]
+        const CrayonModeMask = 0x00000080;
+        #[doc(alias = "NSColorPanelAllModesMask")]
+        const AllModesMask = 0x0000ffff;
     }
 }
 

@@ -27,8 +27,10 @@ use crate::*;
 pub struct AVMusicSequenceLoadOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVMusicSequenceLoadOptions: NSUInteger {
-        const AVMusicSequenceLoadSMF_PreserveTracks = 0;
-        const AVMusicSequenceLoadSMF_ChannelsToTracks = 1<<0;
+        #[doc(alias = "AVMusicSequenceLoadSMF_PreserveTracks")]
+        const SMF_PreserveTracks = 0;
+        #[doc(alias = "AVMusicSequenceLoadSMF_ChannelsToTracks")]
+        const SMF_ChannelsToTracks = 1<<0;
     }
 }
 

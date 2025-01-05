@@ -17,11 +17,16 @@ use crate::*;
 pub struct UIMenuControllerArrowDirection(pub NSInteger);
 impl UIMenuControllerArrowDirection {
     #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
-    pub const UIMenuControllerArrowDefault: Self = Self(0);
-    pub const UIMenuControllerArrowUp: Self = Self(1);
-    pub const UIMenuControllerArrowDown: Self = Self(2);
-    pub const UIMenuControllerArrowLeft: Self = Self(3);
-    pub const UIMenuControllerArrowRight: Self = Self(4);
+    #[doc(alias = "UIMenuControllerArrowDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "UIMenuControllerArrowUp")]
+    pub const Up: Self = Self(1);
+    #[doc(alias = "UIMenuControllerArrowDown")]
+    pub const Down: Self = Self(2);
+    #[doc(alias = "UIMenuControllerArrowLeft")]
+    pub const Left: Self = Self(3);
+    #[doc(alias = "UIMenuControllerArrowRight")]
+    pub const Right: Self = Self(4);
 }
 
 unsafe impl Encode for UIMenuControllerArrowDirection {

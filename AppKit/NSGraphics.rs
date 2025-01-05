@@ -207,10 +207,13 @@ pub static NSCompositeLuminosity: NSCompositingOperation =
 pub struct NSBackingStoreType(pub NSUInteger);
 impl NSBackingStoreType {
     #[deprecated]
-    pub const NSBackingStoreRetained: Self = Self(0);
+    #[doc(alias = "NSBackingStoreRetained")]
+    pub const Retained: Self = Self(0);
     #[deprecated]
-    pub const NSBackingStoreNonretained: Self = Self(1);
-    pub const NSBackingStoreBuffered: Self = Self(2);
+    #[doc(alias = "NSBackingStoreNonretained")]
+    pub const Nonretained: Self = Self(1);
+    #[doc(alias = "NSBackingStoreBuffered")]
+    pub const Buffered: Self = Self(2);
 }
 
 unsafe impl Encode for NSBackingStoreType {
@@ -227,9 +230,12 @@ unsafe impl RefEncode for NSBackingStoreType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSWindowOrderingMode(pub NSInteger);
 impl NSWindowOrderingMode {
-    pub const NSWindowAbove: Self = Self(1);
-    pub const NSWindowBelow: Self = Self(-1);
-    pub const NSWindowOut: Self = Self(0);
+    #[doc(alias = "NSWindowAbove")]
+    pub const Above: Self = Self(1);
+    #[doc(alias = "NSWindowBelow")]
+    pub const Below: Self = Self(-1);
+    #[doc(alias = "NSWindowOut")]
+    pub const Out: Self = Self(0);
 }
 
 unsafe impl Encode for NSWindowOrderingMode {
@@ -246,9 +252,12 @@ unsafe impl RefEncode for NSWindowOrderingMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFocusRingPlacement(pub NSUInteger);
 impl NSFocusRingPlacement {
-    pub const NSFocusRingOnly: Self = Self(0);
-    pub const NSFocusRingBelow: Self = Self(1);
-    pub const NSFocusRingAbove: Self = Self(2);
+    #[doc(alias = "NSFocusRingOnly")]
+    pub const Only: Self = Self(0);
+    #[doc(alias = "NSFocusRingBelow")]
+    pub const Below: Self = Self(1);
+    #[doc(alias = "NSFocusRingAbove")]
+    pub const Above: Self = Self(2);
 }
 
 unsafe impl Encode for NSFocusRingPlacement {

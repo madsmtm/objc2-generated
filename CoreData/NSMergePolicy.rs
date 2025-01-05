@@ -12,11 +12,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSMergePolicyType(pub NSUInteger);
 impl NSMergePolicyType {
-    pub const NSErrorMergePolicyType: Self = Self(0x00);
-    pub const NSMergeByPropertyStoreTrumpMergePolicyType: Self = Self(0x01);
-    pub const NSMergeByPropertyObjectTrumpMergePolicyType: Self = Self(0x02);
-    pub const NSOverwriteMergePolicyType: Self = Self(0x03);
-    pub const NSRollbackMergePolicyType: Self = Self(0x04);
+    #[doc(alias = "NSErrorMergePolicyType")]
+    pub const ErrorMergePolicyType: Self = Self(0x00);
+    #[doc(alias = "NSMergeByPropertyStoreTrumpMergePolicyType")]
+    pub const MergeByPropertyStoreTrumpMergePolicyType: Self = Self(0x01);
+    #[doc(alias = "NSMergeByPropertyObjectTrumpMergePolicyType")]
+    pub const MergeByPropertyObjectTrumpMergePolicyType: Self = Self(0x02);
+    #[doc(alias = "NSOverwriteMergePolicyType")]
+    pub const OverwriteMergePolicyType: Self = Self(0x03);
+    #[doc(alias = "NSRollbackMergePolicyType")]
+    pub const RollbackMergePolicyType: Self = Self(0x04);
 }
 
 unsafe impl Encode for NSMergePolicyType {

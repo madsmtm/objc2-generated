@@ -117,11 +117,16 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTFontManagerScope(pub u32);
 impl CTFontManagerScope {
-    pub const kCTFontManagerScopeNone: Self = Self(0);
-    pub const kCTFontManagerScopeProcess: Self = Self(1);
-    pub const kCTFontManagerScopePersistent: Self = Self(2);
-    pub const kCTFontManagerScopeSession: Self = Self(3);
-    pub const kCTFontManagerScopeUser: Self = Self(2);
+    #[doc(alias = "kCTFontManagerScopeNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "kCTFontManagerScopeProcess")]
+    pub const Process: Self = Self(1);
+    #[doc(alias = "kCTFontManagerScopePersistent")]
+    pub const Persistent: Self = Self(2);
+    #[doc(alias = "kCTFontManagerScopeSession")]
+    pub const Session: Self = Self(3);
+    #[doc(alias = "kCTFontManagerScopeUser")]
+    pub const User: Self = Self(2);
 }
 
 #[cfg(feature = "objc2")]
@@ -522,11 +527,15 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTFontManagerAutoActivationSetting(pub u32);
 impl CTFontManagerAutoActivationSetting {
-    pub const kCTFontManagerAutoActivationDefault: Self = Self(0);
-    pub const kCTFontManagerAutoActivationDisabled: Self = Self(1);
-    pub const kCTFontManagerAutoActivationEnabled: Self = Self(2);
+    #[doc(alias = "kCTFontManagerAutoActivationDefault")]
+    pub const Default: Self = Self(0);
+    #[doc(alias = "kCTFontManagerAutoActivationDisabled")]
+    pub const Disabled: Self = Self(1);
+    #[doc(alias = "kCTFontManagerAutoActivationEnabled")]
+    pub const Enabled: Self = Self(2);
     #[deprecated = "Deprecated"]
-    pub const kCTFontManagerAutoActivationPromptUser: Self = Self(3);
+    #[doc(alias = "kCTFontManagerAutoActivationPromptUser")]
+    pub const PromptUser: Self = Self(3);
 }
 
 #[cfg(feature = "objc2")]

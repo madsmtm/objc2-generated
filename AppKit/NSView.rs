@@ -22,13 +22,20 @@ use crate::*;
 pub struct NSAutoresizingMaskOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSAutoresizingMaskOptions: NSUInteger {
-        const NSViewNotSizable = 0;
-        const NSViewMinXMargin = 1;
-        const NSViewWidthSizable = 2;
-        const NSViewMaxXMargin = 4;
-        const NSViewMinYMargin = 8;
-        const NSViewHeightSizable = 16;
-        const NSViewMaxYMargin = 32;
+        #[doc(alias = "NSViewNotSizable")]
+        const ViewNotSizable = 0;
+        #[doc(alias = "NSViewMinXMargin")]
+        const ViewMinXMargin = 1;
+        #[doc(alias = "NSViewWidthSizable")]
+        const ViewWidthSizable = 2;
+        #[doc(alias = "NSViewMaxXMargin")]
+        const ViewMaxXMargin = 4;
+        #[doc(alias = "NSViewMinYMargin")]
+        const ViewMinYMargin = 8;
+        #[doc(alias = "NSViewHeightSizable")]
+        const ViewHeightSizable = 16;
+        #[doc(alias = "NSViewMaxYMargin")]
+        const ViewMaxYMargin = 32;
     }
 }
 
@@ -46,10 +53,14 @@ unsafe impl RefEncode for NSAutoresizingMaskOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSBorderType(pub NSUInteger);
 impl NSBorderType {
-    pub const NSNoBorder: Self = Self(0);
-    pub const NSLineBorder: Self = Self(1);
-    pub const NSBezelBorder: Self = Self(2);
-    pub const NSGrooveBorder: Self = Self(3);
+    #[doc(alias = "NSNoBorder")]
+    pub const NoBorder: Self = Self(0);
+    #[doc(alias = "NSLineBorder")]
+    pub const LineBorder: Self = Self(1);
+    #[doc(alias = "NSBezelBorder")]
+    pub const BezelBorder: Self = Self(2);
+    #[doc(alias = "NSGrooveBorder")]
+    pub const GrooveBorder: Self = Self(3);
 }
 
 unsafe impl Encode for NSBorderType {
@@ -66,11 +77,16 @@ unsafe impl RefEncode for NSBorderType {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSViewLayerContentsRedrawPolicy(pub NSInteger);
 impl NSViewLayerContentsRedrawPolicy {
-    pub const NSViewLayerContentsRedrawNever: Self = Self(0);
-    pub const NSViewLayerContentsRedrawOnSetNeedsDisplay: Self = Self(1);
-    pub const NSViewLayerContentsRedrawDuringViewResize: Self = Self(2);
-    pub const NSViewLayerContentsRedrawBeforeViewResize: Self = Self(3);
-    pub const NSViewLayerContentsRedrawCrossfade: Self = Self(4);
+    #[doc(alias = "NSViewLayerContentsRedrawNever")]
+    pub const Never: Self = Self(0);
+    #[doc(alias = "NSViewLayerContentsRedrawOnSetNeedsDisplay")]
+    pub const OnSetNeedsDisplay: Self = Self(1);
+    #[doc(alias = "NSViewLayerContentsRedrawDuringViewResize")]
+    pub const DuringViewResize: Self = Self(2);
+    #[doc(alias = "NSViewLayerContentsRedrawBeforeViewResize")]
+    pub const BeforeViewResize: Self = Self(3);
+    #[doc(alias = "NSViewLayerContentsRedrawCrossfade")]
+    pub const Crossfade: Self = Self(4);
 }
 
 unsafe impl Encode for NSViewLayerContentsRedrawPolicy {

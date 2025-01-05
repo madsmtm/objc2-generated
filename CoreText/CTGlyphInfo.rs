@@ -47,30 +47,31 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTCharacterCollection(pub u16);
 impl CTCharacterCollection {
-    pub const kCTCharacterCollectionIdentityMapping: Self = Self(0);
-    pub const kCTCharacterCollectionAdobeCNS1: Self = Self(1);
-    pub const kCTCharacterCollectionAdobeGB1: Self = Self(2);
-    pub const kCTCharacterCollectionAdobeJapan1: Self = Self(3);
-    pub const kCTCharacterCollectionAdobeJapan2: Self = Self(4);
-    pub const kCTCharacterCollectionAdobeKorea1: Self = Self(5);
+    #[doc(alias = "kCTCharacterCollectionIdentityMapping")]
+    pub const IdentityMapping: Self = Self(0);
+    #[doc(alias = "kCTCharacterCollectionAdobeCNS1")]
+    pub const AdobeCNS1: Self = Self(1);
+    #[doc(alias = "kCTCharacterCollectionAdobeGB1")]
+    pub const AdobeGB1: Self = Self(2);
+    #[doc(alias = "kCTCharacterCollectionAdobeJapan1")]
+    pub const AdobeJapan1: Self = Self(3);
+    #[doc(alias = "kCTCharacterCollectionAdobeJapan2")]
+    pub const AdobeJapan2: Self = Self(4);
+    #[doc(alias = "kCTCharacterCollectionAdobeKorea1")]
+    pub const AdobeKorea1: Self = Self(5);
     #[deprecated = "Deprecated"]
     pub const kCTIdentityMappingCharacterCollection: Self =
-        Self(CTCharacterCollection::kCTCharacterCollectionIdentityMapping.0);
+        Self(CTCharacterCollection::IdentityMapping.0);
     #[deprecated = "Deprecated"]
-    pub const kCTAdobeCNS1CharacterCollection: Self =
-        Self(CTCharacterCollection::kCTCharacterCollectionAdobeCNS1.0);
+    pub const kCTAdobeCNS1CharacterCollection: Self = Self(CTCharacterCollection::AdobeCNS1.0);
     #[deprecated = "Deprecated"]
-    pub const kCTAdobeGB1CharacterCollection: Self =
-        Self(CTCharacterCollection::kCTCharacterCollectionAdobeGB1.0);
+    pub const kCTAdobeGB1CharacterCollection: Self = Self(CTCharacterCollection::AdobeGB1.0);
     #[deprecated = "Deprecated"]
-    pub const kCTAdobeJapan1CharacterCollection: Self =
-        Self(CTCharacterCollection::kCTCharacterCollectionAdobeJapan1.0);
+    pub const kCTAdobeJapan1CharacterCollection: Self = Self(CTCharacterCollection::AdobeJapan1.0);
     #[deprecated = "Deprecated"]
-    pub const kCTAdobeJapan2CharacterCollection: Self =
-        Self(CTCharacterCollection::kCTCharacterCollectionAdobeJapan2.0);
+    pub const kCTAdobeJapan2CharacterCollection: Self = Self(CTCharacterCollection::AdobeJapan2.0);
     #[deprecated = "Deprecated"]
-    pub const kCTAdobeKorea1CharacterCollection: Self =
-        Self(CTCharacterCollection::kCTCharacterCollectionAdobeKorea1.0);
+    pub const kCTAdobeKorea1CharacterCollection: Self = Self(CTCharacterCollection::AdobeKorea1.0);
 }
 
 #[cfg(feature = "objc2")]

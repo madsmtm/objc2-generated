@@ -23,14 +23,22 @@ pub struct CFURLEnumeratorOptions(pub CFOptionFlags);
 #[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFURLEnumeratorOptions: CFOptionFlags {
-        const kCFURLEnumeratorDefaultBehavior = 0;
-        const kCFURLEnumeratorDescendRecursively = 1<<0;
-        const kCFURLEnumeratorSkipInvisibles = 1<<1;
-        const kCFURLEnumeratorGenerateFileReferenceURLs = 1<<2;
-        const kCFURLEnumeratorSkipPackageContents = 1<<3;
-        const kCFURLEnumeratorIncludeDirectoriesPreOrder = 1<<4;
-        const kCFURLEnumeratorIncludeDirectoriesPostOrder = 1<<5;
-        const kCFURLEnumeratorGenerateRelativePathURLs = 1<<6;
+        #[doc(alias = "kCFURLEnumeratorDefaultBehavior")]
+        const DefaultBehavior = 0;
+        #[doc(alias = "kCFURLEnumeratorDescendRecursively")]
+        const DescendRecursively = 1<<0;
+        #[doc(alias = "kCFURLEnumeratorSkipInvisibles")]
+        const SkipInvisibles = 1<<1;
+        #[doc(alias = "kCFURLEnumeratorGenerateFileReferenceURLs")]
+        const GenerateFileReferenceURLs = 1<<2;
+        #[doc(alias = "kCFURLEnumeratorSkipPackageContents")]
+        const SkipPackageContents = 1<<3;
+        #[doc(alias = "kCFURLEnumeratorIncludeDirectoriesPreOrder")]
+        const IncludeDirectoriesPreOrder = 1<<4;
+        #[doc(alias = "kCFURLEnumeratorIncludeDirectoriesPostOrder")]
+        const IncludeDirectoriesPostOrder = 1<<5;
+        #[doc(alias = "kCFURLEnumeratorGenerateRelativePathURLs")]
+        const GenerateRelativePathURLs = 1<<6;
     }
 }
 
@@ -71,10 +79,14 @@ extern "C-unwind" {
 pub struct CFURLEnumeratorResult(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFURLEnumeratorResult {
-    pub const kCFURLEnumeratorSuccess: Self = Self(1);
-    pub const kCFURLEnumeratorEnd: Self = Self(2);
-    pub const kCFURLEnumeratorError: Self = Self(3);
-    pub const kCFURLEnumeratorDirectoryPostOrderSuccess: Self = Self(4);
+    #[doc(alias = "kCFURLEnumeratorSuccess")]
+    pub const Success: Self = Self(1);
+    #[doc(alias = "kCFURLEnumeratorEnd")]
+    pub const End: Self = Self(2);
+    #[doc(alias = "kCFURLEnumeratorError")]
+    pub const Error: Self = Self(3);
+    #[doc(alias = "kCFURLEnumeratorDirectoryPostOrderSuccess")]
+    pub const DirectoryPostOrderSuccess: Self = Self(4);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]

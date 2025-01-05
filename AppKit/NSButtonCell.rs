@@ -417,11 +417,16 @@ extern_methods!(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSGradientType(pub NSUInteger);
 impl NSGradientType {
-    pub const NSGradientNone: Self = Self(0);
-    pub const NSGradientConcaveWeak: Self = Self(1);
-    pub const NSGradientConcaveStrong: Self = Self(2);
-    pub const NSGradientConvexWeak: Self = Self(3);
-    pub const NSGradientConvexStrong: Self = Self(4);
+    #[doc(alias = "NSGradientNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSGradientConcaveWeak")]
+    pub const ConcaveWeak: Self = Self(1);
+    #[doc(alias = "NSGradientConcaveStrong")]
+    pub const ConcaveStrong: Self = Self(2);
+    #[doc(alias = "NSGradientConvexWeak")]
+    pub const ConvexWeak: Self = Self(3);
+    #[doc(alias = "NSGradientConvexStrong")]
+    pub const ConvexStrong: Self = Self(4);
 }
 
 unsafe impl Encode for NSGradientType {

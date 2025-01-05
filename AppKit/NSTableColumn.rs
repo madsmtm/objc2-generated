@@ -16,9 +16,12 @@ use crate::*;
 pub struct NSTableColumnResizingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTableColumnResizingOptions: NSUInteger {
-        const NSTableColumnNoResizing = 0;
-        const NSTableColumnAutoresizingMask = 1<<0;
-        const NSTableColumnUserResizingMask = 1<<1;
+        #[doc(alias = "NSTableColumnNoResizing")]
+        const NoResizing = 0;
+        #[doc(alias = "NSTableColumnAutoresizingMask")]
+        const AutoresizingMask = 1<<0;
+        #[doc(alias = "NSTableColumnUserResizingMask")]
+        const UserResizingMask = 1<<1;
     }
 }
 

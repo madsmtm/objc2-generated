@@ -13,10 +13,14 @@ use crate::*;
 pub struct NSKeyValueObservingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSKeyValueObservingOptions: NSUInteger {
-        const NSKeyValueObservingOptionNew = 0x01;
-        const NSKeyValueObservingOptionOld = 0x02;
-        const NSKeyValueObservingOptionInitial = 0x04;
-        const NSKeyValueObservingOptionPrior = 0x08;
+        #[doc(alias = "NSKeyValueObservingOptionNew")]
+        const New = 0x01;
+        #[doc(alias = "NSKeyValueObservingOptionOld")]
+        const Old = 0x02;
+        #[doc(alias = "NSKeyValueObservingOptionInitial")]
+        const Initial = 0x04;
+        #[doc(alias = "NSKeyValueObservingOptionPrior")]
+        const Prior = 0x08;
     }
 }
 
@@ -58,10 +62,14 @@ unsafe impl RefEncode for NSKeyValueChange {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSKeyValueSetMutationKind(pub NSUInteger);
 impl NSKeyValueSetMutationKind {
-    pub const NSKeyValueUnionSetMutation: Self = Self(1);
-    pub const NSKeyValueMinusSetMutation: Self = Self(2);
-    pub const NSKeyValueIntersectSetMutation: Self = Self(3);
-    pub const NSKeyValueSetSetMutation: Self = Self(4);
+    #[doc(alias = "NSKeyValueUnionSetMutation")]
+    pub const UnionSetMutation: Self = Self(1);
+    #[doc(alias = "NSKeyValueMinusSetMutation")]
+    pub const MinusSetMutation: Self = Self(2);
+    #[doc(alias = "NSKeyValueIntersectSetMutation")]
+    pub const IntersectSetMutation: Self = Self(3);
+    #[doc(alias = "NSKeyValueSetSetMutation")]
+    pub const SetSetMutation: Self = Self(4);
 }
 
 unsafe impl Encode for NSKeyValueSetMutationKind {

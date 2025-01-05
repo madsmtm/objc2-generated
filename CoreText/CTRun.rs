@@ -40,10 +40,14 @@ pub type CTRunRef = *const c_void;
 pub struct CTRunStatus(pub u32);
 bitflags::bitflags! {
     impl CTRunStatus: u32 {
-        const kCTRunStatusNoStatus = 0;
-        const kCTRunStatusRightToLeft = 1<<0;
-        const kCTRunStatusNonMonotonic = 1<<1;
-        const kCTRunStatusHasNonIdentityMatrix = 1<<2;
+        #[doc(alias = "kCTRunStatusNoStatus")]
+        const NoStatus = 0;
+        #[doc(alias = "kCTRunStatusRightToLeft")]
+        const RightToLeft = 1<<0;
+        #[doc(alias = "kCTRunStatusNonMonotonic")]
+        const NonMonotonic = 1<<1;
+        #[doc(alias = "kCTRunStatusHasNonIdentityMatrix")]
+        const HasNonIdentityMatrix = 1<<2;
     }
 }
 

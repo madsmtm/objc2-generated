@@ -30,10 +30,14 @@ unsafe impl RefEncode for CGVector {
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum CGRectEdge {
-    CGRectMinXEdge = 0,
-    CGRectMinYEdge = 1,
-    CGRectMaxXEdge = 2,
-    CGRectMaxYEdge = 3,
+    #[doc(alias = "CGRectMinXEdge")]
+    MinXEdge = 0,
+    #[doc(alias = "CGRectMinYEdge")]
+    MinYEdge = 1,
+    #[doc(alias = "CGRectMaxXEdge")]
+    MaxXEdge = 2,
+    #[doc(alias = "CGRectMaxYEdge")]
+    MaxYEdge = 3,
 }
 
 #[cfg(feature = "objc2")]

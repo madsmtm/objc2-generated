@@ -47,13 +47,20 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTRubyAlignment(pub u8);
 impl CTRubyAlignment {
-    pub const kCTRubyAlignmentAuto: Self = Self(0);
-    pub const kCTRubyAlignmentStart: Self = Self(1);
-    pub const kCTRubyAlignmentCenter: Self = Self(2);
-    pub const kCTRubyAlignmentEnd: Self = Self(3);
-    pub const kCTRubyAlignmentDistributeLetter: Self = Self(4);
-    pub const kCTRubyAlignmentDistributeSpace: Self = Self(5);
-    pub const kCTRubyAlignmentLineEdge: Self = Self(6);
+    #[doc(alias = "kCTRubyAlignmentAuto")]
+    pub const Auto: Self = Self(0);
+    #[doc(alias = "kCTRubyAlignmentStart")]
+    pub const Start: Self = Self(1);
+    #[doc(alias = "kCTRubyAlignmentCenter")]
+    pub const Center: Self = Self(2);
+    #[doc(alias = "kCTRubyAlignmentEnd")]
+    pub const End: Self = Self(3);
+    #[doc(alias = "kCTRubyAlignmentDistributeLetter")]
+    pub const DistributeLetter: Self = Self(4);
+    #[doc(alias = "kCTRubyAlignmentDistributeSpace")]
+    pub const DistributeSpace: Self = Self(5);
+    #[doc(alias = "kCTRubyAlignmentLineEdge")]
+    pub const LineEdge: Self = Self(6);
 }
 
 #[cfg(feature = "objc2")]
@@ -86,10 +93,14 @@ unsafe impl RefEncode for CTRubyAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTRubyOverhang(pub u8);
 impl CTRubyOverhang {
-    pub const kCTRubyOverhangAuto: Self = Self(0);
-    pub const kCTRubyOverhangStart: Self = Self(1);
-    pub const kCTRubyOverhangEnd: Self = Self(2);
-    pub const kCTRubyOverhangNone: Self = Self(3);
+    #[doc(alias = "kCTRubyOverhangAuto")]
+    pub const Auto: Self = Self(0);
+    #[doc(alias = "kCTRubyOverhangStart")]
+    pub const Start: Self = Self(1);
+    #[doc(alias = "kCTRubyOverhangEnd")]
+    pub const End: Self = Self(2);
+    #[doc(alias = "kCTRubyOverhangNone")]
+    pub const None: Self = Self(3);
 }
 
 #[cfg(feature = "objc2")]
@@ -122,11 +133,16 @@ unsafe impl RefEncode for CTRubyOverhang {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTRubyPosition(pub u8);
 impl CTRubyPosition {
-    pub const kCTRubyPositionBefore: Self = Self(0);
-    pub const kCTRubyPositionAfter: Self = Self(1);
-    pub const kCTRubyPositionInterCharacter: Self = Self(2);
-    pub const kCTRubyPositionInline: Self = Self(3);
-    pub const kCTRubyPositionCount: Self = Self(4);
+    #[doc(alias = "kCTRubyPositionBefore")]
+    pub const Before: Self = Self(0);
+    #[doc(alias = "kCTRubyPositionAfter")]
+    pub const After: Self = Self(1);
+    #[doc(alias = "kCTRubyPositionInterCharacter")]
+    pub const InterCharacter: Self = Self(2);
+    #[doc(alias = "kCTRubyPositionInline")]
+    pub const Inline: Self = Self(3);
+    #[doc(alias = "kCTRubyPositionCount")]
+    pub const Count: Self = Self(4);
 }
 
 #[cfg(feature = "objc2")]

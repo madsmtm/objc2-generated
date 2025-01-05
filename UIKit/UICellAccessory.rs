@@ -16,11 +16,14 @@ use crate::*;
 pub struct UICellAccessoryDisplayedState(pub NSInteger);
 impl UICellAccessoryDisplayedState {
     /// The accessory is always displayed.
-    pub const UICellAccessoryDisplayedAlways: Self = Self(0);
+    #[doc(alias = "UICellAccessoryDisplayedAlways")]
+    pub const Always: Self = Self(0);
     /// The accessory is displayed only when the cell is editing.
-    pub const UICellAccessoryDisplayedWhenEditing: Self = Self(1);
+    #[doc(alias = "UICellAccessoryDisplayedWhenEditing")]
+    pub const WhenEditing: Self = Self(1);
     /// The accessory is displayed only when the cell is not editing.
-    pub const UICellAccessoryDisplayedWhenNotEditing: Self = Self(2);
+    #[doc(alias = "UICellAccessoryDisplayedWhenNotEditing")]
+    pub const WhenNotEditing: Self = Self(2);
 }
 
 unsafe impl Encode for UICellAccessoryDisplayedState {

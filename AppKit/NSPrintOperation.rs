@@ -15,10 +15,14 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSPrintingPageOrder(pub NSInteger);
 impl NSPrintingPageOrder {
-    pub const NSDescendingPageOrder: Self = Self(-1);
-    pub const NSSpecialPageOrder: Self = Self(0);
-    pub const NSAscendingPageOrder: Self = Self(1);
-    pub const NSUnknownPageOrder: Self = Self(2);
+    #[doc(alias = "NSDescendingPageOrder")]
+    pub const DescendingPageOrder: Self = Self(-1);
+    #[doc(alias = "NSSpecialPageOrder")]
+    pub const SpecialPageOrder: Self = Self(0);
+    #[doc(alias = "NSAscendingPageOrder")]
+    pub const AscendingPageOrder: Self = Self(1);
+    #[doc(alias = "NSUnknownPageOrder")]
+    pub const UnknownPageOrder: Self = Self(2);
 }
 
 unsafe impl Encode for NSPrintingPageOrder {

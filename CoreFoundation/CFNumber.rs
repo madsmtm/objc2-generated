@@ -36,23 +36,40 @@ extern "C-unwind" {
 pub struct CFNumberType(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFNumberType {
-    pub const kCFNumberSInt8Type: Self = Self(1);
-    pub const kCFNumberSInt16Type: Self = Self(2);
-    pub const kCFNumberSInt32Type: Self = Self(3);
-    pub const kCFNumberSInt64Type: Self = Self(4);
-    pub const kCFNumberFloat32Type: Self = Self(5);
-    pub const kCFNumberFloat64Type: Self = Self(6);
-    pub const kCFNumberCharType: Self = Self(7);
-    pub const kCFNumberShortType: Self = Self(8);
-    pub const kCFNumberIntType: Self = Self(9);
-    pub const kCFNumberLongType: Self = Self(10);
-    pub const kCFNumberLongLongType: Self = Self(11);
-    pub const kCFNumberFloatType: Self = Self(12);
-    pub const kCFNumberDoubleType: Self = Self(13);
-    pub const kCFNumberCFIndexType: Self = Self(14);
-    pub const kCFNumberNSIntegerType: Self = Self(15);
-    pub const kCFNumberCGFloatType: Self = Self(16);
-    pub const kCFNumberMaxType: Self = Self(16);
+    #[doc(alias = "kCFNumberSInt8Type")]
+    pub const SInt8Type: Self = Self(1);
+    #[doc(alias = "kCFNumberSInt16Type")]
+    pub const SInt16Type: Self = Self(2);
+    #[doc(alias = "kCFNumberSInt32Type")]
+    pub const SInt32Type: Self = Self(3);
+    #[doc(alias = "kCFNumberSInt64Type")]
+    pub const SInt64Type: Self = Self(4);
+    #[doc(alias = "kCFNumberFloat32Type")]
+    pub const Float32Type: Self = Self(5);
+    #[doc(alias = "kCFNumberFloat64Type")]
+    pub const Float64Type: Self = Self(6);
+    #[doc(alias = "kCFNumberCharType")]
+    pub const CharType: Self = Self(7);
+    #[doc(alias = "kCFNumberShortType")]
+    pub const ShortType: Self = Self(8);
+    #[doc(alias = "kCFNumberIntType")]
+    pub const IntType: Self = Self(9);
+    #[doc(alias = "kCFNumberLongType")]
+    pub const LongType: Self = Self(10);
+    #[doc(alias = "kCFNumberLongLongType")]
+    pub const LongLongType: Self = Self(11);
+    #[doc(alias = "kCFNumberFloatType")]
+    pub const FloatType: Self = Self(12);
+    #[doc(alias = "kCFNumberDoubleType")]
+    pub const DoubleType: Self = Self(13);
+    #[doc(alias = "kCFNumberCFIndexType")]
+    pub const CFIndexType: Self = Self(14);
+    #[doc(alias = "kCFNumberNSIntegerType")]
+    pub const NSIntegerType: Self = Self(15);
+    #[doc(alias = "kCFNumberCGFloatType")]
+    pub const CGFloatType: Self = Self(16);
+    #[doc(alias = "kCFNumberMaxType")]
+    pub const MaxType: Self = Self(16);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]

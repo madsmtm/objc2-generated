@@ -127,7 +127,8 @@ extern "C" {
 pub struct NSPasteboardContentsOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPasteboardContentsOptions: NSUInteger {
-        const NSPasteboardContentsCurrentHostOnly = 1<<0;
+        #[doc(alias = "NSPasteboardContentsCurrentHostOnly")]
+        const CurrentHostOnly = 1<<0;
     }
 }
 
@@ -347,7 +348,8 @@ extern_protocol!(
 pub struct NSPasteboardWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPasteboardWritingOptions: NSUInteger {
-        const NSPasteboardWritingPromised = 1<<9;
+        #[doc(alias = "NSPasteboardWritingPromised")]
+        const Promised = 1<<9;
     }
 }
 
@@ -391,10 +393,14 @@ extern_protocol!(
 pub struct NSPasteboardReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPasteboardReadingOptions: NSUInteger {
-        const NSPasteboardReadingAsData = 0;
-        const NSPasteboardReadingAsString = 1<<0;
-        const NSPasteboardReadingAsPropertyList = 1<<1;
-        const NSPasteboardReadingAsKeyedArchive = 1<<2;
+        #[doc(alias = "NSPasteboardReadingAsData")]
+        const AsData = 0;
+        #[doc(alias = "NSPasteboardReadingAsString")]
+        const AsString = 1<<0;
+        #[doc(alias = "NSPasteboardReadingAsPropertyList")]
+        const AsPropertyList = 1<<1;
+        #[doc(alias = "NSPasteboardReadingAsKeyedArchive")]
+        const AsKeyedArchive = 1<<2;
     }
 }
 

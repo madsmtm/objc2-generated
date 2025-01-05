@@ -13,17 +13,28 @@ use crate::*;
 pub struct NSByteCountFormatterUnits(pub NSUInteger);
 bitflags::bitflags! {
     impl NSByteCountFormatterUnits: NSUInteger {
-        const NSByteCountFormatterUseDefault = 0;
-        const NSByteCountFormatterUseBytes = 1<<0;
-        const NSByteCountFormatterUseKB = 1<<1;
-        const NSByteCountFormatterUseMB = 1<<2;
-        const NSByteCountFormatterUseGB = 1<<3;
-        const NSByteCountFormatterUseTB = 1<<4;
-        const NSByteCountFormatterUsePB = 1<<5;
-        const NSByteCountFormatterUseEB = 1<<6;
-        const NSByteCountFormatterUseZB = 1<<7;
-        const NSByteCountFormatterUseYBOrHigher = 0x0FF<<8;
-        const NSByteCountFormatterUseAll = 0x0FFFF;
+        #[doc(alias = "NSByteCountFormatterUseDefault")]
+        const UseDefault = 0;
+        #[doc(alias = "NSByteCountFormatterUseBytes")]
+        const UseBytes = 1<<0;
+        #[doc(alias = "NSByteCountFormatterUseKB")]
+        const UseKB = 1<<1;
+        #[doc(alias = "NSByteCountFormatterUseMB")]
+        const UseMB = 1<<2;
+        #[doc(alias = "NSByteCountFormatterUseGB")]
+        const UseGB = 1<<3;
+        #[doc(alias = "NSByteCountFormatterUseTB")]
+        const UseTB = 1<<4;
+        #[doc(alias = "NSByteCountFormatterUsePB")]
+        const UsePB = 1<<5;
+        #[doc(alias = "NSByteCountFormatterUseEB")]
+        const UseEB = 1<<6;
+        #[doc(alias = "NSByteCountFormatterUseZB")]
+        const UseZB = 1<<7;
+        #[doc(alias = "NSByteCountFormatterUseYBOrHigher")]
+        const UseYBOrHigher = 0x0FF<<8;
+        #[doc(alias = "NSByteCountFormatterUseAll")]
+        const UseAll = 0x0FFFF;
     }
 }
 

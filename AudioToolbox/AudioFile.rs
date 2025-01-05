@@ -111,8 +111,10 @@ pub const kAudioFileFileNotFoundError: OSStatus = -43;
 pub struct AudioFileFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileFlags: u32 {
-        const kAudioFileFlags_EraseFile = 1;
-        const kAudioFileFlags_DontPageAlignAudioData = 2;
+        #[doc(alias = "kAudioFileFlags_EraseFile")]
+        const EraseFile = 1;
+        #[doc(alias = "kAudioFileFlags_DontPageAlignAudioData")]
+        const DontPageAlignAudioData = 2;
     }
 }
 
@@ -130,9 +132,12 @@ unsafe impl RefEncode for AudioFileFlags {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioFilePermissions(pub i8);
 impl AudioFilePermissions {
-    pub const kAudioFileReadPermission: Self = Self(0x01);
-    pub const kAudioFileWritePermission: Self = Self(0x02);
-    pub const kAudioFileReadWritePermission: Self = Self(0x03);
+    #[doc(alias = "kAudioFileReadPermission")]
+    pub const ReadPermission: Self = Self(0x01);
+    #[doc(alias = "kAudioFileWritePermission")]
+    pub const WritePermission: Self = Self(0x02);
+    #[doc(alias = "kAudioFileReadWritePermission")]
+    pub const ReadWritePermission: Self = Self(0x03);
 }
 
 unsafe impl Encode for AudioFilePermissions {
@@ -292,9 +297,12 @@ unsafe impl RefEncode for AudioFileMarkerList {
 pub struct AudioFileRegionFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileRegionFlags: u32 {
-        const kAudioFileRegionFlag_LoopEnable = 1;
-        const kAudioFileRegionFlag_PlayForward = 2;
-        const kAudioFileRegionFlag_PlayBackward = 4;
+        #[doc(alias = "kAudioFileRegionFlag_LoopEnable")]
+        const LoopEnable = 1;
+        #[doc(alias = "kAudioFileRegionFlag_PlayForward")]
+        const PlayForward = 2;
+        #[doc(alias = "kAudioFileRegionFlag_PlayBackward")]
+        const PlayBackward = 4;
     }
 }
 
@@ -430,7 +438,8 @@ unsafe impl RefEncode for AudioFramePacketTranslation {
 pub struct AudioBytePacketTranslationFlags(pub u32);
 bitflags::bitflags! {
     impl AudioBytePacketTranslationFlags: u32 {
-        const kBytePacketTranslationFlag_IsEstimate = 1;
+        #[doc(alias = "kBytePacketTranslationFlag_IsEstimate")]
+        const BytePacketTranslationFlag_IsEstimate = 1;
     }
 }
 

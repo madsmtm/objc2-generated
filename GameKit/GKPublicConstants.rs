@@ -16,10 +16,12 @@ use crate::*;
 pub struct GKSendDataMode(pub c_int);
 impl GKSendDataMode {
     #[deprecated]
-    pub const GKSendDataReliable: Self = Self(0);
+    #[doc(alias = "GKSendDataReliable")]
+    pub const Reliable: Self = Self(0);
     /// a.s.a.p. but requires fragmentation and reassembly for large messages, may stall if network congestion occurs
     #[deprecated]
-    pub const GKSendDataUnreliable: Self = Self(1);
+    #[doc(alias = "GKSendDataUnreliable")]
+    pub const Unreliable: Self = Self(1);
 }
 
 unsafe impl Encode for GKSendDataMode {
@@ -68,22 +70,28 @@ unsafe impl RefEncode for GKSessionMode {
 pub struct GKPeerConnectionState(pub c_int);
 impl GKPeerConnectionState {
     #[deprecated]
-    pub const GKPeerStateAvailable: Self = Self(0);
+    #[doc(alias = "GKPeerStateAvailable")]
+    pub const StateAvailable: Self = Self(0);
     /// not connected to session, but available for connectToPeer:withTimeout:
     #[deprecated]
-    pub const GKPeerStateUnavailable: Self = Self(1);
+    #[doc(alias = "GKPeerStateUnavailable")]
+    pub const StateUnavailable: Self = Self(1);
     /// no longer available
     #[deprecated]
-    pub const GKPeerStateConnected: Self = Self(2);
+    #[doc(alias = "GKPeerStateConnected")]
+    pub const StateConnected: Self = Self(2);
     /// connected to the session
     #[deprecated]
-    pub const GKPeerStateDisconnected: Self = Self(3);
+    #[doc(alias = "GKPeerStateDisconnected")]
+    pub const StateDisconnected: Self = Self(3);
     /// disconnected from the session
     #[deprecated]
-    pub const GKPeerStateConnecting: Self = Self(4);
+    #[doc(alias = "GKPeerStateConnecting")]
+    pub const StateConnecting: Self = Self(4);
     /// waiting for accept, or deny response
     #[deprecated]
-    pub const GKPeerStateConnectedRelay: Self = Self(5);
+    #[doc(alias = "GKPeerStateConnectedRelay")]
+    pub const StateConnectedRelay: Self = Self(5);
 }
 
 unsafe impl Encode for GKPeerConnectionState {
@@ -105,23 +113,40 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GKVoiceChatServiceError(pub c_int);
 impl GKVoiceChatServiceError {
-    pub const GKVoiceChatServiceInternalError: Self = Self(32000);
-    pub const GKVoiceChatServiceNoRemotePacketsError: Self = Self(32001);
-    pub const GKVoiceChatServiceUnableToConnectError: Self = Self(32002);
-    pub const GKVoiceChatServiceRemoteParticipantHangupError: Self = Self(32003);
-    pub const GKVoiceChatServiceInvalidCallIDError: Self = Self(32004);
-    pub const GKVoiceChatServiceAudioUnavailableError: Self = Self(32005);
-    pub const GKVoiceChatServiceUninitializedClientError: Self = Self(32006);
-    pub const GKVoiceChatServiceClientMissingRequiredMethodsError: Self = Self(32007);
-    pub const GKVoiceChatServiceRemoteParticipantBusyError: Self = Self(32008);
-    pub const GKVoiceChatServiceRemoteParticipantCancelledError: Self = Self(32009);
-    pub const GKVoiceChatServiceRemoteParticipantResponseInvalidError: Self = Self(32010);
-    pub const GKVoiceChatServiceRemoteParticipantDeclinedInviteError: Self = Self(32011);
-    pub const GKVoiceChatServiceMethodCurrentlyInvalidError: Self = Self(32012);
-    pub const GKVoiceChatServiceNetworkConfigurationError: Self = Self(32013);
-    pub const GKVoiceChatServiceUnsupportedRemoteVersionError: Self = Self(32014);
-    pub const GKVoiceChatServiceOutOfMemoryError: Self = Self(32015);
-    pub const GKVoiceChatServiceInvalidParameterError: Self = Self(32016);
+    #[doc(alias = "GKVoiceChatServiceInternalError")]
+    pub const InternalError: Self = Self(32000);
+    #[doc(alias = "GKVoiceChatServiceNoRemotePacketsError")]
+    pub const NoRemotePacketsError: Self = Self(32001);
+    #[doc(alias = "GKVoiceChatServiceUnableToConnectError")]
+    pub const UnableToConnectError: Self = Self(32002);
+    #[doc(alias = "GKVoiceChatServiceRemoteParticipantHangupError")]
+    pub const RemoteParticipantHangupError: Self = Self(32003);
+    #[doc(alias = "GKVoiceChatServiceInvalidCallIDError")]
+    pub const InvalidCallIDError: Self = Self(32004);
+    #[doc(alias = "GKVoiceChatServiceAudioUnavailableError")]
+    pub const AudioUnavailableError: Self = Self(32005);
+    #[doc(alias = "GKVoiceChatServiceUninitializedClientError")]
+    pub const UninitializedClientError: Self = Self(32006);
+    #[doc(alias = "GKVoiceChatServiceClientMissingRequiredMethodsError")]
+    pub const ClientMissingRequiredMethodsError: Self = Self(32007);
+    #[doc(alias = "GKVoiceChatServiceRemoteParticipantBusyError")]
+    pub const RemoteParticipantBusyError: Self = Self(32008);
+    #[doc(alias = "GKVoiceChatServiceRemoteParticipantCancelledError")]
+    pub const RemoteParticipantCancelledError: Self = Self(32009);
+    #[doc(alias = "GKVoiceChatServiceRemoteParticipantResponseInvalidError")]
+    pub const RemoteParticipantResponseInvalidError: Self = Self(32010);
+    #[doc(alias = "GKVoiceChatServiceRemoteParticipantDeclinedInviteError")]
+    pub const RemoteParticipantDeclinedInviteError: Self = Self(32011);
+    #[doc(alias = "GKVoiceChatServiceMethodCurrentlyInvalidError")]
+    pub const MethodCurrentlyInvalidError: Self = Self(32012);
+    #[doc(alias = "GKVoiceChatServiceNetworkConfigurationError")]
+    pub const NetworkConfigurationError: Self = Self(32013);
+    #[doc(alias = "GKVoiceChatServiceUnsupportedRemoteVersionError")]
+    pub const UnsupportedRemoteVersionError: Self = Self(32014);
+    #[doc(alias = "GKVoiceChatServiceOutOfMemoryError")]
+    pub const OutOfMemoryError: Self = Self(32015);
+    #[doc(alias = "GKVoiceChatServiceInvalidParameterError")]
+    pub const InvalidParameterError: Self = Self(32016);
 }
 
 unsafe impl Encode for GKVoiceChatServiceError {

@@ -19,9 +19,12 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMTaggedBufferGroupError(pub OSStatus);
 impl CMTaggedBufferGroupError {
-    pub const kCMTaggedBufferGroupError_ParamErr: Self = Self(-15780);
-    pub const kCMTaggedBufferGroupError_AllocationFailed: Self = Self(-15781);
-    pub const kCMTaggedBufferGroupError_InternalError: Self = Self(-15782);
+    #[doc(alias = "kCMTaggedBufferGroupError_ParamErr")]
+    pub const ParamErr: Self = Self(-15780);
+    #[doc(alias = "kCMTaggedBufferGroupError_AllocationFailed")]
+    pub const AllocationFailed: Self = Self(-15781);
+    #[doc(alias = "kCMTaggedBufferGroupError_InternalError")]
+    pub const InternalError: Self = Self(-15782);
 }
 
 #[cfg(feature = "objc2")]

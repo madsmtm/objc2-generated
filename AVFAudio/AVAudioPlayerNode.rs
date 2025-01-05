@@ -24,9 +24,12 @@ use crate::*;
 pub struct AVAudioPlayerNodeBufferOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioPlayerNodeBufferOptions: NSUInteger {
-        const AVAudioPlayerNodeBufferLoops = 1<<0;
-        const AVAudioPlayerNodeBufferInterrupts = 1<<1;
-        const AVAudioPlayerNodeBufferInterruptsAtLoop = 1<<2;
+        #[doc(alias = "AVAudioPlayerNodeBufferLoops")]
+        const Loops = 1<<0;
+        #[doc(alias = "AVAudioPlayerNodeBufferInterrupts")]
+        const Interrupts = 1<<1;
+        #[doc(alias = "AVAudioPlayerNodeBufferInterruptsAtLoop")]
+        const InterruptsAtLoop = 1<<2;
     }
 }
 
@@ -60,9 +63,12 @@ unsafe impl RefEncode for AVAudioPlayerNodeBufferOptions {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioPlayerNodeCompletionCallbackType(pub NSInteger);
 impl AVAudioPlayerNodeCompletionCallbackType {
-    pub const AVAudioPlayerNodeCompletionDataConsumed: Self = Self(0);
-    pub const AVAudioPlayerNodeCompletionDataRendered: Self = Self(1);
-    pub const AVAudioPlayerNodeCompletionDataPlayedBack: Self = Self(2);
+    #[doc(alias = "AVAudioPlayerNodeCompletionDataConsumed")]
+    pub const DataConsumed: Self = Self(0);
+    #[doc(alias = "AVAudioPlayerNodeCompletionDataRendered")]
+    pub const DataRendered: Self = Self(1);
+    #[doc(alias = "AVAudioPlayerNodeCompletionDataPlayedBack")]
+    pub const DataPlayedBack: Self = Self(2);
 }
 
 unsafe impl Encode for AVAudioPlayerNodeCompletionCallbackType {

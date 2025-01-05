@@ -84,8 +84,10 @@ pub const NSResetCursorRectsRunLoopOrdering: c_uint = 700000;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSWindowSharingType(pub NSUInteger);
 impl NSWindowSharingType {
-    pub const NSWindowSharingNone: Self = Self(0);
-    pub const NSWindowSharingReadOnly: Self = Self(1);
+    #[doc(alias = "NSWindowSharingNone")]
+    pub const None: Self = Self(0);
+    #[doc(alias = "NSWindowSharingReadOnly")]
+    pub const ReadOnly: Self = Self(1);
 }
 
 unsafe impl Encode for NSWindowSharingType {
@@ -220,8 +222,10 @@ unsafe impl RefEncode for NSWindowAnimationBehavior {
 pub struct NSWindowNumberListOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWindowNumberListOptions: NSUInteger {
-        const NSWindowNumberListAllApplications = 1<<0;
-        const NSWindowNumberListAllSpaces = 1<<4;
+        #[doc(alias = "NSWindowNumberListAllApplications")]
+        const AllApplications = 1<<0;
+        #[doc(alias = "NSWindowNumberListAllSpaces")]
+        const AllSpaces = 1<<4;
     }
 }
 
@@ -290,9 +294,12 @@ pub static NSScreenSaverWindowLevel: NSWindowLevel = 1000;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSSelectionDirection(pub NSUInteger);
 impl NSSelectionDirection {
-    pub const NSDirectSelection: Self = Self(0);
-    pub const NSSelectingNext: Self = Self(1);
-    pub const NSSelectingPrevious: Self = Self(2);
+    #[doc(alias = "NSDirectSelection")]
+    pub const DirectSelection: Self = Self(0);
+    #[doc(alias = "NSSelectingNext")]
+    pub const SelectingNext: Self = Self(1);
+    #[doc(alias = "NSSelectingPrevious")]
+    pub const SelectingPrevious: Self = Self(2);
 }
 
 unsafe impl Encode for NSSelectionDirection {
@@ -311,12 +318,18 @@ unsafe impl RefEncode for NSSelectionDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSWindowButton(pub NSUInteger);
 impl NSWindowButton {
-    pub const NSWindowCloseButton: Self = Self(0);
-    pub const NSWindowMiniaturizeButton: Self = Self(1);
-    pub const NSWindowZoomButton: Self = Self(2);
-    pub const NSWindowToolbarButton: Self = Self(3);
-    pub const NSWindowDocumentIconButton: Self = Self(4);
-    pub const NSWindowDocumentVersionsButton: Self = Self(6);
+    #[doc(alias = "NSWindowCloseButton")]
+    pub const CloseButton: Self = Self(0);
+    #[doc(alias = "NSWindowMiniaturizeButton")]
+    pub const MiniaturizeButton: Self = Self(1);
+    #[doc(alias = "NSWindowZoomButton")]
+    pub const ZoomButton: Self = Self(2);
+    #[doc(alias = "NSWindowToolbarButton")]
+    pub const ToolbarButton: Self = Self(3);
+    #[doc(alias = "NSWindowDocumentIconButton")]
+    pub const DocumentIconButton: Self = Self(4);
+    #[doc(alias = "NSWindowDocumentVersionsButton")]
+    pub const DocumentVersionsButton: Self = Self(6);
 }
 
 unsafe impl Encode for NSWindowButton {
@@ -333,8 +346,10 @@ unsafe impl RefEncode for NSWindowButton {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSWindowTitleVisibility(pub NSInteger);
 impl NSWindowTitleVisibility {
-    pub const NSWindowTitleVisible: Self = Self(0);
-    pub const NSWindowTitleHidden: Self = Self(1);
+    #[doc(alias = "NSWindowTitleVisible")]
+    pub const Visible: Self = Self(0);
+    #[doc(alias = "NSWindowTitleHidden")]
+    pub const Hidden: Self = Self(1);
 }
 
 unsafe impl Encode for NSWindowTitleVisibility {

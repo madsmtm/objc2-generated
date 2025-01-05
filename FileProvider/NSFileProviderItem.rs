@@ -238,17 +238,28 @@ unsafe impl RefEncode for NSFileProviderItemCapabilities {
 pub struct NSFileProviderItemFields(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderItemFields: NSUInteger {
-        const NSFileProviderItemContents = 1<<0;
-        const NSFileProviderItemFilename = 1<<1;
-        const NSFileProviderItemParentItemIdentifier = 1<<2;
-        const NSFileProviderItemLastUsedDate = 1<<3;
-        const NSFileProviderItemTagData = 1<<4;
-        const NSFileProviderItemFavoriteRank = 1<<5;
-        const NSFileProviderItemCreationDate = 1<<6;
-        const NSFileProviderItemContentModificationDate = 1<<7;
-        const NSFileProviderItemFileSystemFlags = 1<<8;
-        const NSFileProviderItemExtendedAttributes = 1<<9;
-        const NSFileProviderItemTypeAndCreator = 1<<10;
+        #[doc(alias = "NSFileProviderItemContents")]
+        const Contents = 1<<0;
+        #[doc(alias = "NSFileProviderItemFilename")]
+        const Filename = 1<<1;
+        #[doc(alias = "NSFileProviderItemParentItemIdentifier")]
+        const ParentItemIdentifier = 1<<2;
+        #[doc(alias = "NSFileProviderItemLastUsedDate")]
+        const LastUsedDate = 1<<3;
+        #[doc(alias = "NSFileProviderItemTagData")]
+        const TagData = 1<<4;
+        #[doc(alias = "NSFileProviderItemFavoriteRank")]
+        const FavoriteRank = 1<<5;
+        #[doc(alias = "NSFileProviderItemCreationDate")]
+        const CreationDate = 1<<6;
+        #[doc(alias = "NSFileProviderItemContentModificationDate")]
+        const ContentModificationDate = 1<<7;
+        #[doc(alias = "NSFileProviderItemFileSystemFlags")]
+        const FileSystemFlags = 1<<8;
+        #[doc(alias = "NSFileProviderItemExtendedAttributes")]
+        const ExtendedAttributes = 1<<9;
+        #[doc(alias = "NSFileProviderItemTypeAndCreator")]
+        const TypeAndCreator = 1<<10;
     }
 }
 
@@ -268,19 +279,24 @@ pub struct NSFileProviderFileSystemFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderFileSystemFlags: NSUInteger {
 /// Item has the POSIX user-executable (u+x) permission.
-        const NSFileProviderFileSystemUserExecutable = 1<<0;
+        #[doc(alias = "NSFileProviderFileSystemUserExecutable")]
+        const UserExecutable = 1<<0;
 /// Item has the POSIX user-readable (u+r) permission.
-        const NSFileProviderFileSystemUserReadable = 1<<1;
+        #[doc(alias = "NSFileProviderFileSystemUserReadable")]
+        const UserReadable = 1<<1;
 /// Item has the POSIX user-writable (u+w) permission.
-        const NSFileProviderFileSystemUserWritable = 1<<2;
+        #[doc(alias = "NSFileProviderFileSystemUserWritable")]
+        const UserWritable = 1<<2;
 /// Item should not be presented in the file viewers.
 ///
 /// This includes both the UF_HIDDEN BSD flag and the Invisible bit from the
 /// FinderInfo. When syncing down, the system only sets the UF_HIDDEN
 /// flag.
-        const NSFileProviderFileSystemHidden = 1<<3;
+        #[doc(alias = "NSFileProviderFileSystemHidden")]
+        const Hidden = 1<<3;
 /// The extension of the item should not be presented in the file viewers.
-        const NSFileProviderFileSystemPathExtensionHidden = 1<<4;
+        #[doc(alias = "NSFileProviderFileSystemPathExtensionHidden")]
+        const PathExtensionHidden = 1<<4;
     }
 }
 

@@ -55,8 +55,10 @@ pub type AVAudioIONodeInputBlock =
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVAudioVoiceProcessingSpeechActivityEvent(pub NSInteger);
 impl AVAudioVoiceProcessingSpeechActivityEvent {
-    pub const AVAudioVoiceProcessingSpeechActivityStarted: Self = Self(0);
-    pub const AVAudioVoiceProcessingSpeechActivityEnded: Self = Self(1);
+    #[doc(alias = "AVAudioVoiceProcessingSpeechActivityStarted")]
+    pub const Started: Self = Self(0);
+    #[doc(alias = "AVAudioVoiceProcessingSpeechActivityEnded")]
+    pub const Ended: Self = Self(1);
 }
 
 unsafe impl Encode for AVAudioVoiceProcessingSpeechActivityEvent {

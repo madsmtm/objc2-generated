@@ -500,9 +500,11 @@ extern "C" {
 pub struct NSPrintingOrientation(pub NSUInteger);
 impl NSPrintingOrientation {
     #[deprecated]
-    pub const NSPortraitOrientation: Self = Self(0);
+    #[doc(alias = "NSPortraitOrientation")]
+    pub const PortraitOrientation: Self = Self(0);
     #[deprecated]
-    pub const NSLandscapeOrientation: Self = Self(1);
+    #[doc(alias = "NSLandscapeOrientation")]
+    pub const LandscapeOrientation: Self = Self(1);
 }
 
 unsafe impl Encode for NSPrintingOrientation {

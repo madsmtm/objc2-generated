@@ -94,8 +94,10 @@ impl DefaultRetained for NSAttributedString {
 pub struct NSAttributedStringEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSAttributedStringEnumerationOptions: NSUInteger {
-        const NSAttributedStringEnumerationReverse = 1<<1;
-        const NSAttributedStringEnumerationLongestEffectiveRangeNotRequired = 1<<20;
+        #[doc(alias = "NSAttributedStringEnumerationReverse")]
+        const Reverse = 1<<1;
+        #[doc(alias = "NSAttributedStringEnumerationLongestEffectiveRangeNotRequired")]
+        const LongestEffectiveRangeNotRequired = 1<<20;
     }
 }
 
@@ -422,9 +424,10 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSAttributedStringMarkdownParsingFailurePolicy(pub NSInteger);
 impl NSAttributedStringMarkdownParsingFailurePolicy {
-    pub const NSAttributedStringMarkdownParsingFailureReturnError: Self = Self(0);
-    pub const NSAttributedStringMarkdownParsingFailureReturnPartiallyParsedIfPossible: Self =
-        Self(1);
+    #[doc(alias = "NSAttributedStringMarkdownParsingFailureReturnError")]
+    pub const ReturnError: Self = Self(0);
+    #[doc(alias = "NSAttributedStringMarkdownParsingFailureReturnPartiallyParsedIfPossible")]
+    pub const ReturnPartiallyParsedIfPossible: Self = Self(1);
 }
 
 unsafe impl Encode for NSAttributedStringMarkdownParsingFailurePolicy {
@@ -671,8 +674,10 @@ extern_methods!(
 pub struct NSAttributedStringFormattingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSAttributedStringFormattingOptions: NSUInteger {
-        const NSAttributedStringFormattingInsertArgumentAttributesWithoutMerging = 1<<0;
-        const NSAttributedStringFormattingApplyReplacementIndexAttribute = 1<<1;
+        #[doc(alias = "NSAttributedStringFormattingInsertArgumentAttributesWithoutMerging")]
+        const InsertArgumentAttributesWithoutMerging = 1<<0;
+        #[doc(alias = "NSAttributedStringFormattingApplyReplacementIndexAttribute")]
+        const ApplyReplacementIndexAttribute = 1<<1;
     }
 }
 

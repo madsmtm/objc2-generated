@@ -63,23 +63,32 @@ pub struct CFURLError(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFURLError {
     #[deprecated = "Use CFError codes instead"]
-    pub const kCFURLUnknownError: Self = Self(-10);
+    #[doc(alias = "kCFURLUnknownError")]
+    pub const UnknownError: Self = Self(-10);
     #[deprecated = "Use CFError codes instead"]
-    pub const kCFURLUnknownSchemeError: Self = Self(-11);
+    #[doc(alias = "kCFURLUnknownSchemeError")]
+    pub const UnknownSchemeError: Self = Self(-11);
     #[deprecated = "Use CFError codes instead"]
-    pub const kCFURLResourceNotFoundError: Self = Self(-12);
+    #[doc(alias = "kCFURLResourceNotFoundError")]
+    pub const ResourceNotFoundError: Self = Self(-12);
     #[deprecated = "Use CFError codes instead"]
-    pub const kCFURLResourceAccessViolationError: Self = Self(-13);
+    #[doc(alias = "kCFURLResourceAccessViolationError")]
+    pub const ResourceAccessViolationError: Self = Self(-13);
     #[deprecated = "Use CFError codes instead"]
-    pub const kCFURLRemoteHostUnavailableError: Self = Self(-14);
+    #[doc(alias = "kCFURLRemoteHostUnavailableError")]
+    pub const RemoteHostUnavailableError: Self = Self(-14);
     #[deprecated = "Use CFError codes instead"]
-    pub const kCFURLImproperArgumentsError: Self = Self(-15);
+    #[doc(alias = "kCFURLImproperArgumentsError")]
+    pub const ImproperArgumentsError: Self = Self(-15);
     #[deprecated = "Use CFError codes instead"]
-    pub const kCFURLUnknownPropertyKeyError: Self = Self(-16);
+    #[doc(alias = "kCFURLUnknownPropertyKeyError")]
+    pub const UnknownPropertyKeyError: Self = Self(-16);
     #[deprecated = "Use CFError codes instead"]
-    pub const kCFURLPropertyKeyUnavailableError: Self = Self(-17);
+    #[doc(alias = "kCFURLPropertyKeyUnavailableError")]
+    pub const PropertyKeyUnavailableError: Self = Self(-17);
     #[deprecated = "Use CFError codes instead"]
-    pub const kCFURLTimeoutError: Self = Self(-18);
+    #[doc(alias = "kCFURLTimeoutError")]
+    pub const TimeoutError: Self = Self(-18);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]

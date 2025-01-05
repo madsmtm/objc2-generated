@@ -23,9 +23,12 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGColorConversionInfoTransformType(pub u32);
 impl CGColorConversionInfoTransformType {
-    pub const kCGColorConversionTransformFromSpace: Self = Self(0);
-    pub const kCGColorConversionTransformToSpace: Self = Self(1);
-    pub const kCGColorConversionTransformApplySpace: Self = Self(2);
+    #[doc(alias = "kCGColorConversionTransformFromSpace")]
+    pub const TransformFromSpace: Self = Self(0);
+    #[doc(alias = "kCGColorConversionTransformToSpace")]
+    pub const TransformToSpace: Self = Self(1);
+    #[doc(alias = "kCGColorConversionTransformApplySpace")]
+    pub const TransformApplySpace: Self = Self(2);
 }
 
 #[cfg(feature = "objc2")]

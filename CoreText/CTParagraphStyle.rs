@@ -42,21 +42,26 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTTextAlignment(pub u8);
 impl CTTextAlignment {
-    pub const kCTTextAlignmentLeft: Self = Self(0);
-    pub const kCTTextAlignmentRight: Self = Self(1);
-    pub const kCTTextAlignmentCenter: Self = Self(2);
-    pub const kCTTextAlignmentJustified: Self = Self(3);
-    pub const kCTTextAlignmentNatural: Self = Self(4);
+    #[doc(alias = "kCTTextAlignmentLeft")]
+    pub const Left: Self = Self(0);
+    #[doc(alias = "kCTTextAlignmentRight")]
+    pub const Right: Self = Self(1);
+    #[doc(alias = "kCTTextAlignmentCenter")]
+    pub const Center: Self = Self(2);
+    #[doc(alias = "kCTTextAlignmentJustified")]
+    pub const Justified: Self = Self(3);
+    #[doc(alias = "kCTTextAlignmentNatural")]
+    pub const Natural: Self = Self(4);
     #[deprecated = "Deprecated"]
-    pub const kCTLeftTextAlignment: Self = Self(CTTextAlignment::kCTTextAlignmentLeft.0);
+    pub const kCTLeftTextAlignment: Self = Self(CTTextAlignment::Left.0);
     #[deprecated = "Deprecated"]
-    pub const kCTRightTextAlignment: Self = Self(CTTextAlignment::kCTTextAlignmentRight.0);
+    pub const kCTRightTextAlignment: Self = Self(CTTextAlignment::Right.0);
     #[deprecated = "Deprecated"]
-    pub const kCTCenterTextAlignment: Self = Self(CTTextAlignment::kCTTextAlignmentCenter.0);
+    pub const kCTCenterTextAlignment: Self = Self(CTTextAlignment::Center.0);
     #[deprecated = "Deprecated"]
-    pub const kCTJustifiedTextAlignment: Self = Self(CTTextAlignment::kCTTextAlignmentJustified.0);
+    pub const kCTJustifiedTextAlignment: Self = Self(CTTextAlignment::Justified.0);
     #[deprecated = "Deprecated"]
-    pub const kCTNaturalTextAlignment: Self = Self(CTTextAlignment::kCTTextAlignmentNatural.0);
+    pub const kCTNaturalTextAlignment: Self = Self(CTTextAlignment::Natural.0);
 }
 
 #[cfg(feature = "objc2")]
@@ -102,12 +107,18 @@ unsafe impl RefEncode for CTTextAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTLineBreakMode(pub u8);
 impl CTLineBreakMode {
-    pub const kCTLineBreakByWordWrapping: Self = Self(0);
-    pub const kCTLineBreakByCharWrapping: Self = Self(1);
-    pub const kCTLineBreakByClipping: Self = Self(2);
-    pub const kCTLineBreakByTruncatingHead: Self = Self(3);
-    pub const kCTLineBreakByTruncatingTail: Self = Self(4);
-    pub const kCTLineBreakByTruncatingMiddle: Self = Self(5);
+    #[doc(alias = "kCTLineBreakByWordWrapping")]
+    pub const ByWordWrapping: Self = Self(0);
+    #[doc(alias = "kCTLineBreakByCharWrapping")]
+    pub const ByCharWrapping: Self = Self(1);
+    #[doc(alias = "kCTLineBreakByClipping")]
+    pub const ByClipping: Self = Self(2);
+    #[doc(alias = "kCTLineBreakByTruncatingHead")]
+    pub const ByTruncatingHead: Self = Self(3);
+    #[doc(alias = "kCTLineBreakByTruncatingTail")]
+    pub const ByTruncatingTail: Self = Self(4);
+    #[doc(alias = "kCTLineBreakByTruncatingMiddle")]
+    pub const ByTruncatingMiddle: Self = Self(5);
 }
 
 #[cfg(feature = "objc2")]
@@ -138,9 +149,12 @@ unsafe impl RefEncode for CTLineBreakMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTWritingDirection(pub i8);
 impl CTWritingDirection {
-    pub const kCTWritingDirectionNatural: Self = Self(-1);
-    pub const kCTWritingDirectionLeftToRight: Self = Self(0);
-    pub const kCTWritingDirectionRightToLeft: Self = Self(1);
+    #[doc(alias = "kCTWritingDirectionNatural")]
+    pub const Natural: Self = Self(-1);
+    #[doc(alias = "kCTWritingDirectionLeftToRight")]
+    pub const LeftToRight: Self = Self(0);
+    #[doc(alias = "kCTWritingDirectionRightToLeft")]
+    pub const RightToLeft: Self = Self(1);
 }
 
 #[cfg(feature = "objc2")]
@@ -326,26 +340,45 @@ unsafe impl RefEncode for CTWritingDirection {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTParagraphStyleSpecifier(pub u32);
 impl CTParagraphStyleSpecifier {
-    pub const kCTParagraphStyleSpecifierAlignment: Self = Self(0);
-    pub const kCTParagraphStyleSpecifierFirstLineHeadIndent: Self = Self(1);
-    pub const kCTParagraphStyleSpecifierHeadIndent: Self = Self(2);
-    pub const kCTParagraphStyleSpecifierTailIndent: Self = Self(3);
-    pub const kCTParagraphStyleSpecifierTabStops: Self = Self(4);
-    pub const kCTParagraphStyleSpecifierDefaultTabInterval: Self = Self(5);
-    pub const kCTParagraphStyleSpecifierLineBreakMode: Self = Self(6);
-    pub const kCTParagraphStyleSpecifierLineHeightMultiple: Self = Self(7);
-    pub const kCTParagraphStyleSpecifierMaximumLineHeight: Self = Self(8);
-    pub const kCTParagraphStyleSpecifierMinimumLineHeight: Self = Self(9);
+    #[doc(alias = "kCTParagraphStyleSpecifierAlignment")]
+    pub const Alignment: Self = Self(0);
+    #[doc(alias = "kCTParagraphStyleSpecifierFirstLineHeadIndent")]
+    pub const FirstLineHeadIndent: Self = Self(1);
+    #[doc(alias = "kCTParagraphStyleSpecifierHeadIndent")]
+    pub const HeadIndent: Self = Self(2);
+    #[doc(alias = "kCTParagraphStyleSpecifierTailIndent")]
+    pub const TailIndent: Self = Self(3);
+    #[doc(alias = "kCTParagraphStyleSpecifierTabStops")]
+    pub const TabStops: Self = Self(4);
+    #[doc(alias = "kCTParagraphStyleSpecifierDefaultTabInterval")]
+    pub const DefaultTabInterval: Self = Self(5);
+    #[doc(alias = "kCTParagraphStyleSpecifierLineBreakMode")]
+    pub const LineBreakMode: Self = Self(6);
+    #[doc(alias = "kCTParagraphStyleSpecifierLineHeightMultiple")]
+    pub const LineHeightMultiple: Self = Self(7);
+    #[doc(alias = "kCTParagraphStyleSpecifierMaximumLineHeight")]
+    pub const MaximumLineHeight: Self = Self(8);
+    #[doc(alias = "kCTParagraphStyleSpecifierMinimumLineHeight")]
+    pub const MinimumLineHeight: Self = Self(9);
     #[deprecated = "See documentation for replacements"]
-    pub const kCTParagraphStyleSpecifierLineSpacing: Self = Self(10);
-    pub const kCTParagraphStyleSpecifierParagraphSpacing: Self = Self(11);
-    pub const kCTParagraphStyleSpecifierParagraphSpacingBefore: Self = Self(12);
-    pub const kCTParagraphStyleSpecifierBaseWritingDirection: Self = Self(13);
-    pub const kCTParagraphStyleSpecifierMaximumLineSpacing: Self = Self(14);
-    pub const kCTParagraphStyleSpecifierMinimumLineSpacing: Self = Self(15);
-    pub const kCTParagraphStyleSpecifierLineSpacingAdjustment: Self = Self(16);
-    pub const kCTParagraphStyleSpecifierLineBoundsOptions: Self = Self(17);
-    pub const kCTParagraphStyleSpecifierCount: Self = Self(18);
+    #[doc(alias = "kCTParagraphStyleSpecifierLineSpacing")]
+    pub const LineSpacing: Self = Self(10);
+    #[doc(alias = "kCTParagraphStyleSpecifierParagraphSpacing")]
+    pub const ParagraphSpacing: Self = Self(11);
+    #[doc(alias = "kCTParagraphStyleSpecifierParagraphSpacingBefore")]
+    pub const ParagraphSpacingBefore: Self = Self(12);
+    #[doc(alias = "kCTParagraphStyleSpecifierBaseWritingDirection")]
+    pub const BaseWritingDirection: Self = Self(13);
+    #[doc(alias = "kCTParagraphStyleSpecifierMaximumLineSpacing")]
+    pub const MaximumLineSpacing: Self = Self(14);
+    #[doc(alias = "kCTParagraphStyleSpecifierMinimumLineSpacing")]
+    pub const MinimumLineSpacing: Self = Self(15);
+    #[doc(alias = "kCTParagraphStyleSpecifierLineSpacingAdjustment")]
+    pub const LineSpacingAdjustment: Self = Self(16);
+    #[doc(alias = "kCTParagraphStyleSpecifierLineBoundsOptions")]
+    pub const LineBoundsOptions: Self = Self(17);
+    #[doc(alias = "kCTParagraphStyleSpecifierCount")]
+    pub const Count: Self = Self(18);
 }
 
 #[cfg(feature = "objc2")]

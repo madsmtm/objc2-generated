@@ -13,10 +13,14 @@ use crate::*;
 pub struct NSFileCoordinatorReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileCoordinatorReadingOptions: NSUInteger {
-        const NSFileCoordinatorReadingWithoutChanges = 1<<0;
-        const NSFileCoordinatorReadingResolvesSymbolicLink = 1<<1;
-        const NSFileCoordinatorReadingImmediatelyAvailableMetadataOnly = 1<<2;
-        const NSFileCoordinatorReadingForUploading = 1<<3;
+        #[doc(alias = "NSFileCoordinatorReadingWithoutChanges")]
+        const WithoutChanges = 1<<0;
+        #[doc(alias = "NSFileCoordinatorReadingResolvesSymbolicLink")]
+        const ResolvesSymbolicLink = 1<<1;
+        #[doc(alias = "NSFileCoordinatorReadingImmediatelyAvailableMetadataOnly")]
+        const ImmediatelyAvailableMetadataOnly = 1<<2;
+        #[doc(alias = "NSFileCoordinatorReadingForUploading")]
+        const ForUploading = 1<<3;
     }
 }
 
@@ -35,11 +39,16 @@ unsafe impl RefEncode for NSFileCoordinatorReadingOptions {
 pub struct NSFileCoordinatorWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileCoordinatorWritingOptions: NSUInteger {
-        const NSFileCoordinatorWritingForDeleting = 1<<0;
-        const NSFileCoordinatorWritingForMoving = 1<<1;
-        const NSFileCoordinatorWritingForMerging = 1<<2;
-        const NSFileCoordinatorWritingForReplacing = 1<<3;
-        const NSFileCoordinatorWritingContentIndependentMetadataOnly = 1<<4;
+        #[doc(alias = "NSFileCoordinatorWritingForDeleting")]
+        const ForDeleting = 1<<0;
+        #[doc(alias = "NSFileCoordinatorWritingForMoving")]
+        const ForMoving = 1<<1;
+        #[doc(alias = "NSFileCoordinatorWritingForMerging")]
+        const ForMerging = 1<<2;
+        #[doc(alias = "NSFileCoordinatorWritingForReplacing")]
+        const ForReplacing = 1<<3;
+        #[doc(alias = "NSFileCoordinatorWritingContentIndependentMetadataOnly")]
+        const ContentIndependentMetadataOnly = 1<<4;
     }
 }
 

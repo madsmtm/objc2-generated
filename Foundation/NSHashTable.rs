@@ -9,29 +9,27 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtablestrongmemory?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSHashTableStrongMemory: NSPointerFunctionsOptions =
-    NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsStrongMemory.0);
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::StrongMemory.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtablezeroingweakmemory?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSHashTableZeroingWeakMemory: NSPointerFunctionsOptions =
-    NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsZeroingWeakMemory.0);
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::ZeroingWeakMemory.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtablecopyin?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSHashTableCopyIn: NSPointerFunctionsOptions =
-    NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsCopyIn.0);
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::CopyIn.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtableobjectpointerpersonality?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSHashTableObjectPointerPersonality: NSPointerFunctionsOptions =
-    NSPointerFunctionsOptions(
-        NSPointerFunctionsOptions::NSPointerFunctionsObjectPointerPersonality.0,
-    );
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::ObjectPointerPersonality.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtableweakmemory?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSHashTableWeakMemory: NSPointerFunctionsOptions =
-    NSPointerFunctionsOptions(NSPointerFunctionsOptions::NSPointerFunctionsWeakMemory.0);
+    NSPointerFunctionsOptions(NSPointerFunctionsOptions::WeakMemory.0);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtableoptions?language=objc)
 pub type NSHashTableOptions = NSUInteger;

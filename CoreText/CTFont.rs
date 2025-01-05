@@ -270,10 +270,14 @@ pub struct CTFontOptions(pub CFOptionFlags);
 #[cfg(feature = "objc2-core-foundation")]
 bitflags::bitflags! {
     impl CTFontOptions: CFOptionFlags {
-        const kCTFontOptionsDefault = 0;
-        const kCTFontOptionsPreventAutoActivation = 1<<0;
-        const kCTFontOptionsPreventAutoDownload = 1<<1;
-        const kCTFontOptionsPreferSystemFont = 1<<2;
+        #[doc(alias = "kCTFontOptionsDefault")]
+        const Default = 0;
+        #[doc(alias = "kCTFontOptionsPreventAutoActivation")]
+        const PreventAutoActivation = 1<<0;
+        #[doc(alias = "kCTFontOptionsPreventAutoDownload")]
+        const PreventAutoDownload = 1<<1;
+        #[doc(alias = "kCTFontOptionsPreferSystemFont")]
+        const PreferSystemFont = 1<<2;
     }
 }
 
@@ -352,100 +356,120 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTFontUIFontType(pub u32);
 impl CTFontUIFontType {
-    pub const kCTFontUIFontUser: Self = Self(0);
-    pub const kCTFontUIFontUserFixedPitch: Self = Self(1);
-    pub const kCTFontUIFontSystem: Self = Self(2);
-    pub const kCTFontUIFontEmphasizedSystem: Self = Self(3);
-    pub const kCTFontUIFontSmallSystem: Self = Self(4);
-    pub const kCTFontUIFontSmallEmphasizedSystem: Self = Self(5);
-    pub const kCTFontUIFontMiniSystem: Self = Self(6);
-    pub const kCTFontUIFontMiniEmphasizedSystem: Self = Self(7);
-    pub const kCTFontUIFontViews: Self = Self(8);
-    pub const kCTFontUIFontApplication: Self = Self(9);
-    pub const kCTFontUIFontLabel: Self = Self(10);
-    pub const kCTFontUIFontMenuTitle: Self = Self(11);
-    pub const kCTFontUIFontMenuItem: Self = Self(12);
-    pub const kCTFontUIFontMenuItemMark: Self = Self(13);
-    pub const kCTFontUIFontMenuItemCmdKey: Self = Self(14);
-    pub const kCTFontUIFontWindowTitle: Self = Self(15);
-    pub const kCTFontUIFontPushButton: Self = Self(16);
-    pub const kCTFontUIFontUtilityWindowTitle: Self = Self(17);
-    pub const kCTFontUIFontAlertHeader: Self = Self(18);
-    pub const kCTFontUIFontSystemDetail: Self = Self(19);
-    pub const kCTFontUIFontEmphasizedSystemDetail: Self = Self(20);
-    pub const kCTFontUIFontToolbar: Self = Self(21);
-    pub const kCTFontUIFontSmallToolbar: Self = Self(22);
-    pub const kCTFontUIFontMessage: Self = Self(23);
-    pub const kCTFontUIFontPalette: Self = Self(24);
-    pub const kCTFontUIFontToolTip: Self = Self(25);
-    pub const kCTFontUIFontControlContent: Self = Self(26);
+    #[doc(alias = "kCTFontUIFontUser")]
+    pub const User: Self = Self(0);
+    #[doc(alias = "kCTFontUIFontUserFixedPitch")]
+    pub const UserFixedPitch: Self = Self(1);
+    #[doc(alias = "kCTFontUIFontSystem")]
+    pub const System: Self = Self(2);
+    #[doc(alias = "kCTFontUIFontEmphasizedSystem")]
+    pub const EmphasizedSystem: Self = Self(3);
+    #[doc(alias = "kCTFontUIFontSmallSystem")]
+    pub const SmallSystem: Self = Self(4);
+    #[doc(alias = "kCTFontUIFontSmallEmphasizedSystem")]
+    pub const SmallEmphasizedSystem: Self = Self(5);
+    #[doc(alias = "kCTFontUIFontMiniSystem")]
+    pub const MiniSystem: Self = Self(6);
+    #[doc(alias = "kCTFontUIFontMiniEmphasizedSystem")]
+    pub const MiniEmphasizedSystem: Self = Self(7);
+    #[doc(alias = "kCTFontUIFontViews")]
+    pub const Views: Self = Self(8);
+    #[doc(alias = "kCTFontUIFontApplication")]
+    pub const Application: Self = Self(9);
+    #[doc(alias = "kCTFontUIFontLabel")]
+    pub const Label: Self = Self(10);
+    #[doc(alias = "kCTFontUIFontMenuTitle")]
+    pub const MenuTitle: Self = Self(11);
+    #[doc(alias = "kCTFontUIFontMenuItem")]
+    pub const MenuItem: Self = Self(12);
+    #[doc(alias = "kCTFontUIFontMenuItemMark")]
+    pub const MenuItemMark: Self = Self(13);
+    #[doc(alias = "kCTFontUIFontMenuItemCmdKey")]
+    pub const MenuItemCmdKey: Self = Self(14);
+    #[doc(alias = "kCTFontUIFontWindowTitle")]
+    pub const WindowTitle: Self = Self(15);
+    #[doc(alias = "kCTFontUIFontPushButton")]
+    pub const PushButton: Self = Self(16);
+    #[doc(alias = "kCTFontUIFontUtilityWindowTitle")]
+    pub const UtilityWindowTitle: Self = Self(17);
+    #[doc(alias = "kCTFontUIFontAlertHeader")]
+    pub const AlertHeader: Self = Self(18);
+    #[doc(alias = "kCTFontUIFontSystemDetail")]
+    pub const SystemDetail: Self = Self(19);
+    #[doc(alias = "kCTFontUIFontEmphasizedSystemDetail")]
+    pub const EmphasizedSystemDetail: Self = Self(20);
+    #[doc(alias = "kCTFontUIFontToolbar")]
+    pub const Toolbar: Self = Self(21);
+    #[doc(alias = "kCTFontUIFontSmallToolbar")]
+    pub const SmallToolbar: Self = Self(22);
+    #[doc(alias = "kCTFontUIFontMessage")]
+    pub const Message: Self = Self(23);
+    #[doc(alias = "kCTFontUIFontPalette")]
+    pub const Palette: Self = Self(24);
+    #[doc(alias = "kCTFontUIFontToolTip")]
+    pub const ToolTip: Self = Self(25);
+    #[doc(alias = "kCTFontUIFontControlContent")]
+    pub const ControlContent: Self = Self(26);
     #[deprecated = "Deprecated"]
-    pub const kCTFontNoFontType: Self = Self(CTFontUIFontType::kCTFontUIFontNone.0);
+    pub const kCTFontNoFontType: Self = Self(CTFontUIFontType::None.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontUserFontType: Self = Self(CTFontUIFontType::kCTFontUIFontUser.0);
+    pub const kCTFontUserFontType: Self = Self(CTFontUIFontType::User.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontUserFixedPitchFontType: Self =
-        Self(CTFontUIFontType::kCTFontUIFontUserFixedPitch.0);
+    pub const kCTFontUserFixedPitchFontType: Self = Self(CTFontUIFontType::UserFixedPitch.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontSystemFontType: Self = Self(CTFontUIFontType::kCTFontUIFontSystem.0);
+    pub const kCTFontSystemFontType: Self = Self(CTFontUIFontType::System.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontEmphasizedSystemFontType: Self =
-        Self(CTFontUIFontType::kCTFontUIFontEmphasizedSystem.0);
+    pub const kCTFontEmphasizedSystemFontType: Self = Self(CTFontUIFontType::EmphasizedSystem.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontSmallSystemFontType: Self = Self(CTFontUIFontType::kCTFontUIFontSmallSystem.0);
+    pub const kCTFontSmallSystemFontType: Self = Self(CTFontUIFontType::SmallSystem.0);
     #[deprecated = "Deprecated"]
     pub const kCTFontSmallEmphasizedSystemFontType: Self =
-        Self(CTFontUIFontType::kCTFontUIFontSmallEmphasizedSystem.0);
+        Self(CTFontUIFontType::SmallEmphasizedSystem.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontMiniSystemFontType: Self = Self(CTFontUIFontType::kCTFontUIFontMiniSystem.0);
+    pub const kCTFontMiniSystemFontType: Self = Self(CTFontUIFontType::MiniSystem.0);
     #[deprecated = "Deprecated"]
     pub const kCTFontMiniEmphasizedSystemFontType: Self =
-        Self(CTFontUIFontType::kCTFontUIFontMiniEmphasizedSystem.0);
+        Self(CTFontUIFontType::MiniEmphasizedSystem.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontViewsFontType: Self = Self(CTFontUIFontType::kCTFontUIFontViews.0);
+    pub const kCTFontViewsFontType: Self = Self(CTFontUIFontType::Views.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontApplicationFontType: Self = Self(CTFontUIFontType::kCTFontUIFontApplication.0);
+    pub const kCTFontApplicationFontType: Self = Self(CTFontUIFontType::Application.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontLabelFontType: Self = Self(CTFontUIFontType::kCTFontUIFontLabel.0);
+    pub const kCTFontLabelFontType: Self = Self(CTFontUIFontType::Label.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontMenuTitleFontType: Self = Self(CTFontUIFontType::kCTFontUIFontMenuTitle.0);
+    pub const kCTFontMenuTitleFontType: Self = Self(CTFontUIFontType::MenuTitle.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontMenuItemFontType: Self = Self(CTFontUIFontType::kCTFontUIFontMenuItem.0);
+    pub const kCTFontMenuItemFontType: Self = Self(CTFontUIFontType::MenuItem.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontMenuItemMarkFontType: Self =
-        Self(CTFontUIFontType::kCTFontUIFontMenuItemMark.0);
+    pub const kCTFontMenuItemMarkFontType: Self = Self(CTFontUIFontType::MenuItemMark.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontMenuItemCmdKeyFontType: Self =
-        Self(CTFontUIFontType::kCTFontUIFontMenuItemCmdKey.0);
+    pub const kCTFontMenuItemCmdKeyFontType: Self = Self(CTFontUIFontType::MenuItemCmdKey.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontWindowTitleFontType: Self = Self(CTFontUIFontType::kCTFontUIFontWindowTitle.0);
+    pub const kCTFontWindowTitleFontType: Self = Self(CTFontUIFontType::WindowTitle.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontPushButtonFontType: Self = Self(CTFontUIFontType::kCTFontUIFontPushButton.0);
+    pub const kCTFontPushButtonFontType: Self = Self(CTFontUIFontType::PushButton.0);
     #[deprecated = "Deprecated"]
     pub const kCTFontUtilityWindowTitleFontType: Self =
-        Self(CTFontUIFontType::kCTFontUIFontUtilityWindowTitle.0);
+        Self(CTFontUIFontType::UtilityWindowTitle.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontAlertHeaderFontType: Self = Self(CTFontUIFontType::kCTFontUIFontAlertHeader.0);
+    pub const kCTFontAlertHeaderFontType: Self = Self(CTFontUIFontType::AlertHeader.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontSystemDetailFontType: Self =
-        Self(CTFontUIFontType::kCTFontUIFontSystemDetail.0);
+    pub const kCTFontSystemDetailFontType: Self = Self(CTFontUIFontType::SystemDetail.0);
     #[deprecated = "Deprecated"]
     pub const kCTFontEmphasizedSystemDetailFontType: Self =
-        Self(CTFontUIFontType::kCTFontUIFontEmphasizedSystemDetail.0);
+        Self(CTFontUIFontType::EmphasizedSystemDetail.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontToolbarFontType: Self = Self(CTFontUIFontType::kCTFontUIFontToolbar.0);
+    pub const kCTFontToolbarFontType: Self = Self(CTFontUIFontType::Toolbar.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontSmallToolbarFontType: Self =
-        Self(CTFontUIFontType::kCTFontUIFontSmallToolbar.0);
+    pub const kCTFontSmallToolbarFontType: Self = Self(CTFontUIFontType::SmallToolbar.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontMessageFontType: Self = Self(CTFontUIFontType::kCTFontUIFontMessage.0);
+    pub const kCTFontMessageFontType: Self = Self(CTFontUIFontType::Message.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontPaletteFontType: Self = Self(CTFontUIFontType::kCTFontUIFontPalette.0);
+    pub const kCTFontPaletteFontType: Self = Self(CTFontUIFontType::Palette.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontToolTipFontType: Self = Self(CTFontUIFontType::kCTFontUIFontToolTip.0);
+    pub const kCTFontToolTipFontType: Self = Self(CTFontUIFontType::ToolTip.0);
     #[deprecated = "Deprecated"]
-    pub const kCTFontControlContentFontType: Self =
-        Self(CTFontUIFontType::kCTFontUIFontControlContent.0);
+    pub const kCTFontControlContentFontType: Self = Self(CTFontUIFontType::ControlContent.0);
 }
 
 #[cfg(feature = "objc2")]
@@ -1709,9 +1733,11 @@ pub type CTFontTableTag = FourCharCode;
 pub struct CTFontTableOptions(pub u32);
 bitflags::bitflags! {
     impl CTFontTableOptions: u32 {
-        const kCTFontTableOptionNoOptions = 0;
+        #[doc(alias = "kCTFontTableOptionNoOptions")]
+        const NoOptions = 0;
 #[deprecated = "Unsupported"]
-        const kCTFontTableOptionExcludeSynthetic = 1<<0;
+        #[doc(alias = "kCTFontTableOptionExcludeSynthetic")]
+        const ExcludeSynthetic = 1<<0;
     }
 }
 

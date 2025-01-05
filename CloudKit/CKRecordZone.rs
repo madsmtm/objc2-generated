@@ -14,13 +14,17 @@ pub struct CKRecordZoneCapabilities(pub NSUInteger);
 bitflags::bitflags! {
     impl CKRecordZoneCapabilities: NSUInteger {
 /// This zone supports CKFetchRecordChangesOperation
-        const CKRecordZoneCapabilityFetchChanges = 1<<0;
+        #[doc(alias = "CKRecordZoneCapabilityFetchChanges")]
+        const FetchChanges = 1<<0;
 /// Batched changes to this zone happen atomically
-        const CKRecordZoneCapabilityAtomic = 1<<1;
+        #[doc(alias = "CKRecordZoneCapabilityAtomic")]
+        const Atomic = 1<<1;
 /// Records in this zone can be shared
-        const CKRecordZoneCapabilitySharing = 1<<2;
+        #[doc(alias = "CKRecordZoneCapabilitySharing")]
+        const Sharing = 1<<2;
 /// This zone supports a single CKShare record that shares all records in the zone
-        const CKRecordZoneCapabilityZoneWideSharing = 1<<3;
+        #[doc(alias = "CKRecordZoneCapabilityZoneWideSharing")]
+        const ZoneWideSharing = 1<<3;
     }
 }
 

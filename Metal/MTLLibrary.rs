@@ -269,17 +269,28 @@ extern_protocol!(
 pub struct MTLLanguageVersion(pub NSUInteger);
 impl MTLLanguageVersion {
     #[deprecated = "Use a newer language standard"]
-    pub const MTLLanguageVersion1_0: Self = Self(1 << 16);
-    pub const MTLLanguageVersion1_1: Self = Self((1 << 16) + 1);
-    pub const MTLLanguageVersion1_2: Self = Self((1 << 16) + 2);
-    pub const MTLLanguageVersion2_0: Self = Self(2 << 16);
-    pub const MTLLanguageVersion2_1: Self = Self((2 << 16) + 1);
-    pub const MTLLanguageVersion2_2: Self = Self((2 << 16) + 2);
-    pub const MTLLanguageVersion2_3: Self = Self((2 << 16) + 3);
-    pub const MTLLanguageVersion2_4: Self = Self((2 << 16) + 4);
-    pub const MTLLanguageVersion3_0: Self = Self((3 << 16) + 0);
-    pub const MTLLanguageVersion3_1: Self = Self((3 << 16) + 1);
-    pub const MTLLanguageVersion3_2: Self = Self((3 << 16) + 2);
+    #[doc(alias = "MTLLanguageVersion1_0")]
+    pub const Version1_0: Self = Self(1 << 16);
+    #[doc(alias = "MTLLanguageVersion1_1")]
+    pub const Version1_1: Self = Self((1 << 16) + 1);
+    #[doc(alias = "MTLLanguageVersion1_2")]
+    pub const Version1_2: Self = Self((1 << 16) + 2);
+    #[doc(alias = "MTLLanguageVersion2_0")]
+    pub const Version2_0: Self = Self(2 << 16);
+    #[doc(alias = "MTLLanguageVersion2_1")]
+    pub const Version2_1: Self = Self((2 << 16) + 1);
+    #[doc(alias = "MTLLanguageVersion2_2")]
+    pub const Version2_2: Self = Self((2 << 16) + 2);
+    #[doc(alias = "MTLLanguageVersion2_3")]
+    pub const Version2_3: Self = Self((2 << 16) + 3);
+    #[doc(alias = "MTLLanguageVersion2_4")]
+    pub const Version2_4: Self = Self((2 << 16) + 4);
+    #[doc(alias = "MTLLanguageVersion3_0")]
+    pub const Version3_0: Self = Self((3 << 16) + 0);
+    #[doc(alias = "MTLLanguageVersion3_1")]
+    pub const Version3_1: Self = Self((3 << 16) + 1);
+    #[doc(alias = "MTLLanguageVersion3_2")]
+    pub const Version3_2: Self = Self((3 << 16) + 2);
 }
 
 unsafe impl Encode for MTLLanguageVersion {

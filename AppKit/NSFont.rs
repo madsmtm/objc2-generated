@@ -343,10 +343,14 @@ pub const NSNullGlyph: c_uint = 0x0;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFontRenderingMode(pub NSUInteger);
 impl NSFontRenderingMode {
-    pub const NSFontDefaultRenderingMode: Self = Self(0);
-    pub const NSFontAntialiasedRenderingMode: Self = Self(1);
-    pub const NSFontIntegerAdvancementsRenderingMode: Self = Self(2);
-    pub const NSFontAntialiasedIntegerAdvancementsRenderingMode: Self = Self(3);
+    #[doc(alias = "NSFontDefaultRenderingMode")]
+    pub const DefaultRenderingMode: Self = Self(0);
+    #[doc(alias = "NSFontAntialiasedRenderingMode")]
+    pub const AntialiasedRenderingMode: Self = Self(1);
+    #[doc(alias = "NSFontIntegerAdvancementsRenderingMode")]
+    pub const IntegerAdvancementsRenderingMode: Self = Self(2);
+    #[doc(alias = "NSFontAntialiasedIntegerAdvancementsRenderingMode")]
+    pub const AntialiasedIntegerAdvancementsRenderingMode: Self = Self(3);
 }
 
 unsafe impl Encode for NSFontRenderingMode {
@@ -365,7 +369,8 @@ unsafe impl RefEncode for NSFontRenderingMode {
 pub struct NSMultibyteGlyphPacking(pub NSUInteger);
 impl NSMultibyteGlyphPacking {
     #[deprecated]
-    pub const NSNativeShortGlyphPacking: Self = Self(5);
+    #[doc(alias = "NSNativeShortGlyphPacking")]
+    pub const NativeShortGlyphPacking: Self = Self(5);
 }
 
 unsafe impl Encode for NSMultibyteGlyphPacking {

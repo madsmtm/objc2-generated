@@ -123,25 +123,44 @@ unsafe impl RefEncode for NSLayoutAttribute {
 pub struct NSLayoutFormatOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSLayoutFormatOptions: NSUInteger {
-        const NSLayoutFormatAlignAllLeft = 1<<NSLayoutAttribute::Left.0;
-        const NSLayoutFormatAlignAllRight = 1<<NSLayoutAttribute::Right.0;
-        const NSLayoutFormatAlignAllTop = 1<<NSLayoutAttribute::Top.0;
-        const NSLayoutFormatAlignAllBottom = 1<<NSLayoutAttribute::Bottom.0;
-        const NSLayoutFormatAlignAllLeading = 1<<NSLayoutAttribute::Leading.0;
-        const NSLayoutFormatAlignAllTrailing = 1<<NSLayoutAttribute::Trailing.0;
-        const NSLayoutFormatAlignAllCenterX = 1<<NSLayoutAttribute::CenterX.0;
-        const NSLayoutFormatAlignAllCenterY = 1<<NSLayoutAttribute::CenterY.0;
-        const NSLayoutFormatAlignAllLastBaseline = 1<<NSLayoutAttribute::LastBaseline.0;
-        const NSLayoutFormatAlignAllFirstBaseline = 1<<NSLayoutAttribute::FirstBaseline.0;
-        const NSLayoutFormatAlignAllBaseline = NSLayoutFormatOptions::NSLayoutFormatAlignAllLastBaseline.0;
-        const NSLayoutFormatAlignmentMask = 0xFFFF;
-        const NSLayoutFormatDirectionLeadingToTrailing = 0<<16;
-        const NSLayoutFormatDirectionLeftToRight = 1<<16;
-        const NSLayoutFormatDirectionRightToLeft = 2<<16;
-        const NSLayoutFormatDirectionMask = 0x3<<16;
-        const NSLayoutFormatSpacingEdgeToEdge = 0<<19;
-        const NSLayoutFormatSpacingBaselineToBaseline = 1<<19;
-        const NSLayoutFormatSpacingMask = 0x1<<19;
+        #[doc(alias = "NSLayoutFormatAlignAllLeft")]
+        const AlignAllLeft = 1<<NSLayoutAttribute::Left.0;
+        #[doc(alias = "NSLayoutFormatAlignAllRight")]
+        const AlignAllRight = 1<<NSLayoutAttribute::Right.0;
+        #[doc(alias = "NSLayoutFormatAlignAllTop")]
+        const AlignAllTop = 1<<NSLayoutAttribute::Top.0;
+        #[doc(alias = "NSLayoutFormatAlignAllBottom")]
+        const AlignAllBottom = 1<<NSLayoutAttribute::Bottom.0;
+        #[doc(alias = "NSLayoutFormatAlignAllLeading")]
+        const AlignAllLeading = 1<<NSLayoutAttribute::Leading.0;
+        #[doc(alias = "NSLayoutFormatAlignAllTrailing")]
+        const AlignAllTrailing = 1<<NSLayoutAttribute::Trailing.0;
+        #[doc(alias = "NSLayoutFormatAlignAllCenterX")]
+        const AlignAllCenterX = 1<<NSLayoutAttribute::CenterX.0;
+        #[doc(alias = "NSLayoutFormatAlignAllCenterY")]
+        const AlignAllCenterY = 1<<NSLayoutAttribute::CenterY.0;
+        #[doc(alias = "NSLayoutFormatAlignAllLastBaseline")]
+        const AlignAllLastBaseline = 1<<NSLayoutAttribute::LastBaseline.0;
+        #[doc(alias = "NSLayoutFormatAlignAllFirstBaseline")]
+        const AlignAllFirstBaseline = 1<<NSLayoutAttribute::FirstBaseline.0;
+        #[doc(alias = "NSLayoutFormatAlignAllBaseline")]
+        const AlignAllBaseline = NSLayoutFormatOptions::AlignAllLastBaseline.0;
+        #[doc(alias = "NSLayoutFormatAlignmentMask")]
+        const AlignmentMask = 0xFFFF;
+        #[doc(alias = "NSLayoutFormatDirectionLeadingToTrailing")]
+        const DirectionLeadingToTrailing = 0<<16;
+        #[doc(alias = "NSLayoutFormatDirectionLeftToRight")]
+        const DirectionLeftToRight = 1<<16;
+        #[doc(alias = "NSLayoutFormatDirectionRightToLeft")]
+        const DirectionRightToLeft = 2<<16;
+        #[doc(alias = "NSLayoutFormatDirectionMask")]
+        const DirectionMask = 0x3<<16;
+        #[doc(alias = "NSLayoutFormatSpacingEdgeToEdge")]
+        const SpacingEdgeToEdge = 0<<19;
+        #[doc(alias = "NSLayoutFormatSpacingBaselineToBaseline")]
+        const SpacingBaselineToBaseline = 1<<19;
+        #[doc(alias = "NSLayoutFormatSpacingMask")]
+        const SpacingMask = 0x1<<19;
     }
 }
 

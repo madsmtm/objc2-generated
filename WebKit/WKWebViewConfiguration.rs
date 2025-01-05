@@ -50,10 +50,14 @@ unsafe impl RefEncode for WKUserInterfaceDirectionPolicy {
 pub struct WKAudiovisualMediaTypes(pub NSUInteger);
 bitflags::bitflags! {
     impl WKAudiovisualMediaTypes: NSUInteger {
-        const WKAudiovisualMediaTypeNone = 0;
-        const WKAudiovisualMediaTypeAudio = 1<<0;
-        const WKAudiovisualMediaTypeVideo = 1<<1;
-        const WKAudiovisualMediaTypeAll = NSUIntegerMax as _;
+        #[doc(alias = "WKAudiovisualMediaTypeNone")]
+        const None = 0;
+        #[doc(alias = "WKAudiovisualMediaTypeAudio")]
+        const Audio = 1<<0;
+        #[doc(alias = "WKAudiovisualMediaTypeVideo")]
+        const Video = 1<<1;
+        #[doc(alias = "WKAudiovisualMediaTypeAll")]
+        const All = NSUIntegerMax as _;
     }
 }
 

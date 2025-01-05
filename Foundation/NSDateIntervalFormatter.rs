@@ -12,11 +12,16 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSDateIntervalFormatterStyle(pub NSUInteger);
 impl NSDateIntervalFormatterStyle {
-    pub const NSDateIntervalFormatterNoStyle: Self = Self(0);
-    pub const NSDateIntervalFormatterShortStyle: Self = Self(1);
-    pub const NSDateIntervalFormatterMediumStyle: Self = Self(2);
-    pub const NSDateIntervalFormatterLongStyle: Self = Self(3);
-    pub const NSDateIntervalFormatterFullStyle: Self = Self(4);
+    #[doc(alias = "NSDateIntervalFormatterNoStyle")]
+    pub const NoStyle: Self = Self(0);
+    #[doc(alias = "NSDateIntervalFormatterShortStyle")]
+    pub const ShortStyle: Self = Self(1);
+    #[doc(alias = "NSDateIntervalFormatterMediumStyle")]
+    pub const MediumStyle: Self = Self(2);
+    #[doc(alias = "NSDateIntervalFormatterLongStyle")]
+    pub const LongStyle: Self = Self(3);
+    #[doc(alias = "NSDateIntervalFormatterFullStyle")]
+    pub const FullStyle: Self = Self(4);
 }
 
 unsafe impl Encode for NSDateIntervalFormatterStyle {

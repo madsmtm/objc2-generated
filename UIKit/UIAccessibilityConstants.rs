@@ -250,9 +250,12 @@ unsafe impl RefEncode for UIAccessibilityContainerType {
 pub struct UIAccessibilityDirectTouchOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIAccessibilityDirectTouchOptions: NSUInteger {
-        const UIAccessibilityDirectTouchOptionNone = 0;
-        const UIAccessibilityDirectTouchOptionSilentOnTouch = 1<<0;
-        const UIAccessibilityDirectTouchOptionRequiresActivation = 1<<1;
+        #[doc(alias = "UIAccessibilityDirectTouchOptionNone")]
+        const None = 0;
+        #[doc(alias = "UIAccessibilityDirectTouchOptionSilentOnTouch")]
+        const SilentOnTouch = 1<<0;
+        #[doc(alias = "UIAccessibilityDirectTouchOptionRequiresActivation")]
+        const RequiresActivation = 1<<1;
     }
 }
 

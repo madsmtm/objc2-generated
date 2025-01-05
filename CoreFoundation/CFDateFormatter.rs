@@ -37,11 +37,16 @@ extern "C-unwind" {
 pub struct CFDateFormatterStyle(pub CFIndex);
 #[cfg(feature = "CFBase")]
 impl CFDateFormatterStyle {
-    pub const kCFDateFormatterNoStyle: Self = Self(0);
-    pub const kCFDateFormatterShortStyle: Self = Self(1);
-    pub const kCFDateFormatterMediumStyle: Self = Self(2);
-    pub const kCFDateFormatterLongStyle: Self = Self(3);
-    pub const kCFDateFormatterFullStyle: Self = Self(4);
+    #[doc(alias = "kCFDateFormatterNoStyle")]
+    pub const NoStyle: Self = Self(0);
+    #[doc(alias = "kCFDateFormatterShortStyle")]
+    pub const ShortStyle: Self = Self(1);
+    #[doc(alias = "kCFDateFormatterMediumStyle")]
+    pub const MediumStyle: Self = Self(2);
+    #[doc(alias = "kCFDateFormatterLongStyle")]
+    pub const LongStyle: Self = Self(3);
+    #[doc(alias = "kCFDateFormatterFullStyle")]
+    pub const FullStyle: Self = Self(4);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -63,20 +68,34 @@ pub struct CFISO8601DateFormatOptions(pub CFOptionFlags);
 #[cfg(feature = "CFBase")]
 bitflags::bitflags! {
     impl CFISO8601DateFormatOptions: CFOptionFlags {
-        const kCFISO8601DateFormatWithYear = 1<<0;
-        const kCFISO8601DateFormatWithMonth = 1<<1;
-        const kCFISO8601DateFormatWithWeekOfYear = 1<<2;
-        const kCFISO8601DateFormatWithDay = 1<<4;
-        const kCFISO8601DateFormatWithTime = 1<<5;
-        const kCFISO8601DateFormatWithTimeZone = 1<<6;
-        const kCFISO8601DateFormatWithSpaceBetweenDateAndTime = 1<<7;
-        const kCFISO8601DateFormatWithDashSeparatorInDate = 1<<8;
-        const kCFISO8601DateFormatWithColonSeparatorInTime = 1<<9;
-        const kCFISO8601DateFormatWithColonSeparatorInTimeZone = 1<<10;
-        const kCFISO8601DateFormatWithFractionalSeconds = 1<<11;
-        const kCFISO8601DateFormatWithFullDate = CFISO8601DateFormatOptions::kCFISO8601DateFormatWithYear.0|CFISO8601DateFormatOptions::kCFISO8601DateFormatWithMonth.0|CFISO8601DateFormatOptions::kCFISO8601DateFormatWithDay.0|CFISO8601DateFormatOptions::kCFISO8601DateFormatWithDashSeparatorInDate.0;
-        const kCFISO8601DateFormatWithFullTime = CFISO8601DateFormatOptions::kCFISO8601DateFormatWithTime.0|CFISO8601DateFormatOptions::kCFISO8601DateFormatWithColonSeparatorInTime.0|CFISO8601DateFormatOptions::kCFISO8601DateFormatWithTimeZone.0|CFISO8601DateFormatOptions::kCFISO8601DateFormatWithColonSeparatorInTimeZone.0;
-        const kCFISO8601DateFormatWithInternetDateTime = CFISO8601DateFormatOptions::kCFISO8601DateFormatWithFullDate.0|CFISO8601DateFormatOptions::kCFISO8601DateFormatWithFullTime.0;
+        #[doc(alias = "kCFISO8601DateFormatWithYear")]
+        const WithYear = 1<<0;
+        #[doc(alias = "kCFISO8601DateFormatWithMonth")]
+        const WithMonth = 1<<1;
+        #[doc(alias = "kCFISO8601DateFormatWithWeekOfYear")]
+        const WithWeekOfYear = 1<<2;
+        #[doc(alias = "kCFISO8601DateFormatWithDay")]
+        const WithDay = 1<<4;
+        #[doc(alias = "kCFISO8601DateFormatWithTime")]
+        const WithTime = 1<<5;
+        #[doc(alias = "kCFISO8601DateFormatWithTimeZone")]
+        const WithTimeZone = 1<<6;
+        #[doc(alias = "kCFISO8601DateFormatWithSpaceBetweenDateAndTime")]
+        const WithSpaceBetweenDateAndTime = 1<<7;
+        #[doc(alias = "kCFISO8601DateFormatWithDashSeparatorInDate")]
+        const WithDashSeparatorInDate = 1<<8;
+        #[doc(alias = "kCFISO8601DateFormatWithColonSeparatorInTime")]
+        const WithColonSeparatorInTime = 1<<9;
+        #[doc(alias = "kCFISO8601DateFormatWithColonSeparatorInTimeZone")]
+        const WithColonSeparatorInTimeZone = 1<<10;
+        #[doc(alias = "kCFISO8601DateFormatWithFractionalSeconds")]
+        const WithFractionalSeconds = 1<<11;
+        #[doc(alias = "kCFISO8601DateFormatWithFullDate")]
+        const WithFullDate = CFISO8601DateFormatOptions::WithYear.0|CFISO8601DateFormatOptions::WithMonth.0|CFISO8601DateFormatOptions::WithDay.0|CFISO8601DateFormatOptions::WithDashSeparatorInDate.0;
+        #[doc(alias = "kCFISO8601DateFormatWithFullTime")]
+        const WithFullTime = CFISO8601DateFormatOptions::WithTime.0|CFISO8601DateFormatOptions::WithColonSeparatorInTime.0|CFISO8601DateFormatOptions::WithTimeZone.0|CFISO8601DateFormatOptions::WithColonSeparatorInTimeZone.0;
+        #[doc(alias = "kCFISO8601DateFormatWithInternetDateTime")]
+        const WithInternetDateTime = CFISO8601DateFormatOptions::WithFullDate.0|CFISO8601DateFormatOptions::WithFullTime.0;
     }
 }
 

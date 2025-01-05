@@ -17,10 +17,14 @@ extern "C" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIPrintErrorCode(pub NSInteger);
 impl UIPrintErrorCode {
-    pub const UIPrintingNotAvailableError: Self = Self(1);
-    pub const UIPrintNoContentError: Self = Self(2);
-    pub const UIPrintUnknownImageFormatError: Self = Self(3);
-    pub const UIPrintJobFailedError: Self = Self(4);
+    #[doc(alias = "UIPrintingNotAvailableError")]
+    pub const PrintingNotAvailableError: Self = Self(1);
+    #[doc(alias = "UIPrintNoContentError")]
+    pub const PrintNoContentError: Self = Self(2);
+    #[doc(alias = "UIPrintUnknownImageFormatError")]
+    pub const PrintUnknownImageFormatError: Self = Self(3);
+    #[doc(alias = "UIPrintJobFailedError")]
+    pub const PrintJobFailedError: Self = Self(4);
 }
 
 unsafe impl Encode for UIPrintErrorCode {

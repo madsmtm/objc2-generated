@@ -16,15 +16,24 @@ use crate::*;
 pub struct NSViewControllerTransitionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSViewControllerTransitionOptions: NSUInteger {
-        const NSViewControllerTransitionNone = 0x0;
-        const NSViewControllerTransitionCrossfade = 0x1;
-        const NSViewControllerTransitionSlideUp = 0x10;
-        const NSViewControllerTransitionSlideDown = 0x20;
-        const NSViewControllerTransitionSlideLeft = 0x40;
-        const NSViewControllerTransitionSlideRight = 0x80;
-        const NSViewControllerTransitionSlideForward = 0x140;
-        const NSViewControllerTransitionSlideBackward = 0x180;
-        const NSViewControllerTransitionAllowUserInteraction = 0x1000;
+        #[doc(alias = "NSViewControllerTransitionNone")]
+        const None = 0x0;
+        #[doc(alias = "NSViewControllerTransitionCrossfade")]
+        const Crossfade = 0x1;
+        #[doc(alias = "NSViewControllerTransitionSlideUp")]
+        const SlideUp = 0x10;
+        #[doc(alias = "NSViewControllerTransitionSlideDown")]
+        const SlideDown = 0x20;
+        #[doc(alias = "NSViewControllerTransitionSlideLeft")]
+        const SlideLeft = 0x40;
+        #[doc(alias = "NSViewControllerTransitionSlideRight")]
+        const SlideRight = 0x80;
+        #[doc(alias = "NSViewControllerTransitionSlideForward")]
+        const SlideForward = 0x140;
+        #[doc(alias = "NSViewControllerTransitionSlideBackward")]
+        const SlideBackward = 0x180;
+        #[doc(alias = "NSViewControllerTransitionAllowUserInteraction")]
+        const AllowUserInteraction = 0x1000;
     }
 }
 

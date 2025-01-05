@@ -13,9 +13,11 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GKMatchSendDataMode(pub NSInteger);
 impl GKMatchSendDataMode {
-    pub const GKMatchSendDataReliable: Self = Self(0);
+    #[doc(alias = "GKMatchSendDataReliable")]
+    pub const Reliable: Self = Self(0);
     /// a.s.a.p. but requires fragmentation and reassembly for large messages, may stall if network congestion occurs
-    pub const GKMatchSendDataUnreliable: Self = Self(1);
+    #[doc(alias = "GKMatchSendDataUnreliable")]
+    pub const Unreliable: Self = Self(1);
 }
 
 unsafe impl Encode for GKMatchSendDataMode {
@@ -32,11 +34,14 @@ unsafe impl RefEncode for GKMatchSendDataMode {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GKPlayerConnectionState(pub NSInteger);
 impl GKPlayerConnectionState {
-    pub const GKPlayerStateUnknown: Self = Self(0);
+    #[doc(alias = "GKPlayerStateUnknown")]
+    pub const StateUnknown: Self = Self(0);
     /// initial player state
-    pub const GKPlayerStateConnected: Self = Self(1);
+    #[doc(alias = "GKPlayerStateConnected")]
+    pub const StateConnected: Self = Self(1);
     /// connected to the match
-    pub const GKPlayerStateDisconnected: Self = Self(2);
+    #[doc(alias = "GKPlayerStateDisconnected")]
+    pub const StateDisconnected: Self = Self(2);
 }
 
 unsafe impl Encode for GKPlayerConnectionState {

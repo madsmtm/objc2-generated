@@ -14,9 +14,12 @@ use crate::*;
 pub struct NSPDFPanelOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSPDFPanelOptions: NSInteger {
-        const NSPDFPanelShowsPaperSize = 1<<2;
-        const NSPDFPanelShowsOrientation = 1<<3;
-        const NSPDFPanelRequestsParentDirectory = 1<<24;
+        #[doc(alias = "NSPDFPanelShowsPaperSize")]
+        const ShowsPaperSize = 1<<2;
+        #[doc(alias = "NSPDFPanelShowsOrientation")]
+        const ShowsOrientation = 1<<3;
+        #[doc(alias = "NSPDFPanelRequestsParentDirectory")]
+        const RequestsParentDirectory = 1<<24;
     }
 }
 

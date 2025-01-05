@@ -33,48 +33,60 @@ extern "C" {
 pub struct NSFileProviderErrorCode(pub NSInteger);
 impl NSFileProviderErrorCode {
     /// The user credentials cannot be verified
-    pub const NSFileProviderErrorNotAuthenticated: Self = Self(-1000);
+    #[doc(alias = "NSFileProviderErrorNotAuthenticated")]
+    pub const NotAuthenticated: Self = Self(-1000);
     /// An item already exists with the same parentItemIdentifier and filename (or with a filename differing only in case.)
     ///
     ///
     /// Note: Please use -[NSError (NSFileProviderError) fileProviderErrorForCollisionWithItem:] to build an error with this code.
     ///
     /// See: -[NSError (NSFileProviderError) fileProviderErrorForCollisionWithItem:]
-    pub const NSFileProviderErrorFilenameCollision: Self = Self(-1001);
+    #[doc(alias = "NSFileProviderErrorFilenameCollision")]
+    pub const FilenameCollision: Self = Self(-1001);
     /// The value of the sync anchor is too old, and the system must re-sync from scratch
-    pub const NSFileProviderErrorSyncAnchorExpired: Self = Self(-1002);
+    #[doc(alias = "NSFileProviderErrorSyncAnchorExpired")]
+    pub const SyncAnchorExpired: Self = Self(-1002);
     /// The value of the page token is too old, and the system must re-sync from scratch
-    pub const NSFileProviderErrorPageExpired: Self =
-        Self(NSFileProviderErrorCode::NSFileProviderErrorSyncAnchorExpired.0);
+    #[doc(alias = "NSFileProviderErrorPageExpired")]
+    pub const PageExpired: Self = Self(NSFileProviderErrorCode::SyncAnchorExpired.0);
     /// The item has not been uploaded because it would push the account over quota
-    pub const NSFileProviderErrorInsufficientQuota: Self = Self(-1003);
+    #[doc(alias = "NSFileProviderErrorInsufficientQuota")]
+    pub const InsufficientQuota: Self = Self(-1003);
     /// Connecting to the servers failed
-    pub const NSFileProviderErrorServerUnreachable: Self = Self(-1004);
+    #[doc(alias = "NSFileProviderErrorServerUnreachable")]
+    pub const ServerUnreachable: Self = Self(-1004);
     /// The requested item doesn't exist
     ///
     ///
     /// Note: Please use -[NSError (NSFileProviderError) fileProviderErrorForNonExistentItemWithIdentifier:] to build an error with this code.
     ///
     /// See: -[NSError (NSFileProviderError) fileProviderErrorForNonExistentItemWithIdentifier:]
-    pub const NSFileProviderErrorNoSuchItem: Self = Self(-1005);
+    #[doc(alias = "NSFileProviderErrorNoSuchItem")]
+    pub const NoSuchItem: Self = Self(-1005);
     /// The provider disallowed the deletion of the item.
     ///
     ///
     /// Note: Please use -[NSError (NSFileProviderError) fileProviderErrorForRejectedDeletionOfItem:] to build an error with this code.
     ///
     /// See: -[NSError (NSFileProviderError) fileProviderErrorForRejectedDeletionOfItem:]
-    pub const NSFileProviderErrorDeletionRejected: Self = Self(-1006);
+    #[doc(alias = "NSFileProviderErrorDeletionRejected")]
+    pub const DeletionRejected: Self = Self(-1006);
     /// We're trying to non-recursively delete a non-empty directory
-    pub const NSFileProviderErrorDirectoryNotEmpty: Self = Self(-1007);
+    #[doc(alias = "NSFileProviderErrorDirectoryNotEmpty")]
+    pub const DirectoryNotEmpty: Self = Self(-1007);
     /// Returned by NSFileProviderManager if no provider could be found in the application
-    pub const NSFileProviderErrorProviderNotFound: Self = Self(-2001);
+    #[doc(alias = "NSFileProviderErrorProviderNotFound")]
+    pub const ProviderNotFound: Self = Self(-2001);
     /// Returned by NSFileProviderManager if the application's provider has been disabled due to app translocation
-    pub const NSFileProviderErrorProviderTranslocated: Self = Self(-2002);
+    #[doc(alias = "NSFileProviderErrorProviderTranslocated")]
+    pub const ProviderTranslocated: Self = Self(-2002);
     /// Returned by NSFileProviderManager if the provider registered in the system is an older version than the one corresponding to this app.
     /// The `NSFilePathErrorKey` key points to the location of the older version. If the location of the older version cannot be determined (e.g. because it was since deleted), the `NSFilePathErrorKey` will not be set.
-    pub const NSFileProviderErrorOlderExtensionVersionRunning: Self = Self(-2003);
+    #[doc(alias = "NSFileProviderErrorOlderExtensionVersionRunning")]
+    pub const OlderExtensionVersionRunning: Self = Self(-2003);
     /// Returned by NSFileProviderManager if the provider registered in the system is a newer version than the one corresponding to this app.
-    pub const NSFileProviderErrorNewerExtensionVersionFound: Self = Self(-2004);
+    #[doc(alias = "NSFileProviderErrorNewerExtensionVersionFound")]
+    pub const NewerExtensionVersionFound: Self = Self(-2004);
     /// Indicates that synchronization cannot happen.
     ///
     /// This error can be returned by the provider or the system.
@@ -89,7 +101,8 @@ impl NSFileProviderErrorCode {
     /// The operating system has been updated.
     /// The FileProvider extension has been updated.
     /// The item is modified on disk.
-    pub const NSFileProviderErrorCannotSynchronize: Self = Self(-2005);
+    #[doc(alias = "NSFileProviderErrorCannotSynchronize")]
+    pub const CannotSynchronize: Self = Self(-2005);
     /// Returned by NSFileProviderManager if directory eviction failed because the target contains non-evictable items.
     ///
     /// -[NSError underlyingErrors] is set to an array of the underlying errors. Each one has NSURLErrorKey set
@@ -100,21 +113,25 @@ impl NSFileProviderErrorCode {
     /// + domain: NSFileProviderErrorDomain errorCode: NSFileProviderErrorNonEvictable error: if the item has been marked as non-purgeable by the provider.
     /// + domain: NSPOSIXErrorDomain errorCode: EBUSY - if the item had open file descriptors on it.
     /// + domain: NSPOSIXErrorDomain errorCode: EMLINK : if the item had several hardlinks.
-    pub const NSFileProviderErrorNonEvictableChildren: Self = Self(-2006);
+    #[doc(alias = "NSFileProviderErrorNonEvictableChildren")]
+    pub const NonEvictableChildren: Self = Self(-2006);
     /// Returned by NSFileProviderManager if item eviction is failing because the item has edits that have not been synced yet
     ///
     /// The NSURLErrorKey will be set to with the item URL that has unsynced content.
-    pub const NSFileProviderErrorUnsyncedEdits: Self = Self(-2007);
+    #[doc(alias = "NSFileProviderErrorUnsyncedEdits")]
+    pub const UnsyncedEdits: Self = Self(-2007);
     /// Returned by NSFileProviderManager if item eviction is failing because the item has not been assigned the evictable capability.
     ///
     /// The NSURLErrorKey will be set to with the corresponding item URL.
-    pub const NSFileProviderErrorNonEvictable: Self = Self(-2008);
+    #[doc(alias = "NSFileProviderErrorNonEvictable")]
+    pub const NonEvictable: Self = Self(-2008);
     /// Returned by the provider to indicate that the requested version for an item cannot be provided.
     ///
     /// When a provider returns that error, it means the version for this item is definitively unavailable. It is intended to be returned by
     /// fetchPartialContentsForItemWithIdentifier, when NSFileProviderFetchContentsOptionsStrictVersioning is set, to tell the system that a remote update
     /// happened to the item that outdated the requested version.
-    pub const NSFileProviderErrorVersionNoLongerAvailable: Self = Self(-2009);
+    #[doc(alias = "NSFileProviderErrorVersionNoLongerAvailable")]
+    pub const VersionNoLongerAvailable: Self = Self(-2009);
     /// Returned by createItemBasedOnTemplate or modifyItem if the provider does not wish to sync the item.
     ///
     /// When a provider returns this error, it causes the item to be excluded from sync. The system will ensure that
@@ -135,7 +152,8 @@ impl NSFileProviderErrorCode {
     /// -[NSFileProviderManager requestModificationOfFields:forItemWithIdentifier:options:completionHandler:].
     /// This will cause the system to send a new modifyItem call to the provider. At that time, the provider can choose to
     /// return this error code.
-    pub const NSFileProviderErrorExcludedFromSync: Self = Self(-2010);
+    #[doc(alias = "NSFileProviderErrorExcludedFromSync")]
+    pub const ExcludedFromSync: Self = Self(-2010);
     /// Returned by createItemBasedOnTemplate or modifyItem if the provider does not wish to sync the item.
     ///
     /// When a provider returns this error, it causes the item to be excluded from sync. The system will ensure that
@@ -156,7 +174,8 @@ impl NSFileProviderErrorCode {
     /// -[NSFileProviderManager requestModificationOfFields:forItemWithIdentifier:options:completionHandler:].
     /// This will cause the system to send a new modifyItem call to the provider. At that time, the provider can choose to
     /// return this error code.
-    pub const NSFileProviderErrorDomainDisabled: Self = Self(-2011);
+    #[doc(alias = "NSFileProviderErrorDomainDisabled")]
+    pub const DomainDisabled: Self = Self(-2011);
     /// Returned by createItemBasedOnTemplate or modifyItem if the provider does not wish to sync the item.
     ///
     /// When a provider returns this error, it causes the item to be excluded from sync. The system will ensure that
@@ -177,7 +196,8 @@ impl NSFileProviderErrorCode {
     /// -[NSFileProviderManager requestModificationOfFields:forItemWithIdentifier:options:completionHandler:].
     /// This will cause the system to send a new modifyItem call to the provider. At that time, the provider can choose to
     /// return this error code.
-    pub const NSFileProviderErrorProviderDomainTemporarilyUnavailable: Self = Self(-2012);
+    #[doc(alias = "NSFileProviderErrorProviderDomainTemporarilyUnavailable")]
+    pub const ProviderDomainTemporarilyUnavailable: Self = Self(-2012);
     /// Returned by createItemBasedOnTemplate or modifyItem if the provider does not wish to sync the item.
     ///
     /// When a provider returns this error, it causes the item to be excluded from sync. The system will ensure that
@@ -198,7 +218,8 @@ impl NSFileProviderErrorCode {
     /// -[NSFileProviderManager requestModificationOfFields:forItemWithIdentifier:options:completionHandler:].
     /// This will cause the system to send a new modifyItem call to the provider. At that time, the provider can choose to
     /// return this error code.
-    pub const NSFileProviderErrorProviderDomainNotFound: Self = Self(-2013);
+    #[doc(alias = "NSFileProviderErrorProviderDomainNotFound")]
+    pub const ProviderDomainNotFound: Self = Self(-2013);
     /// Returned by createItemBasedOnTemplate or modifyItem if the provider does not wish to sync the item.
     ///
     /// When a provider returns this error, it causes the item to be excluded from sync. The system will ensure that
@@ -219,7 +240,8 @@ impl NSFileProviderErrorCode {
     /// -[NSFileProviderManager requestModificationOfFields:forItemWithIdentifier:options:completionHandler:].
     /// This will cause the system to send a new modifyItem call to the provider. At that time, the provider can choose to
     /// return this error code.
-    pub const NSFileProviderErrorApplicationExtensionNotFound: Self = Self(-2014);
+    #[doc(alias = "NSFileProviderErrorApplicationExtensionNotFound")]
+    pub const ApplicationExtensionNotFound: Self = Self(-2014);
 }
 
 unsafe impl Encode for NSFileProviderErrorCode {

@@ -19,13 +19,20 @@ pub static NSAppKitVersionNumberWithDirectionalTabs: NSAppKitVersion = 631.0 as 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTabViewType(pub NSUInteger);
 impl NSTabViewType {
-    pub const NSTopTabsBezelBorder: Self = Self(0);
-    pub const NSLeftTabsBezelBorder: Self = Self(1);
-    pub const NSBottomTabsBezelBorder: Self = Self(2);
-    pub const NSRightTabsBezelBorder: Self = Self(3);
-    pub const NSNoTabsBezelBorder: Self = Self(4);
-    pub const NSNoTabsLineBorder: Self = Self(5);
-    pub const NSNoTabsNoBorder: Self = Self(6);
+    #[doc(alias = "NSTopTabsBezelBorder")]
+    pub const TopTabsBezelBorder: Self = Self(0);
+    #[doc(alias = "NSLeftTabsBezelBorder")]
+    pub const LeftTabsBezelBorder: Self = Self(1);
+    #[doc(alias = "NSBottomTabsBezelBorder")]
+    pub const BottomTabsBezelBorder: Self = Self(2);
+    #[doc(alias = "NSRightTabsBezelBorder")]
+    pub const RightTabsBezelBorder: Self = Self(3);
+    #[doc(alias = "NSNoTabsBezelBorder")]
+    pub const NoTabsBezelBorder: Self = Self(4);
+    #[doc(alias = "NSNoTabsLineBorder")]
+    pub const NoTabsLineBorder: Self = Self(5);
+    #[doc(alias = "NSNoTabsNoBorder")]
+    pub const NoTabsNoBorder: Self = Self(6);
 }
 
 unsafe impl Encode for NSTabViewType {

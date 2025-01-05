@@ -40,11 +40,16 @@ use crate::*;
 pub struct AudioComponentFlags(pub u32);
 bitflags::bitflags! {
     impl AudioComponentFlags: u32 {
-        const kAudioComponentFlag_Unsearchable = 1;
-        const kAudioComponentFlag_SandboxSafe = 2;
-        const kAudioComponentFlag_IsV3AudioUnit = 4;
-        const kAudioComponentFlag_RequiresAsyncInstantiation = 8;
-        const kAudioComponentFlag_CanLoadInProcess = 0x10;
+        #[doc(alias = "kAudioComponentFlag_Unsearchable")]
+        const Unsearchable = 1;
+        #[doc(alias = "kAudioComponentFlag_SandboxSafe")]
+        const SandboxSafe = 2;
+        #[doc(alias = "kAudioComponentFlag_IsV3AudioUnit")]
+        const IsV3AudioUnit = 4;
+        #[doc(alias = "kAudioComponentFlag_RequiresAsyncInstantiation")]
+        const RequiresAsyncInstantiation = 8;
+        #[doc(alias = "kAudioComponentFlag_CanLoadInProcess")]
+        const CanLoadInProcess = 0x10;
     }
 }
 
@@ -86,9 +91,12 @@ unsafe impl RefEncode for AudioComponentFlags {
 pub struct AudioComponentInstantiationOptions(pub u32);
 bitflags::bitflags! {
     impl AudioComponentInstantiationOptions: u32 {
-        const kAudioComponentInstantiation_LoadOutOfProcess = 1;
-        const kAudioComponentInstantiation_LoadInProcess = 2;
-        const kAudioComponentInstantiation_LoadedRemotely = 1<<31;
+        #[doc(alias = "kAudioComponentInstantiation_LoadOutOfProcess")]
+        const LoadOutOfProcess = 1;
+        #[doc(alias = "kAudioComponentInstantiation_LoadInProcess")]
+        const LoadInProcess = 2;
+        #[doc(alias = "kAudioComponentInstantiation_LoadedRemotely")]
+        const LoadedRemotely = 1<<31;
     }
 }
 
@@ -463,12 +471,18 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioComponentValidationResult(pub u32);
 impl AudioComponentValidationResult {
-    pub const kAudioComponentValidationResult_Unknown: Self = Self(0);
-    pub const kAudioComponentValidationResult_Passed: Self = Self(1);
-    pub const kAudioComponentValidationResult_Failed: Self = Self(2);
-    pub const kAudioComponentValidationResult_TimedOut: Self = Self(3);
-    pub const kAudioComponentValidationResult_UnauthorizedError_Open: Self = Self(4);
-    pub const kAudioComponentValidationResult_UnauthorizedError_Init: Self = Self(5);
+    #[doc(alias = "kAudioComponentValidationResult_Unknown")]
+    pub const Unknown: Self = Self(0);
+    #[doc(alias = "kAudioComponentValidationResult_Passed")]
+    pub const Passed: Self = Self(1);
+    #[doc(alias = "kAudioComponentValidationResult_Failed")]
+    pub const Failed: Self = Self(2);
+    #[doc(alias = "kAudioComponentValidationResult_TimedOut")]
+    pub const TimedOut: Self = Self(3);
+    #[doc(alias = "kAudioComponentValidationResult_UnauthorizedError_Open")]
+    pub const UnauthorizedError_Open: Self = Self(4);
+    #[doc(alias = "kAudioComponentValidationResult_UnauthorizedError_Init")]
+    pub const UnauthorizedError_Init: Self = Self(5);
 }
 
 unsafe impl Encode for AudioComponentValidationResult {
