@@ -68,13 +68,13 @@ extern_methods!(
         pub unsafe fn setFontSize(&self, font_size: CGFloat);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(foregroundColor)]
-        pub unsafe fn foregroundColor(&self) -> CGColorRef;
+        #[method_id(@__retain_semantics Other foregroundColor)]
+        pub unsafe fn foregroundColor(&self) -> Option<Retained<CGColorRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`foregroundColor`][Self::foregroundColor].
         #[method(setForegroundColor:)]
-        pub unsafe fn setForegroundColor(&self, foreground_color: CGColorRef);
+        pub unsafe fn setForegroundColor(&self, foreground_color: Option<&CGColorRef>);
 
         #[method(isWrapped)]
         pub unsafe fn isWrapped(&self) -> bool;

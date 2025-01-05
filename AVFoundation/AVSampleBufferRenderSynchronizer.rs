@@ -40,8 +40,8 @@ extern_methods!(
         /// If no AVSampleBufferAudioRenderer has been added, the source clock will be the host time clock (mach_absolute_time with the appropriate timescale conversion; this is the same as Core Animation's CACurrentMediaTime).
         ///
         /// The timebase is a read-only timebase.  Use the rate property and corresponding methods to adjust the timebase.
-        #[method(timebase)]
-        pub unsafe fn timebase(&self) -> CMTimebaseRef;
+        #[method_id(@__retain_semantics Other timebase)]
+        pub unsafe fn timebase(&self) -> Retained<CMTimebaseRef>;
 
         /// Playback rate.
         ///

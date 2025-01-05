@@ -947,7 +947,7 @@ extern_protocol!(
         unsafe fn newTextureWithDescriptor_iosurface_plane(
             &self,
             descriptor: &MTLTextureDescriptor,
-            iosurface: IOSurfaceRef,
+            iosurface: &IOSurfaceRef,
             plane: NSUInteger,
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 

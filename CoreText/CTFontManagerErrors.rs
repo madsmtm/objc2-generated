@@ -14,7 +14,7 @@ extern "C" {
     /// CFErrors with this domain will have error codes corresponding to one of the CTFontManagerErrors above.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrordomain?language=objc)
-    pub static kCTFontManagerErrorDomain: CFStringRef;
+    pub static kCTFontManagerErrorDomain: &'static CFStringRef;
 }
 
 extern "C" {
@@ -23,7 +23,7 @@ extern "C" {
     /// The value associated with this key in the user info dictionary of a CFError is a CFArray of font URLs that failed with given error.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrorfonturlskey?language=objc)
-    pub static kCTFontManagerErrorFontURLsKey: CFStringRef;
+    pub static kCTFontManagerErrorFontURLsKey: &'static CFStringRef;
 }
 
 extern "C" {
@@ -32,7 +32,7 @@ extern "C" {
     /// The value associated with this key in the user info dictionary of a CFError is a CFArray of font descriptors that failed with given error.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrorfontdescriptorskey?language=objc)
-    pub static kCTFontManagerErrorFontDescriptorsKey: CFStringRef;
+    pub static kCTFontManagerErrorFontDescriptorsKey: &'static CFStringRef;
 }
 
 extern "C" {
@@ -41,7 +41,7 @@ extern "C" {
     /// The value associated with this key in the user info dictionary of a CFError is a CFArray of font asset name strings that failed with given error.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrorfontassetnamekey?language=objc)
-    pub static kCTFontManagerErrorFontAssetNameKey: CFStringRef;
+    pub static kCTFontManagerErrorFontAssetNameKey: &'static CFStringRef;
 }
 
 /// Font registration errors

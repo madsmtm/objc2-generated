@@ -1326,7 +1326,8 @@ pub use self::__CFOpenDirectoryConstants::ODPolicyKeyType;
 pub use self::__CFOpenDirectoryConstants::ODPolicyType;
 #[cfg(feature = "CFOpenDirectoryConstants")]
 pub use self::__CFOpenDirectoryConstants::ODRecordType;
-use core::ffi::*;
+use core::cell::UnsafeCell;
+use core::marker::{PhantomData, PhantomPinned};
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
@@ -1335,27 +1336,77 @@ use crate::*;
 /// Opaque reference for the ODContext object
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odcontextref?language=objc)
-pub type ODContextRef = *const c_void;
+#[repr(C)]
+pub struct ODContextRef {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+cf_type!(
+    #[encoding_name = "__ODContext"]
+    unsafe impl ODContextRef {}
+);
 
 /// Opaque reference for the ODNode object
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnoderef?language=objc)
-pub type ODNodeRef = *mut c_void;
+#[repr(C)]
+pub struct ODNodeRef {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+cf_type!(
+    #[encoding_name = "__ODNode"]
+    unsafe impl ODNodeRef {}
+);
 
 /// Opaque reference for the ODQuery object
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odqueryref?language=objc)
-pub type ODQueryRef = *mut c_void;
+#[repr(C)]
+pub struct ODQueryRef {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+cf_type!(
+    #[encoding_name = "__ODQuery"]
+    unsafe impl ODQueryRef {}
+);
 
 /// Opaque reference for the ODRecord object
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordref?language=objc)
-pub type ODRecordRef = *mut c_void;
+#[repr(C)]
+pub struct ODRecordRef {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+cf_type!(
+    #[encoding_name = "__ODRecord"]
+    unsafe impl ODRecordRef {}
+);
 
 /// Opaque reference for ODSession object
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odsessionref?language=objc)
-pub type ODSessionRef = *mut c_void;
+#[repr(C)]
+pub struct ODSessionRef {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+#[cfg(feature = "objc2-core-foundation")]
+cf_type!(
+    #[encoding_name = "__ODSession"]
+    unsafe impl ODSessionRef {}
+);
 
 extern "C" {
     /// the error domain for OpenDirectory.framework details
@@ -1364,5 +1415,5 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/koderrordomainframework?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODErrorDomainFramework: CFStringRef;
+    pub static kODErrorDomainFramework: Option<&'static CFStringRef>;
 }

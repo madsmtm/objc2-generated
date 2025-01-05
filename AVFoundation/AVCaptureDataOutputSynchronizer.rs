@@ -201,8 +201,8 @@ extern_methods!(
         ///
         ///
         /// If sampleBufferWasDropped is YES, the returned sampleBuffer was dropped before it could be delivered to you, and thus this sample buffer is a shell containing metadata and format information, but no actual pixel data. This property is never NULL. If a data output has no data to return, it is simply not present in the dictionary of synchronized data returned by AVCaptureDataOutputSynchronizer's -dataOutputSynchronizer:didOutputSynchronizedData: delegate callback.
-        #[method(sampleBuffer)]
-        pub unsafe fn sampleBuffer(&self) -> CMSampleBufferRef;
+        #[method_id(@__retain_semantics Other sampleBuffer)]
+        pub unsafe fn sampleBuffer(&self) -> Retained<CMSampleBufferRef>;
 
         /// YES if the sample buffer was dropped.
         ///

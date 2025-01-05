@@ -70,7 +70,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other bezierPathWithCGPath:)]
-        pub unsafe fn bezierPathWithCGPath(cg_path: CGPathRef) -> Retained<Self>;
+        pub unsafe fn bezierPathWithCGPath(cg_path: &CGPathRef) -> Retained<Self>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -82,13 +82,13 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(CGPath)]
-        pub unsafe fn CGPath(&self) -> CGPathRef;
+        #[method_id(@__retain_semantics Other CGPath)]
+        pub unsafe fn CGPath(&self) -> Retained<CGPathRef>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`CGPath`][Self::CGPath].
         #[method(setCGPath:)]
-        pub unsafe fn setCGPath(&self, cg_path: CGPathRef);
+        pub unsafe fn setCGPath(&self, cg_path: &CGPathRef);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(moveToPoint:)]

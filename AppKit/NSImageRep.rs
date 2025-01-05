@@ -245,13 +245,13 @@ extern_methods!(
             feature = "objc2-core-graphics"
         ))]
         #[cfg(target_vendor = "apple")]
-        #[method(CGImageForProposedRect:context:hints:)]
+        #[method_id(@__retain_semantics Other CGImageForProposedRect:context:hints:)]
         pub unsafe fn CGImageForProposedRect_context_hints(
             &self,
             proposed_dest_rect: *mut NSRect,
             context: Option<&NSGraphicsContext>,
             hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
-        ) -> CGImageRef;
+        ) -> Option<Retained<CGImageRef>>;
     }
 );
 

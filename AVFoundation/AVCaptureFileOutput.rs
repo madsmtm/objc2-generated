@@ -399,7 +399,7 @@ extern_protocol!(
         unsafe fn captureOutput_didOutputSampleBuffer_fromConnection(
             &self,
             output: &AVCaptureFileOutput,
-            sample_buffer: CMSampleBufferRef,
+            sample_buffer: &CMSampleBufferRef,
             connection: &AVCaptureConnection,
         );
     }

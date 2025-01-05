@@ -463,8 +463,8 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-io-surface")]
         /// If this texture was created from an IOSurface, this returns a reference to that IOSurface. iosurface is nil if this texture was not created from an IOSurface.
-        #[method(iosurface)]
-        unsafe fn iosurface(&self) -> IOSurfaceRef;
+        #[method_id(@__retain_semantics Other iosurface)]
+        unsafe fn iosurface(&self) -> Option<Retained<IOSurfaceRef>>;
 
         /// If this texture was created from an IOSurface, this returns the plane of the IOSurface from which the texture was created. iosurfacePlane is 0 if this texture was not created from an IOSurface.
         #[method(iosurfacePlane)]

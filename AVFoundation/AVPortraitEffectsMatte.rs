@@ -63,7 +63,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other portraitEffectsMatteByReplacingPortraitEffectsMatteWithPixelBuffer:error:_)]
         pub unsafe fn portraitEffectsMatteByReplacingPortraitEffectsMatteWithPixelBuffer_error(
             &self,
-            pixel_buffer: CVPixelBufferRef,
+            pixel_buffer: &CVPixelBufferRef,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// Returns a dictionary of primitive map information to be used when writing an image file with a portrait effects matte.
@@ -93,7 +93,7 @@ extern_methods!(
         ///
         ///
         /// The pixel format can be queried using the pixelFormatType property.
-        #[method(mattingImage)]
-        pub unsafe fn mattingImage(&self) -> CVPixelBufferRef;
+        #[method_id(@__retain_semantics Other mattingImage)]
+        pub unsafe fn mattingImage(&self) -> Retained<CVPixelBufferRef>;
     }
 );

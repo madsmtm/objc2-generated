@@ -240,8 +240,8 @@ extern "C-unwind" {
     #[cfg(feature = "CMTime")]
     pub fn CMTimeRangeCopyAsDictionary(
         range: CMTimeRange,
-        allocator: CFAllocatorRef,
-    ) -> CFDictionaryRef;
+        allocator: Option<&CFAllocatorRef>,
+    ) -> *mut CFDictionaryRef;
 }
 
 extern "C-unwind" {
@@ -252,22 +252,23 @@ extern "C-unwind" {
     ///
     /// Returns: The created CMTimeRange.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeRangeMakeFromDictionary(dictionary_representation: CFDictionaryRef)
-        -> CMTimeRange;
+    pub fn CMTimeRangeMakeFromDictionary(
+        dictionary_representation: &CFDictionaryRef,
+    ) -> CMTimeRange;
 }
 
 extern "C" {
     /// CFDictionary key for start field of a CMTimeRange (CMTime)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimerangestartkey?language=objc)
-    pub static kCMTimeRangeStartKey: CFStringRef;
+    pub static kCMTimeRangeStartKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// CFDictionary key for timescale field of a CMTimeRange (CMTime)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimerangedurationkey?language=objc)
-    pub static kCMTimeRangeDurationKey: CFStringRef;
+    pub static kCMTimeRangeDurationKey: &'static CFStringRef;
 }
 
 extern "C-unwind" {
@@ -278,8 +279,10 @@ extern "C-unwind" {
     ///
     /// Returns: The created CFString description.
     #[cfg(feature = "CMTime")]
-    pub fn CMTimeRangeCopyDescription(allocator: CFAllocatorRef, range: CMTimeRange)
-        -> CFStringRef;
+    pub fn CMTimeRangeCopyDescription(
+        allocator: Option<&CFAllocatorRef>,
+        range: CMTimeRange,
+    ) -> *mut CFStringRef;
 }
 
 extern "C-unwind" {
@@ -358,8 +361,8 @@ extern "C-unwind" {
     #[cfg(feature = "CMTime")]
     pub fn CMTimeMappingCopyAsDictionary(
         mapping: CMTimeMapping,
-        allocator: CFAllocatorRef,
-    ) -> CFDictionaryRef;
+        allocator: Option<&CFAllocatorRef>,
+    ) -> *mut CFDictionaryRef;
 }
 
 extern "C-unwind" {
@@ -371,7 +374,7 @@ extern "C-unwind" {
     /// Returns: The created CMTimeMapping.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeMappingMakeFromDictionary(
-        dictionary_representation: CFDictionaryRef,
+        dictionary_representation: &CFDictionaryRef,
     ) -> CMTimeMapping;
 }
 
@@ -379,14 +382,14 @@ extern "C" {
     /// CFDictionary key for source field of a CMTimeMapping (CMTimeRange)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimemappingsourcekey?language=objc)
-    pub static kCMTimeMappingSourceKey: CFStringRef;
+    pub static kCMTimeMappingSourceKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// CFDictionary key for target field of a CMTimeMapping (CMTimeRange)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimemappingtargetkey?language=objc)
-    pub static kCMTimeMappingTargetKey: CFStringRef;
+    pub static kCMTimeMappingTargetKey: &'static CFStringRef;
 }
 
 extern "C-unwind" {
@@ -398,9 +401,9 @@ extern "C-unwind" {
     /// Returns: The created CFString description.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeMappingCopyDescription(
-        allocator: CFAllocatorRef,
+        allocator: Option<&CFAllocatorRef>,
         mapping: CMTimeMapping,
-    ) -> CFStringRef;
+    ) -> *mut CFStringRef;
 }
 
 extern "C-unwind" {

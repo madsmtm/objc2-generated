@@ -32,7 +32,7 @@ extern "C-unwind" {
     /// a single mode at a time.
     pub fn CMSetAttachment(
         target: CMAttachmentBearerRef,
-        key: CFStringRef,
+        key: &CFStringRef,
         value: CFTypeRef,
         attachment_mode: CMAttachmentMode,
     );
@@ -52,7 +52,7 @@ extern "C-unwind" {
     /// Returns: If found the attachment object; else NULL.
     pub fn CMGetAttachment(
         target: CMAttachmentBearerRef,
-        key: CFStringRef,
+        key: &CFStringRef,
         attachment_mode_out: *mut CMAttachmentMode,
     ) -> CFTypeRef;
 }
@@ -65,7 +65,7 @@ extern "C-unwind" {
     /// Parameter `target`: Target CMAttachmentBearer.
     ///
     /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
-    pub fn CMRemoveAttachment(target: CMAttachmentBearerRef, key: CFStringRef);
+    pub fn CMRemoveAttachment(target: CMAttachmentBearerRef, key: &CFStringRef);
 }
 
 extern "C-unwind" {
@@ -89,10 +89,10 @@ extern "C-unwind" {
     /// Returns: A CFDictionary with all buffer attachments identified by there keys. If no attachment is present, NULL is returned.  Returns NULL
     /// for invalid attachment mode.
     pub fn CMCopyDictionaryOfAttachments(
-        allocator: CFAllocatorRef,
+        allocator: Option<&CFAllocatorRef>,
         target: CMAttachmentBearerRef,
         attachment_mode: CMAttachmentMode,
-    ) -> CFDictionaryRef;
+    ) -> *mut CFDictionaryRef;
 }
 
 extern "C-unwind" {
@@ -103,7 +103,7 @@ extern "C-unwind" {
     /// Parameter `target`: Target CMAttachmentBearer.
     pub fn CMSetAttachments(
         target: CMAttachmentBearerRef,
-        the_attachments: CFDictionaryRef,
+        the_attachments: &CFDictionaryRef,
         attachment_mode: CMAttachmentMode,
     );
 }

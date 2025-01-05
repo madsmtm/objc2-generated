@@ -51,6 +51,6 @@ extern "C-unwind" {
         dst_format: CGColorDataFormat,
         src_data: *mut c_void,
         src_format: CGColorDataFormat,
-        options: CFDictionaryRef,
+        options: Option<&CFDictionaryRef>,
     ) -> bool;
 }

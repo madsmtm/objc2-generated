@@ -681,8 +681,8 @@ extern_methods!(
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> CGColorRef;
+        #[method_id(@__retain_semantics Other backgroundColor)]
+        pub unsafe fn backgroundColor(&self) -> Option<Retained<CGColorRef>>;
 
         #[method_id(@__retain_semantics Other layerInstructions)]
         pub unsafe fn layerInstructions(
@@ -758,13 +758,13 @@ extern_methods!(
         pub unsafe fn setTimeRange(&self, time_range: CMTimeRange);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> CGColorRef;
+        #[method_id(@__retain_semantics Other backgroundColor)]
+        pub unsafe fn backgroundColor(&self) -> Option<Retained<CGColorRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, background_color: CGColorRef);
+        pub unsafe fn setBackgroundColor(&self, background_color: Option<&CGColorRef>);
 
         #[method_id(@__retain_semantics Other layerInstructions)]
         pub unsafe fn layerInstructions(

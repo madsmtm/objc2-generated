@@ -101,8 +101,8 @@ extern_methods!(
         /// This will return NULL if the rate is non-zero.  Clients must release the pixel buffer after use.
         ///
         /// Do not write to the returned CVPixelBuffer's attachments or pixel data.
-        #[method(copyDisplayedPixelBuffer)]
-        pub unsafe fn copyDisplayedPixelBuffer(&self) -> CVPixelBufferRef;
+        #[method_id(@__retain_semantics Copy copyDisplayedPixelBuffer)]
+        pub unsafe fn copyDisplayedPixelBuffer(&self) -> Option<Retained<CVPixelBufferRef>>;
     }
 );
 

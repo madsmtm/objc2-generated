@@ -149,32 +149,36 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// * Persistent representations. **
-    pub fn CGPointCreateDictionaryRepresentation(point: CGPoint) -> CFDictionaryRef;
+    pub fn CGPointCreateDictionaryRepresentation(point: CGPoint) -> NonNull<CFDictionaryRef>;
 }
 
 extern "C-unwind" {
     pub fn CGPointMakeWithDictionaryRepresentation(
-        dict: CFDictionaryRef,
+        dict: Option<&CFDictionaryRef>,
         point: *mut CGPoint,
     ) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGSizeCreateDictionaryRepresentation(size: CGSize) -> CFDictionaryRef;
+    pub fn CGSizeCreateDictionaryRepresentation(size: CGSize) -> NonNull<CFDictionaryRef>;
 }
 
 extern "C-unwind" {
-    pub fn CGSizeMakeWithDictionaryRepresentation(dict: CFDictionaryRef, size: *mut CGSize)
-        -> bool;
+    pub fn CGSizeMakeWithDictionaryRepresentation(
+        dict: Option<&CFDictionaryRef>,
+        size: *mut CGSize,
+    ) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGRectCreateDictionaryRepresentation(_: CGRect) -> CFDictionaryRef;
+    pub fn CGRectCreateDictionaryRepresentation(_: CGRect) -> NonNull<CFDictionaryRef>;
 }
 
 extern "C-unwind" {
-    pub fn CGRectMakeWithDictionaryRepresentation(dict: CFDictionaryRef, rect: *mut CGRect)
-        -> bool;
+    pub fn CGRectMakeWithDictionaryRepresentation(
+        dict: Option<&CFDictionaryRef>,
+        rect: *mut CGRect,
+    ) -> bool;
 }
 
 // TODO: pub fn CGPointMake(x: CGFloat,y: CGFloat,) -> CGPoint;

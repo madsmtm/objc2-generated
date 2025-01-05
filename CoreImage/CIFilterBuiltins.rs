@@ -86,13 +86,13 @@ extern_protocol!(
         unsafe fn setDither(&self, dither: c_float);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(colorSpace)]
-        unsafe fn colorSpace(&self) -> CGColorSpaceRef;
+        #[method_id(@__retain_semantics Other colorSpace)]
+        unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpaceRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
-        unsafe fn setColorSpace(&self, color_space: CGColorSpaceRef);
+        unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpaceRef>);
     }
 );
 
@@ -1999,13 +1999,13 @@ extern_protocol!(
         unsafe fn setCube1Data(&self, cube1_data: &NSData);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(colorSpace)]
-        unsafe fn colorSpace(&self) -> CGColorSpaceRef;
+        #[method_id(@__retain_semantics Other colorSpace)]
+        unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpaceRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
-        unsafe fn setColorSpace(&self, color_space: CGColorSpaceRef);
+        unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpaceRef>);
 
         #[method(extrapolate)]
         unsafe fn extrapolate(&self) -> bool;
@@ -2044,13 +2044,13 @@ extern_protocol!(
         unsafe fn setCubeData(&self, cube_data: &NSData);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(colorSpace)]
-        unsafe fn colorSpace(&self) -> CGColorSpaceRef;
+        #[method_id(@__retain_semantics Other colorSpace)]
+        unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpaceRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
-        unsafe fn setColorSpace(&self, color_space: CGColorSpaceRef);
+        unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpaceRef>);
 
         #[method(extrapolate)]
         unsafe fn extrapolate(&self) -> bool;
@@ -2091,13 +2091,13 @@ extern_protocol!(
         unsafe fn setCurvesDomain(&self, curves_domain: &CIVector);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(colorSpace)]
-        unsafe fn colorSpace(&self) -> CGColorSpaceRef;
+        #[method_id(@__retain_semantics Other colorSpace)]
+        unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpaceRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
-        unsafe fn setColorSpace(&self, color_space: CGColorSpaceRef);
+        unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpaceRef>);
     }
 );
 

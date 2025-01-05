@@ -102,12 +102,12 @@ extern_protocol!(
         unsafe fn baseAddress(&self) -> NonNull<c_void>;
 
         #[cfg(feature = "objc2-io-surface")]
-        #[method(surface)]
-        unsafe fn surface(&self) -> IOSurfaceRef;
+        #[method_id(@__retain_semantics Other surface)]
+        unsafe fn surface(&self) -> Retained<IOSurfaceRef>;
 
         #[cfg(feature = "objc2-core-video")]
-        #[method(pixelBuffer)]
-        unsafe fn pixelBuffer(&self) -> CVPixelBufferRef;
+        #[method_id(@__retain_semantics Other pixelBuffer)]
+        unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBufferRef>>;
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other metalTexture)]
@@ -142,12 +142,12 @@ extern_protocol!(
         unsafe fn baseAddress(&self) -> NonNull<c_void>;
 
         #[cfg(feature = "objc2-io-surface")]
-        #[method(surface)]
-        unsafe fn surface(&self) -> IOSurfaceRef;
+        #[method_id(@__retain_semantics Other surface)]
+        unsafe fn surface(&self) -> Retained<IOSurfaceRef>;
 
         #[cfg(feature = "objc2-core-video")]
-        #[method(pixelBuffer)]
-        unsafe fn pixelBuffer(&self) -> CVPixelBufferRef;
+        #[method_id(@__retain_semantics Other pixelBuffer)]
+        unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBufferRef>>;
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other metalTexture)]

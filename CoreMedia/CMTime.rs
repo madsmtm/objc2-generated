@@ -464,7 +464,10 @@ extern "C-unwind" {
     /// This is useful when putting CMTimes in CF container types.
     ///
     /// Returns: A CFDictionary version of the CMTime.
-    pub fn CMTimeCopyAsDictionary(time: CMTime, allocator: CFAllocatorRef) -> CFDictionaryRef;
+    pub fn CMTimeCopyAsDictionary(
+        time: CMTime,
+        allocator: Option<&CFAllocatorRef>,
+    ) -> *mut CFDictionaryRef;
 }
 
 extern "C-unwind" {
@@ -474,35 +477,35 @@ extern "C-unwind" {
     /// have the requisite keyed values, an invalid time is returned.
     ///
     /// Returns: The created CMTime.
-    pub fn CMTimeMakeFromDictionary(dictionary_representation: CFDictionaryRef) -> CMTime;
+    pub fn CMTimeMakeFromDictionary(dictionary_representation: Option<&CFDictionaryRef>) -> CMTime;
 }
 
 extern "C" {
     /// CFDictionary key for value field of CMTime (CFNumber containing int64_t)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimevaluekey?language=objc)
-    pub static kCMTimeValueKey: CFStringRef;
+    pub static kCMTimeValueKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// CFDictionary key for timescale field of CMTime (CFNumber containing int32_t)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimescalekey?language=objc)
-    pub static kCMTimeScaleKey: CFStringRef;
+    pub static kCMTimeScaleKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// CFDictionary key for epoch field of CMTime (CFNumber containing int64_t)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimeepochkey?language=objc)
-    pub static kCMTimeEpochKey: CFStringRef;
+    pub static kCMTimeEpochKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// CFDictionary key for flags field of CMTime (CFNumber containing uint32_t)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimeflagskey?language=objc)
-    pub static kCMTimeFlagsKey: CFStringRef;
+    pub static kCMTimeFlagsKey: &'static CFStringRef;
 }
 
 extern "C-unwind" {
@@ -513,7 +516,10 @@ extern "C-unwind" {
     /// CFString, and is responsible for releasing it.
     ///
     /// Returns: The created CFString description.
-    pub fn CMTimeCopyDescription(allocator: CFAllocatorRef, time: CMTime) -> CFStringRef;
+    pub fn CMTimeCopyDescription(
+        allocator: Option<&CFAllocatorRef>,
+        time: CMTime,
+    ) -> *mut CFStringRef;
 }
 
 extern "C-unwind" {

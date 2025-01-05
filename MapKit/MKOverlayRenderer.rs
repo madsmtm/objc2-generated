@@ -66,7 +66,7 @@ extern_methods!(
             &self,
             map_rect: MKMapRect,
             zoom_scale: MKZoomScale,
-            context: CGContextRef,
+            context: &CGContextRef,
         );
 
         #[method(setNeedsDisplay)]

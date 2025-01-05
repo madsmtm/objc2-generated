@@ -438,7 +438,7 @@ extern_methods!(
         #[method(newTextureWithCGImage:options:completionHandler:)]
         pub unsafe fn newTextureWithCGImage_options_completionHandler(
             &self,
-            cg_image: CGImageRef,
+            cg_image: &CGImageRef,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
             completion_handler: MTKTextureLoaderCallback,
         );
@@ -488,7 +488,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New newTextureWithCGImage:options:error:_)]
         pub unsafe fn newTextureWithCGImage_options_error(
             &self,
-            cg_image: CGImageRef,
+            cg_image: &CGImageRef,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLTexture>>, Retained<NSError>>;
 

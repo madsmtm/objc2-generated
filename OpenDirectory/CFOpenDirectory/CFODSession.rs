@@ -13,7 +13,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodsessiondefault?language=objc)
     #[cfg(feature = "CFOpenDirectory")]
-    pub static kODSessionDefault: ODSessionRef;
+    pub static kODSessionDefault: Option<&'static ODSessionRef>;
 }
 
 extern "C-unwind" {
@@ -49,10 +49,10 @@ extern "C-unwind" {
     /// get error details
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODSessionCreate(
-        allocator: CFAllocatorRef,
-        options: CFDictionaryRef,
+        allocator: Option<&CFAllocatorRef>,
+        options: Option<&CFDictionaryRef>,
         error: *mut CFErrorRef,
-    ) -> ODSessionRef;
+    ) -> *mut ODSessionRef;
 }
 
 extern "C-unwind" {
@@ -69,8 +69,8 @@ extern "C-unwind" {
     /// Returns: a valid CFArrayRef of node names that can be opened on the session reference
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODSessionCopyNodeNames(
-        allocator: CFAllocatorRef,
-        session: ODSessionRef,
+        allocator: Option<&CFAllocatorRef>,
+        session: Option<&ODSessionRef>,
         error: *mut CFErrorRef,
-    ) -> CFArrayRef;
+    ) -> *mut CFArrayRef;
 }

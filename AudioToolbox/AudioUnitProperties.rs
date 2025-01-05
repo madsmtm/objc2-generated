@@ -327,13 +327,13 @@ unsafe impl RefEncode for AURenderCallbackStruct {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AUPreset {
     pub presetNumber: i32,
-    pub presetName: CFStringRef,
+    pub presetName: *mut CFStringRef,
 }
 
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl Encode for AUPreset {
     const ENCODING: Encoding =
-        Encoding::Struct("AUPreset", &[<i32>::ENCODING, <CFStringRef>::ENCODING]);
+        Encoding::Struct("AUPreset", &[<i32>::ENCODING, <*mut CFStringRef>::ENCODING]);
 }
 
 #[cfg(feature = "objc2-core-foundation")]
@@ -583,15 +583,18 @@ unsafe impl RefEncode for AUDependentParameter {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioUnitCocoaViewInfo {
-    pub mCocoaAUViewBundleLocation: CFURLRef,
-    pub mCocoaAUViewClass: [CFStringRef; 1],
+    pub mCocoaAUViewBundleLocation: NonNull<CFURLRef>,
+    pub mCocoaAUViewClass: [NonNull<CFStringRef>; 1],
 }
 
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl Encode for AudioUnitCocoaViewInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioUnitCocoaViewInfo",
-        &[<CFURLRef>::ENCODING, <[CFStringRef; 1]>::ENCODING],
+        &[
+            <NonNull<CFURLRef>>::ENCODING,
+            <[NonNull<CFStringRef>; 1]>::ENCODING,
+        ],
     );
 }
 
@@ -607,7 +610,7 @@ unsafe impl RefEncode for AudioUnitCocoaViewInfo {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AUHostVersionIdentifier {
-    pub hostName: CFStringRef,
+    pub hostName: NonNull<CFStringRef>,
     pub hostVersion: u32,
 }
 
@@ -615,7 +618,7 @@ pub struct AUHostVersionIdentifier {
 unsafe impl Encode for AUHostVersionIdentifier {
     const ENCODING: Encoding = Encoding::Struct(
         "AUHostVersionIdentifier",
-        &[<CFStringRef>::ENCODING, <u32>::ENCODING],
+        &[<NonNull<CFStringRef>>::ENCODING, <u32>::ENCODING],
     );
 }
 
@@ -955,9 +958,9 @@ unsafe impl RefEncode for AudioUnitParameterOptions {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioUnitParameterInfo {
     pub name: [c_char; 52],
-    pub unitName: CFStringRef,
+    pub unitName: *mut CFStringRef,
     pub clumpID: u32,
-    pub cfNameString: CFStringRef,
+    pub cfNameString: *mut CFStringRef,
     pub unit: AudioUnitParameterUnit,
     pub minValue: AudioUnitParameterValue,
     pub maxValue: AudioUnitParameterValue,
@@ -971,9 +974,9 @@ unsafe impl Encode for AudioUnitParameterInfo {
         "AudioUnitParameterInfo",
         &[
             <[c_char; 52]>::ENCODING,
-            <CFStringRef>::ENCODING,
+            <*mut CFStringRef>::ENCODING,
             <u32>::ENCODING,
-            <CFStringRef>::ENCODING,
+            <*mut CFStringRef>::ENCODING,
             <AudioUnitParameterUnit>::ENCODING,
             <AudioUnitParameterValue>::ENCODING,
             <AudioUnitParameterValue>::ENCODING,
@@ -1007,7 +1010,7 @@ pub const kAudioUnitParameterName_Full: c_int = -1;
 pub struct AudioUnitParameterNameInfo {
     pub inID: AudioUnitParameterID,
     pub inDesiredLength: i32,
-    pub outName: CFStringRef,
+    pub outName: *mut CFStringRef,
 }
 
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
@@ -1017,7 +1020,7 @@ unsafe impl Encode for AudioUnitParameterNameInfo {
         &[
             <AudioUnitParameterID>::ENCODING,
             <i32>::ENCODING,
-            <CFStringRef>::ENCODING,
+            <*mut CFStringRef>::ENCODING,
         ],
     );
 }
@@ -1040,7 +1043,7 @@ pub type AudioUnitParameterIDName = AudioUnitParameterNameInfo;
 pub struct AudioUnitParameterStringFromValue {
     pub inParamID: AudioUnitParameterID,
     pub inValue: NonNull<AudioUnitParameterValue>,
-    pub outString: CFStringRef,
+    pub outString: *mut CFStringRef,
 }
 
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
@@ -1050,7 +1053,7 @@ unsafe impl Encode for AudioUnitParameterStringFromValue {
         &[
             <AudioUnitParameterID>::ENCODING,
             <NonNull<AudioUnitParameterValue>>::ENCODING,
-            <CFStringRef>::ENCODING,
+            <*mut CFStringRef>::ENCODING,
         ],
     );
 }
@@ -1068,7 +1071,7 @@ unsafe impl RefEncode for AudioUnitParameterStringFromValue {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioUnitParameterValueFromString {
     pub inParamID: AudioUnitParameterID,
-    pub inString: CFStringRef,
+    pub inString: NonNull<CFStringRef>,
     pub outValue: AudioUnitParameterValue,
 }
 
@@ -1078,7 +1081,7 @@ unsafe impl Encode for AudioUnitParameterValueFromString {
         "AudioUnitParameterValueFromString",
         &[
             <AudioUnitParameterID>::ENCODING,
-            <CFStringRef>::ENCODING,
+            <NonNull<CFStringRef>>::ENCODING,
             <AudioUnitParameterValue>::ENCODING,
         ],
     );
@@ -2249,7 +2252,7 @@ pub const kAUSamplerProperty_LoadAudioFiles: AudioUnitPropertyID = 4101;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AUSamplerInstrumentData {
-    pub fileURL: CFURLRef,
+    pub fileURL: NonNull<CFURLRef>,
     pub instrumentType: u8,
     pub bankMSB: u8,
     pub bankLSB: u8,
@@ -2261,7 +2264,7 @@ unsafe impl Encode for AUSamplerInstrumentData {
     const ENCODING: Encoding = Encoding::Struct(
         "AUSamplerInstrumentData",
         &[
-            <CFURLRef>::ENCODING,
+            <NonNull<CFURLRef>>::ENCODING,
             <u8>::ENCODING,
             <u8>::ENCODING,
             <u8>::ENCODING,
@@ -2420,7 +2423,7 @@ unsafe impl RefEncode for AUNumVersion {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AUHostIdentifier {
-    pub hostName: CFStringRef,
+    pub hostName: NonNull<CFStringRef>,
     pub hostVersion: AUNumVersion,
 }
 
@@ -2428,7 +2431,7 @@ pub struct AUHostIdentifier {
 unsafe impl Encode for AUHostIdentifier {
     const ENCODING: Encoding = Encoding::Struct(
         "AUHostIdentifier",
-        &[<CFStringRef>::ENCODING, <AUNumVersion>::ENCODING],
+        &[<NonNull<CFStringRef>>::ENCODING, <AUNumVersion>::ENCODING],
     );
 }
 
@@ -2518,7 +2521,7 @@ unsafe impl RefEncode for AudioUnitMIDIControlMapping {
 pub struct AudioUnitParameterValueName {
     pub inParamID: AudioUnitParameterID,
     pub inValue: NonNull<f32>,
-    pub outName: CFStringRef,
+    pub outName: NonNull<CFStringRef>,
 }
 
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
@@ -2528,7 +2531,7 @@ unsafe impl Encode for AudioUnitParameterValueName {
         &[
             <AudioUnitParameterID>::ENCODING,
             <NonNull<f32>>::ENCODING,
-            <CFStringRef>::ENCODING,
+            <NonNull<CFStringRef>>::ENCODING,
         ],
     );
 }
@@ -2568,7 +2571,7 @@ pub const kSpeakerConfiguration_5_1: c_uint = kSpeakerConfiguration_5_0;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AUSamplerBankPresetData {
-    pub bankURL: CFURLRef,
+    pub bankURL: NonNull<CFURLRef>,
     pub bankMSB: u8,
     pub bankLSB: u8,
     pub presetID: u8,
@@ -2580,7 +2583,7 @@ unsafe impl Encode for AUSamplerBankPresetData {
     const ENCODING: Encoding = Encoding::Struct(
         "AUSamplerBankPresetData",
         &[
-            <CFURLRef>::ENCODING,
+            <NonNull<CFURLRef>>::ENCODING,
             <u8>::ENCODING,
             <u8>::ENCODING,
             <u8>::ENCODING,

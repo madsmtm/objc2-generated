@@ -7,20 +7,20 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcguse100nitshlgootf?language=objc)
-    pub static kCGUse100nitsHLGOOTF: CFStringRef;
+    pub static kCGUse100nitsHLGOOTF: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgusebt1886forcorevideogamma?language=objc)
-    pub static kCGUseBT1886ForCoreVideoGamma: CFStringRef;
+    pub static kCGUseBT1886ForCoreVideoGamma: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgskipboosttohdr?language=objc)
-    pub static kCGSkipBoostToHDR: CFStringRef;
+    pub static kCGSkipBoostToHDR: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcguselegacyhdrecosystem?language=objc)
-    pub static kCGUseLegacyHDREcosystem: CFStringRef;
+    pub static kCGUseLegacyHDREcosystem: &'static CFStringRef;
 }

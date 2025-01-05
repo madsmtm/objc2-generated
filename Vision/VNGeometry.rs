@@ -411,8 +411,8 @@ extern_methods!(
         /// The contour represented as a CGPath in normalized coordinates.
         ///
         /// The path is owned by this object and therefore will be alive as long as the the observation is alive.
-        #[method(normalizedPath)]
-        pub unsafe fn normalizedPath(&self) -> CGPathRef;
+        #[method_id(@__retain_semantics Other normalizedPath)]
+        pub unsafe fn normalizedPath(&self) -> Retained<CGPathRef>;
 
         /// The aspect ratio of the contour from the original image aspect ratio expressed as width/height
         #[method(aspectRatio)]

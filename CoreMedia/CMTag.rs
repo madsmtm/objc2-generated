@@ -586,7 +586,8 @@ extern "C-unwind" {
     /// Parameter `tag`: CMTag to describe.
     ///
     /// Returns: The created CFString description.
-    pub fn CMTagCopyDescription(allocator: CFAllocatorRef, tag: CMTag) -> CFStringRef;
+    pub fn CMTagCopyDescription(allocator: Option<&CFAllocatorRef>, tag: CMTag)
+        -> *mut CFStringRef;
 }
 
 extern "C-unwind" {
@@ -599,7 +600,10 @@ extern "C-unwind" {
     /// Parameter `allocator`: CFAllocator with which to create a dictionary. Pass kCFAllocatorDefault to use the default allocator.
     ///
     /// Returns: A CFDictionary version of the CMTag.
-    pub fn CMTagCopyAsDictionary(tag: CMTag, allocator: CFAllocatorRef) -> CFDictionaryRef;
+    pub fn CMTagCopyAsDictionary(
+        tag: CMTag,
+        allocator: Option<&CFAllocatorRef>,
+    ) -> *mut CFDictionaryRef;
 }
 
 extern "C-unwind" {
@@ -610,28 +614,28 @@ extern "C-unwind" {
     /// Parameter `dict`: A CFDictionary from which to create a CMTag.
     ///
     /// Returns: The created CMTag.
-    pub fn CMTagMakeFromDictionary(dict: CFDictionaryRef) -> CMTag;
+    pub fn CMTagMakeFromDictionary(dict: &CFDictionaryRef) -> CMTag;
 }
 
 extern "C" {
     /// CFDictionary key for value field of a CMTag.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagvaluekey?language=objc)
-    pub static kCMTagValueKey: CFStringRef;
+    pub static kCMTagValueKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// CFDictionary key for category field of a CMTag.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagcategorykey?language=objc)
-    pub static kCMTagCategoryKey: CFStringRef;
+    pub static kCMTagCategoryKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// CFDictionary key for dataType field of a CMTag.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagdatatypekey?language=objc)
-    pub static kCMTagDataTypeKey: CFStringRef;
+    pub static kCMTagDataTypeKey: &'static CFStringRef;
 }
 
 // TODO: pub fn CMTagGetCategory(tag: CMTag,) -> CMTagCategory;

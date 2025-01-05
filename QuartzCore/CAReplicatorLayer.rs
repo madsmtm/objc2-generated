@@ -67,13 +67,13 @@ extern_methods!(
         pub unsafe fn setInstanceTransform(&self, instance_transform: CATransform3D);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(instanceColor)]
-        pub unsafe fn instanceColor(&self) -> CGColorRef;
+        #[method_id(@__retain_semantics Other instanceColor)]
+        pub unsafe fn instanceColor(&self) -> Option<Retained<CGColorRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`instanceColor`][Self::instanceColor].
         #[method(setInstanceColor:)]
-        pub unsafe fn setInstanceColor(&self, instance_color: CGColorRef);
+        pub unsafe fn setInstanceColor(&self, instance_color: Option<&CGColorRef>);
 
         #[method(instanceRedOffset)]
         pub unsafe fn instanceRedOffset(&self) -> c_float;

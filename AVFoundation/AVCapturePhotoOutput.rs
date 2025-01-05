@@ -681,8 +681,8 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Other JPEGPhotoDataRepresentationForJPEGSampleBuffer:previewPhotoSampleBuffer:)]
         pub unsafe fn JPEGPhotoDataRepresentationForJPEGSampleBuffer_previewPhotoSampleBuffer(
-            jpeg_sample_buffer: CMSampleBufferRef,
-            preview_photo_sample_buffer: CMSampleBufferRef,
+            jpeg_sample_buffer: &CMSampleBufferRef,
+            preview_photo_sample_buffer: Option<&CMSampleBufferRef>,
         ) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -700,8 +700,8 @@ extern_methods!(
         #[deprecated]
         #[method_id(@__retain_semantics Other DNGPhotoDataRepresentationForRawSampleBuffer:previewPhotoSampleBuffer:)]
         pub unsafe fn DNGPhotoDataRepresentationForRawSampleBuffer_previewPhotoSampleBuffer(
-            raw_sample_buffer: CMSampleBufferRef,
-            preview_photo_sample_buffer: CMSampleBufferRef,
+            raw_sample_buffer: &CMSampleBufferRef,
+            preview_photo_sample_buffer: Option<&CMSampleBufferRef>,
         ) -> Option<Retained<NSData>>;
 
         /// A BOOL value specifying whether content aware distortion correction is supported.
@@ -2189,16 +2189,16 @@ extern_methods!(
         ///
         ///
         /// Uncompressed captures, such as '420f' or 'BGRA', Bayer RAW captures, such as 'bgg4', or Apple ProRAW captures, such as 'l64r', present pixel data as a CVPixelBuffer. See AVCapturePhotoOutput's -appleProRAWEnabled for a discussion on the differences between Bayer RAW and Apple ProRAW. This property is analogous to CMSampleBufferGetImageBuffer(). The pixel buffer contains only the minimal attachments required for correct display. Compressed captures, such as 'jpeg', return nil.
-        #[method(pixelBuffer)]
-        pub unsafe fn pixelBuffer(&self) -> CVPixelBufferRef;
+        #[method_id(@__retain_semantics Other pixelBuffer)]
+        pub unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBufferRef>>;
 
         #[cfg(feature = "objc2-core-video")]
         /// This property offers access to the preview image pixel data if you've requested it.
         ///
         ///
         /// If you requested a preview image by calling -[AVCapturePhotoSettings setPreviewPhotoFormat:] with a non-nil value, this property offers access to the resulting preview image pixel data, and is analogous to CMSampleBufferGetImageBuffer(). The pixel buffer contains only the minimal attachments required for correct display. Nil is returned if you did not request a preview image.
-        #[method(previewPixelBuffer)]
-        pub unsafe fn previewPixelBuffer(&self) -> CVPixelBufferRef;
+        #[method_id(@__retain_semantics Other previewPixelBuffer)]
+        pub unsafe fn previewPixelBuffer(&self) -> Option<Retained<CVPixelBufferRef>>;
 
         /// The format of the embedded thumbnail contained in this AVCapturePhoto.
         ///
@@ -2285,8 +2285,8 @@ extern_methods!(
         ///
         ///
         /// NULL is returned for any non constant color photos.
-        #[method(constantColorConfidenceMap)]
-        pub unsafe fn constantColorConfidenceMap(&self) -> CVPixelBufferRef;
+        #[method_id(@__retain_semantics Other constantColorConfidenceMap)]
+        pub unsafe fn constantColorConfidenceMap(&self) -> Option<Retained<CVPixelBufferRef>>;
 
         /// Returns a score summarizing the overall confidence level of a constant color photo -- 1.0 means full confidence, 0.0 means zero confidence.
         ///
@@ -2350,7 +2350,7 @@ extern_methods!(
             &self,
             replacement_metadata: Option<&NSDictionary<NSString, AnyObject>>,
             replacement_embedded_thumbnail_photo_format: Option<&NSDictionary<NSString, AnyObject>>,
-            replacement_embedded_thumbnail_pixel_buffer: CVPixelBufferRef,
+            replacement_embedded_thumbnail_pixel_buffer: Option<&CVPixelBufferRef>,
             replacement_depth_data: Option<&AVDepthData>,
         ) -> Option<Retained<NSData>>;
 
@@ -2362,8 +2362,8 @@ extern_methods!(
         ///
         ///
         /// Each time you access this method, AVCapturePhoto generates a new CGImageRef. When backed by a compressed container (such as HEIC), the CGImageRepresentation is decoded lazily as needed. When backed by an uncompressed format such as BGRA, it is copied into a separate backing buffer whose lifetime is not tied to that of the AVCapturePhoto. For a 12 megapixel image, a BGRA CGImage represents ~48 megabytes per call. If you only intend to use the CGImage for on-screen rendering, use the previewCGImageRepresentation instead. Note that the physical rotation of the CGImageRef matches that of the main image. Exif orientation has not been applied. If you wish to apply rotation when working with UIImage, you can do so by querying the photo's metadata[kCGImagePropertyOrientation] value, and passing it as the orientation parameter to +[UIImage imageWithCGImage:scale:orientation:]. RAW images always return a CGImageRepresentation of nil. If you wish to make a CGImageRef from a RAW image, use CIRAWFilter in the CoreImage framework.
-        #[method(CGImageRepresentation)]
-        pub unsafe fn CGImageRepresentation(&self) -> CGImageRef;
+        #[method_id(@__retain_semantics Other CGImageRepresentation)]
+        pub unsafe fn CGImageRepresentation(&self) -> Option<Retained<CGImageRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Utility method that converts the AVCapturePhoto's preview photo to a CGImage.
@@ -2373,8 +2373,8 @@ extern_methods!(
         ///
         ///
         /// Each time you access this method, AVCapturePhoto generates a new CGImageRef. This CGImageRepresentation is a RGB rendering of the previewPixelBuffer property. If you did not request a preview photo by setting the -[AVCapturePhotoSettings previewPhotoFormat] property, this method returns nil. Note that the physical rotation of the CGImageRef matches that of the main image. Exif orientation has not been applied. If you wish to apply rotation when working with UIImage, you can do so by querying the photo's metadata[kCGImagePropertyOrientation] value, and passing it as the orientation parameter to +[UIImage imageWithCGImage:scale:orientation:].
-        #[method(previewCGImageRepresentation)]
-        pub unsafe fn previewCGImageRepresentation(&self) -> CGImageRef;
+        #[method_id(@__retain_semantics Other previewCGImageRepresentation)]
+        pub unsafe fn previewCGImageRepresentation(&self) -> Option<Retained<CGImageRef>>;
     }
 );
 
@@ -2559,14 +2559,14 @@ extern_protocol!(
         ///
         /// This callback is optional. If your delegate does not implement this callback, the existing embedded thumbnail photo in the in-memory AVCapturePhoto container will be written to the file data representation.
         #[optional]
-        #[method(replacementEmbeddedThumbnailPixelBufferWithPhotoFormat:forPhoto:)]
+        #[method_id(@__retain_semantics Other replacementEmbeddedThumbnailPixelBufferWithPhotoFormat:forPhoto:)]
         unsafe fn replacementEmbeddedThumbnailPixelBufferWithPhotoFormat_forPhoto(
             &self,
             replacement_embedded_thumbnail_photo_format_out: &mut Option<
                 Retained<NSDictionary<NSString, AnyObject>>,
             >,
             photo: &AVCapturePhoto,
-        ) -> CVPixelBufferRef;
+        ) -> Option<Retained<CVPixelBufferRef>>;
 
         #[cfg(feature = "AVDepthData")]
         /// A callback in which you may provide replacement depth data, or strip the existing depth data from the flattened file data representation.

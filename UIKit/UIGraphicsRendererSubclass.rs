@@ -23,7 +23,7 @@ extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         #[method(prepareCGContext:withRendererContext:)]
         pub unsafe fn prepareCGContext_withRendererContext(
-            context: CGContextRef,
+            context: &CGContextRef,
             renderer_context: &UIGraphicsRendererContext,
         );
 

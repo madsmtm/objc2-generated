@@ -191,13 +191,13 @@ extern_methods!(
         pub unsafe fn setSpinRange(&self, spin_range: CGFloat);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(color)]
-        pub unsafe fn color(&self) -> CGColorRef;
+        #[method_id(@__retain_semantics Other color)]
+        pub unsafe fn color(&self) -> Option<Retained<CGColorRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
-        pub unsafe fn setColor(&self, color: CGColorRef);
+        pub unsafe fn setColor(&self, color: Option<&CGColorRef>);
 
         #[method(redRange)]
         pub unsafe fn redRange(&self) -> c_float;

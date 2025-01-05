@@ -5,5 +5,5 @@ use crate::*;
 
 extern "C-unwind" {
     #[cfg(feature = "CFURL")]
-    pub fn CFCopyHomeDirectoryURL() -> CFURLRef;
+    pub fn CFCopyHomeDirectoryURL() -> *mut CFURLRef;
 }

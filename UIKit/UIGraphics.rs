@@ -13,7 +13,7 @@ use crate::*;
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn UIGraphicsPushContext(context: CGContextRef);
+    pub fn UIGraphicsPushContext(context: &CGContextRef);
 }
 
 extern "C-unwind" {

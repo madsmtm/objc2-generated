@@ -667,12 +667,12 @@ extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other colorWithCGColor:)]
-        pub unsafe fn colorWithCGColor(cg_color: CGColorRef) -> Option<Retained<NSColor>>;
+        pub unsafe fn colorWithCGColor(cg_color: &CGColorRef) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[method(CGColor)]
-        pub unsafe fn CGColor(&self) -> CGColorRef;
+        #[method_id(@__retain_semantics Other CGColor)]
+        pub unsafe fn CGColor(&self) -> Retained<CGColorRef>;
 
         #[deprecated = "Use `showsAlpha` in `NSColorPanel` and `supportsAlpha` in `NSColorWell` to control alpha behavior for individual controls."]
         #[method(ignoresAlpha)]

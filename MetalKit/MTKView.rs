@@ -325,13 +325,13 @@ extern_methods!(
         /// The colorspace of the rendered frames. '
         ///
         /// If nil, no colormatching occurs.  If non-nil, the rendered content will be colormatched to the colorspace of the context containing this layer (typically the display's colorspace).  This property aliases the olorspace property or the view's CAMetalLayer
-        #[method(colorspace)]
-        pub unsafe fn colorspace(&self) -> CGColorSpaceRef;
+        #[method_id(@__retain_semantics Other colorspace)]
+        pub unsafe fn colorspace(&self) -> Option<Retained<CGColorSpaceRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorspace`][Self::colorspace].
         #[method(setColorspace:)]
-        pub unsafe fn setColorspace(&self, colorspace: CGColorSpaceRef);
+        pub unsafe fn setColorspace(&self, colorspace: Option<&CGColorSpaceRef>);
 
         /// Manually ask the view to draw new contents. This causes the view to call either the drawInMTKView (delegate) or drawRect (subclass) method.
         ///

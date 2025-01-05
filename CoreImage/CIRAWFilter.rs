@@ -323,7 +323,7 @@ extern_methods!(
         #[cfg(feature = "objc2-core-video")]
         #[method_id(@__retain_semantics Other filterWithCVPixelBuffer:properties:)]
         pub unsafe fn filterWithCVPixelBuffer_properties(
-            buffer: CVPixelBufferRef,
+            buffer: &CVPixelBufferRef,
             properties: &NSDictionary,
         ) -> Option<Retained<Self>>;
     }

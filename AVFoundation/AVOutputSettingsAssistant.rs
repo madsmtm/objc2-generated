@@ -152,13 +152,16 @@ extern_methods!(
         /// Setting this property will allow the receiver to make a more informed recommendation for the audio settings that should be used.  After setting this property, you should re-query the audioSettings property to get the new recommendation.  The default value is NULL, which means that the receiver does not know anything about the format of your audio data.
         ///
         /// If you set a non-NULL value for this property, and are using the receiver to initialize an AVAssetWriterInput, the same format description should be used to initialize the AVAssetWriterInput, along with the dictionary from the audioSettings property.
-        #[method(sourceAudioFormat)]
-        pub unsafe fn sourceAudioFormat(&self) -> CMAudioFormatDescriptionRef;
+        #[method_id(@__retain_semantics Other sourceAudioFormat)]
+        pub unsafe fn sourceAudioFormat(&self) -> Option<Retained<CMAudioFormatDescriptionRef>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`sourceAudioFormat`][Self::sourceAudioFormat].
         #[method(setSourceAudioFormat:)]
-        pub unsafe fn setSourceAudioFormat(&self, source_audio_format: CMAudioFormatDescriptionRef);
+        pub unsafe fn setSourceAudioFormat(
+            &self,
+            source_audio_format: Option<&CMAudioFormatDescriptionRef>,
+        );
 
         #[cfg(feature = "objc2-core-media")]
         /// A CMVideoFormatDescription object describing the format of your video data
@@ -166,13 +169,16 @@ extern_methods!(
         /// Setting this property will allow the receiver to make a more informed recommendation for the video settings that should be used.  After setting this property, you should re-query the videoSettings property to get the new recommendation.  The default value is NULL, which means that the receiver does not know anything about the format of your video data.
         ///
         /// If you set a non-NULL value for this property, and are using the receiver to initialize an AVAssetWriterInput, the same format description should be used to initialize the AVAssetWriterInput, along with the dictionary from the videoSettings property.
-        #[method(sourceVideoFormat)]
-        pub unsafe fn sourceVideoFormat(&self) -> CMVideoFormatDescriptionRef;
+        #[method_id(@__retain_semantics Other sourceVideoFormat)]
+        pub unsafe fn sourceVideoFormat(&self) -> Option<Retained<CMVideoFormatDescriptionRef>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`sourceVideoFormat`][Self::sourceVideoFormat].
         #[method(setSourceVideoFormat:)]
-        pub unsafe fn setSourceVideoFormat(&self, source_video_format: CMVideoFormatDescriptionRef);
+        pub unsafe fn setSourceVideoFormat(
+            &self,
+            source_video_format: Option<&CMVideoFormatDescriptionRef>,
+        );
 
         #[cfg(feature = "objc2-core-media")]
         /// A CMTime describing the average frame duration (reciprocal of average frame rate) of your video data

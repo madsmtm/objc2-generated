@@ -288,7 +288,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCGImage:)]
         pub unsafe fn initWithCGImage(
             this: Allocated<Self>,
-            cg_image: CGImageRef,
+            cg_image: &CGImageRef,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-image")]
@@ -414,8 +414,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[method(CGImage)]
-        pub unsafe fn CGImage(&self) -> CGImageRef;
+        #[method_id(@__retain_semantics Other CGImage)]
+        pub unsafe fn CGImage(&self) -> Option<Retained<CGImageRef>>;
 
         #[cfg(feature = "NSColorSpace")]
         #[method_id(@__retain_semantics Other colorSpace)]

@@ -139,7 +139,7 @@ extern_methods!(
         /// Creates a CBUUID with a CFUUIDRef.
         #[deprecated]
         #[method_id(@__retain_semantics Other UUIDWithCFUUID:)]
-        pub unsafe fn UUIDWithCFUUID(the_uuid: CFUUIDRef) -> Retained<CBUUID>;
+        pub unsafe fn UUIDWithCFUUID(the_uuid: &CFUUIDRef) -> Retained<CBUUID>;
 
         /// Creates a CBUUID with an NSUUID.
         #[method_id(@__retain_semantics Other UUIDWithNSUUID:)]

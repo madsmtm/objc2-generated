@@ -90,7 +90,7 @@ extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other contextWithCGContext:options:)]
         pub unsafe fn contextWithCGContext_options(
-            cgctx: CGContextRef,
+            cgctx: &CGContextRef,
             options: Option<&NSDictionary<CIContextOption, AnyObject>>,
         ) -> Retained<CIContext>;
 
@@ -138,8 +138,8 @@ extern_methods!(
         ) -> Retained<CIContext>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(workingColorSpace)]
-        pub unsafe fn workingColorSpace(&self) -> CGColorSpaceRef;
+        #[method_id(@__retain_semantics Other workingColorSpace)]
+        pub unsafe fn workingColorSpace(&self) -> Option<Retained<CGColorSpaceRef>>;
 
         #[cfg(feature = "CIImage")]
         #[method(workingFormat)]
@@ -177,7 +177,7 @@ extern_methods!(
             row_bytes: isize,
             bounds: CGRect,
             format: CIFormat,
-            color_space: CGColorSpaceRef,
+            color_space: Option<&CGColorSpaceRef>,
         );
 
         #[cfg(all(
@@ -190,14 +190,14 @@ extern_methods!(
         pub unsafe fn render_toIOSurface_bounds_colorSpace(
             &self,
             image: &CIImage,
-            surface: IOSurfaceRef,
+            surface: &IOSurfaceRef,
             bounds: CGRect,
-            color_space: CGColorSpaceRef,
+            color_space: Option<&CGColorSpaceRef>,
         );
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-video"))]
         #[method(render:toCVPixelBuffer:)]
-        pub unsafe fn render_toCVPixelBuffer(&self, image: &CIImage, buffer: CVPixelBufferRef);
+        pub unsafe fn render_toCVPixelBuffer(&self, image: &CIImage, buffer: &CVPixelBufferRef);
 
         #[cfg(all(
             feature = "CIImage",
@@ -209,9 +209,9 @@ extern_methods!(
         pub unsafe fn render_toCVPixelBuffer_bounds_colorSpace(
             &self,
             image: &CIImage,
-            buffer: CVPixelBufferRef,
+            buffer: &CVPixelBufferRef,
             bounds: CGRect,
-            color_space: CGColorSpaceRef,
+            color_space: Option<&CGColorSpaceRef>,
         );
 
         #[cfg(all(
@@ -227,7 +227,7 @@ extern_methods!(
             texture: &ProtocolObject<dyn MTLTexture>,
             command_buffer: Option<&ProtocolObject<dyn MTLCommandBuffer>>,
             bounds: CGRect,
-            color_space: CGColorSpaceRef,
+            color_space: &CGColorSpaceRef,
         );
 
         #[method(reclaimResources)]
@@ -356,7 +356,7 @@ extern_methods!(
             &self,
             image: &CIImage,
             format: CIFormat,
-            color_space: CGColorSpaceRef,
+            color_space: &CGColorSpaceRef,
             options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
         ) -> Option<Retained<NSData>>;
 
@@ -365,7 +365,7 @@ extern_methods!(
         pub unsafe fn JPEGRepresentationOfImage_colorSpace_options(
             &self,
             image: &CIImage,
-            color_space: CGColorSpaceRef,
+            color_space: &CGColorSpaceRef,
             options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
         ) -> Option<Retained<NSData>>;
 
@@ -375,7 +375,7 @@ extern_methods!(
             &self,
             image: &CIImage,
             format: CIFormat,
-            color_space: CGColorSpaceRef,
+            color_space: &CGColorSpaceRef,
             options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
         ) -> Option<Retained<NSData>>;
 
@@ -384,7 +384,7 @@ extern_methods!(
         pub unsafe fn HEIF10RepresentationOfImage_colorSpace_options_error(
             &self,
             image: &CIImage,
-            color_space: CGColorSpaceRef,
+            color_space: &CGColorSpaceRef,
             options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
@@ -394,7 +394,7 @@ extern_methods!(
             &self,
             image: &CIImage,
             format: CIFormat,
-            color_space: CGColorSpaceRef,
+            color_space: &CGColorSpaceRef,
             options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
         ) -> Option<Retained<NSData>>;
 
@@ -413,7 +413,7 @@ extern_methods!(
             image: &CIImage,
             url: &NSURL,
             format: CIFormat,
-            color_space: CGColorSpaceRef,
+            color_space: &CGColorSpaceRef,
             options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
@@ -424,7 +424,7 @@ extern_methods!(
             image: &CIImage,
             url: &NSURL,
             format: CIFormat,
-            color_space: CGColorSpaceRef,
+            color_space: &CGColorSpaceRef,
             options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
@@ -434,7 +434,7 @@ extern_methods!(
             &self,
             image: &CIImage,
             url: &NSURL,
-            color_space: CGColorSpaceRef,
+            color_space: &CGColorSpaceRef,
             options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
@@ -445,7 +445,7 @@ extern_methods!(
             image: &CIImage,
             url: &NSURL,
             format: CIFormat,
-            color_space: CGColorSpaceRef,
+            color_space: &CGColorSpaceRef,
             options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 
@@ -455,7 +455,7 @@ extern_methods!(
             &self,
             image: &CIImage,
             url: &NSURL,
-            color_space: CGColorSpaceRef,
+            color_space: &CGColorSpaceRef,
             options: &NSDictionary<CIImageRepresentationOption, AnyObject>,
         ) -> Result<(), Retained<NSError>>;
 

@@ -104,13 +104,13 @@ extern_methods!(
         /// Returns the calendar color as a CGColorRef.
         ///
         /// This will be nil for new calendars until you set it.
-        #[method(CGColor)]
-        pub unsafe fn CGColor(&self) -> CGColorRef;
+        #[method_id(@__retain_semantics Other CGColor)]
+        pub unsafe fn CGColor(&self) -> Option<Retained<CGColorRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`CGColor`][Self::CGColor].
         #[method(setCGColor:)]
-        pub unsafe fn setCGColor(&self, cg_color: CGColorRef);
+        pub unsafe fn setCGColor(&self, cg_color: Option<&CGColorRef>);
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

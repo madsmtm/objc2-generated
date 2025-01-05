@@ -64,7 +64,7 @@ extern_methods!(
         /// Returns: A tagged buffer group for the specified host time if a sample is available, and NULL otherwise.
         ///
         /// The client is responsible for releasing the returned CMTaggedBufferGroup.
-        #[method(copyTaggedBufferGroupForHostTime:presentationTimeStamp:activeConfiguration:)]
+        #[method_id(@__retain_semantics Copy copyTaggedBufferGroupForHostTime:presentationTimeStamp:activeConfiguration:)]
         pub unsafe fn copyTaggedBufferGroupForHostTime_presentationTimeStamp_activeConfiguration(
             &self,
             host_time: CMTime,
@@ -72,7 +72,7 @@ extern_methods!(
             active_configuration_out: Option<
                 &mut Option<Retained<AVPlayerVideoOutputConfiguration>>,
             >,
-        ) -> CMTaggedBufferGroupRef;
+        ) -> Option<Retained<CMTaggedBufferGroupRef>>;
     }
 );
 
@@ -116,7 +116,7 @@ extern "C-unwind" {
     /// Returns: noErr if successful. Otherwise, an error describing why a tag collection could not be created.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMTagCollectionCreateWithVideoOutputPreset(
-        allocator: CFAllocatorRef,
+        allocator: Option<&CFAllocatorRef>,
         preset: CMTagCollectionVideoOutputPreset,
         new_collection_out: NonNull<CMTagCollectionRef>,
     ) -> OSStatus;
@@ -182,7 +182,7 @@ extern_methods!(
         pub unsafe fn setOutputPixelBufferAttributes_forTagCollection(
             &self,
             pixel_buffer_attributes: Option<&NSDictionary<NSString, AnyObject>>,
-            tag_collection: CMTagCollectionRef,
+            tag_collection: &CMTagCollectionRef,
         );
 
         #[cfg(feature = "objc2-core-media")]
@@ -207,7 +207,7 @@ extern_methods!(
         pub unsafe fn setOutputSettings_forTagCollection(
             &self,
             output_settings: Option<&NSDictionary<NSString, AnyObject>>,
-            tag_collection: CMTagCollectionRef,
+            tag_collection: &CMTagCollectionRef,
         );
 
         /// Tag collections held by AVVideoOutputSpecification.

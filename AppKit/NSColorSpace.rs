@@ -84,13 +84,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCGColorSpace:)]
         pub unsafe fn initWithCGColorSpace(
             this: Allocated<Self>,
-            cg_color_space: CGColorSpaceRef,
+            cg_color_space: &CGColorSpaceRef,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[method(CGColorSpace)]
-        pub unsafe fn CGColorSpace(&self) -> CGColorSpaceRef;
+        #[method_id(@__retain_semantics Other CGColorSpace)]
+        pub unsafe fn CGColorSpace(&self) -> Option<Retained<CGColorSpaceRef>>;
 
         #[method(numberOfColorComponents)]
         pub unsafe fn numberOfColorComponents(&self) -> NSInteger;

@@ -64,8 +64,8 @@ unsafe impl NSObjectProtocol for UIGraphicsRendererContext {}
 extern_methods!(
     unsafe impl UIGraphicsRendererContext {
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(CGContext)]
-        pub unsafe fn CGContext(&self) -> CGContextRef;
+        #[method_id(@__retain_semantics Other CGContext)]
+        pub unsafe fn CGContext(&self) -> Retained<CGContextRef>;
 
         #[method_id(@__retain_semantics Other format)]
         pub unsafe fn format(&self) -> Retained<UIGraphicsRendererFormat>;

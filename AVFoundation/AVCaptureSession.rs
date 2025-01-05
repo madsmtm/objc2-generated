@@ -584,16 +584,16 @@ extern_methods!(
         /// CMTime originalPTS = CMSyncConvertTime( syncedPTS, [session synchronizationClock], originalClock );
         ///
         /// This property is key-value observable.
-        #[method(synchronizationClock)]
-        pub unsafe fn synchronizationClock(&self) -> CMClockRef;
+        #[method_id(@__retain_semantics Other synchronizationClock)]
+        pub unsafe fn synchronizationClock(&self) -> Option<Retained<CMClockRef>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Provides the clock being used for synchronization.
         ///
         /// Deprecated. Please use synchronizationClock instead.
         #[deprecated]
-        #[method(masterClock)]
-        pub unsafe fn masterClock(&self) -> CMClockRef;
+        #[method_id(@__retain_semantics Other masterClock)]
+        pub unsafe fn masterClock(&self) -> Option<Retained<CMClockRef>>;
 
         /// Indicates the percentage of the session's available hardware budget currently in use.
         ///

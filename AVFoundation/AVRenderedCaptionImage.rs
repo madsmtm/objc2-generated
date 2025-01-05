@@ -38,8 +38,8 @@ extern_methods!(
         /// If the client reads a pixelBuffer and wants to use it longer than AVRenderedCaptionImage, it must retain the pixelBuffer. The pixel buffer can be converted to MTLTexture using CVMetalTextureCache. The pixel format is fixed to kCVPixelFormatType_32BGRA defined in
         /// <CoreVideo
         /// /CVPixelBuffer.h>.
-        #[method(pixelBuffer)]
-        pub unsafe fn pixelBuffer(&self) -> CVPixelBufferRef;
+        #[method_id(@__retain_semantics Other pixelBuffer)]
+        pub unsafe fn pixelBuffer(&self) -> Retained<CVPixelBufferRef>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// A CGPoint that defines the position (in pixels) of the rendered caption image relative to the video frame

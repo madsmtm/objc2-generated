@@ -44,14 +44,14 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[deprecated = "OpenGL is deprecated"]
-        #[method(colorspace)]
-        pub unsafe fn colorspace(&self) -> CGColorSpaceRef;
+        #[method_id(@__retain_semantics Other colorspace)]
+        pub unsafe fn colorspace(&self) -> Option<Retained<CGColorSpaceRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorspace`][Self::colorspace].
         #[deprecated = "OpenGL is deprecated"]
         #[method(setColorspace:)]
-        pub unsafe fn setColorspace(&self, colorspace: CGColorSpaceRef);
+        pub unsafe fn setColorspace(&self, colorspace: Option<&CGColorSpaceRef>);
 
         #[deprecated = "OpenGL is deprecated"]
         #[method(wantsExtendedDynamicRangeContent)]

@@ -2083,6 +2083,8 @@ pub use self::__NSApplication::NSUpdateDynamicServices;
 pub use self::__NSApplication::NSUpdateWindowsRunLoopOrdering;
 #[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSWindowListOptions;
+#[cfg(feature = "NSApplication")]
+pub(crate) use self::__NSApplication::_NSModalSession;
 #[cfg(all(
     feature = "NSArrayController",
     feature = "NSController",

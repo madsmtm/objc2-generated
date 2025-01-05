@@ -234,7 +234,7 @@ extern_methods!(
             &self,
             foreground: &CIImage,
             background: &CIImage,
-            color_space: CGColorSpaceRef,
+            color_space: &CGColorSpaceRef,
         ) -> Option<Retained<CIImage>>;
     }
 );

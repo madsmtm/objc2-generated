@@ -10,9 +10,9 @@ use crate::*;
 
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
-pub unsafe extern "C-unwind" fn AXNameFromColor(color: CGColorRef) -> Retained<NSString> {
+pub unsafe extern "C-unwind" fn AXNameFromColor(color: &CGColorRef) -> Retained<NSString> {
     extern "C-unwind" {
-        fn AXNameFromColor(color: CGColorRef) -> NonNull<NSString>;
+        fn AXNameFromColor(color: &CGColorRef) -> NonNull<NSString>;
     }
     let ret = unsafe { AXNameFromColor(color) };
     unsafe { Retained::retain_autoreleased(ret.as_ptr()) }

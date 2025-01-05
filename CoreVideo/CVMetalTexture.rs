@@ -38,11 +38,11 @@ extern "C-unwind" {
 #[cfg(not(target_os = "watchos"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CVMetalTextureGetTexture(
-    image: CVMetalTextureRef,
+    image: &CVMetalTextureRef,
 ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>> {
     extern "C-unwind" {
         fn CVMetalTextureGetTexture(
-            image: CVMetalTextureRef,
+            image: &CVMetalTextureRef,
         ) -> *mut ProtocolObject<dyn MTLTexture>;
     }
     let ret = unsafe { CVMetalTextureGetTexture(image) };
@@ -56,19 +56,19 @@ extern "C-unwind" {
     ///
     /// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    pub fn CVMetalTextureIsFlipped(image: CVMetalTextureRef) -> Boolean;
+    pub fn CVMetalTextureIsFlipped(image: &CVMetalTextureRef) -> Boolean;
 }
 
 extern "C" {
     /// kCVMetalTextureUsage is a property that can be placed on a CVMetalTextureCache to instruct the MTLTextureUsage of the created MTLTexture. Values for this can can be read from MTLTexture.h
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvmetaltextureusage?language=objc)
-    pub static kCVMetalTextureUsage: CFStringRef;
+    pub static kCVMetalTextureUsage: &'static CFStringRef;
 }
 
 extern "C" {
     /// kCVMetalTextureStorageMode is a property that can be placed on a CVMetalTextureCache to instruct the MTLTextureStorageMode of the created MTLTexture. Values for this can can be read from MTLTexture.h
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvmetaltexturestoragemode?language=objc)
-    pub static kCVMetalTextureStorageMode: CFStringRef;
+    pub static kCVMetalTextureStorageMode: &'static CFStringRef;
 }

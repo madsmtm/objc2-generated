@@ -33,10 +33,10 @@ extern "C-unwind" {
 #[cfg(not(target_os = "watchos"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CVMetalBufferGetBuffer(
-    buffer: CVMetalBufferRef,
+    buffer: &CVMetalBufferRef,
 ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>> {
     extern "C-unwind" {
-        fn CVMetalBufferGetBuffer(buffer: CVMetalBufferRef) -> *mut ProtocolObject<dyn MTLBuffer>;
+        fn CVMetalBufferGetBuffer(buffer: &CVMetalBufferRef) -> *mut ProtocolObject<dyn MTLBuffer>;
     }
     let ret = unsafe { CVMetalBufferGetBuffer(buffer) };
     unsafe { Retained::retain_autoreleased(ret) }

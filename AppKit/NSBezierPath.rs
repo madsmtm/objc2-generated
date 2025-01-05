@@ -148,18 +148,18 @@ extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other bezierPathWithCGPath:)]
-        pub unsafe fn bezierPathWithCGPath(cg_path: CGPathRef) -> Retained<NSBezierPath>;
+        pub unsafe fn bezierPathWithCGPath(cg_path: &CGPathRef) -> Retained<NSBezierPath>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[method(CGPath)]
-        pub unsafe fn CGPath(&self) -> CGPathRef;
+        #[method_id(@__retain_semantics Other CGPath)]
+        pub unsafe fn CGPath(&self) -> Retained<CGPathRef>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         /// Setter for [`CGPath`][Self::CGPath].
         #[method(setCGPath:)]
-        pub unsafe fn setCGPath(&self, cg_path: CGPathRef);
+        pub unsafe fn setCGPath(&self, cg_path: &CGPathRef);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(fillRect:)]

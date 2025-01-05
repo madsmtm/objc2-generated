@@ -10,371 +10,373 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercgcolorspacekey?language=objc)
-    pub static kCVImageBufferCGColorSpaceKey: CFStringRef;
+    pub static kCVImageBufferCGColorSpaceKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercleanaperturekey?language=objc)
-    pub static kCVImageBufferCleanApertureKey: CFStringRef;
+    pub static kCVImageBufferCleanApertureKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercleanaperturewidthkey?language=objc)
-    pub static kCVImageBufferCleanApertureWidthKey: CFStringRef;
+    pub static kCVImageBufferCleanApertureWidthKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercleanapertureheightkey?language=objc)
-    pub static kCVImageBufferCleanApertureHeightKey: CFStringRef;
+    pub static kCVImageBufferCleanApertureHeightKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercleanaperturehorizontaloffsetkey?language=objc)
-    pub static kCVImageBufferCleanApertureHorizontalOffsetKey: CFStringRef;
+    pub static kCVImageBufferCleanApertureHorizontalOffsetKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercleanapertureverticaloffsetkey?language=objc)
-    pub static kCVImageBufferCleanApertureVerticalOffsetKey: CFStringRef;
+    pub static kCVImageBufferCleanApertureVerticalOffsetKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpreferredcleanaperturekey?language=objc)
-    pub static kCVImageBufferPreferredCleanApertureKey: CFStringRef;
+    pub static kCVImageBufferPreferredCleanApertureKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferfieldcountkey?language=objc)
-    pub static kCVImageBufferFieldCountKey: CFStringRef;
+    pub static kCVImageBufferFieldCountKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferfielddetailkey?language=objc)
-    pub static kCVImageBufferFieldDetailKey: CFStringRef;
+    pub static kCVImageBufferFieldDetailKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferfielddetailtemporaltopfirst?language=objc)
-    pub static kCVImageBufferFieldDetailTemporalTopFirst: CFStringRef;
+    pub static kCVImageBufferFieldDetailTemporalTopFirst: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferfielddetailtemporalbottomfirst?language=objc)
-    pub static kCVImageBufferFieldDetailTemporalBottomFirst: CFStringRef;
+    pub static kCVImageBufferFieldDetailTemporalBottomFirst: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferfielddetailspatialfirstlineearly?language=objc)
-    pub static kCVImageBufferFieldDetailSpatialFirstLineEarly: CFStringRef;
+    pub static kCVImageBufferFieldDetailSpatialFirstLineEarly: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferfielddetailspatialfirstlinelate?language=objc)
-    pub static kCVImageBufferFieldDetailSpatialFirstLineLate: CFStringRef;
+    pub static kCVImageBufferFieldDetailSpatialFirstLineLate: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpixelaspectratiokey?language=objc)
-    pub static kCVImageBufferPixelAspectRatioKey: CFStringRef;
+    pub static kCVImageBufferPixelAspectRatioKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpixelaspectratiohorizontalspacingkey?language=objc)
-    pub static kCVImageBufferPixelAspectRatioHorizontalSpacingKey: CFStringRef;
+    pub static kCVImageBufferPixelAspectRatioHorizontalSpacingKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpixelaspectratioverticalspacingkey?language=objc)
-    pub static kCVImageBufferPixelAspectRatioVerticalSpacingKey: CFStringRef;
+    pub static kCVImageBufferPixelAspectRatioVerticalSpacingKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaydimensionskey?language=objc)
-    pub static kCVImageBufferDisplayDimensionsKey: CFStringRef;
+    pub static kCVImageBufferDisplayDimensionsKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplaywidthkey?language=objc)
-    pub static kCVImageBufferDisplayWidthKey: CFStringRef;
+    pub static kCVImageBufferDisplayWidthKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferdisplayheightkey?language=objc)
-    pub static kCVImageBufferDisplayHeightKey: CFStringRef;
+    pub static kCVImageBufferDisplayHeightKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffergammalevelkey?language=objc)
-    pub static kCVImageBufferGammaLevelKey: CFStringRef;
+    pub static kCVImageBufferGammaLevelKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffericcprofilekey?language=objc)
-    pub static kCVImageBufferICCProfileKey: CFStringRef;
+    pub static kCVImageBufferICCProfileKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferycbcrmatrixkey?language=objc)
-    pub static kCVImageBufferYCbCrMatrixKey: CFStringRef;
+    pub static kCVImageBufferYCbCrMatrixKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferycbcrmatrix_itu_r_709_2?language=objc)
-    pub static kCVImageBufferYCbCrMatrix_ITU_R_709_2: CFStringRef;
+    pub static kCVImageBufferYCbCrMatrix_ITU_R_709_2: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferycbcrmatrix_itu_r_601_4?language=objc)
-    pub static kCVImageBufferYCbCrMatrix_ITU_R_601_4: CFStringRef;
+    pub static kCVImageBufferYCbCrMatrix_ITU_R_601_4: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferycbcrmatrix_smpte_240m_1995?language=objc)
-    pub static kCVImageBufferYCbCrMatrix_SMPTE_240M_1995: CFStringRef;
+    pub static kCVImageBufferYCbCrMatrix_SMPTE_240M_1995: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferycbcrmatrix_dci_p3?language=objc)
-    pub static kCVImageBufferYCbCrMatrix_DCI_P3: CFStringRef;
+    pub static kCVImageBufferYCbCrMatrix_DCI_P3: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferycbcrmatrix_p3_d65?language=objc)
-    pub static kCVImageBufferYCbCrMatrix_P3_D65: CFStringRef;
+    pub static kCVImageBufferYCbCrMatrix_P3_D65: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferycbcrmatrix_itu_r_2020?language=objc)
-    pub static kCVImageBufferYCbCrMatrix_ITU_R_2020: CFStringRef;
+    pub static kCVImageBufferYCbCrMatrix_ITU_R_2020: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercolorprimarieskey?language=objc)
-    pub static kCVImageBufferColorPrimariesKey: CFStringRef;
+    pub static kCVImageBufferColorPrimariesKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercolorprimaries_itu_r_709_2?language=objc)
-    pub static kCVImageBufferColorPrimaries_ITU_R_709_2: CFStringRef;
+    pub static kCVImageBufferColorPrimaries_ITU_R_709_2: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercolorprimaries_ebu_3213?language=objc)
-    pub static kCVImageBufferColorPrimaries_EBU_3213: CFStringRef;
+    pub static kCVImageBufferColorPrimaries_EBU_3213: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercolorprimaries_smpte_c?language=objc)
-    pub static kCVImageBufferColorPrimaries_SMPTE_C: CFStringRef;
+    pub static kCVImageBufferColorPrimaries_SMPTE_C: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercolorprimaries_p22?language=objc)
-    pub static kCVImageBufferColorPrimaries_P22: CFStringRef;
+    pub static kCVImageBufferColorPrimaries_P22: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercolorprimaries_dci_p3?language=objc)
-    pub static kCVImageBufferColorPrimaries_DCI_P3: CFStringRef;
+    pub static kCVImageBufferColorPrimaries_DCI_P3: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercolorprimaries_p3_d65?language=objc)
-    pub static kCVImageBufferColorPrimaries_P3_D65: CFStringRef;
+    pub static kCVImageBufferColorPrimaries_P3_D65: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercolorprimaries_itu_r_2020?language=objc)
-    pub static kCVImageBufferColorPrimaries_ITU_R_2020: CFStringRef;
+    pub static kCVImageBufferColorPrimaries_ITU_R_2020: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunctionkey?language=objc)
-    pub static kCVImageBufferTransferFunctionKey: CFStringRef;
+    pub static kCVImageBufferTransferFunctionKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_itu_r_709_2?language=objc)
-    pub static kCVImageBufferTransferFunction_ITU_R_709_2: CFStringRef;
+    pub static kCVImageBufferTransferFunction_ITU_R_709_2: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_smpte_240m_1995?language=objc)
-    pub static kCVImageBufferTransferFunction_SMPTE_240M_1995: CFStringRef;
+    pub static kCVImageBufferTransferFunction_SMPTE_240M_1995: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_usegamma?language=objc)
-    pub static kCVImageBufferTransferFunction_UseGamma: CFStringRef;
+    pub static kCVImageBufferTransferFunction_UseGamma: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_ebu_3213?language=objc)
-    pub static kCVImageBufferTransferFunction_EBU_3213: CFStringRef;
+    pub static kCVImageBufferTransferFunction_EBU_3213: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_smpte_c?language=objc)
-    pub static kCVImageBufferTransferFunction_SMPTE_C: CFStringRef;
+    pub static kCVImageBufferTransferFunction_SMPTE_C: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_srgb?language=objc)
-    pub static kCVImageBufferTransferFunction_sRGB: CFStringRef;
+    pub static kCVImageBufferTransferFunction_sRGB: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_itu_r_2020?language=objc)
-    pub static kCVImageBufferTransferFunction_ITU_R_2020: CFStringRef;
+    pub static kCVImageBufferTransferFunction_ITU_R_2020: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_smpte_st_428_1?language=objc)
-    pub static kCVImageBufferTransferFunction_SMPTE_ST_428_1: CFStringRef;
+    pub static kCVImageBufferTransferFunction_SMPTE_ST_428_1: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_smpte_st_2084_pq?language=objc)
-    pub static kCVImageBufferTransferFunction_SMPTE_ST_2084_PQ: CFStringRef;
+    pub static kCVImageBufferTransferFunction_SMPTE_ST_2084_PQ: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_itu_r_2100_hlg?language=objc)
-    pub static kCVImageBufferTransferFunction_ITU_R_2100_HLG: CFStringRef;
+    pub static kCVImageBufferTransferFunction_ITU_R_2100_HLG: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffertransferfunction_linear?language=objc)
-    pub static kCVImageBufferTransferFunction_Linear: CFStringRef;
+    pub static kCVImageBufferTransferFunction_Linear: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocationtopfieldkey?language=objc)
-    pub static kCVImageBufferChromaLocationTopFieldKey: CFStringRef;
+    pub static kCVImageBufferChromaLocationTopFieldKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocationbottomfieldkey?language=objc)
-    pub static kCVImageBufferChromaLocationBottomFieldKey: CFStringRef;
+    pub static kCVImageBufferChromaLocationBottomFieldKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocation_left?language=objc)
-    pub static kCVImageBufferChromaLocation_Left: CFStringRef;
+    pub static kCVImageBufferChromaLocation_Left: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocation_center?language=objc)
-    pub static kCVImageBufferChromaLocation_Center: CFStringRef;
+    pub static kCVImageBufferChromaLocation_Center: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocation_topleft?language=objc)
-    pub static kCVImageBufferChromaLocation_TopLeft: CFStringRef;
+    pub static kCVImageBufferChromaLocation_TopLeft: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocation_top?language=objc)
-    pub static kCVImageBufferChromaLocation_Top: CFStringRef;
+    pub static kCVImageBufferChromaLocation_Top: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocation_bottomleft?language=objc)
-    pub static kCVImageBufferChromaLocation_BottomLeft: CFStringRef;
+    pub static kCVImageBufferChromaLocation_BottomLeft: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocation_bottom?language=objc)
-    pub static kCVImageBufferChromaLocation_Bottom: CFStringRef;
+    pub static kCVImageBufferChromaLocation_Bottom: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromalocation_dv420?language=objc)
-    pub static kCVImageBufferChromaLocation_DV420: CFStringRef;
+    pub static kCVImageBufferChromaLocation_DV420: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromasubsamplingkey?language=objc)
-    pub static kCVImageBufferChromaSubsamplingKey: CFStringRef;
+    pub static kCVImageBufferChromaSubsamplingKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromasubsampling_420?language=objc)
-    pub static kCVImageBufferChromaSubsampling_420: CFStringRef;
+    pub static kCVImageBufferChromaSubsampling_420: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromasubsampling_422?language=objc)
-    pub static kCVImageBufferChromaSubsampling_422: CFStringRef;
+    pub static kCVImageBufferChromaSubsampling_422: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferchromasubsampling_411?language=objc)
-    pub static kCVImageBufferChromaSubsampling_411: CFStringRef;
+    pub static kCVImageBufferChromaSubsampling_411: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferalphachannelisopaque?language=objc)
-    pub static kCVImageBufferAlphaChannelIsOpaque: CFStringRef;
+    pub static kCVImageBufferAlphaChannelIsOpaque: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferalphachannelmodekey?language=objc)
-    pub static kCVImageBufferAlphaChannelModeKey: CFStringRef;
+    pub static kCVImageBufferAlphaChannelModeKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferalphachannelmode_straightalpha?language=objc)
-    pub static kCVImageBufferAlphaChannelMode_StraightAlpha: CFStringRef;
+    pub static kCVImageBufferAlphaChannelMode_StraightAlpha: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferalphachannelmode_premultipliedalpha?language=objc)
-    pub static kCVImageBufferAlphaChannelMode_PremultipliedAlpha: CFStringRef;
+    pub static kCVImageBufferAlphaChannelMode_PremultipliedAlpha: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpostdecodeprocessingsequencemetadatakey?language=objc)
-    pub static kCVImageBufferPostDecodeProcessingSequenceMetadataKey: CFStringRef;
+    pub static kCVImageBufferPostDecodeProcessingSequenceMetadataKey: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpostdecodeprocessingframemetadatakey?language=objc)
-    pub static kCVImageBufferPostDecodeProcessingFrameMetadataKey: CFStringRef;
+    pub static kCVImageBufferPostDecodeProcessingFrameMetadataKey: Option<&'static CFStringRef>;
 }
 
 extern "C-unwind" {
-    pub fn CVYCbCrMatrixGetIntegerCodePointForString(y_cb_cr_matrix_string: CFStringRef) -> c_int;
+    pub fn CVYCbCrMatrixGetIntegerCodePointForString(
+        y_cb_cr_matrix_string: Option<&CFStringRef>,
+    ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn CVColorPrimariesGetIntegerCodePointForString(
-        color_primaries_string: CFStringRef,
+        color_primaries_string: Option<&CFStringRef>,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn CVTransferFunctionGetIntegerCodePointForString(
-        transfer_function_string: CFStringRef,
+        transfer_function_string: Option<&CFStringRef>,
     ) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn CVYCbCrMatrixGetStringForIntegerCodePoint(
         y_cb_cr_matrix_code_point: c_int,
-    ) -> CFStringRef;
+    ) -> *mut CFStringRef;
 }
 
 extern "C-unwind" {
     pub fn CVColorPrimariesGetStringForIntegerCodePoint(
         color_primaries_code_point: c_int,
-    ) -> CFStringRef;
+    ) -> *mut CFStringRef;
 }
 
 extern "C-unwind" {
     pub fn CVTransferFunctionGetStringForIntegerCodePoint(
         transfer_function_code_point: c_int,
-    ) -> CFStringRef;
+    ) -> *mut CFStringRef;
 }
 
 /// Base type for all CoreVideo image buffers
@@ -391,7 +393,7 @@ extern "C-unwind" {
     /// Returns: A CGSize returning the full encoded size of the buffer
     /// Returns zero size if called with a non-CVImageBufferRef type or NULL.
     #[cfg(feature = "CVBuffer")]
-    pub fn CVImageBufferGetEncodedSize(image_buffer: CVImageBufferRef) -> CGSize;
+    pub fn CVImageBufferGetEncodedSize(image_buffer: &CVImageBufferRef) -> CGSize;
 }
 
 extern "C-unwind" {
@@ -403,7 +405,7 @@ extern "C-unwind" {
     /// Returns: A CGSize returning the nominal display size of the buffer
     /// Returns zero size if called with a non-CVImageBufferRef type or NULL.
     #[cfg(feature = "CVBuffer")]
-    pub fn CVImageBufferGetDisplaySize(image_buffer: CVImageBufferRef) -> CGSize;
+    pub fn CVImageBufferGetDisplaySize(image_buffer: &CVImageBufferRef) -> CGSize;
 }
 
 extern "C-unwind" {
@@ -418,7 +420,7 @@ extern "C-unwind" {
     /// Returns: A CGSize returning the nominal display size of the buffer
     /// Returns zero rect if called with a non-CVImageBufferRef type or NULL.
     #[cfg(feature = "CVBuffer")]
-    pub fn CVImageBufferGetCleanRect(image_buffer: CVImageBufferRef) -> CGRect;
+    pub fn CVImageBufferGetCleanRect(image_buffer: &CVImageBufferRef) -> CGRect;
 }
 
 extern "C-unwind" {
@@ -428,7 +430,7 @@ extern "C-unwind" {
     ///
     /// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left.
     #[cfg(feature = "CVBuffer")]
-    pub fn CVImageBufferIsFlipped(image_buffer: CVImageBufferRef) -> Boolean;
+    pub fn CVImageBufferIsFlipped(image_buffer: &CVImageBufferRef) -> Boolean;
 }
 
 extern "C-unwind" {
@@ -439,7 +441,7 @@ extern "C-unwind" {
     /// Returns: A CGColorSpaceRef representing the color space of the buffer.
     /// Returns NULL if called with a non-CVImageBufferRef type or NULL.
     #[cfg(all(feature = "CVBuffer", feature = "objc2-core-graphics"))]
-    pub fn CVImageBufferGetColorSpace(image_buffer: CVImageBufferRef) -> CGColorSpaceRef;
+    pub fn CVImageBufferGetColorSpace(image_buffer: &CVImageBufferRef) -> *mut CGColorSpaceRef;
 }
 
 extern "C-unwind" {
@@ -456,28 +458,28 @@ extern "C-unwind" {
     /// The client is responsible for releasing the CGColorSpaceRef when it is done with it (CGColorSpaceRelease() or CFRelease())
     #[cfg(feature = "objc2-core-graphics")]
     pub fn CVImageBufferCreateColorSpaceFromAttachments(
-        attachments: CFDictionaryRef,
-    ) -> CGColorSpaceRef;
+        attachments: &CFDictionaryRef,
+    ) -> *mut CGColorSpaceRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffermasteringdisplaycolorvolumekey?language=objc)
-    pub static kCVImageBufferMasteringDisplayColorVolumeKey: CFStringRef;
+    pub static kCVImageBufferMasteringDisplayColorVolumeKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffercontentlightlevelinfokey?language=objc)
-    pub static kCVImageBufferContentLightLevelInfoKey: CFStringRef;
+    pub static kCVImageBufferContentLightLevelInfoKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferambientviewingenvironmentkey?language=objc)
-    pub static kCVImageBufferAmbientViewingEnvironmentKey: CFStringRef;
+    pub static kCVImageBufferAmbientViewingEnvironmentKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebuffersceneilluminationkey?language=objc)
-    pub static kCVImageBufferSceneIlluminationKey: CFStringRef;
+    pub static kCVImageBufferSceneIlluminationKey: &'static CFStringRef;
 }
 
 extern "C" {
@@ -486,7 +488,7 @@ extern "C" {
     /// This value should be a CGRect dictionary created by CGRectCreateDictionaryRepresentation(). The origin in the CGRect represents the x,y coordinate within the CVPixelBuffer where region of interest is located.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferregionofinterestkey?language=objc)
-    pub static kCVImageBufferRegionOfInterestKey: CFStringRef;
+    pub static kCVImageBufferRegionOfInterestKey: &'static CFStringRef;
 }
 
 extern "C" {
@@ -500,10 +502,10 @@ extern "C" {
     /// You can download the Apple Log Profile White Paper from the Apple Developer Downloads website.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferlogtransferfunctionkey?language=objc)
-    pub static kCVImageBufferLogTransferFunctionKey: CFStringRef;
+    pub static kCVImageBufferLogTransferFunctionKey: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferlogtransferfunction_applelog?language=objc)
-    pub static kCVImageBufferLogTransferFunction_AppleLog: CFStringRef;
+    pub static kCVImageBufferLogTransferFunction_AppleLog: &'static CFStringRef;
 }

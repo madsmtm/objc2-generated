@@ -1102,6 +1102,8 @@ pub use self::__CGDisplayConfiguration::CGDisplayUsesOpenGLAcceleration;
 pub use self::__CGDisplayConfiguration::CGDisplayVendorNumber;
 #[cfg(feature = "CGDisplayConfiguration")]
 pub use self::__CGDisplayConfiguration::CGRestorePermanentDisplayConfiguration;
+#[cfg(feature = "CGDisplayConfiguration")]
+pub(crate) use self::__CGDisplayConfiguration::_CGDisplayConfigRef;
 #[cfg(all(feature = "CGDisplayFade", feature = "CGError"))]
 pub use self::__CGDisplayFade::CGAcquireDisplayFadeReservation;
 #[cfg(all(
@@ -1378,6 +1380,8 @@ pub use self::__CGEventTypes::CGMouseButton;
 pub use self::__CGEventTypes::CGScrollEventUnit;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::CGScrollPhase;
+#[cfg(feature = "CGEventTypes")]
+pub(crate) use self::__CGEventTypes::__CGEventTapProxy;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::kCGFontVariationAxisDefaultValue;
 #[cfg(feature = "CGFont")]
@@ -1678,6 +1682,8 @@ pub use self::__CGLayer::CGLayerRef;
 pub use self::__CGLayer::CGLayerRelease;
 #[cfg(feature = "CGLayer")]
 pub use self::__CGLayer::CGLayerRetain;
+#[cfg(feature = "CGPDFArray")]
+pub use self::__CGPDFArray::CGPDFArray;
 #[cfg(all(feature = "CGPDFArray", feature = "CGPDFObject", feature = "block2"))]
 pub use self::__CGPDFArray::CGPDFArrayApplierBlock;
 #[cfg(all(feature = "CGPDFArray", feature = "CGPDFObject", feature = "block2"))]
@@ -1706,6 +1712,8 @@ pub use self::__CGPDFArray::CGPDFArrayGetStream;
 pub use self::__CGPDFArray::CGPDFArrayGetString;
 #[cfg(feature = "CGPDFArray")]
 pub use self::__CGPDFArray::CGPDFArrayRef;
+#[cfg(feature = "CGPDFContentStream")]
+pub use self::__CGPDFContentStream::CGPDFContentStream;
 #[cfg(all(feature = "CGPDFContentStream", feature = "CGPDFPage"))]
 pub use self::__CGPDFContentStream::CGPDFContentStreamCreateWithPage;
 #[cfg(all(
@@ -1832,6 +1840,8 @@ pub use self::__CGPDFContext::CGPDFTagProperty;
 pub use self::__CGPDFContext::CGPDFTagType;
 #[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::CGPDFTagTypeGetName;
+#[cfg(feature = "CGPDFDictionary")]
+pub use self::__CGPDFDictionary::CGPDFDictionary;
 #[cfg(all(
     feature = "CGPDFDictionary",
     feature = "CGPDFObject",
@@ -1935,6 +1945,8 @@ pub use self::__CGPDFObject::CGPDFBoolean;
 #[cfg(feature = "CGPDFObject")]
 pub use self::__CGPDFObject::CGPDFInteger;
 #[cfg(feature = "CGPDFObject")]
+pub use self::__CGPDFObject::CGPDFObject;
+#[cfg(feature = "CGPDFObject")]
 pub use self::__CGPDFObject::CGPDFObjectGetType;
 #[cfg(feature = "CGPDFObject")]
 pub use self::__CGPDFObject::CGPDFObjectGetValue;
@@ -1946,6 +1958,8 @@ pub use self::__CGPDFObject::CGPDFObjectType;
 pub use self::__CGPDFObject::CGPDFReal;
 #[cfg(all(feature = "CGPDFOperatorTable", feature = "CGPDFScanner"))]
 pub use self::__CGPDFOperatorTable::CGPDFOperatorCallback;
+#[cfg(feature = "CGPDFOperatorTable")]
+pub use self::__CGPDFOperatorTable::CGPDFOperatorTable;
 #[cfg(feature = "CGPDFOperatorTable")]
 pub use self::__CGPDFOperatorTable::CGPDFOperatorTableCreate;
 #[cfg(feature = "CGPDFOperatorTable")]
@@ -1978,6 +1992,8 @@ pub use self::__CGPDFPage::CGPDFPageRef;
 pub use self::__CGPDFPage::CGPDFPageRelease;
 #[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFPageRetain;
+#[cfg(feature = "CGPDFScanner")]
+pub use self::__CGPDFScanner::CGPDFScanner;
 #[cfg(all(
     feature = "CGPDFContentStream",
     feature = "CGPDFOperatorTable",
@@ -2017,11 +2033,15 @@ pub use self::__CGPDFScanner::CGPDFScannerStop;
 #[cfg(feature = "CGPDFStream")]
 pub use self::__CGPDFStream::CGPDFDataFormat;
 #[cfg(feature = "CGPDFStream")]
+pub use self::__CGPDFStream::CGPDFStream;
+#[cfg(feature = "CGPDFStream")]
 pub use self::__CGPDFStream::CGPDFStreamCopyData;
 #[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFStream"))]
 pub use self::__CGPDFStream::CGPDFStreamGetDictionary;
 #[cfg(feature = "CGPDFStream")]
 pub use self::__CGPDFStream::CGPDFStreamRef;
+#[cfg(feature = "CGPDFString")]
+pub use self::__CGPDFString::CGPDFString;
 #[cfg(feature = "CGPDFString")]
 pub use self::__CGPDFString::CGPDFStringCopyDate;
 #[cfg(feature = "CGPDFString")]

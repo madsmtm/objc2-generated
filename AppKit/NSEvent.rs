@@ -782,13 +782,13 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[method(CGEvent)]
-        pub unsafe fn CGEvent(&self) -> CGEventRef;
+        #[method_id(@__retain_semantics Other CGEvent)]
+        pub unsafe fn CGEvent(&self) -> Option<Retained<CGEventRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other eventWithCGEvent:)]
-        pub unsafe fn eventWithCGEvent(cg_event: CGEventRef) -> Option<Retained<NSEvent>>;
+        pub unsafe fn eventWithCGEvent(cg_event: &CGEventRef) -> Option<Retained<NSEvent>>;
 
         #[method(isMouseCoalescingEnabled)]
         pub unsafe fn isMouseCoalescingEnabled() -> bool;

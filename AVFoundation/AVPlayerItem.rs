@@ -527,8 +527,8 @@ extern_methods!(
         ///
         /// You can examine the timebase to discover the relationship between the item's time and the source clock used for drift synchronization.
         /// This timebase is read-only; you cannot set its time or rate to affect playback.
-        #[method(timebase)]
-        pub unsafe fn timebase(&self) -> CMTimebaseRef;
+        #[method_id(@__retain_semantics Other timebase)]
+        pub unsafe fn timebase(&self) -> Option<Retained<CMTimebaseRef>>;
     }
 );
 

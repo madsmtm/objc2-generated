@@ -66,7 +66,7 @@ extern_methods!(
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[method(drawAtPoint:inContext:)]
-        pub unsafe fn drawAtPoint_inContext(&self, point: CGPoint, context: CGContextRef);
+        pub unsafe fn drawAtPoint_inContext(&self, point: CGPoint, context: &CGContextRef);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(locationForCharacterAtIndex:)]

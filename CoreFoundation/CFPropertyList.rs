@@ -38,8 +38,8 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData"))]
     #[deprecated = "Use CFPropertyListCreateWithData instead."]
     pub fn CFPropertyListCreateFromXMLData(
-        allocator: CFAllocatorRef,
-        xml_data: CFDataRef,
+        allocator: Option<&CFAllocatorRef>,
+        xml_data: Option<&CFDataRef>,
         mutability_option: CFOptionFlags,
         error_string: *mut CFStringRef,
     ) -> CFPropertyListRef;
@@ -49,15 +49,15 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData"))]
     #[deprecated = "Use CFPropertyListCreateData instead."]
     pub fn CFPropertyListCreateXMLData(
-        allocator: CFAllocatorRef,
+        allocator: Option<&CFAllocatorRef>,
         property_list: CFPropertyListRef,
-    ) -> CFDataRef;
+    ) -> *mut CFDataRef;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFPropertyListCreateDeepCopy(
-        allocator: CFAllocatorRef,
+        allocator: Option<&CFAllocatorRef>,
         property_list: CFPropertyListRef,
         mutability_option: CFOptionFlags,
     ) -> CFPropertyListRef;
@@ -100,7 +100,7 @@ extern "C-unwind" {
     #[deprecated = "Use CFPropertyListWrite instead."]
     pub fn CFPropertyListWriteToStream(
         property_list: CFPropertyListRef,
-        stream: CFWriteStreamRef,
+        stream: Option<&CFWriteStreamRef>,
         format: CFPropertyListFormat,
         error_string: *mut CFStringRef,
     ) -> CFIndex;
@@ -110,8 +110,8 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFStream"))]
     #[deprecated = "Use CFPropertyListCreateWithStream instead."]
     pub fn CFPropertyListCreateFromStream(
-        allocator: CFAllocatorRef,
-        stream: CFReadStreamRef,
+        allocator: Option<&CFAllocatorRef>,
+        stream: Option<&CFReadStreamRef>,
         stream_length: CFIndex,
         mutability_option: CFOptionFlags,
         format: *mut CFPropertyListFormat,
@@ -135,8 +135,8 @@ pub const kCFPropertyListWriteStreamError: CFIndex = 3851;
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFError"))]
     pub fn CFPropertyListCreateWithData(
-        allocator: CFAllocatorRef,
-        data: CFDataRef,
+        allocator: Option<&CFAllocatorRef>,
+        data: Option<&CFDataRef>,
         options: CFOptionFlags,
         format: *mut CFPropertyListFormat,
         error: *mut CFErrorRef,
@@ -146,8 +146,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFError", feature = "CFStream"))]
     pub fn CFPropertyListCreateWithStream(
-        allocator: CFAllocatorRef,
-        stream: CFReadStreamRef,
+        allocator: Option<&CFAllocatorRef>,
+        stream: Option<&CFReadStreamRef>,
         stream_length: CFIndex,
         options: CFOptionFlags,
         format: *mut CFPropertyListFormat,
@@ -159,7 +159,7 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFError", feature = "CFStream"))]
     pub fn CFPropertyListWrite(
         property_list: CFPropertyListRef,
-        stream: CFWriteStreamRef,
+        stream: Option<&CFWriteStreamRef>,
         format: CFPropertyListFormat,
         options: CFOptionFlags,
         error: *mut CFErrorRef,
@@ -169,10 +169,10 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFError"))]
     pub fn CFPropertyListCreateData(
-        allocator: CFAllocatorRef,
+        allocator: Option<&CFAllocatorRef>,
         property_list: CFPropertyListRef,
         format: CFPropertyListFormat,
         options: CFOptionFlags,
         error: *mut CFErrorRef,
-    ) -> CFDataRef;
+    ) -> *mut CFDataRef;
 }

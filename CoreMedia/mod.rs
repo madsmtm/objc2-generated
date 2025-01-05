@@ -227,6 +227,8 @@ pub use self::__CMBufferQueue::kCMBufferQueueTrigger_WhenMaxPresentationTimeStam
 pub use self::__CMBufferQueue::kCMBufferQueueTrigger_WhenMinPresentationTimeStampChanges;
 #[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::kCMBufferQueueTrigger_WhenReset;
+#[cfg(feature = "CMBufferQueue")]
+pub use self::__CMBufferQueue::opaqueCMBufferQueueTriggerToken;
 #[cfg(all(feature = "CMBufferQueue", feature = "CMTime"))]
 pub use self::__CMBufferQueue::CMBufferCallbacks;
 #[cfg(feature = "CMBufferQueue")]

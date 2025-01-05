@@ -12,157 +12,157 @@ use crate::*;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceallocsize?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfaceAllocSize: CFStringRef;
+    pub static kIOSurfaceAllocSize: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacewidth?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfaceWidth: CFStringRef;
+    pub static kIOSurfaceWidth: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceheight?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfaceHeight: CFStringRef;
+    pub static kIOSurfaceHeight: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacebytesperrow?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfaceBytesPerRow: CFStringRef;
+    pub static kIOSurfaceBytesPerRow: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacebytesperelement?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfaceBytesPerElement: CFStringRef;
+    pub static kIOSurfaceBytesPerElement: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceelementwidth?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfaceElementWidth: CFStringRef;
+    pub static kIOSurfaceElementWidth: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceelementheight?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfaceElementHeight: CFStringRef;
+    pub static kIOSurfaceElementHeight: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceoffset?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfaceOffset: CFStringRef;
+    pub static kIOSurfaceOffset: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplaneinfo?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePlaneInfo: CFStringRef;
+    pub static kIOSurfacePlaneInfo: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanewidth?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePlaneWidth: CFStringRef;
+    pub static kIOSurfacePlaneWidth: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplaneheight?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePlaneHeight: CFStringRef;
+    pub static kIOSurfacePlaneHeight: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanebytesperrow?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePlaneBytesPerRow: CFStringRef;
+    pub static kIOSurfacePlaneBytesPerRow: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplaneoffset?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePlaneOffset: CFStringRef;
+    pub static kIOSurfacePlaneOffset: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanesize?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePlaneSize: CFStringRef;
+    pub static kIOSurfacePlaneSize: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanebase?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePlaneBase: CFStringRef;
+    pub static kIOSurfacePlaneBase: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanebitsperelement?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePlaneBitsPerElement: CFStringRef;
+    pub static kIOSurfacePlaneBitsPerElement: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanebytesperelement?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePlaneBytesPerElement: CFStringRef;
+    pub static kIOSurfacePlaneBytesPerElement: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplaneelementwidth?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePlaneElementWidth: CFStringRef;
+    pub static kIOSurfacePlaneElementWidth: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplaneelementheight?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePlaneElementHeight: CFStringRef;
+    pub static kIOSurfacePlaneElementHeight: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacecachemode?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfaceCacheMode: CFStringRef;
+    pub static kIOSurfaceCacheMode: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceisglobal?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfaceIsGlobal: CFStringRef;
+    pub static kIOSurfaceIsGlobal: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacepixelformat?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePixelFormat: CFStringRef;
+    pub static kIOSurfacePixelFormat: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacepixelsizecastingallowed?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePixelSizeCastingAllowed: CFStringRef;
+    pub static kIOSurfacePixelSizeCastingAllowed: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanecomponentbitdepths?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePlaneComponentBitDepths: CFStringRef;
+    pub static kIOSurfacePlaneComponentBitDepths: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanecomponentbitoffsets?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePlaneComponentBitOffsets: CFStringRef;
+    pub static kIOSurfacePlaneComponentBitOffsets: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacename?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfaceName: CFStringRef;
+    pub static kIOSurfaceName: &'static CFStringRef;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname?language=objc)
@@ -202,7 +202,7 @@ unsafe impl RefEncode for IOSurfaceComponentName {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanecomponentnames?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePlaneComponentNames: CFStringRef;
+    pub static kIOSurfacePlaneComponentNames: &'static CFStringRef;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponenttype?language=objc)
@@ -236,7 +236,7 @@ unsafe impl RefEncode for IOSurfaceComponentType {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanecomponenttypes?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePlaneComponentTypes: CFStringRef;
+    pub static kIOSurfacePlaneComponentTypes: &'static CFStringRef;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentrange?language=objc)
@@ -268,7 +268,7 @@ unsafe impl RefEncode for IOSurfaceComponentRange {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceplanecomponentranges?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfacePlaneComponentRanges: CFStringRef;
+    pub static kIOSurfacePlaneComponentRanges: &'static CFStringRef;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesubsampling?language=objc)
@@ -302,7 +302,7 @@ unsafe impl RefEncode for IOSurfaceSubsampling {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacesubsampling?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfaceSubsampling: CFStringRef;
+    pub static kIOSurfaceSubsampling: &'static CFStringRef;
 }
 
 extern "C-unwind" {
@@ -312,23 +312,23 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOSurfaceCreate(properties: CFDictionaryRef) -> IOSurfaceRef;
+    pub fn IOSurfaceCreate(properties: &CFDictionaryRef) -> *mut IOSurfaceRef;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "IOSurfaceTypes")]
-    pub fn IOSurfaceLookup(csid: IOSurfaceID) -> IOSurfaceRef;
+    pub fn IOSurfaceLookup(csid: IOSurfaceID) -> *mut IOSurfaceRef;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "IOSurfaceTypes")]
-    pub fn IOSurfaceGetID(buffer: IOSurfaceRef) -> IOSurfaceID;
+    pub fn IOSurfaceGetID(buffer: &IOSurfaceRef) -> IOSurfaceID;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "IOSurfaceTypes", feature = "libc"))]
     pub fn IOSurfaceLock(
-        buffer: IOSurfaceRef,
+        buffer: &IOSurfaceRef,
         options: IOSurfaceLockOptions,
         seed: *mut u32,
     ) -> libc::kern_return_t;
@@ -337,95 +337,97 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "IOSurfaceTypes", feature = "libc"))]
     pub fn IOSurfaceUnlock(
-        buffer: IOSurfaceRef,
+        buffer: &IOSurfaceRef,
         options: IOSurfaceLockOptions,
         seed: *mut u32,
     ) -> libc::kern_return_t;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetAllocSize(buffer: IOSurfaceRef) -> usize;
+    pub fn IOSurfaceGetAllocSize(buffer: &IOSurfaceRef) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetWidth(buffer: IOSurfaceRef) -> usize;
+    pub fn IOSurfaceGetWidth(buffer: &IOSurfaceRef) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetHeight(buffer: IOSurfaceRef) -> usize;
+    pub fn IOSurfaceGetHeight(buffer: &IOSurfaceRef) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetBytesPerElement(buffer: IOSurfaceRef) -> usize;
+    pub fn IOSurfaceGetBytesPerElement(buffer: &IOSurfaceRef) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetBytesPerRow(buffer: IOSurfaceRef) -> usize;
+    pub fn IOSurfaceGetBytesPerRow(buffer: &IOSurfaceRef) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetBaseAddress(buffer: IOSurfaceRef) -> NonNull<c_void>;
+    pub fn IOSurfaceGetBaseAddress(buffer: &IOSurfaceRef) -> NonNull<c_void>;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetElementWidth(buffer: IOSurfaceRef) -> usize;
+    pub fn IOSurfaceGetElementWidth(buffer: &IOSurfaceRef) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetElementHeight(buffer: IOSurfaceRef) -> usize;
+    pub fn IOSurfaceGetElementHeight(buffer: &IOSurfaceRef) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetPixelFormat(buffer: IOSurfaceRef) -> OSType;
+    pub fn IOSurfaceGetPixelFormat(buffer: &IOSurfaceRef) -> OSType;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetSeed(buffer: IOSurfaceRef) -> u32;
+    pub fn IOSurfaceGetSeed(buffer: &IOSurfaceRef) -> u32;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetPlaneCount(buffer: IOSurfaceRef) -> usize;
+    pub fn IOSurfaceGetPlaneCount(buffer: &IOSurfaceRef) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetWidthOfPlane(buffer: IOSurfaceRef, plane_index: usize) -> usize;
+    pub fn IOSurfaceGetWidthOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetHeightOfPlane(buffer: IOSurfaceRef, plane_index: usize) -> usize;
+    pub fn IOSurfaceGetHeightOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetBytesPerElementOfPlane(buffer: IOSurfaceRef, plane_index: usize) -> usize;
+    pub fn IOSurfaceGetBytesPerElementOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetBytesPerRowOfPlane(buffer: IOSurfaceRef, plane_index: usize) -> usize;
+    pub fn IOSurfaceGetBytesPerRowOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
 }
 
 extern "C-unwind" {
     pub fn IOSurfaceGetBaseAddressOfPlane(
-        buffer: IOSurfaceRef,
+        buffer: &IOSurfaceRef,
         plane_index: usize,
     ) -> NonNull<c_void>;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetElementWidthOfPlane(buffer: IOSurfaceRef, plane_index: usize) -> usize;
+    pub fn IOSurfaceGetElementWidthOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetElementHeightOfPlane(buffer: IOSurfaceRef, plane_index: usize) -> usize;
+    pub fn IOSurfaceGetElementHeightOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetNumberOfComponentsOfPlane(buffer: IOSurfaceRef, plane_index: usize)
-        -> usize;
+    pub fn IOSurfaceGetNumberOfComponentsOfPlane(
+        buffer: &IOSurfaceRef,
+        plane_index: usize,
+    ) -> usize;
 }
 
 extern "C-unwind" {
     pub fn IOSurfaceGetNameOfComponentOfPlane(
-        buffer: IOSurfaceRef,
+        buffer: &IOSurfaceRef,
         plane_index: usize,
         component_index: usize,
     ) -> IOSurfaceComponentName;
@@ -433,7 +435,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn IOSurfaceGetTypeOfComponentOfPlane(
-        buffer: IOSurfaceRef,
+        buffer: &IOSurfaceRef,
         plane_index: usize,
         component_index: usize,
     ) -> IOSurfaceComponentType;
@@ -441,7 +443,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn IOSurfaceGetRangeOfComponentOfPlane(
-        buffer: IOSurfaceRef,
+        buffer: &IOSurfaceRef,
         plane_index: usize,
         component_index: usize,
     ) -> IOSurfaceComponentRange;
@@ -449,7 +451,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn IOSurfaceGetBitDepthOfComponentOfPlane(
-        buffer: IOSurfaceRef,
+        buffer: &IOSurfaceRef,
         plane_index: usize,
         component_index: usize,
     ) -> usize;
@@ -457,112 +459,112 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn IOSurfaceGetBitOffsetOfComponentOfPlane(
-        buffer: IOSurfaceRef,
+        buffer: &IOSurfaceRef,
         plane_index: usize,
         component_index: usize,
     ) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetSubsampling(buffer: IOSurfaceRef) -> IOSurfaceSubsampling;
+    pub fn IOSurfaceGetSubsampling(buffer: &IOSurfaceRef) -> IOSurfaceSubsampling;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacecolorspace?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfaceColorSpace: CFStringRef;
+    pub static kIOSurfaceColorSpace: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceiccprofile?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfaceICCProfile: CFStringRef;
+    pub static kIOSurfaceICCProfile: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacecontentheadroom?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kIOSurfaceContentHeadroom: CFStringRef;
+    pub static kIOSurfaceContentHeadroom: &'static CFStringRef;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOSurfaceSetValue(buffer: IOSurfaceRef, key: CFStringRef, value: CFTypeRef);
+    pub fn IOSurfaceSetValue(buffer: &IOSurfaceRef, key: &CFStringRef, value: CFTypeRef);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOSurfaceCopyValue(buffer: IOSurfaceRef, key: CFStringRef) -> CFTypeRef;
+    pub fn IOSurfaceCopyValue(buffer: &IOSurfaceRef, key: &CFStringRef) -> CFTypeRef;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOSurfaceRemoveValue(buffer: IOSurfaceRef, key: CFStringRef);
+    pub fn IOSurfaceRemoveValue(buffer: &IOSurfaceRef, key: &CFStringRef);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOSurfaceSetValues(buffer: IOSurfaceRef, keys_and_values: CFDictionaryRef);
+    pub fn IOSurfaceSetValues(buffer: &IOSurfaceRef, keys_and_values: &CFDictionaryRef);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOSurfaceCopyAllValues(buffer: IOSurfaceRef) -> CFDictionaryRef;
+    pub fn IOSurfaceCopyAllValues(buffer: &IOSurfaceRef) -> *mut CFDictionaryRef;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceRemoveAllValues(buffer: IOSurfaceRef);
+    pub fn IOSurfaceRemoveAllValues(buffer: &IOSurfaceRef);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "libc")]
-    pub fn IOSurfaceCreateMachPort(buffer: IOSurfaceRef) -> libc::mach_port_t;
+    pub fn IOSurfaceCreateMachPort(buffer: &IOSurfaceRef) -> libc::mach_port_t;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "libc")]
-    pub fn IOSurfaceLookupFromMachPort(port: libc::mach_port_t) -> IOSurfaceRef;
+    pub fn IOSurfaceLookupFromMachPort(port: libc::mach_port_t) -> *mut IOSurfaceRef;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOSurfaceGetPropertyMaximum(property: CFStringRef) -> usize;
+    pub fn IOSurfaceGetPropertyMaximum(property: &CFStringRef) -> usize;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOSurfaceGetPropertyAlignment(property: CFStringRef) -> usize;
+    pub fn IOSurfaceGetPropertyAlignment(property: &CFStringRef) -> usize;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOSurfaceAlignProperty(property: CFStringRef, value: usize) -> usize;
+    pub fn IOSurfaceAlignProperty(property: &CFStringRef, value: usize) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceIncrementUseCount(buffer: IOSurfaceRef);
+    pub fn IOSurfaceIncrementUseCount(buffer: &IOSurfaceRef);
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceDecrementUseCount(buffer: IOSurfaceRef);
+    pub fn IOSurfaceDecrementUseCount(buffer: &IOSurfaceRef);
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceGetUseCount(buffer: IOSurfaceRef) -> i32;
+    pub fn IOSurfaceGetUseCount(buffer: &IOSurfaceRef) -> i32;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceIsInUse(buffer: IOSurfaceRef) -> Boolean;
+    pub fn IOSurfaceIsInUse(buffer: &IOSurfaceRef) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn IOSurfaceAllowsPixelSizeCasting(buffer: IOSurfaceRef) -> Boolean;
+    pub fn IOSurfaceAllowsPixelSizeCasting(buffer: &IOSurfaceRef) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "libc")]
     pub fn IOSurfaceSetPurgeable(
-        buffer: IOSurfaceRef,
+        buffer: &IOSurfaceRef,
         new_state: u32,
         old_state: *mut u32,
     ) -> libc::kern_return_t;

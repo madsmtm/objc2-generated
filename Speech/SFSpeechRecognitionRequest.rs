@@ -146,7 +146,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-media")]
         #[method(appendAudioSampleBuffer:)]
-        pub unsafe fn appendAudioSampleBuffer(&self, sample_buffer: CMSampleBufferRef);
+        pub unsafe fn appendAudioSampleBuffer(&self, sample_buffer: &CMSampleBufferRef);
 
         #[method(endAudio)]
         pub unsafe fn endAudio(&self);

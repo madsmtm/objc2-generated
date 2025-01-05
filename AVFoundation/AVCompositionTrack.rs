@@ -344,13 +344,13 @@ extern_methods!(
     unsafe impl AVCompositionTrackFormatDescriptionReplacement {
         #[cfg(feature = "objc2-core-media")]
         /// The original format description.
-        #[method(originalFormatDescription)]
-        pub unsafe fn originalFormatDescription(&self) -> CMFormatDescriptionRef;
+        #[method_id(@__retain_semantics Other originalFormatDescription)]
+        pub unsafe fn originalFormatDescription(&self) -> Retained<CMFormatDescriptionRef>;
 
         #[cfg(feature = "objc2-core-media")]
         /// The replacement format description.
-        #[method(replacementFormatDescription)]
-        pub unsafe fn replacementFormatDescription(&self) -> CMFormatDescriptionRef;
+        #[method_id(@__retain_semantics Other replacementFormatDescription)]
+        pub unsafe fn replacementFormatDescription(&self) -> Retained<CMFormatDescriptionRef>;
     }
 );
 
@@ -381,8 +381,8 @@ extern_methods!(
         #[method(replaceFormatDescription:withFormatDescription:)]
         pub unsafe fn replaceFormatDescription_withFormatDescription(
             &self,
-            original_format_description: CMFormatDescriptionRef,
-            replacement_format_description: CMFormatDescriptionRef,
+            original_format_description: &CMFormatDescriptionRef,
+            replacement_format_description: Option<&CMFormatDescriptionRef>,
         );
     }
 );

@@ -158,12 +158,12 @@ extern_methods!(
         /// Parameter `itemTime`: A CMTime that expresses a desired item time.
         ///
         /// Parameter `itemTimeForDisplay`: A CMTime pointer whose value will contain the true display deadline for the copied pixel buffer. Can be NULL.
-        #[method(copyPixelBufferForItemTime:itemTimeForDisplay:)]
+        #[method_id(@__retain_semantics Copy copyPixelBufferForItemTime:itemTimeForDisplay:)]
         pub unsafe fn copyPixelBufferForItemTime_itemTimeForDisplay(
             &self,
             item_time: CMTime,
             out_item_time_for_display: *mut CMTime,
-        ) -> CVPixelBufferRef;
+        ) -> Option<Retained<CVPixelBufferRef>>;
 
         /// Informs the receiver that the AVPlayerItemVideoOutput client is entering a quiescent state.
         ///

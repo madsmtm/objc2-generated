@@ -62,8 +62,8 @@ extern_methods!(
         /// In certain configurations, such as when outputSettings is nil, copyNextSampleBuffer may return marker-only sample buffers as well as sample buffers containing media data. Marker-only sample buffers can be identified by CMSampleBufferGetNumSamples returning 0. Clients who do not need the information attached to marker-only sample buffers may skip them.
         ///
         /// This method throws an exception if this output is not added to an instance of AVAssetReader (using -addOutput:) and -startReading is not called on that asset reader.
-        #[method(copyNextSampleBuffer)]
-        pub unsafe fn copyNextSampleBuffer(&self) -> CMSampleBufferRef;
+        #[method_id(@__retain_semantics Copy copyNextSampleBuffer)]
+        pub unsafe fn copyNextSampleBuffer(&self) -> Option<Retained<CMSampleBufferRef>>;
     }
 );
 

@@ -18,8 +18,9 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerycallback?language=objc)
 #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
-pub type ODQueryCallback =
-    Option<unsafe extern "C-unwind" fn(ODQueryRef, CFArrayRef, CFErrorRef, *mut c_void)>;
+pub type ODQueryCallback = Option<
+    unsafe extern "C-unwind" fn(*mut ODQueryRef, *mut CFArrayRef, *mut CFErrorRef, *mut c_void),
+>;
 
 extern "C-unwind" {
     /// Standard GetTypeID function support for CF-based objects
@@ -64,8 +65,8 @@ extern "C-unwind" {
         feature = "objc2-core-foundation"
     ))]
     pub fn ODQueryCreateWithNode(
-        allocator: CFAllocatorRef,
-        node: ODNodeRef,
+        allocator: Option<&CFAllocatorRef>,
+        node: Option<&ODNodeRef>,
         record_type_or_list: CFTypeRef,
         attribute: Option<&ODAttributeType>,
         match_type: ODMatchType,
@@ -73,7 +74,7 @@ extern "C-unwind" {
         return_attribute_or_list: CFTypeRef,
         max_results: CFIndex,
         error: *mut CFErrorRef,
-    ) -> ODQueryRef;
+    ) -> *mut ODQueryRef;
 }
 
 extern "C-unwind" {
@@ -110,7 +111,7 @@ extern "C-unwind" {
         feature = "objc2-core-foundation"
     ))]
     pub fn ODQueryCreateWithNodeType(
-        allocator: CFAllocatorRef,
+        allocator: Option<&CFAllocatorRef>,
         node_type: ODNodeType,
         record_type_or_list: CFTypeRef,
         attribute: Option<&ODAttributeType>,
@@ -119,7 +120,7 @@ extern "C-unwind" {
         return_attribute_or_list: CFTypeRef,
         max_results: CFIndex,
         error: *mut CFErrorRef,
-    ) -> ODQueryRef;
+    ) -> *mut ODQueryRef;
 }
 
 extern "C-unwind" {
@@ -141,10 +142,10 @@ extern "C-unwind" {
     /// outError should be checked accordingly.
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODQueryCopyResults(
-        query: ODQueryRef,
+        query: Option<&ODQueryRef>,
         allow_partial_results: bool,
         error: *mut CFErrorRef,
-    ) -> CFArrayRef;
+    ) -> *mut CFArrayRef;
 }
 
 extern "C-unwind" {
@@ -157,7 +158,7 @@ extern "C-unwind" {
     ///
     /// Parameter `query`: an ODQueryRef to use
     #[cfg(feature = "CFOpenDirectory")]
-    pub fn ODQuerySynchronize(query: ODQueryRef);
+    pub fn ODQuerySynchronize(query: Option<&ODQueryRef>);
 }
 
 extern "C-unwind" {
@@ -172,7 +173,11 @@ extern "C-unwind" {
     ///
     /// Parameter `userInfo`: a user-defined pointer to be passed back to the Query callback function
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
-    pub fn ODQuerySetCallback(query: ODQueryRef, callback: ODQueryCallback, user_info: *mut c_void);
+    pub fn ODQuerySetCallback(
+        query: Option<&ODQueryRef>,
+        callback: ODQueryCallback,
+        user_info: *mut c_void,
+    );
 }
 
 extern "C-unwind" {
@@ -190,9 +195,9 @@ extern "C-unwind" {
     /// Parameter `runLoopMode`: a CFStringRef with the runloop mode to add the ODQueryRef to
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODQueryScheduleWithRunLoop(
-        query: ODQueryRef,
-        run_loop: CFRunLoopRef,
-        run_loop_mode: CFStringRef,
+        query: Option<&ODQueryRef>,
+        run_loop: Option<&CFRunLoopRef>,
+        run_loop_mode: Option<&CFStringRef>,
     );
 }
 
@@ -208,8 +213,8 @@ extern "C-unwind" {
     /// Parameter `runLoopMode`: a CFStringRef of the mode to remove the ODQuery from
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODQueryUnscheduleFromRunLoop(
-        query: ODQueryRef,
-        run_loop: CFRunLoopRef,
-        run_loop_mode: CFStringRef,
+        query: Option<&ODQueryRef>,
+        run_loop: Option<&CFRunLoopRef>,
+        run_loop_mode: Option<&CFStringRef>,
     );
 }

@@ -277,13 +277,13 @@ extern_methods!(
         /// An optional thumbnail image associated with the context.
         ///
         /// The size of this image should be equal to or larger than 80x80 pixels and equal to or smaller than 330x330 pixels. Images larger than 330x330 pixels will be scaled down. Images with both dimensions smaller than 80x80 pixels will not be accepted.
-        #[method(thumbnail)]
-        pub unsafe fn thumbnail(&self) -> CGImageRef;
+        #[method_id(@__retain_semantics Other thumbnail)]
+        pub unsafe fn thumbnail(&self) -> Option<Retained<CGImageRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`thumbnail`][Self::thumbnail].
         #[method(setThumbnail:)]
-        pub unsafe fn setThumbnail(&self, thumbnail: CGImageRef);
+        pub unsafe fn setThumbnail(&self, thumbnail: Option<&CGImageRef>);
 
         /// Initialize and configure the type of content this context represents.
         ///

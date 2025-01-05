@@ -77,37 +77,39 @@ pub const kAudioSessionRouteChangeReason_RouteConfigurationChange: c_uint = 8;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_routechangekey_reason?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSession_RouteChangeKey_Reason: CFStringRef;
+    pub static kAudioSession_RouteChangeKey_Reason: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutechangekey_previousroutedescription?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSession_AudioRouteChangeKey_PreviousRouteDescription: CFStringRef;
+    pub static kAudioSession_AudioRouteChangeKey_PreviousRouteDescription:
+        Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutechangekey_currentroutedescription?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSession_AudioRouteChangeKey_CurrentRouteDescription: CFStringRef;
+    pub static kAudioSession_AudioRouteChangeKey_CurrentRouteDescription:
+        Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutekey_inputs?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSession_AudioRouteKey_Inputs: CFStringRef;
+    pub static kAudioSession_AudioRouteKey_Inputs: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutekey_outputs?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSession_AudioRouteKey_Outputs: CFStringRef;
+    pub static kAudioSession_AudioRouteKey_Outputs: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutekey_type?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSession_AudioRouteKey_Type: CFStringRef;
+    pub static kAudioSession_AudioRouteKey_Type: Option<&'static CFStringRef>;
 }
 
 extern "C" {
@@ -127,31 +129,31 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninputroute_linein?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSessionInputRoute_LineIn: CFStringRef;
+    pub static kAudioSessionInputRoute_LineIn: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninputroute_builtinmic?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSessionInputRoute_BuiltInMic: CFStringRef;
+    pub static kAudioSessionInputRoute_BuiltInMic: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninputroute_headsetmic?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSessionInputRoute_HeadsetMic: CFStringRef;
+    pub static kAudioSessionInputRoute_HeadsetMic: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninputroute_bluetoothhfp?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSessionInputRoute_BluetoothHFP: CFStringRef;
+    pub static kAudioSessionInputRoute_BluetoothHFP: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninputroute_usbaudio?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSessionInputRoute_USBAudio: CFStringRef;
+    pub static kAudioSessionInputRoute_USBAudio: Option<&'static CFStringRef>;
 }
 
 extern "C" {
@@ -179,79 +181,79 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_lineout?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSessionOutputRoute_LineOut: CFStringRef;
+    pub static kAudioSessionOutputRoute_LineOut: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_headphones?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSessionOutputRoute_Headphones: CFStringRef;
+    pub static kAudioSessionOutputRoute_Headphones: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_bluetoothhfp?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSessionOutputRoute_BluetoothHFP: CFStringRef;
+    pub static kAudioSessionOutputRoute_BluetoothHFP: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_bluetootha2dp?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSessionOutputRoute_BluetoothA2DP: CFStringRef;
+    pub static kAudioSessionOutputRoute_BluetoothA2DP: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_builtinreceiver?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSessionOutputRoute_BuiltInReceiver: CFStringRef;
+    pub static kAudioSessionOutputRoute_BuiltInReceiver: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_builtinspeaker?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSessionOutputRoute_BuiltInSpeaker: CFStringRef;
+    pub static kAudioSessionOutputRoute_BuiltInSpeaker: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_usbaudio?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSessionOutputRoute_USBAudio: CFStringRef;
+    pub static kAudioSessionOutputRoute_USBAudio: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_hdmi?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSessionOutputRoute_HDMI: CFStringRef;
+    pub static kAudioSessionOutputRoute_HDMI: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_airplay?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSessionOutputRoute_AirPlay: CFStringRef;
+    pub static kAudioSessionOutputRoute_AirPlay: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_inputsourcekey_id?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSession_InputSourceKey_ID: CFStringRef;
+    pub static kAudioSession_InputSourceKey_ID: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_inputsourcekey_description?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSession_InputSourceKey_Description: CFStringRef;
+    pub static kAudioSession_InputSourceKey_Description: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_outputdestinationkey_id?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSession_OutputDestinationKey_ID: CFStringRef;
+    pub static kAudioSession_OutputDestinationKey_ID: Option<&'static CFStringRef>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_outputdestinationkey_description?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioSession_OutputDestinationKey_Description: CFStringRef;
+    pub static kAudioSession_OutputDestinationKey_Description: Option<&'static CFStringRef>;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninterruptiontype_shouldresume?language=objc)
@@ -379,8 +381,8 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub fn AudioSessionInitialize(
-        in_run_loop: CFRunLoopRef,
-        in_run_loop_mode: CFStringRef,
+        in_run_loop: Option<&CFRunLoopRef>,
+        in_run_loop_mode: Option<&CFStringRef>,
         in_interruption_listener: AudioSessionInterruptionListener,
         in_client_data: *mut c_void,
     ) -> OSStatus;

@@ -3051,8 +3051,8 @@ extern_methods!(
         ///
         ///
         /// A CMFormatDescription describing an AVCaptureDevice active or supported format. This is a read-only property. The caller assumes no ownership of the returned value and should not CFRelease it.
-        #[method(formatDescription)]
-        pub unsafe fn formatDescription(&self) -> CMFormatDescriptionRef;
+        #[method_id(@__retain_semantics Other formatDescription)]
+        pub unsafe fn formatDescription(&self) -> Retained<CMFormatDescriptionRef>;
 
         /// A property indicating the format's supported frame rate ranges.
         ///

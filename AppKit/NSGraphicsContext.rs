@@ -96,7 +96,7 @@ extern_methods!(
         #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other graphicsContextWithCGContext:flipped:)]
         pub unsafe fn graphicsContextWithCGContext_flipped(
-            graphics_port: CGContextRef,
+            graphics_port: &CGContextRef,
             initial_flipped_state: bool,
         ) -> Retained<NSGraphicsContext>;
 
@@ -135,8 +135,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[method(CGContext)]
-        pub unsafe fn CGContext(&self) -> CGContextRef;
+        #[method_id(@__retain_semantics Other CGContext)]
+        pub unsafe fn CGContext(&self) -> Retained<CGContextRef>;
 
         #[method(isFlipped)]
         pub unsafe fn isFlipped(&self) -> bool;

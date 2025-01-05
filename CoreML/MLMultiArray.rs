@@ -108,8 +108,8 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-video")]
         /// Returns the backing pixel buffer if exists, otherwise nil.
-        #[method(pixelBuffer)]
-        pub unsafe fn pixelBuffer(&self) -> CVPixelBufferRef;
+        #[method_id(@__retain_semantics Other pixelBuffer)]
+        pub unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBufferRef>>;
     }
 );
 
@@ -284,7 +284,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithPixelBuffer:shape:)]
         pub unsafe fn initWithPixelBuffer_shape(
             this: Allocated<Self>,
-            pixel_buffer: CVPixelBufferRef,
+            pixel_buffer: &CVPixelBufferRef,
             shape: &NSArray<NSNumber>,
         ) -> Retained<Self>;
     }

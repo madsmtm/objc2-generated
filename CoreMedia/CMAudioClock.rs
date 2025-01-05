@@ -21,7 +21,7 @@ extern "C-unwind" {
     /// The caller is responsible for calling CFRelease to release this clock.
     #[cfg(feature = "CMSync")]
     pub fn CMAudioClockCreate(
-        allocator: CFAllocatorRef,
+        allocator: Option<&CFAllocatorRef>,
         clock_out: NonNull<CMClockRef>,
     ) -> OSStatus;
 }

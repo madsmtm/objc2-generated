@@ -55,7 +55,7 @@ extern_methods!(
         /// Construct image feature value from CGImage (orientation is assumed to be kCGImagePropertyOrientationUp)
         #[method_id(@__retain_semantics Other featureValueWithCGImage:pixelsWide:pixelsHigh:pixelFormatType:options:error:_)]
         pub unsafe fn featureValueWithCGImage_pixelsWide_pixelsHigh_pixelFormatType_options_error(
-            cg_image: CGImageRef,
+            cg_image: &CGImageRef,
             pixels_wide: NSInteger,
             pixels_high: NSInteger,
             pixel_format_type: OSType,
@@ -66,7 +66,7 @@ extern_methods!(
         /// Construct image feature value from CGImage, using the size and type information required by feature description (orientation is assumed to be kCGImagePropertyOrientationUp)
         #[method_id(@__retain_semantics Other featureValueWithCGImage:constraint:options:error:_)]
         pub unsafe fn featureValueWithCGImage_constraint_options_error(
-            cg_image: CGImageRef,
+            cg_image: &CGImageRef,
             constraint: &MLImageConstraint,
             options: Option<&NSDictionary<MLFeatureValueImageOption, AnyObject>>,
         ) -> Result<Retained<Self>, Retained<NSError>>;

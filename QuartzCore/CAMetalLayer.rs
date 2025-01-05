@@ -106,13 +106,13 @@ extern_methods!(
         pub unsafe fn setPresentsWithTransaction(&self, presents_with_transaction: bool);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(colorspace)]
-        pub unsafe fn colorspace(&self) -> CGColorSpaceRef;
+        #[method_id(@__retain_semantics Other colorspace)]
+        pub unsafe fn colorspace(&self) -> Option<Retained<CGColorSpaceRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorspace`][Self::colorspace].
         #[method(setColorspace:)]
-        pub unsafe fn setColorspace(&self, colorspace: CGColorSpaceRef);
+        pub unsafe fn setColorspace(&self, colorspace: Option<&CGColorSpaceRef>);
 
         #[method(wantsExtendedDynamicRangeContent)]
         pub unsafe fn wantsExtendedDynamicRangeContent(&self) -> bool;

@@ -711,6 +711,8 @@ pub use self::__AUGraph::AudioUnitNodeConnection;
 pub use self::__AUGraph::DisposeAUGraph;
 #[cfg(feature = "AUGraph")]
 pub use self::__AUGraph::NewAUGraph;
+#[cfg(feature = "AUGraph")]
+pub use self::__AUGraph::OpaqueAUGraph;
 #[cfg(feature = "AUParameters")]
 pub use self::__AUParameters::AUParameter;
 #[cfg(feature = "AUParameters")]
@@ -1125,6 +1127,10 @@ pub use self::__AudioComponent::AudioComponentValidate;
 pub use self::__AudioComponent::AudioComponentValidateWithResults;
 #[cfg(feature = "AudioComponent")]
 pub use self::__AudioComponent::AudioComponentValidationResult;
+#[cfg(feature = "AudioComponent")]
+pub use self::__AudioComponent::OpaqueAudioComponent;
+#[cfg(feature = "AudioComponent")]
+pub use self::__AudioComponent::OpaqueAudioComponentInstance;
 #[cfg(feature = "AudioConverter")]
 pub use self::__AudioConverter::kAudioConverterApplicableEncodeBitRates;
 #[cfg(feature = "AudioConverter")]
@@ -1281,6 +1287,8 @@ pub use self::__AudioConverter::AudioConverterRef;
 pub use self::__AudioConverter::AudioConverterReset;
 #[cfg(feature = "AudioConverter")]
 pub use self::__AudioConverter::AudioConverterSetProperty;
+#[cfg(feature = "AudioConverter")]
+pub use self::__AudioConverter::OpaqueAudioConverter;
 #[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::kAudioFile3GP2Type;
 #[cfg(feature = "AudioFile")]
@@ -1510,7 +1518,7 @@ pub use self::__AudioFile::AudioFileGetUserDataAtOffset;
 pub use self::__AudioFile::AudioFileGetUserDataSize;
 #[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
 pub use self::__AudioFile::AudioFileGetUserDataSize64;
-#[cfg(feature = "AudioFile")]
+#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
 pub use self::__AudioFile::AudioFileID;
 #[cfg(all(
     feature = "AudioFile",
@@ -1596,6 +1604,8 @@ pub use self::__AudioFile::AudioPacketDependencyInfoTranslation;
 pub use self::__AudioFile::AudioPacketRangeByteCountTranslation;
 #[cfg(feature = "AudioFile")]
 pub use self::__AudioFile::AudioPacketRollDistanceTranslation;
+#[cfg(feature = "AudioUnitProperties")]
+pub use self::__AudioFile::OpaqueAudioFileID;
 #[cfg(feature = "AudioFileStream")]
 pub use self::__AudioFileStream::kAudioFileStreamError_BadPropertySize;
 #[cfg(feature = "AudioFileStream")]
@@ -1700,6 +1710,8 @@ pub use self::__AudioFileStream::AudioFileStreamSetProperty;
 pub use self::__AudioFileStream::AudioFileStream_PacketsProc;
 #[cfg(feature = "AudioFileStream")]
 pub use self::__AudioFileStream::AudioFileStream_PropertyListenerProc;
+#[cfg(feature = "AudioFileStream")]
+pub use self::__AudioFileStream::OpaqueAudioFileStreamID;
 #[cfg(feature = "AudioFormat")]
 pub use self::__AudioFormat::kAudioFormatBadPropertySizeError;
 #[cfg(feature = "AudioFormat")]
@@ -2050,6 +2062,12 @@ pub use self::__AudioQueue::AudioQueueStart;
 pub use self::__AudioQueue::AudioQueueStop;
 #[cfg(feature = "AudioQueue")]
 pub use self::__AudioQueue::AudioQueueTimelineRef;
+#[cfg(feature = "AudioQueue")]
+pub use self::__AudioQueue::OpaqueAudioQueue;
+#[cfg(feature = "AudioQueue")]
+pub use self::__AudioQueue::OpaqueAudioQueueProcessingTap;
+#[cfg(feature = "AudioQueue")]
+pub use self::__AudioQueue::OpaqueAudioQueueTimeline;
 #[cfg(feature = "AudioServices")]
 pub use self::__AudioServices::kAudioServicesBadPropertySizeError;
 #[cfg(feature = "AudioServices")]
@@ -3516,6 +3534,8 @@ pub use self::__AudioUnitUtilities::AUEventListenerRef;
     feature = "AudioUnitUtilities"
 ))]
 pub use self::__AudioUnitUtilities::AUListenerAddParameter;
+#[cfg(feature = "AudioUnitUtilities")]
+pub use self::__AudioUnitUtilities::AUListenerBase;
 #[cfg(all(
     feature = "AUComponent",
     feature = "AudioComponent",
@@ -3833,6 +3853,8 @@ pub use self::__ExtendedAudioFile::ExtAudioFileWrapAudioFileID;
 pub use self::__ExtendedAudioFile::ExtAudioFileWrite;
 #[cfg(all(feature = "ExtendedAudioFile", feature = "objc2-core-audio-types"))]
 pub use self::__ExtendedAudioFile::ExtAudioFileWriteAsync;
+#[cfg(feature = "ExtendedAudioFile")]
+pub use self::__ExtendedAudioFile::OpaqueExtAudioFile;
 #[cfg(feature = "MusicDevice")]
 pub use self::__MusicDevice::kMusicDeviceMIDIEventListSelect;
 #[cfg(feature = "MusicDevice")]
@@ -4161,9 +4183,19 @@ pub use self::__MusicPlayer::NewMusicPlayer;
 pub use self::__MusicPlayer::NewMusicSequence;
 #[cfg(feature = "MusicPlayer")]
 pub use self::__MusicPlayer::NewMusicTrackFrom;
+#[cfg(feature = "MusicPlayer")]
+pub use self::__MusicPlayer::OpaqueMusicEventIterator;
+#[cfg(feature = "MusicPlayer")]
+pub use self::__MusicPlayer::OpaqueMusicPlayer;
+#[cfg(feature = "MusicPlayer")]
+pub use self::__MusicPlayer::OpaqueMusicSequence;
+#[cfg(feature = "MusicPlayer")]
+pub use self::__MusicPlayer::OpaqueMusicTrack;
 #[cfg(all(feature = "AUComponent", feature = "MusicPlayer"))]
 pub use self::__MusicPlayer::ParameterEvent;
+use core::cell::UnsafeCell;
 use core::ffi::*;
+use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-audio-types")]
@@ -4208,7 +4240,7 @@ extern "C-unwind" {
     ))]
     pub fn AudioFileComponentCreateURL(
         in_component: AudioFileComponent,
-        in_file_ref: CFURLRef,
+        in_file_ref: &CFURLRef,
         in_format: NonNull<AudioStreamBasicDescription>,
         in_flags: u32,
     ) -> OSStatus;
@@ -4231,7 +4263,7 @@ extern "C-unwind" {
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
     pub fn AudioFileComponentOpenURL(
         in_component: AudioFileComponent,
-        in_file_ref: CFURLRef,
+        in_file_ref: &CFURLRef,
         in_permissions: i8,
         in_file_descriptor: c_int,
     ) -> OSStatus;
@@ -4730,7 +4762,7 @@ extern "C-unwind" {
     #[cfg(all(feature = "AudioComponent", feature = "objc2-core-foundation"))]
     pub fn AudioFileComponentExtensionIsThisFormat(
         in_component: AudioFileComponent,
-        in_extension: CFStringRef,
+        in_extension: &CFStringRef,
         out_result: NonNull<u32>,
     ) -> OSStatus;
 }
@@ -5169,7 +5201,7 @@ unsafe impl RefEncode for AudioFileFDFTableExtended {
 pub type AudioFileComponentCreateURLProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
-        CFURLRef,
+        NonNull<CFURLRef>,
         NonNull<AudioStreamBasicDescription>,
         u32,
     ) -> OSStatus,
@@ -5178,7 +5210,7 @@ pub type AudioFileComponentCreateURLProc = Option<
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentopenurlproc?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub type AudioFileComponentOpenURLProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, CFURLRef, i8, c_int) -> OSStatus>;
+    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<CFURLRef>, i8, c_int) -> OSStatus>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentopenwithcallbacksproc?language=objc)
 #[cfg(feature = "AudioFile")]
@@ -5357,8 +5389,9 @@ pub type AudioFileComponentRemoveUserDataProc =
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentextensionisthisformatproc?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
-pub type AudioFileComponentExtensionIsThisFormatProc =
-    Option<unsafe extern "C-unwind" fn(NonNull<c_void>, CFStringRef, NonNull<u32>) -> OSStatus>;
+pub type AudioFileComponentExtensionIsThisFormatProc = Option<
+    unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<CFStringRef>, NonNull<u32>) -> OSStatus,
+>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecomponentfiledataisthisformatproc?language=objc)
 pub type AudioFileComponentFileDataIsThisFormatProc = Option<
@@ -5699,10 +5732,22 @@ pub const kCAClock_InvalidPlayRateError: OSStatus = -66806;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaclock_cannotsettimeerror?language=objc)
 pub const kCAClock_CannotSetTimeError: OSStatus = -66805;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/opaquecaclock?language=objc)
+#[repr(C)]
+#[derive(Debug)]
+pub struct OpaqueCAClock {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+unsafe impl RefEncode for OpaqueCAClock {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueCAClock", &[]));
+}
+
 /// A reference to a Core Audio Clock object.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caclockref?language=objc)
-pub type CAClockRef = *mut c_void;
+pub type CAClockRef = *mut OpaqueCAClock;
 
 /// MIDI quarter notes (see MIDI specs)
 ///
@@ -6164,7 +6209,7 @@ extern "C-unwind" {
     ///
     /// Returns: returns noErr if successful.
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn CopyNameFromSoundBank(in_url: CFURLRef, out_name: NonNull<CFStringRef>) -> OSStatus;
+    pub fn CopyNameFromSoundBank(in_url: &CFURLRef, out_name: NonNull<CFStringRef>) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -6190,7 +6235,7 @@ extern "C-unwind" {
     /// Returns: returns noErr if successful.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CopyInstrumentInfoFromSoundBank(
-        in_url: CFURLRef,
+        in_url: &CFURLRef,
         out_instrument_info: NonNull<CFArrayRef>,
     ) -> OSStatus;
 }

@@ -205,7 +205,7 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Use CWKeychainFindWiFiEAPUsernameAndPassword() instead"]
     pub fn CWKeychainCopyEAPUsernameAndPassword(
-        ssid_data: CFDataRef,
+        ssid_data: &CFDataRef,
         username: *mut CFStringRef,
         password: *mut CFStringRef,
     ) -> OSStatus;
@@ -233,9 +233,9 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Use CWKeychainSetWiFiEAPUsernameAndPassword() instead"]
     pub fn CWKeychainSetEAPUsernameAndPassword(
-        ssid_data: CFDataRef,
-        username: CFStringRef,
-        password: CFStringRef,
+        ssid_data: &CFDataRef,
+        username: Option<&CFStringRef>,
+        password: Option<&CFStringRef>,
     ) -> OSStatus;
 }
 
@@ -254,7 +254,7 @@ extern "C-unwind" {
     /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Use CWKeychainDeleteWiFiEAPUsernameAndPassword() instead"]
-    pub fn CWKeychainDeleteEAPUsernameAndPassword(ssid_data: CFDataRef) -> OSStatus;
+    pub fn CWKeychainDeleteEAPUsernameAndPassword(ssid_data: &CFDataRef) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -275,7 +275,7 @@ extern "C-unwind" {
     /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Use CWKeychainSetWiFiPassword() instead"]
-    pub fn CWKeychainSetPassword(ssid_data: CFDataRef, password: CFStringRef) -> OSStatus;
+    pub fn CWKeychainSetPassword(ssid_data: &CFDataRef, password: &CFStringRef) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -297,7 +297,7 @@ extern "C-unwind" {
     /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Use CWKeychainFindWiFiPassword() instead"]
-    pub fn CWKeychainCopyPassword(ssid_data: CFDataRef, password: *mut CFStringRef) -> OSStatus;
+    pub fn CWKeychainCopyPassword(ssid_data: &CFDataRef, password: *mut CFStringRef) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -315,7 +315,7 @@ extern "C-unwind" {
     /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Use CWKeychainDeleteWiFiPassword() instead"]
-    pub fn CWKeychainDeletePassword(ssid_data: CFDataRef) -> OSStatus;
+    pub fn CWKeychainDeletePassword(ssid_data: &CFDataRef) -> OSStatus;
 }
 
 /// Parameter `networks`: The set of networks to merge.

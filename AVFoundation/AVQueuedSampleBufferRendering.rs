@@ -47,8 +47,8 @@ extern_protocol!(
         /// The timebase is used to interpret time stamps.
         ///
         /// The timebase is read-only.  Use the AVSampleBufferRenderSynchronizer to set the rate or time.
-        #[method(timebase)]
-        unsafe fn timebase(&self) -> CMTimebaseRef;
+        #[method_id(@__retain_semantics Other timebase)]
+        unsafe fn timebase(&self) -> Retained<CMTimebaseRef>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Sends a sample buffer in order to render its contents.
@@ -63,7 +63,7 @@ extern_protocol!(
         ///
         /// The combination of either a non-NULL controlTimebase or an AVSampleBufferRenderSynchronizer with the use of kCMSampleAttachmentKey_DisplayImmediately as an attachment to the CMSampleBuffers that are enqueued for display is not recommended.
         #[method(enqueueSampleBuffer:)]
-        unsafe fn enqueueSampleBuffer(&self, sample_buffer: CMSampleBufferRef);
+        unsafe fn enqueueSampleBuffer(&self, sample_buffer: &CMSampleBufferRef);
 
         /// Instructs the receiver to discard pending enqueued sample buffers.
         ///

@@ -15,7 +15,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodsessionproxyaddress?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODSessionProxyAddress: CFStringRef;
+    pub static kODSessionProxyAddress: Option<&'static CFStringRef>;
 }
 
 extern "C" {
@@ -26,7 +26,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodsessionproxyport?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODSessionProxyPort: CFStringRef;
+    pub static kODSessionProxyPort: Option<&'static CFStringRef>;
 }
 
 extern "C" {
@@ -36,7 +36,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodsessionproxyusername?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODSessionProxyUsername: CFStringRef;
+    pub static kODSessionProxyUsername: Option<&'static CFStringRef>;
 }
 
 extern "C" {
@@ -46,7 +46,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodsessionproxypassword?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODSessionProxyPassword: CFStringRef;
+    pub static kODSessionProxyPassword: Option<&'static CFStringRef>;
 }
 
 extern "C" {
@@ -56,7 +56,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmoduleconfigoptionquerytimeout?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODModuleConfigOptionQueryTimeout: CFStringRef;
+    pub static kODModuleConfigOptionQueryTimeout: Option<&'static CFStringRef>;
 }
 
 extern "C" {
@@ -66,7 +66,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmoduleconfigoptionconnectionsetuptimeout?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODModuleConfigOptionConnectionSetupTimeout: CFStringRef;
+    pub static kODModuleConfigOptionConnectionSetupTimeout: Option<&'static CFStringRef>;
 }
 
 extern "C" {
@@ -76,7 +76,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmoduleconfigoptionconnectionidledisconnect?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODModuleConfigOptionConnectionIdleDisconnect: CFStringRef;
+    pub static kODModuleConfigOptionConnectionIdleDisconnect: Option<&'static CFStringRef>;
 }
 
 extern "C" {
@@ -86,7 +86,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmoduleconfigoptionpacketsigning?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODModuleConfigOptionPacketSigning: CFStringRef;
+    pub static kODModuleConfigOptionPacketSigning: Option<&'static CFStringRef>;
 }
 
 extern "C" {
@@ -96,7 +96,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmoduleconfigoptionpacketencryption?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODModuleConfigOptionPacketEncryption: CFStringRef;
+    pub static kODModuleConfigOptionPacketEncryption: Option<&'static CFStringRef>;
 }
 
 extern "C" {
@@ -106,7 +106,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmoduleconfigoptionmaninthemiddle?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODModuleConfigOptionManInTheMiddle: CFStringRef;
+    pub static kODModuleConfigOptionManInTheMiddle: Option<&'static CFStringRef>;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodnodetypeauthentication?language=objc)
@@ -133,7 +133,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodnodeoptionsqueryskippedsubnode?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kODNodeOptionsQuerySkippedSubnode: CFStringRef;
+    pub static kODNodeOptionsQuerySkippedSubnode: Option<&'static CFStringRef>;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchany?language=objc)

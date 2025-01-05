@@ -110,8 +110,8 @@ extern_methods!(
         /// Vends a CVPixelBuffer to use for rendering
         ///
         /// The buffer will have its kCVImageBufferCleanApertureKey and kCVImageBufferPixelAspectRatioKey attachments set to match the current composition processor properties.
-        #[method(newPixelBuffer)]
-        pub unsafe fn newPixelBuffer(&self) -> CVPixelBufferRef;
+        #[method_id(@__retain_semantics New newPixelBuffer)]
+        pub unsafe fn newPixelBuffer(&self) -> Option<Retained<CVPixelBufferRef>>;
     }
 );
 
@@ -319,21 +319,21 @@ extern_methods!(
         /// Returns the source CVPixelBufferRef for the given track ID
         ///
         /// Parameter `trackID`: The track ID for the requested source frame
-        #[method(sourceFrameByTrackID:)]
+        #[method_id(@__retain_semantics Other sourceFrameByTrackID:)]
         pub unsafe fn sourceFrameByTrackID(
             &self,
             track_id: CMPersistentTrackID,
-        ) -> CVPixelBufferRef;
+        ) -> Option<Retained<CVPixelBufferRef>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Returns the source CMSampleBufferRef for the given track ID
         ///
         /// Parameter `trackID`: The track ID for the requested source sample buffer
-        #[method(sourceSampleBufferByTrackID:)]
+        #[method_id(@__retain_semantics Other sourceSampleBufferByTrackID:)]
         pub unsafe fn sourceSampleBufferByTrackID(
             &self,
             track_id: CMPersistentTrackID,
-        ) -> CMSampleBufferRef;
+        ) -> Option<Retained<CMSampleBufferRef>>;
 
         #[cfg(all(feature = "AVTimedMetadataGroup", feature = "objc2-core-media"))]
         /// Returns the source AVTimedMetadataGroup * for the given track ID
@@ -350,7 +350,7 @@ extern_methods!(
         ///
         /// Parameter `composedVideoFrame`: The video frame to finish with.
         #[method(finishWithComposedVideoFrame:)]
-        pub unsafe fn finishWithComposedVideoFrame(&self, composed_video_frame: CVPixelBufferRef);
+        pub unsafe fn finishWithComposedVideoFrame(&self, composed_video_frame: &CVPixelBufferRef);
 
         #[method(finishWithError:)]
         pub unsafe fn finishWithError(&self, error: &NSError);

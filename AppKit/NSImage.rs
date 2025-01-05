@@ -400,7 +400,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCGImage:size:)]
         pub unsafe fn initWithCGImage_size(
             this: Allocated<Self>,
-            cg_image: CGImageRef,
+            cg_image: &CGImageRef,
             size: NSSize,
         ) -> Retained<Self>;
 
@@ -411,13 +411,13 @@ extern_methods!(
             feature = "objc2-core-graphics"
         ))]
         #[cfg(target_vendor = "apple")]
-        #[method(CGImageForProposedRect:context:hints:)]
+        #[method_id(@__retain_semantics Other CGImageForProposedRect:context:hints:)]
         pub unsafe fn CGImageForProposedRect_context_hints(
             &self,
             proposed_dest_rect: *mut NSRect,
             reference_context: Option<&NSGraphicsContext>,
             hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
-        ) -> CGImageRef;
+        ) -> Option<Retained<CGImageRef>>;
 
         #[cfg(all(
             feature = "NSGraphicsContext",

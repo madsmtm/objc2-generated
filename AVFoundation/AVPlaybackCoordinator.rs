@@ -521,7 +521,7 @@ extern_methods!(
         pub unsafe fn transitionToItemWithIdentifier_proposingInitialTimingBasedOnTimebase(
             &self,
             item_identifier: Option<&NSString>,
-            snapshot_timebase: CMTimebaseRef,
+            snapshot_timebase: Option<&CMTimebaseRef>,
         );
 
         /// The item identifier of the current item. Previously set by a call to transitionToItemWithIdentifier:proposingInitialTimingBasedOnTimebase:

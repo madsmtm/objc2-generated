@@ -7,20 +7,20 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgexrtonemappinggammadefog?language=objc)
-    pub static kCGEXRToneMappingGammaDefog: CFStringRef;
+    pub static kCGEXRToneMappingGammaDefog: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgexrtonemappinggammaexposure?language=objc)
-    pub static kCGEXRToneMappingGammaExposure: CFStringRef;
+    pub static kCGEXRToneMappingGammaExposure: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgexrtonemappinggammakneelow?language=objc)
-    pub static kCGEXRToneMappingGammaKneeLow: CFStringRef;
+    pub static kCGEXRToneMappingGammaKneeLow: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgexrtonemappinggammakneehigh?language=objc)
-    pub static kCGEXRToneMappingGammaKneeHigh: CFStringRef;
+    pub static kCGEXRToneMappingGammaKneeHigh: &'static CFStringRef;
 }

@@ -478,8 +478,8 @@ extern_methods!(
     unsafe impl VNPixelBufferObservation {
         #[cfg(feature = "objc2-core-video")]
         /// The resulting image from a request like VNCoreMLRequest where the model produces an image as an output.
-        #[method(pixelBuffer)]
-        pub unsafe fn pixelBuffer(&self) -> CVPixelBufferRef;
+        #[method_id(@__retain_semantics Other pixelBuffer)]
+        pub unsafe fn pixelBuffer(&self) -> Retained<CVPixelBufferRef>;
 
         /// The name used in the model description of the CoreML model that produced this observation allowing to correlate the observation back to the output of the model. This can be nil if the observation is not the result of a VNCoreMLRequest operation.
         #[method_id(@__retain_semantics Other featureName)]
@@ -1489,8 +1489,8 @@ extern_methods!(
         /// Obtain all of the contours represented as a CGPath in normalized coordinates.
         ///
         /// The path is owned by the observation and therefore will be alive as long as the the observation is alive.
-        #[method(normalizedPath)]
-        pub unsafe fn normalizedPath(&self) -> CGPathRef;
+        #[method_id(@__retain_semantics Other normalizedPath)]
+        pub unsafe fn normalizedPath(&self) -> Retained<CGPathRef>;
     }
 );
 
@@ -1707,8 +1707,8 @@ extern_methods!(
         #[cfg(feature = "objc2-core-video")]
         /// The resulting mask represents all instances in a mask image where 0 represents the background and all other values represent the indices of the instances identified.
         /// Note that a pixel can only correspond to one instance and not multiple instances.
-        #[method(instanceMask)]
-        pub unsafe fn instanceMask(&self) -> CVPixelBufferRef;
+        #[method_id(@__retain_semantics Other instanceMask)]
+        pub unsafe fn instanceMask(&self) -> Retained<CVPixelBufferRef>;
 
         /// *The IndexSet that encompases all instances except the background
         #[method_id(@__retain_semantics Other allInstances)]

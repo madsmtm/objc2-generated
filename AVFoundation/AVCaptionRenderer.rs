@@ -75,7 +75,7 @@ extern_methods!(
         ///
         /// Captions are drawn into the CGContextRef based upon their activation at the specified time. If there are no captions or no captions at the specified time, "emptiness" will still be drawn (e.g., flood filling with zero alpha or a color).
         #[method(renderInContext:forTime:)]
-        pub unsafe fn renderInContext_forTime(&self, ctx: CGContextRef, time: CMTime);
+        pub unsafe fn renderInContext_forTime(&self, ctx: &CGContextRef, time: CMTime);
     }
 );
 

@@ -11,72 +11,81 @@ use crate::*;
 extern "C-unwind" {
     #[cfg(all(feature = "CGContext", feature = "CGDataConsumer"))]
     pub fn CGPDFContextCreate(
-        consumer: CGDataConsumerRef,
+        consumer: Option<&CGDataConsumerRef>,
         media_box: *const CGRect,
-        auxiliary_info: CFDictionaryRef,
-    ) -> CGContextRef;
+        auxiliary_info: Option<&CFDictionaryRef>,
+    ) -> *mut CGContextRef;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
     pub fn CGPDFContextCreateWithURL(
-        url: CFURLRef,
+        url: Option<&CFURLRef>,
         media_box: *const CGRect,
-        auxiliary_info: CFDictionaryRef,
-    ) -> CGContextRef;
+        auxiliary_info: Option<&CFDictionaryRef>,
+    ) -> *mut CGContextRef;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextClose(context: CGContextRef);
+    pub fn CGPDFContextClose(context: Option<&CGContextRef>);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextBeginPage(context: CGContextRef, page_info: CFDictionaryRef);
+    pub fn CGPDFContextBeginPage(
+        context: Option<&CGContextRef>,
+        page_info: Option<&CFDictionaryRef>,
+    );
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextEndPage(context: CGContextRef);
+    pub fn CGPDFContextEndPage(context: Option<&CGContextRef>);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextAddDocumentMetadata(context: CGContextRef, metadata: CFDataRef);
+    pub fn CGPDFContextAddDocumentMetadata(
+        context: Option<&CGContextRef>,
+        metadata: Option<&CFDataRef>,
+    );
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CGContext", feature = "CGPDFDictionary"))]
     pub fn CGPDFContextSetParentTree(
-        context: CGContextRef,
+        context: Option<&CGContextRef>,
         parent_tree_dictionary: CGPDFDictionaryRef,
     );
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CGContext", feature = "CGPDFDictionary"))]
-    pub fn CGPDFContextSetIDTree(context: CGContextRef, id_tree_dictionary: CGPDFDictionaryRef);
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextSetPageTagStructureTree(
-        context: CGContextRef,
-        page_tag_structure_tree_dictionary: CFDictionaryRef,
+    pub fn CGPDFContextSetIDTree(
+        context: Option<&CGContextRef>,
+        id_tree_dictionary: CGPDFDictionaryRef,
     );
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextSetURLForRect(context: CGContextRef, url: CFURLRef, rect: CGRect);
+    pub fn CGPDFContextSetPageTagStructureTree(
+        context: Option<&CGContextRef>,
+        page_tag_structure_tree_dictionary: &CFDictionaryRef,
+    );
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CGContext")]
+    pub fn CGPDFContextSetURLForRect(context: Option<&CGContextRef>, url: &CFURLRef, rect: CGRect);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
     pub fn CGPDFContextAddDestinationAtPoint(
-        context: CGContextRef,
-        name: CFStringRef,
+        context: Option<&CGContextRef>,
+        name: &CFStringRef,
         point: CGPoint,
     );
 }
@@ -84,145 +93,145 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
     pub fn CGPDFContextSetDestinationForRect(
-        context: CGContextRef,
-        name: CFStringRef,
+        context: Option<&CGContextRef>,
+        name: &CFStringRef,
         rect: CGRect,
     );
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextmediabox?language=objc)
-    pub static kCGPDFContextMediaBox: CFStringRef;
+    pub static kCGPDFContextMediaBox: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextcropbox?language=objc)
-    pub static kCGPDFContextCropBox: CFStringRef;
+    pub static kCGPDFContextCropBox: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextbleedbox?language=objc)
-    pub static kCGPDFContextBleedBox: CFStringRef;
+    pub static kCGPDFContextBleedBox: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontexttrimbox?language=objc)
-    pub static kCGPDFContextTrimBox: CFStringRef;
+    pub static kCGPDFContextTrimBox: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextartbox?language=objc)
-    pub static kCGPDFContextArtBox: CFStringRef;
+    pub static kCGPDFContextArtBox: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontexttitle?language=objc)
-    pub static kCGPDFContextTitle: CFStringRef;
+    pub static kCGPDFContextTitle: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextauthor?language=objc)
-    pub static kCGPDFContextAuthor: CFStringRef;
+    pub static kCGPDFContextAuthor: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextsubject?language=objc)
-    pub static kCGPDFContextSubject: CFStringRef;
+    pub static kCGPDFContextSubject: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextkeywords?language=objc)
-    pub static kCGPDFContextKeywords: CFStringRef;
+    pub static kCGPDFContextKeywords: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextcreator?language=objc)
-    pub static kCGPDFContextCreator: CFStringRef;
+    pub static kCGPDFContextCreator: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextownerpassword?language=objc)
-    pub static kCGPDFContextOwnerPassword: CFStringRef;
+    pub static kCGPDFContextOwnerPassword: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextuserpassword?language=objc)
-    pub static kCGPDFContextUserPassword: CFStringRef;
+    pub static kCGPDFContextUserPassword: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextencryptionkeylength?language=objc)
-    pub static kCGPDFContextEncryptionKeyLength: CFStringRef;
+    pub static kCGPDFContextEncryptionKeyLength: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextallowsprinting?language=objc)
-    pub static kCGPDFContextAllowsPrinting: CFStringRef;
+    pub static kCGPDFContextAllowsPrinting: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextallowscopying?language=objc)
-    pub static kCGPDFContextAllowsCopying: CFStringRef;
+    pub static kCGPDFContextAllowsCopying: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextoutputintent?language=objc)
-    pub static kCGPDFContextOutputIntent: CFStringRef;
+    pub static kCGPDFContextOutputIntent: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfxoutputintentsubtype?language=objc)
-    pub static kCGPDFXOutputIntentSubtype: CFStringRef;
+    pub static kCGPDFXOutputIntentSubtype: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfxoutputconditionidentifier?language=objc)
-    pub static kCGPDFXOutputConditionIdentifier: CFStringRef;
+    pub static kCGPDFXOutputConditionIdentifier: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfxoutputcondition?language=objc)
-    pub static kCGPDFXOutputCondition: CFStringRef;
+    pub static kCGPDFXOutputCondition: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfxregistryname?language=objc)
-    pub static kCGPDFXRegistryName: CFStringRef;
+    pub static kCGPDFXRegistryName: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfxinfo?language=objc)
-    pub static kCGPDFXInfo: CFStringRef;
+    pub static kCGPDFXInfo: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfxdestinationoutputprofile?language=objc)
-    pub static kCGPDFXDestinationOutputProfile: CFStringRef;
+    pub static kCGPDFXDestinationOutputProfile: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextoutputintents?language=objc)
-    pub static kCGPDFContextOutputIntents: CFStringRef;
+    pub static kCGPDFContextOutputIntents: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextaccesspermissions?language=objc)
-    pub static kCGPDFContextAccessPermissions: CFStringRef;
+    pub static kCGPDFContextAccessPermissions: &'static CFStringRef;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextSetOutline(context: CGContextRef, outline: CFDictionaryRef);
+    pub fn CGPDFContextSetOutline(context: &CGContextRef, outline: Option<&CFDictionaryRef>);
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextcreatelinearizedpdf?language=objc)
-    pub static kCGPDFContextCreateLinearizedPDF: CFStringRef;
+    pub static kCGPDFContextCreateLinearizedPDF: &'static CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextcreatepdfa?language=objc)
-    pub static kCGPDFContextCreatePDFA: CFStringRef;
+    pub static kCGPDFContextCreatePDFA: &'static CFStringRef;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagtype?language=objc)
@@ -353,34 +362,34 @@ pub type CGPDFTagProperty = CFStringRef;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdftagpropertyactualtext?language=objc)
-    pub static kCGPDFTagPropertyActualText: CGPDFTagProperty;
+    pub static kCGPDFTagPropertyActualText: &'static CGPDFTagProperty;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdftagpropertyalternativetext?language=objc)
-    pub static kCGPDFTagPropertyAlternativeText: CGPDFTagProperty;
+    pub static kCGPDFTagPropertyAlternativeText: &'static CGPDFTagProperty;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdftagpropertytitletext?language=objc)
-    pub static kCGPDFTagPropertyTitleText: CGPDFTagProperty;
+    pub static kCGPDFTagPropertyTitleText: &'static CGPDFTagProperty;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdftagpropertylanguagetext?language=objc)
-    pub static kCGPDFTagPropertyLanguageText: CGPDFTagProperty;
+    pub static kCGPDFTagPropertyLanguageText: &'static CGPDFTagProperty;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
     pub fn CGPDFContextBeginTag(
-        context: CGContextRef,
+        context: &CGContextRef,
         tag_type: CGPDFTagType,
-        tag_properties: CFDictionaryRef,
+        tag_properties: Option<&CFDictionaryRef>,
     );
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextEndTag(context: CGContextRef);
+    pub fn CGPDFContextEndTag(context: &CGContextRef);
 }

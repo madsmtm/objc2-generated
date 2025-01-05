@@ -94,7 +94,7 @@ extern_methods!(
             src_alpha: MPSAlphaType,
             dest_alpha: MPSAlphaType,
             background_color: *mut CGFloat,
-            conversion_info: CGColorConversionInfoRef,
+            conversion_info: Option<&CGColorConversionInfoRef>,
         ) -> Retained<Self>;
     }
 );

@@ -47,22 +47,22 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAShapeLayer {
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(path)]
-        pub unsafe fn path(&self) -> CGPathRef;
+        #[method_id(@__retain_semantics Other path)]
+        pub unsafe fn path(&self) -> Option<Retained<CGPathRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`path`][Self::path].
         #[method(setPath:)]
-        pub unsafe fn setPath(&self, path: CGPathRef);
+        pub unsafe fn setPath(&self, path: Option<&CGPathRef>);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(fillColor)]
-        pub unsafe fn fillColor(&self) -> CGColorRef;
+        #[method_id(@__retain_semantics Other fillColor)]
+        pub unsafe fn fillColor(&self) -> Option<Retained<CGColorRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`fillColor`][Self::fillColor].
         #[method(setFillColor:)]
-        pub unsafe fn setFillColor(&self, fill_color: CGColorRef);
+        pub unsafe fn setFillColor(&self, fill_color: Option<&CGColorRef>);
 
         #[method_id(@__retain_semantics Other fillRule)]
         pub unsafe fn fillRule(&self) -> Retained<CAShapeLayerFillRule>;
@@ -72,13 +72,13 @@ extern_methods!(
         pub unsafe fn setFillRule(&self, fill_rule: &CAShapeLayerFillRule);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method(strokeColor)]
-        pub unsafe fn strokeColor(&self) -> CGColorRef;
+        #[method_id(@__retain_semantics Other strokeColor)]
+        pub unsafe fn strokeColor(&self) -> Option<Retained<CGColorRef>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`strokeColor`][Self::strokeColor].
         #[method(setStrokeColor:)]
-        pub unsafe fn setStrokeColor(&self, stroke_color: CGColorRef);
+        pub unsafe fn setStrokeColor(&self, stroke_color: Option<&CGColorRef>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(strokeStart)]
