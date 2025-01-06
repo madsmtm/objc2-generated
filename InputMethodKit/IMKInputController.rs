@@ -166,6 +166,9 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkmousehandling?language=objc)
     pub unsafe trait IMKMouseHandling {
         #[cfg(feature = "objc2-core-foundation")]
+        /// Sends a mouseDown to an input method.
+        ///
+        /// A mouse down event happened at given index within the sender�s text storage, at the given point, and with modifier keys identified in flags. Return YES if handled.  Set keepTracking to YES if you want to receive subsequent mouseMoved and mouseUp events.
         #[method(mouseDownOnCharacterIndex:coordinate:withModifier:continueTracking:client:)]
         unsafe fn mouseDownOnCharacterIndex_coordinate_withModifier_continueTracking_client(
             &self,
@@ -177,6 +180,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Sends a mouseUp to an input method.
+        ///
+        /// A mouse up event happened at given index within the sender text view�s text storage, at the given point, with modifier keys identified in flags. Return YES if handled.
         #[method(mouseUpOnCharacterIndex:coordinate:withModifier:client:)]
         unsafe fn mouseUpOnCharacterIndex_coordinate_withModifier_client(
             &self,
@@ -187,6 +193,9 @@ extern_protocol!(
         ) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Passes a mouseMoved event to the input method.
+        ///
+        /// A mouse moved event happened at given index within the sender text view�s text storage, at the given point, with modifier keys identified in flags. Return YES if handled.
         #[method(mouseMovedOnCharacterIndex:coordinate:withModifier:client:)]
         unsafe fn mouseMovedOnCharacterIndex_coordinate_withModifier_client(
             &self,
