@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -46,7 +45,6 @@ unsafe impl RefEncode for CGFontPostScriptFormat {
 pub static kCGGlyphMax: CGFontIndex = kCGFontIndexMax;
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGFontGetTypeID() -> CFTypeID;
 }
 
@@ -61,12 +59,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGFontCreateWithFontName(name: CFStringRef) -> CGFontRef;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGFontCreateCopyWithVariations(
         font: CGFontRef,
         variations: CFDictionaryRef,
@@ -90,12 +86,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGFontCopyPostScriptName(font: CGFontRef) -> CFStringRef;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGFontCopyFullName(font: CGFontRef) -> CFStringRef;
 }
 
@@ -120,27 +114,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGFontGetFontBBox(font: CGFontRef) -> CGRect;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGFontGetItalicAngle(font: CGFontRef) -> CGFloat;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGFontGetStemV(font: CGFontRef) -> CGFloat;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGFontCopyVariationAxes(font: CGFontRef) -> CFArrayRef;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGFontCopyVariations(font: CGFontRef) -> CFDictionaryRef;
 }
 
@@ -154,7 +143,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGFontGetGlyphBBoxes(
         font: CGFontRef,
         glyphs: NonNull<CGGlyph>,
@@ -164,12 +152,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGFontGetGlyphWithGlyphName(font: CGFontRef, name: CFStringRef) -> CGGlyph;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGFontCopyGlyphNameForGlyph(font: CGFontRef, glyph: CGGlyph) -> CFStringRef;
 }
 
@@ -179,12 +165,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGFontCopyTableTags(font: CGFontRef) -> CFArrayRef;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGFontCopyTableForTag(font: CGFontRef, tag: u32) -> CFDataRef;
 }
 
@@ -192,25 +176,21 @@ extern "C" {
     /// * Keys for the font variation axis dictionary. **
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontvariationaxisname?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGFontVariationAxisName: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontvariationaxisminvalue?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGFontVariationAxisMinValue: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontvariationaxismaxvalue?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGFontVariationAxisMaxValue: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontvariationaxisdefaultvalue?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGFontVariationAxisDefaultValue: CFStringRef;
 }
 

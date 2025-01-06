@@ -4,38 +4,32 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvbufferpropagatedattachmentskey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVBufferPropagatedAttachmentsKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvbuffernonpropagatedattachmentskey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVBufferNonPropagatedAttachmentsKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvbuffermovietimekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVBufferMovieTimeKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvbuffertimevaluekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVBufferTimeValueKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvbuffertimescalekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVBufferTimeScaleKey: CFStringRef;
 }
 
@@ -90,7 +84,6 @@ extern "C-unwind" {
     ///
     /// Parameter `attachmentMode`: Specifies which attachment mode is desired for this attachment.   A particular attachment key may only exist in
     /// a single mode at a time.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CVBufferSetAttachment(
         buffer: CVBufferRef,
         key: CFStringRef,
@@ -111,7 +104,6 @@ extern "C-unwind" {
     /// Parameter `attachmentMode`: Returns the mode of the attachment, if desired.  May be NULL.
     ///
     /// Returns: If found the attachment object
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn CVBufferGetAttachment(
         buffer: CVBufferRef,
@@ -128,7 +120,6 @@ extern "C-unwind" {
     /// Parameter `buffer`: Target CVBuffer object.
     ///
     /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CVBufferRemoveAttachment(buffer: CVBufferRef, key: CFStringRef);
 }
 
@@ -150,7 +141,6 @@ extern "C-unwind" {
     ///
     /// Returns: A CFDictionary with all buffer attachments identified by there keys. If no attachment is present, the dictionary is empty.  Returns NULL
     /// for invalid attachment mode.
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn CVBufferGetAttachments(
         buffer: CVBufferRef,
@@ -164,7 +154,6 @@ extern "C-unwind" {
     /// CVBufferSetAttachments is a convenience call that in turn calls CVBufferSetAttachment for each key and value in the given dictionary. All key value pairs must be in the root level of the dictionary.
     ///
     /// Parameter `buffer`: Target CVBuffer object.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CVBufferSetAttachments(
         buffer: CVBufferRef,
         the_attachments: CFDictionaryRef,
@@ -195,7 +184,6 @@ extern "C-unwind" {
     /// Parameter `buffer`: Target CVBuffer object.
     ///
     /// Returns: A CFDictionary with all buffer attachments identified by their keys. If no attachment is present or invalid attachment mode,   returns NULL
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CVBufferCopyAttachments(
         buffer: CVBufferRef,
         attachment_mode: CVAttachmentMode,
@@ -214,7 +202,6 @@ extern "C-unwind" {
     /// Parameter `attachmentMode`: Returns the mode of the attachment, if desired.  May be NULL.
     ///
     /// Returns: If found the attachment object, return the value; otherwize, return NULL.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CVBufferCopyAttachment(
         buffer: CVBufferRef,
         key: CFStringRef,
@@ -230,6 +217,5 @@ extern "C-unwind" {
     /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
     ///
     /// Returns: True if an attachment with this key is present, otherwise false.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CVBufferHasAttachment(buffer: CVBufferRef, key: CFStringRef) -> Boolean;
 }

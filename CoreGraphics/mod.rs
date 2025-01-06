@@ -166,39 +166,39 @@ mod __CGWindow;
 #[path = "CGWindowLevel.rs"]
 mod __CGWindowLevel;
 
-#[cfg(all(feature = "CGAffineTransform", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGAffineTransform")]
 pub use self::__CGAffineTransform::CGAffineTransformConcat;
-#[cfg(all(feature = "CGAffineTransform", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGAffineTransform")]
 pub use self::__CGAffineTransform::CGAffineTransformDecompose;
-#[cfg(all(feature = "CGAffineTransform", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGAffineTransform")]
 pub use self::__CGAffineTransform::CGAffineTransformEqualToTransform;
-#[cfg(all(feature = "CGAffineTransform", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGAffineTransform")]
 pub use self::__CGAffineTransform::CGAffineTransformIdentity;
-#[cfg(all(feature = "CGAffineTransform", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGAffineTransform")]
 pub use self::__CGAffineTransform::CGAffineTransformInvert;
-#[cfg(all(feature = "CGAffineTransform", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGAffineTransform")]
 pub use self::__CGAffineTransform::CGAffineTransformIsIdentity;
-#[cfg(all(feature = "CGAffineTransform", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGAffineTransform")]
 pub use self::__CGAffineTransform::CGAffineTransformMake;
-#[cfg(all(feature = "CGAffineTransform", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGAffineTransform")]
 pub use self::__CGAffineTransform::CGAffineTransformMakeRotation;
-#[cfg(all(feature = "CGAffineTransform", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGAffineTransform")]
 pub use self::__CGAffineTransform::CGAffineTransformMakeScale;
-#[cfg(all(feature = "CGAffineTransform", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGAffineTransform")]
 pub use self::__CGAffineTransform::CGAffineTransformMakeTranslation;
-#[cfg(all(feature = "CGAffineTransform", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGAffineTransform")]
 pub use self::__CGAffineTransform::CGAffineTransformMakeWithComponents;
-#[cfg(all(feature = "CGAffineTransform", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGAffineTransform")]
 pub use self::__CGAffineTransform::CGAffineTransformRotate;
-#[cfg(all(feature = "CGAffineTransform", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGAffineTransform")]
 pub use self::__CGAffineTransform::CGAffineTransformScale;
-#[cfg(all(feature = "CGAffineTransform", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGAffineTransform")]
 pub use self::__CGAffineTransform::CGAffineTransformTranslate;
-#[cfg(all(feature = "CGAffineTransform", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGAffineTransform")]
 pub use self::__CGAffineTransform::CGPointApplyAffineTransform;
-#[cfg(all(feature = "CGAffineTransform", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGAffineTransform")]
 pub use self::__CGAffineTransform::CGRectApplyAffineTransform;
-#[cfg(all(feature = "CGAffineTransform", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGAffineTransform")]
 pub use self::__CGAffineTransform::CGSizeApplyAffineTransform;
 #[cfg(all(
     feature = "CGBitmapContext",
@@ -250,60 +250,47 @@ pub use self::__CGBitmapContext::CGBitmapContextGetHeight;
 pub use self::__CGBitmapContext::CGBitmapContextGetWidth;
 #[cfg(feature = "CGBitmapContext")]
 pub use self::__CGBitmapContext::CGBitmapContextReleaseDataCallback;
-#[cfg(all(feature = "CGColor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColor")]
 pub use self::__CGColor::kCGColorBlack;
-#[cfg(all(feature = "CGColor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColor")]
 pub use self::__CGColor::kCGColorClear;
-#[cfg(all(feature = "CGColor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColor")]
 pub use self::__CGColor::kCGColorWhite;
-#[cfg(all(
-    feature = "CGColor",
-    feature = "CGColorSpace",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGColor", feature = "CGColorSpace"))]
 pub use self::__CGColor::CGColorCreate;
 #[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorCreateCopy;
-#[cfg(all(
-    feature = "CGColor",
-    feature = "CGColorSpace",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGColor", feature = "CGColorSpace"))]
 pub use self::__CGColor::CGColorCreateCopyByMatchingToColorSpace;
-#[cfg(all(feature = "CGColor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorCreateCopyWithAlpha;
-#[cfg(all(feature = "CGColor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorCreateGenericCMYK;
-#[cfg(all(feature = "CGColor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorCreateGenericGray;
-#[cfg(all(feature = "CGColor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorCreateGenericGrayGamma2_2;
-#[cfg(all(feature = "CGColor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorCreateGenericRGB;
-#[cfg(all(feature = "CGColor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorCreateSRGB;
-#[cfg(all(
-    feature = "CGColor",
-    feature = "CGColorSpace",
-    feature = "CGPattern",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGColor", feature = "CGColorSpace", feature = "CGPattern"))]
 pub use self::__CGColor::CGColorCreateWithPattern;
 #[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorEqualToColor;
-#[cfg(all(feature = "CGColor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorGetAlpha;
 #[cfg(all(feature = "CGColor", feature = "CGColorSpace"))]
 pub use self::__CGColor::CGColorGetColorSpace;
-#[cfg(all(feature = "CGColor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorGetComponents;
-#[cfg(all(feature = "CGColor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorGetConstantColor;
 #[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorGetNumberOfComponents;
 #[cfg(all(feature = "CGColor", feature = "CGPattern"))]
 pub use self::__CGColor::CGColorGetPattern;
-#[cfg(all(feature = "CGColor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorGetTypeID;
 #[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorRef;
@@ -311,130 +298,121 @@ pub use self::__CGColor::CGColorRef;
 pub use self::__CGColor::CGColorRelease;
 #[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorRetain;
-#[cfg(all(feature = "CGColorConversionInfo", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorConversionInfo")]
 pub use self::__CGColorConversionInfo::kCGColorConversionBlackPointCompensation;
-#[cfg(all(feature = "CGColorConversionInfo", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorConversionInfo")]
 pub use self::__CGColorConversionInfo::kCGColorConversionTRCSize;
 #[cfg(all(feature = "CGColorConversionInfo", feature = "CGImage"))]
 pub use self::__CGColorConversionInfo::CGColorBufferFormat;
-#[cfg(all(
-    feature = "CGColorConversionInfo",
-    feature = "CGImage",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGColorConversionInfo", feature = "CGImage"))]
 pub use self::__CGColorConversionInfo::CGColorConversionInfoConvertData;
 #[cfg(all(feature = "CGColorConversionInfo", feature = "CGColorSpace"))]
 pub use self::__CGColorConversionInfo::CGColorConversionInfoCreate;
 #[cfg(all(
     feature = "CGColorConversionInfo",
     feature = "CGColorSpace",
-    feature = "CGToneMapping",
-    feature = "objc2-core-foundation"
+    feature = "CGToneMapping"
 ))]
 pub use self::__CGColorConversionInfo::CGColorConversionInfoCreateForToneMapping;
-#[cfg(all(
-    feature = "CGColorConversionInfo",
-    feature = "CGColorSpace",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGColorConversionInfo", feature = "CGColorSpace"))]
 pub use self::__CGColorConversionInfo::CGColorConversionInfoCreateWithOptions;
-#[cfg(all(feature = "CGColorConversionInfo", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorConversionInfo")]
 pub use self::__CGColorConversionInfo::CGColorConversionInfoGetTypeID;
 #[cfg(feature = "CGColorConversionInfo")]
 pub use self::__CGColorConversionInfo::CGColorConversionInfoRef;
 #[cfg(feature = "CGColorConversionInfo")]
 pub use self::__CGColorConversionInfo::CGColorConversionInfoTransformType;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceACESCGLinear;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceAdobeRGB1998;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceCoreMedia709;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceDCIP3;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceDisplayP3;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceDisplayP3_HLG;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceDisplayP3_PQ;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceDisplayP3_PQ_EOTF;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceExtendedDisplayP3;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceExtendedGray;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceExtendedITUR_2020;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceExtendedLinearDisplayP3;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceExtendedLinearGray;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceExtendedLinearITUR_2020;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceExtendedLinearSRGB;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceExtendedRange;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceExtendedSRGB;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceGenericCMYK;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceGenericGray;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceGenericGrayGamma2_2;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceGenericLab;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceGenericRGB;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceGenericRGBLinear;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceGenericXYZ;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceITUR_2020;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceITUR_2020_HLG;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceITUR_2020_PQ;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceITUR_2020_PQ_EOTF;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceITUR_2020_sRGBGamma;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceITUR_2100_HLG;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceITUR_2100_PQ;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceITUR_709;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceITUR_709_HLG;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceITUR_709_PQ;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceLinearDisplayP3;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceLinearGray;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceLinearITUR_2020;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceLinearSRGB;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceROMMRGB;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::kCGColorSpaceSRGB;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorRenderingIntent;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCopyBaseColorSpace;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCopyICCData;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCopyICCProfile;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCopyName;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCopyPropertyList;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCreateCopyWithStandardRange;
@@ -448,11 +426,7 @@ pub use self::__CGColorSpace::CGColorSpaceCreateDeviceRGB;
 pub use self::__CGColorSpace::CGColorSpaceCreateExtended;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCreateExtendedLinearized;
-#[cfg(all(
-    feature = "CGColorSpace",
-    feature = "CGDataProvider",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
 pub use self::__CGColorSpace::CGColorSpaceCreateICCBased;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCreateIndexed;
@@ -460,17 +434,17 @@ pub use self::__CGColorSpace::CGColorSpaceCreateIndexed;
 pub use self::__CGColorSpace::CGColorSpaceCreateLinearized;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCreatePattern;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCreateWithColorSyncProfile;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCreateWithICCData;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCreateWithICCProfile;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCreateWithName;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCreateWithPlatformColorSpace;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCreateWithPropertyList;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceGetBaseColorSpace;
@@ -480,11 +454,11 @@ pub use self::__CGColorSpace::CGColorSpaceGetColorTable;
 pub use self::__CGColorSpace::CGColorSpaceGetColorTableCount;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceGetModel;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceGetName;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceGetNumberOfComponents;
-#[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceGetTypeID;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceIsHDR;
@@ -510,114 +484,81 @@ pub use self::__CGColorSpace::CGColorSpaceUsesITUR_2100TF;
 pub use self::__CGColorSpace::ColorSyncProfileRef;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGBlendMode;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextAddArc;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextAddArcToPoint;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextAddCurveToPoint;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextAddEllipseInRect;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextAddLineToPoint;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextAddLines;
 #[cfg(all(feature = "CGContext", feature = "CGPath"))]
 pub use self::__CGContext::CGContextAddPath;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextAddQuadCurveToPoint;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextAddRect;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextAddRects;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextBeginPage;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextBeginPath;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextBeginTransparencyLayer;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextBeginTransparencyLayerWithRect;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextClearRect;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextClip;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGImage",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGImage"))]
 pub use self::__CGContext::CGContextClipToMask;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextClipToRect;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextClipToRects;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextClosePath;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextConcatCTM;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextConvertPointToDeviceSpace;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextConvertPointToUserSpace;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextConvertRectToDeviceSpace;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextConvertRectToUserSpace;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextConvertSizeToDeviceSpace;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextConvertSizeToUserSpace;
 #[cfg(all(feature = "CGContext", feature = "CGPath"))]
 pub use self::__CGContext::CGContextCopyPath;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGGradient",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGGradient"))]
 pub use self::__CGContext::CGContextDrawConicGradient;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGImage",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGImage"))]
 pub use self::__CGContext::CGContextDrawImage;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGImage",
-    feature = "CGToneMapping",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGImage", feature = "CGToneMapping"))]
 pub use self::__CGContext::CGContextDrawImageApplyingToneMapping;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGGradient",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGGradient"))]
 pub use self::__CGContext::CGContextDrawLinearGradient;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGPDFDocument",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGPDFDocument"))]
 pub use self::__CGContext::CGContextDrawPDFDocument;
 #[cfg(all(feature = "CGContext", feature = "CGPDFPage"))]
 pub use self::__CGContext::CGContextDrawPDFPage;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextDrawPath;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGGradient",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGGradient"))]
 pub use self::__CGContext::CGContextDrawRadialGradient;
 #[cfg(all(feature = "CGContext", feature = "CGShading"))]
 pub use self::__CGContext::CGContextDrawShading;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGImage",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGImage"))]
 pub use self::__CGContext::CGContextDrawTiledImage;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextEOClip;
@@ -627,41 +568,41 @@ pub use self::__CGContext::CGContextEOFillPath;
 pub use self::__CGContext::CGContextEndPage;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextEndTransparencyLayer;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextFillEllipseInRect;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextFillPath;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextFillRect;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextFillRects;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextFlush;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextGetCTM;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextGetClipBoundingBox;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextGetEDRTargetHeadroom;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextGetInterpolationQuality;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextGetPathBoundingBox;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextGetPathCurrentPoint;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextGetTextMatrix;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextGetTextPosition;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextGetTypeID;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextGetUserSpaceToDeviceSpaceTransform;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextIsPathEmpty;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextMoveToPoint;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextPathContainsPoint;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextRef;
@@ -675,13 +616,13 @@ pub use self::__CGContext::CGContextResetClip;
 pub use self::__CGContext::CGContextRestoreGState;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextRetain;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextRotateCTM;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSaveGState;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextScaleCTM;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSelectFont;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetAllowsAntialiasing;
@@ -691,67 +632,59 @@ pub use self::__CGContext::CGContextSetAllowsFontSmoothing;
 pub use self::__CGContext::CGContextSetAllowsFontSubpixelPositioning;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetAllowsFontSubpixelQuantization;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetAlpha;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetBlendMode;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetCMYKFillColor;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetCMYKStrokeColor;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetCharacterSpacing;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetEDRTargetHeadroom;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetFillColor;
 #[cfg(all(feature = "CGColorSpace", feature = "CGContext"))]
 pub use self::__CGContext::CGContextSetFillColorSpace;
 #[cfg(all(feature = "CGColor", feature = "CGContext"))]
 pub use self::__CGContext::CGContextSetFillColorWithColor;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGPattern",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGPattern"))]
 pub use self::__CGContext::CGContextSetFillPattern;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetFlatness;
 #[cfg(all(feature = "CGContext", feature = "CGFont"))]
 pub use self::__CGContext::CGContextSetFont;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetFontSize;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetGrayFillColor;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetGrayStrokeColor;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetInterpolationQuality;
 #[cfg(all(feature = "CGContext", feature = "CGPath"))]
 pub use self::__CGContext::CGContextSetLineCap;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetLineDash;
 #[cfg(all(feature = "CGContext", feature = "CGPath"))]
 pub use self::__CGContext::CGContextSetLineJoin;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetLineWidth;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetMiterLimit;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetPatternPhase;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetRGBFillColor;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetRGBStrokeColor;
 #[cfg(all(feature = "CGColorSpace", feature = "CGContext"))]
 pub use self::__CGContext::CGContextSetRenderingIntent;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetShadow;
-#[cfg(all(
-    feature = "CGColor",
-    feature = "CGContext",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGColor", feature = "CGContext"))]
 pub use self::__CGContext::CGContextSetShadowWithColor;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetShouldAntialias;
@@ -761,61 +694,45 @@ pub use self::__CGContext::CGContextSetShouldSmoothFonts;
 pub use self::__CGContext::CGContextSetShouldSubpixelPositionFonts;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetShouldSubpixelQuantizeFonts;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetStrokeColor;
 #[cfg(all(feature = "CGColorSpace", feature = "CGContext"))]
 pub use self::__CGContext::CGContextSetStrokeColorSpace;
 #[cfg(all(feature = "CGColor", feature = "CGContext"))]
 pub use self::__CGContext::CGContextSetStrokeColorWithColor;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGPattern",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGPattern"))]
 pub use self::__CGContext::CGContextSetStrokePattern;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetTextDrawingMode;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetTextMatrix;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSetTextPosition;
 #[cfg(all(feature = "CGContext", feature = "CGFont"))]
 pub use self::__CGContext::CGContextShowGlyphs;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGFont",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGFont"))]
 pub use self::__CGContext::CGContextShowGlyphsAtPoint;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGFont",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGFont"))]
 pub use self::__CGContext::CGContextShowGlyphsAtPositions;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGFont",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGFont"))]
 pub use self::__CGContext::CGContextShowGlyphsWithAdvances;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextShowText;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextShowTextAtPoint;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextStrokeEllipseInRect;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextStrokeLineSegments;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextStrokePath;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextStrokeRect;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextStrokeRectWithWidth;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextSynchronize;
-#[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextTranslateCTM;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGInterpolationQuality;
@@ -828,26 +745,24 @@ pub use self::__CGContext::CGTextEncoding;
 #[cfg(all(
     feature = "CGColorSpace",
     feature = "CGConvertColorDataWithFormat",
-    feature = "CGImage",
-    feature = "objc2-core-foundation"
+    feature = "CGImage"
 ))]
 pub use self::__CGConvertColorDataWithFormat::CGColorDataFormat;
 #[cfg(all(
     feature = "CGColorSpace",
     feature = "CGConvertColorDataWithFormat",
-    feature = "CGImage",
-    feature = "objc2-core-foundation"
+    feature = "CGImage"
 ))]
 pub use self::__CGConvertColorDataWithFormat::CGConvertColorDataWithFormat;
 #[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerCallbacks;
 #[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerCreate;
-#[cfg(all(feature = "CGDataConsumer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerCreateWithCFData;
-#[cfg(all(feature = "CGDataConsumer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerCreateWithURL;
-#[cfg(all(feature = "CGDataConsumer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerGetTypeID;
 #[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerPutBytesCallback;
@@ -859,19 +774,19 @@ pub use self::__CGDataConsumer::CGDataConsumerRelease;
 pub use self::__CGDataConsumer::CGDataConsumerReleaseInfoCallback;
 #[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerRetain;
-#[cfg(all(feature = "CGDataProvider", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderCopyData;
 #[cfg(all(feature = "CGDataProvider", feature = "libc"))]
 pub use self::__CGDataProvider::CGDataProviderCreateDirect;
 #[cfg(all(feature = "CGDataProvider", feature = "libc"))]
 pub use self::__CGDataProvider::CGDataProviderCreateSequential;
-#[cfg(all(feature = "CGDataProvider", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderCreateWithCFData;
 #[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderCreateWithData;
 #[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderCreateWithFilename;
-#[cfg(all(feature = "CGDataProvider", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderCreateWithURL;
 #[cfg(all(feature = "CGDataProvider", feature = "libc"))]
 pub use self::__CGDataProvider::CGDataProviderDirectCallbacks;
@@ -883,7 +798,7 @@ pub use self::__CGDataProvider::CGDataProviderGetBytesAtPositionCallback;
 pub use self::__CGDataProvider::CGDataProviderGetBytesCallback;
 #[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderGetInfo;
-#[cfg(all(feature = "CGDataProvider", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderGetTypeID;
 #[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderRef;
@@ -903,7 +818,7 @@ pub use self::__CGDataProvider::CGDataProviderRewindCallback;
 pub use self::__CGDataProvider::CGDataProviderSequentialCallbacks;
 #[cfg(all(feature = "CGDataProvider", feature = "libc"))]
 pub use self::__CGDataProvider::CGDataProviderSkipForwardCallback;
-#[cfg(all(feature = "CGDirectDisplay", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::kCGDisplayShowDuplicateLowResolutionModes;
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 pub use self::__CGDirectDisplay::CGCaptureAllDisplays;
@@ -913,27 +828,19 @@ pub use self::__CGDirectDisplay::CGCaptureAllDisplaysWithOptions;
 pub use self::__CGDirectDisplay::CGCaptureOptions;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDirectDisplayID;
-#[cfg(all(feature = "CGDirectDisplay", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayAvailableModes;
-#[cfg(all(
-    feature = "CGDirectDisplay",
-    feature = "libc",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 pub use self::__CGDirectDisplay::CGDisplayBestModeForParameters;
-#[cfg(all(
-    feature = "CGDirectDisplay",
-    feature = "libc",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 pub use self::__CGDirectDisplay::CGDisplayBestModeForParametersAndRefreshRate;
-#[cfg(all(feature = "CGDirectDisplay", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayBounds;
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 pub use self::__CGDirectDisplay::CGDisplayCapture;
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 pub use self::__CGDirectDisplay::CGDisplayCaptureWithOptions;
-#[cfg(all(feature = "CGDirectDisplay", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayCopyAllDisplayModes;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayCopyDisplayMode;
@@ -941,13 +848,9 @@ pub use self::__CGDirectDisplay::CGDisplayCopyDisplayMode;
 pub use self::__CGDirectDisplay::CGDisplayCount;
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGImage"))]
 pub use self::__CGDirectDisplay::CGDisplayCreateImage;
-#[cfg(all(
-    feature = "CGDirectDisplay",
-    feature = "CGImage",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGDirectDisplay", feature = "CGImage"))]
 pub use self::__CGDirectDisplay::CGDisplayCreateImageForRect;
-#[cfg(all(feature = "CGDirectDisplay", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayCurrentMode;
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 pub use self::__CGDirectDisplay::CGDisplayErr;
@@ -961,7 +864,7 @@ pub use self::__CGDirectDisplay::CGDisplayHideCursor;
 pub use self::__CGDirectDisplay::CGDisplayIDToOpenGLDisplayMask;
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 pub use self::__CGDirectDisplay::CGDisplayIsCaptured;
-#[cfg(all(feature = "CGDirectDisplay", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayModeCopyPixelEncoding;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayModeGetHeight;
@@ -975,7 +878,7 @@ pub use self::__CGDirectDisplay::CGDisplayModeGetPixelHeight;
 pub use self::__CGDirectDisplay::CGDisplayModeGetPixelWidth;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayModeGetRefreshRate;
-#[cfg(all(feature = "CGDirectDisplay", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayModeGetTypeID;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayModeGetWidth;
@@ -987,11 +890,7 @@ pub use self::__CGDirectDisplay::CGDisplayModeRef;
 pub use self::__CGDirectDisplay::CGDisplayModeRelease;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayModeRetain;
-#[cfg(all(
-    feature = "CGDirectDisplay",
-    feature = "CGError",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 pub use self::__CGDirectDisplay::CGDisplayMoveCursorToPoint;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayPixelsHigh;
@@ -1001,19 +900,11 @@ pub use self::__CGDirectDisplay::CGDisplayPixelsWide;
 pub use self::__CGDirectDisplay::CGDisplayRelease;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayRestoreColorSyncSettings;
-#[cfg(all(
-    feature = "CGDirectDisplay",
-    feature = "CGError",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 pub use self::__CGDirectDisplay::CGDisplaySetDisplayMode;
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 pub use self::__CGDirectDisplay::CGDisplayShowCursor;
-#[cfg(all(
-    feature = "CGDirectDisplay",
-    feature = "CGError",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 pub use self::__CGDirectDisplay::CGDisplaySwitchToMode;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGGammaValue;
@@ -1025,17 +916,9 @@ pub use self::__CGDirectDisplay::CGGetDisplayTransferByFormula;
 pub use self::__CGDirectDisplay::CGGetDisplayTransferByTable;
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 pub use self::__CGDirectDisplay::CGGetDisplaysWithOpenGLDisplayMask;
-#[cfg(all(
-    feature = "CGDirectDisplay",
-    feature = "CGError",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 pub use self::__CGDirectDisplay::CGGetDisplaysWithPoint;
-#[cfg(all(
-    feature = "CGDirectDisplay",
-    feature = "CGError",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 pub use self::__CGDirectDisplay::CGGetDisplaysWithRect;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGGetLastMouseDelta;
@@ -1086,8 +969,7 @@ pub use self::__CGDisplayConfiguration::CGConfigureDisplayMirrorOfDisplay;
 #[cfg(all(
     feature = "CGDirectDisplay",
     feature = "CGDisplayConfiguration",
-    feature = "CGError",
-    feature = "objc2-core-foundation"
+    feature = "CGError"
 ))]
 pub use self::__CGDisplayConfiguration::CGConfigureDisplayMode;
 #[cfg(all(
@@ -1106,8 +988,7 @@ pub use self::__CGDisplayConfiguration::CGConfigureDisplayStereoOperation;
 #[cfg(all(
     feature = "CGDirectDisplay",
     feature = "CGDisplayConfiguration",
-    feature = "CGError",
-    feature = "objc2-core-foundation"
+    feature = "CGError"
 ))]
 pub use self::__CGDisplayConfiguration::CGConfigureDisplayWithDisplayMode;
 #[cfg(feature = "CGDisplayConfiguration")]
@@ -1198,11 +1079,7 @@ pub use self::__CGDisplayConfiguration::CGDisplayRegisterReconfigurationCallback
 pub use self::__CGDisplayConfiguration::CGDisplayRemoveReconfigurationCallback;
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGDisplayConfiguration"))]
 pub use self::__CGDisplayConfiguration::CGDisplayRotation;
-#[cfg(all(
-    feature = "CGDirectDisplay",
-    feature = "CGDisplayConfiguration",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGDirectDisplay", feature = "CGDisplayConfiguration"))]
 pub use self::__CGDisplayConfiguration::CGDisplayScreenSize;
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGDisplayConfiguration"))]
 pub use self::__CGDisplayConfiguration::CGDisplaySerialNumber;
@@ -1247,33 +1124,32 @@ pub use self::__CGDisplayFade::CGDisplayFadeReservationToken;
 pub use self::__CGDisplayFade::CGDisplayReservationInterval;
 #[cfg(all(feature = "CGDisplayFade", feature = "CGError"))]
 pub use self::__CGDisplayFade::CGReleaseDisplayFadeReservation;
-#[cfg(all(feature = "CGDisplayStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::kCGDisplayStreamColorSpace;
-#[cfg(all(feature = "CGDisplayStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::kCGDisplayStreamDestinationRect;
-#[cfg(all(feature = "CGDisplayStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::kCGDisplayStreamMinimumFrameTime;
-#[cfg(all(feature = "CGDisplayStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::kCGDisplayStreamPreserveAspectRatio;
-#[cfg(all(feature = "CGDisplayStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::kCGDisplayStreamQueueDepth;
-#[cfg(all(feature = "CGDisplayStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::kCGDisplayStreamShowCursor;
-#[cfg(all(feature = "CGDisplayStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::kCGDisplayStreamSourceRect;
-#[cfg(all(feature = "CGDisplayStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::kCGDisplayStreamYCbCrMatrix;
-#[cfg(all(feature = "CGDisplayStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::kCGDisplayStreamYCbCrMatrix_ITU_R_601_4;
-#[cfg(all(feature = "CGDisplayStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::kCGDisplayStreamYCbCrMatrix_ITU_R_709_2;
-#[cfg(all(feature = "CGDisplayStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995;
 #[cfg(all(
     feature = "CGDirectDisplay",
     feature = "CGDisplayStream",
     feature = "block2",
-    feature = "objc2-core-foundation",
     feature = "objc2-io-surface"
 ))]
 #[cfg(not(target_os = "watchos"))]
@@ -1287,9 +1163,9 @@ pub use self::__CGDisplayStream::CGDisplayStreamCreate;
 pub use self::__CGDisplayStream::CGDisplayStreamFrameAvailableHandler;
 #[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamFrameStatus;
-#[cfg(all(feature = "CGDisplayStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamGetRunLoopSource;
-#[cfg(all(feature = "CGDisplayStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamGetTypeID;
 #[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamRef;
@@ -1301,23 +1177,23 @@ pub use self::__CGDisplayStream::CGDisplayStreamStop;
 pub use self::__CGDisplayStream::CGDisplayStreamUpdateCreateMergedUpdate;
 #[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamUpdateGetDropCount;
-#[cfg(all(feature = "CGDisplayStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamUpdateGetMovedRectsDelta;
-#[cfg(all(feature = "CGDisplayStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamUpdateGetRects;
-#[cfg(all(feature = "CGDisplayStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamUpdateGetTypeID;
 #[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamUpdateRectType;
 #[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamUpdateRef;
-#[cfg(all(feature = "CGEXRToneMappingGamma", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGEXRToneMappingGamma")]
 pub use self::__CGEXRToneMappingGamma::kCGEXRToneMappingGammaDefog;
-#[cfg(all(feature = "CGEXRToneMappingGamma", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGEXRToneMappingGamma")]
 pub use self::__CGEXRToneMappingGamma::kCGEXRToneMappingGammaExposure;
-#[cfg(all(feature = "CGEXRToneMappingGamma", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGEXRToneMappingGamma")]
 pub use self::__CGEXRToneMappingGamma::kCGEXRToneMappingGammaKneeHigh;
-#[cfg(all(feature = "CGEXRToneMappingGamma", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGEXRToneMappingGamma")]
 pub use self::__CGEXRToneMappingGamma::kCGEXRToneMappingGammaKneeLow;
 #[cfg(feature = "CGError")]
 pub use self::__CGError::CGError;
@@ -1329,17 +1205,9 @@ pub use self::__CGError::CGErrorSetCallback;
 pub use self::__CGEvent::CGEventCreate;
 #[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventCreateCopy;
-#[cfg(all(
-    feature = "CGEvent",
-    feature = "CGEventTypes",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventCreateData;
-#[cfg(all(
-    feature = "CGEvent",
-    feature = "CGEventTypes",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventCreateFromData;
 #[cfg(all(
     feature = "CGEvent",
@@ -1347,11 +1215,7 @@ pub use self::__CGEvent::CGEventCreateFromData;
     feature = "CGRemoteOperation"
 ))]
 pub use self::__CGEvent::CGEventCreateKeyboardEvent;
-#[cfg(all(
-    feature = "CGEvent",
-    feature = "CGEventTypes",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventCreateMouseEvent;
 #[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventCreateScrollWheelEvent2;
@@ -1363,23 +1227,15 @@ pub use self::__CGEvent::CGEventGetDoubleValueField;
 pub use self::__CGEvent::CGEventGetFlags;
 #[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventGetIntegerValueField;
-#[cfg(all(
-    feature = "CGEvent",
-    feature = "CGEventTypes",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventGetLocation;
 #[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventGetTimestamp;
 #[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventGetType;
-#[cfg(all(feature = "CGEvent", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGEvent")]
 pub use self::__CGEvent::CGEventGetTypeID;
-#[cfg(all(
-    feature = "CGEvent",
-    feature = "CGEventTypes",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventGetUnflippedLocation;
 #[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventKeyboardGetUnicodeString;
@@ -1397,11 +1253,7 @@ pub use self::__CGEvent::CGEventSetDoubleValueField;
 pub use self::__CGEvent::CGEventSetFlags;
 #[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventSetIntegerValueField;
-#[cfg(all(
-    feature = "CGEvent",
-    feature = "CGEventTypes",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventSetLocation;
 #[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventSetSource;
@@ -1409,28 +1261,15 @@ pub use self::__CGEvent::CGEventSetSource;
 pub use self::__CGEvent::CGEventSetTimestamp;
 #[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventSetType;
-#[cfg(all(
-    feature = "CGEvent",
-    feature = "CGEventTypes",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventTapCreate;
-#[cfg(all(
-    feature = "CGEvent",
-    feature = "CGEventTypes",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventTapCreateForPSN;
-#[cfg(all(
-    feature = "CGEvent",
-    feature = "CGEventTypes",
-    feature = "libc",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGEvent", feature = "CGEventTypes", feature = "libc"))]
 pub use self::__CGEvent::CGEventTapCreateForPid;
-#[cfg(all(feature = "CGEvent", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGEvent")]
 pub use self::__CGEvent::CGEventTapEnable;
-#[cfg(all(feature = "CGEvent", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGEvent")]
 pub use self::__CGEvent::CGEventTapIsEnabled;
 #[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventTapPostEvent;
@@ -1465,17 +1304,13 @@ pub use self::__CGEventSource::CGEventSourceGetKeyboardType;
     feature = "CGRemoteOperation"
 ))]
 pub use self::__CGEventSource::CGEventSourceGetLocalEventsFilterDuringSuppressionState;
-#[cfg(all(
-    feature = "CGEventSource",
-    feature = "CGEventTypes",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
 pub use self::__CGEventSource::CGEventSourceGetLocalEventsSuppressionInterval;
 #[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
 pub use self::__CGEventSource::CGEventSourceGetPixelsPerLine;
 #[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
 pub use self::__CGEventSource::CGEventSourceGetSourceStateID;
-#[cfg(all(feature = "CGEventSource", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGEventSource")]
 pub use self::__CGEventSource::CGEventSourceGetTypeID;
 #[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
 pub use self::__CGEventSource::CGEventSourceGetUserData;
@@ -1485,11 +1320,7 @@ pub use self::__CGEventSource::CGEventSourceGetUserData;
     feature = "CGRemoteOperation"
 ))]
 pub use self::__CGEventSource::CGEventSourceKeyState;
-#[cfg(all(
-    feature = "CGEventSource",
-    feature = "CGEventTypes",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
 pub use self::__CGEventSource::CGEventSourceSecondsSinceLastEventType;
 #[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
 pub use self::__CGEventSource::CGEventSourceSetKeyboardType;
@@ -1499,11 +1330,7 @@ pub use self::__CGEventSource::CGEventSourceSetKeyboardType;
     feature = "CGRemoteOperation"
 ))]
 pub use self::__CGEventSource::CGEventSourceSetLocalEventsFilterDuringSuppressionState;
-#[cfg(all(
-    feature = "CGEventSource",
-    feature = "CGEventTypes",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
 pub use self::__CGEventSource::CGEventSourceSetLocalEventsSuppressionInterval;
 #[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
 pub use self::__CGEventSource::CGEventSourceSetPixelsPerLine;
@@ -1551,37 +1378,37 @@ pub use self::__CGEventTypes::CGMouseButton;
 pub use self::__CGEventTypes::CGScrollEventUnit;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::CGScrollPhase;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::kCGFontVariationAxisDefaultValue;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::kCGFontVariationAxisMaxValue;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::kCGFontVariationAxisMinValue;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::kCGFontVariationAxisName;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::kCGGlyphMax;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontCanCreatePostScriptSubset;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontCopyFullName;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontCopyGlyphNameForGlyph;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontCopyPostScriptName;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontCopyTableForTag;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontCopyTableTags;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontCopyVariationAxes;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontCopyVariations;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontCreateCopyWithVariations;
 #[cfg(all(feature = "CGDataProvider", feature = "CGFont"))]
 pub use self::__CGFont::CGFontCreateWithDataProvider;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontCreateWithFontName;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontCreateWithPlatformFont;
@@ -1591,23 +1418,23 @@ pub use self::__CGFont::CGFontGetAscent;
 pub use self::__CGFont::CGFontGetCapHeight;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontGetDescent;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontGetFontBBox;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontGetGlyphAdvances;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontGetGlyphBBoxes;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontGetGlyphWithGlyphName;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontGetItalicAngle;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontGetLeading;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontGetNumberOfGlyphs;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontGetStemV;
-#[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontGetTypeID;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontGetUnitsPerEm;
@@ -1627,13 +1454,13 @@ pub use self::__CGFont::CGFontRetain;
 pub use self::__CGFont::CGGlyph;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGGlyphDeprecatedEnum;
-#[cfg(all(feature = "CGFunction", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFunction")]
 pub use self::__CGFunction::CGFunctionCallbacks;
-#[cfg(all(feature = "CGFunction", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFunction")]
 pub use self::__CGFunction::CGFunctionCreate;
-#[cfg(all(feature = "CGFunction", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFunction")]
 pub use self::__CGFunction::CGFunctionEvaluateCallback;
-#[cfg(all(feature = "CGFunction", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGFunction")]
 pub use self::__CGFunction::CGFunctionGetTypeID;
 #[cfg(feature = "CGFunction")]
 pub use self::__CGFunction::CGFunctionRef;
@@ -1643,91 +1470,83 @@ pub use self::__CGFunction::CGFunctionRelease;
 pub use self::__CGFunction::CGFunctionReleaseInfoCallback;
 #[cfg(feature = "CGFunction")]
 pub use self::__CGFunction::CGFunctionRetain;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGPointCreateDictionaryRepresentation;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGPointEqualToPoint;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGPointMakeWithDictionaryRepresentation;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGPointZero;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectContainsPoint;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectContainsRect;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectCreateDictionaryRepresentation;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectDivide;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectEqualToRect;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectGetHeight;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectGetMaxX;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectGetMaxY;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectGetMidX;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectGetMidY;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectGetMinX;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectGetMinY;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectGetWidth;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectInfinite;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectInset;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectIntegral;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectIntersection;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectIntersectsRect;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectIsEmpty;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectIsInfinite;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectIsNull;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectMakeWithDictionaryRepresentation;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectNull;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectOffset;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectStandardize;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectUnion;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGRectZero;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGSizeCreateDictionaryRepresentation;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGSizeEqualToSize;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGSizeMakeWithDictionaryRepresentation;
-#[cfg(all(feature = "CGGeometry", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGSizeZero;
-#[cfg(all(
-    feature = "CGColorSpace",
-    feature = "CGGradient",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGColorSpace", feature = "CGGradient"))]
 pub use self::__CGGradient::CGGradientCreateWithColorComponents;
-#[cfg(all(
-    feature = "CGColorSpace",
-    feature = "CGGradient",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGColorSpace", feature = "CGGradient"))]
 pub use self::__CGGradient::CGGradientCreateWithColors;
 #[cfg(feature = "CGGradient")]
 pub use self::__CGGradient::CGGradientDrawingOptions;
-#[cfg(all(feature = "CGGradient", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGGradient")]
 pub use self::__CGGradient::CGGradientGetTypeID;
 #[cfg(feature = "CGGradient")]
 pub use self::__CGGradient::CGGradientRef;
@@ -1735,13 +1554,13 @@ pub use self::__CGGradient::CGGradientRef;
 pub use self::__CGGradient::CGGradientRelease;
 #[cfg(feature = "CGGradient")]
 pub use self::__CGGradient::CGGradientRetain;
-#[cfg(all(feature = "CGITUToneMapping", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGITUToneMapping")]
 pub use self::__CGITUToneMapping::kCGSkipBoostToHDR;
-#[cfg(all(feature = "CGITUToneMapping", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGITUToneMapping")]
 pub use self::__CGITUToneMapping::kCGUse100nitsHLGOOTF;
-#[cfg(all(feature = "CGITUToneMapping", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGITUToneMapping")]
 pub use self::__CGITUToneMapping::kCGUseBT1886ForCoreVideoGamma;
-#[cfg(all(feature = "CGITUToneMapping", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGITUToneMapping")]
 pub use self::__CGITUToneMapping::kCGUseLegacyHDREcosystem;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::kCGBitmapByteOrder16Host;
@@ -1760,8 +1579,7 @@ pub use self::__CGImage::CGImageContainsImageSpecificToneMappingMetadata;
 #[cfg(all(
     feature = "CGColorSpace",
     feature = "CGDataProvider",
-    feature = "CGImage",
-    feature = "objc2-core-foundation"
+    feature = "CGImage"
 ))]
 pub use self::__CGImage::CGImageCreate;
 #[cfg(feature = "CGImage")]
@@ -1773,28 +1591,25 @@ pub use self::__CGImage::CGImageCreateCopyWithContentHeadroom;
 #[cfg(all(
     feature = "CGColorSpace",
     feature = "CGDataProvider",
-    feature = "CGImage",
-    feature = "objc2-core-foundation"
+    feature = "CGImage"
 ))]
 pub use self::__CGImage::CGImageCreateWithContentHeadroom;
-#[cfg(all(feature = "CGImage", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageCreateWithImageInRect;
 #[cfg(all(
     feature = "CGColorSpace",
     feature = "CGDataProvider",
-    feature = "CGImage",
-    feature = "objc2-core-foundation"
+    feature = "CGImage"
 ))]
 pub use self::__CGImage::CGImageCreateWithJPEGDataProvider;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageCreateWithMask;
-#[cfg(all(feature = "CGImage", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageCreateWithMaskingColors;
 #[cfg(all(
     feature = "CGColorSpace",
     feature = "CGDataProvider",
-    feature = "CGImage",
-    feature = "objc2-core-foundation"
+    feature = "CGImage"
 ))]
 pub use self::__CGImage::CGImageCreateWithPNGDataProvider;
 #[cfg(feature = "CGImage")]
@@ -1815,7 +1630,7 @@ pub use self::__CGImage::CGImageGetColorSpace;
 pub use self::__CGImage::CGImageGetContentHeadroom;
 #[cfg(all(feature = "CGDataProvider", feature = "CGImage"))]
 pub use self::__CGImage::CGImageGetDataProvider;
-#[cfg(all(feature = "CGImage", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageGetDecode;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageGetHeight;
@@ -1825,19 +1640,15 @@ pub use self::__CGImage::CGImageGetPixelFormatInfo;
 pub use self::__CGImage::CGImageGetRenderingIntent;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageGetShouldInterpolate;
-#[cfg(all(feature = "CGImage", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageGetTypeID;
-#[cfg(all(feature = "CGImage", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageGetUTType;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageGetWidth;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageIsMask;
-#[cfg(all(
-    feature = "CGDataProvider",
-    feature = "CGImage",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGDataProvider", feature = "CGImage"))]
 pub use self::__CGImage::CGImageMaskCreate;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImagePixelFormatInfo;
@@ -1849,29 +1660,17 @@ pub use self::__CGImage::CGImageRelease;
 pub use self::__CGImage::CGImageRetain;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageShouldToneMap;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGLayer",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGLayer"))]
 pub use self::__CGLayer::CGContextDrawLayerAtPoint;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGLayer",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGLayer"))]
 pub use self::__CGLayer::CGContextDrawLayerInRect;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGLayer",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGLayer"))]
 pub use self::__CGLayer::CGLayerCreateWithContext;
 #[cfg(all(feature = "CGContext", feature = "CGLayer"))]
 pub use self::__CGLayer::CGLayerGetContext;
-#[cfg(all(feature = "CGLayer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGLayer")]
 pub use self::__CGLayer::CGLayerGetSize;
-#[cfg(all(feature = "CGLayer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGLayer")]
 pub use self::__CGLayer::CGLayerGetTypeID;
 #[cfg(feature = "CGLayer")]
 pub use self::__CGLayer::CGLayerRef;
@@ -1897,11 +1696,7 @@ pub use self::__CGPDFArray::CGPDFArrayGetInteger;
 pub use self::__CGPDFArray::CGPDFArrayGetName;
 #[cfg(feature = "CGPDFArray")]
 pub use self::__CGPDFArray::CGPDFArrayGetNull;
-#[cfg(all(
-    feature = "CGPDFArray",
-    feature = "CGPDFObject",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGPDFArray", feature = "CGPDFObject"))]
 pub use self::__CGPDFArray::CGPDFArrayGetNumber;
 #[cfg(all(feature = "CGPDFArray", feature = "CGPDFObject"))]
 pub use self::__CGPDFArray::CGPDFArrayGetObject;
@@ -1921,7 +1716,7 @@ pub use self::__CGPDFContentStream::CGPDFContentStreamCreateWithPage;
 pub use self::__CGPDFContentStream::CGPDFContentStreamCreateWithStream;
 #[cfg(all(feature = "CGPDFContentStream", feature = "CGPDFObject"))]
 pub use self::__CGPDFContentStream::CGPDFContentStreamGetResource;
-#[cfg(all(feature = "CGPDFContentStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContentStream")]
 pub use self::__CGPDFContentStream::CGPDFContentStreamGetStreams;
 #[cfg(feature = "CGPDFContentStream")]
 pub use self::__CGPDFContentStream::CGPDFContentStreamRef;
@@ -1929,114 +1724,89 @@ pub use self::__CGPDFContentStream::CGPDFContentStreamRef;
 pub use self::__CGPDFContentStream::CGPDFContentStreamRelease;
 #[cfg(feature = "CGPDFContentStream")]
 pub use self::__CGPDFContentStream::CGPDFContentStreamRetain;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextAccessPermissions;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextAllowsCopying;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextAllowsPrinting;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextArtBox;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextAuthor;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextBleedBox;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextCreateLinearizedPDF;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextCreatePDFA;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextCreator;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextCropBox;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextEncryptionKeyLength;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextKeywords;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextMediaBox;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextOutputIntent;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextOutputIntents;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextOwnerPassword;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextSubject;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextTitle;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextTrimBox;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextUserPassword;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFTagPropertyActualText;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFTagPropertyAlternativeText;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFTagPropertyLanguageText;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFTagPropertyTitleText;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFXDestinationOutputProfile;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFXInfo;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFXOutputCondition;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFXOutputConditionIdentifier;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFXOutputIntentSubtype;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFXRegistryName;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGPDFContext",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
 pub use self::__CGPDFContext::CGPDFContextAddDestinationAtPoint;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGPDFContext",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
 pub use self::__CGPDFContext::CGPDFContextAddDocumentMetadata;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGPDFContext",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
 pub use self::__CGPDFContext::CGPDFContextBeginPage;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGPDFContext",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
 pub use self::__CGPDFContext::CGPDFContextBeginTag;
 #[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
 pub use self::__CGPDFContext::CGPDFContextClose;
 #[cfg(all(
     feature = "CGContext",
     feature = "CGDataConsumer",
-    feature = "CGPDFContext",
-    feature = "objc2-core-foundation"
+    feature = "CGPDFContext"
 ))]
 pub use self::__CGPDFContext::CGPDFContextCreate;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGPDFContext",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
 pub use self::__CGPDFContext::CGPDFContextCreateWithURL;
 #[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
 pub use self::__CGPDFContext::CGPDFContextEndPage;
 #[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
 pub use self::__CGPDFContext::CGPDFContextEndTag;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGPDFContext",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
 pub use self::__CGPDFContext::CGPDFContextSetDestinationForRect;
 #[cfg(all(
     feature = "CGContext",
@@ -2044,17 +1814,9 @@ pub use self::__CGPDFContext::CGPDFContextSetDestinationForRect;
     feature = "CGPDFDictionary"
 ))]
 pub use self::__CGPDFContext::CGPDFContextSetIDTree;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGPDFContext",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
 pub use self::__CGPDFContext::CGPDFContextSetOutline;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGPDFContext",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
 pub use self::__CGPDFContext::CGPDFContextSetPageTagStructureTree;
 #[cfg(all(
     feature = "CGContext",
@@ -2062,13 +1824,9 @@ pub use self::__CGPDFContext::CGPDFContextSetPageTagStructureTree;
     feature = "CGPDFDictionary"
 ))]
 pub use self::__CGPDFContext::CGPDFContextSetParentTree;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGPDFContext",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGPDFContext"))]
 pub use self::__CGPDFContext::CGPDFContextSetURLForRect;
-#[cfg(all(feature = "CGPDFContext", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::CGPDFTagProperty;
 #[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::CGPDFTagType;
@@ -2102,11 +1860,7 @@ pub use self::__CGPDFDictionary::CGPDFDictionaryGetDictionary;
 pub use self::__CGPDFDictionary::CGPDFDictionaryGetInteger;
 #[cfg(feature = "CGPDFDictionary")]
 pub use self::__CGPDFDictionary::CGPDFDictionaryGetName;
-#[cfg(all(
-    feature = "CGPDFDictionary",
-    feature = "CGPDFObject",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFObject"))]
 pub use self::__CGPDFDictionary::CGPDFDictionaryGetNumber;
 #[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFObject"))]
 pub use self::__CGPDFDictionary::CGPDFDictionaryGetObject;
@@ -2116,13 +1870,13 @@ pub use self::__CGPDFDictionary::CGPDFDictionaryGetStream;
 pub use self::__CGPDFDictionary::CGPDFDictionaryGetString;
 #[cfg(feature = "CGPDFDictionary")]
 pub use self::__CGPDFDictionary::CGPDFDictionaryRef;
-#[cfg(all(feature = "CGPDFDocument", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::kCGPDFOutlineChildren;
-#[cfg(all(feature = "CGPDFDocument", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::kCGPDFOutlineDestination;
-#[cfg(all(feature = "CGPDFDocument", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::kCGPDFOutlineDestinationRect;
-#[cfg(all(feature = "CGPDFDocument", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::kCGPDFOutlineTitle;
 #[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFAccessPermissions;
@@ -2132,35 +1886,35 @@ pub use self::__CGPDFDocument::CGPDFDocumentAllowsCopying;
 pub use self::__CGPDFDocument::CGPDFDocumentAllowsPrinting;
 #[cfg(all(feature = "CGDataProvider", feature = "CGPDFDocument"))]
 pub use self::__CGPDFDocument::CGPDFDocumentCreateWithProvider;
-#[cfg(all(feature = "CGPDFDocument", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentCreateWithURL;
 #[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentGetAccessPermissions;
-#[cfg(all(feature = "CGPDFDocument", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentGetArtBox;
-#[cfg(all(feature = "CGPDFDocument", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentGetBleedBox;
 #[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFDocument"))]
 pub use self::__CGPDFDocument::CGPDFDocumentGetCatalog;
-#[cfg(all(feature = "CGPDFDocument", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentGetCropBox;
 #[cfg(all(feature = "CGPDFArray", feature = "CGPDFDocument"))]
 pub use self::__CGPDFDocument::CGPDFDocumentGetID;
 #[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFDocument"))]
 pub use self::__CGPDFDocument::CGPDFDocumentGetInfo;
-#[cfg(all(feature = "CGPDFDocument", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentGetMediaBox;
 #[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentGetNumberOfPages;
-#[cfg(all(feature = "CGPDFDocument", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentGetOutline;
 #[cfg(all(feature = "CGPDFDocument", feature = "CGPDFPage"))]
 pub use self::__CGPDFDocument::CGPDFDocumentGetPage;
 #[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentGetRotationAngle;
-#[cfg(all(feature = "CGPDFDocument", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentGetTrimBox;
-#[cfg(all(feature = "CGPDFDocument", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentGetTypeID;
 #[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentGetVersion;
@@ -2188,7 +1942,7 @@ pub use self::__CGPDFObject::CGPDFObjectGetValue;
 pub use self::__CGPDFObject::CGPDFObjectRef;
 #[cfg(feature = "CGPDFObject")]
 pub use self::__CGPDFObject::CGPDFObjectType;
-#[cfg(all(feature = "CGPDFObject", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFObject")]
 pub use self::__CGPDFObject::CGPDFReal;
 #[cfg(all(feature = "CGPDFOperatorTable", feature = "CGPDFScanner"))]
 pub use self::__CGPDFOperatorTable::CGPDFOperatorCallback;
@@ -2204,19 +1958,19 @@ pub use self::__CGPDFOperatorTable::CGPDFOperatorTableRetain;
 pub use self::__CGPDFOperatorTable::CGPDFOperatorTableSetCallback;
 #[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFBox;
-#[cfg(all(feature = "CGPDFPage", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFPageGetBoxRect;
 #[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFPage"))]
 pub use self::__CGPDFPage::CGPDFPageGetDictionary;
 #[cfg(all(feature = "CGPDFDocument", feature = "CGPDFPage"))]
 pub use self::__CGPDFPage::CGPDFPageGetDocument;
-#[cfg(all(feature = "CGPDFPage", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFPageGetDrawingTransform;
 #[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFPageGetPageNumber;
 #[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFPageGetRotationAngle;
-#[cfg(all(feature = "CGPDFPage", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFPageGetTypeID;
 #[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFPageRef;
@@ -2242,11 +1996,7 @@ pub use self::__CGPDFScanner::CGPDFScannerPopDictionary;
 pub use self::__CGPDFScanner::CGPDFScannerPopInteger;
 #[cfg(feature = "CGPDFScanner")]
 pub use self::__CGPDFScanner::CGPDFScannerPopName;
-#[cfg(all(
-    feature = "CGPDFObject",
-    feature = "CGPDFScanner",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGPDFObject", feature = "CGPDFScanner"))]
 pub use self::__CGPDFScanner::CGPDFScannerPopNumber;
 #[cfg(all(feature = "CGPDFObject", feature = "CGPDFScanner"))]
 pub use self::__CGPDFScanner::CGPDFScannerPopObject;
@@ -2266,15 +2016,15 @@ pub use self::__CGPDFScanner::CGPDFScannerScan;
 pub use self::__CGPDFScanner::CGPDFScannerStop;
 #[cfg(feature = "CGPDFStream")]
 pub use self::__CGPDFStream::CGPDFDataFormat;
-#[cfg(all(feature = "CGPDFStream", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFStream")]
 pub use self::__CGPDFStream::CGPDFStreamCopyData;
 #[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFStream"))]
 pub use self::__CGPDFStream::CGPDFStreamGetDictionary;
 #[cfg(feature = "CGPDFStream")]
 pub use self::__CGPDFStream::CGPDFStreamRef;
-#[cfg(all(feature = "CGPDFString", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFString")]
 pub use self::__CGPDFString::CGPDFStringCopyDate;
-#[cfg(all(feature = "CGPDFString", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPDFString")]
 pub use self::__CGPDFString::CGPDFStringCopyTextString;
 #[cfg(feature = "CGPDFString")]
 pub use self::__CGPDFString::CGPDFStringGetBytePtr;
@@ -2286,28 +2036,27 @@ pub use self::__CGPDFString::CGPDFStringRef;
 pub use self::__CGPSConverter::CGPSConverterAbort;
 #[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterBeginDocumentCallback;
-#[cfg(all(feature = "CGPSConverter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterBeginPageCallback;
-#[cfg(all(feature = "CGPSConverter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterCallbacks;
 #[cfg(all(
     feature = "CGDataConsumer",
     feature = "CGDataProvider",
-    feature = "CGPSConverter",
-    feature = "objc2-core-foundation"
+    feature = "CGPSConverter"
 ))]
 pub use self::__CGPSConverter::CGPSConverterConvert;
-#[cfg(all(feature = "CGPSConverter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterCreate;
 #[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterEndDocumentCallback;
-#[cfg(all(feature = "CGPSConverter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterEndPageCallback;
-#[cfg(all(feature = "CGPSConverter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterGetTypeID;
 #[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterIsConverting;
-#[cfg(all(feature = "CGPSConverter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterMessageCallback;
 #[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterProgressCallback;
@@ -2321,67 +2070,59 @@ pub use self::__CGPath::CGLineCap;
 pub use self::__CGPath::CGLineJoin;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGMutablePathRef;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathAddArc;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathAddArcToPoint;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathAddCurveToPoint;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathAddEllipseInRect;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathAddLineToPoint;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathAddLines;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathAddPath;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathAddQuadCurveToPoint;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathAddRect;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathAddRects;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathAddRelativeArc;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathAddRoundedRect;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathApplierFunction;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathApply;
-#[cfg(all(
-    feature = "CGPath",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGPath", feature = "block2"))]
 pub use self::__CGPath::CGPathApplyBlock;
-#[cfg(all(
-    feature = "CGPath",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGPath", feature = "block2"))]
 pub use self::__CGPath::CGPathApplyWithBlock;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathCloseSubpath;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathContainsPoint;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathCreateCopy;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathCreateCopyByDashingPath;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathCreateCopyByFlattening;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathCreateCopyByIntersectingPath;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathCreateCopyByNormalizing;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathCreateCopyByStrokingPath;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathCreateCopyBySubtractingPath;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathCreateCopyBySymmetricDifferenceOfPath;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathCreateCopyByTransformingPath;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathCreateCopyByUnioningPath;
@@ -2393,37 +2134,37 @@ pub use self::__CGPath::CGPathCreateCopyOfLineBySubtractingPath;
 pub use self::__CGPath::CGPathCreateMutable;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathCreateMutableCopy;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathCreateMutableCopyByTransformingPath;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathCreateSeparateComponents;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathCreateWithEllipseInRect;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathCreateWithRect;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathCreateWithRoundedRect;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathElement;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathElementType;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathEqualToPath;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathGetBoundingBox;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathGetCurrentPoint;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathGetPathBoundingBox;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathGetTypeID;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathIntersectsPath;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathIsEmpty;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathIsRect;
-#[cfg(all(feature = "CGPath", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathMoveToPoint;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathRef;
@@ -2433,15 +2174,11 @@ pub use self::__CGPath::CGPathRelease;
 pub use self::__CGPath::CGPathRetain;
 #[cfg(all(feature = "CGContext", feature = "CGPattern"))]
 pub use self::__CGPattern::CGPatternCallbacks;
-#[cfg(all(
-    feature = "CGContext",
-    feature = "CGPattern",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGContext", feature = "CGPattern"))]
 pub use self::__CGPattern::CGPatternCreate;
 #[cfg(all(feature = "CGContext", feature = "CGPattern"))]
 pub use self::__CGPattern::CGPatternDrawPatternCallback;
-#[cfg(all(feature = "CGPattern", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGPattern")]
 pub use self::__CGPattern::CGPatternGetTypeID;
 #[cfg(feature = "CGPattern")]
 pub use self::__CGPattern::CGPatternRef;
@@ -2479,25 +2216,17 @@ pub use self::__CGRemoteOperation::CGKeyCode;
 pub use self::__CGRemoteOperation::CGPostKeyboardEvent;
 #[cfg(feature = "CGRemoteOperation")]
 pub use self::__CGRemoteOperation::CGRectCount;
-#[cfg(all(
-    feature = "CGError",
-    feature = "CGRemoteOperation",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGError", feature = "CGRemoteOperation"))]
 pub use self::__CGRemoteOperation::CGRegisterScreenRefreshCallback;
-#[cfg(all(feature = "CGRemoteOperation", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGRemoteOperation")]
 pub use self::__CGRemoteOperation::CGReleaseScreenRefreshRects;
-#[cfg(all(feature = "CGRemoteOperation", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGRemoteOperation")]
 pub use self::__CGRemoteOperation::CGScreenRefreshCallback;
-#[cfg(all(
-    feature = "CGError",
-    feature = "CGRemoteOperation",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGError", feature = "CGRemoteOperation"))]
 pub use self::__CGRemoteOperation::CGScreenRegisterMoveCallback;
-#[cfg(all(feature = "CGRemoteOperation", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGRemoteOperation")]
 pub use self::__CGRemoteOperation::CGScreenUnregisterMoveCallback;
-#[cfg(all(feature = "CGRemoteOperation", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGRemoteOperation")]
 pub use self::__CGRemoteOperation::CGScreenUpdateMoveCallback;
 #[cfg(feature = "CGRemoteOperation")]
 pub use self::__CGRemoteOperation::CGScreenUpdateMoveDelta;
@@ -2505,55 +2234,37 @@ pub use self::__CGRemoteOperation::CGScreenUpdateMoveDelta;
 pub use self::__CGRemoteOperation::CGScreenUpdateOperation;
 #[cfg(all(feature = "CGError", feature = "CGRemoteOperation"))]
 pub use self::__CGRemoteOperation::CGSetLocalEventsFilterDuringSuppressionState;
-#[cfg(all(
-    feature = "CGError",
-    feature = "CGRemoteOperation",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGError", feature = "CGRemoteOperation"))]
 pub use self::__CGRemoteOperation::CGSetLocalEventsSuppressionInterval;
-#[cfg(all(feature = "CGRemoteOperation", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGRemoteOperation")]
 pub use self::__CGRemoteOperation::CGUnregisterScreenRefreshCallback;
-#[cfg(all(
-    feature = "CGError",
-    feature = "CGRemoteOperation",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGError", feature = "CGRemoteOperation"))]
 pub use self::__CGRemoteOperation::CGWaitForScreenRefreshRects;
-#[cfg(all(
-    feature = "CGError",
-    feature = "CGRemoteOperation",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGError", feature = "CGRemoteOperation"))]
 pub use self::__CGRemoteOperation::CGWaitForScreenUpdateRects;
-#[cfg(all(
-    feature = "CGError",
-    feature = "CGRemoteOperation",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGError", feature = "CGRemoteOperation"))]
 pub use self::__CGRemoteOperation::CGWarpMouseCursorPosition;
 #[cfg(feature = "CGRemoteOperation")]
 pub use self::__CGRemoteOperation::CGWheelCount;
-#[cfg(all(feature = "CGRemoteOperation", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGRemoteOperation")]
 pub use self::__CGRemoteOperation::CGWindowServerCFMachPort;
-#[cfg(all(feature = "CGRemoteOperation", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGRemoteOperation")]
 pub use self::__CGRemoteOperation::CGWindowServerCreateServerPort;
-#[cfg(all(feature = "CGSession", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGSession")]
 pub use self::__CGSession::CGSessionCopyCurrentDictionary;
 #[cfg(all(
     feature = "CGColorSpace",
     feature = "CGFunction",
-    feature = "CGShading",
-    feature = "objc2-core-foundation"
+    feature = "CGShading"
 ))]
 pub use self::__CGShading::CGShadingCreateAxial;
 #[cfg(all(
     feature = "CGColorSpace",
     feature = "CGFunction",
-    feature = "CGShading",
-    feature = "objc2-core-foundation"
+    feature = "CGShading"
 ))]
 pub use self::__CGShading::CGShadingCreateRadial;
-#[cfg(all(feature = "CGShading", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGShading")]
 pub use self::__CGShading::CGShadingGetTypeID;
 #[cfg(feature = "CGShading")]
 pub use self::__CGShading::CGShadingRef;
@@ -2563,31 +2274,31 @@ pub use self::__CGShading::CGShadingRelease;
 pub use self::__CGShading::CGShadingRetain;
 #[cfg(feature = "CGToneMapping")]
 pub use self::__CGToneMapping::CGToneMapping;
-#[cfg(all(feature = "CGWindow", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::kCGWindowAlpha;
-#[cfg(all(feature = "CGWindow", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::kCGWindowBackingLocationVideoMemory;
-#[cfg(all(feature = "CGWindow", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::kCGWindowBounds;
-#[cfg(all(feature = "CGWindow", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::kCGWindowIsOnscreen;
-#[cfg(all(feature = "CGWindow", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::kCGWindowLayer;
-#[cfg(all(feature = "CGWindow", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::kCGWindowMemoryUsage;
-#[cfg(all(feature = "CGWindow", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::kCGWindowName;
-#[cfg(all(feature = "CGWindow", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::kCGWindowNumber;
-#[cfg(all(feature = "CGWindow", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::kCGWindowOwnerName;
-#[cfg(all(feature = "CGWindow", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::kCGWindowOwnerPID;
-#[cfg(all(feature = "CGWindow", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::kCGWindowSharingState;
-#[cfg(all(feature = "CGWindow", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::kCGWindowStoreType;
-#[cfg(all(feature = "CGWindow", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::kCGWindowWorkspace;
 #[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::CGPreflightScreenCaptureAccess;
@@ -2599,23 +2310,15 @@ pub use self::__CGWindow::CGWindowBackingType;
 pub use self::__CGWindow::CGWindowID;
 #[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::CGWindowImageOption;
-#[cfg(all(feature = "CGWindow", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::CGWindowListCopyWindowInfo;
-#[cfg(all(feature = "CGWindow", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::CGWindowListCreate;
-#[cfg(all(feature = "CGWindow", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::CGWindowListCreateDescriptionFromArray;
-#[cfg(all(
-    feature = "CGImage",
-    feature = "CGWindow",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGImage", feature = "CGWindow"))]
 pub use self::__CGWindow::CGWindowListCreateImage;
-#[cfg(all(
-    feature = "CGImage",
-    feature = "CGWindow",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGImage", feature = "CGWindow"))]
 pub use self::__CGWindow::CGWindowListCreateImageFromArray;
 #[cfg(feature = "CGWindow")]
 pub use self::__CGWindow::CGWindowListOption;

@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -14,30 +13,25 @@ pub type CVOpenGLTextureCacheRef = *mut c_void;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopengltexturecachechromasamplingmodekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVOpenGLTextureCacheChromaSamplingModeKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopengltexturecachechromasamplingmodeautomatic?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVOpenGLTextureCacheChromaSamplingModeAutomatic: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopengltexturecachechromasamplingmodehighestquality?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVOpenGLTextureCacheChromaSamplingModeHighestQuality: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopengltexturecachechromasamplingmodebestperformance?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVOpenGLTextureCacheChromaSamplingModeBestPerformance: CFStringRef;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLTextureCacheGetTypeID() -> CFTypeID;
 }
@@ -74,8 +68,7 @@ extern "C-unwind" {
         feature = "CVBuffer",
         feature = "CVImageBuffer",
         feature = "CVOpenGLTexture",
-        feature = "CVReturn",
-        feature = "objc2-core-foundation"
+        feature = "CVReturn"
     ))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLTextureCacheCreateTextureFromImage(

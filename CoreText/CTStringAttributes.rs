@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -16,7 +15,6 @@ extern "C" {
     /// Value must be a CTFontRef. Default is Helvetica 12.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontAttributeName: CFStringRef;
 }
 
@@ -35,7 +33,6 @@ extern "C" {
     /// overrides the foreground color.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctforegroundcolorfromcontextattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTForegroundColorFromContextAttributeName: CFStringRef;
 }
 
@@ -53,7 +50,6 @@ extern "C" {
     /// set to 0.0, no kerning will be done at all.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctkernattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTKernAttributeName: CFStringRef;
 }
 
@@ -80,7 +76,6 @@ extern "C" {
     /// See also: CTLineGetTrailingWhitespaceWidth
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttrackingattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTTrackingAttributeName: CFStringRef;
 }
 
@@ -107,7 +102,6 @@ extern "C" {
     /// shaping tables (or the lack thereof) are treated as definitive.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctligatureattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTLigatureAttributeName: CFStringRef;
 }
 
@@ -118,7 +112,6 @@ extern "C" {
     /// Value must be a CGColorRef. Default value is black.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctforegroundcolorattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTForegroundColorAttributeName: CFStringRef;
 }
 
@@ -129,7 +122,6 @@ extern "C" {
     /// Value must be a CGColorRef. Default is no background color.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbackgroundcolorattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTBackgroundColorAttributeName: CFStringRef;
 }
 
@@ -147,7 +139,6 @@ extern "C" {
     /// See also: CFStringGetParagraphBounds
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctparagraphstyleattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTParagraphStyleAttributeName: CFStringRef;
 }
 
@@ -162,7 +153,6 @@ extern "C" {
     /// typical value for outlined text is 3.0.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctstrokewidthattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTStrokeWidthAttributeName: CFStringRef;
 }
 
@@ -173,7 +163,6 @@ extern "C" {
     /// Value must be a CGColorRef. Default is the foreground color.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctstrokecolorattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTStrokeColorAttributeName: CFStringRef;
 }
 
@@ -190,7 +179,6 @@ extern "C" {
     /// otherwise specified by kCTUnderlineColorAttributeName.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctunderlinestyleattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTUnderlineStyleAttributeName: CFStringRef;
 }
 
@@ -203,7 +191,6 @@ extern "C" {
     /// value of -1 enables subscripting.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctsuperscriptattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTSuperscriptAttributeName: CFStringRef;
 }
 
@@ -214,7 +201,6 @@ extern "C" {
     /// Value must be a CGColorRef. Default is the foreground color.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctunderlinecolorattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTUnderlineColorAttributeName: CFStringRef;
 }
 
@@ -227,7 +213,6 @@ extern "C" {
     /// indicates that vertical glyph forms are to be used.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctverticalformsattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTVerticalFormsAttributeName: CFStringRef;
 }
 
@@ -242,7 +227,6 @@ extern "C" {
     /// to true.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcthorizontalinverticalformsattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTHorizontalInVerticalFormsAttributeName: CFStringRef;
 }
 
@@ -257,7 +241,6 @@ extern "C" {
     /// kCTFontAttributeName. See CTGlyphInfo.h for more information.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctglyphinfoattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTGlyphInfoAttributeName: CFStringRef;
 }
 
@@ -271,7 +254,6 @@ extern "C" {
     /// an attribute value of 1 corresponds to kTraditionalCharactersSelector.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctcharactershapeattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTCharacterShapeAttributeName: CFStringRef;
 }
 
@@ -285,7 +267,6 @@ extern "C" {
     /// locale-specific line breaking rules.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctlanguageattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTLanguageAttributeName: CFStringRef;
 }
 
@@ -305,7 +286,6 @@ extern "C" {
     /// CTRunDelegate.h for more information.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrundelegateattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTRunDelegateAttributeName: CFStringRef;
 }
 
@@ -404,7 +384,6 @@ extern "C" {
     /// See also: kCTBaselineClassMath
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbaselineclassattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTBaselineClassAttributeName: CFStringRef;
 }
 
@@ -433,7 +412,6 @@ extern "C" {
     /// See also: kCTBaselineClassMath
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbaselineinfoattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTBaselineInfoAttributeName: CFStringRef;
 }
 
@@ -465,7 +443,6 @@ extern "C" {
     /// See also: kCTBaselineReferenceFont
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbaselinereferenceinfoattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTBaselineReferenceInfoAttributeName: CFStringRef;
 }
 
@@ -485,7 +462,6 @@ extern "C" {
     /// See also: NSBaselineOffsetAttributeName
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbaselineoffsetattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTBaselineOffsetAttributeName: CFStringRef;
 }
 
@@ -532,7 +508,6 @@ extern "C" {
     /// See also: kCTWritingDirectionOverride
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctwritingdirectionattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTWritingDirectionAttributeName: CFStringRef;
 }
 
@@ -549,7 +524,6 @@ extern "C" {
     /// more information.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrubyannotationattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTRubyAnnotationAttributeName: CFStringRef;
 }
 
@@ -562,6 +536,5 @@ extern "C" {
     /// and the font attribute applied to that range will be used to determine properties such as point size.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctadaptiveimageproviderattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTAdaptiveImageProviderAttributeName: CFStringRef;
 }

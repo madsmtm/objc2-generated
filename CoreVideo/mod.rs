@@ -96,27 +96,27 @@ pub use self::__CVBase::CVTimeFlags;
 pub use self::__CVBase::CVTimeStamp;
 #[cfg(feature = "CVBase")]
 pub use self::__CVBase::CVTimeStampFlags;
-#[cfg(all(feature = "CVBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::kCVBufferMovieTimeKey;
-#[cfg(all(feature = "CVBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::kCVBufferNonPropagatedAttachmentsKey;
-#[cfg(all(feature = "CVBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::kCVBufferPropagatedAttachmentsKey;
-#[cfg(all(feature = "CVBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::kCVBufferTimeScaleKey;
-#[cfg(all(feature = "CVBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::kCVBufferTimeValueKey;
 #[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVAttachmentMode;
-#[cfg(all(feature = "CVBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBufferCopyAttachment;
-#[cfg(all(feature = "CVBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBufferCopyAttachments;
-#[cfg(all(feature = "CVBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBufferGetAttachment;
-#[cfg(all(feature = "CVBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBufferGetAttachments;
-#[cfg(all(feature = "CVBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBufferHasAttachment;
 #[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBufferPropagateAttachments;
@@ -124,13 +124,13 @@ pub use self::__CVBuffer::CVBufferPropagateAttachments;
 pub use self::__CVBuffer::CVBufferRef;
 #[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBufferRemoveAllAttachments;
-#[cfg(all(feature = "CVBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBufferRemoveAttachment;
 #[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBufferRetain;
-#[cfg(all(feature = "CVBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBufferSetAttachment;
-#[cfg(all(feature = "CVBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBufferSetAttachments;
 #[cfg(all(feature = "CVDisplayLink", feature = "CVReturn"))]
 pub use self::__CVDisplayLink::CVDisplayLinkCreateWithActiveCGDisplays;
@@ -143,7 +143,6 @@ pub use self::__CVDisplayLink::CVDisplayLinkCreateWithCGDisplay;
 #[cfg(all(
     feature = "CVDisplayLink",
     feature = "CVReturn",
-    feature = "objc2-core-foundation",
     feature = "objc2-core-graphics"
 ))]
 pub use self::__CVDisplayLink::CVDisplayLinkCreateWithCGDisplays;
@@ -163,7 +162,7 @@ pub use self::__CVDisplayLink::CVDisplayLinkGetCurrentTime;
 pub use self::__CVDisplayLink::CVDisplayLinkGetNominalOutputVideoRefreshPeriod;
 #[cfg(all(feature = "CVBase", feature = "CVDisplayLink"))]
 pub use self::__CVDisplayLink::CVDisplayLinkGetOutputVideoLatency;
-#[cfg(all(feature = "CVDisplayLink", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVDisplayLink")]
 pub use self::__CVDisplayLink::CVDisplayLinkGetTypeID;
 #[cfg(feature = "CVDisplayLink")]
 pub use self::__CVDisplayLink::CVDisplayLinkIsRunning;
@@ -207,169 +206,161 @@ pub use self::__CVHostTime::CVGetCurrentHostTime;
 pub use self::__CVHostTime::CVGetHostClockFrequency;
 #[cfg(feature = "CVHostTime")]
 pub use self::__CVHostTime::CVGetHostClockMinimumTimeDelta;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferAlphaChannelIsOpaque;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferAlphaChannelModeKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferAlphaChannelMode_PremultipliedAlpha;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferAlphaChannelMode_StraightAlpha;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferAmbientViewingEnvironmentKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferCGColorSpaceKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferChromaLocationBottomFieldKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferChromaLocationTopFieldKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferChromaLocation_Bottom;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferChromaLocation_BottomLeft;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferChromaLocation_Center;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferChromaLocation_DV420;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferChromaLocation_Left;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferChromaLocation_Top;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferChromaLocation_TopLeft;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferChromaSubsamplingKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferChromaSubsampling_411;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferChromaSubsampling_420;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferChromaSubsampling_422;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferCleanApertureHeightKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferCleanApertureHorizontalOffsetKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferCleanApertureKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferCleanApertureVerticalOffsetKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferCleanApertureWidthKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferColorPrimariesKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferColorPrimaries_DCI_P3;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferColorPrimaries_EBU_3213;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferColorPrimaries_ITU_R_2020;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferColorPrimaries_ITU_R_709_2;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferColorPrimaries_P22;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferColorPrimaries_P3_D65;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferColorPrimaries_SMPTE_C;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferContentLightLevelInfoKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferDisplayDimensionsKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferDisplayHeightKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferDisplayWidthKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferFieldCountKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferFieldDetailKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferFieldDetailSpatialFirstLineEarly;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferFieldDetailSpatialFirstLineLate;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferFieldDetailTemporalBottomFirst;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferFieldDetailTemporalTopFirst;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferGammaLevelKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferICCProfileKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferLogTransferFunctionKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferLogTransferFunction_AppleLog;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferMasteringDisplayColorVolumeKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferPixelAspectRatioHorizontalSpacingKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferPixelAspectRatioKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferPixelAspectRatioVerticalSpacingKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferPostDecodeProcessingFrameMetadataKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferPostDecodeProcessingSequenceMetadataKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferPreferredCleanApertureKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferRegionOfInterestKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferSceneIlluminationKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferTransferFunctionKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferTransferFunction_EBU_3213;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferTransferFunction_ITU_R_2020;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferTransferFunction_ITU_R_2100_HLG;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferTransferFunction_ITU_R_709_2;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferTransferFunction_Linear;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferTransferFunction_SMPTE_240M_1995;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferTransferFunction_SMPTE_C;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferTransferFunction_SMPTE_ST_2084_PQ;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferTransferFunction_SMPTE_ST_428_1;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferTransferFunction_UseGamma;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferTransferFunction_sRGB;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferYCbCrMatrixKey;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferYCbCrMatrix_DCI_P3;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferYCbCrMatrix_ITU_R_2020;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferYCbCrMatrix_ITU_R_601_4;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferYCbCrMatrix_ITU_R_709_2;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferYCbCrMatrix_P3_D65;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::kCVImageBufferYCbCrMatrix_SMPTE_240M_1995;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::CVColorPrimariesGetIntegerCodePointForString;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::CVColorPrimariesGetStringForIntegerCodePoint;
-#[cfg(all(
-    feature = "CVImageBuffer",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-graphics"
-))]
+#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-graphics"))]
 pub use self::__CVImageBuffer::CVImageBufferCreateColorSpaceFromAttachments;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub use self::__CVImageBuffer::CVImageBufferGetCleanRect;
 #[cfg(all(
     feature = "CVBuffer",
@@ -377,29 +368,21 @@ pub use self::__CVImageBuffer::CVImageBufferGetCleanRect;
     feature = "objc2-core-graphics"
 ))]
 pub use self::__CVImageBuffer::CVImageBufferGetColorSpace;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub use self::__CVImageBuffer::CVImageBufferGetDisplaySize;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub use self::__CVImageBuffer::CVImageBufferGetEncodedSize;
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub use self::__CVImageBuffer::CVImageBufferIsFlipped;
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub use self::__CVImageBuffer::CVImageBufferRef;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::CVTransferFunctionGetIntegerCodePointForString;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::CVTransferFunctionGetStringForIntegerCodePoint;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::CVYCbCrMatrixGetIntegerCodePointForString;
-#[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::CVYCbCrMatrixGetStringForIntegerCodePoint;
 #[cfg(all(
     feature = "CVBuffer",
@@ -409,17 +392,16 @@ pub use self::__CVImageBuffer::CVYCbCrMatrixGetStringForIntegerCodePoint;
 ))]
 #[cfg(not(target_os = "watchos"))]
 pub use self::__CVMetalBuffer::CVMetalBufferGetBuffer;
-#[cfg(all(feature = "CVMetalBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVMetalBuffer")]
 pub use self::__CVMetalBuffer::CVMetalBufferGetTypeID;
 #[cfg(all(feature = "CVBuffer", feature = "CVMetalBuffer"))]
 pub use self::__CVMetalBuffer::CVMetalBufferRef;
-#[cfg(all(feature = "CVMetalBufferCache", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVMetalBufferCache")]
 pub use self::__CVMetalBufferCache::kCVMetalBufferCacheMaximumBufferAgeKey;
 #[cfg(all(
     feature = "CVMetalBufferCache",
     feature = "CVReturn",
     feature = "objc2",
-    feature = "objc2-core-foundation",
     feature = "objc2-metal"
 ))]
 #[cfg(not(target_os = "watchos"))]
@@ -429,19 +411,18 @@ pub use self::__CVMetalBufferCache::CVMetalBufferCacheCreate;
     feature = "CVImageBuffer",
     feature = "CVMetalBuffer",
     feature = "CVMetalBufferCache",
-    feature = "CVReturn",
-    feature = "objc2-core-foundation"
+    feature = "CVReturn"
 ))]
 pub use self::__CVMetalBufferCache::CVMetalBufferCacheCreateBufferFromImage;
 #[cfg(all(feature = "CVBase", feature = "CVMetalBufferCache"))]
 pub use self::__CVMetalBufferCache::CVMetalBufferCacheFlush;
-#[cfg(all(feature = "CVMetalBufferCache", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVMetalBufferCache")]
 pub use self::__CVMetalBufferCache::CVMetalBufferCacheGetTypeID;
 #[cfg(feature = "CVMetalBufferCache")]
 pub use self::__CVMetalBufferCache::CVMetalBufferCacheRef;
-#[cfg(all(feature = "CVMetalTexture", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVMetalTexture")]
 pub use self::__CVMetalTexture::kCVMetalTextureStorageMode;
-#[cfg(all(feature = "CVMetalTexture", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVMetalTexture")]
 pub use self::__CVMetalTexture::kCVMetalTextureUsage;
 #[cfg(all(
     feature = "CVBuffer",
@@ -452,7 +433,7 @@ pub use self::__CVMetalTexture::kCVMetalTextureUsage;
 ))]
 #[cfg(not(target_os = "watchos"))]
 pub use self::__CVMetalTexture::CVMetalTextureGetTexture;
-#[cfg(all(feature = "CVMetalTexture", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVMetalTexture")]
 pub use self::__CVMetalTexture::CVMetalTextureGetTypeID;
 #[cfg(all(
     feature = "CVBuffer",
@@ -466,13 +447,12 @@ pub use self::__CVMetalTexture::CVMetalTextureIsFlipped;
     feature = "CVMetalTexture"
 ))]
 pub use self::__CVMetalTexture::CVMetalTextureRef;
-#[cfg(all(feature = "CVMetalTextureCache", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVMetalTextureCache")]
 pub use self::__CVMetalTextureCache::kCVMetalTextureCacheMaximumTextureAgeKey;
 #[cfg(all(
     feature = "CVMetalTextureCache",
     feature = "CVReturn",
     feature = "objc2",
-    feature = "objc2-core-foundation",
     feature = "objc2-metal"
 ))]
 #[cfg(not(target_os = "watchos"))]
@@ -484,43 +464,40 @@ pub use self::__CVMetalTextureCache::CVMetalTextureCacheCreate;
     feature = "CVMetalTextureCache",
     feature = "CVReturn",
     feature = "objc2",
-    feature = "objc2-core-foundation",
     feature = "objc2-metal"
 ))]
 #[cfg(not(target_os = "watchos"))]
 pub use self::__CVMetalTextureCache::CVMetalTextureCacheCreateTextureFromImage;
 #[cfg(all(feature = "CVBase", feature = "CVMetalTextureCache"))]
 pub use self::__CVMetalTextureCache::CVMetalTextureCacheFlush;
-#[cfg(all(feature = "CVMetalTextureCache", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVMetalTextureCache")]
 pub use self::__CVMetalTextureCache::CVMetalTextureCacheGetTypeID;
 #[cfg(feature = "CVMetalTextureCache")]
 pub use self::__CVMetalTextureCache::CVMetalTextureCacheRef;
-#[cfg(all(feature = "CVOpenGLBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVOpenGLBuffer")]
 pub use self::__CVOpenGLBuffer::kCVOpenGLBufferHeight;
-#[cfg(all(feature = "CVOpenGLBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVOpenGLBuffer")]
 pub use self::__CVOpenGLBuffer::kCVOpenGLBufferInternalFormat;
-#[cfg(all(feature = "CVOpenGLBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVOpenGLBuffer")]
 pub use self::__CVOpenGLBuffer::kCVOpenGLBufferMaximumMipmapLevel;
-#[cfg(all(feature = "CVOpenGLBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVOpenGLBuffer")]
 pub use self::__CVOpenGLBuffer::kCVOpenGLBufferTarget;
-#[cfg(all(feature = "CVOpenGLBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVOpenGLBuffer")]
 pub use self::__CVOpenGLBuffer::kCVOpenGLBufferWidth;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
     feature = "CVOpenGLBuffer",
-    feature = "CVReturn",
-    feature = "objc2-core-foundation"
+    feature = "CVReturn"
 ))]
 pub use self::__CVOpenGLBuffer::CVOpenGLBufferCreate;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
-    feature = "CVOpenGLBuffer",
-    feature = "objc2-core-foundation"
+    feature = "CVOpenGLBuffer"
 ))]
 pub use self::__CVOpenGLBuffer::CVOpenGLBufferGetAttributes;
-#[cfg(all(feature = "CVOpenGLBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVOpenGLBuffer")]
 pub use self::__CVOpenGLBuffer::CVOpenGLBufferGetTypeID;
 #[cfg(all(
     feature = "CVBuffer",
@@ -534,36 +511,31 @@ pub use self::__CVOpenGLBuffer::CVOpenGLBufferRef;
     feature = "CVOpenGLBuffer"
 ))]
 pub use self::__CVOpenGLBuffer::CVOpenGLBufferRetain;
-#[cfg(all(feature = "CVOpenGLBufferPool", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVOpenGLBufferPool")]
 pub use self::__CVOpenGLBufferPool::kCVOpenGLBufferPoolMaximumBufferAgeKey;
-#[cfg(all(feature = "CVOpenGLBufferPool", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVOpenGLBufferPool")]
 pub use self::__CVOpenGLBufferPool::kCVOpenGLBufferPoolMinimumBufferCountKey;
-#[cfg(all(
-    feature = "CVOpenGLBufferPool",
-    feature = "CVReturn",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CVOpenGLBufferPool", feature = "CVReturn"))]
 pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolCreate;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
     feature = "CVOpenGLBuffer",
     feature = "CVOpenGLBufferPool",
-    feature = "CVReturn",
-    feature = "objc2-core-foundation"
+    feature = "CVReturn"
 ))]
 pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolCreateOpenGLBuffer;
-#[cfg(all(feature = "CVOpenGLBufferPool", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVOpenGLBufferPool")]
 pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolGetAttributes;
-#[cfg(all(feature = "CVOpenGLBufferPool", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVOpenGLBufferPool")]
 pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolGetOpenGLBufferAttributes;
-#[cfg(all(feature = "CVOpenGLBufferPool", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVOpenGLBufferPool")]
 pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolGetTypeID;
 #[cfg(feature = "CVOpenGLBufferPool")]
 pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolRef;
 #[cfg(feature = "CVOpenGLBufferPool")]
 pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolRetain;
-#[cfg(all(feature = "CVOpenGLTexture", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVOpenGLTexture")]
 pub use self::__CVOpenGLTexture::CVOpenGLTextureGetTypeID;
 #[cfg(all(
     feature = "CVBuffer",
@@ -583,88 +555,87 @@ pub use self::__CVOpenGLTexture::CVOpenGLTextureRef;
     feature = "CVOpenGLTexture"
 ))]
 pub use self::__CVOpenGLTexture::CVOpenGLTextureRetain;
-#[cfg(all(feature = "CVOpenGLTextureCache", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVOpenGLTextureCache")]
 pub use self::__CVOpenGLTextureCache::kCVOpenGLTextureCacheChromaSamplingModeAutomatic;
-#[cfg(all(feature = "CVOpenGLTextureCache", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVOpenGLTextureCache")]
 pub use self::__CVOpenGLTextureCache::kCVOpenGLTextureCacheChromaSamplingModeBestPerformance;
-#[cfg(all(feature = "CVOpenGLTextureCache", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVOpenGLTextureCache")]
 pub use self::__CVOpenGLTextureCache::kCVOpenGLTextureCacheChromaSamplingModeHighestQuality;
-#[cfg(all(feature = "CVOpenGLTextureCache", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVOpenGLTextureCache")]
 pub use self::__CVOpenGLTextureCache::kCVOpenGLTextureCacheChromaSamplingModeKey;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
     feature = "CVOpenGLTexture",
     feature = "CVOpenGLTextureCache",
-    feature = "CVReturn",
-    feature = "objc2-core-foundation"
+    feature = "CVReturn"
 ))]
 pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCacheCreateTextureFromImage;
 #[cfg(all(feature = "CVBase", feature = "CVOpenGLTextureCache"))]
 pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCacheFlush;
-#[cfg(all(feature = "CVOpenGLTextureCache", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVOpenGLTextureCache")]
 pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCacheGetTypeID;
 #[cfg(feature = "CVOpenGLTextureCache")]
 pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCacheRef;
 #[cfg(feature = "CVOpenGLTextureCache")]
 pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCacheRetain;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferBytesPerRowAlignmentKey;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferCGBitmapContextCompatibilityKey;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferCGImageCompatibilityKey;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferExtendedPixelsBottomKey;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferExtendedPixelsLeftKey;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferExtendedPixelsRightKey;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferExtendedPixelsTopKey;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferHeightKey;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferIOSurfacePropertiesKey;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferMemoryAllocatorKey;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferMetalCompatibilityKey;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferOpenGLCompatibilityKey;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferOpenGLESCompatibilityKey;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferOpenGLESTextureCacheCompatibilityKey;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferOpenGLTextureCacheCompatibilityKey;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferPixelFormatTypeKey;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferPlaneAlignmentKey;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferProResRAWKey_BlackLevel;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferProResRAWKey_ColorMatrix;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferProResRAWKey_GainFactor;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferProResRAWKey_MetadataExtension;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferProResRAWKey_RecommendedCrop;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferProResRAWKey_SenselSitingOffsets;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferProResRAWKey_WhiteBalanceBlueFactor;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferProResRAWKey_WhiteBalanceCCT;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferProResRAWKey_WhiteBalanceRedFactor;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferProResRAWKey_WhiteLevel;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferVersatileBayerKey_BayerPattern;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferWidthKey;
 #[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelFormatType_128RGBAFloat;
@@ -867,38 +838,30 @@ pub use self::__CVPixelBuffer::kCVVersatileBayer_BayerPattern_RGGB;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
-    feature = "CVPixelBuffer",
-    feature = "objc2-core-foundation"
+    feature = "CVPixelBuffer"
 ))]
 pub use self::__CVPixelBuffer::CVPixelBufferCopyCreationAttributes;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
     feature = "CVPixelBuffer",
-    feature = "CVReturn",
-    feature = "objc2-core-foundation"
+    feature = "CVReturn"
 ))]
 pub use self::__CVPixelBuffer::CVPixelBufferCreate;
-#[cfg(all(
-    feature = "CVPixelBuffer",
-    feature = "CVReturn",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CVPixelBuffer", feature = "CVReturn"))]
 pub use self::__CVPixelBuffer::CVPixelBufferCreateResolvedAttributesDictionary;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
     feature = "CVPixelBuffer",
-    feature = "CVReturn",
-    feature = "objc2-core-foundation"
+    feature = "CVReturn"
 ))]
 pub use self::__CVPixelBuffer::CVPixelBufferCreateWithBytes;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
     feature = "CVPixelBuffer",
-    feature = "CVReturn",
-    feature = "objc2-core-foundation"
+    feature = "CVReturn"
 ))]
 pub use self::__CVPixelBuffer::CVPixelBufferCreateWithPlanarBytes;
 #[cfg(all(
@@ -968,7 +931,7 @@ pub use self::__CVPixelBuffer::CVPixelBufferGetPixelFormatType;
     feature = "CVPixelBuffer"
 ))]
 pub use self::__CVPixelBuffer::CVPixelBufferGetPlaneCount;
-#[cfg(all(feature = "CVPixelBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::CVPixelBufferGetTypeID;
 #[cfg(all(
     feature = "CVBuffer",
@@ -1030,15 +993,15 @@ pub use self::__CVPixelBuffer::CVPlanarPixelBufferInfo;
 pub use self::__CVPixelBuffer::CVPlanarPixelBufferInfo_YCbCrBiPlanar;
 #[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::CVPlanarPixelBufferInfo_YCbCrPlanar;
-#[cfg(all(feature = "CVPixelBufferIOSurface", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBufferIOSurface")]
 pub use self::__CVPixelBufferIOSurface::kCVPixelBufferIOSurfaceCoreAnimationCompatibilityKey;
-#[cfg(all(feature = "CVPixelBufferIOSurface", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBufferIOSurface")]
 pub use self::__CVPixelBufferIOSurface::kCVPixelBufferIOSurfaceOpenGLESFBOCompatibilityKey;
-#[cfg(all(feature = "CVPixelBufferIOSurface", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBufferIOSurface")]
 pub use self::__CVPixelBufferIOSurface::kCVPixelBufferIOSurfaceOpenGLESTextureCompatibilityKey;
-#[cfg(all(feature = "CVPixelBufferIOSurface", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBufferIOSurface")]
 pub use self::__CVPixelBufferIOSurface::kCVPixelBufferIOSurfaceOpenGLFBOCompatibilityKey;
-#[cfg(all(feature = "CVPixelBufferIOSurface", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBufferIOSurface")]
 pub use self::__CVPixelBufferIOSurface::kCVPixelBufferIOSurfaceOpenGLTextureCompatibilityKey;
 #[cfg(all(
     feature = "CVBuffer",
@@ -1046,7 +1009,6 @@ pub use self::__CVPixelBufferIOSurface::kCVPixelBufferIOSurfaceOpenGLTextureComp
     feature = "CVPixelBuffer",
     feature = "CVPixelBufferIOSurface",
     feature = "CVReturn",
-    feature = "objc2-core-foundation",
     feature = "objc2-io-surface"
 ))]
 #[cfg(not(target_os = "watchos"))]
@@ -1060,27 +1022,22 @@ pub use self::__CVPixelBufferIOSurface::CVPixelBufferCreateWithIOSurface;
 ))]
 #[cfg(not(target_os = "watchos"))]
 pub use self::__CVPixelBufferIOSurface::CVPixelBufferGetIOSurface;
-#[cfg(all(feature = "CVPixelBufferPool", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBufferPool")]
 pub use self::__CVPixelBufferPool::kCVPixelBufferPoolAllocationThresholdKey;
-#[cfg(all(feature = "CVPixelBufferPool", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBufferPool")]
 pub use self::__CVPixelBufferPool::kCVPixelBufferPoolFreeBufferNotification;
-#[cfg(all(feature = "CVPixelBufferPool", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBufferPool")]
 pub use self::__CVPixelBufferPool::kCVPixelBufferPoolMaximumBufferAgeKey;
-#[cfg(all(feature = "CVPixelBufferPool", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBufferPool")]
 pub use self::__CVPixelBufferPool::kCVPixelBufferPoolMinimumBufferCountKey;
-#[cfg(all(
-    feature = "CVPixelBufferPool",
-    feature = "CVReturn",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CVPixelBufferPool", feature = "CVReturn"))]
 pub use self::__CVPixelBufferPool::CVPixelBufferPoolCreate;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
     feature = "CVPixelBuffer",
     feature = "CVPixelBufferPool",
-    feature = "CVReturn",
-    feature = "objc2-core-foundation"
+    feature = "CVReturn"
 ))]
 pub use self::__CVPixelBufferPool::CVPixelBufferPoolCreatePixelBuffer;
 #[cfg(all(
@@ -1088,188 +1045,88 @@ pub use self::__CVPixelBufferPool::CVPixelBufferPoolCreatePixelBuffer;
     feature = "CVImageBuffer",
     feature = "CVPixelBuffer",
     feature = "CVPixelBufferPool",
-    feature = "CVReturn",
-    feature = "objc2-core-foundation"
+    feature = "CVReturn"
 ))]
 pub use self::__CVPixelBufferPool::CVPixelBufferPoolCreatePixelBufferWithAuxAttributes;
 #[cfg(all(feature = "CVBase", feature = "CVPixelBufferPool"))]
 pub use self::__CVPixelBufferPool::CVPixelBufferPoolFlush;
 #[cfg(all(feature = "CVBase", feature = "CVPixelBufferPool"))]
 pub use self::__CVPixelBufferPool::CVPixelBufferPoolFlushFlags;
-#[cfg(all(feature = "CVPixelBufferPool", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBufferPool")]
 pub use self::__CVPixelBufferPool::CVPixelBufferPoolGetAttributes;
-#[cfg(all(feature = "CVPixelBufferPool", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBufferPool")]
 pub use self::__CVPixelBufferPool::CVPixelBufferPoolGetPixelBufferAttributes;
-#[cfg(all(feature = "CVPixelBufferPool", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CVPixelBufferPool")]
 pub use self::__CVPixelBufferPool::CVPixelBufferPoolGetTypeID;
 #[cfg(feature = "CVPixelBufferPool")]
 pub use self::__CVPixelBufferPool::CVPixelBufferPoolRef;
 #[cfg(feature = "CVPixelBufferPool")]
 pub use self::__CVPixelBufferPool::CVPixelBufferPoolRetain;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatBitsPerBlock;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatBitsPerComponent;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatBlackBlock;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatBlockHeight;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatBlockHorizontalAlignment;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatBlockVerticalAlignment;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatBlockWidth;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatCGBitmapContextCompatibility;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatCGBitmapInfo;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatCGImageCompatibility;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatCodecType;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatComponentRange;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatComponentRange_FullRange;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatComponentRange_VideoRange;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatComponentRange_WideRange;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatConstant;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatContainsAlpha;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatContainsGrayscale;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatContainsRGB;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatContainsSenselArray;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatContainsYCbCr;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatFillExtendedPixelsCallback;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatFourCC;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatHorizontalSubsampling;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatName;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatOpenGLCompatibility;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatOpenGLESCompatibility;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatOpenGLFormat;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatOpenGLInternalFormat;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatOpenGLType;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatPlanes;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatQDCompatibility;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatVerticalSubsampling;
 #[cfg(all(
     feature = "CVBuffer",
@@ -1282,26 +1139,16 @@ pub use self::__CVPixelFormatDescription::CVFillExtendedPixelsCallBack;
     feature = "CVBuffer",
     feature = "CVImageBuffer",
     feature = "CVPixelBuffer",
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
+    feature = "CVPixelFormatDescription"
 ))]
 pub use self::__CVPixelFormatDescription::CVFillExtendedPixelsCallBackData;
 #[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::CVIsCompressedPixelFormatAvailable;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::CVPixelFormatDescriptionCreateWithPixelFormatType;
-#[cfg(all(
-    feature = "CVPixelFormatDescription",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType;
 #[cfg(feature = "CVReturn")]
 pub use self::__CVReturn::kCVReturnAllocationFailed;

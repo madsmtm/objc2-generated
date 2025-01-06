@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-metal")]
 #[cfg(not(target_os = "watchos"))]
@@ -14,7 +13,6 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvmetaltexturecachemaximumtextureagekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVMetalTextureCacheMaximumTextureAgeKey: CFStringRef;
 }
 
@@ -24,7 +22,6 @@ extern "C" {
 pub type CVMetalTextureCacheRef = *mut c_void;
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CVMetalTextureCacheGetTypeID() -> CFTypeID;
 }
 
@@ -42,12 +39,7 @@ extern "C-unwind" {
     /// Parameter `cacheOut`: The newly created texture cache will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
-    #[cfg(all(
-        feature = "CVReturn",
-        feature = "objc2",
-        feature = "objc2-core-foundation",
-        feature = "objc2-metal"
-    ))]
+    #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
     #[cfg(not(target_os = "watchos"))]
     pub fn CVMetalTextureCacheCreate(
         allocator: CFAllocatorRef,
@@ -120,7 +112,6 @@ extern "C-unwind" {
         feature = "CVMetalTexture",
         feature = "CVReturn",
         feature = "objc2",
-        feature = "objc2-core-foundation",
         feature = "objc2-metal"
     ))]
     #[cfg(not(target_os = "watchos"))]

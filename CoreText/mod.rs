@@ -82,73 +82,73 @@ mod __SFNTLayoutTypes;
 #[path = "SFNTTypes.rs"]
 mod __SFNTTypes;
 
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTBaselineClassHanging;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTBaselineClassIdeographicCentered;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTBaselineClassIdeographicHigh;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTBaselineClassIdeographicLow;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTBaselineClassMath;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTBaselineClassRoman;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTBaselineOriginalFont;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTBaselineReferenceFont;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontCopyrightNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontDescriptionNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontDesignerNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontDesignerURLNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontFamilyNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontFeatureSampleTextKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontFeatureSelectorDefaultKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontFeatureSelectorIdentifierKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontFeatureSelectorNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontFeatureSelectorSettingKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontFeatureTooltipTextKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontFeatureTypeExclusiveKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontFeatureTypeIdentifierKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontFeatureTypeNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontFeatureTypeSelectorsKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontFullNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontLicenseNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontLicenseURLNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontManufacturerNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontOpenTypeFeatureTag;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontOpenTypeFeatureValue;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontPostScriptCIDNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontPostScriptNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontSampleTextNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontStyleNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontSubFamilyNameKey;
 #[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontTableAcnt;
@@ -298,47 +298,47 @@ pub use self::__CTFont::kCTFontTableVmtx;
 pub use self::__CTFont::kCTFontTableXref;
 #[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontTableZapf;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontTrademarkNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontUniqueNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontVariationAxisDefaultValueKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontVariationAxisHiddenKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontVariationAxisIdentifierKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontVariationAxisMaximumValueKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontVariationAxisMinimumValueKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontVariationAxisNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontVendorURLNameKey;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::kCTFontVersionNameKey;
 #[cfg(feature = "CTFont")]
 pub use self::__CTFont::ATSFontRef;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyAttribute;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyAvailableTables;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyCharacterSet;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyDefaultCascadeListForLanguages;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyDisplayName;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyFamilyName;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyFeatureSettings;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyFeatures;
 #[cfg(all(feature = "CTFont", feature = "CTFontDescriptor"))]
 pub use self::__CTFont::CTFontCopyFontDescriptor;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyFullName;
 #[cfg(all(
     feature = "CTFont",
@@ -346,179 +346,122 @@ pub use self::__CTFont::CTFontCopyFullName;
     feature = "objc2-core-graphics"
 ))]
 pub use self::__CTFont::CTFontCopyGraphicsFont;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyLocalizedName;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyName;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-graphics"
-))]
+#[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
 pub use self::__CTFont::CTFontCopyNameForGlyph;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyPostScriptName;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopySupportedLanguages;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyTable;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyTraits;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyVariation;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyVariationAxes;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "CTFontDescriptor",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFont", feature = "CTFontDescriptor"))]
 pub use self::__CTFont::CTFontCreateCopyWithAttributes;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCreateCopyWithFamily;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "CTFontTraits",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFont", feature = "CTFontTraits"))]
 pub use self::__CTFont::CTFontCreateCopyWithSymbolicTraits;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCreateForString;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCreateForStringWithLanguage;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-graphics"
-))]
+#[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
 pub use self::__CTFont::CTFontCreatePathForGlyph;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCreateUIFontForLanguage;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "CTFontDescriptor",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFont", feature = "CTFontDescriptor"))]
 pub use self::__CTFont::CTFontCreateWithFontDescriptor;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "CTFontDescriptor",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFont", feature = "CTFontDescriptor"))]
 pub use self::__CTFont::CTFontCreateWithFontDescriptorAndOptions;
 #[cfg(all(
     feature = "CTFont",
     feature = "CTFontDescriptor",
-    feature = "objc2-core-foundation",
     feature = "objc2-core-graphics"
 ))]
 pub use self::__CTFont::CTFontCreateWithGraphicsFont;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCreateWithName;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCreateWithNameAndOptions;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCreateWithQuickdrawInstance;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-graphics"
-))]
+#[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
 pub use self::__CTFont::CTFontDrawGlyphs;
 #[cfg(all(
     feature = "CTFont",
     feature = "CTRunDelegate",
     feature = "objc2",
-    feature = "objc2-core-foundation",
     feature = "objc2-core-graphics"
 ))]
 pub use self::__CTFont::CTFontDrawImageFromAdaptiveImageProviderAtPoint;
 #[cfg(all(
     feature = "CTFont",
     feature = "CTFontDescriptor",
-    feature = "objc2-core-foundation",
     feature = "objc2-core-graphics"
 ))]
 pub use self::__CTFont::CTFontGetAdvancesForGlyphs;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontGetAscent;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontGetBoundingBox;
 #[cfg(all(
     feature = "CTFont",
     feature = "CTFontDescriptor",
-    feature = "objc2-core-foundation",
     feature = "objc2-core-graphics"
 ))]
 pub use self::__CTFont::CTFontGetBoundingRectsForGlyphs;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontGetCapHeight;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontGetDescent;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontGetGlyphCount;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-graphics"
-))]
+#[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
 pub use self::__CTFont::CTFontGetGlyphWithName;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-graphics"
-))]
+#[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
 pub use self::__CTFont::CTFontGetGlyphsForCharacters;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontGetLeading;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-graphics"
-))]
+#[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
 pub use self::__CTFont::CTFontGetLigatureCaretPositions;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontGetMatrix;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-graphics"
-))]
+#[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
 pub use self::__CTFont::CTFontGetOpticalBoundsForGlyphs;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontGetSize;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontGetSlantAngle;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontGetStringEncoding;
 #[cfg(all(feature = "CTFont", feature = "CTFontTraits"))]
 pub use self::__CTFont::CTFontGetSymbolicTraits;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontGetTypeID;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "CTRunDelegate",
-    feature = "objc2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFont", feature = "CTRunDelegate", feature = "objc2"))]
 pub use self::__CTFont::CTFontGetTypographicBoundsForAdaptiveImageProvider;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontGetUnderlinePosition;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontGetUnderlineThickness;
 #[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontGetUnitsPerEm;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-graphics"
-))]
+#[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
 pub use self::__CTFont::CTFontGetVerticalTranslationsForGlyphs;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontGetXHeight;
 #[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontHasTable;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontOptions;
 #[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontRef;
@@ -528,111 +471,103 @@ pub use self::__CTFont::CTFontTableOptions;
 pub use self::__CTFont::CTFontTableTag;
 #[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontUIFontType;
-#[cfg(all(feature = "CTFontCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::kCTFontCollectionDisallowAutoActivationOption;
-#[cfg(all(feature = "CTFontCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::kCTFontCollectionIncludeDisabledFontsOption;
-#[cfg(all(feature = "CTFontCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::kCTFontCollectionRemoveDuplicatesOption;
-#[cfg(all(feature = "CTFontCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionCopyExclusionDescriptors;
-#[cfg(all(feature = "CTFontCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionCopyFontAttribute;
-#[cfg(all(feature = "CTFontCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionCopyFontAttributes;
 #[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionCopyOptions;
-#[cfg(all(feature = "CTFontCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionCopyQueryDescriptors;
-#[cfg(all(feature = "CTFontCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionCreateCopyWithFontDescriptors;
-#[cfg(all(feature = "CTFontCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionCreateFromAvailableFonts;
-#[cfg(all(feature = "CTFontCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionCreateMatchingFontDescriptors;
-#[cfg(all(feature = "CTFontCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionCreateMatchingFontDescriptorsForFamily;
-#[cfg(all(
-    feature = "CTFontCollection",
-    feature = "CTFontDescriptor",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFontCollection", feature = "CTFontDescriptor"))]
 pub use self::__CTFontCollection::CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback;
-#[cfg(all(feature = "CTFontCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionCreateMatchingFontDescriptorsWithOptions;
 #[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionCreateMutableCopy;
-#[cfg(all(feature = "CTFontCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionCreateWithFontDescriptors;
-#[cfg(all(feature = "CTFontCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionGetTypeID;
 #[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionRef;
-#[cfg(all(feature = "CTFontCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionSetExclusionDescriptors;
-#[cfg(all(feature = "CTFontCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionSetQueryDescriptors;
-#[cfg(all(
-    feature = "CTFontCollection",
-    feature = "CTFontDescriptor",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFontCollection", feature = "CTFontDescriptor"))]
 pub use self::__CTFontCollection::CTFontCollectionSortDescriptorsCallback;
 #[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTMutableFontCollectionRef;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontBaselineAdjustAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontCascadeListAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontCharacterSetAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontDescriptorMatchingCurrentAssetSize;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontDescriptorMatchingDescriptors;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontDescriptorMatchingError;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontDescriptorMatchingPercentage;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontDescriptorMatchingResult;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontDescriptorMatchingSourceDescriptor;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontDescriptorMatchingTotalAssetSize;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontDescriptorMatchingTotalDownloadedSize;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontDisplayNameAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontDownloadableAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontDownloadedAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontEnabledAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontFamilyNameAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontFeatureSettingsAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontFeaturesAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontFixedAdvanceAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontFormatAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontLanguagesAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontMacintoshEncodingsAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontMatrixAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontNameAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontOpticalSizeAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontOrientationAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontPriorityAttribute;
 #[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontPriorityComputer;
@@ -646,59 +581,51 @@ pub use self::__CTFontDescriptor::kCTFontPriorityProcess;
 pub use self::__CTFontDescriptor::kCTFontPrioritySystem;
 #[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontPriorityUser;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontRegistrationScopeAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontSizeAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontStyleNameAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontTraitsAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontURLAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontVariationAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontVariationAxesAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorCopyAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorCopyAttributes;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorCopyLocalizedAttribute;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorCreateCopyWithAttributes;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorCreateCopyWithFamily;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorCreateCopyWithFeature;
 #[cfg(all(feature = "CTFontDescriptor", feature = "CTFontTraits"))]
 pub use self::__CTFontDescriptor::CTFontDescriptorCreateCopyWithSymbolicTraits;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorCreateCopyWithVariation;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorCreateMatchingFontDescriptor;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorCreateMatchingFontDescriptors;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorCreateWithAttributes;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorCreateWithNameAndSize;
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorGetTypeID;
-#[cfg(all(
-    feature = "CTFontDescriptor",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFontDescriptor", feature = "block2"))]
 pub use self::__CTFontDescriptor::CTFontDescriptorMatchFontDescriptorsWithProgressHandler;
 #[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorMatchingState;
-#[cfg(all(
-    feature = "CTFontDescriptor",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFontDescriptor", feature = "block2"))]
 pub use self::__CTFontDescriptor::CTFontDescriptorProgressHandler;
 #[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorRef;
@@ -708,158 +635,117 @@ pub use self::__CTFontDescriptor::CTFontFormat;
 pub use self::__CTFontDescriptor::CTFontOrientation;
 #[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontPriority;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::kCTFontManagerBundleIdentifier;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::kCTFontManagerRegisteredFontsChangedNotification;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::kCTFontRegistrationUserInfoAttribute;
 #[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerAutoActivationSetting;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerCompareFontFamilyNames;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerCopyAvailableFontFamilyNames;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerCopyAvailableFontURLs;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerCopyAvailablePostScriptNames;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerCopyRegisteredFontDescriptors;
-#[cfg(all(
-    feature = "CTFontDescriptor",
-    feature = "CTFontManager",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFontDescriptor", feature = "CTFontManager"))]
 pub use self::__CTFontManager::CTFontManagerCreateFontDescriptorFromData;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerCreateFontDescriptorsFromData;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerCreateFontDescriptorsFromURL;
-#[cfg(all(
-    feature = "CTFontManager",
-    feature = "block2",
-    feature = "libc",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFontManager", feature = "block2", feature = "libc"))]
 pub use self::__CTFontManager::CTFontManagerCreateFontRequestRunLoopSource;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerEnableFontDescriptors;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerGetAutoActivationSetting;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerGetScopeForURL;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerIsSupportedFont;
-#[cfg(all(
-    feature = "CTFontManager",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFontManager", feature = "block2"))]
 pub use self::__CTFontManager::CTFontManagerRegisterFontDescriptors;
-#[cfg(all(
-    feature = "CTFontManager",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFontManager", feature = "block2"))]
 pub use self::__CTFontManager::CTFontManagerRegisterFontURLs;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerRegisterFontsForURL;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerRegisterFontsForURLs;
-#[cfg(all(
-    feature = "CTFontManager",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFontManager", feature = "block2"))]
 pub use self::__CTFontManager::CTFontManagerRegisterFontsWithAssetNames;
-#[cfg(all(
-    feature = "CTFontManager",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-graphics"
-))]
+#[cfg(all(feature = "CTFontManager", feature = "objc2-core-graphics"))]
 pub use self::__CTFontManager::CTFontManagerRegisterGraphicsFont;
-#[cfg(all(
-    feature = "CTFontManager",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFontManager", feature = "block2"))]
 pub use self::__CTFontManager::CTFontManagerRequestFonts;
 #[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerScope;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerSetAutoActivationSetting;
-#[cfg(all(
-    feature = "CTFontManager",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFontManager", feature = "block2"))]
 pub use self::__CTFontManager::CTFontManagerUnregisterFontDescriptors;
-#[cfg(all(
-    feature = "CTFontManager",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFontManager", feature = "block2"))]
 pub use self::__CTFontManager::CTFontManagerUnregisterFontURLs;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerUnregisterFontsForURL;
-#[cfg(all(feature = "CTFontManager", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerUnregisterFontsForURLs;
-#[cfg(all(
-    feature = "CTFontManager",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-graphics"
-))]
+#[cfg(all(feature = "CTFontManager", feature = "objc2-core-graphics"))]
 pub use self::__CTFontManager::CTFontManagerUnregisterGraphicsFont;
-#[cfg(all(feature = "CTFontManagerErrors", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManagerErrors")]
 pub use self::__CTFontManagerErrors::kCTFontManagerErrorDomain;
-#[cfg(all(feature = "CTFontManagerErrors", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManagerErrors")]
 pub use self::__CTFontManagerErrors::kCTFontManagerErrorFontAssetNameKey;
-#[cfg(all(feature = "CTFontManagerErrors", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManagerErrors")]
 pub use self::__CTFontManagerErrors::kCTFontManagerErrorFontDescriptorsKey;
-#[cfg(all(feature = "CTFontManagerErrors", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManagerErrors")]
 pub use self::__CTFontManagerErrors::kCTFontManagerErrorFontURLsKey;
-#[cfg(all(feature = "CTFontManagerErrors", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontManagerErrors")]
 pub use self::__CTFontManagerErrors::CTFontManagerError;
 #[cfg(feature = "CTFontTraits")]
 pub use self::__CTFontTraits::kCTFontClassMaskShift;
-#[cfg(all(feature = "CTFontTraits", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontTraits")]
 pub use self::__CTFontTraits::kCTFontSlantTrait;
-#[cfg(all(feature = "CTFontTraits", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontTraits")]
 pub use self::__CTFontTraits::kCTFontSymbolicTrait;
-#[cfg(all(feature = "CTFontTraits", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontTraits")]
 pub use self::__CTFontTraits::kCTFontWeightTrait;
-#[cfg(all(feature = "CTFontTraits", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontTraits")]
 pub use self::__CTFontTraits::kCTFontWidthTrait;
 #[cfg(feature = "CTFontTraits")]
 pub use self::__CTFontTraits::CTFontStylisticClass;
 #[cfg(feature = "CTFontTraits")]
 pub use self::__CTFontTraits::CTFontSymbolicTraits;
-#[cfg(all(feature = "CTFrame", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::kCTFrameClippingPathsAttributeName;
-#[cfg(all(feature = "CTFrame", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::kCTFramePathClippingPathAttributeName;
-#[cfg(all(feature = "CTFrame", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::kCTFramePathFillRuleAttributeName;
-#[cfg(all(feature = "CTFrame", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::kCTFramePathWidthAttributeName;
-#[cfg(all(feature = "CTFrame", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::kCTFrameProgressionAttributeName;
 #[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
 pub use self::__CTFrame::CTFrameDraw;
-#[cfg(all(feature = "CTFrame", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::CTFrameGetFrameAttributes;
-#[cfg(all(feature = "CTFrame", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::CTFrameGetLineOrigins;
-#[cfg(all(feature = "CTFrame", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::CTFrameGetLines;
 #[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
 pub use self::__CTFrame::CTFrameGetPath;
-#[cfg(all(feature = "CTFrame", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::CTFrameGetStringRange;
-#[cfg(all(feature = "CTFrame", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::CTFrameGetTypeID;
-#[cfg(all(feature = "CTFrame", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::CTFrameGetVisibleStringRange;
 #[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::CTFramePathFillRule;
@@ -870,42 +756,32 @@ pub use self::__CTFrame::CTFrameRef;
 #[cfg(all(
     feature = "CTFrame",
     feature = "CTFramesetter",
-    feature = "objc2-core-foundation",
     feature = "objc2-core-graphics"
 ))]
 pub use self::__CTFramesetter::CTFramesetterCreateFrame;
-#[cfg(all(feature = "CTFramesetter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFramesetter")]
 pub use self::__CTFramesetter::CTFramesetterCreateWithAttributedString;
 #[cfg(all(feature = "CTFramesetter", feature = "CTTypesetter"))]
 pub use self::__CTFramesetter::CTFramesetterCreateWithTypesetter;
-#[cfg(all(feature = "CTFramesetter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFramesetter")]
 pub use self::__CTFramesetter::CTFramesetterGetTypeID;
 #[cfg(all(feature = "CTFramesetter", feature = "CTTypesetter"))]
 pub use self::__CTFramesetter::CTFramesetterGetTypesetter;
 #[cfg(feature = "CTFramesetter")]
 pub use self::__CTFramesetter::CTFramesetterRef;
-#[cfg(all(feature = "CTFramesetter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFramesetter")]
 pub use self::__CTFramesetter::CTFramesetterSuggestFrameSizeWithConstraints;
 #[cfg(feature = "CTGlyphInfo")]
 pub use self::__CTGlyphInfo::CTCharacterCollection;
-#[cfg(all(
-    feature = "CTGlyphInfo",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-graphics"
-))]
+#[cfg(all(feature = "CTGlyphInfo", feature = "objc2-core-graphics"))]
 pub use self::__CTGlyphInfo::CTGlyphInfoCreateWithCharacterIdentifier;
 #[cfg(all(
     feature = "CTFont",
     feature = "CTGlyphInfo",
-    feature = "objc2-core-foundation",
     feature = "objc2-core-graphics"
 ))]
 pub use self::__CTGlyphInfo::CTGlyphInfoCreateWithGlyph;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "CTGlyphInfo",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTFont", feature = "CTGlyphInfo"))]
 pub use self::__CTGlyphInfo::CTGlyphInfoCreateWithGlyphName;
 #[cfg(feature = "CTGlyphInfo")]
 pub use self::__CTGlyphInfo::CTGlyphInfoGetCharacterCollection;
@@ -913,53 +789,45 @@ pub use self::__CTGlyphInfo::CTGlyphInfoGetCharacterCollection;
 pub use self::__CTGlyphInfo::CTGlyphInfoGetCharacterIdentifier;
 #[cfg(all(feature = "CTGlyphInfo", feature = "objc2-core-graphics"))]
 pub use self::__CTGlyphInfo::CTGlyphInfoGetGlyph;
-#[cfg(all(feature = "CTGlyphInfo", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTGlyphInfo")]
 pub use self::__CTGlyphInfo::CTGlyphInfoGetGlyphName;
-#[cfg(all(feature = "CTGlyphInfo", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTGlyphInfo")]
 pub use self::__CTGlyphInfo::CTGlyphInfoGetTypeID;
 #[cfg(feature = "CTGlyphInfo")]
 pub use self::__CTGlyphInfo::CTGlyphInfoRef;
-#[cfg(all(feature = "CTLine", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineBoundsOptions;
-#[cfg(all(feature = "CTLine", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineCreateJustifiedLine;
 #[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineCreateTruncatedLine;
-#[cfg(all(feature = "CTLine", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineCreateWithAttributedString;
 #[cfg(all(feature = "CTLine", feature = "objc2-core-graphics"))]
 pub use self::__CTLine::CTLineDraw;
-#[cfg(all(
-    feature = "CTLine",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTLine", feature = "block2"))]
 pub use self::__CTLine::CTLineEnumerateCaretOffsets;
-#[cfg(all(feature = "CTLine", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineGetBoundsWithOptions;
-#[cfg(all(feature = "CTLine", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineGetGlyphCount;
-#[cfg(all(feature = "CTLine", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineGetGlyphRuns;
-#[cfg(all(
-    feature = "CTLine",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-graphics"
-))]
+#[cfg(all(feature = "CTLine", feature = "objc2-core-graphics"))]
 pub use self::__CTLine::CTLineGetImageBounds;
-#[cfg(all(feature = "CTLine", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineGetOffsetForStringIndex;
-#[cfg(all(feature = "CTLine", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineGetPenOffsetForFlush;
-#[cfg(all(feature = "CTLine", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineGetStringIndexForPosition;
-#[cfg(all(feature = "CTLine", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineGetStringRange;
 #[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineGetTrailingWhitespaceWidth;
-#[cfg(all(feature = "CTLine", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineGetTypeID;
-#[cfg(all(feature = "CTLine", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineGetTypographicBounds;
 #[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineRef;
@@ -971,7 +839,7 @@ pub use self::__CTParagraphStyle::CTLineBreakMode;
 pub use self::__CTParagraphStyle::CTParagraphStyleCreate;
 #[cfg(feature = "CTParagraphStyle")]
 pub use self::__CTParagraphStyle::CTParagraphStyleCreateCopy;
-#[cfg(all(feature = "CTParagraphStyle", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTParagraphStyle")]
 pub use self::__CTParagraphStyle::CTParagraphStyleGetTypeID;
 #[cfg(feature = "CTParagraphStyle")]
 pub use self::__CTParagraphStyle::CTParagraphStyleGetValueForSpecifier;
@@ -985,25 +853,25 @@ pub use self::__CTParagraphStyle::CTParagraphStyleSpecifier;
 pub use self::__CTParagraphStyle::CTTextAlignment;
 #[cfg(feature = "CTParagraphStyle")]
 pub use self::__CTParagraphStyle::CTWritingDirection;
-#[cfg(all(feature = "CTRubyAnnotation", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::kCTRubyAnnotationScaleToFitAttributeName;
-#[cfg(all(feature = "CTRubyAnnotation", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::kCTRubyAnnotationSizeFactorAttributeName;
 #[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAlignment;
 #[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAnnotationCreateCopy;
-#[cfg(all(feature = "CTRubyAnnotation", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAnnotationCreateWithAttributes;
 #[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAnnotationGetAlignment;
 #[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAnnotationGetOverhang;
-#[cfg(all(feature = "CTRubyAnnotation", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAnnotationGetSizeFactor;
-#[cfg(all(feature = "CTRubyAnnotation", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAnnotationGetTextForPosition;
-#[cfg(all(feature = "CTRubyAnnotation", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAnnotationGetTypeID;
 #[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAnnotationRef;
@@ -1011,53 +879,41 @@ pub use self::__CTRubyAnnotation::CTRubyAnnotationRef;
 pub use self::__CTRubyAnnotation::CTRubyOverhang;
 #[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyPosition;
-#[cfg(all(
-    feature = "CTRun",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-graphics"
-))]
+#[cfg(all(feature = "CTRun", feature = "objc2-core-graphics"))]
 pub use self::__CTRun::CTRunDraw;
-#[cfg(all(feature = "CTRun", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunGetAdvances;
-#[cfg(all(feature = "CTRun", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunGetAdvancesPtr;
-#[cfg(all(feature = "CTRun", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunGetAttributes;
-#[cfg(all(feature = "CTRun", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunGetBaseAdvancesAndOrigins;
-#[cfg(all(feature = "CTRun", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunGetGlyphCount;
-#[cfg(all(
-    feature = "CTRun",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-graphics"
-))]
+#[cfg(all(feature = "CTRun", feature = "objc2-core-graphics"))]
 pub use self::__CTRun::CTRunGetGlyphs;
 #[cfg(all(feature = "CTRun", feature = "objc2-core-graphics"))]
 pub use self::__CTRun::CTRunGetGlyphsPtr;
-#[cfg(all(
-    feature = "CTRun",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-graphics"
-))]
+#[cfg(all(feature = "CTRun", feature = "objc2-core-graphics"))]
 pub use self::__CTRun::CTRunGetImageBounds;
-#[cfg(all(feature = "CTRun", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunGetPositions;
-#[cfg(all(feature = "CTRun", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunGetPositionsPtr;
 #[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunGetStatus;
-#[cfg(all(feature = "CTRun", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunGetStringIndices;
-#[cfg(all(feature = "CTRun", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunGetStringIndicesPtr;
-#[cfg(all(feature = "CTRun", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunGetStringRange;
-#[cfg(all(feature = "CTRun", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunGetTextMatrix;
-#[cfg(all(feature = "CTRun", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunGetTypeID;
-#[cfg(all(feature = "CTRun", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunGetTypographicBounds;
 #[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunRef;
@@ -1069,75 +925,75 @@ pub use self::__CTRunDelegate::kCTRunDelegateCurrentVersion;
 pub use self::__CTRunDelegate::kCTRunDelegateVersion1;
 #[cfg(all(feature = "CTRunDelegate", feature = "objc2"))]
 pub use self::__CTRunDelegate::CTAdaptiveImageProviding;
-#[cfg(all(feature = "CTRunDelegate", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateCallbacks;
-#[cfg(all(feature = "CTRunDelegate", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateCreate;
 #[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateDeallocateCallback;
-#[cfg(all(feature = "CTRunDelegate", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateGetAscentCallback;
-#[cfg(all(feature = "CTRunDelegate", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateGetDescentCallback;
 #[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateGetRefCon;
-#[cfg(all(feature = "CTRunDelegate", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateGetTypeID;
-#[cfg(all(feature = "CTRunDelegate", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateGetWidthCallback;
 #[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateRef;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTAdaptiveImageProviderAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTBackgroundColorAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTBaselineClassAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTBaselineInfoAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTBaselineOffsetAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTBaselineReferenceInfoAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTCharacterShapeAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTFontAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTForegroundColorAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTForegroundColorFromContextAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTGlyphInfoAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTHorizontalInVerticalFormsAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTKernAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTLanguageAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTLigatureAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTParagraphStyleAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTRubyAnnotationAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTRunDelegateAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTStrokeColorAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTStrokeWidthAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTSuperscriptAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTTrackingAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTUnderlineColorAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTUnderlineStyleAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTVerticalFormsAttributeName;
-#[cfg(all(feature = "CTStringAttributes", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTWritingDirectionAttributeName;
 #[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTWritingDirectionEmbedding;
@@ -1147,57 +1003,45 @@ pub use self::__CTStringAttributes::kCTWritingDirectionOverride;
 pub use self::__CTStringAttributes::CTUnderlineStyle;
 #[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::CTUnderlineStyleModifiers;
-#[cfg(all(feature = "CTTextTab", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTTextTab")]
 pub use self::__CTTextTab::kCTTabColumnTerminatorsAttributeName;
-#[cfg(all(
-    feature = "CTParagraphStyle",
-    feature = "CTTextTab",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTParagraphStyle", feature = "CTTextTab"))]
 pub use self::__CTTextTab::CTTextTabCreate;
 #[cfg(all(feature = "CTParagraphStyle", feature = "CTTextTab"))]
 pub use self::__CTTextTab::CTTextTabGetAlignment;
 #[cfg(feature = "CTTextTab")]
 pub use self::__CTTextTab::CTTextTabGetLocation;
-#[cfg(all(feature = "CTTextTab", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTTextTab")]
 pub use self::__CTTextTab::CTTextTabGetOptions;
-#[cfg(all(feature = "CTTextTab", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTTextTab")]
 pub use self::__CTTextTab::CTTextTabGetTypeID;
 #[cfg(feature = "CTTextTab")]
 pub use self::__CTTextTab::CTTextTabRef;
-#[cfg(all(feature = "CTTypesetter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::kCTTypesetterOptionAllowUnboundedLayout;
-#[cfg(all(feature = "CTTypesetter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::kCTTypesetterOptionDisableBidiProcessing;
-#[cfg(all(feature = "CTTypesetter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::kCTTypesetterOptionForcedEmbeddingLevel;
-#[cfg(all(
-    feature = "CTLine",
-    feature = "CTTypesetter",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTLine", feature = "CTTypesetter"))]
 pub use self::__CTTypesetter::CTTypesetterCreateLine;
-#[cfg(all(
-    feature = "CTLine",
-    feature = "CTTypesetter",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CTLine", feature = "CTTypesetter"))]
 pub use self::__CTTypesetter::CTTypesetterCreateLineWithOffset;
-#[cfg(all(feature = "CTTypesetter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::CTTypesetterCreateWithAttributedString;
-#[cfg(all(feature = "CTTypesetter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::CTTypesetterCreateWithAttributedStringAndOptions;
-#[cfg(all(feature = "CTTypesetter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::CTTypesetterGetTypeID;
 #[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::CTTypesetterRef;
-#[cfg(all(feature = "CTTypesetter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::CTTypesetterSuggestClusterBreak;
-#[cfg(all(feature = "CTTypesetter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::CTTypesetterSuggestClusterBreakWithOffset;
-#[cfg(all(feature = "CTTypesetter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::CTTypesetterSuggestLineBreak;
-#[cfg(all(feature = "CTTypesetter", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::CTTypesetterSuggestLineBreakWithOffset;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::kANKRCurrentVersion;

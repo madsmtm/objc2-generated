@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -12,18 +11,15 @@ pub type CVOpenGLBufferPoolRef = *mut c_void;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbufferpoolminimumbuffercountkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVOpenGLBufferPoolMinimumBufferCountKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbufferpoolmaximumbufferagekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVOpenGLBufferPoolMaximumBufferAgeKey: CFStringRef;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLBufferPoolGetTypeID() -> CFTypeID;
 }
@@ -56,7 +52,7 @@ extern "C-unwind" {
     /// Parameter `poolOut`: The newly created pool will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
-    #[cfg(all(feature = "CVReturn", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CVReturn")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLBufferPoolCreate(
         allocator: CFAllocatorRef,
@@ -72,7 +68,6 @@ extern "C-unwind" {
     /// Parameter `pool`: The CVOpenGLBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the pool attributes dictionary, or NULL on failure.
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLBufferPoolGetAttributes(pool: CVOpenGLBufferPoolRef) -> CFDictionaryRef;
 }
@@ -86,7 +81,6 @@ extern "C-unwind" {
     /// Parameter `pool`: The CVOpenGLBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the OpenGL buffer attributes dictionary, or NULL on failure.
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLBufferPoolGetOpenGLBufferAttributes(
         pool: CVOpenGLBufferPoolRef,
@@ -109,8 +103,7 @@ extern "C-unwind" {
         feature = "CVBuffer",
         feature = "CVImageBuffer",
         feature = "CVOpenGLBuffer",
-        feature = "CVReturn",
-        feature = "objc2-core-foundation"
+        feature = "CVReturn"
     ))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLBufferPoolCreateOpenGLBuffer(

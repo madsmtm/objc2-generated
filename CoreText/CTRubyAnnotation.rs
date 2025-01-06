@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -14,7 +13,6 @@ pub type CTRubyAnnotationRef = *const c_void;
 
 extern "C-unwind" {
     /// Returns the CFType of the ruby annotation object
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRubyAnnotationGetTypeID() -> CFTypeID;
 }
 
@@ -162,7 +160,6 @@ extern "C" {
     /// Value must be a CFNumberRef.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrubyannotationsizefactorattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTRubyAnnotationSizeFactorAttributeName: CFStringRef;
 }
 
@@ -176,7 +173,6 @@ extern "C" {
     /// Value must be a CFBooleanRef. Default is false.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrubyannotationscaletofitattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTRubyAnnotationScaleToFitAttributeName: CFStringRef;
 }
 
@@ -207,7 +203,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function will return a reference to a CTRubyAnnotation object.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRubyAnnotationCreateWithAttributes(
         alignment: CTRubyAlignment,
         overhang: CTRubyOverhang,
@@ -264,7 +259,6 @@ extern "C-unwind" {
     ///
     /// Returns: If the "rubyAnnotation" reference is valid, then this
     /// function will return its sizeFactor. Otherwise it will return 0.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRubyAnnotationGetSizeFactor(ruby_annotation: CTRubyAnnotationRef) -> CGFloat;
 }
 
@@ -280,7 +274,6 @@ extern "C-unwind" {
     ///
     /// Returns: If the "rubyAnnotation" reference and the position are valid, then this
     /// function will return a CFStringRef for the text. Otherwise it will return NULL.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRubyAnnotationGetTextForPosition(
         ruby_annotation: CTRubyAnnotationRef,
         position: CTRubyPosition,

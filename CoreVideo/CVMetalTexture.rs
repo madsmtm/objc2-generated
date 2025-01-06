@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-metal")]
 #[cfg(not(target_os = "watchos"))]
@@ -22,7 +21,6 @@ use crate::*;
 pub type CVMetalTextureRef = CVImageBufferRef;
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CVMetalTextureGetTypeID() -> CFTypeID;
 }
 
@@ -65,7 +63,6 @@ extern "C" {
     /// kCVMetalTextureUsage is a property that can be placed on a CVMetalTextureCache to instruct the MTLTextureUsage of the created MTLTexture. Values for this can can be read from MTLTexture.h
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvmetaltextureusage?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVMetalTextureUsage: CFStringRef;
 }
 
@@ -73,6 +70,5 @@ extern "C" {
     /// kCVMetalTextureStorageMode is a property that can be placed on a CVMetalTextureCache to instruct the MTLTextureStorageMode of the created MTLTexture. Values for this can can be read from MTLTexture.h
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvmetaltexturestoragemode?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVMetalTextureStorageMode: CFStringRef;
 }

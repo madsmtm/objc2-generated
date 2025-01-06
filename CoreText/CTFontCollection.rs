@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -19,7 +18,6 @@ extern "C-unwind" {
     /// Returns the type identifier for Core Text font collection references.
     ///
     /// Returns: The identifier for the opaque types CTFontCollectionRef or CTMutableFontCollectionRef.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCollectionGetTypeID() -> CFTypeID;
 }
 
@@ -28,7 +26,7 @@ extern "C-unwind" {
 /// This callback can be specified to obtain the matching font descriptors of a collection in sorted order. Return the appropriate comparison result of first descriptor to second descriptor.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectionsortdescriptorscallback?language=objc)
-#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CTFontDescriptor")]
 pub type CTFontCollectionSortDescriptorsCallback = Option<
     unsafe extern "C-unwind" fn(
         CTFontDescriptorRef,
@@ -45,7 +43,6 @@ extern "C" {
     /// Specify this option key in the options dictionary with a non- zero value to enable automatic filtering of duplicate font descriptors.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontcollectionremoveduplicatesoption?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontCollectionRemoveDuplicatesOption: CFStringRef;
 }
 
@@ -57,7 +54,6 @@ extern "C" {
     /// Specify this option key in the options dictionary with a non-zero value to enable matching of disabled fonts. You can pass font descriptors specifying disabled fonts to CTFontManagerEnableFontDescriptors, but you cannot use such a font descriptor to query font attributes from the system database or create a CTFontRef.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontcollectionincludedisabledfontsoption?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontCollectionIncludeDisabledFontsOption: CFStringRef;
 }
 
@@ -69,7 +65,6 @@ extern "C" {
     /// Specify this option key in the options dictionary with a non-zero value to disallow searches for missing fonts (font descriptors returning no results).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontcollectiondisallowautoactivationoption?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontCollectionDisallowAutoActivationOption: CFStringRef;
 }
 
@@ -81,7 +76,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function creates a new collection containing all fonts available to the current application.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCollectionCreateFromAvailableFonts(
         options: CFDictionaryRef,
     ) -> CTFontCollectionRef;
@@ -98,7 +92,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function creates a new collection based on the provided font descriptors. The contents of this collection is defined by matching the provided descriptors against all available font descriptors.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCollectionCreateWithFontDescriptors(
         query_descriptors: CFArrayRef,
         options: CFDictionaryRef,
@@ -119,7 +112,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function creates a copy of the original font collection augmented by the new font descriptors and options. The new font descriptors are merged with the existing descriptors to create a single set.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCollectionCreateCopyWithFontDescriptors(
         original: CTFontCollectionRef,
         query_descriptors: CFArrayRef,
@@ -148,7 +140,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns a retained reference to the array of descriptors to be used to query (match) the system font database. The return value is undefined if CTFontCollectionCreateFromAvailableFonts was used to create the collection.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCollectionCopyQueryDescriptors(collection: CTFontCollectionRef) -> CFArrayRef;
 }
 
@@ -160,7 +151,6 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `descriptors`: An array of CTFontDescriptorRef. May be NULL to represent an empty collection, in which case the matching descriptors will also be NULL.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCollectionSetQueryDescriptors(
         collection: CTMutableFontCollectionRef,
         descriptors: CFArrayRef,
@@ -175,7 +165,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns a retained reference to the array of descriptors to be used to query (match) the system font database.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCollectionCopyExclusionDescriptors(collection: CTFontCollectionRef) -> CFArrayRef;
 }
 
@@ -187,7 +176,6 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `descriptors`: An array of CTFontDescriptorRef. May be NULL.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCollectionSetExclusionDescriptors(
         collection: CTMutableFontCollectionRef,
         descriptors: CFArrayRef,
@@ -202,7 +190,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An array of CTFontDescriptors matching the collection definition or NULL if there are none.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCollectionCreateMatchingFontDescriptors(
         collection: CTFontCollectionRef,
     ) -> CFArrayRef;
@@ -222,7 +209,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An array of CTFontDescriptors matching the criteria of the collection, sorted by the results of the sorting callback function, or NULL if there are none.
-    #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CTFontDescriptor")]
     pub fn CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(
         collection: CTFontCollectionRef,
         sort_callback: CTFontCollectionSortDescriptorsCallback,
@@ -241,7 +228,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An array of CTFontDescriptors matching the collection definition or NULL if there are none.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCollectionCreateMatchingFontDescriptorsWithOptions(
         collection: CTFontCollectionRef,
         options: CFDictionaryRef,
@@ -259,7 +245,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An array of CTFontDescriptors matching the specified family in the collection or NULL if there are none.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCollectionCreateMatchingFontDescriptorsForFamily(
         collection: CTFontCollectionRef,
         family_name: CFStringRef,
@@ -315,7 +300,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An array containing one value for each descriptor. With kCTFontCollectionCopyDefaultOptions, the values will be in the same order as the results from CTFontCollectionCreateMatchingFontDescriptors and NULL values will be transformed to kCFNull. When the kCTFontCollectionCopyUnique is set, duplicate values will be removed. When kCTFontCollectionCopyStandardSort is set, the values will be sorted in standard UI order.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCollectionCopyFontAttribute(
         collection: CTFontCollectionRef,
         attribute_name: CFStringRef,
@@ -337,7 +321,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An array containing one CFDictionary value for each descriptor mapping the requested attribute names. With kCTFontCollectionCopyDefaultOptions, the values will be in the same order as the results from CTFontCollectionCreateMatchingFontDescriptors. When the kCTFontCollectionCopyUnique is set, duplicate values will be removed. When kCTFontCollectionCopyStandardSort is set, the values will be sorted in standard UI order.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCollectionCopyFontAttributes(
         collection: CTFontCollectionRef,
         attribute_names: CFSetRef,

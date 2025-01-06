@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -17,7 +16,6 @@ extern "C" {
     /// Use this key to access the symbolic traits value from the font traits dictionary. The value is returned as a CFNumberRef.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontsymbolictrait?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontSymbolicTrait: CFStringRef;
 }
 
@@ -29,7 +27,6 @@ extern "C" {
     /// Use this key to access the normalized weight trait from the font traits dictionary. The value returned is a CFNumberRef representing a float value between -1.0 and 1.0 for normalized weight. The value of 0.0 corresponds to the regular or medium font weight.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontweighttrait?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontWeightTrait: CFStringRef;
 }
 
@@ -41,7 +38,6 @@ extern "C" {
     /// Use this key to access the normalized proportion trait from the font traits dictionary. This value corresponds to the relative inter-glyph spacing for a given font. The value returned is a CFNumberRef representing a float between -1.0 and 1.0. The value of 0.0 corresponds to regular glyph spacing while negative values represent condensed glyph spacing.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontwidthtrait?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontWidthTrait: CFStringRef;
 }
 
@@ -53,7 +49,6 @@ extern "C" {
     /// Use this key to access the normalized slant angle from the font traits dictionary. The value returned is a CFNumberRef representing a float value between -1.0 and 1.0 for normalized slant angle. The value or 0.0 corresponds to 0 degree clockwise rotation from the vertical and 1.0 corresponds to 30 degrees clockwise rotation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontslanttrait?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontSlantTrait: CFStringRef;
 }
 

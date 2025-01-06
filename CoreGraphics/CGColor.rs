@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -11,17 +10,15 @@ use crate::*;
 pub type CGColorRef = *mut c_void;
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGColorSpace")]
     pub fn CGColorCreate(space: CGColorSpaceRef, components: *const CGFloat) -> CGColorRef;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGColorCreateGenericGray(gray: CGFloat, alpha: CGFloat) -> CGColorRef;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGColorCreateGenericRGB(
         red: CGFloat,
         green: CGFloat,
@@ -31,7 +28,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGColorCreateGenericCMYK(
         cyan: CGFloat,
         magenta: CGFloat,
@@ -42,12 +38,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGColorCreateGenericGrayGamma2_2(gray: CGFloat, alpha: CGFloat) -> CGColorRef;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGColorCreateSRGB(
         red: CGFloat,
         green: CGFloat,
@@ -57,16 +51,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGColorGetConstantColor(color_name: CFStringRef) -> CGColorRef;
 }
 
 extern "C-unwind" {
-    #[cfg(all(
-        feature = "CGColorSpace",
-        feature = "CGPattern",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CGColorSpace", feature = "CGPattern"))]
     pub fn CGColorCreateWithPattern(
         space: CGColorSpaceRef,
         pattern: CGPatternRef,
@@ -79,12 +68,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGColorCreateCopyWithAlpha(color: CGColorRef, alpha: CGFloat) -> CGColorRef;
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGColorSpace")]
     pub fn CGColorCreateCopyByMatchingToColorSpace(
         _: CGColorSpaceRef,
         intent: CGColorRenderingIntent,
@@ -110,12 +98,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGColorGetComponents(color: CGColorRef) -> *const CGFloat;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGColorGetAlpha(color: CGColorRef) -> CGFloat;
 }
 
@@ -130,7 +116,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGColorGetTypeID() -> CFTypeID;
 }
 
@@ -138,18 +123,15 @@ extern "C" {
     /// * Names of colors for use with `CGColorGetConstantColor'. **
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorwhite?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGColorWhite: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorblack?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGColorBlack: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorclear?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGColorClear: CFStringRef;
 }

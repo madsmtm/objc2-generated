@@ -3,7 +3,6 @@
 use core::ffi::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -150,16 +149,11 @@ pub static kCGBitmapByteOrder16Host: CGBitmapInfo = CGBitmapInfo(CGBitmapInfo::B
 pub static kCGBitmapByteOrder32Host: CGBitmapInfo = CGBitmapInfo(CGBitmapInfo::ByteOrder32Little.0);
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGImageGetTypeID() -> CFTypeID;
 }
 
 extern "C-unwind" {
-    #[cfg(all(
-        feature = "CGColorSpace",
-        feature = "CGDataProvider",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
     pub fn CGImageCreate(
         width: usize,
         height: usize,
@@ -176,7 +170,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGDataProvider", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGDataProvider")]
     pub fn CGImageMaskCreate(
         width: usize,
         height: usize,
@@ -194,11 +188,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(
-        feature = "CGColorSpace",
-        feature = "CGDataProvider",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
     pub fn CGImageCreateWithJPEGDataProvider(
         source: CGDataProviderRef,
         decode: *const CGFloat,
@@ -208,11 +198,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(
-        feature = "CGColorSpace",
-        feature = "CGDataProvider",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
     pub fn CGImageCreateWithPNGDataProvider(
         source: CGDataProviderRef,
         decode: *const CGFloat,
@@ -222,7 +208,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGImageCreateWithImageInRect(image: CGImageRef, rect: CGRect) -> CGImageRef;
 }
 
@@ -231,7 +216,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGImageCreateWithMaskingColors(
         image: CGImageRef,
         components: *const CGFloat,
@@ -245,11 +229,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(
-        feature = "CGColorSpace",
-        feature = "CGDataProvider",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
     pub fn CGImageCreateWithContentHeadroom(
         headroom: c_float,
         width: usize,
@@ -327,7 +307,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGImageGetDecode(image: CGImageRef) -> *const CGFloat;
 }
 
@@ -361,6 +340,5 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGImageGetUTType(image: CGImageRef) -> CFStringRef;
 }

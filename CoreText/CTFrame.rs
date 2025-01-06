@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
@@ -16,7 +15,6 @@ pub type CTFrameRef = *const c_void;
 
 extern "C-unwind" {
     /// Returns the CFType of the frame object
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFrameGetTypeID() -> CFTypeID;
 }
 
@@ -75,7 +73,6 @@ extern "C" {
     /// See also: CTFramesetterCreateFrame
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctframeprogressionattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFrameProgressionAttributeName: CFStringRef;
 }
 
@@ -125,7 +122,6 @@ extern "C" {
     /// See also: CTFramesetterCreateFrame
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctframepathfillruleattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFramePathFillRuleAttributeName: CFStringRef;
 }
 
@@ -141,7 +137,6 @@ extern "C" {
     /// See also: CTFramesetterCreateFrame
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctframepathwidthattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFramePathWidthAttributeName: CFStringRef;
 }
 
@@ -157,7 +152,6 @@ extern "C" {
     /// See also: CTFramesetterCreateFrame
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctframeclippingpathsattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFrameClippingPathsAttributeName: CFStringRef;
 }
 
@@ -172,7 +166,6 @@ extern "C" {
     /// See also: kCTFrameClippingPathsAttributeName
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctframepathclippingpathattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFramePathClippingPathAttributeName: CFStringRef;
 }
 
@@ -188,7 +181,6 @@ extern "C-unwind" {
     /// store range of characters that were originally requested
     /// to fill the frame. If the function call is not successful,
     /// then an empty range will be returned.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFrameGetStringRange(frame: CTFrameRef) -> CFRange;
 }
 
@@ -210,7 +202,6 @@ extern "C-unwind" {
     /// store range of characters that fit into the frame. If the
     /// function call is not successful, or if no characters fit
     /// in the frame, then an empty range will be returned.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFrameGetVisibleStringRange(frame: CTFrameRef) -> CFRange;
 }
 
@@ -240,7 +231,6 @@ extern "C-unwind" {
     /// frame attributes that were used to create the frame. If the
     /// frame was created without any frame attributes, this function
     /// will return NULL.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFrameGetFrameAttributes(frame: CTFrameRef) -> CFDictionaryRef;
 }
 
@@ -261,7 +251,6 @@ extern "C-unwind" {
     ///
     /// Returns: This function will return a CFArray object containing the
     /// CTLine objects that make up the frame.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFrameGetLines(frame: CTFrameRef) -> CFArrayRef;
 }
 
@@ -294,7 +283,6 @@ extern "C-unwind" {
     /// the descent of the last line. This will obviously exclude any
     /// spacing following the last line, but such spacing has no effect
     /// on framesetting in the first place.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFrameGetLineOrigins(frame: CTFrameRef, range: CFRange, origins: NonNull<CGPoint>);
 }
 

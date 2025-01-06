@@ -83,47 +83,35 @@ mod __CMTimeRange;
 pub use self::__CMAttachment::kCMAttachmentMode_ShouldNotPropagate;
 #[cfg(feature = "CMAttachment")]
 pub use self::__CMAttachment::kCMAttachmentMode_ShouldPropagate;
-#[cfg(all(feature = "CMAttachment", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMAttachment")]
 pub use self::__CMAttachment::CMAttachmentBearerRef;
 #[cfg(feature = "CMAttachment")]
 pub use self::__CMAttachment::CMAttachmentMode;
-#[cfg(all(feature = "CMAttachment", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMAttachment")]
 pub use self::__CMAttachment::CMCopyDictionaryOfAttachments;
-#[cfg(all(feature = "CMAttachment", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMAttachment")]
 pub use self::__CMAttachment::CMGetAttachment;
-#[cfg(all(feature = "CMAttachment", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMAttachment")]
 pub use self::__CMAttachment::CMPropagateAttachments;
-#[cfg(all(feature = "CMAttachment", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMAttachment")]
 pub use self::__CMAttachment::CMRemoveAllAttachments;
-#[cfg(all(feature = "CMAttachment", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMAttachment")]
 pub use self::__CMAttachment::CMRemoveAttachment;
-#[cfg(all(feature = "CMAttachment", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMAttachment")]
 pub use self::__CMAttachment::CMSetAttachment;
-#[cfg(all(feature = "CMAttachment", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMAttachment")]
 pub use self::__CMAttachment::CMSetAttachments;
-#[cfg(all(
-    feature = "CMAudioClock",
-    feature = "CMSync",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMAudioClock", feature = "CMSync"))]
 pub use self::__CMAudioClock::CMAudioClockCreate;
-#[cfg(all(
-    feature = "CMAudioDeviceClock",
-    feature = "CMSync",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMAudioDeviceClock", feature = "CMSync"))]
 pub use self::__CMAudioDeviceClock::CMAudioDeviceClockCreate;
-#[cfg(all(
-    feature = "CMAudioDeviceClock",
-    feature = "CMSync",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMAudioDeviceClock", feature = "CMSync"))]
 pub use self::__CMAudioDeviceClock::CMAudioDeviceClockSetAudioDeviceUID;
 #[cfg(feature = "CMBase")]
 pub use self::__CMBase::kCMPersistentTrackID_Invalid;
-#[cfg(all(feature = "CMBase", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBase")]
 pub use self::__CMBase::CMItemCount;
-#[cfg(all(feature = "CMBase", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBase")]
 pub use self::__CMBase::CMItemIndex;
 #[cfg(feature = "CMBase")]
 pub use self::__CMBase::CMPersistentTrackID;
@@ -161,19 +149,19 @@ pub use self::__CMBlockBuffer::kCMBlockBufferUnallocatedBlockErr;
 pub use self::__CMBlockBuffer::CMBlockBufferAccessDataBytes;
 #[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferAppendBufferReference;
-#[cfg(all(feature = "CMBlockBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferAppendMemoryBlock;
 #[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferAssureBlockMemory;
 #[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferCopyDataBytes;
-#[cfg(all(feature = "CMBlockBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferCreateContiguous;
-#[cfg(all(feature = "CMBlockBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferCreateEmpty;
-#[cfg(all(feature = "CMBlockBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferCreateWithBufferReference;
-#[cfg(all(feature = "CMBlockBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferCreateWithMemoryBlock;
 #[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferCustomBlockSource;
@@ -185,7 +173,7 @@ pub use self::__CMBlockBuffer::CMBlockBufferFlags;
 pub use self::__CMBlockBuffer::CMBlockBufferGetDataLength;
 #[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferGetDataPointer;
-#[cfg(all(feature = "CMBlockBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferGetTypeID;
 #[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferIsEmpty;
@@ -239,100 +227,52 @@ pub use self::__CMBufferQueue::kCMBufferQueueTrigger_WhenMaxPresentationTimeStam
 pub use self::__CMBufferQueue::kCMBufferQueueTrigger_WhenMinPresentationTimeStampChanges;
 #[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::kCMBufferQueueTrigger_WhenReset;
-#[cfg(all(
-    feature = "CMBufferQueue",
-    feature = "CMTime",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBufferQueue", feature = "CMTime"))]
 pub use self::__CMBufferQueue::CMBufferCallbacks;
-#[cfg(all(feature = "CMBufferQueue", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferCompareCallback;
-#[cfg(all(
-    feature = "CMBufferQueue",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBufferQueue", feature = "block2"))]
 pub use self::__CMBufferQueue::CMBufferCompareHandler;
-#[cfg(all(feature = "CMBufferQueue", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferGetBooleanCallback;
-#[cfg(all(
-    feature = "CMBufferQueue",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBufferQueue", feature = "block2"))]
 pub use self::__CMBufferQueue::CMBufferGetBooleanHandler;
-#[cfg(all(feature = "CMBufferQueue", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferGetSizeCallback;
-#[cfg(all(
-    feature = "CMBufferQueue",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBufferQueue", feature = "block2"))]
 pub use self::__CMBufferQueue::CMBufferGetSizeHandler;
-#[cfg(all(
-    feature = "CMBufferQueue",
-    feature = "CMTime",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBufferQueue", feature = "CMTime"))]
 pub use self::__CMBufferQueue::CMBufferGetTimeCallback;
-#[cfg(all(
-    feature = "CMBufferQueue",
-    feature = "CMTime",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBufferQueue", feature = "CMTime", feature = "block2"))]
 pub use self::__CMBufferQueue::CMBufferGetTimeHandler;
-#[cfg(all(
-    feature = "CMBufferQueue",
-    feature = "CMTime",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBufferQueue", feature = "CMTime", feature = "block2"))]
 pub use self::__CMBufferQueue::CMBufferHandlers;
-#[cfg(all(feature = "CMBufferQueue", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueCallForEachBuffer;
 #[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueContainsEndOfData;
-#[cfg(all(feature = "CMBufferQueue", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueCopyHead;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMBufferQueue",
-    feature = "CMTime",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMBufferQueue", feature = "CMTime"))]
 pub use self::__CMBufferQueue::CMBufferQueueCreate;
 #[cfg(all(
     feature = "CMBase",
     feature = "CMBufferQueue",
     feature = "CMTime",
-    feature = "block2",
-    feature = "objc2-core-foundation"
+    feature = "block2"
 ))]
 pub use self::__CMBufferQueue::CMBufferQueueCreateWithHandlers;
-#[cfg(all(feature = "CMBufferQueue", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueDequeueAndRetain;
-#[cfg(all(feature = "CMBufferQueue", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueDequeueIfDataReadyAndRetain;
-#[cfg(all(feature = "CMBufferQueue", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueEnqueue;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMBufferQueue",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMBufferQueue"))]
 pub use self::__CMBufferQueue::CMBufferQueueGetBufferCount;
-#[cfg(all(
-    feature = "CMBufferQueue",
-    feature = "CMTime",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBufferQueue", feature = "CMTime"))]
 pub use self::__CMBufferQueue::CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS;
-#[cfg(all(
-    feature = "CMBufferQueue",
-    feature = "CMTime",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBufferQueue", feature = "CMTime"))]
 pub use self::__CMBufferQueue::CMBufferQueueGetCallbacksForUnsortedSampleBuffers;
 #[cfg(all(feature = "CMBufferQueue", feature = "CMTime"))]
 pub use self::__CMBufferQueue::CMBufferQueueGetDuration;
@@ -342,7 +282,7 @@ pub use self::__CMBufferQueue::CMBufferQueueGetEndPresentationTimeStamp;
 pub use self::__CMBufferQueue::CMBufferQueueGetFirstDecodeTimeStamp;
 #[cfg(all(feature = "CMBufferQueue", feature = "CMTime"))]
 pub use self::__CMBufferQueue::CMBufferQueueGetFirstPresentationTimeStamp;
-#[cfg(all(feature = "CMBufferQueue", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueGetHead;
 #[cfg(all(feature = "CMBufferQueue", feature = "CMTime"))]
 pub use self::__CMBufferQueue::CMBufferQueueGetMaxPresentationTimeStamp;
@@ -352,24 +292,15 @@ pub use self::__CMBufferQueue::CMBufferQueueGetMinDecodeTimeStamp;
 pub use self::__CMBufferQueue::CMBufferQueueGetMinPresentationTimeStamp;
 #[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueGetTotalSize;
-#[cfg(all(feature = "CMBufferQueue", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueGetTypeID;
 #[cfg(all(feature = "CMBufferQueue", feature = "CMTime"))]
 pub use self::__CMBufferQueue::CMBufferQueueInstallTrigger;
 #[cfg(all(feature = "CMBufferQueue", feature = "CMTime", feature = "block2"))]
 pub use self::__CMBufferQueue::CMBufferQueueInstallTriggerHandler;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMBufferQueue",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMBufferQueue", feature = "block2"))]
 pub use self::__CMBufferQueue::CMBufferQueueInstallTriggerHandlerWithIntegerThreshold;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMBufferQueue",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMBufferQueue"))]
 pub use self::__CMBufferQueue::CMBufferQueueInstallTriggerWithIntegerThreshold;
 #[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueIsAtEndOfData;
@@ -383,15 +314,11 @@ pub use self::__CMBufferQueue::CMBufferQueueRef;
 pub use self::__CMBufferQueue::CMBufferQueueRemoveTrigger;
 #[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueReset;
-#[cfg(all(feature = "CMBufferQueue", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueResetWithCallback;
-#[cfg(all(feature = "CMBufferQueue", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueSetValidationCallback;
-#[cfg(all(
-    feature = "CMBufferQueue",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBufferQueue", feature = "block2"))]
 pub use self::__CMBufferQueue::CMBufferQueueSetValidationHandler;
 #[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueTestTrigger;
@@ -403,15 +330,11 @@ pub use self::__CMBufferQueue::CMBufferQueueTriggerCondition;
 pub use self::__CMBufferQueue::CMBufferQueueTriggerHandler;
 #[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueTriggerToken;
-#[cfg(all(feature = "CMBufferQueue", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferRef;
-#[cfg(all(feature = "CMBufferQueue", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferValidationCallback;
-#[cfg(all(
-    feature = "CMBufferQueue",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBufferQueue", feature = "block2"))]
 pub use self::__CMBufferQueue::CMBufferValidationHandler;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMAudioCodecType_AAC_AudibleProtected;
@@ -433,39 +356,39 @@ pub use self::__CMFormatDescription::kCMClosedCaptionFormatType_ATSC;
 pub use self::__CMFormatDescription::kCMClosedCaptionFormatType_CEA608;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMClosedCaptionFormatType_CEA708;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionAlphaChannelMode_PremultipliedAlpha;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionAlphaChannelMode_StraightAlpha;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionChromaLocation_Bottom;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionChromaLocation_BottomLeft;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionChromaLocation_Center;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionChromaLocation_DV420;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionChromaLocation_Left;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionChromaLocation_Top;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionChromaLocation_TopLeft;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionColorPrimaries_DCI_P3;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionColorPrimaries_EBU_3213;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionColorPrimaries_ITU_R_2020;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionColorPrimaries_ITU_R_709_2;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionColorPrimaries_P22;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionColorPrimaries_P3_D65;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionColorPrimaries_SMPTE_C;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionConformsToMPEG2VideoProfile;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionError_AllocationFailed;
@@ -473,165 +396,165 @@ pub use self::__CMFormatDescription::kCMFormatDescriptionError_AllocationFailed;
 pub use self::__CMFormatDescription::kCMFormatDescriptionError_InvalidParameter;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionError_ValueNotAvailable;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtensionKey_MetadataKeyTable;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_AlphaChannelMode;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_AlternativeTransferCharacteristics;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_AmbientViewingEnvironment;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_AuxiliaryTypeInfo;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_BitsPerComponent;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_BytesPerRow;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_ChromaLocationBottomField;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_ChromaLocationTopField;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_CleanAperture;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_ColorPrimaries;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_ContainsAlphaChannel;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_ContentColorVolume;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_ContentLightLevelInfo;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_Depth;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_FieldCount;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_FieldDetail;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_FormatName;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_FullRangeVideo;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_GammaLevel;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_HasAdditionalViews;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_HasLeftStereoEyeView;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_HasRightStereoEyeView;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_HeroEye;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_HorizontalDisparityAdjustment;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_HorizontalFieldOfView;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_ICCProfile;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_LogTransferFunction;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_MasteringDisplayColorVolume;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_OriginalCompressionSettings;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_PixelAspectRatio;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_ProjectionKind;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_ProtectedContentOriginalFormat;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_RevisionLevel;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_SpatialQuality;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_StereoCameraBaseline;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_TemporalQuality;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_TransferFunction;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_Vendor;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_VerbatimISOSampleEntry;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_VerbatimImageDescription;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_VerbatimSampleDescription;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_Version;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_ViewPackingKind;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionExtension_YCbCrMatrix;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionFieldDetail_SpatialFirstLineEarly;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionFieldDetail_SpatialFirstLineLate;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionFieldDetail_TemporalBottomFirst;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionFieldDetail_TemporalTopFirst;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionHeroEye_Left;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionHeroEye_Right;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionKey_CleanApertureHeight;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionKey_CleanApertureHeightRational;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionKey_CleanApertureHorizontalOffset;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionKey_CleanApertureHorizontalOffsetRational;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionKey_CleanApertureVerticalOffset;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionKey_CleanApertureVerticalOffsetRational;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionKey_CleanApertureWidth;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionKey_CleanApertureWidthRational;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionKey_PixelAspectRatioHorizontalSpacing;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionKey_PixelAspectRatioVerticalSpacing;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionLogTransferFunction_AppleLog;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionProjectionKind_Rectilinear;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionTransferFunction_ITU_R_2020;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionTransferFunction_ITU_R_2100_HLG;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionTransferFunction_ITU_R_709_2;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionTransferFunction_Linear;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionTransferFunction_SMPTE_240M_1995;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionTransferFunction_SMPTE_ST_2084_PQ;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionTransferFunction_SMPTE_ST_428_1;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionTransferFunction_UseGamma;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionTransferFunction_sRGB;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionVendor_Apple;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionViewPackingKind_OverUnder;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionViewPackingKind_SideBySide;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionYCbCrMatrix_ITU_R_2020;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionYCbCrMatrix_ITU_R_601_4;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionYCbCrMatrix_ITU_R_709_2;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMFormatDescriptionYCbCrMatrix_SMPTE_240M_1995;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMPEG2VideoProfile_HDV_1080i50;
@@ -729,35 +652,35 @@ pub use self::__CMFormatDescription::kCMMediaType_Text;
 pub use self::__CMFormatDescription::kCMMediaType_TimeCode;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMediaType_Video;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionKey_ConformingDataTypes;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionKey_DataType;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionKey_DataTypeNamespace;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionKey_LanguageTag;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionKey_LocalID;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionKey_Namespace;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionKey_SetupData;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionKey_StructuralDependency;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionKey_Value;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionMetadataSpecificationKey_DataType;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionMetadataSpecificationKey_ExtendedLanguageTag;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionMetadataSpecificationKey_Identifier;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionMetadataSpecificationKey_SetupData;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescriptionMetadataSpecificationKey_StructuralDependency;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatDescription_StructuralDependencyKey_DependencyIsInvalidFlag;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMMetadataFormatType_Boxed;
@@ -841,55 +764,55 @@ pub use self::__CMFormatDescription::kCMTextDisplayFlag_scrollIn;
 pub use self::__CMFormatDescription::kCMTextDisplayFlag_scrollOut;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextDisplayFlag_writeTextVertically;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionColor_Alpha;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionColor_Blue;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionColor_Green;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionColor_Red;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionExtension_BackgroundColor;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionExtension_DefaultFontName;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionExtension_DefaultStyle;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionExtension_DefaultTextBox;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionExtension_DisplayFlags;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionExtension_FontTable;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionExtension_HorizontalJustification;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionExtension_TextJustification;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionExtension_VerticalJustification;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionRect_Bottom;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionRect_Left;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionRect_Right;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionRect_Top;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionStyle_Ascent;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionStyle_EndChar;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionStyle_Font;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionStyle_FontFace;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionStyle_FontSize;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionStyle_ForegroundColor;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionStyle_Height;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatDescriptionStyle_StartChar;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTextFormatType_3GText;
@@ -907,11 +830,11 @@ pub use self::__CMFormatDescription::kCMTimeCodeFlag_24HourMax;
 pub use self::__CMFormatDescription::kCMTimeCodeFlag_DropFrame;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTimeCodeFlag_NegTimesOK;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTimeCodeFormatDescriptionExtension_SourceReferenceName;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTimeCodeFormatDescriptionKey_LangCode;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTimeCodeFormatDescriptionKey_Value;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::kCMTimeCodeFormatType_Counter32;
@@ -1001,13 +924,9 @@ pub use self::__CMFormatDescription::kCMVideoCodecType_SorensonVideo3;
 pub use self::__CMFormatDescription::kCMVideoCodecType_VP9;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMAudioCodecType;
-#[cfg(all(
-    feature = "CMFormatDescription",
-    feature = "objc2-core-audio-types",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-audio-types"))]
 pub use self::__CMFormatDescription::CMAudioFormatDescriptionCreate;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMAudioFormatDescriptionCreateSummary;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMAudioFormatDescriptionEqual;
@@ -1031,43 +950,43 @@ pub use self::__CMFormatDescription::CMAudioFormatDescriptionRef;
 pub use self::__CMFormatDescription::CMClosedCaptionFormatDescriptionRef;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMClosedCaptionFormatType;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMFormatDescriptionCreate;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMFormatDescriptionEqual;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMFormatDescriptionEqualIgnoringExtensionKeys;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMFormatDescriptionGetExtension;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMFormatDescriptionGetExtensions;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMFormatDescriptionGetMediaSubType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMFormatDescriptionGetMediaType;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMFormatDescriptionGetTypeID;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMFormatDescriptionRef;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMediaType;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMetadataFormatDescriptionCreateByMergingMetadataFormatDescriptions;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMetadataFormatDescriptionCreateWithKeys;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMetadataFormatDescriptionCreateWithMetadataFormatDescriptionAndMetadataSpecifications;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMetadataFormatDescriptionCreateWithMetadataSpecifications;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMetadataFormatDescriptionGetIdentifiers;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMetadataFormatDescriptionGetKeyWithLocalID;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMetadataFormatDescriptionRef;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMetadataFormatType;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMuxedFormatDescriptionCreate;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMuxedFormatDescriptionRef;
@@ -1083,11 +1002,11 @@ pub use self::__CMFormatDescription::CMTaggedBufferGroupFormatDescriptionRef;
 pub use self::__CMFormatDescription::CMTaggedBufferGroupFormatType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTextDisplayFlags;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTextFormatDescriptionGetDefaultTextBox;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTextFormatDescriptionGetDisplayFlags;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTextFormatDescriptionGetFontName;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTextFormatDescriptionGetJustification;
@@ -1097,11 +1016,7 @@ pub use self::__CMFormatDescription::CMTextFormatDescriptionRef;
 pub use self::__CMFormatDescription::CMTextFormatType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTextJustificationValue;
-#[cfg(all(
-    feature = "CMFormatDescription",
-    feature = "CMTime",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMFormatDescription", feature = "CMTime"))]
 pub use self::__CMFormatDescription::CMTimeCodeFormatDescriptionCreate;
 #[cfg(all(feature = "CMFormatDescription", feature = "CMTime"))]
 pub use self::__CMFormatDescription::CMTimeCodeFormatDescriptionGetFrameDuration;
@@ -1117,31 +1032,27 @@ pub use self::__CMFormatDescription::CMTimeCodeFormatType;
 pub use self::__CMFormatDescription::CMVideoCodecType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMVideoDimensions;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMVideoFormatDescriptionCopyTagCollectionArray;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMVideoFormatDescriptionCreate;
-#[cfg(all(
-    feature = "CMFormatDescription",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-video"
-))]
+#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-video"))]
 pub use self::__CMFormatDescription::CMVideoFormatDescriptionCreateForImageBuffer;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMVideoFormatDescriptionCreateFromH264ParameterSets;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMVideoFormatDescriptionCreateFromHEVCParameterSets;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMVideoFormatDescriptionGetCleanAperture;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMVideoFormatDescriptionGetDimensions;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMVideoFormatDescriptionGetH264ParameterSetAtIndex;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMVideoFormatDescriptionGetHEVCParameterSetAtIndex;
-#[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMVideoFormatDescriptionGetPresentationDimensions;
 #[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-video"))]
 pub use self::__CMFormatDescription::CMVideoFormatDescriptionMatchesImageBuffer;
@@ -1161,131 +1072,73 @@ pub use self::__CMFormatDescriptionBridge::kCMFormatDescriptionBridgeError_Inval
 pub use self::__CMFormatDescriptionBridge::kCMFormatDescriptionBridgeError_InvalidSlice;
 #[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::kCMFormatDescriptionBridgeError_UnsupportedSampleDescriptionFlavor;
-#[cfg(all(
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::kCMImageDescriptionFlavor_3GPFamily;
-#[cfg(all(
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::kCMImageDescriptionFlavor_ISOFamily;
-#[cfg(all(
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::kCMImageDescriptionFlavor_ISOFamilyWithAppleExtensions;
-#[cfg(all(
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::kCMImageDescriptionFlavor_QuickTimeMovie;
-#[cfg(all(
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::kCMSoundDescriptionFlavor_3GPFamily;
-#[cfg(all(
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::kCMSoundDescriptionFlavor_ISOFamily;
-#[cfg(all(
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::kCMSoundDescriptionFlavor_QuickTimeMovie;
-#[cfg(all(
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::kCMSoundDescriptionFlavor_QuickTimeMovieV2;
 #[cfg(all(
     feature = "CMBlockBuffer",
     feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
+    feature = "CMFormatDescriptionBridge"
 ))]
 pub use self::__CMFormatDescriptionBridge::CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer;
 #[cfg(all(
     feature = "CMBlockBuffer",
     feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
+    feature = "CMFormatDescriptionBridge"
 ))]
 pub use self::__CMFormatDescriptionBridge::CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer;
-#[cfg(all(
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMFormatDescription", feature = "CMFormatDescriptionBridge"))]
 pub use self::__CMFormatDescriptionBridge::CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData;
-#[cfg(all(
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::CMClosedCaptionDescriptionFlavor;
 #[cfg(all(
     feature = "CMBlockBuffer",
     feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
+    feature = "CMFormatDescriptionBridge"
 ))]
 pub use self::__CMFormatDescriptionBridge::CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer;
 #[cfg(all(
     feature = "CMBlockBuffer",
     feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
+    feature = "CMFormatDescriptionBridge"
 ))]
 pub use self::__CMFormatDescriptionBridge::CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer;
-#[cfg(all(
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMFormatDescription", feature = "CMFormatDescriptionBridge"))]
 pub use self::__CMFormatDescriptionBridge::CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData;
-#[cfg(all(
-    feature = "CMBlockBuffer",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescriptionBridge"))]
 pub use self::__CMFormatDescriptionBridge::CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout;
-#[cfg(all(
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::CMImageDescriptionFlavor;
-#[cfg(all(
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::CMMetadataDescriptionFlavor;
 #[cfg(all(
     feature = "CMBlockBuffer",
     feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
+    feature = "CMFormatDescriptionBridge"
 ))]
 pub use self::__CMFormatDescriptionBridge::CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer;
 #[cfg(all(
     feature = "CMBlockBuffer",
     feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
+    feature = "CMFormatDescriptionBridge"
 ))]
 pub use self::__CMFormatDescriptionBridge::CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer;
-#[cfg(all(
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMFormatDescription", feature = "CMFormatDescriptionBridge"))]
 pub use self::__CMFormatDescriptionBridge::CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData;
-#[cfg(all(
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::CMSoundDescriptionFlavor;
 #[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::CMSwapBigEndianClosedCaptionDescriptionToHost;
@@ -1311,143 +1164,119 @@ pub use self::__CMFormatDescriptionBridge::CMSwapHostEndianSoundDescriptionToBig
 pub use self::__CMFormatDescriptionBridge::CMSwapHostEndianTextDescriptionToBig;
 #[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::CMSwapHostEndianTimeCodeDescriptionToBig;
-#[cfg(all(
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::CMTextDescriptionFlavor;
 #[cfg(all(
     feature = "CMBlockBuffer",
     feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
+    feature = "CMFormatDescriptionBridge"
 ))]
 pub use self::__CMFormatDescriptionBridge::CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer;
 #[cfg(all(
     feature = "CMBlockBuffer",
     feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
+    feature = "CMFormatDescriptionBridge"
 ))]
 pub use self::__CMFormatDescriptionBridge::CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer;
-#[cfg(all(
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMFormatDescription", feature = "CMFormatDescriptionBridge"))]
 pub use self::__CMFormatDescriptionBridge::CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData;
-#[cfg(all(
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::CMTimeCodeDescriptionFlavor;
 #[cfg(all(
     feature = "CMBlockBuffer",
     feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
+    feature = "CMFormatDescriptionBridge"
 ))]
 pub use self::__CMFormatDescriptionBridge::CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer;
 #[cfg(all(
     feature = "CMBlockBuffer",
     feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
+    feature = "CMFormatDescriptionBridge"
 ))]
 pub use self::__CMFormatDescriptionBridge::CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer;
-#[cfg(all(
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMFormatDescription", feature = "CMFormatDescriptionBridge"))]
 pub use self::__CMFormatDescriptionBridge::CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData;
 #[cfg(all(
     feature = "CMBlockBuffer",
     feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
+    feature = "CMFormatDescriptionBridge"
 ))]
 pub use self::__CMFormatDescriptionBridge::CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer;
 #[cfg(all(
     feature = "CMBlockBuffer",
     feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
+    feature = "CMFormatDescriptionBridge"
 ))]
 pub use self::__CMFormatDescriptionBridge::CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer;
-#[cfg(all(
-    feature = "CMFormatDescription",
-    feature = "CMFormatDescriptionBridge",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMFormatDescription", feature = "CMFormatDescriptionBridge"))]
 pub use self::__CMFormatDescriptionBridge::CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData;
 #[cfg(feature = "CMMemoryPool")]
 pub use self::__CMMemoryPool::kCMMemoryPoolError_AllocationFailed;
 #[cfg(feature = "CMMemoryPool")]
 pub use self::__CMMemoryPool::kCMMemoryPoolError_InvalidParameter;
-#[cfg(all(feature = "CMMemoryPool", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMemoryPool")]
 pub use self::__CMMemoryPool::kCMMemoryPoolOption_AgeOutPeriod;
-#[cfg(all(feature = "CMMemoryPool", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMemoryPool")]
 pub use self::__CMMemoryPool::CMMemoryPoolCreate;
 #[cfg(feature = "CMMemoryPool")]
 pub use self::__CMMemoryPool::CMMemoryPoolFlush;
-#[cfg(all(feature = "CMMemoryPool", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMemoryPool")]
 pub use self::__CMMemoryPool::CMMemoryPoolGetAllocator;
-#[cfg(all(feature = "CMMemoryPool", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMemoryPool")]
 pub use self::__CMMemoryPool::CMMemoryPoolGetTypeID;
 #[cfg(feature = "CMMemoryPool")]
 pub use self::__CMMemoryPool::CMMemoryPoolInvalidate;
 #[cfg(feature = "CMMemoryPool")]
 pub use self::__CMMemoryPool::CMMemoryPoolRef;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_AffineTransformF64;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_BMP;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_DimensionsF32;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_Float32;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_Float64;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_GIF;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_JPEG;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_JSON;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_PNG;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_PerspectiveTransformF64;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_PointF32;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_PolygonF32;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_PolylineF32;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_RawData;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_RectF32;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_SInt16;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_SInt32;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_SInt64;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_SInt8;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_UInt16;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_UInt32;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_UInt64;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_UInt8;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_UTF16;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_UTF8;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataDataTypeRegistryError_AllocationFailed;
@@ -1461,13 +1290,13 @@ pub use self::__CMMetadata::kCMMetadataDataTypeRegistryError_MultipleConformingB
 pub use self::__CMMetadata::kCMMetadataDataTypeRegistryError_RequiredParameterMissing;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataDataTypeRegistryError_RequiresConformingBaseType;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataDataType_QuickTimeMetadataDirection;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataDataType_QuickTimeMetadataLocation_ISO6709;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataDataType_QuickTimeMetadataMilliLux;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataDataType_QuickTimeMetadataUUID;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifierError_AllocationFailed;
@@ -1487,173 +1316,173 @@ pub use self::__CMMetadata::kCMMetadataIdentifierError_BadNumberKey;
 pub use self::__CMMetadata::kCMMetadataIdentifierError_NoKeyValueAvailable;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifierError_RequiredParameterMissing;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataDirection_Facing;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransform;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataLocation_ISO6709;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataPreferredAffineTransform;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataSceneIlluminance;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataSegmentIdentifier;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataIdentifier_QuickTimeMetadataVideoOrientation;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataKeySpace_HLSDateRange;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataKeySpace_ID3;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataKeySpace_ISOUserData;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataKeySpace_Icy;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataKeySpace_QuickTimeMetadata;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataKeySpace_QuickTimeUserData;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataKeySpace_iTunes;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::CMMetadataCreateIdentifierForKeyAndKeySpace;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::CMMetadataCreateKeyFromIdentifier;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::CMMetadataCreateKeyFromIdentifierAsCFData;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::CMMetadataCreateKeySpaceFromIdentifier;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::CMMetadataDataTypeRegistryDataTypeConformsToDataType;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::CMMetadataDataTypeRegistryDataTypeIsBaseDataType;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::CMMetadataDataTypeRegistryDataTypeIsRegistered;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::CMMetadataDataTypeRegistryGetBaseDataTypeForConformingDataType;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::CMMetadataDataTypeRegistryGetBaseDataTypes;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::CMMetadataDataTypeRegistryGetConformingDataTypes;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::CMMetadataDataTypeRegistryGetDataTypeDescription;
-#[cfg(all(feature = "CMMetadata", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::CMMetadataDataTypeRegistryRegisterDataType;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMHEVCTemporalLevelInfoKey_ConstraintIndicatorFlags;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMHEVCTemporalLevelInfoKey_LevelIndex;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMHEVCTemporalLevelInfoKey_ProfileCompatibilityFlags;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMHEVCTemporalLevelInfoKey_ProfileIndex;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMHEVCTemporalLevelInfoKey_ProfileSpace;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMHEVCTemporalLevelInfoKey_TemporalLevel;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMHEVCTemporalLevelInfoKey_TierFlag;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleAttachmentKey_AudioIndependentSampleDecoderRefreshCount;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleAttachmentKey_CryptorSubsampleAuxiliaryData;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleAttachmentKey_DependsOnOthers;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleAttachmentKey_DisplayImmediately;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleAttachmentKey_DoNotDisplay;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleAttachmentKey_EarlierDisplayTimesAllowed;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleAttachmentKey_HDR10PlusPerFrameData;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleAttachmentKey_HEVCStepwiseTemporalSubLayerAccess;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleAttachmentKey_HEVCSyncSampleNALUnitType;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleAttachmentKey_HEVCTemporalLevelInfo;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleAttachmentKey_HEVCTemporalSubLayerAccess;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleAttachmentKey_HasRedundantCoding;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleAttachmentKey_IsDependedOnByOthers;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleAttachmentKey_NotSync;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleAttachmentKey_PartialSync;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleAttachmentKey_PostDecodeProcessingMetadata;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_DisplayEmptyMediaImmediately;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_DrainAfterDecoding;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_DroppedFrameReason;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_DroppedFrameReasonInfo;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_EmptyMedia;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_EndsPreviousSampleDuration;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_FillDiscontinuitiesWithSilence;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_ForceKeyFrame;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_GradualDecoderRefresh;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_PermanentEmptyMedia;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_PostNotificationWhenConsumed;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_ResetDecoderBeforeDecoding;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_ResumeOutput;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_Reverse;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_SampleReferenceByteOffset;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_SampleReferenceURL;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_SpeedMultiplier;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_StillImageLensStabilizationInfo;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_TransitionID;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_TrimDurationAtEnd;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferAttachmentKey_TrimDurationAtStart;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferConduitNotificationParameter_MaxUpcomingOutputPTS;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferConduitNotificationParameter_MinUpcomingOutputPTS;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferConduitNotificationParameter_ResumeTag;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferConduitNotificationParameter_UpcomingOutputPTSRangeMayOverlapQueuedOutputPTSRange;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferConduitNotification_InhibitOutputUntil;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferConduitNotification_ResetOutput;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferConduitNotification_UpcomingOutputPTSRangeChanged;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferConsumerNotification_BufferConsumed;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferDroppedFrameReasonInfo_CameraModeSwitch;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferDroppedFrameReason_Discontinuity;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferDroppedFrameReason_FrameWasLate;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferDroppedFrameReason_OutOfBuffers;
 #[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferError_AllocationFailed;
@@ -1691,19 +1520,19 @@ pub use self::__CMSampleBuffer::kCMSampleBufferError_SampleIndexOutOfRange;
 pub use self::__CMSampleBuffer::kCMSampleBufferError_SampleTimingInfoInvalid;
 #[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferLensStabilizationInfo_Active;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferLensStabilizationInfo_Off;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferLensStabilizationInfo_OutOfRange;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferLensStabilizationInfo_Unavailable;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferNotificationParameter_OSStatus;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferNotification_DataBecameReady;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::kCMSampleBufferNotification_DataFailed;
 #[cfg(all(feature = "CMSampleBuffer", feature = "CMTime"))]
 pub use self::__CMSampleBuffer::kCMTimingInfoInvalid;
@@ -1713,8 +1542,7 @@ pub use self::__CMSampleBuffer::kCMTimingInfoInvalid;
     feature = "CMFormatDescription",
     feature = "CMSampleBuffer",
     feature = "CMTime",
-    feature = "objc2-core-audio-types",
-    feature = "objc2-core-foundation"
+    feature = "objc2-core-audio-types"
 ))]
 pub use self::__CMSampleBuffer::CMAudioSampleBufferCreateReadyWithPacketDescriptions;
 #[cfg(all(
@@ -1723,8 +1551,7 @@ pub use self::__CMSampleBuffer::CMAudioSampleBufferCreateReadyWithPacketDescript
     feature = "CMFormatDescription",
     feature = "CMSampleBuffer",
     feature = "CMTime",
-    feature = "objc2-core-audio-types",
-    feature = "objc2-core-foundation"
+    feature = "objc2-core-audio-types"
 ))]
 pub use self::__CMSampleBuffer::CMAudioSampleBufferCreateWithPacketDescriptions;
 #[cfg(all(
@@ -1734,50 +1561,33 @@ pub use self::__CMSampleBuffer::CMAudioSampleBufferCreateWithPacketDescriptions;
     feature = "CMSampleBuffer",
     feature = "CMTime",
     feature = "block2",
-    feature = "objc2-core-audio-types",
-    feature = "objc2-core-foundation"
+    feature = "objc2-core-audio-types"
 ))]
 pub use self::__CMSampleBuffer::CMAudioSampleBufferCreateWithPacketDescriptionsAndMakeDataReadyHandler;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMSampleBuffer",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMSampleBuffer", feature = "block2"))]
 pub use self::__CMSampleBuffer::CMSampleBufferCallBlockForEachSample;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMSampleBuffer",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMSampleBuffer"))]
 pub use self::__CMSampleBuffer::CMSampleBufferCallForEachSample;
 #[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-audio-types"))]
 pub use self::__CMSampleBuffer::CMSampleBufferCopyPCMDataIntoAudioBufferList;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::CMSampleBufferCopySampleBufferForRange;
 #[cfg(all(
     feature = "CMBase",
     feature = "CMBlockBuffer",
     feature = "CMFormatDescription",
     feature = "CMSampleBuffer",
-    feature = "CMTime",
-    feature = "objc2-core-foundation"
+    feature = "CMTime"
 ))]
 pub use self::__CMSampleBuffer::CMSampleBufferCreate;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::CMSampleBufferCreateCopy;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMSampleBuffer",
-    feature = "CMTime",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMSampleBuffer", feature = "CMTime"))]
 pub use self::__CMSampleBuffer::CMSampleBufferCreateCopyWithNewTiming;
 #[cfg(all(
     feature = "CMFormatDescription",
     feature = "CMSampleBuffer",
     feature = "CMTime",
-    feature = "objc2-core-foundation",
     feature = "objc2-core-video"
 ))]
 pub use self::__CMSampleBuffer::CMSampleBufferCreateForImageBuffer;
@@ -1786,7 +1596,6 @@ pub use self::__CMSampleBuffer::CMSampleBufferCreateForImageBuffer;
     feature = "CMSampleBuffer",
     feature = "CMTime",
     feature = "block2",
-    feature = "objc2-core-foundation",
     feature = "objc2-core-video"
 ))]
 pub use self::__CMSampleBuffer::CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler;
@@ -1795,15 +1604,13 @@ pub use self::__CMSampleBuffer::CMSampleBufferCreateForImageBufferWithMakeDataRe
     feature = "CMBlockBuffer",
     feature = "CMFormatDescription",
     feature = "CMSampleBuffer",
-    feature = "CMTime",
-    feature = "objc2-core-foundation"
+    feature = "CMTime"
 ))]
 pub use self::__CMSampleBuffer::CMSampleBufferCreateReady;
 #[cfg(all(
     feature = "CMFormatDescription",
     feature = "CMSampleBuffer",
     feature = "CMTime",
-    feature = "objc2-core-foundation",
     feature = "objc2-core-video"
 ))]
 pub use self::__CMSampleBuffer::CMSampleBufferCreateReadyWithImageBuffer;
@@ -1813,8 +1620,7 @@ pub use self::__CMSampleBuffer::CMSampleBufferCreateReadyWithImageBuffer;
     feature = "CMFormatDescription",
     feature = "CMSampleBuffer",
     feature = "CMTime",
-    feature = "block2",
-    feature = "objc2-core-foundation"
+    feature = "block2"
 ))]
 pub use self::__CMSampleBuffer::CMSampleBufferCreateWithMakeDataReadyHandler;
 #[cfg(feature = "CMSampleBuffer")]
@@ -1822,8 +1628,7 @@ pub use self::__CMSampleBuffer::CMSampleBufferDataIsReady;
 #[cfg(all(
     feature = "CMBlockBuffer",
     feature = "CMSampleBuffer",
-    feature = "objc2-core-audio-types",
-    feature = "objc2-core-foundation"
+    feature = "objc2-core-audio-types"
 ))]
 pub use self::__CMSampleBuffer::CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer;
 #[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-audio-types"))]
@@ -1840,11 +1645,7 @@ pub use self::__CMSampleBuffer::CMSampleBufferGetDuration;
 pub use self::__CMSampleBuffer::CMSampleBufferGetFormatDescription;
 #[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-video"))]
 pub use self::__CMSampleBuffer::CMSampleBufferGetImageBuffer;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMSampleBuffer",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMSampleBuffer"))]
 pub use self::__CMSampleBuffer::CMSampleBufferGetNumSamples;
 #[cfg(all(feature = "CMSampleBuffer", feature = "CMTime"))]
 pub use self::__CMSampleBuffer::CMSampleBufferGetOutputDecodeTimeStamp;
@@ -1852,46 +1653,23 @@ pub use self::__CMSampleBuffer::CMSampleBufferGetOutputDecodeTimeStamp;
 pub use self::__CMSampleBuffer::CMSampleBufferGetOutputDuration;
 #[cfg(all(feature = "CMSampleBuffer", feature = "CMTime"))]
 pub use self::__CMSampleBuffer::CMSampleBufferGetOutputPresentationTimeStamp;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMSampleBuffer",
-    feature = "CMTime",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMSampleBuffer", feature = "CMTime"))]
 pub use self::__CMSampleBuffer::CMSampleBufferGetOutputSampleTimingInfoArray;
 #[cfg(all(feature = "CMSampleBuffer", feature = "CMTime"))]
 pub use self::__CMSampleBuffer::CMSampleBufferGetPresentationTimeStamp;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::CMSampleBufferGetSampleAttachmentsArray;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMSampleBuffer",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMSampleBuffer"))]
 pub use self::__CMSampleBuffer::CMSampleBufferGetSampleSize;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMSampleBuffer",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMSampleBuffer"))]
 pub use self::__CMSampleBuffer::CMSampleBufferGetSampleSizeArray;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMSampleBuffer",
-    feature = "CMTime",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMSampleBuffer", feature = "CMTime"))]
 pub use self::__CMSampleBuffer::CMSampleBufferGetSampleTimingInfo;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMSampleBuffer",
-    feature = "CMTime",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMSampleBuffer", feature = "CMTime"))]
 pub use self::__CMSampleBuffer::CMSampleBufferGetSampleTimingInfoArray;
 #[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::CMSampleBufferGetTotalSampleSize;
-#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::CMSampleBufferGetTypeID;
 #[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::CMSampleBufferHasDataFailed;
@@ -1913,11 +1691,7 @@ pub use self::__CMSampleBuffer::CMSampleBufferMakeDataReadyHandler;
 pub use self::__CMSampleBuffer::CMSampleBufferRef;
 #[cfg(all(feature = "CMBlockBuffer", feature = "CMSampleBuffer"))]
 pub use self::__CMSampleBuffer::CMSampleBufferSetDataBuffer;
-#[cfg(all(
-    feature = "CMSampleBuffer",
-    feature = "objc2-core-audio-types",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-audio-types"))]
 pub use self::__CMSampleBuffer::CMSampleBufferSetDataBufferFromAudioBufferList;
 #[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::CMSampleBufferSetDataFailed;
@@ -1941,7 +1715,7 @@ pub use self::__CMSimpleQueue::kCMSimpleQueueError_ParameterOutOfRange;
 pub use self::__CMSimpleQueue::kCMSimpleQueueError_QueueIsFull;
 #[cfg(feature = "CMSimpleQueue")]
 pub use self::__CMSimpleQueue::kCMSimpleQueueError_RequiredParameterMissing;
-#[cfg(all(feature = "CMSimpleQueue", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSimpleQueue")]
 pub use self::__CMSimpleQueue::CMSimpleQueueCreate;
 #[cfg(feature = "CMSimpleQueue")]
 pub use self::__CMSimpleQueue::CMSimpleQueueDequeue;
@@ -1953,7 +1727,7 @@ pub use self::__CMSimpleQueue::CMSimpleQueueGetCapacity;
 pub use self::__CMSimpleQueue::CMSimpleQueueGetCount;
 #[cfg(feature = "CMSimpleQueue")]
 pub use self::__CMSimpleQueue::CMSimpleQueueGetHead;
-#[cfg(all(feature = "CMSimpleQueue", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSimpleQueue")]
 pub use self::__CMSimpleQueue::CMSimpleQueueGetTypeID;
 #[cfg(feature = "CMSimpleQueue")]
 pub use self::__CMSimpleQueue::CMSimpleQueueRef;
@@ -1985,11 +1759,11 @@ pub use self::__CMSync::kCMTimebaseError_MissingRequiredParameter;
 pub use self::__CMSync::kCMTimebaseError_ReadOnly;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::kCMTimebaseError_TimerIntervalTooShort;
-#[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSync")]
 pub use self::__CMSync::kCMTimebaseNotificationKey_EventTime;
-#[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSync")]
 pub use self::__CMSync::kCMTimebaseNotification_EffectiveRateChanged;
-#[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSync")]
 pub use self::__CMSync::kCMTimebaseNotification_TimeJumped;
 #[cfg(all(feature = "CMSync", feature = "CMTime"))]
 pub use self::__CMSync::CMClockConvertHostTimeToSystemUnits;
@@ -1999,7 +1773,7 @@ pub use self::__CMSync::CMClockGetAnchorTime;
 pub use self::__CMSync::CMClockGetHostTimeClock;
 #[cfg(all(feature = "CMSync", feature = "CMTime"))]
 pub use self::__CMSync::CMClockGetTime;
-#[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMClockGetTypeID;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMClockInvalidate;
@@ -2007,35 +1781,23 @@ pub use self::__CMSync::CMClockInvalidate;
 pub use self::__CMSync::CMClockMakeHostTimeFromSystemUnits;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMClockMightDrift;
-#[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMClockOrTimebaseRef;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMClockRef;
-#[cfg(all(
-    feature = "CMSync",
-    feature = "CMTime",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMSync", feature = "CMTime"))]
 pub use self::__CMSync::CMSyncConvertTime;
-#[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMSyncGetRelativeRate;
-#[cfg(all(
-    feature = "CMSync",
-    feature = "CMTime",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMSync", feature = "CMTime"))]
 pub use self::__CMSync::CMSyncGetRelativeRateAndAnchorTime;
-#[cfg(all(
-    feature = "CMSync",
-    feature = "CMTime",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMSync", feature = "CMTime"))]
 pub use self::__CMSync::CMSyncGetTime;
-#[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMSyncMightDrift;
-#[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseAddTimer;
-#[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseCopyMaster;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseCopyMasterClock;
@@ -2043,13 +1805,13 @@ pub use self::__CMSync::CMTimebaseCopyMasterClock;
 pub use self::__CMSync::CMTimebaseCopyMasterTimebase;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseCopyUltimateMasterClock;
-#[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseCreateWithMasterClock;
-#[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseCreateWithMasterTimebase;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseGetEffectiveRate;
-#[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseGetMaster;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseGetMasterClock;
@@ -2063,7 +1825,7 @@ pub use self::__CMSync::CMTimebaseGetTime;
 pub use self::__CMSync::CMTimebaseGetTimeAndRate;
 #[cfg(all(feature = "CMSync", feature = "CMTime"))]
 pub use self::__CMSync::CMTimebaseGetTimeWithTimeScale;
-#[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseGetTypeID;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseGetUltimateMasterClock;
@@ -2071,7 +1833,7 @@ pub use self::__CMSync::CMTimebaseGetUltimateMasterClock;
 pub use self::__CMSync::CMTimebaseNotificationBarrier;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseRef;
-#[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseRemoveTimer;
 #[cfg(all(feature = "CMSync", feature = "CMTime"))]
 pub use self::__CMSync::CMTimebaseSetAnchorTime;
@@ -2085,17 +1847,13 @@ pub use self::__CMSync::CMTimebaseSetRate;
 pub use self::__CMSync::CMTimebaseSetRateAndAnchorTime;
 #[cfg(all(feature = "CMSync", feature = "CMTime"))]
 pub use self::__CMSync::CMTimebaseSetTime;
-#[cfg(all(
-    feature = "CMSync",
-    feature = "CMTime",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMSync", feature = "CMTime"))]
 pub use self::__CMSync::CMTimebaseSetTimerNextFireTime;
-#[cfg(all(feature = "CMSync", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseSetTimerToFireImmediately;
-#[cfg(all(feature = "CMTag", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTag")]
 pub use self::__CMTag::kCMTagCategoryKey;
-#[cfg(all(feature = "CMTag", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTag")]
 pub use self::__CMTag::kCMTagDataTypeKey;
 #[cfg(feature = "CMTag")]
 pub use self::__CMTag::kCMTagInvalid;
@@ -2131,7 +1889,7 @@ pub use self::__CMTag::kCMTagStereoLeftEye;
 pub use self::__CMTag::kCMTagStereoNone;
 #[cfg(feature = "CMTag")]
 pub use self::__CMTag::kCMTagStereoRightEye;
-#[cfg(all(feature = "CMTag", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTag")]
 pub use self::__CMTag::kCMTagValueKey;
 #[cfg(feature = "CMTag")]
 pub use self::__CMTag::CMPackingType;
@@ -2145,11 +1903,11 @@ pub use self::__CMTag::CMStereoViewInterpretationOptions;
 pub use self::__CMTag::CMTag;
 #[cfg(feature = "CMTag")]
 pub use self::__CMTag::CMTagCategory;
-#[cfg(all(feature = "CMTag", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTag")]
 pub use self::__CMTag::CMTagCompare;
-#[cfg(all(feature = "CMTag", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTag")]
 pub use self::__CMTag::CMTagCopyAsDictionary;
-#[cfg(all(feature = "CMTag", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTag")]
 pub use self::__CMTag::CMTagCopyDescription;
 #[cfg(feature = "CMTag")]
 pub use self::__CMTag::CMTagDataType;
@@ -2175,9 +1933,9 @@ pub use self::__CMTag::CMTagHasFloat64Value;
 pub use self::__CMTag::CMTagHasOSTypeValue;
 #[cfg(feature = "CMTag")]
 pub use self::__CMTag::CMTagHasSInt64Value;
-#[cfg(all(feature = "CMTag", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTag")]
 pub use self::__CMTag::CMTagHash;
-#[cfg(all(feature = "CMTag", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTag")]
 pub use self::__CMTag::CMTagMakeFromDictionary;
 #[cfg(feature = "CMTag")]
 pub use self::__CMTag::CMTagMakeWithFlagsValue;
@@ -2189,18 +1947,13 @@ pub use self::__CMTag::CMTagMakeWithOSTypeValue;
 pub use self::__CMTag::CMTagMakeWithSInt64Value;
 #[cfg(feature = "CMTag")]
 pub use self::__CMTag::CMTagValue;
-#[cfg(all(feature = "CMTagCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::kCMTagCollectionTagsArrayKey;
 #[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMMutableTagCollectionRef;
 #[cfg(all(feature = "CMTag", feature = "CMTagCollection"))]
 pub use self::__CMTagCollection::CMTagCollectionAddTag;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMTag",
-    feature = "CMTagCollection",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMTag", feature = "CMTagCollection"))]
 pub use self::__CMTagCollection::CMTagCollectionAddTagsFromArray;
 #[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionAddTagsFromCollection;
@@ -2212,99 +1965,55 @@ pub use self::__CMTagCollection::CMTagCollectionApply;
 pub use self::__CMTagCollection::CMTagCollectionApplyUntil;
 #[cfg(all(feature = "CMTag", feature = "CMTagCollection"))]
 pub use self::__CMTagCollection::CMTagCollectionContainsCategory;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMTag",
-    feature = "CMTagCollection",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMTag", feature = "CMTagCollection"))]
 pub use self::__CMTagCollection::CMTagCollectionContainsSpecifiedTags;
 #[cfg(all(feature = "CMTag", feature = "CMTagCollection"))]
 pub use self::__CMTagCollection::CMTagCollectionContainsTag;
 #[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionContainsTagsOfCollection;
-#[cfg(all(feature = "CMTagCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionCopyAsData;
-#[cfg(all(feature = "CMTagCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionCopyAsDictionary;
-#[cfg(all(feature = "CMTagCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionCopyDescription;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMTag",
-    feature = "CMTagCollection",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMTag", feature = "CMTagCollection"))]
 pub use self::__CMTagCollection::CMTagCollectionCopyTagsOfCategories;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMTag",
-    feature = "CMTagCollection",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMTag", feature = "CMTagCollection"))]
 pub use self::__CMTagCollection::CMTagCollectionCountTagsWithFilterFunction;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMTag",
-    feature = "CMTagCollection",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMTag", feature = "CMTagCollection"))]
 pub use self::__CMTagCollection::CMTagCollectionCreate;
-#[cfg(all(feature = "CMTagCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionCreateCopy;
 #[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionCreateDifference;
 #[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionCreateExclusiveOr;
-#[cfg(all(feature = "CMTagCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionCreateFromData;
-#[cfg(all(feature = "CMTagCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionCreateFromDictionary;
 #[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionCreateIntersection;
-#[cfg(all(feature = "CMTagCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionCreateMutable;
-#[cfg(all(feature = "CMTagCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionCreateMutableCopy;
 #[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionCreateUnion;
 #[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionError;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMTagCollection",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMTagCollection"))]
 pub use self::__CMTagCollection::CMTagCollectionGetCount;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMTag",
-    feature = "CMTagCollection",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMTag", feature = "CMTagCollection"))]
 pub use self::__CMTagCollection::CMTagCollectionGetCountOfCategory;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMTag",
-    feature = "CMTagCollection",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMTag", feature = "CMTagCollection"))]
 pub use self::__CMTagCollection::CMTagCollectionGetTags;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMTag",
-    feature = "CMTagCollection",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMTag", feature = "CMTagCollection"))]
 pub use self::__CMTagCollection::CMTagCollectionGetTagsWithCategory;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMTag",
-    feature = "CMTagCollection",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMTag", feature = "CMTagCollection"))]
 pub use self::__CMTagCollection::CMTagCollectionGetTagsWithFilterFunction;
-#[cfg(all(feature = "CMTagCollection", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionGetTypeID;
 #[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionIsEmpty;
@@ -2322,174 +2031,148 @@ pub use self::__CMTagCollection::CMTagCollectionTagFilterFunction;
     feature = "CMFormatDescription",
     feature = "CMSampleBuffer",
     feature = "CMTaggedBufferGroup",
-    feature = "CMTime",
-    feature = "objc2-core-foundation"
+    feature = "CMTime"
 ))]
 pub use self::__CMTaggedBufferGroup::CMSampleBufferCreateForTaggedBufferGroup;
 #[cfg(all(feature = "CMSampleBuffer", feature = "CMTaggedBufferGroup"))]
 pub use self::__CMTaggedBufferGroup::CMSampleBufferGetTaggedBufferGroup;
-#[cfg(all(feature = "CMTaggedBufferGroup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTaggedBufferGroup")]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupCreate;
-#[cfg(all(feature = "CMTaggedBufferGroup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTaggedBufferGroup")]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupCreateCombined;
 #[cfg(feature = "CMTaggedBufferGroup")]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupError;
-#[cfg(all(
-    feature = "CMFormatDescription",
-    feature = "CMTaggedBufferGroup",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMFormatDescription", feature = "CMTaggedBufferGroup"))]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup;
 #[cfg(all(feature = "CMFormatDescription", feature = "CMTaggedBufferGroup"))]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupFormatDescriptionMatchesTaggedBufferGroup;
-#[cfg(all(
-    feature = "CMSampleBuffer",
-    feature = "CMTaggedBufferGroup",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMSampleBuffer", feature = "CMTaggedBufferGroup"))]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupGetCMSampleBufferAtIndex;
 #[cfg(all(
     feature = "CMSampleBuffer",
     feature = "CMTag",
-    feature = "CMTaggedBufferGroup",
-    feature = "objc2-core-foundation"
+    feature = "CMTaggedBufferGroup"
 ))]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupGetCMSampleBufferForTag;
 #[cfg(all(
     feature = "CMSampleBuffer",
     feature = "CMTagCollection",
-    feature = "CMTaggedBufferGroup",
-    feature = "objc2-core-foundation"
+    feature = "CMTaggedBufferGroup"
 ))]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupGetCMSampleBufferForTagCollection;
-#[cfg(all(
-    feature = "CMTaggedBufferGroup",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-video"
-))]
+#[cfg(all(feature = "CMTaggedBufferGroup", feature = "objc2-core-video"))]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupGetCVPixelBufferAtIndex;
 #[cfg(all(
     feature = "CMTag",
     feature = "CMTaggedBufferGroup",
-    feature = "objc2-core-foundation",
     feature = "objc2-core-video"
 ))]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupGetCVPixelBufferForTag;
 #[cfg(all(
     feature = "CMTagCollection",
     feature = "CMTaggedBufferGroup",
-    feature = "objc2-core-foundation",
     feature = "objc2-core-video"
 ))]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupGetCVPixelBufferForTagCollection;
-#[cfg(all(
-    feature = "CMBase",
-    feature = "CMTaggedBufferGroup",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMBase", feature = "CMTaggedBufferGroup"))]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupGetCount;
 #[cfg(all(
     feature = "CMBase",
     feature = "CMTagCollection",
-    feature = "CMTaggedBufferGroup",
-    feature = "objc2-core-foundation"
+    feature = "CMTaggedBufferGroup"
 ))]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupGetNumberOfMatchesForTagCollection;
-#[cfg(all(
-    feature = "CMTagCollection",
-    feature = "CMTaggedBufferGroup",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMTagCollection", feature = "CMTaggedBufferGroup"))]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupGetTagCollectionAtIndex;
-#[cfg(all(feature = "CMTaggedBufferGroup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTaggedBufferGroup")]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupGetTypeID;
 #[cfg(feature = "CMTaggedBufferGroup")]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupRef;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAlignmentType_End;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAlignmentType_Left;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAlignmentType_Middle;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAlignmentType_Right;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAlignmentType_Start;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAttribute_Alignment;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAttribute_BackgroundColorARGB;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAttribute_BaseFontSizePercentageRelativeToVideoHeight;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAttribute_BoldStyle;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAttribute_CharacterBackgroundColorARGB;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAttribute_CharacterEdgeStyle;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAttribute_FontFamilyName;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAttribute_FontFamilyNameList;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAttribute_ForegroundColorARGB;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAttribute_GenericFontFamilyName;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAttribute_ItalicStyle;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAttribute_OrthogonalLinePositionPercentageRelativeToWritingDirection;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAttribute_RelativeFontSize;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAttribute_TextPositionPercentageRelativeToWritingDirection;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAttribute_UnderlineStyle;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAttribute_VerticalLayout;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAttribute_WritingDirectionSizePercentage;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupCharacterEdgeStyle_Depressed;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupCharacterEdgeStyle_DropShadow;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupCharacterEdgeStyle_None;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupCharacterEdgeStyle_Raised;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupCharacterEdgeStyle_Uniform;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupGenericFontName_Casual;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupGenericFontName_Cursive;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupGenericFontName_Default;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupGenericFontName_Fantasy;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupGenericFontName_Monospace;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupGenericFontName_MonospaceSansSerif;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupGenericFontName_MonospaceSerif;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupGenericFontName_ProportionalSansSerif;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupGenericFontName_ProportionalSerif;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupGenericFontName_SansSerif;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupGenericFontName_Serif;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupGenericFontName_SmallCapital;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextVerticalLayout_LeftToRight;
-#[cfg(all(feature = "CMTextMarkup", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextVerticalLayout_RightToLeft;
-#[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTime")]
 pub use self::__CMTime::kCMTimeEpochKey;
-#[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTime")]
 pub use self::__CMTime::kCMTimeFlagsKey;
 #[cfg(feature = "CMTime")]
 pub use self::__CMTime::kCMTimeIndefinite;
@@ -2499,9 +2182,9 @@ pub use self::__CMTime::kCMTimeInvalid;
 pub use self::__CMTime::kCMTimeNegativeInfinity;
 #[cfg(feature = "CMTime")]
 pub use self::__CMTime::kCMTimePositiveInfinity;
-#[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTime")]
 pub use self::__CMTime::kCMTimeScaleKey;
-#[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTime")]
 pub use self::__CMTime::kCMTimeValueKey;
 #[cfg(feature = "CMTime")]
 pub use self::__CMTime::kCMTimeZero;
@@ -2515,9 +2198,9 @@ pub use self::__CMTime::CMTimeAdd;
 pub use self::__CMTime::CMTimeCompare;
 #[cfg(feature = "CMTime")]
 pub use self::__CMTime::CMTimeConvertScale;
-#[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTime")]
 pub use self::__CMTime::CMTimeCopyAsDictionary;
-#[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTime")]
 pub use self::__CMTime::CMTimeCopyDescription;
 #[cfg(feature = "CMTime")]
 pub use self::__CMTime::CMTimeEpoch;
@@ -2527,7 +2210,7 @@ pub use self::__CMTime::CMTimeFlags;
 pub use self::__CMTime::CMTimeGetSeconds;
 #[cfg(feature = "CMTime")]
 pub use self::__CMTime::CMTimeMake;
-#[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTime")]
 pub use self::__CMTime::CMTimeMakeFromDictionary;
 #[cfg(feature = "CMTime")]
 pub use self::__CMTime::CMTimeMakeWithEpoch;
@@ -2555,15 +2238,15 @@ pub use self::__CMTime::CMTimeSubtract;
 pub use self::__CMTime::CMTimeValue;
 #[cfg(all(feature = "CMTime", feature = "CMTimeRange"))]
 pub use self::__CMTimeRange::kCMTimeMappingInvalid;
-#[cfg(all(feature = "CMTimeRange", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTimeRange")]
 pub use self::__CMTimeRange::kCMTimeMappingSourceKey;
-#[cfg(all(feature = "CMTimeRange", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTimeRange")]
 pub use self::__CMTimeRange::kCMTimeMappingTargetKey;
-#[cfg(all(feature = "CMTimeRange", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTimeRange")]
 pub use self::__CMTimeRange::kCMTimeRangeDurationKey;
 #[cfg(all(feature = "CMTime", feature = "CMTimeRange"))]
 pub use self::__CMTimeRange::kCMTimeRangeInvalid;
-#[cfg(all(feature = "CMTimeRange", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTimeRange")]
 pub use self::__CMTimeRange::kCMTimeRangeStartKey;
 #[cfg(all(feature = "CMTime", feature = "CMTimeRange"))]
 pub use self::__CMTimeRange::kCMTimeRangeZero;
@@ -2577,27 +2260,15 @@ pub use self::__CMTimeRange::CMTimeMapDurationFromRangeToRange;
 pub use self::__CMTimeRange::CMTimeMapTimeFromRangeToRange;
 #[cfg(all(feature = "CMTime", feature = "CMTimeRange"))]
 pub use self::__CMTimeRange::CMTimeMapping;
-#[cfg(all(
-    feature = "CMTime",
-    feature = "CMTimeRange",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMTime", feature = "CMTimeRange"))]
 pub use self::__CMTimeRange::CMTimeMappingCopyAsDictionary;
-#[cfg(all(
-    feature = "CMTime",
-    feature = "CMTimeRange",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMTime", feature = "CMTimeRange"))]
 pub use self::__CMTimeRange::CMTimeMappingCopyDescription;
 #[cfg(all(feature = "CMTime", feature = "CMTimeRange"))]
 pub use self::__CMTimeRange::CMTimeMappingMake;
 #[cfg(all(feature = "CMTime", feature = "CMTimeRange"))]
 pub use self::__CMTimeRange::CMTimeMappingMakeEmpty;
-#[cfg(all(
-    feature = "CMTime",
-    feature = "CMTimeRange",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMTime", feature = "CMTimeRange"))]
 pub use self::__CMTimeRange::CMTimeMappingMakeFromDictionary;
 #[cfg(all(feature = "CMTime", feature = "CMTimeRange"))]
 pub use self::__CMTimeRange::CMTimeMappingShow;
@@ -2607,17 +2278,9 @@ pub use self::__CMTimeRange::CMTimeRange;
 pub use self::__CMTimeRange::CMTimeRangeContainsTime;
 #[cfg(all(feature = "CMTime", feature = "CMTimeRange"))]
 pub use self::__CMTimeRange::CMTimeRangeContainsTimeRange;
-#[cfg(all(
-    feature = "CMTime",
-    feature = "CMTimeRange",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMTime", feature = "CMTimeRange"))]
 pub use self::__CMTimeRange::CMTimeRangeCopyAsDictionary;
-#[cfg(all(
-    feature = "CMTime",
-    feature = "CMTimeRange",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMTime", feature = "CMTimeRange"))]
 pub use self::__CMTimeRange::CMTimeRangeCopyDescription;
 #[cfg(all(feature = "CMTime", feature = "CMTimeRange"))]
 pub use self::__CMTimeRange::CMTimeRangeEqual;
@@ -2631,11 +2294,7 @@ pub use self::__CMTimeRange::CMTimeRangeGetIntersection;
 pub use self::__CMTimeRange::CMTimeRangeGetUnion;
 #[cfg(all(feature = "CMTime", feature = "CMTimeRange"))]
 pub use self::__CMTimeRange::CMTimeRangeMake;
-#[cfg(all(
-    feature = "CMTime",
-    feature = "CMTimeRange",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMTime", feature = "CMTimeRange"))]
 pub use self::__CMTimeRange::CMTimeRangeMakeFromDictionary;
 #[cfg(all(feature = "CMTime", feature = "CMTimeRange"))]
 pub use self::__CMTimeRange::CMTimeRangeShow;

@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -55,43 +54,36 @@ extern "C" {
     /// Metadata keyspace for HLS DateRange tags.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_quicktimeuserdata?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataKeySpace_QuickTimeUserData: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_isouserdata?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataKeySpace_ISOUserData: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_quicktimemetadata?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataKeySpace_QuickTimeMetadata: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_itunes?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataKeySpace_iTunes: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_id3?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataKeySpace_ID3: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_icy?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataKeySpace_Icy: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_hlsdaterange?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataKeySpace_HLSDateRange: CFStringRef;
 }
 
@@ -101,13 +93,11 @@ extern "C" {
     /// Direction the observer is facing.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatalocation_iso6709?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataIdentifier_QuickTimeMetadataLocation_ISO6709: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatadirection_facing?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataIdentifier_QuickTimeMetadataDirection_Facing: CFStringRef;
 }
 
@@ -119,7 +109,6 @@ extern "C" {
     /// will allow a player to adjust its rendering at the time the rotation occurred.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatapreferredaffinetransform?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataIdentifier_QuickTimeMetadataPreferredAffineTransform: CFStringRef;
 }
 
@@ -130,7 +119,6 @@ extern "C" {
     /// /CGImageProperties.h>).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatavideoorientation?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataIdentifier_QuickTimeMetadataVideoOrientation: CFStringRef;
 }
 
@@ -139,7 +127,6 @@ extern "C" {
     /// Expected data type is kCMMetadataBaseDataType_PerspectiveTransformF64.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatalivephotostillimagetransform?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransform: CFStringRef;
 }
 
@@ -148,7 +135,6 @@ extern "C" {
     /// Expected data type is kCMMetadataBaseDataType_DimensionsF32.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatalivephotostillimagetransformreferencedimensions?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions:
         CFStringRef;
 }
@@ -158,7 +144,6 @@ extern "C" {
     /// Expected data type is kCMMetadataDataType_QuickTimeMetadataUUID.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatasegmentidentifier?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataIdentifier_QuickTimeMetadataSegmentIdentifier: CFStringRef;
 }
 
@@ -167,7 +152,6 @@ extern "C" {
     /// Expected data type is kCMMetadataDataType_QuickTimeMetadataMilliLux.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatasceneilluminance?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataIdentifier_QuickTimeMetadataSceneIlluminance: CFStringRef;
 }
 
@@ -223,7 +207,6 @@ extern "C-unwind" {
     /// All other keyspaces allow the key to be passed as a CFString
     /// or CFData. In both cases, the key will be interpreted as an
     /// ASCII string for the purposes of identifier encoding.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataCreateIdentifierForKeyAndKeySpace(
         allocator: CFAllocatorRef,
         key: CFTypeRef,
@@ -245,7 +228,6 @@ extern "C-unwind" {
     /// kCMMetadataKeySpace_Icy, the key will be returned as a CFString.
     ///
     /// All other keyspaces will have the function return the key as a CFData.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataCreateKeyFromIdentifier(
         allocator: CFAllocatorRef,
         identifier: CFStringRef,
@@ -256,7 +238,6 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Creates a copy of the key value that was encoded in the identifier as CFData.
     /// The bytes in the CFData correpsond to how they are serialized in the file.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataCreateKeyFromIdentifierAsCFData(
         allocator: CFAllocatorRef,
         identifier: CFStringRef,
@@ -266,7 +247,6 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Creates a copy of the key value that was encoded in the identifier as CFData.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataCreateKeySpaceFromIdentifier(
         allocator: CFAllocatorRef,
         identifier: CFStringRef,
@@ -328,151 +308,126 @@ extern "C" {
     /// A 3x3 matrix of 64-bit big endian floating point numbers stored in row-major order that specify a perspective transform.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_rawdata?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_RawData: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_utf8?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_UTF8: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_utf16?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_UTF16: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_gif?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_GIF: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_jpeg?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_JPEG: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_png?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_PNG: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_bmp?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_BMP: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_float32?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_Float32: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_float64?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_Float64: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_sint8?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_SInt8: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_sint16?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_SInt16: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_sint32?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_SInt32: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_sint64?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_SInt64: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_uint8?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_UInt8: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_uint16?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_UInt16: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_uint32?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_UInt32: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_uint64?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_UInt64: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_pointf32?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_PointF32: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_dimensionsf32?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_DimensionsF32: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_rectf32?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_RectF32: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_affinetransformf64?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_AffineTransformF64: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_polygonf32?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_PolygonF32: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_polylinef32?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_PolylineF32: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_json?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_JSON: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_perspectivetransformf64?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataBaseDataType_PerspectiveTransformF64: CFStringRef;
 }
 
@@ -484,13 +439,11 @@ extern "C" {
     /// kCMMetadataBaseDataType_UTF8.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatype_quicktimemetadatalocation_iso6709?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataDataType_QuickTimeMetadataLocation_ISO6709: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatype_quicktimemetadatadirection?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataDataType_QuickTimeMetadataDirection: CFStringRef;
 }
 
@@ -499,7 +452,6 @@ extern "C" {
     /// kCMMetadataBaseDataType_UTF8.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatype_quicktimemetadatauuid?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataDataType_QuickTimeMetadataUUID: CFStringRef;
 }
 
@@ -508,7 +460,6 @@ extern "C" {
     /// kCMMetadataBaseDataType_UInt32.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatype_quicktimemetadatamillilux?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataDataType_QuickTimeMetadataMilliLux: CFStringRef;
 }
 
@@ -521,7 +472,6 @@ extern "C-unwind" {
     /// been registered, then it is not considered an error to re-register it
     /// as long as the list of conforming data type identifiers has the same
     /// entries as the original;  otherwise an error will be returned.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataDataTypeRegistryRegisterDataType(
         data_type: CFStringRef,
         description: CFStringRef,
@@ -531,13 +481,11 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Tests a data type identifier to see if it has been registered.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataDataTypeRegistryDataTypeIsRegistered(data_type: CFStringRef) -> Boolean;
 }
 
 extern "C-unwind" {
     /// Returns the data type's description (if any was provided when it was registered).
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataDataTypeRegistryGetDataTypeDescription(data_type: CFStringRef) -> CFStringRef;
 }
 
@@ -547,7 +495,6 @@ extern "C-unwind" {
     ///
     /// Returns: List of conforming data types registered for the given data type.
     /// NULL is returned if the data type has not been registered.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataDataTypeRegistryGetConformingDataTypes(data_type: CFStringRef) -> CFArrayRef;
 }
 
@@ -567,7 +514,6 @@ extern "C-unwind" {
     /// </ul>
     ///
     /// Returns: True if the first data type conforms to the second data type.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataDataTypeRegistryDataTypeConformsToDataType(
         data_type: CFStringRef,
         conforms_to_data_type: CFStringRef,
@@ -580,7 +526,6 @@ extern "C-unwind" {
     /// There are a set of base data types that seed the data type
     /// registry.  All valid data types will have their conformance search
     /// end with a base data type.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataDataTypeRegistryGetBaseDataTypes() -> CFArrayRef;
 }
 
@@ -590,7 +535,6 @@ extern "C-unwind" {
     /// This is simply a convenience method to test to see if a given
     /// data type identifier is in the array returned by
     /// CMMetadataDataTypeRegistryGetBaseDataTypes.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataDataTypeRegistryDataTypeIsBaseDataType(data_type: CFStringRef) -> Boolean;
 }
 
@@ -601,7 +545,6 @@ extern "C-unwind" {
     /// There are a set of base data types that seed the data type
     /// registry.  All valid data types will have their conformance search
     /// end with a base data type.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataDataTypeRegistryGetBaseDataTypeForConformingDataType(
         data_type: CFStringRef,
     ) -> CFStringRef;

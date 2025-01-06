@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
@@ -14,7 +13,6 @@ pub type CTFramesetterRef = *const c_void;
 
 extern "C-unwind" {
     /// Returns the CFType of the framesetter object
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFramesetterGetTypeID() -> CFTypeID;
 }
 
@@ -52,7 +50,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function will return a reference to a CTFramesetter object.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFramesetterCreateWithAttributedString(
         attr_string: CFAttributedStringRef,
     ) -> CTFramesetterRef;
@@ -88,11 +85,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function will return a reference to a new CTFrame object.
-    #[cfg(all(
-        feature = "CTFrame",
-        feature = "objc2-core-foundation",
-        feature = "objc2-core-graphics"
-    ))]
+    #[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
     pub fn CTFramesetterCreateFrame(
         framesetter: CTFramesetterRef,
         string_range: CFRange,
@@ -153,7 +146,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The actual dimensions for the given string range and constraints.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFramesetterSuggestFrameSizeWithConstraints(
         framesetter: CTFramesetterRef,
         string_range: CFRange,

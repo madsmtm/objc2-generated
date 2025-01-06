@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -12,7 +11,6 @@ pub type CTTextTabRef = *const c_void;
 
 extern "C-unwind" {
     /// Returns the CFType of the text tab object
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTextTabGetTypeID() -> CFTypeID;
 }
 
@@ -28,7 +26,6 @@ extern "C" {
     /// optional.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttabcolumnterminatorsattributename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTTabColumnTerminatorsAttributeName: CFStringRef;
 }
 
@@ -50,7 +47,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The new CTTextTab.
-    #[cfg(all(feature = "CTParagraphStyle", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CTParagraphStyle")]
     pub fn CTTextTabCreate(
         alignment: CTTextAlignment,
         location: c_double,
@@ -90,6 +87,5 @@ extern "C-unwind" {
     ///
     /// Returns: The dictionary of attributes associated with the tab or NULL if
     /// no dictionary is present.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTextTabGetOptions(tab: CTTextTabRef) -> CFDictionaryRef;
 }

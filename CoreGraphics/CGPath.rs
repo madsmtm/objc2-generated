@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -64,7 +63,6 @@ unsafe impl RefEncode for CGLineCap {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathGetTypeID() -> CFTypeID;
 }
 
@@ -77,7 +75,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathCreateCopyByTransformingPath(
         path: CGPathRef,
         transform: *const CGAffineTransform,
@@ -89,7 +86,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathCreateMutableCopyByTransformingPath(
         path: CGPathRef,
         transform: *const CGAffineTransform,
@@ -97,12 +93,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathCreateWithRect(rect: CGRect, transform: *const CGAffineTransform) -> CGPathRef;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathCreateWithEllipseInRect(
         rect: CGRect,
         transform: *const CGAffineTransform,
@@ -110,7 +104,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathCreateWithRoundedRect(
         rect: CGRect,
         corner_width: CGFloat,
@@ -120,7 +113,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathAddRoundedRect(
         path: CGMutablePathRef,
         transform: *const CGAffineTransform,
@@ -131,7 +123,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathCreateCopyByDashingPath(
         path: CGPathRef,
         transform: *const CGAffineTransform,
@@ -142,7 +133,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathCreateCopyByStrokingPath(
         path: CGPathRef,
         transform: *const CGAffineTransform,
@@ -167,7 +157,6 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// * Path construction functions. **
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathMoveToPoint(
         path: CGMutablePathRef,
         m: *const CGAffineTransform,
@@ -177,7 +166,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathAddLineToPoint(
         path: CGMutablePathRef,
         m: *const CGAffineTransform,
@@ -187,7 +175,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathAddQuadCurveToPoint(
         path: CGMutablePathRef,
         m: *const CGAffineTransform,
@@ -199,7 +186,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathAddCurveToPoint(
         path: CGMutablePathRef,
         m: *const CGAffineTransform,
@@ -218,12 +204,10 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// * Path construction convenience functions. **
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathAddRect(path: CGMutablePathRef, m: *const CGAffineTransform, rect: CGRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathAddRects(
         path: CGMutablePathRef,
         m: *const CGAffineTransform,
@@ -233,7 +217,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathAddLines(
         path: CGMutablePathRef,
         m: *const CGAffineTransform,
@@ -243,7 +226,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathAddEllipseInRect(
         path: CGMutablePathRef,
         m: *const CGAffineTransform,
@@ -252,7 +234,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathAddRelativeArc(
         path: CGMutablePathRef,
         matrix: *const CGAffineTransform,
@@ -265,7 +246,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathAddArc(
         path: CGMutablePathRef,
         m: *const CGAffineTransform,
@@ -279,7 +259,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathAddArcToPoint(
         path: CGMutablePathRef,
         m: *const CGAffineTransform,
@@ -292,7 +271,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathAddPath(path1: CGMutablePathRef, m: *const CGAffineTransform, path2: CGPathRef);
 }
 
@@ -302,27 +280,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathIsRect(path: CGPathRef, rect: *mut CGRect) -> bool;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathGetCurrentPoint(path: CGPathRef) -> CGPoint;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathGetBoundingBox(path: CGPathRef) -> CGRect;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathGetPathBoundingBox(path: CGPathRef) -> CGRect;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathContainsPoint(
         path: CGPathRef,
         m: *const CGAffineTransform,
@@ -360,7 +333,6 @@ unsafe impl RefEncode for CGPathElementType {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathelement?language=objc)
-#[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CGPathElement {
@@ -368,7 +340,7 @@ pub struct CGPathElement {
     pub points: NonNull<CGPoint>,
 }
 
-#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CGPathElement {
     const ENCODING: Encoding = Encoding::Struct(
         "CGPathElement",
@@ -376,27 +348,25 @@ unsafe impl Encode for CGPathElement {
     );
 }
 
-#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CGPathElement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathapplierfunction?language=objc)
-#[cfg(feature = "objc2-core-foundation")]
 pub type CGPathApplierFunction =
     Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<CGPathElement>)>;
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathApply(path: CGPathRef, info: *mut c_void, function: CGPathApplierFunction);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathapplyblock?language=objc)
-#[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "block2")]
 pub type CGPathApplyBlock = *mut block2::Block<dyn Fn(NonNull<CGPathElement>)>;
 
 extern "C-unwind" {
-    #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "block2")]
     pub fn CGPathApplyWithBlock(path: CGPathRef, block: CGPathApplyBlock);
 }
 
@@ -453,12 +423,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathCreateSeparateComponents(path: CGPathRef, even_odd_fill_rule: bool) -> CFArrayRef;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPathCreateCopyByFlattening(
         path: CGPathRef,
         flattening_threshold: CGFloat,

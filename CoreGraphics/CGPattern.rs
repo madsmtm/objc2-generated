@@ -3,7 +3,6 @@
 use core::ffi::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -71,12 +70,11 @@ unsafe impl RefEncode for CGPatternCallbacks {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPatternGetTypeID() -> CFTypeID;
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGContext", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGContext")]
     pub fn CGPatternCreate(
         info: *mut c_void,
         bounds: CGRect,

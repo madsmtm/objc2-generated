@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -465,7 +464,6 @@ extern "C-unwind" {
     /// This is useful when putting CMTimes in CF container types.
     ///
     /// Returns: A CFDictionary version of the CMTime.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTimeCopyAsDictionary(time: CMTime, allocator: CFAllocatorRef) -> CFDictionaryRef;
 }
 
@@ -476,7 +474,6 @@ extern "C-unwind" {
     /// have the requisite keyed values, an invalid time is returned.
     ///
     /// Returns: The created CMTime.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTimeMakeFromDictionary(dictionary_representation: CFDictionaryRef) -> CMTime;
 }
 
@@ -484,7 +481,6 @@ extern "C" {
     /// CFDictionary key for value field of CMTime (CFNumber containing int64_t)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimevaluekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeValueKey: CFStringRef;
 }
 
@@ -492,7 +488,6 @@ extern "C" {
     /// CFDictionary key for timescale field of CMTime (CFNumber containing int32_t)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimescalekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeScaleKey: CFStringRef;
 }
 
@@ -500,7 +495,6 @@ extern "C" {
     /// CFDictionary key for epoch field of CMTime (CFNumber containing int64_t)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimeepochkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeEpochKey: CFStringRef;
 }
 
@@ -508,7 +502,6 @@ extern "C" {
     /// CFDictionary key for flags field of CMTime (CFNumber containing uint32_t)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimeflagskey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeFlagsKey: CFStringRef;
 }
 
@@ -520,7 +513,6 @@ extern "C-unwind" {
     /// CFString, and is responsible for releasing it.
     ///
     /// Returns: The created CFString description.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTimeCopyDescription(allocator: CFAllocatorRef, time: CMTime) -> CFStringRef;
 }
 

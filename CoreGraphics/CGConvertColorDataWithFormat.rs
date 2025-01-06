@@ -3,17 +3,12 @@
 use core::ffi::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolordataformat?language=objc)
-#[cfg(all(
-    feature = "CGColorSpace",
-    feature = "CGImage",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGColorSpace", feature = "CGImage"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CGColorDataFormat {
@@ -26,12 +21,7 @@ pub struct CGColorDataFormat {
     pub decode: *mut CGFloat,
 }
 
-#[cfg(all(
-    feature = "CGColorSpace",
-    feature = "CGImage",
-    feature = "objc2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGColorSpace", feature = "CGImage", feature = "objc2"))]
 unsafe impl Encode for CGColorDataFormat {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -47,22 +37,13 @@ unsafe impl Encode for CGColorDataFormat {
     );
 }
 
-#[cfg(all(
-    feature = "CGColorSpace",
-    feature = "CGImage",
-    feature = "objc2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CGColorSpace", feature = "CGImage", feature = "objc2"))]
 unsafe impl RefEncode for CGColorDataFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {
-    #[cfg(all(
-        feature = "CGColorSpace",
-        feature = "CGImage",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CGColorSpace", feature = "CGImage"))]
     pub fn CGConvertColorDataWithFormat(
         width: usize,
         height: usize,

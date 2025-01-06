@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -103,7 +102,6 @@ unsafe impl RefEncode for CGDataProviderDirectCallbacks {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGDataProviderGetTypeID() -> CFTypeID;
 }
 
@@ -138,12 +136,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGDataProviderCreateWithCFData(data: CFDataRef) -> CGDataProviderRef;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGDataProviderCreateWithURL(url: CFURLRef) -> CGDataProviderRef;
 }
 
@@ -160,7 +156,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGDataProviderCopyData(provider: CGDataProviderRef) -> CFDataRef;
 }
 

@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -63,7 +62,6 @@ extern "C-unwind" {
     /// Obtains the CoreFoundation type ID for the CMTagCollection type.
     ///
     /// Returns: Returns the CFTypeID corresponding to CMTagCollection.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagCollectionGetTypeID() -> CFTypeID;
 }
 
@@ -104,11 +102,7 @@ extern "C-unwind" {
     /// Parameter `newCollectionOut`: Address of a location to return the newly created CMTagCollectionRef.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
-    #[cfg(all(
-        feature = "CMBase",
-        feature = "CMTag",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionCreate(
         allocator: CFAllocatorRef,
         tags: *const CMTag,
@@ -130,7 +124,6 @@ extern "C-unwind" {
     /// Parameter `newMutableCollectionOut`: Address of a location to return the newly created CMMutabbleTagCollectionRef.  The client is responsible for releasing the returned CMMutableTagCollection.
     ///
     /// Returns: OSStatus with error, or noErr if successful.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagCollectionCreateMutable(
         allocator: CFAllocatorRef,
         capacity: CFIndex,
@@ -150,7 +143,6 @@ extern "C-unwind" {
     /// Parameter `newCollectionCopyOut`: Address of a location to return the newly created CMTagCollectionRef.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagCollectionCreateCopy(
         tag_collection: CMTagCollectionRef,
         allocator: CFAllocatorRef,
@@ -170,7 +162,6 @@ extern "C-unwind" {
     /// Parameter `newMutableCollectionCopyOut`: Address of a location to return the newly created CMMutableTagCollectionRef.  The client is responsible for releasing the returned CMMutableTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagCollectionCreateMutableCopy(
         tag_collection: CMTagCollectionRef,
         allocator: CFAllocatorRef,
@@ -188,7 +179,6 @@ extern "C-unwind" {
     /// Parameter `tagCollection`: CMTagCollectionRef to describe.
     ///
     /// Returns: The created CFString description.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagCollectionCopyDescription(
         allocator: CFAllocatorRef,
         tag_collection: CMTagCollectionRef,
@@ -201,7 +191,7 @@ extern "C-unwind" {
     /// Parameter `tagCollection`: CMTagCollectionRef to evaluate for the tag count.
     ///
     /// Returns: CMItemCount holding the count.
-    #[cfg(all(feature = "CMBase", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMBase")]
     pub fn CMTagCollectionGetCount(tag_collection: CMTagCollectionRef) -> CMItemCount;
 }
 
@@ -245,11 +235,7 @@ extern "C-unwind" {
     /// Parameter `containedTagCount`: The number of CMTag elements in the buffer containedTags. Zero is allowed but will report true.
     ///
     /// Returns: Returns true if all CMTags in a buffer of CMTags are contained within the CMTagCollection, false otherwise.
-    #[cfg(all(
-        feature = "CMBase",
-        feature = "CMTag",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionContainsSpecifiedTags(
         tag_collection: CMTagCollectionRef,
         contained_tags: NonNull<CMTag>,
@@ -282,11 +268,7 @@ extern "C-unwind" {
     /// Parameter `category`: CMTagCategory to check for.
     ///
     /// Returns: Returns the count of tags having the specified category.
-    #[cfg(all(
-        feature = "CMBase",
-        feature = "CMTag",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionGetCountOfCategory(
         tag_collection: CMTagCollectionRef,
         category: CMTagCategory,
@@ -307,11 +289,7 @@ extern "C-unwind" {
     /// Parameter `numberOfTagsCopied`: The address of a CMItemCount that is filled with the number of tags retrieved, may be NULL.
     ///
     /// Returns: OSStatus with an error or noErr if successful.
-    #[cfg(all(
-        feature = "CMBase",
-        feature = "CMTag",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionGetTags(
         tag_collection: CMTagCollectionRef,
         tag_buffer: NonNull<CMTag>,
@@ -336,11 +314,7 @@ extern "C-unwind" {
     /// Parameter `numberOfTagsCopied`: The address of a CMItemCount that is filled with the number of tags retrieved, may be NULL.
     ///
     /// Returns: OSStatus with an error or noErr if successful.
-    #[cfg(all(
-        feature = "CMBase",
-        feature = "CMTag",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionGetTagsWithCategory(
         tag_collection: CMTagCollectionRef,
         category: CMTagCategory,
@@ -362,11 +336,7 @@ extern "C-unwind" {
     /// Parameter `context`: A void * or NULL to pass to applier.
     ///
     /// Returns: CMItemCount indicating the number of CMTags satisfying 'filterApplier'.
-    #[cfg(all(
-        feature = "CMBase",
-        feature = "CMTag",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionCountTagsWithFilterFunction(
         tag_collection: CMTagCollectionRef,
         filter_applier: CMTagCollectionTagFilterFunction,
@@ -392,11 +362,7 @@ extern "C-unwind" {
     /// Parameter `context`: A void * or NULL to pass to filter.
     ///
     /// Returns: OSStatus with an error or noErr if successful.
-    #[cfg(all(
-        feature = "CMBase",
-        feature = "CMTag",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionGetTagsWithFilterFunction(
         tag_collection: CMTagCollectionRef,
         tag_buffer: NonNull<CMTag>,
@@ -423,11 +389,7 @@ extern "C-unwind" {
     /// Parameter `collectionWithTagsOfCategories`: The address of a CMTagCollectionRef that contains all tags copied from 'tagCollection'.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
-    #[cfg(all(
-        feature = "CMBase",
-        feature = "CMTag",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionCopyTagsOfCategories(
         allocator: CFAllocatorRef,
         tag_collection: CMTagCollectionRef,
@@ -648,11 +610,7 @@ extern "C-unwind" {
     /// Parameter `tagCount`: CMItemCount of the number of tags in 'tags' array.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
-    #[cfg(all(
-        feature = "CMBase",
-        feature = "CMTag",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionAddTagsFromArray(
         tag_collection: CMMutableTagCollectionRef,
         tags: NonNull<CMTag>,
@@ -670,7 +628,6 @@ extern "C-unwind" {
     /// Parameter `allocator`: CFAllocator with which to create a dictionary. Pass kCFAllocatorDefault to use the default allocator.
     ///
     /// Returns: A CFDictionaryRef holding the serialized contents of the CMTagCollection.  The client is responsible for releasing the returned CFDictionary.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagCollectionCopyAsDictionary(
         tag_collection: CMTagCollectionRef,
         allocator: CFAllocatorRef,
@@ -689,7 +646,6 @@ extern "C-unwind" {
     /// Parameter `newCollectionOut`: Address of an CMTagCollectionRef to return the newly created tag collection.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagCollectionCreateFromDictionary(
         dict: CFDictionaryRef,
         allocator: CFAllocatorRef,
@@ -707,7 +663,6 @@ extern "C-unwind" {
     /// Parameter `allocator`: CFAllocator with which to create a CFData. Pass kCFAllocatorDefault to use the default allocator.
     ///
     /// Returns: A CFDataRef holding the serialized contents of the CMTagCollection.  The client is responsible for releasing the returned CFData.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagCollectionCopyAsData(
         tag_collection: CMTagCollectionRef,
         allocator: CFAllocatorRef,
@@ -727,7 +682,6 @@ extern "C-unwind" {
     /// Parameter `newCollectionOut`: Address of an CMTagCollectionRef to return the newly created tag collection.  The client is responsible for releasing the returned CMTagCollection.
     ///
     /// Returns: OSStatus with error or noErr if successful.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagCollectionCreateFromData(
         data: CFDataRef,
         allocator: CFAllocatorRef,
@@ -739,6 +693,5 @@ extern "C" {
     /// CFDictionary key for a CFArray of serialized CMTag dictionaries of a CMTagCollection as used with CMTagCollectionCopyAsDictionary
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagcollectiontagsarraykey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTagCollectionTagsArrayKey: CFStringRef;
 }

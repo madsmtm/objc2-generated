@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -45,7 +44,6 @@ pub const kCMMemoryPoolError_AllocationFailed: OSStatus = -15490;
 pub const kCMMemoryPoolError_InvalidParameter: OSStatus = -15491;
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMemoryPoolGetTypeID() -> CFTypeID;
 }
 
@@ -55,19 +53,16 @@ extern "C" {
     /// Pass this in the options dictionary to CMMemoryPoolCreate.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmemorypooloption_ageoutperiod?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMemoryPoolOption_AgeOutPeriod: CFStringRef;
 }
 
 extern "C-unwind" {
     /// Creates a new CMMemoryPool.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMemoryPoolCreate(options: CFDictionaryRef) -> CMMemoryPoolRef;
 }
 
 extern "C-unwind" {
     /// Returns the pool's CFAllocator.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMemoryPoolGetAllocator(pool: CMMemoryPoolRef) -> CFAllocatorRef;
 }
 

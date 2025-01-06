@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -12,7 +11,6 @@ pub type CTTypesetterRef = *const c_void;
 
 extern "C-unwind" {
     /// Returns the CFType of the typesetter object
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTypesetterGetTypeID() -> CFTypeID;
 }
 
@@ -26,7 +24,6 @@ extern "C" {
     /// returning NULL.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttypesetteroptionallowunboundedlayout?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTTypesetterOptionAllowUnboundedLayout: CFStringRef;
 }
 
@@ -40,7 +37,6 @@ extern "C" {
     /// performed and any directional control characters are ignored.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttypesetteroptiondisablebidiprocessing?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTTypesetterOptionDisableBidiProcessing: CFStringRef;
 }
 
@@ -53,7 +49,6 @@ extern "C" {
     /// level and any directional control characters are ignored.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttypesetteroptionforcedembeddinglevel?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTTypesetterOptionForcedEmbeddingLevel: CFStringRef;
 }
 
@@ -72,7 +67,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function will return a reference to a CTTypesetter.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTypesetterCreateWithAttributedString(string: CFAttributedStringRef)
         -> CTTypesetterRef;
 }
@@ -100,7 +94,6 @@ extern "C-unwind" {
     ///
     ///
     /// See also: kCTTypesetterOptionAllowUnboundedLayout
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTypesetterCreateWithAttributedStringAndOptions(
         string: CFAttributedStringRef,
         options: CFDictionaryRef,
@@ -129,7 +122,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function will return a reference to a CTLine.
-    #[cfg(all(feature = "CTLine", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CTLine")]
     pub fn CTTypesetterCreateLineWithOffset(
         typesetter: CTTypesetterRef,
         string_range: CFRange,
@@ -139,7 +132,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Equivalent to CTTypesetterCreateLineWithOffset with offset = 0.0.
-    #[cfg(all(feature = "CTLine", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CTLine")]
     pub fn CTTypesetterCreateLine(typesetter: CTTypesetterRef, string_range: CFRange) -> CTLineRef;
 }
 
@@ -168,7 +161,6 @@ extern "C-unwind" {
     /// Returns: The value returned is a count of the characters from startIndex
     /// that would cause the line break. This value returned can be used
     /// to construct a character range for CTTypesetterCreateLine.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTypesetterSuggestLineBreakWithOffset(
         typesetter: CTTypesetterRef,
         start_index: CFIndex,
@@ -179,7 +171,6 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Equivalent to CTTypesetterSuggestLineBreakWithOffset with offset = 0.0.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTypesetterSuggestLineBreak(
         typesetter: CTTypesetterRef,
         start_index: CFIndex,
@@ -217,7 +208,6 @@ extern "C-unwind" {
     /// Returns: The value returned is a count of the characters from startIndex
     /// that would cause the cluster break. This value returned can be
     /// used to construct a character range for CTTypesetterCreateLine.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTypesetterSuggestClusterBreakWithOffset(
         typesetter: CTTypesetterRef,
         start_index: CFIndex,
@@ -228,7 +218,6 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Equivalent to CTTypesetterSuggestClusterBreakWithOffset with offset = 0.0.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTTypesetterSuggestClusterBreak(
         typesetter: CTTypesetterRef,
         start_index: CFIndex,

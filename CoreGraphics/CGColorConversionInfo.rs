@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -13,7 +12,6 @@ use crate::*;
 pub type CGColorConversionInfoRef = *const c_void;
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGColorConversionInfoGetTypeID() -> CFTypeID;
 }
 
@@ -50,7 +48,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGColorSpace", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGColorSpace")]
     pub fn CGColorConversionInfoCreateWithOptions(
         src: CGColorSpaceRef,
         dst: CGColorSpaceRef,
@@ -59,11 +57,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(
-        feature = "CGColorSpace",
-        feature = "CGToneMapping",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CGColorSpace", feature = "CGToneMapping"))]
     pub fn CGColorConversionInfoCreateForToneMapping(
         from: CGColorSpaceRef,
         source_headroom: c_float,
@@ -107,7 +101,7 @@ unsafe impl RefEncode for CGColorBufferFormat {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGImage", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGImage")]
     pub fn CGColorConversionInfoConvertData(
         info: CGColorConversionInfoRef,
         width: usize,
@@ -122,12 +116,10 @@ extern "C-unwind" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorconversionblackpointcompensation?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGColorConversionBlackPointCompensation: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorconversiontrcsize?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGColorConversionTRCSize: CFStringRef;
 }

@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -15,7 +14,6 @@ extern "C" {
     /// CFErrors with this domain will have error codes corresponding to one of the CTFontManagerErrors above.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrordomain?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontManagerErrorDomain: CFStringRef;
 }
 
@@ -25,7 +23,6 @@ extern "C" {
     /// The value associated with this key in the user info dictionary of a CFError is a CFArray of font URLs that failed with given error.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrorfonturlskey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontManagerErrorFontURLsKey: CFStringRef;
 }
 
@@ -35,7 +32,6 @@ extern "C" {
     /// The value associated with this key in the user info dictionary of a CFError is a CFArray of font descriptors that failed with given error.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrorfontdescriptorskey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontManagerErrorFontDescriptorsKey: CFStringRef;
 }
 
@@ -45,7 +41,6 @@ extern "C" {
     /// The value associated with this key in the user info dictionary of a CFError is a CFArray of font asset name strings that failed with given error.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanagererrorfontassetnamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontManagerErrorFontAssetNameKey: CFStringRef;
 }
 
@@ -89,11 +84,9 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagererror?language=objc)
 // NS_ENUM
-#[cfg(feature = "objc2-core-foundation")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTFontManagerError(pub CFIndex);
-#[cfg(feature = "objc2-core-foundation")]
 impl CTFontManagerError {
     #[doc(alias = "kCTFontManagerErrorFileNotFound")]
     pub const FileNotFound: Self = Self(101);
@@ -131,12 +124,12 @@ impl CTFontManagerError {
     pub const UnsupportedScope: Self = Self(307);
 }
 
-#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CTFontManagerError {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CTFontManagerError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

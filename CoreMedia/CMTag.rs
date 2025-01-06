@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -563,7 +562,6 @@ extern "C-unwind" {
     /// Parameter `tag2`: Second CMTag to compare in ordered fashion.
     ///
     /// Returns: The CFComparisonResult indicating the order of tag1 compared to tag2.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagCompare(tag1: CMTag, tag2: CMTag) -> CFComparisonResult;
 }
 
@@ -575,7 +573,6 @@ extern "C-unwind" {
     /// Parameter `tag`: CMTag to hash.
     ///
     /// Returns: The created CFHashCode.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagHash(tag: CMTag) -> CFHashCode;
 }
 
@@ -589,7 +586,6 @@ extern "C-unwind" {
     /// Parameter `tag`: CMTag to describe.
     ///
     /// Returns: The created CFString description.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagCopyDescription(allocator: CFAllocatorRef, tag: CMTag) -> CFStringRef;
 }
 
@@ -603,7 +599,6 @@ extern "C-unwind" {
     /// Parameter `allocator`: CFAllocator with which to create a dictionary. Pass kCFAllocatorDefault to use the default allocator.
     ///
     /// Returns: A CFDictionary version of the CMTag.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagCopyAsDictionary(tag: CMTag, allocator: CFAllocatorRef) -> CFDictionaryRef;
 }
 
@@ -615,7 +610,6 @@ extern "C-unwind" {
     /// Parameter `dict`: A CFDictionary from which to create a CMTag.
     ///
     /// Returns: The created CMTag.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTagMakeFromDictionary(dict: CFDictionaryRef) -> CMTag;
 }
 
@@ -623,7 +617,6 @@ extern "C" {
     /// CFDictionary key for value field of a CMTag.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagvaluekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTagValueKey: CFStringRef;
 }
 
@@ -631,7 +624,6 @@ extern "C" {
     /// CFDictionary key for category field of a CMTag.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagcategorykey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTagCategoryKey: CFStringRef;
 }
 
@@ -639,7 +631,6 @@ extern "C" {
     /// CFDictionary key for dataType field of a CMTag.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagdatatypekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTagDataTypeKey: CFStringRef;
 }
 

@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -41,7 +40,6 @@ pub type CMBufferQueueRef = *mut c_void;
 /// types are CMSampleBufferRef and CVPixelBufferRef.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbufferref?language=objc)
-#[cfg(feature = "objc2-core-foundation")]
 pub type CMBufferRef = CFTypeRef;
 
 /// Client callback that returns a CMTime from a CMBufferRef
@@ -50,7 +48,7 @@ pub type CMBufferRef = CFTypeRef;
 /// getDecodeTimeStamp (optional), and getPresentationTimeStamp (optional).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergettimecallback?language=objc)
-#[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTime")]
 pub type CMBufferGetTimeCallback =
     Option<unsafe extern "C-unwind" fn(CMBufferRef, *mut c_void) -> CMTime>;
 
@@ -60,11 +58,7 @@ pub type CMBufferGetTimeCallback =
 /// getDecodeTimeStamp (optional), and getPresentationTimeStamp (optional).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergettimehandler?language=objc)
-#[cfg(all(
-    feature = "CMTime",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMTime", feature = "block2"))]
 pub type CMBufferGetTimeHandler = *mut block2::Block<dyn Fn(CMBufferRef) -> CMTime>;
 
 /// Client callback that returns a Boolean from a CMBufferRef
@@ -72,7 +66,6 @@ pub type CMBufferGetTimeHandler = *mut block2::Block<dyn Fn(CMBufferRef) -> CMTi
 /// There is one callback of this type that can be provided to CMBufferQueueCreate: isDataReady (optional).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergetbooleancallback?language=objc)
-#[cfg(feature = "objc2-core-foundation")]
 pub type CMBufferGetBooleanCallback =
     Option<unsafe extern "C-unwind" fn(CMBufferRef, *mut c_void) -> Boolean>;
 
@@ -81,7 +74,7 @@ pub type CMBufferGetBooleanCallback =
 /// There is one callback of this type that can be provided to CMBufferQueueCreate: isDataReady (optional).
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergetbooleanhandler?language=objc)
-#[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "block2")]
 pub type CMBufferGetBooleanHandler = *mut block2::Block<dyn Fn(CMBufferRef) -> Boolean>;
 
 /// Client callback that compares one CMBufferRef with another.
@@ -89,7 +82,6 @@ pub type CMBufferGetBooleanHandler = *mut block2::Block<dyn Fn(CMBufferRef) -> B
 /// Note that a CFComparatorFunction can be used here.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffercomparecallback?language=objc)
-#[cfg(feature = "objc2-core-foundation")]
 pub type CMBufferCompareCallback = Option<
     unsafe extern "C-unwind" fn(CMBufferRef, CMBufferRef, *mut c_void) -> CFComparisonResult,
 >;
@@ -97,7 +89,7 @@ pub type CMBufferCompareCallback = Option<
 /// Client block that compares one CMBufferRef with another.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffercomparehandler?language=objc)
-#[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "block2")]
 pub type CMBufferCompareHandler =
     *mut block2::Block<dyn Fn(CMBufferRef, CMBufferRef) -> CFComparisonResult>;
 
@@ -106,7 +98,6 @@ pub type CMBufferCompareHandler =
 /// There is one callback of this type that can be provided to CMBufferQueueCreate: getTotalSize.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergetsizecallback?language=objc)
-#[cfg(feature = "objc2-core-foundation")]
 pub type CMBufferGetSizeCallback =
     Option<unsafe extern "C-unwind" fn(CMBufferRef, *mut c_void) -> usize>;
 
@@ -115,7 +106,7 @@ pub type CMBufferGetSizeCallback =
 /// There is one block of this type that can be provided to CMBufferQueueCreate: getTotalSize.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergetsizehandler?language=objc)
-#[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "block2")]
 pub type CMBufferGetSizeHandler = *mut block2::Block<dyn Fn(CMBufferRef) -> usize>;
 
 /// Callbacks provided to CMBufferQueueCreate, for use by the queue in interrogating the buffers that it will see.
@@ -126,7 +117,7 @@ pub type CMBufferGetSizeHandler = *mut block2::Block<dyn Fn(CMBufferRef) -> usiz
 /// CMBuffer.  Durations must always be positive.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffercallbacks?language=objc)
-#[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+#[cfg(feature = "CMTime")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMBufferCallbacks {
@@ -171,11 +162,7 @@ pub struct CMBufferCallbacks {
     pub getSize: CMBufferGetSizeCallback,
 }
 
-#[cfg(all(
-    feature = "CMTime",
-    feature = "objc2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMTime", feature = "objc2"))]
 unsafe impl Encode for CMBufferCallbacks {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -193,21 +180,13 @@ unsafe impl Encode for CMBufferCallbacks {
     );
 }
 
-#[cfg(all(
-    feature = "CMTime",
-    feature = "objc2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMTime", feature = "objc2"))]
 unsafe impl RefEncode for CMBufferCallbacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbufferhandlers?language=objc)
-#[cfg(all(
-    feature = "CMTime",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMTime", feature = "block2"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CMBufferHandlers {
@@ -247,12 +226,7 @@ pub struct CMBufferHandlers {
     pub getSize: CMBufferGetSizeHandler,
 }
 
-#[cfg(all(
-    feature = "CMTime",
-    feature = "block2",
-    feature = "objc2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMTime", feature = "block2", feature = "objc2"))]
 unsafe impl Encode for CMBufferHandlers {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -269,25 +243,20 @@ unsafe impl Encode for CMBufferHandlers {
     );
 }
 
-#[cfg(all(
-    feature = "CMTime",
-    feature = "block2",
-    feature = "objc2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CMTime", feature = "block2", feature = "objc2"))]
 unsafe impl RefEncode for CMBufferHandlers {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {
     /// Returns a pointer to a callback struct for unsorted CMSampleBuffers, provided as a convenience.
-    #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMTime")]
     pub fn CMBufferQueueGetCallbacksForUnsortedSampleBuffers() -> NonNull<CMBufferCallbacks>;
 }
 
 extern "C-unwind" {
     /// Returns a pointer to a callback struct for CMSampleBuffers sorted by output presentation timestamp, provided as a convenience.
-    #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMTime")]
     pub fn CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS() -> NonNull<CMBufferCallbacks>;
 }
 
@@ -295,11 +264,7 @@ extern "C-unwind" {
     /// Creates a CMBufferQueue object.
     ///
     /// On return, the caller owns the returned CMBufferQueue, and must release it when done with it.
-    #[cfg(all(
-        feature = "CMBase",
-        feature = "CMTime",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     pub fn CMBufferQueueCreate(
         allocator: CFAllocatorRef,
         capacity: CMItemCount,
@@ -312,12 +277,7 @@ extern "C-unwind" {
     /// Creates a CMBufferQueue object.
     ///
     /// On return, the caller owns the returned CMBufferQueue, and must release it when done with it.
-    #[cfg(all(
-        feature = "CMBase",
-        feature = "CMTime",
-        feature = "block2",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBase", feature = "CMTime", feature = "block2"))]
     pub fn CMBufferQueueCreateWithHandlers(
         allocator: CFAllocatorRef,
         capacity: CMItemCount,
@@ -332,7 +292,6 @@ extern "C-unwind" {
     /// You can check if a CFTypeRef object is actually a CMBufferQueue by comparing CFGetTypeID(object) with CMBufferQueueGetTypeID().
     ///
     /// Returns: CFTypeID of CMBufferQueue objects.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBufferQueueGetTypeID() -> CFTypeID;
 }
 
@@ -343,7 +302,6 @@ extern "C-unwind" {
     /// If the compare callback is non-NULL, this API performs an insertion sort using that compare operation.
     /// If the validation callback is non-NULL, this API calls it; if it returns a nonzero OSStatus,
     /// the buffer will not be enqueued and this API will return the same error OSStatus.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBufferQueueEnqueue(queue: CMBufferQueueRef, buf: CMBufferRef) -> OSStatus;
 }
 
@@ -355,7 +313,6 @@ extern "C-unwind" {
     /// it when done with it.
     ///
     /// Returns: The dequeued buffer.  Will be NULL if the queue is empty.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBufferQueueDequeueAndRetain(queue: CMBufferQueueRef) -> CMBufferRef;
 }
 
@@ -367,7 +324,6 @@ extern "C-unwind" {
     /// it when done with it.
     ///
     /// Returns: The dequeued buffer.  Will be NULL if the queue is empty, or if the buffer to be dequeued is not yet ready.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBufferQueueDequeueIfDataReadyAndRetain(queue: CMBufferQueueRef) -> CMBufferRef;
 }
 
@@ -382,7 +338,6 @@ extern "C-unwind" {
     /// on the buffer returned from this function must be removed.
     ///
     /// Returns: The buffer.  Will be NULL if the queue is empty.
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn CMBufferQueueGetHead(queue: CMBufferQueueRef) -> CMBufferRef;
 }
@@ -397,7 +352,6 @@ extern "C-unwind" {
     /// this particular buffer (if an intervening Enqueue adds a buffer that will dequeue next).
     ///
     /// Returns: The retained buffer.  Will be NULL if the queue is empty.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBufferQueueCopyHead(queue: CMBufferQueueRef) -> CMBufferRef;
 }
 
@@ -444,7 +398,6 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Calls a function for every buffer in a queue, then resets the queue.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBufferQueueResetWithCallback(
         queue: CMBufferQueueRef,
         callback: unsafe extern "C-unwind" fn(CMBufferRef, *mut c_void),
@@ -454,7 +407,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Gets the number of buffers in the queue.
-    #[cfg(all(feature = "CMBase", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMBase")]
     pub fn CMBufferQueueGetBufferCount(queue: CMBufferQueueRef) -> CMItemCount;
 }
 
@@ -640,7 +593,7 @@ extern "C-unwind" {
     ///
     /// This function behaves the same way as CMBufferQueueInstallTrigger() except the trigger is evaluated against
     /// the integer value rather than the time value.
-    #[cfg(all(feature = "CMBase", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMBase")]
     pub fn CMBufferQueueInstallTriggerWithIntegerThreshold(
         queue: CMBufferQueueRef,
         callback: CMBufferQueueTriggerCallback,
@@ -676,11 +629,7 @@ extern "C-unwind" {
     ///
     /// This function behaves the same way as CMBufferQueueInstallTriggerHandler() except the trigger is evaluated against
     /// the integer value rather than the time value.
-    #[cfg(all(
-        feature = "CMBase",
-        feature = "block2",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBase", feature = "block2"))]
     pub fn CMBufferQueueInstallTriggerHandlerWithIntegerThreshold(
         queue: CMBufferQueueRef,
         condition: CMBufferQueueTriggerCondition,
@@ -720,7 +669,6 @@ extern "C-unwind" {
     ///
     /// If the callback function returns an error, iteration will stop immediately
     /// and the error will be returned.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBufferQueueCallForEachBuffer(
         queue: CMBufferQueueRef,
         callback: unsafe extern "C-unwind" fn(CMBufferRef, *mut c_void) -> OSStatus,
@@ -737,7 +685,6 @@ extern "C-unwind" {
 /// If you do not have a more descriptive error code, use kCMBufferQueueError_InvalidBuffer.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffervalidationcallback?language=objc)
-#[cfg(feature = "objc2-core-foundation")]
 pub type CMBufferValidationCallback =
     Option<unsafe extern "C-unwind" fn(CMBufferQueueRef, CMBufferRef, *mut c_void) -> OSStatus>;
 
@@ -750,13 +697,12 @@ pub type CMBufferValidationCallback =
 /// If you do not have a more descriptive error code, use kCMBufferQueueError_InvalidBuffer.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffervalidationhandler?language=objc)
-#[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "block2")]
 pub type CMBufferValidationHandler =
     *mut block2::Block<dyn Fn(CMBufferQueueRef, CMBufferRef) -> OSStatus>;
 
 extern "C-unwind" {
     /// Sets a function that CMBufferQueueEnqueue will call to validate buffers before adding them to the queue.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBufferQueueSetValidationCallback(
         queue: CMBufferQueueRef,
         callback: CMBufferValidationCallback,
@@ -770,7 +716,7 @@ extern "C-unwind" {
     /// Both a validation callback and a validation handler can be set at the
     /// same time, in which case they will both be called when enqueueing
     /// buffers. They both need to return noErr for the buffer to be enqueued.
-    #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "block2")]
     pub fn CMBufferQueueSetValidationHandler(
         queue: CMBufferQueueRef,
         handler: CMBufferValidationHandler,

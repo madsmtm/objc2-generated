@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -24,7 +23,6 @@ pub const kCMFormatDescriptionBridgeError_InvalidSlice: OSStatus = -12719;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmimagedescriptionflavor?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
-#[cfg(feature = "objc2-core-foundation")]
 pub type CMImageDescriptionFlavor = CFStringRef;
 
 extern "C" {
@@ -33,7 +31,6 @@ extern "C" {
     /// Passing NULL is equivalent to passing this constant.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmimagedescriptionflavor_quicktimemovie?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMImageDescriptionFlavor_QuickTimeMovie: CMImageDescriptionFlavor;
 }
 
@@ -41,7 +38,6 @@ extern "C" {
     /// Chooses the ISO family sample description format, used in MP4
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmimagedescriptionflavor_isofamily?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMImageDescriptionFlavor_ISOFamily: CMImageDescriptionFlavor;
 }
 
@@ -51,7 +47,6 @@ extern "C" {
     /// This implies kCMImageDescriptionFlavor_ISOFamily and adds additional rules specific to the 3GP family.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmimagedescriptionflavor_3gpfamily?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMImageDescriptionFlavor_3GPFamily: CMImageDescriptionFlavor;
 }
 
@@ -61,7 +56,6 @@ extern "C" {
     /// This implies kCMImageDescriptionFlavor_ISOFamily and adds additional rules specific to the .m4a, .m4b, and .m4v file formats.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmimagedescriptionflavor_isofamilywithappleextensions?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMImageDescriptionFlavor_ISOFamilyWithAppleExtensions: CMImageDescriptionFlavor;
 }
 
@@ -80,7 +74,7 @@ extern "C-unwind" {
     /// Parameter `flavor`: kCMImageDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMVideoFormatDescription.
-    #[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMFormatDescription")]
     pub fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData(
         allocator: CFAllocatorRef,
         image_description_data: NonNull<u8>,
@@ -104,11 +98,7 @@ extern "C-unwind" {
     /// Parameter `flavor`: kCMImageDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMVideoFormatDescription.
-    #[cfg(all(
-        feature = "CMBlockBuffer",
-        feature = "CMFormatDescription",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer(
         allocator: CFAllocatorRef,
         image_description_block_buffer: CMBlockBufferRef,
@@ -136,11 +126,7 @@ extern "C-unwind" {
     /// Parameter `flavor`: kCMImageDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
     ///
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing ImageDescription data structure in big-endian byte ordering.
-    #[cfg(all(
-        feature = "CMBlockBuffer",
-        feature = "CMFormatDescription",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer(
         allocator: CFAllocatorRef,
         video_format_description: CMVideoFormatDescriptionRef,
@@ -178,7 +164,6 @@ extern "C-unwind" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsounddescriptionflavor?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
-#[cfg(feature = "objc2-core-foundation")]
 pub type CMSoundDescriptionFlavor = CFStringRef;
 
 extern "C" {
@@ -188,7 +173,6 @@ extern "C" {
     /// If a V1 sound description is written for CBR or PCM audio, the sample tables will need to use the legacy CBR layout.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsounddescriptionflavor_quicktimemovie?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSoundDescriptionFlavor_QuickTimeMovie: CMSoundDescriptionFlavor;
 }
 
@@ -199,7 +183,6 @@ extern "C" {
     /// V2 Sound Descriptions contain no legacy CBR layout, and use 'lpcm' for all flavors of PCM.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsounddescriptionflavor_quicktimemoviev2?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSoundDescriptionFlavor_QuickTimeMovieV2: CMSoundDescriptionFlavor;
 }
 
@@ -207,7 +190,6 @@ extern "C" {
     /// Chooses the ISO family sample description format, used in MP4, M4A, etc.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsounddescriptionflavor_isofamily?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSoundDescriptionFlavor_ISOFamily: CMSoundDescriptionFlavor;
 }
 
@@ -217,7 +199,6 @@ extern "C" {
     /// This implies kCMSoundDescriptionFlavor_ISOFamily and adds additional rules specific to the 3GP family.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsounddescriptionflavor_3gpfamily?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMSoundDescriptionFlavor_3GPFamily: CMSoundDescriptionFlavor;
 }
 
@@ -234,7 +215,7 @@ extern "C-unwind" {
     /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMAudioFormatDescription.
-    #[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMFormatDescription")]
     pub fn CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData(
         allocator: CFAllocatorRef,
         sound_description_data: NonNull<u8>,
@@ -255,11 +236,7 @@ extern "C-unwind" {
     /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMAudioFormatDescription.
-    #[cfg(all(
-        feature = "CMBlockBuffer",
-        feature = "CMFormatDescription",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer(
         allocator: CFAllocatorRef,
         sound_description_block_buffer: CMBlockBufferRef,
@@ -284,11 +261,7 @@ extern "C-unwind" {
     /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
     ///
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing SoundDescription data structure in big-endian byte ordering.
-    #[cfg(all(
-        feature = "CMBlockBuffer",
-        feature = "CMFormatDescription",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer(
         allocator: CFAllocatorRef,
         audio_format_description: CMAudioFormatDescriptionRef,
@@ -304,7 +277,7 @@ extern "C-unwind" {
     /// Parameter `soundDescriptionBlockBuffer`: CMBlockBuffer containing SoundDescription data structure in big-endian byte ordering.
     ///
     /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
-    #[cfg(all(feature = "CMBlockBuffer", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMBlockBuffer")]
     pub fn CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout(
         sound_description_block_buffer: CMBlockBufferRef,
         flavor: CMSoundDescriptionFlavor,
@@ -339,7 +312,6 @@ extern "C-unwind" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextdescriptionflavor?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
-#[cfg(feature = "objc2-core-foundation")]
 pub type CMTextDescriptionFlavor = CFStringRef;
 
 extern "C-unwind" {
@@ -357,7 +329,7 @@ extern "C-unwind" {
     /// Parameter `mediaType`: Pass kCMMediaType_Text or kCMMediaType_Subtitle.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMTextFormatDescription.
-    #[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMFormatDescription")]
     pub fn CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData(
         allocator: CFAllocatorRef,
         text_description_data: NonNull<u8>,
@@ -381,11 +353,7 @@ extern "C-unwind" {
     /// Parameter `mediaType`: Pass kCMMediaType_Text or kCMMediaType_Subtitle.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMTextFormatDescription.
-    #[cfg(all(
-        feature = "CMBlockBuffer",
-        feature = "CMFormatDescription",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer(
         allocator: CFAllocatorRef,
         text_description_block_buffer: CMBlockBufferRef,
@@ -411,11 +379,7 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing TextDescription data structure in big-endian byte ordering.
-    #[cfg(all(
-        feature = "CMBlockBuffer",
-        feature = "CMFormatDescription",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer(
         allocator: CFAllocatorRef,
         text_format_description: CMTextFormatDescriptionRef,
@@ -452,7 +416,6 @@ extern "C-unwind" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclosedcaptiondescriptionflavor?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
-#[cfg(feature = "objc2-core-foundation")]
 pub type CMClosedCaptionDescriptionFlavor = CFStringRef;
 
 extern "C-unwind" {
@@ -468,7 +431,7 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMClosedCaptionFormatDescription.
-    #[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMFormatDescription")]
     pub fn CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData(
         allocator: CFAllocatorRef,
         closed_caption_description_data: NonNull<u8>,
@@ -489,11 +452,7 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMClosedCaptionFormatDescription.
-    #[cfg(all(
-        feature = "CMBlockBuffer",
-        feature = "CMFormatDescription",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer(
         allocator: CFAllocatorRef,
         closed_caption_description_block_buffer: CMBlockBufferRef,
@@ -518,11 +477,7 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing ClosedCaptionDescription data structure in big-endian byte ordering.
-    #[cfg(all(
-        feature = "CMBlockBuffer",
-        feature = "CMFormatDescription",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer(
         allocator: CFAllocatorRef,
         closed_caption_format_description: CMClosedCaptionFormatDescriptionRef,
@@ -559,7 +514,6 @@ extern "C-unwind" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodedescriptionflavor?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
-#[cfg(feature = "objc2-core-foundation")]
 pub type CMTimeCodeDescriptionFlavor = CFStringRef;
 
 extern "C-unwind" {
@@ -575,7 +529,7 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMTimeCodeFormatDescription.
-    #[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMFormatDescription")]
     pub fn CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData(
         allocator: CFAllocatorRef,
         time_code_description_data: NonNull<u8>,
@@ -596,11 +550,7 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMTimeCodeFormatDescription.
-    #[cfg(all(
-        feature = "CMBlockBuffer",
-        feature = "CMFormatDescription",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer(
         allocator: CFAllocatorRef,
         time_code_description_block_buffer: CMBlockBufferRef,
@@ -625,11 +575,7 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing TimeCodeDescription data structure in big-endian byte ordering.
-    #[cfg(all(
-        feature = "CMBlockBuffer",
-        feature = "CMFormatDescription",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer(
         allocator: CFAllocatorRef,
         time_code_format_description: CMTimeCodeFormatDescriptionRef,
@@ -666,7 +612,6 @@ extern "C-unwind" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadescriptionflavor?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
-#[cfg(feature = "objc2-core-foundation")]
 pub type CMMetadataDescriptionFlavor = CFStringRef;
 
 extern "C-unwind" {
@@ -682,7 +627,7 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMMetadataFormatDescriptionRef.
-    #[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMFormatDescription")]
     pub fn CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData(
         allocator: CFAllocatorRef,
         metadata_description_data: NonNull<u8>,
@@ -703,11 +648,7 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `formatDescriptionOut`: Receives new CMMetadataFormatDescriptionRef.
-    #[cfg(all(
-        feature = "CMBlockBuffer",
-        feature = "CMFormatDescription",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer(
         allocator: CFAllocatorRef,
         metadata_description_block_buffer: CMBlockBufferRef,
@@ -732,11 +673,7 @@ extern "C-unwind" {
     /// Parameter `flavor`: Reserved for future use. Pass NULL for QuickTime Movie or ISO flavor.
     ///
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing MetadataDescription data structure in big-endian byte ordering.
-    #[cfg(all(
-        feature = "CMBlockBuffer",
-        feature = "CMFormatDescription",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer(
         allocator: CFAllocatorRef,
         metadata_format_description: CMMetadataFormatDescriptionRef,

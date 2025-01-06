@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
@@ -38,7 +37,6 @@ pub type CVDisplayLinkOutputHandler = *mut block2::Block<
 >;
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     pub fn CVDisplayLinkGetTypeID() -> CFTypeID;
 }
@@ -55,11 +53,7 @@ extern "C-unwind" {
     /// Parameter `displayLinkOut`: The new display link will be returned here
     ///
     /// Returns: returns kCVReturnSuccess on success.
-    #[cfg(all(
-        feature = "CVReturn",
-        feature = "objc2-core-foundation",
-        feature = "objc2-core-graphics"
-    ))]
+    #[cfg(all(feature = "CVReturn", feature = "objc2-core-graphics"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     pub fn CVDisplayLinkCreateWithCGDisplays(
         display_array: NonNull<CGDirectDisplayID>,

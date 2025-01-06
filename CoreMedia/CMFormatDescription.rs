@@ -6,7 +6,6 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-audio-types")]
 use objc2_core_audio_types::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-video")]
 use objc2_core_video::*;
@@ -62,7 +61,6 @@ extern "C-unwind" {
     /// creations routines such as CMVideoFormatDescriptionCreate, CMAudioFormatDescriptionCreate, etc.
     ///
     /// Returns: A new CMFormatDescription object.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMFormatDescriptionCreate(
         allocator: CFAllocatorRef,
         media_type: CMMediaType,
@@ -77,7 +75,6 @@ extern "C-unwind" {
     ///
     /// You can check if a CFTypeRef object is actually a CMFormatDescription
     /// by comparing CFGetTypeID(object) with CMFormatDescriptionGetTypeID().
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMFormatDescriptionGetTypeID() -> CFTypeID;
 }
 
@@ -106,7 +103,6 @@ extern "C-unwind" {
     /// Parameter `sampleDescriptionExtensionAtomKeysToIgnore`: Either a single sample description extension atom key (four-character CFString)
     /// or a CFArray of such keys.
     /// See kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMFormatDescriptionEqualIgnoringExtensionKeys(
         format_description: CMFormatDescriptionRef,
         other_format_description: CMFormatDescriptionRef,
@@ -151,7 +147,6 @@ extern "C-unwind" {
     /// need to keep it longer.
     ///
     /// Returns: An immutable dictionary containing all the extensions of the CMFormatDescription.  May be NULL.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMFormatDescriptionGetExtensions(desc: CMFormatDescriptionRef) -> CFDictionaryRef;
 }
 
@@ -166,7 +161,6 @@ extern "C" {
     /// CFDictionary, CFDate, or CFData.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_originalcompressionsettings?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_OriginalCompressionSettings: CFStringRef;
 }
 
@@ -182,7 +176,6 @@ extern "C" {
     /// specific type) to CFArrays of CFData containing those payloads.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_sampledescriptionextensionatoms?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms: CFStringRef;
 }
 
@@ -198,7 +191,6 @@ extern "C" {
     /// delete this extension from the clone, or your modifications could be lost.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_verbatimsampledescription?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_VerbatimSampleDescription: CFStringRef;
 }
 
@@ -214,7 +206,6 @@ extern "C" {
     /// delete this extension from the clone, or your modifications could be lost.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_verbatimisosampleentry?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_VerbatimISOSampleEntry: CFStringRef;
 }
 
@@ -229,7 +220,6 @@ extern "C-unwind" {
     /// need to keep it longer.
     ///
     /// Returns: The specified extension of the CMFormatDescription.  May be NULL.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMFormatDescriptionGetExtension(
         desc: CMFormatDescriptionRef,
         extension_key: CFStringRef,
@@ -259,7 +249,7 @@ extern "C-unwind" {
     /// returned CMFormatDescription, and must release it when done with it.  The ASBD,
     /// magic cookie, channel layout, and extensions are all copied (the extensions are
     /// deep-copied).  The caller can deallocate them or re-use them after making this call.
-    #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionCreate(
         allocator: CFAllocatorRef,
         asbd: NonNull<AudioStreamBasicDescription>,
@@ -370,7 +360,6 @@ extern "C-unwind" {
     /// The summary format description will be canonical LPCM and deep enough in
     /// sample rate, channel layout and channel count to sensibly contain the result of decoding
     /// and mixing the constituent format descriptions.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMAudioFormatDescriptionCreateSummary(
         allocator: CFAllocatorRef,
         format_description_array: CFArrayRef,
@@ -594,349 +583,291 @@ unsafe impl RefEncode for CMVideoDimensions {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_formatname?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_FormatName: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_depth?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_Depth: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_cleanaperture?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_CleanAperture: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_cleanaperturewidth?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionKey_CleanApertureWidth: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_cleanapertureheight?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionKey_CleanApertureHeight: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_cleanaperturehorizontaloffset?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionKey_CleanApertureHorizontalOffset: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_cleanapertureverticaloffset?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionKey_CleanApertureVerticalOffset: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_cleanaperturewidthrational?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionKey_CleanApertureWidthRational: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_cleanapertureheightrational?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionKey_CleanApertureHeightRational: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_cleanaperturehorizontaloffsetrational?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionKey_CleanApertureHorizontalOffsetRational: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_cleanapertureverticaloffsetrational?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionKey_CleanApertureVerticalOffsetRational: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_fieldcount?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_FieldCount: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_fielddetail?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_FieldDetail: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionfielddetail_temporaltopfirst?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionFieldDetail_TemporalTopFirst: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionfielddetail_temporalbottomfirst?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionFieldDetail_TemporalBottomFirst: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionfielddetail_spatialfirstlineearly?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionFieldDetail_SpatialFirstLineEarly: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionfielddetail_spatialfirstlinelate?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionFieldDetail_SpatialFirstLineLate: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_pixelaspectratio?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_PixelAspectRatio: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_pixelaspectratiohorizontalspacing?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionKey_PixelAspectRatioHorizontalSpacing: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_pixelaspectratioverticalspacing?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionKey_PixelAspectRatioVerticalSpacing: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_colorprimaries?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_ColorPrimaries: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncolorprimaries_itu_r_709_2?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionColorPrimaries_ITU_R_709_2: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncolorprimaries_ebu_3213?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionColorPrimaries_EBU_3213: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncolorprimaries_smpte_c?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionColorPrimaries_SMPTE_C: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncolorprimaries_dci_p3?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionColorPrimaries_DCI_P3: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncolorprimaries_p3_d65?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionColorPrimaries_P3_D65: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncolorprimaries_itu_r_2020?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionColorPrimaries_ITU_R_2020: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncolorprimaries_p22?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionColorPrimaries_P22: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_transferfunction?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_TransferFunction: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptiontransferfunction_itu_r_709_2?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionTransferFunction_ITU_R_709_2: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptiontransferfunction_smpte_240m_1995?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionTransferFunction_SMPTE_240M_1995: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptiontransferfunction_usegamma?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionTransferFunction_UseGamma: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptiontransferfunction_itu_r_2020?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionTransferFunction_ITU_R_2020: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptiontransferfunction_smpte_st_428_1?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionTransferFunction_SMPTE_ST_428_1: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptiontransferfunction_smpte_st_2084_pq?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionTransferFunction_SMPTE_ST_2084_PQ: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptiontransferfunction_itu_r_2100_hlg?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionTransferFunction_ITU_R_2100_HLG: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptiontransferfunction_linear?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionTransferFunction_Linear: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptiontransferfunction_srgb?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionTransferFunction_sRGB: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_gammalevel?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_GammaLevel: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_ycbcrmatrix?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_YCbCrMatrix: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionycbcrmatrix_itu_r_709_2?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionYCbCrMatrix_ITU_R_709_2: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionycbcrmatrix_itu_r_601_4?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionYCbCrMatrix_ITU_R_601_4: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionycbcrmatrix_smpte_240m_1995?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionYCbCrMatrix_SMPTE_240M_1995: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionycbcrmatrix_itu_r_2020?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionYCbCrMatrix_ITU_R_2020: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_fullrangevideo?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_FullRangeVideo: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_iccprofile?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_ICCProfile: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_bytesperrow?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_BytesPerRow: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_chromalocationtopfield?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_ChromaLocationTopField: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_chromalocationbottomfield?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_ChromaLocationBottomField: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_left?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionChromaLocation_Left: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_center?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionChromaLocation_Center: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_topleft?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionChromaLocation_TopLeft: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_top?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionChromaLocation_Top: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_bottomleft?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionChromaLocation_BottomLeft: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_bottom?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionChromaLocation_Bottom: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_dv420?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionChromaLocation_DV420: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionconformstompeg2videoprofile?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionConformsToMPEG2VideoProfile: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_protectedcontentoriginalformat?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_ProtectedContentOriginalFormat: CFStringRef;
 }
 
@@ -1019,109 +950,91 @@ pub const kCMMPEG2VideoProfile_XF: i32 = 0x78667a31;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_temporalquality?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_TemporalQuality: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_spatialquality?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_SpatialQuality: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_verbatimimagedescription?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_VerbatimImageDescription: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_version?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_Version: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_revisionlevel?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_RevisionLevel: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_vendor?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_Vendor: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionvendor_apple?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionVendor_Apple: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_masteringdisplaycolorvolume?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_MasteringDisplayColorVolume: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_contentlightlevelinfo?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_ContentLightLevelInfo: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_contentcolorvolume?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_ContentColorVolume: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_alternativetransfercharacteristics?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_AlternativeTransferCharacteristics: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_auxiliarytypeinfo?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_AuxiliaryTypeInfo: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_alphachannelmode?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_AlphaChannelMode: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionalphachannelmode_straightalpha?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionAlphaChannelMode_StraightAlpha: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionalphachannelmode_premultipliedalpha?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionAlphaChannelMode_PremultipliedAlpha: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_containsalphachannel?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_ContainsAlphaChannel: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_bitspercomponent?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_BitsPerComponent: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_horizontalfieldofview?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_HorizontalFieldOfView: CFStringRef;
 }
 
@@ -1136,13 +1049,11 @@ extern "C" {
     /// You can download the Apple Log Profile White Paper from the Apple Developer Downloads website.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_logtransferfunction?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_LogTransferFunction: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionlogtransferfunction_applelog?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionLogTransferFunction_AppleLog: CFStringRef;
 }
 
@@ -1156,19 +1067,16 @@ extern "C" {
     /// The value is a CFString holding one of the kCMFormatDescriptionHeroEye_* constants.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_heroeye?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_HeroEye: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionheroeye_left?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionHeroEye_Left: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionheroeye_right?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionHeroEye_Right: CFStringRef;
 }
 
@@ -1179,7 +1087,6 @@ extern "C" {
     /// This property is optional and should only be specified if the distance is known.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_stereocamerabaseline?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_StereoCameraBaseline: CFStringRef;
 }
 
@@ -1191,7 +1098,6 @@ extern "C" {
     /// This property is optional and should only be specified if a disparity adjustment including 0 is known.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_horizontaldisparityadjustment?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_HorizontalDisparityAdjustment: CFStringRef;
 }
 
@@ -1201,7 +1107,6 @@ extern "C" {
     /// The value is a CFBoolean holding presence of left eye view in the stream.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_hasleftstereoeyeview?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_HasLeftStereoEyeView: CFStringRef;
 }
 
@@ -1211,7 +1116,6 @@ extern "C" {
     /// The value is a CFBoolean holding presence of right eye view in the stream.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_hasrightstereoeyeview?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_HasRightStereoEyeView: CFStringRef;
 }
 
@@ -1221,7 +1125,6 @@ extern "C" {
     /// The value is a CFBoolean holding presence of additional eye views in the stream.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_hasadditionalviews?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_HasAdditionalViews: CFStringRef;
 }
 
@@ -1233,13 +1136,11 @@ extern "C" {
     /// The value is a CFString holding one of the kCMFormatDescriptionProjectionKind_* constants.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_projectionkind?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_ProjectionKind: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionprojectionkind_rectilinear?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionProjectionKind_Rectilinear: CFStringRef;
 }
 
@@ -1253,19 +1154,16 @@ extern "C" {
     /// The value is a CFString holding one of the kCMFormatDescriptionViewPackingKind_* constants.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_viewpackingkind?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_ViewPackingKind: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionviewpackingkind_sidebyside?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionViewPackingKind_SideBySide: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionviewpackingkind_overunder?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionViewPackingKind_OverUnder: CFStringRef;
 }
 
@@ -1274,7 +1172,6 @@ extern "C-unwind" {
     ///
     /// The caller owns the returned CMFormatDescription, and must release it when done with it. All input parameters
     /// are copied (the extensions are deep-copied).  The caller can deallocate them or re-use them after making this call.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMVideoFormatDescriptionCreate(
         allocator: CFAllocatorRef,
         codec_type: CMVideoCodecType,
@@ -1299,7 +1196,7 @@ extern "C-unwind" {
     /// where extensions is a CFDictionary of attachments to image buffer with keys specified by
     /// CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers, and also
     /// kCMFormatDescriptionExtension_BytesPerRow if applicable.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-video"))]
+    #[cfg(feature = "objc2-core-video")]
     pub fn CMVideoFormatDescriptionCreateForImageBuffer(
         allocator: CFAllocatorRef,
         image_buffer: CVImageBufferRef,
@@ -1313,7 +1210,6 @@ extern "C-unwind" {
     /// This function parses the dimensions provided by the parameter sets and creates a format description suitable for a raw H.264 stream.
     /// The parameter sets' data can come from raw NAL units and must have any emulation prevention bytes needed.
     /// The supported NAL unit types to be included in the format description are 7 (sequence parameter set), 8 (picture parameter set) and 13 (sequence parameter set extension). At least one sequence parameter set and one picture parameter set must be provided.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMVideoFormatDescriptionCreateFromH264ParameterSets(
         allocator: CFAllocatorRef,
         parameter_set_count: usize,
@@ -1330,7 +1226,6 @@ extern "C-unwind" {
     /// This function parses the dimensions provided by the parameter sets and creates a format description suitable for a raw H.265 stream.
     /// The parameter sets' data can come from raw NAL units and must have any emulation prevention bytes needed.
     /// The supported NAL unit types to be included in the format description are 32 (video parameter set), 33 (sequence parameter set), 34 (picture parameter set), 39 (prefix SEI) and 40 (suffix SEI). At least one of each parameter set must be provided.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMVideoFormatDescriptionCreateFromHEVCParameterSets(
         allocator: CFAllocatorRef,
         parameter_set_count: usize,
@@ -1389,7 +1284,6 @@ extern "C-unwind" {
     /// Returns the dimensions, adjusted to take pixel aspect ratio and/or clean aperture into account.
     ///
     /// Pixel aspect ratio is used to adjust the width, leaving the height alone.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMVideoFormatDescriptionGetPresentationDimensions(
         video_desc: CMVideoFormatDescriptionRef,
         use_pixel_aspect_ratio: Boolean,
@@ -1402,7 +1296,6 @@ extern "C-unwind" {
     ///
     /// The clean aperture is a rectangle that defines the portion of the encoded pixel dimensions
     /// that represents image data valid for display.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMVideoFormatDescriptionGetCleanAperture(
         video_desc: CMVideoFormatDescriptionRef,
         origin_is_at_top_left: Boolean,
@@ -1435,7 +1328,6 @@ extern "C-unwind" {
     /// kCMFormatDescriptionExtension_ChromaLocationBottomField
     /// kCMFormatDescriptionExtension_MasteringDisplayColorVolume
     /// kCMFormatDescriptionExtension_ContentLightLevelInfo
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers() -> CFArrayRef;
 }
 
@@ -1466,7 +1358,6 @@ extern "C-unwind" {
     /// It also gives the eye mapping information for the pixel buffers of the decoded CMTaggedBufferGroups.
     ///
     /// Returns: Array of CMTagCollections. The result will be NULL if the CMVideoFormatDescription does not contain multi-image encoding parameters, or if there is some other error.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMVideoFormatDescriptionCopyTagCollectionArray(
         format_description: CMVideoFormatDescriptionRef,
         tag_collections_out: *mut CFArrayRef,
@@ -1524,7 +1415,6 @@ extern "C-unwind" {
     /// its output streams. The caller owns the returned CMFormatDescription, and must release it when done
     /// with it. All input parameters are copied (the extensions are deep-copied).  The caller can deallocate
     /// them or re-use them after making this call.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMuxedFormatDescriptionCreate(
         allocator: CFAllocatorRef,
         mux_type: CMMuxedStreamType,
@@ -1612,157 +1502,131 @@ pub const kCMTextJustification_bottom_right: CMTextJustificationValue = -1;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionextension_displayflags?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionExtension_DisplayFlags: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionextension_backgroundcolor?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionExtension_BackgroundColor: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptioncolor_red?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionColor_Red: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptioncolor_green?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionColor_Green: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptioncolor_blue?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionColor_Blue: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptioncolor_alpha?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionColor_Alpha: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionextension_defaulttextbox?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionExtension_DefaultTextBox: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionrect_top?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionRect_Top: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionrect_left?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionRect_Left: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionrect_bottom?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionRect_Bottom: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionrect_right?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionRect_Right: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionextension_defaultstyle?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionExtension_DefaultStyle: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionstyle_startchar?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionStyle_StartChar: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionstyle_font?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionStyle_Font: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionstyle_fontface?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionStyle_FontFace: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionstyle_foregroundcolor?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionStyle_ForegroundColor: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionstyle_fontsize?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionStyle_FontSize: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionextension_horizontaljustification?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionExtension_HorizontalJustification: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionextension_verticaljustification?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionExtension_VerticalJustification: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionstyle_endchar?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionStyle_EndChar: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionextension_fonttable?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionExtension_FontTable: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionextension_textjustification?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionExtension_TextJustification: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionstyle_height?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionStyle_Height: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionstyle_ascent?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionStyle_Ascent: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextformatdescriptionextension_defaultfontname?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTextFormatDescriptionExtension_DefaultFontName: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_ambientviewingenvironment?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtension_AmbientViewingEnvironment: CFStringRef;
 }
 
@@ -1791,7 +1655,6 @@ extern "C-unwind" {
     /// Returns the default text box.
     ///
     /// Within a text track, text is rendered within a text box.  There is a default text box set, which can be over-ridden by a sample. The function can return kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry a default text box.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTextFormatDescriptionGetDefaultTextBox(
         desc: CMFormatDescriptionRef,
         origin_is_at_top_left: Boolean,
@@ -1804,7 +1667,6 @@ extern "C-unwind" {
     /// Returns the font name for a local font ID.
     ///
     /// Some format descriptions carry a mapping from local font IDs to font names. The function returns kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry such a font mapping table.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMTextFormatDescriptionGetFontName(
         desc: CMFormatDescriptionRef,
         local_font_id: u16,
@@ -1851,7 +1713,7 @@ extern "C-unwind" {
     ///
     /// The caller owns the returned CMFormatDescription, and must release it when done with it. All input parameters
     /// are copied (the extensions are deep-copied).  The caller can deallocate them or re-use them after making this call.
-    #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMTime")]
     pub fn CMTimeCodeFormatDescriptionCreate(
         allocator: CFAllocatorRef,
         time_code_format_type: CMTimeCodeFormatType,
@@ -1886,19 +1748,16 @@ extern "C-unwind" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimecodeformatdescriptionextension_sourcereferencename?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeCodeFormatDescriptionExtension_SourceReferenceName: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimecodeformatdescriptionkey_value?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeCodeFormatDescriptionKey_Value: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimecodeformatdescriptionkey_langcode?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeCodeFormatDescriptionKey_LangCode: CFStringRef;
 }
 
@@ -1923,105 +1782,88 @@ pub const kCMMetadataFormatType_EMSG: CMMetadataFormatType = 0x656d7367;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextensionkey_metadatakeytable?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMFormatDescriptionExtensionKey_MetadataKeyTable: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescriptionkey_namespace?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataFormatDescriptionKey_Namespace: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescriptionkey_value?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataFormatDescriptionKey_Value: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescriptionkey_localid?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataFormatDescriptionKey_LocalID: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescriptionkey_datatype?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataFormatDescriptionKey_DataType: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescriptionkey_datatypenamespace?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataFormatDescriptionKey_DataTypeNamespace: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescriptionkey_conformingdatatypes?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataFormatDescriptionKey_ConformingDataTypes: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescriptionkey_languagetag?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataFormatDescriptionKey_LanguageTag: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescriptionkey_structuraldependency?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataFormatDescriptionKey_StructuralDependency: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescriptionkey_setupdata?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataFormatDescriptionKey_SetupData: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescription_structuraldependencykey_dependencyisinvalidflag?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataFormatDescription_StructuralDependencyKey_DependencyIsInvalidFlag:
         CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescriptionmetadataspecificationkey_identifier?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataFormatDescriptionMetadataSpecificationKey_Identifier: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescriptionmetadataspecificationkey_datatype?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataFormatDescriptionMetadataSpecificationKey_DataType: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescriptionmetadataspecificationkey_extendedlanguagetag?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataFormatDescriptionMetadataSpecificationKey_ExtendedLanguageTag:
         CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescriptionmetadataspecificationkey_structuraldependency?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataFormatDescriptionMetadataSpecificationKey_StructuralDependency:
         CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataformatdescriptionmetadataspecificationkey_setupdata?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMMetadataFormatDescriptionMetadataSpecificationKey_SetupData: CFStringRef;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataFormatDescriptionCreateWithKeys(
         allocator: CFAllocatorRef,
         metadata_type: CMMetadataFormatType,
@@ -2031,7 +1873,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataFormatDescriptionCreateWithMetadataSpecifications(
         allocator: CFAllocatorRef,
         metadata_type: CMMetadataFormatType,
@@ -2041,7 +1882,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataFormatDescriptionCreateWithMetadataFormatDescriptionAndMetadataSpecifications(
         allocator: CFAllocatorRef,
         source_description: CMMetadataFormatDescriptionRef,
@@ -2051,7 +1891,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataFormatDescriptionCreateByMergingMetadataFormatDescriptions(
         allocator: CFAllocatorRef,
         source_description: CMMetadataFormatDescriptionRef,
@@ -2061,7 +1900,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataFormatDescriptionGetKeyWithLocalID(
         desc: CMMetadataFormatDescriptionRef,
         local_key_id: OSType,
@@ -2069,7 +1907,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMMetadataFormatDescriptionGetIdentifiers(
         desc: CMMetadataFormatDescriptionRef,
     ) -> CFArrayRef;

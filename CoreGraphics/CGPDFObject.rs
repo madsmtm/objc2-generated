@@ -3,7 +3,6 @@
 use core::ffi::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -15,7 +14,6 @@ pub type CGPDFBoolean = c_uchar;
 pub type CGPDFInteger = c_long;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfreal?language=objc)
-#[cfg(feature = "objc2-core-foundation")]
 pub type CGPDFReal = CGFloat;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobjectref?language=objc)

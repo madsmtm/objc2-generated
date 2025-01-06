@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -50,25 +49,21 @@ unsafe impl RefEncode for CGPDFAccessPermissions {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfoutlinetitle?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGPDFOutlineTitle: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfoutlinechildren?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGPDFOutlineChildren: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfoutlinedestination?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGPDFOutlineDestination: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfoutlinedestinationrect?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGPDFOutlineDestinationRect: CFStringRef;
 }
 
@@ -78,7 +73,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPDFDocumentCreateWithURL(url: CFURLRef) -> CGPDFDocumentRef;
 }
 
@@ -146,12 +140,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPDFDocumentGetTypeID() -> CFTypeID;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPDFDocumentGetOutline(document: CGPDFDocumentRef) -> CFDictionaryRef;
 }
 
@@ -160,31 +152,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn CGPDFDocumentGetMediaBox(document: CGPDFDocumentRef, page: c_int) -> CGRect;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn CGPDFDocumentGetCropBox(document: CGPDFDocumentRef, page: c_int) -> CGRect;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn CGPDFDocumentGetBleedBox(document: CGPDFDocumentRef, page: c_int) -> CGRect;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn CGPDFDocumentGetTrimBox(document: CGPDFDocumentRef, page: c_int) -> CGRect;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn CGPDFDocumentGetArtBox(document: CGPDFDocumentRef, page: c_int) -> CGRect;
 }

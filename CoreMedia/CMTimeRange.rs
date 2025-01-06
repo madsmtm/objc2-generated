@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -238,7 +237,7 @@ extern "C-unwind" {
     /// This is useful when putting CMTimeRanges in CF container types.
     ///
     /// Returns: A CFDictionary version of the CMTimeRange.
-    #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMTime")]
     pub fn CMTimeRangeCopyAsDictionary(
         range: CMTimeRange,
         allocator: CFAllocatorRef,
@@ -252,7 +251,7 @@ extern "C-unwind" {
     /// have the requisite keyed values, an invalid time range is returned.
     ///
     /// Returns: The created CMTimeRange.
-    #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMTime")]
     pub fn CMTimeRangeMakeFromDictionary(dictionary_representation: CFDictionaryRef)
         -> CMTimeRange;
 }
@@ -261,7 +260,6 @@ extern "C" {
     /// CFDictionary key for start field of a CMTimeRange (CMTime)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimerangestartkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeRangeStartKey: CFStringRef;
 }
 
@@ -269,7 +267,6 @@ extern "C" {
     /// CFDictionary key for timescale field of a CMTimeRange (CMTime)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimerangedurationkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeRangeDurationKey: CFStringRef;
 }
 
@@ -280,7 +277,7 @@ extern "C-unwind" {
     /// also useful from other client debugging code.  The caller owns the returned CFString and is responsible for releasing it.
     ///
     /// Returns: The created CFString description.
-    #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMTime")]
     pub fn CMTimeRangeCopyDescription(allocator: CFAllocatorRef, range: CMTimeRange)
         -> CFStringRef;
 }
@@ -358,7 +355,7 @@ extern "C-unwind" {
     /// This is useful when putting CMTimeMappings in CF container types.
     ///
     /// Returns: A CFDictionary version of the CMTimeMapping.
-    #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMTime")]
     pub fn CMTimeMappingCopyAsDictionary(
         mapping: CMTimeMapping,
         allocator: CFAllocatorRef,
@@ -372,7 +369,7 @@ extern "C-unwind" {
     /// have the requisite keyed values, an invalid time mapping is returned.
     ///
     /// Returns: The created CMTimeMapping.
-    #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMTime")]
     pub fn CMTimeMappingMakeFromDictionary(
         dictionary_representation: CFDictionaryRef,
     ) -> CMTimeMapping;
@@ -382,7 +379,6 @@ extern "C" {
     /// CFDictionary key for source field of a CMTimeMapping (CMTimeRange)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimemappingsourcekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeMappingSourceKey: CFStringRef;
 }
 
@@ -390,7 +386,6 @@ extern "C" {
     /// CFDictionary key for target field of a CMTimeMapping (CMTimeRange)
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimemappingtargetkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCMTimeMappingTargetKey: CFStringRef;
 }
 
@@ -401,7 +396,7 @@ extern "C-unwind" {
     /// also useful from other client debugging code.  The caller owns the returned CFString and is responsible for releasing it.
     ///
     /// Returns: The created CFString description.
-    #[cfg(all(feature = "CMTime", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CMTime")]
     pub fn CMTimeMappingCopyDescription(
         allocator: CFAllocatorRef,
         mapping: CMTimeMapping,

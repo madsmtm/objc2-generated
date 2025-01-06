@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -46,7 +45,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGPDFObject", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGPDFObject")]
     pub fn CGPDFArrayGetNumber(array: CGPDFArrayRef, index: usize, value: *mut CGPDFReal) -> bool;
 }
 

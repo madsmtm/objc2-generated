@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
@@ -63,7 +62,6 @@ unsafe impl RefEncode for CTRunStatus {
 
 extern "C-unwind" {
     /// Returns the CFType of the run object
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetTypeID() -> CFTypeID;
 }
 
@@ -77,7 +75,6 @@ extern "C-unwind" {
     /// Returns: The number of glyphs that the run contains. It is totally
     /// possible that this function could return a value of zero,
     /// indicating that there are no glyphs in this run.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetGlyphCount(run: CTRunRef) -> CFIndex;
 }
 
@@ -97,7 +94,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The attribute dictionary.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetAttributes(run: CTRunRef) -> CFDictionaryRef;
 }
 
@@ -156,7 +152,7 @@ extern "C-unwind" {
     ///
     /// Parameter `buffer`: The buffer where the glyphs will be copied to. The buffer must be
     /// allocated to at least the value specified by the range's length.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+    #[cfg(feature = "objc2-core-graphics")]
     pub fn CTRunGetGlyphs(run: CTRunRef, range: CFRange, buffer: NonNull<CGGlyph>);
 }
 
@@ -178,7 +174,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A valid pointer to an array of CGPoint structures or NULL.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetPositionsPtr(run: CTRunRef) -> *const CGPoint;
 }
 
@@ -202,7 +197,6 @@ extern "C-unwind" {
     /// Parameter `buffer`: The buffer where the glyph positions will be copied to. The buffer
     /// must be allocated to at least the value specified by the range's
     /// length.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetPositions(run: CTRunRef, range: CFRange, buffer: NonNull<CGPoint>);
 }
 
@@ -226,7 +220,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A valid pointer to an array of CGSize structures or NULL.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetAdvancesPtr(run: CTRunRef) -> *const CGSize;
 }
 
@@ -246,7 +239,6 @@ extern "C-unwind" {
     /// Parameter `buffer`: The buffer where the glyph advances will be copied to. The buffer
     /// must be allocated to at least the value specified by the range's
     /// length.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetAdvances(run: CTRunRef, range: CFRange, buffer: NonNull<CGSize>);
 }
 
@@ -269,7 +261,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A valid pointer to an array of CFIndex structures or NULL.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetStringIndicesPtr(run: CTRunRef) -> *const CFIndex;
 }
 
@@ -294,7 +285,6 @@ extern "C-unwind" {
     /// Parameter `buffer`: The buffer where the string indices will be copied to. The buffer
     /// must be allocated to at least the value specified by the range's
     /// length.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetStringIndices(run: CTRunRef, range: CFRange, buffer: NonNull<CFIndex>);
 }
 
@@ -308,7 +298,6 @@ extern "C-unwind" {
     ///
     /// Returns: Returns the range of characters that originally spawned the
     /// glyphs. If run is invalid, this will return an empty range.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetStringRange(run: CTRunRef) -> CFRange;
 }
 
@@ -339,7 +328,6 @@ extern "C-unwind" {
     ///
     /// Returns: The typographic width of the run. If run or range is
     /// invalid, then this function will always return zero.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetTypographicBounds(
         run: CTRunRef,
         range: CFRange,
@@ -384,7 +372,7 @@ extern "C-unwind" {
     ///
     ///
     /// See also: CTRunGetTypographicBounds
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+    #[cfg(feature = "objc2-core-graphics")]
     pub fn CTRunGetImageBounds(run: CTRunRef, context: CGContextRef, range: CFRange) -> CGRect;
 }
 
@@ -401,7 +389,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A CGAffineTransform.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetTextMatrix(run: CTRunRef) -> CGAffineTransform;
 }
 
@@ -439,7 +426,6 @@ extern "C-unwind" {
     /// Parameter `originsBuffer`: The buffer where the origins will be copied to, or NULL. If not
     /// NULL, the buffer must allow for at least as many elements as
     /// specified by the range's length.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunGetBaseAdvancesAndOrigins(
         run_ref: CTRunRef,
         range: CFRange,
@@ -473,6 +459,6 @@ extern "C-unwind" {
     /// location of 0 and a length of CTRunGetGlyphCount. If the length
     /// of the range is set to 0, then the operation will continue from
     /// the range's start index to the end of the run.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+    #[cfg(feature = "objc2-core-graphics")]
     pub fn CTRunDraw(run: CTRunRef, context: CGContextRef, range: CFRange);
 }

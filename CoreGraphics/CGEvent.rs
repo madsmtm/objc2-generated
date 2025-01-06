@@ -2,13 +2,11 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGEventGetTypeID() -> CFTypeID;
 }
 
@@ -18,17 +16,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGEventTypes", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGEventTypes")]
     pub fn CGEventCreateData(allocator: CFAllocatorRef, event: CGEventRef) -> CFDataRef;
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGEventTypes", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGEventTypes")]
     pub fn CGEventCreateFromData(allocator: CFAllocatorRef, data: CFDataRef) -> CGEventRef;
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGEventTypes", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGEventTypes")]
     pub fn CGEventCreateMouseEvent(
         source: CGEventSourceRef,
         mouse_type: CGEventType,
@@ -94,17 +92,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGEventTypes", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGEventTypes")]
     pub fn CGEventGetLocation(event: CGEventRef) -> CGPoint;
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGEventTypes", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGEventTypes")]
     pub fn CGEventGetUnflippedLocation(event: CGEventRef) -> CGPoint;
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGEventTypes", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGEventTypes")]
     pub fn CGEventSetLocation(event: CGEventRef, location: CGPoint);
 }
 
@@ -158,7 +156,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGEventTypes", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGEventTypes")]
     pub fn CGEventTapCreate(
         tap: CGEventTapLocation,
         place: CGEventTapPlacement,
@@ -170,7 +168,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGEventTypes", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGEventTypes")]
     pub fn CGEventTapCreateForPSN(
         process_serial_number: NonNull<c_void>,
         place: CGEventTapPlacement,
@@ -182,11 +180,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(
-        feature = "CGEventTypes",
-        feature = "libc",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CGEventTypes", feature = "libc"))]
     pub fn CGEventTapCreateForPid(
         pid: libc::pid_t,
         place: CGEventTapPlacement,
@@ -198,12 +192,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGEventTapEnable(tap: CFMachPortRef, enable: bool);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGEventTapIsEnabled(tap: CFMachPortRef) -> bool;
 }
 

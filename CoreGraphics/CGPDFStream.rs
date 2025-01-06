@@ -3,7 +3,6 @@
 use core::ffi::*;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -41,6 +40,5 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGPDFStreamCopyData(stream: CGPDFStreamRef, format: *mut CGPDFDataFormat) -> CFDataRef;
 }

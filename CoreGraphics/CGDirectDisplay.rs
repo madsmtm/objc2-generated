@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -26,7 +25,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGError", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGError")]
     pub fn CGGetDisplaysWithPoint(
         point: CGPoint,
         max_displays: u32,
@@ -36,7 +35,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGError", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGError")]
     pub fn CGGetDisplaysWithRect(
         rect: CGRect,
         max_displays: u32,
@@ -82,7 +81,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGDisplayBounds(display: CGDirectDisplayID) -> CGRect;
 }
 
@@ -95,7 +93,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGDisplayCopyAllDisplayModes(
         display: CGDirectDisplayID,
         options: CFDictionaryRef,
@@ -104,7 +101,6 @@ extern "C-unwind" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplayshowduplicatelowresolutionmodes?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGDisplayShowDuplicateLowResolutionModes: CFStringRef;
 }
 
@@ -113,7 +109,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGError", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGError")]
     pub fn CGDisplaySetDisplayMode(
         display: CGDirectDisplayID,
         mode: CGDisplayModeRef,
@@ -130,7 +126,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn CGDisplayModeCopyPixelEncoding(mode: CGDisplayModeRef) -> CFStringRef;
 }
@@ -152,7 +147,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGDisplayModeGetTypeID() -> CFTypeID;
 }
 
@@ -329,7 +323,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGImage", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGImage")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub fn CGDisplayCreateImageForRect(display: CGDirectDisplayID, rect: CGRect) -> CGImageRef;
 }
@@ -345,7 +339,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGError", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGError")]
     pub fn CGDisplayMoveCursorToPoint(display: CGDirectDisplayID, point: CGPoint) -> CGError;
 }
 
@@ -366,13 +360,12 @@ pub type CGDisplayCount = u32;
 pub type CGDisplayErr = CGError;
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn CGDisplayAvailableModes(dsp: CGDirectDisplayID) -> CFArrayRef;
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "libc", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "libc")]
     #[deprecated = "No longer supported"]
     pub fn CGDisplayBestModeForParameters(
         display: CGDirectDisplayID,
@@ -384,7 +377,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "libc", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "libc")]
     #[deprecated = "No longer supported"]
     pub fn CGDisplayBestModeForParametersAndRefreshRate(
         display: CGDirectDisplayID,
@@ -397,13 +390,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn CGDisplayCurrentMode(display: CGDirectDisplayID) -> CFDictionaryRef;
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGError", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGError")]
     #[deprecated = "No longer supported"]
     pub fn CGDisplaySwitchToMode(display: CGDirectDisplayID, mode: CFDictionaryRef) -> CGError;
 }

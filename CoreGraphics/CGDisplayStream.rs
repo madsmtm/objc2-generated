@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-io-surface")]
 #[cfg(not(target_os = "watchos"))]
@@ -98,7 +97,6 @@ extern "C-unwind" {
     /// Returns the CF "class" ID for CGDisplayStreamUpdate
     ///
     /// Returns: The CFTypeID of the CGDisplayStreamUpdate class.
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub fn CGDisplayStreamUpdateGetTypeID() -> CFTypeID;
 }
@@ -112,7 +110,6 @@ extern "C-unwind" {
     /// Parameter `rectCount`: A pointer to where the count of the number of rectangles in the array is to be returned. Must not be NULL.
     ///
     /// Returns: A pointer to the array of CGRectangles.  This array should not be freed by the caller.
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub fn CGDisplayStreamUpdateGetRects(
         update_ref: CGDisplayStreamUpdateRef,
@@ -152,7 +149,6 @@ extern "C-unwind" {
     /// Parameter `dy`: A pointer to a CGFloat to store the y component of the movement delta
     ///
     /// The delta values describe the offset from the moved rectangles back to the source location.
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub fn CGDisplayStreamUpdateGetMovedRectsDelta(
         update_ref: CGDisplayStreamUpdateRef,
@@ -181,7 +177,6 @@ extern "C" {
     /// HiDPI displays.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamsourcerect?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGDisplayStreamSourceRect: CFStringRef;
 }
 
@@ -192,7 +187,6 @@ extern "C" {
     /// specified in terms of pixels.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamdestinationrect?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGDisplayStreamDestinationRect: CFStringRef;
 }
 
@@ -203,7 +197,6 @@ extern "C" {
     /// in order to preserve the source aspect ratio.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreampreserveaspectratio?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGDisplayStreamPreserveAspectRatio: CFStringRef;
 }
 
@@ -211,7 +204,6 @@ extern "C" {
     /// Set the desired CGColorSpace of the output frames.  By default the color space will be that of the display.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamcolorspace?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGDisplayStreamColorSpace: CFStringRef;
 }
 
@@ -219,7 +211,6 @@ extern "C" {
     /// Request that the delta between frame updates be at least as much specified by this value.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamminimumframetime?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGDisplayStreamMinimumFrameTime: CFStringRef;
 }
 
@@ -227,7 +218,6 @@ extern "C" {
     /// Controls whether the cursor is embedded within the provided buffers or not.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamshowcursor?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGDisplayStreamShowCursor: CFStringRef;
 }
 
@@ -235,7 +225,6 @@ extern "C" {
     /// Controls how many frames deep the frame queue will be.  Defaults to N.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamqueuedepth?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGDisplayStreamQueueDepth: CFStringRef;
 }
 
@@ -244,25 +233,21 @@ extern "C" {
     /// The value should be one of the three kCGDisplayStreamYCbCrMatrix values specified below.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamycbcrmatrix?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGDisplayStreamYCbCrMatrix: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamycbcrmatrix_itu_r_709_2?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGDisplayStreamYCbCrMatrix_ITU_R_709_2: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamycbcrmatrix_itu_r_601_4?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGDisplayStreamYCbCrMatrix_ITU_R_601_4: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamycbcrmatrix_smpte_240m_1995?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995: CFStringRef;
 }
 
@@ -270,7 +255,6 @@ extern "C-unwind" {
     /// Returns the CF "class" ID for CGDisplayStream
     ///
     /// Returns: The CFTypeID of the CGDisplayStream class.
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub fn CGDisplayStreamGetTypeID() -> CFTypeID;
 }
@@ -304,7 +288,6 @@ extern "C-unwind" {
     #[cfg(all(
         feature = "CGDirectDisplay",
         feature = "block2",
-        feature = "objc2-core-foundation",
         feature = "objc2-io-surface"
     ))]
     #[cfg(not(target_os = "watchos"))]
@@ -352,7 +335,6 @@ extern "C-unwind" {
     ///
     /// Returns: The CFRunLoopSource for this displayStream.  Note: This function will return NULL if the
     /// display stream was created via  CGDisplayStreamCreateWithDispatchQueue().
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub fn CGDisplayStreamGetRunLoopSource(
         display_stream: CGDisplayStreamRef,

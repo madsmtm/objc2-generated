@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -324,109 +323,91 @@ unsafe impl RefEncode for CVPlanarPixelBufferInfo_YCbCrBiPlanar {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpixelformattypekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferPixelFormatTypeKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbuffermemoryallocatorkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferMemoryAllocatorKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferwidthkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferWidthKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferheightkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferHeightKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferextendedpixelsleftkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferExtendedPixelsLeftKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferextendedpixelstopkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferExtendedPixelsTopKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferextendedpixelsrightkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferExtendedPixelsRightKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferextendedpixelsbottomkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferExtendedPixelsBottomKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferbytesperrowalignmentkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferBytesPerRowAlignmentKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbuffercgbitmapcontextcompatibilitykey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferCGBitmapContextCompatibilityKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbuffercgimagecompatibilitykey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferCGImageCompatibilityKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferopenglcompatibilitykey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferOpenGLCompatibilityKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferplanealignmentkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferPlaneAlignmentKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferiosurfacepropertieskey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferIOSurfacePropertiesKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferopenglescompatibilitykey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferOpenGLESCompatibilityKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbuffermetalcompatibilitykey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferMetalCompatibilityKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferopengltexturecachecompatibilitykey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferOpenGLTextureCacheCompatibilityKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferopenglestexturecachecompatibilitykey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferOpenGLESTextureCacheCompatibilityKey: CFStringRef;
 }
 
@@ -436,7 +417,6 @@ extern "C" {
     /// Associated attachment is a CFNumber of type kCFNumberSInt32Type.  The value follows the semantics of the ProRes RAW bayer_pattern bitstream syntax element, namely 0, 1, 2, or 3, where 0 means the top-left sensel of the frame is red-filtered ("RGGB"); 1 means the top-left sensel of the frame is green-filtered, with the top row alternating between green- and red-filtered sensels ("GRBG"); 2 means the top-left sensel of the frame is green- filtered, with the top row alternating between green- and blue-filtered sensels ("GBRG"); and 3 means the top-left sensel of the frame is blue-filtered ("BGGR").  This attachment applies only to buffers with VersatileBayer formats.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferversatilebayerkey_bayerpattern?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferVersatileBayerKey_BayerPattern: CFStringRef;
 }
 
@@ -455,7 +435,6 @@ extern "C" {
     /// Associated attachment is CFData containing an array of 8 32-bit floats.  The eight CFData array elements specify, in order, the following sensel/component offsets from pixel center: red horizontal offset, red vertical offset, green horizontal offset, green vertical offset, blue horizontal offset, blue vertical offset, alpha horizontal offset, and alpha vertical offset.  A positive offset value indicates that the sensel/component lies to the right of or below the center of its pixel, while a negative value indicates that the sensel/component lies to the left of or above the center of its pixel.  Horizontal and vertical offset magnitudes are respectively in terms of the spacing between horizontally- and vertically-adjacent pixel centers.  This attachment applies only to buffers with the bp64 format, and is optional for those buffers; if not present, all offsets are considered to be 0.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_senselsitingoffsets?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferProResRAWKey_SenselSitingOffsets: CFStringRef;
 }
 
@@ -465,7 +444,6 @@ extern "C" {
     /// Associated attachment is a CFNumber of type kCFNumberSInt32Type.  The value is the sensel level corresponding to no light exposure.  This attachment is required for buffers with either the bp16 or bp64 format.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_blacklevel?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferProResRAWKey_BlackLevel: CFStringRef;
 }
 
@@ -475,7 +453,6 @@ extern "C" {
     /// Associated attachment is a CFNumber of type kCFNumberSInt32Type.  The value is the sensel level corresponding to sensor (or camera A-to-D converter) saturation.  This attachment is required for buffers with either the bp16 or bp64 format.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_whitelevel?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferProResRAWKey_WhiteLevel: CFStringRef;
 }
 
@@ -485,7 +462,6 @@ extern "C" {
     /// Associated attachment is a CFNumber of type kCFNumberSInt32Type.  The value is the illuminant correlated color temperature (CCT), in kelvins, selected at the time of capture.  May be 0, indicating that the CCT is unknown or unspecified.  This attachment is optional for buffers with either the bp16 or bp64 format; if not present, the CCT is considered unknown or unspecified.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_whitebalancecct?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferProResRAWKey_WhiteBalanceCCT: CFStringRef;
 }
 
@@ -495,7 +471,6 @@ extern "C" {
     /// Associated attachment is a CFNumber of type kCFNumberFloat32Type.  The value is the white balance multiplication factor for red-filtered sensels.  This attachment is required for buffers with either the bp16 or bp64 format.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_whitebalanceredfactor?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferProResRAWKey_WhiteBalanceRedFactor: CFStringRef;
 }
 
@@ -505,7 +480,6 @@ extern "C" {
     /// Associated attachment is a CFNumber of type kCFNumberFloat32Type.  The value is the white balance multiplication factor for blue-filtered sensels.  This attachment is required for buffers with either the bp16 or bp64 format.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_whitebalancebluefactor?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferProResRAWKey_WhiteBalanceBlueFactor: CFStringRef;
 }
 
@@ -515,7 +489,6 @@ extern "C" {
     /// Associated attachment is CFData containing an array of 9 32-bit floats.  The value is a 3x3 matrix which transforms linear RGB pixel values in the camera native color space to CIE 1931 XYZ values relative to the D65 illuminant, where the matrix entries are stored in the CFData in row-major order.  This attachment is required for buffers with either the bp16 or bp64 format.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_colormatrix?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferProResRAWKey_ColorMatrix: CFStringRef;
 }
 
@@ -525,7 +498,6 @@ extern "C" {
     /// Associated attachment is a CFNumber of type kCFNumberFloat32Type.  The value is the overall gain factor for raw conversion.  This attachment is required for buffers with either the bp16 or bp64 format.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_gainfactor?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferProResRAWKey_GainFactor: CFStringRef;
 }
 
@@ -535,7 +507,6 @@ extern "C" {
     /// Associated attachment is CFData containing an array of 4 32-bit floats.  The four CFData array elements specify, in order, the recommended number of: pixels to discard from the start (left) of each row of the image; pixels to discard from the end (right) of each row of the image; rows of pixels to discard from the top of the image; and rows of pixels to discard from the bottom of the image.  (Pixels/rows are discarded after raw conversion.)  This attachment is optional for buffers with either the bp16 or bp64 format; if not present, the recommended crop values are considered to be 0.  For buffers with the bp64 format, the values may be nonintegral due to downscaling, in which case the handling of fractional parts is implementation-dependent.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_recommendedcrop?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferProResRAWKey_RecommendedCrop: CFStringRef;
 }
 
@@ -545,7 +516,6 @@ extern "C" {
     /// Associated attachment is CFData containing ProRes RAW metadata extension. This attachment is optional for buffers with either bp16 or bp64.  The CFData contains a big-endian uint32 representing the size of the item in bytes followed by a 4-character code ('psim') followed by a variable-length pascal string identifying the metadata (like a key string) followed by the metadata payload.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferproresrawkey_metadataextension?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferProResRAWKey_MetadataExtension: CFStringRef;
 }
 
@@ -556,7 +526,6 @@ extern "C" {
 pub type CVPixelBufferRef = CVImageBufferRef;
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CVPixelBufferGetTypeID() -> CFTypeID;
 }
 
@@ -583,7 +552,7 @@ extern "C-unwind" {
     /// Parameter `resolvedDictionaryOut`: The resulting dictionary will be placed here.
     ///
     /// Returns: Return value that may be useful in discovering why resolution failed.
-    #[cfg(all(feature = "CVReturn", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CVReturn")]
     pub fn CVPixelBufferCreateResolvedAttributesDictionary(
         allocator: CFAllocatorRef,
         attributes: CFArrayRef,
@@ -607,12 +576,7 @@ extern "C-unwind" {
     /// Parameter `pixelBufferOut`: The new pixel buffer will be returned here
     ///
     /// Returns: returns kCVReturnSuccess on success.
-    #[cfg(all(
-        feature = "CVBuffer",
-        feature = "CVImageBuffer",
-        feature = "CVReturn",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreate(
         allocator: CFAllocatorRef,
         width: usize,
@@ -651,12 +615,7 @@ extern "C-unwind" {
     /// Parameter `pixelBufferOut`: The new pixel buffer will be returned here
     ///
     /// Returns: returns kCVReturnSuccess on success.
-    #[cfg(all(
-        feature = "CVBuffer",
-        feature = "CVImageBuffer",
-        feature = "CVReturn",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreateWithBytes(
         allocator: CFAllocatorRef,
         width: usize,
@@ -710,12 +669,7 @@ extern "C-unwind" {
     /// Parameter `pixelBufferOut`: The new pixel buffer will be returned here
     ///
     /// Returns: returns kCVReturnSuccess on success.
-    #[cfg(all(
-        feature = "CVBuffer",
-        feature = "CVImageBuffer",
-        feature = "CVReturn",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreateWithPlanarBytes(
         allocator: CFAllocatorRef,
         width: usize,
@@ -975,10 +929,6 @@ extern "C-unwind" {
     /// Can be used to create similar pixelbuffers.
     ///
     /// Parameter `pixelBuffer`: Target PixelBuffer.
-    #[cfg(all(
-        feature = "CVBuffer",
-        feature = "CVImageBuffer",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
     pub fn CVPixelBufferCopyCreationAttributes(pixel_buffer: CVPixelBufferRef) -> CFDictionaryRef;
 }

@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
@@ -16,7 +15,6 @@ pub type CTGlyphInfoRef = *const c_void;
 
 extern "C-unwind" {
     /// Returns the CFType of the glyph info object
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTGlyphInfoGetTypeID() -> CFTypeID;
 }
 
@@ -103,7 +101,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function will return a reference to a CTGlyphInfo object.
-    #[cfg(all(feature = "CTFont", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CTFont")]
     pub fn CTGlyphInfoCreateWithGlyphName(
         glyph_name: CFStringRef,
         font: CTFontRef,
@@ -130,11 +128,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function will return a reference to a CTGlyphInfo object.
-    #[cfg(all(
-        feature = "CTFont",
-        feature = "objc2-core-foundation",
-        feature = "objc2-core-graphics"
-    ))]
+    #[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
     pub fn CTGlyphInfoCreateWithGlyph(
         glyph: CGGlyph,
         font: CTFontRef,
@@ -161,7 +155,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function will return a reference to a CTGlyphInfo object.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+    #[cfg(feature = "objc2-core-graphics")]
     pub fn CTGlyphInfoCreateWithCharacterIdentifier(
         cid: CGFontIndex,
         collection: CTCharacterCollection,
@@ -181,7 +175,6 @@ extern "C-unwind" {
     ///
     /// Returns: If the glyph info object was created with a glyph name, it will
     /// be returned. Otherwise, this function will return NULL.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTGlyphInfoGetGlyphName(glyph_info: CTGlyphInfoRef) -> CFStringRef;
 }
 

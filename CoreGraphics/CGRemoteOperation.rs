@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -26,12 +25,11 @@ pub type CGCharCode = u16;
 pub type CGKeyCode = u16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscreenrefreshcallback?language=objc)
-#[cfg(feature = "objc2-core-foundation")]
 pub type CGScreenRefreshCallback =
     Option<unsafe extern "C-unwind" fn(u32, NonNull<CGRect>, *mut c_void)>;
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGError", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGError")]
     #[deprecated = "No longer supported"]
     pub fn CGRegisterScreenRefreshCallback(
         callback: CGScreenRefreshCallback,
@@ -40,7 +38,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn CGUnregisterScreenRefreshCallback(
         callback: CGScreenRefreshCallback,
@@ -49,7 +46,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGError", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGError")]
     #[deprecated = "No longer supported"]
     pub fn CGWaitForScreenRefreshRects(rects: *mut *mut CGRect, count: *mut u32) -> CGError;
 }
@@ -102,13 +99,12 @@ unsafe impl RefEncode for CGScreenUpdateMoveDelta {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscreenupdatemovecallback?language=objc)
-#[cfg(feature = "objc2-core-foundation")]
 pub type CGScreenUpdateMoveCallback = Option<
     unsafe extern "C-unwind" fn(CGScreenUpdateMoveDelta, usize, NonNull<CGRect>, *mut c_void),
 >;
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGError", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGError")]
     #[deprecated = "No longer supported"]
     pub fn CGScreenRegisterMoveCallback(
         callback: CGScreenUpdateMoveCallback,
@@ -117,7 +113,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn CGScreenUnregisterMoveCallback(
         callback: CGScreenUpdateMoveCallback,
@@ -126,7 +121,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGError", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGError")]
     #[deprecated = "No longer supported"]
     pub fn CGWaitForScreenUpdateRects(
         requested_operations: CGScreenUpdateOperation,
@@ -138,7 +133,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn CGReleaseScreenRefreshRects(rects: *mut CGRect);
 }
@@ -156,7 +150,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGError", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGError")]
     pub fn CGWarpMouseCursorPosition(new_cursor_position: CGPoint) -> CGError;
 }
 
@@ -166,7 +160,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGWindowServerCreateServerPort() -> CFMachPortRef;
 }
 
@@ -252,13 +245,12 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGError", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGError")]
     #[deprecated = "No longer supported"]
     pub fn CGSetLocalEventsSuppressionInterval(seconds: CFTimeInterval) -> CGError;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn CGWindowServerCFMachPort() -> CFMachPortRef;
 }

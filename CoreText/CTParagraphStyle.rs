@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -14,7 +13,6 @@ pub type CTParagraphStyleRef = *const c_void;
 
 extern "C-unwind" {
     /// Returns the CFType of the paragraph style object
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTParagraphStyleGetTypeID() -> CFTypeID;
 }
 

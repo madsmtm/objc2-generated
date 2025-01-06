@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
@@ -16,7 +15,6 @@ pub type CTRunDelegateRef = *const c_void;
 
 extern "C-unwind" {
     /// Returns the CFType of CTRunDelegate objects.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunDelegateGetTypeID() -> CFTypeID;
 }
 
@@ -38,7 +36,6 @@ pub type CTRunDelegateDeallocateCallback = Option<unsafe extern "C-unwind" fn(No
 /// which a run delegate pertains.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegategetascentcallback?language=objc)
-#[cfg(feature = "objc2-core-foundation")]
 pub type CTRunDelegateGetAscentCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> CGFloat>;
 
@@ -52,7 +49,6 @@ pub type CTRunDelegateGetAscentCallback =
 /// which a run delegate pertains.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegategetdescentcallback?language=objc)
-#[cfg(feature = "objc2-core-foundation")]
 pub type CTRunDelegateGetDescentCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> CGFloat>;
 
@@ -67,7 +63,6 @@ pub type CTRunDelegateGetDescentCallback =
 /// should not be drawn.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegategetwidthcallback?language=objc)
-#[cfg(feature = "objc2-core-foundation")]
 pub type CTRunDelegateGetWidthCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> CGFloat>;
 
@@ -105,7 +100,6 @@ pub type CTRunDelegateGetWidthCallback =
 /// to a getWidth callback that always returns 0.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegatecallbacks?language=objc)
-#[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CTRunDelegateCallbacks {
@@ -116,7 +110,7 @@ pub struct CTRunDelegateCallbacks {
     pub getWidth: CTRunDelegateGetWidthCallback,
 }
 
-#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CTRunDelegateCallbacks {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
@@ -130,7 +124,7 @@ unsafe impl Encode for CTRunDelegateCallbacks {
     );
 }
 
-#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CTRunDelegateCallbacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -155,7 +149,6 @@ extern "C-unwind" {
     /// Returns: If run delegate creation was successful, this function will
     /// return a valid reference to an immutable CTRunDelegate
     /// object. Otherwise, this function will return NULL.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTRunDelegateCreate(
         callbacks: NonNull<CTRunDelegateCallbacks>,
         ref_con: *mut c_void,
@@ -182,7 +175,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctadaptiveimageproviding?language=objc)
     #[cfg(feature = "objc2")]
     pub unsafe trait CTAdaptiveImageProviding {
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[cfg(feature = "objc2-core-graphics")]
         #[method(imageForProposedSize:scaleFactor:imageOffset:imageSize:)]
         unsafe fn imageForProposedSize_scaleFactor_imageOffset_imageSize(
             &self,

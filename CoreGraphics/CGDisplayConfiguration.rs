@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -28,11 +27,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(
-        feature = "CGDirectDisplay",
-        feature = "CGError",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
     pub fn CGConfigureDisplayWithDisplayMode(
         config: CGDisplayConfigRef,
         display: CGDirectDisplayID,
@@ -258,7 +253,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGDirectDisplay", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGDirectDisplay")]
     pub fn CGDisplayScreenSize(display: CGDirectDisplayID) -> CGSize;
 }
 
@@ -273,11 +268,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(
-        feature = "CGDirectDisplay",
-        feature = "CGError",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
     #[deprecated = "No longer supported"]
     pub fn CGConfigureDisplayMode(
         config: CGDisplayConfigRef,

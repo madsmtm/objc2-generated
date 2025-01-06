@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -117,7 +116,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBlockBufferCreateEmpty(
         structure_allocator: CFAllocatorRef,
         sub_block_capacity: u32,
@@ -167,7 +165,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBlockBufferCreateWithMemoryBlock(
         structure_allocator: CFAllocatorRef,
         memory_block: *mut c_void,
@@ -205,7 +202,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBlockBufferCreateWithBufferReference(
         structure_allocator: CFAllocatorRef,
         buffer_reference: CMBlockBufferRef,
@@ -250,7 +246,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBlockBufferCreateContiguous(
         structure_allocator: CFAllocatorRef,
         source_buffer: CMBlockBufferRef,
@@ -270,7 +265,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns the CFTypeID corresponding to CMBlockBuffer.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBlockBufferGetTypeID() -> CFTypeID;
 }
 
@@ -314,7 +308,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns kCMBlockBufferNoErr if successful.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMBlockBufferAppendMemoryBlock(
         the_buffer: CMBlockBufferRef,
         memory_block: *mut c_void,

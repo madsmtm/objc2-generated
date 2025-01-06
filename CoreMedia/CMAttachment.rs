@@ -2,13 +2,11 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmattachmentbearerref?language=objc)
-#[cfg(feature = "objc2-core-foundation")]
 pub type CMAttachmentBearerRef = CFTypeRef;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmattachmentmode?language=objc)
@@ -32,7 +30,6 @@ extern "C-unwind" {
     ///
     /// Parameter `attachmentMode`: Specifies which attachment mode is desired for this attachment.   A particular attachment key may only exist in
     /// a single mode at a time.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMSetAttachment(
         target: CMAttachmentBearerRef,
         key: CFStringRef,
@@ -53,7 +50,6 @@ extern "C-unwind" {
     /// Parameter `attachmentModeOut`: Returns the mode of the attachment, if desired.  May be NULL.
     ///
     /// Returns: If found the attachment object; else NULL.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMGetAttachment(
         target: CMAttachmentBearerRef,
         key: CFStringRef,
@@ -69,7 +65,6 @@ extern "C-unwind" {
     /// Parameter `target`: Target CMAttachmentBearer.
     ///
     /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMRemoveAttachment(target: CMAttachmentBearerRef, key: CFStringRef);
 }
 
@@ -79,7 +74,6 @@ extern "C-unwind" {
     /// While CMRemoveAttachment removes a specific attachment identified by a key CMRemoveAllAttachments removes all attachments of a buffer and decrements their retain counts.  Given a CVBufferRef, CMRemoveAllAttachments is equivalent to CVBufferRemoveAllAttachments.
     ///
     /// Parameter `target`: Target CMAttachmentBearer.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMRemoveAllAttachments(target: CMAttachmentBearerRef);
 }
 
@@ -94,7 +88,6 @@ extern "C-unwind" {
     ///
     /// Returns: A CFDictionary with all buffer attachments identified by there keys. If no attachment is present, NULL is returned.  Returns NULL
     /// for invalid attachment mode.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMCopyDictionaryOfAttachments(
         allocator: CFAllocatorRef,
         target: CMAttachmentBearerRef,
@@ -108,7 +101,6 @@ extern "C-unwind" {
     /// CMSetAttachments is a convenience call that in turn calls CMSetAttachment for each key and value in the given dictionary. All key value pairs must be in the root level of the dictionary.  Given a CVBufferRef, CMSetAttachments is equivalent to CVBufferSetAttachments.
     ///
     /// Parameter `target`: Target CMAttachmentBearer.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMSetAttachments(
         target: CMAttachmentBearerRef,
         the_attachments: CFDictionaryRef,
@@ -125,7 +117,6 @@ extern "C-unwind" {
     /// Parameter `source`: CMAttachmentBearer to copy attachments from.
     ///
     /// Parameter `destination`: CMAttachmentBearer to copy attachments to.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMPropagateAttachments(
         source: CMAttachmentBearerRef,
         destination: CMAttachmentBearerRef,

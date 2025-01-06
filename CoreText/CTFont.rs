@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
@@ -18,7 +17,6 @@ extern "C-unwind" {
     /// Returns the type identifier for Core Text font references.
     ///
     /// Returns: The identifier for the opaque type CTFontRef.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontGetTypeID() -> CFTypeID;
 }
 
@@ -28,7 +26,6 @@ extern "C" {
     /// The name specifier for the copyright name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontcopyrightnamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontCopyrightNameKey: CFStringRef;
 }
 
@@ -38,7 +35,6 @@ extern "C" {
     /// The name specifier for the family name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfamilynamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontFamilyNameKey: CFStringRef;
 }
 
@@ -48,7 +44,6 @@ extern "C" {
     /// The name specifier for the subfamily name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontsubfamilynamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontSubFamilyNameKey: CFStringRef;
 }
 
@@ -58,7 +53,6 @@ extern "C" {
     /// The name specifier for the style name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontstylenamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontStyleNameKey: CFStringRef;
 }
 
@@ -71,7 +65,6 @@ extern "C" {
     /// assumed to be truly unique.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontuniquenamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontUniqueNameKey: CFStringRef;
 }
 
@@ -81,7 +74,6 @@ extern "C" {
     /// The name specifier for the full name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfullnamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontFullNameKey: CFStringRef;
 }
 
@@ -91,7 +83,6 @@ extern "C" {
     /// The name specifier for the version name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontversionnamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontVersionNameKey: CFStringRef;
 }
 
@@ -101,7 +92,6 @@ extern "C" {
     /// The name specifier for the PostScript name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontpostscriptnamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontPostScriptNameKey: CFStringRef;
 }
 
@@ -111,7 +101,6 @@ extern "C" {
     /// The name specifier for the trademark name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfonttrademarknamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontTrademarkNameKey: CFStringRef;
 }
 
@@ -121,7 +110,6 @@ extern "C" {
     /// The name specifier for the manufacturer name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmanufacturernamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontManufacturerNameKey: CFStringRef;
 }
 
@@ -131,7 +119,6 @@ extern "C" {
     /// The name specifier for the designer name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdesignernamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontDesignerNameKey: CFStringRef;
 }
 
@@ -141,7 +128,6 @@ extern "C" {
     /// The name specifier for the description name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdescriptionnamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontDescriptionNameKey: CFStringRef;
 }
 
@@ -151,7 +137,6 @@ extern "C" {
     /// The name specifier for the vendor url name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontvendorurlnamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontVendorURLNameKey: CFStringRef;
 }
 
@@ -161,7 +146,6 @@ extern "C" {
     /// The name specifier for the designer url name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdesignerurlnamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontDesignerURLNameKey: CFStringRef;
 }
 
@@ -171,7 +155,6 @@ extern "C" {
     /// The name specifier for the license name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontlicensenamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontLicenseNameKey: CFStringRef;
 }
 
@@ -181,7 +164,6 @@ extern "C" {
     /// The name specifier for the license url name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontlicenseurlnamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontLicenseURLNameKey: CFStringRef;
 }
 
@@ -191,7 +173,6 @@ extern "C" {
     /// The name specifier for the sample text name string.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontsampletextnamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontSampleTextNameKey: CFStringRef;
 }
 
@@ -201,7 +182,6 @@ extern "C" {
     /// The name specifier for the PostScript CID name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontpostscriptcidnamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontPostScriptCIDNameKey: CFStringRef;
 }
 
@@ -222,7 +202,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function will return a CTFontRef that best matches the name provided with size and matrix attributes. The name parameter is the only required parameters, and default values will be used for unspecified parameters. A best match will be found if all parameters cannot be matched identically.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCreateWithName(
         name: CFStringRef,
         size: CGFloat,
@@ -244,7 +223,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function will return a CTFontRef that best matches the attributes provided with the font descriptor. The size and matrix parameters will override any specified in the font descriptor, unless they are unspecified. A best match font will always be returned, and default values will be used for any unspecified.
-    #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CTFontDescriptor")]
     pub fn CTFontCreateWithFontDescriptor(
         descriptor: CTFontDescriptorRef,
         size: CGFloat,
@@ -263,11 +242,9 @@ extern "C-unwind" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontoptions?language=objc)
 // NS_OPTIONS
-#[cfg(feature = "objc2-core-foundation")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTFontOptions(pub CFOptionFlags);
-#[cfg(feature = "objc2-core-foundation")]
 bitflags::bitflags! {
     impl CTFontOptions: CFOptionFlags {
         #[doc(alias = "kCTFontOptionsDefault")]
@@ -281,12 +258,12 @@ bitflags::bitflags! {
     }
 }
 
-#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CTFontOptions {
     const ENCODING: Encoding = CFOptionFlags::ENCODING;
 }
 
-#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CTFontOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -311,7 +288,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function will return a CTFontRef that best matches the name provided with size and matrix attributes. The name parameter is the only required parameters, and default values will be used for unspecified parameters. A best match will be found if all parameters cannot be matched identically.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCreateWithNameAndOptions(
         name: CFStringRef,
         size: CGFloat,
@@ -337,7 +313,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function will return a CTFontRef that best matches the attributes provided with the font descriptor. The size and matrix parameters will override any specified in the font descriptor, unless they are unspecified. A best match font will always be returned, and default values will be used for any unspecified.
-    #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CTFontDescriptor")]
     pub fn CTFontCreateWithFontDescriptorAndOptions(
         descriptor: CTFontDescriptorRef,
         size: CGFloat,
@@ -496,7 +472,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns the correct font for various UI uses. The only required parameter is the uiType selector, unspecified optional parameters will use default values.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCreateUIFontForLanguage(
         ui_type: CTFontUIFontType,
         size: CGFloat,
@@ -524,7 +499,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns a new font reference converted from the original with the specified attributes.
-    #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CTFontDescriptor")]
     pub fn CTFontCreateCopyWithAttributes(
         font: CTFontRef,
         size: CGFloat,
@@ -553,7 +528,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns a new font reference in the same family with the given symbolic traits, or NULL if none found in the system.
-    #[cfg(all(feature = "CTFontTraits", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CTFontTraits")]
     pub fn CTFontCreateCopyWithSymbolicTraits(
         font: CTFontRef,
         size: CGFloat,
@@ -580,7 +555,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns a new font reference with the original traits in the given family. NULL if non found in the system.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCreateCopyWithFamily(
         font: CTFontRef,
         size: CGFloat,
@@ -613,7 +587,6 @@ extern "C-unwind" {
     /// See also: CTFontGetGlyphsForCharacters
     ///
     /// See also: kCTFontCascadeListAttribute
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCreateForString(
         current_font: CTFontRef,
         string: CFStringRef,
@@ -648,7 +621,6 @@ extern "C-unwind" {
     /// See also: CTFontGetGlyphsForCharacters
     ///
     /// See also: kCTFontCascadeListAttribute
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCreateForStringWithLanguage(
         current_font: CTFontRef,
         string: CFStringRef,
@@ -680,7 +652,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns a retained reference to an arbitrary attribute. If the requested attribute is not present, NULL is returned. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCopyAttribute(font: CTFontRef, attribute: CFStringRef) -> CFTypeRef;
 }
 
@@ -692,7 +663,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns the point size of the given font reference. This is the point size provided when the font was created.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontGetSize(font: CTFontRef) -> CGFloat;
 }
 
@@ -704,7 +674,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns the transformation matrix for this given font reference. This is the matrix that was provided when the font was created.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontGetMatrix(font: CTFontRef) -> CGAffineTransform;
 }
 
@@ -728,7 +697,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns a retained reference to the font traits dictionary. Individual traits can be accessed with the trait key constants. See CTFontTraits.h for a definition of the font traits.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCopyTraits(font: CTFontRef) -> CFDictionaryRef;
 }
 
@@ -743,7 +711,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The ordered list of fallback fonts - ordered array of CTFontDescriptors.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCopyDefaultCascadeListForLanguages(
         font: CTFontRef,
         language_pref_list: CFArrayRef,
@@ -758,7 +725,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns a retained reference to the PostScript name of the font.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCopyPostScriptName(font: CTFontRef) -> CFStringRef;
 }
 
@@ -770,7 +736,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns a retained reference to the family name of the font.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCopyFamilyName(font: CTFontRef) -> CFStringRef;
 }
 
@@ -782,7 +747,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns a retained reference to the full name of the font.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCopyFullName(font: CTFontRef) -> CFStringRef;
 }
 
@@ -794,7 +758,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns a retained reference to the localized display name of the font.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCopyDisplayName(font: CTFontRef) -> CFStringRef;
 }
 
@@ -809,7 +772,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function creates the requested name for the font, or NULL if the font does not have an entry for the requested name. The Unicode version of the name will be preferred, otherwise the first available will be used.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCopyName(font: CTFontRef, name_key: CFStringRef) -> CFStringRef;
 }
 
@@ -828,7 +790,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns a specific localized name from the font reference. The name is localized based on the user's global language precedence. If the font does not have an entry for the requested name, NULL will be returned. The matched language will be returned in the caller's buffer.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCopyLocalizedName(
         font: CTFontRef,
         name_key: CFStringRef,
@@ -844,7 +805,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns a retained reference to the font's character set. This character set covers the nominal referenced by the font's Unicode cmap table (or equivalent).
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCopyCharacterSet(font: CTFontRef) -> CFCharacterSetRef;
 }
 
@@ -856,7 +816,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns the best string encoding for the font.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontGetStringEncoding(font: CTFontRef) -> CFStringEncoding;
 }
 
@@ -868,7 +827,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns a retained reference to an array of languages supported by the font. The array contains language identifier strings as CFStringRefs. The format of the language identifier will conform to UTS #35.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCopySupportedLanguages(font: CTFontRef) -> CFArrayRef;
 }
 
@@ -895,7 +853,7 @@ extern "C-unwind" {
     ///
     ///
     /// See also: CTFontCopyCharacterSet
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+    #[cfg(feature = "objc2-core-graphics")]
     pub fn CTFontGetGlyphsForCharacters(
         font: CTFontRef,
         characters: NonNull<UniChar>,
@@ -912,7 +870,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns the font ascent metric scaled based on the point size and matrix of the font reference.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontGetAscent(font: CTFontRef) -> CGFloat;
 }
 
@@ -924,7 +881,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns the font descent metric scaled based on the point size and matrix of the font reference.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontGetDescent(font: CTFontRef) -> CGFloat;
 }
 
@@ -936,7 +892,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns the font leading metric scaled based on the point size and matrix of the font reference.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontGetLeading(font: CTFontRef) -> CGFloat;
 }
 
@@ -959,7 +914,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns the number of glyphs in the font.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontGetGlyphCount(font: CTFontRef) -> CFIndex;
 }
 
@@ -971,7 +925,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This will return the design bounding box of the font, which is the rectangle defined by xMin, yMin, xMax, and yMax values for the font.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontGetBoundingBox(font: CTFontRef) -> CGRect;
 }
 
@@ -983,7 +936,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns the font underline position metric scaled based on the point size and matrix of the font reference.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontGetUnderlinePosition(font: CTFontRef) -> CGFloat;
 }
 
@@ -995,7 +947,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns the font underline thickness metric scaled based on the point size and matrix of the font reference.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontGetUnderlineThickness(font: CTFontRef) -> CGFloat;
 }
 
@@ -1007,7 +958,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns the transformed slant angle of the font. This is equivalent to the italic or caret angle with any skew from the transformation matrix applied.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontGetSlantAngle(font: CTFontRef) -> CGFloat;
 }
 
@@ -1019,7 +969,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns the font cap height metric scaled based on the point size and matrix of the font reference.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontGetCapHeight(font: CTFontRef) -> CGFloat;
 }
 
@@ -1031,7 +980,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns the font X height metric scaled based on the point size and matrix of the font reference.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontGetXHeight(font: CTFontRef) -> CGFloat;
 }
 
@@ -1046,7 +994,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The glyph with the specified name or 0 if the name is not recognized; this glyph can be used with other Core Text glyph data accessors or with Quartz.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+    #[cfg(feature = "objc2-core-graphics")]
     pub fn CTFontGetGlyphWithName(font: CTFontRef, glyph_name: CFStringRef) -> CGGlyph;
 }
 
@@ -1064,7 +1012,7 @@ extern "C-unwind" {
     ///
     ///
     /// See also: CTFontGetGlyphWithName
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+    #[cfg(feature = "objc2-core-graphics")]
     pub fn CTFontCopyNameForGlyph(font: CTFontRef, glyph: CGGlyph) -> CFStringRef;
 }
 
@@ -1088,11 +1036,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns the overall bounding rectangle for an array or run of glyphs. The bounding rects of the individual glyphs are returned through the boundingRects parameter. These are the design metrics from the font transformed in font space.
-    #[cfg(all(
-        feature = "CTFontDescriptor",
-        feature = "objc2-core-foundation",
-        feature = "objc2-core-graphics"
-    ))]
+    #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
     pub fn CTFontGetBoundingRectsForGlyphs(
         font: CTFontRef,
         orientation: CTFontOrientation,
@@ -1125,7 +1069,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns the overall bounding rectangle for an array or run of glyphs. The bounding rects of the individual glyphs are returned through the boundingRects parameter. These are the design metrics from the font transformed in font space.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+    #[cfg(feature = "objc2-core-graphics")]
     pub fn CTFontGetOpticalBoundsForGlyphs(
         font: CTFontRef,
         glyphs: NonNull<CGGlyph>,
@@ -1155,11 +1099,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns the summed glyph advance of an array of glyphs. Individual glyph advances are passed back via the advances parameter. These are the ideal metrics for each glyph scaled and transformed in font space.
-    #[cfg(all(
-        feature = "CTFontDescriptor",
-        feature = "objc2-core-foundation",
-        feature = "objc2-core-graphics"
-    ))]
+    #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
     pub fn CTFontGetAdvancesForGlyphs(
         font: CTFontRef,
         orientation: CTFontOrientation,
@@ -1183,7 +1123,7 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `count`: The capacity of the glyphs and translations buffers.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+    #[cfg(feature = "objc2-core-graphics")]
     pub fn CTFontGetVerticalTranslationsForGlyphs(
         font: CTFontRef,
         glyphs: NonNull<CGGlyph>,
@@ -1209,7 +1149,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A retained CGPath reference containing the glyph outlines or NULL if there is no such glyph or it has no outline.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+    #[cfg(feature = "objc2-core-graphics")]
     pub fn CTFontCreatePathForGlyph(
         font: CTFontRef,
         glyph: CGGlyph,
@@ -1225,7 +1165,6 @@ extern "C" {
     /// This key is used with a variation axis dictionary to get the axis identifier value as a CFNumberRef.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontvariationaxisidentifierkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontVariationAxisIdentifierKey: CFStringRef;
 }
 
@@ -1237,7 +1176,6 @@ extern "C" {
     /// This key is used with a variation axis dictionary to get the minimum axis value as a CFNumberRef.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontvariationaxisminimumvaluekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontVariationAxisMinimumValueKey: CFStringRef;
 }
 
@@ -1249,7 +1187,6 @@ extern "C" {
     /// This key is used with a variation axis dictionary to get the maximum axis value as a CFNumberRef.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontvariationaxismaximumvaluekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontVariationAxisMaximumValueKey: CFStringRef;
 }
 
@@ -1261,7 +1198,6 @@ extern "C" {
     /// This key is used with a variation axis dictionary to get the default axis value as a CFNumberRef.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontvariationaxisdefaultvaluekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontVariationAxisDefaultValueKey: CFStringRef;
 }
 
@@ -1273,7 +1209,6 @@ extern "C" {
     /// This key is used with a variation axis dictionary to get the variation axis name.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontvariationaxisnamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontVariationAxisNameKey: CFStringRef;
 }
 
@@ -1285,7 +1220,6 @@ extern "C" {
     /// This key contains a CFBoolean value that is true when the font designer recommends the axis not be exposed directly to end users in application interfaces.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontvariationaxishiddenkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontVariationAxisHiddenKey: CFStringRef;
 }
 
@@ -1299,7 +1233,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: An array of variation axis dictionaries or null if the font does not support variations.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCopyVariationAxes(font: CTFontRef) -> CFArrayRef;
 }
 
@@ -1318,7 +1251,6 @@ extern "C-unwind" {
     /// See also: kCTFontVariationAxisIdentifierKey
     ///
     /// See also: kCTFontVariationAxisDefaultValueKey
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCopyVariation(font: CTFontRef) -> CFDictionaryRef;
 }
 
@@ -1330,7 +1262,6 @@ extern "C" {
     /// This key can be used with a font feature dictionary to get the tag as a CFStringRef.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontopentypefeaturetag?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontOpenTypeFeatureTag: CFStringRef;
 }
 
@@ -1342,7 +1273,6 @@ extern "C" {
     /// This key can be used with a font feature dictionary to get the value as a CFNumberRef.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontopentypefeaturevalue?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontOpenTypeFeatureValue: CFStringRef;
 }
 
@@ -1354,7 +1284,6 @@ extern "C" {
     /// This key can be used with a font feature dictionary to get the type identifier as a CFNumberRef.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfeaturetypeidentifierkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontFeatureTypeIdentifierKey: CFStringRef;
 }
 
@@ -1366,7 +1295,6 @@ extern "C" {
     /// This key can be used with a font feature dictionary to get the localized type name string as a CFString.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfeaturetypenamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontFeatureTypeNameKey: CFStringRef;
 }
 
@@ -1378,7 +1306,6 @@ extern "C" {
     /// This key can be used with a font feature dictionary to get the the exclusive setting of the feature as a CFBoolean. The value associated with this key indicates whether the feature selectors associated with this type should be mutually exclusive.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfeaturetypeexclusivekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontFeatureTypeExclusiveKey: CFStringRef;
 }
 
@@ -1390,7 +1317,6 @@ extern "C" {
     /// This key can be used with a font feature dictionary to get the array of font feature selectors as a CFArrayRef. This is an array of selector dictionaries that contain the values for the following selector keys.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfeaturetypeselectorskey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontFeatureTypeSelectorsKey: CFStringRef;
 }
 
@@ -1402,7 +1328,6 @@ extern "C" {
     /// This key can be used with a selector dictionary corresponding to a feature type to obtain the selector identifier value as a CFNumberRef.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfeatureselectoridentifierkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontFeatureSelectorIdentifierKey: CFStringRef;
 }
 
@@ -1414,7 +1339,6 @@ extern "C" {
     /// This key is used with a selector dictionary to get the localized name string for the selector as a CFStringRef.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfeatureselectornamekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontFeatureSelectorNameKey: CFStringRef;
 }
 
@@ -1426,7 +1350,6 @@ extern "C" {
     /// This key is used with a selector dictionary to get the default indicator for the selector. This value is a CFBooleanRef which if present and true indicates that this selector is the default setting for the current feature type.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfeatureselectordefaultkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontFeatureSelectorDefaultKey: CFStringRef;
 }
 
@@ -1438,7 +1361,6 @@ extern "C" {
     /// This key is used with a selector dictionary to get or specify the current setting for the selector. This value is a CFBooleanRef to indicate whether this selector is on or off. If this key is not present, the default setting is used.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfeatureselectorsettingkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontFeatureSelectorSettingKey: CFStringRef;
 }
 
@@ -1450,7 +1372,6 @@ extern "C" {
     /// This key can be used with a font feature dictionary to get the localized sample text as a CFStringRef.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfeaturesampletextkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontFeatureSampleTextKey: CFStringRef;
 }
 
@@ -1462,7 +1383,6 @@ extern "C" {
     /// This key can be used with a font feature dictionary to get the localized tooltip text as a CFStringRef.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfeaturetooltiptextkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTFontFeatureTooltipTextKey: CFStringRef;
 }
 
@@ -1474,7 +1394,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns an array of font feature dictionaries for the font reference.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCopyFeatures(font: CTFontRef) -> CFArrayRef;
 }
 
@@ -1489,7 +1408,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns a normalized array of font feature setting dictionaries. The array will only contain the non-default settings that should be applied to the font, or NULL if the default settings should be used.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCopyFeatureSettings(font: CTFontRef) -> CFArrayRef;
 }
 
@@ -1528,11 +1446,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns a new font reference for an existing CGFontRef with the specified size, matrix, and additional attributes.
-    #[cfg(all(
-        feature = "CTFontDescriptor",
-        feature = "objc2-core-foundation",
-        feature = "objc2-core-graphics"
-    ))]
+    #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
     pub fn CTFontCreateWithGraphicsFont(
         graphics_font: CGFontRef,
         size: CGFloat,
@@ -1564,7 +1478,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns the best font instance matching the Quickdraw instance information.
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Quickdraw font references are deprecated"]
     pub fn CTFontCreateWithQuickdrawInstance(
         name: ConstStr255Param,
@@ -1765,7 +1678,6 @@ extern "C-unwind" {
     /// <code>
     /// CTFontTableTag tag = (CTFontTableTag)(uintptr_t)CFArrayGetValueAtIndex(tags, index);
     /// </code>
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCopyAvailableTables(font: CTFontRef, options: CTFontTableOptions) -> CFArrayRef;
 }
 
@@ -1799,7 +1711,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns a retained reference to the font table data as CFDataRef or NULL if the table is not present.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTFontCopyTable(
         font: CTFontRef,
         table: CTFontTableTag,
@@ -1827,7 +1738,7 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `context`: CGContext used to render the glyphs.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+    #[cfg(feature = "objc2-core-graphics")]
     pub fn CTFontDrawGlyphs(
         font: CTFontRef,
         glyphs: NonNull<CGGlyph>,
@@ -1861,7 +1772,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: Returns the number of caret positions for the specified glyph.
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+    #[cfg(feature = "objc2-core-graphics")]
     pub fn CTFontGetLigatureCaretPositions(
         font: CTFontRef,
         glyph: CGGlyph,
@@ -1880,7 +1791,6 @@ extern "C" {
     /// This key can be used with a baseline info dictionary to offset to the Roman baseline as a CFNumberRef float. It can also be used as the value for kCTBaselineClassAttributeName.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbaselineclassroman?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTBaselineClassRoman: CFStringRef;
 }
 
@@ -1894,7 +1804,6 @@ extern "C" {
     /// This key can be used with a baseline info dictionary to offset to the Ideographic Centered baseline as a CFNumberRef float. It can also be used as the value for kCTBaselineClassAttributeName.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbaselineclassideographiccentered?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTBaselineClassIdeographicCentered: CFStringRef;
 }
 
@@ -1908,7 +1817,6 @@ extern "C" {
     /// This key can be used with a baseline info dictionary to offset to the Ideographic Low baseline as a CFNumberRef float. It can also be used as the value for kCTBaselineClassAttributeName.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbaselineclassideographiclow?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTBaselineClassIdeographicLow: CFStringRef;
 }
 
@@ -1922,7 +1830,6 @@ extern "C" {
     /// This key can be used with a baseline info dictionary to offset to the Ideographic High baseline as a CFNumberRef float. It can also be used as the value for kCTBaselineClassAttributeName.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbaselineclassideographichigh?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTBaselineClassIdeographicHigh: CFStringRef;
 }
 
@@ -1936,7 +1843,6 @@ extern "C" {
     /// This key can be used with a baseline info dictionary to offset to the Hanging baseline as a CFNumberRef float. It can also be used as the value for kCTBaselineClassAttributeName.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbaselineclasshanging?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTBaselineClassHanging: CFStringRef;
 }
 
@@ -1950,7 +1856,6 @@ extern "C" {
     /// This key can be used with a baseline info dictionary to offset to the Math baseline as a CFNumberRef float. It can also be used as the value for kCTBaselineClassAttributeName.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbaselineclassmath?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTBaselineClassMath: CFStringRef;
 }
 
@@ -1964,7 +1869,6 @@ extern "C" {
     /// This key can be used to specify a font for the reference baseline. The value is a CTFontRef or the kCTBaselineOriginalFont constant.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbaselinereferencefont?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTBaselineReferenceFont: CFStringRef;
 }
 
@@ -1978,16 +1882,11 @@ extern "C" {
     /// This constant can be used as the value for kCTBaselineReferenceFont to specify that the original font should be used for the reference baseline.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctbaselineoriginalfont?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCTBaselineOriginalFont: CFStringRef;
 }
 
 extern "C-unwind" {
-    #[cfg(all(
-        feature = "CTRunDelegate",
-        feature = "objc2",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CTRunDelegate", feature = "objc2"))]
     pub fn CTFontGetTypographicBoundsForAdaptiveImageProvider(
         font: CTFontRef,
         provider: Option<&ProtocolObject<dyn CTAdaptiveImageProviding>>,
@@ -1998,7 +1897,6 @@ extern "C-unwind" {
     #[cfg(all(
         feature = "CTRunDelegate",
         feature = "objc2",
-        feature = "objc2-core-foundation",
         feature = "objc2-core-graphics"
     ))]
     pub fn CTFontDrawImageFromAdaptiveImageProviderAtPoint(

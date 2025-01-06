@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -62,79 +61,66 @@ unsafe impl RefEncode for CGWindowBackingType {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindownumber?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGWindowNumber: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowstoretype?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGWindowStoreType: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowlayer?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGWindowLayer: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowbounds?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGWindowBounds: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowsharingstate?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGWindowSharingState: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowalpha?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGWindowAlpha: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowownerpid?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGWindowOwnerPID: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowmemoryusage?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGWindowMemoryUsage: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowworkspace?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGWindowWorkspace: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowownername?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGWindowOwnerName: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowname?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGWindowName: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowisonscreen?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGWindowIsOnscreen: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowbackinglocationvideomemory?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCGWindowBackingLocationVideoMemory: CFStringRef;
 }
 
@@ -171,7 +157,6 @@ unsafe impl RefEncode for CGWindowListOption {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGWindowListCopyWindowInfo(
         option: CGWindowListOption,
         relative_to_window: CGWindowID,
@@ -179,7 +164,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGWindowListCreate(
         option: CGWindowListOption,
         relative_to_window: CGWindowID,
@@ -187,7 +171,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGWindowListCreateDescriptionFromArray(window_array: CFArrayRef) -> CFArrayRef;
 }
 
@@ -224,7 +207,7 @@ unsafe impl RefEncode for CGWindowImageOption {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGImage", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGImage")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub fn CGWindowListCreateImage(
         screen_bounds: CGRect,
@@ -235,7 +218,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGImage", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGImage")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub fn CGWindowListCreateImageFromArray(
         screen_bounds: CGRect,

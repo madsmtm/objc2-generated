@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 use objc2_core_graphics::*;
@@ -50,11 +49,9 @@ pub type CTLineRef = *const c_void;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineboundsoptions?language=objc)
 // NS_OPTIONS
-#[cfg(feature = "objc2-core-foundation")]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTLineBoundsOptions(pub CFOptionFlags);
-#[cfg(feature = "objc2-core-foundation")]
 bitflags::bitflags! {
     impl CTLineBoundsOptions: CFOptionFlags {
         #[doc(alias = "kCTLineBoundsExcludeTypographicLeading")]
@@ -72,12 +69,12 @@ bitflags::bitflags! {
     }
 }
 
-#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CTLineBoundsOptions {
     const ENCODING: Encoding = CFOptionFlags::ENCODING;
 }
 
-#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CTLineBoundsOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -124,7 +121,6 @@ unsafe impl RefEncode for CTLineTruncationType {
 
 extern "C-unwind" {
     /// Returns the CFType of the line object
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTLineGetTypeID() -> CFTypeID;
 }
 
@@ -144,7 +140,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function will return a reference to a CTLine object.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTLineCreateWithAttributedString(attr_string: CFAttributedStringRef) -> CTLineRef;
 }
 
@@ -205,7 +200,6 @@ extern "C-unwind" {
     /// Returns: This function will return a reference to a justified CTLine
     /// object if the call was successful. Otherwise, it will return
     /// NULL.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTLineCreateJustifiedLine(
         line: CTLineRef,
         justification_factor: CGFloat,
@@ -225,7 +219,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The total glyph count for the line passed in.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTLineGetGlyphCount(line: CTLineRef) -> CFIndex;
 }
 
@@ -237,7 +230,6 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A CFArrayRef containing the CTRun objects that make up the line.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTLineGetGlyphRuns(line: CTLineRef) -> CFArrayRef;
 }
 
@@ -252,7 +244,6 @@ extern "C-unwind" {
     /// Returns: A CFRange that contains the range over the backing store string
     /// that spawned the glyphs. If the function fails for any reason, an
     /// empty range will be returned.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTLineGetStringRange(line: CTLineRef) -> CFRange;
 }
 
@@ -275,7 +266,6 @@ extern "C-unwind" {
     ///
     /// Returns: A value which can be used to offset the current pen position for
     /// the flush operation.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTLineGetPenOffsetForFlush(
         line: CTLineRef,
         flush_factor: CGFloat,
@@ -332,7 +322,6 @@ extern "C-unwind" {
     ///
     ///
     /// See also: CTLineGetTrailingWhitespaceWidth
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTLineGetTypographicBounds(
         line: CTLineRef,
         ascent: *mut CGFloat,
@@ -355,7 +344,6 @@ extern "C-unwind" {
     /// such that the coordinate origin is coincident with the line
     /// origin and the rect origin is at the bottom left. If the line
     /// is invalid this function will return CGRectNull.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTLineGetBoundsWithOptions(line: CTLineRef, options: CTLineBoundsOptions) -> CGRect;
 }
 
@@ -405,7 +393,7 @@ extern "C-unwind" {
     /// See also: CTLineGetBoundsWithOptions
     ///
     /// See also: CTLineGetPenOffsetForFlush
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+    #[cfg(feature = "objc2-core-graphics")]
     pub fn CTLineGetImageBounds(line: CTLineRef, context: CGContextRef) -> CGRect;
 }
 
@@ -431,7 +419,6 @@ extern "C-unwind" {
     /// range, this value will be no less than the first string index and
     /// no greater than one plus the last string index. In the event of
     /// failure, this function will return kCFNotFound.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTLineGetStringIndexForPosition(line: CTLineRef, position: CGPoint) -> CFIndex;
 }
 
@@ -466,7 +453,6 @@ extern "C-unwind" {
     ///
     /// Returns: The primary offset along the baseline for charIndex, or 0.0 in
     /// the event of failure.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CTLineGetOffsetForStringIndex(
         line: CTLineRef,
         char_index: CFIndex,
@@ -482,7 +468,7 @@ extern "C-unwind" {
     ///
     ///
     /// Parameter `block`: The offset parameter is relative to the line origin. The leadingEdge parameter of this block refers to logical order.
-    #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "block2")]
     pub fn CTLineEnumerateCaretOffsets(
         line: CTLineRef,
         block: &block2::Block<dyn Fn(c_double, CFIndex, bool, NonNull<bool>)>,

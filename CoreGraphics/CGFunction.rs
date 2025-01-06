@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -13,7 +12,6 @@ use crate::*;
 pub type CGFunctionRef = *mut c_void;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfunctionevaluatecallback?language=objc)
-#[cfg(feature = "objc2-core-foundation")]
 pub type CGFunctionEvaluateCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<CGFloat>, NonNull<CGFloat>)>;
 
@@ -21,7 +19,6 @@ pub type CGFunctionEvaluateCallback =
 pub type CGFunctionReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfunctioncallbacks?language=objc)
-#[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CGFunctionCallbacks {
@@ -30,7 +27,7 @@ pub struct CGFunctionCallbacks {
     pub releaseInfo: CGFunctionReleaseInfoCallback,
 }
 
-#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "objc2")]
 unsafe impl Encode for CGFunctionCallbacks {
     const ENCODING: Encoding = Encoding::Struct(
         "CGFunctionCallbacks",
@@ -42,18 +39,16 @@ unsafe impl Encode for CGFunctionCallbacks {
     );
 }
 
-#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "objc2")]
 unsafe impl RefEncode for CGFunctionCallbacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGFunctionGetTypeID() -> CFTypeID;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGFunctionCreate(
         info: *mut c_void,
         domain_dimension: usize,

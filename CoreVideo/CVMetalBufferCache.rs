@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-metal")]
 #[cfg(not(target_os = "watchos"))]
@@ -14,7 +13,6 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvmetalbuffercachemaximumbufferagekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVMetalBufferCacheMaximumBufferAgeKey: CFStringRef;
 }
 
@@ -22,7 +20,6 @@ extern "C" {
 pub type CVMetalBufferCacheRef = *mut c_void;
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CVMetalBufferCacheGetTypeID() -> CFTypeID;
 }
 
@@ -38,12 +35,7 @@ extern "C-unwind" {
     /// Parameter `cacheOut`: The newly created buffer cache will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
-    #[cfg(all(
-        feature = "CVReturn",
-        feature = "objc2",
-        feature = "objc2-core-foundation",
-        feature = "objc2-metal"
-    ))]
+    #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
     #[cfg(not(target_os = "watchos"))]
     pub fn CVMetalBufferCacheCreate(
         allocator: CFAllocatorRef,
@@ -75,8 +67,7 @@ extern "C-unwind" {
         feature = "CVBuffer",
         feature = "CVImageBuffer",
         feature = "CVMetalBuffer",
-        feature = "CVReturn",
-        feature = "objc2-core-foundation"
+        feature = "CVReturn"
     ))]
     pub fn CVMetalBufferCacheCreateBufferFromImage(
         allocator: CFAllocatorRef,

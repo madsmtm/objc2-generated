@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -202,7 +201,6 @@ unsafe impl RefEncode for CGBlendMode {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextGetTypeID() -> CFTypeID;
 }
 
@@ -217,33 +215,27 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Coordinate space transformations. *
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextScaleCTM(c: CGContextRef, sx: CGFloat, sy: CGFloat);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextTranslateCTM(c: CGContextRef, tx: CGFloat, ty: CGFloat);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextRotateCTM(c: CGContextRef, angle: CGFloat);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextConcatCTM(c: CGContextRef, transform: CGAffineTransform);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextGetCTM(c: CGContextRef) -> CGAffineTransform;
 }
 
 extern "C-unwind" {
     /// Drawing attribute functions. *
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetLineWidth(c: CGContextRef, width: CGFloat);
 }
 
@@ -258,12 +250,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetMiterLimit(c: CGContextRef, limit: CGFloat);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetLineDash(
         c: CGContextRef,
         phase: CGFloat,
@@ -273,12 +263,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetFlatness(c: CGContextRef, flatness: CGFloat);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetAlpha(c: CGContextRef, alpha: CGFloat);
 }
 
@@ -292,17 +280,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextMoveToPoint(c: CGContextRef, x: CGFloat, y: CGFloat);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextAddLineToPoint(c: CGContextRef, x: CGFloat, y: CGFloat);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextAddCurveToPoint(
         c: CGContextRef,
         cp1x: CGFloat,
@@ -315,7 +300,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextAddQuadCurveToPoint(
         c: CGContextRef,
         cpx: CGFloat,
@@ -331,27 +315,22 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Path construction convenience functions. *
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextAddRect(c: CGContextRef, rect: CGRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextAddRects(c: CGContextRef, rects: *const CGRect, count: usize);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextAddLines(c: CGContextRef, points: *const CGPoint, count: usize);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextAddEllipseInRect(c: CGContextRef, rect: CGRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextAddArc(
         c: CGContextRef,
         x: CGFloat,
@@ -364,7 +343,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextAddArcToPoint(
         c: CGContextRef,
         x1: CGFloat,
@@ -390,12 +368,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextGetPathCurrentPoint(c: CGContextRef) -> CGPoint;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextGetPathBoundingBox(c: CGContextRef) -> CGRect;
 }
 
@@ -405,7 +381,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextPathContainsPoint(
         c: CGContextRef,
         point: CGPoint,
@@ -432,42 +407,34 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextFillRect(c: CGContextRef, rect: CGRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextFillRects(c: CGContextRef, rects: *const CGRect, count: usize);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextStrokeRect(c: CGContextRef, rect: CGRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextStrokeRectWithWidth(c: CGContextRef, rect: CGRect, width: CGFloat);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextClearRect(c: CGContextRef, rect: CGRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextFillEllipseInRect(c: CGContextRef, rect: CGRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextStrokeEllipseInRect(c: CGContextRef, rect: CGRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextStrokeLineSegments(c: CGContextRef, points: *const CGPoint, count: usize);
 }
 
@@ -485,23 +452,20 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGImage", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGImage")]
     pub fn CGContextClipToMask(c: CGContextRef, rect: CGRect, mask: CGImageRef);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextGetClipBoundingBox(c: CGContextRef) -> CGRect;
 }
 
 extern "C-unwind" {
     /// Clipping convenience functions. *
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextClipToRect(c: CGContextRef, rect: CGRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextClipToRects(c: CGContextRef, rects: NonNull<CGRect>, count: usize);
 }
 
@@ -529,18 +493,16 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Color functions. *
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetFillColor(c: CGContextRef, components: *const CGFloat);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetStrokeColor(c: CGContextRef, components: *const CGFloat);
 }
 
 extern "C-unwind" {
     /// Pattern functions. *
-    #[cfg(all(feature = "CGPattern", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGPattern")]
     pub fn CGContextSetFillPattern(
         c: CGContextRef,
         pattern: CGPatternRef,
@@ -549,7 +511,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGPattern", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGPattern")]
     pub fn CGContextSetStrokePattern(
         c: CGContextRef,
         pattern: CGPatternRef,
@@ -558,23 +520,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetPatternPhase(c: CGContextRef, phase: CGSize);
 }
 
 extern "C-unwind" {
     /// Color convenience functions. *
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetGrayFillColor(c: CGContextRef, gray: CGFloat, alpha: CGFloat);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetGrayStrokeColor(c: CGContextRef, gray: CGFloat, alpha: CGFloat);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetRGBFillColor(
         c: CGContextRef,
         red: CGFloat,
@@ -585,7 +543,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetRGBStrokeColor(
         c: CGContextRef,
         red: CGFloat,
@@ -596,7 +553,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetCMYKFillColor(
         c: CGContextRef,
         cyan: CGFloat,
@@ -608,7 +564,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetCMYKStrokeColor(
         c: CGContextRef,
         cyan: CGFloat,
@@ -635,21 +590,17 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Image functions. *
-    #[cfg(all(feature = "CGImage", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGImage")]
     pub fn CGContextDrawImage(c: CGContextRef, rect: CGRect, image: CGImageRef);
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGImage", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGImage")]
     pub fn CGContextDrawTiledImage(c: CGContextRef, rect: CGRect, image: CGImageRef);
 }
 
 extern "C-unwind" {
-    #[cfg(all(
-        feature = "CGImage",
-        feature = "CGToneMapping",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "CGImage", feature = "CGToneMapping"))]
     pub fn CGContextDrawImageApplyingToneMapping(
         c: CGContextRef,
         r: CGRect,
@@ -668,7 +619,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGColor", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGColor")]
     pub fn CGContextSetShadowWithColor(
         c: CGContextRef,
         offset: CGSize,
@@ -678,12 +629,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetShadow(c: CGContextRef, offset: CGSize, blur: CGFloat);
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGGradient", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGGradient")]
     pub fn CGContextDrawLinearGradient(
         c: CGContextRef,
         gradient: CGGradientRef,
@@ -694,7 +644,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGGradient", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGGradient")]
     pub fn CGContextDrawRadialGradient(
         c: CGContextRef,
         gradient: CGGradientRef,
@@ -707,7 +657,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGGradient", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGGradient")]
     pub fn CGContextDrawConicGradient(
         c: CGContextRef,
         gradient: CGGradientRef,
@@ -723,27 +673,22 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Text functions. *
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetCharacterSpacing(c: CGContextRef, spacing: CGFloat);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetTextPosition(c: CGContextRef, x: CGFloat, y: CGFloat);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextGetTextPosition(c: CGContextRef) -> CGPoint;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetTextMatrix(c: CGContextRef, t: CGAffineTransform);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextGetTextMatrix(c: CGContextRef) -> CGAffineTransform;
 }
 
@@ -757,12 +702,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextSetFontSize(c: CGContextRef, size: CGFloat);
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGFont")]
     pub fn CGContextShowGlyphsAtPositions(
         c: CGContextRef,
         glyphs: *const CGGlyph,
@@ -779,7 +723,6 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Output page functions. *
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextBeginPage(c: CGContextRef, media_box: *const CGRect);
 }
 
@@ -850,12 +793,10 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// Transparency layer support. *
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextBeginTransparencyLayer(c: CGContextRef, auxiliary_info: CFDictionaryRef);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextBeginTransparencyLayerWithRect(
         c: CGContextRef,
         rect: CGRect,
@@ -869,42 +810,34 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// User space to device space tranformations. *
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextGetUserSpaceToDeviceSpaceTransform(c: CGContextRef) -> CGAffineTransform;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextConvertPointToDeviceSpace(c: CGContextRef, point: CGPoint) -> CGPoint;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextConvertPointToUserSpace(c: CGContextRef, point: CGPoint) -> CGPoint;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextConvertSizeToDeviceSpace(c: CGContextRef, size: CGSize) -> CGSize;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextConvertSizeToUserSpace(c: CGContextRef, size: CGSize) -> CGSize;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextConvertRectToDeviceSpace(c: CGContextRef, rect: CGRect) -> CGRect;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CGContextConvertRectToUserSpace(c: CGContextRef, rect: CGRect) -> CGRect;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn CGContextSelectFont(
         c: CGContextRef,
@@ -920,7 +853,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
     pub fn CGContextShowTextAtPoint(
         c: CGContextRef,
@@ -938,7 +870,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGFont")]
     #[deprecated = "No longer supported"]
     pub fn CGContextShowGlyphsAtPoint(
         c: CGContextRef,
@@ -950,7 +882,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGFont", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGFont")]
     #[deprecated = "No longer supported"]
     pub fn CGContextShowGlyphsWithAdvances(
         c: CGContextRef,
@@ -961,7 +893,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "CGPDFDocument", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CGPDFDocument")]
     #[deprecated = "No longer supported"]
     pub fn CGContextDrawPDFDocument(
         c: CGContextRef,

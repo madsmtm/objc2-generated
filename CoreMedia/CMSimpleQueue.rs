@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -28,7 +27,6 @@ extern "C-unwind" {
     /// with CMSimpleQueueGetTypeID().
     ///
     /// Returns: CFTypeID of CMSimpleQueue objects.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMSimpleQueueGetTypeID() -> CFTypeID;
 }
 
@@ -39,7 +37,6 @@ extern "C-unwind" {
     ///
     /// Returns: Returns noErr if the call succeeds.  Returns kCMSimpleQueueError_ParameterOutOfRange if
     /// capacity is negative.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CMSimpleQueueCreate(
         allocator: CFAllocatorRef,
         capacity: i32,

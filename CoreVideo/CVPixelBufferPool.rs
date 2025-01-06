@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -14,18 +13,15 @@ pub type CVPixelBufferPoolRef = *mut c_void;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpoolminimumbuffercountkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferPoolMinimumBufferCountKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpoolmaximumbufferagekey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferPoolMaximumBufferAgeKey: CFStringRef;
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CVPixelBufferPoolGetTypeID() -> CFTypeID;
 }
 
@@ -51,7 +47,7 @@ extern "C-unwind" {
     /// Parameter `poolOut`: The newly created pool will be placed here
     ///
     /// Returns: Returns kCVReturnSuccess on success
-    #[cfg(all(feature = "CVReturn", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "CVReturn")]
     pub fn CVPixelBufferPoolCreate(
         allocator: CFAllocatorRef,
         pool_attributes: CFDictionaryRef,
@@ -66,7 +62,6 @@ extern "C-unwind" {
     /// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the pool attributes dictionary, or NULL on failure.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CVPixelBufferPoolGetAttributes(pool: CVPixelBufferPoolRef) -> CFDictionaryRef;
 }
 
@@ -79,7 +74,6 @@ extern "C-unwind" {
     /// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the pixel buffer attributes dictionary, or NULL on failure.
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CVPixelBufferPoolGetPixelBufferAttributes(pool: CVPixelBufferPoolRef)
         -> CFDictionaryRef;
 }
@@ -100,8 +94,7 @@ extern "C-unwind" {
         feature = "CVBuffer",
         feature = "CVImageBuffer",
         feature = "CVPixelBuffer",
-        feature = "CVReturn",
-        feature = "objc2-core-foundation"
+        feature = "CVReturn"
     ))]
     pub fn CVPixelBufferPoolCreatePixelBuffer(
         allocator: CFAllocatorRef,
@@ -115,8 +108,7 @@ extern "C-unwind" {
         feature = "CVBuffer",
         feature = "CVImageBuffer",
         feature = "CVPixelBuffer",
-        feature = "CVReturn",
-        feature = "objc2-core-foundation"
+        feature = "CVReturn"
     ))]
     pub fn CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(
         allocator: CFAllocatorRef,
@@ -128,13 +120,11 @@ extern "C-unwind" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpoolallocationthresholdkey?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferPoolAllocationThresholdKey: CFStringRef;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpoolfreebuffernotification?language=objc)
-    #[cfg(feature = "objc2-core-foundation")]
     pub static kCVPixelBufferPoolFreeBufferNotification: CFStringRef;
 }
 

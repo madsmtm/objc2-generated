@@ -4,7 +4,6 @@ use core::ffi::*;
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 #[cfg(feature = "objc2-metal")]
 #[cfg(not(target_os = "watchos"))]
@@ -22,7 +21,6 @@ use crate::*;
 pub type CVMetalBufferRef = CVBufferRef;
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn CVMetalBufferGetTypeID() -> CFTypeID;
 }
 
