@@ -428,10 +428,6 @@ pub use self::__CFBase::CFGetTypeID;
 #[cfg(feature = "CFBase")]
 pub use self::__CFBase::CFHash;
 #[cfg(feature = "CFBase")]
-pub use self::__CFBase::CFHashCode;
-#[cfg(feature = "CFBase")]
-pub use self::__CFBase::CFIndex;
-#[cfg(feature = "CFBase")]
 pub use self::__CFBase::CFMakeCollectable;
 #[cfg(feature = "CFBase")]
 pub use self::__CFBase::CFMutableStringRef;
@@ -439,8 +435,6 @@ pub use self::__CFBase::CFMutableStringRef;
 pub use self::__CFBase::CFNullGetTypeID;
 #[cfg(feature = "CFBase")]
 pub use self::__CFBase::CFNullRef;
-#[cfg(feature = "CFBase")]
-pub use self::__CFBase::CFOptionFlags;
 #[cfg(feature = "CFBase")]
 pub use self::__CFBase::CFPropertyListRef;
 #[cfg(feature = "CFBase")]
@@ -451,8 +445,6 @@ pub use self::__CFBase::CFRelease;
 pub use self::__CFBase::CFRetain;
 #[cfg(feature = "CFBase")]
 pub use self::__CFBase::CFStringRef;
-#[cfg(feature = "CFBase")]
-pub use self::__CFBase::CFTypeID;
 #[cfg(feature = "CFBase")]
 pub use self::__CFBase::CFTypeRef;
 #[cfg(all(feature = "CFBase", feature = "CFBinaryHeap"))]

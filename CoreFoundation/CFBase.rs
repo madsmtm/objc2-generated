@@ -14,18 +14,6 @@ extern "C" {
     pub static kCFCoreFoundationVersionNumber: c_double;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftypeid?language=objc)
-pub type CFTypeID = c_ulong;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfoptionflags?language=objc)
-pub type CFOptionFlags = c_ulong;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfhashcode?language=objc)
-pub type CFHashCode = c_ulong;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfindex?language=objc)
-pub type CFIndex = c_long;
-
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftyperef?language=objc)
 pub type CFTypeRef = *const c_void;
 
