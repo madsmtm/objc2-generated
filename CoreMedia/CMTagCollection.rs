@@ -52,28 +52,28 @@ unsafe impl RefEncode for CMTagCollectionError {
 
 /// A reference to a CMTagCollection, a CF object that adheres to retain/release semantics. This value type represents an unordered collection of zero or more CMTags. This type is roughly analogous to CFSetRef in that it is unordered and has operations for Boolean set math. It is however optimized for the storage of CMTag structures.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollectionref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcollection?language=objc)
 #[repr(C)]
-pub struct CMTagCollectionRef {
+pub struct CMTagCollection {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "OpaqueCMTagCollection"]
-    unsafe impl CMTagCollectionRef {}
+    unsafe impl CMTagCollection {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmutabletagcollectionref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmutabletagcollection?language=objc)
 #[repr(C)]
-pub struct CMMutableTagCollectionRef {
+pub struct CMMutableTagCollection {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "OpaqueCMTagCollection"]
-    unsafe impl CMMutableTagCollectionRef: CMTagCollectionRef {}
+    unsafe impl CMMutableTagCollection: CMTagCollection {}
 );
 
 extern "C-unwind" {
@@ -124,10 +124,10 @@ extern "C-unwind" {
     /// Returns: OSStatus with error or noErr if successful.
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionCreate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         tags: *const CMTag,
         tag_count: CMItemCount,
-        new_collection_out: NonNull<CMTagCollectionRef>,
+        new_collection_out: NonNull<CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -145,9 +145,9 @@ extern "C-unwind" {
     ///
     /// Returns: OSStatus with error, or noErr if successful.
     pub fn CMTagCollectionCreateMutable(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        new_mutable_collection_out: NonNull<CMMutableTagCollectionRef>,
+        new_mutable_collection_out: NonNull<CMMutableTagCollection>,
     ) -> OSStatus;
 }
 
@@ -164,9 +164,9 @@ extern "C-unwind" {
     ///
     /// Returns: OSStatus with error or noErr if successful.
     pub fn CMTagCollectionCreateCopy(
-        tag_collection: &CMTagCollectionRef,
-        allocator: Option<&CFAllocatorRef>,
-        new_collection_copy_out: NonNull<CMTagCollectionRef>,
+        tag_collection: &CMTagCollection,
+        allocator: Option<&CFAllocator>,
+        new_collection_copy_out: NonNull<CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -183,9 +183,9 @@ extern "C-unwind" {
     ///
     /// Returns: OSStatus with error or noErr if successful.
     pub fn CMTagCollectionCreateMutableCopy(
-        tag_collection: &CMTagCollectionRef,
-        allocator: Option<&CFAllocatorRef>,
-        new_mutable_collection_copy_out: NonNull<CMMutableTagCollectionRef>,
+        tag_collection: &CMTagCollection,
+        allocator: Option<&CFAllocator>,
+        new_mutable_collection_copy_out: NonNull<CMMutableTagCollection>,
     ) -> OSStatus;
 }
 
@@ -200,9 +200,9 @@ extern "C-unwind" {
     ///
     /// Returns: The created CFString description.
     pub fn CMTagCollectionCopyDescription(
-        allocator: Option<&CFAllocatorRef>,
-        tag_collection: Option<&CMTagCollectionRef>,
-    ) -> *mut CFStringRef;
+        allocator: Option<&CFAllocator>,
+        tag_collection: Option<&CMTagCollection>,
+    ) -> *mut CFString;
 }
 
 extern "C-unwind" {
@@ -212,7 +212,7 @@ extern "C-unwind" {
     ///
     /// Returns: CMItemCount holding the count.
     #[cfg(feature = "CMBase")]
-    pub fn CMTagCollectionGetCount(tag_collection: &CMTagCollectionRef) -> CMItemCount;
+    pub fn CMTagCollectionGetCount(tag_collection: &CMTagCollection) -> CMItemCount;
 }
 
 extern "C-unwind" {
@@ -224,7 +224,7 @@ extern "C-unwind" {
     ///
     /// Returns: Returns true if the indicated CMTag is contained within the CMTagCollection, false otherwise.
     #[cfg(feature = "CMTag")]
-    pub fn CMTagCollectionContainsTag(tag_collection: &CMTagCollectionRef, tag: CMTag) -> Boolean;
+    pub fn CMTagCollectionContainsTag(tag_collection: &CMTagCollection, tag: CMTag) -> Boolean;
 }
 
 extern "C-unwind" {
@@ -238,8 +238,8 @@ extern "C-unwind" {
     ///
     /// Returns: Returns true if all CMTags in a collection are contained within the specified CMTagCollection, false otherwise.
     pub fn CMTagCollectionContainsTagsOfCollection(
-        tag_collection: &CMTagCollectionRef,
-        contained_tag_collection: &CMTagCollectionRef,
+        tag_collection: &CMTagCollection,
+        contained_tag_collection: &CMTagCollection,
     ) -> Boolean;
 }
 
@@ -257,7 +257,7 @@ extern "C-unwind" {
     /// Returns: Returns true if all CMTags in a buffer of CMTags are contained within the CMTagCollection, false otherwise.
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionContainsSpecifiedTags(
-        tag_collection: &CMTagCollectionRef,
+        tag_collection: &CMTagCollection,
         contained_tags: NonNull<CMTag>,
         contained_tag_count: CMItemCount,
     ) -> Boolean;
@@ -273,7 +273,7 @@ extern "C-unwind" {
     /// Returns: Returns true if tagCollection contains at least one CMTag with the specified category, false otherwise.
     #[cfg(feature = "CMTag")]
     pub fn CMTagCollectionContainsCategory(
-        tag_collection: &CMTagCollectionRef,
+        tag_collection: &CMTagCollection,
         category: CMTagCategory,
     ) -> Boolean;
 }
@@ -290,7 +290,7 @@ extern "C-unwind" {
     /// Returns: Returns the count of tags having the specified category.
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionGetCountOfCategory(
-        tag_collection: &CMTagCollectionRef,
+        tag_collection: &CMTagCollection,
         category: CMTagCategory,
     ) -> CMItemCount;
 }
@@ -311,7 +311,7 @@ extern "C-unwind" {
     /// Returns: OSStatus with an error or noErr if successful.
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionGetTags(
-        tag_collection: &CMTagCollectionRef,
+        tag_collection: &CMTagCollection,
         tag_buffer: NonNull<CMTag>,
         tag_buffer_count: CMItemCount,
         number_of_tags_copied: *mut CMItemCount,
@@ -336,7 +336,7 @@ extern "C-unwind" {
     /// Returns: OSStatus with an error or noErr if successful.
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionGetTagsWithCategory(
-        tag_collection: &CMTagCollectionRef,
+        tag_collection: &CMTagCollection,
         category: CMTagCategory,
         tag_buffer: NonNull<CMTag>,
         tag_buffer_count: CMItemCount,
@@ -358,7 +358,7 @@ extern "C-unwind" {
     /// Returns: CMItemCount indicating the number of CMTags satisfying 'filterApplier'.
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionCountTagsWithFilterFunction(
-        tag_collection: &CMTagCollectionRef,
+        tag_collection: &CMTagCollection,
         filter_applier: CMTagCollectionTagFilterFunction,
         context: *mut c_void,
     ) -> CMItemCount;
@@ -384,7 +384,7 @@ extern "C-unwind" {
     /// Returns: OSStatus with an error or noErr if successful.
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionGetTagsWithFilterFunction(
-        tag_collection: &CMTagCollectionRef,
+        tag_collection: &CMTagCollection,
         tag_buffer: NonNull<CMTag>,
         tag_buffer_count: CMItemCount,
         number_of_tags_copied: *mut CMItemCount,
@@ -411,11 +411,11 @@ extern "C-unwind" {
     /// Returns: OSStatus indicating if the operation succeeded.
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionCopyTagsOfCategories(
-        allocator: Option<&CFAllocatorRef>,
-        tag_collection: &CMTagCollectionRef,
+        allocator: Option<&CFAllocator>,
+        tag_collection: &CMTagCollection,
         categories: NonNull<CMTagCategory>,
         categories_count: CMItemCount,
-        collection_with_tags_of_categories: NonNull<CMTagCollectionRef>,
+        collection_with_tags_of_categories: NonNull<CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -431,7 +431,7 @@ extern "C-unwind" {
     /// Parameter `context`: A void * or NULL to pass to applier.
     #[cfg(feature = "CMTag")]
     pub fn CMTagCollectionApply(
-        tag_collection: &CMTagCollectionRef,
+        tag_collection: &CMTagCollection,
         applier: CMTagCollectionApplierFunction,
         context: *mut c_void,
     );
@@ -451,7 +451,7 @@ extern "C-unwind" {
     /// Returns: CMTag having the value of the first tag the callback returned true for or kCMTagInvalid if none was found.
     #[cfg(feature = "CMTag")]
     pub fn CMTagCollectionApplyUntil(
-        tag_collection: &CMTagCollectionRef,
+        tag_collection: &CMTagCollection,
         applier: CMTagCollectionTagFilterFunction,
         context: *mut c_void,
     ) -> CMTag;
@@ -465,7 +465,7 @@ extern "C-unwind" {
     /// Parameter `tagCollection`: CMTagCollectionRef to iterate.
     ///
     /// Returns: True if there are no tags, false otherwise.
-    pub fn CMTagCollectionIsEmpty(tag_collection: &CMTagCollectionRef) -> Boolean;
+    pub fn CMTagCollectionIsEmpty(tag_collection: &CMTagCollection) -> Boolean;
 }
 
 extern "C-unwind" {
@@ -481,9 +481,9 @@ extern "C-unwind" {
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
     pub fn CMTagCollectionCreateIntersection(
-        tag_collection1: Option<&CMTagCollectionRef>,
-        tag_collection2: Option<&CMTagCollectionRef>,
-        tag_collection_out: NonNull<CMTagCollectionRef>,
+        tag_collection1: Option<&CMTagCollection>,
+        tag_collection2: Option<&CMTagCollection>,
+        tag_collection_out: NonNull<CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -500,9 +500,9 @@ extern "C-unwind" {
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
     pub fn CMTagCollectionCreateUnion(
-        tag_collection1: Option<&CMTagCollectionRef>,
-        tag_collection2: Option<&CMTagCollectionRef>,
-        tag_collection_out: NonNull<CMTagCollectionRef>,
+        tag_collection1: Option<&CMTagCollection>,
+        tag_collection2: Option<&CMTagCollection>,
+        tag_collection_out: NonNull<CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -519,9 +519,9 @@ extern "C-unwind" {
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
     pub fn CMTagCollectionCreateDifference(
-        tag_collection_minuend: Option<&CMTagCollectionRef>,
-        tag_collection_subtrahend: Option<&CMTagCollectionRef>,
-        tag_collection_out: NonNull<CMTagCollectionRef>,
+        tag_collection_minuend: Option<&CMTagCollection>,
+        tag_collection_subtrahend: Option<&CMTagCollection>,
+        tag_collection_out: NonNull<CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -538,9 +538,9 @@ extern "C-unwind" {
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
     pub fn CMTagCollectionCreateExclusiveOr(
-        tag_collection1: Option<&CMTagCollectionRef>,
-        tag_collection2: Option<&CMTagCollectionRef>,
-        tag_collection_out: NonNull<CMTagCollectionRef>,
+        tag_collection1: Option<&CMTagCollection>,
+        tag_collection2: Option<&CMTagCollection>,
+        tag_collection_out: NonNull<CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -556,7 +556,7 @@ extern "C-unwind" {
     /// Returns: OSStatus indicating if the operation succeeded.  Returns noErr if the tag was already in the collection.
     #[cfg(feature = "CMTag")]
     pub fn CMTagCollectionAddTag(
-        tag_collection: &CMMutableTagCollectionRef,
+        tag_collection: &CMMutableTagCollection,
         tag_to_add: CMTag,
     ) -> OSStatus;
 }
@@ -573,7 +573,7 @@ extern "C-unwind" {
     /// Returns: OSStatus indicating if the operation succeeded.
     #[cfg(feature = "CMTag")]
     pub fn CMTagCollectionRemoveTag(
-        tag_collection: &CMMutableTagCollectionRef,
+        tag_collection: &CMMutableTagCollection,
         tag_to_remove: CMTag,
     ) -> OSStatus;
 }
@@ -586,7 +586,7 @@ extern "C-unwind" {
     /// Parameter `tagCollection`: CMMutableTagCollectionRef from which to remove all tags.
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
-    pub fn CMTagCollectionRemoveAllTags(tag_collection: &CMMutableTagCollectionRef) -> OSStatus;
+    pub fn CMTagCollectionRemoveAllTags(tag_collection: &CMMutableTagCollection) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -601,7 +601,7 @@ extern "C-unwind" {
     /// Returns: OSStatus indicating if the operation succeeded.
     #[cfg(feature = "CMTag")]
     pub fn CMTagCollectionRemoveAllTagsOfCategory(
-        tag_collection: &CMMutableTagCollectionRef,
+        tag_collection: &CMMutableTagCollection,
         category: CMTagCategory,
     ) -> OSStatus;
 }
@@ -615,8 +615,8 @@ extern "C-unwind" {
     ///
     /// Returns: OSStatus indicating if the operation succeeded.
     pub fn CMTagCollectionAddTagsFromCollection(
-        tag_collection: &CMMutableTagCollectionRef,
-        collection_with_tags_to_add: &CMTagCollectionRef,
+        tag_collection: &CMMutableTagCollection,
+        collection_with_tags_to_add: &CMTagCollection,
     ) -> OSStatus;
 }
 
@@ -632,7 +632,7 @@ extern "C-unwind" {
     /// Returns: OSStatus indicating if the operation succeeded.
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     pub fn CMTagCollectionAddTagsFromArray(
-        tag_collection: &CMMutableTagCollectionRef,
+        tag_collection: &CMMutableTagCollection,
         tags: NonNull<CMTag>,
         tag_count: CMItemCount,
     ) -> OSStatus;
@@ -649,9 +649,9 @@ extern "C-unwind" {
     ///
     /// Returns: A CFDictionaryRef holding the serialized contents of the CMTagCollection.  The client is responsible for releasing the returned CFDictionary.
     pub fn CMTagCollectionCopyAsDictionary(
-        tag_collection: &CMTagCollectionRef,
-        allocator: Option<&CFAllocatorRef>,
-    ) -> *mut CFDictionaryRef;
+        tag_collection: &CMTagCollection,
+        allocator: Option<&CFAllocator>,
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -667,9 +667,9 @@ extern "C-unwind" {
     ///
     /// Returns: OSStatus with error or noErr if successful.
     pub fn CMTagCollectionCreateFromDictionary(
-        dict: &CFDictionaryRef,
-        allocator: Option<&CFAllocatorRef>,
-        new_collection_out: NonNull<CMTagCollectionRef>,
+        dict: &CFDictionary,
+        allocator: Option<&CFAllocator>,
+        new_collection_out: NonNull<CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -684,9 +684,9 @@ extern "C-unwind" {
     ///
     /// Returns: A CFDataRef holding the serialized contents of the CMTagCollection.  The client is responsible for releasing the returned CFData.
     pub fn CMTagCollectionCopyAsData(
-        tag_collection: &CMTagCollectionRef,
-        allocator: Option<&CFAllocatorRef>,
-    ) -> *mut CFDataRef;
+        tag_collection: &CMTagCollection,
+        allocator: Option<&CFAllocator>,
+    ) -> *mut CFData;
 }
 
 extern "C-unwind" {
@@ -703,9 +703,9 @@ extern "C-unwind" {
     ///
     /// Returns: OSStatus with error or noErr if successful.
     pub fn CMTagCollectionCreateFromData(
-        data: &CFDataRef,
-        allocator: Option<&CFAllocatorRef>,
-        new_collection_out: NonNull<CMTagCollectionRef>,
+        data: &CFData,
+        allocator: Option<&CFAllocator>,
+        new_collection_out: NonNull<CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -713,5 +713,5 @@ extern "C" {
     /// CFDictionary key for a CFArray of serialized CMTag dictionaries of a CMTagCollection as used with CMTagCollectionCopyAsDictionary
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtagcollectiontagsarraykey?language=objc)
-    pub static kCMTagCollectionTagsArrayKey: &'static CFStringRef;
+    pub static kCMTagCollectionTagsArrayKey: &'static CFString;
 }

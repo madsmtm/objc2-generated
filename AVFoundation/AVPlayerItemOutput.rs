@@ -163,7 +163,7 @@ extern_methods!(
             &self,
             item_time: CMTime,
             out_item_time_for_display: *mut CMTime,
-        ) -> Option<Retained<CVPixelBufferRef>>;
+        ) -> Option<Retained<CVPixelBuffer>>;
 
         /// Informs the receiver that the AVPlayerItemVideoOutput client is entering a quiescent state.
         ///

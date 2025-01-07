@@ -39,7 +39,7 @@ extern_methods!(
         /// <CoreVideo
         /// /CVPixelBuffer.h>.
         #[method_id(@__retain_semantics Other pixelBuffer)]
-        pub unsafe fn pixelBuffer(&self) -> Retained<CVPixelBufferRef>;
+        pub unsafe fn pixelBuffer(&self) -> Retained<CVPixelBuffer>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// A CGPoint that defines the position (in pixels) of the rendered caption image relative to the video frame

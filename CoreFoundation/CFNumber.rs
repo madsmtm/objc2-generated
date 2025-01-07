@@ -8,26 +8,26 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbooleanref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfboolean?language=objc)
 #[repr(C)]
-pub struct CFBooleanRef {
+pub struct CFBoolean {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFBoolean"]
-    unsafe impl CFBooleanRef {}
+    unsafe impl CFBoolean {}
 );
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue?language=objc)
-    pub static kCFBooleanTrue: Option<&'static CFBooleanRef>;
+    pub static kCFBooleanTrue: Option<&'static CFBoolean>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse?language=objc)
-    pub static kCFBooleanFalse: Option<&'static CFBooleanRef>;
+    pub static kCFBooleanFalse: Option<&'static CFBoolean>;
 }
 
 extern "C-unwind" {
@@ -36,7 +36,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CFBooleanGetValue(boolean: Option<&CFBooleanRef>) -> Boolean;
+    pub fn CFBooleanGetValue(boolean: Option<&CFBoolean>) -> Boolean;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype?language=objc)
@@ -93,31 +93,31 @@ unsafe impl RefEncode for CFNumberType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumber?language=objc)
 #[repr(C)]
-pub struct CFNumberRef {
+pub struct CFNumber {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFNumber"]
-    unsafe impl CFNumberRef {}
+    unsafe impl CFNumber {}
 );
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberpositiveinfinity?language=objc)
-    pub static kCFNumberPositiveInfinity: Option<&'static CFNumberRef>;
+    pub static kCFNumberPositiveInfinity: Option<&'static CFNumber>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumbernegativeinfinity?language=objc)
-    pub static kCFNumberNegativeInfinity: Option<&'static CFNumberRef>;
+    pub static kCFNumberNegativeInfinity: Option<&'static CFNumber>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumbernan?language=objc)
-    pub static kCFNumberNaN: Option<&'static CFNumberRef>;
+    pub static kCFNumberNaN: Option<&'static CFNumber>;
 }
 
 extern "C-unwind" {
@@ -128,30 +128,30 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFNumberCreate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         the_type: CFNumberType,
         value_ptr: *const c_void,
-    ) -> *mut CFNumberRef;
+    ) -> *mut CFNumber;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFNumberGetType(number: Option<&CFNumberRef>) -> CFNumberType;
+    pub fn CFNumberGetType(number: Option<&CFNumber>) -> CFNumberType;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFNumberGetByteSize(number: Option<&CFNumberRef>) -> CFIndex;
+    pub fn CFNumberGetByteSize(number: Option<&CFNumber>) -> CFIndex;
 }
 
 extern "C-unwind" {
-    pub fn CFNumberIsFloatType(number: Option<&CFNumberRef>) -> Boolean;
+    pub fn CFNumberIsFloatType(number: Option<&CFNumber>) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFNumberGetValue(
-        number: Option<&CFNumberRef>,
+        number: Option<&CFNumber>,
         the_type: CFNumberType,
         value_ptr: *mut c_void,
     ) -> Boolean;
@@ -160,8 +160,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFNumberCompare(
-        number: Option<&CFNumberRef>,
-        other_number: Option<&CFNumberRef>,
+        number: Option<&CFNumber>,
+        other_number: Option<&CFNumber>,
         context: *mut c_void,
     ) -> CFComparisonResult;
 }

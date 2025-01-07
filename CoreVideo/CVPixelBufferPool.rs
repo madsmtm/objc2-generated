@@ -10,26 +10,26 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpool?language=objc)
 #[repr(C)]
-pub struct CVPixelBufferPoolRef {
+pub struct CVPixelBufferPool {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CVPixelBufferPool"]
-    unsafe impl CVPixelBufferPoolRef {}
+    unsafe impl CVPixelBufferPool {}
 );
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpoolminimumbuffercountkey?language=objc)
-    pub static kCVPixelBufferPoolMinimumBufferCountKey: &'static CFStringRef;
+    pub static kCVPixelBufferPoolMinimumBufferCountKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpoolmaximumbufferagekey?language=objc)
-    pub static kCVPixelBufferPoolMaximumBufferAgeKey: &'static CFStringRef;
+    pub static kCVPixelBufferPoolMaximumBufferAgeKey: &'static CFString;
 }
 
 extern "C-unwind" {
@@ -45,8 +45,8 @@ extern "C-unwind" {
     ///
     /// Returns: A CVPixelBufferPoolRef object that is the same as the passed in buffer.
     pub fn CVPixelBufferPoolRetain(
-        pixel_buffer_pool: Option<&CVPixelBufferPoolRef>,
-    ) -> *mut CVPixelBufferPoolRef;
+        pixel_buffer_pool: Option<&CVPixelBufferPool>,
+    ) -> *mut CVPixelBufferPool;
 }
 
 extern "C-unwind" {
@@ -61,10 +61,10 @@ extern "C-unwind" {
     /// Returns: Returns kCVReturnSuccess on success
     #[cfg(feature = "CVReturn")]
     pub fn CVPixelBufferPoolCreate(
-        allocator: Option<&CFAllocatorRef>,
-        pool_attributes: Option<&CFDictionaryRef>,
-        pixel_buffer_attributes: Option<&CFDictionaryRef>,
-        pool_out: NonNull<CVPixelBufferPoolRef>,
+        allocator: Option<&CFAllocator>,
+        pool_attributes: Option<&CFDictionary>,
+        pixel_buffer_attributes: Option<&CFDictionary>,
+        pool_out: NonNull<CVPixelBufferPool>,
     ) -> CVReturn;
 }
 
@@ -74,7 +74,7 @@ extern "C-unwind" {
     /// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the pool attributes dictionary, or NULL on failure.
-    pub fn CVPixelBufferPoolGetAttributes(pool: &CVPixelBufferPoolRef) -> *mut CFDictionaryRef;
+    pub fn CVPixelBufferPoolGetAttributes(pool: &CVPixelBufferPool) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -86,9 +86,8 @@ extern "C-unwind" {
     /// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the pixel buffer attributes dictionary, or NULL on failure.
-    pub fn CVPixelBufferPoolGetPixelBufferAttributes(
-        pool: &CVPixelBufferPoolRef,
-    ) -> *mut CFDictionaryRef;
+    pub fn CVPixelBufferPoolGetPixelBufferAttributes(pool: &CVPixelBufferPool)
+        -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -110,9 +109,9 @@ extern "C-unwind" {
         feature = "CVReturn"
     ))]
     pub fn CVPixelBufferPoolCreatePixelBuffer(
-        allocator: Option<&CFAllocatorRef>,
-        pixel_buffer_pool: &CVPixelBufferPoolRef,
-        pixel_buffer_out: NonNull<CVPixelBufferRef>,
+        allocator: Option<&CFAllocator>,
+        pixel_buffer_pool: &CVPixelBufferPool,
+        pixel_buffer_out: NonNull<CVPixelBuffer>,
     ) -> CVReturn;
 }
 
@@ -124,21 +123,21 @@ extern "C-unwind" {
         feature = "CVReturn"
     ))]
     pub fn CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(
-        allocator: Option<&CFAllocatorRef>,
-        pixel_buffer_pool: &CVPixelBufferPoolRef,
-        aux_attributes: Option<&CFDictionaryRef>,
-        pixel_buffer_out: NonNull<CVPixelBufferRef>,
+        allocator: Option<&CFAllocator>,
+        pixel_buffer_pool: &CVPixelBufferPool,
+        aux_attributes: Option<&CFDictionary>,
+        pixel_buffer_out: NonNull<CVPixelBuffer>,
     ) -> CVReturn;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpoolallocationthresholdkey?language=objc)
-    pub static kCVPixelBufferPoolAllocationThresholdKey: &'static CFStringRef;
+    pub static kCVPixelBufferPoolAllocationThresholdKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpoolfreebuffernotification?language=objc)
-    pub static kCVPixelBufferPoolFreeBufferNotification: &'static CFStringRef;
+    pub static kCVPixelBufferPoolFreeBufferNotification: &'static CFString;
 }
 
 /// Flags to pass to CVPixelBufferPoolFlush()
@@ -181,8 +180,5 @@ extern "C-unwind" {
     /// Parameter `options`: Set to kCVPixelBufferPoolFlushExcessBuffers to free all unused buffers
     /// regardless of their age.
     #[cfg(feature = "CVBase")]
-    pub fn CVPixelBufferPoolFlush(
-        pool: &CVPixelBufferPoolRef,
-        options: CVPixelBufferPoolFlushFlags,
-    );
+    pub fn CVPixelBufferPoolFlush(pool: &CVPixelBufferPool, options: CVPixelBufferPoolFlushFlags);
 }

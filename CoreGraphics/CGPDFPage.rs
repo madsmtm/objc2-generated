@@ -9,16 +9,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpageref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfpage?language=objc)
 #[repr(C)]
-pub struct CGPDFPageRef {
+pub struct CGPDFPage {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGPDFPage"]
-    unsafe impl CGPDFPageRef {}
+    unsafe impl CGPDFPage {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfbox?language=objc)
@@ -50,33 +50,33 @@ unsafe impl RefEncode for CGPDFBox {
 }
 
 extern "C-unwind" {
-    pub fn CGPDFPageRetain(page: Option<&CGPDFPageRef>) -> *mut CGPDFPageRef;
+    pub fn CGPDFPageRetain(page: Option<&CGPDFPage>) -> *mut CGPDFPage;
 }
 
 extern "C-unwind" {
-    pub fn CGPDFPageRelease(page: Option<&CGPDFPageRef>);
+    pub fn CGPDFPageRelease(page: Option<&CGPDFPage>);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFDocument")]
-    pub fn CGPDFPageGetDocument(page: Option<&CGPDFPageRef>) -> *mut CGPDFDocumentRef;
+    pub fn CGPDFPageGetDocument(page: Option<&CGPDFPage>) -> *mut CGPDFDocument;
 }
 
 extern "C-unwind" {
-    pub fn CGPDFPageGetPageNumber(page: Option<&CGPDFPageRef>) -> usize;
+    pub fn CGPDFPageGetPageNumber(page: Option<&CGPDFPage>) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn CGPDFPageGetBoxRect(page: Option<&CGPDFPageRef>, r#box: CGPDFBox) -> CGRect;
+    pub fn CGPDFPageGetBoxRect(page: Option<&CGPDFPage>, r#box: CGPDFBox) -> CGRect;
 }
 
 extern "C-unwind" {
-    pub fn CGPDFPageGetRotationAngle(page: Option<&CGPDFPageRef>) -> c_int;
+    pub fn CGPDFPageGetRotationAngle(page: Option<&CGPDFPage>) -> c_int;
 }
 
 extern "C-unwind" {
     pub fn CGPDFPageGetDrawingTransform(
-        page: Option<&CGPDFPageRef>,
+        page: Option<&CGPDFPage>,
         r#box: CGPDFBox,
         rect: CGRect,
         rotate: c_int,
@@ -86,7 +86,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFDictionary")]
-    pub fn CGPDFPageGetDictionary(page: Option<&CGPDFPageRef>) -> CGPDFDictionaryRef;
+    pub fn CGPDFPageGetDictionary(page: Option<&CGPDFPage>) -> CGPDFDictionaryRef;
 }
 
 extern "C-unwind" {

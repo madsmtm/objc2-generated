@@ -9,20 +9,20 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrordomain?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "CFBase")]
-pub type CFErrorDomain = CFStringRef;
+pub type CFErrorDomain = CFString;
 
 /// This is the type of a reference to CFErrors.  CFErrorRef is toll-free bridged with NSError.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferrorref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cferror?language=objc)
 #[repr(C)]
-pub struct CFErrorRef {
+pub struct CFError {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFError"]
-    unsafe impl CFErrorRef {}
+    unsafe impl CFError {}
 );
 
 extern "C-unwind" {
@@ -58,49 +58,49 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizeddescriptionkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFErrorLocalizedDescriptionKey: Option<&'static CFStringRef>;
+    pub static kCFErrorLocalizedDescriptionKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizedfailurekey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFErrorLocalizedFailureKey: Option<&'static CFStringRef>;
+    pub static kCFErrorLocalizedFailureKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizedfailurereasonkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFErrorLocalizedFailureReasonKey: Option<&'static CFStringRef>;
+    pub static kCFErrorLocalizedFailureReasonKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorlocalizedrecoverysuggestionkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFErrorLocalizedRecoverySuggestionKey: Option<&'static CFStringRef>;
+    pub static kCFErrorLocalizedRecoverySuggestionKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrordescriptionkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFErrorDescriptionKey: Option<&'static CFStringRef>;
+    pub static kCFErrorDescriptionKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorunderlyingerrorkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFErrorUnderlyingErrorKey: Option<&'static CFStringRef>;
+    pub static kCFErrorUnderlyingErrorKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorurlkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFErrorURLKey: Option<&'static CFStringRef>;
+    pub static kCFErrorURLKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcferrorfilepathkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFErrorFilePathKey: Option<&'static CFStringRef>;
+    pub static kCFErrorFilePathKey: Option<&'static CFString>;
 }
 
 extern "C-unwind" {
@@ -119,11 +119,11 @@ extern "C-unwind" {
     /// Returns: A reference to the new CFError.
     #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
     pub fn CFErrorCreate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         domain: Option<&CFErrorDomain>,
         code: CFIndex,
-        user_info: Option<&CFDictionaryRef>,
-    ) -> *mut CFErrorRef;
+        user_info: Option<&CFDictionary>,
+    ) -> *mut CFError;
 }
 
 extern "C-unwind" {
@@ -145,13 +145,13 @@ extern "C-unwind" {
     /// Returns: A reference to the new CFError. numUserInfoValues CF types are gathered from each of userInfoKeys and userInfoValues to create the userInfo dictionary.
     #[cfg(feature = "CFBase")]
     pub fn CFErrorCreateWithUserInfoKeysAndValues(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         domain: Option<&CFErrorDomain>,
         code: CFIndex,
         user_info_keys: *const *const c_void,
         user_info_values: *const *const c_void,
         num_user_info_values: CFIndex,
-    ) -> *mut CFErrorRef;
+    ) -> *mut CFError;
 }
 
 extern "C-unwind" {
@@ -161,7 +161,7 @@ extern "C-unwind" {
     ///
     /// Returns: The error domain of the CFError. Since this is a "Get" function, the caller shouldn't CFRelease the return value.
     #[cfg(feature = "CFBase")]
-    pub fn CFErrorGetDomain(err: Option<&CFErrorRef>) -> *mut CFErrorDomain;
+    pub fn CFErrorGetDomain(err: Option<&CFError>) -> *mut CFErrorDomain;
 }
 
 extern "C-unwind" {
@@ -171,7 +171,7 @@ extern "C-unwind" {
     ///
     /// Returns: The error code of the CFError (not an error return for the current call).
     #[cfg(feature = "CFBase")]
-    pub fn CFErrorGetCode(err: Option<&CFErrorRef>) -> CFIndex;
+    pub fn CFErrorGetCode(err: Option<&CFError>) -> CFIndex;
 }
 
 extern "C-unwind" {
@@ -183,7 +183,7 @@ extern "C-unwind" {
     ///
     /// Returns: The user info of the CFError.
     #[cfg(feature = "CFDictionary")]
-    pub fn CFErrorCopyUserInfo(err: Option<&CFErrorRef>) -> *mut CFDictionaryRef;
+    pub fn CFErrorCopyUserInfo(err: Option<&CFError>) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -200,7 +200,7 @@ extern "C-unwind" {
     ///
     /// Returns: A CFString with human-presentable description of the CFError. Never NULL.
     #[cfg(feature = "CFBase")]
-    pub fn CFErrorCopyDescription(err: Option<&CFErrorRef>) -> *mut CFStringRef;
+    pub fn CFErrorCopyDescription(err: Option<&CFError>) -> *mut CFString;
 }
 
 extern "C-unwind" {
@@ -214,7 +214,7 @@ extern "C-unwind" {
     ///
     /// Returns: A CFString with the localized, end-user presentable failure reason of the CFError, or NULL.
     #[cfg(feature = "CFBase")]
-    pub fn CFErrorCopyFailureReason(err: Option<&CFErrorRef>) -> *mut CFStringRef;
+    pub fn CFErrorCopyFailureReason(err: Option<&CFError>) -> *mut CFString;
 }
 
 extern "C-unwind" {
@@ -228,5 +228,5 @@ extern "C-unwind" {
     ///
     /// Returns: A CFString with the localized, end-user presentable recovery suggestion of the CFError, or NULL.
     #[cfg(feature = "CFBase")]
-    pub fn CFErrorCopyRecoverySuggestion(err: Option<&CFErrorRef>) -> *mut CFStringRef;
+    pub fn CFErrorCopyRecoverySuggestion(err: Option<&CFError>) -> *mut CFString;
 }

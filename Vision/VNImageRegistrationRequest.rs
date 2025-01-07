@@ -68,7 +68,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCVPixelBuffer:options:)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options(
             this: Allocated<Self>,
-            pixel_buffer: &CVPixelBufferRef,
+            pixel_buffer: &CVPixelBuffer,
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
@@ -88,7 +88,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCVPixelBuffer:options:completionHandler:)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options_completionHandler(
             this: Allocated<Self>,
-            pixel_buffer: &CVPixelBufferRef,
+            pixel_buffer: &CVPixelBuffer,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
@@ -103,7 +103,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCGImage:options:)]
         pub unsafe fn initWithTargetedCGImage_options(
             this: Allocated<Self>,
-            cg_image: &CGImageRef,
+            cg_image: &CGImage,
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
@@ -123,7 +123,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCGImage:options:completionHandler:)]
         pub unsafe fn initWithTargetedCGImage_options_completionHandler(
             this: Allocated<Self>,
-            cg_image: &CGImageRef,
+            cg_image: &CGImage,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
@@ -235,7 +235,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCMSampleBuffer:options:)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options(
             this: Allocated<Self>,
-            sample_buffer: &CMSampleBufferRef,
+            sample_buffer: &CMSampleBuffer,
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
@@ -255,7 +255,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCMSampleBuffer:options:completionHandler:)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options_completionHandler(
             this: Allocated<Self>,
-            sample_buffer: &CMSampleBufferRef,
+            sample_buffer: &CMSampleBuffer,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
@@ -337,7 +337,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCVPixelBuffer:options:)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options(
             this: Allocated<Self>,
-            pixel_buffer: &CVPixelBufferRef,
+            pixel_buffer: &CVPixelBuffer,
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
@@ -357,7 +357,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCVPixelBuffer:options:completionHandler:)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options_completionHandler(
             this: Allocated<Self>,
-            pixel_buffer: &CVPixelBufferRef,
+            pixel_buffer: &CVPixelBuffer,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
@@ -372,7 +372,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCGImage:options:)]
         pub unsafe fn initWithTargetedCGImage_options(
             this: Allocated<Self>,
-            cg_image: &CGImageRef,
+            cg_image: &CGImage,
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
@@ -392,7 +392,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCGImage:options:completionHandler:)]
         pub unsafe fn initWithTargetedCGImage_options_completionHandler(
             this: Allocated<Self>,
-            cg_image: &CGImageRef,
+            cg_image: &CGImage,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
@@ -504,7 +504,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCMSampleBuffer:options:)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options(
             this: Allocated<Self>,
-            sample_buffer: &CMSampleBufferRef,
+            sample_buffer: &CMSampleBuffer,
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
@@ -524,7 +524,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCMSampleBuffer:options:completionHandler:)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options_completionHandler(
             this: Allocated<Self>,
-            sample_buffer: &CMSampleBufferRef,
+            sample_buffer: &CMSampleBuffer,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
@@ -610,7 +610,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCVPixelBuffer:options:)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options(
             this: Allocated<Self>,
-            pixel_buffer: &CVPixelBufferRef,
+            pixel_buffer: &CVPixelBuffer,
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
@@ -630,7 +630,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCVPixelBuffer:options:completionHandler:)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options_completionHandler(
             this: Allocated<Self>,
-            pixel_buffer: &CVPixelBufferRef,
+            pixel_buffer: &CVPixelBuffer,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
@@ -645,7 +645,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCGImage:options:)]
         pub unsafe fn initWithTargetedCGImage_options(
             this: Allocated<Self>,
-            cg_image: &CGImageRef,
+            cg_image: &CGImage,
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
@@ -665,7 +665,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCGImage:options:completionHandler:)]
         pub unsafe fn initWithTargetedCGImage_options_completionHandler(
             this: Allocated<Self>,
-            cg_image: &CGImageRef,
+            cg_image: &CGImage,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
@@ -777,7 +777,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCMSampleBuffer:options:)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options(
             this: Allocated<Self>,
-            sample_buffer: &CMSampleBufferRef,
+            sample_buffer: &CMSampleBuffer,
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
@@ -797,7 +797,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithTargetedCMSampleBuffer:options:completionHandler:)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options_completionHandler(
             this: Allocated<Self>,
-            sample_buffer: &CMSampleBufferRef,
+            sample_buffer: &CMSampleBuffer,
             options: &NSDictionary<VNImageOption, AnyObject>,
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;

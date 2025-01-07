@@ -46,8 +46,8 @@ extern "C-unwind" {
     pub fn CGConfigureDisplayWithDisplayMode(
         config: CGDisplayConfigRef,
         display: CGDirectDisplayID,
-        mode: Option<&CGDisplayModeRef>,
-        options: Option<&CFDictionaryRef>,
+        mode: Option<&CGDisplayMode>,
+        options: Option<&CFDictionary>,
     ) -> CGError;
 }
 
@@ -279,7 +279,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(all(feature = "CGColorSpace", feature = "CGDirectDisplay"))]
-    pub fn CGDisplayCopyColorSpace(display: CGDirectDisplayID) -> NonNull<CGColorSpaceRef>;
+    pub fn CGDisplayCopyColorSpace(display: CGDirectDisplayID) -> NonNull<CGColorSpace>;
 }
 
 extern "C-unwind" {
@@ -288,6 +288,6 @@ extern "C-unwind" {
     pub fn CGConfigureDisplayMode(
         config: CGDisplayConfigRef,
         display: CGDirectDisplayID,
-        mode: Option<&CFDictionaryRef>,
+        mode: Option<&CFDictionary>,
     ) -> CGError;
 }

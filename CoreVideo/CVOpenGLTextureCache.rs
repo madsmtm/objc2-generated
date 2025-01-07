@@ -10,36 +10,36 @@ use crate::*;
 
 /// CoreVideo OpenGL Texture Cache
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturecacheref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturecache?language=objc)
 #[repr(C)]
-pub struct CVOpenGLTextureCacheRef {
+pub struct CVOpenGLTextureCache {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CVOpenGLTextureCache"]
-    unsafe impl CVOpenGLTextureCacheRef {}
+    unsafe impl CVOpenGLTextureCache {}
 );
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopengltexturecachechromasamplingmodekey?language=objc)
-    pub static kCVOpenGLTextureCacheChromaSamplingModeKey: &'static CFStringRef;
+    pub static kCVOpenGLTextureCacheChromaSamplingModeKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopengltexturecachechromasamplingmodeautomatic?language=objc)
-    pub static kCVOpenGLTextureCacheChromaSamplingModeAutomatic: &'static CFStringRef;
+    pub static kCVOpenGLTextureCacheChromaSamplingModeAutomatic: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopengltexturecachechromasamplingmodehighestquality?language=objc)
-    pub static kCVOpenGLTextureCacheChromaSamplingModeHighestQuality: &'static CFStringRef;
+    pub static kCVOpenGLTextureCacheChromaSamplingModeHighestQuality: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopengltexturecachechromasamplingmodebestperformance?language=objc)
-    pub static kCVOpenGLTextureCacheChromaSamplingModeBestPerformance: &'static CFStringRef;
+    pub static kCVOpenGLTextureCacheChromaSamplingModeBestPerformance: &'static CFString;
 }
 
 extern "C-unwind" {
@@ -57,8 +57,8 @@ extern "C-unwind" {
     /// Returns: A CVOpenGLTextureCache object that is the same as the passed in buffer.
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLTextureCacheRetain(
-        texture_cache: Option<&CVOpenGLTextureCacheRef>,
-    ) -> *mut CVOpenGLTextureCacheRef;
+        texture_cache: Option<&CVOpenGLTextureCache>,
+    ) -> *mut CVOpenGLTextureCache;
 }
 
 extern "C-unwind" {
@@ -83,11 +83,11 @@ extern "C-unwind" {
     ))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLTextureCacheCreateTextureFromImage(
-        allocator: Option<&CFAllocatorRef>,
-        texture_cache: &CVOpenGLTextureCacheRef,
-        source_image: &CVImageBufferRef,
-        attributes: Option<&CFDictionaryRef>,
-        texture_out: NonNull<CVOpenGLTextureRef>,
+        allocator: Option<&CFAllocator>,
+        texture_cache: &CVOpenGLTextureCache,
+        source_image: &CVImageBuffer,
+        attributes: Option<&CFDictionary>,
+        texture_out: NonNull<CVOpenGLTexture>,
     ) -> CVReturn;
 }
 
@@ -104,8 +104,5 @@ extern "C-unwind" {
     /// Returns: Returns kCVReturnSuccess on success
     #[cfg(feature = "CVBase")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLTextureCacheFlush(
-        texture_cache: &CVOpenGLTextureCacheRef,
-        options: CVOptionFlags,
-    );
+    pub fn CVOpenGLTextureCacheFlush(texture_cache: &CVOpenGLTextureCache, options: CVOptionFlags);
 }

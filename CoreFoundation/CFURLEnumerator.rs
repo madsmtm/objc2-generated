@@ -8,16 +8,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumerator?language=objc)
 #[repr(C)]
-pub struct CFURLEnumeratorRef {
+pub struct CFURLEnumerator {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFURLEnumerator"]
-    unsafe impl CFURLEnumeratorRef {}
+    unsafe impl CFURLEnumerator {}
 );
 
 extern "C-unwind" {
@@ -66,20 +66,20 @@ unsafe impl RefEncode for CFURLEnumeratorOptions {
 extern "C-unwind" {
     #[cfg(all(feature = "CFArray", feature = "CFBase", feature = "CFURL"))]
     pub fn CFURLEnumeratorCreateForDirectoryURL(
-        alloc: Option<&CFAllocatorRef>,
-        directory_url: Option<&CFURLRef>,
+        alloc: Option<&CFAllocator>,
+        directory_url: Option<&CFURL>,
         option: CFURLEnumeratorOptions,
-        property_keys: Option<&CFArrayRef>,
-    ) -> *mut CFURLEnumeratorRef;
+        property_keys: Option<&CFArray>,
+    ) -> *mut CFURLEnumerator;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFArray", feature = "CFBase"))]
     pub fn CFURLEnumeratorCreateForMountedVolumes(
-        alloc: Option<&CFAllocatorRef>,
+        alloc: Option<&CFAllocator>,
         option: CFURLEnumeratorOptions,
-        property_keys: Option<&CFArrayRef>,
-    ) -> *mut CFURLEnumeratorRef;
+        property_keys: Option<&CFArray>,
+    ) -> *mut CFURLEnumerator;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult?language=objc)
@@ -113,22 +113,22 @@ unsafe impl RefEncode for CFURLEnumeratorResult {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFError", feature = "CFURL"))]
     pub fn CFURLEnumeratorGetNextURL(
-        enumerator: Option<&CFURLEnumeratorRef>,
-        url: *mut CFURLRef,
-        error: *mut CFErrorRef,
+        enumerator: Option<&CFURLEnumerator>,
+        url: *mut CFURL,
+        error: *mut CFError,
     ) -> CFURLEnumeratorResult;
 }
 
 extern "C-unwind" {
-    pub fn CFURLEnumeratorSkipDescendents(enumerator: Option<&CFURLEnumeratorRef>);
+    pub fn CFURLEnumeratorSkipDescendents(enumerator: Option<&CFURLEnumerator>);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFURLEnumeratorGetDescendentLevel(enumerator: Option<&CFURLEnumeratorRef>) -> CFIndex;
+    pub fn CFURLEnumeratorGetDescendentLevel(enumerator: Option<&CFURLEnumerator>) -> CFIndex;
 }
 
 extern "C-unwind" {
     #[deprecated = "Use File System Events API instead"]
-    pub fn CFURLEnumeratorGetSourceDidChange(enumerator: Option<&CFURLEnumeratorRef>) -> Boolean;
+    pub fn CFURLEnumeratorGetSourceDidChange(enumerator: Option<&CFURLEnumerator>) -> Boolean;
 }

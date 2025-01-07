@@ -845,7 +845,7 @@ extern_methods!(
             &self,
             index: NSInteger,
             out_range: *mut NSRange,
-        ) -> Option<Retained<CGColorRef>>;
+        ) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// The background color of the character(s).
@@ -868,7 +868,7 @@ extern_methods!(
             &self,
             index: NSInteger,
             out_range: *mut NSRange,
-        ) -> Option<Retained<CGColorRef>>;
+        ) -> Option<Retained<CGColor>>;
 
         /// Indicates the font weight of the character(s).
         ///
@@ -969,14 +969,14 @@ extern_methods!(
         ///
         /// The range parameter uses UTF-16 code unit index range.
         #[method(setTextColor:inRange:)]
-        pub unsafe fn setTextColor_inRange(&self, color: &CGColorRef, range: NSRange);
+        pub unsafe fn setTextColor_inRange(&self, color: &CGColor, range: NSRange);
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Set background color for the range.
         ///
         /// The range parameter uses UTF-16 code unit index range.
         #[method(setBackgroundColor:inRange:)]
-        pub unsafe fn setBackgroundColor_inRange(&self, color: &CGColorRef, range: NSRange);
+        pub unsafe fn setBackgroundColor_inRange(&self, color: &CGColor, range: NSRange);
 
         /// Set font weight for the range.
         ///

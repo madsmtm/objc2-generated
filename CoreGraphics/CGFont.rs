@@ -10,16 +10,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfontref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont?language=objc)
 #[repr(C)]
-pub struct CGFontRef {
+pub struct CGFont {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGFont"]
-    unsafe impl CGFontRef {}
+    unsafe impl CGFont {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfontindex?language=objc)
@@ -61,92 +61,92 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "No longer supported"]
-    pub fn CGFontCreateWithPlatformFont(platform_font_reference: *mut c_void) -> *mut CGFontRef;
+    pub fn CGFontCreateWithPlatformFont(platform_font_reference: *mut c_void) -> *mut CGFont;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGDataProvider")]
-    pub fn CGFontCreateWithDataProvider(provider: &CGDataProviderRef) -> *mut CGFontRef;
+    pub fn CGFontCreateWithDataProvider(provider: &CGDataProvider) -> *mut CGFont;
 }
 
 extern "C-unwind" {
-    pub fn CGFontCreateWithFontName(name: Option<&CFStringRef>) -> *mut CGFontRef;
+    pub fn CGFontCreateWithFontName(name: Option<&CFString>) -> *mut CGFont;
 }
 
 extern "C-unwind" {
     pub fn CGFontCreateCopyWithVariations(
-        font: Option<&CGFontRef>,
-        variations: Option<&CFDictionaryRef>,
-    ) -> *mut CGFontRef;
+        font: Option<&CGFont>,
+        variations: Option<&CFDictionary>,
+    ) -> *mut CGFont;
 }
 
 extern "C-unwind" {
-    pub fn CGFontRetain(font: Option<&CGFontRef>) -> *mut CGFontRef;
+    pub fn CGFontRetain(font: Option<&CGFont>) -> *mut CGFont;
 }
 
 extern "C-unwind" {
-    pub fn CGFontRelease(font: Option<&CGFontRef>);
+    pub fn CGFontRelease(font: Option<&CGFont>);
 }
 
 extern "C-unwind" {
-    pub fn CGFontGetNumberOfGlyphs(font: Option<&CGFontRef>) -> usize;
+    pub fn CGFontGetNumberOfGlyphs(font: Option<&CGFont>) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn CGFontGetUnitsPerEm(font: Option<&CGFontRef>) -> c_int;
+    pub fn CGFontGetUnitsPerEm(font: Option<&CGFont>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn CGFontCopyPostScriptName(font: Option<&CGFontRef>) -> *mut CFStringRef;
+    pub fn CGFontCopyPostScriptName(font: Option<&CGFont>) -> *mut CFString;
 }
 
 extern "C-unwind" {
-    pub fn CGFontCopyFullName(font: Option<&CGFontRef>) -> *mut CFStringRef;
+    pub fn CGFontCopyFullName(font: Option<&CGFont>) -> *mut CFString;
 }
 
 extern "C-unwind" {
-    pub fn CGFontGetAscent(font: Option<&CGFontRef>) -> c_int;
+    pub fn CGFontGetAscent(font: Option<&CGFont>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn CGFontGetDescent(font: Option<&CGFontRef>) -> c_int;
+    pub fn CGFontGetDescent(font: Option<&CGFont>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn CGFontGetLeading(font: Option<&CGFontRef>) -> c_int;
+    pub fn CGFontGetLeading(font: Option<&CGFont>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn CGFontGetCapHeight(font: Option<&CGFontRef>) -> c_int;
+    pub fn CGFontGetCapHeight(font: Option<&CGFont>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn CGFontGetXHeight(font: Option<&CGFontRef>) -> c_int;
+    pub fn CGFontGetXHeight(font: Option<&CGFont>) -> c_int;
 }
 
 extern "C-unwind" {
-    pub fn CGFontGetFontBBox(font: Option<&CGFontRef>) -> CGRect;
+    pub fn CGFontGetFontBBox(font: Option<&CGFont>) -> CGRect;
 }
 
 extern "C-unwind" {
-    pub fn CGFontGetItalicAngle(font: Option<&CGFontRef>) -> CGFloat;
+    pub fn CGFontGetItalicAngle(font: Option<&CGFont>) -> CGFloat;
 }
 
 extern "C-unwind" {
-    pub fn CGFontGetStemV(font: Option<&CGFontRef>) -> CGFloat;
+    pub fn CGFontGetStemV(font: Option<&CGFont>) -> CGFloat;
 }
 
 extern "C-unwind" {
-    pub fn CGFontCopyVariationAxes(font: Option<&CGFontRef>) -> *mut CFArrayRef;
+    pub fn CGFontCopyVariationAxes(font: Option<&CGFont>) -> *mut CFArray;
 }
 
 extern "C-unwind" {
-    pub fn CGFontCopyVariations(font: Option<&CGFontRef>) -> *mut CFDictionaryRef;
+    pub fn CGFontCopyVariations(font: Option<&CGFont>) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
     pub fn CGFontGetGlyphAdvances(
-        font: Option<&CGFontRef>,
+        font: Option<&CGFont>,
         glyphs: NonNull<CGGlyph>,
         count: usize,
         advances: NonNull<c_int>,
@@ -155,7 +155,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CGFontGetGlyphBBoxes(
-        font: Option<&CGFontRef>,
+        font: Option<&CGFont>,
         glyphs: NonNull<CGGlyph>,
         count: usize,
         bboxes: NonNull<CGRect>,
@@ -163,54 +163,48 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGFontGetGlyphWithGlyphName(
-        font: Option<&CGFontRef>,
-        name: Option<&CFStringRef>,
-    ) -> CGGlyph;
+    pub fn CGFontGetGlyphWithGlyphName(font: Option<&CGFont>, name: Option<&CFString>) -> CGGlyph;
 }
 
 extern "C-unwind" {
-    pub fn CGFontCopyGlyphNameForGlyph(
-        font: Option<&CGFontRef>,
-        glyph: CGGlyph,
-    ) -> *mut CFStringRef;
+    pub fn CGFontCopyGlyphNameForGlyph(font: Option<&CGFont>, glyph: CGGlyph) -> *mut CFString;
 }
 
 extern "C-unwind" {
     pub fn CGFontCanCreatePostScriptSubset(
-        font: Option<&CGFontRef>,
+        font: Option<&CGFont>,
         format: CGFontPostScriptFormat,
     ) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGFontCopyTableTags(font: Option<&CGFontRef>) -> *mut CFArrayRef;
+    pub fn CGFontCopyTableTags(font: Option<&CGFont>) -> *mut CFArray;
 }
 
 extern "C-unwind" {
-    pub fn CGFontCopyTableForTag(font: Option<&CGFontRef>, tag: u32) -> *mut CFDataRef;
+    pub fn CGFontCopyTableForTag(font: Option<&CGFont>, tag: u32) -> *mut CFData;
 }
 
 extern "C" {
     /// * Keys for the font variation axis dictionary. **
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontvariationaxisname?language=objc)
-    pub static kCGFontVariationAxisName: &'static CFStringRef;
+    pub static kCGFontVariationAxisName: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontvariationaxisminvalue?language=objc)
-    pub static kCGFontVariationAxisMinValue: &'static CFStringRef;
+    pub static kCGFontVariationAxisMinValue: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontvariationaxismaxvalue?language=objc)
-    pub static kCGFontVariationAxisMaxValue: &'static CFStringRef;
+    pub static kCGFontVariationAxisMaxValue: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontvariationaxisdefaultvalue?language=objc)
-    pub static kCGFontVariationAxisDefaultValue: &'static CFStringRef;
+    pub static kCGFontVariationAxisDefaultValue: &'static CFString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgglyphdeprecatedenum?language=objc)

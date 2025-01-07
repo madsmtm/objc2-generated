@@ -10,28 +10,28 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectionref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollection?language=objc)
 #[repr(C)]
-pub struct CTFontCollectionRef {
+pub struct CTFontCollection {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CTFontCollection"]
-    unsafe impl CTFontCollectionRef {}
+    unsafe impl CTFontCollection {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctmutablefontcollectionref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctmutablefontcollection?language=objc)
 #[repr(C)]
-pub struct CTMutableFontCollectionRef {
+pub struct CTMutableFontCollection {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CTFontCollection"]
-    unsafe impl CTMutableFontCollectionRef: CTFontCollectionRef {}
+    unsafe impl CTMutableFontCollection: CTFontCollection {}
 );
 
 extern "C-unwind" {
@@ -49,8 +49,8 @@ extern "C-unwind" {
 #[cfg(feature = "CTFontDescriptor")]
 pub type CTFontCollectionSortDescriptorsCallback = Option<
     unsafe extern "C-unwind" fn(
-        NonNull<CTFontDescriptorRef>,
-        NonNull<CTFontDescriptorRef>,
+        NonNull<CTFontDescriptor>,
+        NonNull<CTFontDescriptor>,
         NonNull<c_void>,
     ) -> CFComparisonResult,
 >;
@@ -63,7 +63,7 @@ extern "C" {
     /// Specify this option key in the options dictionary with a non- zero value to enable automatic filtering of duplicate font descriptors.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontcollectionremoveduplicatesoption?language=objc)
-    pub static kCTFontCollectionRemoveDuplicatesOption: &'static CFStringRef;
+    pub static kCTFontCollectionRemoveDuplicatesOption: &'static CFString;
 }
 
 extern "C" {
@@ -74,7 +74,7 @@ extern "C" {
     /// Specify this option key in the options dictionary with a non-zero value to enable matching of disabled fonts. You can pass font descriptors specifying disabled fonts to CTFontManagerEnableFontDescriptors, but you cannot use such a font descriptor to query font attributes from the system database or create a CTFontRef.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontcollectionincludedisabledfontsoption?language=objc)
-    pub static kCTFontCollectionIncludeDisabledFontsOption: &'static CFStringRef;
+    pub static kCTFontCollectionIncludeDisabledFontsOption: &'static CFString;
 }
 
 extern "C" {
@@ -85,7 +85,7 @@ extern "C" {
     /// Specify this option key in the options dictionary with a non-zero value to disallow searches for missing fonts (font descriptors returning no results).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontcollectiondisallowautoactivationoption?language=objc)
-    pub static kCTFontCollectionDisallowAutoActivationOption: &'static CFStringRef;
+    pub static kCTFontCollectionDisallowAutoActivationOption: &'static CFString;
 }
 
 extern "C-unwind" {
@@ -97,8 +97,8 @@ extern "C-unwind" {
     ///
     /// Returns: This function creates a new collection containing all fonts available to the current application.
     pub fn CTFontCollectionCreateFromAvailableFonts(
-        options: Option<&CFDictionaryRef>,
-    ) -> NonNull<CTFontCollectionRef>;
+        options: Option<&CFDictionary>,
+    ) -> NonNull<CTFontCollection>;
 }
 
 extern "C-unwind" {
@@ -113,9 +113,9 @@ extern "C-unwind" {
     ///
     /// Returns: This function creates a new collection based on the provided font descriptors. The contents of this collection is defined by matching the provided descriptors against all available font descriptors.
     pub fn CTFontCollectionCreateWithFontDescriptors(
-        query_descriptors: Option<&CFArrayRef>,
-        options: Option<&CFDictionaryRef>,
-    ) -> NonNull<CTFontCollectionRef>;
+        query_descriptors: Option<&CFArray>,
+        options: Option<&CFDictionary>,
+    ) -> NonNull<CTFontCollection>;
 }
 
 extern "C-unwind" {
@@ -133,10 +133,10 @@ extern "C-unwind" {
     ///
     /// Returns: This function creates a copy of the original font collection augmented by the new font descriptors and options. The new font descriptors are merged with the existing descriptors to create a single set.
     pub fn CTFontCollectionCreateCopyWithFontDescriptors(
-        original: &CTFontCollectionRef,
-        query_descriptors: Option<&CFArrayRef>,
-        options: Option<&CFDictionaryRef>,
-    ) -> NonNull<CTFontCollectionRef>;
+        original: &CTFontCollection,
+        query_descriptors: Option<&CFArray>,
+        options: Option<&CFDictionary>,
+    ) -> NonNull<CTFontCollection>;
 }
 
 extern "C-unwind" {
@@ -148,8 +148,8 @@ extern "C-unwind" {
     ///
     /// Returns: This function creates a mutable copy of the original font collection.
     pub fn CTFontCollectionCreateMutableCopy(
-        original: &CTFontCollectionRef,
-    ) -> NonNull<CTMutableFontCollectionRef>;
+        original: &CTFontCollection,
+    ) -> NonNull<CTMutableFontCollection>;
 }
 
 extern "C-unwind" {
@@ -160,9 +160,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns a retained reference to the array of descriptors to be used to query (match) the system font database. The return value is undefined if CTFontCollectionCreateFromAvailableFonts was used to create the collection.
-    pub fn CTFontCollectionCopyQueryDescriptors(
-        collection: &CTFontCollectionRef,
-    ) -> *mut CFArrayRef;
+    pub fn CTFontCollectionCopyQueryDescriptors(collection: &CTFontCollection) -> *mut CFArray;
 }
 
 extern "C-unwind" {
@@ -174,8 +172,8 @@ extern "C-unwind" {
     ///
     /// Parameter `descriptors`: An array of CTFontDescriptorRef. May be NULL to represent an empty collection, in which case the matching descriptors will also be NULL.
     pub fn CTFontCollectionSetQueryDescriptors(
-        collection: &CTMutableFontCollectionRef,
-        descriptors: Option<&CFArrayRef>,
+        collection: &CTMutableFontCollection,
+        descriptors: Option<&CFArray>,
     );
 }
 
@@ -187,9 +185,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns a retained reference to the array of descriptors to be used to query (match) the system font database.
-    pub fn CTFontCollectionCopyExclusionDescriptors(
-        collection: &CTFontCollectionRef,
-    ) -> *mut CFArrayRef;
+    pub fn CTFontCollectionCopyExclusionDescriptors(collection: &CTFontCollection) -> *mut CFArray;
 }
 
 extern "C-unwind" {
@@ -201,8 +197,8 @@ extern "C-unwind" {
     ///
     /// Parameter `descriptors`: An array of CTFontDescriptorRef. May be NULL.
     pub fn CTFontCollectionSetExclusionDescriptors(
-        collection: &CTMutableFontCollectionRef,
-        descriptors: Option<&CFArrayRef>,
+        collection: &CTMutableFontCollection,
+        descriptors: Option<&CFArray>,
     );
 }
 
@@ -215,8 +211,8 @@ extern "C-unwind" {
     ///
     /// Returns: An array of CTFontDescriptors matching the collection definition or NULL if there are none.
     pub fn CTFontCollectionCreateMatchingFontDescriptors(
-        collection: &CTFontCollectionRef,
-    ) -> *mut CFArrayRef;
+        collection: &CTFontCollection,
+    ) -> *mut CFArray;
 }
 
 extern "C-unwind" {
@@ -235,10 +231,10 @@ extern "C-unwind" {
     /// Returns: An array of CTFontDescriptors matching the criteria of the collection, sorted by the results of the sorting callback function, or NULL if there are none.
     #[cfg(feature = "CTFontDescriptor")]
     pub fn CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(
-        collection: &CTFontCollectionRef,
+        collection: &CTFontCollection,
         sort_callback: CTFontCollectionSortDescriptorsCallback,
         ref_con: *mut c_void,
-    ) -> *mut CFArrayRef;
+    ) -> *mut CFArray;
 }
 
 extern "C-unwind" {
@@ -253,9 +249,9 @@ extern "C-unwind" {
     ///
     /// Returns: An array of CTFontDescriptors matching the collection definition or NULL if there are none.
     pub fn CTFontCollectionCreateMatchingFontDescriptorsWithOptions(
-        collection: &CTFontCollectionRef,
-        options: Option<&CFDictionaryRef>,
-    ) -> *mut CFArrayRef;
+        collection: &CTFontCollection,
+        options: Option<&CFDictionary>,
+    ) -> *mut CFArray;
 }
 
 extern "C-unwind" {
@@ -270,10 +266,10 @@ extern "C-unwind" {
     ///
     /// Returns: An array of CTFontDescriptors matching the specified family in the collection or NULL if there are none.
     pub fn CTFontCollectionCreateMatchingFontDescriptorsForFamily(
-        collection: &CTFontCollectionRef,
-        family_name: &CFStringRef,
-        options: Option<&CFDictionaryRef>,
-    ) -> *mut CFArrayRef;
+        collection: &CTFontCollection,
+        family_name: &CFString,
+        options: Option<&CFDictionary>,
+    ) -> *mut CFArray;
 }
 
 /// Option bits for use with CTFontCollectionCopyFontAttribute(s).
@@ -325,10 +321,10 @@ extern "C-unwind" {
     ///
     /// Returns: An array containing one value for each descriptor. With kCTFontCollectionCopyDefaultOptions, the values will be in the same order as the results from CTFontCollectionCreateMatchingFontDescriptors and NULL values will be transformed to kCFNull. When the kCTFontCollectionCopyUnique is set, duplicate values will be removed. When kCTFontCollectionCopyStandardSort is set, the values will be sorted in standard UI order.
     pub fn CTFontCollectionCopyFontAttribute(
-        collection: &CTFontCollectionRef,
-        attribute_name: &CFStringRef,
+        collection: &CTFontCollection,
+        attribute_name: &CFString,
         options: CTFontCollectionCopyOptions,
-    ) -> NonNull<CFArrayRef>;
+    ) -> NonNull<CFArray>;
 }
 
 extern "C-unwind" {
@@ -346,8 +342,8 @@ extern "C-unwind" {
     ///
     /// Returns: An array containing one CFDictionary value for each descriptor mapping the requested attribute names. With kCTFontCollectionCopyDefaultOptions, the values will be in the same order as the results from CTFontCollectionCreateMatchingFontDescriptors. When the kCTFontCollectionCopyUnique is set, duplicate values will be removed. When kCTFontCollectionCopyStandardSort is set, the values will be sorted in standard UI order.
     pub fn CTFontCollectionCopyFontAttributes(
-        collection: &CTFontCollectionRef,
-        attribute_names: &CFSetRef,
+        collection: &CTFontCollection,
+        attribute_names: &CFSet,
         options: CTFontCollectionCopyOptions,
-    ) -> NonNull<CFArrayRef>;
+    ) -> NonNull<CFArray>;
 }

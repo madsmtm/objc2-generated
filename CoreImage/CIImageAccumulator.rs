@@ -37,7 +37,7 @@ extern_methods!(
         pub unsafe fn imageAccumulatorWithExtent_format_colorSpace(
             extent: CGRect,
             format: CIFormat,
-            color_space: &CGColorSpaceRef,
+            color_space: &CGColorSpace,
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "CIImage", feature = "objc2-core-foundation"))]
@@ -58,7 +58,7 @@ extern_methods!(
             this: Allocated<Self>,
             extent: CGRect,
             format: CIFormat,
-            color_space: &CGColorSpaceRef,
+            color_space: &CGColorSpace,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-foundation")]

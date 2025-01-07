@@ -102,7 +102,7 @@ extern_methods!(
         ///
         /// Do not write to the returned CVPixelBuffer's attachments or pixel data.
         #[method_id(@__retain_semantics Copy copyDisplayedPixelBuffer)]
-        pub unsafe fn copyDisplayedPixelBuffer(&self) -> Option<Retained<CVPixelBufferRef>>;
+        pub unsafe fn copyDisplayedPixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
     }
 );
 

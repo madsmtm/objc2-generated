@@ -12,27 +12,27 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvbufferpropagatedattachmentskey?language=objc)
-    pub static kCVBufferPropagatedAttachmentsKey: &'static CFStringRef;
+    pub static kCVBufferPropagatedAttachmentsKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvbuffernonpropagatedattachmentskey?language=objc)
-    pub static kCVBufferNonPropagatedAttachmentsKey: &'static CFStringRef;
+    pub static kCVBufferNonPropagatedAttachmentsKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvbuffermovietimekey?language=objc)
-    pub static kCVBufferMovieTimeKey: &'static CFStringRef;
+    pub static kCVBufferMovieTimeKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvbuffertimevaluekey?language=objc)
-    pub static kCVBufferTimeValueKey: &'static CFStringRef;
+    pub static kCVBufferTimeValueKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvbuffertimescalekey?language=objc)
-    pub static kCVBufferTimeScaleKey: &'static CFStringRef;
+    pub static kCVBufferTimeScaleKey: &'static CFString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvattachmentmode?language=objc)
@@ -59,16 +59,16 @@ unsafe impl RefEncode for CVAttachmentMode {
 
 /// Base type for all CoreVideo buffers
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvbufferref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvbuffer?language=objc)
 #[repr(C)]
-pub struct CVBufferRef {
+pub struct CVBuffer {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CVBuffer"]
-    unsafe impl CVBufferRef {}
+    unsafe impl CVBuffer {}
 );
 
 extern "C-unwind" {
@@ -79,7 +79,7 @@ extern "C-unwind" {
     /// Parameter `buffer`: A CVBuffer object that you want to retain.
     ///
     /// Returns: A CVBuffer object that is the same as the passed in buffer.
-    pub fn CVBufferRetain(buffer: Option<&CVBufferRef>) -> *mut CVBufferRef;
+    pub fn CVBufferRetain(buffer: Option<&CVBuffer>) -> *mut CVBuffer;
 }
 
 extern "C-unwind" {
@@ -96,8 +96,8 @@ extern "C-unwind" {
     /// Parameter `attachmentMode`: Specifies which attachment mode is desired for this attachment.   A particular attachment key may only exist in
     /// a single mode at a time.
     pub fn CVBufferSetAttachment(
-        buffer: &CVBufferRef,
-        key: &CFStringRef,
+        buffer: &CVBuffer,
+        key: &CFString,
         value: CFTypeRef,
         attachment_mode: CVAttachmentMode,
     );
@@ -117,8 +117,8 @@ extern "C-unwind" {
     /// Returns: If found the attachment object
     #[deprecated]
     pub fn CVBufferGetAttachment(
-        buffer: &CVBufferRef,
-        key: &CFStringRef,
+        buffer: &CVBuffer,
+        key: &CFString,
         attachment_mode: *mut CVAttachmentMode,
     ) -> CFTypeRef;
 }
@@ -131,7 +131,7 @@ extern "C-unwind" {
     /// Parameter `buffer`: Target CVBuffer object.
     ///
     /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
-    pub fn CVBufferRemoveAttachment(buffer: &CVBufferRef, key: &CFStringRef);
+    pub fn CVBufferRemoveAttachment(buffer: &CVBuffer, key: &CFString);
 }
 
 extern "C-unwind" {
@@ -140,7 +140,7 @@ extern "C-unwind" {
     /// While CVBufferRemoveAttachment removes a specific attachement identified by a key CVBufferRemoveAllAttachments removes all attachments of a buffer and decrements their retain counts.
     ///
     /// Parameter `buffer`: Target CVBuffer object.
-    pub fn CVBufferRemoveAllAttachments(buffer: &CVBufferRef);
+    pub fn CVBufferRemoveAllAttachments(buffer: &CVBuffer);
 }
 
 extern "C-unwind" {
@@ -154,9 +154,9 @@ extern "C-unwind" {
     /// for invalid attachment mode.
     #[deprecated]
     pub fn CVBufferGetAttachments(
-        buffer: &CVBufferRef,
+        buffer: &CVBuffer,
         attachment_mode: CVAttachmentMode,
-    ) -> *mut CFDictionaryRef;
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -166,8 +166,8 @@ extern "C-unwind" {
     ///
     /// Parameter `buffer`: Target CVBuffer object.
     pub fn CVBufferSetAttachments(
-        buffer: &CVBufferRef,
-        the_attachments: &CFDictionaryRef,
+        buffer: &CVBuffer,
+        the_attachments: &CFDictionary,
         attachment_mode: CVAttachmentMode,
     );
 }
@@ -181,10 +181,7 @@ extern "C-unwind" {
     /// Parameter `sourceBuffer`: CVBuffer to copy attachments from.
     ///
     /// Parameter `destinationBuffer`: CVBuffer to copy attachments to.
-    pub fn CVBufferPropagateAttachments(
-        source_buffer: &CVBufferRef,
-        destination_buffer: &CVBufferRef,
-    );
+    pub fn CVBufferPropagateAttachments(source_buffer: &CVBuffer, destination_buffer: &CVBuffer);
 }
 
 extern "C-unwind" {
@@ -196,9 +193,9 @@ extern "C-unwind" {
     ///
     /// Returns: A CFDictionary with all buffer attachments identified by their keys. If no attachment is present or invalid attachment mode,   returns NULL
     pub fn CVBufferCopyAttachments(
-        buffer: &CVBufferRef,
+        buffer: &CVBuffer,
         attachment_mode: CVAttachmentMode,
-    ) -> *mut CFDictionaryRef;
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -214,8 +211,8 @@ extern "C-unwind" {
     ///
     /// Returns: If found the attachment object, return the value; otherwize, return NULL.
     pub fn CVBufferCopyAttachment(
-        buffer: &CVBufferRef,
-        key: &CFStringRef,
+        buffer: &CVBuffer,
+        key: &CFString,
         attachment_mode: *mut CVAttachmentMode,
     ) -> CFTypeRef;
 }
@@ -228,5 +225,5 @@ extern "C-unwind" {
     /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
     ///
     /// Returns: True if an attachment with this key is present, otherwise false.
-    pub fn CVBufferHasAttachment(buffer: &CVBufferRef, key: &CFStringRef) -> Boolean;
+    pub fn CVBufferHasAttachment(buffer: &CVBuffer, key: &CFString) -> Boolean;
 }

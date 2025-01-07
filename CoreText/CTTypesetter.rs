@@ -8,16 +8,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesetterref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttypesetter?language=objc)
 #[repr(C)]
-pub struct CTTypesetterRef {
+pub struct CTTypesetter {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CTTypesetter"]
-    unsafe impl CTTypesetterRef {}
+    unsafe impl CTTypesetter {}
 );
 
 extern "C-unwind" {
@@ -35,7 +35,7 @@ extern "C" {
     /// returning NULL.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttypesetteroptionallowunboundedlayout?language=objc)
-    pub static kCTTypesetterOptionAllowUnboundedLayout: &'static CFStringRef;
+    pub static kCTTypesetterOptionAllowUnboundedLayout: &'static CFString;
 }
 
 extern "C" {
@@ -48,7 +48,7 @@ extern "C" {
     /// performed and any directional control characters are ignored.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttypesetteroptiondisablebidiprocessing?language=objc)
-    pub static kCTTypesetterOptionDisableBidiProcessing: &'static CFStringRef;
+    pub static kCTTypesetterOptionDisableBidiProcessing: &'static CFString;
 }
 
 extern "C" {
@@ -60,7 +60,7 @@ extern "C" {
     /// level and any directional control characters are ignored.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttypesetteroptionforcedembeddinglevel?language=objc)
-    pub static kCTTypesetterOptionForcedEmbeddingLevel: &'static CFStringRef;
+    pub static kCTTypesetterOptionForcedEmbeddingLevel: &'static CFString;
 }
 
 extern "C-unwind" {
@@ -79,8 +79,8 @@ extern "C-unwind" {
     ///
     /// Returns: This function will return a reference to a CTTypesetter.
     pub fn CTTypesetterCreateWithAttributedString(
-        string: &CFAttributedStringRef,
-    ) -> NonNull<CTTypesetterRef>;
+        string: &CFAttributedString,
+    ) -> NonNull<CTTypesetter>;
 }
 
 extern "C-unwind" {
@@ -107,9 +107,9 @@ extern "C-unwind" {
     ///
     /// See also: kCTTypesetterOptionAllowUnboundedLayout
     pub fn CTTypesetterCreateWithAttributedStringAndOptions(
-        string: &CFAttributedStringRef,
-        options: Option<&CFDictionaryRef>,
-    ) -> *mut CTTypesetterRef;
+        string: &CFAttributedString,
+        options: Option<&CFDictionary>,
+    ) -> *mut CTTypesetter;
 }
 
 extern "C-unwind" {
@@ -136,19 +136,19 @@ extern "C-unwind" {
     /// Returns: This function will return a reference to a CTLine.
     #[cfg(feature = "CTLine")]
     pub fn CTTypesetterCreateLineWithOffset(
-        typesetter: &CTTypesetterRef,
+        typesetter: &CTTypesetter,
         string_range: CFRange,
         offset: c_double,
-    ) -> NonNull<CTLineRef>;
+    ) -> NonNull<CTLine>;
 }
 
 extern "C-unwind" {
     /// Equivalent to CTTypesetterCreateLineWithOffset with offset = 0.0.
     #[cfg(feature = "CTLine")]
     pub fn CTTypesetterCreateLine(
-        typesetter: &CTTypesetterRef,
+        typesetter: &CTTypesetter,
         string_range: CFRange,
-    ) -> NonNull<CTLineRef>;
+    ) -> NonNull<CTLine>;
 }
 
 extern "C-unwind" {
@@ -177,7 +177,7 @@ extern "C-unwind" {
     /// that would cause the line break. This value returned can be used
     /// to construct a character range for CTTypesetterCreateLine.
     pub fn CTTypesetterSuggestLineBreakWithOffset(
-        typesetter: &CTTypesetterRef,
+        typesetter: &CTTypesetter,
         start_index: CFIndex,
         width: c_double,
         offset: c_double,
@@ -187,7 +187,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Equivalent to CTTypesetterSuggestLineBreakWithOffset with offset = 0.0.
     pub fn CTTypesetterSuggestLineBreak(
-        typesetter: &CTTypesetterRef,
+        typesetter: &CTTypesetter,
         start_index: CFIndex,
         width: c_double,
     ) -> CFIndex;
@@ -224,7 +224,7 @@ extern "C-unwind" {
     /// that would cause the cluster break. This value returned can be
     /// used to construct a character range for CTTypesetterCreateLine.
     pub fn CTTypesetterSuggestClusterBreakWithOffset(
-        typesetter: &CTTypesetterRef,
+        typesetter: &CTTypesetter,
         start_index: CFIndex,
         width: c_double,
         offset: c_double,
@@ -234,7 +234,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Equivalent to CTTypesetterSuggestClusterBreakWithOffset with offset = 0.0.
     pub fn CTTypesetterSuggestClusterBreak(
-        typesetter: &CTTypesetterRef,
+        typesetter: &CTTypesetter,
         start_index: CFIndex,
         width: c_double,
     ) -> CFIndex;

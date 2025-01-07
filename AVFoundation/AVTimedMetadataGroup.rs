@@ -99,7 +99,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithSampleBuffer:)]
         pub unsafe fn initWithSampleBuffer(
             this: Allocated<Self>,
-            sample_buffer: &CMSampleBufferRef,
+            sample_buffer: &CMSampleBuffer,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -135,9 +135,8 @@ extern_methods!(
         ///
         /// Each item referenced by the receiver must carry a non-nil value for its dataType property.  An exception will be thrown if any item does not have a data type.
         #[method_id(@__retain_semantics Copy copyFormatDescription)]
-        pub unsafe fn copyFormatDescription(
-            &self,
-        ) -> Option<Retained<CMMetadataFormatDescriptionRef>>;
+        pub unsafe fn copyFormatDescription(&self)
+            -> Option<Retained<CMMetadataFormatDescription>>;
     }
 );
 
@@ -213,7 +212,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithSampleBuffer:)]
         pub unsafe fn initWithSampleBuffer(
             this: Allocated<Self>,
-            sample_buffer: &CMSampleBufferRef,
+            sample_buffer: &CMSampleBuffer,
         ) -> Option<Retained<Self>>;
     }
 );

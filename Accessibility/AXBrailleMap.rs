@@ -46,7 +46,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method(presentImage:)]
-        pub unsafe fn presentImage(&self, image: &CGImageRef);
+        pub unsafe fn presentImage(&self, image: &CGImage);
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

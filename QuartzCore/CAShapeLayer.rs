@@ -48,21 +48,21 @@ extern_methods!(
     unsafe impl CAShapeLayer {
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other path)]
-        pub unsafe fn path(&self) -> Option<Retained<CGPathRef>>;
+        pub unsafe fn path(&self) -> Option<Retained<CGPath>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`path`][Self::path].
         #[method(setPath:)]
-        pub unsafe fn setPath(&self, path: Option<&CGPathRef>);
+        pub unsafe fn setPath(&self, path: Option<&CGPath>);
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other fillColor)]
-        pub unsafe fn fillColor(&self) -> Option<Retained<CGColorRef>>;
+        pub unsafe fn fillColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`fillColor`][Self::fillColor].
         #[method(setFillColor:)]
-        pub unsafe fn setFillColor(&self, fill_color: Option<&CGColorRef>);
+        pub unsafe fn setFillColor(&self, fill_color: Option<&CGColor>);
 
         #[method_id(@__retain_semantics Other fillRule)]
         pub unsafe fn fillRule(&self) -> Retained<CAShapeLayerFillRule>;
@@ -73,12 +73,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other strokeColor)]
-        pub unsafe fn strokeColor(&self) -> Option<Retained<CGColorRef>>;
+        pub unsafe fn strokeColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`strokeColor`][Self::strokeColor].
         #[method(setStrokeColor:)]
-        pub unsafe fn setStrokeColor(&self, stroke_color: Option<&CGColorRef>);
+        pub unsafe fn setStrokeColor(&self, stroke_color: Option<&CGColor>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(strokeStart)]

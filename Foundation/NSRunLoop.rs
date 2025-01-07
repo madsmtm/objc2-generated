@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other getCFRunLoop)]
-        pub unsafe fn getCFRunLoop(&self) -> Retained<CFRunLoopRef>;
+        pub unsafe fn getCFRunLoop(&self) -> Retained<CFRunLoop>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString", feature = "NSTimer"))]
         #[method(addTimer:forMode:)]

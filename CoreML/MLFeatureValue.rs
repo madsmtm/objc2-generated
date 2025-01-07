@@ -68,7 +68,7 @@ extern_methods!(
         #[cfg(feature = "objc2-core-video")]
         /// Populated value if the type is MLFeatureTypeImage
         #[method_id(@__retain_semantics Other imageBufferValue)]
-        pub unsafe fn imageBufferValue(&self) -> Option<Retained<CVPixelBufferRef>>;
+        pub unsafe fn imageBufferValue(&self) -> Option<Retained<CVPixelBuffer>>;
 
         #[cfg(feature = "MLSequence")]
         /// Populated value if the type is MLFeatureTypeSequence
@@ -91,7 +91,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-video")]
         #[method_id(@__retain_semantics Other featureValueWithPixelBuffer:)]
-        pub unsafe fn featureValueWithPixelBuffer(value: &CVPixelBufferRef) -> Retained<Self>;
+        pub unsafe fn featureValueWithPixelBuffer(value: &CVPixelBuffer) -> Retained<Self>;
 
         #[cfg(feature = "MLSequence")]
         #[method_id(@__retain_semantics Other featureValueWithSequence:)]

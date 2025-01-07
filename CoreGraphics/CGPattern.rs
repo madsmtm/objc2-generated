@@ -9,16 +9,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatternref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpattern?language=objc)
 #[repr(C)]
-pub struct CGPatternRef {
+pub struct CGPattern {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGPattern"]
-    unsafe impl CGPatternRef {}
+    unsafe impl CGPattern {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatterntiling?language=objc)
@@ -48,7 +48,7 @@ unsafe impl RefEncode for CGPatternTiling {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatterndrawpatterncallback?language=objc)
 #[cfg(feature = "CGContext")]
 pub type CGPatternDrawPatternCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut CGContextRef)>;
+    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut CGContext)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatternreleaseinfocallback?language=objc)
 pub type CGPatternReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
@@ -95,13 +95,13 @@ extern "C-unwind" {
         tiling: CGPatternTiling,
         is_colored: bool,
         callbacks: *const CGPatternCallbacks,
-    ) -> *mut CGPatternRef;
+    ) -> *mut CGPattern;
 }
 
 extern "C-unwind" {
-    pub fn CGPatternRetain(pattern: Option<&CGPatternRef>) -> *mut CGPatternRef;
+    pub fn CGPatternRetain(pattern: Option<&CGPattern>) -> *mut CGPattern;
 }
 
 extern "C-unwind" {
-    pub fn CGPatternRelease(pattern: Option<&CGPatternRef>);
+    pub fn CGPatternRelease(pattern: Option<&CGPattern>);
 }

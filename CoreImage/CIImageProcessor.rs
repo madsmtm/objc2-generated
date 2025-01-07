@@ -107,7 +107,7 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-core-video")]
         #[method_id(@__retain_semantics Other pixelBuffer)]
-        unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBufferRef>>;
+        unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other metalTexture)]
@@ -147,7 +147,7 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-core-video")]
         #[method_id(@__retain_semantics Other pixelBuffer)]
-        unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBufferRef>>;
+        unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other metalTexture)]

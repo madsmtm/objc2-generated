@@ -269,7 +269,7 @@ extern_methods!(
         #[deprecated = "Use new CIRAWFilter class instead."]
         #[method_id(@__retain_semantics Other filterWithCVPixelBuffer:properties:options:)]
         pub unsafe fn filterWithCVPixelBuffer_properties_options(
-            pixel_buffer: Option<&CVPixelBufferRef>,
+            pixel_buffer: Option<&CVPixelBuffer>,
             properties: Option<&NSDictionary>,
             options: Option<&NSDictionary<CIRAWFilterOption, AnyObject>>,
         ) -> Option<Retained<CIFilter>>;

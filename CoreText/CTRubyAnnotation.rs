@@ -10,16 +10,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotation?language=objc)
 #[repr(C)]
-pub struct CTRubyAnnotationRef {
+pub struct CTRubyAnnotation {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CTRubyAnnotation"]
-    unsafe impl CTRubyAnnotationRef {}
+    unsafe impl CTRubyAnnotation {}
 );
 
 extern "C-unwind" {
@@ -171,7 +171,7 @@ extern "C" {
     /// Value must be a CFNumberRef.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrubyannotationsizefactorattributename?language=objc)
-    pub static kCTRubyAnnotationSizeFactorAttributeName: &'static CFStringRef;
+    pub static kCTRubyAnnotationSizeFactorAttributeName: &'static CFString;
 }
 
 extern "C" {
@@ -184,7 +184,7 @@ extern "C" {
     /// Value must be a CFBooleanRef. Default is false.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrubyannotationscaletofitattributename?language=objc)
-    pub static kCTRubyAnnotationScaleToFitAttributeName: &'static CFStringRef;
+    pub static kCTRubyAnnotationScaleToFitAttributeName: &'static CFString;
 }
 
 extern "C-unwind" {
@@ -218,9 +218,9 @@ extern "C-unwind" {
         alignment: CTRubyAlignment,
         overhang: CTRubyOverhang,
         position: CTRubyPosition,
-        string: &CFStringRef,
-        attributes: &CFDictionaryRef,
-    ) -> NonNull<CTRubyAnnotationRef>;
+        string: &CFString,
+        attributes: &CFDictionary,
+    ) -> NonNull<CTRubyAnnotation>;
 }
 
 extern "C-unwind" {
@@ -235,8 +235,8 @@ extern "C-unwind" {
     /// CTRubyAnnotation object that is a copy of the one passed into
     /// "rubyAnnotation".
     pub fn CTRubyAnnotationCreateCopy(
-        ruby_annotation: &CTRubyAnnotationRef,
-    ) -> NonNull<CTRubyAnnotationRef>;
+        ruby_annotation: &CTRubyAnnotation,
+    ) -> NonNull<CTRubyAnnotation>;
 }
 
 extern "C-unwind" {
@@ -248,7 +248,7 @@ extern "C-unwind" {
     ///
     /// Returns: If the "rubyAnnotation" reference is valid, then this
     /// function will return its alignment. Otherwise it will return kCTRubyAlignmentInvalid.
-    pub fn CTRubyAnnotationGetAlignment(ruby_annotation: &CTRubyAnnotationRef) -> CTRubyAlignment;
+    pub fn CTRubyAnnotationGetAlignment(ruby_annotation: &CTRubyAnnotation) -> CTRubyAlignment;
 }
 
 extern "C-unwind" {
@@ -260,7 +260,7 @@ extern "C-unwind" {
     ///
     /// Returns: If the "rubyAnnotation" reference is valid, then this
     /// function will return its overhang value. Otherwise it will return kCTRubyOverhangInvalid.
-    pub fn CTRubyAnnotationGetOverhang(ruby_annotation: &CTRubyAnnotationRef) -> CTRubyOverhang;
+    pub fn CTRubyAnnotationGetOverhang(ruby_annotation: &CTRubyAnnotation) -> CTRubyOverhang;
 }
 
 extern "C-unwind" {
@@ -272,7 +272,7 @@ extern "C-unwind" {
     ///
     /// Returns: If the "rubyAnnotation" reference is valid, then this
     /// function will return its sizeFactor. Otherwise it will return 0.
-    pub fn CTRubyAnnotationGetSizeFactor(ruby_annotation: &CTRubyAnnotationRef) -> CGFloat;
+    pub fn CTRubyAnnotationGetSizeFactor(ruby_annotation: &CTRubyAnnotation) -> CGFloat;
 }
 
 extern "C-unwind" {
@@ -288,7 +288,7 @@ extern "C-unwind" {
     /// Returns: If the "rubyAnnotation" reference and the position are valid, then this
     /// function will return a CFStringRef for the text. Otherwise it will return NULL.
     pub fn CTRubyAnnotationGetTextForPosition(
-        ruby_annotation: &CTRubyAnnotationRef,
+        ruby_annotation: &CTRubyAnnotation,
         position: CTRubyPosition,
-    ) -> *mut CFStringRef;
+    ) -> *mut CFString;
 }

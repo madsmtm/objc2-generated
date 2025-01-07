@@ -8,16 +8,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttexttabref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/cttexttab?language=objc)
 #[repr(C)]
-pub struct CTTextTabRef {
+pub struct CTTextTab {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CTTextTab"]
-    unsafe impl CTTextTabRef {}
+    unsafe impl CTTextTab {}
 );
 
 extern "C-unwind" {
@@ -37,7 +37,7 @@ extern "C" {
     /// optional.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttabcolumnterminatorsattributename?language=objc)
-    pub static kCTTabColumnTerminatorsAttributeName: &'static CFStringRef;
+    pub static kCTTabColumnTerminatorsAttributeName: &'static CFString;
 }
 
 extern "C-unwind" {
@@ -62,8 +62,8 @@ extern "C-unwind" {
     pub fn CTTextTabCreate(
         alignment: CTTextAlignment,
         location: c_double,
-        options: Option<&CFDictionaryRef>,
-    ) -> NonNull<CTTextTabRef>;
+        options: Option<&CFDictionary>,
+    ) -> NonNull<CTTextTab>;
 }
 
 extern "C-unwind" {
@@ -75,7 +75,7 @@ extern "C-unwind" {
     ///
     /// Returns: The tab's text alignment value.
     #[cfg(feature = "CTParagraphStyle")]
-    pub fn CTTextTabGetAlignment(tab: &CTTextTabRef) -> CTTextAlignment;
+    pub fn CTTextTabGetAlignment(tab: &CTTextTab) -> CTTextAlignment;
 }
 
 extern "C-unwind" {
@@ -86,7 +86,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The tab's ruler location relative to the back margin.
-    pub fn CTTextTabGetLocation(tab: &CTTextTabRef) -> c_double;
+    pub fn CTTextTabGetLocation(tab: &CTTextTab) -> c_double;
 }
 
 extern "C-unwind" {
@@ -98,5 +98,5 @@ extern "C-unwind" {
     ///
     /// Returns: The dictionary of attributes associated with the tab or NULL if
     /// no dictionary is present.
-    pub fn CTTextTabGetOptions(tab: &CTTextTabRef) -> *mut CFDictionaryRef;
+    pub fn CTTextTabGetOptions(tab: &CTTextTab) -> *mut CFDictionary;
 }

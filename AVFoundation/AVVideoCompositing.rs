@@ -111,7 +111,7 @@ extern_methods!(
         ///
         /// The buffer will have its kCVImageBufferCleanApertureKey and kCVImageBufferPixelAspectRatioKey attachments set to match the current composition processor properties.
         #[method_id(@__retain_semantics New newPixelBuffer)]
-        pub unsafe fn newPixelBuffer(&self) -> Option<Retained<CVPixelBufferRef>>;
+        pub unsafe fn newPixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
     }
 );
 
@@ -323,7 +323,7 @@ extern_methods!(
         pub unsafe fn sourceFrameByTrackID(
             &self,
             track_id: CMPersistentTrackID,
-        ) -> Option<Retained<CVPixelBufferRef>>;
+        ) -> Option<Retained<CVPixelBuffer>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Returns the source CMSampleBufferRef for the given track ID
@@ -333,7 +333,7 @@ extern_methods!(
         pub unsafe fn sourceSampleBufferByTrackID(
             &self,
             track_id: CMPersistentTrackID,
-        ) -> Option<Retained<CMSampleBufferRef>>;
+        ) -> Option<Retained<CMSampleBuffer>>;
 
         #[cfg(all(feature = "AVTimedMetadataGroup", feature = "objc2-core-media"))]
         /// Returns the source AVTimedMetadataGroup * for the given track ID
@@ -350,7 +350,7 @@ extern_methods!(
         ///
         /// Parameter `composedVideoFrame`: The video frame to finish with.
         #[method(finishWithComposedVideoFrame:)]
-        pub unsafe fn finishWithComposedVideoFrame(&self, composed_video_frame: &CVPixelBufferRef);
+        pub unsafe fn finishWithComposedVideoFrame(&self, composed_video_frame: &CVPixelBuffer);
 
         #[method(finishWithError:)]
         pub unsafe fn finishWithError(&self, error: &NSError);

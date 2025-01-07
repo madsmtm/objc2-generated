@@ -12,16 +12,16 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrunref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrun?language=objc)
 #[repr(C)]
-pub struct CTRunRef {
+pub struct CTRun {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CTRun"]
-    unsafe impl CTRunRef {}
+    unsafe impl CTRun {}
 );
 
 /// A bitfield passed back by CTRunGetStatus that is used to
@@ -86,7 +86,7 @@ extern "C-unwind" {
     /// Returns: The number of glyphs that the run contains. It is totally
     /// possible that this function could return a value of zero,
     /// indicating that there are no glyphs in this run.
-    pub fn CTRunGetGlyphCount(run: &CTRunRef) -> CFIndex;
+    pub fn CTRunGetGlyphCount(run: &CTRun) -> CFIndex;
 }
 
 extern "C-unwind" {
@@ -105,7 +105,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The attribute dictionary.
-    pub fn CTRunGetAttributes(run: &CTRunRef) -> NonNull<CFDictionaryRef>;
+    pub fn CTRunGetAttributes(run: &CTRun) -> NonNull<CFDictionary>;
 }
 
 extern "C-unwind" {
@@ -125,7 +125,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The run's status.
-    pub fn CTRunGetStatus(run: &CTRunRef) -> CTRunStatus;
+    pub fn CTRunGetStatus(run: &CTRun) -> CTRunStatus;
 }
 
 extern "C-unwind" {
@@ -145,7 +145,7 @@ extern "C-unwind" {
     ///
     /// Returns: A valid pointer to an array of CGGlyph structures or NULL.
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTRunGetGlyphsPtr(run: &CTRunRef) -> *const CGGlyph;
+    pub fn CTRunGetGlyphsPtr(run: &CTRun) -> *const CGGlyph;
 }
 
 extern "C-unwind" {
@@ -164,7 +164,7 @@ extern "C-unwind" {
     /// Parameter `buffer`: The buffer where the glyphs will be copied to. The buffer must be
     /// allocated to at least the value specified by the range's length.
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTRunGetGlyphs(run: &CTRunRef, range: CFRange, buffer: NonNull<CGGlyph>);
+    pub fn CTRunGetGlyphs(run: &CTRun, range: CFRange, buffer: NonNull<CGGlyph>);
 }
 
 extern "C-unwind" {
@@ -185,7 +185,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A valid pointer to an array of CGPoint structures or NULL.
-    pub fn CTRunGetPositionsPtr(run: &CTRunRef) -> *const CGPoint;
+    pub fn CTRunGetPositionsPtr(run: &CTRun) -> *const CGPoint;
 }
 
 extern "C-unwind" {
@@ -208,7 +208,7 @@ extern "C-unwind" {
     /// Parameter `buffer`: The buffer where the glyph positions will be copied to. The buffer
     /// must be allocated to at least the value specified by the range's
     /// length.
-    pub fn CTRunGetPositions(run: &CTRunRef, range: CFRange, buffer: NonNull<CGPoint>);
+    pub fn CTRunGetPositions(run: &CTRun, range: CFRange, buffer: NonNull<CGPoint>);
 }
 
 extern "C-unwind" {
@@ -231,7 +231,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A valid pointer to an array of CGSize structures or NULL.
-    pub fn CTRunGetAdvancesPtr(run: &CTRunRef) -> *const CGSize;
+    pub fn CTRunGetAdvancesPtr(run: &CTRun) -> *const CGSize;
 }
 
 extern "C-unwind" {
@@ -250,7 +250,7 @@ extern "C-unwind" {
     /// Parameter `buffer`: The buffer where the glyph advances will be copied to. The buffer
     /// must be allocated to at least the value specified by the range's
     /// length.
-    pub fn CTRunGetAdvances(run: &CTRunRef, range: CFRange, buffer: NonNull<CGSize>);
+    pub fn CTRunGetAdvances(run: &CTRun, range: CFRange, buffer: NonNull<CGSize>);
 }
 
 extern "C-unwind" {
@@ -272,7 +272,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A valid pointer to an array of CFIndex structures or NULL.
-    pub fn CTRunGetStringIndicesPtr(run: &CTRunRef) -> *const CFIndex;
+    pub fn CTRunGetStringIndicesPtr(run: &CTRun) -> *const CFIndex;
 }
 
 extern "C-unwind" {
@@ -296,7 +296,7 @@ extern "C-unwind" {
     /// Parameter `buffer`: The buffer where the string indices will be copied to. The buffer
     /// must be allocated to at least the value specified by the range's
     /// length.
-    pub fn CTRunGetStringIndices(run: &CTRunRef, range: CFRange, buffer: NonNull<CFIndex>);
+    pub fn CTRunGetStringIndices(run: &CTRun, range: CFRange, buffer: NonNull<CFIndex>);
 }
 
 extern "C-unwind" {
@@ -309,7 +309,7 @@ extern "C-unwind" {
     ///
     /// Returns: Returns the range of characters that originally spawned the
     /// glyphs. If run is invalid, this will return an empty range.
-    pub fn CTRunGetStringRange(run: &CTRunRef) -> CFRange;
+    pub fn CTRunGetStringRange(run: &CTRun) -> CFRange;
 }
 
 extern "C-unwind" {
@@ -340,7 +340,7 @@ extern "C-unwind" {
     /// Returns: The typographic width of the run. If run or range is
     /// invalid, then this function will always return zero.
     pub fn CTRunGetTypographicBounds(
-        run: &CTRunRef,
+        run: &CTRun,
         range: CFRange,
         ascent: *mut CGFloat,
         descent: *mut CGFloat,
@@ -384,11 +384,7 @@ extern "C-unwind" {
     ///
     /// See also: CTRunGetTypographicBounds
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTRunGetImageBounds(
-        run: &CTRunRef,
-        context: Option<&CGContextRef>,
-        range: CFRange,
-    ) -> CGRect;
+    pub fn CTRunGetImageBounds(run: &CTRun, context: Option<&CGContext>, range: CFRange) -> CGRect;
 }
 
 extern "C-unwind" {
@@ -404,7 +400,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A CGAffineTransform.
-    pub fn CTRunGetTextMatrix(run: &CTRunRef) -> CGAffineTransform;
+    pub fn CTRunGetTextMatrix(run: &CTRun) -> CGAffineTransform;
 }
 
 extern "C-unwind" {
@@ -442,7 +438,7 @@ extern "C-unwind" {
     /// NULL, the buffer must allow for at least as many elements as
     /// specified by the range's length.
     pub fn CTRunGetBaseAdvancesAndOrigins(
-        run_ref: &CTRunRef,
+        run_ref: &CTRun,
         range: CFRange,
         advances_buffer: *mut CGSize,
         origins_buffer: *mut CGPoint,
@@ -475,5 +471,5 @@ extern "C-unwind" {
     /// of the range is set to 0, then the operation will continue from
     /// the range's start index to the end of the run.
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTRunDraw(run: &CTRunRef, context: &CGContextRef, range: CFRange);
+    pub fn CTRunDraw(run: &CTRun, context: &CGContext, range: CFRange);
 }

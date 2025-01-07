@@ -10,27 +10,27 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferiosurfaceopengltexturecompatibilitykey?language=objc)
-    pub static kCVPixelBufferIOSurfaceOpenGLTextureCompatibilityKey: &'static CFStringRef;
+    pub static kCVPixelBufferIOSurfaceOpenGLTextureCompatibilityKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferiosurfaceopenglfbocompatibilitykey?language=objc)
-    pub static kCVPixelBufferIOSurfaceOpenGLFBOCompatibilityKey: &'static CFStringRef;
+    pub static kCVPixelBufferIOSurfaceOpenGLFBOCompatibilityKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferiosurfacecoreanimationcompatibilitykey?language=objc)
-    pub static kCVPixelBufferIOSurfaceCoreAnimationCompatibilityKey: &'static CFStringRef;
+    pub static kCVPixelBufferIOSurfaceCoreAnimationCompatibilityKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferiosurfaceopenglestexturecompatibilitykey?language=objc)
-    pub static kCVPixelBufferIOSurfaceOpenGLESTextureCompatibilityKey: &'static CFStringRef;
+    pub static kCVPixelBufferIOSurfaceOpenGLESTextureCompatibilityKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferiosurfaceopenglesfbocompatibilitykey?language=objc)
-    pub static kCVPixelBufferIOSurfaceOpenGLESFBOCompatibilityKey: &'static CFStringRef;
+    pub static kCVPixelBufferIOSurfaceOpenGLESFBOCompatibilityKey: &'static CFString;
 }
 
 extern "C-unwind" {
@@ -44,7 +44,7 @@ extern "C-unwind" {
         feature = "objc2-io-surface"
     ))]
     #[cfg(not(target_os = "watchos"))]
-    pub fn CVPixelBufferGetIOSurface(pixel_buffer: Option<&CVPixelBufferRef>) -> *mut IOSurfaceRef;
+    pub fn CVPixelBufferGetIOSurface(pixel_buffer: Option<&CVPixelBuffer>) -> *mut IOSurfaceRef;
 }
 
 extern "C-unwind" {
@@ -74,9 +74,9 @@ extern "C-unwind" {
     ))]
     #[cfg(not(target_os = "watchos"))]
     pub fn CVPixelBufferCreateWithIOSurface(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         surface: &IOSurfaceRef,
-        pixel_buffer_attributes: Option<&CFDictionaryRef>,
-        pixel_buffer_out: NonNull<CVPixelBufferRef>,
+        pixel_buffer_attributes: Option<&CFDictionary>,
+        pixel_buffer_out: NonNull<CVPixelBuffer>,
     ) -> CVReturn;
 }

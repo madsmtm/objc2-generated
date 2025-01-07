@@ -114,12 +114,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other path)]
-        pub unsafe fn path(&self) -> Option<Retained<CGPathRef>>;
+        pub unsafe fn path(&self) -> Option<Retained<CGPath>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`path`][Self::path].
         #[method(setPath:)]
-        pub unsafe fn setPath(&self, path: Option<&CGPathRef>);
+        pub unsafe fn setPath(&self, path: Option<&CGPath>);
 
         #[method(invalidatePath)]
         pub unsafe fn invalidatePath(&self);
@@ -132,7 +132,7 @@ extern_methods!(
         #[method(applyStrokePropertiesToContext:atZoomScale:)]
         pub unsafe fn applyStrokePropertiesToContext_atZoomScale(
             &self,
-            context: &CGContextRef,
+            context: &CGContext,
             zoom_scale: MKZoomScale,
         );
 
@@ -144,17 +144,17 @@ extern_methods!(
         #[method(applyFillPropertiesToContext:atZoomScale:)]
         pub unsafe fn applyFillPropertiesToContext_atZoomScale(
             &self,
-            context: &CGContextRef,
+            context: &CGContext,
             zoom_scale: MKZoomScale,
         );
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method(strokePath:inContext:)]
-        pub unsafe fn strokePath_inContext(&self, path: &CGPathRef, context: &CGContextRef);
+        pub unsafe fn strokePath_inContext(&self, path: &CGPath, context: &CGContext);
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method(fillPath:inContext:)]
-        pub unsafe fn fillPath_inContext(&self, path: &CGPathRef, context: &CGContextRef);
+        pub unsafe fn fillPath_inContext(&self, path: &CGPath, context: &CGContext);
     }
 );
 

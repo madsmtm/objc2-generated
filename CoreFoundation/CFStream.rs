@@ -31,7 +31,7 @@ unsafe impl RefEncode for CFStreamError {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreampropertykey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "CFBase")]
-pub type CFStreamPropertyKey = CFStringRef;
+pub type CFStreamPropertyKey = CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus?language=objc)
 // NS_ENUM
@@ -112,7 +112,7 @@ pub struct CFStreamClientContext {
     pub info: *mut c_void,
     pub retain: Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void>,
     pub release: Option<unsafe extern "C-unwind" fn(*mut c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut CFStringRef>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut CFString>,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -124,7 +124,7 @@ unsafe impl Encode for CFStreamClientContext {
             <*mut c_void>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void>>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*mut c_void)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut CFStringRef>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut CFString>>::ENCODING,
         ],
     );
 }
@@ -134,39 +134,39 @@ unsafe impl RefEncode for CFStreamClientContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstream?language=objc)
 #[repr(C)]
-pub struct CFReadStreamRef {
+pub struct CFReadStream {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFReadStream"]
-    unsafe impl CFReadStreamRef {}
+    unsafe impl CFReadStream {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestream?language=objc)
 #[repr(C)]
-pub struct CFWriteStreamRef {
+pub struct CFWriteStream {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFWriteStream"]
-    unsafe impl CFWriteStreamRef {}
+    unsafe impl CFWriteStream {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfreadstreamclientcallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFReadStreamClientCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFReadStreamRef, CFStreamEventType, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(*mut CFReadStream, CFStreamEventType, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfwritestreamclientcallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFWriteStreamClientCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFWriteStreamRef, CFStreamEventType, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(*mut CFWriteStream, CFStreamEventType, *mut c_void)>;
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
@@ -187,52 +187,52 @@ extern "C" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFReadStreamCreateWithBytesNoCopy(
-        alloc: Option<&CFAllocatorRef>,
+        alloc: Option<&CFAllocator>,
         bytes: *const u8,
         length: CFIndex,
-        bytes_deallocator: Option<&CFAllocatorRef>,
-    ) -> *mut CFReadStreamRef;
+        bytes_deallocator: Option<&CFAllocator>,
+    ) -> *mut CFReadStream;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFWriteStreamCreateWithBuffer(
-        alloc: Option<&CFAllocatorRef>,
+        alloc: Option<&CFAllocator>,
         buffer: *mut u8,
         buffer_capacity: CFIndex,
-    ) -> *mut CFWriteStreamRef;
+    ) -> *mut CFWriteStream;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFWriteStreamCreateWithAllocatedBuffers(
-        alloc: Option<&CFAllocatorRef>,
-        buffer_allocator: Option<&CFAllocatorRef>,
-    ) -> *mut CFWriteStreamRef;
+        alloc: Option<&CFAllocator>,
+        buffer_allocator: Option<&CFAllocator>,
+    ) -> *mut CFWriteStream;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFURL"))]
     pub fn CFReadStreamCreateWithFile(
-        alloc: Option<&CFAllocatorRef>,
-        file_url: Option<&CFURLRef>,
-    ) -> *mut CFReadStreamRef;
+        alloc: Option<&CFAllocator>,
+        file_url: Option<&CFURL>,
+    ) -> *mut CFReadStream;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFURL"))]
     pub fn CFWriteStreamCreateWithFile(
-        alloc: Option<&CFAllocatorRef>,
-        file_url: Option<&CFURLRef>,
-    ) -> *mut CFWriteStreamRef;
+        alloc: Option<&CFAllocator>,
+        file_url: Option<&CFURL>,
+    ) -> *mut CFWriteStream;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFStreamCreateBoundPair(
-        alloc: Option<&CFAllocatorRef>,
-        read_stream: *mut CFReadStreamRef,
-        write_stream: *mut CFWriteStreamRef,
+        alloc: Option<&CFAllocator>,
+        read_stream: *mut CFReadStream,
+        write_stream: *mut CFWriteStream,
         transfer_buffer_size: CFIndex,
     );
 }
@@ -275,49 +275,49 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocksproxy?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFStreamPropertySOCKSProxy: &'static CFStringRef;
+    pub static kCFStreamPropertySOCKSProxy: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocksproxyhost?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFStreamPropertySOCKSProxyHost: &'static CFStringRef;
+    pub static kCFStreamPropertySOCKSProxyHost: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocksproxyport?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFStreamPropertySOCKSProxyPort: &'static CFStringRef;
+    pub static kCFStreamPropertySOCKSProxyPort: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocksversion?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFStreamPropertySOCKSVersion: &'static CFStringRef;
+    pub static kCFStreamPropertySOCKSVersion: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamsocketsocksversion4?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFStreamSocketSOCKSVersion4: &'static CFStringRef;
+    pub static kCFStreamSocketSOCKSVersion4: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamsocketsocksversion5?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFStreamSocketSOCKSVersion5: &'static CFStringRef;
+    pub static kCFStreamSocketSOCKSVersion5: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocksuser?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFStreamPropertySOCKSUser: &'static CFStringRef;
+    pub static kCFStreamPropertySOCKSUser: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysockspassword?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFStreamPropertySOCKSPassword: &'static CFStringRef;
+    pub static kCFStreamPropertySOCKSPassword: &'static CFString;
 }
 
 extern "C" {
@@ -328,53 +328,53 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocketsecuritylevel?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFStreamPropertySocketSecurityLevel: &'static CFStringRef;
+    pub static kCFStreamPropertySocketSecurityLevel: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamsocketsecuritylevelnone?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFStreamSocketSecurityLevelNone: &'static CFStringRef;
+    pub static kCFStreamSocketSecurityLevelNone: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamsocketsecuritylevelsslv2?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFStreamSocketSecurityLevelSSLv2: &'static CFStringRef;
+    pub static kCFStreamSocketSecurityLevelSSLv2: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamsocketsecuritylevelsslv3?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFStreamSocketSecurityLevelSSLv3: &'static CFStringRef;
+    pub static kCFStreamSocketSecurityLevelSSLv3: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamsocketsecurityleveltlsv1?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFStreamSocketSecurityLevelTLSv1: &'static CFStringRef;
+    pub static kCFStreamSocketSecurityLevelTLSv1: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreamsocketsecuritylevelnegotiatedssl?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFStreamSocketSecurityLevelNegotiatedSSL: &'static CFStringRef;
+    pub static kCFStreamSocketSecurityLevelNegotiatedSSL: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertyshouldclosenativesocket?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFStreamPropertyShouldCloseNativeSocket: &'static CFStringRef;
+    pub static kCFStreamPropertyShouldCloseNativeSocket: &'static CFString;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFSocket"))]
     #[deprecated = "Use nw_connection_t in Network framework instead"]
     pub fn CFStreamCreatePairWithSocket(
-        alloc: Option<&CFAllocatorRef>,
+        alloc: Option<&CFAllocator>,
         sock: CFSocketNativeHandle,
-        read_stream: *mut CFReadStreamRef,
-        write_stream: *mut CFWriteStreamRef,
+        read_stream: *mut CFReadStream,
+        write_stream: *mut CFWriteStream,
     );
 }
 
@@ -382,11 +382,11 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     #[deprecated = "Use nw_connection_t in Network framework instead"]
     pub fn CFStreamCreatePairWithSocketToHost(
-        alloc: Option<&CFAllocatorRef>,
-        host: Option<&CFStringRef>,
+        alloc: Option<&CFAllocator>,
+        host: Option<&CFString>,
         port: u32,
-        read_stream: *mut CFReadStreamRef,
-        write_stream: *mut CFWriteStreamRef,
+        read_stream: *mut CFReadStream,
+        write_stream: *mut CFWriteStream,
     );
 }
 
@@ -394,57 +394,57 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFSocket"))]
     #[deprecated = "Use nw_connection_t in Network framework instead"]
     pub fn CFStreamCreatePairWithPeerSocketSignature(
-        alloc: Option<&CFAllocatorRef>,
+        alloc: Option<&CFAllocator>,
         signature: *const CFSocketSignature,
-        read_stream: *mut CFReadStreamRef,
-        write_stream: *mut CFWriteStreamRef,
+        read_stream: *mut CFReadStream,
+        write_stream: *mut CFWriteStream,
     );
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFReadStreamGetStatus(stream: Option<&CFReadStreamRef>) -> CFStreamStatus;
+    pub fn CFReadStreamGetStatus(stream: Option<&CFReadStream>) -> CFStreamStatus;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFWriteStreamGetStatus(stream: Option<&CFWriteStreamRef>) -> CFStreamStatus;
+    pub fn CFWriteStreamGetStatus(stream: Option<&CFWriteStream>) -> CFStreamStatus;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFError")]
-    pub fn CFReadStreamCopyError(stream: Option<&CFReadStreamRef>) -> *mut CFErrorRef;
+    pub fn CFReadStreamCopyError(stream: Option<&CFReadStream>) -> *mut CFError;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFError")]
-    pub fn CFWriteStreamCopyError(stream: Option<&CFWriteStreamRef>) -> *mut CFErrorRef;
+    pub fn CFWriteStreamCopyError(stream: Option<&CFWriteStream>) -> *mut CFError;
 }
 
 extern "C-unwind" {
-    pub fn CFReadStreamOpen(stream: Option<&CFReadStreamRef>) -> Boolean;
+    pub fn CFReadStreamOpen(stream: Option<&CFReadStream>) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFWriteStreamOpen(stream: Option<&CFWriteStreamRef>) -> Boolean;
+    pub fn CFWriteStreamOpen(stream: Option<&CFWriteStream>) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFReadStreamClose(stream: Option<&CFReadStreamRef>);
+    pub fn CFReadStreamClose(stream: Option<&CFReadStream>);
 }
 
 extern "C-unwind" {
-    pub fn CFWriteStreamClose(stream: Option<&CFWriteStreamRef>);
+    pub fn CFWriteStreamClose(stream: Option<&CFWriteStream>);
 }
 
 extern "C-unwind" {
-    pub fn CFReadStreamHasBytesAvailable(stream: Option<&CFReadStreamRef>) -> Boolean;
+    pub fn CFReadStreamHasBytesAvailable(stream: Option<&CFReadStream>) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFReadStreamRead(
-        stream: Option<&CFReadStreamRef>,
+        stream: Option<&CFReadStream>,
         buffer: *mut u8,
         buffer_length: CFIndex,
     ) -> CFIndex;
@@ -453,20 +453,20 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFReadStreamGetBuffer(
-        stream: Option<&CFReadStreamRef>,
+        stream: Option<&CFReadStream>,
         max_bytes_to_read: CFIndex,
         num_bytes_read: *mut CFIndex,
     ) -> *const u8;
 }
 
 extern "C-unwind" {
-    pub fn CFWriteStreamCanAcceptBytes(stream: Option<&CFWriteStreamRef>) -> Boolean;
+    pub fn CFWriteStreamCanAcceptBytes(stream: Option<&CFWriteStream>) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFWriteStreamWrite(
-        stream: Option<&CFWriteStreamRef>,
+        stream: Option<&CFWriteStream>,
         buffer: *const u8,
         buffer_length: CFIndex,
     ) -> CFIndex;
@@ -475,7 +475,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFReadStreamCopyProperty(
-        stream: Option<&CFReadStreamRef>,
+        stream: Option<&CFReadStream>,
         property_name: Option<&CFStreamPropertyKey>,
     ) -> CFTypeRef;
 }
@@ -483,7 +483,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFWriteStreamCopyProperty(
-        stream: Option<&CFWriteStreamRef>,
+        stream: Option<&CFWriteStream>,
         property_name: Option<&CFStreamPropertyKey>,
     ) -> CFTypeRef;
 }
@@ -491,7 +491,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFReadStreamSetProperty(
-        stream: Option<&CFReadStreamRef>,
+        stream: Option<&CFReadStream>,
         property_name: Option<&CFStreamPropertyKey>,
         property_value: CFTypeRef,
     ) -> Boolean;
@@ -500,7 +500,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFWriteStreamSetProperty(
-        stream: Option<&CFWriteStreamRef>,
+        stream: Option<&CFWriteStream>,
         property_name: Option<&CFStreamPropertyKey>,
         property_value: CFTypeRef,
     ) -> Boolean;
@@ -509,7 +509,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFReadStreamSetClient(
-        stream: Option<&CFReadStreamRef>,
+        stream: Option<&CFReadStream>,
         stream_events: CFOptionFlags,
         client_cb: CFReadStreamClientCallBack,
         client_context: *mut CFStreamClientContext,
@@ -519,7 +519,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFWriteStreamSetClient(
-        stream: Option<&CFWriteStreamRef>,
+        stream: Option<&CFWriteStream>,
         stream_events: CFOptionFlags,
         client_cb: CFWriteStreamClientCallBack,
         client_context: *mut CFStreamClientContext,
@@ -529,8 +529,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
     pub fn CFReadStreamScheduleWithRunLoop(
-        stream: Option<&CFReadStreamRef>,
-        run_loop: Option<&CFRunLoopRef>,
+        stream: Option<&CFReadStream>,
+        run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFRunLoopMode>,
     );
 }
@@ -538,8 +538,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
     pub fn CFWriteStreamScheduleWithRunLoop(
-        stream: Option<&CFWriteStreamRef>,
-        run_loop: Option<&CFRunLoopRef>,
+        stream: Option<&CFWriteStream>,
+        run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFRunLoopMode>,
     );
 }
@@ -547,8 +547,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
     pub fn CFReadStreamUnscheduleFromRunLoop(
-        stream: Option<&CFReadStreamRef>,
-        run_loop: Option<&CFRunLoopRef>,
+        stream: Option<&CFReadStream>,
+        run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFRunLoopMode>,
     );
 }
@@ -556,8 +556,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
     pub fn CFWriteStreamUnscheduleFromRunLoop(
-        stream: Option<&CFWriteStreamRef>,
-        run_loop: Option<&CFRunLoopRef>,
+        stream: Option<&CFWriteStream>,
+        run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFRunLoopMode>,
     );
 }
@@ -590,10 +590,10 @@ unsafe impl RefEncode for CFStreamErrorDomain {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFReadStreamGetError(stream: Option<&CFReadStreamRef>) -> CFStreamError;
+    pub fn CFReadStreamGetError(stream: Option<&CFReadStream>) -> CFStreamError;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFWriteStreamGetError(stream: Option<&CFWriteStreamRef>) -> CFStreamError;
+    pub fn CFWriteStreamGetError(stream: Option<&CFWriteStream>) -> CFStreamError;
 }

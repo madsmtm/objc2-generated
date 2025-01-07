@@ -63,7 +63,7 @@ extern_methods!(
         ///
         /// This method throws an exception if this output is not added to an instance of AVAssetReader (using -addOutput:) and -startReading is not called on that asset reader.
         #[method_id(@__retain_semantics Copy copyNextSampleBuffer)]
-        pub unsafe fn copyNextSampleBuffer(&self) -> Option<Retained<CMSampleBufferRef>>;
+        pub unsafe fn copyNextSampleBuffer(&self) -> Option<Retained<CMSampleBuffer>>;
     }
 );
 

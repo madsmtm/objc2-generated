@@ -10,16 +10,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocumentref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdocument?language=objc)
 #[repr(C)]
-pub struct CGPDFDocumentRef {
+pub struct CGPDFDocument {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGPDFDocument"]
-    unsafe impl CGPDFDocumentRef {}
+    unsafe impl CGPDFDocument {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfaccesspermissions?language=objc)
@@ -60,99 +60,98 @@ unsafe impl RefEncode for CGPDFAccessPermissions {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfoutlinetitle?language=objc)
-    pub static kCGPDFOutlineTitle: &'static CFStringRef;
+    pub static kCGPDFOutlineTitle: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfoutlinechildren?language=objc)
-    pub static kCGPDFOutlineChildren: &'static CFStringRef;
+    pub static kCGPDFOutlineChildren: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfoutlinedestination?language=objc)
-    pub static kCGPDFOutlineDestination: &'static CFStringRef;
+    pub static kCGPDFOutlineDestination: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdfoutlinedestinationrect?language=objc)
-    pub static kCGPDFOutlineDestinationRect: &'static CFStringRef;
+    pub static kCGPDFOutlineDestinationRect: &'static CFString;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGDataProvider")]
-    pub fn CGPDFDocumentCreateWithProvider(
-        provider: Option<&CGDataProviderRef>,
-    ) -> *mut CGPDFDocumentRef;
+    pub fn CGPDFDocumentCreateWithProvider(provider: Option<&CGDataProvider>)
+        -> *mut CGPDFDocument;
 }
 
 extern "C-unwind" {
-    pub fn CGPDFDocumentCreateWithURL(url: Option<&CFURLRef>) -> *mut CGPDFDocumentRef;
+    pub fn CGPDFDocumentCreateWithURL(url: Option<&CFURL>) -> *mut CGPDFDocument;
 }
 
 extern "C-unwind" {
-    pub fn CGPDFDocumentRetain(document: Option<&CGPDFDocumentRef>) -> *mut CGPDFDocumentRef;
+    pub fn CGPDFDocumentRetain(document: Option<&CGPDFDocument>) -> *mut CGPDFDocument;
 }
 
 extern "C-unwind" {
-    pub fn CGPDFDocumentRelease(document: Option<&CGPDFDocumentRef>);
+    pub fn CGPDFDocumentRelease(document: Option<&CGPDFDocument>);
 }
 
 extern "C-unwind" {
     pub fn CGPDFDocumentGetVersion(
-        document: Option<&CGPDFDocumentRef>,
+        document: Option<&CGPDFDocument>,
         major_version: NonNull<c_int>,
         minor_version: NonNull<c_int>,
     );
 }
 
 extern "C-unwind" {
-    pub fn CGPDFDocumentIsEncrypted(document: Option<&CGPDFDocumentRef>) -> bool;
+    pub fn CGPDFDocumentIsEncrypted(document: Option<&CGPDFDocument>) -> bool;
 }
 
 extern "C-unwind" {
     pub fn CGPDFDocumentUnlockWithPassword(
-        document: Option<&CGPDFDocumentRef>,
+        document: Option<&CGPDFDocument>,
         password: NonNull<c_char>,
     ) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGPDFDocumentIsUnlocked(document: Option<&CGPDFDocumentRef>) -> bool;
+    pub fn CGPDFDocumentIsUnlocked(document: Option<&CGPDFDocument>) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGPDFDocumentAllowsPrinting(document: Option<&CGPDFDocumentRef>) -> bool;
+    pub fn CGPDFDocumentAllowsPrinting(document: Option<&CGPDFDocument>) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGPDFDocumentAllowsCopying(document: Option<&CGPDFDocumentRef>) -> bool;
+    pub fn CGPDFDocumentAllowsCopying(document: Option<&CGPDFDocument>) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGPDFDocumentGetNumberOfPages(document: Option<&CGPDFDocumentRef>) -> usize;
+    pub fn CGPDFDocumentGetNumberOfPages(document: Option<&CGPDFDocument>) -> usize;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFPage")]
     pub fn CGPDFDocumentGetPage(
-        document: Option<&CGPDFDocumentRef>,
+        document: Option<&CGPDFDocument>,
         page_number: usize,
-    ) -> *mut CGPDFPageRef;
+    ) -> *mut CGPDFPage;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFDictionary")]
-    pub fn CGPDFDocumentGetCatalog(document: Option<&CGPDFDocumentRef>) -> CGPDFDictionaryRef;
+    pub fn CGPDFDocumentGetCatalog(document: Option<&CGPDFDocument>) -> CGPDFDictionaryRef;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFDictionary")]
-    pub fn CGPDFDocumentGetInfo(document: Option<&CGPDFDocumentRef>) -> CGPDFDictionaryRef;
+    pub fn CGPDFDocumentGetInfo(document: Option<&CGPDFDocument>) -> CGPDFDictionaryRef;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFArray")]
-    pub fn CGPDFDocumentGetID(document: Option<&CGPDFDocumentRef>) -> CGPDFArrayRef;
+    pub fn CGPDFDocumentGetID(document: Option<&CGPDFDocument>) -> CGPDFArrayRef;
 }
 
 extern "C-unwind" {
@@ -160,41 +159,39 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGPDFDocumentGetOutline(document: &CGPDFDocumentRef) -> *mut CFDictionaryRef;
+    pub fn CGPDFDocumentGetOutline(document: &CGPDFDocument) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
-    pub fn CGPDFDocumentGetAccessPermissions(document: &CGPDFDocumentRef)
-        -> CGPDFAccessPermissions;
-}
-
-extern "C-unwind" {
-    #[deprecated = "No longer supported"]
-    pub fn CGPDFDocumentGetMediaBox(document: Option<&CGPDFDocumentRef>, page: c_int) -> CGRect;
+    pub fn CGPDFDocumentGetAccessPermissions(document: &CGPDFDocument) -> CGPDFAccessPermissions;
 }
 
 extern "C-unwind" {
     #[deprecated = "No longer supported"]
-    pub fn CGPDFDocumentGetCropBox(document: Option<&CGPDFDocumentRef>, page: c_int) -> CGRect;
+    pub fn CGPDFDocumentGetMediaBox(document: Option<&CGPDFDocument>, page: c_int) -> CGRect;
 }
 
 extern "C-unwind" {
     #[deprecated = "No longer supported"]
-    pub fn CGPDFDocumentGetBleedBox(document: Option<&CGPDFDocumentRef>, page: c_int) -> CGRect;
+    pub fn CGPDFDocumentGetCropBox(document: Option<&CGPDFDocument>, page: c_int) -> CGRect;
 }
 
 extern "C-unwind" {
     #[deprecated = "No longer supported"]
-    pub fn CGPDFDocumentGetTrimBox(document: Option<&CGPDFDocumentRef>, page: c_int) -> CGRect;
+    pub fn CGPDFDocumentGetBleedBox(document: Option<&CGPDFDocument>, page: c_int) -> CGRect;
 }
 
 extern "C-unwind" {
     #[deprecated = "No longer supported"]
-    pub fn CGPDFDocumentGetArtBox(document: Option<&CGPDFDocumentRef>, page: c_int) -> CGRect;
+    pub fn CGPDFDocumentGetTrimBox(document: Option<&CGPDFDocument>, page: c_int) -> CGRect;
 }
 
 extern "C-unwind" {
     #[deprecated = "No longer supported"]
-    pub fn CGPDFDocumentGetRotationAngle(document: Option<&CGPDFDocumentRef>, page: c_int)
-        -> c_int;
+    pub fn CGPDFDocumentGetArtBox(document: Option<&CGPDFDocument>, page: c_int) -> CGRect;
+}
+
+extern "C-unwind" {
+    #[deprecated = "No longer supported"]
+    pub fn CGPDFDocumentGetRotationAngle(document: Option<&CGPDFDocument>, page: c_int) -> c_int;
 }

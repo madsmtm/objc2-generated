@@ -8,28 +8,25 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor?language=objc)
 #[repr(C)]
-pub struct CGColorRef {
+pub struct CGColor {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGColor"]
-    unsafe impl CGColorRef {}
+    unsafe impl CGColor {}
 );
 
 extern "C-unwind" {
     #[cfg(feature = "CGColorSpace")]
-    pub fn CGColorCreate(
-        space: Option<&CGColorSpaceRef>,
-        components: *const CGFloat,
-    ) -> *mut CGColorRef;
+    pub fn CGColorCreate(space: Option<&CGColorSpace>, components: *const CGFloat) -> *mut CGColor;
 }
 
 extern "C-unwind" {
-    pub fn CGColorCreateGenericGray(gray: CGFloat, alpha: CGFloat) -> NonNull<CGColorRef>;
+    pub fn CGColorCreateGenericGray(gray: CGFloat, alpha: CGFloat) -> NonNull<CGColor>;
 }
 
 extern "C-unwind" {
@@ -38,7 +35,7 @@ extern "C-unwind" {
         green: CGFloat,
         blue: CGFloat,
         alpha: CGFloat,
-    ) -> NonNull<CGColorRef>;
+    ) -> NonNull<CGColor>;
 }
 
 extern "C-unwind" {
@@ -48,11 +45,11 @@ extern "C-unwind" {
         yellow: CGFloat,
         black: CGFloat,
         alpha: CGFloat,
-    ) -> NonNull<CGColorRef>;
+    ) -> NonNull<CGColor>;
 }
 
 extern "C-unwind" {
-    pub fn CGColorCreateGenericGrayGamma2_2(gray: CGFloat, alpha: CGFloat) -> NonNull<CGColorRef>;
+    pub fn CGColorCreateGenericGrayGamma2_2(gray: CGFloat, alpha: CGFloat) -> NonNull<CGColor>;
 }
 
 extern "C-unwind" {
@@ -61,75 +58,72 @@ extern "C-unwind" {
         green: CGFloat,
         blue: CGFloat,
         alpha: CGFloat,
-    ) -> NonNull<CGColorRef>;
+    ) -> NonNull<CGColor>;
 }
 
 extern "C-unwind" {
-    pub fn CGColorGetConstantColor(color_name: Option<&CFStringRef>) -> *mut CGColorRef;
+    pub fn CGColorGetConstantColor(color_name: Option<&CFString>) -> *mut CGColor;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CGColorSpace", feature = "CGPattern"))]
     pub fn CGColorCreateWithPattern(
-        space: Option<&CGColorSpaceRef>,
-        pattern: Option<&CGPatternRef>,
+        space: Option<&CGColorSpace>,
+        pattern: Option<&CGPattern>,
         components: *const CGFloat,
-    ) -> *mut CGColorRef;
+    ) -> *mut CGColor;
 }
 
 extern "C-unwind" {
-    pub fn CGColorCreateCopy(color: Option<&CGColorRef>) -> *mut CGColorRef;
+    pub fn CGColorCreateCopy(color: Option<&CGColor>) -> *mut CGColor;
 }
 
 extern "C-unwind" {
-    pub fn CGColorCreateCopyWithAlpha(
-        color: Option<&CGColorRef>,
-        alpha: CGFloat,
-    ) -> *mut CGColorRef;
+    pub fn CGColorCreateCopyWithAlpha(color: Option<&CGColor>, alpha: CGFloat) -> *mut CGColor;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGColorSpace")]
     pub fn CGColorCreateCopyByMatchingToColorSpace(
-        _: Option<&CGColorSpaceRef>,
+        _: Option<&CGColorSpace>,
         intent: CGColorRenderingIntent,
-        color: Option<&CGColorRef>,
-        options: Option<&CFDictionaryRef>,
-    ) -> *mut CGColorRef;
+        color: Option<&CGColor>,
+        options: Option<&CFDictionary>,
+    ) -> *mut CGColor;
 }
 
 extern "C-unwind" {
-    pub fn CGColorRetain(color: Option<&CGColorRef>) -> *mut CGColorRef;
+    pub fn CGColorRetain(color: Option<&CGColor>) -> *mut CGColor;
 }
 
 extern "C-unwind" {
-    pub fn CGColorRelease(color: Option<&CGColorRef>);
+    pub fn CGColorRelease(color: Option<&CGColor>);
 }
 
 extern "C-unwind" {
-    pub fn CGColorEqualToColor(color1: Option<&CGColorRef>, color2: Option<&CGColorRef>) -> bool;
+    pub fn CGColorEqualToColor(color1: Option<&CGColor>, color2: Option<&CGColor>) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGColorGetNumberOfComponents(color: Option<&CGColorRef>) -> usize;
+    pub fn CGColorGetNumberOfComponents(color: Option<&CGColor>) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn CGColorGetComponents(color: Option<&CGColorRef>) -> *const CGFloat;
+    pub fn CGColorGetComponents(color: Option<&CGColor>) -> *const CGFloat;
 }
 
 extern "C-unwind" {
-    pub fn CGColorGetAlpha(color: Option<&CGColorRef>) -> CGFloat;
+    pub fn CGColorGetAlpha(color: Option<&CGColor>) -> CGFloat;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGColorSpace")]
-    pub fn CGColorGetColorSpace(color: Option<&CGColorRef>) -> *mut CGColorSpaceRef;
+    pub fn CGColorGetColorSpace(color: Option<&CGColor>) -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGPattern")]
-    pub fn CGColorGetPattern(color: Option<&CGColorRef>) -> *mut CGPatternRef;
+    pub fn CGColorGetPattern(color: Option<&CGColor>) -> *mut CGPattern;
 }
 
 extern "C-unwind" {
@@ -140,15 +134,15 @@ extern "C" {
     /// * Names of colors for use with `CGColorGetConstantColor'. **
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorwhite?language=objc)
-    pub static kCGColorWhite: &'static CFStringRef;
+    pub static kCGColorWhite: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorblack?language=objc)
-    pub static kCGColorBlack: &'static CFStringRef;
+    pub static kCGColorBlack: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorclear?language=objc)
-    pub static kCGColorClear: &'static CFStringRef;
+    pub static kCGColorClear: &'static CFString;
 }

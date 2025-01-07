@@ -89,7 +89,7 @@ extern_methods!(
         pub unsafe fn assetWriterInputWithMediaType_outputSettings_sourceFormatHint(
             media_type: &AVMediaType,
             output_settings: Option<&NSDictionary<NSString, AnyObject>>,
-            source_format_hint: Option<&CMFormatDescriptionRef>,
+            source_format_hint: Option<&CMFormatDescription>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVMediaFormat")]
@@ -151,7 +151,7 @@ extern_methods!(
             this: Allocated<Self>,
             media_type: &AVMediaType,
             output_settings: Option<&NSDictionary<NSString, AnyObject>>,
-            source_format_hint: Option<&CMFormatDescriptionRef>,
+            source_format_hint: Option<&CMFormatDescription>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVMediaFormat")]
@@ -175,7 +175,7 @@ extern_methods!(
         ///
         /// AVAssetWriterInput may be able to use this hint to fill in missing output settings or perform more upfront validation.  To guarantee successful file writing, clients who specify a format hint should ensure that subsequently-appended media data are of the specified format.
         #[method_id(@__retain_semantics Other sourceFormatHint)]
-        pub unsafe fn sourceFormatHint(&self) -> Option<Retained<CMFormatDescriptionRef>>;
+        pub unsafe fn sourceFormatHint(&self) -> Option<Retained<CMFormatDescription>>;
 
         #[cfg(feature = "AVMetadataItem")]
         /// A collection of metadata to be written to the track corresponding to the receiver.
@@ -262,7 +262,7 @@ extern_methods!(
         ///
         /// This method throws an exception if the sample buffer's media type does not match the asset writer input's media type.
         #[method(appendSampleBuffer:)]
-        pub unsafe fn appendSampleBuffer(&self, sample_buffer: &CMSampleBufferRef) -> bool;
+        pub unsafe fn appendSampleBuffer(&self, sample_buffer: &CMSampleBuffer) -> bool;
 
         /// Indicates to the AVAssetWriter that no more buffers will be appended to this input.
         ///
@@ -752,7 +752,7 @@ extern_methods!(
         ///
         /// This property throws an exception if a pixel buffer pool cannot be created with this asset writer input pixel buffer adaptor's source pixel buffer attributes (must specify width, height, and either pixel format or pixel format description).
         #[method_id(@__retain_semantics Other pixelBufferPool)]
-        pub unsafe fn pixelBufferPool(&self) -> Option<Retained<CVPixelBufferPoolRef>>;
+        pub unsafe fn pixelBufferPool(&self) -> Option<Retained<CVPixelBufferPool>>;
 
         #[cfg(all(feature = "objc2-core-media", feature = "objc2-core-video"))]
         /// Appends a pixel buffer to the receiver.
@@ -783,7 +783,7 @@ extern_methods!(
         #[method(appendPixelBuffer:withPresentationTime:)]
         pub unsafe fn appendPixelBuffer_withPresentationTime(
             &self,
-            pixel_buffer: &CVPixelBufferRef,
+            pixel_buffer: &CVPixelBuffer,
             presentation_time: CMTime,
         ) -> bool;
     }
@@ -887,7 +887,7 @@ extern_methods!(
         ///
         /// This property is not key value observable.
         #[method_id(@__retain_semantics Other pixelBufferPool)]
-        pub unsafe fn pixelBufferPool(&self) -> Option<Retained<CVPixelBufferPoolRef>>;
+        pub unsafe fn pixelBufferPool(&self) -> Option<Retained<CVPixelBufferPool>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Appends a tagged buffer group to the receiver.
@@ -940,7 +940,7 @@ extern_methods!(
         #[method(appendTaggedPixelBufferGroup:withPresentationTime:)]
         pub unsafe fn appendTaggedPixelBufferGroup_withPresentationTime(
             &self,
-            tagged_pixel_buffer_group: &CMTaggedBufferGroupRef,
+            tagged_pixel_buffer_group: &CMTaggedBufferGroup,
             presentation_time: CMTime,
         ) -> bool;
     }

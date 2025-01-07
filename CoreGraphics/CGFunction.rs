@@ -10,16 +10,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfunctionref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfunction?language=objc)
 #[repr(C)]
-pub struct CGFunctionRef {
+pub struct CGFunction {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGFunction"]
-    unsafe impl CGFunctionRef {}
+    unsafe impl CGFunction {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfunctionevaluatecallback?language=objc)
@@ -67,13 +67,13 @@ extern "C-unwind" {
         range_dimension: usize,
         range: *const CGFloat,
         callbacks: *const CGFunctionCallbacks,
-    ) -> *mut CGFunctionRef;
+    ) -> *mut CGFunction;
 }
 
 extern "C-unwind" {
-    pub fn CGFunctionRetain(function: Option<&CGFunctionRef>) -> *mut CGFunctionRef;
+    pub fn CGFunctionRetain(function: Option<&CGFunction>) -> *mut CGFunction;
 }
 
 extern "C-unwind" {
-    pub fn CGFunctionRelease(function: Option<&CGFunctionRef>);
+    pub fn CGFunctionRelease(function: Option<&CGFunction>);
 }

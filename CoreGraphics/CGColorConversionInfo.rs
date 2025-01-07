@@ -10,16 +10,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninforef?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfo?language=objc)
 #[repr(C)]
-pub struct CGColorConversionInfoRef {
+pub struct CGColorConversionInfo {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGColorConversionInfo"]
-    unsafe impl CGColorConversionInfoRef {}
+    unsafe impl CGColorConversionInfo {}
 );
 
 extern "C-unwind" {
@@ -53,31 +53,31 @@ unsafe impl RefEncode for CGColorConversionInfoTransformType {
 extern "C-unwind" {
     #[cfg(feature = "CGColorSpace")]
     pub fn CGColorConversionInfoCreate(
-        src: Option<&CGColorSpaceRef>,
-        dst: Option<&CGColorSpaceRef>,
-    ) -> *mut CGColorConversionInfoRef;
+        src: Option<&CGColorSpace>,
+        dst: Option<&CGColorSpace>,
+    ) -> *mut CGColorConversionInfo;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGColorSpace")]
     pub fn CGColorConversionInfoCreateWithOptions(
-        src: &CGColorSpaceRef,
-        dst: &CGColorSpaceRef,
-        options: Option<&CFDictionaryRef>,
-    ) -> *mut CGColorConversionInfoRef;
+        src: &CGColorSpace,
+        dst: &CGColorSpace,
+        options: Option<&CFDictionary>,
+    ) -> *mut CGColorConversionInfo;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CGColorSpace", feature = "CGToneMapping"))]
     pub fn CGColorConversionInfoCreateForToneMapping(
-        from: &CGColorSpaceRef,
+        from: &CGColorSpace,
         source_headroom: c_float,
-        to: &CGColorSpaceRef,
+        to: &CGColorSpace,
         target_headroom: c_float,
         method: CGToneMapping,
-        options: Option<&CFDictionaryRef>,
-        error: *mut CFErrorRef,
-    ) -> *mut CGColorConversionInfoRef;
+        options: Option<&CFDictionary>,
+        error: *mut CFError,
+    ) -> *mut CGColorConversionInfo;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorbufferformat?language=objc)
@@ -114,23 +114,23 @@ unsafe impl RefEncode for CGColorBufferFormat {
 extern "C-unwind" {
     #[cfg(feature = "CGImage")]
     pub fn CGColorConversionInfoConvertData(
-        info: &CGColorConversionInfoRef,
+        info: &CGColorConversionInfo,
         width: usize,
         height: usize,
         dst_data: NonNull<c_void>,
         dst_format: CGColorBufferFormat,
         src_data: NonNull<c_void>,
         src_format: CGColorBufferFormat,
-        options: Option<&CFDictionaryRef>,
+        options: Option<&CFDictionary>,
     ) -> bool;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorconversionblackpointcompensation?language=objc)
-    pub static kCGColorConversionBlackPointCompensation: &'static CFStringRef;
+    pub static kCGColorConversionBlackPointCompensation: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorconversiontrcsize?language=objc)
-    pub static kCGColorConversionTRCSize: &'static CFStringRef;
+    pub static kCGColorConversionTRCSize: &'static CFString;
 }

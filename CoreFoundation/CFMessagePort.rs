@@ -8,16 +8,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageport?language=objc)
 #[repr(C)]
-pub struct CFMessagePortRef {
+pub struct CFMessagePort {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFMessagePort"]
-    unsafe impl CFMessagePortRef {}
+    unsafe impl CFMessagePort {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfmessageportsuccess?language=objc)
@@ -42,7 +42,7 @@ pub struct CFMessagePortContext {
     pub info: *mut c_void,
     pub retain: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>,
     pub release: Option<unsafe extern "C-unwind" fn(*const c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFStringRef>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -54,7 +54,7 @@ unsafe impl Encode for CFMessagePortContext {
             <*mut c_void>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFStringRef>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>>::ENCODING,
         ],
     );
 }
@@ -67,17 +67,12 @@ unsafe impl RefEncode for CFMessagePortContext {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportcallback?language=objc)
 #[cfg(feature = "CFData")]
 pub type CFMessagePortCallBack = Option<
-    unsafe extern "C-unwind" fn(
-        *mut CFMessagePortRef,
-        i32,
-        *mut CFDataRef,
-        *mut c_void,
-    ) -> *mut CFDataRef,
+    unsafe extern "C-unwind" fn(*mut CFMessagePort, i32, *mut CFData, *mut c_void) -> *mut CFData,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportinvalidationcallback?language=objc)
 pub type CFMessagePortInvalidationCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFMessagePortRef, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(*mut CFMessagePort, *mut c_void)>;
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
@@ -87,64 +82,59 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData"))]
     pub fn CFMessagePortCreateLocal(
-        allocator: Option<&CFAllocatorRef>,
-        name: Option<&CFStringRef>,
+        allocator: Option<&CFAllocator>,
+        name: Option<&CFString>,
         callout: CFMessagePortCallBack,
         context: *mut CFMessagePortContext,
         should_free_info: *mut Boolean,
-    ) -> *mut CFMessagePortRef;
+    ) -> *mut CFMessagePort;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFMessagePortCreateRemote(
-        allocator: Option<&CFAllocatorRef>,
-        name: Option<&CFStringRef>,
-    ) -> *mut CFMessagePortRef;
+        allocator: Option<&CFAllocator>,
+        name: Option<&CFString>,
+    ) -> *mut CFMessagePort;
 }
 
 extern "C-unwind" {
-    pub fn CFMessagePortIsRemote(ms: Option<&CFMessagePortRef>) -> Boolean;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFMessagePortGetName(ms: Option<&CFMessagePortRef>) -> *mut CFStringRef;
+    pub fn CFMessagePortIsRemote(ms: Option<&CFMessagePort>) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFMessagePortSetName(
-        ms: Option<&CFMessagePortRef>,
-        new_name: Option<&CFStringRef>,
-    ) -> Boolean;
+    pub fn CFMessagePortGetName(ms: Option<&CFMessagePort>) -> *mut CFString;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFMessagePortGetContext(
-        ms: Option<&CFMessagePortRef>,
-        context: *mut CFMessagePortContext,
-    );
+    pub fn CFMessagePortSetName(ms: Option<&CFMessagePort>, new_name: Option<&CFString>)
+        -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFMessagePortInvalidate(ms: Option<&CFMessagePortRef>);
+    #[cfg(feature = "CFBase")]
+    pub fn CFMessagePortGetContext(ms: Option<&CFMessagePort>, context: *mut CFMessagePortContext);
 }
 
 extern "C-unwind" {
-    pub fn CFMessagePortIsValid(ms: Option<&CFMessagePortRef>) -> Boolean;
+    pub fn CFMessagePortInvalidate(ms: Option<&CFMessagePort>);
+}
+
+extern "C-unwind" {
+    pub fn CFMessagePortIsValid(ms: Option<&CFMessagePort>) -> Boolean;
 }
 
 extern "C-unwind" {
     pub fn CFMessagePortGetInvalidationCallBack(
-        ms: Option<&CFMessagePortRef>,
+        ms: Option<&CFMessagePort>,
     ) -> CFMessagePortInvalidationCallBack;
 }
 
 extern "C-unwind" {
     pub fn CFMessagePortSetInvalidationCallBack(
-        ms: Option<&CFMessagePortRef>,
+        ms: Option<&CFMessagePort>,
         callout: CFMessagePortInvalidationCallBack,
     );
 }
@@ -152,21 +142,21 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
     pub fn CFMessagePortSendRequest(
-        remote: Option<&CFMessagePortRef>,
+        remote: Option<&CFMessagePort>,
         msgid: i32,
-        data: Option<&CFDataRef>,
+        data: Option<&CFData>,
         send_timeout: CFTimeInterval,
         rcv_timeout: CFTimeInterval,
-        reply_mode: Option<&CFStringRef>,
-        return_data: *mut CFDataRef,
+        reply_mode: Option<&CFString>,
+        return_data: *mut CFData,
     ) -> i32;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
     pub fn CFMessagePortCreateRunLoopSource(
-        allocator: Option<&CFAllocatorRef>,
-        local: Option<&CFMessagePortRef>,
+        allocator: Option<&CFAllocator>,
+        local: Option<&CFMessagePort>,
         order: CFIndex,
-    ) -> *mut CFRunLoopSourceRef;
+    ) -> *mut CFRunLoopSource;
 }

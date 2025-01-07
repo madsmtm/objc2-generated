@@ -10,162 +10,162 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatname?language=objc)
-    pub static kCVPixelFormatName: &'static CFStringRef;
+    pub static kCVPixelFormatName: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatconstant?language=objc)
-    pub static kCVPixelFormatConstant: &'static CFStringRef;
+    pub static kCVPixelFormatConstant: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcodectype?language=objc)
-    pub static kCVPixelFormatCodecType: &'static CFStringRef;
+    pub static kCVPixelFormatCodecType: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatfourcc?language=objc)
-    pub static kCVPixelFormatFourCC: &'static CFStringRef;
+    pub static kCVPixelFormatFourCC: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcontainsalpha?language=objc)
-    pub static kCVPixelFormatContainsAlpha: &'static CFStringRef;
+    pub static kCVPixelFormatContainsAlpha: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcontainsycbcr?language=objc)
-    pub static kCVPixelFormatContainsYCbCr: &'static CFStringRef;
+    pub static kCVPixelFormatContainsYCbCr: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcontainsrgb?language=objc)
-    pub static kCVPixelFormatContainsRGB: &'static CFStringRef;
+    pub static kCVPixelFormatContainsRGB: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcontainsgrayscale?language=objc)
-    pub static kCVPixelFormatContainsGrayscale: &'static CFStringRef;
+    pub static kCVPixelFormatContainsGrayscale: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcontainssenselarray?language=objc)
-    pub static kCVPixelFormatContainsSenselArray: &'static CFStringRef;
+    pub static kCVPixelFormatContainsSenselArray: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcomponentrange?language=objc)
-    pub static kCVPixelFormatComponentRange: &'static CFStringRef;
+    pub static kCVPixelFormatComponentRange: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcomponentrange_videorange?language=objc)
-    pub static kCVPixelFormatComponentRange_VideoRange: &'static CFStringRef;
+    pub static kCVPixelFormatComponentRange_VideoRange: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcomponentrange_fullrange?language=objc)
-    pub static kCVPixelFormatComponentRange_FullRange: &'static CFStringRef;
+    pub static kCVPixelFormatComponentRange_FullRange: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcomponentrange_widerange?language=objc)
-    pub static kCVPixelFormatComponentRange_WideRange: &'static CFStringRef;
+    pub static kCVPixelFormatComponentRange_WideRange: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatplanes?language=objc)
-    pub static kCVPixelFormatPlanes: &'static CFStringRef;
+    pub static kCVPixelFormatPlanes: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatblockwidth?language=objc)
-    pub static kCVPixelFormatBlockWidth: &'static CFStringRef;
+    pub static kCVPixelFormatBlockWidth: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatblockheight?language=objc)
-    pub static kCVPixelFormatBlockHeight: &'static CFStringRef;
+    pub static kCVPixelFormatBlockHeight: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatbitsperblock?language=objc)
-    pub static kCVPixelFormatBitsPerBlock: &'static CFStringRef;
+    pub static kCVPixelFormatBitsPerBlock: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatbitspercomponent?language=objc)
-    pub static kCVPixelFormatBitsPerComponent: &'static CFStringRef;
+    pub static kCVPixelFormatBitsPerComponent: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatblockhorizontalalignment?language=objc)
-    pub static kCVPixelFormatBlockHorizontalAlignment: &'static CFStringRef;
+    pub static kCVPixelFormatBlockHorizontalAlignment: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatblockverticalalignment?language=objc)
-    pub static kCVPixelFormatBlockVerticalAlignment: &'static CFStringRef;
+    pub static kCVPixelFormatBlockVerticalAlignment: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatblackblock?language=objc)
-    pub static kCVPixelFormatBlackBlock: &'static CFStringRef;
+    pub static kCVPixelFormatBlackBlock: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformathorizontalsubsampling?language=objc)
-    pub static kCVPixelFormatHorizontalSubsampling: &'static CFStringRef;
+    pub static kCVPixelFormatHorizontalSubsampling: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatverticalsubsampling?language=objc)
-    pub static kCVPixelFormatVerticalSubsampling: &'static CFStringRef;
+    pub static kCVPixelFormatVerticalSubsampling: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatopenglformat?language=objc)
-    pub static kCVPixelFormatOpenGLFormat: &'static CFStringRef;
+    pub static kCVPixelFormatOpenGLFormat: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatopengltype?language=objc)
-    pub static kCVPixelFormatOpenGLType: &'static CFStringRef;
+    pub static kCVPixelFormatOpenGLType: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatopenglinternalformat?language=objc)
-    pub static kCVPixelFormatOpenGLInternalFormat: &'static CFStringRef;
+    pub static kCVPixelFormatOpenGLInternalFormat: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcgbitmapinfo?language=objc)
-    pub static kCVPixelFormatCGBitmapInfo: &'static CFStringRef;
+    pub static kCVPixelFormatCGBitmapInfo: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatqdcompatibility?language=objc)
-    pub static kCVPixelFormatQDCompatibility: &'static CFStringRef;
+    pub static kCVPixelFormatQDCompatibility: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcgbitmapcontextcompatibility?language=objc)
-    pub static kCVPixelFormatCGBitmapContextCompatibility: &'static CFStringRef;
+    pub static kCVPixelFormatCGBitmapContextCompatibility: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatcgimagecompatibility?language=objc)
-    pub static kCVPixelFormatCGImageCompatibility: &'static CFStringRef;
+    pub static kCVPixelFormatCGImageCompatibility: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatopenglcompatibility?language=objc)
-    pub static kCVPixelFormatOpenGLCompatibility: &'static CFStringRef;
+    pub static kCVPixelFormatOpenGLCompatibility: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatopenglescompatibility?language=objc)
-    pub static kCVPixelFormatOpenGLESCompatibility: &'static CFStringRef;
+    pub static kCVPixelFormatOpenGLESCompatibility: &'static CFString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvfillextendedpixelscallback?language=objc)
@@ -175,7 +175,7 @@ extern "C" {
     feature = "CVPixelBuffer"
 ))]
 pub type CVFillExtendedPixelsCallBack =
-    Option<unsafe extern "C-unwind" fn(NonNull<CVPixelBufferRef>, *mut c_void) -> Boolean>;
+    Option<unsafe extern "C-unwind" fn(NonNull<CVPixelBuffer>, *mut c_void) -> Boolean>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvfillextendedpixelscallbackdata?language=objc)
 #[cfg(all(
@@ -220,25 +220,25 @@ unsafe impl RefEncode for CVFillExtendedPixelsCallBackData {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelformatfillextendedpixelscallback?language=objc)
-    pub static kCVPixelFormatFillExtendedPixelsCallback: &'static CFStringRef;
+    pub static kCVPixelFormatFillExtendedPixelsCallback: &'static CFString;
 }
 
 extern "C-unwind" {
     pub fn CVPixelFormatDescriptionCreateWithPixelFormatType(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         pixel_format: OSType,
-    ) -> *mut CFDictionaryRef;
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
     pub fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(
-        allocator: Option<&CFAllocatorRef>,
-    ) -> *mut CFArrayRef;
+        allocator: Option<&CFAllocator>,
+    ) -> *mut CFArray;
 }
 
 extern "C-unwind" {
     pub fn CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType(
-        description: &CFDictionaryRef,
+        description: &CFDictionary,
         pixel_format: OSType,
     );
 }

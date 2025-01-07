@@ -8,28 +8,28 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdataref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdata?language=objc)
 #[repr(C)]
-pub struct CFDataRef {
+pub struct CFData {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFData"]
-    unsafe impl CFDataRef {}
+    unsafe impl CFData {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutabledataref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutabledata?language=objc)
 #[repr(C)]
-pub struct CFMutableDataRef {
+pub struct CFMutableData {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFData"]
-    unsafe impl CFMutableDataRef: CFDataRef {}
+    unsafe impl CFMutableData: CFData {}
 );
 
 extern "C-unwind" {
@@ -40,88 +40,84 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFDataCreate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         bytes: *const u8,
         length: CFIndex,
-    ) -> *mut CFDataRef;
+    ) -> *mut CFData;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFDataCreateWithBytesNoCopy(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         bytes: *const u8,
         length: CFIndex,
-        bytes_deallocator: Option<&CFAllocatorRef>,
-    ) -> *mut CFDataRef;
+        bytes_deallocator: Option<&CFAllocator>,
+    ) -> *mut CFData;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFDataCreateCopy(
-        allocator: Option<&CFAllocatorRef>,
-        the_data: Option<&CFDataRef>,
-    ) -> *mut CFDataRef;
+        allocator: Option<&CFAllocator>,
+        the_data: Option<&CFData>,
+    ) -> *mut CFData;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFDataCreateMutable(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-    ) -> *mut CFMutableDataRef;
+    ) -> *mut CFMutableData;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFDataCreateMutableCopy(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        the_data: Option<&CFDataRef>,
-    ) -> *mut CFMutableDataRef;
+        the_data: Option<&CFData>,
+    ) -> *mut CFMutableData;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDataGetLength(the_data: Option<&CFDataRef>) -> CFIndex;
+    pub fn CFDataGetLength(the_data: Option<&CFData>) -> CFIndex;
 }
 
 extern "C-unwind" {
-    pub fn CFDataGetBytePtr(the_data: Option<&CFDataRef>) -> *const u8;
+    pub fn CFDataGetBytePtr(the_data: Option<&CFData>) -> *const u8;
 }
 
 extern "C-unwind" {
-    pub fn CFDataGetMutableBytePtr(the_data: Option<&CFMutableDataRef>) -> *mut u8;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFDataGetBytes(the_data: Option<&CFDataRef>, range: CFRange, buffer: *mut u8);
+    pub fn CFDataGetMutableBytePtr(the_data: Option<&CFMutableData>) -> *mut u8;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDataSetLength(the_data: Option<&CFMutableDataRef>, length: CFIndex);
+    pub fn CFDataGetBytes(the_data: Option<&CFData>, range: CFRange, buffer: *mut u8);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDataIncreaseLength(the_data: Option<&CFMutableDataRef>, extra_length: CFIndex);
+    pub fn CFDataSetLength(the_data: Option<&CFMutableData>, length: CFIndex);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDataAppendBytes(
-        the_data: Option<&CFMutableDataRef>,
-        bytes: *const u8,
-        length: CFIndex,
-    );
+    pub fn CFDataIncreaseLength(the_data: Option<&CFMutableData>, extra_length: CFIndex);
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CFBase")]
+    pub fn CFDataAppendBytes(the_data: Option<&CFMutableData>, bytes: *const u8, length: CFIndex);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFDataReplaceBytes(
-        the_data: Option<&CFMutableDataRef>,
+        the_data: Option<&CFMutableData>,
         range: CFRange,
         new_bytes: *const u8,
         new_length: CFIndex,
@@ -130,7 +126,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDataDeleteBytes(the_data: Option<&CFMutableDataRef>, range: CFRange);
+    pub fn CFDataDeleteBytes(the_data: Option<&CFMutableData>, range: CFRange);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatasearchflags?language=objc)
@@ -162,8 +158,8 @@ unsafe impl RefEncode for CFDataSearchFlags {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFDataFind(
-        the_data: Option<&CFDataRef>,
-        data_to_find: Option<&CFDataRef>,
+        the_data: Option<&CFData>,
+        data_to_find: Option<&CFData>,
         search_range: CFRange,
         compare_options: CFDataSearchFlags,
     ) -> CFRange;

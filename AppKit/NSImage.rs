@@ -400,7 +400,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCGImage:size:)]
         pub unsafe fn initWithCGImage_size(
             this: Allocated<Self>,
-            cg_image: &CGImageRef,
+            cg_image: &CGImage,
             size: NSSize,
         ) -> Retained<Self>;
 
@@ -417,7 +417,7 @@ extern_methods!(
             proposed_dest_rect: *mut NSRect,
             reference_context: Option<&NSGraphicsContext>,
             hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
-        ) -> Option<Retained<CGImageRef>>;
+        ) -> Option<Retained<CGImage>>;
 
         #[cfg(all(
             feature = "NSGraphicsContext",

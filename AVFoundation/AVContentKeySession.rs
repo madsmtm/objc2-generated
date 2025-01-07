@@ -876,13 +876,13 @@ extern_methods!(
 #[cfg(feature = "objc2-core-media")]
 #[inline]
 pub unsafe extern "C-unwind" fn AVSampleBufferAttachContentKey(
-    sbuf: &CMSampleBufferRef,
+    sbuf: &CMSampleBuffer,
     content_key: &AVContentKey,
     out_error: *mut *mut NSError,
 ) -> bool {
     extern "C-unwind" {
         fn AVSampleBufferAttachContentKey(
-            sbuf: &CMSampleBufferRef,
+            sbuf: &CMSampleBuffer,
             content_key: &AVContentKey,
             out_error: *mut *mut NSError,
         ) -> Bool;

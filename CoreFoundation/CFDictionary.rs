@@ -34,17 +34,17 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryretaincallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFDictionaryRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFAllocatorRef, *const c_void) -> *const c_void>;
+    Option<unsafe extern "C-unwind" fn(*mut CFAllocator, *const c_void) -> *const c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryreleasecallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFDictionaryReleaseCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFAllocatorRef, *const c_void)>;
+    Option<unsafe extern "C-unwind" fn(*mut CFAllocator, *const c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycopydescriptioncallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFDictionaryCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFStringRef>;
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryequalcallback?language=objc)
 pub type CFDictionaryEqualCallBack =
@@ -188,30 +188,30 @@ pub type CFDictionaryApplierFunction =
 
 /// This is the type of a reference to immutable CFDictionarys.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionary?language=objc)
 #[repr(C)]
-pub struct CFDictionaryRef {
+pub struct CFDictionary {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFDictionary"]
-    unsafe impl CFDictionaryRef {}
+    unsafe impl CFDictionary {}
 );
 
 /// This is the type of a reference to mutable CFDictionarys.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutabledictionaryref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutabledictionary?language=objc)
 #[repr(C)]
-pub struct CFMutableDictionaryRef {
+pub struct CFMutableDictionary {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFDictionary"]
-    unsafe impl CFMutableDictionaryRef: CFDictionaryRef {}
+    unsafe impl CFMutableDictionary: CFDictionary {}
 );
 
 extern "C-unwind" {
@@ -309,13 +309,13 @@ extern "C-unwind" {
     /// Returns: A reference to the new immutable CFDictionary.
     #[cfg(feature = "CFBase")]
     pub fn CFDictionaryCreate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         keys: *mut *const c_void,
         values: *mut *const c_void,
         num_values: CFIndex,
         key_call_backs: *const CFDictionaryKeyCallBacks,
         value_call_backs: *const CFDictionaryValueCallBacks,
-    ) -> *mut CFDictionaryRef;
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -342,9 +342,9 @@ extern "C-unwind" {
     /// Returns: A reference to the new immutable CFDictionary.
     #[cfg(feature = "CFBase")]
     pub fn CFDictionaryCreateCopy(
-        allocator: Option<&CFAllocatorRef>,
-        the_dict: Option<&CFDictionaryRef>,
-    ) -> *mut CFDictionaryRef;
+        allocator: Option<&CFAllocator>,
+        the_dict: Option<&CFDictionary>,
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -421,11 +421,11 @@ extern "C-unwind" {
     /// Returns: A reference to the new mutable CFDictionary.
     #[cfg(feature = "CFBase")]
     pub fn CFDictionaryCreateMutable(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         capacity: CFIndex,
         key_call_backs: *const CFDictionaryKeyCallBacks,
         value_call_backs: *const CFDictionaryValueCallBacks,
-    ) -> *mut CFMutableDictionaryRef;
+    ) -> *mut CFMutableDictionary;
 }
 
 extern "C-unwind" {
@@ -462,10 +462,10 @@ extern "C-unwind" {
     /// Returns: A reference to the new mutable CFDictionary.
     #[cfg(feature = "CFBase")]
     pub fn CFDictionaryCreateMutableCopy(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        the_dict: Option<&CFDictionaryRef>,
-    ) -> *mut CFMutableDictionaryRef;
+        the_dict: Option<&CFDictionary>,
+    ) -> *mut CFMutableDictionary;
 }
 
 extern "C-unwind" {
@@ -476,7 +476,7 @@ extern "C-unwind" {
     ///
     /// Returns: The number of values in the dictionary.
     #[cfg(feature = "CFBase")]
-    pub fn CFDictionaryGetCount(the_dict: Option<&CFDictionaryRef>) -> CFIndex;
+    pub fn CFDictionaryGetCount(the_dict: Option<&CFDictionary>) -> CFIndex;
 }
 
 extern "C-unwind" {
@@ -498,7 +498,7 @@ extern "C-unwind" {
     /// 0 otherwise.
     #[cfg(feature = "CFBase")]
     pub fn CFDictionaryGetCountOfKey(
-        the_dict: Option<&CFDictionaryRef>,
+        the_dict: Option<&CFDictionary>,
         key: *const c_void,
     ) -> CFIndex;
 }
@@ -519,7 +519,7 @@ extern "C-unwind" {
     /// Returns: The number of times the given value occurs in the dictionary.
     #[cfg(feature = "CFBase")]
     pub fn CFDictionaryGetCountOfValue(
-        the_dict: Option<&CFDictionaryRef>,
+        the_dict: Option<&CFDictionary>,
         value: *const c_void,
     ) -> CFIndex;
 }
@@ -540,10 +540,7 @@ extern "C-unwind" {
     /// the behavior is undefined.
     ///
     /// Returns: true, if the key is in the dictionary, otherwise false.
-    pub fn CFDictionaryContainsKey(
-        the_dict: Option<&CFDictionaryRef>,
-        key: *const c_void,
-    ) -> Boolean;
+    pub fn CFDictionaryContainsKey(the_dict: Option<&CFDictionary>, key: *const c_void) -> Boolean;
 }
 
 extern "C-unwind" {
@@ -561,7 +558,7 @@ extern "C-unwind" {
     ///
     /// Returns: true, if the value is in the dictionary, otherwise false.
     pub fn CFDictionaryContainsValue(
-        the_dict: Option<&CFDictionaryRef>,
+        the_dict: Option<&CFDictionary>,
         value: *const c_void,
     ) -> Boolean;
 }
@@ -587,7 +584,7 @@ extern "C-unwind" {
     /// CFDictionaryGetValueIfPresent() must be used to distinguish
     /// NULL-no-found from NULL-is-the-value.
     pub fn CFDictionaryGetValue(
-        the_dict: Option<&CFDictionaryRef>,
+        the_dict: Option<&CFDictionary>,
         key: *const c_void,
     ) -> *const c_void;
 }
@@ -617,7 +614,7 @@ extern "C-unwind" {
     ///
     /// Returns: true, if a matching key was found, false otherwise.
     pub fn CFDictionaryGetValueIfPresent(
-        the_dict: Option<&CFDictionaryRef>,
+        the_dict: Option<&CFDictionary>,
         key: *const c_void,
         value: *mut *const c_void,
     ) -> Boolean;
@@ -645,7 +642,7 @@ extern "C-unwind" {
     /// pointer to a C array of at least CFDictionaryGetCount() pointers,
     /// or NULL, the behavior is undefined.
     pub fn CFDictionaryGetKeysAndValues(
-        the_dict: Option<&CFDictionaryRef>,
+        the_dict: Option<&CFDictionary>,
         keys: *mut *const c_void,
         values: *mut *const c_void,
     );
@@ -670,7 +667,7 @@ extern "C-unwind" {
     /// what is expected by the applier function, the behavior is
     /// undefined.
     pub fn CFDictionaryApplyFunction(
-        the_dict: Option<&CFDictionaryRef>,
+        the_dict: Option<&CFDictionary>,
         applier: CFDictionaryApplierFunction,
         context: *mut c_void,
     );
@@ -695,7 +692,7 @@ extern "C-unwind" {
     /// dictionary was created. If the value is not of the sort expected
     /// by the retain callback, the behavior is undefined.
     pub fn CFDictionaryAddValue(
-        the_dict: Option<&CFMutableDictionaryRef>,
+        the_dict: Option<&CFMutableDictionary>,
         key: *const c_void,
         value: *const c_void,
     );
@@ -723,7 +720,7 @@ extern "C-unwind" {
     /// released. If the value is not of the sort expected by the
     /// retain or release callbacks, the behavior is undefined.
     pub fn CFDictionarySetValue(
-        the_dict: Option<&CFMutableDictionaryRef>,
+        the_dict: Option<&CFMutableDictionary>,
         key: *const c_void,
         value: *const c_void,
     );
@@ -747,7 +744,7 @@ extern "C-unwind" {
     /// released. If the value is not of the sort expected by the
     /// retain or release callbacks, the behavior is undefined.
     pub fn CFDictionaryReplaceValue(
-        the_dict: Option<&CFMutableDictionaryRef>,
+        the_dict: Option<&CFMutableDictionary>,
         key: *const c_void,
         value: *const c_void,
     );
@@ -764,7 +761,7 @@ extern "C-unwind" {
     /// which matches this key is present in the dictionary, the key-value
     /// pair is removed from the dictionary, otherwise this function does
     /// nothing ("remove if present").
-    pub fn CFDictionaryRemoveValue(the_dict: Option<&CFMutableDictionaryRef>, key: *const c_void);
+    pub fn CFDictionaryRemoveValue(the_dict: Option<&CFMutableDictionary>, key: *const c_void);
 }
 
 extern "C-unwind" {
@@ -773,5 +770,5 @@ extern "C-unwind" {
     /// Parameter `theDict`: The dictionary from which all of the values are to be
     /// removed. If this parameter is not a valid mutable
     /// CFDictionary, the behavior is undefined.
-    pub fn CFDictionaryRemoveAllValues(the_dict: Option<&CFMutableDictionaryRef>);
+    pub fn CFDictionaryRemoveAllValues(the_dict: Option<&CFMutableDictionary>);
 }

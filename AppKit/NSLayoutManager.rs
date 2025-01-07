@@ -717,7 +717,7 @@ extern_methods!(
             font: &NSFont,
             text_matrix: CGAffineTransform,
             attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
-            cg_context: &CGContextRef,
+            cg_context: &CGContext,
         );
 
         #[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]

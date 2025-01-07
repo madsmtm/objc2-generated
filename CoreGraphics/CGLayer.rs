@@ -7,59 +7,59 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglayerref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglayer?language=objc)
 #[repr(C)]
-pub struct CGLayerRef {
+pub struct CGLayer {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGLayer"]
-    unsafe impl CGLayerRef {}
+    unsafe impl CGLayer {}
 );
 
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
     pub fn CGLayerCreateWithContext(
-        context: Option<&CGContextRef>,
+        context: Option<&CGContext>,
         size: CGSize,
-        auxiliary_info: Option<&CFDictionaryRef>,
-    ) -> *mut CGLayerRef;
+        auxiliary_info: Option<&CFDictionary>,
+    ) -> *mut CGLayer;
 }
 
 extern "C-unwind" {
-    pub fn CGLayerRetain(layer: Option<&CGLayerRef>) -> *mut CGLayerRef;
+    pub fn CGLayerRetain(layer: Option<&CGLayer>) -> *mut CGLayer;
 }
 
 extern "C-unwind" {
-    pub fn CGLayerRelease(layer: Option<&CGLayerRef>);
+    pub fn CGLayerRelease(layer: Option<&CGLayer>);
 }
 
 extern "C-unwind" {
-    pub fn CGLayerGetSize(layer: Option<&CGLayerRef>) -> CGSize;
+    pub fn CGLayerGetSize(layer: Option<&CGLayer>) -> CGSize;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
-    pub fn CGLayerGetContext(layer: Option<&CGLayerRef>) -> *mut CGContextRef;
+    pub fn CGLayerGetContext(layer: Option<&CGLayer>) -> *mut CGContext;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
     pub fn CGContextDrawLayerInRect(
-        context: Option<&CGContextRef>,
+        context: Option<&CGContext>,
         rect: CGRect,
-        layer: Option<&CGLayerRef>,
+        layer: Option<&CGLayer>,
     );
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
     pub fn CGContextDrawLayerAtPoint(
-        context: Option<&CGContextRef>,
+        context: Option<&CGContext>,
         point: CGPoint,
-        layer: Option<&CGLayerRef>,
+        layer: Option<&CGLayer>,
     );
 }
 

@@ -12,16 +12,16 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctglyphinforef?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctglyphinfo?language=objc)
 #[repr(C)]
-pub struct CTGlyphInfoRef {
+pub struct CTGlyphInfo {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CTGlyphInfo"]
-    unsafe impl CTGlyphInfoRef {}
+    unsafe impl CTGlyphInfo {}
 );
 
 extern "C-unwind" {
@@ -114,10 +114,10 @@ extern "C-unwind" {
     /// Returns: This function will return a reference to a CTGlyphInfo object.
     #[cfg(feature = "CTFont")]
     pub fn CTGlyphInfoCreateWithGlyphName(
-        glyph_name: &CFStringRef,
-        font: &CTFontRef,
-        base_string: &CFStringRef,
-    ) -> *mut CTGlyphInfoRef;
+        glyph_name: &CFString,
+        font: &CTFont,
+        base_string: &CFString,
+    ) -> *mut CTGlyphInfo;
 }
 
 extern "C-unwind" {
@@ -142,9 +142,9 @@ extern "C-unwind" {
     #[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
     pub fn CTGlyphInfoCreateWithGlyph(
         glyph: CGGlyph,
-        font: &CTFontRef,
-        base_string: &CFStringRef,
-    ) -> *mut CTGlyphInfoRef;
+        font: &CTFont,
+        base_string: &CFString,
+    ) -> *mut CTGlyphInfo;
 }
 
 extern "C-unwind" {
@@ -170,8 +170,8 @@ extern "C-unwind" {
     pub fn CTGlyphInfoCreateWithCharacterIdentifier(
         cid: CGFontIndex,
         collection: CTCharacterCollection,
-        base_string: &CFStringRef,
-    ) -> *mut CTGlyphInfoRef;
+        base_string: &CFString,
+    ) -> *mut CTGlyphInfo;
 }
 
 extern "C-unwind" {
@@ -186,7 +186,7 @@ extern "C-unwind" {
     ///
     /// Returns: If the glyph info object was created with a glyph name, it will
     /// be returned. Otherwise, this function will return NULL.
-    pub fn CTGlyphInfoGetGlyphName(glyph_info: &CTGlyphInfoRef) -> *mut CFStringRef;
+    pub fn CTGlyphInfoGetGlyphName(glyph_info: &CTGlyphInfo) -> *mut CFString;
 }
 
 extern "C-unwind" {
@@ -202,7 +202,7 @@ extern "C-unwind" {
     /// Returns: If the glyph info object was created with a font, it will be
     /// returned. Otherwise, this function will return 0.
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTGlyphInfoGetGlyph(glyph_info: &CTGlyphInfoRef) -> CGGlyph;
+    pub fn CTGlyphInfoGetGlyph(glyph_info: &CTGlyphInfo) -> CGGlyph;
 }
 
 extern "C-unwind" {
@@ -218,7 +218,7 @@ extern "C-unwind" {
     /// Returns: If the glyph info object was created with a character identifier,
     /// it will be returned. Otherwise, this function will return 0.
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTGlyphInfoGetCharacterIdentifier(glyph_info: &CTGlyphInfoRef) -> CGFontIndex;
+    pub fn CTGlyphInfoGetCharacterIdentifier(glyph_info: &CTGlyphInfo) -> CGFontIndex;
 }
 
 extern "C-unwind" {
@@ -236,5 +236,5 @@ extern "C-unwind" {
     ///
     /// Returns: This function will return the character collection of the given
     /// glyph info.
-    pub fn CTGlyphInfoGetCharacterCollection(glyph_info: &CTGlyphInfoRef) -> CTCharacterCollection;
+    pub fn CTGlyphInfoGetCharacterCollection(glyph_info: &CTGlyphInfo) -> CTCharacterCollection;
 }

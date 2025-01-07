@@ -11,28 +11,28 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterkey?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "CFBase")]
-pub type CFDateFormatterKey = CFStringRef;
+pub type CFDateFormatterKey = CFString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatter?language=objc)
 #[repr(C)]
-pub struct CFDateFormatterRef {
+pub struct CFDateFormatter {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFDateFormatter"]
-    unsafe impl CFDateFormatterRef {}
+    unsafe impl CFDateFormatter {}
 );
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFLocale"))]
     pub fn CFDateFormatterCreateDateFormatFromTemplate(
-        allocator: Option<&CFAllocatorRef>,
-        tmplate: Option<&CFStringRef>,
+        allocator: Option<&CFAllocator>,
+        tmplate: Option<&CFString>,
         options: CFOptionFlags,
-        locale: Option<&CFLocaleRef>,
-    ) -> *mut CFStringRef;
+        locale: Option<&CFLocale>,
+    ) -> *mut CFString;
 }
 
 extern "C-unwind" {
@@ -123,86 +123,84 @@ unsafe impl RefEncode for CFISO8601DateFormatOptions {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFDateFormatterCreateISO8601Formatter(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         format_options: CFISO8601DateFormatOptions,
-    ) -> *mut CFDateFormatterRef;
+    ) -> *mut CFDateFormatter;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFLocale"))]
     pub fn CFDateFormatterCreate(
-        allocator: Option<&CFAllocatorRef>,
-        locale: Option<&CFLocaleRef>,
+        allocator: Option<&CFAllocator>,
+        locale: Option<&CFLocale>,
         date_style: CFDateFormatterStyle,
         time_style: CFDateFormatterStyle,
-    ) -> *mut CFDateFormatterRef;
+    ) -> *mut CFDateFormatter;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFLocale")]
-    pub fn CFDateFormatterGetLocale(formatter: Option<&CFDateFormatterRef>) -> *mut CFLocaleRef;
+    pub fn CFDateFormatterGetLocale(formatter: Option<&CFDateFormatter>) -> *mut CFLocale;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDateFormatterGetDateStyle(
-        formatter: Option<&CFDateFormatterRef>,
-    ) -> CFDateFormatterStyle;
+    pub fn CFDateFormatterGetDateStyle(formatter: Option<&CFDateFormatter>)
+        -> CFDateFormatterStyle;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDateFormatterGetTimeStyle(
-        formatter: Option<&CFDateFormatterRef>,
-    ) -> CFDateFormatterStyle;
+    pub fn CFDateFormatterGetTimeStyle(formatter: Option<&CFDateFormatter>)
+        -> CFDateFormatterStyle;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDateFormatterGetFormat(formatter: Option<&CFDateFormatterRef>) -> *mut CFStringRef;
+    pub fn CFDateFormatterGetFormat(formatter: Option<&CFDateFormatter>) -> *mut CFString;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFDateFormatterSetFormat(
-        formatter: Option<&CFDateFormatterRef>,
-        format_string: Option<&CFStringRef>,
+        formatter: Option<&CFDateFormatter>,
+        format_string: Option<&CFString>,
     );
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDate"))]
     pub fn CFDateFormatterCreateStringWithDate(
-        allocator: Option<&CFAllocatorRef>,
-        formatter: Option<&CFDateFormatterRef>,
-        date: Option<&CFDateRef>,
-    ) -> *mut CFStringRef;
+        allocator: Option<&CFAllocator>,
+        formatter: Option<&CFDateFormatter>,
+        date: Option<&CFDate>,
+    ) -> *mut CFString;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDate"))]
     pub fn CFDateFormatterCreateStringWithAbsoluteTime(
-        allocator: Option<&CFAllocatorRef>,
-        formatter: Option<&CFDateFormatterRef>,
+        allocator: Option<&CFAllocator>,
+        formatter: Option<&CFDateFormatter>,
         at: CFAbsoluteTime,
-    ) -> *mut CFStringRef;
+    ) -> *mut CFString;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDate"))]
     pub fn CFDateFormatterCreateDateFromString(
-        allocator: Option<&CFAllocatorRef>,
-        formatter: Option<&CFDateFormatterRef>,
-        string: Option<&CFStringRef>,
+        allocator: Option<&CFAllocator>,
+        formatter: Option<&CFDateFormatter>,
+        string: Option<&CFString>,
         rangep: *mut CFRange,
-    ) -> *mut CFDateRef;
+    ) -> *mut CFDate;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDate"))]
     pub fn CFDateFormatterGetAbsoluteTimeFromString(
-        formatter: Option<&CFDateFormatterRef>,
-        string: Option<&CFStringRef>,
+        formatter: Option<&CFDateFormatter>,
+        string: Option<&CFString>,
         rangep: *mut CFRange,
         atp: *mut CFAbsoluteTime,
     ) -> Boolean;
@@ -211,8 +209,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFDateFormatterSetProperty(
-        formatter: Option<&CFDateFormatterRef>,
-        key: Option<&CFStringRef>,
+        formatter: Option<&CFDateFormatter>,
+        key: Option<&CFString>,
         value: CFTypeRef,
     );
 }
@@ -220,7 +218,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFDateFormatterCopyProperty(
-        formatter: Option<&CFDateFormatterRef>,
+        formatter: Option<&CFDateFormatter>,
         key: Option<&CFDateFormatterKey>,
     ) -> CFTypeRef;
 }

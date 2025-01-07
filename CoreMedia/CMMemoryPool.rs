@@ -37,16 +37,16 @@ use crate::*;
 /// Such "aging out" is done during the pool's CFAllocatorAllocate and
 /// CFAllocatorDeallocate methods.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmemorypoolref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmemorypool?language=objc)
 #[repr(C)]
-pub struct CMMemoryPoolRef {
+pub struct CMMemoryPool {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "OpaqueCMMemoryPool"]
-    unsafe impl CMMemoryPoolRef {}
+    unsafe impl CMMemoryPool {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmemorypoolerror_allocationfailed?language=objc)
@@ -64,22 +64,22 @@ extern "C" {
     /// Pass this in the options dictionary to CMMemoryPoolCreate.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmemorypooloption_ageoutperiod?language=objc)
-    pub static kCMMemoryPoolOption_AgeOutPeriod: &'static CFStringRef;
+    pub static kCMMemoryPoolOption_AgeOutPeriod: &'static CFString;
 }
 
 extern "C-unwind" {
     /// Creates a new CMMemoryPool.
-    pub fn CMMemoryPoolCreate(options: Option<&CFDictionaryRef>) -> NonNull<CMMemoryPoolRef>;
+    pub fn CMMemoryPoolCreate(options: Option<&CFDictionary>) -> NonNull<CMMemoryPool>;
 }
 
 extern "C-unwind" {
     /// Returns the pool's CFAllocator.
-    pub fn CMMemoryPoolGetAllocator(pool: &CMMemoryPoolRef) -> NonNull<CFAllocatorRef>;
+    pub fn CMMemoryPoolGetAllocator(pool: &CMMemoryPool) -> NonNull<CFAllocator>;
 }
 
 extern "C-unwind" {
     /// Deallocates all memory the pool was holding for recycling.
-    pub fn CMMemoryPoolFlush(pool: &CMMemoryPoolRef);
+    pub fn CMMemoryPoolFlush(pool: &CMMemoryPool);
 }
 
 extern "C-unwind" {
@@ -89,5 +89,5 @@ extern "C-unwind" {
     /// The pool deallocates any memory it was holding for recycling.
     /// This also happens when the retain count of the CMMemoryPool drops to zero,
     /// except that under GC it may be delayed.
-    pub fn CMMemoryPoolInvalidate(pool: &CMMemoryPoolRef);
+    pub fn CMMemoryPoolInvalidate(pool: &CMMemoryPool);
 }

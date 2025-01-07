@@ -8,32 +8,32 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbufferwidth?language=objc)
-    pub static kCVOpenGLBufferWidth: &'static CFStringRef;
+    pub static kCVOpenGLBufferWidth: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbufferheight?language=objc)
-    pub static kCVOpenGLBufferHeight: &'static CFStringRef;
+    pub static kCVOpenGLBufferHeight: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbuffertarget?language=objc)
-    pub static kCVOpenGLBufferTarget: &'static CFStringRef;
+    pub static kCVOpenGLBufferTarget: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbufferinternalformat?language=objc)
-    pub static kCVOpenGLBufferInternalFormat: &'static CFStringRef;
+    pub static kCVOpenGLBufferInternalFormat: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbuffermaximummipmaplevel?language=objc)
-    pub static kCVOpenGLBufferMaximumMipmapLevel: &'static CFStringRef;
+    pub static kCVOpenGLBufferMaximumMipmapLevel: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbufferref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbuffer?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-pub type CVOpenGLBufferRef = CVImageBufferRef;
+pub type CVOpenGLBuffer = CVImageBuffer;
 
 extern "C-unwind" {
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
@@ -50,7 +50,7 @@ extern "C-unwind" {
     /// Returns: A CVOpenGLBuffer object that is the same as the passed in buffer.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLBufferRetain(buffer: Option<&CVOpenGLBufferRef>) -> *mut CVOpenGLBufferRef;
+    pub fn CVOpenGLBufferRetain(buffer: Option<&CVOpenGLBuffer>) -> *mut CVOpenGLBuffer;
 }
 
 extern "C-unwind" {
@@ -70,11 +70,11 @@ extern "C-unwind" {
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLBufferCreate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         width: usize,
         height: usize,
-        attributes: Option<&CFDictionaryRef>,
-        buffer_out: NonNull<CVOpenGLBufferRef>,
+        attributes: Option<&CFDictionary>,
+        buffer_out: NonNull<CVOpenGLBuffer>,
     ) -> CVReturn;
 }
 
@@ -84,5 +84,5 @@ extern "C-unwind" {
     /// Returns: CVOpenGLBuffer attributes dictionary, NULL if not set.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLBufferGetAttributes(open_gl_buffer: &CVOpenGLBufferRef) -> *mut CFDictionaryRef;
+    pub fn CVOpenGLBufferGetAttributes(open_gl_buffer: &CVOpenGLBuffer) -> *mut CFDictionary;
 }

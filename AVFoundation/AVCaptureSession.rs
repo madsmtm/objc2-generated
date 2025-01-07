@@ -585,7 +585,7 @@ extern_methods!(
         ///
         /// This property is key-value observable.
         #[method_id(@__retain_semantics Other synchronizationClock)]
-        pub unsafe fn synchronizationClock(&self) -> Option<Retained<CMClockRef>>;
+        pub unsafe fn synchronizationClock(&self) -> Option<Retained<CMClock>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Provides the clock being used for synchronization.
@@ -593,7 +593,7 @@ extern_methods!(
         /// Deprecated. Please use synchronizationClock instead.
         #[deprecated]
         #[method_id(@__retain_semantics Other masterClock)]
-        pub unsafe fn masterClock(&self) -> Option<Retained<CMClockRef>>;
+        pub unsafe fn masterClock(&self) -> Option<Retained<CMClock>>;
 
         /// Indicates the percentage of the session's available hardware budget currently in use.
         ///

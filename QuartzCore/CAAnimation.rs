@@ -329,12 +329,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other path)]
-        pub unsafe fn path(&self) -> Option<Retained<CGPathRef>>;
+        pub unsafe fn path(&self) -> Option<Retained<CGPath>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`path`][Self::path].
         #[method(setPath:)]
-        pub unsafe fn setPath(&self, path: Option<&CGPathRef>);
+        pub unsafe fn setPath(&self, path: Option<&CGPath>);
 
         #[method_id(@__retain_semantics Other keyTimes)]
         pub unsafe fn keyTimes(&self) -> Option<Retained<NSArray<NSNumber>>>;

@@ -10,30 +10,30 @@ use crate::*;
 
 /// This is the type of a reference to immutable CFCharacterSets.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharacterset?language=objc)
 #[repr(C)]
-pub struct CFCharacterSetRef {
+pub struct CFCharacterSet {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFCharacterSet"]
-    unsafe impl CFCharacterSetRef {}
+    unsafe impl CFCharacterSet {}
 );
 
 /// This is the type of a reference to mutable CFMutableCharacterSets.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablecharactersetref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablecharacterset?language=objc)
 #[repr(C)]
-pub struct CFMutableCharacterSetRef {
+pub struct CFMutableCharacterSet {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFCharacterSet"]
-    unsafe impl CFMutableCharacterSetRef: CFCharacterSetRef {}
+    unsafe impl CFMutableCharacterSet: CFCharacterSet {}
 );
 
 /// Type of the predefined CFCharacterSet selector values.
@@ -107,7 +107,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetGetPredefined(
         the_set_identifier: CFCharacterSetPredefinedSet,
-    ) -> *mut CFCharacterSetRef;
+    ) -> *mut CFCharacterSet;
 }
 
 extern "C-unwind" {
@@ -129,9 +129,9 @@ extern "C-unwind" {
     /// Returns: A reference to the new immutable CFCharacterSet.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetCreateWithCharactersInRange(
-        alloc: Option<&CFAllocatorRef>,
+        alloc: Option<&CFAllocator>,
         the_range: CFRange,
-    ) -> *mut CFCharacterSetRef;
+    ) -> *mut CFCharacterSet;
 }
 
 extern "C-unwind" {
@@ -151,9 +151,9 @@ extern "C-unwind" {
     /// Returns: A reference to the new immutable CFCharacterSet.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetCreateWithCharactersInString(
-        alloc: Option<&CFAllocatorRef>,
-        the_string: Option<&CFStringRef>,
-    ) -> *mut CFCharacterSetRef;
+        alloc: Option<&CFAllocator>,
+        the_string: Option<&CFString>,
+    ) -> *mut CFCharacterSet;
 }
 
 extern "C-unwind" {
@@ -184,9 +184,9 @@ extern "C-unwind" {
     /// Returns: A reference to the new immutable CFCharacterSet.
     #[cfg(all(feature = "CFBase", feature = "CFData"))]
     pub fn CFCharacterSetCreateWithBitmapRepresentation(
-        alloc: Option<&CFAllocatorRef>,
-        the_data: Option<&CFDataRef>,
-    ) -> *mut CFCharacterSetRef;
+        alloc: Option<&CFAllocator>,
+        the_data: Option<&CFData>,
+    ) -> *mut CFCharacterSet;
 }
 
 extern "C-unwind" {
@@ -205,9 +205,9 @@ extern "C-unwind" {
     /// Returns: A reference to the new immutable CFCharacterSet.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetCreateInvertedSet(
-        alloc: Option<&CFAllocatorRef>,
-        the_set: Option<&CFCharacterSetRef>,
-    ) -> *mut CFCharacterSetRef;
+        alloc: Option<&CFAllocator>,
+        the_set: Option<&CFCharacterSet>,
+    ) -> *mut CFCharacterSet;
 }
 
 extern "C-unwind" {
@@ -219,8 +219,8 @@ extern "C-unwind" {
     /// Parameter `theOtherset`: The character set to be checked whether or not it is a subset of theSet.
     /// If this parameter is not a valid CFCharacterSet, the behavior is undefined.
     pub fn CFCharacterSetIsSupersetOfSet(
-        the_set: Option<&CFCharacterSetRef>,
-        the_otherset: Option<&CFCharacterSetRef>,
+        the_set: Option<&CFCharacterSet>,
+        the_otherset: Option<&CFCharacterSet>,
     ) -> Boolean;
 }
 
@@ -235,7 +235,7 @@ extern "C-unwind" {
     /// plane number range, the behavior is undefined.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetHasMemberInPlane(
-        the_set: Option<&CFCharacterSetRef>,
+        the_set: Option<&CFCharacterSet>,
         the_plane: CFIndex,
     ) -> Boolean;
 }
@@ -251,9 +251,7 @@ extern "C-unwind" {
     ///
     /// Returns: A reference to the new mutable CFCharacterSet.
     #[cfg(feature = "CFBase")]
-    pub fn CFCharacterSetCreateMutable(
-        alloc: Option<&CFAllocatorRef>,
-    ) -> *mut CFMutableCharacterSetRef;
+    pub fn CFCharacterSetCreateMutable(alloc: Option<&CFAllocator>) -> *mut CFMutableCharacterSet;
 }
 
 extern "C-unwind" {
@@ -272,9 +270,9 @@ extern "C-unwind" {
     /// Returns: A reference to the new CFCharacterSet.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetCreateCopy(
-        alloc: Option<&CFAllocatorRef>,
-        the_set: Option<&CFCharacterSetRef>,
-    ) -> *mut CFCharacterSetRef;
+        alloc: Option<&CFAllocator>,
+        the_set: Option<&CFCharacterSet>,
+    ) -> *mut CFCharacterSet;
 }
 
 extern "C-unwind" {
@@ -293,9 +291,9 @@ extern "C-unwind" {
     /// Returns: A reference to the new mutable CFCharacterSet.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetCreateMutableCopy(
-        alloc: Option<&CFAllocatorRef>,
-        the_set: Option<&CFCharacterSetRef>,
-    ) -> *mut CFMutableCharacterSetRef;
+        alloc: Option<&CFAllocator>,
+        the_set: Option<&CFCharacterSet>,
+    ) -> *mut CFMutableCharacterSet;
 }
 
 extern "C-unwind" {
@@ -311,7 +309,7 @@ extern "C-unwind" {
     ///
     /// Returns: true, if the value is in the character set, otherwise false.
     pub fn CFCharacterSetIsCharacterMember(
-        the_set: Option<&CFCharacterSetRef>,
+        the_set: Option<&CFCharacterSet>,
         the_char: UniChar,
     ) -> Boolean;
 }
@@ -327,7 +325,7 @@ extern "C-unwind" {
     ///
     /// Returns: true, if the value is in the character set, otherwise false.
     pub fn CFCharacterSetIsLongCharacterMember(
-        the_set: Option<&CFCharacterSetRef>,
+        the_set: Option<&CFCharacterSet>,
         the_char: UTF32Char,
     ) -> Boolean;
 }
@@ -351,9 +349,9 @@ extern "C-unwind" {
     /// Returns: A reference to the new immutable CFData.
     #[cfg(all(feature = "CFBase", feature = "CFData"))]
     pub fn CFCharacterSetCreateBitmapRepresentation(
-        alloc: Option<&CFAllocatorRef>,
-        the_set: Option<&CFCharacterSetRef>,
-    ) -> *mut CFDataRef;
+        alloc: Option<&CFAllocator>,
+        the_set: Option<&CFCharacterSet>,
+    ) -> *mut CFData;
 }
 
 extern "C-unwind" {
@@ -370,7 +368,7 @@ extern "C-unwind" {
     /// the behavior is undefined.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetAddCharactersInRange(
-        the_set: Option<&CFMutableCharacterSetRef>,
+        the_set: Option<&CFMutableCharacterSet>,
         the_range: CFRange,
     );
 }
@@ -389,7 +387,7 @@ extern "C-unwind" {
     /// the behavior is undefined.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetRemoveCharactersInRange(
-        the_set: Option<&CFMutableCharacterSetRef>,
+        the_set: Option<&CFMutableCharacterSet>,
         the_range: CFRange,
     );
 }
@@ -406,8 +404,8 @@ extern "C-unwind" {
     /// is undefined.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetAddCharactersInString(
-        the_set: Option<&CFMutableCharacterSetRef>,
-        the_string: Option<&CFStringRef>,
+        the_set: Option<&CFMutableCharacterSet>,
+        the_string: Option<&CFString>,
     );
 }
 
@@ -423,8 +421,8 @@ extern "C-unwind" {
     /// is undefined.
     #[cfg(feature = "CFBase")]
     pub fn CFCharacterSetRemoveCharactersInString(
-        the_set: Option<&CFMutableCharacterSetRef>,
-        the_string: Option<&CFStringRef>,
+        the_set: Option<&CFMutableCharacterSet>,
+        the_string: Option<&CFString>,
     );
 }
 
@@ -440,8 +438,8 @@ extern "C-unwind" {
     /// formed.  If this parameter is not a valid CFCharacterSet,
     /// the behavior is undefined.
     pub fn CFCharacterSetUnion(
-        the_set: Option<&CFMutableCharacterSetRef>,
-        the_other_set: Option<&CFCharacterSetRef>,
+        the_set: Option<&CFMutableCharacterSet>,
+        the_other_set: Option<&CFCharacterSet>,
     );
 }
 
@@ -457,8 +455,8 @@ extern "C-unwind" {
     /// is formed.  If this parameter is not a valid CFCharacterSet,
     /// the behavior is undefined.
     pub fn CFCharacterSetIntersect(
-        the_set: Option<&CFMutableCharacterSetRef>,
-        the_other_set: Option<&CFCharacterSetRef>,
+        the_set: Option<&CFMutableCharacterSet>,
+        the_other_set: Option<&CFCharacterSet>,
     );
 }
 
@@ -468,5 +466,5 @@ extern "C-unwind" {
     /// Parameter `theSet`: The character set to be inverted.
     /// If this parameter is not a valid mutable CFCharacterSet,
     /// the behavior is undefined.
-    pub fn CFCharacterSetInvert(the_set: Option<&CFMutableCharacterSetRef>);
+    pub fn CFCharacterSetInvert(the_set: Option<&CFMutableCharacterSet>);
 }

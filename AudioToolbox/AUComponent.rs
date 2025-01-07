@@ -575,7 +575,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponentregistrationschangednotification?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioComponentRegistrationsChangedNotification: &'static CFStringRef;
+    pub static kAudioComponentRegistrationsChangedNotification: &'static CFString;
 }
 
 extern "C" {
@@ -630,7 +630,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponentinstanceinvalidationnotification?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
-    pub static kAudioComponentInstanceInvalidationNotification: &'static CFStringRef;
+    pub static kAudioComponentInstanceInvalidationNotification: &'static CFString;
 }
 
 extern "C-unwind" {
@@ -1080,7 +1080,7 @@ extern "C-unwind" {
     #[deprecated = "Inter-App Audio API is deprecated in favor of Audio Units"]
     pub fn AudioOutputUnitPublish(
         in_desc: NonNull<AudioComponentDescription>,
-        in_name: &CFStringRef,
+        in_name: &CFString,
         in_version: u32,
         in_output_unit: AudioUnit,
     ) -> OSStatus;
@@ -1116,8 +1116,8 @@ extern "C-unwind" {
     /// the provided extension identifier.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioUnitExtensionSetComponentList(
-        extension_identifier: &CFStringRef,
-        audio_component_info: Option<&CFArrayRef>,
+        extension_identifier: &CFString,
+        audio_component_info: Option<&CFArray>,
     ) -> OSStatus;
 }
 
@@ -1130,9 +1130,7 @@ extern "C-unwind" {
     /// described in AudioComponent.h for the Info.plist key "AudioComponents".
     /// The caller should release this value when done with it.
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn AudioUnitExtensionCopyComponentList(
-        extension_identifier: &CFStringRef,
-    ) -> *mut CFArrayRef;
+    pub fn AudioUnitExtensionCopyComponentList(extension_identifier: &CFString) -> *mut CFArray;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitrange?language=objc)

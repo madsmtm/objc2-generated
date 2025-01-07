@@ -89,7 +89,7 @@ extern_methods!(
         /// When using ImageIO framework's CGImageSource API to read from a HEIF or JPEG file containing a semantic segmentation matte, AVSemanticSegmentationMatte can be instantiated using the result of CGImageSourceCopyAuxiliaryDataInfoAtIndex, which returns a CFDictionary of primitive segmentation matte information.
         #[method_id(@__retain_semantics Other semanticSegmentationMatteFromImageSourceAuxiliaryDataType:dictionaryRepresentation:error:_)]
         pub unsafe fn semanticSegmentationMatteFromImageSourceAuxiliaryDataType_dictionaryRepresentation_error(
-            image_source_auxiliary_data_type: &CFStringRef,
+            image_source_auxiliary_data_type: &CFString,
             image_source_auxiliary_data_info_dictionary: &NSDictionary,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
@@ -115,7 +115,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other semanticSegmentationMatteByReplacingSemanticSegmentationMatteWithPixelBuffer:error:_)]
         pub unsafe fn semanticSegmentationMatteByReplacingSemanticSegmentationMatteWithPixelBuffer_error(
             &self,
-            pixel_buffer: &CVPixelBufferRef,
+            pixel_buffer: &CVPixelBuffer,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// Returns a dictionary of primitive map information to be used when writing an image file with a semantic segmentation matte.
@@ -148,6 +148,6 @@ extern_methods!(
         ///
         /// The pixel format can be queried using the pixelFormatType property.
         #[method_id(@__retain_semantics Other mattingImage)]
-        pub unsafe fn mattingImage(&self) -> Retained<CVPixelBufferRef>;
+        pub unsafe fn mattingImage(&self) -> Retained<CVPixelBuffer>;
     }
 );

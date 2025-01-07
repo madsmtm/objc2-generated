@@ -54,7 +54,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithPixelBuffer:)]
         pub unsafe fn initWithPixelBuffer(
             this: Allocated<Self>,
-            pixel_buffer: &CVPixelBufferRef,
+            pixel_buffer: &CVPixelBuffer,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-io-surface")]
@@ -139,12 +139,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other colorSpace)]
-        pub unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpaceRef>>;
+        pub unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
-        pub unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpaceRef>);
+        pub unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpace>);
 
         #[cfg(feature = "CIKernel")]
         #[method_id(@__retain_semantics Other blendKernel)]

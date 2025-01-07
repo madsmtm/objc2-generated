@@ -298,25 +298,25 @@ extern_methods!(
     unsafe impl CIImage {
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other imageWithCGImage:)]
-        pub unsafe fn imageWithCGImage(image: &CGImageRef) -> Retained<CIImage>;
+        pub unsafe fn imageWithCGImage(image: &CGImage) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other imageWithCGImage:options:)]
         pub unsafe fn imageWithCGImage_options(
-            image: &CGImageRef,
+            image: &CGImage,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[deprecated]
         #[method_id(@__retain_semantics Other imageWithCGLayer:)]
-        pub unsafe fn imageWithCGLayer(layer: &CGLayerRef) -> Retained<CIImage>;
+        pub unsafe fn imageWithCGLayer(layer: &CGLayer) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[deprecated]
         #[method_id(@__retain_semantics Other imageWithCGLayer:options:)]
         pub unsafe fn imageWithCGLayer_options(
-            layer: &CGLayerRef,
+            layer: &CGLayer,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<CIImage>;
 
@@ -327,7 +327,7 @@ extern_methods!(
             bytes_per_row: usize,
             size: CGSize,
             format: CIFormat,
-            color_space: Option<&CGColorSpaceRef>,
+            color_space: Option<&CGColorSpace>,
         ) -> Retained<CIImage>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
@@ -337,7 +337,7 @@ extern_methods!(
             name: c_uint,
             size: CGSize,
             flipped: bool,
-            color_space: Option<&CGColorSpaceRef>,
+            color_space: Option<&CGColorSpace>,
         ) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -377,23 +377,23 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-video")]
         #[method_id(@__retain_semantics Other imageWithCVImageBuffer:)]
-        pub unsafe fn imageWithCVImageBuffer(image_buffer: &CVImageBufferRef) -> Retained<CIImage>;
+        pub unsafe fn imageWithCVImageBuffer(image_buffer: &CVImageBuffer) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-video")]
         #[method_id(@__retain_semantics Other imageWithCVImageBuffer:options:)]
         pub unsafe fn imageWithCVImageBuffer_options(
-            image_buffer: &CVImageBufferRef,
+            image_buffer: &CVImageBuffer,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-video")]
         #[method_id(@__retain_semantics Other imageWithCVPixelBuffer:)]
-        pub unsafe fn imageWithCVPixelBuffer(pixel_buffer: &CVPixelBufferRef) -> Retained<CIImage>;
+        pub unsafe fn imageWithCVPixelBuffer(pixel_buffer: &CVPixelBuffer) -> Retained<CIImage>;
 
         #[cfg(feature = "objc2-core-video")]
         #[method_id(@__retain_semantics Other imageWithCVPixelBuffer:options:)]
         pub unsafe fn imageWithCVPixelBuffer_options(
-            pixel_buffer: &CVPixelBufferRef,
+            pixel_buffer: &CVPixelBuffer,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<CIImage>;
 
@@ -447,27 +447,27 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Init initWithCGImage:)]
-        pub unsafe fn initWithCGImage(this: Allocated<Self>, image: &CGImageRef) -> Retained<Self>;
+        pub unsafe fn initWithCGImage(this: Allocated<Self>, image: &CGImage) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Init initWithCGImage:options:)]
         pub unsafe fn initWithCGImage_options(
             this: Allocated<Self>,
-            image: &CGImageRef,
+            image: &CGImage,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[deprecated = "Use initWithCGImage: instead."]
         #[method_id(@__retain_semantics Init initWithCGLayer:)]
-        pub unsafe fn initWithCGLayer(this: Allocated<Self>, layer: &CGLayerRef) -> Retained<Self>;
+        pub unsafe fn initWithCGLayer(this: Allocated<Self>, layer: &CGLayer) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[deprecated = "Use initWithCGImage:options instead."]
         #[method_id(@__retain_semantics Init initWithCGLayer:options:)]
         pub unsafe fn initWithCGLayer_options(
             this: Allocated<Self>,
-            layer: &CGLayerRef,
+            layer: &CGLayer,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<Self>;
 
@@ -489,7 +489,7 @@ extern_methods!(
             bytes_per_row: usize,
             size: CGSize,
             format: CIFormat,
-            color_space: Option<&CGColorSpaceRef>,
+            color_space: Option<&CGColorSpace>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
@@ -500,7 +500,7 @@ extern_methods!(
             name: c_uint,
             size: CGSize,
             flipped: bool,
-            color_space: Option<&CGColorSpaceRef>,
+            color_space: Option<&CGColorSpace>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -565,14 +565,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCVImageBuffer:)]
         pub unsafe fn initWithCVImageBuffer(
             this: Allocated<Self>,
-            image_buffer: &CVImageBufferRef,
+            image_buffer: &CVImageBuffer,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
         #[method_id(@__retain_semantics Init initWithCVImageBuffer:options:)]
         pub unsafe fn initWithCVImageBuffer_options(
             this: Allocated<Self>,
-            image_buffer: &CVImageBufferRef,
+            image_buffer: &CVImageBuffer,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<Self>;
 
@@ -580,14 +580,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCVPixelBuffer:)]
         pub unsafe fn initWithCVPixelBuffer(
             this: Allocated<Self>,
-            pixel_buffer: &CVPixelBufferRef,
+            pixel_buffer: &CVPixelBuffer,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
         #[method_id(@__retain_semantics Init initWithCVPixelBuffer:options:)]
         pub unsafe fn initWithCVPixelBuffer_options(
             this: Allocated<Self>,
-            pixel_buffer: &CVPixelBufferRef,
+            pixel_buffer: &CVPixelBuffer,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<Self>;
 
@@ -641,14 +641,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageByColorMatchingColorSpaceToWorkingSpace:)]
         pub unsafe fn imageByColorMatchingColorSpaceToWorkingSpace(
             &self,
-            color_space: &CGColorSpaceRef,
+            color_space: &CGColorSpace,
         ) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other imageByColorMatchingWorkingSpaceToColorSpace:)]
         pub unsafe fn imageByColorMatchingWorkingSpaceToColorSpace(
             &self,
-            color_space: &CGColorSpaceRef,
+            color_space: &CGColorSpace,
         ) -> Option<Retained<CIImage>>;
 
         #[method_id(@__retain_semantics Other imageByPremultiplyingAlpha)]
@@ -717,11 +717,11 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-video")]
         #[method_id(@__retain_semantics Other pixelBuffer)]
-        pub unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBufferRef>>;
+        pub unsafe fn pixelBuffer(&self) -> Option<Retained<CVPixelBuffer>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other CGImage)]
-        pub unsafe fn CGImage(&self) -> Option<Retained<CGImageRef>>;
+        pub unsafe fn CGImage(&self) -> Option<Retained<CGImage>>;
 
         #[cfg(feature = "objc2-metal")]
         #[method_id(@__retain_semantics Other metalTexture)]

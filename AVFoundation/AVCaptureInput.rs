@@ -98,7 +98,7 @@ extern_methods!(
         ///
         /// The value of this property is a CMFormatDescription that describes the format of the media data currently provided by the receiver. Clients can be notified of changes to the format by observing the AVCaptureInputPortFormatDescriptionDidChangeNotification.
         #[method_id(@__retain_semantics Other formatDescription)]
-        pub unsafe fn formatDescription(&self) -> Option<Retained<CMFormatDescriptionRef>>;
+        pub unsafe fn formatDescription(&self) -> Option<Retained<CMFormatDescription>>;
 
         /// Whether the receiver should provide data.
         ///
@@ -117,7 +117,7 @@ extern_methods!(
         ///
         /// The clock is read-only.
         #[method_id(@__retain_semantics Other clock)]
-        pub unsafe fn clock(&self) -> Option<Retained<CMClockRef>>;
+        pub unsafe fn clock(&self) -> Option<Retained<CMClock>>;
 
         #[cfg(feature = "AVCaptureDevice")]
         /// The AVCaptureDeviceType of the source device providing input through this port.
@@ -515,8 +515,8 @@ extern_methods!(
         /// This method returns an instance of AVCaptureMetadataInput that can be used to capture AVTimedMetadataGroups supplied by the client to an AVCaptureSession.
         #[method_id(@__retain_semantics Other metadataInputWithFormatDescription:clock:)]
         pub unsafe fn metadataInputWithFormatDescription_clock(
-            desc: &CMMetadataFormatDescriptionRef,
-            clock: &CMClockRef,
+            desc: &CMMetadataFormatDescription,
+            clock: &CMClock,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -534,8 +534,8 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithFormatDescription:clock:)]
         pub unsafe fn initWithFormatDescription_clock(
             this: Allocated<Self>,
-            desc: &CMMetadataFormatDescriptionRef,
-            clock: &CMClockRef,
+            desc: &CMMetadataFormatDescription,
+            clock: &CMClock,
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVTimedMetadataGroup")]

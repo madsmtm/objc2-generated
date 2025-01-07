@@ -10,16 +10,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverterref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverter?language=objc)
 #[repr(C)]
-pub struct CGPSConverterRef {
+pub struct CGPSConverter {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGPSConverter"]
-    unsafe impl CGPSConverterRef {}
+    unsafe impl CGPSConverter {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverterbegindocumentcallback?language=objc)
@@ -30,18 +30,18 @@ pub type CGPSConverterEndDocumentCallback = Option<unsafe extern "C-unwind" fn(*
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverterbeginpagecallback?language=objc)
 pub type CGPSConverterBeginPageCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, usize, NonNull<CFDictionaryRef>)>;
+    Option<unsafe extern "C-unwind" fn(*mut c_void, usize, NonNull<CFDictionary>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverterendpagecallback?language=objc)
 pub type CGPSConverterEndPageCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, usize, NonNull<CFDictionaryRef>)>;
+    Option<unsafe extern "C-unwind" fn(*mut c_void, usize, NonNull<CFDictionary>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverterprogresscallback?language=objc)
 pub type CGPSConverterProgressCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconvertermessagecallback?language=objc)
 pub type CGPSConverterMessageCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<CFStringRef>)>;
+    Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<CFString>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverterreleaseinfocallback?language=objc)
 pub type CGPSConverterReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
@@ -86,26 +86,26 @@ extern "C-unwind" {
     pub fn CGPSConverterCreate(
         info: *mut c_void,
         callbacks: NonNull<CGPSConverterCallbacks>,
-        options: Option<&CFDictionaryRef>,
-    ) -> *mut CGPSConverterRef;
+        options: Option<&CFDictionary>,
+    ) -> *mut CGPSConverter;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CGDataConsumer", feature = "CGDataProvider"))]
     pub fn CGPSConverterConvert(
-        converter: &CGPSConverterRef,
-        provider: &CGDataProviderRef,
-        consumer: &CGDataConsumerRef,
-        options: Option<&CFDictionaryRef>,
+        converter: &CGPSConverter,
+        provider: &CGDataProvider,
+        consumer: &CGDataConsumer,
+        options: Option<&CFDictionary>,
     ) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGPSConverterAbort(converter: &CGPSConverterRef) -> bool;
+    pub fn CGPSConverterAbort(converter: &CGPSConverter) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGPSConverterIsConverting(converter: &CGPSConverterRef) -> bool;
+    pub fn CGPSConverterIsConverting(converter: &CGPSConverter) -> bool;
 }
 
 extern "C-unwind" {

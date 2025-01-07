@@ -54,37 +54,37 @@ extern "C" {
     /// Metadata keyspace for HLS DateRange tags.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_quicktimeuserdata?language=objc)
-    pub static kCMMetadataKeySpace_QuickTimeUserData: &'static CFStringRef;
+    pub static kCMMetadataKeySpace_QuickTimeUserData: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_isouserdata?language=objc)
-    pub static kCMMetadataKeySpace_ISOUserData: &'static CFStringRef;
+    pub static kCMMetadataKeySpace_ISOUserData: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_quicktimemetadata?language=objc)
-    pub static kCMMetadataKeySpace_QuickTimeMetadata: &'static CFStringRef;
+    pub static kCMMetadataKeySpace_QuickTimeMetadata: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_itunes?language=objc)
-    pub static kCMMetadataKeySpace_iTunes: &'static CFStringRef;
+    pub static kCMMetadataKeySpace_iTunes: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_id3?language=objc)
-    pub static kCMMetadataKeySpace_ID3: &'static CFStringRef;
+    pub static kCMMetadataKeySpace_ID3: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_icy?language=objc)
-    pub static kCMMetadataKeySpace_Icy: &'static CFStringRef;
+    pub static kCMMetadataKeySpace_Icy: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_hlsdaterange?language=objc)
-    pub static kCMMetadataKeySpace_HLSDateRange: &'static CFStringRef;
+    pub static kCMMetadataKeySpace_HLSDateRange: &'static CFString;
 }
 
 extern "C" {
@@ -93,12 +93,12 @@ extern "C" {
     /// Direction the observer is facing.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatalocation_iso6709?language=objc)
-    pub static kCMMetadataIdentifier_QuickTimeMetadataLocation_ISO6709: &'static CFStringRef;
+    pub static kCMMetadataIdentifier_QuickTimeMetadataLocation_ISO6709: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatadirection_facing?language=objc)
-    pub static kCMMetadataIdentifier_QuickTimeMetadataDirection_Facing: &'static CFStringRef;
+    pub static kCMMetadataIdentifier_QuickTimeMetadataDirection_Facing: &'static CFString;
 }
 
 extern "C" {
@@ -109,8 +109,7 @@ extern "C" {
     /// will allow a player to adjust its rendering at the time the rotation occurred.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatapreferredaffinetransform?language=objc)
-    pub static kCMMetadataIdentifier_QuickTimeMetadataPreferredAffineTransform:
-        &'static CFStringRef;
+    pub static kCMMetadataIdentifier_QuickTimeMetadataPreferredAffineTransform: &'static CFString;
 }
 
 extern "C" {
@@ -120,7 +119,7 @@ extern "C" {
     /// /CGImageProperties.h>).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatavideoorientation?language=objc)
-    pub static kCMMetadataIdentifier_QuickTimeMetadataVideoOrientation: &'static CFStringRef;
+    pub static kCMMetadataIdentifier_QuickTimeMetadataVideoOrientation: &'static CFString;
 }
 
 extern "C" {
@@ -129,7 +128,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatalivephotostillimagetransform?language=objc)
     pub static kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransform:
-        &'static CFStringRef;
+        &'static CFString;
 }
 
 extern "C" {
@@ -138,7 +137,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatalivephotostillimagetransformreferencedimensions?language=objc)
     pub static kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions:
-        &'static CFStringRef;
+        &'static CFString;
 }
 
 extern "C" {
@@ -146,7 +145,7 @@ extern "C" {
     /// Expected data type is kCMMetadataDataType_QuickTimeMetadataUUID.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatasegmentidentifier?language=objc)
-    pub static kCMMetadataIdentifier_QuickTimeMetadataSegmentIdentifier: &'static CFStringRef;
+    pub static kCMMetadataIdentifier_QuickTimeMetadataSegmentIdentifier: &'static CFString;
 }
 
 extern "C" {
@@ -154,7 +153,7 @@ extern "C" {
     /// Expected data type is kCMMetadataDataType_QuickTimeMetadataMilliLux.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatasceneilluminance?language=objc)
-    pub static kCMMetadataIdentifier_QuickTimeMetadataSceneIlluminance: &'static CFStringRef;
+    pub static kCMMetadataIdentifier_QuickTimeMetadataSceneIlluminance: &'static CFString;
 }
 
 extern "C-unwind" {
@@ -210,10 +209,10 @@ extern "C-unwind" {
     /// or CFData. In both cases, the key will be interpreted as an
     /// ASCII string for the purposes of identifier encoding.
     pub fn CMMetadataCreateIdentifierForKeyAndKeySpace(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         key: CFTypeRef,
-        key_space: &CFStringRef,
-        identifier_out: NonNull<CFStringRef>,
+        key_space: &CFString,
+        identifier_out: NonNull<CFString>,
     ) -> OSStatus;
 }
 
@@ -231,8 +230,8 @@ extern "C-unwind" {
     ///
     /// All other keyspaces will have the function return the key as a CFData.
     pub fn CMMetadataCreateKeyFromIdentifier(
-        allocator: Option<&CFAllocatorRef>,
-        identifier: &CFStringRef,
+        allocator: Option<&CFAllocator>,
+        identifier: &CFString,
         key_out: NonNull<CFTypeRef>,
     ) -> OSStatus;
 }
@@ -241,18 +240,18 @@ extern "C-unwind" {
     /// Creates a copy of the key value that was encoded in the identifier as CFData.
     /// The bytes in the CFData correpsond to how they are serialized in the file.
     pub fn CMMetadataCreateKeyFromIdentifierAsCFData(
-        allocator: Option<&CFAllocatorRef>,
-        identifier: &CFStringRef,
-        key_out: NonNull<CFDataRef>,
+        allocator: Option<&CFAllocator>,
+        identifier: &CFString,
+        key_out: NonNull<CFData>,
     ) -> OSStatus;
 }
 
 extern "C-unwind" {
     /// Creates a copy of the key value that was encoded in the identifier as CFData.
     pub fn CMMetadataCreateKeySpaceFromIdentifier(
-        allocator: Option<&CFAllocatorRef>,
-        identifier: &CFStringRef,
-        key_space_out: NonNull<CFStringRef>,
+        allocator: Option<&CFAllocator>,
+        identifier: &CFString,
+        key_space_out: NonNull<CFString>,
     ) -> OSStatus;
 }
 
@@ -310,127 +309,127 @@ extern "C" {
     /// A 3x3 matrix of 64-bit big endian floating point numbers stored in row-major order that specify a perspective transform.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_rawdata?language=objc)
-    pub static kCMMetadataBaseDataType_RawData: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_RawData: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_utf8?language=objc)
-    pub static kCMMetadataBaseDataType_UTF8: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_UTF8: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_utf16?language=objc)
-    pub static kCMMetadataBaseDataType_UTF16: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_UTF16: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_gif?language=objc)
-    pub static kCMMetadataBaseDataType_GIF: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_GIF: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_jpeg?language=objc)
-    pub static kCMMetadataBaseDataType_JPEG: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_JPEG: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_png?language=objc)
-    pub static kCMMetadataBaseDataType_PNG: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_PNG: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_bmp?language=objc)
-    pub static kCMMetadataBaseDataType_BMP: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_BMP: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_float32?language=objc)
-    pub static kCMMetadataBaseDataType_Float32: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_Float32: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_float64?language=objc)
-    pub static kCMMetadataBaseDataType_Float64: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_Float64: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_sint8?language=objc)
-    pub static kCMMetadataBaseDataType_SInt8: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_SInt8: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_sint16?language=objc)
-    pub static kCMMetadataBaseDataType_SInt16: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_SInt16: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_sint32?language=objc)
-    pub static kCMMetadataBaseDataType_SInt32: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_SInt32: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_sint64?language=objc)
-    pub static kCMMetadataBaseDataType_SInt64: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_SInt64: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_uint8?language=objc)
-    pub static kCMMetadataBaseDataType_UInt8: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_UInt8: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_uint16?language=objc)
-    pub static kCMMetadataBaseDataType_UInt16: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_UInt16: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_uint32?language=objc)
-    pub static kCMMetadataBaseDataType_UInt32: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_UInt32: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_uint64?language=objc)
-    pub static kCMMetadataBaseDataType_UInt64: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_UInt64: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_pointf32?language=objc)
-    pub static kCMMetadataBaseDataType_PointF32: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_PointF32: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_dimensionsf32?language=objc)
-    pub static kCMMetadataBaseDataType_DimensionsF32: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_DimensionsF32: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_rectf32?language=objc)
-    pub static kCMMetadataBaseDataType_RectF32: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_RectF32: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_affinetransformf64?language=objc)
-    pub static kCMMetadataBaseDataType_AffineTransformF64: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_AffineTransformF64: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_polygonf32?language=objc)
-    pub static kCMMetadataBaseDataType_PolygonF32: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_PolygonF32: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_polylinef32?language=objc)
-    pub static kCMMetadataBaseDataType_PolylineF32: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_PolylineF32: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_json?language=objc)
-    pub static kCMMetadataBaseDataType_JSON: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_JSON: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_perspectivetransformf64?language=objc)
-    pub static kCMMetadataBaseDataType_PerspectiveTransformF64: &'static CFStringRef;
+    pub static kCMMetadataBaseDataType_PerspectiveTransformF64: &'static CFString;
 }
 
 extern "C" {
@@ -441,12 +440,12 @@ extern "C" {
     /// kCMMetadataBaseDataType_UTF8.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatype_quicktimemetadatalocation_iso6709?language=objc)
-    pub static kCMMetadataDataType_QuickTimeMetadataLocation_ISO6709: &'static CFStringRef;
+    pub static kCMMetadataDataType_QuickTimeMetadataLocation_ISO6709: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatype_quicktimemetadatadirection?language=objc)
-    pub static kCMMetadataDataType_QuickTimeMetadataDirection: &'static CFStringRef;
+    pub static kCMMetadataDataType_QuickTimeMetadataDirection: &'static CFString;
 }
 
 extern "C" {
@@ -454,7 +453,7 @@ extern "C" {
     /// kCMMetadataBaseDataType_UTF8.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatype_quicktimemetadatauuid?language=objc)
-    pub static kCMMetadataDataType_QuickTimeMetadataUUID: &'static CFStringRef;
+    pub static kCMMetadataDataType_QuickTimeMetadataUUID: &'static CFString;
 }
 
 extern "C" {
@@ -462,7 +461,7 @@ extern "C" {
     /// kCMMetadataBaseDataType_UInt32.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatype_quicktimemetadatamillilux?language=objc)
-    pub static kCMMetadataDataType_QuickTimeMetadataMilliLux: &'static CFStringRef;
+    pub static kCMMetadataDataType_QuickTimeMetadataMilliLux: &'static CFString;
 }
 
 extern "C-unwind" {
@@ -475,22 +474,22 @@ extern "C-unwind" {
     /// as long as the list of conforming data type identifiers has the same
     /// entries as the original;  otherwise an error will be returned.
     pub fn CMMetadataDataTypeRegistryRegisterDataType(
-        data_type: &CFStringRef,
-        description: &CFStringRef,
-        conforming_data_types: &CFArrayRef,
+        data_type: &CFString,
+        description: &CFString,
+        conforming_data_types: &CFArray,
     ) -> OSStatus;
 }
 
 extern "C-unwind" {
     /// Tests a data type identifier to see if it has been registered.
-    pub fn CMMetadataDataTypeRegistryDataTypeIsRegistered(data_type: &CFStringRef) -> Boolean;
+    pub fn CMMetadataDataTypeRegistryDataTypeIsRegistered(data_type: &CFString) -> Boolean;
 }
 
 extern "C-unwind" {
     /// Returns the data type's description (if any was provided when it was registered).
     pub fn CMMetadataDataTypeRegistryGetDataTypeDescription(
-        data_type: &CFStringRef,
-    ) -> NonNull<CFStringRef>;
+        data_type: &CFString,
+    ) -> NonNull<CFString>;
 }
 
 extern "C-unwind" {
@@ -500,8 +499,8 @@ extern "C-unwind" {
     /// Returns: List of conforming data types registered for the given data type.
     /// NULL is returned if the data type has not been registered.
     pub fn CMMetadataDataTypeRegistryGetConformingDataTypes(
-        data_type: &CFStringRef,
-    ) -> NonNull<CFArrayRef>;
+        data_type: &CFString,
+    ) -> NonNull<CFArray>;
 }
 
 extern "C-unwind" {
@@ -521,8 +520,8 @@ extern "C-unwind" {
     ///
     /// Returns: True if the first data type conforms to the second data type.
     pub fn CMMetadataDataTypeRegistryDataTypeConformsToDataType(
-        data_type: &CFStringRef,
-        conforms_to_data_type: &CFStringRef,
+        data_type: &CFString,
+        conforms_to_data_type: &CFString,
     ) -> Boolean;
 }
 
@@ -532,7 +531,7 @@ extern "C-unwind" {
     /// There are a set of base data types that seed the data type
     /// registry.  All valid data types will have their conformance search
     /// end with a base data type.
-    pub fn CMMetadataDataTypeRegistryGetBaseDataTypes() -> *mut CFArrayRef;
+    pub fn CMMetadataDataTypeRegistryGetBaseDataTypes() -> *mut CFArray;
 }
 
 extern "C-unwind" {
@@ -541,7 +540,7 @@ extern "C-unwind" {
     /// This is simply a convenience method to test to see if a given
     /// data type identifier is in the array returned by
     /// CMMetadataDataTypeRegistryGetBaseDataTypes.
-    pub fn CMMetadataDataTypeRegistryDataTypeIsBaseDataType(data_type: &CFStringRef) -> Boolean;
+    pub fn CMMetadataDataTypeRegistryDataTypeIsBaseDataType(data_type: &CFString) -> Boolean;
 }
 
 extern "C-unwind" {
@@ -552,6 +551,6 @@ extern "C-unwind" {
     /// registry.  All valid data types will have their conformance search
     /// end with a base data type.
     pub fn CMMetadataDataTypeRegistryGetBaseDataTypeForConformingDataType(
-        data_type: &CFStringRef,
-    ) -> NonNull<CFStringRef>;
+        data_type: &CFString,
+    ) -> NonNull<CFString>;
 }

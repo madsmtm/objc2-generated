@@ -96,7 +96,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other colorWithCGColor:)]
-        pub unsafe fn colorWithCGColor(cg_color: &CGColorRef) -> Retained<UIColor>;
+        pub unsafe fn colorWithCGColor(cg_color: &CGColor) -> Retained<UIColor>;
 
         #[cfg(feature = "UIImage")]
         #[method_id(@__retain_semantics Other colorWithPatternImage:)]
@@ -149,7 +149,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCGColor:)]
         pub unsafe fn initWithCGColor(
             this: Allocated<Self>,
-            cg_color: &CGColorRef,
+            cg_color: &CGColor,
         ) -> Retained<UIColor>;
 
         #[cfg(feature = "UIImage")]
@@ -251,7 +251,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other CGColor)]
-        pub unsafe fn CGColor(&self) -> Retained<CGColorRef>;
+        pub unsafe fn CGColor(&self) -> Retained<CGColor>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]

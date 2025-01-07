@@ -596,12 +596,12 @@ extern_methods!(
         ///
         /// NULL by default. This is most useful for synchronizing video-only movies with audio played via other means. IMPORTANT NOTE: If you specify a source clock other than the appropriate audio device clock, audio may drift out of sync.
         #[method_id(@__retain_semantics Other sourceClock)]
-        pub unsafe fn sourceClock(&self) -> Option<Retained<CMClockRef>>;
+        pub unsafe fn sourceClock(&self) -> Option<Retained<CMClock>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`sourceClock`][Self::sourceClock].
         #[method(setSourceClock:)]
-        pub unsafe fn setSourceClock(&self, source_clock: Option<&CMClockRef>);
+        pub unsafe fn setSourceClock(&self, source_clock: Option<&CMClock>);
     }
 );
 
@@ -1034,13 +1034,13 @@ extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         #[deprecated]
         #[method_id(@__retain_semantics Other masterClock)]
-        pub unsafe fn masterClock(&self) -> Option<Retained<CMClockRef>>;
+        pub unsafe fn masterClock(&self) -> Option<Retained<CMClock>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`masterClock`][Self::masterClock].
         #[deprecated]
         #[method(setMasterClock:)]
-        pub unsafe fn setMasterClock(&self, master_clock: Option<&CMClockRef>);
+        pub unsafe fn setMasterClock(&self, master_clock: Option<&CMClock>);
     }
 );
 

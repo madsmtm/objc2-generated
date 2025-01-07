@@ -19,16 +19,16 @@ use crate::*;
 /// scaling and color space conversion services, as well as allow capturing sub regions of the display.   Callbacks can be targetted
 /// at either a traditional CFRunLoop, or at a dispatch queue.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream?language=objc)
 #[repr(C)]
-pub struct CGDisplayStreamRef {
+pub struct CGDisplayStream {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGDisplayStream"]
-    unsafe impl CGDisplayStreamRef {}
+    unsafe impl CGDisplayStream {}
 );
 
 /// An opaque reference to a single frame's extra metadata that describes useful frame delta information
@@ -38,16 +38,16 @@ cf_type!(
 /// regions were merely copied from one place to another.   A routine is provided to merge two update refs together in cases
 /// where apps need to coalesce the values because they decided to skip processing for one or more frames.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdateref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdate?language=objc)
 #[repr(C)]
-pub struct CGDisplayStreamUpdateRef {
+pub struct CGDisplayStreamUpdate {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGDisplayStreamUpdate"]
-    unsafe impl CGDisplayStreamUpdateRef {}
+    unsafe impl CGDisplayStreamUpdate {}
 );
 
 /// Used to select which array of rectangles to be returned by CGDisplayUpdateGetRects
@@ -110,7 +110,7 @@ unsafe impl RefEncode for CGDisplayStreamFrameStatus {
 #[cfg(all(feature = "block2", feature = "objc2-io-surface"))]
 #[cfg(not(target_os = "watchos"))]
 pub type CGDisplayStreamFrameAvailableHandler = *mut block2::Block<
-    dyn Fn(CGDisplayStreamFrameStatus, u64, *mut IOSurfaceRef, *mut CGDisplayStreamUpdateRef),
+    dyn Fn(CGDisplayStreamFrameStatus, u64, *mut IOSurfaceRef, *mut CGDisplayStreamUpdate),
 >;
 
 extern "C-unwind" {
@@ -132,7 +132,7 @@ extern "C-unwind" {
     /// Returns: A pointer to the array of CGRectangles.  This array should not be freed by the caller.
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub fn CGDisplayStreamUpdateGetRects(
-        update_ref: Option<&CGDisplayStreamUpdateRef>,
+        update_ref: Option<&CGDisplayStreamUpdate>,
         rect_type: CGDisplayStreamUpdateRectType,
         rect_count: NonNull<usize>,
     ) -> *const CGRect;
@@ -154,9 +154,9 @@ extern "C-unwind" {
     /// Returns: The new CGDisplayStreamUpdateRef
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub fn CGDisplayStreamUpdateCreateMergedUpdate(
-        first_update: Option<&CGDisplayStreamUpdateRef>,
-        second_update: Option<&CGDisplayStreamUpdateRef>,
-    ) -> *mut CGDisplayStreamUpdateRef;
+        first_update: Option<&CGDisplayStreamUpdate>,
+        second_update: Option<&CGDisplayStreamUpdate>,
+    ) -> *mut CGDisplayStreamUpdate;
 }
 
 extern "C-unwind" {
@@ -171,7 +171,7 @@ extern "C-unwind" {
     /// The delta values describe the offset from the moved rectangles back to the source location.
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub fn CGDisplayStreamUpdateGetMovedRectsDelta(
-        update_ref: Option<&CGDisplayStreamUpdateRef>,
+        update_ref: Option<&CGDisplayStreamUpdate>,
         dx: NonNull<CGFloat>,
         dy: NonNull<CGFloat>,
     );
@@ -187,9 +187,7 @@ extern "C-unwind" {
     /// This call is primarily useful for performance measurement to determine if the client is keeping up with
     /// all WindowServer updates.
     #[deprecated = "Please use ScreenCaptureKit instead."]
-    pub fn CGDisplayStreamUpdateGetDropCount(
-        update_ref: Option<&CGDisplayStreamUpdateRef>,
-    ) -> usize;
+    pub fn CGDisplayStreamUpdateGetDropCount(update_ref: Option<&CGDisplayStreamUpdate>) -> usize;
 }
 
 extern "C" {
@@ -199,7 +197,7 @@ extern "C" {
     /// HiDPI displays.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamsourcerect?language=objc)
-    pub static kCGDisplayStreamSourceRect: &'static CFStringRef;
+    pub static kCGDisplayStreamSourceRect: &'static CFString;
 }
 
 extern "C" {
@@ -209,7 +207,7 @@ extern "C" {
     /// specified in terms of pixels.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamdestinationrect?language=objc)
-    pub static kCGDisplayStreamDestinationRect: &'static CFStringRef;
+    pub static kCGDisplayStreamDestinationRect: &'static CFString;
 }
 
 extern "C" {
@@ -219,35 +217,35 @@ extern "C" {
     /// in order to preserve the source aspect ratio.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreampreserveaspectratio?language=objc)
-    pub static kCGDisplayStreamPreserveAspectRatio: &'static CFStringRef;
+    pub static kCGDisplayStreamPreserveAspectRatio: &'static CFString;
 }
 
 extern "C" {
     /// Set the desired CGColorSpace of the output frames.  By default the color space will be that of the display.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamcolorspace?language=objc)
-    pub static kCGDisplayStreamColorSpace: &'static CFStringRef;
+    pub static kCGDisplayStreamColorSpace: &'static CFString;
 }
 
 extern "C" {
     /// Request that the delta between frame updates be at least as much specified by this value.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamminimumframetime?language=objc)
-    pub static kCGDisplayStreamMinimumFrameTime: &'static CFStringRef;
+    pub static kCGDisplayStreamMinimumFrameTime: &'static CFString;
 }
 
 extern "C" {
     /// Controls whether the cursor is embedded within the provided buffers or not.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamshowcursor?language=objc)
-    pub static kCGDisplayStreamShowCursor: &'static CFStringRef;
+    pub static kCGDisplayStreamShowCursor: &'static CFString;
 }
 
 extern "C" {
     /// Controls how many frames deep the frame queue will be.  Defaults to N.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamqueuedepth?language=objc)
-    pub static kCGDisplayStreamQueueDepth: &'static CFStringRef;
+    pub static kCGDisplayStreamQueueDepth: &'static CFString;
 }
 
 extern "C" {
@@ -255,22 +253,22 @@ extern "C" {
     /// The value should be one of the three kCGDisplayStreamYCbCrMatrix values specified below.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamycbcrmatrix?language=objc)
-    pub static kCGDisplayStreamYCbCrMatrix: &'static CFStringRef;
+    pub static kCGDisplayStreamYCbCrMatrix: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamycbcrmatrix_itu_r_709_2?language=objc)
-    pub static kCGDisplayStreamYCbCrMatrix_ITU_R_709_2: &'static CFStringRef;
+    pub static kCGDisplayStreamYCbCrMatrix_ITU_R_709_2: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamycbcrmatrix_itu_r_601_4?language=objc)
-    pub static kCGDisplayStreamYCbCrMatrix_ITU_R_601_4: &'static CFStringRef;
+    pub static kCGDisplayStreamYCbCrMatrix_ITU_R_601_4: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamycbcrmatrix_smpte_240m_1995?language=objc)
-    pub static kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995: &'static CFStringRef;
+    pub static kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995: &'static CFString;
 }
 
 extern "C-unwind" {
@@ -319,9 +317,9 @@ extern "C-unwind" {
         output_width: usize,
         output_height: usize,
         pixel_format: i32,
-        properties: Option<&CFDictionaryRef>,
+        properties: Option<&CFDictionary>,
         handler: CGDisplayStreamFrameAvailableHandler,
-    ) -> *mut CGDisplayStreamRef;
+    ) -> *mut CGDisplayStream;
 }
 
 extern "C-unwind" {
@@ -332,7 +330,7 @@ extern "C-unwind" {
     /// Returns: kCGErrorSuccess If the display stream was started, otherwise an error.
     #[cfg(feature = "CGError")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
-    pub fn CGDisplayStreamStart(display_stream: Option<&CGDisplayStreamRef>) -> CGError;
+    pub fn CGDisplayStreamStart(display_stream: Option<&CGDisplayStream>) -> CGError;
 }
 
 extern "C-unwind" {
@@ -347,7 +345,7 @@ extern "C-unwind" {
     /// It is safe to call this function from within the handler block, but the previous caveat still applies.
     #[cfg(feature = "CGError")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
-    pub fn CGDisplayStreamStop(display_stream: Option<&CGDisplayStreamRef>) -> CGError;
+    pub fn CGDisplayStreamStop(display_stream: Option<&CGDisplayStream>) -> CGError;
 }
 
 extern "C-unwind" {
@@ -359,6 +357,6 @@ extern "C-unwind" {
     /// display stream was created via  CGDisplayStreamCreateWithDispatchQueue().
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub fn CGDisplayStreamGetRunLoopSource(
-        display_stream: Option<&CGDisplayStreamRef>,
-    ) -> *mut CFRunLoopSourceRef;
+        display_stream: Option<&CGDisplayStream>,
+    ) -> *mut CFRunLoopSource;
 }

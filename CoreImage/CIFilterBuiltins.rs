@@ -87,12 +87,12 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other colorSpace)]
-        unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpaceRef>>;
+        unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
-        unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpaceRef>);
+        unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpace>);
     }
 );
 
@@ -2000,12 +2000,12 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other colorSpace)]
-        unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpaceRef>>;
+        unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
-        unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpaceRef>);
+        unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpace>);
 
         #[method(extrapolate)]
         unsafe fn extrapolate(&self) -> bool;
@@ -2045,12 +2045,12 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other colorSpace)]
-        unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpaceRef>>;
+        unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
-        unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpaceRef>);
+        unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpace>);
 
         #[method(extrapolate)]
         unsafe fn extrapolate(&self) -> bool;
@@ -2092,12 +2092,12 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other colorSpace)]
-        unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpaceRef>>;
+        unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorSpace`][Self::colorSpace].
         #[method(setColorSpace:)]
-        unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpaceRef>);
+        unsafe fn setColorSpace(&self, color_space: Option<&CGColorSpace>);
     }
 );
 

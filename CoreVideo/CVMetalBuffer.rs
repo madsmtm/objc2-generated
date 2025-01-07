@@ -16,9 +16,9 @@ use crate::*;
 /// IMPORTANT NOTE: Clients should retain CVMetalBuffer objects until they are done using the contents in them.
 /// Retaining a CVMetalBuffer is your way to indicate that you're still using the image in the buffer, and that it should not be recycled yet.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbufferref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffer?language=objc)
 #[cfg(feature = "CVBuffer")]
-pub type CVMetalBufferRef = CVBufferRef;
+pub type CVMetalBuffer = CVBuffer;
 
 extern "C-unwind" {
     pub fn CVMetalBufferGetTypeID() -> CFTypeID;
@@ -33,10 +33,10 @@ extern "C-unwind" {
 #[cfg(not(target_os = "watchos"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CVMetalBufferGetBuffer(
-    buffer: &CVMetalBufferRef,
+    buffer: &CVMetalBuffer,
 ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>> {
     extern "C-unwind" {
-        fn CVMetalBufferGetBuffer(buffer: &CVMetalBufferRef) -> *mut ProtocolObject<dyn MTLBuffer>;
+        fn CVMetalBufferGetBuffer(buffer: &CVMetalBuffer) -> *mut ProtocolObject<dyn MTLBuffer>;
     }
     let ret = unsafe { CVMetalBufferGetBuffer(buffer) };
     unsafe { Retained::retain_autoreleased(ret) }

@@ -997,7 +997,7 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MusicSequenceFileLoad(
         in_sequence: MusicSequence,
-        in_file_ref: &CFURLRef,
+        in_file_ref: &CFURL,
         in_file_type_hint: MusicSequenceFileTypeID,
         in_flags: MusicSequenceLoadFlags,
     ) -> OSStatus;
@@ -1020,7 +1020,7 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MusicSequenceFileLoadData(
         in_sequence: MusicSequence,
-        in_data: &CFDataRef,
+        in_data: &CFData,
         in_file_type_hint: MusicSequenceFileTypeID,
         in_flags: MusicSequenceLoadFlags,
     ) -> OSStatus;
@@ -1082,7 +1082,7 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MusicSequenceFileCreate(
         in_sequence: MusicSequence,
-        in_file_ref: &CFURLRef,
+        in_file_ref: &CFURL,
         in_file_type: MusicSequenceFileTypeID,
         in_flags: MusicSequenceFileFlags,
         in_resolution: i16,
@@ -1111,7 +1111,7 @@ extern "C-unwind" {
         in_file_type: MusicSequenceFileTypeID,
         in_flags: MusicSequenceFileFlags,
         in_resolution: i16,
-        out_data: NonNull<CFDataRef>,
+        out_data: NonNull<CFData>,
     ) -> OSStatus;
 }
 
@@ -1248,7 +1248,7 @@ extern "C-unwind" {
     ///
     /// Returns: a CFDictionary or NULL if the call fails.
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn MusicSequenceGetInfoDictionary(in_sequence: MusicSequence) -> NonNull<CFDictionaryRef>;
+    pub fn MusicSequenceGetInfoDictionary(in_sequence: MusicSequence) -> NonNull<CFDictionary>;
 }
 
 extern "C-unwind" {
@@ -1830,7 +1830,7 @@ extern "C-unwind" {
     #[deprecated = "no longer supported"]
     pub fn MusicSequenceLoadSMFDataWithFlags(
         in_sequence: MusicSequence,
-        in_data: &CFDataRef,
+        in_data: &CFData,
         in_flags: MusicSequenceLoadFlags,
     ) -> OSStatus;
 }
@@ -1840,7 +1840,7 @@ extern "C-unwind" {
     #[deprecated = "no longer supported"]
     pub fn MusicSequenceSaveSMFData(
         in_sequence: MusicSequence,
-        out_data: NonNull<CFDataRef>,
+        out_data: NonNull<CFData>,
         in_resolution: u16,
     ) -> OSStatus;
 }

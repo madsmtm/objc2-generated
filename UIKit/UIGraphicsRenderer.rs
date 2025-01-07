@@ -65,7 +65,7 @@ extern_methods!(
     unsafe impl UIGraphicsRendererContext {
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other CGContext)]
-        pub unsafe fn CGContext(&self) -> Retained<CGContextRef>;
+        pub unsafe fn CGContext(&self) -> Retained<CGContext>;
 
         #[method_id(@__retain_semantics Other format)]
         pub unsafe fn format(&self) -> Retained<UIGraphicsRendererFormat>;

@@ -44,7 +44,7 @@ extern_methods!(
         pub unsafe fn initWithAsset_timebase(
             this: Allocated<Self>,
             asset: &AVAsset,
-            timebase: Option<&CMTimebaseRef>,
+            timebase: Option<&CMTimebase>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -53,7 +53,7 @@ extern_methods!(
         pub unsafe fn createSampleBufferForRequest(
             &self,
             request: &AVSampleBufferRequest,
-        ) -> Option<Retained<CMSampleBufferRef>>;
+        ) -> Option<Retained<CMSampleBuffer>>;
 
         /// Creates a batch to handle multiple sample buffers, allowing to asynchronously load sample data and optimize I/O when possible.
         ///
@@ -67,7 +67,7 @@ extern_methods!(
         /// Parameter `completionHandler`: The completionHandler will be called, when the sample buffer data is ready, or as soon as an error has occurred.
         #[method(notifyOfDataReadyForSampleBuffer:completionHandler:)]
         pub unsafe fn notifyOfDataReadyForSampleBuffer_completionHandler(
-            sbuf: &CMSampleBufferRef,
+            sbuf: &CMSampleBuffer,
             completion_handler: &block2::Block<dyn Fn(Bool, *mut NSError)>,
         );
     }

@@ -160,7 +160,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGWindowServerCreateServerPort() -> *mut CFMachPortRef;
+    pub fn CGWindowServerCreateServerPort() -> *mut CFMachPort;
 }
 
 extern "C-unwind" {
@@ -252,7 +252,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "No longer supported"]
-    pub fn CGWindowServerCFMachPort() -> *mut CFMachPortRef;
+    pub fn CGWindowServerCFMachPort() -> *mut CFMachPort;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectcount?language=objc)

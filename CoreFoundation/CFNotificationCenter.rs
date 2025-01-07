@@ -11,29 +11,29 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationname?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "CFBase")]
-pub type CFNotificationName = CFStringRef;
+pub type CFNotificationName = CFString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcenterref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcenter?language=objc)
 #[repr(C)]
-pub struct CFNotificationCenterRef {
+pub struct CFNotificationCenter {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFNotificationCenter"]
-    unsafe impl CFNotificationCenterRef {}
+    unsafe impl CFNotificationCenter {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcallback?language=objc)
 #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
 pub type CFNotificationCallback = Option<
     unsafe extern "C-unwind" fn(
-        *mut CFNotificationCenterRef,
+        *mut CFNotificationCenter,
         *mut c_void,
         *mut CFNotificationName,
         *const c_void,
-        *mut CFDictionaryRef,
+        *mut CFDictionary,
     ),
 >;
 
@@ -71,24 +71,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CFNotificationCenterGetLocalCenter() -> *mut CFNotificationCenterRef;
+    pub fn CFNotificationCenterGetLocalCenter() -> *mut CFNotificationCenter;
 }
 
 extern "C-unwind" {
-    pub fn CFNotificationCenterGetDistributedCenter() -> *mut CFNotificationCenterRef;
+    pub fn CFNotificationCenterGetDistributedCenter() -> *mut CFNotificationCenter;
 }
 
 extern "C-unwind" {
-    pub fn CFNotificationCenterGetDarwinNotifyCenter() -> *mut CFNotificationCenterRef;
+    pub fn CFNotificationCenterGetDarwinNotifyCenter() -> *mut CFNotificationCenter;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
     pub fn CFNotificationCenterAddObserver(
-        center: Option<&CFNotificationCenterRef>,
+        center: Option<&CFNotificationCenter>,
         observer: *const c_void,
         call_back: CFNotificationCallback,
-        name: Option<&CFStringRef>,
+        name: Option<&CFString>,
         object: *const c_void,
         suspension_behavior: CFNotificationSuspensionBehavior,
     );
@@ -97,7 +97,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFNotificationCenterRemoveObserver(
-        center: Option<&CFNotificationCenterRef>,
+        center: Option<&CFNotificationCenter>,
         observer: *const c_void,
         name: Option<&CFNotificationName>,
         object: *const c_void,
@@ -106,7 +106,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CFNotificationCenterRemoveEveryObserver(
-        center: Option<&CFNotificationCenterRef>,
+        center: Option<&CFNotificationCenter>,
         observer: *const c_void,
     );
 }
@@ -114,10 +114,10 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
     pub fn CFNotificationCenterPostNotification(
-        center: Option<&CFNotificationCenterRef>,
+        center: Option<&CFNotificationCenter>,
         name: Option<&CFNotificationName>,
         object: *const c_void,
-        user_info: Option<&CFDictionaryRef>,
+        user_info: Option<&CFDictionary>,
         deliver_immediately: Boolean,
     );
 }
@@ -132,10 +132,10 @@ pub const kCFNotificationPostToAllSessions: CFOptionFlags = 1 << 1;
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
     pub fn CFNotificationCenterPostNotificationWithOptions(
-        center: Option<&CFNotificationCenterRef>,
+        center: Option<&CFNotificationCenter>,
         name: Option<&CFNotificationName>,
         object: *const c_void,
-        user_info: Option<&CFDictionaryRef>,
+        user_info: Option<&CFDictionary>,
         options: CFOptionFlags,
     );
 }

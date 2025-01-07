@@ -8,26 +8,26 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbufferpoolref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopenglbufferpool?language=objc)
 #[repr(C)]
-pub struct CVOpenGLBufferPoolRef {
+pub struct CVOpenGLBufferPool {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CVOpenGLBufferPool"]
-    unsafe impl CVOpenGLBufferPoolRef {}
+    unsafe impl CVOpenGLBufferPool {}
 );
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbufferpoolminimumbuffercountkey?language=objc)
-    pub static kCVOpenGLBufferPoolMinimumBufferCountKey: &'static CFStringRef;
+    pub static kCVOpenGLBufferPoolMinimumBufferCountKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvopenglbufferpoolmaximumbufferagekey?language=objc)
-    pub static kCVOpenGLBufferPoolMaximumBufferAgeKey: &'static CFStringRef;
+    pub static kCVOpenGLBufferPoolMaximumBufferAgeKey: &'static CFString;
 }
 
 extern "C-unwind" {
@@ -45,8 +45,8 @@ extern "C-unwind" {
     /// Returns: A CVOpenGLBufferPoolRef object that is the same as the passed in buffer.
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLBufferPoolRetain(
-        open_gl_buffer_pool: Option<&CVOpenGLBufferPoolRef>,
-    ) -> *mut CVOpenGLBufferPoolRef;
+        open_gl_buffer_pool: Option<&CVOpenGLBufferPool>,
+    ) -> *mut CVOpenGLBufferPool;
 }
 
 extern "C-unwind" {
@@ -66,10 +66,10 @@ extern "C-unwind" {
     #[cfg(feature = "CVReturn")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLBufferPoolCreate(
-        allocator: Option<&CFAllocatorRef>,
-        pool_attributes: Option<&CFDictionaryRef>,
-        open_gl_buffer_attributes: Option<&CFDictionaryRef>,
-        pool_out: NonNull<CVOpenGLBufferPoolRef>,
+        allocator: Option<&CFAllocator>,
+        pool_attributes: Option<&CFDictionary>,
+        open_gl_buffer_attributes: Option<&CFDictionary>,
+        pool_out: NonNull<CVOpenGLBufferPool>,
     ) -> CVReturn;
 }
 
@@ -80,7 +80,7 @@ extern "C-unwind" {
     ///
     /// Returns: Returns the pool attributes dictionary, or NULL on failure.
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLBufferPoolGetAttributes(pool: &CVOpenGLBufferPoolRef) -> *mut CFDictionaryRef;
+    pub fn CVOpenGLBufferPoolGetAttributes(pool: &CVOpenGLBufferPool) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -94,8 +94,8 @@ extern "C-unwind" {
     /// Returns: Returns the OpenGL buffer attributes dictionary, or NULL on failure.
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLBufferPoolGetOpenGLBufferAttributes(
-        pool: &CVOpenGLBufferPoolRef,
-    ) -> *mut CFDictionaryRef;
+        pool: &CVOpenGLBufferPool,
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -118,8 +118,8 @@ extern "C-unwind" {
     ))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub fn CVOpenGLBufferPoolCreateOpenGLBuffer(
-        allocator: Option<&CFAllocatorRef>,
-        open_gl_buffer_pool: &CVOpenGLBufferPoolRef,
-        open_gl_buffer_out: NonNull<CVOpenGLBufferRef>,
+        allocator: Option<&CFAllocator>,
+        open_gl_buffer_pool: &CVOpenGLBufferPool,
+        open_gl_buffer_out: NonNull<CVOpenGLBuffer>,
     ) -> CVReturn;
 }

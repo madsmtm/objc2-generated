@@ -16,7 +16,7 @@ extern "C" {
     /// Use this key to access the symbolic traits value from the font traits dictionary. The value is returned as a CFNumberRef.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontsymbolictrait?language=objc)
-    pub static kCTFontSymbolicTrait: &'static CFStringRef;
+    pub static kCTFontSymbolicTrait: &'static CFString;
 }
 
 extern "C" {
@@ -27,7 +27,7 @@ extern "C" {
     /// Use this key to access the normalized weight trait from the font traits dictionary. The value returned is a CFNumberRef representing a float value between -1.0 and 1.0 for normalized weight. The value of 0.0 corresponds to the regular or medium font weight.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontweighttrait?language=objc)
-    pub static kCTFontWeightTrait: &'static CFStringRef;
+    pub static kCTFontWeightTrait: &'static CFString;
 }
 
 extern "C" {
@@ -38,7 +38,7 @@ extern "C" {
     /// Use this key to access the normalized proportion trait from the font traits dictionary. This value corresponds to the relative inter-glyph spacing for a given font. The value returned is a CFNumberRef representing a float between -1.0 and 1.0. The value of 0.0 corresponds to regular glyph spacing while negative values represent condensed glyph spacing.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontwidthtrait?language=objc)
-    pub static kCTFontWidthTrait: &'static CFStringRef;
+    pub static kCTFontWidthTrait: &'static CFString;
 }
 
 extern "C" {
@@ -49,7 +49,7 @@ extern "C" {
     /// Use this key to access the normalized slant angle from the font traits dictionary. The value returned is a CFNumberRef representing a float value between -1.0 and 1.0 for normalized slant angle. The value or 0.0 corresponds to 0 degree clockwise rotation from the vertical and 1.0 corresponds to 30 degrees clockwise rotation.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontslanttrait?language=objc)
-    pub static kCTFontSlantTrait: &'static CFStringRef;
+    pub static kCTFontSlantTrait: &'static CFString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontclassmaskshift?language=objc)

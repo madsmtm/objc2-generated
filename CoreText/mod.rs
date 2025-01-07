@@ -321,6 +321,8 @@ pub use self::__CTFont::kCTFontVersionNameKey;
 #[cfg(feature = "CTFont")]
 pub use self::__CTFont::ATSFontRef;
 #[cfg(feature = "CTFont")]
+pub use self::__CTFont::CTFont;
+#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyAttribute;
 #[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontCopyAvailableTables;
@@ -464,8 +466,6 @@ pub use self::__CTFont::CTFontHasTable;
 #[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontOptions;
 #[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontRef;
-#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontTableOptions;
 #[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontTableTag;
@@ -477,6 +477,8 @@ pub use self::__CTFontCollection::kCTFontCollectionDisallowAutoActivationOption;
 pub use self::__CTFontCollection::kCTFontCollectionIncludeDisabledFontsOption;
 #[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::kCTFontCollectionRemoveDuplicatesOption;
+#[cfg(feature = "CTFontCollection")]
+pub use self::__CTFontCollection::CTFontCollection;
 #[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionCopyExclusionDescriptors;
 #[cfg(feature = "CTFontCollection")]
@@ -506,15 +508,13 @@ pub use self::__CTFontCollection::CTFontCollectionCreateWithFontDescriptors;
 #[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionGetTypeID;
 #[cfg(feature = "CTFontCollection")]
-pub use self::__CTFontCollection::CTFontCollectionRef;
-#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionSetExclusionDescriptors;
 #[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionSetQueryDescriptors;
 #[cfg(all(feature = "CTFontCollection", feature = "CTFontDescriptor"))]
 pub use self::__CTFontCollection::CTFontCollectionSortDescriptorsCallback;
 #[cfg(feature = "CTFontCollection")]
-pub use self::__CTFontCollection::CTMutableFontCollectionRef;
+pub use self::__CTFontCollection::CTMutableFontCollection;
 #[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontBaselineAdjustAttribute;
 #[cfg(feature = "CTFontDescriptor")]
@@ -596,6 +596,8 @@ pub use self::__CTFontDescriptor::kCTFontVariationAttribute;
 #[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::kCTFontVariationAxesAttribute;
 #[cfg(feature = "CTFontDescriptor")]
+pub use self::__CTFontDescriptor::CTFontDescriptor;
+#[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorCopyAttribute;
 #[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorCopyAttributes;
@@ -627,8 +629,6 @@ pub use self::__CTFontDescriptor::CTFontDescriptorMatchFontDescriptorsWithProgre
 pub use self::__CTFontDescriptor::CTFontDescriptorMatchingState;
 #[cfg(all(feature = "CTFontDescriptor", feature = "block2"))]
 pub use self::__CTFontDescriptor::CTFontDescriptorProgressHandler;
-#[cfg(feature = "CTFontDescriptor")]
-pub use self::__CTFontDescriptor::CTFontDescriptorRef;
 #[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontFormat;
 #[cfg(feature = "CTFontDescriptor")]
@@ -731,6 +731,8 @@ pub use self::__CTFrame::kCTFramePathFillRuleAttributeName;
 pub use self::__CTFrame::kCTFramePathWidthAttributeName;
 #[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::kCTFrameProgressionAttributeName;
+#[cfg(feature = "CTFrame")]
+pub use self::__CTFrame::CTFrame;
 #[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
 pub use self::__CTFrame::CTFrameDraw;
 #[cfg(feature = "CTFrame")]
@@ -751,8 +753,8 @@ pub use self::__CTFrame::CTFrameGetVisibleStringRange;
 pub use self::__CTFrame::CTFramePathFillRule;
 #[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::CTFrameProgression;
-#[cfg(feature = "CTFrame")]
-pub use self::__CTFrame::CTFrameRef;
+#[cfg(feature = "CTFramesetter")]
+pub use self::__CTFramesetter::CTFramesetter;
 #[cfg(all(
     feature = "CTFrame",
     feature = "CTFramesetter",
@@ -768,11 +770,11 @@ pub use self::__CTFramesetter::CTFramesetterGetTypeID;
 #[cfg(all(feature = "CTFramesetter", feature = "CTTypesetter"))]
 pub use self::__CTFramesetter::CTFramesetterGetTypesetter;
 #[cfg(feature = "CTFramesetter")]
-pub use self::__CTFramesetter::CTFramesetterRef;
-#[cfg(feature = "CTFramesetter")]
 pub use self::__CTFramesetter::CTFramesetterSuggestFrameSizeWithConstraints;
 #[cfg(feature = "CTGlyphInfo")]
 pub use self::__CTGlyphInfo::CTCharacterCollection;
+#[cfg(feature = "CTGlyphInfo")]
+pub use self::__CTGlyphInfo::CTGlyphInfo;
 #[cfg(all(feature = "CTGlyphInfo", feature = "objc2-core-graphics"))]
 pub use self::__CTGlyphInfo::CTGlyphInfoCreateWithCharacterIdentifier;
 #[cfg(all(
@@ -793,8 +795,8 @@ pub use self::__CTGlyphInfo::CTGlyphInfoGetGlyph;
 pub use self::__CTGlyphInfo::CTGlyphInfoGetGlyphName;
 #[cfg(feature = "CTGlyphInfo")]
 pub use self::__CTGlyphInfo::CTGlyphInfoGetTypeID;
-#[cfg(feature = "CTGlyphInfo")]
-pub use self::__CTGlyphInfo::CTGlyphInfoRef;
+#[cfg(feature = "CTLine")]
+pub use self::__CTLine::CTLine;
 #[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineBoundsOptions;
 #[cfg(feature = "CTLine")]
@@ -830,11 +832,11 @@ pub use self::__CTLine::CTLineGetTypeID;
 #[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineGetTypographicBounds;
 #[cfg(feature = "CTLine")]
-pub use self::__CTLine::CTLineRef;
-#[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineTruncationType;
 #[cfg(feature = "CTParagraphStyle")]
 pub use self::__CTParagraphStyle::CTLineBreakMode;
+#[cfg(feature = "CTParagraphStyle")]
+pub use self::__CTParagraphStyle::CTParagraphStyle;
 #[cfg(feature = "CTParagraphStyle")]
 pub use self::__CTParagraphStyle::CTParagraphStyleCreate;
 #[cfg(feature = "CTParagraphStyle")]
@@ -843,8 +845,6 @@ pub use self::__CTParagraphStyle::CTParagraphStyleCreateCopy;
 pub use self::__CTParagraphStyle::CTParagraphStyleGetTypeID;
 #[cfg(feature = "CTParagraphStyle")]
 pub use self::__CTParagraphStyle::CTParagraphStyleGetValueForSpecifier;
-#[cfg(feature = "CTParagraphStyle")]
-pub use self::__CTParagraphStyle::CTParagraphStyleRef;
 #[cfg(feature = "CTParagraphStyle")]
 pub use self::__CTParagraphStyle::CTParagraphStyleSetting;
 #[cfg(feature = "CTParagraphStyle")]
@@ -860,6 +860,8 @@ pub use self::__CTRubyAnnotation::kCTRubyAnnotationSizeFactorAttributeName;
 #[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAlignment;
 #[cfg(feature = "CTRubyAnnotation")]
+pub use self::__CTRubyAnnotation::CTRubyAnnotation;
+#[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAnnotationCreateCopy;
 #[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAnnotationCreateWithAttributes;
@@ -874,11 +876,11 @@ pub use self::__CTRubyAnnotation::CTRubyAnnotationGetTextForPosition;
 #[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAnnotationGetTypeID;
 #[cfg(feature = "CTRubyAnnotation")]
-pub use self::__CTRubyAnnotation::CTRubyAnnotationRef;
-#[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyOverhang;
 #[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyPosition;
+#[cfg(feature = "CTRun")]
+pub use self::__CTRun::CTRun;
 #[cfg(all(feature = "CTRun", feature = "objc2-core-graphics"))]
 pub use self::__CTRun::CTRunDraw;
 #[cfg(feature = "CTRun")]
@@ -916,8 +918,6 @@ pub use self::__CTRun::CTRunGetTypeID;
 #[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunGetTypographicBounds;
 #[cfg(feature = "CTRun")]
-pub use self::__CTRun::CTRunRef;
-#[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunStatus;
 #[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::kCTRunDelegateCurrentVersion;
@@ -925,6 +925,8 @@ pub use self::__CTRunDelegate::kCTRunDelegateCurrentVersion;
 pub use self::__CTRunDelegate::kCTRunDelegateVersion1;
 #[cfg(all(feature = "CTRunDelegate", feature = "objc2"))]
 pub use self::__CTRunDelegate::CTAdaptiveImageProviding;
+#[cfg(feature = "CTRunDelegate")]
+pub use self::__CTRunDelegate::CTRunDelegate;
 #[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateCallbacks;
 #[cfg(feature = "CTRunDelegate")]
@@ -941,8 +943,6 @@ pub use self::__CTRunDelegate::CTRunDelegateGetRefCon;
 pub use self::__CTRunDelegate::CTRunDelegateGetTypeID;
 #[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateGetWidthCallback;
-#[cfg(feature = "CTRunDelegate")]
-pub use self::__CTRunDelegate::CTRunDelegateRef;
 #[cfg(feature = "CTStringAttributes")]
 pub use self::__CTStringAttributes::kCTAdaptiveImageProviderAttributeName;
 #[cfg(feature = "CTStringAttributes")]
@@ -1005,6 +1005,8 @@ pub use self::__CTStringAttributes::CTUnderlineStyle;
 pub use self::__CTStringAttributes::CTUnderlineStyleModifiers;
 #[cfg(feature = "CTTextTab")]
 pub use self::__CTTextTab::kCTTabColumnTerminatorsAttributeName;
+#[cfg(feature = "CTTextTab")]
+pub use self::__CTTextTab::CTTextTab;
 #[cfg(all(feature = "CTParagraphStyle", feature = "CTTextTab"))]
 pub use self::__CTTextTab::CTTextTabCreate;
 #[cfg(all(feature = "CTParagraphStyle", feature = "CTTextTab"))]
@@ -1015,14 +1017,14 @@ pub use self::__CTTextTab::CTTextTabGetLocation;
 pub use self::__CTTextTab::CTTextTabGetOptions;
 #[cfg(feature = "CTTextTab")]
 pub use self::__CTTextTab::CTTextTabGetTypeID;
-#[cfg(feature = "CTTextTab")]
-pub use self::__CTTextTab::CTTextTabRef;
 #[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::kCTTypesetterOptionAllowUnboundedLayout;
 #[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::kCTTypesetterOptionDisableBidiProcessing;
 #[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::kCTTypesetterOptionForcedEmbeddingLevel;
+#[cfg(feature = "CTTypesetter")]
+pub use self::__CTTypesetter::CTTypesetter;
 #[cfg(all(feature = "CTLine", feature = "CTTypesetter"))]
 pub use self::__CTTypesetter::CTTypesetterCreateLine;
 #[cfg(all(feature = "CTLine", feature = "CTTypesetter"))]
@@ -1033,8 +1035,6 @@ pub use self::__CTTypesetter::CTTypesetterCreateWithAttributedString;
 pub use self::__CTTypesetter::CTTypesetterCreateWithAttributedStringAndOptions;
 #[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::CTTypesetterGetTypeID;
-#[cfg(feature = "CTTypesetter")]
-pub use self::__CTTypesetter::CTTypesetterRef;
 #[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::CTTypesetterSuggestClusterBreak;
 #[cfg(feature = "CTTypesetter")]

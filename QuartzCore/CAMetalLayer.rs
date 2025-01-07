@@ -107,12 +107,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other colorspace)]
-        pub unsafe fn colorspace(&self) -> Option<Retained<CGColorSpaceRef>>;
+        pub unsafe fn colorspace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorspace`][Self::colorspace].
         #[method(setColorspace:)]
-        pub unsafe fn setColorspace(&self, colorspace: Option<&CGColorSpaceRef>);
+        pub unsafe fn setColorspace(&self, colorspace: Option<&CGColorSpace>);
 
         #[method(wantsExtendedDynamicRangeContent)]
         pub unsafe fn wantsExtendedDynamicRangeContent(&self) -> bool;

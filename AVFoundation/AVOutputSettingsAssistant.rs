@@ -153,14 +153,14 @@ extern_methods!(
         ///
         /// If you set a non-NULL value for this property, and are using the receiver to initialize an AVAssetWriterInput, the same format description should be used to initialize the AVAssetWriterInput, along with the dictionary from the audioSettings property.
         #[method_id(@__retain_semantics Other sourceAudioFormat)]
-        pub unsafe fn sourceAudioFormat(&self) -> Option<Retained<CMAudioFormatDescriptionRef>>;
+        pub unsafe fn sourceAudioFormat(&self) -> Option<Retained<CMAudioFormatDescription>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`sourceAudioFormat`][Self::sourceAudioFormat].
         #[method(setSourceAudioFormat:)]
         pub unsafe fn setSourceAudioFormat(
             &self,
-            source_audio_format: Option<&CMAudioFormatDescriptionRef>,
+            source_audio_format: Option<&CMAudioFormatDescription>,
         );
 
         #[cfg(feature = "objc2-core-media")]
@@ -170,14 +170,14 @@ extern_methods!(
         ///
         /// If you set a non-NULL value for this property, and are using the receiver to initialize an AVAssetWriterInput, the same format description should be used to initialize the AVAssetWriterInput, along with the dictionary from the videoSettings property.
         #[method_id(@__retain_semantics Other sourceVideoFormat)]
-        pub unsafe fn sourceVideoFormat(&self) -> Option<Retained<CMVideoFormatDescriptionRef>>;
+        pub unsafe fn sourceVideoFormat(&self) -> Option<Retained<CMVideoFormatDescription>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`sourceVideoFormat`][Self::sourceVideoFormat].
         #[method(setSourceVideoFormat:)]
         pub unsafe fn setSourceVideoFormat(
             &self,
-            source_video_format: Option<&CMVideoFormatDescriptionRef>,
+            source_video_format: Option<&CMVideoFormatDescription>,
         );
 
         #[cfg(feature = "objc2-core-media")]

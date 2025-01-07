@@ -242,8 +242,7 @@ extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Provides the format description of the sample at the receiver's current position.
         #[method_id(@__retain_semantics Copy copyCurrentSampleFormatDescription)]
-        pub unsafe fn copyCurrentSampleFormatDescription(&self)
-            -> Retained<CMFormatDescriptionRef>;
+        pub unsafe fn copyCurrentSampleFormatDescription(&self) -> Retained<CMFormatDescription>;
 
         /// Provides information about the current sample for consideration when resynchronizing a decoder, as when scrubbing.
         #[method(currentSampleSyncInfo)]

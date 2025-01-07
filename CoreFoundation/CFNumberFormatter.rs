@@ -11,18 +11,18 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterkey?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "CFBase")]
-pub type CFNumberFormatterKey = CFStringRef;
+pub type CFNumberFormatterKey = CFString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatter?language=objc)
 #[repr(C)]
-pub struct CFNumberFormatterRef {
+pub struct CFNumberFormatter {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFNumberFormatter"]
-    unsafe impl CFNumberFormatterRef {}
+    unsafe impl CFNumberFormatter {}
 );
 
 extern "C-unwind" {
@@ -73,56 +73,54 @@ unsafe impl RefEncode for CFNumberFormatterStyle {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFLocale"))]
     pub fn CFNumberFormatterCreate(
-        allocator: Option<&CFAllocatorRef>,
-        locale: Option<&CFLocaleRef>,
+        allocator: Option<&CFAllocator>,
+        locale: Option<&CFLocale>,
         style: CFNumberFormatterStyle,
-    ) -> *mut CFNumberFormatterRef;
+    ) -> *mut CFNumberFormatter;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFLocale")]
-    pub fn CFNumberFormatterGetLocale(formatter: Option<&CFNumberFormatterRef>)
-        -> *mut CFLocaleRef;
+    pub fn CFNumberFormatterGetLocale(formatter: Option<&CFNumberFormatter>) -> *mut CFLocale;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFNumberFormatterGetStyle(
-        formatter: Option<&CFNumberFormatterRef>,
+        formatter: Option<&CFNumberFormatter>,
     ) -> CFNumberFormatterStyle;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFNumberFormatterGetFormat(formatter: Option<&CFNumberFormatterRef>)
-        -> *mut CFStringRef;
+    pub fn CFNumberFormatterGetFormat(formatter: Option<&CFNumberFormatter>) -> *mut CFString;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFNumberFormatterSetFormat(
-        formatter: Option<&CFNumberFormatterRef>,
-        format_string: Option<&CFStringRef>,
+        formatter: Option<&CFNumberFormatter>,
+        format_string: Option<&CFString>,
     );
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFNumber"))]
     pub fn CFNumberFormatterCreateStringWithNumber(
-        allocator: Option<&CFAllocatorRef>,
-        formatter: Option<&CFNumberFormatterRef>,
-        number: Option<&CFNumberRef>,
-    ) -> *mut CFStringRef;
+        allocator: Option<&CFAllocator>,
+        formatter: Option<&CFNumberFormatter>,
+        number: Option<&CFNumber>,
+    ) -> *mut CFString;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFNumber"))]
     pub fn CFNumberFormatterCreateStringWithValue(
-        allocator: Option<&CFAllocatorRef>,
-        formatter: Option<&CFNumberFormatterRef>,
+        allocator: Option<&CFAllocator>,
+        formatter: Option<&CFNumberFormatter>,
         number_type: CFNumberType,
         value_ptr: *const c_void,
-    ) -> *mut CFStringRef;
+    ) -> *mut CFString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatteroptionflags?language=objc)
@@ -152,19 +150,19 @@ unsafe impl RefEncode for CFNumberFormatterOptionFlags {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFNumber"))]
     pub fn CFNumberFormatterCreateNumberFromString(
-        allocator: Option<&CFAllocatorRef>,
-        formatter: Option<&CFNumberFormatterRef>,
-        string: Option<&CFStringRef>,
+        allocator: Option<&CFAllocator>,
+        formatter: Option<&CFNumberFormatter>,
+        string: Option<&CFString>,
         rangep: *mut CFRange,
         options: CFOptionFlags,
-    ) -> *mut CFNumberRef;
+    ) -> *mut CFNumber;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFNumber"))]
     pub fn CFNumberFormatterGetValueFromString(
-        formatter: Option<&CFNumberFormatterRef>,
-        string: Option<&CFStringRef>,
+        formatter: Option<&CFNumberFormatter>,
+        string: Option<&CFString>,
         rangep: *mut CFRange,
         number_type: CFNumberType,
         value_ptr: *mut c_void,
@@ -174,7 +172,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFNumberFormatterSetProperty(
-        formatter: Option<&CFNumberFormatterRef>,
+        formatter: Option<&CFNumberFormatter>,
         key: Option<&CFNumberFormatterKey>,
         value: CFTypeRef,
     );
@@ -183,7 +181,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFNumberFormatterCopyProperty(
-        formatter: Option<&CFNumberFormatterRef>,
+        formatter: Option<&CFNumberFormatter>,
         key: Option<&CFNumberFormatterKey>,
     ) -> CFTypeRef;
 }
@@ -487,7 +485,7 @@ unsafe impl RefEncode for CFNumberFormatterPadPosition {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFNumberFormatterGetDecimalInfoForCurrencyCode(
-        currency_code: Option<&CFStringRef>,
+        currency_code: Option<&CFString>,
         default_fraction_digits: *mut i32,
         rounding_increment: *mut c_double,
     ) -> Boolean;

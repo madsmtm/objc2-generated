@@ -682,7 +682,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Option<Retained<CGColorRef>>;
+        pub unsafe fn backgroundColor(&self) -> Option<Retained<CGColor>>;
 
         #[method_id(@__retain_semantics Other layerInstructions)]
         pub unsafe fn layerInstructions(
@@ -759,12 +759,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Option<Retained<CGColorRef>>;
+        pub unsafe fn backgroundColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, background_color: Option<&CGColorRef>);
+        pub unsafe fn setBackgroundColor(&self, background_color: Option<&CGColor>);
 
         #[method_id(@__retain_semantics Other layerInstructions)]
         pub unsafe fn layerInstructions(

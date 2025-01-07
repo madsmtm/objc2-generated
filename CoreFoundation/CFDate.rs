@@ -28,16 +28,16 @@ extern "C" {
     pub static kCFAbsoluteTimeIntervalSince1904: CFTimeInterval;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdate?language=objc)
 #[repr(C)]
-pub struct CFDateRef {
+pub struct CFDate {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFDate"]
-    unsafe impl CFDateRef {}
+    unsafe impl CFDate {}
 );
 
 extern "C-unwind" {
@@ -47,39 +47,39 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDateCreate(allocator: Option<&CFAllocatorRef>, at: CFAbsoluteTime) -> *mut CFDateRef;
+    pub fn CFDateCreate(allocator: Option<&CFAllocator>, at: CFAbsoluteTime) -> *mut CFDate;
 }
 
 extern "C-unwind" {
-    pub fn CFDateGetAbsoluteTime(the_date: Option<&CFDateRef>) -> CFAbsoluteTime;
+    pub fn CFDateGetAbsoluteTime(the_date: Option<&CFDate>) -> CFAbsoluteTime;
 }
 
 extern "C-unwind" {
     pub fn CFDateGetTimeIntervalSinceDate(
-        the_date: Option<&CFDateRef>,
-        other_date: Option<&CFDateRef>,
+        the_date: Option<&CFDate>,
+        other_date: Option<&CFDate>,
     ) -> CFTimeInterval;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFDateCompare(
-        the_date: Option<&CFDateRef>,
-        other_date: Option<&CFDateRef>,
+        the_date: Option<&CFDate>,
+        other_date: Option<&CFDate>,
         context: *mut c_void,
     ) -> CFComparisonResult;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezoneref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezone?language=objc)
 #[repr(C)]
-pub struct CFTimeZoneRef {
+pub struct CFTimeZone {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFTimeZone"]
-    unsafe impl CFTimeZoneRef {}
+    unsafe impl CFTimeZone {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregoriandate?language=objc)
@@ -199,7 +199,7 @@ extern "C-unwind" {
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
     pub fn CFGregorianDateGetAbsoluteTime(
         gdate: CFGregorianDate,
-        tz: Option<&CFTimeZoneRef>,
+        tz: Option<&CFTimeZone>,
     ) -> CFAbsoluteTime;
 }
 
@@ -207,7 +207,7 @@ extern "C-unwind" {
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
     pub fn CFAbsoluteTimeGetGregorianDate(
         at: CFAbsoluteTime,
-        tz: Option<&CFTimeZoneRef>,
+        tz: Option<&CFTimeZone>,
     ) -> CFGregorianDate;
 }
 
@@ -215,7 +215,7 @@ extern "C-unwind" {
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
     pub fn CFAbsoluteTimeAddGregorianUnits(
         at: CFAbsoluteTime,
-        tz: Option<&CFTimeZoneRef>,
+        tz: Option<&CFTimeZone>,
         units: CFGregorianUnits,
     ) -> CFAbsoluteTime;
 }
@@ -226,22 +226,22 @@ extern "C-unwind" {
     pub fn CFAbsoluteTimeGetDifferenceAsGregorianUnits(
         at1: CFAbsoluteTime,
         at2: CFAbsoluteTime,
-        tz: Option<&CFTimeZoneRef>,
+        tz: Option<&CFTimeZone>,
         unit_flags: CFOptionFlags,
     ) -> CFGregorianUnits;
 }
 
 extern "C-unwind" {
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-    pub fn CFAbsoluteTimeGetDayOfWeek(at: CFAbsoluteTime, tz: Option<&CFTimeZoneRef>) -> i32;
+    pub fn CFAbsoluteTimeGetDayOfWeek(at: CFAbsoluteTime, tz: Option<&CFTimeZone>) -> i32;
 }
 
 extern "C-unwind" {
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-    pub fn CFAbsoluteTimeGetDayOfYear(at: CFAbsoluteTime, tz: Option<&CFTimeZoneRef>) -> i32;
+    pub fn CFAbsoluteTimeGetDayOfYear(at: CFAbsoluteTime, tz: Option<&CFTimeZone>) -> i32;
 }
 
 extern "C-unwind" {
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-    pub fn CFAbsoluteTimeGetWeekOfYear(at: CFAbsoluteTime, tz: Option<&CFTimeZoneRef>) -> i32;
+    pub fn CFAbsoluteTimeGetWeekOfYear(at: CFAbsoluteTime, tz: Option<&CFTimeZone>) -> i32;
 }

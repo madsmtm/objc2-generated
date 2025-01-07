@@ -8,9 +8,9 @@ use crate::*;
 
 /// OpenGL texture based image buffer
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltextureref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexture?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-pub type CVOpenGLTextureRef = CVImageBufferRef;
+pub type CVOpenGLTexture = CVImageBuffer;
 
 extern "C-unwind" {
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
@@ -27,7 +27,7 @@ extern "C-unwind" {
     /// Returns: A CVOpenGLTexture object that is the same as the passed in buffer.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLTextureRetain(texture: Option<&CVOpenGLTextureRef>) -> *mut CVOpenGLTextureRef;
+    pub fn CVOpenGLTextureRetain(texture: Option<&CVOpenGLTexture>) -> *mut CVOpenGLTexture;
 }
 
 extern "C-unwind" {
@@ -38,5 +38,5 @@ extern "C-unwind" {
     /// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLTextureIsFlipped(image: &CVOpenGLTextureRef) -> Boolean;
+    pub fn CVOpenGLTextureIsFlipped(image: &CVOpenGLTexture) -> Boolean;
 }

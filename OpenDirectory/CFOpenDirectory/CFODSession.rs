@@ -49,9 +49,9 @@ extern "C-unwind" {
     /// get error details
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODSessionCreate(
-        allocator: Option<&CFAllocatorRef>,
-        options: Option<&CFDictionaryRef>,
-        error: *mut CFErrorRef,
+        allocator: Option<&CFAllocator>,
+        options: Option<&CFDictionary>,
+        error: *mut CFError,
     ) -> *mut ODSessionRef;
 }
 
@@ -69,8 +69,8 @@ extern "C-unwind" {
     /// Returns: a valid CFArrayRef of node names that can be opened on the session reference
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODSessionCopyNodeNames(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         session: Option<&ODSessionRef>,
-        error: *mut CFErrorRef,
-    ) -> *mut CFArrayRef;
+        error: *mut CFError,
+    ) -> *mut CFArray;
 }

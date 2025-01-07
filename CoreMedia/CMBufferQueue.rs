@@ -33,16 +33,16 @@ pub const kCMBufferQueueError_InvalidBuffer: OSStatus = -12769;
 
 /// A reference to a CMBufferQueue, a CF object that implements a queue of timed buffers.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbufferqueueref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbufferqueue?language=objc)
 #[repr(C)]
-pub struct CMBufferQueueRef {
+pub struct CMBufferQueue {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "opaqueCMBufferQueue"]
-    unsafe impl CMBufferQueueRef {}
+    unsafe impl CMBufferQueue {}
 );
 
 /// A reference to a CMBuffer.
@@ -165,7 +165,7 @@ pub struct CMBufferCallbacks {
     /// If triggers of type kCMBufferQueueTrigger_WhenDataBecomesReady are installed,
     /// the queue will listen for this notification on the head buffer.
     /// Can be NULL (then the queue won't listen for it).
-    pub dataBecameReadyNotification: *mut CFStringRef,
+    pub dataBecameReadyNotification: *mut CFString,
     /// This callback is called (once) during enqueue and dequeue operation to
     /// update the total size of the queue. Can be NULL.  Ignored if version
     /// <
@@ -185,7 +185,7 @@ unsafe impl Encode for CMBufferCallbacks {
             <CMBufferGetTimeCallback>::ENCODING,
             <CMBufferGetBooleanCallback>::ENCODING,
             <CMBufferCompareCallback>::ENCODING,
-            <*mut CFStringRef>::ENCODING,
+            <*mut CFString>::ENCODING,
             <CMBufferGetSizeCallback>::ENCODING,
         ],
     );
@@ -231,7 +231,7 @@ pub struct CMBufferHandlers {
     /// If triggers of type kCMBufferQueueTrigger_WhenDataBecomesReady are installed,
     /// the queue will listen for this notification on the head buffer.
     /// Can be NULL (then the queue won't listen for it).
-    pub dataBecameReadyNotification: *mut CFStringRef,
+    pub dataBecameReadyNotification: *mut CFString,
     /// This block is called (once) during enqueue and dequeue operation to
     /// update the total size of the queue. Can be NULL.
     pub getSize: CMBufferGetSizeHandler,
@@ -248,7 +248,7 @@ unsafe impl Encode for CMBufferHandlers {
             <CMBufferGetTimeHandler>::ENCODING,
             <CMBufferGetBooleanHandler>::ENCODING,
             <CMBufferCompareHandler>::ENCODING,
-            <*mut CFStringRef>::ENCODING,
+            <*mut CFString>::ENCODING,
             <CMBufferGetSizeHandler>::ENCODING,
         ],
     );
@@ -277,10 +277,10 @@ extern "C-unwind" {
     /// On return, the caller owns the returned CMBufferQueue, and must release it when done with it.
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     pub fn CMBufferQueueCreate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         capacity: CMItemCount,
         callbacks: NonNull<CMBufferCallbacks>,
-        queue_out: NonNull<CMBufferQueueRef>,
+        queue_out: NonNull<CMBufferQueue>,
     ) -> OSStatus;
 }
 
@@ -290,10 +290,10 @@ extern "C-unwind" {
     /// On return, the caller owns the returned CMBufferQueue, and must release it when done with it.
     #[cfg(all(feature = "CMBase", feature = "CMTime", feature = "block2"))]
     pub fn CMBufferQueueCreateWithHandlers(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         capacity: CMItemCount,
         handlers: NonNull<CMBufferHandlers>,
-        queue_out: NonNull<CMBufferQueueRef>,
+        queue_out: NonNull<CMBufferQueue>,
     ) -> OSStatus;
 }
 
@@ -313,7 +313,7 @@ extern "C-unwind" {
     /// If the compare callback is non-NULL, this API performs an insertion sort using that compare operation.
     /// If the validation callback is non-NULL, this API calls it; if it returns a nonzero OSStatus,
     /// the buffer will not be enqueued and this API will return the same error OSStatus.
-    pub fn CMBufferQueueEnqueue(queue: &CMBufferQueueRef, buf: CMBufferRef) -> OSStatus;
+    pub fn CMBufferQueueEnqueue(queue: &CMBufferQueue, buf: CMBufferRef) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -324,7 +324,7 @@ extern "C-unwind" {
     /// it when done with it.
     ///
     /// Returns: The dequeued buffer.  Will be NULL if the queue is empty.
-    pub fn CMBufferQueueDequeueAndRetain(queue: &CMBufferQueueRef) -> CMBufferRef;
+    pub fn CMBufferQueueDequeueAndRetain(queue: &CMBufferQueue) -> CMBufferRef;
 }
 
 extern "C-unwind" {
@@ -335,7 +335,7 @@ extern "C-unwind" {
     /// it when done with it.
     ///
     /// Returns: The dequeued buffer.  Will be NULL if the queue is empty, or if the buffer to be dequeued is not yet ready.
-    pub fn CMBufferQueueDequeueIfDataReadyAndRetain(queue: &CMBufferQueueRef) -> CMBufferRef;
+    pub fn CMBufferQueueDequeueIfDataReadyAndRetain(queue: &CMBufferQueue) -> CMBufferRef;
 }
 
 extern "C-unwind" {
@@ -350,7 +350,7 @@ extern "C-unwind" {
     ///
     /// Returns: The buffer.  Will be NULL if the queue is empty.
     #[deprecated]
-    pub fn CMBufferQueueGetHead(queue: &CMBufferQueueRef) -> CMBufferRef;
+    pub fn CMBufferQueueGetHead(queue: &CMBufferQueue) -> CMBufferRef;
 }
 
 extern "C-unwind" {
@@ -363,14 +363,14 @@ extern "C-unwind" {
     /// this particular buffer (if an intervening Enqueue adds a buffer that will dequeue next).
     ///
     /// Returns: The retained buffer.  Will be NULL if the queue is empty.
-    pub fn CMBufferQueueCopyHead(queue: &CMBufferQueueRef) -> CMBufferRef;
+    pub fn CMBufferQueueCopyHead(queue: &CMBufferQueue) -> CMBufferRef;
 }
 
 extern "C-unwind" {
     /// Returns whether or not a CMBufferQueue is empty.
     ///
     /// Returns: Whether or not the CMBufferQueue is empty. If queue is NULL, true is returned.
-    pub fn CMBufferQueueIsEmpty(queue: &CMBufferQueueRef) -> Boolean;
+    pub fn CMBufferQueueIsEmpty(queue: &CMBufferQueue) -> Boolean;
 }
 
 extern "C-unwind" {
@@ -378,7 +378,7 @@ extern "C-unwind" {
     ///
     /// All subsequent Enqueues will be rejected until CMBufferQueueReset is called.
     /// Subsequent Dequeues will succeed as long as the queue is not empty.
-    pub fn CMBufferQueueMarkEndOfData(queue: &CMBufferQueueRef) -> OSStatus;
+    pub fn CMBufferQueueMarkEndOfData(queue: &CMBufferQueue) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -387,7 +387,7 @@ extern "C-unwind" {
     /// Returns: Whether or not the CMBufferQueue has been marked with EOD.
     /// If queue is NULL, true is returned (a NULL queue is considered to
     /// be empty, and permanently at EOD).
-    pub fn CMBufferQueueContainsEndOfData(queue: &CMBufferQueueRef) -> Boolean;
+    pub fn CMBufferQueueContainsEndOfData(queue: &CMBufferQueue) -> Boolean;
 }
 
 extern "C-unwind" {
@@ -396,7 +396,7 @@ extern "C-unwind" {
     /// Returns: Whether or not the CMBufferQueue has been marked with EOD, and is now empty.
     /// If queue is NULL, true is returned (a NULL queue is considered to
     /// be empty, and permanently at EOD).
-    pub fn CMBufferQueueIsAtEndOfData(queue: &CMBufferQueueRef) -> Boolean;
+    pub fn CMBufferQueueIsAtEndOfData(queue: &CMBufferQueue) -> Boolean;
 }
 
 extern "C-unwind" {
@@ -404,13 +404,13 @@ extern "C-unwind" {
     ///
     /// All buffers in the queue are released.  Triggers are not removed, however,
     /// and will be called appropriately as the queue duration goes to zero.
-    pub fn CMBufferQueueReset(queue: &CMBufferQueueRef) -> OSStatus;
+    pub fn CMBufferQueueReset(queue: &CMBufferQueue) -> OSStatus;
 }
 
 extern "C-unwind" {
     /// Calls a function for every buffer in a queue, then resets the queue.
     pub fn CMBufferQueueResetWithCallback(
-        queue: &CMBufferQueueRef,
+        queue: &CMBufferQueue,
         callback: unsafe extern "C-unwind" fn(CMBufferRef, *mut c_void),
         refcon: *mut c_void,
     ) -> OSStatus;
@@ -419,7 +419,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Gets the number of buffers in the queue.
     #[cfg(feature = "CMBase")]
-    pub fn CMBufferQueueGetBufferCount(queue: &CMBufferQueueRef) -> CMItemCount;
+    pub fn CMBufferQueueGetBufferCount(queue: &CMBufferQueue) -> CMItemCount;
 }
 
 extern "C-unwind" {
@@ -430,7 +430,7 @@ extern "C-unwind" {
     /// CMBufferQueueCreate).  If there are no buffers in the queue,
     /// kCMTimeZero will be returned.
     #[cfg(feature = "CMTime")]
-    pub fn CMBufferQueueGetDuration(queue: &CMBufferQueueRef) -> CMTime;
+    pub fn CMBufferQueueGetDuration(queue: &CMBufferQueue) -> CMTime;
 }
 
 extern "C-unwind" {
@@ -441,7 +441,7 @@ extern "C-unwind" {
     /// is a faster alternative.  If the getDecodeTimeStamp callback is
     /// NULL, kCMTimeInvalid will be returned.
     #[cfg(feature = "CMTime")]
-    pub fn CMBufferQueueGetMinDecodeTimeStamp(queue: &CMBufferQueueRef) -> CMTime;
+    pub fn CMBufferQueueGetMinDecodeTimeStamp(queue: &CMBufferQueue) -> CMTime;
 }
 
 extern "C-unwind" {
@@ -452,7 +452,7 @@ extern "C-unwind" {
     /// If the getDecodeTimeStamp callback is NULL, kCMTimeInvalid will
     /// be returned.
     #[cfg(feature = "CMTime")]
-    pub fn CMBufferQueueGetFirstDecodeTimeStamp(queue: &CMBufferQueueRef) -> CMTime;
+    pub fn CMBufferQueueGetFirstDecodeTimeStamp(queue: &CMBufferQueue) -> CMTime;
 }
 
 extern "C-unwind" {
@@ -464,7 +464,7 @@ extern "C-unwind" {
     /// getPresentationTimeStamp callback is NULL, kCMTimeInvalid will
     /// be returned.
     #[cfg(feature = "CMTime")]
-    pub fn CMBufferQueueGetMinPresentationTimeStamp(queue: &CMBufferQueueRef) -> CMTime;
+    pub fn CMBufferQueueGetMinPresentationTimeStamp(queue: &CMBufferQueue) -> CMTime;
 }
 
 extern "C-unwind" {
@@ -475,7 +475,7 @@ extern "C-unwind" {
     /// timestamp. If the getPresentationTimeStamp callback is NULL,
     /// kCMTimeInvalid will be returned.
     #[cfg(feature = "CMTime")]
-    pub fn CMBufferQueueGetFirstPresentationTimeStamp(queue: &CMBufferQueueRef) -> CMTime;
+    pub fn CMBufferQueueGetFirstPresentationTimeStamp(queue: &CMBufferQueue) -> CMTime;
 }
 
 extern "C-unwind" {
@@ -484,7 +484,7 @@ extern "C-unwind" {
     /// If the getPresentationTimeStamp callback is NULL, kCMTimeInvalid will
     /// be returned.
     #[cfg(feature = "CMTime")]
-    pub fn CMBufferQueueGetMaxPresentationTimeStamp(queue: &CMBufferQueueRef) -> CMTime;
+    pub fn CMBufferQueueGetMaxPresentationTimeStamp(queue: &CMBufferQueue) -> CMTime;
 }
 
 extern "C-unwind" {
@@ -494,7 +494,7 @@ extern "C-unwind" {
     /// If the getPresentationTimeStamp callback is NULL, kCMTimeInvalid will
     /// be returned.
     #[cfg(feature = "CMTime")]
-    pub fn CMBufferQueueGetEndPresentationTimeStamp(queue: &CMBufferQueueRef) -> CMTime;
+    pub fn CMBufferQueueGetEndPresentationTimeStamp(queue: &CMBufferQueue) -> CMTime;
 }
 
 extern "C-unwind" {
@@ -504,7 +504,7 @@ extern "C-unwind" {
     /// buffer sizes, as reported by the getTotalSize callback (provided to
     /// CMBufferQueueCreate).  If there are no buffers in the queue,
     /// 0 will be returned.
-    pub fn CMBufferQueueGetTotalSize(queue: &CMBufferQueueRef) -> usize;
+    pub fn CMBufferQueueGetTotalSize(queue: &CMBufferQueue) -> usize;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/opaquecmbufferqueuetriggertoken?language=objc)
@@ -604,7 +604,7 @@ extern "C-unwind" {
     /// the trigger token to *triggerTokenOut.
     #[cfg(feature = "CMTime")]
     pub fn CMBufferQueueInstallTrigger(
-        queue: &CMBufferQueueRef,
+        queue: &CMBufferQueue,
         callback: CMBufferQueueTriggerCallback,
         refcon: *mut c_void,
         condition: CMBufferQueueTriggerCondition,
@@ -620,7 +620,7 @@ extern "C-unwind" {
     /// the integer value rather than the time value.
     #[cfg(feature = "CMBase")]
     pub fn CMBufferQueueInstallTriggerWithIntegerThreshold(
-        queue: &CMBufferQueueRef,
+        queue: &CMBufferQueue,
         callback: CMBufferQueueTriggerCallback,
         refcon: *mut c_void,
         condition: CMBufferQueueTriggerCondition,
@@ -641,7 +641,7 @@ extern "C-unwind" {
     /// the trigger token to *triggerTokenOut.
     #[cfg(all(feature = "CMTime", feature = "block2"))]
     pub fn CMBufferQueueInstallTriggerHandler(
-        queue: &CMBufferQueueRef,
+        queue: &CMBufferQueue,
         condition: CMBufferQueueTriggerCondition,
         time: CMTime,
         trigger_token_out: *mut CMBufferQueueTriggerToken,
@@ -656,7 +656,7 @@ extern "C-unwind" {
     /// the integer value rather than the time value.
     #[cfg(all(feature = "CMBase", feature = "block2"))]
     pub fn CMBufferQueueInstallTriggerHandlerWithIntegerThreshold(
-        queue: &CMBufferQueueRef,
+        queue: &CMBufferQueue,
         condition: CMBufferQueueTriggerCondition,
         threshold: CMItemCount,
         trigger_token_out: *mut CMBufferQueueTriggerToken,
@@ -672,7 +672,7 @@ extern "C-unwind" {
     /// when the queue is finalized since other modules may retain it.  To address this concern,
     /// modules should remove their triggers before they themselves are finalized.
     pub fn CMBufferQueueRemoveTrigger(
-        queue: &CMBufferQueueRef,
+        queue: &CMBufferQueue,
         trigger_token: CMBufferQueueTriggerToken,
     ) -> OSStatus;
 }
@@ -684,7 +684,7 @@ extern "C-unwind" {
     /// to true, CMBufferQueueTestTrigger always returns the condition's current status.
     /// The triggerToken must be one that has been installed on this queue.
     pub fn CMBufferQueueTestTrigger(
-        queue: &CMBufferQueueRef,
+        queue: &CMBufferQueue,
         trigger_token: CMBufferQueueTriggerToken,
     ) -> Boolean;
 }
@@ -695,7 +695,7 @@ extern "C-unwind" {
     /// If the callback function returns an error, iteration will stop immediately
     /// and the error will be returned.
     pub fn CMBufferQueueCallForEachBuffer(
-        queue: &CMBufferQueueRef,
+        queue: &CMBufferQueue,
         callback: unsafe extern "C-unwind" fn(CMBufferRef, *mut c_void) -> OSStatus,
         refcon: *mut c_void,
     ) -> OSStatus;
@@ -711,7 +711,7 @@ extern "C-unwind" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffervalidationcallback?language=objc)
 pub type CMBufferValidationCallback = Option<
-    unsafe extern "C-unwind" fn(NonNull<CMBufferQueueRef>, CMBufferRef, *mut c_void) -> OSStatus,
+    unsafe extern "C-unwind" fn(NonNull<CMBufferQueue>, CMBufferRef, *mut c_void) -> OSStatus,
 >;
 
 /// Tests whether a buffer is OK to add to a queue.
@@ -725,12 +725,12 @@ pub type CMBufferValidationCallback = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffervalidationhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMBufferValidationHandler =
-    *mut block2::Block<dyn Fn(NonNull<CMBufferQueueRef>, CMBufferRef) -> OSStatus>;
+    *mut block2::Block<dyn Fn(NonNull<CMBufferQueue>, CMBufferRef) -> OSStatus>;
 
 extern "C-unwind" {
     /// Sets a function that CMBufferQueueEnqueue will call to validate buffers before adding them to the queue.
     pub fn CMBufferQueueSetValidationCallback(
-        queue: &CMBufferQueueRef,
+        queue: &CMBufferQueue,
         callback: CMBufferValidationCallback,
         refcon: *mut c_void,
     ) -> OSStatus;
@@ -744,7 +744,7 @@ extern "C-unwind" {
     /// buffers. They both need to return noErr for the buffer to be enqueued.
     #[cfg(feature = "block2")]
     pub fn CMBufferQueueSetValidationHandler(
-        queue: &CMBufferQueueRef,
+        queue: &CMBufferQueue,
         handler: CMBufferValidationHandler,
     ) -> OSStatus;
 }

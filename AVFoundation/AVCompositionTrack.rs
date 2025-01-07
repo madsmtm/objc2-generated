@@ -345,12 +345,12 @@ extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// The original format description.
         #[method_id(@__retain_semantics Other originalFormatDescription)]
-        pub unsafe fn originalFormatDescription(&self) -> Retained<CMFormatDescriptionRef>;
+        pub unsafe fn originalFormatDescription(&self) -> Retained<CMFormatDescription>;
 
         #[cfg(feature = "objc2-core-media")]
         /// The replacement format description.
         #[method_id(@__retain_semantics Other replacementFormatDescription)]
-        pub unsafe fn replacementFormatDescription(&self) -> Retained<CMFormatDescriptionRef>;
+        pub unsafe fn replacementFormatDescription(&self) -> Retained<CMFormatDescription>;
     }
 );
 
@@ -381,8 +381,8 @@ extern_methods!(
         #[method(replaceFormatDescription:withFormatDescription:)]
         pub unsafe fn replaceFormatDescription_withFormatDescription(
             &self,
-            original_format_description: &CMFormatDescriptionRef,
-            replacement_format_description: Option<&CMFormatDescriptionRef>,
+            original_format_description: &CMFormatDescription,
+            replacement_format_description: Option<&CMFormatDescription>,
         );
     }
 );

@@ -407,7 +407,7 @@ pub type AudioQueueProcessingTapRef = *mut OpaqueAudioQueueProcessingTap;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioQueueChannelAssignment {
-    pub mDeviceUID: NonNull<CFStringRef>,
+    pub mDeviceUID: NonNull<CFString>,
     pub mChannelNumber: u32,
 }
 
@@ -415,7 +415,7 @@ pub struct AudioQueueChannelAssignment {
 unsafe impl Encode for AudioQueueChannelAssignment {
     const ENCODING: Encoding = Encoding::Struct(
         "AudioQueueChannelAssignment",
-        &[<NonNull<CFStringRef>>::ENCODING, <u32>::ENCODING],
+        &[<NonNull<CFString>>::ENCODING, <u32>::ENCODING],
     );
 }
 
@@ -691,8 +691,8 @@ extern "C-unwind" {
         in_format: NonNull<AudioStreamBasicDescription>,
         in_callback_proc: AudioQueueOutputCallback,
         in_user_data: *mut c_void,
-        in_callback_run_loop: Option<&CFRunLoopRef>,
-        in_callback_run_loop_mode: Option<&CFStringRef>,
+        in_callback_run_loop: Option<&CFRunLoop>,
+        in_callback_run_loop_mode: Option<&CFString>,
         in_flags: u32,
         out_aq: NonNull<AudioQueueRef>,
     ) -> OSStatus;
@@ -737,8 +737,8 @@ extern "C-unwind" {
         in_format: NonNull<AudioStreamBasicDescription>,
         in_callback_proc: AudioQueueInputCallback,
         in_user_data: *mut c_void,
-        in_callback_run_loop: Option<&CFRunLoopRef>,
-        in_callback_run_loop_mode: Option<&CFStringRef>,
+        in_callback_run_loop: Option<&CFRunLoop>,
+        in_callback_run_loop_mode: Option<&CFString>,
         in_flags: u32,
         out_aq: NonNull<AudioQueueRef>,
     ) -> OSStatus;

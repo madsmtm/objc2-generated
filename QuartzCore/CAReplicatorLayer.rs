@@ -68,12 +68,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other instanceColor)]
-        pub unsafe fn instanceColor(&self) -> Option<Retained<CGColorRef>>;
+        pub unsafe fn instanceColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`instanceColor`][Self::instanceColor].
         #[method(setInstanceColor:)]
-        pub unsafe fn setInstanceColor(&self, instance_color: Option<&CGColorRef>);
+        pub unsafe fn setInstanceColor(&self, instance_color: Option<&CGColor>);
 
         #[method(instanceRedOffset)]
         pub unsafe fn instanceRedOffset(&self) -> c_float;

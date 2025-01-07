@@ -9,28 +9,28 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbit?language=objc)
 pub type CFBit = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvector?language=objc)
 #[repr(C)]
-pub struct CFBitVectorRef {
+pub struct CFBitVector {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFBitVector"]
-    unsafe impl CFBitVectorRef {}
+    unsafe impl CFBitVector {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablebitvectorref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablebitvector?language=objc)
 #[repr(C)]
-pub struct CFMutableBitVectorRef {
+pub struct CFMutableBitVector {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFBitVector"]
-    unsafe impl CFMutableBitVectorRef: CFBitVectorRef {}
+    unsafe impl CFMutableBitVector: CFBitVector {}
 );
 
 extern "C-unwind" {
@@ -41,46 +41,46 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFBitVectorCreate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         bytes: *const u8,
         num_bits: CFIndex,
-    ) -> *mut CFBitVectorRef;
+    ) -> *mut CFBitVector;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFBitVectorCreateCopy(
-        allocator: Option<&CFAllocatorRef>,
-        bv: Option<&CFBitVectorRef>,
-    ) -> *mut CFBitVectorRef;
+        allocator: Option<&CFAllocator>,
+        bv: Option<&CFBitVector>,
+    ) -> *mut CFBitVector;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFBitVectorCreateMutable(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-    ) -> *mut CFMutableBitVectorRef;
+    ) -> *mut CFMutableBitVector;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFBitVectorCreateMutableCopy(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        bv: Option<&CFBitVectorRef>,
-    ) -> *mut CFMutableBitVectorRef;
+        bv: Option<&CFBitVector>,
+    ) -> *mut CFMutableBitVector;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorGetCount(bv: Option<&CFBitVectorRef>) -> CFIndex;
+    pub fn CFBitVectorGetCount(bv: Option<&CFBitVector>) -> CFIndex;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFBitVectorGetCountOfBit(
-        bv: Option<&CFBitVectorRef>,
+        bv: Option<&CFBitVector>,
         range: CFRange,
         value: CFBit,
     ) -> CFIndex;
@@ -89,7 +89,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFBitVectorContainsBit(
-        bv: Option<&CFBitVectorRef>,
+        bv: Option<&CFBitVector>,
         range: CFRange,
         value: CFBit,
     ) -> Boolean;
@@ -97,18 +97,18 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorGetBitAtIndex(bv: Option<&CFBitVectorRef>, idx: CFIndex) -> CFBit;
+    pub fn CFBitVectorGetBitAtIndex(bv: Option<&CFBitVector>, idx: CFIndex) -> CFBit;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorGetBits(bv: Option<&CFBitVectorRef>, range: CFRange, bytes: *mut u8);
+    pub fn CFBitVectorGetBits(bv: Option<&CFBitVector>, range: CFRange, bytes: *mut u8);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFBitVectorGetFirstIndexOfBit(
-        bv: Option<&CFBitVectorRef>,
+        bv: Option<&CFBitVector>,
         range: CFRange,
         value: CFBit,
     ) -> CFIndex;
@@ -117,7 +117,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFBitVectorGetLastIndexOfBit(
-        bv: Option<&CFBitVectorRef>,
+        bv: Option<&CFBitVector>,
         range: CFRange,
         value: CFBit,
     ) -> CFIndex;
@@ -125,29 +125,29 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorSetCount(bv: Option<&CFMutableBitVectorRef>, count: CFIndex);
+    pub fn CFBitVectorSetCount(bv: Option<&CFMutableBitVector>, count: CFIndex);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorFlipBitAtIndex(bv: Option<&CFMutableBitVectorRef>, idx: CFIndex);
+    pub fn CFBitVectorFlipBitAtIndex(bv: Option<&CFMutableBitVector>, idx: CFIndex);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorFlipBits(bv: Option<&CFMutableBitVectorRef>, range: CFRange);
+    pub fn CFBitVectorFlipBits(bv: Option<&CFMutableBitVector>, range: CFRange);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorSetBitAtIndex(bv: Option<&CFMutableBitVectorRef>, idx: CFIndex, value: CFBit);
+    pub fn CFBitVectorSetBitAtIndex(bv: Option<&CFMutableBitVector>, idx: CFIndex, value: CFBit);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorSetBits(bv: Option<&CFMutableBitVectorRef>, range: CFRange, value: CFBit);
+    pub fn CFBitVectorSetBits(bv: Option<&CFMutableBitVector>, range: CFRange, value: CFBit);
 }
 
 extern "C-unwind" {
-    pub fn CFBitVectorSetAllBits(bv: Option<&CFMutableBitVectorRef>, value: CFBit);
+    pub fn CFBitVectorSetAllBits(bv: Option<&CFMutableBitVector>, value: CFBit);
 }

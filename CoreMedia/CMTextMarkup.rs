@@ -14,7 +14,7 @@ extern "C" {
     /// 1.0 for 100% opaque.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupattribute_foregroundcolorargb?language=objc)
-    pub static kCMTextMarkupAttribute_ForegroundColorARGB: &'static CFStringRef;
+    pub static kCMTextMarkupAttribute_ForegroundColorARGB: &'static CFString;
 }
 
 extern "C" {
@@ -33,7 +33,7 @@ extern "C" {
     /// CFRangeMake(0, CFAttributedStringGetLength(...))).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupattribute_backgroundcolorargb?language=objc)
-    pub static kCMTextMarkupAttribute_BackgroundColorARGB: &'static CFStringRef;
+    pub static kCMTextMarkupAttribute_BackgroundColorARGB: &'static CFString;
 }
 
 extern "C" {
@@ -45,7 +45,7 @@ extern "C" {
     /// 1.0 for 100% opaque.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupattribute_characterbackgroundcolorargb?language=objc)
-    pub static kCMTextMarkupAttribute_CharacterBackgroundColorARGB: &'static CFStringRef;
+    pub static kCMTextMarkupAttribute_CharacterBackgroundColorARGB: &'static CFString;
 }
 
 extern "C" {
@@ -58,7 +58,7 @@ extern "C" {
     /// not be used as well.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupattribute_boldstyle?language=objc)
-    pub static kCMTextMarkupAttribute_BoldStyle: &'static CFStringRef;
+    pub static kCMTextMarkupAttribute_BoldStyle: &'static CFString;
 }
 
 extern "C" {
@@ -71,7 +71,7 @@ extern "C" {
     /// be used as well.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupattribute_italicstyle?language=objc)
-    pub static kCMTextMarkupAttribute_ItalicStyle: &'static CFStringRef;
+    pub static kCMTextMarkupAttribute_ItalicStyle: &'static CFString;
 }
 
 extern "C" {
@@ -85,7 +85,7 @@ extern "C" {
     /// be used as well.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupattribute_underlinestyle?language=objc)
-    pub static kCMTextMarkupAttribute_UnderlineStyle: &'static CFStringRef;
+    pub static kCMTextMarkupAttribute_UnderlineStyle: &'static CFString;
 }
 
 extern "C" {
@@ -99,7 +99,7 @@ extern "C" {
     /// kCMTextMarkupAttribute_GenericFontFamilyName associated with each character.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupattribute_fontfamilyname?language=objc)
-    pub static kCMTextMarkupAttribute_FontFamilyName: &'static CFStringRef;
+    pub static kCMTextMarkupAttribute_FontFamilyName: &'static CFString;
 }
 
 extern "C" {
@@ -112,7 +112,7 @@ extern "C" {
     /// For example, the array includes InexistantFont and Times New Roman font names, it is expected the renderer to select the "Times New Roman" font for drawing caption.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupattribute_fontfamilynamelist?language=objc)
-    pub static kCMTextMarkupAttribute_FontFamilyNameList: &'static CFStringRef;
+    pub static kCMTextMarkupAttribute_FontFamilyNameList: &'static CFString;
 }
 
 extern "C" {
@@ -158,7 +158,7 @@ extern "C" {
     /// Concrete fonts are specified using the kCMTextMarkupAttribute_FontFamilyName attribute also defined in this header.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupattribute_genericfontfamilyname?language=objc)
-    pub static kCMTextMarkupAttribute_GenericFontFamilyName: &'static CFStringRef;
+    pub static kCMTextMarkupAttribute_GenericFontFamilyName: &'static CFString;
 }
 
 extern "C" {
@@ -202,62 +202,62 @@ extern "C" {
     /// The generic font name indicating a font with lowercase letters set as small capitals. E.g., Engravers Gothic
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupgenericfontname_default?language=objc)
-    pub static kCMTextMarkupGenericFontName_Default: &'static CFStringRef;
+    pub static kCMTextMarkupGenericFontName_Default: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupgenericfontname_serif?language=objc)
-    pub static kCMTextMarkupGenericFontName_Serif: &'static CFStringRef;
+    pub static kCMTextMarkupGenericFontName_Serif: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupgenericfontname_sansserif?language=objc)
-    pub static kCMTextMarkupGenericFontName_SansSerif: &'static CFStringRef;
+    pub static kCMTextMarkupGenericFontName_SansSerif: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupgenericfontname_monospace?language=objc)
-    pub static kCMTextMarkupGenericFontName_Monospace: &'static CFStringRef;
+    pub static kCMTextMarkupGenericFontName_Monospace: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupgenericfontname_proportionalserif?language=objc)
-    pub static kCMTextMarkupGenericFontName_ProportionalSerif: &'static CFStringRef;
+    pub static kCMTextMarkupGenericFontName_ProportionalSerif: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupgenericfontname_proportionalsansserif?language=objc)
-    pub static kCMTextMarkupGenericFontName_ProportionalSansSerif: &'static CFStringRef;
+    pub static kCMTextMarkupGenericFontName_ProportionalSansSerif: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupgenericfontname_monospaceserif?language=objc)
-    pub static kCMTextMarkupGenericFontName_MonospaceSerif: &'static CFStringRef;
+    pub static kCMTextMarkupGenericFontName_MonospaceSerif: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupgenericfontname_monospacesansserif?language=objc)
-    pub static kCMTextMarkupGenericFontName_MonospaceSansSerif: &'static CFStringRef;
+    pub static kCMTextMarkupGenericFontName_MonospaceSansSerif: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupgenericfontname_casual?language=objc)
-    pub static kCMTextMarkupGenericFontName_Casual: &'static CFStringRef;
+    pub static kCMTextMarkupGenericFontName_Casual: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupgenericfontname_cursive?language=objc)
-    pub static kCMTextMarkupGenericFontName_Cursive: &'static CFStringRef;
+    pub static kCMTextMarkupGenericFontName_Cursive: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupgenericfontname_fantasy?language=objc)
-    pub static kCMTextMarkupGenericFontName_Fantasy: &'static CFStringRef;
+    pub static kCMTextMarkupGenericFontName_Fantasy: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupgenericfontname_smallcapital?language=objc)
-    pub static kCMTextMarkupGenericFontName_SmallCapital: &'static CFStringRef;
+    pub static kCMTextMarkupGenericFontName_SmallCapital: &'static CFString;
 }
 
 extern "C" {
@@ -268,7 +268,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupattribute_basefontsizepercentagerelativetovideoheight?language=objc)
     pub static kCMTextMarkupAttribute_BaseFontSizePercentageRelativeToVideoHeight:
-        &'static CFStringRef;
+        &'static CFString;
 }
 
 extern "C" {
@@ -282,7 +282,7 @@ extern "C" {
     /// difference and is the default.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupattribute_relativefontsize?language=objc)
-    pub static kCMTextMarkupAttribute_RelativeFontSize: &'static CFStringRef;
+    pub static kCMTextMarkupAttribute_RelativeFontSize: &'static CFString;
 }
 
 extern "C" {
@@ -299,7 +299,7 @@ extern "C" {
     /// CFRangeMake(0, CFAttributedStringGetLength(...))).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupattribute_verticallayout?language=objc)
-    pub static kCMTextMarkupAttribute_VerticalLayout: &'static CFStringRef;
+    pub static kCMTextMarkupAttribute_VerticalLayout: &'static CFString;
 }
 
 extern "C" {
@@ -312,12 +312,12 @@ extern "C" {
     /// Newly added vertical lines are added from the right toward the left.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextverticallayout_lefttoright?language=objc)
-    pub static kCMTextVerticalLayout_LeftToRight: &'static CFStringRef;
+    pub static kCMTextVerticalLayout_LeftToRight: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextverticallayout_righttoleft?language=objc)
-    pub static kCMTextVerticalLayout_RightToLeft: &'static CFStringRef;
+    pub static kCMTextVerticalLayout_RightToLeft: &'static CFString;
 }
 
 extern "C" {
@@ -337,7 +337,7 @@ extern "C" {
     /// CFRangeMake(0, CFAttributedStringGetLength(...))).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupattribute_alignment?language=objc)
-    pub static kCMTextMarkupAttribute_Alignment: &'static CFStringRef;
+    pub static kCMTextMarkupAttribute_Alignment: &'static CFString;
 }
 
 extern "C" {
@@ -369,27 +369,27 @@ extern "C" {
     /// for vertical text.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupalignmenttype_start?language=objc)
-    pub static kCMTextMarkupAlignmentType_Start: &'static CFStringRef;
+    pub static kCMTextMarkupAlignmentType_Start: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupalignmenttype_middle?language=objc)
-    pub static kCMTextMarkupAlignmentType_Middle: &'static CFStringRef;
+    pub static kCMTextMarkupAlignmentType_Middle: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupalignmenttype_end?language=objc)
-    pub static kCMTextMarkupAlignmentType_End: &'static CFStringRef;
+    pub static kCMTextMarkupAlignmentType_End: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupalignmenttype_left?language=objc)
-    pub static kCMTextMarkupAlignmentType_Left: &'static CFStringRef;
+    pub static kCMTextMarkupAlignmentType_Left: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupalignmenttype_right?language=objc)
-    pub static kCMTextMarkupAlignmentType_Right: &'static CFStringRef;
+    pub static kCMTextMarkupAlignmentType_Right: &'static CFString;
 }
 
 extern "C" {
@@ -409,7 +409,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupattribute_textpositionpercentagerelativetowritingdirection?language=objc)
     pub static kCMTextMarkupAttribute_TextPositionPercentageRelativeToWritingDirection:
-        &'static CFStringRef;
+        &'static CFString;
 }
 
 extern "C" {
@@ -432,7 +432,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupattribute_orthogonallinepositionpercentagerelativetowritingdirection?language=objc)
     pub static kCMTextMarkupAttribute_OrthogonalLinePositionPercentageRelativeToWritingDirection:
-        &'static CFStringRef;
+        &'static CFString;
 }
 
 extern "C" {
@@ -450,7 +450,7 @@ extern "C" {
     /// CFRangeMake(0, CFAttributedStringGetLength(...))).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupattribute_writingdirectionsizepercentage?language=objc)
-    pub static kCMTextMarkupAttribute_WritingDirectionSizePercentage: &'static CFStringRef;
+    pub static kCMTextMarkupAttribute_WritingDirectionSizePercentage: &'static CFString;
 }
 
 extern "C" {
@@ -470,7 +470,7 @@ extern "C" {
     /// is specified.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupattribute_characteredgestyle?language=objc)
-    pub static kCMTextMarkupAttribute_CharacterEdgeStyle: &'static CFStringRef;
+    pub static kCMTextMarkupAttribute_CharacterEdgeStyle: &'static CFString;
 }
 
 extern "C" {
@@ -492,25 +492,25 @@ extern "C" {
     /// The character edge style indicating a drop shadow should be drawn.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupcharacteredgestyle_none?language=objc)
-    pub static kCMTextMarkupCharacterEdgeStyle_None: &'static CFStringRef;
+    pub static kCMTextMarkupCharacterEdgeStyle_None: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupcharacteredgestyle_raised?language=objc)
-    pub static kCMTextMarkupCharacterEdgeStyle_Raised: &'static CFStringRef;
+    pub static kCMTextMarkupCharacterEdgeStyle_Raised: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupcharacteredgestyle_depressed?language=objc)
-    pub static kCMTextMarkupCharacterEdgeStyle_Depressed: &'static CFStringRef;
+    pub static kCMTextMarkupCharacterEdgeStyle_Depressed: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupcharacteredgestyle_uniform?language=objc)
-    pub static kCMTextMarkupCharacterEdgeStyle_Uniform: &'static CFStringRef;
+    pub static kCMTextMarkupCharacterEdgeStyle_Uniform: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtextmarkupcharacteredgestyle_dropshadow?language=objc)
-    pub static kCMTextMarkupCharacterEdgeStyle_DropShadow: &'static CFStringRef;
+    pub static kCMTextMarkupCharacterEdgeStyle_DropShadow: &'static CFString;
 }

@@ -15,19 +15,19 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvmetalbuffercachemaximumbufferagekey?language=objc)
-    pub static kCVMetalBufferCacheMaximumBufferAgeKey: &'static CFStringRef;
+    pub static kCVMetalBufferCacheMaximumBufferAgeKey: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffercacheref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetalbuffercache?language=objc)
 #[repr(C)]
-pub struct CVMetalBufferCacheRef {
+pub struct CVMetalBufferCache {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CVMetalBufferCache"]
-    unsafe impl CVMetalBufferCacheRef {}
+    unsafe impl CVMetalBufferCache {}
 );
 
 extern "C-unwind" {
@@ -49,10 +49,10 @@ extern "C-unwind" {
     #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
     #[cfg(not(target_os = "watchos"))]
     pub fn CVMetalBufferCacheCreate(
-        allocator: Option<&CFAllocatorRef>,
-        cache_attributes: Option<&CFDictionaryRef>,
+        allocator: Option<&CFAllocator>,
+        cache_attributes: Option<&CFDictionary>,
         metal_device: &ProtocolObject<dyn MTLDevice>,
-        cache_out: NonNull<CVMetalBufferCacheRef>,
+        cache_out: NonNull<CVMetalBufferCache>,
     ) -> CVReturn;
 }
 
@@ -81,10 +81,10 @@ extern "C-unwind" {
         feature = "CVReturn"
     ))]
     pub fn CVMetalBufferCacheCreateBufferFromImage(
-        allocator: Option<&CFAllocatorRef>,
-        buffer_cache: &CVMetalBufferCacheRef,
-        image_buffer: &CVImageBufferRef,
-        buffer_out: NonNull<CVMetalBufferRef>,
+        allocator: Option<&CFAllocator>,
+        buffer_cache: &CVMetalBufferCache,
+        image_buffer: &CVImageBuffer,
+        buffer_out: NonNull<CVMetalBuffer>,
     ) -> CVReturn;
 }
 
@@ -97,5 +97,5 @@ extern "C-unwind" {
     ///
     /// Parameter `options`: Currently unused, set to 0.
     #[cfg(feature = "CVBase")]
-    pub fn CVMetalBufferCacheFlush(buffer_cache: &CVMetalBufferCacheRef, options: CVOptionFlags);
+    pub fn CVMetalBufferCacheFlush(buffer_cache: &CVMetalBufferCache, options: CVOptionFlags);
 }

@@ -20,7 +20,7 @@ extern_methods!(
             width: usize,
             height: usize,
             f: CIFormat,
-            cs: Option<&CGColorSpaceRef>,
+            cs: Option<&CGColorSpace>,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<CIImage>;
 
@@ -32,7 +32,7 @@ extern_methods!(
             width: usize,
             height: usize,
             f: CIFormat,
-            cs: Option<&CGColorSpaceRef>,
+            cs: Option<&CGColorSpace>,
             options: Option<&NSDictionary<CIImageOption, AnyObject>>,
         ) -> Retained<Self>;
     }

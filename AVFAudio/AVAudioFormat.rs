@@ -192,7 +192,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCMAudioFormatDescription:)]
         pub unsafe fn initWithCMAudioFormatDescription(
             this: Allocated<Self>,
-            format_description: &CMAudioFormatDescriptionRef,
+            format_description: &CMAudioFormatDescription,
         ) -> Retained<Self>;
 
         /// Determine whether another format is functionally equivalent.
@@ -261,7 +261,7 @@ extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Converts to a CMAudioFormatDescriptionRef, for use with Core Media API's.
         #[method_id(@__retain_semantics Other formatDescription)]
-        pub unsafe fn formatDescription(&self) -> Retained<CMAudioFormatDescriptionRef>;
+        pub unsafe fn formatDescription(&self) -> Retained<CMAudioFormatDescription>;
     }
 );
 

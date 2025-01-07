@@ -10,16 +10,16 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframesetterref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframesetter?language=objc)
 #[repr(C)]
-pub struct CTFramesetterRef {
+pub struct CTFramesetter {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CTFramesetter"]
-    unsafe impl CTFramesetterRef {}
+    unsafe impl CTFramesetter {}
 );
 
 extern "C-unwind" {
@@ -45,9 +45,7 @@ extern "C-unwind" {
     ///
     /// See also: CTTypesetterCreateWithAttributedStringAndOptions
     #[cfg(feature = "CTTypesetter")]
-    pub fn CTFramesetterCreateWithTypesetter(
-        typesetter: &CTTypesetterRef,
-    ) -> NonNull<CTFramesetterRef>;
+    pub fn CTFramesetterCreateWithTypesetter(typesetter: &CTTypesetter) -> NonNull<CTFramesetter>;
 }
 
 extern "C-unwind" {
@@ -64,8 +62,8 @@ extern "C-unwind" {
     ///
     /// Returns: This function will return a reference to a CTFramesetter object.
     pub fn CTFramesetterCreateWithAttributedString(
-        attr_string: &CFAttributedStringRef,
-    ) -> NonNull<CTFramesetterRef>;
+        attr_string: &CFAttributedString,
+    ) -> NonNull<CTFramesetter>;
 }
 
 extern "C-unwind" {
@@ -100,11 +98,11 @@ extern "C-unwind" {
     /// Returns: This function will return a reference to a new CTFrame object.
     #[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
     pub fn CTFramesetterCreateFrame(
-        framesetter: &CTFramesetterRef,
+        framesetter: &CTFramesetter,
         string_range: CFRange,
-        path: &CGPathRef,
-        frame_attributes: Option<&CFDictionaryRef>,
-    ) -> NonNull<CTFrameRef>;
+        path: &CGPath,
+        frame_attributes: Option<&CFDictionary>,
+    ) -> NonNull<CTFrame>;
 }
 
 extern "C-unwind" {
@@ -124,7 +122,7 @@ extern "C-unwind" {
     /// Returns: This function will return a reference to a CTTypesetter
     /// object, which should not be released by the caller.
     #[cfg(feature = "CTTypesetter")]
-    pub fn CTFramesetterGetTypesetter(framesetter: &CTFramesetterRef) -> NonNull<CTTypesetterRef>;
+    pub fn CTFramesetterGetTypesetter(framesetter: &CTFramesetter) -> NonNull<CTTypesetter>;
 }
 
 extern "C-unwind" {
@@ -160,9 +158,9 @@ extern "C-unwind" {
     ///
     /// Returns: The actual dimensions for the given string range and constraints.
     pub fn CTFramesetterSuggestFrameSizeWithConstraints(
-        framesetter: &CTFramesetterRef,
+        framesetter: &CTFramesetter,
         string_range: CFRange,
-        frame_attributes: Option<&CFDictionaryRef>,
+        frame_attributes: Option<&CFDictionary>,
         constraints: CGSize,
         fit_range: *mut CFRange,
     ) -> CGSize;

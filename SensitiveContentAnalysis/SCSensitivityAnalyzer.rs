@@ -88,7 +88,7 @@ extern_methods!(
         #[method(analyzeCGImage:completionHandler:)]
         pub unsafe fn analyzeCGImage_completionHandler(
             &self,
-            image: &CGImageRef,
+            image: &CGImage,
             completion_handler: &block2::Block<dyn Fn(*mut SCSensitivityAnalysis, *mut NSError)>,
         );
 

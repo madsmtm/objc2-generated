@@ -86,12 +86,12 @@ extern_methods!(
         ///
         /// Note that prior to OSX 10.10 and iOS 8.0, the control timebase could not be changed after enqueueSampleBuffer: was called.  As of OSX 10.10 and iOS 8.0, the control timebase may be changed at any time.
         #[method_id(@__retain_semantics Other controlTimebase)]
-        pub unsafe fn controlTimebase(&self) -> Option<Retained<CMTimebaseRef>>;
+        pub unsafe fn controlTimebase(&self) -> Option<Retained<CMTimebase>>;
 
         #[cfg(feature = "objc2-core-media")]
         /// Setter for [`controlTimebase`][Self::controlTimebase].
         #[method(setControlTimebase:)]
-        pub unsafe fn setControlTimebase(&self, control_timebase: Option<&CMTimebaseRef>);
+        pub unsafe fn setControlTimebase(&self, control_timebase: Option<&CMTimebase>);
 
         #[cfg(feature = "AVAnimation")]
         /// A string defining how the video is displayed within an AVSampleBufferDisplayLayer bounds rect.
@@ -160,7 +160,7 @@ extern_methods!(
         /// The timebase is read-only.  Use the AVSampleBufferRenderSynchronizer to set the rate or time.
         #[deprecated = "Use sampleBufferRenderer's timebase instead"]
         #[method_id(@__retain_semantics Other timebase)]
-        pub unsafe fn timebase(&self) -> Retained<CMTimebaseRef>;
+        pub unsafe fn timebase(&self) -> Retained<CMTimebase>;
 
         #[cfg(feature = "AVQueuedSampleBufferRendering")]
         /// The ability of the display layer to be used for enqueuing sample buffers.
@@ -207,7 +207,7 @@ extern_methods!(
         /// The combination of either a non-NULL controlTimebase or an AVSampleBufferRenderSynchronizer with the use of kCMSampleAttachmentKey_DisplayImmediately as an attachment to the CMSampleBuffers that are enqueued for display is not recommended.
         #[deprecated = "Use sampleBufferRenderer's enqueueSampleBuffer: instead"]
         #[method(enqueueSampleBuffer:)]
-        pub unsafe fn enqueueSampleBuffer(&self, sample_buffer: &CMSampleBufferRef);
+        pub unsafe fn enqueueSampleBuffer(&self, sample_buffer: &CMSampleBuffer);
 
         /// Instructs the layer to discard pending enqueued sample buffers.
         ///

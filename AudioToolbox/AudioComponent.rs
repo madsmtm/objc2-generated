@@ -305,7 +305,7 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentCopyName(
         in_component: AudioComponent,
-        out_name: NonNull<CFStringRef>,
+        out_name: NonNull<CFString>,
     ) -> OSStatus;
 }
 
@@ -455,7 +455,7 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentRegister(
         in_desc: NonNull<AudioComponentDescription>,
-        in_name: &CFStringRef,
+        in_name: &CFString,
         in_version: u32,
         in_factory: AudioComponentFactoryFunction,
     ) -> AudioComponent;
@@ -477,7 +477,7 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentCopyConfigurationInfo(
         in_component: AudioComponent,
-        out_configuration_info: NonNull<CFDictionaryRef>,
+        out_configuration_info: NonNull<CFDictionary>,
     ) -> OSStatus;
 }
 
@@ -525,7 +525,7 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentValidate(
         in_component: AudioComponent,
-        in_validation_parameters: Option<&CFDictionaryRef>,
+        in_validation_parameters: Option<&CFDictionary>,
         out_validation_result: NonNull<AudioComponentValidationResult>,
     ) -> OSStatus;
 }
@@ -569,9 +569,9 @@ extern "C-unwind" {
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn AudioComponentValidateWithResults(
         in_component: AudioComponent,
-        in_validation_parameters: Option<&CFDictionaryRef>,
+        in_validation_parameters: Option<&CFDictionary>,
         in_completion_handler: &block2::Block<
-            dyn Fn(AudioComponentValidationResult, NonNull<CFDictionaryRef>),
+            dyn Fn(AudioComponentValidationResult, NonNull<CFDictionary>),
         >,
     ) -> OSStatus;
 }

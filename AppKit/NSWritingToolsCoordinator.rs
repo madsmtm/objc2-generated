@@ -1326,7 +1326,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithSnapshotImage:presentationFrame:candidateRects:)]
         pub unsafe fn initWithSnapshotImage_presentationFrame_candidateRects(
             this: Allocated<Self>,
-            snapshot_image: &CGImageRef,
+            snapshot_image: &CGImage,
             presentation_frame: NSRect,
             candidate_rects: &NSArray<NSValue>,
         ) -> Retained<Self>;
@@ -1346,7 +1346,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithSnapshotImage:presentationFrame:)]
         pub unsafe fn initWithSnapshotImage_presentationFrame(
             this: Allocated<Self>,
-            snapshot_image: &CGImageRef,
+            snapshot_image: &CGImage,
             presentation_frame: NSRect,
         ) -> Retained<Self>;
 
@@ -1361,7 +1361,7 @@ extern_methods!(
         /// implement any visual effects involving your view’s text. Create the image
         /// with your text on a transparent background.
         #[method_id(@__retain_semantics Other previewImage)]
-        pub unsafe fn previewImage(&self) -> Retained<CGImageRef>;
+        pub unsafe fn previewImage(&self) -> Retained<CGImage>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The frame rectangle that places the preview image directly over the

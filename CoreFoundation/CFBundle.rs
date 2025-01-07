@@ -6,84 +6,84 @@ use core::marker::{PhantomData, PhantomPinned};
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundleref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbundle?language=objc)
 #[repr(C)]
-pub struct CFBundleRef {
+pub struct CFBundle {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFBundle"]
-    unsafe impl CFBundleRef {}
+    unsafe impl CFBundle {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugin?language=objc)
 #[repr(C)]
-pub struct CFPlugInRef {
+pub struct CFPlugIn {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFBundle"]
-    unsafe impl CFPlugInRef {}
+    unsafe impl CFPlugIn {}
 );
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleinfodictionaryversionkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFBundleInfoDictionaryVersionKey: Option<&'static CFStringRef>;
+    pub static kCFBundleInfoDictionaryVersionKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleexecutablekey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFBundleExecutableKey: Option<&'static CFStringRef>;
+    pub static kCFBundleExecutableKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleidentifierkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFBundleIdentifierKey: Option<&'static CFStringRef>;
+    pub static kCFBundleIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleversionkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFBundleVersionKey: Option<&'static CFStringRef>;
+    pub static kCFBundleVersionKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundledevelopmentregionkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFBundleDevelopmentRegionKey: Option<&'static CFStringRef>;
+    pub static kCFBundleDevelopmentRegionKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundlenamekey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFBundleNameKey: Option<&'static CFStringRef>;
+    pub static kCFBundleNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundlelocalizationskey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFBundleLocalizationsKey: Option<&'static CFStringRef>;
+    pub static kCFBundleLocalizationsKey: Option<&'static CFString>;
 }
 
 extern "C-unwind" {
-    pub fn CFBundleGetMainBundle() -> *mut CFBundleRef;
+    pub fn CFBundleGetMainBundle() -> *mut CFBundle;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBundleGetBundleWithIdentifier(bundle_id: Option<&CFStringRef>) -> *mut CFBundleRef;
+    pub fn CFBundleGetBundleWithIdentifier(bundle_id: Option<&CFString>) -> *mut CFBundle;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFArray")]
-    pub fn CFBundleGetAllBundles() -> *mut CFArrayRef;
+    pub fn CFBundleGetAllBundles() -> *mut CFArray;
 }
 
 extern "C-unwind" {
@@ -94,46 +94,46 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFURL"))]
     pub fn CFBundleCreate(
-        allocator: Option<&CFAllocatorRef>,
-        bundle_url: Option<&CFURLRef>,
-    ) -> *mut CFBundleRef;
+        allocator: Option<&CFAllocator>,
+        bundle_url: Option<&CFURL>,
+    ) -> *mut CFBundle;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFArray", feature = "CFBase", feature = "CFURL"))]
     pub fn CFBundleCreateBundlesFromDirectory(
-        allocator: Option<&CFAllocatorRef>,
-        directory_url: Option<&CFURLRef>,
-        bundle_type: Option<&CFStringRef>,
-    ) -> *mut CFArrayRef;
+        allocator: Option<&CFAllocator>,
+        directory_url: Option<&CFURL>,
+        bundle_type: Option<&CFString>,
+    ) -> *mut CFArray;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFURL")]
-    pub fn CFBundleCopyBundleURL(bundle: Option<&CFBundleRef>) -> *mut CFURLRef;
+    pub fn CFBundleCopyBundleURL(bundle: Option<&CFBundle>) -> *mut CFURL;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFBundleGetValueForInfoDictionaryKey(
-        bundle: Option<&CFBundleRef>,
-        key: Option<&CFStringRef>,
+        bundle: Option<&CFBundle>,
+        key: Option<&CFString>,
     ) -> CFTypeRef;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFDictionary")]
-    pub fn CFBundleGetInfoDictionary(bundle: Option<&CFBundleRef>) -> *mut CFDictionaryRef;
+    pub fn CFBundleGetInfoDictionary(bundle: Option<&CFBundle>) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFDictionary")]
-    pub fn CFBundleGetLocalInfoDictionary(bundle: Option<&CFBundleRef>) -> *mut CFDictionaryRef;
+    pub fn CFBundleGetLocalInfoDictionary(bundle: Option<&CFBundle>) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
     pub fn CFBundleGetPackageInfo(
-        bundle: Option<&CFBundleRef>,
+        bundle: Option<&CFBundle>,
         package_type: *mut u32,
         package_creator: *mut u32,
     );
@@ -141,59 +141,57 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBundleGetIdentifier(bundle: Option<&CFBundleRef>) -> *mut CFStringRef;
+    pub fn CFBundleGetIdentifier(bundle: Option<&CFBundle>) -> *mut CFString;
 }
 
 extern "C-unwind" {
-    pub fn CFBundleGetVersionNumber(bundle: Option<&CFBundleRef>) -> u32;
+    pub fn CFBundleGetVersionNumber(bundle: Option<&CFBundle>) -> u32;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBundleGetDevelopmentRegion(bundle: Option<&CFBundleRef>) -> *mut CFStringRef;
+    pub fn CFBundleGetDevelopmentRegion(bundle: Option<&CFBundle>) -> *mut CFString;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFURL")]
-    pub fn CFBundleCopySupportFilesDirectoryURL(bundle: Option<&CFBundleRef>) -> *mut CFURLRef;
+    pub fn CFBundleCopySupportFilesDirectoryURL(bundle: Option<&CFBundle>) -> *mut CFURL;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFURL")]
-    pub fn CFBundleCopyResourcesDirectoryURL(bundle: Option<&CFBundleRef>) -> *mut CFURLRef;
+    pub fn CFBundleCopyResourcesDirectoryURL(bundle: Option<&CFBundle>) -> *mut CFURL;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFURL")]
-    pub fn CFBundleCopyPrivateFrameworksURL(bundle: Option<&CFBundleRef>) -> *mut CFURLRef;
+    pub fn CFBundleCopyPrivateFrameworksURL(bundle: Option<&CFBundle>) -> *mut CFURL;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFURL")]
-    pub fn CFBundleCopySharedFrameworksURL(bundle: Option<&CFBundleRef>) -> *mut CFURLRef;
+    pub fn CFBundleCopySharedFrameworksURL(bundle: Option<&CFBundle>) -> *mut CFURL;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFURL")]
-    pub fn CFBundleCopySharedSupportURL(bundle: Option<&CFBundleRef>) -> *mut CFURLRef;
+    pub fn CFBundleCopySharedSupportURL(bundle: Option<&CFBundle>) -> *mut CFURL;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFURL")]
-    pub fn CFBundleCopyBuiltInPlugInsURL(bundle: Option<&CFBundleRef>) -> *mut CFURLRef;
+    pub fn CFBundleCopyBuiltInPlugInsURL(bundle: Option<&CFBundle>) -> *mut CFURL;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFDictionary", feature = "CFURL"))]
-    pub fn CFBundleCopyInfoDictionaryInDirectory(
-        bundle_url: Option<&CFURLRef>,
-    ) -> *mut CFDictionaryRef;
+    pub fn CFBundleCopyInfoDictionaryInDirectory(bundle_url: Option<&CFURL>) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFURL")]
     pub fn CFBundleGetPackageInfoInDirectory(
-        url: Option<&CFURLRef>,
+        url: Option<&CFURL>,
         package_type: *mut u32,
         package_creator: *mut u32,
     ) -> Boolean;
@@ -202,110 +200,109 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFURL"))]
     pub fn CFBundleCopyResourceURL(
-        bundle: Option<&CFBundleRef>,
-        resource_name: Option<&CFStringRef>,
-        resource_type: Option<&CFStringRef>,
-        sub_dir_name: Option<&CFStringRef>,
-    ) -> *mut CFURLRef;
+        bundle: Option<&CFBundle>,
+        resource_name: Option<&CFString>,
+        resource_type: Option<&CFString>,
+        sub_dir_name: Option<&CFString>,
+    ) -> *mut CFURL;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFArray", feature = "CFBase"))]
     pub fn CFBundleCopyResourceURLsOfType(
-        bundle: Option<&CFBundleRef>,
-        resource_type: Option<&CFStringRef>,
-        sub_dir_name: Option<&CFStringRef>,
-    ) -> *mut CFArrayRef;
+        bundle: Option<&CFBundle>,
+        resource_type: Option<&CFString>,
+        sub_dir_name: Option<&CFString>,
+    ) -> *mut CFArray;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFBundleCopyLocalizedString(
-        bundle: Option<&CFBundleRef>,
-        key: Option<&CFStringRef>,
-        value: Option<&CFStringRef>,
-        table_name: Option<&CFStringRef>,
-    ) -> *mut CFStringRef;
+        bundle: Option<&CFBundle>,
+        key: Option<&CFString>,
+        value: Option<&CFString>,
+        table_name: Option<&CFString>,
+    ) -> *mut CFString;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFURL"))]
     pub fn CFBundleCopyResourceURLInDirectory(
-        bundle_url: Option<&CFURLRef>,
-        resource_name: Option<&CFStringRef>,
-        resource_type: Option<&CFStringRef>,
-        sub_dir_name: Option<&CFStringRef>,
-    ) -> *mut CFURLRef;
+        bundle_url: Option<&CFURL>,
+        resource_name: Option<&CFString>,
+        resource_type: Option<&CFString>,
+        sub_dir_name: Option<&CFString>,
+    ) -> *mut CFURL;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFArray", feature = "CFBase", feature = "CFURL"))]
     pub fn CFBundleCopyResourceURLsOfTypeInDirectory(
-        bundle_url: Option<&CFURLRef>,
-        resource_type: Option<&CFStringRef>,
-        sub_dir_name: Option<&CFStringRef>,
-    ) -> *mut CFArrayRef;
+        bundle_url: Option<&CFURL>,
+        resource_type: Option<&CFString>,
+        sub_dir_name: Option<&CFString>,
+    ) -> *mut CFArray;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFArray")]
-    pub fn CFBundleCopyBundleLocalizations(bundle: Option<&CFBundleRef>) -> *mut CFArrayRef;
+    pub fn CFBundleCopyBundleLocalizations(bundle: Option<&CFBundle>) -> *mut CFArray;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFArray")]
-    pub fn CFBundleCopyPreferredLocalizationsFromArray(
-        loc_array: Option<&CFArrayRef>,
-    ) -> *mut CFArrayRef;
+    pub fn CFBundleCopyPreferredLocalizationsFromArray(loc_array: Option<&CFArray>)
+        -> *mut CFArray;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFArray")]
     pub fn CFBundleCopyLocalizationsForPreferences(
-        loc_array: Option<&CFArrayRef>,
-        pref_array: Option<&CFArrayRef>,
-    ) -> *mut CFArrayRef;
+        loc_array: Option<&CFArray>,
+        pref_array: Option<&CFArray>,
+    ) -> *mut CFArray;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFURL"))]
     pub fn CFBundleCopyResourceURLForLocalization(
-        bundle: Option<&CFBundleRef>,
-        resource_name: Option<&CFStringRef>,
-        resource_type: Option<&CFStringRef>,
-        sub_dir_name: Option<&CFStringRef>,
-        localization_name: Option<&CFStringRef>,
-    ) -> *mut CFURLRef;
+        bundle: Option<&CFBundle>,
+        resource_name: Option<&CFString>,
+        resource_type: Option<&CFString>,
+        sub_dir_name: Option<&CFString>,
+        localization_name: Option<&CFString>,
+    ) -> *mut CFURL;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFArray", feature = "CFBase"))]
     pub fn CFBundleCopyResourceURLsOfTypeForLocalization(
-        bundle: Option<&CFBundleRef>,
-        resource_type: Option<&CFStringRef>,
-        sub_dir_name: Option<&CFStringRef>,
-        localization_name: Option<&CFStringRef>,
-    ) -> *mut CFArrayRef;
+        bundle: Option<&CFBundle>,
+        resource_type: Option<&CFString>,
+        sub_dir_name: Option<&CFString>,
+        localization_name: Option<&CFString>,
+    ) -> *mut CFArray;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFDictionary", feature = "CFURL"))]
-    pub fn CFBundleCopyInfoDictionaryForURL(url: Option<&CFURLRef>) -> *mut CFDictionaryRef;
+    pub fn CFBundleCopyInfoDictionaryForURL(url: Option<&CFURL>) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFArray", feature = "CFURL"))]
-    pub fn CFBundleCopyLocalizationsForURL(url: Option<&CFURLRef>) -> *mut CFArrayRef;
+    pub fn CFBundleCopyLocalizationsForURL(url: Option<&CFURL>) -> *mut CFArray;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFArray", feature = "CFURL"))]
-    pub fn CFBundleCopyExecutableArchitecturesForURL(url: Option<&CFURLRef>) -> *mut CFArrayRef;
+    pub fn CFBundleCopyExecutableArchitecturesForURL(url: Option<&CFURL>) -> *mut CFArray;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFURL")]
-    pub fn CFBundleCopyExecutableURL(bundle: Option<&CFBundleRef>) -> *mut CFURLRef;
+    pub fn CFBundleCopyExecutableURL(bundle: Option<&CFBundle>) -> *mut CFURL;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbundleexecutablearchitecturei386?language=objc)
@@ -321,50 +318,47 @@ pub const kCFBundleExecutableArchitectureARM64: c_uint = 0x0100000c;
 
 extern "C-unwind" {
     #[cfg(feature = "CFArray")]
-    pub fn CFBundleCopyExecutableArchitectures(bundle: Option<&CFBundleRef>) -> *mut CFArrayRef;
+    pub fn CFBundleCopyExecutableArchitectures(bundle: Option<&CFBundle>) -> *mut CFArray;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFError")]
-    pub fn CFBundlePreflightExecutable(
-        bundle: Option<&CFBundleRef>,
-        error: *mut CFErrorRef,
-    ) -> Boolean;
+    pub fn CFBundlePreflightExecutable(bundle: Option<&CFBundle>, error: *mut CFError) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFError")]
     pub fn CFBundleLoadExecutableAndReturnError(
-        bundle: Option<&CFBundleRef>,
-        error: *mut CFErrorRef,
+        bundle: Option<&CFBundle>,
+        error: *mut CFError,
     ) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFBundleLoadExecutable(bundle: Option<&CFBundleRef>) -> Boolean;
+    pub fn CFBundleLoadExecutable(bundle: Option<&CFBundle>) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFBundleIsExecutableLoaded(bundle: Option<&CFBundleRef>) -> Boolean;
+    pub fn CFBundleIsExecutableLoaded(bundle: Option<&CFBundle>) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFBundleUnloadExecutable(bundle: Option<&CFBundleRef>);
+    pub fn CFBundleUnloadExecutable(bundle: Option<&CFBundle>);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFBundleGetFunctionPointerForName(
-        bundle: Option<&CFBundleRef>,
-        function_name: Option<&CFStringRef>,
+        bundle: Option<&CFBundle>,
+        function_name: Option<&CFString>,
     ) -> *mut c_void;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFArray")]
     pub fn CFBundleGetFunctionPointersForNames(
-        bundle: Option<&CFBundleRef>,
-        function_names: Option<&CFArrayRef>,
+        bundle: Option<&CFBundle>,
+        function_names: Option<&CFArray>,
         ftbl: *mut *mut c_void,
     );
 }
@@ -372,16 +366,16 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFBundleGetDataPointerForName(
-        bundle: Option<&CFBundleRef>,
-        symbol_name: Option<&CFStringRef>,
+        bundle: Option<&CFBundle>,
+        symbol_name: Option<&CFString>,
     ) -> *mut c_void;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFArray")]
     pub fn CFBundleGetDataPointersForNames(
-        bundle: Option<&CFBundleRef>,
-        symbol_names: Option<&CFArrayRef>,
+        bundle: Option<&CFBundle>,
+        symbol_names: Option<&CFArray>,
         stbl: *mut *mut c_void,
     );
 }
@@ -389,18 +383,18 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFURL"))]
     pub fn CFBundleCopyAuxiliaryExecutableURL(
-        bundle: Option<&CFBundleRef>,
-        executable_name: Option<&CFStringRef>,
-    ) -> *mut CFURLRef;
+        bundle: Option<&CFBundle>,
+        executable_name: Option<&CFString>,
+    ) -> *mut CFURL;
 }
 
 extern "C-unwind" {
-    pub fn CFBundleIsExecutableLoadable(bundle: Option<&CFBundleRef>) -> Boolean;
+    pub fn CFBundleIsExecutableLoadable(bundle: Option<&CFBundle>) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFURL")]
-    pub fn CFBundleIsExecutableLoadableForURL(url: Option<&CFURLRef>) -> Boolean;
+    pub fn CFBundleIsExecutableLoadableForURL(url: Option<&CFURL>) -> Boolean;
 }
 
 extern "C-unwind" {
@@ -409,18 +403,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CFBundleGetPlugIn(bundle: Option<&CFBundleRef>) -> *mut CFPlugInRef;
+    pub fn CFBundleGetPlugIn(bundle: Option<&CFBundle>) -> *mut CFPlugIn;
 }
 
 extern "C-unwind" {
     #[deprecated = "The Carbon Resource Manager is deprecated. This should only be used to access Resource Manager-style resources in old bundles."]
-    pub fn CFBundleOpenBundleResourceMap(bundle: Option<&CFBundleRef>) -> CFBundleRefNum;
+    pub fn CFBundleOpenBundleResourceMap(bundle: Option<&CFBundle>) -> CFBundleRefNum;
 }
 
 extern "C-unwind" {
     #[deprecated = "The Carbon Resource Manager is deprecated. This should only be used to access Resource Manager-style resources in old bundles."]
     pub fn CFBundleOpenBundleResourceFiles(
-        bundle: Option<&CFBundleRef>,
+        bundle: Option<&CFBundle>,
         ref_num: *mut CFBundleRefNum,
         localized_ref_num: *mut CFBundleRefNum,
     ) -> i32;
@@ -428,5 +422,5 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "The Carbon Resource Manager is deprecated. This should only be used to access Resource Manager-style resources in old bundles."]
-    pub fn CFBundleCloseBundleResourceMap(bundle: Option<&CFBundleRef>, ref_num: CFBundleRefNum);
+    pub fn CFBundleCloseBundleResourceMap(bundle: Option<&CFBundle>, ref_num: CFBundleRefNum);
 }

@@ -19,16 +19,16 @@ pub const kCMSimpleQueueError_QueueIsFull: OSStatus = -12773;
 
 /// A reference to a CMSimpleQueue, a CF object that implements a simple lockless queue of (void *) elements.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsimplequeueref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsimplequeue?language=objc)
 #[repr(C)]
-pub struct CMSimpleQueueRef {
+pub struct CMSimpleQueue {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "opaqueCMSimpleQueue"]
-    unsafe impl CMSimpleQueueRef {}
+    unsafe impl CMSimpleQueue {}
 );
 
 extern "C-unwind" {
@@ -49,9 +49,9 @@ extern "C-unwind" {
     /// Returns: Returns noErr if the call succeeds.  Returns kCMSimpleQueueError_ParameterOutOfRange if
     /// capacity is negative.
     pub fn CMSimpleQueueCreate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         capacity: i32,
-        queue_out: NonNull<CMSimpleQueueRef>,
+        queue_out: NonNull<CMSimpleQueue>,
     ) -> OSStatus;
 }
 
@@ -61,7 +61,7 @@ extern "C-unwind" {
     /// If the queue is full, this operation will fail.
     ///
     /// Returns: Returns noErr if the call succeeds, kCMSimpleQueueError_QueueIsFull if the queue is full.
-    pub fn CMSimpleQueueEnqueue(queue: &CMSimpleQueueRef, element: NonNull<c_void>) -> OSStatus;
+    pub fn CMSimpleQueueEnqueue(queue: &CMSimpleQueue, element: NonNull<c_void>) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -70,7 +70,7 @@ extern "C-unwind" {
     /// If the queue is empty, NULL will be returned.
     ///
     /// Returns: The dequeued element.  NULL if the queue was empty, or if there was some other error.
-    pub fn CMSimpleQueueDequeue(queue: &CMSimpleQueueRef) -> *const c_void;
+    pub fn CMSimpleQueueDequeue(queue: &CMSimpleQueue) -> *const c_void;
 }
 
 extern "C-unwind" {
@@ -79,7 +79,7 @@ extern "C-unwind" {
     /// If the queue is empty, NULL will be returned.
     ///
     /// Returns: The head element.  NULL if the queue was empty, or if there was some other error.
-    pub fn CMSimpleQueueGetHead(queue: &CMSimpleQueueRef) -> *const c_void;
+    pub fn CMSimpleQueueGetHead(queue: &CMSimpleQueue) -> *const c_void;
 }
 
 extern "C-unwind" {
@@ -91,7 +91,7 @@ extern "C-unwind" {
     /// must be held off by the client during this operation.
     ///
     /// Returns: Returns noErr if the call succeeds.
-    pub fn CMSimpleQueueReset(queue: &CMSimpleQueueRef) -> OSStatus;
+    pub fn CMSimpleQueueReset(queue: &CMSimpleQueue) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -99,12 +99,12 @@ extern "C-unwind" {
     ///
     /// Returns: The number of elements that can be held in the queue.  Returns
     /// 0 if there is an error.
-    pub fn CMSimpleQueueGetCapacity(queue: &CMSimpleQueueRef) -> i32;
+    pub fn CMSimpleQueueGetCapacity(queue: &CMSimpleQueue) -> i32;
 }
 
 extern "C-unwind" {
     /// Returns the number of elements currently on the queue.
     ///
     /// Returns: The number of elements currently in the queue. Returns 0 if there is an error.
-    pub fn CMSimpleQueueGetCount(queue: &CMSimpleQueueRef) -> i32;
+    pub fn CMSimpleQueueGetCount(queue: &CMSimpleQueue) -> i32;
 }

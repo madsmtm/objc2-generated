@@ -55,16 +55,16 @@ pub const kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment: u32 = 1 << 
 /// A reference to a CMSampleBuffer, a CF object containing zero or more compressed (or uncompressed)
 /// samples of a particular media type (audio, video, muxed, etc).
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebufferref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffer?language=objc)
 #[repr(C)]
-pub struct CMSampleBufferRef {
+pub struct CMSampleBuffer {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "opaqueCMSampleBuffer"]
-    unsafe impl CMSampleBufferRef {}
+    unsafe impl CMSampleBuffer {}
 );
 
 /// Collection of timing info for a sample in a CMSampleBuffer. A single CMSampleTimingInfo struct can
@@ -116,7 +116,7 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffermakedatareadycallback?language=objc)
 pub type CMSampleBufferMakeDataReadyCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<CMSampleBufferRef>, *mut c_void) -> OSStatus>;
+    Option<unsafe extern "C-unwind" fn(NonNull<CMSampleBuffer>, *mut c_void) -> OSStatus>;
 
 /// Client block called by CMSampleBufferMakeDataReady (client provides it when calling CMSampleBufferCreateWithMakeDataReadyHandler).
 ///
@@ -126,7 +126,7 @@ pub type CMSampleBufferMakeDataReadyCallback =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffermakedatareadyhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMSampleBufferMakeDataReadyHandler =
-    *mut block2::Block<dyn Fn(NonNull<CMSampleBufferRef>) -> OSStatus>;
+    *mut block2::Block<dyn Fn(NonNull<CMSampleBuffer>) -> OSStatus>;
 
 extern "C-unwind" {
     /// Creates a CMSampleBuffer.
@@ -259,18 +259,18 @@ extern "C-unwind" {
         feature = "CMTime"
     ))]
     pub fn CMSampleBufferCreate(
-        allocator: Option<&CFAllocatorRef>,
-        data_buffer: Option<&CMBlockBufferRef>,
+        allocator: Option<&CFAllocator>,
+        data_buffer: Option<&CMBlockBuffer>,
         data_ready: Boolean,
         make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
         make_data_ready_refcon: *mut c_void,
-        format_description: Option<&CMFormatDescriptionRef>,
+        format_description: Option<&CMFormatDescription>,
         num_samples: CMItemCount,
         num_sample_timing_entries: CMItemCount,
         sample_timing_array: *const CMSampleTimingInfo,
         num_sample_size_entries: CMItemCount,
         sample_size_array: *const usize,
-        sample_buffer_out: NonNull<CMSampleBufferRef>,
+        sample_buffer_out: NonNull<CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -286,16 +286,16 @@ extern "C-unwind" {
         feature = "block2"
     ))]
     pub fn CMSampleBufferCreateWithMakeDataReadyHandler(
-        allocator: Option<&CFAllocatorRef>,
-        data_buffer: Option<&CMBlockBufferRef>,
+        allocator: Option<&CFAllocator>,
+        data_buffer: Option<&CMBlockBuffer>,
         data_ready: Boolean,
-        format_description: Option<&CMFormatDescriptionRef>,
+        format_description: Option<&CMFormatDescription>,
         num_samples: CMItemCount,
         num_sample_timing_entries: CMItemCount,
         sample_timing_array: *const CMSampleTimingInfo,
         num_sample_size_entries: CMItemCount,
         sample_size_array: *const usize,
-        sample_buffer_out: NonNull<CMSampleBufferRef>,
+        sample_buffer_out: NonNull<CMSampleBuffer>,
         make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
     ) -> OSStatus;
 }
@@ -433,15 +433,15 @@ extern "C-unwind" {
         feature = "CMTime"
     ))]
     pub fn CMSampleBufferCreateReady(
-        allocator: Option<&CFAllocatorRef>,
-        data_buffer: Option<&CMBlockBufferRef>,
-        format_description: Option<&CMFormatDescriptionRef>,
+        allocator: Option<&CFAllocator>,
+        data_buffer: Option<&CMBlockBuffer>,
+        format_description: Option<&CMFormatDescription>,
         num_samples: CMItemCount,
         num_sample_timing_entries: CMItemCount,
         sample_timing_array: *const CMSampleTimingInfo,
         num_sample_size_entries: CMItemCount,
         sample_size_array: *const usize,
-        sample_buffer_out: NonNull<CMSampleBufferRef>,
+        sample_buffer_out: NonNull<CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -459,16 +459,16 @@ extern "C-unwind" {
         feature = "objc2-core-audio-types"
     ))]
     pub fn CMAudioSampleBufferCreateWithPacketDescriptions(
-        allocator: Option<&CFAllocatorRef>,
-        data_buffer: Option<&CMBlockBufferRef>,
+        allocator: Option<&CFAllocator>,
+        data_buffer: Option<&CMBlockBuffer>,
         data_ready: Boolean,
         make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
         make_data_ready_refcon: *mut c_void,
-        format_description: &CMFormatDescriptionRef,
+        format_description: &CMFormatDescription,
         num_samples: CMItemCount,
         presentation_time_stamp: CMTime,
         packet_descriptions: *const AudioStreamPacketDescription,
-        sample_buffer_out: NonNull<CMSampleBufferRef>,
+        sample_buffer_out: NonNull<CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -485,14 +485,14 @@ extern "C-unwind" {
         feature = "objc2-core-audio-types"
     ))]
     pub fn CMAudioSampleBufferCreateWithPacketDescriptionsAndMakeDataReadyHandler(
-        allocator: Option<&CFAllocatorRef>,
-        data_buffer: Option<&CMBlockBufferRef>,
+        allocator: Option<&CFAllocator>,
+        data_buffer: Option<&CMBlockBuffer>,
         data_ready: Boolean,
-        format_description: &CMFormatDescriptionRef,
+        format_description: &CMFormatDescription,
         num_samples: CMItemCount,
         presentation_time_stamp: CMTime,
         packet_descriptions: *const AudioStreamPacketDescription,
-        sample_buffer_out: NonNull<CMSampleBufferRef>,
+        sample_buffer_out: NonNull<CMSampleBuffer>,
         make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
     ) -> OSStatus;
 }
@@ -513,13 +513,13 @@ extern "C-unwind" {
         feature = "objc2-core-audio-types"
     ))]
     pub fn CMAudioSampleBufferCreateReadyWithPacketDescriptions(
-        allocator: Option<&CFAllocatorRef>,
-        data_buffer: &CMBlockBufferRef,
-        format_description: &CMFormatDescriptionRef,
+        allocator: Option<&CFAllocator>,
+        data_buffer: &CMBlockBuffer,
+        format_description: &CMFormatDescription,
         num_samples: CMItemCount,
         presentation_time_stamp: CMTime,
         packet_descriptions: *const AudioStreamPacketDescription,
-        sample_buffer_out: NonNull<CMSampleBufferRef>,
+        sample_buffer_out: NonNull<CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -551,14 +551,14 @@ extern "C-unwind" {
         feature = "objc2-core-video"
     ))]
     pub fn CMSampleBufferCreateForImageBuffer(
-        allocator: Option<&CFAllocatorRef>,
-        image_buffer: &CVImageBufferRef,
+        allocator: Option<&CFAllocator>,
+        image_buffer: &CVImageBuffer,
         data_ready: Boolean,
         make_data_ready_callback: CMSampleBufferMakeDataReadyCallback,
         make_data_ready_refcon: *mut c_void,
-        format_description: &CMVideoFormatDescriptionRef,
+        format_description: &CMVideoFormatDescription,
         sample_timing: NonNull<CMSampleTimingInfo>,
-        sample_buffer_out: NonNull<CMSampleBufferRef>,
+        sample_buffer_out: NonNull<CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -573,12 +573,12 @@ extern "C-unwind" {
         feature = "objc2-core-video"
     ))]
     pub fn CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler(
-        allocator: Option<&CFAllocatorRef>,
-        image_buffer: &CVImageBufferRef,
+        allocator: Option<&CFAllocator>,
+        image_buffer: &CVImageBuffer,
         data_ready: Boolean,
-        format_description: &CMVideoFormatDescriptionRef,
+        format_description: &CMVideoFormatDescription,
         sample_timing: NonNull<CMSampleTimingInfo>,
-        sample_buffer_out: NonNull<CMSampleBufferRef>,
+        sample_buffer_out: NonNull<CMSampleBuffer>,
         make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
     ) -> OSStatus;
 }
@@ -614,11 +614,11 @@ extern "C-unwind" {
         feature = "objc2-core-video"
     ))]
     pub fn CMSampleBufferCreateReadyWithImageBuffer(
-        allocator: Option<&CFAllocatorRef>,
-        image_buffer: &CVImageBufferRef,
-        format_description: &CMVideoFormatDescriptionRef,
+        allocator: Option<&CFAllocator>,
+        image_buffer: &CVImageBuffer,
+        format_description: &CMVideoFormatDescription,
         sample_timing: NonNull<CMSampleTimingInfo>,
-        sample_buffer_out: NonNull<CMSampleBufferRef>,
+        sample_buffer_out: NonNull<CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -630,9 +630,9 @@ extern "C-unwind" {
     /// the propogatable attachments are retained by the copy's dictionary.
     /// If sbuf's data is not ready, the copy will be set to track its readiness.
     pub fn CMSampleBufferCreateCopy(
-        allocator: Option<&CFAllocatorRef>,
-        sbuf: &CMSampleBufferRef,
-        sample_buffer_out: NonNull<CMSampleBufferRef>,
+        allocator: Option<&CFAllocator>,
+        sbuf: &CMSampleBuffer,
+        sample_buffer_out: NonNull<CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -647,11 +647,11 @@ extern "C-unwind" {
     /// CMSampleBuffer, and must release it when done with it.
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     pub fn CMSampleBufferCreateCopyWithNewTiming(
-        allocator: Option<&CFAllocatorRef>,
-        original_s_buf: &CMSampleBufferRef,
+        allocator: Option<&CFAllocator>,
+        original_s_buf: &CMSampleBuffer,
         num_sample_timing_entries: CMItemCount,
         sample_timing_array: *const CMSampleTimingInfo,
-        sample_buffer_out: NonNull<CMSampleBufferRef>,
+        sample_buffer_out: NonNull<CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -660,10 +660,10 @@ extern "C-unwind" {
     ///
     /// Samples containing non-interleaved audio are currently not supported.
     pub fn CMSampleBufferCopySampleBufferForRange(
-        allocator: Option<&CFAllocatorRef>,
-        sbuf: &CMSampleBufferRef,
+        allocator: Option<&CFAllocator>,
+        sbuf: &CMSampleBuffer,
         sample_range: CFRange,
-        sample_buffer_out: NonNull<CMSampleBufferRef>,
+        sample_buffer_out: NonNull<CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -688,8 +688,8 @@ extern "C-unwind" {
     /// becomes ready.
     #[cfg(feature = "CMBlockBuffer")]
     pub fn CMSampleBufferSetDataBuffer(
-        sbuf: &CMSampleBufferRef,
-        data_buffer: &CMBlockBufferRef,
+        sbuf: &CMSampleBuffer,
+        data_buffer: &CMBlockBuffer,
     ) -> OSStatus;
 }
 
@@ -701,7 +701,7 @@ extern "C-unwind" {
     /// Returns: CMBlockBuffer of media data. The result will be NULL if the CMSampleBuffer does not contain a CMBlockBuffer, if the
     /// CMSampleBuffer contains a CVImageBuffer, or if there is some other error.
     #[cfg(feature = "CMBlockBuffer")]
-    pub fn CMSampleBufferGetDataBuffer(sbuf: &CMSampleBufferRef) -> *mut CMBlockBufferRef;
+    pub fn CMSampleBufferGetDataBuffer(sbuf: &CMSampleBuffer) -> *mut CMBlockBuffer;
 }
 
 extern "C-unwind" {
@@ -712,7 +712,7 @@ extern "C-unwind" {
     /// Returns: CVImageBuffer of media data. The result will be NULL if the CMSampleBuffer does not contain a CVImageBuffer, if the
     /// CMSampleBuffer contains a CMBlockBuffer, or if there is some other error.
     #[cfg(feature = "objc2-core-video")]
-    pub fn CMSampleBufferGetImageBuffer(sbuf: &CMSampleBufferRef) -> *mut CVImageBufferRef;
+    pub fn CMSampleBufferGetImageBuffer(sbuf: &CMSampleBuffer) -> *mut CVImageBuffer;
 }
 
 extern "C-unwind" {
@@ -722,9 +722,9 @@ extern "C-unwind" {
     /// kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment is passed in.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMSampleBufferSetDataBufferFromAudioBufferList(
-        sbuf: &CMSampleBufferRef,
-        block_buffer_structure_allocator: Option<&CFAllocatorRef>,
-        block_buffer_block_allocator: Option<&CFAllocatorRef>,
+        sbuf: &CMSampleBuffer,
+        block_buffer_structure_allocator: Option<&CFAllocator>,
+        block_buffer_block_allocator: Option<&CFAllocator>,
         flags: u32,
         buffer_list: NonNull<AudioBufferList>,
     ) -> OSStatus;
@@ -740,14 +740,14 @@ extern "C-unwind" {
     /// kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment is passed in.
     #[cfg(all(feature = "CMBlockBuffer", feature = "objc2-core-audio-types"))]
     pub fn CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer(
-        sbuf: &CMSampleBufferRef,
+        sbuf: &CMSampleBuffer,
         buffer_list_size_needed_out: *mut usize,
         buffer_list_out: *mut AudioBufferList,
         buffer_list_size: usize,
-        block_buffer_structure_allocator: Option<&CFAllocatorRef>,
-        block_buffer_block_allocator: Option<&CFAllocatorRef>,
+        block_buffer_structure_allocator: Option<&CFAllocator>,
+        block_buffer_block_allocator: Option<&CFAllocator>,
         flags: u32,
-        block_buffer_out: *mut CMBlockBufferRef,
+        block_buffer_out: *mut CMBlockBuffer,
     ) -> OSStatus;
 }
 
@@ -761,7 +761,7 @@ extern "C-unwind" {
     /// if called with a non-audio sample buffer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMSampleBufferGetAudioStreamPacketDescriptions(
-        sbuf: &CMSampleBufferRef,
+        sbuf: &CMSampleBuffer,
         packet_descriptions_size: usize,
         packet_descriptions_out: *mut AudioStreamPacketDescription,
         packet_descriptions_size_needed_out: *mut usize,
@@ -781,7 +781,7 @@ extern "C-unwind" {
     /// with a non-audio sample buffer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMSampleBufferGetAudioStreamPacketDescriptionsPtr(
-        sbuf: &CMSampleBufferRef,
+        sbuf: &CMSampleBuffer,
         packet_descriptions_pointer_out: *mut *const AudioStreamPacketDescription,
         packet_descriptions_size_out: *mut usize,
     ) -> OSStatus;
@@ -799,7 +799,7 @@ extern "C-unwind" {
     /// or if its dataBuffer is not ready.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMSampleBufferCopyPCMDataIntoAudioBufferList(
-        sbuf: &CMSampleBufferRef,
+        sbuf: &CMSampleBuffer,
         frame_offset: i32,
         num_frames: i32,
         buffer_list: NonNull<AudioBufferList>,
@@ -812,7 +812,7 @@ extern "C-unwind" {
     /// There is no way to undo this operation.  The only way to get an "unready"
     /// CMSampleBuffer is to call CMSampleBufferCreate with the dataReady parameter
     /// set to false. Example of usage: in a read completion routine.
-    pub fn CMSampleBufferSetDataReady(sbuf: &CMSampleBufferRef) -> OSStatus;
+    pub fn CMSampleBufferSetDataReady(sbuf: &CMSampleBuffer) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -820,20 +820,18 @@ extern "C-unwind" {
     ///
     /// Returns: Whether or not the CMSampleBuffer's data is ready.  True is returned for special marker buffers, even
     /// though they have no data. False is returned if there is an error.
-    pub fn CMSampleBufferDataIsReady(sbuf: &CMSampleBufferRef) -> Boolean;
+    pub fn CMSampleBufferDataIsReady(sbuf: &CMSampleBuffer) -> Boolean;
 }
 
 extern "C-unwind" {
     /// Marks a CMSampleBuffer's data as "failed", to indicate that the data will not become ready.
-    pub fn CMSampleBufferSetDataFailed(sbuf: &CMSampleBufferRef, status: OSStatus) -> OSStatus;
+    pub fn CMSampleBufferSetDataFailed(sbuf: &CMSampleBuffer, status: OSStatus) -> OSStatus;
 }
 
 extern "C-unwind" {
     /// Returns whether or not a CMSampleBuffer's data loading request has failed.
-    pub fn CMSampleBufferHasDataFailed(
-        sbuf: &CMSampleBufferRef,
-        status_out: *mut OSStatus,
-    ) -> Boolean;
+    pub fn CMSampleBufferHasDataFailed(sbuf: &CMSampleBuffer, status_out: *mut OSStatus)
+        -> Boolean;
 }
 
 extern "C-unwind" {
@@ -846,7 +844,7 @@ extern "C-unwind" {
     /// ready, and there is no CMSampleBufferMakeDataReadyCallback to call, kCMSampleBufferError_BufferNotReady
     /// will be returned. Similarly, if the CMSampleBuffer is not ready, and the CMSampleBufferMakeDataReadyCallback
     /// fails and returns an error, kCMSampleBufferError_BufferNotReady will be returned.
-    pub fn CMSampleBufferMakeDataReady(sbuf: &CMSampleBufferRef) -> OSStatus;
+    pub fn CMSampleBufferMakeDataReady(sbuf: &CMSampleBuffer) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -858,8 +856,8 @@ extern "C-unwind" {
     /// before the data is ready. The single-sample CMSampleBuffers will all track the multi-sample
     /// CMSampleBuffer's data readiness.
     pub fn CMSampleBufferTrackDataReadiness(
-        sbuf: &CMSampleBufferRef,
-        sample_buffer_to_track: &CMSampleBufferRef,
+        sbuf: &CMSampleBuffer,
+        sample_buffer_to_track: &CMSampleBuffer,
     ) -> OSStatus;
 }
 
@@ -869,14 +867,14 @@ extern "C-unwind" {
     /// An invalid sample buffer cannot be used -- all accessors will return kCMSampleBufferError_Invalidated.
     /// It is not a good idea to do this to a sample buffer that another module may be accessing concurrently.
     /// Example of use: the invalidation callback could cancel pending I/O.
-    pub fn CMSampleBufferInvalidate(sbuf: &CMSampleBufferRef) -> OSStatus;
+    pub fn CMSampleBufferInvalidate(sbuf: &CMSampleBuffer) -> OSStatus;
 }
 
 /// Client callback called by CMSampleBufferInvalidate.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebufferinvalidatecallback?language=objc)
 pub type CMSampleBufferInvalidateCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<CMSampleBufferRef>, u64)>;
+    Option<unsafe extern "C-unwind" fn(NonNull<CMSampleBuffer>, u64)>;
 
 extern "C-unwind" {
     /// Sets the sample buffer's invalidation callback, which is called during CMSampleBufferInvalidate.
@@ -884,7 +882,7 @@ extern "C-unwind" {
     /// A sample buffer can only have one invalidation callback.
     /// The invalidation callback is NOT called during ordinary sample buffer finalization.
     pub fn CMSampleBufferSetInvalidateCallback(
-        sbuf: &CMSampleBufferRef,
+        sbuf: &CMSampleBuffer,
         invalidate_callback: CMSampleBufferInvalidateCallback,
         invalidate_ref_con: u64,
     ) -> OSStatus;
@@ -894,7 +892,7 @@ extern "C-unwind" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebufferinvalidatehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMSampleBufferInvalidateHandler = *mut block2::Block<dyn Fn(NonNull<CMSampleBufferRef>)>;
+pub type CMSampleBufferInvalidateHandler = *mut block2::Block<dyn Fn(NonNull<CMSampleBuffer>)>;
 
 extern "C-unwind" {
     /// Sets the sample buffer's invalidation handler block, which is called during CMSampleBufferInvalidate.
@@ -903,7 +901,7 @@ extern "C-unwind" {
     /// The invalidation callback is NOT called during ordinary sample buffer finalization.
     #[cfg(feature = "block2")]
     pub fn CMSampleBufferSetInvalidateHandler(
-        sbuf: &CMSampleBufferRef,
+        sbuf: &CMSampleBuffer,
         invalidate_handler: CMSampleBufferInvalidateHandler,
     ) -> OSStatus;
 }
@@ -913,26 +911,26 @@ extern "C-unwind" {
     ///
     /// Returns false if sbuf is NULL or CMSampleBufferInvalidate(sbuf) was called, true otherwise.
     /// Does not perform any kind of exhaustive validation of the sample buffer.
-    pub fn CMSampleBufferIsValid(sbuf: &CMSampleBufferRef) -> Boolean;
+    pub fn CMSampleBufferIsValid(sbuf: &CMSampleBuffer) -> Boolean;
 }
 
 extern "C" {
     /// Posted on a CMSampleBuffer by CMSampleBufferSetDataReady when the buffer becomes ready.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebuffernotification_databecameready?language=objc)
-    pub static kCMSampleBufferNotification_DataBecameReady: &'static CFStringRef;
+    pub static kCMSampleBufferNotification_DataBecameReady: &'static CFString;
 }
 
 extern "C" {
     /// Posted on a CMSampleBuffer by CMSampleBufferSetDataFailed to report that the buffer will never become ready.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebuffernotification_datafailed?language=objc)
-    pub static kCMSampleBufferNotification_DataFailed: &'static CFStringRef;
+    pub static kCMSampleBufferNotification_DataFailed: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebuffernotificationparameter_osstatus?language=objc)
-    pub static kCMSampleBufferNotificationParameter_OSStatus: &'static CFStringRef;
+    pub static kCMSampleBufferNotificationParameter_OSStatus: &'static CFString;
 }
 
 extern "C" {
@@ -947,45 +945,42 @@ extern "C" {
     /// received, the last one indicates the tag to trigger resuming.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferconduitnotification_inhibitoutputuntil?language=objc)
-    pub static kCMSampleBufferConduitNotification_InhibitOutputUntil: &'static CFStringRef;
+    pub static kCMSampleBufferConduitNotification_InhibitOutputUntil: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferconduitnotificationparameter_resumetag?language=objc)
-    pub static kCMSampleBufferConduitNotificationParameter_ResumeTag: &'static CFStringRef;
+    pub static kCMSampleBufferConduitNotificationParameter_ResumeTag: &'static CFString;
 }
 
 extern "C" {
     /// Posted on a conduit of CMSampleBuffers (eg, a CMBufferQueue) to request invalidation of pending output data.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferconduitnotification_resetoutput?language=objc)
-    pub static kCMSampleBufferConduitNotification_ResetOutput: &'static CFStringRef;
+    pub static kCMSampleBufferConduitNotification_ResetOutput: &'static CFString;
 }
 
 extern "C" {
     /// Posted on a conduit of video CMSampleBuffers (eg, a CMBufferQueue) to report information about the range of upcoming CMSampleBuffer output presentation timestamps.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferconduitnotification_upcomingoutputptsrangechanged?language=objc)
-    pub static kCMSampleBufferConduitNotification_UpcomingOutputPTSRangeChanged:
-        &'static CFStringRef;
+    pub static kCMSampleBufferConduitNotification_UpcomingOutputPTSRangeChanged: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferconduitnotificationparameter_upcomingoutputptsrangemayoverlapqueuedoutputptsrange?language=objc)
     pub static kCMSampleBufferConduitNotificationParameter_UpcomingOutputPTSRangeMayOverlapQueuedOutputPTSRange:
-        &'static CFStringRef;
+        &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferconduitnotificationparameter_minupcomingoutputpts?language=objc)
-    pub static kCMSampleBufferConduitNotificationParameter_MinUpcomingOutputPTS:
-        &'static CFStringRef;
+    pub static kCMSampleBufferConduitNotificationParameter_MinUpcomingOutputPTS: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferconduitnotificationparameter_maxupcomingoutputpts?language=objc)
-    pub static kCMSampleBufferConduitNotificationParameter_MaxUpcomingOutputPTS:
-        &'static CFStringRef;
+    pub static kCMSampleBufferConduitNotificationParameter_MaxUpcomingOutputPTS: &'static CFString;
 }
 
 extern "C" {
@@ -999,7 +994,7 @@ extern "C" {
     /// Note that a NULL refcon cannot be attached to a CMSampleBuffer.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferconsumernotification_bufferconsumed?language=objc)
-    pub static kCMSampleBufferConsumerNotification_BufferConsumed: &'static CFStringRef;
+    pub static kCMSampleBufferConsumerNotification_BufferConsumed: &'static CFString;
 }
 
 extern "C-unwind" {
@@ -1007,7 +1002,7 @@ extern "C-unwind" {
     ///
     /// Returns: The number of media samples in the CMSampleBuffer. 0 is returned if there is an error.
     #[cfg(feature = "CMBase")]
-    pub fn CMSampleBufferGetNumSamples(sbuf: &CMSampleBufferRef) -> CMItemCount;
+    pub fn CMSampleBufferGetNumSamples(sbuf: &CMSampleBuffer) -> CMItemCount;
 }
 
 extern "C-unwind" {
@@ -1018,7 +1013,7 @@ extern "C-unwind" {
     ///
     /// Returns: The duration of the CMSampleBuffer. kCMTimeInvalid is returned if there is an error.
     #[cfg(feature = "CMTime")]
-    pub fn CMSampleBufferGetDuration(sbuf: &CMSampleBufferRef) -> CMTime;
+    pub fn CMSampleBufferGetDuration(sbuf: &CMSampleBuffer) -> CMTime;
 }
 
 extern "C-unwind" {
@@ -1030,7 +1025,7 @@ extern "C-unwind" {
     ///
     /// Returns: Numerically earliest sample presentation timestamp in the CMSampleBuffer.  kCMTimeInvalid is returned if there is an error.
     #[cfg(feature = "CMTime")]
-    pub fn CMSampleBufferGetPresentationTimeStamp(sbuf: &CMSampleBufferRef) -> CMTime;
+    pub fn CMSampleBufferGetPresentationTimeStamp(sbuf: &CMSampleBuffer) -> CMTime;
 }
 
 extern "C-unwind" {
@@ -1041,7 +1036,7 @@ extern "C-unwind" {
     ///
     /// Returns: Numerically earliest sample decode timestamp in the CMSampleBuffer.  kCMTimeInvalid is returned if there is an error.
     #[cfg(feature = "CMTime")]
-    pub fn CMSampleBufferGetDecodeTimeStamp(sbuf: &CMSampleBufferRef) -> CMTime;
+    pub fn CMSampleBufferGetDecodeTimeStamp(sbuf: &CMSampleBuffer) -> CMTime;
 }
 
 extern "C-unwind" {
@@ -1052,7 +1047,7 @@ extern "C-unwind" {
     ///
     /// Returns: The output duration of the CMSampleBuffer. kCMTimeInvalid is returned if there is an error.
     #[cfg(feature = "CMTime")]
-    pub fn CMSampleBufferGetOutputDuration(sbuf: &CMSampleBufferRef) -> CMTime;
+    pub fn CMSampleBufferGetOutputDuration(sbuf: &CMSampleBuffer) -> CMTime;
 }
 
 extern "C-unwind" {
@@ -1074,7 +1069,7 @@ extern "C-unwind" {
     ///
     /// Returns: kCMTimeInvalid is returned if there is an error.
     #[cfg(feature = "CMTime")]
-    pub fn CMSampleBufferGetOutputPresentationTimeStamp(sbuf: &CMSampleBufferRef) -> CMTime;
+    pub fn CMSampleBufferGetOutputPresentationTimeStamp(sbuf: &CMSampleBuffer) -> CMTime;
 }
 
 extern "C-unwind" {
@@ -1091,7 +1086,7 @@ extern "C-unwind" {
     /// ((PresentationTimeStamp + Duration - TrimDurationAtEnd - EditStartMediaTime) / EditSpeedMultiplier) + EditStartTrackTime.
     #[cfg(feature = "CMTime")]
     pub fn CMSampleBufferSetOutputPresentationTimeStamp(
-        sbuf: &CMSampleBufferRef,
+        sbuf: &CMSampleBuffer,
         output_presentation_time_stamp: CMTime,
     ) -> OSStatus;
 }
@@ -1104,7 +1099,7 @@ extern "C-unwind" {
     ///
     /// Returns: CMInvalidTime is returned if there is an error.
     #[cfg(feature = "CMTime")]
-    pub fn CMSampleBufferGetOutputDecodeTimeStamp(sbuf: &CMSampleBufferRef) -> CMTime;
+    pub fn CMSampleBufferGetOutputDecodeTimeStamp(sbuf: &CMSampleBuffer) -> CMTime;
 }
 
 extern "C-unwind" {
@@ -1125,7 +1120,7 @@ extern "C-unwind" {
     /// timingArrayEntriesNeededOut will be set to 0.
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     pub fn CMSampleBufferGetSampleTimingInfoArray(
-        sbuf: &CMSampleBufferRef,
+        sbuf: &CMSampleBuffer,
         num_sample_timing_entries: CMItemCount,
         timing_array_out: *mut CMSampleTimingInfo,
         timing_array_entries_needed_out: *mut CMItemCount,
@@ -1150,7 +1145,7 @@ extern "C-unwind" {
     /// and *timingArrayEntriesNeededOut will be set to 0.
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     pub fn CMSampleBufferGetOutputSampleTimingInfoArray(
-        sbuf: &CMSampleBufferRef,
+        sbuf: &CMSampleBuffer,
         timing_array_entries: CMItemCount,
         timing_array_out: *mut CMSampleTimingInfo,
         timing_array_entries_needed_out: *mut CMItemCount,
@@ -1168,7 +1163,7 @@ extern "C-unwind" {
     /// in this CMSampleBuffer, kCMSampleBufferError_BufferHasNoSampleTimingInfo will be returned.
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     pub fn CMSampleBufferGetSampleTimingInfo(
-        sbuf: &CMSampleBufferRef,
+        sbuf: &CMSampleBuffer,
         sample_index: CMItemIndex,
         timing_info_out: NonNull<CMSampleTimingInfo>,
     ) -> OSStatus;
@@ -1195,7 +1190,7 @@ extern "C-unwind" {
     /// this CMSampleBuffer contains a CVImageBuffer.
     #[cfg(feature = "CMBase")]
     pub fn CMSampleBufferGetSampleSizeArray(
-        sbuf: &CMSampleBufferRef,
+        sbuf: &CMSampleBuffer,
         size_array_entries: CMItemCount,
         size_array_out: *mut usize,
         size_array_entries_needed_out: *mut CMItemCount,
@@ -1213,10 +1208,7 @@ extern "C-unwind" {
     /// the channel values for a single sample are scattered through the buffer),
     /// or if this CMSampleBuffer contains a CVImageBuffer.
     #[cfg(feature = "CMBase")]
-    pub fn CMSampleBufferGetSampleSize(
-        sbuf: &CMSampleBufferRef,
-        sample_index: CMItemIndex,
-    ) -> usize;
+    pub fn CMSampleBufferGetSampleSize(sbuf: &CMSampleBuffer, sample_index: CMItemIndex) -> usize;
 }
 
 extern "C-unwind" {
@@ -1224,7 +1216,7 @@ extern "C-unwind" {
     ///
     /// Returns: Total size in bytes of sample data in the CMSampleBuffer.
     /// If there are no sample sizes in this CMSampleBuffer, a size of 0 will be returned.
-    pub fn CMSampleBufferGetTotalSampleSize(sbuf: &CMSampleBufferRef) -> usize;
+    pub fn CMSampleBufferGetTotalSampleSize(sbuf: &CMSampleBuffer) -> usize;
 }
 
 extern "C-unwind" {
@@ -1234,9 +1226,7 @@ extern "C-unwind" {
     ///
     /// Returns: The format description of the samples in the CMSampleBuffer.  NULL is returned if there is an error.
     #[cfg(feature = "CMFormatDescription")]
-    pub fn CMSampleBufferGetFormatDescription(
-        sbuf: &CMSampleBufferRef,
-    ) -> *mut CMFormatDescriptionRef;
+    pub fn CMSampleBufferGetFormatDescription(sbuf: &CMSampleBuffer) -> *mut CMFormatDescription;
 }
 
 extern "C-unwind" {
@@ -1254,69 +1244,69 @@ extern "C-unwind" {
     /// Returns: A reference to the CMSampleBuffer's immutable array of mutable sample attachments dictionaries (one dictionary per sample
     /// in the CMSampleBuffer). NULL is returned if there is an error.
     pub fn CMSampleBufferGetSampleAttachmentsArray(
-        sbuf: &CMSampleBufferRef,
+        sbuf: &CMSampleBuffer,
         create_if_necessary: Boolean,
-    ) -> *mut CFArrayRef;
+    ) -> *mut CFArray;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_notsync?language=objc)
-    pub static kCMSampleAttachmentKey_NotSync: &'static CFStringRef;
+    pub static kCMSampleAttachmentKey_NotSync: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_partialsync?language=objc)
-    pub static kCMSampleAttachmentKey_PartialSync: &'static CFStringRef;
+    pub static kCMSampleAttachmentKey_PartialSync: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_hasredundantcoding?language=objc)
-    pub static kCMSampleAttachmentKey_HasRedundantCoding: &'static CFStringRef;
+    pub static kCMSampleAttachmentKey_HasRedundantCoding: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_isdependedonbyothers?language=objc)
-    pub static kCMSampleAttachmentKey_IsDependedOnByOthers: &'static CFStringRef;
+    pub static kCMSampleAttachmentKey_IsDependedOnByOthers: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_dependsonothers?language=objc)
-    pub static kCMSampleAttachmentKey_DependsOnOthers: &'static CFStringRef;
+    pub static kCMSampleAttachmentKey_DependsOnOthers: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_earlierdisplaytimesallowed?language=objc)
-    pub static kCMSampleAttachmentKey_EarlierDisplayTimesAllowed: &'static CFStringRef;
+    pub static kCMSampleAttachmentKey_EarlierDisplayTimesAllowed: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_displayimmediately?language=objc)
-    pub static kCMSampleAttachmentKey_DisplayImmediately: &'static CFStringRef;
+    pub static kCMSampleAttachmentKey_DisplayImmediately: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_donotdisplay?language=objc)
-    pub static kCMSampleAttachmentKey_DoNotDisplay: &'static CFStringRef;
+    pub static kCMSampleAttachmentKey_DoNotDisplay: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_resetdecoderbeforedecoding?language=objc)
-    pub static kCMSampleBufferAttachmentKey_ResetDecoderBeforeDecoding: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_ResetDecoderBeforeDecoding: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_drainafterdecoding?language=objc)
-    pub static kCMSampleBufferAttachmentKey_DrainAfterDecoding: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_DrainAfterDecoding: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_postnotificationwhenconsumed?language=objc)
-    pub static kCMSampleBufferAttachmentKey_PostNotificationWhenConsumed: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_PostNotificationWhenConsumed: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_resumeoutput?language=objc)
-    pub static kCMSampleBufferAttachmentKey_ResumeOutput: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_ResumeOutput: &'static CFString;
 }
 
 extern "C" {
@@ -1327,63 +1317,62 @@ extern "C" {
     /// The attachment may be absent if no such information is available.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_hevctemporallevelinfo?language=objc)
-    pub static kCMSampleAttachmentKey_HEVCTemporalLevelInfo: &'static CFStringRef;
+    pub static kCMSampleAttachmentKey_HEVCTemporalLevelInfo: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmhevctemporallevelinfokey_temporallevel?language=objc)
-    pub static kCMHEVCTemporalLevelInfoKey_TemporalLevel: &'static CFStringRef;
+    pub static kCMHEVCTemporalLevelInfoKey_TemporalLevel: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmhevctemporallevelinfokey_profilespace?language=objc)
-    pub static kCMHEVCTemporalLevelInfoKey_ProfileSpace: &'static CFStringRef;
+    pub static kCMHEVCTemporalLevelInfoKey_ProfileSpace: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmhevctemporallevelinfokey_tierflag?language=objc)
-    pub static kCMHEVCTemporalLevelInfoKey_TierFlag: &'static CFStringRef;
+    pub static kCMHEVCTemporalLevelInfoKey_TierFlag: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmhevctemporallevelinfokey_profileindex?language=objc)
-    pub static kCMHEVCTemporalLevelInfoKey_ProfileIndex: &'static CFStringRef;
+    pub static kCMHEVCTemporalLevelInfoKey_ProfileIndex: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmhevctemporallevelinfokey_profilecompatibilityflags?language=objc)
-    pub static kCMHEVCTemporalLevelInfoKey_ProfileCompatibilityFlags: &'static CFStringRef;
+    pub static kCMHEVCTemporalLevelInfoKey_ProfileCompatibilityFlags: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmhevctemporallevelinfokey_constraintindicatorflags?language=objc)
-    pub static kCMHEVCTemporalLevelInfoKey_ConstraintIndicatorFlags: &'static CFStringRef;
+    pub static kCMHEVCTemporalLevelInfoKey_ConstraintIndicatorFlags: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmhevctemporallevelinfokey_levelindex?language=objc)
-    pub static kCMHEVCTemporalLevelInfoKey_LevelIndex: &'static CFStringRef;
+    pub static kCMHEVCTemporalLevelInfoKey_LevelIndex: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_hevctemporalsublayeraccess?language=objc)
-    pub static kCMSampleAttachmentKey_HEVCTemporalSubLayerAccess: &'static CFStringRef;
+    pub static kCMSampleAttachmentKey_HEVCTemporalSubLayerAccess: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_hevcstepwisetemporalsublayeraccess?language=objc)
-    pub static kCMSampleAttachmentKey_HEVCStepwiseTemporalSubLayerAccess: &'static CFStringRef;
+    pub static kCMSampleAttachmentKey_HEVCStepwiseTemporalSubLayerAccess: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_hevcsyncsamplenalunittype?language=objc)
-    pub static kCMSampleAttachmentKey_HEVCSyncSampleNALUnitType: &'static CFStringRef;
+    pub static kCMSampleAttachmentKey_HEVCSyncSampleNALUnitType: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_audioindependentsampledecoderrefreshcount?language=objc)
-    pub static kCMSampleAttachmentKey_AudioIndependentSampleDecoderRefreshCount:
-        &'static CFStringRef;
+    pub static kCMSampleAttachmentKey_AudioIndependentSampleDecoderRefreshCount: &'static CFString;
 }
 
 extern "C" {
@@ -1396,7 +1385,7 @@ extern "C" {
     /// identifiable.  A CFNumberRef counter that increments with each transition is a simple example.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_transitionid?language=objc)
-    pub static kCMSampleBufferAttachmentKey_TransitionID: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_TransitionID: &'static CFString;
 }
 
 extern "C" {
@@ -1413,7 +1402,7 @@ extern "C" {
     /// a sample buffer will not adjust an explicitly-set OutputPresentationTimeStamp.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_trimdurationatstart?language=objc)
-    pub static kCMSampleBufferAttachmentKey_TrimDurationAtStart: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_TrimDurationAtStart: &'static CFString;
 }
 
 extern "C" {
@@ -1424,7 +1413,7 @@ extern "C" {
     /// use CMTimeMakeFromDictionary to convert to CMTime.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_trimdurationatend?language=objc)
-    pub static kCMSampleBufferAttachmentKey_TrimDurationAtEnd: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_TrimDurationAtEnd: &'static CFString;
 }
 
 extern "C" {
@@ -1440,7 +1429,7 @@ extern "C" {
     /// to clarify when each should be output.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_speedmultiplier?language=objc)
-    pub static kCMSampleBufferAttachmentKey_SpeedMultiplier: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_SpeedMultiplier: &'static CFString;
 }
 
 extern "C" {
@@ -1449,7 +1438,7 @@ extern "C" {
     /// Reversal occurs after trimming and speed multipliers.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_reverse?language=objc)
-    pub static kCMSampleBufferAttachmentKey_Reverse: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_Reverse: &'static CFString;
 }
 
 extern "C" {
@@ -1460,7 +1449,7 @@ extern "C" {
     /// discontinuity by generating silence for the time difference.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_filldiscontinuitieswithsilence?language=objc)
-    pub static kCMSampleBufferAttachmentKey_FillDiscontinuitiesWithSilence: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_FillDiscontinuitiesWithSilence: &'static CFString;
 }
 
 extern "C" {
@@ -1470,7 +1459,7 @@ extern "C" {
     /// Marker sample buffers with this attachment are used to announce the arrival of empty edits.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_emptymedia?language=objc)
-    pub static kCMSampleBufferAttachmentKey_EmptyMedia: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_EmptyMedia: &'static CFString;
 }
 
 extern "C" {
@@ -1480,7 +1469,7 @@ extern "C" {
     /// are used to indicate that no further samples are expected.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_permanentemptymedia?language=objc)
-    pub static kCMSampleBufferAttachmentKey_PermanentEmptyMedia: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_PermanentEmptyMedia: &'static CFString;
 }
 
 extern "C" {
@@ -1492,7 +1481,7 @@ extern "C" {
     /// attachment.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_displayemptymediaimmediately?language=objc)
-    pub static kCMSampleBufferAttachmentKey_DisplayEmptyMediaImmediately: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_DisplayEmptyMediaImmediately: &'static CFString;
 }
 
 extern "C" {
@@ -1504,7 +1493,7 @@ extern "C" {
     /// to provide the timestamp for calculating the final sample buffer's duration.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_endsprevioussampleduration?language=objc)
-    pub static kCMSampleBufferAttachmentKey_EndsPreviousSampleDuration: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_EndsPreviousSampleDuration: &'static CFString;
 }
 
 extern "C" {
@@ -1519,7 +1508,7 @@ extern "C" {
     /// - have numSampleTimingEntries > 0 and numSampleSizeEntries > 0
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_samplereferenceurl?language=objc)
-    pub static kCMSampleBufferAttachmentKey_SampleReferenceURL: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_SampleReferenceURL: &'static CFString;
 }
 
 extern "C" {
@@ -1534,7 +1523,7 @@ extern "C" {
     /// - have numSampleTimingEntries > 0 and numSampleSizeEntries > 0
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_samplereferencebyteoffset?language=objc)
-    pub static kCMSampleBufferAttachmentKey_SampleReferenceByteOffset: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_SampleReferenceByteOffset: &'static CFString;
 }
 
 extern "C" {
@@ -1543,7 +1532,7 @@ extern "C" {
     /// Sample buffers with this attachment may be used to identify the audio decoder refresh count.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_gradualdecoderrefresh?language=objc)
-    pub static kCMSampleBufferAttachmentKey_GradualDecoderRefresh: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_GradualDecoderRefresh: &'static CFString;
 }
 
 extern "C" {
@@ -1553,7 +1542,7 @@ extern "C" {
     /// frame.  This attachment identifies the reason for the droppage.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_droppedframereason?language=objc)
-    pub static kCMSampleBufferAttachmentKey_DroppedFrameReason: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_DroppedFrameReason: &'static CFString;
 }
 
 extern "C" {
@@ -1564,7 +1553,7 @@ extern "C" {
     /// caused by the client's processing taking too long.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferdroppedframereason_framewaslate?language=objc)
-    pub static kCMSampleBufferDroppedFrameReason_FrameWasLate: &'static CFStringRef;
+    pub static kCMSampleBufferDroppedFrameReason_FrameWasLate: &'static CFString;
 }
 
 extern "C" {
@@ -1575,7 +1564,7 @@ extern "C" {
     /// buffers for too long and can be alleviated by returning buffers to the provider.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferdroppedframereason_outofbuffers?language=objc)
-    pub static kCMSampleBufferDroppedFrameReason_OutOfBuffers: &'static CFStringRef;
+    pub static kCMSampleBufferDroppedFrameReason_OutOfBuffers: &'static CFString;
 }
 
 extern "C" {
@@ -1586,7 +1575,7 @@ extern "C" {
     /// typically caused by the system being too busy.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferdroppedframereason_discontinuity?language=objc)
-    pub static kCMSampleBufferDroppedFrameReason_Discontinuity: &'static CFStringRef;
+    pub static kCMSampleBufferDroppedFrameReason_Discontinuity: &'static CFString;
 }
 
 extern "C" {
@@ -1596,7 +1585,7 @@ extern "C" {
     /// frame. If present, this attachment provides additional information about the kCMSampleBufferAttachmentKey_DroppedFrameReason.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_droppedframereasoninfo?language=objc)
-    pub static kCMSampleBufferAttachmentKey_DroppedFrameReasonInfo: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_DroppedFrameReasonInfo: &'static CFString;
 }
 
 extern "C" {
@@ -1607,7 +1596,7 @@ extern "C" {
     /// session is configured for still image capture on some devices.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferdroppedframereasoninfo_cameramodeswitch?language=objc)
-    pub static kCMSampleBufferDroppedFrameReasonInfo_CameraModeSwitch: &'static CFStringRef;
+    pub static kCMSampleBufferDroppedFrameReasonInfo_CameraModeSwitch: &'static CFString;
 }
 
 extern "C" {
@@ -1618,14 +1607,14 @@ extern "C" {
     /// during the capture.  This key will not be present in CMSampleBuffers coming from cameras without a lens stabilization module.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_stillimagelensstabilizationinfo?language=objc)
-    pub static kCMSampleBufferAttachmentKey_StillImageLensStabilizationInfo: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_StillImageLensStabilizationInfo: &'static CFString;
 }
 
 extern "C" {
     /// The lens stabilization module was active for the duration this buffer.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferlensstabilizationinfo_active?language=objc)
-    pub static kCMSampleBufferLensStabilizationInfo_Active: &'static CFStringRef;
+    pub static kCMSampleBufferLensStabilizationInfo_Active: &'static CFString;
 }
 
 extern "C" {
@@ -1635,7 +1624,7 @@ extern "C" {
     /// compensate for the movement.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferlensstabilizationinfo_outofrange?language=objc)
-    pub static kCMSampleBufferLensStabilizationInfo_OutOfRange: &'static CFStringRef;
+    pub static kCMSampleBufferLensStabilizationInfo_OutOfRange: &'static CFString;
 }
 
 extern "C" {
@@ -1645,7 +1634,7 @@ extern "C" {
     /// to compensate for the motion of the device.  The module may be available at a later time.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferlensstabilizationinfo_unavailable?language=objc)
-    pub static kCMSampleBufferLensStabilizationInfo_Unavailable: &'static CFStringRef;
+    pub static kCMSampleBufferLensStabilizationInfo_Unavailable: &'static CFString;
 }
 
 extern "C" {
@@ -1654,7 +1643,7 @@ extern "C" {
     /// The value of kCMSampleBufferAttachmentKey_StillImageLensStabilizationInfo if the lens stabilization module was not used for this capture.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferlensstabilizationinfo_off?language=objc)
-    pub static kCMSampleBufferLensStabilizationInfo_Off: &'static CFStringRef;
+    pub static kCMSampleBufferLensStabilizationInfo_Off: &'static CFString;
 }
 
 extern "C" {
@@ -1668,7 +1657,7 @@ extern "C" {
     /// ox and oy are the coordinates of the principal point. The origin is the upper left of the frame.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_cameraintrinsicmatrix?language=objc)
-    pub static kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix: &'static CFString;
 }
 
 extern "C" {
@@ -1680,7 +1669,7 @@ extern "C" {
     /// Usual care should be taken when setting attachments on sample buffers whose orgins and destinations are ambiguous.  For example, CMSetAttachment() is not thread-safe, and CMSampleBuffers may be used in multiple sample buffer streams in a given system.  This can lead to crashes during concurrent access and/or unexpected behavior on alternate sample buffer streams.  Therefore, unless the orgin and destination of a sample buffer is known, the general recommended practice is to synthesize an empty sample buffer with this attachment alone and insert it into the sample buffer stream ahead of the concrete sample buffer rather than setting this attachment on the concrete sample buffer itself.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_forcekeyframe?language=objc)
-    pub static kCMSampleBufferAttachmentKey_ForceKeyFrame: &'static CFStringRef;
+    pub static kCMSampleBufferAttachmentKey_ForceKeyFrame: &'static CFString;
 }
 
 extern "C" {
@@ -1689,7 +1678,7 @@ extern "C" {
     /// The attachment is CFData containing one or more "BytesOfClearData"/"BytesOfProtectedData" pairs as appears in the 'senc' box (see ISO/IEC 23001-7 section 7.2.2). The "BytesOfClearData” and the "BytesOfProtectedData” fields are 32-bit integers. Both are native endian in the CFData. This attachment is not present if the CMSampleBuffer contains unprotected content.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_cryptorsubsampleauxiliarydata?language=objc)
-    pub static kCMSampleAttachmentKey_CryptorSubsampleAuxiliaryData: &'static CFStringRef;
+    pub static kCMSampleAttachmentKey_CryptorSubsampleAuxiliaryData: &'static CFString;
 }
 
 extern "C" {
@@ -1698,7 +1687,7 @@ extern "C" {
     /// The attachment is CFData containing HDR10+ metadata within an User Data Registered ITU-T T-35 SEI message (see ISO/IEC 23008-2-2020 section D.3.6) as little endian in the CFData. This attachment will override any HDR10+ metadata stored within the compressed data. The data shall start with the field itu_t_t35_country_code with the value 0xb5.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_hdr10plusperframedata?language=objc)
-    pub static kCMSampleAttachmentKey_HDR10PlusPerFrameData: &'static CFStringRef;
+    pub static kCMSampleAttachmentKey_HDR10PlusPerFrameData: &'static CFString;
 }
 
 extern "C" {
@@ -1707,7 +1696,7 @@ extern "C" {
     /// This attachment is used to pass sequence and frame level metadata from a format reader to a decoder or RAW processor. It should be a CFDictionary that conforms to CFPropertyList.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsampleattachmentkey_postdecodeprocessingmetadata?language=objc)
-    pub static kCMSampleAttachmentKey_PostDecodeProcessingMetadata: &'static CFStringRef;
+    pub static kCMSampleAttachmentKey_PostDecodeProcessingMetadata: &'static CFString;
 }
 
 extern "C-unwind" {
@@ -1723,9 +1712,9 @@ extern "C-unwind" {
     /// the channel values for a single sample are scattered through the buffer).
     #[cfg(feature = "CMBase")]
     pub fn CMSampleBufferCallForEachSample(
-        sbuf: &CMSampleBufferRef,
+        sbuf: &CMSampleBuffer,
         callback: unsafe extern "C-unwind" fn(
-            NonNull<CMSampleBufferRef>,
+            NonNull<CMSampleBuffer>,
             CMItemCount,
             *mut c_void,
         ) -> OSStatus,
@@ -1746,7 +1735,7 @@ extern "C-unwind" {
     /// the channel values for a single sample are scattered through the buffer).
     #[cfg(all(feature = "CMBase", feature = "block2"))]
     pub fn CMSampleBufferCallBlockForEachSample(
-        sbuf: &CMSampleBufferRef,
-        handler: &block2::Block<dyn Fn(NonNull<CMSampleBufferRef>, CMItemCount) -> OSStatus>,
+        sbuf: &CMSampleBuffer,
+        handler: &block2::Block<dyn Fn(NonNull<CMSampleBuffer>, CMItemCount) -> OSStatus>,
     ) -> OSStatus;
 }

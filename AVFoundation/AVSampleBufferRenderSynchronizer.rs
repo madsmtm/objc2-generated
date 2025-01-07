@@ -41,7 +41,7 @@ extern_methods!(
         ///
         /// The timebase is a read-only timebase.  Use the rate property and corresponding methods to adjust the timebase.
         #[method_id(@__retain_semantics Other timebase)]
-        pub unsafe fn timebase(&self) -> Retained<CMTimebaseRef>;
+        pub unsafe fn timebase(&self) -> Retained<CMTimebase>;
 
         /// Playback rate.
         ///

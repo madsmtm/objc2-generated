@@ -69,12 +69,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other foregroundColor)]
-        pub unsafe fn foregroundColor(&self) -> Option<Retained<CGColorRef>>;
+        pub unsafe fn foregroundColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`foregroundColor`][Self::foregroundColor].
         #[method(setForegroundColor:)]
-        pub unsafe fn setForegroundColor(&self, foreground_color: Option<&CGColorRef>);
+        pub unsafe fn setForegroundColor(&self, foreground_color: Option<&CGColor>);
 
         #[method(isWrapped)]
         pub unsafe fn isWrapped(&self) -> bool;

@@ -251,7 +251,7 @@ extern_methods!(
             proposed_dest_rect: *mut NSRect,
             context: Option<&NSGraphicsContext>,
             hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
-        ) -> Option<Retained<CGImageRef>>;
+        ) -> Option<Retained<CGImage>>;
     }
 );
 

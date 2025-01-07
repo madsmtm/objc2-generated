@@ -149,34 +149,34 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     /// * Persistent representations. **
-    pub fn CGPointCreateDictionaryRepresentation(point: CGPoint) -> NonNull<CFDictionaryRef>;
+    pub fn CGPointCreateDictionaryRepresentation(point: CGPoint) -> NonNull<CFDictionary>;
 }
 
 extern "C-unwind" {
     pub fn CGPointMakeWithDictionaryRepresentation(
-        dict: Option<&CFDictionaryRef>,
+        dict: Option<&CFDictionary>,
         point: *mut CGPoint,
     ) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGSizeCreateDictionaryRepresentation(size: CGSize) -> NonNull<CFDictionaryRef>;
+    pub fn CGSizeCreateDictionaryRepresentation(size: CGSize) -> NonNull<CFDictionary>;
 }
 
 extern "C-unwind" {
     pub fn CGSizeMakeWithDictionaryRepresentation(
-        dict: Option<&CFDictionaryRef>,
+        dict: Option<&CFDictionary>,
         size: *mut CGSize,
     ) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGRectCreateDictionaryRepresentation(_: CGRect) -> NonNull<CFDictionaryRef>;
+    pub fn CGRectCreateDictionaryRepresentation(_: CGRect) -> NonNull<CFDictionary>;
 }
 
 extern "C-unwind" {
     pub fn CGRectMakeWithDictionaryRepresentation(
-        dict: Option<&CFDictionaryRef>,
+        dict: Option<&CFDictionary>,
         rect: *mut CGRect,
     ) -> bool;
 }

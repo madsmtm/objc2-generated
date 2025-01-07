@@ -8,16 +8,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocket?language=objc)
 #[repr(C)]
-pub struct CFSocketRef {
+pub struct CFSocket {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFSocket"]
-    unsafe impl CFSocketRef {}
+    unsafe impl CFSocket {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketerror?language=objc)
@@ -54,7 +54,7 @@ pub struct CFSocketSignature {
     pub protocolFamily: i32,
     pub socketType: i32,
     pub protocol: i32,
-    pub address: *mut CFDataRef,
+    pub address: *mut CFData,
 }
 
 #[cfg(all(feature = "CFData", feature = "objc2"))]
@@ -65,7 +65,7 @@ unsafe impl Encode for CFSocketSignature {
             <i32>::ENCODING,
             <i32>::ENCODING,
             <i32>::ENCODING,
-            <*mut CFDataRef>::ENCODING,
+            <*mut CFData>::ENCODING,
         ],
     );
 }
@@ -132,9 +132,9 @@ pub const kCFSocketCloseOnInvalidate: CFOptionFlags = 128;
 #[cfg(all(feature = "CFBase", feature = "CFData"))]
 pub type CFSocketCallBack = Option<
     unsafe extern "C-unwind" fn(
-        *mut CFSocketRef,
+        *mut CFSocket,
         CFSocketCallBackType,
-        *mut CFDataRef,
+        *mut CFData,
         *const c_void,
         *mut c_void,
     ),
@@ -149,7 +149,7 @@ pub struct CFSocketContext {
     pub info: *mut c_void,
     pub retain: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>,
     pub release: Option<unsafe extern "C-unwind" fn(*const c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFStringRef>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -161,7 +161,7 @@ unsafe impl Encode for CFSocketContext {
             <*mut c_void>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFStringRef>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>>::ENCODING,
         ],
     );
 }
@@ -182,129 +182,126 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData"))]
     pub fn CFSocketCreate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         protocol_family: i32,
         socket_type: i32,
         protocol: i32,
         call_back_types: CFOptionFlags,
         callout: CFSocketCallBack,
         context: *const CFSocketContext,
-    ) -> *mut CFSocketRef;
+    ) -> *mut CFSocket;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData"))]
     pub fn CFSocketCreateWithNative(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         sock: CFSocketNativeHandle,
         call_back_types: CFOptionFlags,
         callout: CFSocketCallBack,
         context: *const CFSocketContext,
-    ) -> *mut CFSocketRef;
+    ) -> *mut CFSocket;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData"))]
     pub fn CFSocketCreateWithSocketSignature(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         signature: *const CFSocketSignature,
         call_back_types: CFOptionFlags,
         callout: CFSocketCallBack,
         context: *const CFSocketContext,
-    ) -> *mut CFSocketRef;
+    ) -> *mut CFSocket;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
     pub fn CFSocketCreateConnectedToSocketSignature(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         signature: *const CFSocketSignature,
         call_back_types: CFOptionFlags,
         callout: CFSocketCallBack,
         context: *const CFSocketContext,
         timeout: CFTimeInterval,
-    ) -> *mut CFSocketRef;
+    ) -> *mut CFSocket;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData"))]
-    pub fn CFSocketSetAddress(
-        s: Option<&CFSocketRef>,
-        address: Option<&CFDataRef>,
-    ) -> CFSocketError;
+    pub fn CFSocketSetAddress(s: Option<&CFSocket>, address: Option<&CFData>) -> CFSocketError;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
     pub fn CFSocketConnectToAddress(
-        s: Option<&CFSocketRef>,
-        address: Option<&CFDataRef>,
+        s: Option<&CFSocket>,
+        address: Option<&CFData>,
         timeout: CFTimeInterval,
     ) -> CFSocketError;
 }
 
 extern "C-unwind" {
-    pub fn CFSocketInvalidate(s: Option<&CFSocketRef>);
+    pub fn CFSocketInvalidate(s: Option<&CFSocket>);
 }
 
 extern "C-unwind" {
-    pub fn CFSocketIsValid(s: Option<&CFSocketRef>) -> Boolean;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "CFData")]
-    pub fn CFSocketCopyAddress(s: Option<&CFSocketRef>) -> *mut CFDataRef;
+    pub fn CFSocketIsValid(s: Option<&CFSocket>) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFData")]
-    pub fn CFSocketCopyPeerAddress(s: Option<&CFSocketRef>) -> *mut CFDataRef;
+    pub fn CFSocketCopyAddress(s: Option<&CFSocket>) -> *mut CFData;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CFData")]
+    pub fn CFSocketCopyPeerAddress(s: Option<&CFSocket>) -> *mut CFData;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFSocketGetContext(s: Option<&CFSocketRef>, context: *mut CFSocketContext);
+    pub fn CFSocketGetContext(s: Option<&CFSocket>, context: *mut CFSocketContext);
 }
 
 extern "C-unwind" {
-    pub fn CFSocketGetNative(s: Option<&CFSocketRef>) -> CFSocketNativeHandle;
+    pub fn CFSocketGetNative(s: Option<&CFSocket>) -> CFSocketNativeHandle;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
     pub fn CFSocketCreateRunLoopSource(
-        allocator: Option<&CFAllocatorRef>,
-        s: Option<&CFSocketRef>,
+        allocator: Option<&CFAllocator>,
+        s: Option<&CFSocket>,
         order: CFIndex,
-    ) -> *mut CFRunLoopSourceRef;
+    ) -> *mut CFRunLoopSource;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFSocketGetSocketFlags(s: Option<&CFSocketRef>) -> CFOptionFlags;
+    pub fn CFSocketGetSocketFlags(s: Option<&CFSocket>) -> CFOptionFlags;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFSocketSetSocketFlags(s: Option<&CFSocketRef>, flags: CFOptionFlags);
+    pub fn CFSocketSetSocketFlags(s: Option<&CFSocket>, flags: CFOptionFlags);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFSocketDisableCallBacks(s: Option<&CFSocketRef>, call_back_types: CFOptionFlags);
+    pub fn CFSocketDisableCallBacks(s: Option<&CFSocket>, call_back_types: CFOptionFlags);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFSocketEnableCallBacks(s: Option<&CFSocketRef>, call_back_types: CFOptionFlags);
+    pub fn CFSocketEnableCallBacks(s: Option<&CFSocket>, call_back_types: CFOptionFlags);
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
     pub fn CFSocketSendData(
-        s: Option<&CFSocketRef>,
-        address: Option<&CFDataRef>,
-        data: Option<&CFDataRef>,
+        s: Option<&CFSocket>,
+        address: Option<&CFData>,
+        data: Option<&CFData>,
         timeout: CFTimeInterval,
     ) -> CFSocketError;
 }
@@ -314,7 +311,7 @@ extern "C-unwind" {
     pub fn CFSocketRegisterValue(
         name_server_signature: *const CFSocketSignature,
         timeout: CFTimeInterval,
-        name: Option<&CFStringRef>,
+        name: Option<&CFString>,
         value: CFPropertyListRef,
     ) -> CFSocketError;
 }
@@ -324,9 +321,9 @@ extern "C-unwind" {
     pub fn CFSocketCopyRegisteredValue(
         name_server_signature: *const CFSocketSignature,
         timeout: CFTimeInterval,
-        name: Option<&CFStringRef>,
+        name: Option<&CFString>,
         value: *mut CFPropertyListRef,
-        name_server_address: *mut CFDataRef,
+        name_server_address: *mut CFData,
     ) -> CFSocketError;
 }
 
@@ -335,7 +332,7 @@ extern "C-unwind" {
     pub fn CFSocketRegisterSocketSignature(
         name_server_signature: *const CFSocketSignature,
         timeout: CFTimeInterval,
-        name: Option<&CFStringRef>,
+        name: Option<&CFString>,
         signature: *const CFSocketSignature,
     ) -> CFSocketError;
 }
@@ -345,9 +342,9 @@ extern "C-unwind" {
     pub fn CFSocketCopyRegisteredSocketSignature(
         name_server_signature: *const CFSocketSignature,
         timeout: CFTimeInterval,
-        name: Option<&CFStringRef>,
+        name: Option<&CFString>,
         signature: *mut CFSocketSignature,
-        name_server_address: *mut CFDataRef,
+        name_server_address: *mut CFData,
     ) -> CFSocketError;
 }
 
@@ -356,7 +353,7 @@ extern "C-unwind" {
     pub fn CFSocketUnregister(
         name_server_signature: *const CFSocketSignature,
         timeout: CFTimeInterval,
-        name: Option<&CFStringRef>,
+        name: Option<&CFString>,
     ) -> CFSocketError;
 }
 
@@ -371,41 +368,41 @@ extern "C-unwind" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketcommandkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFSocketCommandKey: Option<&'static CFStringRef>;
+    pub static kCFSocketCommandKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketnamekey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFSocketNameKey: Option<&'static CFStringRef>;
+    pub static kCFSocketNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketvaluekey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFSocketValueKey: Option<&'static CFStringRef>;
+    pub static kCFSocketValueKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketresultkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFSocketResultKey: Option<&'static CFStringRef>;
+    pub static kCFSocketResultKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketerrorkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFSocketErrorKey: Option<&'static CFStringRef>;
+    pub static kCFSocketErrorKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketregistercommand?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFSocketRegisterCommand: Option<&'static CFStringRef>;
+    pub static kCFSocketRegisterCommand: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketretrievecommand?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFSocketRetrieveCommand: Option<&'static CFStringRef>;
+    pub static kCFSocketRetrieveCommand: Option<&'static CFString>;
 }

@@ -12,21 +12,21 @@ use crate::*;
 #[cfg(feature = "CFBase")]
 pub const kCFXMLNodeCurrentVersion: CFIndex = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnoderef?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnode?language=objc)
 #[repr(C)]
-pub struct CFXMLNodeRef {
+pub struct CFXMLNode {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFXMLNode"]
-    unsafe impl CFXMLNodeRef {}
+    unsafe impl CFXMLNode {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltreeref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmltree?language=objc)
 #[cfg(feature = "CFTree")]
-pub type CFXMLTreeRef = CFTreeRef;
+pub type CFXMLTree = CFTree;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlnodetypecode?language=objc)
 // NS_ENUM
@@ -83,8 +83,8 @@ unsafe impl RefEncode for CFXMLNodeTypeCode {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLElementInfo {
-    pub attributes: *mut CFDictionaryRef,
-    pub attributeOrder: *mut CFArrayRef,
+    pub attributes: *mut CFDictionary,
+    pub attributeOrder: *mut CFArray,
     pub isEmpty: Boolean,
     pub(crate) _reserved: [c_char; 3],
 }
@@ -94,8 +94,8 @@ unsafe impl Encode for CFXMLElementInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
         &[
-            <*mut CFDictionaryRef>::ENCODING,
-            <*mut CFArrayRef>::ENCODING,
+            <*mut CFDictionary>::ENCODING,
+            <*mut CFArray>::ENCODING,
             <Boolean>::ENCODING,
             <[c_char; 3]>::ENCODING,
         ],
@@ -112,12 +112,12 @@ unsafe impl RefEncode for CFXMLElementInfo {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLProcessingInstructionInfo {
-    pub dataString: *mut CFStringRef,
+    pub dataString: *mut CFString,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
 unsafe impl Encode for CFXMLProcessingInstructionInfo {
-    const ENCODING: Encoding = Encoding::Struct("?", &[<*mut CFStringRef>::ENCODING]);
+    const ENCODING: Encoding = Encoding::Struct("?", &[<*mut CFString>::ENCODING]);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -130,16 +130,14 @@ unsafe impl RefEncode for CFXMLProcessingInstructionInfo {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLDocumentInfo {
-    pub sourceURL: *mut CFURLRef,
+    pub sourceURL: *mut CFURL,
     pub encoding: CFStringEncoding,
 }
 
 #[cfg(all(feature = "CFString", feature = "CFURL", feature = "objc2"))]
 unsafe impl Encode for CFXMLDocumentInfo {
-    const ENCODING: Encoding = Encoding::Struct(
-        "?",
-        &[<*mut CFURLRef>::ENCODING, <CFStringEncoding>::ENCODING],
-    );
+    const ENCODING: Encoding =
+        Encoding::Struct("?", &[<*mut CFURL>::ENCODING, <CFStringEncoding>::ENCODING]);
 }
 
 #[cfg(all(feature = "CFString", feature = "CFURL", feature = "objc2"))]
@@ -152,16 +150,14 @@ unsafe impl RefEncode for CFXMLDocumentInfo {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLExternalID {
-    pub systemID: *mut CFURLRef,
-    pub publicID: *mut CFStringRef,
+    pub systemID: *mut CFURL,
+    pub publicID: *mut CFString,
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFURL", feature = "objc2"))]
 unsafe impl Encode for CFXMLExternalID {
-    const ENCODING: Encoding = Encoding::Struct(
-        "?",
-        &[<*mut CFURLRef>::ENCODING, <*mut CFStringRef>::ENCODING],
-    );
+    const ENCODING: Encoding =
+        Encoding::Struct("?", &[<*mut CFURL>::ENCODING, <*mut CFString>::ENCODING]);
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFURL", feature = "objc2"))]
@@ -210,12 +206,12 @@ unsafe impl RefEncode for CFXMLNotationInfo {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLElementTypeDeclarationInfo {
-    pub contentDescription: *mut CFStringRef,
+    pub contentDescription: *mut CFString,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
 unsafe impl Encode for CFXMLElementTypeDeclarationInfo {
-    const ENCODING: Encoding = Encoding::Struct("?", &[<*mut CFStringRef>::ENCODING]);
+    const ENCODING: Encoding = Encoding::Struct("?", &[<*mut CFString>::ENCODING]);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -228,9 +224,9 @@ unsafe impl RefEncode for CFXMLElementTypeDeclarationInfo {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLAttributeDeclarationInfo {
-    pub attributeName: *mut CFStringRef,
-    pub typeString: *mut CFStringRef,
-    pub defaultString: *mut CFStringRef,
+    pub attributeName: *mut CFString,
+    pub typeString: *mut CFString,
+    pub defaultString: *mut CFString,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -238,9 +234,9 @@ unsafe impl Encode for CFXMLAttributeDeclarationInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
         &[
-            <*mut CFStringRef>::ENCODING,
-            <*mut CFStringRef>::ENCODING,
-            <*mut CFStringRef>::ENCODING,
+            <*mut CFString>::ENCODING,
+            <*mut CFString>::ENCODING,
+            <*mut CFString>::ENCODING,
         ],
     );
 }
@@ -311,9 +307,9 @@ unsafe impl RefEncode for CFXMLEntityTypeCode {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLEntityInfo {
     pub entityType: CFXMLEntityTypeCode,
-    pub replacementText: *mut CFStringRef,
+    pub replacementText: *mut CFString,
     pub entityID: CFXMLExternalID,
-    pub notationName: *mut CFStringRef,
+    pub notationName: *mut CFString,
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFURL", feature = "objc2"))]
@@ -322,9 +318,9 @@ unsafe impl Encode for CFXMLEntityInfo {
         "?",
         &[
             <CFXMLEntityTypeCode>::ENCODING,
-            <*mut CFStringRef>::ENCODING,
+            <*mut CFString>::ENCODING,
             <CFXMLExternalID>::ENCODING,
-            <*mut CFStringRef>::ENCODING,
+            <*mut CFString>::ENCODING,
         ],
     );
 }
@@ -362,57 +358,57 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     pub fn CFXMLNodeCreate(
-        alloc: Option<&CFAllocatorRef>,
+        alloc: Option<&CFAllocator>,
         xml_type: CFXMLNodeTypeCode,
-        data_string: Option<&CFStringRef>,
+        data_string: Option<&CFString>,
         additional_info_ptr: *const c_void,
         version: CFIndex,
-    ) -> *mut CFXMLNodeRef;
+    ) -> *mut CFXMLNode;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     pub fn CFXMLNodeCreateCopy(
-        alloc: Option<&CFAllocatorRef>,
-        orig_node: Option<&CFXMLNodeRef>,
-    ) -> *mut CFXMLNodeRef;
+        alloc: Option<&CFAllocator>,
+        orig_node: Option<&CFXMLNode>,
+    ) -> *mut CFXMLNode;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-    pub fn CFXMLNodeGetTypeCode(node: Option<&CFXMLNodeRef>) -> CFXMLNodeTypeCode;
+    pub fn CFXMLNodeGetTypeCode(node: Option<&CFXMLNode>) -> CFXMLNodeTypeCode;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-    pub fn CFXMLNodeGetString(node: Option<&CFXMLNodeRef>) -> *mut CFStringRef;
+    pub fn CFXMLNodeGetString(node: Option<&CFXMLNode>) -> *mut CFString;
 }
 
 extern "C-unwind" {
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-    pub fn CFXMLNodeGetInfoPtr(node: Option<&CFXMLNodeRef>) -> *const c_void;
+    pub fn CFXMLNodeGetInfoPtr(node: Option<&CFXMLNode>) -> *const c_void;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-    pub fn CFXMLNodeGetVersion(node: Option<&CFXMLNodeRef>) -> CFIndex;
+    pub fn CFXMLNodeGetVersion(node: Option<&CFXMLNode>) -> CFIndex;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFTree"))]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     pub fn CFXMLTreeCreateWithNode(
-        allocator: Option<&CFAllocatorRef>,
-        node: Option<&CFXMLNodeRef>,
-    ) -> *mut CFXMLTreeRef;
+        allocator: Option<&CFAllocator>,
+        node: Option<&CFXMLNode>,
+    ) -> *mut CFXMLTree;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFTree")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-    pub fn CFXMLTreeGetNode(xml_tree: Option<&CFXMLTreeRef>) -> *mut CFXMLNodeRef;
+    pub fn CFXMLTreeGetNode(xml_tree: Option<&CFXMLTree>) -> *mut CFXMLNode;
 }

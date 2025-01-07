@@ -6,22 +6,22 @@ use core::marker::{PhantomData, PhantomPinned};
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotification?language=objc)
 #[repr(C)]
-pub struct CFUserNotificationRef {
+pub struct CFUserNotification {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFUserNotification"]
-    unsafe impl CFUserNotificationRef {}
+    unsafe impl CFUserNotification {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationcallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFUserNotificationCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFUserNotificationRef, CFOptionFlags)>;
+    Option<unsafe extern "C-unwind" fn(*mut CFUserNotification, CFOptionFlags)>;
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
@@ -31,18 +31,18 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDate", feature = "CFDictionary"))]
     pub fn CFUserNotificationCreate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         timeout: CFTimeInterval,
         flags: CFOptionFlags,
         error: *mut i32,
-        dictionary: Option<&CFDictionaryRef>,
-    ) -> *mut CFUserNotificationRef;
+        dictionary: Option<&CFDictionary>,
+    ) -> *mut CFUserNotification;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDate"))]
     pub fn CFUserNotificationReceiveResponse(
-        user_notification: Option<&CFUserNotificationRef>,
+        user_notification: Option<&CFUserNotification>,
         timeout: CFTimeInterval,
         response_flags: *mut CFOptionFlags,
     ) -> i32;
@@ -51,41 +51,41 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFUserNotificationGetResponseValue(
-        user_notification: Option<&CFUserNotificationRef>,
-        key: Option<&CFStringRef>,
+        user_notification: Option<&CFUserNotification>,
+        key: Option<&CFString>,
         idx: CFIndex,
-    ) -> *mut CFStringRef;
+    ) -> *mut CFString;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFDictionary")]
     pub fn CFUserNotificationGetResponseDictionary(
-        user_notification: Option<&CFUserNotificationRef>,
-    ) -> *mut CFDictionaryRef;
+        user_notification: Option<&CFUserNotification>,
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDate", feature = "CFDictionary"))]
     pub fn CFUserNotificationUpdate(
-        user_notification: Option<&CFUserNotificationRef>,
+        user_notification: Option<&CFUserNotification>,
         timeout: CFTimeInterval,
         flags: CFOptionFlags,
-        dictionary: Option<&CFDictionaryRef>,
+        dictionary: Option<&CFDictionary>,
     ) -> i32;
 }
 
 extern "C-unwind" {
-    pub fn CFUserNotificationCancel(user_notification: Option<&CFUserNotificationRef>) -> i32;
+    pub fn CFUserNotificationCancel(user_notification: Option<&CFUserNotification>) -> i32;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
     pub fn CFUserNotificationCreateRunLoopSource(
-        allocator: Option<&CFAllocatorRef>,
-        user_notification: Option<&CFUserNotificationRef>,
+        allocator: Option<&CFAllocator>,
+        user_notification: Option<&CFUserNotification>,
         callout: CFUserNotificationCallBack,
         order: CFIndex,
-    ) -> *mut CFRunLoopSourceRef;
+    ) -> *mut CFRunLoopSource;
 }
 
 extern "C-unwind" {
@@ -93,12 +93,12 @@ extern "C-unwind" {
     pub fn CFUserNotificationDisplayNotice(
         timeout: CFTimeInterval,
         flags: CFOptionFlags,
-        icon_url: Option<&CFURLRef>,
-        sound_url: Option<&CFURLRef>,
-        localization_url: Option<&CFURLRef>,
-        alert_header: Option<&CFStringRef>,
-        alert_message: Option<&CFStringRef>,
-        default_button_title: Option<&CFStringRef>,
+        icon_url: Option<&CFURL>,
+        sound_url: Option<&CFURL>,
+        localization_url: Option<&CFURL>,
+        alert_header: Option<&CFString>,
+        alert_message: Option<&CFString>,
+        default_button_title: Option<&CFString>,
     ) -> i32;
 }
 
@@ -107,14 +107,14 @@ extern "C-unwind" {
     pub fn CFUserNotificationDisplayAlert(
         timeout: CFTimeInterval,
         flags: CFOptionFlags,
-        icon_url: Option<&CFURLRef>,
-        sound_url: Option<&CFURLRef>,
-        localization_url: Option<&CFURLRef>,
-        alert_header: Option<&CFStringRef>,
-        alert_message: Option<&CFStringRef>,
-        default_button_title: Option<&CFStringRef>,
-        alternate_button_title: Option<&CFStringRef>,
-        other_button_title: Option<&CFStringRef>,
+        icon_url: Option<&CFURL>,
+        sound_url: Option<&CFURL>,
+        localization_url: Option<&CFURL>,
+        alert_header: Option<&CFString>,
+        alert_message: Option<&CFString>,
+        default_button_title: Option<&CFString>,
+        alternate_button_title: Option<&CFString>,
+        other_button_title: Option<&CFString>,
         response_flags: *mut CFOptionFlags,
     ) -> i32;
 }
@@ -161,95 +161,95 @@ pub const kCFUserNotificationUseRadioButtonsFlag: CFOptionFlags = 1 << 6;
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationiconurlkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFUserNotificationIconURLKey: Option<&'static CFStringRef>;
+    pub static kCFUserNotificationIconURLKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationsoundurlkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFUserNotificationSoundURLKey: Option<&'static CFStringRef>;
+    pub static kCFUserNotificationSoundURLKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationlocalizationurlkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFUserNotificationLocalizationURLKey: Option<&'static CFStringRef>;
+    pub static kCFUserNotificationLocalizationURLKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalertheaderkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFUserNotificationAlertHeaderKey: Option<&'static CFStringRef>;
+    pub static kCFUserNotificationAlertHeaderKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalertmessagekey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFUserNotificationAlertMessageKey: Option<&'static CFStringRef>;
+    pub static kCFUserNotificationAlertMessageKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationdefaultbuttontitlekey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFUserNotificationDefaultButtonTitleKey: Option<&'static CFStringRef>;
+    pub static kCFUserNotificationDefaultButtonTitleKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalternatebuttontitlekey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFUserNotificationAlternateButtonTitleKey: Option<&'static CFStringRef>;
+    pub static kCFUserNotificationAlternateButtonTitleKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationotherbuttontitlekey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFUserNotificationOtherButtonTitleKey: Option<&'static CFStringRef>;
+    pub static kCFUserNotificationOtherButtonTitleKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationprogressindicatorvaluekey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFUserNotificationProgressIndicatorValueKey: Option<&'static CFStringRef>;
+    pub static kCFUserNotificationProgressIndicatorValueKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationpopuptitleskey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFUserNotificationPopUpTitlesKey: Option<&'static CFStringRef>;
+    pub static kCFUserNotificationPopUpTitlesKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationtextfieldtitleskey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFUserNotificationTextFieldTitlesKey: Option<&'static CFStringRef>;
+    pub static kCFUserNotificationTextFieldTitlesKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationcheckboxtitleskey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFUserNotificationCheckBoxTitlesKey: Option<&'static CFStringRef>;
+    pub static kCFUserNotificationCheckBoxTitlesKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationtextfieldvalueskey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFUserNotificationTextFieldValuesKey: Option<&'static CFStringRef>;
+    pub static kCFUserNotificationTextFieldValuesKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationpopupselectionkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFUserNotificationPopUpSelectionKey: Option<&'static CFStringRef>;
+    pub static kCFUserNotificationPopUpSelectionKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalerttopmostkey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFUserNotificationAlertTopMostKey: Option<&'static CFStringRef>;
+    pub static kCFUserNotificationAlertTopMostKey: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationkeyboardtypeskey?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFUserNotificationKeyboardTypesKey: Option<&'static CFStringRef>;
+    pub static kCFUserNotificationKeyboardTypesKey: Option<&'static CFString>;
 }

@@ -14,9 +14,9 @@ extern "C-unwind" {
     /// deviceUID must be NULL on iOS.
     #[cfg(feature = "CMSync")]
     pub fn CMAudioDeviceClockCreate(
-        allocator: Option<&CFAllocatorRef>,
-        device_uid: Option<&CFStringRef>,
-        clock_out: NonNull<CMClockRef>,
+        allocator: Option<&CFAllocator>,
+        device_uid: Option<&CFString>,
+        clock_out: NonNull<CMClock>,
     ) -> OSStatus;
 }
 
@@ -26,7 +26,7 @@ extern "C-unwind" {
     /// Pass NULL for deviceUID to make the clock track the default device.
     #[cfg(feature = "CMSync")]
     pub fn CMAudioDeviceClockSetAudioDeviceUID(
-        clock: &CMClockRef,
-        device_uid: Option<&CFStringRef>,
+        clock: &CMClock,
+        device_uid: Option<&CFString>,
     ) -> OSStatus;
 }

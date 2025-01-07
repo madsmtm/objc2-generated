@@ -43,9 +43,9 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODRecordSetNodeCredentials(
         record: Option<&ODRecordRef>,
-        username: Option<&CFStringRef>,
-        password: Option<&CFStringRef>,
-        error: *mut CFErrorRef,
+        username: Option<&CFString>,
+        password: Option<&CFString>,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -83,10 +83,10 @@ extern "C-unwind" {
         record: Option<&ODRecordRef>,
         record_type: Option<&ODRecordType>,
         auth_type: Option<&ODAuthenticationType>,
-        auth_items: Option<&CFArrayRef>,
-        out_auth_items: *mut CFArrayRef,
+        auth_items: Option<&CFArray>,
+        out_auth_items: *mut CFArray,
         out_context: *mut ODContextRef,
-        error: *mut CFErrorRef,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -98,8 +98,8 @@ extern "C-unwind" {
     #[deprecated]
     pub fn ODRecordSetNodeCredentialsUsingKerberosCache(
         record: Option<&ODRecordRef>,
-        cache_name: Option<&CFStringRef>,
-        error: *mut CFErrorRef,
+        cache_name: Option<&CFString>,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -118,10 +118,10 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     #[deprecated = "use ODRecordCopyEffectivePolicies"]
     pub fn ODRecordCopyPasswordPolicy(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         record: Option<&ODRecordRef>,
-        error: *mut CFErrorRef,
-    ) -> *mut CFDictionaryRef;
+        error: *mut CFError,
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -139,8 +139,8 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODRecordVerifyPassword(
         record: Option<&ODRecordRef>,
-        password: Option<&CFStringRef>,
-        error: *mut CFErrorRef,
+        password: Option<&CFString>,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -174,10 +174,10 @@ extern "C-unwind" {
     pub fn ODRecordVerifyPasswordExtended(
         record: Option<&ODRecordRef>,
         auth_type: Option<&ODAuthenticationType>,
-        auth_items: Option<&CFArrayRef>,
-        out_auth_items: *mut CFArrayRef,
+        auth_items: Option<&CFArray>,
+        out_auth_items: *mut CFArray,
         out_context: *mut ODContextRef,
-        error: *mut CFErrorRef,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -199,9 +199,9 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODRecordChangePassword(
         record: Option<&ODRecordRef>,
-        old_password: Option<&CFStringRef>,
-        new_password: Option<&CFStringRef>,
-        error: *mut CFErrorRef,
+        old_password: Option<&CFString>,
+        new_password: Option<&CFString>,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -214,7 +214,7 @@ extern "C-unwind" {
     ///
     /// Returns: a CFStringRef of the record type for this ODRecordRef
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
-    pub fn ODRecordGetRecordType(record: Option<&ODRecordRef>) -> *mut CFStringRef;
+    pub fn ODRecordGetRecordType(record: Option<&ODRecordRef>) -> *mut CFString;
 }
 
 extern "C-unwind" {
@@ -227,7 +227,7 @@ extern "C-unwind" {
     ///
     /// Returns: a CFStringRef of the record name for this ODRecordRef
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
-    pub fn ODRecordGetRecordName(record: Option<&ODRecordRef>) -> *mut CFStringRef;
+    pub fn ODRecordGetRecordName(record: Option<&ODRecordRef>) -> *mut CFString;
 }
 
 extern "C-unwind" {
@@ -253,8 +253,8 @@ extern "C-unwind" {
     pub fn ODRecordCopyValues(
         record: Option<&ODRecordRef>,
         attribute: Option<&ODAttributeType>,
-        error: *mut CFErrorRef,
-    ) -> *mut CFArrayRef;
+        error: *mut CFError,
+    ) -> *mut CFArray;
 }
 
 extern "C-unwind" {
@@ -284,7 +284,7 @@ extern "C-unwind" {
         record: Option<&ODRecordRef>,
         attribute: Option<&ODAttributeType>,
         value_or_values: CFTypeRef,
-        error: *mut CFErrorRef,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -311,7 +311,7 @@ extern "C-unwind" {
         record: Option<&ODRecordRef>,
         attribute: Option<&ODAttributeType>,
         value: CFTypeRef,
-        error: *mut CFErrorRef,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -339,7 +339,7 @@ extern "C-unwind" {
         record: Option<&ODRecordRef>,
         attribute: Option<&ODAttributeType>,
         value: CFTypeRef,
-        error: *mut CFErrorRef,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -363,9 +363,9 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODRecordCopyDetails(
         record: Option<&ODRecordRef>,
-        attributes: Option<&CFArrayRef>,
-        error: *mut CFErrorRef,
-    ) -> *mut CFDictionaryRef;
+        attributes: Option<&CFArray>,
+        error: *mut CFError,
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -380,7 +380,7 @@ extern "C-unwind" {
     ///
     /// Parameter `error`: an optional CFErrorRef reference for error details
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
-    pub fn ODRecordSynchronize(record: Option<&ODRecordRef>, error: *mut CFErrorRef) -> bool;
+    pub fn ODRecordSynchronize(record: Option<&ODRecordRef>, error: *mut CFError) -> bool;
 }
 
 extern "C-unwind" {
@@ -395,7 +395,7 @@ extern "C-unwind" {
     ///
     /// Returns: returns true on success, otherwise outError can be checked for details
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
-    pub fn ODRecordDelete(record: Option<&ODRecordRef>, error: *mut CFErrorRef) -> bool;
+    pub fn ODRecordDelete(record: Option<&ODRecordRef>, error: *mut CFError) -> bool;
 }
 
 extern "C-unwind" {
@@ -417,7 +417,7 @@ extern "C-unwind" {
     pub fn ODRecordAddMember(
         group: Option<&ODRecordRef>,
         member: Option<&ODRecordRef>,
-        error: *mut CFErrorRef,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -438,7 +438,7 @@ extern "C-unwind" {
     pub fn ODRecordRemoveMember(
         group: Option<&ODRecordRef>,
         member: Option<&ODRecordRef>,
-        error: *mut CFErrorRef,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -460,7 +460,7 @@ extern "C-unwind" {
     pub fn ODRecordContainsMember(
         group: Option<&ODRecordRef>,
         member: Option<&ODRecordRef>,
-        error: *mut CFErrorRef,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -478,8 +478,8 @@ extern "C-unwind" {
     #[deprecated = "use ODRecordCopyAccountPolicies"]
     pub fn ODRecordCopyPolicies(
         record: Option<&ODRecordRef>,
-        error: *mut CFErrorRef,
-    ) -> *mut CFDictionaryRef;
+        error: *mut CFError,
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -496,8 +496,8 @@ extern "C-unwind" {
     #[deprecated = "use ODRecordAuthenticationAllowed and similar functions"]
     pub fn ODRecordCopyEffectivePolicies(
         record: Option<&ODRecordRef>,
-        error: *mut CFErrorRef,
-    ) -> *mut CFDictionaryRef;
+        error: *mut CFError,
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -516,8 +516,8 @@ extern "C-unwind" {
     #[deprecated]
     pub fn ODRecordCopySupportedPolicies(
         record: Option<&ODRecordRef>,
-        error: *mut CFErrorRef,
-    ) -> *mut CFDictionaryRef;
+        error: *mut CFError,
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -536,8 +536,8 @@ extern "C-unwind" {
     #[deprecated = "use ODRecordSetAccountPolicies"]
     pub fn ODRecordSetPolicies(
         record: Option<&ODRecordRef>,
-        policies: Option<&CFDictionaryRef>,
-        error: *mut CFErrorRef,
+        policies: Option<&CFDictionary>,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -565,7 +565,7 @@ extern "C-unwind" {
         record: Option<&ODRecordRef>,
         policy: Option<&ODPolicyType>,
         value: CFTypeRef,
-        error: *mut CFErrorRef,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -590,7 +590,7 @@ extern "C-unwind" {
     pub fn ODRecordRemovePolicy(
         record: Option<&ODRecordRef>,
         policy: Option<&ODPolicyType>,
-        error: *mut CFErrorRef,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -625,9 +625,9 @@ extern "C-unwind" {
     ))]
     pub fn ODRecordAddAccountPolicy(
         record: Option<&ODRecordRef>,
-        policy: Option<&CFDictionaryRef>,
+        policy: Option<&CFDictionary>,
         category: Option<&ODPolicyCategoryType>,
-        error: *mut CFErrorRef,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -653,9 +653,9 @@ extern "C-unwind" {
     ))]
     pub fn ODRecordRemoveAccountPolicy(
         record: Option<&ODRecordRef>,
-        policy: Option<&CFDictionaryRef>,
+        policy: Option<&CFDictionary>,
         category: Option<&ODPolicyCategoryType>,
-        error: *mut CFErrorRef,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -686,8 +686,8 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODRecordSetAccountPolicies(
         record: Option<&ODRecordRef>,
-        policies: Option<&CFDictionaryRef>,
-        error: *mut CFErrorRef,
+        policies: Option<&CFDictionary>,
+        error: *mut CFError,
     ) -> bool;
 }
 
@@ -707,8 +707,8 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODRecordCopyAccountPolicies(
         record: Option<&ODRecordRef>,
-        error: *mut CFErrorRef,
-    ) -> *mut CFDictionaryRef;
+        error: *mut CFError,
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -737,10 +737,8 @@ extern "C-unwind" {
     ///
     /// Returns: a bool which signifies if the authentication is allowed, otherwise error is set.
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
-    pub fn ODRecordAuthenticationAllowed(
-        record: Option<&ODRecordRef>,
-        error: *mut CFErrorRef,
-    ) -> bool;
+    pub fn ODRecordAuthenticationAllowed(record: Option<&ODRecordRef>, error: *mut CFError)
+        -> bool;
 }
 
 extern "C-unwind" {
@@ -768,8 +766,8 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODRecordPasswordChangeAllowed(
         record: Option<&ODRecordRef>,
-        new_password: Option<&CFStringRef>,
-        error: *mut CFErrorRef,
+        new_password: Option<&CFString>,
+        error: *mut CFError,
     ) -> bool;
 }
 

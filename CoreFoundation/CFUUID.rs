@@ -8,16 +8,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuid?language=objc)
 #[repr(C)]
-pub struct CFUUIDRef {
+pub struct CFUUID {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFUUID"]
-    unsafe impl CFUUIDRef {}
+    unsafe impl CFUUID {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfuuidbytes?language=objc)
@@ -79,13 +79,13 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFUUIDCreate(alloc: Option<&CFAllocatorRef>) -> *mut CFUUIDRef;
+    pub fn CFUUIDCreate(alloc: Option<&CFAllocator>) -> *mut CFUUID;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFUUIDCreateWithBytes(
-        alloc: Option<&CFAllocatorRef>,
+        alloc: Option<&CFAllocator>,
         byte0: u8,
         byte1: u8,
         byte2: u8,
@@ -102,29 +102,26 @@ extern "C-unwind" {
         byte13: u8,
         byte14: u8,
         byte15: u8,
-    ) -> *mut CFUUIDRef;
+    ) -> *mut CFUUID;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFUUIDCreateFromString(
-        alloc: Option<&CFAllocatorRef>,
-        uuid_str: Option<&CFStringRef>,
-    ) -> *mut CFUUIDRef;
+        alloc: Option<&CFAllocator>,
+        uuid_str: Option<&CFString>,
+    ) -> *mut CFUUID;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFUUIDCreateString(
-        alloc: Option<&CFAllocatorRef>,
-        uuid: Option<&CFUUIDRef>,
-    ) -> *mut CFStringRef;
+    pub fn CFUUIDCreateString(alloc: Option<&CFAllocator>, uuid: Option<&CFUUID>) -> *mut CFString;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFUUIDGetConstantUUIDWithBytes(
-        alloc: Option<&CFAllocatorRef>,
+        alloc: Option<&CFAllocator>,
         byte0: u8,
         byte1: u8,
         byte2: u8,
@@ -141,17 +138,17 @@ extern "C-unwind" {
         byte13: u8,
         byte14: u8,
         byte15: u8,
-    ) -> *mut CFUUIDRef;
+    ) -> *mut CFUUID;
 }
 
 extern "C-unwind" {
-    pub fn CFUUIDGetUUIDBytes(uuid: Option<&CFUUIDRef>) -> CFUUIDBytes;
+    pub fn CFUUIDGetUUIDBytes(uuid: Option<&CFUUID>) -> CFUUIDBytes;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFUUIDCreateFromUUIDBytes(
-        alloc: Option<&CFAllocatorRef>,
+        alloc: Option<&CFAllocator>,
         bytes: CFUUIDBytes,
-    ) -> *mut CFUUIDRef;
+    ) -> *mut CFUUID;
 }

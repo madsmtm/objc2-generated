@@ -21,7 +21,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetretaincallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFSetRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFAllocatorRef, *const c_void) -> *const c_void>;
+    Option<unsafe extern "C-unwind" fn(*mut CFAllocator, *const c_void) -> *const c_void>;
 
 /// Type of the callback function used by CFSets for releasing a retain on values.
 ///
@@ -32,7 +32,7 @@ pub type CFSetRetainCallBack =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetreleasecallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFSetReleaseCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFAllocatorRef, *const c_void)>;
+    Option<unsafe extern "C-unwind" fn(*mut CFAllocator, *const c_void)>;
 
 /// Type of the callback function used by CFSets for describing values.
 ///
@@ -43,7 +43,7 @@ pub type CFSetReleaseCallBack =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcopydescriptioncallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFSetCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFStringRef>;
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>;
 
 /// Type of the callback function used by CFSets for comparing values.
 ///
@@ -154,30 +154,30 @@ pub type CFSetApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void
 
 /// This is the type of a reference to immutable CFSets.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfset?language=objc)
 #[repr(C)]
-pub struct CFSetRef {
+pub struct CFSet {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFSet"]
-    unsafe impl CFSetRef {}
+    unsafe impl CFSet {}
 );
 
 /// This is the type of a reference to mutable CFSets.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablesetref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutableset?language=objc)
 #[repr(C)]
-pub struct CFMutableSetRef {
+pub struct CFMutableSet {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFSet"]
-    unsafe impl CFMutableSetRef: CFSetRef {}
+    unsafe impl CFMutableSet: CFSet {}
 );
 
 extern "C-unwind" {
@@ -237,11 +237,11 @@ extern "C-unwind" {
     /// Returns: A reference to the new immutable CFSet.
     #[cfg(feature = "CFBase")]
     pub fn CFSetCreate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         values: *mut *const c_void,
         num_values: CFIndex,
         call_backs: *const CFSetCallBacks,
-    ) -> *mut CFSetRef;
+    ) -> *mut CFSet;
 }
 
 extern "C-unwind" {
@@ -264,10 +264,7 @@ extern "C-unwind" {
     ///
     /// Returns: A reference to the new immutable CFSet.
     #[cfg(feature = "CFBase")]
-    pub fn CFSetCreateCopy(
-        allocator: Option<&CFAllocatorRef>,
-        the_set: Option<&CFSetRef>,
-    ) -> *mut CFSetRef;
+    pub fn CFSetCreateCopy(allocator: Option<&CFAllocator>, the_set: Option<&CFSet>) -> *mut CFSet;
 }
 
 extern "C-unwind" {
@@ -317,10 +314,10 @@ extern "C-unwind" {
     /// Returns: A reference to the new mutable CFSet.
     #[cfg(feature = "CFBase")]
     pub fn CFSetCreateMutable(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         capacity: CFIndex,
         call_backs: *const CFSetCallBacks,
-    ) -> *mut CFMutableSetRef;
+    ) -> *mut CFMutableSet;
 }
 
 extern "C-unwind" {
@@ -354,10 +351,10 @@ extern "C-unwind" {
     /// Returns: A reference to the new mutable CFSet.
     #[cfg(feature = "CFBase")]
     pub fn CFSetCreateMutableCopy(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        the_set: Option<&CFSetRef>,
-    ) -> *mut CFMutableSetRef;
+        the_set: Option<&CFSet>,
+    ) -> *mut CFMutableSet;
 }
 
 extern "C-unwind" {
@@ -368,7 +365,7 @@ extern "C-unwind" {
     ///
     /// Returns: The number of values in the set.
     #[cfg(feature = "CFBase")]
-    pub fn CFSetGetCount(the_set: Option<&CFSetRef>) -> CFIndex;
+    pub fn CFSetGetCount(the_set: Option<&CFSet>) -> CFIndex;
 }
 
 extern "C-unwind" {
@@ -388,7 +385,7 @@ extern "C-unwind" {
     ///
     /// Returns: The number of times the given value occurs in the set.
     #[cfg(feature = "CFBase")]
-    pub fn CFSetGetCountOfValue(the_set: Option<&CFSetRef>, value: *const c_void) -> CFIndex;
+    pub fn CFSetGetCountOfValue(the_set: Option<&CFSet>, value: *const c_void) -> CFIndex;
 }
 
 extern "C-unwind" {
@@ -405,7 +402,7 @@ extern "C-unwind" {
     /// the behavior is undefined.
     ///
     /// Returns: true, if the value is in the set, otherwise false.
-    pub fn CFSetContainsValue(the_set: Option<&CFSetRef>, value: *const c_void) -> Boolean;
+    pub fn CFSetContainsValue(the_set: Option<&CFSet>, value: *const c_void) -> Boolean;
 }
 
 extern "C-unwind" {
@@ -421,7 +418,7 @@ extern "C-unwind" {
     /// callback, the behavior is undefined.
     ///
     /// Returns: The value in the set with the given hash.
-    pub fn CFSetGetValue(the_set: Option<&CFSetRef>, value: *const c_void) -> *const c_void;
+    pub fn CFSetGetValue(the_set: Option<&CFSet>, value: *const c_void) -> *const c_void;
 }
 
 extern "C-unwind" {
@@ -448,7 +445,7 @@ extern "C-unwind" {
     ///
     /// Returns: True if the value was present in the set, otherwise false.
     pub fn CFSetGetValueIfPresent(
-        the_set: Option<&CFSetRef>,
+        the_set: Option<&CFSet>,
         candidate: *const c_void,
         value: *mut *const c_void,
     ) -> Boolean;
@@ -465,7 +462,7 @@ extern "C-unwind" {
     /// in the same order in which they appear in the set. If this
     /// parameter is not a valid pointer to a C array of at least
     /// CFSetGetCount() pointers, the behavior is undefined.
-    pub fn CFSetGetValues(the_set: Option<&CFSetRef>, values: *mut *const c_void);
+    pub fn CFSetGetValues(the_set: Option<&CFSet>, values: *mut *const c_void);
 }
 
 extern "C-unwind" {
@@ -487,7 +484,7 @@ extern "C-unwind" {
     /// what is expected by the applier function, the behavior is
     /// undefined.
     pub fn CFSetApplyFunction(
-        the_set: Option<&CFSetRef>,
+        the_set: Option<&CFSet>,
         applier: CFSetApplierFunction,
         context: *mut c_void,
     );
@@ -505,7 +502,7 @@ extern "C-unwind" {
     /// was created. If the value is not of the sort expected by the
     /// retain callback, the behavior is undefined. The count of the
     /// set is increased by one.
-    pub fn CFSetAddValue(the_set: Option<&CFMutableSetRef>, value: *const c_void);
+    pub fn CFSetAddValue(the_set: Option<&CFMutableSet>, value: *const c_void);
 }
 
 extern "C-unwind" {
@@ -524,7 +521,7 @@ extern "C-unwind" {
     /// was created. If the value is not of the sort expected by the
     /// retain callback, the behavior is undefined. The count of the
     /// set is increased by one.
-    pub fn CFSetReplaceValue(the_set: Option<&CFMutableSetRef>, value: *const c_void);
+    pub fn CFSetReplaceValue(the_set: Option<&CFMutableSet>, value: *const c_void);
 }
 
 extern "C-unwind" {
@@ -544,7 +541,7 @@ extern "C-unwind" {
     /// was created. If the value is not of the sort expected by the
     /// retain callback, the behavior is undefined. The count of the
     /// set is increased by one.
-    pub fn CFSetSetValue(the_set: Option<&CFMutableSetRef>, value: *const c_void);
+    pub fn CFSetSetValue(the_set: Option<&CFMutableSet>, value: *const c_void);
 }
 
 extern "C-unwind" {
@@ -559,7 +556,7 @@ extern "C-unwind" {
     /// was NULL, pointer equality (in C, ==) is used. If a value, or
     /// any of the values in the set, are not understood by the equal()
     /// callback, the behavior is undefined.
-    pub fn CFSetRemoveValue(the_set: Option<&CFMutableSetRef>, value: *const c_void);
+    pub fn CFSetRemoveValue(the_set: Option<&CFMutableSet>, value: *const c_void);
 }
 
 extern "C-unwind" {
@@ -568,5 +565,5 @@ extern "C-unwind" {
     /// Parameter `theSet`: The set from which all of the values are to be
     /// removed. If this parameter is not a valid mutable CFSet,
     /// the behavior is undefined.
-    pub fn CFSetRemoveAllValues(the_set: Option<&CFMutableSetRef>);
+    pub fn CFSetRemoveAllValues(the_set: Option<&CFMutableSet>);
 }

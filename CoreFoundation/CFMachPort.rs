@@ -8,16 +8,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachport?language=objc)
 #[repr(C)]
-pub struct CFMachPortRef {
+pub struct CFMachPort {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFMachPort"]
-    unsafe impl CFMachPortRef {}
+    unsafe impl CFMachPort {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportcontext?language=objc)
@@ -29,7 +29,7 @@ pub struct CFMachPortContext {
     pub info: *mut c_void,
     pub retain: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>,
     pub release: Option<unsafe extern "C-unwind" fn(*const c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFStringRef>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -41,7 +41,7 @@ unsafe impl Encode for CFMachPortContext {
             <*mut c_void>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFStringRef>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>>::ENCODING,
         ],
     );
 }
@@ -54,11 +54,11 @@ unsafe impl RefEncode for CFMachPortContext {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportcallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFMachPortCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFMachPortRef, *mut c_void, CFIndex, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(*mut CFMachPort, *mut c_void, CFIndex, *mut c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportinvalidationcallback?language=objc)
 pub type CFMachPortInvalidationCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFMachPortRef, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(*mut CFMachPort, *mut c_void)>;
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
@@ -68,51 +68,51 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFMachPortCreate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         callout: CFMachPortCallBack,
         context: *mut CFMachPortContext,
         should_free_info: *mut Boolean,
-    ) -> *mut CFMachPortRef;
+    ) -> *mut CFMachPort;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "libc"))]
     pub fn CFMachPortCreateWithPort(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         port_num: libc::mach_port_t,
         callout: CFMachPortCallBack,
         context: *mut CFMachPortContext,
         should_free_info: *mut Boolean,
-    ) -> *mut CFMachPortRef;
+    ) -> *mut CFMachPort;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "libc")]
-    pub fn CFMachPortGetPort(port: Option<&CFMachPortRef>) -> libc::mach_port_t;
+    pub fn CFMachPortGetPort(port: Option<&CFMachPort>) -> libc::mach_port_t;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFMachPortGetContext(port: Option<&CFMachPortRef>, context: *mut CFMachPortContext);
+    pub fn CFMachPortGetContext(port: Option<&CFMachPort>, context: *mut CFMachPortContext);
 }
 
 extern "C-unwind" {
-    pub fn CFMachPortInvalidate(port: Option<&CFMachPortRef>);
+    pub fn CFMachPortInvalidate(port: Option<&CFMachPort>);
 }
 
 extern "C-unwind" {
-    pub fn CFMachPortIsValid(port: Option<&CFMachPortRef>) -> Boolean;
+    pub fn CFMachPortIsValid(port: Option<&CFMachPort>) -> Boolean;
 }
 
 extern "C-unwind" {
     pub fn CFMachPortGetInvalidationCallBack(
-        port: Option<&CFMachPortRef>,
+        port: Option<&CFMachPort>,
     ) -> CFMachPortInvalidationCallBack;
 }
 
 extern "C-unwind" {
     pub fn CFMachPortSetInvalidationCallBack(
-        port: Option<&CFMachPortRef>,
+        port: Option<&CFMachPort>,
         callout: CFMachPortInvalidationCallBack,
     );
 }
@@ -120,8 +120,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
     pub fn CFMachPortCreateRunLoopSource(
-        allocator: Option<&CFAllocatorRef>,
-        port: Option<&CFMachPortRef>,
+        allocator: Option<&CFAllocator>,
+        port: Option<&CFMachPort>,
         order: CFIndex,
-    ) -> *mut CFRunLoopSourceRef;
+    ) -> *mut CFRunLoopSource;
 }

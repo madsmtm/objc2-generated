@@ -127,7 +127,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other depthDataByReplacingDepthDataMapWithPixelBuffer:error:_)]
         pub unsafe fn depthDataByReplacingDepthDataMapWithPixelBuffer_error(
             &self,
-            pixel_buffer: &CVPixelBufferRef,
+            pixel_buffer: &CVPixelBuffer,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// Specifies which depth data pixel formats may be used with depthDataByConvertingToDepthDataType:.
@@ -165,7 +165,7 @@ extern_methods!(
         ///
         /// The depth data map's pixel format can be queried using the depthDataType property.
         #[method_id(@__retain_semantics Other depthDataMap)]
-        pub unsafe fn depthDataMap(&self) -> Retained<CVPixelBufferRef>;
+        pub unsafe fn depthDataMap(&self) -> Retained<CVPixelBuffer>;
 
         /// Specifies the overall quality of the depth data map's values.
         ///

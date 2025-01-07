@@ -12,16 +12,16 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctline?language=objc)
 #[repr(C)]
-pub struct CTLineRef {
+pub struct CTLine {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CTLine"]
-    unsafe impl CTLineRef {}
+    unsafe impl CTLine {}
 );
 
 /// Options for CTLineGetBoundsWithOptions.
@@ -151,9 +151,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function will return a reference to a CTLine object.
-    pub fn CTLineCreateWithAttributedString(
-        attr_string: &CFAttributedStringRef,
-    ) -> NonNull<CTLineRef>;
+    pub fn CTLineCreateWithAttributedString(attr_string: &CFAttributedString) -> NonNull<CTLine>;
 }
 
 extern "C-unwind" {
@@ -184,11 +182,11 @@ extern "C-unwind" {
     /// object if the call was successful. Otherwise, it will return
     /// NULL.
     pub fn CTLineCreateTruncatedLine(
-        line: &CTLineRef,
+        line: &CTLine,
         width: c_double,
         truncation_type: CTLineTruncationType,
-        truncation_token: Option<&CTLineRef>,
-    ) -> *mut CTLineRef;
+        truncation_token: Option<&CTLine>,
+    ) -> *mut CTLine;
 }
 
 extern "C-unwind" {
@@ -214,10 +212,10 @@ extern "C-unwind" {
     /// object if the call was successful. Otherwise, it will return
     /// NULL.
     pub fn CTLineCreateJustifiedLine(
-        line: &CTLineRef,
+        line: &CTLine,
         justification_factor: CGFloat,
         justification_width: c_double,
-    ) -> *mut CTLineRef;
+    ) -> *mut CTLine;
 }
 
 extern "C-unwind" {
@@ -232,7 +230,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The total glyph count for the line passed in.
-    pub fn CTLineGetGlyphCount(line: &CTLineRef) -> CFIndex;
+    pub fn CTLineGetGlyphCount(line: &CTLine) -> CFIndex;
 }
 
 extern "C-unwind" {
@@ -243,7 +241,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: A CFArrayRef containing the CTRun objects that make up the line.
-    pub fn CTLineGetGlyphRuns(line: &CTLineRef) -> NonNull<CFArrayRef>;
+    pub fn CTLineGetGlyphRuns(line: &CTLine) -> NonNull<CFArray>;
 }
 
 extern "C-unwind" {
@@ -257,7 +255,7 @@ extern "C-unwind" {
     /// Returns: A CFRange that contains the range over the backing store string
     /// that spawned the glyphs. If the function fails for any reason, an
     /// empty range will be returned.
-    pub fn CTLineGetStringRange(line: &CTLineRef) -> CFRange;
+    pub fn CTLineGetStringRange(line: &CTLine) -> CFRange;
 }
 
 extern "C-unwind" {
@@ -280,7 +278,7 @@ extern "C-unwind" {
     /// Returns: A value which can be used to offset the current pen position for
     /// the flush operation.
     pub fn CTLineGetPenOffsetForFlush(
-        line: &CTLineRef,
+        line: &CTLine,
         flush_factor: CGFloat,
         flush_width: c_double,
     ) -> c_double;
@@ -303,7 +301,7 @@ extern "C-unwind" {
     ///
     /// Parameter `context`: The context to which the line will be drawn.
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTLineDraw(line: &CTLineRef, context: &CGContextRef);
+    pub fn CTLineDraw(line: &CTLine, context: &CGContext);
 }
 
 extern "C-unwind" {
@@ -336,7 +334,7 @@ extern "C-unwind" {
     ///
     /// See also: CTLineGetTrailingWhitespaceWidth
     pub fn CTLineGetTypographicBounds(
-        line: &CTLineRef,
+        line: &CTLine,
         ascent: *mut CGFloat,
         descent: *mut CGFloat,
         leading: *mut CGFloat,
@@ -357,7 +355,7 @@ extern "C-unwind" {
     /// such that the coordinate origin is coincident with the line
     /// origin and the rect origin is at the bottom left. If the line
     /// is invalid this function will return CGRectNull.
-    pub fn CTLineGetBoundsWithOptions(line: &CTLineRef, options: CTLineBoundsOptions) -> CGRect;
+    pub fn CTLineGetBoundsWithOptions(line: &CTLine, options: CTLineBoundsOptions) -> CGRect;
 }
 
 extern "C-unwind" {
@@ -374,7 +372,7 @@ extern "C-unwind" {
     ///
     /// Returns: The width of the line's trailing whitespace. If line is invalid,
     /// this function will always return zero.
-    pub fn CTLineGetTrailingWhitespaceWidth(line: &CTLineRef) -> c_double;
+    pub fn CTLineGetTrailingWhitespaceWidth(line: &CTLine) -> c_double;
 }
 
 extern "C-unwind" {
@@ -407,7 +405,7 @@ extern "C-unwind" {
     ///
     /// See also: CTLineGetPenOffsetForFlush
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTLineGetImageBounds(line: &CTLineRef, context: Option<&CGContextRef>) -> CGRect;
+    pub fn CTLineGetImageBounds(line: &CTLine, context: Option<&CGContext>) -> CGRect;
 }
 
 extern "C-unwind" {
@@ -432,7 +430,7 @@ extern "C-unwind" {
     /// range, this value will be no less than the first string index and
     /// no greater than one plus the last string index. In the event of
     /// failure, this function will return kCFNotFound.
-    pub fn CTLineGetStringIndexForPosition(line: &CTLineRef, position: CGPoint) -> CFIndex;
+    pub fn CTLineGetStringIndexForPosition(line: &CTLine, position: CGPoint) -> CFIndex;
 }
 
 extern "C-unwind" {
@@ -467,7 +465,7 @@ extern "C-unwind" {
     /// Returns: The primary offset along the baseline for charIndex, or 0.0 in
     /// the event of failure.
     pub fn CTLineGetOffsetForStringIndex(
-        line: &CTLineRef,
+        line: &CTLine,
         char_index: CFIndex,
         secondary_offset: *mut CGFloat,
     ) -> CGFloat;
@@ -483,7 +481,7 @@ extern "C-unwind" {
     /// Parameter `block`: The offset parameter is relative to the line origin. The leadingEdge parameter of this block refers to logical order.
     #[cfg(feature = "block2")]
     pub fn CTLineEnumerateCaretOffsets(
-        line: &CTLineRef,
+        line: &CTLine,
         block: &block2::Block<dyn Fn(c_double, CFIndex, bool, NonNull<bool>)>,
     );
 }

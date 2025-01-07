@@ -11,17 +11,17 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagretaincallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFBagRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFAllocatorRef, *const c_void) -> *const c_void>;
+    Option<unsafe extern "C-unwind" fn(*mut CFAllocator, *const c_void) -> *const c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagreleasecallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFBagReleaseCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFAllocatorRef, *const c_void)>;
+    Option<unsafe extern "C-unwind" fn(*mut CFAllocator, *const c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcopydescriptioncallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFBagCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFStringRef>;
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagequalcallback?language=objc)
 pub type CFBagEqualCallBack =
@@ -79,28 +79,28 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagapplierfunction?language=objc)
 pub type CFBagApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbag?language=objc)
 #[repr(C)]
-pub struct CFBagRef {
+pub struct CFBag {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFBag"]
-    unsafe impl CFBagRef {}
+    unsafe impl CFBag {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablebagref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablebag?language=objc)
 #[repr(C)]
-pub struct CFMutableBagRef {
+pub struct CFMutableBag {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFBag"]
-    unsafe impl CFMutableBagRef: CFBagRef {}
+    unsafe impl CFMutableBag: CFBag {}
 );
 
 extern "C-unwind" {
@@ -111,93 +111,90 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFBagCreate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         values: *mut *const c_void,
         num_values: CFIndex,
         call_backs: *const CFBagCallBacks,
-    ) -> *mut CFBagRef;
+    ) -> *mut CFBag;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBagCreateCopy(
-        allocator: Option<&CFAllocatorRef>,
-        the_bag: Option<&CFBagRef>,
-    ) -> *mut CFBagRef;
+    pub fn CFBagCreateCopy(allocator: Option<&CFAllocator>, the_bag: Option<&CFBag>) -> *mut CFBag;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFBagCreateMutable(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         capacity: CFIndex,
         call_backs: *const CFBagCallBacks,
-    ) -> *mut CFMutableBagRef;
+    ) -> *mut CFMutableBag;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFBagCreateMutableCopy(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        the_bag: Option<&CFBagRef>,
-    ) -> *mut CFMutableBagRef;
+        the_bag: Option<&CFBag>,
+    ) -> *mut CFMutableBag;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBagGetCount(the_bag: Option<&CFBagRef>) -> CFIndex;
+    pub fn CFBagGetCount(the_bag: Option<&CFBag>) -> CFIndex;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBagGetCountOfValue(the_bag: Option<&CFBagRef>, value: *const c_void) -> CFIndex;
+    pub fn CFBagGetCountOfValue(the_bag: Option<&CFBag>, value: *const c_void) -> CFIndex;
 }
 
 extern "C-unwind" {
-    pub fn CFBagContainsValue(the_bag: Option<&CFBagRef>, value: *const c_void) -> Boolean;
+    pub fn CFBagContainsValue(the_bag: Option<&CFBag>, value: *const c_void) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFBagGetValue(the_bag: Option<&CFBagRef>, value: *const c_void) -> *const c_void;
+    pub fn CFBagGetValue(the_bag: Option<&CFBag>, value: *const c_void) -> *const c_void;
 }
 
 extern "C-unwind" {
     pub fn CFBagGetValueIfPresent(
-        the_bag: Option<&CFBagRef>,
+        the_bag: Option<&CFBag>,
         candidate: *const c_void,
         value: *mut *const c_void,
     ) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFBagGetValues(the_bag: Option<&CFBagRef>, values: *mut *const c_void);
+    pub fn CFBagGetValues(the_bag: Option<&CFBag>, values: *mut *const c_void);
 }
 
 extern "C-unwind" {
     pub fn CFBagApplyFunction(
-        the_bag: Option<&CFBagRef>,
+        the_bag: Option<&CFBag>,
         applier: CFBagApplierFunction,
         context: *mut c_void,
     );
 }
 
 extern "C-unwind" {
-    pub fn CFBagAddValue(the_bag: Option<&CFMutableBagRef>, value: *const c_void);
+    pub fn CFBagAddValue(the_bag: Option<&CFMutableBag>, value: *const c_void);
 }
 
 extern "C-unwind" {
-    pub fn CFBagReplaceValue(the_bag: Option<&CFMutableBagRef>, value: *const c_void);
+    pub fn CFBagReplaceValue(the_bag: Option<&CFMutableBag>, value: *const c_void);
 }
 
 extern "C-unwind" {
-    pub fn CFBagSetValue(the_bag: Option<&CFMutableBagRef>, value: *const c_void);
+    pub fn CFBagSetValue(the_bag: Option<&CFMutableBag>, value: *const c_void);
 }
 
 extern "C-unwind" {
-    pub fn CFBagRemoveValue(the_bag: Option<&CFMutableBagRef>, value: *const c_void);
+    pub fn CFBagRemoveValue(the_bag: Option<&CFMutableBag>, value: *const c_void);
 }
 
 extern "C-unwind" {
-    pub fn CFBagRemoveAllValues(the_bag: Option<&CFMutableBagRef>);
+    pub fn CFBagRemoveAllValues(the_bag: Option<&CFMutableBag>);
 }

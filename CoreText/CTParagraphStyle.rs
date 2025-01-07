@@ -10,16 +10,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstyleref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstyle?language=objc)
 #[repr(C)]
-pub struct CTParagraphStyleRef {
+pub struct CTParagraphStyle {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CTParagraphStyle"]
-    unsafe impl CTParagraphStyleRef {}
+    unsafe impl CTParagraphStyle {}
 );
 
 extern "C-unwind" {
@@ -472,7 +472,7 @@ extern "C-unwind" {
     pub fn CTParagraphStyleCreate(
         settings: *const CTParagraphStyleSetting,
         setting_count: usize,
-    ) -> NonNull<CTParagraphStyleRef>;
+    ) -> NonNull<CTParagraphStyle>;
 }
 
 extern "C-unwind" {
@@ -487,8 +487,8 @@ extern "C-unwind" {
     /// CTParagraphStyle object that is a copy of the one passed into
     /// "paragraphStyle".
     pub fn CTParagraphStyleCreateCopy(
-        paragraph_style: &CTParagraphStyleRef,
-    ) -> NonNull<CTParagraphStyleRef>;
+        paragraph_style: &CTParagraphStyle,
+    ) -> NonNull<CTParagraphStyle>;
 }
 
 extern "C-unwind" {
@@ -526,7 +526,7 @@ extern "C-unwind" {
     /// successfully filled. Otherwise, this function will return false,
     /// indicating that one or more of the parameters is not valid.
     pub fn CTParagraphStyleGetValueForSpecifier(
-        paragraph_style: &CTParagraphStyleRef,
+        paragraph_style: &CTParagraphStyle,
         spec: CTParagraphStyleSpecifier,
         value_buffer_size: usize,
         value_buffer: NonNull<c_void>,

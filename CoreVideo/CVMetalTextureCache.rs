@@ -15,21 +15,21 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvmetaltexturecachemaximumtextureagekey?language=objc)
-    pub static kCVMetalTextureCacheMaximumTextureAgeKey: &'static CFStringRef;
+    pub static kCVMetalTextureCacheMaximumTextureAgeKey: &'static CFString;
 }
 
 /// CoreVideo Metal Texture Cache
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturecacheref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturecache?language=objc)
 #[repr(C)]
-pub struct CVMetalTextureCacheRef {
+pub struct CVMetalTextureCache {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CVMetalTextureCache"]
-    unsafe impl CVMetalTextureCacheRef {}
+    unsafe impl CVMetalTextureCache {}
 );
 
 extern "C-unwind" {
@@ -53,11 +53,11 @@ extern "C-unwind" {
     #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
     #[cfg(not(target_os = "watchos"))]
     pub fn CVMetalTextureCacheCreate(
-        allocator: Option<&CFAllocatorRef>,
-        cache_attributes: Option<&CFDictionaryRef>,
+        allocator: Option<&CFAllocator>,
+        cache_attributes: Option<&CFDictionary>,
         metal_device: &ProtocolObject<dyn MTLDevice>,
-        texture_attributes: Option<&CFDictionaryRef>,
-        cache_out: NonNull<CVMetalTextureCacheRef>,
+        texture_attributes: Option<&CFDictionary>,
+        cache_out: NonNull<CVMetalTextureCache>,
     ) -> CVReturn;
 }
 
@@ -127,15 +127,15 @@ extern "C-unwind" {
     ))]
     #[cfg(not(target_os = "watchos"))]
     pub fn CVMetalTextureCacheCreateTextureFromImage(
-        allocator: Option<&CFAllocatorRef>,
-        texture_cache: &CVMetalTextureCacheRef,
-        source_image: &CVImageBufferRef,
-        texture_attributes: Option<&CFDictionaryRef>,
+        allocator: Option<&CFAllocator>,
+        texture_cache: &CVMetalTextureCache,
+        source_image: &CVImageBuffer,
+        texture_attributes: Option<&CFDictionary>,
         pixel_format: MTLPixelFormat,
         width: usize,
         height: usize,
         plane_index: usize,
-        texture_out: NonNull<CVMetalTextureRef>,
+        texture_out: NonNull<CVMetalTexture>,
     ) -> CVReturn;
 }
 
@@ -148,5 +148,5 @@ extern "C-unwind" {
     ///
     /// Parameter `options`: Currently unused, set to 0.
     #[cfg(feature = "CVBase")]
-    pub fn CVMetalTextureCacheFlush(texture_cache: &CVMetalTextureCacheRef, options: CVOptionFlags);
+    pub fn CVMetalTextureCacheFlush(texture_cache: &CVMetalTextureCache, options: CVOptionFlags);
 }

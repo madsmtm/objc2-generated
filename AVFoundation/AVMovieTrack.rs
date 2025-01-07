@@ -467,8 +467,8 @@ extern_methods!(
         #[method(replaceFormatDescription:withFormatDescription:)]
         pub unsafe fn replaceFormatDescription_withFormatDescription(
             &self,
-            format_description: &CMFormatDescriptionRef,
-            new_format_description: &CMFormatDescriptionRef,
+            format_description: &CMFormatDescription,
+            new_format_description: &CMFormatDescription,
         );
     }
 );
@@ -515,7 +515,7 @@ extern_methods!(
         #[method(appendSampleBuffer:decodeTime:presentationTime:error:_)]
         pub unsafe fn appendSampleBuffer_decodeTime_presentationTime_error(
             &self,
-            sample_buffer: &CMSampleBufferRef,
+            sample_buffer: &CMSampleBuffer,
             out_decode_time: *mut CMTime,
             out_presentation_time: *mut CMTime,
         ) -> Result<(), Retained<NSError>>;

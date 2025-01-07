@@ -10,16 +10,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumerref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumer?language=objc)
 #[repr(C)]
-pub struct CGDataConsumerRef {
+pub struct CGDataConsumer {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGDataConsumer"]
-    unsafe impl CGDataConsumerRef {}
+    unsafe impl CGDataConsumer {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumerputbytescallback?language=objc)
@@ -61,23 +61,21 @@ extern "C-unwind" {
     pub fn CGDataConsumerCreate(
         info: *mut c_void,
         cbks: *const CGDataConsumerCallbacks,
-    ) -> *mut CGDataConsumerRef;
+    ) -> *mut CGDataConsumer;
 }
 
 extern "C-unwind" {
-    pub fn CGDataConsumerCreateWithURL(url: Option<&CFURLRef>) -> *mut CGDataConsumerRef;
+    pub fn CGDataConsumerCreateWithURL(url: Option<&CFURL>) -> *mut CGDataConsumer;
 }
 
 extern "C-unwind" {
-    pub fn CGDataConsumerCreateWithCFData(
-        data: Option<&CFMutableDataRef>,
-    ) -> *mut CGDataConsumerRef;
+    pub fn CGDataConsumerCreateWithCFData(data: Option<&CFMutableData>) -> *mut CGDataConsumer;
 }
 
 extern "C-unwind" {
-    pub fn CGDataConsumerRetain(consumer: Option<&CGDataConsumerRef>) -> *mut CGDataConsumerRef;
+    pub fn CGDataConsumerRetain(consumer: Option<&CGDataConsumer>) -> *mut CGDataConsumer;
 }
 
 extern "C-unwind" {
-    pub fn CGDataConsumerRelease(consumer: Option<&CGDataConsumerRef>);
+    pub fn CGDataConsumerRelease(consumer: Option<&CGDataConsumer>);
 }

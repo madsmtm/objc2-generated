@@ -10,16 +10,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider?language=objc)
 #[repr(C)]
-pub struct CGDataProviderRef {
+pub struct CGDataProvider {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGDataProvider"]
-    unsafe impl CGDataProviderRef {}
+    unsafe impl CGDataProvider {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovidergetbytescallback?language=objc)
@@ -121,7 +121,7 @@ extern "C-unwind" {
     pub fn CGDataProviderCreateSequential(
         info: *mut c_void,
         callbacks: *const CGDataProviderSequentialCallbacks,
-    ) -> *mut CGDataProviderRef;
+    ) -> *mut CGDataProvider;
 }
 
 extern "C-unwind" {
@@ -130,7 +130,7 @@ extern "C-unwind" {
         info: *mut c_void,
         size: libc::off_t,
         callbacks: *const CGDataProviderDirectCallbacks,
-    ) -> *mut CGDataProviderRef;
+    ) -> *mut CGDataProvider;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderreleasedatacallback?language=objc)
@@ -143,33 +143,33 @@ extern "C-unwind" {
         data: *const c_void,
         size: usize,
         release_data: CGDataProviderReleaseDataCallback,
-    ) -> *mut CGDataProviderRef;
+    ) -> *mut CGDataProvider;
 }
 
 extern "C-unwind" {
-    pub fn CGDataProviderCreateWithCFData(data: Option<&CFDataRef>) -> *mut CGDataProviderRef;
+    pub fn CGDataProviderCreateWithCFData(data: Option<&CFData>) -> *mut CGDataProvider;
 }
 
 extern "C-unwind" {
-    pub fn CGDataProviderCreateWithURL(url: Option<&CFURLRef>) -> *mut CGDataProviderRef;
+    pub fn CGDataProviderCreateWithURL(url: Option<&CFURL>) -> *mut CGDataProvider;
 }
 
 extern "C-unwind" {
-    pub fn CGDataProviderCreateWithFilename(filename: *const c_char) -> *mut CGDataProviderRef;
+    pub fn CGDataProviderCreateWithFilename(filename: *const c_char) -> *mut CGDataProvider;
 }
 
 extern "C-unwind" {
-    pub fn CGDataProviderRetain(provider: Option<&CGDataProviderRef>) -> *mut CGDataProviderRef;
+    pub fn CGDataProviderRetain(provider: Option<&CGDataProvider>) -> *mut CGDataProvider;
 }
 
 extern "C-unwind" {
-    pub fn CGDataProviderRelease(provider: Option<&CGDataProviderRef>);
+    pub fn CGDataProviderRelease(provider: Option<&CGDataProvider>);
 }
 
 extern "C-unwind" {
-    pub fn CGDataProviderCopyData(provider: Option<&CGDataProviderRef>) -> *mut CFDataRef;
+    pub fn CGDataProviderCopyData(provider: Option<&CGDataProvider>) -> *mut CFData;
 }
 
 extern "C-unwind" {
-    pub fn CGDataProviderGetInfo(provider: Option<&CGDataProviderRef>) -> *mut c_void;
+    pub fn CGDataProviderGetInfo(provider: Option<&CGDataProvider>) -> *mut c_void;
 }

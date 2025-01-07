@@ -168,7 +168,7 @@ extern_methods!(
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[cfg(target_vendor = "apple")]
         #[method(drawAtPoint:inContext:)]
-        pub unsafe fn drawAtPoint_inContext(&self, point: CGPoint, context: &CGContextRef);
+        pub unsafe fn drawAtPoint_inContext(&self, point: CGPoint, context: &CGContext);
 
         #[cfg(feature = "NSTextAttachment")]
         #[method_id(@__retain_semantics Other textAttachmentViewProviders)]

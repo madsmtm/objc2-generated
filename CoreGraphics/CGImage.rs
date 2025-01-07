@@ -9,16 +9,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimageref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage?language=objc)
 #[repr(C)]
-pub struct CGImageRef {
+pub struct CGImage {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGImage"]
-    unsafe impl CGImageRef {}
+    unsafe impl CGImage {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo?language=objc)
@@ -171,13 +171,13 @@ extern "C-unwind" {
         bits_per_component: usize,
         bits_per_pixel: usize,
         bytes_per_row: usize,
-        space: Option<&CGColorSpaceRef>,
+        space: Option<&CGColorSpace>,
         bitmap_info: CGBitmapInfo,
-        provider: Option<&CGDataProviderRef>,
+        provider: Option<&CGDataProvider>,
         decode: *const CGFloat,
         should_interpolate: bool,
         intent: CGColorRenderingIntent,
-    ) -> *mut CGImageRef;
+    ) -> *mut CGImage;
 }
 
 extern "C-unwind" {
@@ -188,63 +188,57 @@ extern "C-unwind" {
         bits_per_component: usize,
         bits_per_pixel: usize,
         bytes_per_row: usize,
-        provider: Option<&CGDataProviderRef>,
+        provider: Option<&CGDataProvider>,
         decode: *const CGFloat,
         should_interpolate: bool,
-    ) -> *mut CGImageRef;
+    ) -> *mut CGImage;
 }
 
 extern "C-unwind" {
-    pub fn CGImageCreateCopy(image: Option<&CGImageRef>) -> *mut CGImageRef;
+    pub fn CGImageCreateCopy(image: Option<&CGImage>) -> *mut CGImage;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
     pub fn CGImageCreateWithJPEGDataProvider(
-        source: Option<&CGDataProviderRef>,
+        source: Option<&CGDataProvider>,
         decode: *const CGFloat,
         should_interpolate: bool,
         intent: CGColorRenderingIntent,
-    ) -> *mut CGImageRef;
+    ) -> *mut CGImage;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
     pub fn CGImageCreateWithPNGDataProvider(
-        source: Option<&CGDataProviderRef>,
+        source: Option<&CGDataProvider>,
         decode: *const CGFloat,
         should_interpolate: bool,
         intent: CGColorRenderingIntent,
-    ) -> *mut CGImageRef;
+    ) -> *mut CGImage;
 }
 
 extern "C-unwind" {
-    pub fn CGImageCreateWithImageInRect(
-        image: Option<&CGImageRef>,
-        rect: CGRect,
-    ) -> *mut CGImageRef;
+    pub fn CGImageCreateWithImageInRect(image: Option<&CGImage>, rect: CGRect) -> *mut CGImage;
 }
 
 extern "C-unwind" {
-    pub fn CGImageCreateWithMask(
-        image: Option<&CGImageRef>,
-        mask: Option<&CGImageRef>,
-    ) -> *mut CGImageRef;
+    pub fn CGImageCreateWithMask(image: Option<&CGImage>, mask: Option<&CGImage>) -> *mut CGImage;
 }
 
 extern "C-unwind" {
     pub fn CGImageCreateWithMaskingColors(
-        image: Option<&CGImageRef>,
+        image: Option<&CGImage>,
         components: *const CGFloat,
-    ) -> *mut CGImageRef;
+    ) -> *mut CGImage;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGColorSpace")]
     pub fn CGImageCreateCopyWithColorSpace(
-        image: Option<&CGImageRef>,
-        space: Option<&CGColorSpaceRef>,
-    ) -> *mut CGImageRef;
+        image: Option<&CGImage>,
+        space: Option<&CGColorSpace>,
+    ) -> *mut CGImage;
 }
 
 extern "C-unwind" {
@@ -256,20 +250,20 @@ extern "C-unwind" {
         bits_per_component: usize,
         bits_per_pixel: usize,
         bytes_per_row: usize,
-        space: Option<&CGColorSpaceRef>,
+        space: Option<&CGColorSpace>,
         bitmap_info: CGBitmapInfo,
-        provider: Option<&CGDataProviderRef>,
+        provider: Option<&CGDataProvider>,
         decode: *const CGFloat,
         should_interpolate: bool,
         intent: CGColorRenderingIntent,
-    ) -> *mut CGImageRef;
+    ) -> *mut CGImage;
 }
 
 extern "C-unwind" {
     pub fn CGImageCreateCopyWithContentHeadroom(
         headroom: c_float,
-        image: Option<&CGImageRef>,
-    ) -> *mut CGImageRef;
+        image: Option<&CGImage>,
+    ) -> *mut CGImage;
 }
 
 extern "C" {
@@ -278,88 +272,88 @@ extern "C" {
 }
 
 extern "C-unwind" {
-    pub fn CGImageGetContentHeadroom(image: Option<&CGImageRef>) -> c_float;
+    pub fn CGImageGetContentHeadroom(image: Option<&CGImage>) -> c_float;
 }
 
 extern "C-unwind" {
-    pub fn CGImageRetain(image: Option<&CGImageRef>) -> *mut CGImageRef;
+    pub fn CGImageRetain(image: Option<&CGImage>) -> *mut CGImage;
 }
 
 extern "C-unwind" {
-    pub fn CGImageRelease(image: Option<&CGImageRef>);
+    pub fn CGImageRelease(image: Option<&CGImage>);
 }
 
 extern "C-unwind" {
-    pub fn CGImageIsMask(image: Option<&CGImageRef>) -> bool;
+    pub fn CGImageIsMask(image: Option<&CGImage>) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGImageGetWidth(image: Option<&CGImageRef>) -> usize;
+    pub fn CGImageGetWidth(image: Option<&CGImage>) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn CGImageGetHeight(image: Option<&CGImageRef>) -> usize;
+    pub fn CGImageGetHeight(image: Option<&CGImage>) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn CGImageGetBitsPerComponent(image: Option<&CGImageRef>) -> usize;
+    pub fn CGImageGetBitsPerComponent(image: Option<&CGImage>) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn CGImageGetBitsPerPixel(image: Option<&CGImageRef>) -> usize;
+    pub fn CGImageGetBitsPerPixel(image: Option<&CGImage>) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn CGImageGetBytesPerRow(image: Option<&CGImageRef>) -> usize;
+    pub fn CGImageGetBytesPerRow(image: Option<&CGImage>) -> usize;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGColorSpace")]
-    pub fn CGImageGetColorSpace(image: Option<&CGImageRef>) -> *mut CGColorSpaceRef;
+    pub fn CGImageGetColorSpace(image: Option<&CGImage>) -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
-    pub fn CGImageGetAlphaInfo(image: Option<&CGImageRef>) -> CGImageAlphaInfo;
+    pub fn CGImageGetAlphaInfo(image: Option<&CGImage>) -> CGImageAlphaInfo;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGDataProvider")]
-    pub fn CGImageGetDataProvider(image: Option<&CGImageRef>) -> *mut CGDataProviderRef;
+    pub fn CGImageGetDataProvider(image: Option<&CGImage>) -> *mut CGDataProvider;
 }
 
 extern "C-unwind" {
-    pub fn CGImageGetDecode(image: Option<&CGImageRef>) -> *const CGFloat;
+    pub fn CGImageGetDecode(image: Option<&CGImage>) -> *const CGFloat;
 }
 
 extern "C-unwind" {
-    pub fn CGImageGetShouldInterpolate(image: Option<&CGImageRef>) -> bool;
+    pub fn CGImageGetShouldInterpolate(image: Option<&CGImage>) -> bool;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGColorSpace")]
-    pub fn CGImageGetRenderingIntent(image: Option<&CGImageRef>) -> CGColorRenderingIntent;
+    pub fn CGImageGetRenderingIntent(image: Option<&CGImage>) -> CGColorRenderingIntent;
 }
 
 extern "C-unwind" {
-    pub fn CGImageGetBitmapInfo(image: Option<&CGImageRef>) -> CGBitmapInfo;
+    pub fn CGImageGetBitmapInfo(image: Option<&CGImage>) -> CGBitmapInfo;
 }
 
 extern "C-unwind" {
-    pub fn CGImageGetByteOrderInfo(image: Option<&CGImageRef>) -> CGImageByteOrderInfo;
+    pub fn CGImageGetByteOrderInfo(image: Option<&CGImage>) -> CGImageByteOrderInfo;
 }
 
 extern "C-unwind" {
-    pub fn CGImageGetPixelFormatInfo(image: Option<&CGImageRef>) -> CGImagePixelFormatInfo;
+    pub fn CGImageGetPixelFormatInfo(image: Option<&CGImage>) -> CGImagePixelFormatInfo;
 }
 
 extern "C-unwind" {
-    pub fn CGImageShouldToneMap(image: Option<&CGImageRef>) -> bool;
+    pub fn CGImageShouldToneMap(image: Option<&CGImage>) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGImageContainsImageSpecificToneMappingMetadata(image: Option<&CGImageRef>) -> bool;
+    pub fn CGImageContainsImageSpecificToneMappingMetadata(image: Option<&CGImage>) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGImageGetUTType(image: Option<&CGImageRef>) -> *mut CFStringRef;
+    pub fn CGImageGetUTType(image: Option<&CGImage>) -> *mut CFString;
 }

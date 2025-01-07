@@ -16,11 +16,11 @@ extern "C-unwind" {
     ))]
     #[deprecated = "For resource data, use the CFReadStream API. For file resource properties, use CFURLCopyResourcePropertiesForKeys."]
     pub fn CFURLCreateDataAndPropertiesFromResource(
-        alloc: Option<&CFAllocatorRef>,
-        url: Option<&CFURLRef>,
-        resource_data: *mut CFDataRef,
-        properties: *mut CFDictionaryRef,
-        desired_properties: Option<&CFArrayRef>,
+        alloc: Option<&CFAllocator>,
+        url: Option<&CFURL>,
+        resource_data: *mut CFData,
+        properties: *mut CFDictionary,
+        desired_properties: Option<&CFArray>,
         error_code: *mut i32,
     ) -> Boolean;
 }
@@ -29,9 +29,9 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFData", feature = "CFDictionary", feature = "CFURL"))]
     #[deprecated = "For resource data, use the CFWriteStream API. For file resource properties, use CFURLSetResourcePropertiesForKeys."]
     pub fn CFURLWriteDataAndPropertiesToResource(
-        url: Option<&CFURLRef>,
-        data_to_write: Option<&CFDataRef>,
-        properties_to_write: Option<&CFDictionaryRef>,
+        url: Option<&CFURL>,
+        data_to_write: Option<&CFData>,
+        properties_to_write: Option<&CFDictionary>,
         error_code: *mut i32,
     ) -> Boolean;
 }
@@ -39,16 +39,16 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFURL")]
     #[deprecated = "Use CFURLGetFileSystemRepresentation and removefile(3) instead."]
-    pub fn CFURLDestroyResource(url: Option<&CFURLRef>, error_code: *mut i32) -> Boolean;
+    pub fn CFURLDestroyResource(url: Option<&CFURL>, error_code: *mut i32) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFURL"))]
     #[deprecated = "For file resource properties, use CFURLCopyResourcePropertyForKey."]
     pub fn CFURLCreatePropertyFromResource(
-        alloc: Option<&CFAllocatorRef>,
-        url: Option<&CFURLRef>,
-        property: Option<&CFStringRef>,
+        alloc: Option<&CFAllocator>,
+        url: Option<&CFURL>,
+        property: Option<&CFString>,
         error_code: *mut i32,
     ) -> CFTypeRef;
 }
@@ -104,47 +104,47 @@ unsafe impl RefEncode for CFURLError {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileexists?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFURLFileExists: Option<&'static CFStringRef>;
+    pub static kCFURLFileExists: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfiledirectorycontents?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFURLFileDirectoryContents: Option<&'static CFStringRef>;
+    pub static kCFURLFileDirectoryContents: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfilelength?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFURLFileLength: Option<&'static CFStringRef>;
+    pub static kCFURLFileLength: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfilelastmodificationtime?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFURLFileLastModificationTime: Option<&'static CFStringRef>;
+    pub static kCFURLFileLastModificationTime: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileposixmode?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFURLFilePOSIXMode: Option<&'static CFStringRef>;
+    pub static kCFURLFilePOSIXMode: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileownerid?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFURLFileOwnerID: Option<&'static CFStringRef>;
+    pub static kCFURLFileOwnerID: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlhttpstatuscode?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFURLHTTPStatusCode: Option<&'static CFStringRef>;
+    pub static kCFURLHTTPStatusCode: Option<&'static CFString>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlhttpstatusline?language=objc)
     #[cfg(feature = "CFBase")]
-    pub static kCFURLHTTPStatusLine: Option<&'static CFStringRef>;
+    pub static kCFURLHTTPStatusLine: Option<&'static CFString>;
 }

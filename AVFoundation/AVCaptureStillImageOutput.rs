@@ -146,7 +146,7 @@ extern_methods!(
         pub unsafe fn captureStillImageAsynchronouslyFromConnection_completionHandler(
             &self,
             connection: &AVCaptureConnection,
-            handler: &block2::Block<dyn Fn(*mut CMSampleBufferRef, *mut NSError)>,
+            handler: &block2::Block<dyn Fn(*mut CMSampleBuffer, *mut NSError)>,
         );
 
         #[cfg(feature = "objc2-core-media")]
@@ -160,7 +160,7 @@ extern_methods!(
         #[deprecated = "Use AVCapturePhotoOutput instead."]
         #[method_id(@__retain_semantics Other jpegStillImageNSDataRepresentation:)]
         pub unsafe fn jpegStillImageNSDataRepresentation(
-            jpeg_sample_buffer: &CMSampleBufferRef,
+            jpeg_sample_buffer: &CMSampleBuffer,
         ) -> Option<Retained<NSData>>;
     }
 );
@@ -373,7 +373,7 @@ extern_methods!(
             settings: &NSArray<AVCaptureBracketedStillImageSettings>,
             handler: &block2::Block<
                 dyn Fn(
-                    *mut CMSampleBufferRef,
+                    *mut CMSampleBuffer,
                     *mut AVCaptureBracketedStillImageSettings,
                     *mut NSError,
                 ),

@@ -440,12 +440,12 @@ extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         /// SCStreamProperty for background color. By default the background color is clear.
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Retained<CGColorRef>;
+        pub unsafe fn backgroundColor(&self) -> Retained<CGColor>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, background_color: &CGColorRef);
+        pub unsafe fn setBackgroundColor(&self, background_color: &CGColor);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// SCStreamProperty that specifies that the stream only samples a subset of the frame input. For display streams, if not set, then the entire display is streamed. For independent window streams, if not set, then the entire window is streamed. The rectangle is specified in points in the display’s logical coordinate system.
@@ -478,23 +478,23 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// SCStreamProperty that specifies the YCbCr matrix applied to the output surface.  The value must be one of the strings specified in https://developer.apple.com/documentation/coregraphics/quartz_display_services/display_stream_ycbcr_to_rgb_conversion_matrix_options. Should only be used if your pixel format is 420v or 420f.
         #[method_id(@__retain_semantics Other colorMatrix)]
-        pub unsafe fn colorMatrix(&self) -> Retained<CFStringRef>;
+        pub unsafe fn colorMatrix(&self) -> Retained<CFString>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`colorMatrix`][Self::colorMatrix].
         #[method(setColorMatrix:)]
-        pub unsafe fn setColorMatrix(&self, color_matrix: &CFStringRef);
+        pub unsafe fn setColorMatrix(&self, color_matrix: &CFString);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// SCStreamProperty that specifies the color space of the output buffer.  If not set the output buffer uses the same color space as the display. The value must be one of the strings specified in
         /// https://developer.apple.com/documentation/coregraphics/cgcolorspace/color_space_names.
         #[method_id(@__retain_semantics Other colorSpaceName)]
-        pub unsafe fn colorSpaceName(&self) -> Retained<CFStringRef>;
+        pub unsafe fn colorSpaceName(&self) -> Retained<CFString>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`colorSpaceName`][Self::colorSpaceName].
         #[method(setColorSpaceName:)]
-        pub unsafe fn setColorSpaceName(&self, color_space_name: &CFStringRef);
+        pub unsafe fn setColorSpaceName(&self, color_space_name: &CFString);
 
         /// SCStreamProperty that specifies whether the audio will be captured.  By default audio is not captured.
         #[method(capturesAudio)]
@@ -756,7 +756,7 @@ extern_methods!(
         #[cfg(feature = "objc2-core-media")]
         /// Synchronization clock used for media capture.
         #[method_id(@__retain_semantics Other synchronizationClock)]
-        pub unsafe fn synchronizationClock(&self) -> Option<Retained<CMClockRef>>;
+        pub unsafe fn synchronizationClock(&self) -> Option<Retained<CMClock>>;
 
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -897,7 +897,7 @@ extern_protocol!(
         unsafe fn stream_didOutputSampleBuffer_ofType(
             &self,
             stream: &SCStream,
-            sample_buffer: &CMSampleBufferRef,
+            sample_buffer: &CMSampleBuffer,
             r#type: SCStreamOutputType,
         );
     }

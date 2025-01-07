@@ -9,16 +9,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradientref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradient?language=objc)
 #[repr(C)]
-pub struct CGGradientRef {
+pub struct CGGradient {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGGradient"]
-    unsafe impl CGGradientRef {}
+    unsafe impl CGGradient {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggradientdrawingoptions?language=objc)
@@ -52,26 +52,26 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CGColorSpace")]
     pub fn CGGradientCreateWithColorComponents(
-        space: Option<&CGColorSpaceRef>,
+        space: Option<&CGColorSpace>,
         components: *const CGFloat,
         locations: *const CGFloat,
         count: usize,
-    ) -> *mut CGGradientRef;
+    ) -> *mut CGGradient;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGColorSpace")]
     pub fn CGGradientCreateWithColors(
-        space: Option<&CGColorSpaceRef>,
-        colors: Option<&CFArrayRef>,
+        space: Option<&CGColorSpace>,
+        colors: Option<&CFArray>,
         locations: *const CGFloat,
-    ) -> *mut CGGradientRef;
+    ) -> *mut CGGradient;
 }
 
 extern "C-unwind" {
-    pub fn CGGradientRetain(gradient: Option<&CGGradientRef>) -> *mut CGGradientRef;
+    pub fn CGGradientRetain(gradient: Option<&CGGradient>) -> *mut CGGradient;
 }
 
 extern "C-unwind" {
-    pub fn CGGradientRelease(gradient: Option<&CGGradientRef>);
+    pub fn CGGradientRelease(gradient: Option<&CGGradient>);
 }

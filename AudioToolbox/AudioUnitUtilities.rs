@@ -147,8 +147,8 @@ extern "C-unwind" {
     pub fn AUListenerCreate(
         in_proc: AUParameterListenerProc,
         in_user_data: NonNull<c_void>,
-        in_run_loop: Option<&CFRunLoopRef>,
-        in_run_loop_mode: Option<&CFStringRef>,
+        in_run_loop: Option<&CFRunLoop>,
+        in_run_loop_mode: Option<&CFString>,
         in_notification_interval: f32,
         out_listener: NonNull<AUParameterListenerRef>,
     ) -> OSStatus;

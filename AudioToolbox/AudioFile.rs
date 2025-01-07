@@ -225,7 +225,7 @@ pub const kAudioFileMarkerType_Generic: u32 = 0;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioFileMarker {
     pub mFramePosition: f64,
-    pub mName: *mut CFStringRef,
+    pub mName: *mut CFString,
     pub mMarkerID: i32,
     pub mSMPTETime: AudioFile_SMPTE_Time,
     pub mType: u32,
@@ -239,7 +239,7 @@ unsafe impl Encode for AudioFileMarker {
         "AudioFileMarker",
         &[
             <f64>::ENCODING,
-            <*mut CFStringRef>::ENCODING,
+            <*mut CFString>::ENCODING,
             <i32>::ENCODING,
             <AudioFile_SMPTE_Time>::ENCODING,
             <u32>::ENCODING,
@@ -350,7 +350,7 @@ unsafe impl RefEncode for AudioFileRegionFlags {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioFileRegion {
     pub mRegionID: u32,
-    pub mName: NonNull<CFStringRef>,
+    pub mName: NonNull<CFString>,
     pub mFlags: AudioFileRegionFlags,
     pub mNumberMarkers: u32,
     pub mMarkers: [AudioFileMarker; 1],
@@ -362,7 +362,7 @@ unsafe impl Encode for AudioFileRegion {
         "AudioFileRegion",
         &[
             <u32>::ENCODING,
-            <NonNull<CFStringRef>>::ENCODING,
+            <NonNull<CFString>>::ENCODING,
             <AudioFileRegionFlags>::ENCODING,
             <u32>::ENCODING,
             <[AudioFileMarker; 1]>::ENCODING,
@@ -647,7 +647,7 @@ extern "C-unwind" {
         feature = "objc2-core-foundation"
     ))]
     pub fn AudioFileCreateWithURL(
-        in_file_ref: &CFURLRef,
+        in_file_ref: &CFURL,
         in_file_type: AudioFileTypeID,
         in_format: NonNull<AudioStreamBasicDescription>,
         in_flags: AudioFileFlags,
@@ -675,7 +675,7 @@ extern "C-unwind" {
     /// Returns: returns noErr if successful.
     #[cfg(all(feature = "AudioUnitProperties", feature = "objc2-core-foundation"))]
     pub fn AudioFileOpenURL(
-        in_file_ref: &CFURLRef,
+        in_file_ref: &CFURL,
         in_permissions: AudioFilePermissions,
         in_file_type_hint: AudioFileTypeID,
         out_audio_file: NonNull<AudioFileID>,

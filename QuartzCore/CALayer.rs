@@ -495,12 +495,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method(drawInContext:)]
-        pub unsafe fn drawInContext(&self, ctx: &CGContextRef);
+        pub unsafe fn drawInContext(&self, ctx: &CGContext);
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Rendering properties and methods. *
         #[method(renderInContext:)]
-        pub unsafe fn renderInContext(&self, ctx: &CGContextRef);
+        pub unsafe fn renderInContext(&self, ctx: &CGContext);
 
         #[method(edgeAntialiasingMask)]
         pub fn edgeAntialiasingMask(&self) -> CAEdgeAntialiasingMask;
@@ -518,12 +518,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other backgroundColor)]
-        pub unsafe fn backgroundColor(&self) -> Option<Retained<CGColorRef>>;
+        pub unsafe fn backgroundColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[method(setBackgroundColor:)]
-        pub unsafe fn setBackgroundColor(&self, background_color: Option<&CGColorRef>);
+        pub unsafe fn setBackgroundColor(&self, background_color: Option<&CGColor>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(cornerRadius)]
@@ -563,12 +563,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other borderColor)]
-        pub unsafe fn borderColor(&self) -> Option<Retained<CGColorRef>>;
+        pub unsafe fn borderColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`borderColor`][Self::borderColor].
         #[method(setBorderColor:)]
-        pub unsafe fn setBorderColor(&self, border_color: Option<&CGColorRef>);
+        pub unsafe fn setBorderColor(&self, border_color: Option<&CGColor>);
 
         #[method(opacity)]
         pub fn opacity(&self) -> c_float;
@@ -624,12 +624,12 @@ extern_methods!(
         #[cfg(feature = "objc2-core-graphics")]
         /// Shadow properties. *
         #[method_id(@__retain_semantics Other shadowColor)]
-        pub unsafe fn shadowColor(&self) -> Option<Retained<CGColorRef>>;
+        pub unsafe fn shadowColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`shadowColor`][Self::shadowColor].
         #[method(setShadowColor:)]
-        pub unsafe fn setShadowColor(&self, shadow_color: Option<&CGColorRef>);
+        pub unsafe fn setShadowColor(&self, shadow_color: Option<&CGColor>);
 
         #[method(shadowOpacity)]
         pub fn shadowOpacity(&self) -> c_float;
@@ -658,12 +658,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other shadowPath)]
-        pub unsafe fn shadowPath(&self) -> Option<Retained<CGPathRef>>;
+        pub unsafe fn shadowPath(&self) -> Option<Retained<CGPath>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`shadowPath`][Self::shadowPath].
         #[method(setShadowPath:)]
-        pub unsafe fn setShadowPath(&self, shadow_path: Option<&CGPathRef>);
+        pub unsafe fn setShadowPath(&self, shadow_path: Option<&CGPath>);
 
         /// Layout methods. *
         #[method(autoresizingMask)]
@@ -838,7 +838,7 @@ extern_protocol!(
         #[cfg(feature = "objc2-core-graphics")]
         #[optional]
         #[method(drawLayer:inContext:)]
-        unsafe fn drawLayer_inContext(&self, layer: &CALayer, ctx: &CGContextRef);
+        unsafe fn drawLayer_inContext(&self, layer: &CALayer, ctx: &CGContext);
 
         #[optional]
         #[method(layerWillDraw:)]

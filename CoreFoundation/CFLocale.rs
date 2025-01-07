@@ -11,23 +11,23 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocaleidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "CFBase")]
-pub type CFLocaleIdentifier = CFStringRef;
+pub type CFLocaleIdentifier = CFString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocalekey?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "CFBase")]
-pub type CFLocaleKey = CFStringRef;
+pub type CFLocaleKey = CFString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocaleref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cflocale?language=objc)
 #[repr(C)]
-pub struct CFLocaleRef {
+pub struct CFLocale {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFLocale"]
-    unsafe impl CFLocaleRef {}
+    unsafe impl CFLocale {}
 );
 
 extern "C-unwind" {
@@ -36,63 +36,63 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CFLocaleGetSystem() -> *mut CFLocaleRef;
+    pub fn CFLocaleGetSystem() -> *mut CFLocale;
 }
 
 extern "C-unwind" {
-    pub fn CFLocaleCopyCurrent() -> *mut CFLocaleRef;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "CFArray")]
-    pub fn CFLocaleCopyAvailableLocaleIdentifiers() -> *mut CFArrayRef;
+    pub fn CFLocaleCopyCurrent() -> *mut CFLocale;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFArray")]
-    pub fn CFLocaleCopyISOLanguageCodes() -> *mut CFArrayRef;
+    pub fn CFLocaleCopyAvailableLocaleIdentifiers() -> *mut CFArray;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFArray")]
-    pub fn CFLocaleCopyISOCountryCodes() -> *mut CFArrayRef;
+    pub fn CFLocaleCopyISOLanguageCodes() -> *mut CFArray;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFArray")]
-    pub fn CFLocaleCopyISOCurrencyCodes() -> *mut CFArrayRef;
+    pub fn CFLocaleCopyISOCountryCodes() -> *mut CFArray;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFArray")]
-    pub fn CFLocaleCopyCommonISOCurrencyCodes() -> *mut CFArrayRef;
+    pub fn CFLocaleCopyISOCurrencyCodes() -> *mut CFArray;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFArray")]
-    pub fn CFLocaleCopyPreferredLanguages() -> *mut CFArrayRef;
+    pub fn CFLocaleCopyCommonISOCurrencyCodes() -> *mut CFArray;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CFArray")]
+    pub fn CFLocaleCopyPreferredLanguages() -> *mut CFArray;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFLocaleCreateCanonicalLanguageIdentifierFromString(
-        allocator: Option<&CFAllocatorRef>,
-        locale_identifier: Option<&CFStringRef>,
+        allocator: Option<&CFAllocator>,
+        locale_identifier: Option<&CFString>,
     ) -> *mut CFLocaleIdentifier;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFLocaleCreateCanonicalLocaleIdentifierFromString(
-        allocator: Option<&CFAllocatorRef>,
-        locale_identifier: Option<&CFStringRef>,
+        allocator: Option<&CFAllocator>,
+        locale_identifier: Option<&CFString>,
     ) -> *mut CFLocaleIdentifier;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         lcode: LangCode,
         rcode: RegionCode,
     ) -> *mut CFLocaleIdentifier;
@@ -101,7 +101,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         lcid: u32,
     ) -> *mut CFLocaleIdentifier;
 }
@@ -146,66 +146,66 @@ unsafe impl RefEncode for CFLocaleLanguageDirection {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFLocaleGetLanguageCharacterDirection(
-        iso_lang_code: Option<&CFStringRef>,
+        iso_lang_code: Option<&CFString>,
     ) -> CFLocaleLanguageDirection;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFLocaleGetLanguageLineDirection(
-        iso_lang_code: Option<&CFStringRef>,
+        iso_lang_code: Option<&CFString>,
     ) -> CFLocaleLanguageDirection;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
     pub fn CFLocaleCreateComponentsFromLocaleIdentifier(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         locale_id: Option<&CFLocaleIdentifier>,
-    ) -> *mut CFDictionaryRef;
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
     pub fn CFLocaleCreateLocaleIdentifierFromComponents(
-        allocator: Option<&CFAllocatorRef>,
-        dictionary: Option<&CFDictionaryRef>,
+        allocator: Option<&CFAllocator>,
+        dictionary: Option<&CFDictionary>,
     ) -> *mut CFLocaleIdentifier;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFLocaleCreate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         locale_identifier: Option<&CFLocaleIdentifier>,
-    ) -> *mut CFLocaleRef;
+    ) -> *mut CFLocale;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFLocaleCreateCopy(
-        allocator: Option<&CFAllocatorRef>,
-        locale: Option<&CFLocaleRef>,
-    ) -> *mut CFLocaleRef;
+        allocator: Option<&CFAllocator>,
+        locale: Option<&CFLocale>,
+    ) -> *mut CFLocale;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFLocaleGetIdentifier(locale: Option<&CFLocaleRef>) -> *mut CFLocaleIdentifier;
+    pub fn CFLocaleGetIdentifier(locale: Option<&CFLocale>) -> *mut CFLocaleIdentifier;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFLocaleGetValue(locale: Option<&CFLocaleRef>, key: Option<&CFLocaleKey>) -> CFTypeRef;
+    pub fn CFLocaleGetValue(locale: Option<&CFLocale>, key: Option<&CFLocaleKey>) -> CFTypeRef;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFLocaleCopyDisplayNameForPropertyValue(
-        display_locale: Option<&CFLocaleRef>,
+        display_locale: Option<&CFLocale>,
         key: Option<&CFLocaleKey>,
-        value: Option<&CFStringRef>,
-    ) -> *mut CFStringRef;
+        value: Option<&CFString>,
+    ) -> *mut CFString;
 }
 
 extern "C" {
@@ -337,7 +337,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendaridentifier?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "CFBase")]
-pub type CFCalendarIdentifier = CFStringRef;
+pub type CFCalendarIdentifier = CFString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfgregoriancalendar?language=objc)

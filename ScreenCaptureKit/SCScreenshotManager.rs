@@ -41,9 +41,7 @@ extern_methods!(
         pub unsafe fn captureSampleBufferWithFilter_configuration_completionHandler(
             content_filter: &SCContentFilter,
             config: &SCStreamConfiguration,
-            completion_handler: Option<
-                &block2::Block<dyn Fn(*mut CMSampleBufferRef, *mut NSError)>,
-            >,
+            completion_handler: Option<&block2::Block<dyn Fn(*mut CMSampleBuffer, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -64,7 +62,7 @@ extern_methods!(
         pub unsafe fn captureImageWithFilter_configuration_completionHandler(
             content_filter: &SCContentFilter,
             config: &SCStreamConfiguration,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut CGImageRef, *mut NSError)>>,
+            completion_handler: Option<&block2::Block<dyn Fn(*mut CGImage, *mut NSError)>>,
         );
 
         #[cfg(all(
@@ -82,7 +80,7 @@ extern_methods!(
         #[method(captureImageInRect:completionHandler:)]
         pub unsafe fn captureImageInRect_completionHandler(
             rect: CGRect,
-            completion_handler: Option<&block2::Block<dyn Fn(*mut CGImageRef, *mut NSError)>>,
+            completion_handler: Option<&block2::Block<dyn Fn(*mut CGImage, *mut NSError)>>,
         );
     }
 );

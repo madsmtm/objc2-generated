@@ -19,16 +19,16 @@ pub type CGOpenGLDisplayMask = u32;
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrefreshrate?language=objc)
 pub type CGRefreshRate = c_double;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymoderef?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode?language=objc)
 #[repr(C)]
-pub struct CGDisplayModeRef {
+pub struct CGDisplayMode {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGDisplayMode"]
-    unsafe impl CGDisplayModeRef {}
+    unsafe impl CGDisplayMode {}
 );
 
 extern "C-unwind" {
@@ -106,55 +106,55 @@ extern "C-unwind" {
 extern "C-unwind" {
     pub fn CGDisplayCopyAllDisplayModes(
         display: CGDirectDisplayID,
-        options: Option<&CFDictionaryRef>,
-    ) -> *mut CFArrayRef;
+        options: Option<&CFDictionary>,
+    ) -> *mut CFArray;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplayshowduplicatelowresolutionmodes?language=objc)
-    pub static kCGDisplayShowDuplicateLowResolutionModes: &'static CFStringRef;
+    pub static kCGDisplayShowDuplicateLowResolutionModes: &'static CFString;
 }
 
 extern "C-unwind" {
-    pub fn CGDisplayCopyDisplayMode(display: CGDirectDisplayID) -> *mut CGDisplayModeRef;
+    pub fn CGDisplayCopyDisplayMode(display: CGDirectDisplayID) -> *mut CGDisplayMode;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGError")]
     pub fn CGDisplaySetDisplayMode(
         display: CGDirectDisplayID,
-        mode: Option<&CGDisplayModeRef>,
-        options: Option<&CFDictionaryRef>,
+        mode: Option<&CGDisplayMode>,
+        options: Option<&CFDictionary>,
     ) -> CGError;
 }
 
 extern "C-unwind" {
-    pub fn CGDisplayModeGetWidth(mode: Option<&CGDisplayModeRef>) -> usize;
+    pub fn CGDisplayModeGetWidth(mode: Option<&CGDisplayMode>) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn CGDisplayModeGetHeight(mode: Option<&CGDisplayModeRef>) -> usize;
+    pub fn CGDisplayModeGetHeight(mode: Option<&CGDisplayMode>) -> usize;
 }
 
 extern "C-unwind" {
     #[deprecated = "No longer supported"]
-    pub fn CGDisplayModeCopyPixelEncoding(mode: Option<&CGDisplayModeRef>) -> *mut CFStringRef;
+    pub fn CGDisplayModeCopyPixelEncoding(mode: Option<&CGDisplayMode>) -> *mut CFString;
 }
 
 extern "C-unwind" {
-    pub fn CGDisplayModeGetRefreshRate(mode: Option<&CGDisplayModeRef>) -> c_double;
+    pub fn CGDisplayModeGetRefreshRate(mode: Option<&CGDisplayMode>) -> c_double;
 }
 
 extern "C-unwind" {
-    pub fn CGDisplayModeGetIOFlags(mode: Option<&CGDisplayModeRef>) -> u32;
+    pub fn CGDisplayModeGetIOFlags(mode: Option<&CGDisplayMode>) -> u32;
 }
 
 extern "C-unwind" {
-    pub fn CGDisplayModeGetIODisplayModeID(mode: Option<&CGDisplayModeRef>) -> i32;
+    pub fn CGDisplayModeGetIODisplayModeID(mode: Option<&CGDisplayMode>) -> i32;
 }
 
 extern "C-unwind" {
-    pub fn CGDisplayModeIsUsableForDesktopGUI(mode: Option<&CGDisplayModeRef>) -> bool;
+    pub fn CGDisplayModeIsUsableForDesktopGUI(mode: Option<&CGDisplayMode>) -> bool;
 }
 
 extern "C-unwind" {
@@ -162,19 +162,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGDisplayModeRetain(mode: Option<&CGDisplayModeRef>) -> *mut CGDisplayModeRef;
+    pub fn CGDisplayModeRetain(mode: Option<&CGDisplayMode>) -> *mut CGDisplayMode;
 }
 
 extern "C-unwind" {
-    pub fn CGDisplayModeRelease(mode: Option<&CGDisplayModeRef>);
+    pub fn CGDisplayModeRelease(mode: Option<&CGDisplayMode>);
 }
 
 extern "C-unwind" {
-    pub fn CGDisplayModeGetPixelWidth(mode: Option<&CGDisplayModeRef>) -> usize;
+    pub fn CGDisplayModeGetPixelWidth(mode: Option<&CGDisplayMode>) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn CGDisplayModeGetPixelHeight(mode: Option<&CGDisplayModeRef>) -> usize;
+    pub fn CGDisplayModeGetPixelHeight(mode: Option<&CGDisplayMode>) -> usize;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggammavalue?language=objc)
@@ -330,14 +330,13 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CGImage")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
-    pub fn CGDisplayCreateImage(display_id: CGDirectDisplayID) -> *mut CGImageRef;
+    pub fn CGDisplayCreateImage(display_id: CGDirectDisplayID) -> *mut CGImage;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CGImage")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
-    pub fn CGDisplayCreateImageForRect(display: CGDirectDisplayID, rect: CGRect)
-        -> *mut CGImageRef;
+    pub fn CGDisplayCreateImageForRect(display: CGDirectDisplayID, rect: CGRect) -> *mut CGImage;
 }
 
 extern "C-unwind" {
@@ -361,7 +360,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CGContext")]
-    pub fn CGDisplayGetDrawingContext(display: CGDirectDisplayID) -> *mut CGContextRef;
+    pub fn CGDisplayGetDrawingContext(display: CGDirectDisplayID) -> *mut CGContext;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycount?language=objc)
@@ -373,7 +372,7 @@ pub type CGDisplayErr = CGError;
 
 extern "C-unwind" {
     #[deprecated = "No longer supported"]
-    pub fn CGDisplayAvailableModes(dsp: CGDirectDisplayID) -> *mut CFArrayRef;
+    pub fn CGDisplayAvailableModes(dsp: CGDirectDisplayID) -> *mut CFArray;
 }
 
 extern "C-unwind" {
@@ -385,7 +384,7 @@ extern "C-unwind" {
         width: usize,
         height: usize,
         exact_match: *mut libc::boolean_t,
-    ) -> *mut CFDictionaryRef;
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -398,12 +397,12 @@ extern "C-unwind" {
         height: usize,
         refresh_rate: CGRefreshRate,
         exact_match: *mut libc::boolean_t,
-    ) -> *mut CFDictionaryRef;
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
     #[deprecated = "No longer supported"]
-    pub fn CGDisplayCurrentMode(display: CGDirectDisplayID) -> *mut CFDictionaryRef;
+    pub fn CGDisplayCurrentMode(display: CGDirectDisplayID) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -411,6 +410,6 @@ extern "C-unwind" {
     #[deprecated = "No longer supported"]
     pub fn CGDisplaySwitchToMode(
         display: CGDirectDisplayID,
-        mode: Option<&CFDictionaryRef>,
+        mode: Option<&CFDictionary>,
     ) -> CGError;
 }

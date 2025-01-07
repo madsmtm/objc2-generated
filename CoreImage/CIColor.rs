@@ -34,7 +34,7 @@ extern_methods!(
     unsafe impl CIColor {
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other colorWithCGColor:)]
-        pub unsafe fn colorWithCGColor(c: &CGColorRef) -> Retained<Self>;
+        pub unsafe fn colorWithCGColor(c: &CGColor) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other colorWithRed:green:blue:alpha:)]
@@ -57,7 +57,7 @@ extern_methods!(
             g: CGFloat,
             b: CGFloat,
             a: CGFloat,
-            color_space: &CGColorSpaceRef,
+            color_space: &CGColorSpace,
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
@@ -66,7 +66,7 @@ extern_methods!(
             r: CGFloat,
             g: CGFloat,
             b: CGFloat,
-            color_space: &CGColorSpaceRef,
+            color_space: &CGColorSpace,
         ) -> Option<Retained<Self>>;
 
         #[method_id(@__retain_semantics Other colorWithString:)]
@@ -74,7 +74,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Init initWithCGColor:)]
-        pub unsafe fn initWithCGColor(this: Allocated<Self>, c: &CGColorRef) -> Retained<Self>;
+        pub unsafe fn initWithCGColor(this: Allocated<Self>, c: &CGColor) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithRed:green:blue:alpha:)]
@@ -103,7 +103,7 @@ extern_methods!(
             g: CGFloat,
             b: CGFloat,
             a: CGFloat,
-            color_space: &CGColorSpaceRef,
+            color_space: &CGColorSpace,
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
@@ -113,7 +113,7 @@ extern_methods!(
             r: CGFloat,
             g: CGFloat,
             b: CGFloat,
-            color_space: &CGColorSpaceRef,
+            color_space: &CGColorSpace,
         ) -> Option<Retained<Self>>;
 
         #[method(numberOfComponents)]

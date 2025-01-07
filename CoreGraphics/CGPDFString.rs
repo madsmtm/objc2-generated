@@ -34,9 +34,9 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGPDFStringCopyTextString(string: CGPDFStringRef) -> *mut CFStringRef;
+    pub fn CGPDFStringCopyTextString(string: CGPDFStringRef) -> *mut CFString;
 }
 
 extern "C-unwind" {
-    pub fn CGPDFStringCopyDate(string: CGPDFStringRef) -> *mut CFDateRef;
+    pub fn CGPDFStringCopyDate(string: CGPDFStringRef) -> *mut CFDate;
 }

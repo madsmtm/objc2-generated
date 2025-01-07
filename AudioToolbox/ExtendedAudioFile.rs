@@ -105,7 +105,7 @@ extern "C-unwind" {
     /// Allocates a new ExtAudioFileRef, for reading an existing audio file.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn ExtAudioFileOpenURL(
-        in_url: &CFURLRef,
+        in_url: &CFURL,
         out_ext_audio_file: NonNull<ExtAudioFileRef>,
     ) -> OSStatus;
 }
@@ -168,7 +168,7 @@ extern "C-unwind" {
         feature = "objc2-core-foundation"
     ))]
     pub fn ExtAudioFileCreateWithURL(
-        in_url: &CFURLRef,
+        in_url: &CFURL,
         in_file_type: AudioFileTypeID,
         in_stream_desc: NonNull<AudioStreamBasicDescription>,
         in_channel_layout: *const AudioChannelLayout,

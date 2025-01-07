@@ -10,16 +10,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent?language=objc)
 #[repr(C)]
-pub struct CGEventRef {
+pub struct CGEvent {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CGEvent"]
-    unsafe impl CGEventRef {}
+    unsafe impl CGEvent {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmousebutton?language=objc)
@@ -513,9 +513,9 @@ pub type CGEventTapCallBack = Option<
     unsafe extern "C-unwind" fn(
         CGEventTapProxy,
         CGEventType,
-        NonNull<CGEventRef>,
+        NonNull<CGEvent>,
         *mut c_void,
-    ) -> *mut CGEventRef,
+    ) -> *mut CGEvent,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapinformation?language=objc)
@@ -559,16 +559,16 @@ unsafe impl RefEncode for CGEventTapInformation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourceref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsource?language=objc)
 #[repr(C)]
-pub struct CGEventSourceRef {
+pub struct CGEventSource {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CGEventSource"]
-    unsafe impl CGEventSourceRef {}
+    unsafe impl CGEventSource {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid?language=objc)

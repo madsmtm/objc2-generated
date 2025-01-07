@@ -639,7 +639,7 @@ extern_methods!(
             font: &UIFont,
             text_matrix: CGAffineTransform,
             attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
-            cg_context: &CGContextRef,
+            cg_context: &CGContext,
         );
 
         #[cfg(all(feature = "UIColor", feature = "objc2-core-foundation"))]
@@ -875,7 +875,7 @@ extern_methods!(
             font: &UIFont,
             text_matrix: CGAffineTransform,
             attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
-            graphics_context: &CGContextRef,
+            graphics_context: &CGContext,
         );
     }
 );

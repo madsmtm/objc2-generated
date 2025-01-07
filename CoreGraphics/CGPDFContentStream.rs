@@ -28,7 +28,7 @@ pub type CGPDFContentStreamRef = *mut CGPDFContentStream;
 
 extern "C-unwind" {
     #[cfg(feature = "CGPDFPage")]
-    pub fn CGPDFContentStreamCreateWithPage(page: &CGPDFPageRef) -> CGPDFContentStreamRef;
+    pub fn CGPDFContentStreamCreateWithPage(page: &CGPDFPage) -> CGPDFContentStreamRef;
 }
 
 extern "C-unwind" {
@@ -49,7 +49,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGPDFContentStreamGetStreams(cs: CGPDFContentStreamRef) -> *mut CFArrayRef;
+    pub fn CGPDFContentStreamGetStreams(cs: CGPDFContentStreamRef) -> *mut CFArray;
 }
 
 extern "C-unwind" {

@@ -79,7 +79,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCVPixelBuffer:options:)]
         pub unsafe fn initWithCVPixelBuffer_options(
             this: Allocated<Self>,
-            pixel_buffer: &CVPixelBufferRef,
+            pixel_buffer: &CVPixelBuffer,
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
@@ -93,7 +93,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCGImage:options:)]
         pub unsafe fn initWithCGImage_options(
             this: Allocated<Self>,
-            image: &CGImageRef,
+            image: &CGImage,
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
@@ -158,7 +158,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init initWithCMSampleBuffer:options:)]
         pub unsafe fn initWithCMSampleBuffer_options(
             this: Allocated<Self>,
-            sample_buffer: &CMSampleBufferRef,
+            sample_buffer: &CMSampleBuffer,
             options: &NSDictionary<VNImageOption, AnyObject>,
         ) -> Retained<Self>;
 
@@ -227,7 +227,7 @@ extern_methods!(
         pub unsafe fn performRequests_onCVPixelBuffer_error(
             &self,
             requests: &NSArray<VNRequest>,
-            pixel_buffer: &CVPixelBufferRef,
+            pixel_buffer: &CVPixelBuffer,
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "VNRequest", feature = "objc2-core-graphics"))]
@@ -245,7 +245,7 @@ extern_methods!(
         pub unsafe fn performRequests_onCGImage_error(
             &self,
             requests: &NSArray<VNRequest>,
-            image: &CGImageRef,
+            image: &CGImage,
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "VNRequest", feature = "objc2-core-image"))]
@@ -317,7 +317,7 @@ extern_methods!(
         pub unsafe fn performRequests_onCMSampleBuffer_error(
             &self,
             requests: &NSArray<VNRequest>,
-            sample_buffer: &CMSampleBufferRef,
+            sample_buffer: &CMSampleBuffer,
         ) -> Result<(), Retained<NSError>>;
     }
 );

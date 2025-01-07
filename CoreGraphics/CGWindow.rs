@@ -61,67 +61,67 @@ unsafe impl RefEncode for CGWindowBackingType {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindownumber?language=objc)
-    pub static kCGWindowNumber: &'static CFStringRef;
+    pub static kCGWindowNumber: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowstoretype?language=objc)
-    pub static kCGWindowStoreType: &'static CFStringRef;
+    pub static kCGWindowStoreType: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowlayer?language=objc)
-    pub static kCGWindowLayer: &'static CFStringRef;
+    pub static kCGWindowLayer: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowbounds?language=objc)
-    pub static kCGWindowBounds: &'static CFStringRef;
+    pub static kCGWindowBounds: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowsharingstate?language=objc)
-    pub static kCGWindowSharingState: &'static CFStringRef;
+    pub static kCGWindowSharingState: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowalpha?language=objc)
-    pub static kCGWindowAlpha: &'static CFStringRef;
+    pub static kCGWindowAlpha: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowownerpid?language=objc)
-    pub static kCGWindowOwnerPID: &'static CFStringRef;
+    pub static kCGWindowOwnerPID: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowmemoryusage?language=objc)
-    pub static kCGWindowMemoryUsage: &'static CFStringRef;
+    pub static kCGWindowMemoryUsage: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowworkspace?language=objc)
-    pub static kCGWindowWorkspace: &'static CFStringRef;
+    pub static kCGWindowWorkspace: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowownername?language=objc)
-    pub static kCGWindowOwnerName: &'static CFStringRef;
+    pub static kCGWindowOwnerName: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowname?language=objc)
-    pub static kCGWindowName: &'static CFStringRef;
+    pub static kCGWindowName: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowisonscreen?language=objc)
-    pub static kCGWindowIsOnscreen: &'static CFStringRef;
+    pub static kCGWindowIsOnscreen: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowbackinglocationvideomemory?language=objc)
-    pub static kCGWindowBackingLocationVideoMemory: &'static CFStringRef;
+    pub static kCGWindowBackingLocationVideoMemory: &'static CFString;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistoption?language=objc)
@@ -160,20 +160,18 @@ extern "C-unwind" {
     pub fn CGWindowListCopyWindowInfo(
         option: CGWindowListOption,
         relative_to_window: CGWindowID,
-    ) -> *mut CFArrayRef;
+    ) -> *mut CFArray;
 }
 
 extern "C-unwind" {
     pub fn CGWindowListCreate(
         option: CGWindowListOption,
         relative_to_window: CGWindowID,
-    ) -> *mut CFArrayRef;
+    ) -> *mut CFArray;
 }
 
 extern "C-unwind" {
-    pub fn CGWindowListCreateDescriptionFromArray(
-        window_array: Option<&CFArrayRef>,
-    ) -> *mut CFArrayRef;
+    pub fn CGWindowListCreateDescriptionFromArray(window_array: Option<&CFArray>) -> *mut CFArray;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowimageoption?language=objc)
@@ -216,7 +214,7 @@ extern "C-unwind" {
         list_option: CGWindowListOption,
         window_id: CGWindowID,
         image_option: CGWindowImageOption,
-    ) -> *mut CGImageRef;
+    ) -> *mut CGImage;
 }
 
 extern "C-unwind" {
@@ -224,9 +222,9 @@ extern "C-unwind" {
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub fn CGWindowListCreateImageFromArray(
         screen_bounds: CGRect,
-        window_array: &CFArrayRef,
+        window_array: &CFArray,
         image_option: CGWindowImageOption,
-    ) -> *mut CGImageRef;
+    ) -> *mut CGImage;
 }
 
 extern "C-unwind" {

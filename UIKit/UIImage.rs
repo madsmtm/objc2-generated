@@ -189,12 +189,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other imageWithCGImage:)]
-        pub unsafe fn imageWithCGImage(cg_image: &CGImageRef) -> Retained<UIImage>;
+        pub unsafe fn imageWithCGImage(cg_image: &CGImage) -> Retained<UIImage>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[method_id(@__retain_semantics Other imageWithCGImage:scale:orientation:)]
         pub unsafe fn imageWithCGImage_scale_orientation(
-            cg_image: &CGImageRef,
+            cg_image: &CGImage,
             scale: CGFloat,
             orientation: UIImageOrientation,
         ) -> Retained<UIImage>;
@@ -232,16 +232,13 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Init initWithCGImage:)]
-        pub unsafe fn initWithCGImage(
-            this: Allocated<Self>,
-            cg_image: &CGImageRef,
-        ) -> Retained<Self>;
+        pub unsafe fn initWithCGImage(this: Allocated<Self>, cg_image: &CGImage) -> Retained<Self>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[method_id(@__retain_semantics Init initWithCGImage:scale:orientation:)]
         pub unsafe fn initWithCGImage_scale_orientation(
             this: Allocated<Self>,
-            cg_image: &CGImageRef,
+            cg_image: &CGImage,
             scale: CGFloat,
             orientation: UIImageOrientation,
         ) -> Retained<Self>;
@@ -267,7 +264,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other CGImage)]
-        pub unsafe fn CGImage(&self) -> Option<Retained<CGImageRef>>;
+        pub unsafe fn CGImage(&self) -> Option<Retained<CGImage>>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]

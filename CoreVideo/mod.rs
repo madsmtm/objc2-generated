@@ -109,6 +109,8 @@ pub use self::__CVBuffer::kCVBufferTimeValueKey;
 #[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVAttachmentMode;
 #[cfg(feature = "CVBuffer")]
+pub use self::__CVBuffer::CVBuffer;
+#[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBufferCopyAttachment;
 #[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBufferCopyAttachments;
@@ -121,8 +123,6 @@ pub use self::__CVBuffer::CVBufferHasAttachment;
 #[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBufferPropagateAttachments;
 #[cfg(feature = "CVBuffer")]
-pub use self::__CVBuffer::CVBufferRef;
-#[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBufferRemoveAllAttachments;
 #[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBufferRemoveAttachment;
@@ -132,6 +132,8 @@ pub use self::__CVBuffer::CVBufferRetain;
 pub use self::__CVBuffer::CVBufferSetAttachment;
 #[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBufferSetAttachments;
+#[cfg(feature = "CVDisplayLink")]
+pub use self::__CVDisplayLink::CVDisplayLink;
 #[cfg(all(feature = "CVDisplayLink", feature = "CVReturn"))]
 pub use self::__CVDisplayLink::CVDisplayLinkCreateWithActiveCGDisplays;
 #[cfg(all(
@@ -175,8 +177,6 @@ pub use self::__CVDisplayLink::CVDisplayLinkOutputCallback;
     feature = "block2"
 ))]
 pub use self::__CVDisplayLink::CVDisplayLinkOutputHandler;
-#[cfg(feature = "CVDisplayLink")]
-pub use self::__CVDisplayLink::CVDisplayLinkRef;
 #[cfg(feature = "CVDisplayLink")]
 pub use self::__CVDisplayLink::CVDisplayLinkRetain;
 #[cfg(all(
@@ -358,6 +358,8 @@ pub use self::__CVImageBuffer::kCVImageBufferYCbCrMatrix_SMPTE_240M_1995;
 pub use self::__CVImageBuffer::CVColorPrimariesGetIntegerCodePointForString;
 #[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::CVColorPrimariesGetStringForIntegerCodePoint;
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+pub use self::__CVImageBuffer::CVImageBuffer;
 #[cfg(all(feature = "CVImageBuffer", feature = "objc2-core-graphics"))]
 pub use self::__CVImageBuffer::CVImageBufferCreateColorSpaceFromAttachments;
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
@@ -374,8 +376,6 @@ pub use self::__CVImageBuffer::CVImageBufferGetDisplaySize;
 pub use self::__CVImageBuffer::CVImageBufferGetEncodedSize;
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub use self::__CVImageBuffer::CVImageBufferIsFlipped;
-#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-pub use self::__CVImageBuffer::CVImageBufferRef;
 #[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::CVTransferFunctionGetIntegerCodePointForString;
 #[cfg(feature = "CVImageBuffer")]
@@ -384,6 +384,8 @@ pub use self::__CVImageBuffer::CVTransferFunctionGetStringForIntegerCodePoint;
 pub use self::__CVImageBuffer::CVYCbCrMatrixGetIntegerCodePointForString;
 #[cfg(feature = "CVImageBuffer")]
 pub use self::__CVImageBuffer::CVYCbCrMatrixGetStringForIntegerCodePoint;
+#[cfg(all(feature = "CVBuffer", feature = "CVMetalBuffer"))]
+pub use self::__CVMetalBuffer::CVMetalBuffer;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVMetalBuffer",
@@ -394,10 +396,10 @@ pub use self::__CVImageBuffer::CVYCbCrMatrixGetStringForIntegerCodePoint;
 pub use self::__CVMetalBuffer::CVMetalBufferGetBuffer;
 #[cfg(feature = "CVMetalBuffer")]
 pub use self::__CVMetalBuffer::CVMetalBufferGetTypeID;
-#[cfg(all(feature = "CVBuffer", feature = "CVMetalBuffer"))]
-pub use self::__CVMetalBuffer::CVMetalBufferRef;
 #[cfg(feature = "CVMetalBufferCache")]
 pub use self::__CVMetalBufferCache::kCVMetalBufferCacheMaximumBufferAgeKey;
+#[cfg(feature = "CVMetalBufferCache")]
+pub use self::__CVMetalBufferCache::CVMetalBufferCache;
 #[cfg(all(
     feature = "CVMetalBufferCache",
     feature = "CVReturn",
@@ -418,12 +420,16 @@ pub use self::__CVMetalBufferCache::CVMetalBufferCacheCreateBufferFromImage;
 pub use self::__CVMetalBufferCache::CVMetalBufferCacheFlush;
 #[cfg(feature = "CVMetalBufferCache")]
 pub use self::__CVMetalBufferCache::CVMetalBufferCacheGetTypeID;
-#[cfg(feature = "CVMetalBufferCache")]
-pub use self::__CVMetalBufferCache::CVMetalBufferCacheRef;
 #[cfg(feature = "CVMetalTexture")]
 pub use self::__CVMetalTexture::kCVMetalTextureStorageMode;
 #[cfg(feature = "CVMetalTexture")]
 pub use self::__CVMetalTexture::kCVMetalTextureUsage;
+#[cfg(all(
+    feature = "CVBuffer",
+    feature = "CVImageBuffer",
+    feature = "CVMetalTexture"
+))]
+pub use self::__CVMetalTexture::CVMetalTexture;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
@@ -441,14 +447,10 @@ pub use self::__CVMetalTexture::CVMetalTextureGetTypeID;
     feature = "CVMetalTexture"
 ))]
 pub use self::__CVMetalTexture::CVMetalTextureIsFlipped;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVMetalTexture"
-))]
-pub use self::__CVMetalTexture::CVMetalTextureRef;
 #[cfg(feature = "CVMetalTextureCache")]
 pub use self::__CVMetalTextureCache::kCVMetalTextureCacheMaximumTextureAgeKey;
+#[cfg(feature = "CVMetalTextureCache")]
+pub use self::__CVMetalTextureCache::CVMetalTextureCache;
 #[cfg(all(
     feature = "CVMetalTextureCache",
     feature = "CVReturn",
@@ -472,8 +474,6 @@ pub use self::__CVMetalTextureCache::CVMetalTextureCacheCreateTextureFromImage;
 pub use self::__CVMetalTextureCache::CVMetalTextureCacheFlush;
 #[cfg(feature = "CVMetalTextureCache")]
 pub use self::__CVMetalTextureCache::CVMetalTextureCacheGetTypeID;
-#[cfg(feature = "CVMetalTextureCache")]
-pub use self::__CVMetalTextureCache::CVMetalTextureCacheRef;
 #[cfg(feature = "CVOpenGLBuffer")]
 pub use self::__CVOpenGLBuffer::kCVOpenGLBufferHeight;
 #[cfg(feature = "CVOpenGLBuffer")]
@@ -484,6 +484,12 @@ pub use self::__CVOpenGLBuffer::kCVOpenGLBufferMaximumMipmapLevel;
 pub use self::__CVOpenGLBuffer::kCVOpenGLBufferTarget;
 #[cfg(feature = "CVOpenGLBuffer")]
 pub use self::__CVOpenGLBuffer::kCVOpenGLBufferWidth;
+#[cfg(all(
+    feature = "CVBuffer",
+    feature = "CVImageBuffer",
+    feature = "CVOpenGLBuffer"
+))]
+pub use self::__CVOpenGLBuffer::CVOpenGLBuffer;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
@@ -504,17 +510,13 @@ pub use self::__CVOpenGLBuffer::CVOpenGLBufferGetTypeID;
     feature = "CVImageBuffer",
     feature = "CVOpenGLBuffer"
 ))]
-pub use self::__CVOpenGLBuffer::CVOpenGLBufferRef;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVOpenGLBuffer"
-))]
 pub use self::__CVOpenGLBuffer::CVOpenGLBufferRetain;
 #[cfg(feature = "CVOpenGLBufferPool")]
 pub use self::__CVOpenGLBufferPool::kCVOpenGLBufferPoolMaximumBufferAgeKey;
 #[cfg(feature = "CVOpenGLBufferPool")]
 pub use self::__CVOpenGLBufferPool::kCVOpenGLBufferPoolMinimumBufferCountKey;
+#[cfg(feature = "CVOpenGLBufferPool")]
+pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPool;
 #[cfg(all(feature = "CVOpenGLBufferPool", feature = "CVReturn"))]
 pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolCreate;
 #[cfg(all(
@@ -532,9 +534,13 @@ pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolGetOpenGLBufferAttributes;
 #[cfg(feature = "CVOpenGLBufferPool")]
 pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolGetTypeID;
 #[cfg(feature = "CVOpenGLBufferPool")]
-pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolRef;
-#[cfg(feature = "CVOpenGLBufferPool")]
 pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolRetain;
+#[cfg(all(
+    feature = "CVBuffer",
+    feature = "CVImageBuffer",
+    feature = "CVOpenGLTexture"
+))]
+pub use self::__CVOpenGLTexture::CVOpenGLTexture;
 #[cfg(feature = "CVOpenGLTexture")]
 pub use self::__CVOpenGLTexture::CVOpenGLTextureGetTypeID;
 #[cfg(all(
@@ -543,12 +549,6 @@ pub use self::__CVOpenGLTexture::CVOpenGLTextureGetTypeID;
     feature = "CVOpenGLTexture"
 ))]
 pub use self::__CVOpenGLTexture::CVOpenGLTextureIsFlipped;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVOpenGLTexture"
-))]
-pub use self::__CVOpenGLTexture::CVOpenGLTextureRef;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
@@ -563,6 +563,8 @@ pub use self::__CVOpenGLTextureCache::kCVOpenGLTextureCacheChromaSamplingModeBes
 pub use self::__CVOpenGLTextureCache::kCVOpenGLTextureCacheChromaSamplingModeHighestQuality;
 #[cfg(feature = "CVOpenGLTextureCache")]
 pub use self::__CVOpenGLTextureCache::kCVOpenGLTextureCacheChromaSamplingModeKey;
+#[cfg(feature = "CVOpenGLTextureCache")]
+pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCache;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
@@ -575,8 +577,6 @@ pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCacheCreateTextureFromImage
 pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCacheFlush;
 #[cfg(feature = "CVOpenGLTextureCache")]
 pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCacheGetTypeID;
-#[cfg(feature = "CVOpenGLTextureCache")]
-pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCacheRef;
 #[cfg(feature = "CVOpenGLTextureCache")]
 pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCacheRetain;
 #[cfg(feature = "CVPixelBuffer")]
@@ -840,6 +840,12 @@ pub use self::__CVPixelBuffer::kCVVersatileBayer_BayerPattern_RGGB;
     feature = "CVImageBuffer",
     feature = "CVPixelBuffer"
 ))]
+pub use self::__CVPixelBuffer::CVPixelBuffer;
+#[cfg(all(
+    feature = "CVBuffer",
+    feature = "CVImageBuffer",
+    feature = "CVPixelBuffer"
+))]
 pub use self::__CVPixelBuffer::CVPixelBufferCopyCreationAttributes;
 #[cfg(all(
     feature = "CVBuffer",
@@ -961,12 +967,6 @@ pub use self::__CVPixelBuffer::CVPixelBufferIsPlanar;
 pub use self::__CVPixelBuffer::CVPixelBufferLockBaseAddress;
 #[cfg(all(feature = "CVBase", feature = "CVPixelBuffer"))]
 pub use self::__CVPixelBuffer::CVPixelBufferLockFlags;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer"
-))]
-pub use self::__CVPixelBuffer::CVPixelBufferRef;
 #[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::CVPixelBufferReleaseBytesCallback;
 #[cfg(feature = "CVPixelBuffer")]
@@ -1030,6 +1030,8 @@ pub use self::__CVPixelBufferPool::kCVPixelBufferPoolFreeBufferNotification;
 pub use self::__CVPixelBufferPool::kCVPixelBufferPoolMaximumBufferAgeKey;
 #[cfg(feature = "CVPixelBufferPool")]
 pub use self::__CVPixelBufferPool::kCVPixelBufferPoolMinimumBufferCountKey;
+#[cfg(feature = "CVPixelBufferPool")]
+pub use self::__CVPixelBufferPool::CVPixelBufferPool;
 #[cfg(all(feature = "CVPixelBufferPool", feature = "CVReturn"))]
 pub use self::__CVPixelBufferPool::CVPixelBufferPoolCreate;
 #[cfg(all(
@@ -1058,8 +1060,6 @@ pub use self::__CVPixelBufferPool::CVPixelBufferPoolGetAttributes;
 pub use self::__CVPixelBufferPool::CVPixelBufferPoolGetPixelBufferAttributes;
 #[cfg(feature = "CVPixelBufferPool")]
 pub use self::__CVPixelBufferPool::CVPixelBufferPoolGetTypeID;
-#[cfg(feature = "CVPixelBufferPool")]
-pub use self::__CVPixelBufferPool::CVPixelBufferPoolRef;
 #[cfg(feature = "CVPixelBufferPool")]
 pub use self::__CVPixelBufferPool::CVPixelBufferPoolRetain;
 #[cfg(feature = "CVPixelFormatDescription")]

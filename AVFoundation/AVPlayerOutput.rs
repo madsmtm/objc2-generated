@@ -72,7 +72,7 @@ extern_methods!(
             active_configuration_out: Option<
                 &mut Option<Retained<AVPlayerVideoOutputConfiguration>>,
             >,
-        ) -> Option<Retained<CMTaggedBufferGroupRef>>;
+        ) -> Option<Retained<CMTaggedBufferGroup>>;
     }
 );
 
@@ -116,9 +116,9 @@ extern "C-unwind" {
     /// Returns: noErr if successful. Otherwise, an error describing why a tag collection could not be created.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMTagCollectionCreateWithVideoOutputPreset(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         preset: CMTagCollectionVideoOutputPreset,
-        new_collection_out: NonNull<CMTagCollectionRef>,
+        new_collection_out: NonNull<CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -182,7 +182,7 @@ extern_methods!(
         pub unsafe fn setOutputPixelBufferAttributes_forTagCollection(
             &self,
             pixel_buffer_attributes: Option<&NSDictionary<NSString, AnyObject>>,
-            tag_collection: &CMTagCollectionRef,
+            tag_collection: &CMTagCollection,
         );
 
         #[cfg(feature = "objc2-core-media")]
@@ -207,7 +207,7 @@ extern_methods!(
         pub unsafe fn setOutputSettings_forTagCollection(
             &self,
             output_settings: Option<&NSDictionary<NSString, AnyObject>>,
-            tag_collection: &CMTagCollectionRef,
+            tag_collection: &CMTagCollection,
         );
 
         /// Tag collections held by AVVideoOutputSpecification.

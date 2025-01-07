@@ -256,6 +256,8 @@ pub use self::__CGColor::kCGColorBlack;
 pub use self::__CGColor::kCGColorClear;
 #[cfg(feature = "CGColor")]
 pub use self::__CGColor::kCGColorWhite;
+#[cfg(feature = "CGColor")]
+pub use self::__CGColor::CGColor;
 #[cfg(all(feature = "CGColor", feature = "CGColorSpace"))]
 pub use self::__CGColor::CGColorCreate;
 #[cfg(feature = "CGColor")]
@@ -293,8 +295,6 @@ pub use self::__CGColor::CGColorGetPattern;
 #[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorGetTypeID;
 #[cfg(feature = "CGColor")]
-pub use self::__CGColor::CGColorRef;
-#[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorRelease;
 #[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorRetain;
@@ -304,6 +304,8 @@ pub use self::__CGColorConversionInfo::kCGColorConversionBlackPointCompensation;
 pub use self::__CGColorConversionInfo::kCGColorConversionTRCSize;
 #[cfg(all(feature = "CGColorConversionInfo", feature = "CGImage"))]
 pub use self::__CGColorConversionInfo::CGColorBufferFormat;
+#[cfg(feature = "CGColorConversionInfo")]
+pub use self::__CGColorConversionInfo::CGColorConversionInfo;
 #[cfg(all(feature = "CGColorConversionInfo", feature = "CGImage"))]
 pub use self::__CGColorConversionInfo::CGColorConversionInfoConvertData;
 #[cfg(all(feature = "CGColorConversionInfo", feature = "CGColorSpace"))]
@@ -318,8 +320,6 @@ pub use self::__CGColorConversionInfo::CGColorConversionInfoCreateForToneMapping
 pub use self::__CGColorConversionInfo::CGColorConversionInfoCreateWithOptions;
 #[cfg(feature = "CGColorConversionInfo")]
 pub use self::__CGColorConversionInfo::CGColorConversionInfoGetTypeID;
-#[cfg(feature = "CGColorConversionInfo")]
-pub use self::__CGColorConversionInfo::CGColorConversionInfoRef;
 #[cfg(feature = "CGColorConversionInfo")]
 pub use self::__CGColorConversionInfo::CGColorConversionInfoTransformType;
 #[cfg(feature = "CGColorSpace")]
@@ -405,6 +405,8 @@ pub use self::__CGColorSpace::kCGColorSpaceSRGB;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorRenderingIntent;
 #[cfg(feature = "CGColorSpace")]
+pub use self::__CGColorSpace::CGColorSpace;
+#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCopyBaseColorSpace;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCopyICCData;
@@ -471,8 +473,6 @@ pub use self::__CGColorSpace::CGColorSpaceIsWideGamutRGB;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceModel;
 #[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceRef;
-#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceRetain;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceSupportsOutput;
@@ -481,9 +481,11 @@ pub use self::__CGColorSpace::CGColorSpaceUsesExtendedRange;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceUsesITUR_2100TF;
 #[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::ColorSyncProfileRef;
+pub use self::__CGColorSpace::ColorSyncProfile;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGBlendMode;
+#[cfg(feature = "CGContext")]
+pub use self::__CGContext::CGContext;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextAddArc;
 #[cfg(feature = "CGContext")]
@@ -604,8 +606,6 @@ pub use self::__CGContext::CGContextIsPathEmpty;
 pub use self::__CGContext::CGContextMoveToPoint;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextPathContainsPoint;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextRef;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextRelease;
 #[cfg(feature = "CGContext")]
@@ -755,6 +755,8 @@ pub use self::__CGConvertColorDataWithFormat::CGColorDataFormat;
 ))]
 pub use self::__CGConvertColorDataWithFormat::CGConvertColorDataWithFormat;
 #[cfg(feature = "CGDataConsumer")]
+pub use self::__CGDataConsumer::CGDataConsumer;
+#[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerCallbacks;
 #[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerCreate;
@@ -767,13 +769,13 @@ pub use self::__CGDataConsumer::CGDataConsumerGetTypeID;
 #[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerPutBytesCallback;
 #[cfg(feature = "CGDataConsumer")]
-pub use self::__CGDataConsumer::CGDataConsumerRef;
-#[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerRelease;
 #[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerReleaseInfoCallback;
 #[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerRetain;
+#[cfg(feature = "CGDataProvider")]
+pub use self::__CGDataProvider::CGDataProvider;
 #[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderCopyData;
 #[cfg(all(feature = "CGDataProvider", feature = "libc"))]
@@ -800,8 +802,6 @@ pub use self::__CGDataProvider::CGDataProviderGetBytesCallback;
 pub use self::__CGDataProvider::CGDataProviderGetInfo;
 #[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderGetTypeID;
-#[cfg(feature = "CGDataProvider")]
-pub use self::__CGDataProvider::CGDataProviderRef;
 #[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderRelease;
 #[cfg(feature = "CGDataProvider")]
@@ -865,6 +865,8 @@ pub use self::__CGDirectDisplay::CGDisplayIDToOpenGLDisplayMask;
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 pub use self::__CGDirectDisplay::CGDisplayIsCaptured;
 #[cfg(feature = "CGDirectDisplay")]
+pub use self::__CGDirectDisplay::CGDisplayMode;
+#[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayModeCopyPixelEncoding;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayModeGetHeight;
@@ -884,8 +886,6 @@ pub use self::__CGDirectDisplay::CGDisplayModeGetTypeID;
 pub use self::__CGDirectDisplay::CGDisplayModeGetWidth;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayModeIsUsableForDesktopGUI;
-#[cfg(feature = "CGDirectDisplay")]
-pub use self::__CGDirectDisplay::CGDisplayModeRef;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayModeRelease;
 #[cfg(feature = "CGDirectDisplay")]
@@ -1148,6 +1148,8 @@ pub use self::__CGDisplayStream::kCGDisplayStreamYCbCrMatrix_ITU_R_601_4;
 pub use self::__CGDisplayStream::kCGDisplayStreamYCbCrMatrix_ITU_R_709_2;
 #[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995;
+#[cfg(feature = "CGDisplayStream")]
+pub use self::__CGDisplayStream::CGDisplayStream;
 #[cfg(all(
     feature = "CGDirectDisplay",
     feature = "CGDisplayStream",
@@ -1169,12 +1171,12 @@ pub use self::__CGDisplayStream::CGDisplayStreamFrameStatus;
 pub use self::__CGDisplayStream::CGDisplayStreamGetRunLoopSource;
 #[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamGetTypeID;
-#[cfg(feature = "CGDisplayStream")]
-pub use self::__CGDisplayStream::CGDisplayStreamRef;
 #[cfg(all(feature = "CGDisplayStream", feature = "CGError"))]
 pub use self::__CGDisplayStream::CGDisplayStreamStart;
 #[cfg(all(feature = "CGDisplayStream", feature = "CGError"))]
 pub use self::__CGDisplayStream::CGDisplayStreamStop;
+#[cfg(feature = "CGDisplayStream")]
+pub use self::__CGDisplayStream::CGDisplayStreamUpdate;
 #[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamUpdateCreateMergedUpdate;
 #[cfg(feature = "CGDisplayStream")]
@@ -1187,8 +1189,6 @@ pub use self::__CGDisplayStream::CGDisplayStreamUpdateGetRects;
 pub use self::__CGDisplayStream::CGDisplayStreamUpdateGetTypeID;
 #[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamUpdateRectType;
-#[cfg(feature = "CGDisplayStream")]
-pub use self::__CGDisplayStream::CGDisplayStreamUpdateRef;
 #[cfg(feature = "CGEXRToneMappingGamma")]
 pub use self::__CGEXRToneMappingGamma::kCGEXRToneMappingGammaDefog;
 #[cfg(feature = "CGEXRToneMappingGamma")]
@@ -1339,6 +1339,8 @@ pub use self::__CGEventSource::CGEventSourceSetPixelsPerLine;
 #[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
 pub use self::__CGEventSource::CGEventSourceSetUserData;
 #[cfg(feature = "CGEventTypes")]
+pub use self::__CGEventTypes::CGEvent;
+#[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::CGEventField;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::CGEventFlags;
@@ -1347,11 +1349,9 @@ pub use self::__CGEventTypes::CGEventMask;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::CGEventMouseSubtype;
 #[cfg(feature = "CGEventTypes")]
-pub use self::__CGEventTypes::CGEventRef;
+pub use self::__CGEventTypes::CGEventSource;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::CGEventSourceKeyboardType;
-#[cfg(feature = "CGEventTypes")]
-pub use self::__CGEventTypes::CGEventSourceRef;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::CGEventSourceStateID;
 #[cfg(feature = "CGEventTypes")]
@@ -1392,6 +1392,8 @@ pub use self::__CGFont::kCGFontVariationAxisMinValue;
 pub use self::__CGFont::kCGFontVariationAxisName;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::kCGGlyphMax;
+#[cfg(feature = "CGFont")]
+pub use self::__CGFont::CGFont;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontCanCreatePostScriptSubset;
 #[cfg(feature = "CGFont")]
@@ -1449,8 +1451,6 @@ pub use self::__CGFont::CGFontIndex;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontPostScriptFormat;
 #[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontRef;
-#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontRelease;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontRetain;
@@ -1459,6 +1459,8 @@ pub use self::__CGFont::CGGlyph;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGGlyphDeprecatedEnum;
 #[cfg(feature = "CGFunction")]
+pub use self::__CGFunction::CGFunction;
+#[cfg(feature = "CGFunction")]
 pub use self::__CGFunction::CGFunctionCallbacks;
 #[cfg(feature = "CGFunction")]
 pub use self::__CGFunction::CGFunctionCreate;
@@ -1466,8 +1468,6 @@ pub use self::__CGFunction::CGFunctionCreate;
 pub use self::__CGFunction::CGFunctionEvaluateCallback;
 #[cfg(feature = "CGFunction")]
 pub use self::__CGFunction::CGFunctionGetTypeID;
-#[cfg(feature = "CGFunction")]
-pub use self::__CGFunction::CGFunctionRef;
 #[cfg(feature = "CGFunction")]
 pub use self::__CGFunction::CGFunctionRelease;
 #[cfg(feature = "CGFunction")]
@@ -1544,6 +1544,8 @@ pub use self::__CGGeometry::CGSizeEqualToSize;
 pub use self::__CGGeometry::CGSizeMakeWithDictionaryRepresentation;
 #[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGSizeZero;
+#[cfg(feature = "CGGradient")]
+pub use self::__CGGradient::CGGradient;
 #[cfg(all(feature = "CGColorSpace", feature = "CGGradient"))]
 pub use self::__CGGradient::CGGradientCreateWithColorComponents;
 #[cfg(all(feature = "CGColorSpace", feature = "CGGradient"))]
@@ -1552,8 +1554,6 @@ pub use self::__CGGradient::CGGradientCreateWithColors;
 pub use self::__CGGradient::CGGradientDrawingOptions;
 #[cfg(feature = "CGGradient")]
 pub use self::__CGGradient::CGGradientGetTypeID;
-#[cfg(feature = "CGGradient")]
-pub use self::__CGGradient::CGGradientRef;
 #[cfg(feature = "CGGradient")]
 pub use self::__CGGradient::CGGradientRelease;
 #[cfg(feature = "CGGradient")]
@@ -1574,6 +1574,8 @@ pub use self::__CGImage::kCGBitmapByteOrder32Host;
 pub use self::__CGImage::kCGDefaultHDRImageContentHeadroom;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGBitmapInfo;
+#[cfg(feature = "CGImage")]
+pub use self::__CGImage::CGImage;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageAlphaInfo;
 #[cfg(feature = "CGImage")]
@@ -1657,8 +1659,6 @@ pub use self::__CGImage::CGImageMaskCreate;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImagePixelFormatInfo;
 #[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageRef;
-#[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageRelease;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageRetain;
@@ -1668,6 +1668,8 @@ pub use self::__CGImage::CGImageShouldToneMap;
 pub use self::__CGLayer::CGContextDrawLayerAtPoint;
 #[cfg(all(feature = "CGContext", feature = "CGLayer"))]
 pub use self::__CGLayer::CGContextDrawLayerInRect;
+#[cfg(feature = "CGLayer")]
+pub use self::__CGLayer::CGLayer;
 #[cfg(all(feature = "CGContext", feature = "CGLayer"))]
 pub use self::__CGLayer::CGLayerCreateWithContext;
 #[cfg(all(feature = "CGContext", feature = "CGLayer"))]
@@ -1676,8 +1678,6 @@ pub use self::__CGLayer::CGLayerGetContext;
 pub use self::__CGLayer::CGLayerGetSize;
 #[cfg(feature = "CGLayer")]
 pub use self::__CGLayer::CGLayerGetTypeID;
-#[cfg(feature = "CGLayer")]
-pub use self::__CGLayer::CGLayerRef;
 #[cfg(feature = "CGLayer")]
 pub use self::__CGLayer::CGLayerRelease;
 #[cfg(feature = "CGLayer")]
@@ -1891,6 +1891,8 @@ pub use self::__CGPDFDocument::kCGPDFOutlineTitle;
 #[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFAccessPermissions;
 #[cfg(feature = "CGPDFDocument")]
+pub use self::__CGPDFDocument::CGPDFDocument;
+#[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentAllowsCopying;
 #[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentAllowsPrinting;
@@ -1933,8 +1935,6 @@ pub use self::__CGPDFDocument::CGPDFDocumentIsEncrypted;
 #[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentIsUnlocked;
 #[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentRef;
-#[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentRelease;
 #[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentRetain;
@@ -1973,6 +1973,8 @@ pub use self::__CGPDFOperatorTable::CGPDFOperatorTableSetCallback;
 #[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFBox;
 #[cfg(feature = "CGPDFPage")]
+pub use self::__CGPDFPage::CGPDFPage;
+#[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFPageGetBoxRect;
 #[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFPage"))]
 pub use self::__CGPDFPage::CGPDFPageGetDictionary;
@@ -1986,8 +1988,6 @@ pub use self::__CGPDFPage::CGPDFPageGetPageNumber;
 pub use self::__CGPDFPage::CGPDFPageGetRotationAngle;
 #[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFPageGetTypeID;
-#[cfg(feature = "CGPDFPage")]
-pub use self::__CGPDFPage::CGPDFPageRef;
 #[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFPageRelease;
 #[cfg(feature = "CGPDFPage")]
@@ -2053,6 +2053,8 @@ pub use self::__CGPDFString::CGPDFStringGetLength;
 #[cfg(feature = "CGPDFString")]
 pub use self::__CGPDFString::CGPDFStringRef;
 #[cfg(feature = "CGPSConverter")]
+pub use self::__CGPSConverter::CGPSConverter;
+#[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterAbort;
 #[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterBeginDocumentCallback;
@@ -2081,15 +2083,15 @@ pub use self::__CGPSConverter::CGPSConverterMessageCallback;
 #[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterProgressCallback;
 #[cfg(feature = "CGPSConverter")]
-pub use self::__CGPSConverter::CGPSConverterRef;
-#[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterReleaseInfoCallback;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGLineCap;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGLineJoin;
 #[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGMutablePathRef;
+pub use self::__CGPath::CGMutablePath;
+#[cfg(feature = "CGPath")]
+pub use self::__CGPath::CGPath;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathAddArc;
 #[cfg(feature = "CGPath")]
@@ -2187,11 +2189,11 @@ pub use self::__CGPath::CGPathIsRect;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathMoveToPoint;
 #[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathRef;
-#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathRelease;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathRetain;
+#[cfg(feature = "CGPattern")]
+pub use self::__CGPattern::CGPattern;
 #[cfg(all(feature = "CGContext", feature = "CGPattern"))]
 pub use self::__CGPattern::CGPatternCallbacks;
 #[cfg(all(feature = "CGContext", feature = "CGPattern"))]
@@ -2200,8 +2202,6 @@ pub use self::__CGPattern::CGPatternCreate;
 pub use self::__CGPattern::CGPatternDrawPatternCallback;
 #[cfg(feature = "CGPattern")]
 pub use self::__CGPattern::CGPatternGetTypeID;
-#[cfg(feature = "CGPattern")]
-pub use self::__CGPattern::CGPatternRef;
 #[cfg(feature = "CGPattern")]
 pub use self::__CGPattern::CGPatternRelease;
 #[cfg(feature = "CGPattern")]
@@ -2272,6 +2272,8 @@ pub use self::__CGRemoteOperation::CGWindowServerCFMachPort;
 pub use self::__CGRemoteOperation::CGWindowServerCreateServerPort;
 #[cfg(feature = "CGSession")]
 pub use self::__CGSession::CGSessionCopyCurrentDictionary;
+#[cfg(feature = "CGShading")]
+pub use self::__CGShading::CGShading;
 #[cfg(all(
     feature = "CGColorSpace",
     feature = "CGFunction",
@@ -2286,8 +2288,6 @@ pub use self::__CGShading::CGShadingCreateAxial;
 pub use self::__CGShading::CGShadingCreateRadial;
 #[cfg(feature = "CGShading")]
 pub use self::__CGShading::CGShadingGetTypeID;
-#[cfg(feature = "CGShading")]
-pub use self::__CGShading::CGShadingRef;
 #[cfg(feature = "CGShading")]
 pub use self::__CGShading::CGShadingRelease;
 #[cfg(feature = "CGShading")]

@@ -7,16 +7,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshadingref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshading?language=objc)
 #[repr(C)]
-pub struct CGShadingRef {
+pub struct CGShading {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGShading"]
-    unsafe impl CGShadingRef {}
+    unsafe impl CGShading {}
 );
 
 extern "C-unwind" {
@@ -26,33 +26,33 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     pub fn CGShadingCreateAxial(
-        space: Option<&CGColorSpaceRef>,
+        space: Option<&CGColorSpace>,
         start: CGPoint,
         end: CGPoint,
-        function: Option<&CGFunctionRef>,
+        function: Option<&CGFunction>,
         extend_start: bool,
         extend_end: bool,
-    ) -> *mut CGShadingRef;
+    ) -> *mut CGShading;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     pub fn CGShadingCreateRadial(
-        space: Option<&CGColorSpaceRef>,
+        space: Option<&CGColorSpace>,
         start: CGPoint,
         start_radius: CGFloat,
         end: CGPoint,
         end_radius: CGFloat,
-        function: Option<&CGFunctionRef>,
+        function: Option<&CGFunction>,
         extend_start: bool,
         extend_end: bool,
-    ) -> *mut CGShadingRef;
+    ) -> *mut CGShading;
 }
 
 extern "C-unwind" {
-    pub fn CGShadingRetain(shading: Option<&CGShadingRef>) -> *mut CGShadingRef;
+    pub fn CGShadingRetain(shading: Option<&CGShading>) -> *mut CGShading;
 }
 
 extern "C-unwind" {
-    pub fn CGShadingRelease(shading: Option<&CGShadingRef>);
+    pub fn CGShadingRelease(shading: Option<&CGShading>);
 }

@@ -12,16 +12,16 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframeref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframe?language=objc)
 #[repr(C)]
-pub struct CTFrameRef {
+pub struct CTFrame {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CTFrame"]
-    unsafe impl CTFrameRef {}
+    unsafe impl CTFrame {}
 );
 
 extern "C-unwind" {
@@ -84,7 +84,7 @@ extern "C" {
     /// See also: CTFramesetterCreateFrame
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctframeprogressionattributename?language=objc)
-    pub static kCTFrameProgressionAttributeName: &'static CFStringRef;
+    pub static kCTFrameProgressionAttributeName: &'static CFString;
 }
 
 /// These constants specify fill rule used by the frame.
@@ -133,7 +133,7 @@ extern "C" {
     /// See also: CTFramesetterCreateFrame
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctframepathfillruleattributename?language=objc)
-    pub static kCTFramePathFillRuleAttributeName: &'static CFStringRef;
+    pub static kCTFramePathFillRuleAttributeName: &'static CFString;
 }
 
 extern "C" {
@@ -148,7 +148,7 @@ extern "C" {
     /// See also: CTFramesetterCreateFrame
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctframepathwidthattributename?language=objc)
-    pub static kCTFramePathWidthAttributeName: &'static CFStringRef;
+    pub static kCTFramePathWidthAttributeName: &'static CFString;
 }
 
 extern "C" {
@@ -163,7 +163,7 @@ extern "C" {
     /// See also: CTFramesetterCreateFrame
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctframeclippingpathsattributename?language=objc)
-    pub static kCTFrameClippingPathsAttributeName: &'static CFStringRef;
+    pub static kCTFrameClippingPathsAttributeName: &'static CFString;
 }
 
 extern "C" {
@@ -177,7 +177,7 @@ extern "C" {
     /// See also: kCTFrameClippingPathsAttributeName
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctframepathclippingpathattributename?language=objc)
-    pub static kCTFramePathClippingPathAttributeName: &'static CFStringRef;
+    pub static kCTFramePathClippingPathAttributeName: &'static CFString;
 }
 
 extern "C-unwind" {
@@ -192,7 +192,7 @@ extern "C-unwind" {
     /// store range of characters that were originally requested
     /// to fill the frame. If the function call is not successful,
     /// then an empty range will be returned.
-    pub fn CTFrameGetStringRange(frame: &CTFrameRef) -> CFRange;
+    pub fn CTFrameGetStringRange(frame: &CTFrame) -> CFRange;
 }
 
 extern "C-unwind" {
@@ -213,7 +213,7 @@ extern "C-unwind" {
     /// store range of characters that fit into the frame. If the
     /// function call is not successful, or if no characters fit
     /// in the frame, then an empty range will be returned.
-    pub fn CTFrameGetVisibleStringRange(frame: &CTFrameRef) -> CFRange;
+    pub fn CTFrameGetVisibleStringRange(frame: &CTFrame) -> CFRange;
 }
 
 extern "C-unwind" {
@@ -222,7 +222,7 @@ extern "C-unwind" {
     ///
     /// Parameter `frame`: The frame that you want to obtain the path from.
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTFrameGetPath(frame: &CTFrameRef) -> NonNull<CGPathRef>;
+    pub fn CTFrameGetPath(frame: &CTFrame) -> NonNull<CGPath>;
 }
 
 extern "C-unwind" {
@@ -242,7 +242,7 @@ extern "C-unwind" {
     /// frame attributes that were used to create the frame. If the
     /// frame was created without any frame attributes, this function
     /// will return NULL.
-    pub fn CTFrameGetFrameAttributes(frame: &CTFrameRef) -> *mut CFDictionaryRef;
+    pub fn CTFrameGetFrameAttributes(frame: &CTFrame) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -262,7 +262,7 @@ extern "C-unwind" {
     ///
     /// Returns: This function will return a CFArray object containing the
     /// CTLine objects that make up the frame.
-    pub fn CTFrameGetLines(frame: &CTFrameRef) -> NonNull<CFArrayRef>;
+    pub fn CTFrameGetLines(frame: &CTFrame) -> NonNull<CFArray>;
 }
 
 extern "C-unwind" {
@@ -294,7 +294,7 @@ extern "C-unwind" {
     /// the descent of the last line. This will obviously exclude any
     /// spacing following the last line, but such spacing has no effect
     /// on framesetting in the first place.
-    pub fn CTFrameGetLineOrigins(frame: &CTFrameRef, range: CFRange, origins: NonNull<CGPoint>);
+    pub fn CTFrameGetLineOrigins(frame: &CTFrame, range: CFRange, origins: NonNull<CGPoint>);
 }
 
 extern "C-unwind" {
@@ -315,5 +315,5 @@ extern "C-unwind" {
     /// If both the frame and the context are valid, the frame will be
     /// drawn in the context.
     #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTFrameDraw(frame: &CTFrameRef, context: &CGContextRef);
+    pub fn CTFrameDraw(frame: &CTFrame, context: &CGContext);
 }

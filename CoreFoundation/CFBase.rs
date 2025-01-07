@@ -19,28 +19,28 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftyperef?language=objc)
 pub type CFTypeRef = *const c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstring?language=objc)
 #[repr(C)]
-pub struct CFStringRef {
+pub struct CFString {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFString"]
-    unsafe impl CFStringRef {}
+    unsafe impl CFString {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablestringref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablestring?language=objc)
 #[repr(C)]
-pub struct CFMutableStringRef {
+pub struct CFMutableString {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFString"]
-    unsafe impl CFMutableStringRef: CFStringRef {}
+    unsafe impl CFMutableString: CFString {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistref?language=objc)
@@ -98,16 +98,16 @@ unsafe impl RefEncode for CFRange {
 
 // TODO: pub fn CFRangeMake(loc: CFIndex,len: CFIndex,) -> CFRange;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnullref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnull?language=objc)
 #[repr(C)]
-pub struct CFNullRef {
+pub struct CFNull {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFNull"]
-    unsafe impl CFNullRef {}
+    unsafe impl CFNull {}
 );
 
 extern "C-unwind" {
@@ -116,49 +116,49 @@ extern "C-unwind" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnull?language=objc)
-    pub static kCFNull: Option<&'static CFNullRef>;
+    pub static kCFNull: Option<&'static CFNull>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocator?language=objc)
 #[repr(C)]
-pub struct CFAllocatorRef {
+pub struct CFAllocator {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFAllocator"]
-    unsafe impl CFAllocatorRef {}
+    unsafe impl CFAllocator {}
 );
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault?language=objc)
-    pub static kCFAllocatorDefault: Option<&'static CFAllocatorRef>;
+    pub static kCFAllocatorDefault: Option<&'static CFAllocator>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfallocatorsystemdefault?language=objc)
-    pub static kCFAllocatorSystemDefault: Option<&'static CFAllocatorRef>;
+    pub static kCFAllocatorSystemDefault: Option<&'static CFAllocator>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfallocatormalloc?language=objc)
-    pub static kCFAllocatorMalloc: Option<&'static CFAllocatorRef>;
+    pub static kCFAllocatorMalloc: Option<&'static CFAllocator>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfallocatormalloczone?language=objc)
-    pub static kCFAllocatorMallocZone: Option<&'static CFAllocatorRef>;
+    pub static kCFAllocatorMallocZone: Option<&'static CFAllocator>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfallocatornull?language=objc)
-    pub static kCFAllocatorNull: Option<&'static CFAllocatorRef>;
+    pub static kCFAllocatorNull: Option<&'static CFAllocator>;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfallocatorusecontext?language=objc)
-    pub static kCFAllocatorUseContext: Option<&'static CFAllocatorRef>;
+    pub static kCFAllocatorUseContext: Option<&'static CFAllocator>;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorretaincallback?language=objc)
@@ -170,7 +170,7 @@ pub type CFAllocatorReleaseCallBack = Option<unsafe extern "C-unwind" fn(*const 
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorcopydescriptioncallback?language=objc)
 pub type CFAllocatorCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFStringRef>;
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorallocatecallback?language=objc)
 pub type CFAllocatorAllocateCallBack =
@@ -232,23 +232,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CFAllocatorSetDefault(allocator: Option<&CFAllocatorRef>);
+    pub fn CFAllocatorSetDefault(allocator: Option<&CFAllocator>);
 }
 
 extern "C-unwind" {
-    pub fn CFAllocatorGetDefault() -> *mut CFAllocatorRef;
+    pub fn CFAllocatorGetDefault() -> *mut CFAllocator;
 }
 
 extern "C-unwind" {
     pub fn CFAllocatorCreate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         context: *mut CFAllocatorContext,
-    ) -> *mut CFAllocatorRef;
+    ) -> *mut CFAllocator;
 }
 
 extern "C-unwind" {
     pub fn CFAllocatorAllocateTyped(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         size: CFIndex,
         descriptor: CFAllocatorTypeID,
         hint: CFOptionFlags,
@@ -257,7 +257,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CFAllocatorReallocateTyped(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         ptr: *mut c_void,
         newsize: CFIndex,
         descriptor: CFAllocatorTypeID,
@@ -267,7 +267,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CFAllocatorAllocateBytes(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         size: CFIndex,
         hint: CFOptionFlags,
     ) -> *mut c_void;
@@ -275,7 +275,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CFAllocatorReallocateBytes(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         ptr: *mut c_void,
         newsize: CFIndex,
         hint: CFOptionFlags,
@@ -284,7 +284,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CFAllocatorAllocate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         size: CFIndex,
         hint: CFOptionFlags,
     ) -> *mut c_void;
@@ -292,7 +292,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CFAllocatorReallocate(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         ptr: *mut c_void,
         newsize: CFIndex,
         hint: CFOptionFlags,
@@ -300,22 +300,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CFAllocatorDeallocate(allocator: Option<&CFAllocatorRef>, ptr: *mut c_void);
+    pub fn CFAllocatorDeallocate(allocator: Option<&CFAllocator>, ptr: *mut c_void);
 }
 
 extern "C-unwind" {
     pub fn CFAllocatorGetPreferredSizeForSize(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         size: CFIndex,
         hint: CFOptionFlags,
     ) -> CFIndex;
 }
 
 extern "C-unwind" {
-    pub fn CFAllocatorGetContext(
-        allocator: Option<&CFAllocatorRef>,
-        context: *mut CFAllocatorContext,
-    );
+    pub fn CFAllocatorGetContext(allocator: Option<&CFAllocator>, context: *mut CFAllocatorContext);
 }
 
 extern "C-unwind" {
@@ -323,7 +320,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CFCopyTypeIDDescription(type_id: CFTypeID) -> *mut CFStringRef;
+    pub fn CFCopyTypeIDDescription(type_id: CFTypeID) -> *mut CFString;
 }
 
 extern "C-unwind" {
@@ -347,11 +344,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CFCopyDescription(cf: CFTypeRef) -> *mut CFStringRef;
+    pub fn CFCopyDescription(cf: CFTypeRef) -> *mut CFString;
 }
 
 extern "C-unwind" {
-    pub fn CFGetAllocator(cf: CFTypeRef) -> *mut CFAllocatorRef;
+    pub fn CFGetAllocator(cf: CFTypeRef) -> *mut CFAllocator;
 }
 
 extern "C-unwind" {

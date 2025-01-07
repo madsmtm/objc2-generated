@@ -10,28 +10,28 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmutablepathref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmutablepath?language=objc)
 #[repr(C)]
-pub struct CGMutablePathRef {
+pub struct CGMutablePath {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGPath"]
-    unsafe impl CGMutablePathRef: CGPathRef {}
+    unsafe impl CGMutablePath: CGPath {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath?language=objc)
 #[repr(C)]
-pub struct CGPathRef {
+pub struct CGPath {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGPath"]
-    unsafe impl CGPathRef {}
+    unsafe impl CGPath {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinejoin?language=objc)
@@ -87,43 +87,43 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGPathCreateMutable() -> NonNull<CGMutablePathRef>;
+    pub fn CGPathCreateMutable() -> NonNull<CGMutablePath>;
 }
 
 extern "C-unwind" {
-    pub fn CGPathCreateCopy(path: Option<&CGPathRef>) -> *mut CGPathRef;
+    pub fn CGPathCreateCopy(path: Option<&CGPath>) -> *mut CGPath;
 }
 
 extern "C-unwind" {
     pub fn CGPathCreateCopyByTransformingPath(
-        path: Option<&CGPathRef>,
+        path: Option<&CGPath>,
         transform: *const CGAffineTransform,
-    ) -> *mut CGPathRef;
+    ) -> *mut CGPath;
 }
 
 extern "C-unwind" {
-    pub fn CGPathCreateMutableCopy(path: Option<&CGPathRef>) -> *mut CGMutablePathRef;
+    pub fn CGPathCreateMutableCopy(path: Option<&CGPath>) -> *mut CGMutablePath;
 }
 
 extern "C-unwind" {
     pub fn CGPathCreateMutableCopyByTransformingPath(
-        path: Option<&CGPathRef>,
+        path: Option<&CGPath>,
         transform: *const CGAffineTransform,
-    ) -> *mut CGMutablePathRef;
+    ) -> *mut CGMutablePath;
 }
 
 extern "C-unwind" {
     pub fn CGPathCreateWithRect(
         rect: CGRect,
         transform: *const CGAffineTransform,
-    ) -> NonNull<CGPathRef>;
+    ) -> NonNull<CGPath>;
 }
 
 extern "C-unwind" {
     pub fn CGPathCreateWithEllipseInRect(
         rect: CGRect,
         transform: *const CGAffineTransform,
-    ) -> NonNull<CGPathRef>;
+    ) -> NonNull<CGPath>;
 }
 
 extern "C-unwind" {
@@ -132,12 +132,12 @@ extern "C-unwind" {
         corner_width: CGFloat,
         corner_height: CGFloat,
         transform: *const CGAffineTransform,
-    ) -> NonNull<CGPathRef>;
+    ) -> NonNull<CGPath>;
 }
 
 extern "C-unwind" {
     pub fn CGPathAddRoundedRect(
-        path: Option<&CGMutablePathRef>,
+        path: Option<&CGMutablePath>,
         transform: *const CGAffineTransform,
         rect: CGRect,
         corner_width: CGFloat,
@@ -147,41 +147,41 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CGPathCreateCopyByDashingPath(
-        path: Option<&CGPathRef>,
+        path: Option<&CGPath>,
         transform: *const CGAffineTransform,
         phase: CGFloat,
         lengths: *const CGFloat,
         count: usize,
-    ) -> *mut CGPathRef;
+    ) -> *mut CGPath;
 }
 
 extern "C-unwind" {
     pub fn CGPathCreateCopyByStrokingPath(
-        path: Option<&CGPathRef>,
+        path: Option<&CGPath>,
         transform: *const CGAffineTransform,
         line_width: CGFloat,
         line_cap: CGLineCap,
         line_join: CGLineJoin,
         miter_limit: CGFloat,
-    ) -> *mut CGPathRef;
+    ) -> *mut CGPath;
 }
 
 extern "C-unwind" {
-    pub fn CGPathRetain(path: Option<&CGPathRef>) -> *mut CGPathRef;
+    pub fn CGPathRetain(path: Option<&CGPath>) -> *mut CGPath;
 }
 
 extern "C-unwind" {
-    pub fn CGPathRelease(path: Option<&CGPathRef>);
+    pub fn CGPathRelease(path: Option<&CGPath>);
 }
 
 extern "C-unwind" {
-    pub fn CGPathEqualToPath(path1: Option<&CGPathRef>, path2: Option<&CGPathRef>) -> bool;
+    pub fn CGPathEqualToPath(path1: Option<&CGPath>, path2: Option<&CGPath>) -> bool;
 }
 
 extern "C-unwind" {
     /// * Path construction functions. **
     pub fn CGPathMoveToPoint(
-        path: Option<&CGMutablePathRef>,
+        path: Option<&CGMutablePath>,
         m: *const CGAffineTransform,
         x: CGFloat,
         y: CGFloat,
@@ -190,7 +190,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CGPathAddLineToPoint(
-        path: Option<&CGMutablePathRef>,
+        path: Option<&CGMutablePath>,
         m: *const CGAffineTransform,
         x: CGFloat,
         y: CGFloat,
@@ -199,7 +199,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CGPathAddQuadCurveToPoint(
-        path: Option<&CGMutablePathRef>,
+        path: Option<&CGMutablePath>,
         m: *const CGAffineTransform,
         cpx: CGFloat,
         cpy: CGFloat,
@@ -210,7 +210,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CGPathAddCurveToPoint(
-        path: Option<&CGMutablePathRef>,
+        path: Option<&CGMutablePath>,
         m: *const CGAffineTransform,
         cp1x: CGFloat,
         cp1y: CGFloat,
@@ -222,21 +222,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGPathCloseSubpath(path: Option<&CGMutablePathRef>);
+    pub fn CGPathCloseSubpath(path: Option<&CGMutablePath>);
 }
 
 extern "C-unwind" {
     /// * Path construction convenience functions. **
-    pub fn CGPathAddRect(
-        path: Option<&CGMutablePathRef>,
-        m: *const CGAffineTransform,
-        rect: CGRect,
-    );
+    pub fn CGPathAddRect(path: Option<&CGMutablePath>, m: *const CGAffineTransform, rect: CGRect);
 }
 
 extern "C-unwind" {
     pub fn CGPathAddRects(
-        path: Option<&CGMutablePathRef>,
+        path: Option<&CGMutablePath>,
         m: *const CGAffineTransform,
         rects: *const CGRect,
         count: usize,
@@ -245,7 +241,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CGPathAddLines(
-        path: Option<&CGMutablePathRef>,
+        path: Option<&CGMutablePath>,
         m: *const CGAffineTransform,
         points: *const CGPoint,
         count: usize,
@@ -254,7 +250,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CGPathAddEllipseInRect(
-        path: Option<&CGMutablePathRef>,
+        path: Option<&CGMutablePath>,
         m: *const CGAffineTransform,
         rect: CGRect,
     );
@@ -262,7 +258,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CGPathAddRelativeArc(
-        path: Option<&CGMutablePathRef>,
+        path: Option<&CGMutablePath>,
         matrix: *const CGAffineTransform,
         x: CGFloat,
         y: CGFloat,
@@ -274,7 +270,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CGPathAddArc(
-        path: Option<&CGMutablePathRef>,
+        path: Option<&CGMutablePath>,
         m: *const CGAffineTransform,
         x: CGFloat,
         y: CGFloat,
@@ -287,7 +283,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CGPathAddArcToPoint(
-        path: Option<&CGMutablePathRef>,
+        path: Option<&CGMutablePath>,
         m: *const CGAffineTransform,
         x1: CGFloat,
         y1: CGFloat,
@@ -299,36 +295,36 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CGPathAddPath(
-        path1: Option<&CGMutablePathRef>,
+        path1: Option<&CGMutablePath>,
         m: *const CGAffineTransform,
-        path2: Option<&CGPathRef>,
+        path2: Option<&CGPath>,
     );
 }
 
 extern "C-unwind" {
     /// * Path information functions. **
-    pub fn CGPathIsEmpty(path: Option<&CGPathRef>) -> bool;
+    pub fn CGPathIsEmpty(path: Option<&CGPath>) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGPathIsRect(path: Option<&CGPathRef>, rect: *mut CGRect) -> bool;
+    pub fn CGPathIsRect(path: Option<&CGPath>, rect: *mut CGRect) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGPathGetCurrentPoint(path: Option<&CGPathRef>) -> CGPoint;
+    pub fn CGPathGetCurrentPoint(path: Option<&CGPath>) -> CGPoint;
 }
 
 extern "C-unwind" {
-    pub fn CGPathGetBoundingBox(path: Option<&CGPathRef>) -> CGRect;
+    pub fn CGPathGetBoundingBox(path: Option<&CGPath>) -> CGRect;
 }
 
 extern "C-unwind" {
-    pub fn CGPathGetPathBoundingBox(path: Option<&CGPathRef>) -> CGRect;
+    pub fn CGPathGetPathBoundingBox(path: Option<&CGPath>) -> CGRect;
 }
 
 extern "C-unwind" {
     pub fn CGPathContainsPoint(
-        path: Option<&CGPathRef>,
+        path: Option<&CGPath>,
         m: *const CGAffineTransform,
         point: CGPoint,
         eo_fill: bool,
@@ -389,11 +385,7 @@ pub type CGPathApplierFunction =
     Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<CGPathElement>)>;
 
 extern "C-unwind" {
-    pub fn CGPathApply(
-        path: Option<&CGPathRef>,
-        info: *mut c_void,
-        function: CGPathApplierFunction,
-    );
+    pub fn CGPathApply(path: Option<&CGPath>, info: *mut c_void, function: CGPathApplierFunction);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathapplyblock?language=objc)
@@ -402,82 +394,82 @@ pub type CGPathApplyBlock = *mut block2::Block<dyn Fn(NonNull<CGPathElement>)>;
 
 extern "C-unwind" {
     #[cfg(feature = "block2")]
-    pub fn CGPathApplyWithBlock(path: &CGPathRef, block: CGPathApplyBlock);
+    pub fn CGPathApplyWithBlock(path: &CGPath, block: CGPathApplyBlock);
 }
 
 extern "C-unwind" {
     pub fn CGPathCreateCopyByNormalizing(
-        path: Option<&CGPathRef>,
+        path: Option<&CGPath>,
         even_odd_fill_rule: bool,
-    ) -> *mut CGPathRef;
+    ) -> *mut CGPath;
 }
 
 extern "C-unwind" {
     pub fn CGPathCreateCopyByUnioningPath(
-        path: Option<&CGPathRef>,
-        mask_path: Option<&CGPathRef>,
+        path: Option<&CGPath>,
+        mask_path: Option<&CGPath>,
         even_odd_fill_rule: bool,
-    ) -> *mut CGPathRef;
+    ) -> *mut CGPath;
 }
 
 extern "C-unwind" {
     pub fn CGPathCreateCopyByIntersectingPath(
-        path: Option<&CGPathRef>,
-        mask_path: Option<&CGPathRef>,
+        path: Option<&CGPath>,
+        mask_path: Option<&CGPath>,
         even_odd_fill_rule: bool,
-    ) -> *mut CGPathRef;
+    ) -> *mut CGPath;
 }
 
 extern "C-unwind" {
     pub fn CGPathCreateCopyBySubtractingPath(
-        path: Option<&CGPathRef>,
-        mask_path: Option<&CGPathRef>,
+        path: Option<&CGPath>,
+        mask_path: Option<&CGPath>,
         even_odd_fill_rule: bool,
-    ) -> *mut CGPathRef;
+    ) -> *mut CGPath;
 }
 
 extern "C-unwind" {
     pub fn CGPathCreateCopyBySymmetricDifferenceOfPath(
-        path: Option<&CGPathRef>,
-        mask_path: Option<&CGPathRef>,
+        path: Option<&CGPath>,
+        mask_path: Option<&CGPath>,
         even_odd_fill_rule: bool,
-    ) -> *mut CGPathRef;
+    ) -> *mut CGPath;
 }
 
 extern "C-unwind" {
     pub fn CGPathCreateCopyOfLineBySubtractingPath(
-        path: Option<&CGPathRef>,
-        mask_path: Option<&CGPathRef>,
+        path: Option<&CGPath>,
+        mask_path: Option<&CGPath>,
         even_odd_fill_rule: bool,
-    ) -> *mut CGPathRef;
+    ) -> *mut CGPath;
 }
 
 extern "C-unwind" {
     pub fn CGPathCreateCopyOfLineByIntersectingPath(
-        path: Option<&CGPathRef>,
-        mask_path: Option<&CGPathRef>,
+        path: Option<&CGPath>,
+        mask_path: Option<&CGPath>,
         even_odd_fill_rule: bool,
-    ) -> *mut CGPathRef;
+    ) -> *mut CGPath;
 }
 
 extern "C-unwind" {
     pub fn CGPathCreateSeparateComponents(
-        path: Option<&CGPathRef>,
+        path: Option<&CGPath>,
         even_odd_fill_rule: bool,
-    ) -> *mut CFArrayRef;
+    ) -> *mut CFArray;
 }
 
 extern "C-unwind" {
     pub fn CGPathCreateCopyByFlattening(
-        path: Option<&CGPathRef>,
+        path: Option<&CGPath>,
         flattening_threshold: CGFloat,
-    ) -> *mut CGPathRef;
+    ) -> *mut CGPath;
 }
 
 extern "C-unwind" {
     pub fn CGPathIntersectsPath(
-        path1: Option<&CGPathRef>,
-        path2: Option<&CGPathRef>,
+        path1: Option<&CGPath>,
+        path2: Option<&CGPath>,
         even_odd_fill_rule: bool,
     ) -> bool;
 }

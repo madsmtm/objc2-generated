@@ -8,16 +8,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurity?language=objc)
 #[repr(C)]
-pub struct CFFileSecurityRef {
+pub struct CFFileSecurity {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CFFileSecurity"]
-    unsafe impl CFFileSecurityRef {}
+    unsafe impl CFFileSecurity {}
 );
 
 extern "C-unwind" {
@@ -27,95 +27,88 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFFileSecurityCreate(allocator: Option<&CFAllocatorRef>) -> *mut CFFileSecurityRef;
+    pub fn CFFileSecurityCreate(allocator: Option<&CFAllocator>) -> *mut CFFileSecurity;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFFileSecurityCreateCopy(
-        allocator: Option<&CFAllocatorRef>,
-        file_sec: Option<&CFFileSecurityRef>,
-    ) -> *mut CFFileSecurityRef;
+        allocator: Option<&CFAllocator>,
+        file_sec: Option<&CFFileSecurity>,
+    ) -> *mut CFFileSecurity;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFUUID")]
     pub fn CFFileSecurityCopyOwnerUUID(
-        file_sec: Option<&CFFileSecurityRef>,
-        owner_uuid: *mut CFUUIDRef,
+        file_sec: Option<&CFFileSecurity>,
+        owner_uuid: *mut CFUUID,
     ) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFUUID")]
     pub fn CFFileSecuritySetOwnerUUID(
-        file_sec: Option<&CFFileSecurityRef>,
-        owner_uuid: Option<&CFUUIDRef>,
+        file_sec: Option<&CFFileSecurity>,
+        owner_uuid: Option<&CFUUID>,
     ) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFUUID")]
     pub fn CFFileSecurityCopyGroupUUID(
-        file_sec: Option<&CFFileSecurityRef>,
-        group_uuid: *mut CFUUIDRef,
+        file_sec: Option<&CFFileSecurity>,
+        group_uuid: *mut CFUUID,
     ) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFUUID")]
     pub fn CFFileSecuritySetGroupUUID(
-        file_sec: Option<&CFFileSecurityRef>,
-        group_uuid: Option<&CFUUIDRef>,
+        file_sec: Option<&CFFileSecurity>,
+        group_uuid: Option<&CFUUID>,
     ) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "libc")]
     pub fn CFFileSecurityGetOwner(
-        file_sec: Option<&CFFileSecurityRef>,
+        file_sec: Option<&CFFileSecurity>,
         owner: *mut libc::uid_t,
     ) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "libc")]
-    pub fn CFFileSecuritySetOwner(
-        file_sec: Option<&CFFileSecurityRef>,
-        owner: libc::uid_t,
-    ) -> Boolean;
+    pub fn CFFileSecuritySetOwner(file_sec: Option<&CFFileSecurity>, owner: libc::uid_t)
+        -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "libc")]
     pub fn CFFileSecurityGetGroup(
-        file_sec: Option<&CFFileSecurityRef>,
+        file_sec: Option<&CFFileSecurity>,
         group: *mut libc::gid_t,
     ) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "libc")]
-    pub fn CFFileSecuritySetGroup(
-        file_sec: Option<&CFFileSecurityRef>,
-        group: libc::gid_t,
-    ) -> Boolean;
+    pub fn CFFileSecuritySetGroup(file_sec: Option<&CFFileSecurity>, group: libc::gid_t)
+        -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "libc")]
     pub fn CFFileSecurityGetMode(
-        file_sec: Option<&CFFileSecurityRef>,
+        file_sec: Option<&CFFileSecurity>,
         mode: *mut libc::mode_t,
     ) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "libc")]
-    pub fn CFFileSecuritySetMode(
-        file_sec: Option<&CFFileSecurityRef>,
-        mode: libc::mode_t,
-    ) -> Boolean;
+    pub fn CFFileSecuritySetMode(file_sec: Option<&CFFileSecurity>, mode: libc::mode_t) -> Boolean;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearoptions?language=objc)
@@ -155,7 +148,7 @@ unsafe impl RefEncode for CFFileSecurityClearOptions {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFFileSecurityClearProperties(
-        file_sec: Option<&CFFileSecurityRef>,
+        file_sec: Option<&CFFileSecurity>,
         clear_property_mask: CFFileSecurityClearOptions,
     ) -> Boolean;
 }

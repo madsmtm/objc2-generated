@@ -12,16 +12,16 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegateref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegate?language=objc)
 #[repr(C)]
-pub struct CTRunDelegateRef {
+pub struct CTRunDelegate {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "__CTRunDelegate"]
-    unsafe impl CTRunDelegateRef {}
+    unsafe impl CTRunDelegate {}
 );
 
 extern "C-unwind" {
@@ -163,7 +163,7 @@ extern "C-unwind" {
     pub fn CTRunDelegateCreate(
         callbacks: NonNull<CTRunDelegateCallbacks>,
         ref_con: *mut c_void,
-    ) -> *mut CTRunDelegateRef;
+    ) -> *mut CTRunDelegate;
 }
 
 extern "C-unwind" {
@@ -178,7 +178,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: The refCon value of the supplied run delegate.
-    pub fn CTRunDelegateGetRefCon(run_delegate: &CTRunDelegateRef) -> NonNull<c_void>;
+    pub fn CTRunDelegateGetRefCon(run_delegate: &CTRunDelegate) -> NonNull<c_void>;
 }
 
 #[cfg(feature = "objc2")]
@@ -194,6 +194,6 @@ extern_protocol!(
             scale_factor: CGFloat,
             out_image_offset: NonNull<CGPoint>,
             out_image_size: NonNull<CGSize>,
-        ) -> Option<Retained<CGImageRef>>;
+        ) -> Option<Retained<CGImage>>;
     }
 );

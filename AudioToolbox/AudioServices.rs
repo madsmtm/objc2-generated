@@ -74,7 +74,7 @@ extern "C-unwind" {
     /// Parameter `outSystemSoundID`: Returns a SystemSoundID.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioServicesCreateSystemSoundID(
-        in_file_url: &CFURLRef,
+        in_file_url: &CFURL,
         out_system_sound_id: NonNull<SystemSoundID>,
     ) -> OSStatus;
 }
@@ -259,8 +259,8 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioServicesAddSystemSoundCompletion(
         in_system_sound_id: SystemSoundID,
-        in_run_loop: Option<&CFRunLoopRef>,
-        in_run_loop_mode: Option<&CFStringRef>,
+        in_run_loop: Option<&CFRunLoop>,
+        in_run_loop_mode: Option<&CFString>,
         in_completion_routine: AudioServicesSystemSoundCompletionProc,
         in_client_data: *mut c_void,
     ) -> OSStatus;

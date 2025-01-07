@@ -38,10 +38,10 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData"))]
     #[deprecated = "Use CFPropertyListCreateWithData instead."]
     pub fn CFPropertyListCreateFromXMLData(
-        allocator: Option<&CFAllocatorRef>,
-        xml_data: Option<&CFDataRef>,
+        allocator: Option<&CFAllocator>,
+        xml_data: Option<&CFData>,
         mutability_option: CFOptionFlags,
-        error_string: *mut CFStringRef,
+        error_string: *mut CFString,
     ) -> CFPropertyListRef;
 }
 
@@ -49,15 +49,15 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData"))]
     #[deprecated = "Use CFPropertyListCreateData instead."]
     pub fn CFPropertyListCreateXMLData(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         property_list: CFPropertyListRef,
-    ) -> *mut CFDataRef;
+    ) -> *mut CFData;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFPropertyListCreateDeepCopy(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         property_list: CFPropertyListRef,
         mutability_option: CFOptionFlags,
     ) -> CFPropertyListRef;
@@ -100,9 +100,9 @@ extern "C-unwind" {
     #[deprecated = "Use CFPropertyListWrite instead."]
     pub fn CFPropertyListWriteToStream(
         property_list: CFPropertyListRef,
-        stream: Option<&CFWriteStreamRef>,
+        stream: Option<&CFWriteStream>,
         format: CFPropertyListFormat,
-        error_string: *mut CFStringRef,
+        error_string: *mut CFString,
     ) -> CFIndex;
 }
 
@@ -110,12 +110,12 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFStream"))]
     #[deprecated = "Use CFPropertyListCreateWithStream instead."]
     pub fn CFPropertyListCreateFromStream(
-        allocator: Option<&CFAllocatorRef>,
-        stream: Option<&CFReadStreamRef>,
+        allocator: Option<&CFAllocator>,
+        stream: Option<&CFReadStream>,
         stream_length: CFIndex,
         mutability_option: CFOptionFlags,
         format: *mut CFPropertyListFormat,
-        error_string: *mut CFStringRef,
+        error_string: *mut CFString,
     ) -> CFPropertyListRef;
 }
 
@@ -135,23 +135,23 @@ pub const kCFPropertyListWriteStreamError: CFIndex = 3851;
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFError"))]
     pub fn CFPropertyListCreateWithData(
-        allocator: Option<&CFAllocatorRef>,
-        data: Option<&CFDataRef>,
+        allocator: Option<&CFAllocator>,
+        data: Option<&CFData>,
         options: CFOptionFlags,
         format: *mut CFPropertyListFormat,
-        error: *mut CFErrorRef,
+        error: *mut CFError,
     ) -> CFPropertyListRef;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFError", feature = "CFStream"))]
     pub fn CFPropertyListCreateWithStream(
-        allocator: Option<&CFAllocatorRef>,
-        stream: Option<&CFReadStreamRef>,
+        allocator: Option<&CFAllocator>,
+        stream: Option<&CFReadStream>,
         stream_length: CFIndex,
         options: CFOptionFlags,
         format: *mut CFPropertyListFormat,
-        error: *mut CFErrorRef,
+        error: *mut CFError,
     ) -> CFPropertyListRef;
 }
 
@@ -159,20 +159,20 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFError", feature = "CFStream"))]
     pub fn CFPropertyListWrite(
         property_list: CFPropertyListRef,
-        stream: Option<&CFWriteStreamRef>,
+        stream: Option<&CFWriteStream>,
         format: CFPropertyListFormat,
         options: CFOptionFlags,
-        error: *mut CFErrorRef,
+        error: *mut CFError,
     ) -> CFIndex;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFError"))]
     pub fn CFPropertyListCreateData(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         property_list: CFPropertyListRef,
         format: CFPropertyListFormat,
         options: CFOptionFlags,
-        error: *mut CFErrorRef,
-    ) -> *mut CFDataRef;
+        error: *mut CFError,
+    ) -> *mut CFData;
 }

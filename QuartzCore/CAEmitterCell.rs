@@ -192,12 +192,12 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[method_id(@__retain_semantics Other color)]
-        pub unsafe fn color(&self) -> Option<Retained<CGColorRef>>;
+        pub unsafe fn color(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`color`][Self::color].
         #[method(setColor:)]
-        pub unsafe fn setColor(&self, color: Option<&CGColorRef>);
+        pub unsafe fn setColor(&self, color: Option<&CGColor>);
 
         #[method(redRange)]
         pub unsafe fn redRange(&self) -> c_float;

@@ -10,16 +10,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspaceref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace?language=objc)
 #[repr(C)]
-pub struct CGColorSpaceRef {
+pub struct CGColorSpace {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "CGColorSpace"]
-    unsafe impl CGColorSpaceRef {}
+    unsafe impl CGColorSpace {}
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent?language=objc)
@@ -88,213 +88,213 @@ unsafe impl RefEncode for CGColorSpaceModel {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacegenericgray?language=objc)
-    pub static kCGColorSpaceGenericGray: &'static CFStringRef;
+    pub static kCGColorSpaceGenericGray: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacegenericrgb?language=objc)
-    pub static kCGColorSpaceGenericRGB: &'static CFStringRef;
+    pub static kCGColorSpaceGenericRGB: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacegenericcmyk?language=objc)
-    pub static kCGColorSpaceGenericCMYK: &'static CFStringRef;
+    pub static kCGColorSpaceGenericCMYK: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacedisplayp3?language=objc)
-    pub static kCGColorSpaceDisplayP3: &'static CFStringRef;
+    pub static kCGColorSpaceDisplayP3: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacegenericrgblinear?language=objc)
-    pub static kCGColorSpaceGenericRGBLinear: &'static CFStringRef;
+    pub static kCGColorSpaceGenericRGBLinear: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceadobergb1998?language=objc)
-    pub static kCGColorSpaceAdobeRGB1998: &'static CFStringRef;
+    pub static kCGColorSpaceAdobeRGB1998: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacesrgb?language=objc)
-    pub static kCGColorSpaceSRGB: &'static CFStringRef;
+    pub static kCGColorSpaceSRGB: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacegenericgraygamma2_2?language=objc)
-    pub static kCGColorSpaceGenericGrayGamma2_2: &'static CFStringRef;
+    pub static kCGColorSpaceGenericGrayGamma2_2: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacegenericxyz?language=objc)
-    pub static kCGColorSpaceGenericXYZ: &'static CFStringRef;
+    pub static kCGColorSpaceGenericXYZ: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacegenericlab?language=objc)
-    pub static kCGColorSpaceGenericLab: &'static CFStringRef;
+    pub static kCGColorSpaceGenericLab: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceacescglinear?language=objc)
-    pub static kCGColorSpaceACESCGLinear: &'static CFStringRef;
+    pub static kCGColorSpaceACESCGLinear: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_709?language=objc)
-    pub static kCGColorSpaceITUR_709: &'static CFStringRef;
+    pub static kCGColorSpaceITUR_709: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_709_pq?language=objc)
-    pub static kCGColorSpaceITUR_709_PQ: &'static CFStringRef;
+    pub static kCGColorSpaceITUR_709_PQ: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_709_hlg?language=objc)
-    pub static kCGColorSpaceITUR_709_HLG: &'static CFStringRef;
+    pub static kCGColorSpaceITUR_709_HLG: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_2020?language=objc)
-    pub static kCGColorSpaceITUR_2020: &'static CFStringRef;
+    pub static kCGColorSpaceITUR_2020: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_2020_srgbgamma?language=objc)
-    pub static kCGColorSpaceITUR_2020_sRGBGamma: &'static CFStringRef;
+    pub static kCGColorSpaceITUR_2020_sRGBGamma: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacerommrgb?language=objc)
-    pub static kCGColorSpaceROMMRGB: &'static CFStringRef;
+    pub static kCGColorSpaceROMMRGB: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacedcip3?language=objc)
-    pub static kCGColorSpaceDCIP3: &'static CFStringRef;
+    pub static kCGColorSpaceDCIP3: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacelinearitur_2020?language=objc)
-    pub static kCGColorSpaceLinearITUR_2020: &'static CFStringRef;
+    pub static kCGColorSpaceLinearITUR_2020: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendeditur_2020?language=objc)
-    pub static kCGColorSpaceExtendedITUR_2020: &'static CFStringRef;
+    pub static kCGColorSpaceExtendedITUR_2020: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendedlinearitur_2020?language=objc)
-    pub static kCGColorSpaceExtendedLinearITUR_2020: &'static CFStringRef;
+    pub static kCGColorSpaceExtendedLinearITUR_2020: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacelineardisplayp3?language=objc)
-    pub static kCGColorSpaceLinearDisplayP3: &'static CFStringRef;
+    pub static kCGColorSpaceLinearDisplayP3: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendeddisplayp3?language=objc)
-    pub static kCGColorSpaceExtendedDisplayP3: &'static CFStringRef;
+    pub static kCGColorSpaceExtendedDisplayP3: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendedlineardisplayp3?language=objc)
-    pub static kCGColorSpaceExtendedLinearDisplayP3: &'static CFStringRef;
+    pub static kCGColorSpaceExtendedLinearDisplayP3: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_2100_pq?language=objc)
-    pub static kCGColorSpaceITUR_2100_PQ: &'static CFStringRef;
+    pub static kCGColorSpaceITUR_2100_PQ: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_2100_hlg?language=objc)
-    pub static kCGColorSpaceITUR_2100_HLG: &'static CFStringRef;
+    pub static kCGColorSpaceITUR_2100_HLG: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacedisplayp3_pq?language=objc)
-    pub static kCGColorSpaceDisplayP3_PQ: &'static CFStringRef;
+    pub static kCGColorSpaceDisplayP3_PQ: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacedisplayp3_hlg?language=objc)
-    pub static kCGColorSpaceDisplayP3_HLG: &'static CFStringRef;
+    pub static kCGColorSpaceDisplayP3_HLG: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_2020_pq?language=objc)
-    pub static kCGColorSpaceITUR_2020_PQ: &'static CFStringRef;
+    pub static kCGColorSpaceITUR_2020_PQ: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_2020_hlg?language=objc)
-    pub static kCGColorSpaceITUR_2020_HLG: &'static CFStringRef;
+    pub static kCGColorSpaceITUR_2020_HLG: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacedisplayp3_pq_eotf?language=objc)
-    pub static kCGColorSpaceDisplayP3_PQ_EOTF: &'static CFStringRef;
+    pub static kCGColorSpaceDisplayP3_PQ_EOTF: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_2020_pq_eotf?language=objc)
-    pub static kCGColorSpaceITUR_2020_PQ_EOTF: &'static CFStringRef;
+    pub static kCGColorSpaceITUR_2020_PQ_EOTF: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendedsrgb?language=objc)
-    pub static kCGColorSpaceExtendedSRGB: &'static CFStringRef;
+    pub static kCGColorSpaceExtendedSRGB: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacelinearsrgb?language=objc)
-    pub static kCGColorSpaceLinearSRGB: &'static CFStringRef;
+    pub static kCGColorSpaceLinearSRGB: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendedlinearsrgb?language=objc)
-    pub static kCGColorSpaceExtendedLinearSRGB: &'static CFStringRef;
+    pub static kCGColorSpaceExtendedLinearSRGB: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendedgray?language=objc)
-    pub static kCGColorSpaceExtendedGray: &'static CFStringRef;
+    pub static kCGColorSpaceExtendedGray: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacelineargray?language=objc)
-    pub static kCGColorSpaceLinearGray: &'static CFStringRef;
+    pub static kCGColorSpaceLinearGray: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendedlineargray?language=objc)
-    pub static kCGColorSpaceExtendedLinearGray: &'static CFStringRef;
+    pub static kCGColorSpaceExtendedLinearGray: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacecoremedia709?language=objc)
-    pub static kCGColorSpaceCoreMedia709: &'static CFStringRef;
+    pub static kCGColorSpaceCoreMedia709: &'static CFString;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCreateDeviceGray() -> *mut CGColorSpaceRef;
+    pub fn CGColorSpaceCreateDeviceGray() -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCreateDeviceRGB() -> *mut CGColorSpaceRef;
+    pub fn CGColorSpaceCreateDeviceRGB() -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCreateDeviceCMYK() -> *mut CGColorSpaceRef;
+    pub fn CGColorSpaceCreateDeviceCMYK() -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCreateWithICCData(data: CFTypeRef) -> *mut CGColorSpaceRef;
+    pub fn CGColorSpaceCreateWithICCData(data: CFTypeRef) -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
@@ -302,61 +302,61 @@ extern "C-unwind" {
     pub fn CGColorSpaceCreateICCBased(
         n_components: usize,
         range: *const CGFloat,
-        profile: Option<&CGDataProviderRef>,
-        alternate: Option<&CGColorSpaceRef>,
-    ) -> *mut CGColorSpaceRef;
+        profile: Option<&CGDataProvider>,
+        alternate: Option<&CGColorSpace>,
+    ) -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
     pub fn CGColorSpaceCreateIndexed(
-        base_space: Option<&CGColorSpaceRef>,
+        base_space: Option<&CGColorSpace>,
         last_index: usize,
         color_table: *const c_uchar,
-    ) -> *mut CGColorSpaceRef;
+    ) -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCreatePattern(base_space: Option<&CGColorSpaceRef>) -> *mut CGColorSpaceRef;
+    pub fn CGColorSpaceCreatePattern(base_space: Option<&CGColorSpace>) -> *mut CGColorSpace;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/colorsyncprofileref?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/colorsyncprofile?language=objc)
 #[repr(C)]
-pub struct ColorSyncProfileRef {
+pub struct ColorSyncProfile {
     inner: [u8; 0],
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
 cf_type!(
     #[encoding_name = "ColorSyncProfile"]
-    unsafe impl ColorSyncProfileRef {}
+    unsafe impl ColorSyncProfile {}
 );
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendedrange?language=objc)
-    pub static kCGColorSpaceExtendedRange: &'static CFStringRef;
+    pub static kCGColorSpaceExtendedRange: &'static CFString;
 }
 
 extern "C-unwind" {
     pub fn CGColorSpaceCreateWithColorSyncProfile(
-        _: Option<&ColorSyncProfileRef>,
-        options: Option<&CFDictionaryRef>,
-    ) -> *mut CGColorSpaceRef;
+        _: Option<&ColorSyncProfile>,
+        options: Option<&CFDictionary>,
+    ) -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCreateWithName(name: Option<&CFStringRef>) -> *mut CGColorSpaceRef;
+    pub fn CGColorSpaceCreateWithName(name: Option<&CFString>) -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceRetain(space: Option<&CGColorSpaceRef>) -> *mut CGColorSpaceRef;
+    pub fn CGColorSpaceRetain(space: Option<&CGColorSpace>) -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceGetName(space: Option<&CGColorSpaceRef>) -> *mut CFStringRef;
+    pub fn CGColorSpaceGetName(space: Option<&CGColorSpace>) -> *mut CFString;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCopyName(space: Option<&CGColorSpaceRef>) -> *mut CFStringRef;
+    pub fn CGColorSpaceCopyName(space: Option<&CGColorSpace>) -> *mut CFString;
 }
 
 extern "C-unwind" {
@@ -364,97 +364,96 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceGetNumberOfComponents(space: Option<&CGColorSpaceRef>) -> usize;
+    pub fn CGColorSpaceGetNumberOfComponents(space: Option<&CGColorSpace>) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceGetModel(space: Option<&CGColorSpaceRef>) -> CGColorSpaceModel;
+    pub fn CGColorSpaceGetModel(space: Option<&CGColorSpace>) -> CGColorSpaceModel;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceGetBaseColorSpace(space: Option<&CGColorSpaceRef>) -> *mut CGColorSpaceRef;
+    pub fn CGColorSpaceGetBaseColorSpace(space: Option<&CGColorSpace>) -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCopyBaseColorSpace(space: &CGColorSpaceRef) -> NonNull<CGColorSpaceRef>;
+    pub fn CGColorSpaceCopyBaseColorSpace(space: &CGColorSpace) -> NonNull<CGColorSpace>;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceGetColorTableCount(space: Option<&CGColorSpaceRef>) -> usize;
+    pub fn CGColorSpaceGetColorTableCount(space: Option<&CGColorSpace>) -> usize;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceGetColorTable(space: Option<&CGColorSpaceRef>, table: *mut u8);
+    pub fn CGColorSpaceGetColorTable(space: Option<&CGColorSpace>, table: *mut u8);
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCopyICCData(space: Option<&CGColorSpaceRef>) -> *mut CFDataRef;
+    pub fn CGColorSpaceCopyICCData(space: Option<&CGColorSpace>) -> *mut CFData;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceIsWideGamutRGB(_: &CGColorSpaceRef) -> bool;
+    pub fn CGColorSpaceIsWideGamutRGB(_: &CGColorSpace) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceIsHDR(_: &CGColorSpaceRef) -> bool;
+    pub fn CGColorSpaceIsHDR(_: &CGColorSpace) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceUsesITUR_2100TF(_: &CGColorSpaceRef) -> bool;
+    pub fn CGColorSpaceUsesITUR_2100TF(_: &CGColorSpace) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceIsPQBased(s: &CGColorSpaceRef) -> bool;
+    pub fn CGColorSpaceIsPQBased(s: &CGColorSpace) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceIsHLGBased(s: &CGColorSpaceRef) -> bool;
+    pub fn CGColorSpaceIsHLGBased(s: &CGColorSpace) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceSupportsOutput(space: &CGColorSpaceRef) -> bool;
+    pub fn CGColorSpaceSupportsOutput(space: &CGColorSpace) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCopyPropertyList(space: &CGColorSpaceRef) -> CFPropertyListRef;
+    pub fn CGColorSpaceCopyPropertyList(space: &CGColorSpace) -> CFPropertyListRef;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCreateWithPropertyList(plist: CFPropertyListRef) -> *mut CGColorSpaceRef;
+    pub fn CGColorSpaceCreateWithPropertyList(plist: CFPropertyListRef) -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceUsesExtendedRange(space: &CGColorSpaceRef) -> bool;
+    pub fn CGColorSpaceUsesExtendedRange(space: &CGColorSpace) -> bool;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCreateLinearized(space: &CGColorSpaceRef) -> *mut CGColorSpaceRef;
+    pub fn CGColorSpaceCreateLinearized(space: &CGColorSpace) -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCreateExtended(space: &CGColorSpaceRef) -> *mut CGColorSpaceRef;
+    pub fn CGColorSpaceCreateExtended(space: &CGColorSpace) -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCreateExtendedLinearized(space: &CGColorSpaceRef) -> *mut CGColorSpaceRef;
+    pub fn CGColorSpaceCreateExtendedLinearized(space: &CGColorSpace) -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCreateCopyWithStandardRange(s: &CGColorSpaceRef)
-        -> NonNull<CGColorSpaceRef>;
-}
-
-extern "C-unwind" {
-    #[deprecated = "No longer supported"]
-    pub fn CGColorSpaceCreateWithICCProfile(data: Option<&CFDataRef>) -> *mut CGColorSpaceRef;
+    pub fn CGColorSpaceCreateCopyWithStandardRange(s: &CGColorSpace) -> NonNull<CGColorSpace>;
 }
 
 extern "C-unwind" {
     #[deprecated = "No longer supported"]
-    pub fn CGColorSpaceCopyICCProfile(space: Option<&CGColorSpaceRef>) -> *mut CFDataRef;
+    pub fn CGColorSpaceCreateWithICCProfile(data: Option<&CFData>) -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
     #[deprecated = "No longer supported"]
-    pub fn CGColorSpaceCreateWithPlatformColorSpace(r#ref: *const c_void) -> *mut CGColorSpaceRef;
+    pub fn CGColorSpaceCopyICCProfile(space: Option<&CGColorSpace>) -> *mut CFData;
+}
+
+extern "C-unwind" {
+    #[deprecated = "No longer supported"]
+    pub fn CGColorSpaceCreateWithPlatformColorSpace(r#ref: *const c_void) -> *mut CGColorSpace;
 }

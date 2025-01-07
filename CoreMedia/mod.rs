@@ -146,6 +146,8 @@ pub use self::__CMBlockBuffer::kCMBlockBufferStructureAllocationFailedErr;
 #[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::kCMBlockBufferUnallocatedBlockErr;
 #[cfg(feature = "CMBlockBuffer")]
+pub use self::__CMBlockBuffer::CMBlockBuffer;
+#[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferAccessDataBytes;
 #[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferAppendBufferReference;
@@ -179,8 +181,6 @@ pub use self::__CMBlockBuffer::CMBlockBufferGetTypeID;
 pub use self::__CMBlockBuffer::CMBlockBufferIsEmpty;
 #[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferIsRangeContiguous;
-#[cfg(feature = "CMBlockBuffer")]
-pub use self::__CMBlockBuffer::CMBlockBufferRef;
 #[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferReplaceDataBytes;
 #[cfg(feature = "CMBufferQueue")]
@@ -250,6 +250,8 @@ pub use self::__CMBufferQueue::CMBufferGetTimeHandler;
 #[cfg(all(feature = "CMBufferQueue", feature = "CMTime", feature = "block2"))]
 pub use self::__CMBufferQueue::CMBufferHandlers;
 #[cfg(feature = "CMBufferQueue")]
+pub use self::__CMBufferQueue::CMBufferQueue;
+#[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueCallForEachBuffer;
 #[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueContainsEndOfData;
@@ -310,8 +312,6 @@ pub use self::__CMBufferQueue::CMBufferQueueIsAtEndOfData;
 pub use self::__CMBufferQueue::CMBufferQueueIsEmpty;
 #[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueMarkEndOfData;
-#[cfg(feature = "CMBufferQueue")]
-pub use self::__CMBufferQueue::CMBufferQueueRef;
 #[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueRemoveTrigger;
 #[cfg(feature = "CMBufferQueue")]
@@ -926,6 +926,8 @@ pub use self::__CMFormatDescription::kCMVideoCodecType_SorensonVideo3;
 pub use self::__CMFormatDescription::kCMVideoCodecType_VP9;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMAudioCodecType;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::CMAudioFormatDescription;
 #[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-audio-types"))]
 pub use self::__CMFormatDescription::CMAudioFormatDescriptionCreate;
 #[cfg(feature = "CMFormatDescription")]
@@ -947,11 +949,11 @@ pub use self::__CMFormatDescription::CMAudioFormatDescriptionGetStreamBasicDescr
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMAudioFormatDescriptionMask;
 #[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMAudioFormatDescriptionRef;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMClosedCaptionFormatDescriptionRef;
+pub use self::__CMFormatDescription::CMClosedCaptionFormatDescription;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMClosedCaptionFormatType;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::CMFormatDescription;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMFormatDescriptionCreate;
 #[cfg(feature = "CMFormatDescription")]
@@ -969,9 +971,9 @@ pub use self::__CMFormatDescription::CMFormatDescriptionGetMediaType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMFormatDescriptionGetTypeID;
 #[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMFormatDescriptionRef;
-#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMediaType;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::CMMetadataFormatDescription;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMetadataFormatDescriptionCreateByMergingMetadataFormatDescriptions;
 #[cfg(feature = "CMFormatDescription")]
@@ -985,13 +987,11 @@ pub use self::__CMFormatDescription::CMMetadataFormatDescriptionGetIdentifiers;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMetadataFormatDescriptionGetKeyWithLocalID;
 #[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMMetadataFormatDescriptionRef;
-#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMetadataFormatType;
 #[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMMuxedFormatDescriptionCreate;
+pub use self::__CMFormatDescription::CMMuxedFormatDescription;
 #[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMMuxedFormatDescriptionRef;
+pub use self::__CMFormatDescription::CMMuxedFormatDescriptionCreate;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMuxedStreamType;
 #[cfg(feature = "CMFormatDescription")]
@@ -999,11 +999,13 @@ pub use self::__CMFormatDescription::CMPixelFormatType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMSubtitleFormatType;
 #[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMTaggedBufferGroupFormatDescriptionRef;
+pub use self::__CMFormatDescription::CMTaggedBufferGroupFormatDescription;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTaggedBufferGroupFormatType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTextDisplayFlags;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::CMTextFormatDescription;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTextFormatDescriptionGetDefaultTextBox;
 #[cfg(feature = "CMFormatDescription")]
@@ -1013,11 +1015,11 @@ pub use self::__CMFormatDescription::CMTextFormatDescriptionGetFontName;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTextFormatDescriptionGetJustification;
 #[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMTextFormatDescriptionRef;
-#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTextFormatType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTextJustificationValue;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::CMTimeCodeFormatDescription;
 #[cfg(all(feature = "CMFormatDescription", feature = "CMTime"))]
 pub use self::__CMFormatDescription::CMTimeCodeFormatDescriptionCreate;
 #[cfg(all(feature = "CMFormatDescription", feature = "CMTime"))]
@@ -1027,13 +1029,13 @@ pub use self::__CMFormatDescription::CMTimeCodeFormatDescriptionGetFrameQuanta;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTimeCodeFormatDescriptionGetTimeCodeFlags;
 #[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMTimeCodeFormatDescriptionRef;
-#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMTimeCodeFormatType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMVideoCodecType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMVideoDimensions;
+#[cfg(feature = "CMFormatDescription")]
+pub use self::__CMFormatDescription::CMVideoFormatDescription;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMVideoFormatDescriptionCopyTagCollectionArray;
 #[cfg(feature = "CMFormatDescription")]
@@ -1058,8 +1060,6 @@ pub use self::__CMFormatDescription::CMVideoFormatDescriptionGetHEVCParameterSet
 pub use self::__CMFormatDescription::CMVideoFormatDescriptionGetPresentationDimensions;
 #[cfg(all(feature = "CMFormatDescription", feature = "objc2-core-video"))]
 pub use self::__CMFormatDescription::CMVideoFormatDescriptionMatchesImageBuffer;
-#[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMVideoFormatDescriptionRef;
 #[cfg(feature = "CMFormatDescriptionBridge")]
 pub use self::__CMFormatDescriptionBridge::kCMFormatDescriptionBridgeError_AllocationFailed;
 #[cfg(feature = "CMFormatDescriptionBridge")]
@@ -1219,6 +1219,8 @@ pub use self::__CMMemoryPool::kCMMemoryPoolError_InvalidParameter;
 #[cfg(feature = "CMMemoryPool")]
 pub use self::__CMMemoryPool::kCMMemoryPoolOption_AgeOutPeriod;
 #[cfg(feature = "CMMemoryPool")]
+pub use self::__CMMemoryPool::CMMemoryPool;
+#[cfg(feature = "CMMemoryPool")]
 pub use self::__CMMemoryPool::CMMemoryPoolCreate;
 #[cfg(feature = "CMMemoryPool")]
 pub use self::__CMMemoryPool::CMMemoryPoolFlush;
@@ -1228,8 +1230,6 @@ pub use self::__CMMemoryPool::CMMemoryPoolGetAllocator;
 pub use self::__CMMemoryPool::CMMemoryPoolGetTypeID;
 #[cfg(feature = "CMMemoryPool")]
 pub use self::__CMMemoryPool::CMMemoryPoolInvalidate;
-#[cfg(feature = "CMMemoryPool")]
-pub use self::__CMMemoryPool::CMMemoryPoolRef;
 #[cfg(feature = "CMMetadata")]
 pub use self::__CMMetadata::kCMMetadataBaseDataType_AffineTransformF64;
 #[cfg(feature = "CMMetadata")]
@@ -1566,6 +1566,8 @@ pub use self::__CMSampleBuffer::CMAudioSampleBufferCreateWithPacketDescriptions;
     feature = "objc2-core-audio-types"
 ))]
 pub use self::__CMSampleBuffer::CMAudioSampleBufferCreateWithPacketDescriptionsAndMakeDataReadyHandler;
+#[cfg(feature = "CMSampleBuffer")]
+pub use self::__CMSampleBuffer::CMSampleBuffer;
 #[cfg(all(feature = "CMBase", feature = "CMSampleBuffer", feature = "block2"))]
 pub use self::__CMSampleBuffer::CMSampleBufferCallBlockForEachSample;
 #[cfg(all(feature = "CMBase", feature = "CMSampleBuffer"))]
@@ -1689,8 +1691,6 @@ pub use self::__CMSampleBuffer::CMSampleBufferMakeDataReady;
 pub use self::__CMSampleBuffer::CMSampleBufferMakeDataReadyCallback;
 #[cfg(all(feature = "CMSampleBuffer", feature = "block2"))]
 pub use self::__CMSampleBuffer::CMSampleBufferMakeDataReadyHandler;
-#[cfg(feature = "CMSampleBuffer")]
-pub use self::__CMSampleBuffer::CMSampleBufferRef;
 #[cfg(all(feature = "CMBlockBuffer", feature = "CMSampleBuffer"))]
 pub use self::__CMSampleBuffer::CMSampleBufferSetDataBuffer;
 #[cfg(all(feature = "CMSampleBuffer", feature = "objc2-core-audio-types"))]
@@ -1718,6 +1718,8 @@ pub use self::__CMSimpleQueue::kCMSimpleQueueError_QueueIsFull;
 #[cfg(feature = "CMSimpleQueue")]
 pub use self::__CMSimpleQueue::kCMSimpleQueueError_RequiredParameterMissing;
 #[cfg(feature = "CMSimpleQueue")]
+pub use self::__CMSimpleQueue::CMSimpleQueue;
+#[cfg(feature = "CMSimpleQueue")]
 pub use self::__CMSimpleQueue::CMSimpleQueueCreate;
 #[cfg(feature = "CMSimpleQueue")]
 pub use self::__CMSimpleQueue::CMSimpleQueueDequeue;
@@ -1731,8 +1733,6 @@ pub use self::__CMSimpleQueue::CMSimpleQueueGetCount;
 pub use self::__CMSimpleQueue::CMSimpleQueueGetHead;
 #[cfg(feature = "CMSimpleQueue")]
 pub use self::__CMSimpleQueue::CMSimpleQueueGetTypeID;
-#[cfg(feature = "CMSimpleQueue")]
-pub use self::__CMSimpleQueue::CMSimpleQueueRef;
 #[cfg(feature = "CMSimpleQueue")]
 pub use self::__CMSimpleQueue::CMSimpleQueueReset;
 #[cfg(feature = "CMSync")]
@@ -1767,6 +1767,8 @@ pub use self::__CMSync::kCMTimebaseNotificationKey_EventTime;
 pub use self::__CMSync::kCMTimebaseNotification_EffectiveRateChanged;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::kCMTimebaseNotification_TimeJumped;
+#[cfg(feature = "CMSync")]
+pub use self::__CMSync::CMClock;
 #[cfg(all(feature = "CMSync", feature = "CMTime"))]
 pub use self::__CMSync::CMClockConvertHostTimeToSystemUnits;
 #[cfg(all(feature = "CMSync", feature = "CMTime"))]
@@ -1785,8 +1787,6 @@ pub use self::__CMSync::CMClockMakeHostTimeFromSystemUnits;
 pub use self::__CMSync::CMClockMightDrift;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMClockOrTimebaseRef;
-#[cfg(feature = "CMSync")]
-pub use self::__CMSync::CMClockRef;
 #[cfg(all(feature = "CMSync", feature = "CMTime"))]
 pub use self::__CMSync::CMSyncConvertTime;
 #[cfg(feature = "CMSync")]
@@ -1797,6 +1797,8 @@ pub use self::__CMSync::CMSyncGetRelativeRateAndAnchorTime;
 pub use self::__CMSync::CMSyncGetTime;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMSyncMightDrift;
+#[cfg(feature = "CMSync")]
+pub use self::__CMSync::CMTimebase;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseAddTimer;
 #[cfg(feature = "CMSync")]
@@ -1833,8 +1835,6 @@ pub use self::__CMSync::CMTimebaseGetTypeID;
 pub use self::__CMSync::CMTimebaseGetUltimateMasterClock;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseNotificationBarrier;
-#[cfg(feature = "CMSync")]
-pub use self::__CMSync::CMTimebaseRef;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseRemoveTimer;
 #[cfg(all(feature = "CMSync", feature = "CMTime"))]
@@ -1952,7 +1952,9 @@ pub use self::__CMTag::CMTagValue;
 #[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::kCMTagCollectionTagsArrayKey;
 #[cfg(feature = "CMTagCollection")]
-pub use self::__CMTagCollection::CMMutableTagCollectionRef;
+pub use self::__CMTagCollection::CMMutableTagCollection;
+#[cfg(feature = "CMTagCollection")]
+pub use self::__CMTagCollection::CMTagCollection;
 #[cfg(all(feature = "CMTag", feature = "CMTagCollection"))]
 pub use self::__CMTagCollection::CMTagCollectionAddTag;
 #[cfg(all(feature = "CMBase", feature = "CMTag", feature = "CMTagCollection"))]
@@ -2020,8 +2022,6 @@ pub use self::__CMTagCollection::CMTagCollectionGetTypeID;
 #[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionIsEmpty;
 #[cfg(feature = "CMTagCollection")]
-pub use self::__CMTagCollection::CMTagCollectionRef;
-#[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionRemoveAllTags;
 #[cfg(all(feature = "CMTag", feature = "CMTagCollection"))]
 pub use self::__CMTagCollection::CMTagCollectionRemoveAllTagsOfCategory;
@@ -2038,6 +2038,8 @@ pub use self::__CMTagCollection::CMTagCollectionTagFilterFunction;
 pub use self::__CMTaggedBufferGroup::CMSampleBufferCreateForTaggedBufferGroup;
 #[cfg(all(feature = "CMSampleBuffer", feature = "CMTaggedBufferGroup"))]
 pub use self::__CMTaggedBufferGroup::CMSampleBufferGetTaggedBufferGroup;
+#[cfg(feature = "CMTaggedBufferGroup")]
+pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroup;
 #[cfg(feature = "CMTaggedBufferGroup")]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupCreate;
 #[cfg(feature = "CMTaggedBufferGroup")]
@@ -2088,8 +2090,6 @@ pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupGetNumberOfMatchesForTag
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupGetTagCollectionAtIndex;
 #[cfg(feature = "CMTaggedBufferGroup")]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupGetTypeID;
-#[cfg(feature = "CMTaggedBufferGroup")]
-pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupRef;
 #[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAlignmentType_End;
 #[cfg(feature = "CMTextMarkup")]

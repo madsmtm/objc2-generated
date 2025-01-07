@@ -5,5 +5,5 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C-unwind" {
-    pub fn CGSessionCopyCurrentDictionary() -> *mut CFDictionaryRef;
+    pub fn CGSessionCopyCurrentDictionary() -> *mut CFDictionary;
 }

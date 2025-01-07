@@ -23,7 +23,7 @@ pub const kCMFormatDescriptionBridgeError_InvalidSlice: OSStatus = -12719;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmimagedescriptionflavor?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
-pub type CMImageDescriptionFlavor = CFStringRef;
+pub type CMImageDescriptionFlavor = CFString;
 
 extern "C" {
     /// Chooses the QuickTime Movie Image Description format.
@@ -77,12 +77,12 @@ extern "C-unwind" {
     /// Parameter `formatDescriptionOut`: Receives new CMVideoFormatDescription.
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         image_description_data: NonNull<u8>,
         size: usize,
         string_encoding: CFStringEncoding,
         flavor: Option<&CMImageDescriptionFlavor>,
-        format_description_out: NonNull<CMVideoFormatDescriptionRef>,
+        format_description_out: NonNull<CMVideoFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -101,11 +101,11 @@ extern "C-unwind" {
     /// Parameter `formatDescriptionOut`: Receives new CMVideoFormatDescription.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer(
-        allocator: Option<&CFAllocatorRef>,
-        image_description_block_buffer: &CMBlockBufferRef,
+        allocator: Option<&CFAllocator>,
+        image_description_block_buffer: &CMBlockBuffer,
         string_encoding: CFStringEncoding,
         flavor: Option<&CMImageDescriptionFlavor>,
-        format_description_out: NonNull<CMVideoFormatDescriptionRef>,
+        format_description_out: NonNull<CMVideoFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -129,11 +129,11 @@ extern "C-unwind" {
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing ImageDescription data structure in big-endian byte ordering.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer(
-        allocator: Option<&CFAllocatorRef>,
-        video_format_description: &CMVideoFormatDescriptionRef,
+        allocator: Option<&CFAllocator>,
+        video_format_description: &CMVideoFormatDescription,
         string_encoding: CFStringEncoding,
         flavor: Option<&CMImageDescriptionFlavor>,
-        block_buffer_out: NonNull<CMBlockBufferRef>,
+        block_buffer_out: NonNull<CMBlockBuffer>,
     ) -> OSStatus;
 }
 
@@ -165,7 +165,7 @@ extern "C-unwind" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsounddescriptionflavor?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
-pub type CMSoundDescriptionFlavor = CFStringRef;
+pub type CMSoundDescriptionFlavor = CFString;
 
 extern "C" {
     /// Chooses the most backwards-compatible QuickTime Movie Sound Description format.
@@ -218,11 +218,11 @@ extern "C-unwind" {
     /// Parameter `formatDescriptionOut`: Receives new CMAudioFormatDescription.
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionData(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         sound_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMSoundDescriptionFlavor>,
-        format_description_out: NonNull<CMAudioFormatDescriptionRef>,
+        format_description_out: NonNull<CMAudioFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -239,10 +239,10 @@ extern "C-unwind" {
     /// Parameter `formatDescriptionOut`: Receives new CMAudioFormatDescription.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMAudioFormatDescriptionCreateFromBigEndianSoundDescriptionBlockBuffer(
-        allocator: Option<&CFAllocatorRef>,
-        sound_description_block_buffer: &CMBlockBufferRef,
+        allocator: Option<&CFAllocator>,
+        sound_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMSoundDescriptionFlavor>,
-        format_description_out: NonNull<CMAudioFormatDescriptionRef>,
+        format_description_out: NonNull<CMAudioFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -264,10 +264,10 @@ extern "C-unwind" {
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing SoundDescription data structure in big-endian byte ordering.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMAudioFormatDescriptionCopyAsBigEndianSoundDescriptionBlockBuffer(
-        allocator: Option<&CFAllocatorRef>,
-        audio_format_description: &CMAudioFormatDescriptionRef,
+        allocator: Option<&CFAllocator>,
+        audio_format_description: &CMAudioFormatDescription,
         flavor: Option<&CMSoundDescriptionFlavor>,
-        block_buffer_out: NonNull<CMBlockBufferRef>,
+        block_buffer_out: NonNull<CMBlockBuffer>,
     ) -> OSStatus;
 }
 
@@ -280,7 +280,7 @@ extern "C-unwind" {
     /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
     #[cfg(feature = "CMBlockBuffer")]
     pub fn CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout(
-        sound_description_block_buffer: &CMBlockBufferRef,
+        sound_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMSoundDescriptionFlavor>,
     ) -> Boolean;
 }
@@ -313,7 +313,7 @@ extern "C-unwind" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtextdescriptionflavor?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
-pub type CMTextDescriptionFlavor = CFStringRef;
+pub type CMTextDescriptionFlavor = CFString;
 
 extern "C-unwind" {
     /// Creates a CMTextFormatDescription from a big-endian TextDescription data structure.
@@ -332,12 +332,12 @@ extern "C-unwind" {
     /// Parameter `formatDescriptionOut`: Receives new CMTextFormatDescription.
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMTextFormatDescriptionCreateFromBigEndianTextDescriptionData(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         text_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMTextDescriptionFlavor>,
         media_type: CMMediaType,
-        format_description_out: NonNull<CMTextFormatDescriptionRef>,
+        format_description_out: NonNull<CMTextFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -356,11 +356,11 @@ extern "C-unwind" {
     /// Parameter `formatDescriptionOut`: Receives new CMTextFormatDescription.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTextFormatDescriptionCreateFromBigEndianTextDescriptionBlockBuffer(
-        allocator: Option<&CFAllocatorRef>,
-        text_description_block_buffer: &CMBlockBufferRef,
+        allocator: Option<&CFAllocator>,
+        text_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMTextDescriptionFlavor>,
         media_type: CMMediaType,
-        format_description_out: NonNull<CMTextFormatDescriptionRef>,
+        format_description_out: NonNull<CMTextFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -382,10 +382,10 @@ extern "C-unwind" {
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing TextDescription data structure in big-endian byte ordering.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTextFormatDescriptionCopyAsBigEndianTextDescriptionBlockBuffer(
-        allocator: Option<&CFAllocatorRef>,
-        text_format_description: &CMTextFormatDescriptionRef,
+        allocator: Option<&CFAllocator>,
+        text_format_description: &CMTextFormatDescription,
         flavor: Option<&CMTextDescriptionFlavor>,
-        block_buffer_out: NonNull<CMBlockBufferRef>,
+        block_buffer_out: NonNull<CMBlockBuffer>,
     ) -> OSStatus;
 }
 
@@ -417,7 +417,7 @@ extern "C-unwind" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclosedcaptiondescriptionflavor?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
-pub type CMClosedCaptionDescriptionFlavor = CFStringRef;
+pub type CMClosedCaptionDescriptionFlavor = CFString;
 
 extern "C-unwind" {
     /// Creates a CMClosedCaptionFormatDescription from a big-endian ClosedCaptionDescription data structure.
@@ -434,11 +434,11 @@ extern "C-unwind" {
     /// Parameter `formatDescriptionOut`: Receives new CMClosedCaptionFormatDescription.
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionData(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         closed_caption_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMClosedCaptionDescriptionFlavor>,
-        format_description_out: NonNull<CMClosedCaptionFormatDescriptionRef>,
+        format_description_out: NonNull<CMClosedCaptionFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -455,10 +455,10 @@ extern "C-unwind" {
     /// Parameter `formatDescriptionOut`: Receives new CMClosedCaptionFormatDescription.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMClosedCaptionFormatDescriptionCreateFromBigEndianClosedCaptionDescriptionBlockBuffer(
-        allocator: Option<&CFAllocatorRef>,
-        closed_caption_description_block_buffer: &CMBlockBufferRef,
+        allocator: Option<&CFAllocator>,
+        closed_caption_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMClosedCaptionDescriptionFlavor>,
-        format_description_out: NonNull<CMClosedCaptionFormatDescriptionRef>,
+        format_description_out: NonNull<CMClosedCaptionFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -480,10 +480,10 @@ extern "C-unwind" {
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing ClosedCaptionDescription data structure in big-endian byte ordering.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMClosedCaptionFormatDescriptionCopyAsBigEndianClosedCaptionDescriptionBlockBuffer(
-        allocator: Option<&CFAllocatorRef>,
-        closed_caption_format_description: &CMClosedCaptionFormatDescriptionRef,
+        allocator: Option<&CFAllocator>,
+        closed_caption_format_description: &CMClosedCaptionFormatDescription,
         flavor: Option<&CMClosedCaptionDescriptionFlavor>,
-        block_buffer_out: NonNull<CMBlockBufferRef>,
+        block_buffer_out: NonNull<CMBlockBuffer>,
     ) -> OSStatus;
 }
 
@@ -515,7 +515,7 @@ extern "C-unwind" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimecodedescriptionflavor?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
-pub type CMTimeCodeDescriptionFlavor = CFStringRef;
+pub type CMTimeCodeDescriptionFlavor = CFString;
 
 extern "C-unwind" {
     /// Creates a CMTimeCodeFormatDescription from a big-endian TimeCodeDescription data structure.
@@ -532,11 +532,11 @@ extern "C-unwind" {
     /// Parameter `formatDescriptionOut`: Receives new CMTimeCodeFormatDescription.
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionData(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         time_code_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMTimeCodeDescriptionFlavor>,
-        format_description_out: NonNull<CMTimeCodeFormatDescriptionRef>,
+        format_description_out: NonNull<CMTimeCodeFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -553,10 +553,10 @@ extern "C-unwind" {
     /// Parameter `formatDescriptionOut`: Receives new CMTimeCodeFormatDescription.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTimeCodeFormatDescriptionCreateFromBigEndianTimeCodeDescriptionBlockBuffer(
-        allocator: Option<&CFAllocatorRef>,
-        time_code_description_block_buffer: &CMBlockBufferRef,
+        allocator: Option<&CFAllocator>,
+        time_code_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMTimeCodeDescriptionFlavor>,
-        format_description_out: NonNull<CMTimeCodeFormatDescriptionRef>,
+        format_description_out: NonNull<CMTimeCodeFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -578,10 +578,10 @@ extern "C-unwind" {
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing TimeCodeDescription data structure in big-endian byte ordering.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMTimeCodeFormatDescriptionCopyAsBigEndianTimeCodeDescriptionBlockBuffer(
-        allocator: Option<&CFAllocatorRef>,
-        time_code_format_description: &CMTimeCodeFormatDescriptionRef,
+        allocator: Option<&CFAllocator>,
+        time_code_format_description: &CMTimeCodeFormatDescription,
         flavor: Option<&CMTimeCodeDescriptionFlavor>,
-        block_buffer_out: NonNull<CMBlockBufferRef>,
+        block_buffer_out: NonNull<CMBlockBuffer>,
     ) -> OSStatus;
 }
 
@@ -613,7 +613,7 @@ extern "C-unwind" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadescriptionflavor?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
-pub type CMMetadataDescriptionFlavor = CFStringRef;
+pub type CMMetadataDescriptionFlavor = CFString;
 
 extern "C-unwind" {
     /// Creates a CMMetadataFormatDescription from a big-endian MetadataDescription data structure.
@@ -630,11 +630,11 @@ extern "C-unwind" {
     /// Parameter `formatDescriptionOut`: Receives new CMMetadataFormatDescriptionRef.
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionData(
-        allocator: Option<&CFAllocatorRef>,
+        allocator: Option<&CFAllocator>,
         metadata_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMMetadataDescriptionFlavor>,
-        format_description_out: NonNull<CMMetadataFormatDescriptionRef>,
+        format_description_out: NonNull<CMMetadataFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -651,10 +651,10 @@ extern "C-unwind" {
     /// Parameter `formatDescriptionOut`: Receives new CMMetadataFormatDescriptionRef.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMMetadataFormatDescriptionCreateFromBigEndianMetadataDescriptionBlockBuffer(
-        allocator: Option<&CFAllocatorRef>,
-        metadata_description_block_buffer: &CMBlockBufferRef,
+        allocator: Option<&CFAllocator>,
+        metadata_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMMetadataDescriptionFlavor>,
-        format_description_out: NonNull<CMMetadataFormatDescriptionRef>,
+        format_description_out: NonNull<CMMetadataFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -676,10 +676,10 @@ extern "C-unwind" {
     /// Parameter `blockBufferOut`: Receives new CMBlockBuffer containing MetadataDescription data structure in big-endian byte ordering.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMMetadataFormatDescriptionCopyAsBigEndianMetadataDescriptionBlockBuffer(
-        allocator: Option<&CFAllocatorRef>,
-        metadata_format_description: &CMMetadataFormatDescriptionRef,
+        allocator: Option<&CFAllocator>,
+        metadata_format_description: &CMMetadataFormatDescription,
         flavor: Option<&CMMetadataDescriptionFlavor>,
-        block_buffer_out: NonNull<CMBlockBufferRef>,
+        block_buffer_out: NonNull<CMBlockBuffer>,
     ) -> OSStatus;
 }
 

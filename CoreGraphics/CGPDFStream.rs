@@ -54,8 +54,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGPDFStreamCopyData(
-        stream: CGPDFStreamRef,
-        format: *mut CGPDFDataFormat,
-    ) -> *mut CFDataRef;
+    pub fn CGPDFStreamCopyData(stream: CGPDFStreamRef, format: *mut CGPDFDataFormat)
+        -> *mut CFData;
 }
