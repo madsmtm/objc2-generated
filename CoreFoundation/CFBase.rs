@@ -312,12 +312,20 @@ extern "C-unwind" {
     pub fn CFAllocatorGetContext(allocator: Option<&CFAllocator>, context: *mut CFAllocatorContext);
 }
 
-extern "C-unwind" {
-    pub fn CFGetTypeID(cf: Option<&CFType>) -> CFTypeID;
+#[inline]
+pub extern "C-unwind" fn CFGetTypeID(cf: Option<&CFType>) -> CFTypeID {
+    extern "C-unwind" {
+        fn CFGetTypeID(cf: Option<&CFType>) -> CFTypeID;
+    }
+    unsafe { CFGetTypeID(cf) }
 }
 
-extern "C-unwind" {
-    pub fn CFCopyTypeIDDescription(type_id: CFTypeID) -> *mut CFString;
+#[inline]
+pub extern "C-unwind" fn CFCopyTypeIDDescription(type_id: CFTypeID) -> *mut CFString {
+    extern "C-unwind" {
+        fn CFCopyTypeIDDescription(type_id: CFTypeID) -> *mut CFString;
+    }
+    unsafe { CFCopyTypeIDDescription(type_id) }
 }
 
 extern "C-unwind" {
@@ -328,20 +336,36 @@ extern "C-unwind" {
     pub fn CFRelease(cf: Option<&CFType>);
 }
 
-extern "C-unwind" {
-    pub fn CFGetRetainCount(cf: Option<&CFType>) -> CFIndex;
+#[inline]
+pub extern "C-unwind" fn CFGetRetainCount(cf: Option<&CFType>) -> CFIndex {
+    extern "C-unwind" {
+        fn CFGetRetainCount(cf: Option<&CFType>) -> CFIndex;
+    }
+    unsafe { CFGetRetainCount(cf) }
 }
 
-extern "C-unwind" {
-    pub fn CFEqual(cf1: Option<&CFType>, cf2: Option<&CFType>) -> Boolean;
+#[inline]
+pub extern "C-unwind" fn CFEqual(cf1: Option<&CFType>, cf2: Option<&CFType>) -> Boolean {
+    extern "C-unwind" {
+        fn CFEqual(cf1: Option<&CFType>, cf2: Option<&CFType>) -> Boolean;
+    }
+    unsafe { CFEqual(cf1, cf2) }
 }
 
-extern "C-unwind" {
-    pub fn CFHash(cf: Option<&CFType>) -> CFHashCode;
+#[inline]
+pub extern "C-unwind" fn CFHash(cf: Option<&CFType>) -> CFHashCode {
+    extern "C-unwind" {
+        fn CFHash(cf: Option<&CFType>) -> CFHashCode;
+    }
+    unsafe { CFHash(cf) }
 }
 
-extern "C-unwind" {
-    pub fn CFCopyDescription(cf: Option<&CFType>) -> *mut CFString;
+#[inline]
+pub extern "C-unwind" fn CFCopyDescription(cf: Option<&CFType>) -> *mut CFString {
+    extern "C-unwind" {
+        fn CFCopyDescription(cf: Option<&CFType>) -> *mut CFString;
+    }
+    unsafe { CFCopyDescription(cf) }
 }
 
 extern "C-unwind" {
