@@ -231,8 +231,8 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFStreamCreateBoundPair(
         alloc: Option<&CFAllocator>,
-        read_stream: *mut CFReadStream,
-        write_stream: *mut CFWriteStream,
+        read_stream: *mut *mut CFReadStream,
+        write_stream: *mut *mut CFWriteStream,
         transfer_buffer_size: CFIndex,
     );
 }
@@ -373,8 +373,8 @@ extern "C-unwind" {
     pub fn CFStreamCreatePairWithSocket(
         alloc: Option<&CFAllocator>,
         sock: CFSocketNativeHandle,
-        read_stream: *mut CFReadStream,
-        write_stream: *mut CFWriteStream,
+        read_stream: *mut *mut CFReadStream,
+        write_stream: *mut *mut CFWriteStream,
     );
 }
 
@@ -385,8 +385,8 @@ extern "C-unwind" {
         alloc: Option<&CFAllocator>,
         host: Option<&CFString>,
         port: u32,
-        read_stream: *mut CFReadStream,
-        write_stream: *mut CFWriteStream,
+        read_stream: *mut *mut CFReadStream,
+        write_stream: *mut *mut CFWriteStream,
     );
 }
 
@@ -396,8 +396,8 @@ extern "C-unwind" {
     pub fn CFStreamCreatePairWithPeerSocketSignature(
         alloc: Option<&CFAllocator>,
         signature: *const CFSocketSignature,
-        read_stream: *mut CFReadStream,
-        write_stream: *mut CFWriteStream,
+        read_stream: *mut *mut CFReadStream,
+        write_stream: *mut *mut CFWriteStream,
     );
 }
 

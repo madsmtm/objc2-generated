@@ -76,7 +76,7 @@ extern "C-unwind" {
         target_headroom: c_float,
         method: CGToneMapping,
         options: Option<&CFDictionary>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CGColorConversionInfo;
 }
 

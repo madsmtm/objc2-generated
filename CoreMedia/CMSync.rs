@@ -168,22 +168,22 @@ extern "C-unwind" {
     pub fn CMTimebaseCreateWithMasterClock(
         allocator: Option<&CFAllocator>,
         master_clock: &CMClock,
-        timebase_out: NonNull<CMTimebase>,
+        timebase_out: NonNull<*mut CMTimebase>,
     ) -> OSStatus;
 }
 
-// TODO: pub fn CMTimebaseCreateWithSourceClock(allocator: Option<&CFAllocator>,source_clock: &CMClock,timebase_out: NonNull<CMTimebase>,) -> OSStatus;
+// TODO: pub fn CMTimebaseCreateWithSourceClock(allocator: Option<&CFAllocator>,source_clock: &CMClock,timebase_out: NonNull<*mut CMTimebase>,) -> OSStatus;
 
 extern "C-unwind" {
     #[deprecated]
     pub fn CMTimebaseCreateWithMasterTimebase(
         allocator: Option<&CFAllocator>,
         master_timebase: &CMTimebase,
-        timebase_out: NonNull<CMTimebase>,
+        timebase_out: NonNull<*mut CMTimebase>,
     ) -> OSStatus;
 }
 
-// TODO: pub fn CMTimebaseCreateWithSourceTimebase(allocator: Option<&CFAllocator>,source_timebase: &CMTimebase,timebase_out: NonNull<CMTimebase>,) -> OSStatus;
+// TODO: pub fn CMTimebaseCreateWithSourceTimebase(allocator: Option<&CFAllocator>,source_timebase: &CMTimebase,timebase_out: NonNull<*mut CMTimebase>,) -> OSStatus;
 
 extern "C-unwind" {
     #[deprecated]

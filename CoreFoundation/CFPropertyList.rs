@@ -41,7 +41,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         xml_data: Option<&CFData>,
         mutability_option: CFOptionFlags,
-        error_string: *mut CFString,
+        error_string: *mut *mut CFString,
     ) -> *mut CFPropertyList;
 }
 
@@ -104,7 +104,7 @@ extern "C-unwind" {
         property_list: Option<&CFPropertyList>,
         stream: Option<&CFWriteStream>,
         format: CFPropertyListFormat,
-        error_string: *mut CFString,
+        error_string: *mut *mut CFString,
     ) -> CFIndex;
 }
 
@@ -117,7 +117,7 @@ extern "C-unwind" {
         stream_length: CFIndex,
         mutability_option: CFOptionFlags,
         format: *mut CFPropertyListFormat,
-        error_string: *mut CFString,
+        error_string: *mut *mut CFString,
     ) -> *mut CFPropertyList;
 }
 
@@ -141,7 +141,7 @@ extern "C-unwind" {
         data: Option<&CFData>,
         options: CFOptionFlags,
         format: *mut CFPropertyListFormat,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFPropertyList;
 }
 
@@ -153,7 +153,7 @@ extern "C-unwind" {
         stream_length: CFIndex,
         options: CFOptionFlags,
         format: *mut CFPropertyListFormat,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFPropertyList;
 }
 
@@ -164,7 +164,7 @@ extern "C-unwind" {
         stream: Option<&CFWriteStream>,
         format: CFPropertyListFormat,
         options: CFOptionFlags,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> CFIndex;
 }
 
@@ -175,6 +175,6 @@ extern "C-unwind" {
         property_list: Option<&CFPropertyList>,
         format: CFPropertyListFormat,
         options: CFOptionFlags,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFData;
 }

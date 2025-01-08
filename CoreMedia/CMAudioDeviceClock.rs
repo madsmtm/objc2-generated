@@ -16,7 +16,7 @@ extern "C-unwind" {
     pub fn CMAudioDeviceClockCreate(
         allocator: Option<&CFAllocator>,
         device_uid: Option<&CFString>,
-        clock_out: NonNull<CMClock>,
+        clock_out: NonNull<*mut CMClock>,
     ) -> OSStatus;
 }
 

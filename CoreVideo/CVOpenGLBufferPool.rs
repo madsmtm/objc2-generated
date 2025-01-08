@@ -69,7 +69,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         pool_attributes: Option<&CFDictionary>,
         open_gl_buffer_attributes: Option<&CFDictionary>,
-        pool_out: NonNull<CVOpenGLBufferPool>,
+        pool_out: NonNull<*mut CVOpenGLBufferPool>,
     ) -> CVReturn;
 }
 
@@ -120,6 +120,6 @@ extern "C-unwind" {
     pub fn CVOpenGLBufferPoolCreateOpenGLBuffer(
         allocator: Option<&CFAllocator>,
         open_gl_buffer_pool: &CVOpenGLBufferPool,
-        open_gl_buffer_out: NonNull<CVOpenGLBuffer>,
+        open_gl_buffer_out: NonNull<*mut CVOpenGLBuffer>,
     ) -> CVReturn;
 }

@@ -77,6 +77,6 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         surface: &IOSurfaceRef,
         pixel_buffer_attributes: Option<&CFDictionary>,
-        pixel_buffer_out: NonNull<CVPixelBuffer>,
+        pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
     ) -> CVReturn;
 }

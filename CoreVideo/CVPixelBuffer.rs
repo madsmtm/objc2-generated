@@ -556,7 +556,7 @@ extern "C-unwind" {
     pub fn CVPixelBufferCreateResolvedAttributesDictionary(
         allocator: Option<&CFAllocator>,
         attributes: Option<&CFArray>,
-        resolved_dictionary_out: NonNull<CFDictionary>,
+        resolved_dictionary_out: NonNull<*mut CFDictionary>,
     ) -> CVReturn;
 }
 
@@ -583,7 +583,7 @@ extern "C-unwind" {
         height: usize,
         pixel_format_type: OSType,
         pixel_buffer_attributes: Option<&CFDictionary>,
-        pixel_buffer_out: NonNull<CVPixelBuffer>,
+        pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
     ) -> CVReturn;
 }
 
@@ -626,7 +626,7 @@ extern "C-unwind" {
         release_callback: CVPixelBufferReleaseBytesCallback,
         release_ref_con: *mut c_void,
         pixel_buffer_attributes: Option<&CFDictionary>,
-        pixel_buffer_out: NonNull<CVPixelBuffer>,
+        pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
     ) -> CVReturn;
 }
 
@@ -685,7 +685,7 @@ extern "C-unwind" {
         release_callback: CVPixelBufferReleasePlanarBytesCallback,
         release_ref_con: *mut c_void,
         pixel_buffer_attributes: Option<&CFDictionary>,
-        pixel_buffer_out: NonNull<CVPixelBuffer>,
+        pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
     ) -> CVReturn;
 }
 

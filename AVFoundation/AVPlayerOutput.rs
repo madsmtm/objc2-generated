@@ -118,7 +118,7 @@ extern "C-unwind" {
     pub fn CMTagCollectionCreateWithVideoOutputPreset(
         allocator: Option<&CFAllocator>,
         preset: CMTagCollectionVideoOutputPreset,
-        new_collection_out: NonNull<CMTagCollection>,
+        new_collection_out: NonNull<*mut CMTagCollection>,
     ) -> OSStatus;
 }
 

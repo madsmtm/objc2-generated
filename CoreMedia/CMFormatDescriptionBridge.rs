@@ -82,7 +82,7 @@ extern "C-unwind" {
         size: usize,
         string_encoding: CFStringEncoding,
         flavor: Option<&CMImageDescriptionFlavor>,
-        format_description_out: NonNull<CMVideoFormatDescription>,
+        format_description_out: NonNull<*mut CMVideoFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -105,7 +105,7 @@ extern "C-unwind" {
         image_description_block_buffer: &CMBlockBuffer,
         string_encoding: CFStringEncoding,
         flavor: Option<&CMImageDescriptionFlavor>,
-        format_description_out: NonNull<CMVideoFormatDescription>,
+        format_description_out: NonNull<*mut CMVideoFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -133,7 +133,7 @@ extern "C-unwind" {
         video_format_description: &CMVideoFormatDescription,
         string_encoding: CFStringEncoding,
         flavor: Option<&CMImageDescriptionFlavor>,
-        block_buffer_out: NonNull<CMBlockBuffer>,
+        block_buffer_out: NonNull<*mut CMBlockBuffer>,
     ) -> OSStatus;
 }
 
@@ -222,7 +222,7 @@ extern "C-unwind" {
         sound_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMSoundDescriptionFlavor>,
-        format_description_out: NonNull<CMAudioFormatDescription>,
+        format_description_out: NonNull<*mut CMAudioFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -242,7 +242,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         sound_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMSoundDescriptionFlavor>,
-        format_description_out: NonNull<CMAudioFormatDescription>,
+        format_description_out: NonNull<*mut CMAudioFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -267,7 +267,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         audio_format_description: &CMAudioFormatDescription,
         flavor: Option<&CMSoundDescriptionFlavor>,
-        block_buffer_out: NonNull<CMBlockBuffer>,
+        block_buffer_out: NonNull<*mut CMBlockBuffer>,
     ) -> OSStatus;
 }
 
@@ -337,7 +337,7 @@ extern "C-unwind" {
         size: usize,
         flavor: Option<&CMTextDescriptionFlavor>,
         media_type: CMMediaType,
-        format_description_out: NonNull<CMTextFormatDescription>,
+        format_description_out: NonNull<*mut CMTextFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -360,7 +360,7 @@ extern "C-unwind" {
         text_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMTextDescriptionFlavor>,
         media_type: CMMediaType,
-        format_description_out: NonNull<CMTextFormatDescription>,
+        format_description_out: NonNull<*mut CMTextFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -385,7 +385,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         text_format_description: &CMTextFormatDescription,
         flavor: Option<&CMTextDescriptionFlavor>,
-        block_buffer_out: NonNull<CMBlockBuffer>,
+        block_buffer_out: NonNull<*mut CMBlockBuffer>,
     ) -> OSStatus;
 }
 
@@ -438,7 +438,7 @@ extern "C-unwind" {
         closed_caption_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMClosedCaptionDescriptionFlavor>,
-        format_description_out: NonNull<CMClosedCaptionFormatDescription>,
+        format_description_out: NonNull<*mut CMClosedCaptionFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -458,7 +458,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         closed_caption_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMClosedCaptionDescriptionFlavor>,
-        format_description_out: NonNull<CMClosedCaptionFormatDescription>,
+        format_description_out: NonNull<*mut CMClosedCaptionFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -483,7 +483,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         closed_caption_format_description: &CMClosedCaptionFormatDescription,
         flavor: Option<&CMClosedCaptionDescriptionFlavor>,
-        block_buffer_out: NonNull<CMBlockBuffer>,
+        block_buffer_out: NonNull<*mut CMBlockBuffer>,
     ) -> OSStatus;
 }
 
@@ -536,7 +536,7 @@ extern "C-unwind" {
         time_code_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMTimeCodeDescriptionFlavor>,
-        format_description_out: NonNull<CMTimeCodeFormatDescription>,
+        format_description_out: NonNull<*mut CMTimeCodeFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -556,7 +556,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         time_code_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMTimeCodeDescriptionFlavor>,
-        format_description_out: NonNull<CMTimeCodeFormatDescription>,
+        format_description_out: NonNull<*mut CMTimeCodeFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -581,7 +581,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         time_code_format_description: &CMTimeCodeFormatDescription,
         flavor: Option<&CMTimeCodeDescriptionFlavor>,
-        block_buffer_out: NonNull<CMBlockBuffer>,
+        block_buffer_out: NonNull<*mut CMBlockBuffer>,
     ) -> OSStatus;
 }
 
@@ -634,7 +634,7 @@ extern "C-unwind" {
         metadata_description_data: NonNull<u8>,
         size: usize,
         flavor: Option<&CMMetadataDescriptionFlavor>,
-        format_description_out: NonNull<CMMetadataFormatDescription>,
+        format_description_out: NonNull<*mut CMMetadataFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -654,7 +654,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         metadata_description_block_buffer: &CMBlockBuffer,
         flavor: Option<&CMMetadataDescriptionFlavor>,
-        format_description_out: NonNull<CMMetadataFormatDescription>,
+        format_description_out: NonNull<*mut CMMetadataFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -679,7 +679,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         metadata_format_description: &CMMetadataFormatDescription,
         flavor: Option<&CMMetadataDescriptionFlavor>,
-        block_buffer_out: NonNull<CMBlockBuffer>,
+        block_buffer_out: NonNull<*mut CMBlockBuffer>,
     ) -> OSStatus;
 }
 

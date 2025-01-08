@@ -131,7 +131,7 @@ extern "C-unwind" {
         structure_allocator: Option<&CFAllocator>,
         sub_block_capacity: u32,
         flags: CMBlockBufferFlags,
-        block_buffer_out: NonNull<CMBlockBuffer>,
+        block_buffer_out: NonNull<*mut CMBlockBuffer>,
     ) -> OSStatus;
 }
 
@@ -185,7 +185,7 @@ extern "C-unwind" {
         offset_to_data: usize,
         data_length: usize,
         flags: CMBlockBufferFlags,
-        block_buffer_out: NonNull<CMBlockBuffer>,
+        block_buffer_out: NonNull<*mut CMBlockBuffer>,
     ) -> OSStatus;
 }
 
@@ -219,7 +219,7 @@ extern "C-unwind" {
         offset_to_data: usize,
         data_length: usize,
         flags: CMBlockBufferFlags,
-        block_buffer_out: NonNull<CMBlockBuffer>,
+        block_buffer_out: NonNull<*mut CMBlockBuffer>,
     ) -> OSStatus;
 }
 
@@ -265,7 +265,7 @@ extern "C-unwind" {
         offset_to_data: usize,
         data_length: usize,
         flags: CMBlockBufferFlags,
-        block_buffer_out: NonNull<CMBlockBuffer>,
+        block_buffer_out: NonNull<*mut CMBlockBuffer>,
     ) -> OSStatus;
 }
 

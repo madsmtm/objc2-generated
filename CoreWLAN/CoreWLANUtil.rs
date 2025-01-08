@@ -178,7 +178,7 @@ extern "C-unwind" {
     ///
     /// Finds and returns all available identities.
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn CWKeychainCopyEAPIdentityList(list: *mut CFArray) -> OSStatus;
+    pub fn CWKeychainCopyEAPIdentityList(list: *mut *mut CFArray) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -206,8 +206,8 @@ extern "C-unwind" {
     #[deprecated = "Use CWKeychainFindWiFiEAPUsernameAndPassword() instead"]
     pub fn CWKeychainCopyEAPUsernameAndPassword(
         ssid_data: &CFData,
-        username: *mut CFString,
-        password: *mut CFString,
+        username: *mut *mut CFString,
+        password: *mut *mut CFString,
     ) -> OSStatus;
 }
 
@@ -297,7 +297,7 @@ extern "C-unwind" {
     /// The keychain used is determined by the SecPreferencesDomain of the caller as returned by SecKeychainGetPreferenceDomain().
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Use CWKeychainFindWiFiPassword() instead"]
-    pub fn CWKeychainCopyPassword(ssid_data: &CFData, password: *mut CFString) -> OSStatus;
+    pub fn CWKeychainCopyPassword(ssid_data: &CFData, password: *mut *mut CFString) -> OSStatus;
 }
 
 extern "C-unwind" {

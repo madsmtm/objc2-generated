@@ -42,7 +42,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         session: Option<&ODSessionRef>,
         node_type: ODNodeType,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut ODNodeRef;
 }
 
@@ -66,7 +66,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         session: Option<&ODSessionRef>,
         node_name: Option<&CFString>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut ODNodeRef;
 }
 
@@ -87,7 +87,7 @@ extern "C-unwind" {
     pub fn ODNodeCreateCopy(
         allocator: Option<&CFAllocator>,
         node: Option<&ODNodeRef>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut ODNodeRef;
 }
 
@@ -103,7 +103,10 @@ extern "C-unwind" {
     ///
     /// Returns: a CFArrayRef with the list of nodes, otherwise NULL, with outError set to a CFErrorRef
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
-    pub fn ODNodeCopySubnodeNames(node: Option<&ODNodeRef>, error: *mut CFError) -> *mut CFArray;
+    pub fn ODNodeCopySubnodeNames(
+        node: Option<&ODNodeRef>,
+        error: *mut *mut CFError,
+    ) -> *mut CFArray;
 }
 
 extern "C-unwind" {
@@ -121,7 +124,7 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODNodeCopyUnreachableSubnodeNames(
         node: Option<&ODNodeRef>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFArray;
 }
 
@@ -154,7 +157,7 @@ extern "C-unwind" {
     pub fn ODNodeCopyDetails(
         node: Option<&ODNodeRef>,
         keys: Option<&CFArray>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFDictionary;
 }
 
@@ -172,7 +175,7 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODNodeCopySupportedRecordTypes(
         node: Option<&ODNodeRef>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFArray;
 }
 
@@ -198,7 +201,7 @@ extern "C-unwind" {
     pub fn ODNodeCopySupportedAttributes(
         node: Option<&ODNodeRef>,
         record_type: Option<&ODRecordType>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFArray;
 }
 
@@ -232,7 +235,7 @@ extern "C-unwind" {
         record_type: Option<&ODRecordType>,
         record_name: Option<&CFString>,
         password: Option<&CFString>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> bool;
 }
 
@@ -271,9 +274,9 @@ extern "C-unwind" {
         record_type: Option<&ODRecordType>,
         auth_type: Option<&ODAuthenticationType>,
         auth_items: Option<&CFArray>,
-        out_auth_items: *mut CFArray,
-        out_context: *mut ODContextRef,
-        error: *mut CFError,
+        out_auth_items: *mut *mut CFArray,
+        out_context: *mut *mut ODContextRef,
+        error: *mut *mut CFError,
     ) -> bool;
 }
 
@@ -286,7 +289,7 @@ extern "C-unwind" {
     pub fn ODNodeSetCredentialsUsingKerberosCache(
         node: Option<&ODNodeRef>,
         cache_name: Option<&CFString>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> bool;
 }
 
@@ -322,7 +325,7 @@ extern "C-unwind" {
         record_type: Option<&ODRecordType>,
         record_name: Option<&CFString>,
         attribute_dict: Option<&CFDictionary>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut ODRecordRef;
 }
 
@@ -356,7 +359,7 @@ extern "C-unwind" {
         record_type: Option<&ODRecordType>,
         record_name: Option<&CFString>,
         attributes: Option<&CFType>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut ODRecordRef;
 }
 
@@ -379,7 +382,7 @@ extern "C-unwind" {
         node: Option<&ODNodeRef>,
         custom_code: CFIndex,
         data: Option<&CFData>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFData;
 }
 
@@ -409,7 +412,7 @@ extern "C-unwind" {
         node: Option<&ODNodeRef>,
         function: Option<&CFString>,
         payload: Option<&CFType>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFType;
 }
 
@@ -425,7 +428,10 @@ extern "C-unwind" {
     /// Returns: a CFDictionaryRef containing all currently set policies
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     #[deprecated = "use ODNodeCopyAccountPolicies"]
-    pub fn ODNodeCopyPolicies(node: Option<&ODNodeRef>, error: *mut CFError) -> *mut CFDictionary;
+    pub fn ODNodeCopyPolicies(
+        node: Option<&ODNodeRef>,
+        error: *mut *mut CFError,
+    ) -> *mut CFDictionary;
 }
 
 extern "C-unwind" {
@@ -444,7 +450,7 @@ extern "C-unwind" {
     #[deprecated]
     pub fn ODNodeCopySupportedPolicies(
         node: Option<&ODNodeRef>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFDictionary;
 }
 
@@ -465,7 +471,7 @@ extern "C-unwind" {
     pub fn ODNodeSetPolicies(
         node: Option<&ODNodeRef>,
         policies: Option<&CFDictionary>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> bool;
 }
 
@@ -493,7 +499,7 @@ extern "C-unwind" {
         node: Option<&ODNodeRef>,
         policy_type: Option<&ODPolicyType>,
         value: Option<&CFType>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> bool;
 }
 
@@ -518,7 +524,7 @@ extern "C-unwind" {
     pub fn ODNodeRemovePolicy(
         node: Option<&ODNodeRef>,
         policy_type: Option<&ODPolicyType>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> bool;
 }
 
@@ -555,7 +561,7 @@ extern "C-unwind" {
         node: Option<&ODNodeRef>,
         policy: Option<&CFDictionary>,
         category: Option<&ODPolicyCategoryType>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> bool;
 }
 
@@ -583,7 +589,7 @@ extern "C-unwind" {
         node: Option<&ODNodeRef>,
         policy: Option<&CFDictionary>,
         category: Option<&ODPolicyCategoryType>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> bool;
 }
 
@@ -614,7 +620,7 @@ extern "C-unwind" {
     pub fn ODNodeSetAccountPolicies(
         node: Option<&ODNodeRef>,
         policies: Option<&CFDictionary>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> bool;
 }
 
@@ -633,7 +639,7 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODNodeCopyAccountPolicies(
         node: Option<&ODNodeRef>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFDictionary;
 }
 
@@ -665,6 +671,6 @@ extern "C-unwind" {
         node: Option<&ODNodeRef>,
         password: Option<&CFString>,
         record_name: Option<&CFString>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> bool;
 }

@@ -64,7 +64,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         pool_attributes: Option<&CFDictionary>,
         pixel_buffer_attributes: Option<&CFDictionary>,
-        pool_out: NonNull<CVPixelBufferPool>,
+        pool_out: NonNull<*mut CVPixelBufferPool>,
     ) -> CVReturn;
 }
 
@@ -111,7 +111,7 @@ extern "C-unwind" {
     pub fn CVPixelBufferPoolCreatePixelBuffer(
         allocator: Option<&CFAllocator>,
         pixel_buffer_pool: &CVPixelBufferPool,
-        pixel_buffer_out: NonNull<CVPixelBuffer>,
+        pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
     ) -> CVReturn;
 }
 
@@ -126,7 +126,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         pixel_buffer_pool: &CVPixelBufferPool,
         aux_attributes: Option<&CFDictionary>,
-        pixel_buffer_out: NonNull<CVPixelBuffer>,
+        pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
     ) -> CVReturn;
 }
 

@@ -51,7 +51,7 @@ extern "C-unwind" {
     pub fn ODSessionCreate(
         allocator: Option<&CFAllocator>,
         options: Option<&CFDictionary>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut ODSessionRef;
 }
 
@@ -71,6 +71,6 @@ extern "C-unwind" {
     pub fn ODSessionCopyNodeNames(
         allocator: Option<&CFAllocator>,
         session: Option<&ODSessionRef>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFArray;
 }

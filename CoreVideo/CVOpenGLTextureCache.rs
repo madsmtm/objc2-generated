@@ -87,7 +87,7 @@ extern "C-unwind" {
         texture_cache: &CVOpenGLTextureCache,
         source_image: &CVImageBuffer,
         attributes: Option<&CFDictionary>,
-        texture_out: NonNull<CVOpenGLTexture>,
+        texture_out: NonNull<*mut CVOpenGLTexture>,
     ) -> CVReturn;
 }
 

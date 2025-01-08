@@ -387,7 +387,7 @@ extern "C-unwind" {
         data_source: Option<&CFURL>,
         parse_options: CFOptionFlags,
         version_of_nodes: CFIndex,
-        error_dict: *mut CFDictionary,
+        error_dict: *mut *mut CFDictionary,
     ) -> *mut CFXMLTree;
 }
 

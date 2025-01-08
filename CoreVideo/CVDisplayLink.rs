@@ -69,7 +69,7 @@ extern "C-unwind" {
     pub fn CVDisplayLinkCreateWithCGDisplays(
         display_array: NonNull<CGDirectDisplayID>,
         count: CFIndex,
-        display_link_out: NonNull<CVDisplayLink>,
+        display_link_out: NonNull<*mut CVDisplayLink>,
     ) -> CVReturn;
 }
 
@@ -87,7 +87,7 @@ extern "C-unwind" {
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     pub fn CVDisplayLinkCreateWithOpenGLDisplayMask(
         mask: CGOpenGLDisplayMask,
-        display_link_out: NonNull<CVDisplayLink>,
+        display_link_out: NonNull<*mut CVDisplayLink>,
     ) -> CVReturn;
 }
 
@@ -105,7 +105,7 @@ extern "C-unwind" {
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     pub fn CVDisplayLinkCreateWithCGDisplay(
         display_id: CGDirectDisplayID,
-        display_link_out: NonNull<CVDisplayLink>,
+        display_link_out: NonNull<*mut CVDisplayLink>,
     ) -> CVReturn;
 }
 
@@ -118,7 +118,7 @@ extern "C-unwind" {
     #[cfg(feature = "CVReturn")]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     pub fn CVDisplayLinkCreateWithActiveCGDisplays(
-        display_link_out: NonNull<CVDisplayLink>,
+        display_link_out: NonNull<*mut CVDisplayLink>,
     ) -> CVReturn;
 }
 

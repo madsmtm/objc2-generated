@@ -323,14 +323,17 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFError")]
-    pub fn CFBundlePreflightExecutable(bundle: Option<&CFBundle>, error: *mut CFError) -> Boolean;
+    pub fn CFBundlePreflightExecutable(
+        bundle: Option<&CFBundle>,
+        error: *mut *mut CFError,
+    ) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFError")]
     pub fn CFBundleLoadExecutableAndReturnError(
         bundle: Option<&CFBundle>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> Boolean;
 }
 

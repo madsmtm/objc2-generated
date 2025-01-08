@@ -42,7 +42,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFUUID")]
     pub fn CFFileSecurityCopyOwnerUUID(
         file_sec: Option<&CFFileSecurity>,
-        owner_uuid: *mut CFUUID,
+        owner_uuid: *mut *mut CFUUID,
     ) -> Boolean;
 }
 
@@ -58,7 +58,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFUUID")]
     pub fn CFFileSecurityCopyGroupUUID(
         file_sec: Option<&CFFileSecurity>,
-        group_uuid: *mut CFUUID,
+        group_uuid: *mut *mut CFUUID,
     ) -> Boolean;
 }
 

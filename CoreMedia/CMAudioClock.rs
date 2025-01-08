@@ -22,6 +22,6 @@ extern "C-unwind" {
     #[cfg(feature = "CMSync")]
     pub fn CMAudioClockCreate(
         allocator: Option<&CFAllocator>,
-        clock_out: NonNull<CMClock>,
+        clock_out: NonNull<*mut CMClock>,
     ) -> OSStatus;
 }

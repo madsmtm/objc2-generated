@@ -804,7 +804,7 @@ extern "C-unwind" {
     pub fn CTFontCopyLocalizedName(
         font: &CTFont,
         name_key: &CFString,
-        actual_language: *mut CFString,
+        actual_language: *mut *mut CFString,
     ) -> *mut CFString;
 }
 
@@ -1436,7 +1436,7 @@ extern "C-unwind" {
     #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
     pub fn CTFontCopyGraphicsFont(
         font: &CTFont,
-        attributes: *mut CTFontDescriptor,
+        attributes: *mut *mut CTFontDescriptor,
     ) -> NonNull<CGFont>;
 }
 

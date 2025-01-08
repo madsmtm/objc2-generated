@@ -72,7 +72,7 @@ extern "C-unwind" {
         query_value_or_list: Option<&CFType>,
         return_attribute_or_list: Option<&CFType>,
         max_results: CFIndex,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut ODQueryRef;
 }
 
@@ -118,7 +118,7 @@ extern "C-unwind" {
         query_value_or_list: Option<&CFType>,
         return_attribute_or_list: Option<&CFType>,
         max_results: CFIndex,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut ODQueryRef;
 }
 
@@ -143,7 +143,7 @@ extern "C-unwind" {
     pub fn ODQueryCopyResults(
         query: Option<&ODQueryRef>,
         allow_partial_results: bool,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFArray;
 }
 

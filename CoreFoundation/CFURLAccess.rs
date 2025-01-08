@@ -18,8 +18,8 @@ extern "C-unwind" {
     pub fn CFURLCreateDataAndPropertiesFromResource(
         alloc: Option<&CFAllocator>,
         url: Option<&CFURL>,
-        resource_data: *mut CFData,
-        properties: *mut CFDictionary,
+        resource_data: *mut *mut CFData,
+        properties: *mut *mut CFDictionary,
         desired_properties: Option<&CFArray>,
         error_code: *mut i32,
     ) -> Boolean;

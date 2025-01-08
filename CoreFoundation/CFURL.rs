@@ -388,7 +388,7 @@ extern "C-unwind" {
     pub fn CFURLCreateFileReferenceURL(
         allocator: Option<&CFAllocator>,
         url: Option<&CFURL>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFURL;
 }
 
@@ -397,7 +397,7 @@ extern "C-unwind" {
     pub fn CFURLCreateFilePathURL(
         allocator: Option<&CFAllocator>,
         url: Option<&CFURL>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFURL;
 }
 
@@ -407,7 +407,7 @@ extern "C-unwind" {
         url: Option<&CFURL>,
         key: Option<&CFString>,
         property_value_type_ref_ptr: *mut c_void,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> Boolean;
 }
 
@@ -416,7 +416,7 @@ extern "C-unwind" {
     pub fn CFURLCopyResourcePropertiesForKeys(
         url: Option<&CFURL>,
         keys: Option<&CFArray>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFDictionary;
 }
 
@@ -426,7 +426,7 @@ extern "C-unwind" {
         url: Option<&CFURL>,
         key: Option<&CFString>,
         property_value: Option<&CFType>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> Boolean;
 }
 
@@ -435,7 +435,7 @@ extern "C-unwind" {
     pub fn CFURLSetResourcePropertiesForKeys(
         url: Option<&CFURL>,
         keyed_property_values: Option<&CFDictionary>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> Boolean;
 }
 
@@ -465,7 +465,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFError")]
-    pub fn CFURLResourceIsReachable(url: Option<&CFURL>, error: *mut CFError) -> Boolean;
+    pub fn CFURLResourceIsReachable(url: Option<&CFURL>, error: *mut *mut CFError) -> Boolean;
 }
 
 extern "C" {
@@ -1334,7 +1334,7 @@ extern "C-unwind" {
         options: CFURLBookmarkCreationOptions,
         resource_properties_to_include: Option<&CFArray>,
         relative_to_url: Option<&CFURL>,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFData;
 }
 
@@ -1352,7 +1352,7 @@ extern "C-unwind" {
         relative_to_url: Option<&CFURL>,
         resource_properties_to_include: Option<&CFArray>,
         is_stale: *mut Boolean,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> *mut CFURL;
 }
 
@@ -1384,7 +1384,7 @@ extern "C-unwind" {
     pub fn CFURLCreateBookmarkDataFromFile(
         allocator: Option<&CFAllocator>,
         file_url: Option<&CFURL>,
-        error_ref: *mut CFError,
+        error_ref: *mut *mut CFError,
     ) -> *mut CFData;
 }
 
@@ -1394,7 +1394,7 @@ extern "C-unwind" {
         bookmark_ref: Option<&CFData>,
         file_url: Option<&CFURL>,
         options: CFURLBookmarkFileCreationOptions,
-        error_ref: *mut CFError,
+        error_ref: *mut *mut CFError,
     ) -> Boolean;
 }
 

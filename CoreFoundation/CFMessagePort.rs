@@ -148,7 +148,7 @@ extern "C-unwind" {
         send_timeout: CFTimeInterval,
         rcv_timeout: CFTimeInterval,
         reply_mode: Option<&CFString>,
-        return_data: *mut CFData,
+        return_data: *mut *mut CFData,
     ) -> i32;
 }
 

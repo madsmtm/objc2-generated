@@ -74,7 +74,7 @@ extern "C-unwind" {
         width: usize,
         height: usize,
         attributes: Option<&CFDictionary>,
-        buffer_out: NonNull<CVOpenGLBuffer>,
+        buffer_out: NonNull<*mut CVOpenGLBuffer>,
     ) -> CVReturn;
 }
 

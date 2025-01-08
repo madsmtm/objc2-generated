@@ -748,6 +748,6 @@ extern "C-unwind" {
     pub fn CTFontDescriptorCopyLocalizedAttribute(
         descriptor: &CTFontDescriptor,
         attribute: &CFString,
-        language: *mut CFString,
+        language: *mut *mut CFString,
     ) -> *mut CFType;
 }

@@ -114,8 +114,8 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFError", feature = "CFURL"))]
     pub fn CFURLEnumeratorGetNextURL(
         enumerator: Option<&CFURLEnumerator>,
-        url: *mut CFURL,
-        error: *mut CFError,
+        url: *mut *mut CFURL,
+        error: *mut *mut CFError,
     ) -> CFURLEnumeratorResult;
 }
 

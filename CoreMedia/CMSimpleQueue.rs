@@ -51,7 +51,7 @@ extern "C-unwind" {
     pub fn CMSimpleQueueCreate(
         allocator: Option<&CFAllocator>,
         capacity: i32,
-        queue_out: NonNull<CMSimpleQueue>,
+        queue_out: NonNull<*mut CMSimpleQueue>,
     ) -> OSStatus;
 }
 

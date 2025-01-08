@@ -284,7 +284,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         capacity: CMItemCount,
         callbacks: NonNull<CMBufferCallbacks>,
-        queue_out: NonNull<CMBufferQueue>,
+        queue_out: NonNull<*mut CMBufferQueue>,
     ) -> OSStatus;
 }
 
@@ -297,7 +297,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         capacity: CMItemCount,
         handlers: NonNull<CMBufferHandlers>,
-        queue_out: NonNull<CMBufferQueue>,
+        queue_out: NonNull<*mut CMBufferQueue>,
     ) -> OSStatus;
 }
 

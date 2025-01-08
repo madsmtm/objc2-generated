@@ -223,7 +223,7 @@ extern "C-unwind" {
     /// Parameter `children`: A C array of pointer-sized values to be filled with
     /// children from the tree.  If this parameter is not a valid pointer to a
     /// C array of at least CFTreeGetChildCount() pointers, the behavior is undefined.
-    pub fn CFTreeGetChildren(tree: Option<&CFTree>, children: *mut CFTree);
+    pub fn CFTreeGetChildren(tree: Option<&CFTree>, children: *mut *mut CFTree);
 }
 
 extern "C-unwind" {

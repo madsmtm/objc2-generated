@@ -57,7 +57,7 @@ extern "C-unwind" {
         cache_attributes: Option<&CFDictionary>,
         metal_device: &ProtocolObject<dyn MTLDevice>,
         texture_attributes: Option<&CFDictionary>,
-        cache_out: NonNull<CVMetalTextureCache>,
+        cache_out: NonNull<*mut CVMetalTextureCache>,
     ) -> CVReturn;
 }
 
@@ -135,7 +135,7 @@ extern "C-unwind" {
         width: usize,
         height: usize,
         plane_index: usize,
-        texture_out: NonNull<CVMetalTexture>,
+        texture_out: NonNull<*mut CVMetalTexture>,
     ) -> CVReturn;
 }
 

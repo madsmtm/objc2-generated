@@ -270,7 +270,7 @@ extern "C-unwind" {
         sample_timing_array: *const CMSampleTimingInfo,
         num_sample_size_entries: CMItemCount,
         sample_size_array: *const usize,
-        sample_buffer_out: NonNull<CMSampleBuffer>,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -295,7 +295,7 @@ extern "C-unwind" {
         sample_timing_array: *const CMSampleTimingInfo,
         num_sample_size_entries: CMItemCount,
         sample_size_array: *const usize,
-        sample_buffer_out: NonNull<CMSampleBuffer>,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
         make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
     ) -> OSStatus;
 }
@@ -441,7 +441,7 @@ extern "C-unwind" {
         sample_timing_array: *const CMSampleTimingInfo,
         num_sample_size_entries: CMItemCount,
         sample_size_array: *const usize,
-        sample_buffer_out: NonNull<CMSampleBuffer>,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -468,7 +468,7 @@ extern "C-unwind" {
         num_samples: CMItemCount,
         presentation_time_stamp: CMTime,
         packet_descriptions: *const AudioStreamPacketDescription,
-        sample_buffer_out: NonNull<CMSampleBuffer>,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -492,7 +492,7 @@ extern "C-unwind" {
         num_samples: CMItemCount,
         presentation_time_stamp: CMTime,
         packet_descriptions: *const AudioStreamPacketDescription,
-        sample_buffer_out: NonNull<CMSampleBuffer>,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
         make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
     ) -> OSStatus;
 }
@@ -519,7 +519,7 @@ extern "C-unwind" {
         num_samples: CMItemCount,
         presentation_time_stamp: CMTime,
         packet_descriptions: *const AudioStreamPacketDescription,
-        sample_buffer_out: NonNull<CMSampleBuffer>,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -558,7 +558,7 @@ extern "C-unwind" {
         make_data_ready_refcon: *mut c_void,
         format_description: &CMVideoFormatDescription,
         sample_timing: NonNull<CMSampleTimingInfo>,
-        sample_buffer_out: NonNull<CMSampleBuffer>,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -578,7 +578,7 @@ extern "C-unwind" {
         data_ready: Boolean,
         format_description: &CMVideoFormatDescription,
         sample_timing: NonNull<CMSampleTimingInfo>,
-        sample_buffer_out: NonNull<CMSampleBuffer>,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
         make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
     ) -> OSStatus;
 }
@@ -618,7 +618,7 @@ extern "C-unwind" {
         image_buffer: &CVImageBuffer,
         format_description: &CMVideoFormatDescription,
         sample_timing: NonNull<CMSampleTimingInfo>,
-        sample_buffer_out: NonNull<CMSampleBuffer>,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -632,7 +632,7 @@ extern "C-unwind" {
     pub fn CMSampleBufferCreateCopy(
         allocator: Option<&CFAllocator>,
         sbuf: &CMSampleBuffer,
-        sample_buffer_out: NonNull<CMSampleBuffer>,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -651,7 +651,7 @@ extern "C-unwind" {
         original_s_buf: &CMSampleBuffer,
         num_sample_timing_entries: CMItemCount,
         sample_timing_array: *const CMSampleTimingInfo,
-        sample_buffer_out: NonNull<CMSampleBuffer>,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -663,7 +663,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         sbuf: &CMSampleBuffer,
         sample_range: CFRange,
-        sample_buffer_out: NonNull<CMSampleBuffer>,
+        sample_buffer_out: NonNull<*mut CMSampleBuffer>,
     ) -> OSStatus;
 }
 
@@ -747,7 +747,7 @@ extern "C-unwind" {
         block_buffer_structure_allocator: Option<&CFAllocator>,
         block_buffer_block_allocator: Option<&CFAllocator>,
         flags: u32,
-        block_buffer_out: *mut CMBlockBuffer,
+        block_buffer_out: *mut *mut CMBlockBuffer,
     ) -> OSStatus;
 }
 

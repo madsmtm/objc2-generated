@@ -73,7 +73,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         tag_collections: &CFArray,
         buffers: &CFArray,
-        group_out: NonNull<CMTaggedBufferGroup>,
+        group_out: NonNull<*mut CMTaggedBufferGroup>,
     ) -> OSStatus;
 }
 
@@ -90,7 +90,7 @@ extern "C-unwind" {
     pub fn CMTaggedBufferGroupCreateCombined(
         allocator: Option<&CFAllocator>,
         tagged_buffer_groups: &CFArray,
-        group_out: NonNull<CMTaggedBufferGroup>,
+        group_out: NonNull<*mut CMTaggedBufferGroup>,
     ) -> OSStatus;
 }
 
@@ -257,7 +257,7 @@ extern "C-unwind" {
     pub fn CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup(
         allocator: Option<&CFAllocator>,
         tagged_buffer_group: &CMTaggedBufferGroup,
-        format_description_out: NonNull<CMTaggedBufferGroupFormatDescription>,
+        format_description_out: NonNull<*mut CMTaggedBufferGroupFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -310,7 +310,7 @@ extern "C-unwind" {
         sbuf_pts: CMTime,
         sbuf_duration: CMTime,
         format_description: &CMTaggedBufferGroupFormatDescription,
-        s_buf_out: NonNull<CMSampleBuffer>,
+        s_buf_out: NonNull<*mut CMSampleBuffer>,
     ) -> OSStatus;
 }
 

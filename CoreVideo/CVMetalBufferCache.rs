@@ -52,7 +52,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         cache_attributes: Option<&CFDictionary>,
         metal_device: &ProtocolObject<dyn MTLDevice>,
-        cache_out: NonNull<CVMetalBufferCache>,
+        cache_out: NonNull<*mut CVMetalBufferCache>,
     ) -> CVReturn;
 }
 
@@ -84,7 +84,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         buffer_cache: &CVMetalBufferCache,
         image_buffer: &CVImageBuffer,
-        buffer_out: NonNull<CVMetalBuffer>,
+        buffer_out: NonNull<*mut CVMetalBuffer>,
     ) -> CVReturn;
 }
 

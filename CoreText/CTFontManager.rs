@@ -160,7 +160,7 @@ extern "C-unwind" {
     pub fn CTFontManagerRegisterFontsForURL(
         font_url: &CFURL,
         scope: CTFontManagerScope,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> bool;
 }
 
@@ -182,7 +182,7 @@ extern "C-unwind" {
     pub fn CTFontManagerUnregisterFontsForURL(
         font_url: &CFURL,
         scope: CTFontManagerScope,
-        error: *mut CFError,
+        error: *mut *mut CFError,
     ) -> bool;
 }
 
@@ -204,7 +204,7 @@ extern "C-unwind" {
     /// Returns: Returns true if registration of the fonts was successful.
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use CTFontManagerCreateFontDescriptorsFromData or CTFontManagerRegisterFontsForURL"]
-    pub fn CTFontManagerRegisterGraphicsFont(font: &CGFont, error: *mut CFError) -> bool;
+    pub fn CTFontManagerRegisterGraphicsFont(font: &CGFont, error: *mut *mut CFError) -> bool;
 }
 
 extern "C-unwind" {
@@ -220,7 +220,7 @@ extern "C-unwind" {
     /// Returns: Returns true if unregistration of the font was successful.
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use the API corresponding to the one used to register the font"]
-    pub fn CTFontManagerUnregisterGraphicsFont(font: &CGFont, error: *mut CFError) -> bool;
+    pub fn CTFontManagerUnregisterGraphicsFont(font: &CGFont, error: *mut *mut CFError) -> bool;
 }
 
 extern "C-unwind" {
@@ -241,7 +241,7 @@ extern "C-unwind" {
     pub fn CTFontManagerRegisterFontsForURLs(
         font_ur_ls: &CFArray,
         scope: CTFontManagerScope,
-        errors: *mut CFArray,
+        errors: *mut *mut CFArray,
     ) -> bool;
 }
 
@@ -264,7 +264,7 @@ extern "C-unwind" {
     pub fn CTFontManagerUnregisterFontsForURLs(
         font_ur_ls: &CFArray,
         scope: CTFontManagerScope,
-        errors: *mut CFArray,
+        errors: *mut *mut CFArray,
     ) -> bool;
 }
 

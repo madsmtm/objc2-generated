@@ -6209,7 +6209,7 @@ extern "C-unwind" {
     ///
     /// Returns: returns noErr if successful.
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn CopyNameFromSoundBank(in_url: &CFURL, out_name: NonNull<CFString>) -> OSStatus;
+    pub fn CopyNameFromSoundBank(in_url: &CFURL, out_name: NonNull<*mut CFString>) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -6236,6 +6236,6 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     pub fn CopyInstrumentInfoFromSoundBank(
         in_url: &CFURL,
-        out_instrument_info: NonNull<CFArray>,
+        out_instrument_info: NonNull<*mut CFArray>,
     ) -> OSStatus;
 }
