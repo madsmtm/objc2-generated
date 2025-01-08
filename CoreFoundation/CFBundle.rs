@@ -118,7 +118,7 @@ extern "C-unwind" {
     pub fn CFBundleGetValueForInfoDictionaryKey(
         bundle: Option<&CFBundle>,
         key: Option<&CFString>,
-    ) -> CFTypeRef;
+    ) -> *mut CFType;
 }
 
 extern "C-unwind" {

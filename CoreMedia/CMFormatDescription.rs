@@ -117,8 +117,8 @@ extern "C-unwind" {
     pub fn CMFormatDescriptionEqualIgnoringExtensionKeys(
         format_description: Option<&CMFormatDescription>,
         other_format_description: Option<&CMFormatDescription>,
-        format_description_extension_keys_to_ignore: CFTypeRef,
-        sample_description_extension_atom_keys_to_ignore: CFTypeRef,
+        format_description_extension_keys_to_ignore: Option<&CFType>,
+        sample_description_extension_atom_keys_to_ignore: Option<&CFType>,
     ) -> Boolean;
 }
 
@@ -234,7 +234,7 @@ extern "C-unwind" {
     pub fn CMFormatDescriptionGetExtension(
         desc: &CMFormatDescription,
         extension_key: &CFString,
-    ) -> CFPropertyListRef;
+    ) -> *mut CFPropertyList;
 }
 
 /// Four-character codes identifying the code type. Certain codec types are also audio formats.

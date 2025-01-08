@@ -196,7 +196,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFLocaleGetValue(locale: Option<&CFLocale>, key: Option<&CFLocaleKey>) -> CFTypeRef;
+    pub fn CFLocaleGetValue(locale: Option<&CFLocale>, key: Option<&CFLocaleKey>) -> *mut CFType;
 }
 
 extern "C-unwind" {

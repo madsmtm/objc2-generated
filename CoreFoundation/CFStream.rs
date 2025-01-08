@@ -477,7 +477,7 @@ extern "C-unwind" {
     pub fn CFReadStreamCopyProperty(
         stream: Option<&CFReadStream>,
         property_name: Option<&CFStreamPropertyKey>,
-    ) -> CFTypeRef;
+    ) -> *mut CFType;
 }
 
 extern "C-unwind" {
@@ -485,7 +485,7 @@ extern "C-unwind" {
     pub fn CFWriteStreamCopyProperty(
         stream: Option<&CFWriteStream>,
         property_name: Option<&CFStreamPropertyKey>,
-    ) -> CFTypeRef;
+    ) -> *mut CFType;
 }
 
 extern "C-unwind" {
@@ -493,7 +493,7 @@ extern "C-unwind" {
     pub fn CFReadStreamSetProperty(
         stream: Option<&CFReadStream>,
         property_name: Option<&CFStreamPropertyKey>,
-        property_value: CFTypeRef,
+        property_value: Option<&CFType>,
     ) -> Boolean;
 }
 
@@ -502,7 +502,7 @@ extern "C-unwind" {
     pub fn CFWriteStreamSetProperty(
         stream: Option<&CFWriteStream>,
         property_name: Option<&CFStreamPropertyKey>,
-        property_value: CFTypeRef,
+        property_value: Option<&CFType>,
     ) -> Boolean;
 }
 

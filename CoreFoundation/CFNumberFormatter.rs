@@ -174,7 +174,7 @@ extern "C-unwind" {
     pub fn CFNumberFormatterSetProperty(
         formatter: Option<&CFNumberFormatter>,
         key: Option<&CFNumberFormatterKey>,
-        value: CFTypeRef,
+        value: Option<&CFType>,
     );
 }
 
@@ -183,7 +183,7 @@ extern "C-unwind" {
     pub fn CFNumberFormatterCopyProperty(
         formatter: Option<&CFNumberFormatter>,
         key: Option<&CFNumberFormatterKey>,
-    ) -> CFTypeRef;
+    ) -> *mut CFType;
 }
 
 extern "C" {

@@ -200,7 +200,7 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "block2"))]
     pub fn CFRunLoopPerformBlock(
         rl: Option<&CFRunLoop>,
-        mode: CFTypeRef,
+        mode: Option<&CFType>,
         block: Option<&block2::Block<dyn Fn()>>,
     );
 }

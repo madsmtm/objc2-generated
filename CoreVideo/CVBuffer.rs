@@ -98,7 +98,7 @@ extern "C-unwind" {
     pub fn CVBufferSetAttachment(
         buffer: &CVBuffer,
         key: &CFString,
-        value: CFTypeRef,
+        value: &CFType,
         attachment_mode: CVAttachmentMode,
     );
 }
@@ -120,7 +120,7 @@ extern "C-unwind" {
         buffer: &CVBuffer,
         key: &CFString,
         attachment_mode: *mut CVAttachmentMode,
-    ) -> CFTypeRef;
+    ) -> *mut CFType;
 }
 
 extern "C-unwind" {
@@ -214,7 +214,7 @@ extern "C-unwind" {
         buffer: &CVBuffer,
         key: &CFString,
         attachment_mode: *mut CVAttachmentMode,
-    ) -> CFTypeRef;
+    ) -> *mut CFType;
 }
 
 extern "C-unwind" {

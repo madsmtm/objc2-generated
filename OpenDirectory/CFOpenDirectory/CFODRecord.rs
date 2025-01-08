@@ -283,7 +283,7 @@ extern "C-unwind" {
     pub fn ODRecordSetValue(
         record: Option<&ODRecordRef>,
         attribute: Option<&ODAttributeType>,
-        value_or_values: CFTypeRef,
+        value_or_values: Option<&CFType>,
         error: *mut CFError,
     ) -> bool;
 }
@@ -310,7 +310,7 @@ extern "C-unwind" {
     pub fn ODRecordAddValue(
         record: Option<&ODRecordRef>,
         attribute: Option<&ODAttributeType>,
-        value: CFTypeRef,
+        value: Option<&CFType>,
         error: *mut CFError,
     ) -> bool;
 }
@@ -338,7 +338,7 @@ extern "C-unwind" {
     pub fn ODRecordRemoveValue(
         record: Option<&ODRecordRef>,
         attribute: Option<&ODAttributeType>,
-        value: CFTypeRef,
+        value: Option<&CFType>,
         error: *mut CFError,
     ) -> bool;
 }
@@ -564,7 +564,7 @@ extern "C-unwind" {
     pub fn ODRecordSetPolicy(
         record: Option<&ODRecordRef>,
         policy: Option<&ODPolicyType>,
-        value: CFTypeRef,
+        value: Option<&CFType>,
         error: *mut CFError,
     ) -> bool;
 }

@@ -286,7 +286,7 @@ extern "C-unwind" {
     pub fn CFStringTokenizerCopyCurrentTokenAttribute(
         tokenizer: Option<&CFStringTokenizer>,
         attribute: CFOptionFlags,
-    ) -> CFTypeRef;
+    ) -> *mut CFType;
 }
 
 extern "C-unwind" {

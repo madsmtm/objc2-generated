@@ -312,7 +312,7 @@ extern "C-unwind" {
         name_server_signature: *const CFSocketSignature,
         timeout: CFTimeInterval,
         name: Option<&CFString>,
-        value: CFPropertyListRef,
+        value: Option<&CFPropertyList>,
     ) -> CFSocketError;
 }
 
@@ -322,7 +322,7 @@ extern "C-unwind" {
         name_server_signature: *const CFSocketSignature,
         timeout: CFTimeInterval,
         name: Option<&CFString>,
-        value: *mut CFPropertyListRef,
+        value: *mut CFPropertyList,
         name_server_address: *mut CFData,
     ) -> CFSocketError;
 }

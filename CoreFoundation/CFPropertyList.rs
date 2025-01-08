@@ -42,7 +42,7 @@ extern "C-unwind" {
         xml_data: Option<&CFData>,
         mutability_option: CFOptionFlags,
         error_string: *mut CFString,
-    ) -> CFPropertyListRef;
+    ) -> *mut CFPropertyList;
 }
 
 extern "C-unwind" {
@@ -50,7 +50,7 @@ extern "C-unwind" {
     #[deprecated = "Use CFPropertyListCreateData instead."]
     pub fn CFPropertyListCreateXMLData(
         allocator: Option<&CFAllocator>,
-        property_list: CFPropertyListRef,
+        property_list: Option<&CFPropertyList>,
     ) -> *mut CFData;
 }
 
@@ -58,9 +58,9 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFPropertyListCreateDeepCopy(
         allocator: Option<&CFAllocator>,
-        property_list: CFPropertyListRef,
+        property_list: Option<&CFPropertyList>,
         mutability_option: CFOptionFlags,
-    ) -> CFPropertyListRef;
+    ) -> *mut CFPropertyList;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat?language=objc)
@@ -91,15 +91,17 @@ unsafe impl RefEncode for CFPropertyListFormat {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFPropertyListIsValid(plist: CFPropertyListRef, format: CFPropertyListFormat)
-        -> Boolean;
+    pub fn CFPropertyListIsValid(
+        plist: Option<&CFPropertyList>,
+        format: CFPropertyListFormat,
+    ) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFStream"))]
     #[deprecated = "Use CFPropertyListWrite instead."]
     pub fn CFPropertyListWriteToStream(
-        property_list: CFPropertyListRef,
+        property_list: Option<&CFPropertyList>,
         stream: Option<&CFWriteStream>,
         format: CFPropertyListFormat,
         error_string: *mut CFString,
@@ -116,7 +118,7 @@ extern "C-unwind" {
         mutability_option: CFOptionFlags,
         format: *mut CFPropertyListFormat,
         error_string: *mut CFString,
-    ) -> CFPropertyListRef;
+    ) -> *mut CFPropertyList;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpropertylistreadcorrupterror?language=objc)
@@ -140,7 +142,7 @@ extern "C-unwind" {
         options: CFOptionFlags,
         format: *mut CFPropertyListFormat,
         error: *mut CFError,
-    ) -> CFPropertyListRef;
+    ) -> *mut CFPropertyList;
 }
 
 extern "C-unwind" {
@@ -152,13 +154,13 @@ extern "C-unwind" {
         options: CFOptionFlags,
         format: *mut CFPropertyListFormat,
         error: *mut CFError,
-    ) -> CFPropertyListRef;
+    ) -> *mut CFPropertyList;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFError", feature = "CFStream"))]
     pub fn CFPropertyListWrite(
-        property_list: CFPropertyListRef,
+        property_list: Option<&CFPropertyList>,
         stream: Option<&CFWriteStream>,
         format: CFPropertyListFormat,
         options: CFOptionFlags,
@@ -170,7 +172,7 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFError"))]
     pub fn CFPropertyListCreateData(
         allocator: Option<&CFAllocator>,
-        property_list: CFPropertyListRef,
+        property_list: Option<&CFPropertyList>,
         format: CFPropertyListFormat,
         options: CFOptionFlags,
         error: *mut CFError,

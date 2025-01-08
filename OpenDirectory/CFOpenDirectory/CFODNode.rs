@@ -355,7 +355,7 @@ extern "C-unwind" {
         node: Option<&ODNodeRef>,
         record_type: Option<&ODRecordType>,
         record_name: Option<&CFString>,
-        attributes: CFTypeRef,
+        attributes: Option<&CFType>,
         error: *mut CFError,
     ) -> *mut ODRecordRef;
 }
@@ -408,9 +408,9 @@ extern "C-unwind" {
     pub fn ODNodeCustomFunction(
         node: Option<&ODNodeRef>,
         function: Option<&CFString>,
-        payload: CFTypeRef,
+        payload: Option<&CFType>,
         error: *mut CFError,
-    ) -> CFTypeRef;
+    ) -> *mut CFType;
 }
 
 extern "C-unwind" {
@@ -492,7 +492,7 @@ extern "C-unwind" {
     pub fn ODNodeSetPolicy(
         node: Option<&ODNodeRef>,
         policy_type: Option<&ODPolicyType>,
-        value: CFTypeRef,
+        value: Option<&CFType>,
         error: *mut CFError,
     ) -> bool;
 }

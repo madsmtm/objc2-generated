@@ -59,8 +59,8 @@ cf_type!(
     unsafe impl CMTimebase {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclockortimebaseref?language=objc)
-pub type CMClockOrTimebaseRef = CFTypeRef;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmclockortimebase?language=objc)
+pub type CMClockOrTimebase = CFType;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmclockerror_missingrequiredparameter?language=objc)
 pub const kCMClockError_MissingRequiredParameter: OSStatus = -12745;
@@ -201,10 +201,10 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated]
-    pub fn CMTimebaseCopyMaster(timebase: &CMTimebase) -> CMClockOrTimebaseRef;
+    pub fn CMTimebaseCopyMaster(timebase: &CMTimebase) -> NonNull<CMClockOrTimebase>;
 }
 
-// TODO: pub fn CMTimebaseCopySource(timebase: &CMTimebase,) -> CMClockOrTimebaseRef;
+// TODO: pub fn CMTimebaseCopySource(timebase: &CMTimebase,) -> NonNull<CMClockOrTimebase>;
 
 extern "C-unwind" {
     #[deprecated]
@@ -238,7 +238,7 @@ extern "C-unwind" {
     /// Example of use: time = CMSyncGetTime(CMTimebaseGetMaster(timebase));
     /// Please use CMTimebaseCopySource instead.
     #[deprecated]
-    pub fn CMTimebaseGetMaster(timebase: &CMTimebase) -> CMClockOrTimebaseRef;
+    pub fn CMTimebaseGetMaster(timebase: &CMTimebase) -> *mut CMClockOrTimebase;
 }
 
 extern "C-unwind" {
@@ -439,8 +439,8 @@ extern "C-unwind" {
     /// CMSyncGetRelativeRate(timebase, clock).
     /// CFRelease(clock);
     pub fn CMSyncGetRelativeRate(
-        of_clock_or_timebase: CMClockOrTimebaseRef,
-        relative_to_clock_or_timebase: CMClockOrTimebaseRef,
+        of_clock_or_timebase: &CMClockOrTimebase,
+        relative_to_clock_or_timebase: &CMClockOrTimebase,
     ) -> f64;
 }
 
@@ -454,8 +454,8 @@ extern "C-unwind" {
     /// The rate of a moving timebase relative to a stopped timebase is a NaN.
     #[cfg(feature = "CMTime")]
     pub fn CMSyncGetRelativeRateAndAnchorTime(
-        of_clock_or_timebase: CMClockOrTimebaseRef,
-        relative_to_clock_or_timebase: CMClockOrTimebaseRef,
+        of_clock_or_timebase: &CMClockOrTimebase,
+        relative_to_clock_or_timebase: &CMClockOrTimebase,
         out_relative_rate: *mut f64,
         out_of_clock_or_timebase_anchor_time: *mut CMTime,
         out_relative_to_clock_or_timebase_anchor_time: *mut CMTime,
@@ -473,8 +473,8 @@ extern "C-unwind" {
     #[cfg(feature = "CMTime")]
     pub fn CMSyncConvertTime(
         time: CMTime,
-        from_clock_or_timebase: CMClockOrTimebaseRef,
-        to_clock_or_timebase: CMClockOrTimebaseRef,
+        from_clock_or_timebase: &CMClockOrTimebase,
+        to_clock_or_timebase: &CMClockOrTimebase,
     ) -> CMTime;
 }
 
@@ -484,8 +484,8 @@ extern "C-unwind" {
     /// A timebase can drift relative to another if their ultimate source clocks that can drift relative
     /// to each other.
     pub fn CMSyncMightDrift(
-        clock_or_timebase1: CMClockOrTimebaseRef,
-        clock_or_timebase2: CMClockOrTimebaseRef,
+        clock_or_timebase1: &CMClockOrTimebase,
+        clock_or_timebase2: &CMClockOrTimebase,
     ) -> Boolean;
 }
 
@@ -498,7 +498,7 @@ extern "C-unwind" {
     /// CMSyncGetTime(source);
     /// CFRelease(source);
     #[cfg(feature = "CMTime")]
-    pub fn CMSyncGetTime(clock_or_timebase: CMClockOrTimebaseRef) -> CMTime;
+    pub fn CMSyncGetTime(clock_or_timebase: &CMClockOrTimebase) -> CMTime;
 }
 
 extern "C-unwind" {

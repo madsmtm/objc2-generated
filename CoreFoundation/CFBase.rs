@@ -16,8 +16,17 @@ extern "C" {
     pub static kCFCoreFoundationVersionNumber: c_double;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftyperef?language=objc)
-pub type CFTypeRef = *const c_void;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftype?language=objc)
+#[repr(C)]
+pub struct CFType {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+cf_type!(
+    #[encoding_void]
+    unsafe impl CFType {}
+);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstring?language=objc)
 #[repr(C)]
@@ -43,8 +52,8 @@ cf_type!(
     unsafe impl CFMutableString: CFString {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistref?language=objc)
-pub type CFPropertyListRef = CFTypeRef;
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylist?language=objc)
+pub type CFPropertyList = CFType;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcomparisonresult?language=objc)
 // NS_ENUM
@@ -316,7 +325,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CFGetTypeID(cf: CFTypeRef) -> CFTypeID;
+    pub fn CFGetTypeID(cf: Option<&CFType>) -> CFTypeID;
 }
 
 extern "C-unwind" {
@@ -324,33 +333,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CFRetain(cf: CFTypeRef) -> CFTypeRef;
+    pub fn CFRetain(cf: Option<&CFType>) -> *mut CFType;
 }
 
 extern "C-unwind" {
-    pub fn CFRelease(cf: CFTypeRef);
+    pub fn CFRelease(cf: Option<&CFType>);
 }
 
 extern "C-unwind" {
-    pub fn CFGetRetainCount(cf: CFTypeRef) -> CFIndex;
+    pub fn CFGetRetainCount(cf: Option<&CFType>) -> CFIndex;
 }
 
 extern "C-unwind" {
-    pub fn CFEqual(cf1: CFTypeRef, cf2: CFTypeRef) -> Boolean;
+    pub fn CFEqual(cf1: Option<&CFType>, cf2: Option<&CFType>) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFHash(cf: CFTypeRef) -> CFHashCode;
+    pub fn CFHash(cf: Option<&CFType>) -> CFHashCode;
 }
 
 extern "C-unwind" {
-    pub fn CFCopyDescription(cf: CFTypeRef) -> *mut CFString;
+    pub fn CFCopyDescription(cf: Option<&CFType>) -> *mut CFString;
 }
 
 extern "C-unwind" {
-    pub fn CFGetAllocator(cf: CFTypeRef) -> *mut CFAllocator;
+    pub fn CFGetAllocator(cf: Option<&CFType>) -> *mut CFAllocator;
 }
 
 extern "C-unwind" {
-    pub fn CFMakeCollectable(cf: CFTypeRef) -> CFTypeRef;
+    pub fn CFMakeCollectable(cf: Option<&CFType>) -> *mut CFType;
 }

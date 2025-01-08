@@ -294,7 +294,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCreateWithICCData(data: CFTypeRef) -> *mut CGColorSpace;
+    pub fn CGColorSpaceCreateWithICCData(data: Option<&CFType>) -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {
@@ -416,11 +416,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCopyPropertyList(space: &CGColorSpace) -> CFPropertyListRef;
+    pub fn CGColorSpaceCopyPropertyList(space: &CGColorSpace) -> *mut CFPropertyList;
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceCreateWithPropertyList(plist: CFPropertyListRef) -> *mut CGColorSpace;
+    pub fn CGColorSpaceCreateWithPropertyList(plist: &CFPropertyList) -> *mut CGColorSpace;
 }
 
 extern "C-unwind" {

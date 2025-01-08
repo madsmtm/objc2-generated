@@ -50,13 +50,13 @@ extern_methods!(
         pub unsafe fn setString(&self, string: Option<&AnyObject>);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method(font)]
-        pub unsafe fn font(&self) -> CFTypeRef;
+        #[method_id(@__retain_semantics Other font)]
+        pub unsafe fn font(&self) -> Option<Retained<CFType>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`font`][Self::font].
         #[method(setFont:)]
-        pub unsafe fn setFont(&self, font: CFTypeRef);
+        pub unsafe fn setFont(&self, font: Option<&CFType>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(fontSize)]

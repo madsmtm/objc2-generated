@@ -489,12 +489,12 @@ extern "C" {
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOSurfaceSetValue(buffer: &IOSurfaceRef, key: &CFString, value: CFTypeRef);
+    pub fn IOSurfaceSetValue(buffer: &IOSurfaceRef, key: &CFString, value: &CFType);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOSurfaceCopyValue(buffer: &IOSurfaceRef, key: &CFString) -> CFTypeRef;
+    pub fn IOSurfaceCopyValue(buffer: &IOSurfaceRef, key: &CFString) -> *mut CFType;
 }
 
 extern "C-unwind" {

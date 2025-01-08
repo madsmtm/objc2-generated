@@ -425,7 +425,7 @@ extern "C-unwind" {
     pub fn CFURLSetResourcePropertyForKey(
         url: Option<&CFURL>,
         key: Option<&CFString>,
-        property_value: CFTypeRef,
+        property_value: Option<&CFType>,
         error: *mut CFError,
     ) -> Boolean;
 }
@@ -459,7 +459,7 @@ extern "C-unwind" {
     pub fn CFURLSetTemporaryResourcePropertyForKey(
         url: Option<&CFURL>,
         key: Option<&CFString>,
-        property_value: CFTypeRef,
+        property_value: Option<&CFType>,
     );
 }
 
@@ -1376,7 +1376,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         resource_property_key: Option<&CFString>,
         bookmark: Option<&CFData>,
-    ) -> CFTypeRef;
+    ) -> *mut CFType;
 }
 
 extern "C-unwind" {

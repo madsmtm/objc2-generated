@@ -722,7 +722,7 @@ extern "C-unwind" {
     pub fn CTFontDescriptorCopyAttribute(
         descriptor: &CTFontDescriptor,
         attribute: &CFString,
-    ) -> CFTypeRef;
+    ) -> *mut CFType;
 }
 
 extern "C-unwind" {
@@ -749,5 +749,5 @@ extern "C-unwind" {
         descriptor: &CTFontDescriptor,
         attribute: &CFString,
         language: *mut CFString,
-    ) -> CFTypeRef;
+    ) -> *mut CFType;
 }

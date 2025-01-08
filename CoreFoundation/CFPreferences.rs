@@ -46,7 +46,7 @@ extern "C-unwind" {
     pub fn CFPreferencesCopyAppValue(
         key: &CFString,
         application_id: &CFString,
-    ) -> CFPropertyListRef;
+    ) -> *mut CFPropertyList;
 }
 
 extern "C-unwind" {
@@ -71,7 +71,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFPreferencesSetAppValue(
         key: &CFString,
-        value: CFPropertyListRef,
+        value: Option<&CFPropertyList>,
         application_id: &CFString,
     );
 }
@@ -101,7 +101,7 @@ extern "C-unwind" {
         application_id: &CFString,
         user_name: &CFString,
         host_name: &CFString,
-    ) -> CFPropertyListRef;
+    ) -> *mut CFPropertyList;
 }
 
 extern "C-unwind" {
@@ -118,7 +118,7 @@ extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFPreferencesSetValue(
         key: &CFString,
-        value: CFPropertyListRef,
+        value: Option<&CFPropertyList>,
         application_id: &CFString,
         user_name: &CFString,
         host_name: &CFString,

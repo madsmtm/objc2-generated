@@ -211,7 +211,7 @@ extern "C-unwind" {
     pub fn CFDateFormatterSetProperty(
         formatter: Option<&CFDateFormatter>,
         key: Option<&CFString>,
-        value: CFTypeRef,
+        value: Option<&CFType>,
     );
 }
 
@@ -220,7 +220,7 @@ extern "C-unwind" {
     pub fn CFDateFormatterCopyProperty(
         formatter: Option<&CFDateFormatter>,
         key: Option<&CFDateFormatterKey>,
-    ) -> CFTypeRef;
+    ) -> *mut CFType;
 }
 
 extern "C" {

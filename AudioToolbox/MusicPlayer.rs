@@ -393,7 +393,7 @@ unsafe impl RefEncode for ExtendedTempoEvent {
 pub struct AUPresetEvent {
     pub scope: AudioUnitScope,
     pub element: AudioUnitElement,
-    pub preset: CFPropertyListRef,
+    pub preset: NonNull<CFPropertyList>,
 }
 
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
@@ -403,7 +403,7 @@ unsafe impl Encode for AUPresetEvent {
         &[
             <AudioUnitScope>::ENCODING,
             <AudioUnitElement>::ENCODING,
-            <CFPropertyListRef>::ENCODING,
+            <NonNull<CFPropertyList>>::ENCODING,
         ],
     );
 }

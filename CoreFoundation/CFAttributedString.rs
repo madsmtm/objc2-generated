@@ -97,7 +97,7 @@ extern "C-unwind" {
         loc: CFIndex,
         attr_name: Option<&CFString>,
         effective_range: *mut CFRange,
-    ) -> CFTypeRef;
+    ) -> *mut CFType;
 }
 
 extern "C-unwind" {
@@ -120,7 +120,7 @@ extern "C-unwind" {
         attr_name: Option<&CFString>,
         in_range: CFRange,
         longest_effective_range: *mut CFRange,
-    ) -> CFTypeRef;
+    ) -> *mut CFType;
 }
 
 extern "C-unwind" {
@@ -182,7 +182,7 @@ extern "C-unwind" {
         a_str: Option<&CFMutableAttributedString>,
         range: CFRange,
         attr_name: Option<&CFString>,
-        value: CFTypeRef,
+        value: Option<&CFType>,
     );
 }
 

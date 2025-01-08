@@ -50,8 +50,8 @@ cf_type!(
 /// A CMBuffer can be any CFTypeRef, as long as a getDuration callback can be provided.  Commonly used
 /// types are CMSampleBufferRef and CVPixelBufferRef.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbufferref?language=objc)
-pub type CMBufferRef = CFTypeRef;
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffer?language=objc)
+pub type CMBuffer = CFType;
 
 /// Client callback that returns a CMTime from a CMBufferRef
 ///
@@ -61,7 +61,7 @@ pub type CMBufferRef = CFTypeRef;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergettimecallback?language=objc)
 #[cfg(feature = "CMTime")]
 pub type CMBufferGetTimeCallback =
-    Option<unsafe extern "C-unwind" fn(CMBufferRef, *mut c_void) -> CMTime>;
+    Option<unsafe extern "C-unwind" fn(NonNull<CMBuffer>, *mut c_void) -> CMTime>;
 
 /// Client block that returns a CMTime from a CMBufferRef
 ///
@@ -70,7 +70,7 @@ pub type CMBufferGetTimeCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergettimehandler?language=objc)
 #[cfg(all(feature = "CMTime", feature = "block2"))]
-pub type CMBufferGetTimeHandler = *mut block2::Block<dyn Fn(CMBufferRef) -> CMTime>;
+pub type CMBufferGetTimeHandler = *mut block2::Block<dyn Fn(NonNull<CMBuffer>) -> CMTime>;
 
 /// Client callback that returns a Boolean from a CMBufferRef
 ///
@@ -78,7 +78,7 @@ pub type CMBufferGetTimeHandler = *mut block2::Block<dyn Fn(CMBufferRef) -> CMTi
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergetbooleancallback?language=objc)
 pub type CMBufferGetBooleanCallback =
-    Option<unsafe extern "C-unwind" fn(CMBufferRef, *mut c_void) -> Boolean>;
+    Option<unsafe extern "C-unwind" fn(NonNull<CMBuffer>, *mut c_void) -> Boolean>;
 
 /// Client block that returns a Boolean from a CMBufferRef
 ///
@@ -86,7 +86,7 @@ pub type CMBufferGetBooleanCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergetbooleanhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMBufferGetBooleanHandler = *mut block2::Block<dyn Fn(CMBufferRef) -> Boolean>;
+pub type CMBufferGetBooleanHandler = *mut block2::Block<dyn Fn(NonNull<CMBuffer>) -> Boolean>;
 
 /// Client callback that compares one CMBufferRef with another.
 ///
@@ -94,7 +94,11 @@ pub type CMBufferGetBooleanHandler = *mut block2::Block<dyn Fn(CMBufferRef) -> B
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffercomparecallback?language=objc)
 pub type CMBufferCompareCallback = Option<
-    unsafe extern "C-unwind" fn(CMBufferRef, CMBufferRef, *mut c_void) -> CFComparisonResult,
+    unsafe extern "C-unwind" fn(
+        NonNull<CMBuffer>,
+        NonNull<CMBuffer>,
+        *mut c_void,
+    ) -> CFComparisonResult,
 >;
 
 /// Client block that compares one CMBufferRef with another.
@@ -102,7 +106,7 @@ pub type CMBufferCompareCallback = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffercomparehandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMBufferCompareHandler =
-    *mut block2::Block<dyn Fn(CMBufferRef, CMBufferRef) -> CFComparisonResult>;
+    *mut block2::Block<dyn Fn(NonNull<CMBuffer>, NonNull<CMBuffer>) -> CFComparisonResult>;
 
 /// Client callback that returns a size_t from a CMBufferRef
 ///
@@ -110,7 +114,7 @@ pub type CMBufferCompareHandler =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergetsizecallback?language=objc)
 pub type CMBufferGetSizeCallback =
-    Option<unsafe extern "C-unwind" fn(CMBufferRef, *mut c_void) -> usize>;
+    Option<unsafe extern "C-unwind" fn(NonNull<CMBuffer>, *mut c_void) -> usize>;
 
 /// Client block that returns a size_t from a CMBufferRef
 ///
@@ -118,7 +122,7 @@ pub type CMBufferGetSizeCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergetsizehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMBufferGetSizeHandler = *mut block2::Block<dyn Fn(CMBufferRef) -> usize>;
+pub type CMBufferGetSizeHandler = *mut block2::Block<dyn Fn(NonNull<CMBuffer>) -> usize>;
 
 /// Callbacks provided to CMBufferQueueCreate, for use by the queue in interrogating the buffers that it will see.
 ///
@@ -313,7 +317,7 @@ extern "C-unwind" {
     /// If the compare callback is non-NULL, this API performs an insertion sort using that compare operation.
     /// If the validation callback is non-NULL, this API calls it; if it returns a nonzero OSStatus,
     /// the buffer will not be enqueued and this API will return the same error OSStatus.
-    pub fn CMBufferQueueEnqueue(queue: &CMBufferQueue, buf: CMBufferRef) -> OSStatus;
+    pub fn CMBufferQueueEnqueue(queue: &CMBufferQueue, buf: &CMBuffer) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -324,7 +328,7 @@ extern "C-unwind" {
     /// it when done with it.
     ///
     /// Returns: The dequeued buffer.  Will be NULL if the queue is empty.
-    pub fn CMBufferQueueDequeueAndRetain(queue: &CMBufferQueue) -> CMBufferRef;
+    pub fn CMBufferQueueDequeueAndRetain(queue: &CMBufferQueue) -> *mut CMBuffer;
 }
 
 extern "C-unwind" {
@@ -335,7 +339,7 @@ extern "C-unwind" {
     /// it when done with it.
     ///
     /// Returns: The dequeued buffer.  Will be NULL if the queue is empty, or if the buffer to be dequeued is not yet ready.
-    pub fn CMBufferQueueDequeueIfDataReadyAndRetain(queue: &CMBufferQueue) -> CMBufferRef;
+    pub fn CMBufferQueueDequeueIfDataReadyAndRetain(queue: &CMBufferQueue) -> *mut CMBuffer;
 }
 
 extern "C-unwind" {
@@ -350,7 +354,7 @@ extern "C-unwind" {
     ///
     /// Returns: The buffer.  Will be NULL if the queue is empty.
     #[deprecated]
-    pub fn CMBufferQueueGetHead(queue: &CMBufferQueue) -> CMBufferRef;
+    pub fn CMBufferQueueGetHead(queue: &CMBufferQueue) -> *mut CMBuffer;
 }
 
 extern "C-unwind" {
@@ -363,7 +367,7 @@ extern "C-unwind" {
     /// this particular buffer (if an intervening Enqueue adds a buffer that will dequeue next).
     ///
     /// Returns: The retained buffer.  Will be NULL if the queue is empty.
-    pub fn CMBufferQueueCopyHead(queue: &CMBufferQueue) -> CMBufferRef;
+    pub fn CMBufferQueueCopyHead(queue: &CMBufferQueue) -> *mut CMBuffer;
 }
 
 extern "C-unwind" {
@@ -411,7 +415,7 @@ extern "C-unwind" {
     /// Calls a function for every buffer in a queue, then resets the queue.
     pub fn CMBufferQueueResetWithCallback(
         queue: &CMBufferQueue,
-        callback: unsafe extern "C-unwind" fn(CMBufferRef, *mut c_void),
+        callback: unsafe extern "C-unwind" fn(NonNull<CMBuffer>, *mut c_void),
         refcon: *mut c_void,
     ) -> OSStatus;
 }
@@ -696,7 +700,7 @@ extern "C-unwind" {
     /// and the error will be returned.
     pub fn CMBufferQueueCallForEachBuffer(
         queue: &CMBufferQueue,
-        callback: unsafe extern "C-unwind" fn(CMBufferRef, *mut c_void) -> OSStatus,
+        callback: unsafe extern "C-unwind" fn(NonNull<CMBuffer>, *mut c_void) -> OSStatus,
         refcon: *mut c_void,
     ) -> OSStatus;
 }
@@ -711,7 +715,7 @@ extern "C-unwind" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffervalidationcallback?language=objc)
 pub type CMBufferValidationCallback = Option<
-    unsafe extern "C-unwind" fn(NonNull<CMBufferQueue>, CMBufferRef, *mut c_void) -> OSStatus,
+    unsafe extern "C-unwind" fn(NonNull<CMBufferQueue>, NonNull<CMBuffer>, *mut c_void) -> OSStatus,
 >;
 
 /// Tests whether a buffer is OK to add to a queue.
@@ -725,7 +729,7 @@ pub type CMBufferValidationCallback = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffervalidationhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMBufferValidationHandler =
-    *mut block2::Block<dyn Fn(NonNull<CMBufferQueue>, CMBufferRef) -> OSStatus>;
+    *mut block2::Block<dyn Fn(NonNull<CMBufferQueue>, NonNull<CMBuffer>) -> OSStatus>;
 
 extern "C-unwind" {
     /// Sets a function that CMBufferQueueEnqueue will call to validate buffers before adding them to the queue.

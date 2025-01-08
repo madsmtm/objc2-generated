@@ -210,7 +210,7 @@ extern "C-unwind" {
     /// ASCII string for the purposes of identifier encoding.
     pub fn CMMetadataCreateIdentifierForKeyAndKeySpace(
         allocator: Option<&CFAllocator>,
-        key: CFTypeRef,
+        key: &CFType,
         key_space: &CFString,
         identifier_out: NonNull<CFString>,
     ) -> OSStatus;
@@ -232,7 +232,7 @@ extern "C-unwind" {
     pub fn CMMetadataCreateKeyFromIdentifier(
         allocator: Option<&CFAllocator>,
         identifier: &CFString,
-        key_out: NonNull<CFTypeRef>,
+        key_out: NonNull<CFType>,
     ) -> OSStatus;
 }
 

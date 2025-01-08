@@ -50,7 +50,7 @@ extern "C-unwind" {
         url: Option<&CFURL>,
         property: Option<&CFString>,
         error_code: *mut i32,
-    ) -> CFTypeRef;
+    ) -> *mut CFType;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror?language=objc)

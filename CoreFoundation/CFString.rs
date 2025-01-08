@@ -1009,7 +1009,7 @@ unsafe impl RefEncode for CFStringInlineBuffer {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFShow(obj: CFTypeRef);
+    pub fn CFShow(obj: Option<&CFType>);
 }
 
 extern "C-unwind" {

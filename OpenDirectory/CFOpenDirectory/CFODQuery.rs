@@ -66,11 +66,11 @@ extern "C-unwind" {
     pub fn ODQueryCreateWithNode(
         allocator: Option<&CFAllocator>,
         node: Option<&ODNodeRef>,
-        record_type_or_list: CFTypeRef,
+        record_type_or_list: Option<&CFType>,
         attribute: Option<&ODAttributeType>,
         match_type: ODMatchType,
-        query_value_or_list: CFTypeRef,
-        return_attribute_or_list: CFTypeRef,
+        query_value_or_list: Option<&CFType>,
+        return_attribute_or_list: Option<&CFType>,
         max_results: CFIndex,
         error: *mut CFError,
     ) -> *mut ODQueryRef;
@@ -112,11 +112,11 @@ extern "C-unwind" {
     pub fn ODQueryCreateWithNodeType(
         allocator: Option<&CFAllocator>,
         node_type: ODNodeType,
-        record_type_or_list: CFTypeRef,
+        record_type_or_list: Option<&CFType>,
         attribute: Option<&ODAttributeType>,
         match_type: ODMatchType,
-        query_value_or_list: CFTypeRef,
-        return_attribute_or_list: CFTypeRef,
+        query_value_or_list: Option<&CFType>,
+        return_attribute_or_list: Option<&CFType>,
         max_results: CFIndex,
         error: *mut CFError,
     ) -> *mut ODQueryRef;

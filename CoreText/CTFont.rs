@@ -663,7 +663,7 @@ extern "C-unwind" {
     ///
     ///
     /// Returns: This function returns a retained reference to an arbitrary attribute. If the requested attribute is not present, NULL is returned. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
-    pub fn CTFontCopyAttribute(font: &CTFont, attribute: &CFString) -> CFTypeRef;
+    pub fn CTFontCopyAttribute(font: &CTFont, attribute: &CFString) -> *mut CFType;
 }
 
 extern "C-unwind" {

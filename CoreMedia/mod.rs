@@ -84,7 +84,7 @@ pub use self::__CMAttachment::kCMAttachmentMode_ShouldNotPropagate;
 #[cfg(feature = "CMAttachment")]
 pub use self::__CMAttachment::kCMAttachmentMode_ShouldPropagate;
 #[cfg(feature = "CMAttachment")]
-pub use self::__CMAttachment::CMAttachmentBearerRef;
+pub use self::__CMAttachment::CMAttachmentBearer;
 #[cfg(feature = "CMAttachment")]
 pub use self::__CMAttachment::CMAttachmentMode;
 #[cfg(feature = "CMAttachment")]
@@ -229,6 +229,8 @@ pub use self::__CMBufferQueue::kCMBufferQueueTrigger_WhenMinPresentationTimeStam
 pub use self::__CMBufferQueue::kCMBufferQueueTrigger_WhenReset;
 #[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::opaqueCMBufferQueueTriggerToken;
+#[cfg(feature = "CMBufferQueue")]
+pub use self::__CMBufferQueue::CMBuffer;
 #[cfg(all(feature = "CMBufferQueue", feature = "CMTime"))]
 pub use self::__CMBufferQueue::CMBufferCallbacks;
 #[cfg(feature = "CMBufferQueue")]
@@ -332,8 +334,6 @@ pub use self::__CMBufferQueue::CMBufferQueueTriggerCondition;
 pub use self::__CMBufferQueue::CMBufferQueueTriggerHandler;
 #[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueTriggerToken;
-#[cfg(feature = "CMBufferQueue")]
-pub use self::__CMBufferQueue::CMBufferRef;
 #[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferValidationCallback;
 #[cfg(all(feature = "CMBufferQueue", feature = "block2"))]
@@ -1786,7 +1786,7 @@ pub use self::__CMSync::CMClockMakeHostTimeFromSystemUnits;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMClockMightDrift;
 #[cfg(feature = "CMSync")]
-pub use self::__CMSync::CMClockOrTimebaseRef;
+pub use self::__CMSync::CMClockOrTimebase;
 #[cfg(all(feature = "CMSync", feature = "CMTime"))]
 pub use self::__CMSync::CMSyncConvertTime;
 #[cfg(feature = "CMSync")]

@@ -6,8 +6,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmattachmentbearerref?language=objc)
-pub type CMAttachmentBearerRef = CFTypeRef;
+/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmattachmentbearer?language=objc)
+pub type CMAttachmentBearer = CFType;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmattachmentmode?language=objc)
 pub type CMAttachmentMode = u32;
@@ -31,9 +31,9 @@ extern "C-unwind" {
     /// Parameter `attachmentMode`: Specifies which attachment mode is desired for this attachment.   A particular attachment key may only exist in
     /// a single mode at a time.
     pub fn CMSetAttachment(
-        target: CMAttachmentBearerRef,
+        target: &CMAttachmentBearer,
         key: &CFString,
-        value: CFTypeRef,
+        value: Option<&CFType>,
         attachment_mode: CMAttachmentMode,
     );
 }
@@ -51,10 +51,10 @@ extern "C-unwind" {
     ///
     /// Returns: If found the attachment object; else NULL.
     pub fn CMGetAttachment(
-        target: CMAttachmentBearerRef,
+        target: &CMAttachmentBearer,
         key: &CFString,
         attachment_mode_out: *mut CMAttachmentMode,
-    ) -> CFTypeRef;
+    ) -> *mut CFType;
 }
 
 extern "C-unwind" {
@@ -65,7 +65,7 @@ extern "C-unwind" {
     /// Parameter `target`: Target CMAttachmentBearer.
     ///
     /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
-    pub fn CMRemoveAttachment(target: CMAttachmentBearerRef, key: &CFString);
+    pub fn CMRemoveAttachment(target: &CMAttachmentBearer, key: &CFString);
 }
 
 extern "C-unwind" {
@@ -74,7 +74,7 @@ extern "C-unwind" {
     /// While CMRemoveAttachment removes a specific attachment identified by a key CMRemoveAllAttachments removes all attachments of a buffer and decrements their retain counts.  Given a CVBufferRef, CMRemoveAllAttachments is equivalent to CVBufferRemoveAllAttachments.
     ///
     /// Parameter `target`: Target CMAttachmentBearer.
-    pub fn CMRemoveAllAttachments(target: CMAttachmentBearerRef);
+    pub fn CMRemoveAllAttachments(target: &CMAttachmentBearer);
 }
 
 extern "C-unwind" {
@@ -90,7 +90,7 @@ extern "C-unwind" {
     /// for invalid attachment mode.
     pub fn CMCopyDictionaryOfAttachments(
         allocator: Option<&CFAllocator>,
-        target: CMAttachmentBearerRef,
+        target: &CMAttachmentBearer,
         attachment_mode: CMAttachmentMode,
     ) -> *mut CFDictionary;
 }
@@ -102,7 +102,7 @@ extern "C-unwind" {
     ///
     /// Parameter `target`: Target CMAttachmentBearer.
     pub fn CMSetAttachments(
-        target: CMAttachmentBearerRef,
+        target: &CMAttachmentBearer,
         the_attachments: &CFDictionary,
         attachment_mode: CMAttachmentMode,
     );
@@ -117,8 +117,5 @@ extern "C-unwind" {
     /// Parameter `source`: CMAttachmentBearer to copy attachments from.
     ///
     /// Parameter `destination`: CMAttachmentBearer to copy attachments to.
-    pub fn CMPropagateAttachments(
-        source: CMAttachmentBearerRef,
-        destination: CMAttachmentBearerRef,
-    );
+    pub fn CMPropagateAttachments(source: &CMAttachmentBearer, destination: &CMAttachmentBearer);
 }
