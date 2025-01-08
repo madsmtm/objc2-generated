@@ -445,8 +445,6 @@ pub use self::__CFBase::CFRelease;
 pub use self::__CFBase::CFRetain;
 #[cfg(feature = "CFBase")]
 pub use self::__CFBase::CFString;
-#[cfg(feature = "CFBase")]
-pub use self::__CFBase::CFType;
 #[cfg(all(feature = "CFBase", feature = "CFBinaryHeap"))]
 pub use self::__CFBinaryHeap::kCFStringBinaryHeapCallBacks;
 #[cfg(feature = "CFBinaryHeap")]

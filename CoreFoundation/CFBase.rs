@@ -16,18 +16,6 @@ extern "C" {
     pub static kCFCoreFoundationVersionNumber: c_double;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftype?language=objc)
-#[repr(C)]
-pub struct CFType {
-    inner: [u8; 0],
-    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
-}
-
-cf_type!(
-    #[encoding_void]
-    unsafe impl CFType {}
-);
-
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstring?language=objc)
 #[repr(C)]
 pub struct CFString {
