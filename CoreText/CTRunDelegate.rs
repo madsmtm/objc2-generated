@@ -145,25 +145,33 @@ pub const kCTRunDelegateVersion1: c_uint = 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrundelegatecurrentversion?language=objc)
 pub const kCTRunDelegateCurrentVersion: c_uint = kCTRunDelegateVersion1;
 
-extern "C-unwind" {
-    /// Creates an immutable instance of a run delegate.
-    ///
-    ///
-    /// This function creates an immutable instance of a run delegate
-    /// that can be used for reserving space in a line or for eliding the
-    /// glyphs for a range of text altogether.
-    ///
-    ///
-    /// Parameter `callbacks`: The callbacks for this run delegate.
-    ///
-    ///
-    /// Returns: If run delegate creation was successful, this function will
-    /// return a valid reference to an immutable CTRunDelegate
-    /// object. Otherwise, this function will return NULL.
-    pub fn CTRunDelegateCreate(
-        callbacks: NonNull<CTRunDelegateCallbacks>,
-        ref_con: *mut c_void,
-    ) -> *mut CTRunDelegate;
+/// Creates an immutable instance of a run delegate.
+///
+///
+/// This function creates an immutable instance of a run delegate
+/// that can be used for reserving space in a line or for eliding the
+/// glyphs for a range of text altogether.
+///
+///
+/// Parameter `callbacks`: The callbacks for this run delegate.
+///
+///
+/// Returns: If run delegate creation was successful, this function will
+/// return a valid reference to an immutable CTRunDelegate
+/// object. Otherwise, this function will return NULL.
+#[inline]
+pub unsafe extern "C-unwind" fn CTRunDelegateCreate(
+    callbacks: NonNull<CTRunDelegateCallbacks>,
+    ref_con: *mut c_void,
+) -> Option<CFRetained<CTRunDelegate>> {
+    extern "C-unwind" {
+        fn CTRunDelegateCreate(
+            callbacks: NonNull<CTRunDelegateCallbacks>,
+            ref_con: *mut c_void,
+        ) -> *mut CTRunDelegate;
+    }
+    let ret = unsafe { CTRunDelegateCreate(callbacks, ref_con) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

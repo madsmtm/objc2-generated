@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -33,10 +34,24 @@ extern "C-unwind" {
     pub fn CGPDFStringGetBytePtr(string: CGPDFStringRef) -> *const c_uchar;
 }
 
-extern "C-unwind" {
-    pub fn CGPDFStringCopyTextString(string: CGPDFStringRef) -> *mut CFString;
+#[inline]
+pub unsafe extern "C-unwind" fn CGPDFStringCopyTextString(
+    string: CGPDFStringRef,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CGPDFStringCopyTextString(string: CGPDFStringRef) -> *mut CFString;
+    }
+    let ret = unsafe { CGPDFStringCopyTextString(string) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGPDFStringCopyDate(string: CGPDFStringRef) -> *mut CFDate;
+#[inline]
+pub unsafe extern "C-unwind" fn CGPDFStringCopyDate(
+    string: CGPDFStringRef,
+) -> Option<CFRetained<CFDate>> {
+    extern "C-unwind" {
+        fn CGPDFStringCopyDate(string: CGPDFStringRef) -> *mut CFDate;
+    }
+    let ret = unsafe { CGPDFStringCopyDate(string) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

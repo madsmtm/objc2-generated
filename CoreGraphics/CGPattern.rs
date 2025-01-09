@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -84,16 +85,34 @@ extern "C-unwind" {
     pub fn CGPatternGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGPatternCreate(
-        info: *mut c_void,
-        bounds: CGRect,
-        matrix: CGAffineTransform,
-        x_step: CGFloat,
-        y_step: CGFloat,
-        tiling: CGPatternTiling,
-        is_colored: bool,
-        callbacks: *const CGPatternCallbacks,
-    ) -> *mut CGPattern;
+#[cfg(feature = "CGContext")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGPatternCreate(
+    info: *mut c_void,
+    bounds: CGRect,
+    matrix: CGAffineTransform,
+    x_step: CGFloat,
+    y_step: CGFloat,
+    tiling: CGPatternTiling,
+    is_colored: bool,
+    callbacks: *const CGPatternCallbacks,
+) -> Option<CFRetained<CGPattern>> {
+    extern "C-unwind" {
+        fn CGPatternCreate(
+            info: *mut c_void,
+            bounds: CGRect,
+            matrix: CGAffineTransform,
+            x_step: CGFloat,
+            y_step: CGFloat,
+            tiling: CGPatternTiling,
+            is_colored: bool,
+            callbacks: *const CGPatternCallbacks,
+        ) -> *mut CGPattern;
+    }
+    let ret = unsafe {
+        CGPatternCreate(
+            info, bounds, matrix, x_step, y_step, tiling, is_colored, callbacks,
+        )
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

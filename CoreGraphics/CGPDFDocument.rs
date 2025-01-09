@@ -78,14 +78,28 @@ extern "C" {
     pub static kCGPDFOutlineDestinationRect: &'static CFString;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGDataProvider")]
-    pub fn CGPDFDocumentCreateWithProvider(provider: Option<&CGDataProvider>)
-        -> *mut CGPDFDocument;
+#[cfg(feature = "CGDataProvider")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGPDFDocumentCreateWithProvider(
+    provider: Option<&CGDataProvider>,
+) -> Option<CFRetained<CGPDFDocument>> {
+    extern "C-unwind" {
+        fn CGPDFDocumentCreateWithProvider(provider: Option<&CGDataProvider>)
+            -> *mut CGPDFDocument;
+    }
+    let ret = unsafe { CGPDFDocumentCreateWithProvider(provider) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGPDFDocumentCreateWithURL(url: Option<&CFURL>) -> *mut CGPDFDocument;
+#[inline]
+pub unsafe extern "C-unwind" fn CGPDFDocumentCreateWithURL(
+    url: Option<&CFURL>,
+) -> Option<CFRetained<CGPDFDocument>> {
+    extern "C-unwind" {
+        fn CGPDFDocumentCreateWithURL(url: Option<&CFURL>) -> *mut CGPDFDocument;
+    }
+    let ret = unsafe { CGPDFDocumentCreateWithURL(url) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -123,12 +137,20 @@ extern "C-unwind" {
     pub fn CGPDFDocumentGetNumberOfPages(document: Option<&CGPDFDocument>) -> usize;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGPDFPage")]
-    pub fn CGPDFDocumentGetPage(
-        document: Option<&CGPDFDocument>,
-        page_number: usize,
-    ) -> *mut CGPDFPage;
+#[cfg(feature = "CGPDFPage")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGPDFDocumentGetPage(
+    document: Option<&CGPDFDocument>,
+    page_number: usize,
+) -> Option<CFRetained<CGPDFPage>> {
+    extern "C-unwind" {
+        fn CGPDFDocumentGetPage(
+            document: Option<&CGPDFDocument>,
+            page_number: usize,
+        ) -> *mut CGPDFPage;
+    }
+    let ret = unsafe { CGPDFDocumentGetPage(document, page_number) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -150,8 +172,15 @@ extern "C-unwind" {
     pub fn CGPDFDocumentGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    pub fn CGPDFDocumentGetOutline(document: &CGPDFDocument) -> *mut CFDictionary;
+#[inline]
+pub unsafe extern "C-unwind" fn CGPDFDocumentGetOutline(
+    document: &CGPDFDocument,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CGPDFDocumentGetOutline(document: &CGPDFDocument) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CGPDFDocumentGetOutline(document) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

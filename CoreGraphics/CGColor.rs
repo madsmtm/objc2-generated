@@ -20,76 +20,172 @@ cf_type!(
     unsafe impl CGColor {}
 );
 
-extern "C-unwind" {
-    #[cfg(feature = "CGColorSpace")]
-    pub fn CGColorCreate(space: Option<&CGColorSpace>, components: *const CGFloat) -> *mut CGColor;
+#[cfg(feature = "CGColorSpace")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGColorCreate(
+    space: Option<&CGColorSpace>,
+    components: *const CGFloat,
+) -> Option<CFRetained<CGColor>> {
+    extern "C-unwind" {
+        fn CGColorCreate(space: Option<&CGColorSpace>, components: *const CGFloat) -> *mut CGColor;
+    }
+    let ret = unsafe { CGColorCreate(space, components) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGColorCreateGenericGray(gray: CGFloat, alpha: CGFloat) -> NonNull<CGColor>;
+#[inline]
+pub unsafe extern "C-unwind" fn CGColorCreateGenericGray(
+    gray: CGFloat,
+    alpha: CGFloat,
+) -> CFRetained<CGColor> {
+    extern "C-unwind" {
+        fn CGColorCreateGenericGray(gray: CGFloat, alpha: CGFloat) -> NonNull<CGColor>;
+    }
+    let ret = unsafe { CGColorCreateGenericGray(gray, alpha) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    pub fn CGColorCreateGenericRGB(
-        red: CGFloat,
-        green: CGFloat,
-        blue: CGFloat,
-        alpha: CGFloat,
-    ) -> NonNull<CGColor>;
+#[inline]
+pub unsafe extern "C-unwind" fn CGColorCreateGenericRGB(
+    red: CGFloat,
+    green: CGFloat,
+    blue: CGFloat,
+    alpha: CGFloat,
+) -> CFRetained<CGColor> {
+    extern "C-unwind" {
+        fn CGColorCreateGenericRGB(
+            red: CGFloat,
+            green: CGFloat,
+            blue: CGFloat,
+            alpha: CGFloat,
+        ) -> NonNull<CGColor>;
+    }
+    let ret = unsafe { CGColorCreateGenericRGB(red, green, blue, alpha) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    pub fn CGColorCreateGenericCMYK(
-        cyan: CGFloat,
-        magenta: CGFloat,
-        yellow: CGFloat,
-        black: CGFloat,
-        alpha: CGFloat,
-    ) -> NonNull<CGColor>;
+#[inline]
+pub unsafe extern "C-unwind" fn CGColorCreateGenericCMYK(
+    cyan: CGFloat,
+    magenta: CGFloat,
+    yellow: CGFloat,
+    black: CGFloat,
+    alpha: CGFloat,
+) -> CFRetained<CGColor> {
+    extern "C-unwind" {
+        fn CGColorCreateGenericCMYK(
+            cyan: CGFloat,
+            magenta: CGFloat,
+            yellow: CGFloat,
+            black: CGFloat,
+            alpha: CGFloat,
+        ) -> NonNull<CGColor>;
+    }
+    let ret = unsafe { CGColorCreateGenericCMYK(cyan, magenta, yellow, black, alpha) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    pub fn CGColorCreateGenericGrayGamma2_2(gray: CGFloat, alpha: CGFloat) -> NonNull<CGColor>;
+#[inline]
+pub unsafe extern "C-unwind" fn CGColorCreateGenericGrayGamma2_2(
+    gray: CGFloat,
+    alpha: CGFloat,
+) -> CFRetained<CGColor> {
+    extern "C-unwind" {
+        fn CGColorCreateGenericGrayGamma2_2(gray: CGFloat, alpha: CGFloat) -> NonNull<CGColor>;
+    }
+    let ret = unsafe { CGColorCreateGenericGrayGamma2_2(gray, alpha) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    pub fn CGColorCreateSRGB(
-        red: CGFloat,
-        green: CGFloat,
-        blue: CGFloat,
-        alpha: CGFloat,
-    ) -> NonNull<CGColor>;
+#[inline]
+pub unsafe extern "C-unwind" fn CGColorCreateSRGB(
+    red: CGFloat,
+    green: CGFloat,
+    blue: CGFloat,
+    alpha: CGFloat,
+) -> CFRetained<CGColor> {
+    extern "C-unwind" {
+        fn CGColorCreateSRGB(
+            red: CGFloat,
+            green: CGFloat,
+            blue: CGFloat,
+            alpha: CGFloat,
+        ) -> NonNull<CGColor>;
+    }
+    let ret = unsafe { CGColorCreateSRGB(red, green, blue, alpha) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    pub fn CGColorGetConstantColor(color_name: Option<&CFString>) -> *mut CGColor;
+#[inline]
+pub unsafe extern "C-unwind" fn CGColorGetConstantColor(
+    color_name: Option<&CFString>,
+) -> Option<CFRetained<CGColor>> {
+    extern "C-unwind" {
+        fn CGColorGetConstantColor(color_name: Option<&CFString>) -> *mut CGColor;
+    }
+    let ret = unsafe { CGColorGetConstantColor(color_name) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGColorSpace", feature = "CGPattern"))]
-    pub fn CGColorCreateWithPattern(
-        space: Option<&CGColorSpace>,
-        pattern: Option<&CGPattern>,
-        components: *const CGFloat,
-    ) -> *mut CGColor;
+#[cfg(all(feature = "CGColorSpace", feature = "CGPattern"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGColorCreateWithPattern(
+    space: Option<&CGColorSpace>,
+    pattern: Option<&CGPattern>,
+    components: *const CGFloat,
+) -> Option<CFRetained<CGColor>> {
+    extern "C-unwind" {
+        fn CGColorCreateWithPattern(
+            space: Option<&CGColorSpace>,
+            pattern: Option<&CGPattern>,
+            components: *const CGFloat,
+        ) -> *mut CGColor;
+    }
+    let ret = unsafe { CGColorCreateWithPattern(space, pattern, components) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGColorCreateCopy(color: Option<&CGColor>) -> *mut CGColor;
+#[inline]
+pub unsafe extern "C-unwind" fn CGColorCreateCopy(
+    color: Option<&CGColor>,
+) -> Option<CFRetained<CGColor>> {
+    extern "C-unwind" {
+        fn CGColorCreateCopy(color: Option<&CGColor>) -> *mut CGColor;
+    }
+    let ret = unsafe { CGColorCreateCopy(color) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGColorCreateCopyWithAlpha(color: Option<&CGColor>, alpha: CGFloat) -> *mut CGColor;
+#[inline]
+pub unsafe extern "C-unwind" fn CGColorCreateCopyWithAlpha(
+    color: Option<&CGColor>,
+    alpha: CGFloat,
+) -> Option<CFRetained<CGColor>> {
+    extern "C-unwind" {
+        fn CGColorCreateCopyWithAlpha(color: Option<&CGColor>, alpha: CGFloat) -> *mut CGColor;
+    }
+    let ret = unsafe { CGColorCreateCopyWithAlpha(color, alpha) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGColorSpace")]
-    pub fn CGColorCreateCopyByMatchingToColorSpace(
-        _: Option<&CGColorSpace>,
-        intent: CGColorRenderingIntent,
-        color: Option<&CGColor>,
-        options: Option<&CFDictionary>,
-    ) -> *mut CGColor;
+#[cfg(feature = "CGColorSpace")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGColorCreateCopyByMatchingToColorSpace(
+    param1: Option<&CGColorSpace>,
+    intent: CGColorRenderingIntent,
+    color: Option<&CGColor>,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CGColor>> {
+    extern "C-unwind" {
+        fn CGColorCreateCopyByMatchingToColorSpace(
+            param1: Option<&CGColorSpace>,
+            intent: CGColorRenderingIntent,
+            color: Option<&CGColor>,
+            options: Option<&CFDictionary>,
+        ) -> *mut CGColor;
+    }
+    let ret = unsafe { CGColorCreateCopyByMatchingToColorSpace(param1, intent, color, options) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -108,14 +204,28 @@ extern "C-unwind" {
     pub fn CGColorGetAlpha(color: Option<&CGColor>) -> CGFloat;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGColorSpace")]
-    pub fn CGColorGetColorSpace(color: Option<&CGColor>) -> *mut CGColorSpace;
+#[cfg(feature = "CGColorSpace")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGColorGetColorSpace(
+    color: Option<&CGColor>,
+) -> Option<CFRetained<CGColorSpace>> {
+    extern "C-unwind" {
+        fn CGColorGetColorSpace(color: Option<&CGColor>) -> *mut CGColorSpace;
+    }
+    let ret = unsafe { CGColorGetColorSpace(color) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGPattern")]
-    pub fn CGColorGetPattern(color: Option<&CGColor>) -> *mut CGPattern;
+#[cfg(feature = "CGPattern")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGColorGetPattern(
+    color: Option<&CGColor>,
+) -> Option<CFRetained<CGPattern>> {
+    extern "C-unwind" {
+        fn CGColorGetPattern(color: Option<&CGColor>) -> *mut CGPattern;
+    }
+    let ret = unsafe { CGColorGetPattern(color) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

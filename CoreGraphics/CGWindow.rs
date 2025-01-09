@@ -156,22 +156,45 @@ unsafe impl RefEncode for CGWindowListOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn CGWindowListCopyWindowInfo(
-        option: CGWindowListOption,
-        relative_to_window: CGWindowID,
-    ) -> *mut CFArray;
+#[inline]
+pub unsafe extern "C-unwind" fn CGWindowListCopyWindowInfo(
+    option: CGWindowListOption,
+    relative_to_window: CGWindowID,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CGWindowListCopyWindowInfo(
+            option: CGWindowListOption,
+            relative_to_window: CGWindowID,
+        ) -> *mut CFArray;
+    }
+    let ret = unsafe { CGWindowListCopyWindowInfo(option, relative_to_window) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGWindowListCreate(
-        option: CGWindowListOption,
-        relative_to_window: CGWindowID,
-    ) -> *mut CFArray;
+#[inline]
+pub unsafe extern "C-unwind" fn CGWindowListCreate(
+    option: CGWindowListOption,
+    relative_to_window: CGWindowID,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CGWindowListCreate(
+            option: CGWindowListOption,
+            relative_to_window: CGWindowID,
+        ) -> *mut CFArray;
+    }
+    let ret = unsafe { CGWindowListCreate(option, relative_to_window) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGWindowListCreateDescriptionFromArray(window_array: Option<&CFArray>) -> *mut CFArray;
+#[inline]
+pub unsafe extern "C-unwind" fn CGWindowListCreateDescriptionFromArray(
+    window_array: Option<&CFArray>,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CGWindowListCreateDescriptionFromArray(window_array: Option<&CFArray>) -> *mut CFArray;
+    }
+    let ret = unsafe { CGWindowListCreateDescriptionFromArray(window_array) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowimageoption?language=objc)
@@ -206,25 +229,46 @@ unsafe impl RefEncode for CGWindowImageOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGImage")]
-    #[deprecated = "Please use ScreenCaptureKit instead."]
-    pub fn CGWindowListCreateImage(
-        screen_bounds: CGRect,
-        list_option: CGWindowListOption,
-        window_id: CGWindowID,
-        image_option: CGWindowImageOption,
-    ) -> *mut CGImage;
+#[cfg(feature = "CGImage")]
+#[deprecated = "Please use ScreenCaptureKit instead."]
+#[inline]
+pub unsafe extern "C-unwind" fn CGWindowListCreateImage(
+    screen_bounds: CGRect,
+    list_option: CGWindowListOption,
+    window_id: CGWindowID,
+    image_option: CGWindowImageOption,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGWindowListCreateImage(
+            screen_bounds: CGRect,
+            list_option: CGWindowListOption,
+            window_id: CGWindowID,
+            image_option: CGWindowImageOption,
+        ) -> *mut CGImage;
+    }
+    let ret =
+        unsafe { CGWindowListCreateImage(screen_bounds, list_option, window_id, image_option) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGImage")]
-    #[deprecated = "Please use ScreenCaptureKit instead."]
-    pub fn CGWindowListCreateImageFromArray(
-        screen_bounds: CGRect,
-        window_array: &CFArray,
-        image_option: CGWindowImageOption,
-    ) -> *mut CGImage;
+#[cfg(feature = "CGImage")]
+#[deprecated = "Please use ScreenCaptureKit instead."]
+#[inline]
+pub unsafe extern "C-unwind" fn CGWindowListCreateImageFromArray(
+    screen_bounds: CGRect,
+    window_array: &CFArray,
+    image_option: CGWindowImageOption,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGWindowListCreateImageFromArray(
+            screen_bounds: CGRect,
+            window_array: &CFArray,
+            image_option: CGWindowImageOption,
+        ) -> *mut CGImage;
+    }
+    let ret =
+        unsafe { CGWindowListCreateImageFromArray(screen_bounds, window_array, image_option) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

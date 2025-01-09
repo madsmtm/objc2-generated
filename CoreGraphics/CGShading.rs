@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -23,28 +24,66 @@ extern "C-unwind" {
     pub fn CGShadingGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
-    pub fn CGShadingCreateAxial(
-        space: Option<&CGColorSpace>,
-        start: CGPoint,
-        end: CGPoint,
-        function: Option<&CGFunction>,
-        extend_start: bool,
-        extend_end: bool,
-    ) -> *mut CGShading;
+#[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGShadingCreateAxial(
+    space: Option<&CGColorSpace>,
+    start: CGPoint,
+    end: CGPoint,
+    function: Option<&CGFunction>,
+    extend_start: bool,
+    extend_end: bool,
+) -> Option<CFRetained<CGShading>> {
+    extern "C-unwind" {
+        fn CGShadingCreateAxial(
+            space: Option<&CGColorSpace>,
+            start: CGPoint,
+            end: CGPoint,
+            function: Option<&CGFunction>,
+            extend_start: bool,
+            extend_end: bool,
+        ) -> *mut CGShading;
+    }
+    let ret =
+        unsafe { CGShadingCreateAxial(space, start, end, function, extend_start, extend_end) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
-    pub fn CGShadingCreateRadial(
-        space: Option<&CGColorSpace>,
-        start: CGPoint,
-        start_radius: CGFloat,
-        end: CGPoint,
-        end_radius: CGFloat,
-        function: Option<&CGFunction>,
-        extend_start: bool,
-        extend_end: bool,
-    ) -> *mut CGShading;
+#[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGShadingCreateRadial(
+    space: Option<&CGColorSpace>,
+    start: CGPoint,
+    start_radius: CGFloat,
+    end: CGPoint,
+    end_radius: CGFloat,
+    function: Option<&CGFunction>,
+    extend_start: bool,
+    extend_end: bool,
+) -> Option<CFRetained<CGShading>> {
+    extern "C-unwind" {
+        fn CGShadingCreateRadial(
+            space: Option<&CGColorSpace>,
+            start: CGPoint,
+            start_radius: CGFloat,
+            end: CGPoint,
+            end_radius: CGFloat,
+            function: Option<&CGFunction>,
+            extend_start: bool,
+            extend_end: bool,
+        ) -> *mut CGShading;
+    }
+    let ret = unsafe {
+        CGShadingCreateRadial(
+            space,
+            start,
+            start_radius,
+            end,
+            end_radius,
+            function,
+            extend_start,
+            extend_end,
+        )
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

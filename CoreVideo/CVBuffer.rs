@@ -92,24 +92,33 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    /// Returns a specific attachment of a CVBuffer object
-    ///
-    /// You can attach any CF object to a CVBuffer object to store additional information. CVBufferGetAttachment retrieves an attachement identified by a key.
-    ///
-    /// Parameter `buffer`: Target CVBuffer object.
-    ///
-    /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
-    ///
-    /// Parameter `attachmentMode`: Returns the mode of the attachment, if desired.  May be NULL.
-    ///
-    /// Returns: If found the attachment object
-    #[deprecated]
-    pub fn CVBufferGetAttachment(
-        buffer: &CVBuffer,
-        key: &CFString,
-        attachment_mode: *mut CVAttachmentMode,
-    ) -> *mut CFType;
+/// Returns a specific attachment of a CVBuffer object
+///
+/// You can attach any CF object to a CVBuffer object to store additional information. CVBufferGetAttachment retrieves an attachement identified by a key.
+///
+/// Parameter `buffer`: Target CVBuffer object.
+///
+/// Parameter `key`: Key in form of a CFString identifying the desired attachment.
+///
+/// Parameter `attachmentMode`: Returns the mode of the attachment, if desired.  May be NULL.
+///
+/// Returns: If found the attachment object
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CVBufferGetAttachment(
+    buffer: &CVBuffer,
+    key: &CFString,
+    attachment_mode: *mut CVAttachmentMode,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn CVBufferGetAttachment(
+            buffer: &CVBuffer,
+            key: &CFString,
+            attachment_mode: *mut CVAttachmentMode,
+        ) -> *mut CFType;
+    }
+    let ret = unsafe { CVBufferGetAttachment(buffer, key, attachment_mode) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -132,20 +141,28 @@ extern "C-unwind" {
     pub fn CVBufferRemoveAllAttachments(buffer: &CVBuffer);
 }
 
-extern "C-unwind" {
-    /// Returns all attachments of a CVBuffer object
-    ///
-    /// CVBufferGetAttachments is a convenience call that returns all attachments with their corresponding keys in a CFDictionary.
-    ///
-    /// Parameter `buffer`: Target CVBuffer object.
-    ///
-    /// Returns: A CFDictionary with all buffer attachments identified by there keys. If no attachment is present, the dictionary is empty.  Returns NULL
-    /// for invalid attachment mode.
-    #[deprecated]
-    pub fn CVBufferGetAttachments(
-        buffer: &CVBuffer,
-        attachment_mode: CVAttachmentMode,
-    ) -> *mut CFDictionary;
+/// Returns all attachments of a CVBuffer object
+///
+/// CVBufferGetAttachments is a convenience call that returns all attachments with their corresponding keys in a CFDictionary.
+///
+/// Parameter `buffer`: Target CVBuffer object.
+///
+/// Returns: A CFDictionary with all buffer attachments identified by there keys. If no attachment is present, the dictionary is empty.  Returns NULL
+/// for invalid attachment mode.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CVBufferGetAttachments(
+    buffer: &CVBuffer,
+    attachment_mode: CVAttachmentMode,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CVBufferGetAttachments(
+            buffer: &CVBuffer,
+            attachment_mode: CVAttachmentMode,
+        ) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CVBufferGetAttachments(buffer, attachment_mode) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -173,37 +190,54 @@ extern "C-unwind" {
     pub fn CVBufferPropagateAttachments(source_buffer: &CVBuffer, destination_buffer: &CVBuffer);
 }
 
-extern "C-unwind" {
-    /// Returns a copy of all attachments of a CVBuffer object. It is the caller’s responsibility to release the returned dictionary.
-    ///
-    /// CVBufferCopyAttachments is a convenience call that returns a copy of all attachments with their corresponding keys in a CFDictionary.
-    ///
-    /// Parameter `buffer`: Target CVBuffer object.
-    ///
-    /// Returns: A CFDictionary with all buffer attachments identified by their keys. If no attachment is present or invalid attachment mode,   returns NULL
-    pub fn CVBufferCopyAttachments(
-        buffer: &CVBuffer,
-        attachment_mode: CVAttachmentMode,
-    ) -> *mut CFDictionary;
+/// Returns a copy of all attachments of a CVBuffer object. It is the caller’s responsibility to release the returned dictionary.
+///
+/// CVBufferCopyAttachments is a convenience call that returns a copy of all attachments with their corresponding keys in a CFDictionary.
+///
+/// Parameter `buffer`: Target CVBuffer object.
+///
+/// Returns: A CFDictionary with all buffer attachments identified by their keys. If no attachment is present or invalid attachment mode,   returns NULL
+#[inline]
+pub unsafe extern "C-unwind" fn CVBufferCopyAttachments(
+    buffer: &CVBuffer,
+    attachment_mode: CVAttachmentMode,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CVBufferCopyAttachments(
+            buffer: &CVBuffer,
+            attachment_mode: CVAttachmentMode,
+        ) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CVBufferCopyAttachments(buffer, attachment_mode) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns a retained specific attachment of a CVBuffer object. It is the caller’s responsibility to release the returned value.
-    ///
-    /// You can attach any CF object to a CVBuffer object to store additional information. CVBufferCopyAttachment retrieves a retained attachment identified by a key.
-    ///
-    /// Parameter `buffer`: Target CVBuffer object.
-    ///
-    /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
-    ///
-    /// Parameter `attachmentMode`: Returns the mode of the attachment, if desired.  May be NULL.
-    ///
-    /// Returns: If found the attachment object, return the value; otherwize, return NULL.
-    pub fn CVBufferCopyAttachment(
-        buffer: &CVBuffer,
-        key: &CFString,
-        attachment_mode: *mut CVAttachmentMode,
-    ) -> *mut CFType;
+/// Returns a retained specific attachment of a CVBuffer object. It is the caller’s responsibility to release the returned value.
+///
+/// You can attach any CF object to a CVBuffer object to store additional information. CVBufferCopyAttachment retrieves a retained attachment identified by a key.
+///
+/// Parameter `buffer`: Target CVBuffer object.
+///
+/// Parameter `key`: Key in form of a CFString identifying the desired attachment.
+///
+/// Parameter `attachmentMode`: Returns the mode of the attachment, if desired.  May be NULL.
+///
+/// Returns: If found the attachment object, return the value; otherwize, return NULL.
+#[inline]
+pub unsafe extern "C-unwind" fn CVBufferCopyAttachment(
+    buffer: &CVBuffer,
+    key: &CFString,
+    attachment_mode: *mut CVAttachmentMode,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn CVBufferCopyAttachment(
+            buffer: &CVBuffer,
+            key: &CFString,
+            attachment_mode: *mut CVAttachmentMode,
+        ) -> *mut CFType;
+    }
+    let ret = unsafe { CVBufferCopyAttachment(buffer, key, attachment_mode) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

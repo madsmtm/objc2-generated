@@ -458,16 +458,24 @@ extern "C-unwind" {
     pub fn CMTimeAbsoluteValue(time: CMTime) -> CMTime;
 }
 
-extern "C-unwind" {
-    /// Returns a CFDictionary version of a CMTime.
-    ///
-    /// This is useful when putting CMTimes in CF container types.
-    ///
-    /// Returns: A CFDictionary version of the CMTime.
-    pub fn CMTimeCopyAsDictionary(
-        time: CMTime,
-        allocator: Option<&CFAllocator>,
-    ) -> *mut CFDictionary;
+/// Returns a CFDictionary version of a CMTime.
+///
+/// This is useful when putting CMTimes in CF container types.
+///
+/// Returns: A CFDictionary version of the CMTime.
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimeCopyAsDictionary(
+    time: CMTime,
+    allocator: Option<&CFAllocator>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CMTimeCopyAsDictionary(
+            time: CMTime,
+            allocator: Option<&CFAllocator>,
+        ) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CMTimeCopyAsDictionary(time, allocator) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -508,15 +516,23 @@ extern "C" {
     pub static kCMTimeFlagsKey: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Creates a CFString with a description of a CMTime (just like CFCopyDescription).
-    ///
-    /// This is used from within CFShow on an object that contains CMTime fields. It is
-    /// also useful from other client debugging code.  The caller owns the returned
-    /// CFString, and is responsible for releasing it.
-    ///
-    /// Returns: The created CFString description.
-    pub fn CMTimeCopyDescription(allocator: Option<&CFAllocator>, time: CMTime) -> *mut CFString;
+/// Creates a CFString with a description of a CMTime (just like CFCopyDescription).
+///
+/// This is used from within CFShow on an object that contains CMTime fields. It is
+/// also useful from other client debugging code.  The caller owns the returned
+/// CFString, and is responsible for releasing it.
+///
+/// Returns: The created CFString description.
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimeCopyDescription(
+    allocator: Option<&CFAllocator>,
+    time: CMTime,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CMTimeCopyDescription(allocator: Option<&CFAllocator>, time: CMTime) -> *mut CFString;
+    }
+    let ret = unsafe { CMTimeCopyDescription(allocator, time) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

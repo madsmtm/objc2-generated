@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -49,9 +50,16 @@ unsafe impl RefEncode for CGPDFBox {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGPDFDocument")]
-    pub fn CGPDFPageGetDocument(page: Option<&CGPDFPage>) -> *mut CGPDFDocument;
+#[cfg(feature = "CGPDFDocument")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGPDFPageGetDocument(
+    page: Option<&CGPDFPage>,
+) -> Option<CFRetained<CGPDFDocument>> {
+    extern "C-unwind" {
+        fn CGPDFPageGetDocument(page: Option<&CGPDFPage>) -> *mut CGPDFDocument;
+    }
+    let ret = unsafe { CGPDFPageGetDocument(page) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

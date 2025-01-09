@@ -96,12 +96,17 @@ extern "C-unwind" {
     pub fn CMClockGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    /// Returns a reference to the singleton clock logically identified with host time.
-    ///
-    /// On Mac OS X, the host time clock uses mach_absolute_time but returns a value
-    /// with a large integer timescale (eg, nanoseconds).
-    pub fn CMClockGetHostTimeClock() -> NonNull<CMClock>;
+/// Returns a reference to the singleton clock logically identified with host time.
+///
+/// On Mac OS X, the host time clock uses mach_absolute_time but returns a value
+/// with a large integer timescale (eg, nanoseconds).
+#[inline]
+pub unsafe extern "C-unwind" fn CMClockGetHostTimeClock() -> CFRetained<CMClock> {
+    extern "C-unwind" {
+        fn CMClockGetHostTimeClock() -> NonNull<CMClock>;
+    }
+    let ret = unsafe { CMClockGetHostTimeClock() };
+    unsafe { CFRetained::retain(ret) }
 }
 
 extern "C-unwind" {
@@ -185,68 +190,124 @@ extern "C-unwind" {
 
 // TODO: pub fn CMTimebaseCreateWithSourceTimebase(allocator: Option<&CFAllocator>,source_timebase: &CMTimebase,timebase_out: NonNull<*mut CMTimebase>,) -> OSStatus;
 
-extern "C-unwind" {
-    #[deprecated]
-    pub fn CMTimebaseCopyMasterTimebase(timebase: &CMTimebase) -> *mut CMTimebase;
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimebaseCopyMasterTimebase(
+    timebase: &CMTimebase,
+) -> Option<CFRetained<CMTimebase>> {
+    extern "C-unwind" {
+        fn CMTimebaseCopyMasterTimebase(timebase: &CMTimebase) -> *mut CMTimebase;
+    }
+    let ret = unsafe { CMTimebaseCopyMasterTimebase(timebase) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 // TODO: pub fn CMTimebaseCopySourceTimebase(timebase: &CMTimebase,) -> *mut CMTimebase;
 
-extern "C-unwind" {
-    #[deprecated]
-    pub fn CMTimebaseCopyMasterClock(timebase: &CMTimebase) -> *mut CMClock;
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimebaseCopyMasterClock(
+    timebase: &CMTimebase,
+) -> Option<CFRetained<CMClock>> {
+    extern "C-unwind" {
+        fn CMTimebaseCopyMasterClock(timebase: &CMTimebase) -> *mut CMClock;
+    }
+    let ret = unsafe { CMTimebaseCopyMasterClock(timebase) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 // TODO: pub fn CMTimebaseCopySourceClock(timebase: &CMTimebase,) -> *mut CMClock;
 
-extern "C-unwind" {
-    #[deprecated]
-    pub fn CMTimebaseCopyMaster(timebase: &CMTimebase) -> NonNull<CMClockOrTimebase>;
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimebaseCopyMaster(
+    timebase: &CMTimebase,
+) -> CFRetained<CMClockOrTimebase> {
+    extern "C-unwind" {
+        fn CMTimebaseCopyMaster(timebase: &CMTimebase) -> NonNull<CMClockOrTimebase>;
+    }
+    let ret = unsafe { CMTimebaseCopyMaster(timebase) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 // TODO: pub fn CMTimebaseCopySource(timebase: &CMTimebase,) -> NonNull<CMClockOrTimebase>;
 
-extern "C-unwind" {
-    #[deprecated]
-    pub fn CMTimebaseCopyUltimateMasterClock(timebase: &CMTimebase) -> NonNull<CMClock>;
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimebaseCopyUltimateMasterClock(
+    timebase: &CMTimebase,
+) -> CFRetained<CMClock> {
+    extern "C-unwind" {
+        fn CMTimebaseCopyUltimateMasterClock(timebase: &CMTimebase) -> NonNull<CMClock>;
+    }
+    let ret = unsafe { CMTimebaseCopyUltimateMasterClock(timebase) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 // TODO: pub fn CMTimebaseCopyUltimateSourceClock(timebase: &CMTimebase,) -> NonNull<CMClock>;
 
-extern "C-unwind" {
-    /// Returns the immediate source timebase of a timebase.
-    ///
-    /// Returns NULL if the timebase actually has a source clock instead of a source timebase.
-    /// Please use CMTimebaseCopySourceTimebase instead.
-    #[deprecated]
-    pub fn CMTimebaseGetMasterTimebase(timebase: &CMTimebase) -> *mut CMTimebase;
+/// Returns the immediate source timebase of a timebase.
+///
+/// Returns NULL if the timebase actually has a source clock instead of a source timebase.
+/// Please use CMTimebaseCopySourceTimebase instead.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimebaseGetMasterTimebase(
+    timebase: &CMTimebase,
+) -> Option<CFRetained<CMTimebase>> {
+    extern "C-unwind" {
+        fn CMTimebaseGetMasterTimebase(timebase: &CMTimebase) -> *mut CMTimebase;
+    }
+    let ret = unsafe { CMTimebaseGetMasterTimebase(timebase) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the immediate source clock of a timebase.
-    ///
-    /// Returns NULL if the timebase actually has a source timebase instead of a source clock.
-    /// Please use CMTimebaseCopySourceClock instead.
-    #[deprecated]
-    pub fn CMTimebaseGetMasterClock(timebase: &CMTimebase) -> *mut CMClock;
+/// Returns the immediate source clock of a timebase.
+///
+/// Returns NULL if the timebase actually has a source timebase instead of a source clock.
+/// Please use CMTimebaseCopySourceClock instead.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimebaseGetMasterClock(
+    timebase: &CMTimebase,
+) -> Option<CFRetained<CMClock>> {
+    extern "C-unwind" {
+        fn CMTimebaseGetMasterClock(timebase: &CMTimebase) -> *mut CMClock;
+    }
+    let ret = unsafe { CMTimebaseGetMasterClock(timebase) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the immediate source (either timebase or clock) of a timebase.
-    ///
-    /// Only returns NULL if there was an error (such as timebase == NULL).
-    /// Example of use: time = CMSyncGetTime(CMTimebaseGetMaster(timebase));
-    /// Please use CMTimebaseCopySource instead.
-    #[deprecated]
-    pub fn CMTimebaseGetMaster(timebase: &CMTimebase) -> *mut CMClockOrTimebase;
+/// Returns the immediate source (either timebase or clock) of a timebase.
+///
+/// Only returns NULL if there was an error (such as timebase == NULL).
+/// Example of use: time = CMSyncGetTime(CMTimebaseGetMaster(timebase));
+/// Please use CMTimebaseCopySource instead.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimebaseGetMaster(
+    timebase: &CMTimebase,
+) -> Option<CFRetained<CMClockOrTimebase>> {
+    extern "C-unwind" {
+        fn CMTimebaseGetMaster(timebase: &CMTimebase) -> *mut CMClockOrTimebase;
+    }
+    let ret = unsafe { CMTimebaseGetMaster(timebase) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the source clock that is the source of all of a timebase's source timebases.
-    ///
-    /// Please use CMTimebaseCopyUltimateSourceClock instead.
-    #[deprecated]
-    pub fn CMTimebaseGetUltimateMasterClock(timebase: &CMTimebase) -> *mut CMClock;
+/// Returns the source clock that is the source of all of a timebase's source timebases.
+///
+/// Please use CMTimebaseCopyUltimateSourceClock instead.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimebaseGetUltimateMasterClock(
+    timebase: &CMTimebase,
+) -> Option<CFRetained<CMClock>> {
+    extern "C-unwind" {
+        fn CMTimebaseGetUltimateMasterClock(timebase: &CMTimebase) -> *mut CMClock;
+    }
+    let ret = unsafe { CMTimebaseGetUltimateMasterClock(timebase) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

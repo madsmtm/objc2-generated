@@ -148,17 +148,24 @@ extern "C-unwind" {
     pub fn CMFormatDescriptionGetMediaSubType(desc: &CMFormatDescription) -> FourCharCode;
 }
 
-extern "C-unwind" {
-    /// Returns an immutable dictionary containing all the extensions of a CMFormatDescription.
-    ///
-    /// If there are no extensions, NULL is returned. Extensions dictionaries are valid property list
-    /// objects.  This means that dictionary keys are all CFStrings, and the values are all either
-    /// CFNumber, CFString, CFBoolean, CFArray, CFDictionary, CFDate, or CFData. The returned
-    /// dictionary is not retained by this call, so clients are required to retain it if they
-    /// need to keep it longer.
-    ///
-    /// Returns: An immutable dictionary containing all the extensions of the CMFormatDescription.  May be NULL.
-    pub fn CMFormatDescriptionGetExtensions(desc: &CMFormatDescription) -> *mut CFDictionary;
+/// Returns an immutable dictionary containing all the extensions of a CMFormatDescription.
+///
+/// If there are no extensions, NULL is returned. Extensions dictionaries are valid property list
+/// objects.  This means that dictionary keys are all CFStrings, and the values are all either
+/// CFNumber, CFString, CFBoolean, CFArray, CFDictionary, CFDate, or CFData. The returned
+/// dictionary is not retained by this call, so clients are required to retain it if they
+/// need to keep it longer.
+///
+/// Returns: An immutable dictionary containing all the extensions of the CMFormatDescription.  May be NULL.
+#[inline]
+pub unsafe extern "C-unwind" fn CMFormatDescriptionGetExtensions(
+    desc: &CMFormatDescription,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CMFormatDescriptionGetExtensions(desc: &CMFormatDescription) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CMFormatDescriptionGetExtensions(desc) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C" {
@@ -220,21 +227,29 @@ extern "C" {
     pub static kCMFormatDescriptionExtension_VerbatimISOSampleEntry: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Returns the specified extension of a CMFormatDescription.
-    ///
-    /// If the named extension does not exist, NULL is returned. The extension is always a valid
-    /// property list object. This means that it will be either a CFNumber, CFString, CFBoolean,
-    /// CFArray, CFDictionary, CFDate, or CFData. If it is a CFDictionary, the keys will all be
-    /// CFStrings. The returned extension is not retained by this call, so it is only valid as
-    /// long as the CMFormatDescription is valid. Clients are required to retain it if they
-    /// need to keep it longer.
-    ///
-    /// Returns: The specified extension of the CMFormatDescription.  May be NULL.
-    pub fn CMFormatDescriptionGetExtension(
-        desc: &CMFormatDescription,
-        extension_key: &CFString,
-    ) -> *mut CFPropertyList;
+/// Returns the specified extension of a CMFormatDescription.
+///
+/// If the named extension does not exist, NULL is returned. The extension is always a valid
+/// property list object. This means that it will be either a CFNumber, CFString, CFBoolean,
+/// CFArray, CFDictionary, CFDate, or CFData. If it is a CFDictionary, the keys will all be
+/// CFStrings. The returned extension is not retained by this call, so it is only valid as
+/// long as the CMFormatDescription is valid. Clients are required to retain it if they
+/// need to keep it longer.
+///
+/// Returns: The specified extension of the CMFormatDescription.  May be NULL.
+#[inline]
+pub unsafe extern "C-unwind" fn CMFormatDescriptionGetExtension(
+    desc: &CMFormatDescription,
+    extension_key: &CFString,
+) -> Option<CFRetained<CFPropertyList>> {
+    extern "C-unwind" {
+        fn CMFormatDescriptionGetExtension(
+            desc: &CMFormatDescription,
+            extension_key: &CFString,
+        ) -> *mut CFPropertyList;
+    }
+    let ret = unsafe { CMFormatDescriptionGetExtension(desc, extension_key) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Four-character codes identifying the code type. Certain codec types are also audio formats.
@@ -1313,33 +1328,39 @@ extern "C-unwind" {
     ) -> CGRect;
 }
 
-extern "C-unwind" {
-    /// Returns an array of the keys that are used both as CMVideoFormatDescription extensions
-    /// and CVImageBuffer attachments and attributes.
-    ///
-    /// When specifying a CMFormatDescription for a CMSampleBuffer, the format description must
-    /// be consistent with formatting information attached to the CVImageBuffer. The width, height,
-    /// and codecType must match (for CVPixelBuffers the codec type is given by
-    /// CVPixelBufferGetPixelFormatType(pixelBuffer); for other CVImageBuffers, the codecType must be 0).
-    /// The format description extensions must match the image buffer attachments for all the keys in the
-    /// list returned by this function (if absent in either they must be absent in both).
-    ///
-    /// Currently, the list is:
-    ///
-    /// kCMFormatDescriptionExtension_CleanAperture
-    /// kCMFormatDescriptionExtension_FieldCount
-    /// kCMFormatDescriptionExtension_FieldDetail
-    /// kCMFormatDescriptionExtension_PixelAspectRatio
-    /// kCMFormatDescriptionExtension_ColorPrimaries
-    /// kCMFormatDescriptionExtension_TransferFunction
-    /// kCMFormatDescriptionExtension_GammaLevel
-    /// kCMFormatDescriptionExtension_YCbCrMatrix
-    /// kCMFormatDescriptionExtension_ICCProfile
-    /// kCMFormatDescriptionExtension_ChromaLocationTopField
-    /// kCMFormatDescriptionExtension_ChromaLocationBottomField
-    /// kCMFormatDescriptionExtension_MasteringDisplayColorVolume
-    /// kCMFormatDescriptionExtension_ContentLightLevelInfo
-    pub fn CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers() -> NonNull<CFArray>;
+/// Returns an array of the keys that are used both as CMVideoFormatDescription extensions
+/// and CVImageBuffer attachments and attributes.
+///
+/// When specifying a CMFormatDescription for a CMSampleBuffer, the format description must
+/// be consistent with formatting information attached to the CVImageBuffer. The width, height,
+/// and codecType must match (for CVPixelBuffers the codec type is given by
+/// CVPixelBufferGetPixelFormatType(pixelBuffer); for other CVImageBuffers, the codecType must be 0).
+/// The format description extensions must match the image buffer attachments for all the keys in the
+/// list returned by this function (if absent in either they must be absent in both).
+///
+/// Currently, the list is:
+///
+/// kCMFormatDescriptionExtension_CleanAperture
+/// kCMFormatDescriptionExtension_FieldCount
+/// kCMFormatDescriptionExtension_FieldDetail
+/// kCMFormatDescriptionExtension_PixelAspectRatio
+/// kCMFormatDescriptionExtension_ColorPrimaries
+/// kCMFormatDescriptionExtension_TransferFunction
+/// kCMFormatDescriptionExtension_GammaLevel
+/// kCMFormatDescriptionExtension_YCbCrMatrix
+/// kCMFormatDescriptionExtension_ICCProfile
+/// kCMFormatDescriptionExtension_ChromaLocationTopField
+/// kCMFormatDescriptionExtension_ChromaLocationBottomField
+/// kCMFormatDescriptionExtension_MasteringDisplayColorVolume
+/// kCMFormatDescriptionExtension_ContentLightLevelInfo
+#[inline]
+pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers(
+) -> CFRetained<CFArray> {
+    extern "C-unwind" {
+        fn CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers() -> NonNull<CFArray>;
+    }
+    let ret = unsafe { CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers() };
+    unsafe { CFRetained::retain(ret) }
 }
 
 extern "C-unwind" {
@@ -1909,15 +1930,30 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    pub fn CMMetadataFormatDescriptionGetKeyWithLocalID(
-        desc: &CMMetadataFormatDescription,
-        local_key_id: OSType,
-    ) -> *mut CFDictionary;
+#[inline]
+pub unsafe extern "C-unwind" fn CMMetadataFormatDescriptionGetKeyWithLocalID(
+    desc: &CMMetadataFormatDescription,
+    local_key_id: OSType,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CMMetadataFormatDescriptionGetKeyWithLocalID(
+            desc: &CMMetadataFormatDescription,
+            local_key_id: OSType,
+        ) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CMMetadataFormatDescriptionGetKeyWithLocalID(desc, local_key_id) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CMMetadataFormatDescriptionGetIdentifiers(
-        desc: &CMMetadataFormatDescription,
-    ) -> *mut CFArray;
+#[inline]
+pub unsafe extern "C-unwind" fn CMMetadataFormatDescriptionGetIdentifiers(
+    desc: &CMMetadataFormatDescription,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CMMetadataFormatDescriptionGetIdentifiers(
+            desc: &CMMetadataFormatDescription,
+        ) -> *mut CFArray;
+    }
+    let ret = unsafe { CMMetadataFormatDescriptionGetIdentifiers(desc) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }

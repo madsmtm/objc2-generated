@@ -41,12 +41,20 @@ extern "C" {
     pub static kCFPreferencesCurrentUser: &'static CFString;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFPreferencesCopyAppValue(
-        key: &CFString,
-        application_id: &CFString,
-    ) -> *mut CFPropertyList;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFPreferencesCopyAppValue(
+    key: &CFString,
+    application_id: &CFString,
+) -> Option<CFRetained<CFPropertyList>> {
+    extern "C-unwind" {
+        fn CFPreferencesCopyAppValue(
+            key: &CFString,
+            application_id: &CFString,
+        ) -> *mut CFPropertyList;
+    }
+    let ret = unsafe { CFPreferencesCopyAppValue(key, application_id) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -94,24 +102,45 @@ extern "C-unwind" {
     pub fn CFPreferencesAppSynchronize(application_id: &CFString) -> Boolean;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFPreferencesCopyValue(
-        key: &CFString,
-        application_id: &CFString,
-        user_name: &CFString,
-        host_name: &CFString,
-    ) -> *mut CFPropertyList;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFPreferencesCopyValue(
+    key: &CFString,
+    application_id: &CFString,
+    user_name: &CFString,
+    host_name: &CFString,
+) -> Option<CFRetained<CFPropertyList>> {
+    extern "C-unwind" {
+        fn CFPreferencesCopyValue(
+            key: &CFString,
+            application_id: &CFString,
+            user_name: &CFString,
+            host_name: &CFString,
+        ) -> *mut CFPropertyList;
+    }
+    let ret = unsafe { CFPreferencesCopyValue(key, application_id, user_name, host_name) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFArray", feature = "CFBase", feature = "CFDictionary"))]
-    pub fn CFPreferencesCopyMultiple(
-        keys_to_fetch: Option<&CFArray>,
-        application_id: &CFString,
-        user_name: &CFString,
-        host_name: &CFString,
-    ) -> NonNull<CFDictionary>;
+#[cfg(all(feature = "CFArray", feature = "CFBase", feature = "CFDictionary"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFPreferencesCopyMultiple(
+    keys_to_fetch: Option<&CFArray>,
+    application_id: &CFString,
+    user_name: &CFString,
+    host_name: &CFString,
+) -> CFRetained<CFDictionary> {
+    extern "C-unwind" {
+        fn CFPreferencesCopyMultiple(
+            keys_to_fetch: Option<&CFArray>,
+            application_id: &CFString,
+            user_name: &CFString,
+            host_name: &CFString,
+        ) -> NonNull<CFDictionary>;
+    }
+    let ret =
+        unsafe { CFPreferencesCopyMultiple(keys_to_fetch, application_id, user_name, host_name) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 extern "C-unwind" {
@@ -145,22 +174,39 @@ extern "C-unwind" {
     ) -> Boolean;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFArray", feature = "CFBase"))]
-    #[deprecated = "Unsupported API"]
-    pub fn CFPreferencesCopyApplicationList(
-        user_name: &CFString,
-        host_name: &CFString,
-    ) -> *mut CFArray;
+#[cfg(all(feature = "CFArray", feature = "CFBase"))]
+#[deprecated = "Unsupported API"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFPreferencesCopyApplicationList(
+    user_name: &CFString,
+    host_name: &CFString,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CFPreferencesCopyApplicationList(
+            user_name: &CFString,
+            host_name: &CFString,
+        ) -> *mut CFArray;
+    }
+    let ret = unsafe { CFPreferencesCopyApplicationList(user_name, host_name) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFArray", feature = "CFBase"))]
-    pub fn CFPreferencesCopyKeyList(
-        application_id: &CFString,
-        user_name: &CFString,
-        host_name: &CFString,
-    ) -> *mut CFArray;
+#[cfg(all(feature = "CFArray", feature = "CFBase"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFPreferencesCopyKeyList(
+    application_id: &CFString,
+    user_name: &CFString,
+    host_name: &CFString,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CFPreferencesCopyKeyList(
+            application_id: &CFString,
+            user_name: &CFString,
+            host_name: &CFString,
+        ) -> *mut CFArray;
+    }
+    let ret = unsafe { CFPreferencesCopyKeyList(application_id, user_name, host_name) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

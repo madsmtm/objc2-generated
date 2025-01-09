@@ -67,14 +67,28 @@ extern "C" {
     pub static kCMMemoryPoolOption_AgeOutPeriod: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Creates a new CMMemoryPool.
-    pub fn CMMemoryPoolCreate(options: Option<&CFDictionary>) -> NonNull<CMMemoryPool>;
+/// Creates a new CMMemoryPool.
+#[inline]
+pub unsafe extern "C-unwind" fn CMMemoryPoolCreate(
+    options: Option<&CFDictionary>,
+) -> CFRetained<CMMemoryPool> {
+    extern "C-unwind" {
+        fn CMMemoryPoolCreate(options: Option<&CFDictionary>) -> NonNull<CMMemoryPool>;
+    }
+    let ret = unsafe { CMMemoryPoolCreate(options) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns the pool's CFAllocator.
-    pub fn CMMemoryPoolGetAllocator(pool: &CMMemoryPool) -> NonNull<CFAllocator>;
+/// Returns the pool's CFAllocator.
+#[inline]
+pub unsafe extern "C-unwind" fn CMMemoryPoolGetAllocator(
+    pool: &CMMemoryPool,
+) -> CFRetained<CFAllocator> {
+    extern "C-unwind" {
+        fn CMMemoryPoolGetAllocator(pool: &CMMemoryPool) -> NonNull<CFAllocator>;
+    }
+    let ret = unsafe { CMMemoryPoolGetAllocator(pool) };
+    unsafe { CFRetained::retain(ret) }
 }
 
 extern "C-unwind" {

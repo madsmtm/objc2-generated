@@ -320,54 +320,82 @@ extern "C-unwind" {
     pub fn CMBufferQueueEnqueue(queue: &CMBufferQueue, buf: &CMBuffer) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Dequeues a buffer from a CMBufferQueue.
-    ///
-    /// The buffer is released by the queue, but it is also retained for the client. Buffer ownership is thereby
-    /// transferred from queue to client.  The client need not retain the buffer, but is responsible to release
-    /// it when done with it.
-    ///
-    /// Returns: The dequeued buffer.  Will be NULL if the queue is empty.
-    pub fn CMBufferQueueDequeueAndRetain(queue: &CMBufferQueue) -> *mut CMBuffer;
+/// Dequeues a buffer from a CMBufferQueue.
+///
+/// The buffer is released by the queue, but it is also retained for the client. Buffer ownership is thereby
+/// transferred from queue to client.  The client need not retain the buffer, but is responsible to release
+/// it when done with it.
+///
+/// Returns: The dequeued buffer.  Will be NULL if the queue is empty.
+#[inline]
+pub unsafe extern "C-unwind" fn CMBufferQueueDequeueAndRetain(
+    queue: &CMBufferQueue,
+) -> Option<CFRetained<CMBuffer>> {
+    extern "C-unwind" {
+        fn CMBufferQueueDequeueAndRetain(queue: &CMBufferQueue) -> *mut CMBuffer;
+    }
+    let ret = unsafe { CMBufferQueueDequeueAndRetain(queue) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Dequeues a buffer from a CMBufferQueue if it is ready.
-    ///
-    /// The buffer is released by the queue, but it is also retained for the client. Buffer ownership is thereby
-    /// transferred from queue to client.  The client need not retain the buffer, but is responsible to release
-    /// it when done with it.
-    ///
-    /// Returns: The dequeued buffer.  Will be NULL if the queue is empty, or if the buffer to be dequeued is not yet ready.
-    pub fn CMBufferQueueDequeueIfDataReadyAndRetain(queue: &CMBufferQueue) -> *mut CMBuffer;
+/// Dequeues a buffer from a CMBufferQueue if it is ready.
+///
+/// The buffer is released by the queue, but it is also retained for the client. Buffer ownership is thereby
+/// transferred from queue to client.  The client need not retain the buffer, but is responsible to release
+/// it when done with it.
+///
+/// Returns: The dequeued buffer.  Will be NULL if the queue is empty, or if the buffer to be dequeued is not yet ready.
+#[inline]
+pub unsafe extern "C-unwind" fn CMBufferQueueDequeueIfDataReadyAndRetain(
+    queue: &CMBufferQueue,
+) -> Option<CFRetained<CMBuffer>> {
+    extern "C-unwind" {
+        fn CMBufferQueueDequeueIfDataReadyAndRetain(queue: &CMBufferQueue) -> *mut CMBuffer;
+    }
+    let ret = unsafe { CMBufferQueueDequeueIfDataReadyAndRetain(queue) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Retrieves the next-to-dequeue buffer from a CMBufferQueue but leaves it in the queue.
-    ///
-    /// This follows CF "Get" semantics -- it does not retain the returned buffer.
-    /// Note that with non-FIFO queues it's not guaranteed that the next dequeue will return
-    /// this particular buffer (if an intervening Enqueue adds a buffer that will dequeue next).
-    /// This function is deprecated in favor of CMBufferQueueCopyHead() which returns a
-    /// retained buffer. When adopting CMBufferQueueCopyHead(), existing CFRetain() call
-    /// on the buffer returned from this function must be removed.
-    ///
-    /// Returns: The buffer.  Will be NULL if the queue is empty.
-    #[deprecated]
-    pub fn CMBufferQueueGetHead(queue: &CMBufferQueue) -> *mut CMBuffer;
+/// Retrieves the next-to-dequeue buffer from a CMBufferQueue but leaves it in the queue.
+///
+/// This follows CF "Get" semantics -- it does not retain the returned buffer.
+/// Note that with non-FIFO queues it's not guaranteed that the next dequeue will return
+/// this particular buffer (if an intervening Enqueue adds a buffer that will dequeue next).
+/// This function is deprecated in favor of CMBufferQueueCopyHead() which returns a
+/// retained buffer. When adopting CMBufferQueueCopyHead(), existing CFRetain() call
+/// on the buffer returned from this function must be removed.
+///
+/// Returns: The buffer.  Will be NULL if the queue is empty.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CMBufferQueueGetHead(
+    queue: &CMBufferQueue,
+) -> Option<CFRetained<CMBuffer>> {
+    extern "C-unwind" {
+        fn CMBufferQueueGetHead(queue: &CMBufferQueue) -> *mut CMBuffer;
+    }
+    let ret = unsafe { CMBufferQueueGetHead(queue) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Retrieves
-    /// &
-    /// retains the next-to-dequeue buffer from a CMBufferQueue but leaves it in the queue.
-    ///
-    /// This follows CF "Copy" semantics -- it retains the returned buffer.
-    /// Note that with non-FIFO queues it's not guaranteed that the next dequeue will return
-    /// this particular buffer (if an intervening Enqueue adds a buffer that will dequeue next).
-    ///
-    /// Returns: The retained buffer.  Will be NULL if the queue is empty.
-    pub fn CMBufferQueueCopyHead(queue: &CMBufferQueue) -> *mut CMBuffer;
+/// Retrieves
+/// &
+/// retains the next-to-dequeue buffer from a CMBufferQueue but leaves it in the queue.
+///
+/// This follows CF "Copy" semantics -- it retains the returned buffer.
+/// Note that with non-FIFO queues it's not guaranteed that the next dequeue will return
+/// this particular buffer (if an intervening Enqueue adds a buffer that will dequeue next).
+///
+/// Returns: The retained buffer.  Will be NULL if the queue is empty.
+#[inline]
+pub unsafe extern "C-unwind" fn CMBufferQueueCopyHead(
+    queue: &CMBufferQueue,
+) -> Option<CFRetained<CMBuffer>> {
+    extern "C-unwind" {
+        fn CMBufferQueueCopyHead(queue: &CMBufferQueue) -> *mut CMBuffer;
+    }
+    let ret = unsafe { CMBufferQueueCopyHead(queue) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

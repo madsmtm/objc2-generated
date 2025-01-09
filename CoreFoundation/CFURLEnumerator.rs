@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -63,23 +64,44 @@ unsafe impl RefEncode for CFURLEnumeratorOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFArray", feature = "CFBase", feature = "CFURL"))]
-    pub fn CFURLEnumeratorCreateForDirectoryURL(
-        alloc: Option<&CFAllocator>,
-        directory_url: Option<&CFURL>,
-        option: CFURLEnumeratorOptions,
-        property_keys: Option<&CFArray>,
-    ) -> *mut CFURLEnumerator;
+#[cfg(all(feature = "CFArray", feature = "CFBase", feature = "CFURL"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFURLEnumeratorCreateForDirectoryURL(
+    alloc: Option<&CFAllocator>,
+    directory_url: Option<&CFURL>,
+    option: CFURLEnumeratorOptions,
+    property_keys: Option<&CFArray>,
+) -> Option<CFRetained<CFURLEnumerator>> {
+    extern "C-unwind" {
+        fn CFURLEnumeratorCreateForDirectoryURL(
+            alloc: Option<&CFAllocator>,
+            directory_url: Option<&CFURL>,
+            option: CFURLEnumeratorOptions,
+            property_keys: Option<&CFArray>,
+        ) -> *mut CFURLEnumerator;
+    }
+    let ret = unsafe {
+        CFURLEnumeratorCreateForDirectoryURL(alloc, directory_url, option, property_keys)
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFArray", feature = "CFBase"))]
-    pub fn CFURLEnumeratorCreateForMountedVolumes(
-        alloc: Option<&CFAllocator>,
-        option: CFURLEnumeratorOptions,
-        property_keys: Option<&CFArray>,
-    ) -> *mut CFURLEnumerator;
+#[cfg(all(feature = "CFArray", feature = "CFBase"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFURLEnumeratorCreateForMountedVolumes(
+    alloc: Option<&CFAllocator>,
+    option: CFURLEnumeratorOptions,
+    property_keys: Option<&CFArray>,
+) -> Option<CFRetained<CFURLEnumerator>> {
+    extern "C-unwind" {
+        fn CFURLEnumeratorCreateForMountedVolumes(
+            alloc: Option<&CFAllocator>,
+            option: CFURLEnumeratorOptions,
+            property_keys: Option<&CFArray>,
+        ) -> *mut CFURLEnumerator;
+    }
+    let ret = unsafe { CFURLEnumeratorCreateForMountedVolumes(alloc, option, property_keys) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult?language=objc)

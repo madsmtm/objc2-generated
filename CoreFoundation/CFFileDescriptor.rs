@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -71,15 +72,27 @@ extern "C-unwind" {
     pub fn CFFileDescriptorGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFFileDescriptorCreate(
-        allocator: Option<&CFAllocator>,
-        fd: CFFileDescriptorNativeDescriptor,
-        close_on_invalidate: Boolean,
-        callout: CFFileDescriptorCallBack,
-        context: *const CFFileDescriptorContext,
-    ) -> *mut CFFileDescriptor;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFFileDescriptorCreate(
+    allocator: Option<&CFAllocator>,
+    fd: CFFileDescriptorNativeDescriptor,
+    close_on_invalidate: Boolean,
+    callout: CFFileDescriptorCallBack,
+    context: *const CFFileDescriptorContext,
+) -> Option<CFRetained<CFFileDescriptor>> {
+    extern "C-unwind" {
+        fn CFFileDescriptorCreate(
+            allocator: Option<&CFAllocator>,
+            fd: CFFileDescriptorNativeDescriptor,
+            close_on_invalidate: Boolean,
+            callout: CFFileDescriptorCallBack,
+            context: *const CFFileDescriptorContext,
+        ) -> *mut CFFileDescriptor;
+    }
+    let ret =
+        unsafe { CFFileDescriptorCreate(allocator, fd, close_on_invalidate, callout, context) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -120,11 +133,20 @@ extern "C-unwind" {
     pub fn CFFileDescriptorIsValid(f: Option<&CFFileDescriptor>) -> Boolean;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
-    pub fn CFFileDescriptorCreateRunLoopSource(
-        allocator: Option<&CFAllocator>,
-        f: Option<&CFFileDescriptor>,
-        order: CFIndex,
-    ) -> *mut CFRunLoopSource;
+#[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFFileDescriptorCreateRunLoopSource(
+    allocator: Option<&CFAllocator>,
+    f: Option<&CFFileDescriptor>,
+    order: CFIndex,
+) -> Option<CFRetained<CFRunLoopSource>> {
+    extern "C-unwind" {
+        fn CFFileDescriptorCreateRunLoopSource(
+            allocator: Option<&CFAllocator>,
+            f: Option<&CFFileDescriptor>,
+            order: CFIndex,
+        ) -> *mut CFRunLoopSource;
+    }
+    let ret = unsafe { CFFileDescriptorCreateRunLoopSource(allocator, f, order) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

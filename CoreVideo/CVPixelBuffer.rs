@@ -906,14 +906,21 @@ extern "C-unwind" {
     pub fn CVPixelBufferFillExtendedPixels(pixel_buffer: &CVPixelBuffer) -> CVReturn;
 }
 
-extern "C-unwind" {
-    /// Returns a copy of pixelBufferAttributes dictionary used to create the PixelBuffer.
-    ///
-    /// Can be used to create similar pixelbuffers.
-    ///
-    /// Parameter `pixelBuffer`: Target PixelBuffer.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    pub fn CVPixelBufferCopyCreationAttributes(
-        pixel_buffer: &CVPixelBuffer,
-    ) -> NonNull<CFDictionary>;
+/// Returns a copy of pixelBufferAttributes dictionary used to create the PixelBuffer.
+///
+/// Can be used to create similar pixelbuffers.
+///
+/// Parameter `pixelBuffer`: Target PixelBuffer.
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CVPixelBufferCopyCreationAttributes(
+    pixel_buffer: &CVPixelBuffer,
+) -> CFRetained<CFDictionary> {
+    extern "C-unwind" {
+        fn CVPixelBufferCopyCreationAttributes(
+            pixel_buffer: &CVPixelBuffer,
+        ) -> NonNull<CFDictionary>;
+    }
+    let ret = unsafe { CVPixelBufferCopyCreationAttributes(pixel_buffer) };
+    unsafe { CFRetained::from_raw(ret) }
 }

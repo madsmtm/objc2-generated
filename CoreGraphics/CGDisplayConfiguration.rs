@@ -277,9 +277,16 @@ extern "C-unwind" {
     pub fn CGDisplayRotation(display: CGDirectDisplayID) -> c_double;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGColorSpace", feature = "CGDirectDisplay"))]
-    pub fn CGDisplayCopyColorSpace(display: CGDirectDisplayID) -> NonNull<CGColorSpace>;
+#[cfg(all(feature = "CGColorSpace", feature = "CGDirectDisplay"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayCopyColorSpace(
+    display: CGDirectDisplayID,
+) -> CFRetained<CGColorSpace> {
+    extern "C-unwind" {
+        fn CGDisplayCopyColorSpace(display: CGDirectDisplayID) -> NonNull<CGColorSpace>;
+    }
+    let ret = unsafe { CGDisplayCopyColorSpace(display) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 extern "C-unwind" {

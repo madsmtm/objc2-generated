@@ -59,13 +59,34 @@ extern "C-unwind" {
     pub fn CGFunctionGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    pub fn CGFunctionCreate(
-        info: *mut c_void,
-        domain_dimension: usize,
-        domain: *const CGFloat,
-        range_dimension: usize,
-        range: *const CGFloat,
-        callbacks: *const CGFunctionCallbacks,
-    ) -> *mut CGFunction;
+#[inline]
+pub unsafe extern "C-unwind" fn CGFunctionCreate(
+    info: *mut c_void,
+    domain_dimension: usize,
+    domain: *const CGFloat,
+    range_dimension: usize,
+    range: *const CGFloat,
+    callbacks: *const CGFunctionCallbacks,
+) -> Option<CFRetained<CGFunction>> {
+    extern "C-unwind" {
+        fn CGFunctionCreate(
+            info: *mut c_void,
+            domain_dimension: usize,
+            domain: *const CGFloat,
+            range_dimension: usize,
+            range: *const CGFloat,
+            callbacks: *const CGFunctionCallbacks,
+        ) -> *mut CGFunction;
+    }
+    let ret = unsafe {
+        CGFunctionCreate(
+            info,
+            domain_dimension,
+            domain,
+            range_dimension,
+            range,
+            callbacks,
+        )
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -163,107 +164,265 @@ extern "C-unwind" {
     pub fn CGImageGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
-    pub fn CGImageCreate(
-        width: usize,
-        height: usize,
-        bits_per_component: usize,
-        bits_per_pixel: usize,
-        bytes_per_row: usize,
-        space: Option<&CGColorSpace>,
-        bitmap_info: CGBitmapInfo,
-        provider: Option<&CGDataProvider>,
-        decode: *const CGFloat,
-        should_interpolate: bool,
-        intent: CGColorRenderingIntent,
-    ) -> *mut CGImage;
+#[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageCreate(
+    width: usize,
+    height: usize,
+    bits_per_component: usize,
+    bits_per_pixel: usize,
+    bytes_per_row: usize,
+    space: Option<&CGColorSpace>,
+    bitmap_info: CGBitmapInfo,
+    provider: Option<&CGDataProvider>,
+    decode: *const CGFloat,
+    should_interpolate: bool,
+    intent: CGColorRenderingIntent,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGImageCreate(
+            width: usize,
+            height: usize,
+            bits_per_component: usize,
+            bits_per_pixel: usize,
+            bytes_per_row: usize,
+            space: Option<&CGColorSpace>,
+            bitmap_info: CGBitmapInfo,
+            provider: Option<&CGDataProvider>,
+            decode: *const CGFloat,
+            should_interpolate: bool,
+            intent: CGColorRenderingIntent,
+        ) -> *mut CGImage;
+    }
+    let ret = unsafe {
+        CGImageCreate(
+            width,
+            height,
+            bits_per_component,
+            bits_per_pixel,
+            bytes_per_row,
+            space,
+            bitmap_info,
+            provider,
+            decode,
+            should_interpolate,
+            intent,
+        )
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGDataProvider")]
-    pub fn CGImageMaskCreate(
-        width: usize,
-        height: usize,
-        bits_per_component: usize,
-        bits_per_pixel: usize,
-        bytes_per_row: usize,
-        provider: Option<&CGDataProvider>,
-        decode: *const CGFloat,
-        should_interpolate: bool,
-    ) -> *mut CGImage;
+#[cfg(feature = "CGDataProvider")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageMaskCreate(
+    width: usize,
+    height: usize,
+    bits_per_component: usize,
+    bits_per_pixel: usize,
+    bytes_per_row: usize,
+    provider: Option<&CGDataProvider>,
+    decode: *const CGFloat,
+    should_interpolate: bool,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGImageMaskCreate(
+            width: usize,
+            height: usize,
+            bits_per_component: usize,
+            bits_per_pixel: usize,
+            bytes_per_row: usize,
+            provider: Option<&CGDataProvider>,
+            decode: *const CGFloat,
+            should_interpolate: bool,
+        ) -> *mut CGImage;
+    }
+    let ret = unsafe {
+        CGImageMaskCreate(
+            width,
+            height,
+            bits_per_component,
+            bits_per_pixel,
+            bytes_per_row,
+            provider,
+            decode,
+            should_interpolate,
+        )
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGImageCreateCopy(image: Option<&CGImage>) -> *mut CGImage;
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageCreateCopy(
+    image: Option<&CGImage>,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGImageCreateCopy(image: Option<&CGImage>) -> *mut CGImage;
+    }
+    let ret = unsafe { CGImageCreateCopy(image) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
-    pub fn CGImageCreateWithJPEGDataProvider(
-        source: Option<&CGDataProvider>,
-        decode: *const CGFloat,
-        should_interpolate: bool,
-        intent: CGColorRenderingIntent,
-    ) -> *mut CGImage;
+#[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageCreateWithJPEGDataProvider(
+    source: Option<&CGDataProvider>,
+    decode: *const CGFloat,
+    should_interpolate: bool,
+    intent: CGColorRenderingIntent,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGImageCreateWithJPEGDataProvider(
+            source: Option<&CGDataProvider>,
+            decode: *const CGFloat,
+            should_interpolate: bool,
+            intent: CGColorRenderingIntent,
+        ) -> *mut CGImage;
+    }
+    let ret =
+        unsafe { CGImageCreateWithJPEGDataProvider(source, decode, should_interpolate, intent) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
-    pub fn CGImageCreateWithPNGDataProvider(
-        source: Option<&CGDataProvider>,
-        decode: *const CGFloat,
-        should_interpolate: bool,
-        intent: CGColorRenderingIntent,
-    ) -> *mut CGImage;
+#[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageCreateWithPNGDataProvider(
+    source: Option<&CGDataProvider>,
+    decode: *const CGFloat,
+    should_interpolate: bool,
+    intent: CGColorRenderingIntent,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGImageCreateWithPNGDataProvider(
+            source: Option<&CGDataProvider>,
+            decode: *const CGFloat,
+            should_interpolate: bool,
+            intent: CGColorRenderingIntent,
+        ) -> *mut CGImage;
+    }
+    let ret =
+        unsafe { CGImageCreateWithPNGDataProvider(source, decode, should_interpolate, intent) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGImageCreateWithImageInRect(image: Option<&CGImage>, rect: CGRect) -> *mut CGImage;
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageCreateWithImageInRect(
+    image: Option<&CGImage>,
+    rect: CGRect,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGImageCreateWithImageInRect(image: Option<&CGImage>, rect: CGRect) -> *mut CGImage;
+    }
+    let ret = unsafe { CGImageCreateWithImageInRect(image, rect) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGImageCreateWithMask(image: Option<&CGImage>, mask: Option<&CGImage>) -> *mut CGImage;
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageCreateWithMask(
+    image: Option<&CGImage>,
+    mask: Option<&CGImage>,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGImageCreateWithMask(image: Option<&CGImage>, mask: Option<&CGImage>) -> *mut CGImage;
+    }
+    let ret = unsafe { CGImageCreateWithMask(image, mask) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGImageCreateWithMaskingColors(
-        image: Option<&CGImage>,
-        components: *const CGFloat,
-    ) -> *mut CGImage;
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageCreateWithMaskingColors(
+    image: Option<&CGImage>,
+    components: *const CGFloat,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGImageCreateWithMaskingColors(
+            image: Option<&CGImage>,
+            components: *const CGFloat,
+        ) -> *mut CGImage;
+    }
+    let ret = unsafe { CGImageCreateWithMaskingColors(image, components) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGColorSpace")]
-    pub fn CGImageCreateCopyWithColorSpace(
-        image: Option<&CGImage>,
-        space: Option<&CGColorSpace>,
-    ) -> *mut CGImage;
+#[cfg(feature = "CGColorSpace")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageCreateCopyWithColorSpace(
+    image: Option<&CGImage>,
+    space: Option<&CGColorSpace>,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGImageCreateCopyWithColorSpace(
+            image: Option<&CGImage>,
+            space: Option<&CGColorSpace>,
+        ) -> *mut CGImage;
+    }
+    let ret = unsafe { CGImageCreateCopyWithColorSpace(image, space) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
-    pub fn CGImageCreateWithContentHeadroom(
-        headroom: c_float,
-        width: usize,
-        height: usize,
-        bits_per_component: usize,
-        bits_per_pixel: usize,
-        bytes_per_row: usize,
-        space: Option<&CGColorSpace>,
-        bitmap_info: CGBitmapInfo,
-        provider: Option<&CGDataProvider>,
-        decode: *const CGFloat,
-        should_interpolate: bool,
-        intent: CGColorRenderingIntent,
-    ) -> *mut CGImage;
+#[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageCreateWithContentHeadroom(
+    headroom: c_float,
+    width: usize,
+    height: usize,
+    bits_per_component: usize,
+    bits_per_pixel: usize,
+    bytes_per_row: usize,
+    space: Option<&CGColorSpace>,
+    bitmap_info: CGBitmapInfo,
+    provider: Option<&CGDataProvider>,
+    decode: *const CGFloat,
+    should_interpolate: bool,
+    intent: CGColorRenderingIntent,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGImageCreateWithContentHeadroom(
+            headroom: c_float,
+            width: usize,
+            height: usize,
+            bits_per_component: usize,
+            bits_per_pixel: usize,
+            bytes_per_row: usize,
+            space: Option<&CGColorSpace>,
+            bitmap_info: CGBitmapInfo,
+            provider: Option<&CGDataProvider>,
+            decode: *const CGFloat,
+            should_interpolate: bool,
+            intent: CGColorRenderingIntent,
+        ) -> *mut CGImage;
+    }
+    let ret = unsafe {
+        CGImageCreateWithContentHeadroom(
+            headroom,
+            width,
+            height,
+            bits_per_component,
+            bits_per_pixel,
+            bytes_per_row,
+            space,
+            bitmap_info,
+            provider,
+            decode,
+            should_interpolate,
+            intent,
+        )
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGImageCreateCopyWithContentHeadroom(
-        headroom: c_float,
-        image: Option<&CGImage>,
-    ) -> *mut CGImage;
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageCreateCopyWithContentHeadroom(
+    headroom: c_float,
+    image: Option<&CGImage>,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGImageCreateCopyWithContentHeadroom(
+            headroom: c_float,
+            image: Option<&CGImage>,
+        ) -> *mut CGImage;
+    }
+    let ret = unsafe { CGImageCreateCopyWithContentHeadroom(headroom, image) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {
@@ -299,18 +458,32 @@ extern "C-unwind" {
     pub fn CGImageGetBytesPerRow(image: Option<&CGImage>) -> usize;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGColorSpace")]
-    pub fn CGImageGetColorSpace(image: Option<&CGImage>) -> *mut CGColorSpace;
+#[cfg(feature = "CGColorSpace")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageGetColorSpace(
+    image: Option<&CGImage>,
+) -> Option<CFRetained<CGColorSpace>> {
+    extern "C-unwind" {
+        fn CGImageGetColorSpace(image: Option<&CGImage>) -> *mut CGColorSpace;
+    }
+    let ret = unsafe { CGImageGetColorSpace(image) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
     pub fn CGImageGetAlphaInfo(image: Option<&CGImage>) -> CGImageAlphaInfo;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGDataProvider")]
-    pub fn CGImageGetDataProvider(image: Option<&CGImage>) -> *mut CGDataProvider;
+#[cfg(feature = "CGDataProvider")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageGetDataProvider(
+    image: Option<&CGImage>,
+) -> Option<CFRetained<CGDataProvider>> {
+    extern "C-unwind" {
+        fn CGImageGetDataProvider(image: Option<&CGImage>) -> *mut CGDataProvider;
+    }
+    let ret = unsafe { CGImageGetDataProvider(image) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -346,6 +519,13 @@ extern "C-unwind" {
     pub fn CGImageContainsImageSpecificToneMappingMetadata(image: Option<&CGImage>) -> bool;
 }
 
-extern "C-unwind" {
-    pub fn CGImageGetUTType(image: Option<&CGImage>) -> *mut CFString;
+#[inline]
+pub unsafe extern "C-unwind" fn CGImageGetUTType(
+    image: Option<&CGImage>,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CGImageGetUTType(image: Option<&CGImage>) -> *mut CFString;
+    }
+    let ret = unsafe { CGImageGetUTType(image) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }

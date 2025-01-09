@@ -159,8 +159,13 @@ extern "C-unwind" {
     pub fn CGAssociateMouseAndMouseCursorPosition(connected: libc::boolean_t) -> CGError;
 }
 
-extern "C-unwind" {
-    pub fn CGWindowServerCreateServerPort() -> *mut CFMachPort;
+#[inline]
+pub unsafe extern "C-unwind" fn CGWindowServerCreateServerPort() -> Option<CFRetained<CFMachPort>> {
+    extern "C-unwind" {
+        fn CGWindowServerCreateServerPort() -> *mut CFMachPort;
+    }
+    let ret = unsafe { CGWindowServerCreateServerPort() };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -250,9 +255,14 @@ extern "C-unwind" {
     pub fn CGSetLocalEventsSuppressionInterval(seconds: CFTimeInterval) -> CGError;
 }
 
-extern "C-unwind" {
-    #[deprecated = "No longer supported"]
-    pub fn CGWindowServerCFMachPort() -> *mut CFMachPort;
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGWindowServerCFMachPort() -> Option<CFRetained<CFMachPort>> {
+    extern "C-unwind" {
+        fn CGWindowServerCFMachPort() -> *mut CFMachPort;
+    }
+    let ret = unsafe { CGWindowServerCFMachPort() };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectcount?language=objc)

@@ -55,26 +55,40 @@ extern "C-unwind" {
     ) -> CVReturn;
 }
 
-extern "C-unwind" {
-    /// Returns the pool attributes dictionary for a CVPixelBufferPool
-    ///
-    /// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
-    ///
-    /// Returns: Returns the pool attributes dictionary, or NULL on failure.
-    pub fn CVPixelBufferPoolGetAttributes(pool: &CVPixelBufferPool) -> *mut CFDictionary;
+/// Returns the pool attributes dictionary for a CVPixelBufferPool
+///
+/// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
+///
+/// Returns: Returns the pool attributes dictionary, or NULL on failure.
+#[inline]
+pub unsafe extern "C-unwind" fn CVPixelBufferPoolGetAttributes(
+    pool: &CVPixelBufferPool,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CVPixelBufferPoolGetAttributes(pool: &CVPixelBufferPool) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CVPixelBufferPoolGetAttributes(pool) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the attributes of pixel buffers that will be created from this pool.
-    ///
-    /// This function is provided for those cases where you may need to know some information about the buffers that
-    /// will be created up front.
-    ///
-    /// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
-    ///
-    /// Returns: Returns the pixel buffer attributes dictionary, or NULL on failure.
-    pub fn CVPixelBufferPoolGetPixelBufferAttributes(pool: &CVPixelBufferPool)
-        -> *mut CFDictionary;
+/// Returns the attributes of pixel buffers that will be created from this pool.
+///
+/// This function is provided for those cases where you may need to know some information about the buffers that
+/// will be created up front.
+///
+/// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
+///
+/// Returns: Returns the pixel buffer attributes dictionary, or NULL on failure.
+#[inline]
+pub unsafe extern "C-unwind" fn CVPixelBufferPoolGetPixelBufferAttributes(
+    pool: &CVPixelBufferPool,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CVPixelBufferPoolGetPixelBufferAttributes(pool: &CVPixelBufferPool)
+            -> *mut CFDictionary;
+    }
+    let ret = unsafe { CVPixelBufferPoolGetPixelBufferAttributes(pool) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

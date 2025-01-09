@@ -361,22 +361,44 @@ extern "C-unwind" {
     ) -> c_int;
 }
 
-extern "C-unwind" {
-    pub fn CVYCbCrMatrixGetStringForIntegerCodePoint(
-        y_cb_cr_matrix_code_point: c_int,
-    ) -> *mut CFString;
+#[inline]
+pub unsafe extern "C-unwind" fn CVYCbCrMatrixGetStringForIntegerCodePoint(
+    y_cb_cr_matrix_code_point: c_int,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CVYCbCrMatrixGetStringForIntegerCodePoint(
+            y_cb_cr_matrix_code_point: c_int,
+        ) -> *mut CFString;
+    }
+    let ret = unsafe { CVYCbCrMatrixGetStringForIntegerCodePoint(y_cb_cr_matrix_code_point) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CVColorPrimariesGetStringForIntegerCodePoint(
-        color_primaries_code_point: c_int,
-    ) -> *mut CFString;
+#[inline]
+pub unsafe extern "C-unwind" fn CVColorPrimariesGetStringForIntegerCodePoint(
+    color_primaries_code_point: c_int,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CVColorPrimariesGetStringForIntegerCodePoint(
+            color_primaries_code_point: c_int,
+        ) -> *mut CFString;
+    }
+    let ret = unsafe { CVColorPrimariesGetStringForIntegerCodePoint(color_primaries_code_point) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CVTransferFunctionGetStringForIntegerCodePoint(
-        transfer_function_code_point: c_int,
-    ) -> *mut CFString;
+#[inline]
+pub unsafe extern "C-unwind" fn CVTransferFunctionGetStringForIntegerCodePoint(
+    transfer_function_code_point: c_int,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CVTransferFunctionGetStringForIntegerCodePoint(
+            transfer_function_code_point: c_int,
+        ) -> *mut CFString;
+    }
+    let ret =
+        unsafe { CVTransferFunctionGetStringForIntegerCodePoint(transfer_function_code_point) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Base type for all CoreVideo image buffers
@@ -433,33 +455,47 @@ extern "C-unwind" {
     pub fn CVImageBufferIsFlipped(image_buffer: &CVImageBuffer) -> Boolean;
 }
 
-extern "C-unwind" {
-    /// Returns the color space of a CVImageBuffer.
-    ///
-    /// Parameter `imageBuffer`: A CVImageBuffer that you wish to retrieve the color space from.
-    ///
-    /// Returns: A CGColorSpaceRef representing the color space of the buffer.
-    /// Returns NULL if called with a non-CVImageBufferRef type or NULL.
-    #[cfg(all(feature = "CVBuffer", feature = "objc2-core-graphics"))]
-    pub fn CVImageBufferGetColorSpace(image_buffer: &CVImageBuffer) -> *mut CGColorSpace;
+/// Returns the color space of a CVImageBuffer.
+///
+/// Parameter `imageBuffer`: A CVImageBuffer that you wish to retrieve the color space from.
+///
+/// Returns: A CGColorSpaceRef representing the color space of the buffer.
+/// Returns NULL if called with a non-CVImageBufferRef type or NULL.
+#[cfg(all(feature = "CVBuffer", feature = "objc2-core-graphics"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CVImageBufferGetColorSpace(
+    image_buffer: &CVImageBuffer,
+) -> Option<CFRetained<CGColorSpace>> {
+    extern "C-unwind" {
+        fn CVImageBufferGetColorSpace(image_buffer: &CVImageBuffer) -> *mut CGColorSpace;
+    }
+    let ret = unsafe { CVImageBufferGetColorSpace(image_buffer) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Attempts to synthesize a CGColorSpace from an image buffer's attachments.
-    ///
-    /// Parameter `attachments`: A CFDictionary of attachments for an image buffer, obtained using CVBufferCopyAttachments().
-    ///
-    /// Returns: A CGColorSpaceRef representing the color space of the buffer.
-    /// Returns NULL if the attachments dictionary does not contain the information required to synthesize a CGColorSpace.
-    ///
-    /// To generate a CGColorSpace, the attachments dictionary should include values for either:
-    /// 1. kCVImageBufferICCProfile
-    /// 2. kCVImageBufferColorPrimariesKey, kCVImageBufferTransferFunctionKey, and kCVImageBufferYCbCrMatrixKey (and possibly kCVImageBufferGammaLevelKey)
-    /// The client is responsible for releasing the CGColorSpaceRef when it is done with it (CGColorSpaceRelease() or CFRelease())
-    #[cfg(feature = "objc2-core-graphics")]
-    pub fn CVImageBufferCreateColorSpaceFromAttachments(
-        attachments: &CFDictionary,
-    ) -> *mut CGColorSpace;
+/// Attempts to synthesize a CGColorSpace from an image buffer's attachments.
+///
+/// Parameter `attachments`: A CFDictionary of attachments for an image buffer, obtained using CVBufferCopyAttachments().
+///
+/// Returns: A CGColorSpaceRef representing the color space of the buffer.
+/// Returns NULL if the attachments dictionary does not contain the information required to synthesize a CGColorSpace.
+///
+/// To generate a CGColorSpace, the attachments dictionary should include values for either:
+/// 1. kCVImageBufferICCProfile
+/// 2. kCVImageBufferColorPrimariesKey, kCVImageBufferTransferFunctionKey, and kCVImageBufferYCbCrMatrixKey (and possibly kCVImageBufferGammaLevelKey)
+/// The client is responsible for releasing the CGColorSpaceRef when it is done with it (CGColorSpaceRelease() or CFRelease())
+#[cfg(feature = "objc2-core-graphics")]
+#[inline]
+pub unsafe extern "C-unwind" fn CVImageBufferCreateColorSpaceFromAttachments(
+    attachments: &CFDictionary,
+) -> Option<CFRetained<CGColorSpace>> {
+    extern "C-unwind" {
+        fn CVImageBufferCreateColorSpaceFromAttachments(
+            attachments: &CFDictionary,
+        ) -> *mut CGColorSpace;
+    }
+    let ret = unsafe { CVImageBufferCreateColorSpaceFromAttachments(attachments) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {

@@ -216,53 +216,70 @@ extern "C-unwind" {
     pub fn CTFrameGetVisibleStringRange(frame: &CTFrame) -> CFRange;
 }
 
-extern "C-unwind" {
-    /// Returns the path used to create the frame.
-    ///
-    ///
-    /// Parameter `frame`: The frame that you want to obtain the path from.
-    #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTFrameGetPath(frame: &CTFrame) -> NonNull<CGPath>;
+/// Returns the path used to create the frame.
+///
+///
+/// Parameter `frame`: The frame that you want to obtain the path from.
+#[cfg(feature = "objc2-core-graphics")]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFrameGetPath(frame: &CTFrame) -> CFRetained<CGPath> {
+    extern "C-unwind" {
+        fn CTFrameGetPath(frame: &CTFrame) -> NonNull<CGPath>;
+    }
+    let ret = unsafe { CTFrameGetPath(frame) };
+    unsafe { CFRetained::retain(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns the frame attributes used to create the frame.
-    ///
-    ///
-    /// It is possible to create a frame with an attributes dictionary
-    /// in order to control various aspects of the framing process.
-    /// These attributes are different from the ones that are used to
-    /// create an attributed string.
-    ///
-    ///
-    /// Parameter `frame`: The frame that you want to obtain the frame attributes from.
-    ///
-    ///
-    /// Returns: This function will return a CFDictionary containing the
-    /// frame attributes that were used to create the frame. If the
-    /// frame was created without any frame attributes, this function
-    /// will return NULL.
-    pub fn CTFrameGetFrameAttributes(frame: &CTFrame) -> *mut CFDictionary;
+/// Returns the frame attributes used to create the frame.
+///
+///
+/// It is possible to create a frame with an attributes dictionary
+/// in order to control various aspects of the framing process.
+/// These attributes are different from the ones that are used to
+/// create an attributed string.
+///
+///
+/// Parameter `frame`: The frame that you want to obtain the frame attributes from.
+///
+///
+/// Returns: This function will return a CFDictionary containing the
+/// frame attributes that were used to create the frame. If the
+/// frame was created without any frame attributes, this function
+/// will return NULL.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFrameGetFrameAttributes(
+    frame: &CTFrame,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CTFrameGetFrameAttributes(frame: &CTFrame) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CTFrameGetFrameAttributes(frame) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns an array of lines that make up the frame.
-    ///
-    ///
-    /// This function will return an array of CTLine objects that are
-    /// stored in the frame. These line objects can be accessed and
-    /// manipulated in any way that normal line objects can be. It is
-    /// possible that an empty frame exists. That is, a frame in which
-    /// no lines exist. In this case, the returned array will have 0
-    /// entries.
-    ///
-    ///
-    /// Parameter `frame`: The frame that you want to obtain the line array from.
-    ///
-    ///
-    /// Returns: This function will return a CFArray object containing the
-    /// CTLine objects that make up the frame.
-    pub fn CTFrameGetLines(frame: &CTFrame) -> NonNull<CFArray>;
+/// Returns an array of lines that make up the frame.
+///
+///
+/// This function will return an array of CTLine objects that are
+/// stored in the frame. These line objects can be accessed and
+/// manipulated in any way that normal line objects can be. It is
+/// possible that an empty frame exists. That is, a frame in which
+/// no lines exist. In this case, the returned array will have 0
+/// entries.
+///
+///
+/// Parameter `frame`: The frame that you want to obtain the line array from.
+///
+///
+/// Returns: This function will return a CFArray object containing the
+/// CTLine objects that make up the frame.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFrameGetLines(frame: &CTFrame) -> CFRetained<CFArray> {
+    extern "C-unwind" {
+        fn CTFrameGetLines(frame: &CTFrame) -> NonNull<CFArray>;
+    }
+    let ret = unsafe { CTFrameGetLines(frame) };
+    unsafe { CFRetained::retain(ret) }
 }
 
 extern "C-unwind" {

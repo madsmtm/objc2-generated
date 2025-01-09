@@ -191,7 +191,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn NSSetUncaughtExceptionHandler(_: *mut NSUncaughtExceptionHandler);
+    pub fn NSSetUncaughtExceptionHandler(param1: *mut NSUncaughtExceptionHandler);
 }
 
 extern "C" {

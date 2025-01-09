@@ -33,18 +33,25 @@ extern "C" {
     pub static kCVPixelBufferIOSurfaceOpenGLESFBOCompatibilityKey: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Returns the IOSurface backing the pixel buffer, or NULL if it is not backed by an IOSurface.
-    ///
-    /// Parameter `pixelBuffer`: Target PixelBuffer.
-    #[cfg(all(
-        feature = "CVBuffer",
-        feature = "CVImageBuffer",
-        feature = "CVPixelBuffer",
-        feature = "objc2-io-surface"
-    ))]
-    #[cfg(not(target_os = "watchos"))]
-    pub fn CVPixelBufferGetIOSurface(pixel_buffer: Option<&CVPixelBuffer>) -> *mut IOSurfaceRef;
+/// Returns the IOSurface backing the pixel buffer, or NULL if it is not backed by an IOSurface.
+///
+/// Parameter `pixelBuffer`: Target PixelBuffer.
+#[cfg(all(
+    feature = "CVBuffer",
+    feature = "CVImageBuffer",
+    feature = "CVPixelBuffer",
+    feature = "objc2-io-surface"
+))]
+#[cfg(not(target_os = "watchos"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CVPixelBufferGetIOSurface(
+    pixel_buffer: Option<&CVPixelBuffer>,
+) -> Option<CFRetained<IOSurfaceRef>> {
+    extern "C-unwind" {
+        fn CVPixelBufferGetIOSurface(pixel_buffer: Option<&CVPixelBuffer>) -> *mut IOSurfaceRef;
+    }
+    let ret = unsafe { CVPixelBufferGetIOSurface(pixel_buffer) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

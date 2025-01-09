@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -65,25 +66,48 @@ extern "C-unwind" {
     pub fn CFMachPortGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFMachPortCreate(
-        allocator: Option<&CFAllocator>,
-        callout: CFMachPortCallBack,
-        context: *mut CFMachPortContext,
-        should_free_info: *mut Boolean,
-    ) -> *mut CFMachPort;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFMachPortCreate(
+    allocator: Option<&CFAllocator>,
+    callout: CFMachPortCallBack,
+    context: *mut CFMachPortContext,
+    should_free_info: *mut Boolean,
+) -> Option<CFRetained<CFMachPort>> {
+    extern "C-unwind" {
+        fn CFMachPortCreate(
+            allocator: Option<&CFAllocator>,
+            callout: CFMachPortCallBack,
+            context: *mut CFMachPortContext,
+            should_free_info: *mut Boolean,
+        ) -> *mut CFMachPort;
+    }
+    let ret = unsafe { CFMachPortCreate(allocator, callout, context, should_free_info) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "libc"))]
-    pub fn CFMachPortCreateWithPort(
-        allocator: Option<&CFAllocator>,
-        port_num: libc::mach_port_t,
-        callout: CFMachPortCallBack,
-        context: *mut CFMachPortContext,
-        should_free_info: *mut Boolean,
-    ) -> *mut CFMachPort;
+#[cfg(all(feature = "CFBase", feature = "libc"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFMachPortCreateWithPort(
+    allocator: Option<&CFAllocator>,
+    port_num: libc::mach_port_t,
+    callout: CFMachPortCallBack,
+    context: *mut CFMachPortContext,
+    should_free_info: *mut Boolean,
+) -> Option<CFRetained<CFMachPort>> {
+    extern "C-unwind" {
+        fn CFMachPortCreateWithPort(
+            allocator: Option<&CFAllocator>,
+            port_num: libc::mach_port_t,
+            callout: CFMachPortCallBack,
+            context: *mut CFMachPortContext,
+            should_free_info: *mut Boolean,
+        ) -> *mut CFMachPort;
+    }
+    let ret = unsafe {
+        CFMachPortCreateWithPort(allocator, port_num, callout, context, should_free_info)
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -117,11 +141,20 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
-    pub fn CFMachPortCreateRunLoopSource(
-        allocator: Option<&CFAllocator>,
-        port: Option<&CFMachPort>,
-        order: CFIndex,
-    ) -> *mut CFRunLoopSource;
+#[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFMachPortCreateRunLoopSource(
+    allocator: Option<&CFAllocator>,
+    port: Option<&CFMachPort>,
+    order: CFIndex,
+) -> Option<CFRetained<CFRunLoopSource>> {
+    extern "C-unwind" {
+        fn CFMachPortCreateRunLoopSource(
+            allocator: Option<&CFAllocator>,
+            port: Option<&CFMachPort>,
+            order: CFIndex,
+        ) -> *mut CFRunLoopSource;
+    }
+    let ret = unsafe { CFMachPortCreateRunLoopSource(allocator, port, order) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

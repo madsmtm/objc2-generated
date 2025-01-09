@@ -65,11 +65,18 @@ extern "C-unwind" {
     ) -> CVReturn;
 }
 
-extern "C-unwind" {
-    /// Parameter `openGLBuffer`: Target OpenGL Buffer.
-    ///
-    /// Returns: CVOpenGLBuffer attributes dictionary, NULL if not set.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLBufferGetAttributes(open_gl_buffer: &CVOpenGLBuffer) -> *mut CFDictionary;
+/// Parameter `openGLBuffer`: Target OpenGL Buffer.
+///
+/// Returns: CVOpenGLBuffer attributes dictionary, NULL if not set.
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
+#[inline]
+pub unsafe extern "C-unwind" fn CVOpenGLBufferGetAttributes(
+    open_gl_buffer: &CVOpenGLBuffer,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CVOpenGLBufferGetAttributes(open_gl_buffer: &CVOpenGLBuffer) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CVOpenGLBufferGetAttributes(open_gl_buffer) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }

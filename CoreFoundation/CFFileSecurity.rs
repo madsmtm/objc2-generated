@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -25,17 +26,32 @@ extern "C-unwind" {
     pub fn CFFileSecurityGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFFileSecurityCreate(allocator: Option<&CFAllocator>) -> *mut CFFileSecurity;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFFileSecurityCreate(
+    allocator: Option<&CFAllocator>,
+) -> Option<CFRetained<CFFileSecurity>> {
+    extern "C-unwind" {
+        fn CFFileSecurityCreate(allocator: Option<&CFAllocator>) -> *mut CFFileSecurity;
+    }
+    let ret = unsafe { CFFileSecurityCreate(allocator) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFFileSecurityCreateCopy(
-        allocator: Option<&CFAllocator>,
-        file_sec: Option<&CFFileSecurity>,
-    ) -> *mut CFFileSecurity;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFFileSecurityCreateCopy(
+    allocator: Option<&CFAllocator>,
+    file_sec: Option<&CFFileSecurity>,
+) -> Option<CFRetained<CFFileSecurity>> {
+    extern "C-unwind" {
+        fn CFFileSecurityCreateCopy(
+            allocator: Option<&CFAllocator>,
+            file_sec: Option<&CFFileSecurity>,
+        ) -> *mut CFFileSecurity;
+    }
+    let ret = unsafe { CFFileSecurityCreateCopy(allocator, file_sec) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

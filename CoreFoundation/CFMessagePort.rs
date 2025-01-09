@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -79,32 +80,59 @@ extern "C-unwind" {
     pub fn CFMessagePortGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFData"))]
-    pub fn CFMessagePortCreateLocal(
-        allocator: Option<&CFAllocator>,
-        name: Option<&CFString>,
-        callout: CFMessagePortCallBack,
-        context: *mut CFMessagePortContext,
-        should_free_info: *mut Boolean,
-    ) -> *mut CFMessagePort;
+#[cfg(all(feature = "CFBase", feature = "CFData"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFMessagePortCreateLocal(
+    allocator: Option<&CFAllocator>,
+    name: Option<&CFString>,
+    callout: CFMessagePortCallBack,
+    context: *mut CFMessagePortContext,
+    should_free_info: *mut Boolean,
+) -> Option<CFRetained<CFMessagePort>> {
+    extern "C-unwind" {
+        fn CFMessagePortCreateLocal(
+            allocator: Option<&CFAllocator>,
+            name: Option<&CFString>,
+            callout: CFMessagePortCallBack,
+            context: *mut CFMessagePortContext,
+            should_free_info: *mut Boolean,
+        ) -> *mut CFMessagePort;
+    }
+    let ret =
+        unsafe { CFMessagePortCreateLocal(allocator, name, callout, context, should_free_info) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFMessagePortCreateRemote(
-        allocator: Option<&CFAllocator>,
-        name: Option<&CFString>,
-    ) -> *mut CFMessagePort;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFMessagePortCreateRemote(
+    allocator: Option<&CFAllocator>,
+    name: Option<&CFString>,
+) -> Option<CFRetained<CFMessagePort>> {
+    extern "C-unwind" {
+        fn CFMessagePortCreateRemote(
+            allocator: Option<&CFAllocator>,
+            name: Option<&CFString>,
+        ) -> *mut CFMessagePort;
+    }
+    let ret = unsafe { CFMessagePortCreateRemote(allocator, name) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
     pub fn CFMessagePortIsRemote(ms: Option<&CFMessagePort>) -> Boolean;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFMessagePortGetName(ms: Option<&CFMessagePort>) -> *mut CFString;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFMessagePortGetName(
+    ms: Option<&CFMessagePort>,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CFMessagePortGetName(ms: Option<&CFMessagePort>) -> *mut CFString;
+    }
+    let ret = unsafe { CFMessagePortGetName(ms) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -152,11 +180,20 @@ extern "C-unwind" {
     ) -> i32;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
-    pub fn CFMessagePortCreateRunLoopSource(
-        allocator: Option<&CFAllocator>,
-        local: Option<&CFMessagePort>,
-        order: CFIndex,
-    ) -> *mut CFRunLoopSource;
+#[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFMessagePortCreateRunLoopSource(
+    allocator: Option<&CFAllocator>,
+    local: Option<&CFMessagePort>,
+    order: CFIndex,
+) -> Option<CFRetained<CFRunLoopSource>> {
+    extern "C-unwind" {
+        fn CFMessagePortCreateRunLoopSource(
+            allocator: Option<&CFAllocator>,
+            local: Option<&CFMessagePort>,
+            order: CFIndex,
+        ) -> *mut CFRunLoopSource;
+    }
+    let ret = unsafe { CFMessagePortCreateRunLoopSource(allocator, local, order) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

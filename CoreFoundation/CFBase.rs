@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -232,15 +233,28 @@ extern "C-unwind" {
     pub fn CFAllocatorSetDefault(allocator: Option<&CFAllocator>);
 }
 
-extern "C-unwind" {
-    pub fn CFAllocatorGetDefault() -> *mut CFAllocator;
+#[inline]
+pub unsafe extern "C-unwind" fn CFAllocatorGetDefault() -> Option<CFRetained<CFAllocator>> {
+    extern "C-unwind" {
+        fn CFAllocatorGetDefault() -> *mut CFAllocator;
+    }
+    let ret = unsafe { CFAllocatorGetDefault() };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CFAllocatorCreate(
-        allocator: Option<&CFAllocator>,
-        context: *mut CFAllocatorContext,
-    ) -> *mut CFAllocator;
+#[inline]
+pub unsafe extern "C-unwind" fn CFAllocatorCreate(
+    allocator: Option<&CFAllocator>,
+    context: *mut CFAllocatorContext,
+) -> Option<CFRetained<CFAllocator>> {
+    extern "C-unwind" {
+        fn CFAllocatorCreate(
+            allocator: Option<&CFAllocator>,
+            context: *mut CFAllocatorContext,
+        ) -> *mut CFAllocator;
+    }
+    let ret = unsafe { CFAllocatorCreate(allocator, context) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -321,11 +335,14 @@ pub extern "C-unwind" fn CFGetTypeID(cf: Option<&CFType>) -> CFTypeID {
 }
 
 #[inline]
-pub extern "C-unwind" fn CFCopyTypeIDDescription(type_id: CFTypeID) -> *mut CFString {
+pub extern "C-unwind" fn CFCopyTypeIDDescription(
+    type_id: CFTypeID,
+) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn CFCopyTypeIDDescription(type_id: CFTypeID) -> *mut CFString;
     }
-    unsafe { CFCopyTypeIDDescription(type_id) }
+    let ret = unsafe { CFCopyTypeIDDescription(type_id) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -353,13 +370,21 @@ pub extern "C-unwind" fn CFHash(cf: Option<&CFType>) -> CFHashCode {
 }
 
 #[inline]
-pub extern "C-unwind" fn CFCopyDescription(cf: Option<&CFType>) -> *mut CFString {
+pub extern "C-unwind" fn CFCopyDescription(cf: Option<&CFType>) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn CFCopyDescription(cf: Option<&CFType>) -> *mut CFString;
     }
-    unsafe { CFCopyDescription(cf) }
+    let ret = unsafe { CFCopyDescription(cf) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CFGetAllocator(cf: Option<&CFType>) -> *mut CFAllocator;
+#[inline]
+pub unsafe extern "C-unwind" fn CFGetAllocator(
+    cf: Option<&CFType>,
+) -> Option<CFRetained<CFAllocator>> {
+    extern "C-unwind" {
+        fn CFGetAllocator(cf: Option<&CFType>) -> *mut CFAllocator;
+    }
+    let ret = unsafe { CFGetAllocator(cf) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }

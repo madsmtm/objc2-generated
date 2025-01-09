@@ -223,17 +223,32 @@ extern "C" {
     pub static kCVPixelFormatFillExtendedPixelsCallback: &'static CFString;
 }
 
-extern "C-unwind" {
-    pub fn CVPixelFormatDescriptionCreateWithPixelFormatType(
-        allocator: Option<&CFAllocator>,
-        pixel_format: OSType,
-    ) -> *mut CFDictionary;
+#[inline]
+pub unsafe extern "C-unwind" fn CVPixelFormatDescriptionCreateWithPixelFormatType(
+    allocator: Option<&CFAllocator>,
+    pixel_format: OSType,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CVPixelFormatDescriptionCreateWithPixelFormatType(
+            allocator: Option<&CFAllocator>,
+            pixel_format: OSType,
+        ) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CVPixelFormatDescriptionCreateWithPixelFormatType(allocator, pixel_format) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(
-        allocator: Option<&CFAllocator>,
-    ) -> *mut CFArray;
+#[inline]
+pub unsafe extern "C-unwind" fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(
+    allocator: Option<&CFAllocator>,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(
+            allocator: Option<&CFAllocator>,
+        ) -> *mut CFArray;
+    }
+    let ret = unsafe { CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(allocator) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

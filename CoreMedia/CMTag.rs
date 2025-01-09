@@ -576,30 +576,46 @@ extern "C-unwind" {
     pub fn CMTagHash(tag: CMTag) -> CFHashCode;
 }
 
-extern "C-unwind" {
-    /// Creates a CFString with a description of a CMTag (just like CFCopyDescription).
-    ///
-    /// This can be used from within CFShow on an object that contains CMTag fields. It is also useful from other client debugging code.  The caller owns the returned CFString, and is responsible for releasing it.  Descriptions are not localized so are likely suitable only for debugging.
-    ///
-    /// Parameter `allocator`: CFAllocator to use in creating the description string.  Pass kCFAllocatorDefault to use the default allocator.
-    ///
-    /// Parameter `tag`: CMTag to describe.
-    ///
-    /// Returns: The created CFString description.
-    pub fn CMTagCopyDescription(allocator: Option<&CFAllocator>, tag: CMTag) -> *mut CFString;
+/// Creates a CFString with a description of a CMTag (just like CFCopyDescription).
+///
+/// This can be used from within CFShow on an object that contains CMTag fields. It is also useful from other client debugging code.  The caller owns the returned CFString, and is responsible for releasing it.  Descriptions are not localized so are likely suitable only for debugging.
+///
+/// Parameter `allocator`: CFAllocator to use in creating the description string.  Pass kCFAllocatorDefault to use the default allocator.
+///
+/// Parameter `tag`: CMTag to describe.
+///
+/// Returns: The created CFString description.
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagCopyDescription(
+    allocator: Option<&CFAllocator>,
+    tag: CMTag,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CMTagCopyDescription(allocator: Option<&CFAllocator>, tag: CMTag) -> *mut CFString;
+    }
+    let ret = unsafe { CMTagCopyDescription(allocator, tag) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns a CFDictionary version of a CMTag.
-    ///
-    /// This is useful when putting CMTag in CF container types.  The caller owns the returned CFDictionary, and is responsible for releasing it.
-    ///
-    /// Parameter `tag`: The CMTag from which to create the dictionary.
-    ///
-    /// Parameter `allocator`: CFAllocator with which to create a dictionary. Pass kCFAllocatorDefault to use the default allocator.
-    ///
-    /// Returns: A CFDictionary version of the CMTag.
-    pub fn CMTagCopyAsDictionary(tag: CMTag, allocator: Option<&CFAllocator>) -> *mut CFDictionary;
+/// Returns a CFDictionary version of a CMTag.
+///
+/// This is useful when putting CMTag in CF container types.  The caller owns the returned CFDictionary, and is responsible for releasing it.
+///
+/// Parameter `tag`: The CMTag from which to create the dictionary.
+///
+/// Parameter `allocator`: CFAllocator with which to create a dictionary. Pass kCFAllocatorDefault to use the default allocator.
+///
+/// Returns: A CFDictionary version of the CMTag.
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagCopyAsDictionary(
+    tag: CMTag,
+    allocator: Option<&CFAllocator>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CMTagCopyAsDictionary(tag: CMTag, allocator: Option<&CFAllocator>) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CMTagCopyAsDictionary(tag, allocator) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

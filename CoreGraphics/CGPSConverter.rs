@@ -82,12 +82,21 @@ unsafe impl RefEncode for CGPSConverterCallbacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn CGPSConverterCreate(
-        info: *mut c_void,
-        callbacks: NonNull<CGPSConverterCallbacks>,
-        options: Option<&CFDictionary>,
-    ) -> *mut CGPSConverter;
+#[inline]
+pub unsafe extern "C-unwind" fn CGPSConverterCreate(
+    info: *mut c_void,
+    callbacks: NonNull<CGPSConverterCallbacks>,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CGPSConverter>> {
+    extern "C-unwind" {
+        fn CGPSConverterCreate(
+            info: *mut c_void,
+            callbacks: NonNull<CGPSConverterCallbacks>,
+            options: Option<&CFDictionary>,
+        ) -> *mut CGPSConverter;
+    }
+    let ret = unsafe { CGPSConverterCreate(info, callbacks, options) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

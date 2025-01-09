@@ -10,28 +10,43 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// Returns an array of unique PostScript font names.
-    ///
-    ///
-    /// Returns: An array of CFStrings.
-    pub fn CTFontManagerCopyAvailablePostScriptNames() -> NonNull<CFArray>;
+/// Returns an array of unique PostScript font names.
+///
+///
+/// Returns: An array of CFStrings.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontManagerCopyAvailablePostScriptNames() -> CFRetained<CFArray> {
+    extern "C-unwind" {
+        fn CTFontManagerCopyAvailablePostScriptNames() -> NonNull<CFArray>;
+    }
+    let ret = unsafe { CTFontManagerCopyAvailablePostScriptNames() };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns an array of visible font family names sorted for UI display.
-    ///
-    ///
-    /// Returns: An array of CFStrings.
-    pub fn CTFontManagerCopyAvailableFontFamilyNames() -> NonNull<CFArray>;
+/// Returns an array of visible font family names sorted for UI display.
+///
+///
+/// Returns: An array of CFStrings.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontManagerCopyAvailableFontFamilyNames() -> CFRetained<CFArray> {
+    extern "C-unwind" {
+        fn CTFontManagerCopyAvailableFontFamilyNames() -> NonNull<CFArray>;
+    }
+    let ret = unsafe { CTFontManagerCopyAvailableFontFamilyNames() };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns an array of font URLs.
-    ///
-    ///
-    /// Returns: An array of CFURLs.
-    pub fn CTFontManagerCopyAvailableFontURLs() -> NonNull<CFArray>;
+/// Returns an array of font URLs.
+///
+///
+/// Returns: An array of CFURLs.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontManagerCopyAvailableFontURLs() -> CFRetained<CFArray> {
+    extern "C-unwind" {
+        fn CTFontManagerCopyAvailableFontURLs() -> NonNull<CFArray>;
+    }
+    let ret = unsafe { CTFontManagerCopyAvailableFontURLs() };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 extern "C-unwind" {
@@ -53,44 +68,65 @@ extern "C-unwind" {
     ) -> CFComparisonResult;
 }
 
-extern "C-unwind" {
-    /// Returns an array of font descriptors representing each of the fonts in the specified URL.
-    /// Note: these font descriptors are not available through font descriptor matching.
-    ///
-    ///
-    /// Parameter `fileURL`: A file system URL referencing a valid font file.
-    ///
-    ///
-    /// Returns: An array of CTFontDescriptors or NULL if there are no valid fonts.
-    pub fn CTFontManagerCreateFontDescriptorsFromURL(file_url: &CFURL) -> *mut CFArray;
+/// Returns an array of font descriptors representing each of the fonts in the specified URL.
+/// Note: these font descriptors are not available through font descriptor matching.
+///
+///
+/// Parameter `fileURL`: A file system URL referencing a valid font file.
+///
+///
+/// Returns: An array of CTFontDescriptors or NULL if there are no valid fonts.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromURL(
+    file_url: &CFURL,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CTFontManagerCreateFontDescriptorsFromURL(file_url: &CFURL) -> *mut CFArray;
+    }
+    let ret = unsafe { CTFontManagerCreateFontDescriptorsFromURL(file_url) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns a font descriptor representing the font in the supplied data.
-    /// Note: the font descriptor is not available through font descriptor matching.
-    ///
-    ///
-    /// If the data contains a font collection (TTC or OTC), only the first font in the collection will be returned.
-    ///
-    ///
-    /// Parameter `data`: A CFData containing font data.
-    ///
-    ///
-    /// Returns: A font descriptor created from the data or NULL if it is not a valid font.
-    #[cfg(feature = "CTFontDescriptor")]
-    pub fn CTFontManagerCreateFontDescriptorFromData(data: &CFData) -> *mut CTFontDescriptor;
+/// Returns a font descriptor representing the font in the supplied data.
+/// Note: the font descriptor is not available through font descriptor matching.
+///
+///
+/// If the data contains a font collection (TTC or OTC), only the first font in the collection will be returned.
+///
+///
+/// Parameter `data`: A CFData containing font data.
+///
+///
+/// Returns: A font descriptor created from the data or NULL if it is not a valid font.
+#[cfg(feature = "CTFontDescriptor")]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontManagerCreateFontDescriptorFromData(
+    data: &CFData,
+) -> Option<CFRetained<CTFontDescriptor>> {
+    extern "C-unwind" {
+        fn CTFontManagerCreateFontDescriptorFromData(data: &CFData) -> *mut CTFontDescriptor;
+    }
+    let ret = unsafe { CTFontManagerCreateFontDescriptorFromData(data) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns an array of font descriptors for the fonts in the supplied data.
-    /// Note: the font descriptors are not available through font descriptor matching.
-    ///
-    ///
-    /// Parameter `data`: A CFData containing font data.
-    ///
-    ///
-    /// Returns: An array of font descriptors. This can be an empty array in the event of invalid or unsupported font data.
-    pub fn CTFontManagerCreateFontDescriptorsFromData(data: &CFData) -> NonNull<CFArray>;
+/// Returns an array of font descriptors for the fonts in the supplied data.
+/// Note: the font descriptors are not available through font descriptor matching.
+///
+///
+/// Parameter `data`: A CFData containing font data.
+///
+///
+/// Returns: An array of font descriptors. This can be an empty array in the event of invalid or unsupported font data.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromData(
+    data: &CFData,
+) -> CFRetained<CFArray> {
+    extern "C-unwind" {
+        fn CTFontManagerCreateFontDescriptorsFromData(data: &CFData) -> NonNull<CFArray>;
+    }
+    let ret = unsafe { CTFontManagerCreateFontDescriptorsFromData(data) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 /// Scope for font registration. A uses session refers to a login session in macOS, and the current booted session in iOS.
@@ -412,24 +448,32 @@ extern "C-unwind" {
     pub fn CTFontManagerGetScopeForURL(font_url: &CFURL) -> CTFontManagerScope;
 }
 
-extern "C-unwind" {
-    /// Returns the font descriptors that were registered with the font manager.
-    ///
-    ///
-    /// In the case the persistent scope is specified, only macOS can return fonts registered by any process. Other platforms can only return font descriptors registered by the application's process.
-    ///
-    ///
-    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
-    ///
-    ///
-    /// Parameter `enabled`: Boolean value indicating if the caller is interested in registered font descriptors that are enabled or disabled.
-    ///
-    ///
-    /// Returns: Array of of font descriptors registered by the application. Array may be empty if nothing is registered.
-    pub fn CTFontManagerCopyRegisteredFontDescriptors(
-        scope: CTFontManagerScope,
-        enabled: bool,
-    ) -> NonNull<CFArray>;
+/// Returns the font descriptors that were registered with the font manager.
+///
+///
+/// In the case the persistent scope is specified, only macOS can return fonts registered by any process. Other platforms can only return font descriptors registered by the application's process.
+///
+///
+/// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
+///
+///
+/// Parameter `enabled`: Boolean value indicating if the caller is interested in registered font descriptors that are enabled or disabled.
+///
+///
+/// Returns: Array of of font descriptors registered by the application. Array may be empty if nothing is registered.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontManagerCopyRegisteredFontDescriptors(
+    scope: CTFontManagerScope,
+    enabled: bool,
+) -> CFRetained<CFArray> {
+    extern "C-unwind" {
+        fn CTFontManagerCopyRegisteredFontDescriptors(
+            scope: CTFontManagerScope,
+            enabled: bool,
+        ) -> NonNull<CFArray>;
+    }
+    let ret = unsafe { CTFontManagerCopyRegisteredFontDescriptors(scope, enabled) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 extern "C-unwind" {
@@ -464,22 +508,34 @@ extern "C-unwind" {
     pub fn CTFontManagerIsSupportedFont(font_url: &CFURL) -> bool;
 }
 
-extern "C-unwind" {
-    /// Creates a CFRunLoopSourceRef that will be used to convey font requests from CTFontManager.
-    ///
-    /// Parameter `sourceOrder`: The order of the created run loop source.
-    ///
-    /// Parameter `createMatchesCallback`: A block to handle the font request.
-    ///
-    /// Returns: A CFRunLoopSourceRef that should be added to the run loop. To stop receiving requests, invalidate this run loop source. Will return NULL on error, in the case of a duplicate requestPortName or invalid context structure.
-    #[cfg(all(feature = "block2", feature = "libc"))]
-    #[deprecated = "This functionality will be removed in a future release"]
-    pub fn CTFontManagerCreateFontRequestRunLoopSource(
-        source_order: CFIndex,
-        create_matches_callback: &block2::Block<
-            dyn Fn(NonNull<CFDictionary>, libc::pid_t) -> NonNull<CFArray>,
-        >,
-    ) -> *mut CFRunLoopSource;
+/// Creates a CFRunLoopSourceRef that will be used to convey font requests from CTFontManager.
+///
+/// Parameter `sourceOrder`: The order of the created run loop source.
+///
+/// Parameter `createMatchesCallback`: A block to handle the font request.
+///
+/// Returns: A CFRunLoopSourceRef that should be added to the run loop. To stop receiving requests, invalidate this run loop source. Will return NULL on error, in the case of a duplicate requestPortName or invalid context structure.
+#[cfg(all(feature = "block2", feature = "libc"))]
+#[deprecated = "This functionality will be removed in a future release"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontManagerCreateFontRequestRunLoopSource(
+    source_order: CFIndex,
+    create_matches_callback: &block2::Block<
+        dyn Fn(NonNull<CFDictionary>, libc::pid_t) -> NonNull<CFArray>,
+    >,
+) -> Option<CFRetained<CFRunLoopSource>> {
+    extern "C-unwind" {
+        fn CTFontManagerCreateFontRequestRunLoopSource(
+            source_order: CFIndex,
+            create_matches_callback: &block2::Block<
+                dyn Fn(NonNull<CFDictionary>, libc::pid_t) -> NonNull<CFArray>,
+            >,
+        ) -> *mut CFRunLoopSource;
+    }
+    let ret = unsafe {
+        CTFontManagerCreateFontRequestRunLoopSource(source_order, create_matches_callback)
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {

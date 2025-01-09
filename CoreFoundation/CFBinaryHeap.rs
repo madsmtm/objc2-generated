@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -149,95 +150,114 @@ extern "C-unwind" {
     pub fn CFBinaryHeapGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    /// Creates a new mutable binary heap with the given values.
-    ///
-    /// Parameter `allocator`: The CFAllocator which should be used to allocate
-    /// memory for the binary heap and its storage for values. This
-    /// parameter may be NULL in which case the current default
-    /// CFAllocator is used. If this reference is not a valid
-    /// CFAllocator, the behavior is undefined.
-    ///
-    /// Parameter `capacity`: A hint about the number of values that will be held
-    /// by the CFBinaryHeap. Pass 0 for no hint. The implementation may
-    /// ignore this hint, or may use it to optimize various
-    /// operations. A heap's actual capacity is only limited by
-    /// address space and available memory constraints). If this
-    /// parameter is negative, the behavior is undefined.
-    ///
-    /// Parameter `callBacks`: A pointer to a CFBinaryHeapCallBacks structure
-    /// initialized with the callbacks for the binary heap to use on
-    /// each value in the binary heap. A copy of the contents of the
-    /// callbacks structure is made, so that a pointer to a structure
-    /// on the stack can be passed in, or can be reused for multiple
-    /// binary heap creations. If the version field of this callbacks
-    /// structure is not one of the defined ones for CFBinaryHeap, the
-    /// behavior is undefined. The retain field may be NULL, in which
-    /// case the CFBinaryHeap will do nothing to add a retain to values
-    /// as they are put into the binary heap. The release field may be
-    /// NULL, in which case the CFBinaryHeap will do nothing to remove
-    /// the binary heap's retain (if any) on the values when the
-    /// heap is destroyed or a key-value pair is removed. If the
-    /// copyDescription field is NULL, the binary heap will create a
-    /// simple description for a value. If the equal field is NULL, the
-    /// binary heap will use pointer equality to test for equality of
-    /// values. This callbacks parameter itself may be NULL, which is
-    /// treated as if a valid structure of version 0 with all fields
-    /// NULL had been passed in. Otherwise,
-    /// if any of the fields are not valid pointers to functions
-    /// of the correct type, or this parameter is not a valid
-    /// pointer to a CFBinaryHeapCallBacks callbacks structure,
-    /// the behavior is undefined. If any of the values put into the
-    /// binary heap is not one understood by one of the callback functions
-    /// the behavior when that callback function is used is undefined.
-    ///
-    /// Parameter `compareContext`: A pointer to a CFBinaryHeapCompareContext structure.
-    ///
-    /// Returns: A reference to the new CFBinaryHeap.
-    #[cfg(feature = "CFBase")]
-    pub fn CFBinaryHeapCreate(
-        allocator: Option<&CFAllocator>,
-        capacity: CFIndex,
-        call_backs: *const CFBinaryHeapCallBacks,
-        compare_context: *const CFBinaryHeapCompareContext,
-    ) -> *mut CFBinaryHeap;
+/// Creates a new mutable binary heap with the given values.
+///
+/// Parameter `allocator`: The CFAllocator which should be used to allocate
+/// memory for the binary heap and its storage for values. This
+/// parameter may be NULL in which case the current default
+/// CFAllocator is used. If this reference is not a valid
+/// CFAllocator, the behavior is undefined.
+///
+/// Parameter `capacity`: A hint about the number of values that will be held
+/// by the CFBinaryHeap. Pass 0 for no hint. The implementation may
+/// ignore this hint, or may use it to optimize various
+/// operations. A heap's actual capacity is only limited by
+/// address space and available memory constraints). If this
+/// parameter is negative, the behavior is undefined.
+///
+/// Parameter `callBacks`: A pointer to a CFBinaryHeapCallBacks structure
+/// initialized with the callbacks for the binary heap to use on
+/// each value in the binary heap. A copy of the contents of the
+/// callbacks structure is made, so that a pointer to a structure
+/// on the stack can be passed in, or can be reused for multiple
+/// binary heap creations. If the version field of this callbacks
+/// structure is not one of the defined ones for CFBinaryHeap, the
+/// behavior is undefined. The retain field may be NULL, in which
+/// case the CFBinaryHeap will do nothing to add a retain to values
+/// as they are put into the binary heap. The release field may be
+/// NULL, in which case the CFBinaryHeap will do nothing to remove
+/// the binary heap's retain (if any) on the values when the
+/// heap is destroyed or a key-value pair is removed. If the
+/// copyDescription field is NULL, the binary heap will create a
+/// simple description for a value. If the equal field is NULL, the
+/// binary heap will use pointer equality to test for equality of
+/// values. This callbacks parameter itself may be NULL, which is
+/// treated as if a valid structure of version 0 with all fields
+/// NULL had been passed in. Otherwise,
+/// if any of the fields are not valid pointers to functions
+/// of the correct type, or this parameter is not a valid
+/// pointer to a CFBinaryHeapCallBacks callbacks structure,
+/// the behavior is undefined. If any of the values put into the
+/// binary heap is not one understood by one of the callback functions
+/// the behavior when that callback function is used is undefined.
+///
+/// Parameter `compareContext`: A pointer to a CFBinaryHeapCompareContext structure.
+///
+/// Returns: A reference to the new CFBinaryHeap.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFBinaryHeapCreate(
+    allocator: Option<&CFAllocator>,
+    capacity: CFIndex,
+    call_backs: *const CFBinaryHeapCallBacks,
+    compare_context: *const CFBinaryHeapCompareContext,
+) -> Option<CFRetained<CFBinaryHeap>> {
+    extern "C-unwind" {
+        fn CFBinaryHeapCreate(
+            allocator: Option<&CFAllocator>,
+            capacity: CFIndex,
+            call_backs: *const CFBinaryHeapCallBacks,
+            compare_context: *const CFBinaryHeapCompareContext,
+        ) -> *mut CFBinaryHeap;
+    }
+    let ret = unsafe { CFBinaryHeapCreate(allocator, capacity, call_backs, compare_context) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Creates a new mutable binary heap with the values from the given binary heap.
-    ///
-    /// Parameter `allocator`: The CFAllocator which should be used to allocate
-    /// memory for the binary heap and its storage for values. This
-    /// parameter may be NULL in which case the current default
-    /// CFAllocator is used. If this reference is not a valid
-    /// CFAllocator, the behavior is undefined.
-    ///
-    /// Parameter `capacity`: A hint about the number of values that will be held
-    /// by the CFBinaryHeap. Pass 0 for no hint. The implementation may
-    /// ignore this hint, or may use it to optimize various
-    /// operations. A heap's actual capacity is only limited by
-    /// address space and available memory constraints).
-    /// This parameter must be greater than or equal
-    /// to the count of the heap which is to be copied, or the
-    /// behavior is undefined. If this parameter is negative, the
-    /// behavior is undefined.
-    ///
-    /// Parameter `heap`: The binary heap which is to be copied. The values from the
-    /// binary heap are copied as pointers into the new binary heap (that is,
-    /// the values themselves are copied, not that which the values
-    /// point to, if anything). However, the values are also
-    /// retained by the new binary heap. The count of the new binary will
-    /// be the same as the given binary heap. The new binary heap uses the same
-    /// callbacks as the binary heap to be copied. If this parameter is
-    /// not a valid CFBinaryHeap, the behavior is undefined.
-    ///
-    /// Returns: A reference to the new mutable binary heap.
-    #[cfg(feature = "CFBase")]
-    pub fn CFBinaryHeapCreateCopy(
-        allocator: Option<&CFAllocator>,
-        capacity: CFIndex,
-        heap: Option<&CFBinaryHeap>,
-    ) -> *mut CFBinaryHeap;
+/// Creates a new mutable binary heap with the values from the given binary heap.
+///
+/// Parameter `allocator`: The CFAllocator which should be used to allocate
+/// memory for the binary heap and its storage for values. This
+/// parameter may be NULL in which case the current default
+/// CFAllocator is used. If this reference is not a valid
+/// CFAllocator, the behavior is undefined.
+///
+/// Parameter `capacity`: A hint about the number of values that will be held
+/// by the CFBinaryHeap. Pass 0 for no hint. The implementation may
+/// ignore this hint, or may use it to optimize various
+/// operations. A heap's actual capacity is only limited by
+/// address space and available memory constraints).
+/// This parameter must be greater than or equal
+/// to the count of the heap which is to be copied, or the
+/// behavior is undefined. If this parameter is negative, the
+/// behavior is undefined.
+///
+/// Parameter `heap`: The binary heap which is to be copied. The values from the
+/// binary heap are copied as pointers into the new binary heap (that is,
+/// the values themselves are copied, not that which the values
+/// point to, if anything). However, the values are also
+/// retained by the new binary heap. The count of the new binary will
+/// be the same as the given binary heap. The new binary heap uses the same
+/// callbacks as the binary heap to be copied. If this parameter is
+/// not a valid CFBinaryHeap, the behavior is undefined.
+///
+/// Returns: A reference to the new mutable binary heap.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFBinaryHeapCreateCopy(
+    allocator: Option<&CFAllocator>,
+    capacity: CFIndex,
+    heap: Option<&CFBinaryHeap>,
+) -> Option<CFRetained<CFBinaryHeap>> {
+    extern "C-unwind" {
+        fn CFBinaryHeapCreateCopy(
+            allocator: Option<&CFAllocator>,
+            capacity: CFIndex,
+            heap: Option<&CFBinaryHeap>,
+        ) -> *mut CFBinaryHeap;
+    }
+    let ret = unsafe { CFBinaryHeapCreateCopy(allocator, capacity, heap) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

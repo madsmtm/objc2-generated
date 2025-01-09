@@ -135,87 +135,113 @@ extern "C-unwind" {
     pub fn CTLineGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    /// Creates a single immutable line object directly from an
-    /// attributed string.
-    ///
-    ///
-    /// This will allow clients who need very simple line generation to
-    /// create a line without needing to create a typesetter object. The
-    /// typesetting will be done under the hood. Without a typesetter
-    /// object, the line cannot be properly broken. However, for simple
-    /// things like text labels and other things, this is not an issue.
-    ///
-    ///
-    /// Parameter `attrString`: The attributed string which the line will be created for.
-    ///
-    ///
-    /// Returns: This function will return a reference to a CTLine object.
-    pub fn CTLineCreateWithAttributedString(attr_string: &CFAttributedString) -> NonNull<CTLine>;
+/// Creates a single immutable line object directly from an
+/// attributed string.
+///
+///
+/// This will allow clients who need very simple line generation to
+/// create a line without needing to create a typesetter object. The
+/// typesetting will be done under the hood. Without a typesetter
+/// object, the line cannot be properly broken. However, for simple
+/// things like text labels and other things, this is not an issue.
+///
+///
+/// Parameter `attrString`: The attributed string which the line will be created for.
+///
+///
+/// Returns: This function will return a reference to a CTLine object.
+#[inline]
+pub unsafe extern "C-unwind" fn CTLineCreateWithAttributedString(
+    attr_string: &CFAttributedString,
+) -> CFRetained<CTLine> {
+    extern "C-unwind" {
+        fn CTLineCreateWithAttributedString(attr_string: &CFAttributedString) -> NonNull<CTLine>;
+    }
+    let ret = unsafe { CTLineCreateWithAttributedString(attr_string) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Creates a truncated line from an existing line.
-    ///
-    ///
-    /// Parameter `line`: The line that you want to create a truncated line for.
-    ///
-    ///
-    /// Parameter `width`: The width at which truncation will begin. The line will be
-    /// truncated if its width is greater than the width passed in this.
-    ///
-    ///
-    /// Parameter `truncationType`: The type of truncation to perform if needed.
-    ///
-    ///
-    /// Parameter `truncationToken`: This token will be added to the point where truncation took place
-    /// to indicate that the line was truncated. Usually, the truncation
-    /// token is the ellipsis character (U+2026). If this parameter is
-    /// set to NULL, then no truncation token is used, and the line is
-    /// simply cut off. The line specified in truncationToken should have
-    /// a width less than the width specified by the width parameter. If
-    /// the width of the line specified in truncationToken is greater,
-    /// this function will return NULL if truncation is needed.
-    ///
-    ///
-    /// Returns: This function will return a reference to a truncated CTLine
-    /// object if the call was successful. Otherwise, it will return
-    /// NULL.
-    pub fn CTLineCreateTruncatedLine(
-        line: &CTLine,
-        width: c_double,
-        truncation_type: CTLineTruncationType,
-        truncation_token: Option<&CTLine>,
-    ) -> *mut CTLine;
+/// Creates a truncated line from an existing line.
+///
+///
+/// Parameter `line`: The line that you want to create a truncated line for.
+///
+///
+/// Parameter `width`: The width at which truncation will begin. The line will be
+/// truncated if its width is greater than the width passed in this.
+///
+///
+/// Parameter `truncationType`: The type of truncation to perform if needed.
+///
+///
+/// Parameter `truncationToken`: This token will be added to the point where truncation took place
+/// to indicate that the line was truncated. Usually, the truncation
+/// token is the ellipsis character (U+2026). If this parameter is
+/// set to NULL, then no truncation token is used, and the line is
+/// simply cut off. The line specified in truncationToken should have
+/// a width less than the width specified by the width parameter. If
+/// the width of the line specified in truncationToken is greater,
+/// this function will return NULL if truncation is needed.
+///
+///
+/// Returns: This function will return a reference to a truncated CTLine
+/// object if the call was successful. Otherwise, it will return
+/// NULL.
+#[inline]
+pub unsafe extern "C-unwind" fn CTLineCreateTruncatedLine(
+    line: &CTLine,
+    width: c_double,
+    truncation_type: CTLineTruncationType,
+    truncation_token: Option<&CTLine>,
+) -> Option<CFRetained<CTLine>> {
+    extern "C-unwind" {
+        fn CTLineCreateTruncatedLine(
+            line: &CTLine,
+            width: c_double,
+            truncation_type: CTLineTruncationType,
+            truncation_token: Option<&CTLine>,
+        ) -> *mut CTLine;
+    }
+    let ret = unsafe { CTLineCreateTruncatedLine(line, width, truncation_type, truncation_token) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Creates a justified line from an existing line.
-    ///
-    ///
-    /// Parameter `line`: The line that you want to create a justified line for.
-    ///
-    ///
-    /// Parameter `justificationFactor`: Allows for full or partial justification. When set to 1.0 or
-    /// greater indicates, full justification will be performed. If less
-    /// than 1.0, varying degrees of partial justification will be
-    /// performed. If set to 0 or less, then no justification will be
-    /// performed.
-    ///
-    ///
-    /// Parameter `justificationWidth`: The width to which the resultant line will be justified. If
-    /// justificationWidth is less than the actual width of the line,
-    /// then negative justification will be performed ("text squishing").
-    ///
-    ///
-    /// Returns: This function will return a reference to a justified CTLine
-    /// object if the call was successful. Otherwise, it will return
-    /// NULL.
-    pub fn CTLineCreateJustifiedLine(
-        line: &CTLine,
-        justification_factor: CGFloat,
-        justification_width: c_double,
-    ) -> *mut CTLine;
+/// Creates a justified line from an existing line.
+///
+///
+/// Parameter `line`: The line that you want to create a justified line for.
+///
+///
+/// Parameter `justificationFactor`: Allows for full or partial justification. When set to 1.0 or
+/// greater indicates, full justification will be performed. If less
+/// than 1.0, varying degrees of partial justification will be
+/// performed. If set to 0 or less, then no justification will be
+/// performed.
+///
+///
+/// Parameter `justificationWidth`: The width to which the resultant line will be justified. If
+/// justificationWidth is less than the actual width of the line,
+/// then negative justification will be performed ("text squishing").
+///
+///
+/// Returns: This function will return a reference to a justified CTLine
+/// object if the call was successful. Otherwise, it will return
+/// NULL.
+#[inline]
+pub unsafe extern "C-unwind" fn CTLineCreateJustifiedLine(
+    line: &CTLine,
+    justification_factor: CGFloat,
+    justification_width: c_double,
+) -> Option<CFRetained<CTLine>> {
+    extern "C-unwind" {
+        fn CTLineCreateJustifiedLine(
+            line: &CTLine,
+            justification_factor: CGFloat,
+            justification_width: c_double,
+        ) -> *mut CTLine;
+    }
+    let ret = unsafe { CTLineCreateJustifiedLine(line, justification_factor, justification_width) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -233,15 +259,20 @@ extern "C-unwind" {
     pub fn CTLineGetGlyphCount(line: &CTLine) -> CFIndex;
 }
 
-extern "C-unwind" {
-    /// Returns the array of glyph runs that make up the line object.
-    ///
-    ///
-    /// Parameter `line`: The line that you want to obtain the glyph run array for.
-    ///
-    ///
-    /// Returns: A CFArrayRef containing the CTRun objects that make up the line.
-    pub fn CTLineGetGlyphRuns(line: &CTLine) -> NonNull<CFArray>;
+/// Returns the array of glyph runs that make up the line object.
+///
+///
+/// Parameter `line`: The line that you want to obtain the glyph run array for.
+///
+///
+/// Returns: A CFArrayRef containing the CTRun objects that make up the line.
+#[inline]
+pub unsafe extern "C-unwind" fn CTLineGetGlyphRuns(line: &CTLine) -> CFRetained<CFArray> {
+    extern "C-unwind" {
+        fn CTLineGetGlyphRuns(line: &CTLine) -> NonNull<CFArray>;
+    }
+    let ret = unsafe { CTLineGetGlyphRuns(line) };
+    unsafe { CFRetained::retain(ret) }
 }
 
 extern "C-unwind" {

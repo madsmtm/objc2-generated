@@ -1233,22 +1233,29 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Returns a dictionary containing meta-data derived from a sequence
-    ///
-    /// The dictionary can contain one or more of the kAFInfoDictionary_*
-    /// keys specified in
-    /// <AudioToolbox
-    /// /AudioFile.h>
-    ///
-    /// The caller should release the returned dictionary. If the call fails it will return NULL
-    ///
-    ///
-    /// Parameter `inSequence`: the sequence
-    ///
-    /// Returns: a CFDictionary or NULL if the call fails.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn MusicSequenceGetInfoDictionary(in_sequence: MusicSequence) -> NonNull<CFDictionary>;
+/// Returns a dictionary containing meta-data derived from a sequence
+///
+/// The dictionary can contain one or more of the kAFInfoDictionary_*
+/// keys specified in
+/// <AudioToolbox
+/// /AudioFile.h>
+///
+/// The caller should release the returned dictionary. If the call fails it will return NULL
+///
+///
+/// Parameter `inSequence`: the sequence
+///
+/// Returns: a CFDictionary or NULL if the call fails.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn MusicSequenceGetInfoDictionary(
+    in_sequence: MusicSequence,
+) -> CFRetained<CFDictionary> {
+    extern "C-unwind" {
+        fn MusicSequenceGetInfoDictionary(in_sequence: MusicSequence) -> NonNull<CFDictionary>;
+    }
+    let ret = unsafe { MusicSequenceGetInfoDictionary(in_sequence) };
+    unsafe { CFRetained::retain(ret) }
 }
 
 extern "C-unwind" {

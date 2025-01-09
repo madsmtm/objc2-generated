@@ -89,23 +89,28 @@ extern "C-unwind" {
     pub fn CTRunGetGlyphCount(run: &CTRun) -> CFIndex;
 }
 
-extern "C-unwind" {
-    /// Returns the attribute dictionary that was used to create the
-    /// glyph run.
-    ///
-    ///
-    /// This dictionary returned is either the same exact one that was
-    /// set as an attribute dictionary on the original attributed string
-    /// or a dictionary that has been manufactured by the layout engine.
-    /// Attribute dictionaries can be manufactured in the case of font
-    /// substitution or if they are missing critical attributes.
-    ///
-    ///
-    /// Parameter `run`: The run whose attributes you wish to access.
-    ///
-    ///
-    /// Returns: The attribute dictionary.
-    pub fn CTRunGetAttributes(run: &CTRun) -> NonNull<CFDictionary>;
+/// Returns the attribute dictionary that was used to create the
+/// glyph run.
+///
+///
+/// This dictionary returned is either the same exact one that was
+/// set as an attribute dictionary on the original attributed string
+/// or a dictionary that has been manufactured by the layout engine.
+/// Attribute dictionaries can be manufactured in the case of font
+/// substitution or if they are missing critical attributes.
+///
+///
+/// Parameter `run`: The run whose attributes you wish to access.
+///
+///
+/// Returns: The attribute dictionary.
+#[inline]
+pub unsafe extern "C-unwind" fn CTRunGetAttributes(run: &CTRun) -> CFRetained<CFDictionary> {
+    extern "C-unwind" {
+        fn CTRunGetAttributes(run: &CTRun) -> NonNull<CFDictionary>;
+    }
+    let ret = unsafe { CTRunGetAttributes(run) };
+    unsafe { CFRetained::retain(ret) }
 }
 
 extern "C-unwind" {

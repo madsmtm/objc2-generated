@@ -196,50 +196,68 @@ extern "C" {
     pub static kCTFontPostScriptCIDNameKey: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Returns a new font reference for the given name.
-    ///
-    ///
-    /// This function uses font descriptor matching so only registered fonts can be returned; see CTFontManager.h for more information. If you are trying to create a system UI font (with name beginning with a "."), you should use CTFontCreateUIFontForLanguage() or appropriate AppKit/UIKit APIs instead.
-    ///
-    ///
-    /// Parameter `name`: The font name for which you wish to create a new font reference. A valid PostScript name is preferred, although other font name types will be matched in a fallback manner. Any font name beginning with a "." is reserved for the system and should not be used here.
-    ///
-    ///
-    /// Parameter `size`: The point size for the font reference. If 0.0 is specified, the default font size of 12.0 will be used.
-    ///
-    ///
-    /// Parameter `matrix`: The transformation matrix for the font. If unspecified, the identity matrix will be used. Optional.
-    ///
-    ///
-    /// Returns: This function will return a CTFontRef that best matches the name provided with size and matrix attributes. The name parameter is the only required parameters, and default values will be used for unspecified parameters. A best match will be found if all parameters cannot be matched identically.
-    pub fn CTFontCreateWithName(
-        name: &CFString,
-        size: CGFloat,
-        matrix: *const CGAffineTransform,
-    ) -> NonNull<CTFont>;
+/// Returns a new font reference for the given name.
+///
+///
+/// This function uses font descriptor matching so only registered fonts can be returned; see CTFontManager.h for more information. If you are trying to create a system UI font (with name beginning with a "."), you should use CTFontCreateUIFontForLanguage() or appropriate AppKit/UIKit APIs instead.
+///
+///
+/// Parameter `name`: The font name for which you wish to create a new font reference. A valid PostScript name is preferred, although other font name types will be matched in a fallback manner. Any font name beginning with a "." is reserved for the system and should not be used here.
+///
+///
+/// Parameter `size`: The point size for the font reference. If 0.0 is specified, the default font size of 12.0 will be used.
+///
+///
+/// Parameter `matrix`: The transformation matrix for the font. If unspecified, the identity matrix will be used. Optional.
+///
+///
+/// Returns: This function will return a CTFontRef that best matches the name provided with size and matrix attributes. The name parameter is the only required parameters, and default values will be used for unspecified parameters. A best match will be found if all parameters cannot be matched identically.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCreateWithName(
+    name: &CFString,
+    size: CGFloat,
+    matrix: *const CGAffineTransform,
+) -> CFRetained<CTFont> {
+    extern "C-unwind" {
+        fn CTFontCreateWithName(
+            name: &CFString,
+            size: CGFloat,
+            matrix: *const CGAffineTransform,
+        ) -> NonNull<CTFont>;
+    }
+    let ret = unsafe { CTFontCreateWithName(name, size, matrix) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns a new font reference that best matches the font descriptor.
-    ///
-    ///
-    /// Parameter `descriptor`: A font descriptor containing attributes that specify the requested font.
-    ///
-    ///
-    /// Parameter `size`: The point size for the font reference. If 0.0 is specified and the font descriptor does not specify the size, the default font size of 12.0 will be used.
-    ///
-    ///
-    /// Parameter `matrix`: The transformation matrix for the font. If unspecified, the identity matrix will be used. Optional.
-    ///
-    ///
-    /// Returns: This function will return a CTFontRef that best matches the attributes provided with the font descriptor. The size and matrix parameters will override any specified in the font descriptor, unless they are unspecified. A best match font will always be returned, and default values will be used for any unspecified.
-    #[cfg(feature = "CTFontDescriptor")]
-    pub fn CTFontCreateWithFontDescriptor(
-        descriptor: &CTFontDescriptor,
-        size: CGFloat,
-        matrix: *const CGAffineTransform,
-    ) -> NonNull<CTFont>;
+/// Returns a new font reference that best matches the font descriptor.
+///
+///
+/// Parameter `descriptor`: A font descriptor containing attributes that specify the requested font.
+///
+///
+/// Parameter `size`: The point size for the font reference. If 0.0 is specified and the font descriptor does not specify the size, the default font size of 12.0 will be used.
+///
+///
+/// Parameter `matrix`: The transformation matrix for the font. If unspecified, the identity matrix will be used. Optional.
+///
+///
+/// Returns: This function will return a CTFontRef that best matches the attributes provided with the font descriptor. The size and matrix parameters will override any specified in the font descriptor, unless they are unspecified. A best match font will always be returned, and default values will be used for any unspecified.
+#[cfg(feature = "CTFontDescriptor")]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCreateWithFontDescriptor(
+    descriptor: &CTFontDescriptor,
+    size: CGFloat,
+    matrix: *const CGAffineTransform,
+) -> CFRetained<CTFont> {
+    extern "C-unwind" {
+        fn CTFontCreateWithFontDescriptor(
+            descriptor: &CTFontDescriptor,
+            size: CGFloat,
+            matrix: *const CGAffineTransform,
+        ) -> NonNull<CTFont>;
+    }
+    let ret = unsafe { CTFontCreateWithFontDescriptor(descriptor, size, matrix) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 /// Options for descriptor match and font creation.
@@ -279,58 +297,79 @@ unsafe impl RefEncode for CTFontOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// Returns a new font reference for the given name.
-    ///
-    ///
-    /// This function uses font descriptor matching so only registered fonts can be returned; see CTFontManager.h for more information. If you are trying to create a system UI font (with name beginning with a "."), you should use CTFontCreateUIFontForLanguage() or appropriate AppKit/UIKit APIs instead.
-    ///
-    ///
-    /// Parameter `name`: The font name for which you wish to create a new font reference. A valid PostScript name is preferred, although other font name types will be matched in a fallback manner. Any font name beginning with a "." is reserved for the system and should not be used here.
-    ///
-    ///
-    /// Parameter `size`: The point size for the font reference. If 0.0 is specified, the default font size of 12.0 will be used.
-    ///
-    ///
-    /// Parameter `matrix`: The transformation matrix for the font. If unspecified, the identity matrix will be used. Optional.
-    ///
-    ///
-    /// Parameter `options`: Options flags.
-    ///
-    ///
-    /// Returns: This function will return a CTFontRef that best matches the name provided with size and matrix attributes. The name parameter is the only required parameters, and default values will be used for unspecified parameters. A best match will be found if all parameters cannot be matched identically.
-    pub fn CTFontCreateWithNameAndOptions(
-        name: &CFString,
-        size: CGFloat,
-        matrix: *const CGAffineTransform,
-        options: CTFontOptions,
-    ) -> NonNull<CTFont>;
+/// Returns a new font reference for the given name.
+///
+///
+/// This function uses font descriptor matching so only registered fonts can be returned; see CTFontManager.h for more information. If you are trying to create a system UI font (with name beginning with a "."), you should use CTFontCreateUIFontForLanguage() or appropriate AppKit/UIKit APIs instead.
+///
+///
+/// Parameter `name`: The font name for which you wish to create a new font reference. A valid PostScript name is preferred, although other font name types will be matched in a fallback manner. Any font name beginning with a "." is reserved for the system and should not be used here.
+///
+///
+/// Parameter `size`: The point size for the font reference. If 0.0 is specified, the default font size of 12.0 will be used.
+///
+///
+/// Parameter `matrix`: The transformation matrix for the font. If unspecified, the identity matrix will be used. Optional.
+///
+///
+/// Parameter `options`: Options flags.
+///
+///
+/// Returns: This function will return a CTFontRef that best matches the name provided with size and matrix attributes. The name parameter is the only required parameters, and default values will be used for unspecified parameters. A best match will be found if all parameters cannot be matched identically.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCreateWithNameAndOptions(
+    name: &CFString,
+    size: CGFloat,
+    matrix: *const CGAffineTransform,
+    options: CTFontOptions,
+) -> CFRetained<CTFont> {
+    extern "C-unwind" {
+        fn CTFontCreateWithNameAndOptions(
+            name: &CFString,
+            size: CGFloat,
+            matrix: *const CGAffineTransform,
+            options: CTFontOptions,
+        ) -> NonNull<CTFont>;
+    }
+    let ret = unsafe { CTFontCreateWithNameAndOptions(name, size, matrix, options) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns a new font reference that best matches the font descriptor.
-    ///
-    ///
-    /// Parameter `descriptor`: A font descriptor containing attributes that specify the requested font.
-    ///
-    ///
-    /// Parameter `size`: The point size for the font reference. If 0.0 is specified, the default font size of 12.0 will be used.
-    ///
-    ///
-    /// Parameter `matrix`: The transformation matrix for the font. If unspecified, the identity matrix will be used. Optional.
-    ///
-    ///
-    /// Parameter `options`: Options flags.
-    ///
-    ///
-    /// Returns: This function will return a CTFontRef that best matches the attributes provided with the font descriptor. The size and matrix parameters will override any specified in the font descriptor, unless they are unspecified. A best match font will always be returned, and default values will be used for any unspecified.
-    #[cfg(feature = "CTFontDescriptor")]
-    pub fn CTFontCreateWithFontDescriptorAndOptions(
-        descriptor: &CTFontDescriptor,
-        size: CGFloat,
-        matrix: *const CGAffineTransform,
-        options: CTFontOptions,
-    ) -> NonNull<CTFont>;
+/// Returns a new font reference that best matches the font descriptor.
+///
+///
+/// Parameter `descriptor`: A font descriptor containing attributes that specify the requested font.
+///
+///
+/// Parameter `size`: The point size for the font reference. If 0.0 is specified, the default font size of 12.0 will be used.
+///
+///
+/// Parameter `matrix`: The transformation matrix for the font. If unspecified, the identity matrix will be used. Optional.
+///
+///
+/// Parameter `options`: Options flags.
+///
+///
+/// Returns: This function will return a CTFontRef that best matches the attributes provided with the font descriptor. The size and matrix parameters will override any specified in the font descriptor, unless they are unspecified. A best match font will always be returned, and default values will be used for any unspecified.
+#[cfg(feature = "CTFontDescriptor")]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCreateWithFontDescriptorAndOptions(
+    descriptor: &CTFontDescriptor,
+    size: CGFloat,
+    matrix: *const CGAffineTransform,
+    options: CTFontOptions,
+) -> CFRetained<CTFont> {
+    extern "C-unwind" {
+        fn CTFontCreateWithFontDescriptorAndOptions(
+            descriptor: &CTFontDescriptor,
+            size: CGFloat,
+            matrix: *const CGAffineTransform,
+            options: CTFontOptions,
+        ) -> NonNull<CTFont>;
+    }
+    let ret =
+        unsafe { CTFontCreateWithFontDescriptorAndOptions(descriptor, size, matrix, options) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 /// These constants represent the specific user interface purpose to specify for font creation.
@@ -469,201 +508,277 @@ unsafe impl RefEncode for CTFontUIFontType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// Returns the special UI font for the given language and UI type.
-    ///
-    ///
-    /// Parameter `uiType`: A uiType constant specifying the intended UI use for the requested font reference.
-    ///
-    ///
-    /// Parameter `size`: The point size for the font reference. If 0.0 is specified, the default size for the requested uiType is used.
-    ///
-    ///
-    /// Parameter `language`: Language identifier to select a font for a particular localization. If unspecified, the current system language is used. The format of the language identifier should conform to UTS #35.
-    ///
-    ///
-    /// Returns: This function returns the correct font for various UI uses. The only required parameter is the uiType selector, unspecified optional parameters will use default values.
-    pub fn CTFontCreateUIFontForLanguage(
-        ui_type: CTFontUIFontType,
-        size: CGFloat,
-        language: Option<&CFString>,
-    ) -> *mut CTFont;
+/// Returns the special UI font for the given language and UI type.
+///
+///
+/// Parameter `uiType`: A uiType constant specifying the intended UI use for the requested font reference.
+///
+///
+/// Parameter `size`: The point size for the font reference. If 0.0 is specified, the default size for the requested uiType is used.
+///
+///
+/// Parameter `language`: Language identifier to select a font for a particular localization. If unspecified, the current system language is used. The format of the language identifier should conform to UTS #35.
+///
+///
+/// Returns: This function returns the correct font for various UI uses. The only required parameter is the uiType selector, unspecified optional parameters will use default values.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCreateUIFontForLanguage(
+    ui_type: CTFontUIFontType,
+    size: CGFloat,
+    language: Option<&CFString>,
+) -> Option<CFRetained<CTFont>> {
+    extern "C-unwind" {
+        fn CTFontCreateUIFontForLanguage(
+            ui_type: CTFontUIFontType,
+            size: CGFloat,
+            language: Option<&CFString>,
+        ) -> *mut CTFont;
+    }
+    let ret = unsafe { CTFontCreateUIFontForLanguage(ui_type, size, language) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns a new font with additional attributes based on the original font.
-    ///
-    ///
-    /// This function provides a mechanism to quickly change attributes on a given font reference in response to user actions. For instance, the size can be changed in response to a user manipulating a size slider.
-    ///
-    ///
-    /// Parameter `font`: Original font reference to base new font on.
-    ///
-    ///
-    /// Parameter `size`: The point size for the font reference. If 0.0 is specified, the original font's size will be preserved.
-    ///
-    ///
-    /// Parameter `matrix`: The transformation matrix for the font. If unspecified, the original font matrix will be preserved. Optional.
-    ///
-    ///
-    /// Parameter `attributes`: A font descriptor containing additional attributes that the new font should contain.
-    ///
-    ///
-    /// Returns: Returns a new font reference converted from the original with the specified attributes.
-    #[cfg(feature = "CTFontDescriptor")]
-    pub fn CTFontCreateCopyWithAttributes(
-        font: &CTFont,
-        size: CGFloat,
-        matrix: *const CGAffineTransform,
-        attributes: Option<&CTFontDescriptor>,
-    ) -> NonNull<CTFont>;
+/// Returns a new font with additional attributes based on the original font.
+///
+///
+/// This function provides a mechanism to quickly change attributes on a given font reference in response to user actions. For instance, the size can be changed in response to a user manipulating a size slider.
+///
+///
+/// Parameter `font`: Original font reference to base new font on.
+///
+///
+/// Parameter `size`: The point size for the font reference. If 0.0 is specified, the original font's size will be preserved.
+///
+///
+/// Parameter `matrix`: The transformation matrix for the font. If unspecified, the original font matrix will be preserved. Optional.
+///
+///
+/// Parameter `attributes`: A font descriptor containing additional attributes that the new font should contain.
+///
+///
+/// Returns: Returns a new font reference converted from the original with the specified attributes.
+#[cfg(feature = "CTFontDescriptor")]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCreateCopyWithAttributes(
+    font: &CTFont,
+    size: CGFloat,
+    matrix: *const CGAffineTransform,
+    attributes: Option<&CTFontDescriptor>,
+) -> CFRetained<CTFont> {
+    extern "C-unwind" {
+        fn CTFontCreateCopyWithAttributes(
+            font: &CTFont,
+            size: CGFloat,
+            matrix: *const CGAffineTransform,
+            attributes: Option<&CTFontDescriptor>,
+        ) -> NonNull<CTFont>;
+    }
+    let ret = unsafe { CTFontCreateCopyWithAttributes(font, size, matrix, attributes) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns a new font based on the original font with the specified symbolic traits.
-    ///
-    ///
-    /// Parameter `font`: Original font reference on which to base the new font.
-    ///
-    ///
-    /// Parameter `size`: The point size for the font reference. If 0.0 is specified, the original font's size will be preserved.
-    ///
-    ///
-    /// Parameter `matrix`: The transformation matrix for the font. If unspecified, the original font matrix will be preserved. Optional.
-    ///
-    ///
-    /// Parameter `symTraitValue`: The value of the symbolic traits. This bitfield is used to indicate the desired value for the traits specified by the symTraitMask parameter. Used in conjunction, they can allow for trait removal as well as addition.
-    ///
-    ///
-    /// Parameter `symTraitMask`: The mask bits of the symbolic traits. This bitfield is used to indicate the traits that should be changed.
-    ///
-    ///
-    /// Returns: Returns a new font reference in the same family with the given symbolic traits, or NULL if none found in the system.
-    #[cfg(feature = "CTFontTraits")]
-    pub fn CTFontCreateCopyWithSymbolicTraits(
-        font: &CTFont,
-        size: CGFloat,
-        matrix: *const CGAffineTransform,
-        sym_trait_value: CTFontSymbolicTraits,
-        sym_trait_mask: CTFontSymbolicTraits,
-    ) -> *mut CTFont;
+/// Returns a new font based on the original font with the specified symbolic traits.
+///
+///
+/// Parameter `font`: Original font reference on which to base the new font.
+///
+///
+/// Parameter `size`: The point size for the font reference. If 0.0 is specified, the original font's size will be preserved.
+///
+///
+/// Parameter `matrix`: The transformation matrix for the font. If unspecified, the original font matrix will be preserved. Optional.
+///
+///
+/// Parameter `symTraitValue`: The value of the symbolic traits. This bitfield is used to indicate the desired value for the traits specified by the symTraitMask parameter. Used in conjunction, they can allow for trait removal as well as addition.
+///
+///
+/// Parameter `symTraitMask`: The mask bits of the symbolic traits. This bitfield is used to indicate the traits that should be changed.
+///
+///
+/// Returns: Returns a new font reference in the same family with the given symbolic traits, or NULL if none found in the system.
+#[cfg(feature = "CTFontTraits")]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCreateCopyWithSymbolicTraits(
+    font: &CTFont,
+    size: CGFloat,
+    matrix: *const CGAffineTransform,
+    sym_trait_value: CTFontSymbolicTraits,
+    sym_trait_mask: CTFontSymbolicTraits,
+) -> Option<CFRetained<CTFont>> {
+    extern "C-unwind" {
+        fn CTFontCreateCopyWithSymbolicTraits(
+            font: &CTFont,
+            size: CGFloat,
+            matrix: *const CGAffineTransform,
+            sym_trait_value: CTFontSymbolicTraits,
+            sym_trait_mask: CTFontSymbolicTraits,
+        ) -> *mut CTFont;
+    }
+    let ret = unsafe {
+        CTFontCreateCopyWithSymbolicTraits(font, size, matrix, sym_trait_value, sym_trait_mask)
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns a new font in the specified family based on the traits of the original font.
-    ///
-    ///
-    /// Parameter `font`: Original font reference to base new font on.
-    ///
-    ///
-    /// Parameter `size`: The point size for the font reference. If 0.0 is specified, the original font's size will be preserved.
-    ///
-    ///
-    /// Parameter `matrix`: The transformation matrix for the font. If unspecified, the original font matrix will be preserved. Optional.
-    ///
-    ///
-    /// Parameter `family`: The name of the desired family.
-    ///
-    ///
-    /// Returns: Returns a new font reference with the original traits in the given family. NULL if non found in the system.
-    pub fn CTFontCreateCopyWithFamily(
-        font: &CTFont,
-        size: CGFloat,
-        matrix: *const CGAffineTransform,
-        family: &CFString,
-    ) -> *mut CTFont;
+/// Returns a new font in the specified family based on the traits of the original font.
+///
+///
+/// Parameter `font`: Original font reference to base new font on.
+///
+///
+/// Parameter `size`: The point size for the font reference. If 0.0 is specified, the original font's size will be preserved.
+///
+///
+/// Parameter `matrix`: The transformation matrix for the font. If unspecified, the original font matrix will be preserved. Optional.
+///
+///
+/// Parameter `family`: The name of the desired family.
+///
+///
+/// Returns: Returns a new font reference with the original traits in the given family. NULL if non found in the system.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCreateCopyWithFamily(
+    font: &CTFont,
+    size: CGFloat,
+    matrix: *const CGAffineTransform,
+    family: &CFString,
+) -> Option<CFRetained<CTFont>> {
+    extern "C-unwind" {
+        fn CTFontCreateCopyWithFamily(
+            font: &CTFont,
+            size: CGFloat,
+            matrix: *const CGAffineTransform,
+            family: &CFString,
+        ) -> *mut CTFont;
+    }
+    let ret = unsafe { CTFontCreateCopyWithFamily(font, size, matrix, family) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns a new font reference that can best map the given string range based on the current font.
-    ///
-    ///
-    /// This function is to be used when the current font does not cover the given range of the string. The current font itself will not be returned, but preference is given to fonts in its cascade list.
-    ///
-    ///
-    /// Parameter `currentFont`: The current font that contains a valid cascade list.
-    ///
-    ///
-    /// Parameter `string`: A unicode string containing characters that cannot be encoded by the current font.
-    ///
-    ///
-    /// Parameter `range`: A CFRange specifying the range of the string that needs to be mapped.
-    ///
-    ///
-    /// Returns: This function returns the best substitute font that can encode the specified string range.
-    ///
-    ///
-    /// See also: CTFontCopyCharacterSet
-    ///
-    /// See also: CTFontGetGlyphsForCharacters
-    ///
-    /// See also: kCTFontCascadeListAttribute
-    pub fn CTFontCreateForString(
-        current_font: &CTFont,
-        string: &CFString,
-        range: CFRange,
-    ) -> NonNull<CTFont>;
+/// Returns a new font reference that can best map the given string range based on the current font.
+///
+///
+/// This function is to be used when the current font does not cover the given range of the string. The current font itself will not be returned, but preference is given to fonts in its cascade list.
+///
+///
+/// Parameter `currentFont`: The current font that contains a valid cascade list.
+///
+///
+/// Parameter `string`: A unicode string containing characters that cannot be encoded by the current font.
+///
+///
+/// Parameter `range`: A CFRange specifying the range of the string that needs to be mapped.
+///
+///
+/// Returns: This function returns the best substitute font that can encode the specified string range.
+///
+///
+/// See also: CTFontCopyCharacterSet
+///
+/// See also: CTFontGetGlyphsForCharacters
+///
+/// See also: kCTFontCascadeListAttribute
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCreateForString(
+    current_font: &CTFont,
+    string: &CFString,
+    range: CFRange,
+) -> CFRetained<CTFont> {
+    extern "C-unwind" {
+        fn CTFontCreateForString(
+            current_font: &CTFont,
+            string: &CFString,
+            range: CFRange,
+        ) -> NonNull<CTFont>;
+    }
+    let ret = unsafe { CTFontCreateForString(current_font, string, range) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns a new font reference that can best map the given string range based on the current font and language specified.
-    ///
-    ///
-    /// The current font itself can be returned if it covers the string provided.
-    ///
-    ///
-    /// Parameter `currentFont`: The current font that contains a valid cascade list.
-    ///
-    ///
-    /// Parameter `string`: A unicode string containing characters that cannot be encoded by the current font.
-    ///
-    ///
-    /// Parameter `range`: A CFRange specifying the range of the string that needs to be mapped.
-    ///
-    ///
-    /// Parameter `language`: Language identifier to select a font for a particular localization. If unspecified, the current system language is used. The format of the language identifier should conform to UTS #35.
-    ///
-    ///
-    /// Returns: This function returns the best substitute font that can encode the specified string range.
-    ///
-    ///
-    /// See also: CTFontCopyCharacterSet
-    ///
-    /// See also: CTFontGetGlyphsForCharacters
-    ///
-    /// See also: kCTFontCascadeListAttribute
-    pub fn CTFontCreateForStringWithLanguage(
-        current_font: &CTFont,
-        string: &CFString,
-        range: CFRange,
-        language: Option<&CFString>,
-    ) -> NonNull<CTFont>;
+/// Returns a new font reference that can best map the given string range based on the current font and language specified.
+///
+///
+/// The current font itself can be returned if it covers the string provided.
+///
+///
+/// Parameter `currentFont`: The current font that contains a valid cascade list.
+///
+///
+/// Parameter `string`: A unicode string containing characters that cannot be encoded by the current font.
+///
+///
+/// Parameter `range`: A CFRange specifying the range of the string that needs to be mapped.
+///
+///
+/// Parameter `language`: Language identifier to select a font for a particular localization. If unspecified, the current system language is used. The format of the language identifier should conform to UTS #35.
+///
+///
+/// Returns: This function returns the best substitute font that can encode the specified string range.
+///
+///
+/// See also: CTFontCopyCharacterSet
+///
+/// See also: CTFontGetGlyphsForCharacters
+///
+/// See also: kCTFontCascadeListAttribute
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCreateForStringWithLanguage(
+    current_font: &CTFont,
+    string: &CFString,
+    range: CFRange,
+    language: Option<&CFString>,
+) -> CFRetained<CTFont> {
+    extern "C-unwind" {
+        fn CTFontCreateForStringWithLanguage(
+            current_font: &CTFont,
+            string: &CFString,
+            range: CFRange,
+            language: Option<&CFString>,
+        ) -> NonNull<CTFont>;
+    }
+    let ret = unsafe { CTFontCreateForStringWithLanguage(current_font, string, range, language) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns the normalized font descriptors for the given font reference.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Returns: This function returns a normalized font descriptor for a font. The font descriptor contains enough information to recreate this font at a later time.
-    #[cfg(feature = "CTFontDescriptor")]
-    pub fn CTFontCopyFontDescriptor(font: &CTFont) -> NonNull<CTFontDescriptor>;
+/// Returns the normalized font descriptors for the given font reference.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Returns: This function returns a normalized font descriptor for a font. The font descriptor contains enough information to recreate this font at a later time.
+#[cfg(feature = "CTFontDescriptor")]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyFontDescriptor(
+    font: &CTFont,
+) -> CFRetained<CTFontDescriptor> {
+    extern "C-unwind" {
+        fn CTFontCopyFontDescriptor(font: &CTFont) -> NonNull<CTFontDescriptor>;
+    }
+    let ret = unsafe { CTFontCopyFontDescriptor(font) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns the value associated with an arbitrary attribute.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Parameter `attribute`: The requested attribute.
-    ///
-    ///
-    /// Returns: This function returns a retained reference to an arbitrary attribute. If the requested attribute is not present, NULL is returned. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
-    pub fn CTFontCopyAttribute(font: &CTFont, attribute: &CFString) -> *mut CFType;
+/// Returns the value associated with an arbitrary attribute.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Parameter `attribute`: The requested attribute.
+///
+///
+/// Returns: This function returns a retained reference to an arbitrary attribute. If the requested attribute is not present, NULL is returned. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyAttribute(
+    font: &CTFont,
+    attribute: &CFString,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn CTFontCopyAttribute(font: &CTFont, attribute: &CFString) -> *mut CFType;
+    }
+    let ret = unsafe { CTFontCopyAttribute(font, attribute) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -700,123 +815,180 @@ extern "C-unwind" {
     pub fn CTFontGetSymbolicTraits(font: &CTFont) -> CTFontSymbolicTraits;
 }
 
-extern "C-unwind" {
-    /// Returns the font traits dictionary.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Returns: This function returns a retained reference to the font traits dictionary. Individual traits can be accessed with the trait key constants. See CTFontTraits.h for a definition of the font traits.
-    pub fn CTFontCopyTraits(font: &CTFont) -> NonNull<CFDictionary>;
+/// Returns the font traits dictionary.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Returns: This function returns a retained reference to the font traits dictionary. Individual traits can be accessed with the trait key constants. See CTFontTraits.h for a definition of the font traits.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyTraits(font: &CTFont) -> CFRetained<CFDictionary> {
+    extern "C-unwind" {
+        fn CTFontCopyTraits(font: &CTFont) -> NonNull<CFDictionary>;
+    }
+    let ret = unsafe { CTFontCopyTraits(font) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Return an ordered list of CTFontDescriptorRef's for font fallback derived from the system default fallback according to the given language preferences, making a reasonable attempt to match the given font's style, weight, and width.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Parameter `languagePrefList`: An array of language identifiers as CFString values, in decreasing order of preference.
-    ///
-    ///
-    /// Returns: The ordered list of fallback fonts - ordered array of CTFontDescriptors.
-    pub fn CTFontCopyDefaultCascadeListForLanguages(
-        font: &CTFont,
-        language_pref_list: Option<&CFArray>,
-    ) -> *mut CFArray;
+/// Return an ordered list of CTFontDescriptorRef's for font fallback derived from the system default fallback according to the given language preferences, making a reasonable attempt to match the given font's style, weight, and width.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Parameter `languagePrefList`: An array of language identifiers as CFString values, in decreasing order of preference.
+///
+///
+/// Returns: The ordered list of fallback fonts - ordered array of CTFontDescriptors.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyDefaultCascadeListForLanguages(
+    font: &CTFont,
+    language_pref_list: Option<&CFArray>,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CTFontCopyDefaultCascadeListForLanguages(
+            font: &CTFont,
+            language_pref_list: Option<&CFArray>,
+        ) -> *mut CFArray;
+    }
+    let ret = unsafe { CTFontCopyDefaultCascadeListForLanguages(font, language_pref_list) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the PostScript name.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Returns: This function returns a retained reference to the PostScript name of the font.
-    pub fn CTFontCopyPostScriptName(font: &CTFont) -> NonNull<CFString>;
+/// Returns the PostScript name.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Returns: This function returns a retained reference to the PostScript name of the font.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyPostScriptName(font: &CTFont) -> CFRetained<CFString> {
+    extern "C-unwind" {
+        fn CTFontCopyPostScriptName(font: &CTFont) -> NonNull<CFString>;
+    }
+    let ret = unsafe { CTFontCopyPostScriptName(font) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns the family name.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Returns: This function returns a retained reference to the family name of the font.
-    pub fn CTFontCopyFamilyName(font: &CTFont) -> NonNull<CFString>;
+/// Returns the family name.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Returns: This function returns a retained reference to the family name of the font.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyFamilyName(font: &CTFont) -> CFRetained<CFString> {
+    extern "C-unwind" {
+        fn CTFontCopyFamilyName(font: &CTFont) -> NonNull<CFString>;
+    }
+    let ret = unsafe { CTFontCopyFamilyName(font) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns the display name.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Returns: This function returns a retained reference to the full name of the font.
-    pub fn CTFontCopyFullName(font: &CTFont) -> NonNull<CFString>;
+/// Returns the display name.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Returns: This function returns a retained reference to the full name of the font.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyFullName(font: &CTFont) -> CFRetained<CFString> {
+    extern "C-unwind" {
+        fn CTFontCopyFullName(font: &CTFont) -> NonNull<CFString>;
+    }
+    let ret = unsafe { CTFontCopyFullName(font) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns the display name.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Returns: This function returns a retained reference to the localized display name of the font.
-    pub fn CTFontCopyDisplayName(font: &CTFont) -> NonNull<CFString>;
+/// Returns the display name.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Returns: This function returns a retained reference to the localized display name of the font.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyDisplayName(font: &CTFont) -> CFRetained<CFString> {
+    extern "C-unwind" {
+        fn CTFontCopyDisplayName(font: &CTFont) -> NonNull<CFString>;
+    }
+    let ret = unsafe { CTFontCopyDisplayName(font) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns a reference to the requested name.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Parameter `nameKey`: The name specifier. See name specifier constants.
-    ///
-    ///
-    /// Returns: This function creates the requested name for the font, or NULL if the font does not have an entry for the requested name. The Unicode version of the name will be preferred, otherwise the first available will be used.
-    pub fn CTFontCopyName(font: &CTFont, name_key: &CFString) -> *mut CFString;
+/// Returns a reference to the requested name.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Parameter `nameKey`: The name specifier. See name specifier constants.
+///
+///
+/// Returns: This function creates the requested name for the font, or NULL if the font does not have an entry for the requested name. The Unicode version of the name will be preferred, otherwise the first available will be used.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyName(
+    font: &CTFont,
+    name_key: &CFString,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CTFontCopyName(font: &CTFont, name_key: &CFString) -> *mut CFString;
+    }
+    let ret = unsafe { CTFontCopyName(font, name_key) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns a reference to a localized font name.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Parameter `nameKey`: The name specifier. See name specifier constants.
-    ///
-    ///
-    /// Parameter `actualLanguage`: Pointer to a CFStringRef to receive the language identifier of the returned name string. The format of the language identifier will conform to UTS #35.
-    /// If CoreText can supply its own localized string where the font cannot, this value will be NULL.
-    ///
-    ///
-    /// Returns: This function returns a specific localized name from the font reference. The name is localized based on the user's global language precedence. If the font does not have an entry for the requested name, NULL will be returned. The matched language will be returned in the caller's buffer.
-    pub fn CTFontCopyLocalizedName(
-        font: &CTFont,
-        name_key: &CFString,
-        actual_language: *mut *mut CFString,
-    ) -> *mut CFString;
+/// Returns a reference to a localized font name.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Parameter `nameKey`: The name specifier. See name specifier constants.
+///
+///
+/// Parameter `actualLanguage`: Pointer to a CFStringRef to receive the language identifier of the returned name string. The format of the language identifier will conform to UTS #35.
+/// If CoreText can supply its own localized string where the font cannot, this value will be NULL.
+///
+///
+/// Returns: This function returns a specific localized name from the font reference. The name is localized based on the user's global language precedence. If the font does not have an entry for the requested name, NULL will be returned. The matched language will be returned in the caller's buffer.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyLocalizedName(
+    font: &CTFont,
+    name_key: &CFString,
+    actual_language: *mut *mut CFString,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CTFontCopyLocalizedName(
+            font: &CTFont,
+            name_key: &CFString,
+            actual_language: *mut *mut CFString,
+        ) -> *mut CFString;
+    }
+    let ret = unsafe { CTFontCopyLocalizedName(font, name_key, actual_language) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the Unicode character set of the font.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Returns: This function returns a retained reference to the font's character set. This character set covers the nominal referenced by the font's Unicode cmap table (or equivalent).
-    pub fn CTFontCopyCharacterSet(font: &CTFont) -> NonNull<CFCharacterSet>;
+/// Returns the Unicode character set of the font.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Returns: This function returns a retained reference to the font's character set. This character set covers the nominal referenced by the font's Unicode cmap table (or equivalent).
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyCharacterSet(
+    font: &CTFont,
+) -> CFRetained<CFCharacterSet> {
+    extern "C-unwind" {
+        fn CTFontCopyCharacterSet(font: &CTFont) -> NonNull<CFCharacterSet>;
+    }
+    let ret = unsafe { CTFontCopyCharacterSet(font) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 extern "C-unwind" {
@@ -830,15 +1002,20 @@ extern "C-unwind" {
     pub fn CTFontGetStringEncoding(font: &CTFont) -> CFStringEncoding;
 }
 
-extern "C-unwind" {
-    /// Returns an array of languages supported by the font.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Returns: This function returns a retained reference to an array of languages supported by the font. The array contains language identifier strings as CFStringRefs. The format of the language identifier will conform to UTS #35.
-    pub fn CTFontCopySupportedLanguages(font: &CTFont) -> NonNull<CFArray>;
+/// Returns an array of languages supported by the font.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Returns: This function returns a retained reference to an array of languages supported by the font. The array contains language identifier strings as CFStringRefs. The format of the language identifier will conform to UTS #35.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopySupportedLanguages(font: &CTFont) -> CFRetained<CFArray> {
+    extern "C-unwind" {
+        fn CTFontCopySupportedLanguages(font: &CTFont) -> NonNull<CFArray>;
+    }
+    let ret = unsafe { CTFontCopySupportedLanguages(font) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 extern "C-unwind" {
@@ -1009,22 +1186,30 @@ extern "C-unwind" {
     pub fn CTFontGetGlyphWithName(font: &CTFont, glyph_name: &CFString) -> CGGlyph;
 }
 
-extern "C-unwind" {
-    /// Returns the name for the specified glyph.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Parameter `glyph`: The glyph.
-    ///
-    ///
-    /// Returns: The glyph name as a CFString or NULL if the glyph is invalid.
-    ///
-    ///
-    /// See also: CTFontGetGlyphWithName
-    #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTFontCopyNameForGlyph(font: &CTFont, glyph: CGGlyph) -> *mut CFString;
+/// Returns the name for the specified glyph.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Parameter `glyph`: The glyph.
+///
+///
+/// Returns: The glyph name as a CFString or NULL if the glyph is invalid.
+///
+///
+/// See also: CTFontGetGlyphWithName
+#[cfg(feature = "objc2-core-graphics")]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyNameForGlyph(
+    font: &CTFont,
+    glyph: CGGlyph,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CTFontCopyNameForGlyph(font: &CTFont, glyph: CGGlyph) -> *mut CFString;
+    }
+    let ret = unsafe { CTFontCopyNameForGlyph(font, glyph) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -1143,29 +1328,38 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    /// Creates a path for the specified glyph.
-    ///
-    ///
-    /// Creates a path from the outlines of the glyph for the specified font. The path will reflect the font point size, matrix, and transform parameter, in that order. The transform parameter will most commonly be used to provide a translation to the desired glyph origin.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Parameter `glyph`: The glyph.
-    ///
-    ///
-    /// Parameter `matrix`: An affine transform applied to the path. Can be NULL, in which case CGAffineTransformIdentity will be used.
-    ///
-    ///
-    /// Returns: A retained CGPath reference containing the glyph outlines or NULL if there is no such glyph or it has no outline.
-    #[cfg(feature = "objc2-core-graphics")]
-    pub fn CTFontCreatePathForGlyph(
-        font: &CTFont,
-        glyph: CGGlyph,
-        matrix: *const CGAffineTransform,
-    ) -> *mut CGPath;
+/// Creates a path for the specified glyph.
+///
+///
+/// Creates a path from the outlines of the glyph for the specified font. The path will reflect the font point size, matrix, and transform parameter, in that order. The transform parameter will most commonly be used to provide a translation to the desired glyph origin.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Parameter `glyph`: The glyph.
+///
+///
+/// Parameter `matrix`: An affine transform applied to the path. Can be NULL, in which case CGAffineTransformIdentity will be used.
+///
+///
+/// Returns: A retained CGPath reference containing the glyph outlines or NULL if there is no such glyph or it has no outline.
+#[cfg(feature = "objc2-core-graphics")]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCreatePathForGlyph(
+    font: &CTFont,
+    glyph: CGGlyph,
+    matrix: *const CGAffineTransform,
+) -> Option<CFRetained<CGPath>> {
+    extern "C-unwind" {
+        fn CTFontCreatePathForGlyph(
+            font: &CTFont,
+            glyph: CGGlyph,
+            matrix: *const CGAffineTransform,
+        ) -> *mut CGPath;
+    }
+    let ret = unsafe { CTFontCreatePathForGlyph(font, glyph, matrix) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {
@@ -1234,35 +1428,49 @@ extern "C" {
     pub static kCTFontVariationAxisHiddenKey: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Returns an array of variation axis dictionaries.
-    ///
-    /// Each variation axis dictionary contains the five kCTFontVariationAxis* keys above, and kCTFontVariationAxisNameKey values will be localized when supported by the font.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Returns: An array of variation axis dictionaries or null if the font does not support variations.
-    pub fn CTFontCopyVariationAxes(font: &CTFont) -> *mut CFArray;
+/// Returns an array of variation axis dictionaries.
+///
+/// Each variation axis dictionary contains the five kCTFontVariationAxis* keys above, and kCTFontVariationAxisNameKey values will be localized when supported by the font.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Returns: An array of variation axis dictionaries or null if the font does not support variations.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyVariationAxes(
+    font: &CTFont,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CTFontCopyVariationAxes(font: &CTFont) -> *mut CFArray;
+    }
+    let ret = unsafe { CTFontCopyVariationAxes(font) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns a variation dictionary.
-    ///
-    /// This function describes the current configuration of a variation font: a dictionary of number values with variation identifier number keys. As of macOS 10.12 and iOS 10.0, only non-default values (as determined by the variation axis) are returned.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Returns: This function returns a variation dictionary or null if the font does not support variations.
-    ///
-    ///
-    /// See also: kCTFontVariationAxisIdentifierKey
-    ///
-    /// See also: kCTFontVariationAxisDefaultValueKey
-    pub fn CTFontCopyVariation(font: &CTFont) -> *mut CFDictionary;
+/// Returns a variation dictionary.
+///
+/// This function describes the current configuration of a variation font: a dictionary of number values with variation identifier number keys. As of macOS 10.12 and iOS 10.0, only non-default values (as determined by the variation axis) are returned.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Returns: This function returns a variation dictionary or null if the font does not support variations.
+///
+///
+/// See also: kCTFontVariationAxisIdentifierKey
+///
+/// See also: kCTFontVariationAxisDefaultValueKey
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyVariation(
+    font: &CTFont,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CTFontCopyVariation(font: &CTFont) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CTFontCopyVariation(font) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {
@@ -1397,105 +1605,145 @@ extern "C" {
     pub static kCTFontFeatureTooltipTextKey: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Returns an array of font features
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Returns: This function returns an array of font feature dictionaries for the font reference.
-    pub fn CTFontCopyFeatures(font: &CTFont) -> *mut CFArray;
+/// Returns an array of font features
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Returns: This function returns an array of font feature dictionaries for the font reference.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyFeatures(font: &CTFont) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CTFontCopyFeatures(font: &CTFont) -> *mut CFArray;
+    }
+    let ret = unsafe { CTFontCopyFeatures(font) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns an array of font feature setting tuples
-    ///
-    ///
-    /// A setting tuple is a dictionary of a kCTFontFeatureTypeIdentifierKey key-value pair and a kCTFontFeatureSelectorIdentifierKey key-value pair. Each tuple corresponds to an enabled non-default setting. It is the caller's responsibility to handle exclusive and non-exclusive settings as necessary.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Returns: This function returns a normalized array of font feature setting dictionaries. The array will only contain the non-default settings that should be applied to the font, or NULL if the default settings should be used.
-    pub fn CTFontCopyFeatureSettings(font: &CTFont) -> *mut CFArray;
+/// Returns an array of font feature setting tuples
+///
+///
+/// A setting tuple is a dictionary of a kCTFontFeatureTypeIdentifierKey key-value pair and a kCTFontFeatureSelectorIdentifierKey key-value pair. Each tuple corresponds to an enabled non-default setting. It is the caller's responsibility to handle exclusive and non-exclusive settings as necessary.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Returns: This function returns a normalized array of font feature setting dictionaries. The array will only contain the non-default settings that should be applied to the font, or NULL if the default settings should be used.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyFeatureSettings(
+    font: &CTFont,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CTFontCopyFeatureSettings(font: &CTFont) -> *mut CFArray;
+    }
+    let ret = unsafe { CTFontCopyFeatureSettings(font) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns a CGFontRef and attributes.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Parameter `attributes`: A pointer to a CTFontDescriptorRef to receive a font descriptor containing additional attributes. Can be NULL. Must be released by caller.
-    ///
-    ///
-    /// Returns: This function returns a CGFontRef for the given font reference. Additional attributes from the font will be passed back as a font descriptor via the attributes parameter. The result must be released by the caller.
-    #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
-    pub fn CTFontCopyGraphicsFont(
-        font: &CTFont,
-        attributes: *mut *mut CTFontDescriptor,
-    ) -> NonNull<CGFont>;
+/// Returns a CGFontRef and attributes.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Parameter `attributes`: A pointer to a CTFontDescriptorRef to receive a font descriptor containing additional attributes. Can be NULL. Must be released by caller.
+///
+///
+/// Returns: This function returns a CGFontRef for the given font reference. Additional attributes from the font will be passed back as a font descriptor via the attributes parameter. The result must be released by the caller.
+#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyGraphicsFont(
+    font: &CTFont,
+    attributes: *mut *mut CTFontDescriptor,
+) -> CFRetained<CGFont> {
+    extern "C-unwind" {
+        fn CTFontCopyGraphicsFont(
+            font: &CTFont,
+            attributes: *mut *mut CTFontDescriptor,
+        ) -> NonNull<CGFont>;
+    }
+    let ret = unsafe { CTFontCopyGraphicsFont(font, attributes) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Creates a new font reference from a CGFontRef.
-    ///
-    ///
-    /// Parameter `graphicsFont`: A valid CGFontRef.
-    ///
-    ///
-    /// Parameter `size`: The point size for the font reference. If 0.0 is specified, the default font size of 12.0 will be used.
-    ///
-    ///
-    /// Parameter `matrix`: The transformation matrix for the font. If unspecified, the identity matrix will be used. Optional.
-    ///
-    ///
-    /// Parameter `attributes`: A CTFontDescriptorRef containing additional attributes that should be matched. Optional.
-    ///
-    ///
-    /// Returns: This function returns a new font reference for an existing CGFontRef with the specified size, matrix, and additional attributes.
-    #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
-    pub fn CTFontCreateWithGraphicsFont(
-        graphics_font: &CGFont,
-        size: CGFloat,
-        matrix: *const CGAffineTransform,
-        attributes: Option<&CTFontDescriptor>,
-    ) -> NonNull<CTFont>;
+/// Creates a new font reference from a CGFontRef.
+///
+///
+/// Parameter `graphicsFont`: A valid CGFontRef.
+///
+///
+/// Parameter `size`: The point size for the font reference. If 0.0 is specified, the default font size of 12.0 will be used.
+///
+///
+/// Parameter `matrix`: The transformation matrix for the font. If unspecified, the identity matrix will be used. Optional.
+///
+///
+/// Parameter `attributes`: A CTFontDescriptorRef containing additional attributes that should be matched. Optional.
+///
+///
+/// Returns: This function returns a new font reference for an existing CGFontRef with the specified size, matrix, and additional attributes.
+#[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCreateWithGraphicsFont(
+    graphics_font: &CGFont,
+    size: CGFloat,
+    matrix: *const CGAffineTransform,
+    attributes: Option<&CTFontDescriptor>,
+) -> CFRetained<CTFont> {
+    extern "C-unwind" {
+        fn CTFontCreateWithGraphicsFont(
+            graphics_font: &CGFont,
+            size: CGFloat,
+            matrix: *const CGAffineTransform,
+            attributes: Option<&CTFontDescriptor>,
+        ) -> NonNull<CTFont>;
+    }
+    let ret = unsafe { CTFontCreateWithGraphicsFont(graphics_font, size, matrix, attributes) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/atsfontref?language=objc)
 pub type ATSFontRef = u32;
 
-extern "C-unwind" {
-    /// Returns a font reference for the given Quickdraw instance.
-    ///
-    ///
-    /// This function is provided for compatibility support between Core Text and clients needing to support Quickdraw font references.
-    ///
-    ///
-    /// Parameter `name`: The Quickdraw font name. If NULL or zero length, an identifier must be specified instead.
-    ///
-    ///
-    /// Parameter `identifier`: The Quickdraw font identifier. If 0, a name must be specified instead.
-    ///
-    ///
-    /// Parameter `style`: The Quickdraw font style.
-    ///
-    ///
-    /// Parameter `size`: The point size for the font reference. If 0.0 is specified, the default size of 12.0 is used.
-    ///
-    ///
-    /// Returns: This function returns the best font instance matching the Quickdraw instance information.
-    #[deprecated = "Quickdraw font references are deprecated"]
-    pub fn CTFontCreateWithQuickdrawInstance(
-        name: ConstStr255Param,
-        identifier: i16,
-        style: u8,
-        size: CGFloat,
-    ) -> NonNull<CTFont>;
+/// Returns a font reference for the given Quickdraw instance.
+///
+///
+/// This function is provided for compatibility support between Core Text and clients needing to support Quickdraw font references.
+///
+///
+/// Parameter `name`: The Quickdraw font name. If NULL or zero length, an identifier must be specified instead.
+///
+///
+/// Parameter `identifier`: The Quickdraw font identifier. If 0, a name must be specified instead.
+///
+///
+/// Parameter `style`: The Quickdraw font style.
+///
+///
+/// Parameter `size`: The point size for the font reference. If 0.0 is specified, the default size of 12.0 is used.
+///
+///
+/// Returns: This function returns the best font instance matching the Quickdraw instance information.
+#[deprecated = "Quickdraw font references are deprecated"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCreateWithQuickdrawInstance(
+    name: ConstStr255Param,
+    identifier: i16,
+    style: u8,
+    size: CGFloat,
+) -> CFRetained<CTFont> {
+    extern "C-unwind" {
+        fn CTFontCreateWithQuickdrawInstance(
+            name: ConstStr255Param,
+            identifier: i16,
+            style: u8,
+            size: CGFloat,
+        ) -> NonNull<CTFont>;
+    }
+    let ret = unsafe { CTFontCreateWithQuickdrawInstance(name, identifier, style, size) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfonttablebase?language=objc)
@@ -1675,21 +1923,29 @@ unsafe impl RefEncode for CTFontTableOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// Returns an array of font table tags.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Parameter `options`: The options used when copying font tables.
-    ///
-    ///
-    /// Returns: This function returns an array of CTFontTableTag values for the given font and the supplied options. The returned set will contain unboxed values, which may be extracted like so:
-    /// <code>
-    /// CTFontTableTag tag = (CTFontTableTag)(uintptr_t)CFArrayGetValueAtIndex(tags, index);
-    /// </code>
-    pub fn CTFontCopyAvailableTables(font: &CTFont, options: CTFontTableOptions) -> *mut CFArray;
+/// Returns an array of font table tags.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Parameter `options`: The options used when copying font tables.
+///
+///
+/// Returns: This function returns an array of CTFontTableTag values for the given font and the supplied options. The returned set will contain unboxed values, which may be extracted like so:
+/// <code>
+/// CTFontTableTag tag = (CTFontTableTag)(uintptr_t)CFArrayGetValueAtIndex(tags, index);
+/// </code>
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyAvailableTables(
+    font: &CTFont,
+    options: CTFontTableOptions,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CTFontCopyAvailableTables(font: &CTFont, options: CTFontTableOptions) -> *mut CFArray;
+    }
+    let ret = unsafe { CTFontCopyAvailableTables(font, options) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -1708,25 +1964,34 @@ extern "C-unwind" {
     pub fn CTFontHasTable(font: &CTFont, tag: CTFontTableTag) -> bool;
 }
 
-extern "C-unwind" {
-    /// Returns a reference to the font table data.
-    ///
-    ///
-    /// Parameter `font`: The font reference.
-    ///
-    ///
-    /// Parameter `table`: The font table identifier as a CTFontTableTag.
-    ///
-    ///
-    /// Parameter `options`: The options used when copying font table.
-    ///
-    ///
-    /// Returns: This function returns a retained reference to the font table data as CFDataRef or NULL if the table is not present.
-    pub fn CTFontCopyTable(
-        font: &CTFont,
-        table: CTFontTableTag,
-        options: CTFontTableOptions,
-    ) -> *mut CFData;
+/// Returns a reference to the font table data.
+///
+///
+/// Parameter `font`: The font reference.
+///
+///
+/// Parameter `table`: The font table identifier as a CTFontTableTag.
+///
+///
+/// Parameter `options`: The options used when copying font table.
+///
+///
+/// Returns: This function returns a retained reference to the font table data as CFDataRef or NULL if the table is not present.
+#[inline]
+pub unsafe extern "C-unwind" fn CTFontCopyTable(
+    font: &CTFont,
+    table: CTFontTableTag,
+    options: CTFontTableOptions,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn CTFontCopyTable(
+            font: &CTFont,
+            table: CTFontTableTag,
+            options: CTFontTableOptions,
+        ) -> *mut CFData;
+    }
+    let ret = unsafe { CTFontCopyTable(font, table, options) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

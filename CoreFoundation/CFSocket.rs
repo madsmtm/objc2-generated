@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -179,51 +180,120 @@ extern "C-unwind" {
     pub fn CFSocketGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFData"))]
-    pub fn CFSocketCreate(
-        allocator: Option<&CFAllocator>,
-        protocol_family: i32,
-        socket_type: i32,
-        protocol: i32,
-        call_back_types: CFOptionFlags,
-        callout: CFSocketCallBack,
-        context: *const CFSocketContext,
-    ) -> *mut CFSocket;
+#[cfg(all(feature = "CFBase", feature = "CFData"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFSocketCreate(
+    allocator: Option<&CFAllocator>,
+    protocol_family: i32,
+    socket_type: i32,
+    protocol: i32,
+    call_back_types: CFOptionFlags,
+    callout: CFSocketCallBack,
+    context: *const CFSocketContext,
+) -> Option<CFRetained<CFSocket>> {
+    extern "C-unwind" {
+        fn CFSocketCreate(
+            allocator: Option<&CFAllocator>,
+            protocol_family: i32,
+            socket_type: i32,
+            protocol: i32,
+            call_back_types: CFOptionFlags,
+            callout: CFSocketCallBack,
+            context: *const CFSocketContext,
+        ) -> *mut CFSocket;
+    }
+    let ret = unsafe {
+        CFSocketCreate(
+            allocator,
+            protocol_family,
+            socket_type,
+            protocol,
+            call_back_types,
+            callout,
+            context,
+        )
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFData"))]
-    pub fn CFSocketCreateWithNative(
-        allocator: Option<&CFAllocator>,
-        sock: CFSocketNativeHandle,
-        call_back_types: CFOptionFlags,
-        callout: CFSocketCallBack,
-        context: *const CFSocketContext,
-    ) -> *mut CFSocket;
+#[cfg(all(feature = "CFBase", feature = "CFData"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFSocketCreateWithNative(
+    allocator: Option<&CFAllocator>,
+    sock: CFSocketNativeHandle,
+    call_back_types: CFOptionFlags,
+    callout: CFSocketCallBack,
+    context: *const CFSocketContext,
+) -> Option<CFRetained<CFSocket>> {
+    extern "C-unwind" {
+        fn CFSocketCreateWithNative(
+            allocator: Option<&CFAllocator>,
+            sock: CFSocketNativeHandle,
+            call_back_types: CFOptionFlags,
+            callout: CFSocketCallBack,
+            context: *const CFSocketContext,
+        ) -> *mut CFSocket;
+    }
+    let ret =
+        unsafe { CFSocketCreateWithNative(allocator, sock, call_back_types, callout, context) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFData"))]
-    pub fn CFSocketCreateWithSocketSignature(
-        allocator: Option<&CFAllocator>,
-        signature: *const CFSocketSignature,
-        call_back_types: CFOptionFlags,
-        callout: CFSocketCallBack,
-        context: *const CFSocketContext,
-    ) -> *mut CFSocket;
+#[cfg(all(feature = "CFBase", feature = "CFData"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFSocketCreateWithSocketSignature(
+    allocator: Option<&CFAllocator>,
+    signature: *const CFSocketSignature,
+    call_back_types: CFOptionFlags,
+    callout: CFSocketCallBack,
+    context: *const CFSocketContext,
+) -> Option<CFRetained<CFSocket>> {
+    extern "C-unwind" {
+        fn CFSocketCreateWithSocketSignature(
+            allocator: Option<&CFAllocator>,
+            signature: *const CFSocketSignature,
+            call_back_types: CFOptionFlags,
+            callout: CFSocketCallBack,
+            context: *const CFSocketContext,
+        ) -> *mut CFSocket;
+    }
+    let ret = unsafe {
+        CFSocketCreateWithSocketSignature(allocator, signature, call_back_types, callout, context)
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
-    pub fn CFSocketCreateConnectedToSocketSignature(
-        allocator: Option<&CFAllocator>,
-        signature: *const CFSocketSignature,
-        call_back_types: CFOptionFlags,
-        callout: CFSocketCallBack,
-        context: *const CFSocketContext,
-        timeout: CFTimeInterval,
-    ) -> *mut CFSocket;
+#[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFSocketCreateConnectedToSocketSignature(
+    allocator: Option<&CFAllocator>,
+    signature: *const CFSocketSignature,
+    call_back_types: CFOptionFlags,
+    callout: CFSocketCallBack,
+    context: *const CFSocketContext,
+    timeout: CFTimeInterval,
+) -> Option<CFRetained<CFSocket>> {
+    extern "C-unwind" {
+        fn CFSocketCreateConnectedToSocketSignature(
+            allocator: Option<&CFAllocator>,
+            signature: *const CFSocketSignature,
+            call_back_types: CFOptionFlags,
+            callout: CFSocketCallBack,
+            context: *const CFSocketContext,
+            timeout: CFTimeInterval,
+        ) -> *mut CFSocket;
+    }
+    let ret = unsafe {
+        CFSocketCreateConnectedToSocketSignature(
+            allocator,
+            signature,
+            call_back_types,
+            callout,
+            context,
+            timeout,
+        )
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -248,14 +318,28 @@ extern "C-unwind" {
     pub fn CFSocketIsValid(s: Option<&CFSocket>) -> Boolean;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFData")]
-    pub fn CFSocketCopyAddress(s: Option<&CFSocket>) -> *mut CFData;
+#[cfg(feature = "CFData")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFSocketCopyAddress(
+    s: Option<&CFSocket>,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn CFSocketCopyAddress(s: Option<&CFSocket>) -> *mut CFData;
+    }
+    let ret = unsafe { CFSocketCopyAddress(s) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFData")]
-    pub fn CFSocketCopyPeerAddress(s: Option<&CFSocket>) -> *mut CFData;
+#[cfg(feature = "CFData")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFSocketCopyPeerAddress(
+    s: Option<&CFSocket>,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn CFSocketCopyPeerAddress(s: Option<&CFSocket>) -> *mut CFData;
+    }
+    let ret = unsafe { CFSocketCopyPeerAddress(s) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -267,13 +351,22 @@ extern "C-unwind" {
     pub fn CFSocketGetNative(s: Option<&CFSocket>) -> CFSocketNativeHandle;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
-    pub fn CFSocketCreateRunLoopSource(
-        allocator: Option<&CFAllocator>,
-        s: Option<&CFSocket>,
-        order: CFIndex,
-    ) -> *mut CFRunLoopSource;
+#[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFSocketCreateRunLoopSource(
+    allocator: Option<&CFAllocator>,
+    s: Option<&CFSocket>,
+    order: CFIndex,
+) -> Option<CFRetained<CFRunLoopSource>> {
+    extern "C-unwind" {
+        fn CFSocketCreateRunLoopSource(
+            allocator: Option<&CFAllocator>,
+            s: Option<&CFSocket>,
+            order: CFIndex,
+        ) -> *mut CFRunLoopSource;
+    }
+    let ret = unsafe { CFSocketCreateRunLoopSource(allocator, s, order) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

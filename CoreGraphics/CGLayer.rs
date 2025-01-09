@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 use objc2_core_foundation::*;
 
 use crate::*;
@@ -19,22 +20,38 @@ cf_type!(
     unsafe impl CGLayer {}
 );
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGLayerCreateWithContext(
-        context: Option<&CGContext>,
-        size: CGSize,
-        auxiliary_info: Option<&CFDictionary>,
-    ) -> *mut CGLayer;
+#[cfg(feature = "CGContext")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGLayerCreateWithContext(
+    context: Option<&CGContext>,
+    size: CGSize,
+    auxiliary_info: Option<&CFDictionary>,
+) -> Option<CFRetained<CGLayer>> {
+    extern "C-unwind" {
+        fn CGLayerCreateWithContext(
+            context: Option<&CGContext>,
+            size: CGSize,
+            auxiliary_info: Option<&CFDictionary>,
+        ) -> *mut CGLayer;
+    }
+    let ret = unsafe { CGLayerCreateWithContext(context, size, auxiliary_info) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
     pub fn CGLayerGetSize(layer: Option<&CGLayer>) -> CGSize;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGLayerGetContext(layer: Option<&CGLayer>) -> *mut CGContext;
+#[cfg(feature = "CGContext")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGLayerGetContext(
+    layer: Option<&CGLayer>,
+) -> Option<CFRetained<CGContext>> {
+    extern "C-unwind" {
+        fn CGLayerGetContext(layer: Option<&CGLayer>) -> *mut CGContext;
+    }
+    let ret = unsafe { CGLayerGetContext(layer) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

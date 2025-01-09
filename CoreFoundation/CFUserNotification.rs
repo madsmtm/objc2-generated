@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 
 use crate::*;
 
@@ -28,15 +29,26 @@ extern "C-unwind" {
     pub fn CFUserNotificationGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFDate", feature = "CFDictionary"))]
-    pub fn CFUserNotificationCreate(
-        allocator: Option<&CFAllocator>,
-        timeout: CFTimeInterval,
-        flags: CFOptionFlags,
-        error: *mut i32,
-        dictionary: Option<&CFDictionary>,
-    ) -> *mut CFUserNotification;
+#[cfg(all(feature = "CFBase", feature = "CFDate", feature = "CFDictionary"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFUserNotificationCreate(
+    allocator: Option<&CFAllocator>,
+    timeout: CFTimeInterval,
+    flags: CFOptionFlags,
+    error: *mut i32,
+    dictionary: Option<&CFDictionary>,
+) -> Option<CFRetained<CFUserNotification>> {
+    extern "C-unwind" {
+        fn CFUserNotificationCreate(
+            allocator: Option<&CFAllocator>,
+            timeout: CFTimeInterval,
+            flags: CFOptionFlags,
+            error: *mut i32,
+            dictionary: Option<&CFDictionary>,
+        ) -> *mut CFUserNotification;
+    }
+    let ret = unsafe { CFUserNotificationCreate(allocator, timeout, flags, error, dictionary) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -48,20 +60,36 @@ extern "C-unwind" {
     ) -> i32;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFUserNotificationGetResponseValue(
-        user_notification: Option<&CFUserNotification>,
-        key: Option<&CFString>,
-        idx: CFIndex,
-    ) -> *mut CFString;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFUserNotificationGetResponseValue(
+    user_notification: Option<&CFUserNotification>,
+    key: Option<&CFString>,
+    idx: CFIndex,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CFUserNotificationGetResponseValue(
+            user_notification: Option<&CFUserNotification>,
+            key: Option<&CFString>,
+            idx: CFIndex,
+        ) -> *mut CFString;
+    }
+    let ret = unsafe { CFUserNotificationGetResponseValue(user_notification, key, idx) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFDictionary")]
-    pub fn CFUserNotificationGetResponseDictionary(
-        user_notification: Option<&CFUserNotification>,
-    ) -> *mut CFDictionary;
+#[cfg(feature = "CFDictionary")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFUserNotificationGetResponseDictionary(
+    user_notification: Option<&CFUserNotification>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CFUserNotificationGetResponseDictionary(
+            user_notification: Option<&CFUserNotification>,
+        ) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CFUserNotificationGetResponseDictionary(user_notification) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -78,14 +106,26 @@ extern "C-unwind" {
     pub fn CFUserNotificationCancel(user_notification: Option<&CFUserNotification>) -> i32;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
-    pub fn CFUserNotificationCreateRunLoopSource(
-        allocator: Option<&CFAllocator>,
-        user_notification: Option<&CFUserNotification>,
-        callout: CFUserNotificationCallBack,
-        order: CFIndex,
-    ) -> *mut CFRunLoopSource;
+#[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFUserNotificationCreateRunLoopSource(
+    allocator: Option<&CFAllocator>,
+    user_notification: Option<&CFUserNotification>,
+    callout: CFUserNotificationCallBack,
+    order: CFIndex,
+) -> Option<CFRetained<CFRunLoopSource>> {
+    extern "C-unwind" {
+        fn CFUserNotificationCreateRunLoopSource(
+            allocator: Option<&CFAllocator>,
+            user_notification: Option<&CFUserNotification>,
+            callout: CFUserNotificationCallBack,
+            order: CFIndex,
+        ) -> *mut CFRunLoopSource;
+    }
+    let ret = unsafe {
+        CFUserNotificationCreateRunLoopSource(allocator, user_notification, callout, order)
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

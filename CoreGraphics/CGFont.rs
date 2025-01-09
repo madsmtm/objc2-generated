@@ -59,25 +59,54 @@ extern "C-unwind" {
     pub fn CGFontGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[deprecated = "No longer supported"]
-    pub fn CGFontCreateWithPlatformFont(platform_font_reference: *mut c_void) -> *mut CGFont;
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCreateWithPlatformFont(
+    platform_font_reference: *mut c_void,
+) -> Option<CFRetained<CGFont>> {
+    extern "C-unwind" {
+        fn CGFontCreateWithPlatformFont(platform_font_reference: *mut c_void) -> *mut CGFont;
+    }
+    let ret = unsafe { CGFontCreateWithPlatformFont(platform_font_reference) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGDataProvider")]
-    pub fn CGFontCreateWithDataProvider(provider: &CGDataProvider) -> *mut CGFont;
+#[cfg(feature = "CGDataProvider")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCreateWithDataProvider(
+    provider: &CGDataProvider,
+) -> Option<CFRetained<CGFont>> {
+    extern "C-unwind" {
+        fn CGFontCreateWithDataProvider(provider: &CGDataProvider) -> *mut CGFont;
+    }
+    let ret = unsafe { CGFontCreateWithDataProvider(provider) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGFontCreateWithFontName(name: Option<&CFString>) -> *mut CGFont;
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCreateWithFontName(
+    name: Option<&CFString>,
+) -> Option<CFRetained<CGFont>> {
+    extern "C-unwind" {
+        fn CGFontCreateWithFontName(name: Option<&CFString>) -> *mut CGFont;
+    }
+    let ret = unsafe { CGFontCreateWithFontName(name) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGFontCreateCopyWithVariations(
-        font: Option<&CGFont>,
-        variations: Option<&CFDictionary>,
-    ) -> *mut CGFont;
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCreateCopyWithVariations(
+    font: Option<&CGFont>,
+    variations: Option<&CFDictionary>,
+) -> Option<CFRetained<CGFont>> {
+    extern "C-unwind" {
+        fn CGFontCreateCopyWithVariations(
+            font: Option<&CGFont>,
+            variations: Option<&CFDictionary>,
+        ) -> *mut CGFont;
+    }
+    let ret = unsafe { CGFontCreateCopyWithVariations(font, variations) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -88,12 +117,26 @@ extern "C-unwind" {
     pub fn CGFontGetUnitsPerEm(font: Option<&CGFont>) -> c_int;
 }
 
-extern "C-unwind" {
-    pub fn CGFontCopyPostScriptName(font: Option<&CGFont>) -> *mut CFString;
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCopyPostScriptName(
+    font: Option<&CGFont>,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CGFontCopyPostScriptName(font: Option<&CGFont>) -> *mut CFString;
+    }
+    let ret = unsafe { CGFontCopyPostScriptName(font) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGFontCopyFullName(font: Option<&CGFont>) -> *mut CFString;
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCopyFullName(
+    font: Option<&CGFont>,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CGFontCopyFullName(font: Option<&CGFont>) -> *mut CFString;
+    }
+    let ret = unsafe { CGFontCopyFullName(font) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -128,12 +171,26 @@ extern "C-unwind" {
     pub fn CGFontGetStemV(font: Option<&CGFont>) -> CGFloat;
 }
 
-extern "C-unwind" {
-    pub fn CGFontCopyVariationAxes(font: Option<&CGFont>) -> *mut CFArray;
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCopyVariationAxes(
+    font: Option<&CGFont>,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CGFontCopyVariationAxes(font: Option<&CGFont>) -> *mut CFArray;
+    }
+    let ret = unsafe { CGFontCopyVariationAxes(font) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGFontCopyVariations(font: Option<&CGFont>) -> *mut CFDictionary;
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCopyVariations(
+    font: Option<&CGFont>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CGFontCopyVariations(font: Option<&CGFont>) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CGFontCopyVariations(font) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -158,8 +215,16 @@ extern "C-unwind" {
     pub fn CGFontGetGlyphWithGlyphName(font: Option<&CGFont>, name: Option<&CFString>) -> CGGlyph;
 }
 
-extern "C-unwind" {
-    pub fn CGFontCopyGlyphNameForGlyph(font: Option<&CGFont>, glyph: CGGlyph) -> *mut CFString;
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCopyGlyphNameForGlyph(
+    font: Option<&CGFont>,
+    glyph: CGGlyph,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CGFontCopyGlyphNameForGlyph(font: Option<&CGFont>, glyph: CGGlyph) -> *mut CFString;
+    }
+    let ret = unsafe { CGFontCopyGlyphNameForGlyph(font, glyph) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -169,12 +234,27 @@ extern "C-unwind" {
     ) -> bool;
 }
 
-extern "C-unwind" {
-    pub fn CGFontCopyTableTags(font: Option<&CGFont>) -> *mut CFArray;
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCopyTableTags(
+    font: Option<&CGFont>,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CGFontCopyTableTags(font: Option<&CGFont>) -> *mut CFArray;
+    }
+    let ret = unsafe { CGFontCopyTableTags(font) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGFontCopyTableForTag(font: Option<&CGFont>, tag: u32) -> *mut CFData;
+#[inline]
+pub unsafe extern "C-unwind" fn CGFontCopyTableForTag(
+    font: Option<&CGFont>,
+    tag: u32,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn CGFontCopyTableForTag(font: Option<&CGFont>, tag: u32) -> *mut CFData;
+    }
+    let ret = unsafe { CGFontCopyTableForTag(font, tag) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {

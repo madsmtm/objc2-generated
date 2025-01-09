@@ -104,121 +104,185 @@ extern "C-unwind" {
     pub fn CMTaggedBufferGroupGetCount(group: &CMTaggedBufferGroup) -> CMItemCount;
 }
 
-extern "C-unwind" {
-    /// Returns a CMTagCollection from a CMTaggedBufferGroup by sequential indexing.
-    ///
-    /// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the tag collection from.
-    ///
-    /// Parameter `index`: An index from 0 to count-1.
-    ///
-    /// Returns: Returns the tag collection, or NULL on failure.
-    #[cfg(feature = "CMTagCollection")]
-    pub fn CMTaggedBufferGroupGetTagCollectionAtIndex(
-        group: &CMTaggedBufferGroup,
-        index: CFIndex,
-    ) -> *mut CMTagCollection;
+/// Returns a CMTagCollection from a CMTaggedBufferGroup by sequential indexing.
+///
+/// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the tag collection from.
+///
+/// Parameter `index`: An index from 0 to count-1.
+///
+/// Returns: Returns the tag collection, or NULL on failure.
+#[cfg(feature = "CMTagCollection")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTaggedBufferGroupGetTagCollectionAtIndex(
+    group: &CMTaggedBufferGroup,
+    index: CFIndex,
+) -> Option<CFRetained<CMTagCollection>> {
+    extern "C-unwind" {
+        fn CMTaggedBufferGroupGetTagCollectionAtIndex(
+            group: &CMTaggedBufferGroup,
+            index: CFIndex,
+        ) -> *mut CMTagCollection;
+    }
+    let ret = unsafe { CMTaggedBufferGroupGetTagCollectionAtIndex(group, index) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns a CVPixelBuffer from a CMTaggedBufferGroup by sequential indexing.
-    ///
-    /// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CVPixelBuffer from.
-    ///
-    /// Parameter `index`: An index from 0 to count-1.
-    ///
-    /// Returns: Returns the CVPixelBuffer, or NULL on failure (including if the buffer at this index is not a CVPixelBuffer).
-    #[cfg(feature = "objc2-core-video")]
-    pub fn CMTaggedBufferGroupGetCVPixelBufferAtIndex(
-        group: &CMTaggedBufferGroup,
-        index: CFIndex,
-    ) -> *mut CVPixelBuffer;
+/// Returns a CVPixelBuffer from a CMTaggedBufferGroup by sequential indexing.
+///
+/// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CVPixelBuffer from.
+///
+/// Parameter `index`: An index from 0 to count-1.
+///
+/// Returns: Returns the CVPixelBuffer, or NULL on failure (including if the buffer at this index is not a CVPixelBuffer).
+#[cfg(feature = "objc2-core-video")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTaggedBufferGroupGetCVPixelBufferAtIndex(
+    group: &CMTaggedBufferGroup,
+    index: CFIndex,
+) -> Option<CFRetained<CVPixelBuffer>> {
+    extern "C-unwind" {
+        fn CMTaggedBufferGroupGetCVPixelBufferAtIndex(
+            group: &CMTaggedBufferGroup,
+            index: CFIndex,
+        ) -> *mut CVPixelBuffer;
+    }
+    let ret = unsafe { CMTaggedBufferGroupGetCVPixelBufferAtIndex(group, index) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns a CVPixelBuffer from a CMTaggedBufferGroup by looking for a unique match for the provided tag.
-    ///
-    /// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CVPixelBuffer from.
-    ///
-    /// Parameter `tag`: The tag to look up.  If more than one buffer's tag collection includes this tag, the lookup will fail.
-    ///
-    /// Parameter `indexOut`: On success, index of the returned CVPixelBuffer.  May be NULL.
-    ///
-    /// Returns: Returns the CVPixelBuffer, or NULL on failure (including if the buffer at this index is not a CVPixelBuffer).
-    #[cfg(all(feature = "CMTag", feature = "objc2-core-video"))]
-    pub fn CMTaggedBufferGroupGetCVPixelBufferForTag(
-        group: &CMTaggedBufferGroup,
-        tag: CMTag,
-        index_out: *mut CFIndex,
-    ) -> *mut CVPixelBuffer;
+/// Returns a CVPixelBuffer from a CMTaggedBufferGroup by looking for a unique match for the provided tag.
+///
+/// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CVPixelBuffer from.
+///
+/// Parameter `tag`: The tag to look up.  If more than one buffer's tag collection includes this tag, the lookup will fail.
+///
+/// Parameter `indexOut`: On success, index of the returned CVPixelBuffer.  May be NULL.
+///
+/// Returns: Returns the CVPixelBuffer, or NULL on failure (including if the buffer at this index is not a CVPixelBuffer).
+#[cfg(all(feature = "CMTag", feature = "objc2-core-video"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTaggedBufferGroupGetCVPixelBufferForTag(
+    group: &CMTaggedBufferGroup,
+    tag: CMTag,
+    index_out: *mut CFIndex,
+) -> Option<CFRetained<CVPixelBuffer>> {
+    extern "C-unwind" {
+        fn CMTaggedBufferGroupGetCVPixelBufferForTag(
+            group: &CMTaggedBufferGroup,
+            tag: CMTag,
+            index_out: *mut CFIndex,
+        ) -> *mut CVPixelBuffer;
+    }
+    let ret = unsafe { CMTaggedBufferGroupGetCVPixelBufferForTag(group, tag, index_out) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns a CVPixelBuffer from a CMTaggedBufferGroup by looking for a unique match for the provided tag collection.
-    ///
-    /// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CVPixelBuffer from.
-    ///
-    /// Parameter `tagCollection`: The tag collection to look up.  If more than one buffer's tag collection includes this tag collection, the lookup will fail.
-    ///
-    /// Parameter `indexOut`: On success, index of the returned CVPixelBuffer.  May be NULL.
-    ///
-    /// Returns: Returns the CVPixelBuffer, or NULL on failure (including if the buffer at this index is not a CVPixelBuffer).
-    #[cfg(all(feature = "CMTagCollection", feature = "objc2-core-video"))]
-    pub fn CMTaggedBufferGroupGetCVPixelBufferForTagCollection(
-        group: &CMTaggedBufferGroup,
-        tag_collection: &CMTagCollection,
-        index_out: *mut CFIndex,
-    ) -> *mut CVPixelBuffer;
+/// Returns a CVPixelBuffer from a CMTaggedBufferGroup by looking for a unique match for the provided tag collection.
+///
+/// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CVPixelBuffer from.
+///
+/// Parameter `tagCollection`: The tag collection to look up.  If more than one buffer's tag collection includes this tag collection, the lookup will fail.
+///
+/// Parameter `indexOut`: On success, index of the returned CVPixelBuffer.  May be NULL.
+///
+/// Returns: Returns the CVPixelBuffer, or NULL on failure (including if the buffer at this index is not a CVPixelBuffer).
+#[cfg(all(feature = "CMTagCollection", feature = "objc2-core-video"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTaggedBufferGroupGetCVPixelBufferForTagCollection(
+    group: &CMTaggedBufferGroup,
+    tag_collection: &CMTagCollection,
+    index_out: *mut CFIndex,
+) -> Option<CFRetained<CVPixelBuffer>> {
+    extern "C-unwind" {
+        fn CMTaggedBufferGroupGetCVPixelBufferForTagCollection(
+            group: &CMTaggedBufferGroup,
+            tag_collection: &CMTagCollection,
+            index_out: *mut CFIndex,
+        ) -> *mut CVPixelBuffer;
+    }
+    let ret = unsafe {
+        CMTaggedBufferGroupGetCVPixelBufferForTagCollection(group, tag_collection, index_out)
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns a CMSampleBuffer from a CMTaggedBufferGroup by sequential indexing.
-    ///
-    /// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CMSampleBuffer from.
-    ///
-    /// Parameter `index`: An index from 0 to count-1.
-    ///
-    /// Returns: Returns the CMSampleBuffer, or NULL on failure (including if the buffer at this index is not a CMSampleBuffer).
-    #[cfg(feature = "CMSampleBuffer")]
-    pub fn CMTaggedBufferGroupGetCMSampleBufferAtIndex(
-        group: &CMTaggedBufferGroup,
-        index: CFIndex,
-    ) -> *mut CMSampleBuffer;
+/// Returns a CMSampleBuffer from a CMTaggedBufferGroup by sequential indexing.
+///
+/// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CMSampleBuffer from.
+///
+/// Parameter `index`: An index from 0 to count-1.
+///
+/// Returns: Returns the CMSampleBuffer, or NULL on failure (including if the buffer at this index is not a CMSampleBuffer).
+#[cfg(feature = "CMSampleBuffer")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTaggedBufferGroupGetCMSampleBufferAtIndex(
+    group: &CMTaggedBufferGroup,
+    index: CFIndex,
+) -> Option<CFRetained<CMSampleBuffer>> {
+    extern "C-unwind" {
+        fn CMTaggedBufferGroupGetCMSampleBufferAtIndex(
+            group: &CMTaggedBufferGroup,
+            index: CFIndex,
+        ) -> *mut CMSampleBuffer;
+    }
+    let ret = unsafe { CMTaggedBufferGroupGetCMSampleBufferAtIndex(group, index) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns a CMSampleBuffer from a CMTaggedBufferGroup by looking for a unique match for the provided tag.
-    ///
-    /// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CMSampleBuffer from.
-    ///
-    /// Parameter `tag`: The tag to look up.  If more than one buffer's tag collection includes this tag, the lookup will fail.
-    ///
-    /// Parameter `indexOut`: On success, index of the returned CMSampleBuffer.  May be NULL.
-    ///
-    /// Returns: Returns the CMSampleBuffer, or NULL on failure (including if the buffer at this index is not a CMSampleBuffer).
-    #[cfg(all(feature = "CMSampleBuffer", feature = "CMTag"))]
-    pub fn CMTaggedBufferGroupGetCMSampleBufferForTag(
-        group: &CMTaggedBufferGroup,
-        tag: CMTag,
-        index_out: *mut CFIndex,
-    ) -> *mut CMSampleBuffer;
+/// Returns a CMSampleBuffer from a CMTaggedBufferGroup by looking for a unique match for the provided tag.
+///
+/// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CMSampleBuffer from.
+///
+/// Parameter `tag`: The tag to look up.  If more than one buffer's tag collection includes this tag, the lookup will fail.
+///
+/// Parameter `indexOut`: On success, index of the returned CMSampleBuffer.  May be NULL.
+///
+/// Returns: Returns the CMSampleBuffer, or NULL on failure (including if the buffer at this index is not a CMSampleBuffer).
+#[cfg(all(feature = "CMSampleBuffer", feature = "CMTag"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTaggedBufferGroupGetCMSampleBufferForTag(
+    group: &CMTaggedBufferGroup,
+    tag: CMTag,
+    index_out: *mut CFIndex,
+) -> Option<CFRetained<CMSampleBuffer>> {
+    extern "C-unwind" {
+        fn CMTaggedBufferGroupGetCMSampleBufferForTag(
+            group: &CMTaggedBufferGroup,
+            tag: CMTag,
+            index_out: *mut CFIndex,
+        ) -> *mut CMSampleBuffer;
+    }
+    let ret = unsafe { CMTaggedBufferGroupGetCMSampleBufferForTag(group, tag, index_out) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns a CMSampleBuffer from a CMTaggedBufferGroup by looking for a unique match for the provided tag collection.
-    ///
-    /// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CMSampleBuffer from.
-    ///
-    /// Parameter `tagCollection`: The tag collection to look up.  If more than one buffer's tag collection includes this tag collection, the lookup will fail.
-    ///
-    /// Parameter `indexOut`: On success, index of the returned CMSampleBuffer.  May be NULL.
-    ///
-    /// Returns: Returns the CMSampleBuffer, or NULL on failure (including if the buffer at this index is not a CMSampleBuffer).
-    #[cfg(all(feature = "CMSampleBuffer", feature = "CMTagCollection"))]
-    pub fn CMTaggedBufferGroupGetCMSampleBufferForTagCollection(
-        group: &CMTaggedBufferGroup,
-        tag_collection: &CMTagCollection,
-        index_out: *mut CFIndex,
-    ) -> *mut CMSampleBuffer;
+/// Returns a CMSampleBuffer from a CMTaggedBufferGroup by looking for a unique match for the provided tag collection.
+///
+/// Parameter `group`: The CMTaggedBufferGroupRef to retrieve the CMSampleBuffer from.
+///
+/// Parameter `tagCollection`: The tag collection to look up.  If more than one buffer's tag collection includes this tag collection, the lookup will fail.
+///
+/// Parameter `indexOut`: On success, index of the returned CMSampleBuffer.  May be NULL.
+///
+/// Returns: Returns the CMSampleBuffer, or NULL on failure (including if the buffer at this index is not a CMSampleBuffer).
+#[cfg(all(feature = "CMSampleBuffer", feature = "CMTagCollection"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTaggedBufferGroupGetCMSampleBufferForTagCollection(
+    group: &CMTaggedBufferGroup,
+    tag_collection: &CMTagCollection,
+    index_out: *mut CFIndex,
+) -> Option<CFRetained<CMSampleBuffer>> {
+    extern "C-unwind" {
+        fn CMTaggedBufferGroupGetCMSampleBufferForTagCollection(
+            group: &CMTaggedBufferGroup,
+            tag_collection: &CMTagCollection,
+            index_out: *mut CFIndex,
+        ) -> *mut CMSampleBuffer;
+    }
+    let ret = unsafe {
+        CMTaggedBufferGroupGetCMSampleBufferForTagCollection(group, tag_collection, index_out)
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -314,14 +378,21 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Returns a CMSampleBuffer's TaggedBufferGroup of media data.
-    ///
-    /// Parameter `sbuf`: CMSampleBuffer being interrogated.
-    ///
-    /// The caller does not own the returned CMTaggedBufferGroup, and must retain it explicitly if the caller needs to maintain a reference to it.
-    ///
-    /// Returns: CMTaggedBufferGroup of media data. The result will be NULL if the CMSampleBuffer does not contain a CMTaggedBufferGroup, or if there is some other error.
-    #[cfg(feature = "CMSampleBuffer")]
-    pub fn CMSampleBufferGetTaggedBufferGroup(sbuf: &CMSampleBuffer) -> *mut CMTaggedBufferGroup;
+/// Returns a CMSampleBuffer's TaggedBufferGroup of media data.
+///
+/// Parameter `sbuf`: CMSampleBuffer being interrogated.
+///
+/// The caller does not own the returned CMTaggedBufferGroup, and must retain it explicitly if the caller needs to maintain a reference to it.
+///
+/// Returns: CMTaggedBufferGroup of media data. The result will be NULL if the CMSampleBuffer does not contain a CMTaggedBufferGroup, or if there is some other error.
+#[cfg(feature = "CMSampleBuffer")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSampleBufferGetTaggedBufferGroup(
+    sbuf: &CMSampleBuffer,
+) -> Option<CFRetained<CMTaggedBufferGroup>> {
+    extern "C-unwind" {
+        fn CMSampleBufferGetTaggedBufferGroup(sbuf: &CMSampleBuffer) -> *mut CMTaggedBufferGroup;
+    }
+    let ret = unsafe { CMSampleBufferGetTaggedBufferGroup(sbuf) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }

@@ -8,22 +8,40 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGContext", feature = "CGDataConsumer"))]
-    pub fn CGPDFContextCreate(
-        consumer: Option<&CGDataConsumer>,
-        media_box: *const CGRect,
-        auxiliary_info: Option<&CFDictionary>,
-    ) -> *mut CGContext;
+#[cfg(all(feature = "CGContext", feature = "CGDataConsumer"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGPDFContextCreate(
+    consumer: Option<&CGDataConsumer>,
+    media_box: *const CGRect,
+    auxiliary_info: Option<&CFDictionary>,
+) -> Option<CFRetained<CGContext>> {
+    extern "C-unwind" {
+        fn CGPDFContextCreate(
+            consumer: Option<&CGDataConsumer>,
+            media_box: *const CGRect,
+            auxiliary_info: Option<&CFDictionary>,
+        ) -> *mut CGContext;
+    }
+    let ret = unsafe { CGPDFContextCreate(consumer, media_box, auxiliary_info) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextCreateWithURL(
-        url: Option<&CFURL>,
-        media_box: *const CGRect,
-        auxiliary_info: Option<&CFDictionary>,
-    ) -> *mut CGContext;
+#[cfg(feature = "CGContext")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGPDFContextCreateWithURL(
+    url: Option<&CFURL>,
+    media_box: *const CGRect,
+    auxiliary_info: Option<&CFDictionary>,
+) -> Option<CFRetained<CGContext>> {
+    extern "C-unwind" {
+        fn CGPDFContextCreateWithURL(
+            url: Option<&CFURL>,
+            media_box: *const CGRect,
+            auxiliary_info: Option<&CFDictionary>,
+        ) -> *mut CGContext;
+    }
+    let ret = unsafe { CGPDFContextCreateWithURL(url, media_box, auxiliary_info) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -186,175 +187,211 @@ extern "C-unwind" {
     pub fn CFSetGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    /// Creates a new immutable set with the given values.
-    ///
-    /// Parameter `allocator`: The CFAllocator which should be used to allocate
-    /// memory for the set and its storage for values. This
-    /// parameter may be NULL in which case the current default
-    /// CFAllocator is used. If this reference is not a valid
-    /// CFAllocator, the behavior is undefined.
-    ///
-    /// Parameter `values`: A C array of the pointer-sized values to be in the
-    /// set.  This C array is not changed or freed by this function.
-    /// If this parameter is not a valid pointer to a C array of at
-    /// least numValues pointers, the behavior is undefined.
-    ///
-    /// Parameter `numValues`: The number of values to copy from the values C
-    /// array into the CFSet. This number will be the count of the
-    /// set.  If this parameter is zero, negative, or greater than
-    /// the number of values actually in the values C array, the
-    /// behavior is undefined.
-    ///
-    /// Parameter `callBacks`: A C pointer to a CFSetCallBacks structure
-    /// initialized with the callbacks for the set to use on each
-    /// value in the set. A copy of the contents of the
-    /// callbacks structure is made, so that a pointer to a
-    /// structure on the stack can be passed in, or can be reused
-    /// for multiple set creations. If the version field of this
-    /// callbacks structure is not one of the defined ones for
-    /// CFSet, the behavior is undefined. The retain field may be
-    /// NULL, in which case the CFSet will do nothing to add a
-    /// retain to the contained values for the set. The release
-    /// field may be NULL, in which case the CFSet will do nothing
-    /// to remove the set's retain (if any) on the values when the
-    /// set is destroyed. If the copyDescription field is NULL,
-    /// the set will create a simple description for the value. If
-    /// the equal field is NULL, the set will use pointer equality
-    /// to test for equality of values. The hash field may be NULL,
-    /// in which case the CFSet will determine uniqueness by pointer
-    /// equality. This callbacks parameter
-    /// itself may be NULL, which is treated as if a valid structure
-    /// of version 0 with all fields NULL had been passed in.
-    /// Otherwise, if any of the fields are not valid pointers to
-    /// functions of the correct type, or this parameter is not a
-    /// valid pointer to a  CFSetCallBacks callbacks structure,
-    /// the behavior is undefined. If any of the values put into the
-    /// set is not one understood by one of the callback functions
-    /// the behavior when that callback function is used is
-    /// undefined.
-    ///
-    /// Returns: A reference to the new immutable CFSet.
-    #[cfg(feature = "CFBase")]
-    pub fn CFSetCreate(
-        allocator: Option<&CFAllocator>,
-        values: *mut *const c_void,
-        num_values: CFIndex,
-        call_backs: *const CFSetCallBacks,
-    ) -> *mut CFSet;
+/// Creates a new immutable set with the given values.
+///
+/// Parameter `allocator`: The CFAllocator which should be used to allocate
+/// memory for the set and its storage for values. This
+/// parameter may be NULL in which case the current default
+/// CFAllocator is used. If this reference is not a valid
+/// CFAllocator, the behavior is undefined.
+///
+/// Parameter `values`: A C array of the pointer-sized values to be in the
+/// set.  This C array is not changed or freed by this function.
+/// If this parameter is not a valid pointer to a C array of at
+/// least numValues pointers, the behavior is undefined.
+///
+/// Parameter `numValues`: The number of values to copy from the values C
+/// array into the CFSet. This number will be the count of the
+/// set.  If this parameter is zero, negative, or greater than
+/// the number of values actually in the values C array, the
+/// behavior is undefined.
+///
+/// Parameter `callBacks`: A C pointer to a CFSetCallBacks structure
+/// initialized with the callbacks for the set to use on each
+/// value in the set. A copy of the contents of the
+/// callbacks structure is made, so that a pointer to a
+/// structure on the stack can be passed in, or can be reused
+/// for multiple set creations. If the version field of this
+/// callbacks structure is not one of the defined ones for
+/// CFSet, the behavior is undefined. The retain field may be
+/// NULL, in which case the CFSet will do nothing to add a
+/// retain to the contained values for the set. The release
+/// field may be NULL, in which case the CFSet will do nothing
+/// to remove the set's retain (if any) on the values when the
+/// set is destroyed. If the copyDescription field is NULL,
+/// the set will create a simple description for the value. If
+/// the equal field is NULL, the set will use pointer equality
+/// to test for equality of values. The hash field may be NULL,
+/// in which case the CFSet will determine uniqueness by pointer
+/// equality. This callbacks parameter
+/// itself may be NULL, which is treated as if a valid structure
+/// of version 0 with all fields NULL had been passed in.
+/// Otherwise, if any of the fields are not valid pointers to
+/// functions of the correct type, or this parameter is not a
+/// valid pointer to a  CFSetCallBacks callbacks structure,
+/// the behavior is undefined. If any of the values put into the
+/// set is not one understood by one of the callback functions
+/// the behavior when that callback function is used is
+/// undefined.
+///
+/// Returns: A reference to the new immutable CFSet.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFSetCreate(
+    allocator: Option<&CFAllocator>,
+    values: *mut *const c_void,
+    num_values: CFIndex,
+    call_backs: *const CFSetCallBacks,
+) -> Option<CFRetained<CFSet>> {
+    extern "C-unwind" {
+        fn CFSetCreate(
+            allocator: Option<&CFAllocator>,
+            values: *mut *const c_void,
+            num_values: CFIndex,
+            call_backs: *const CFSetCallBacks,
+        ) -> *mut CFSet;
+    }
+    let ret = unsafe { CFSetCreate(allocator, values, num_values, call_backs) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Creates a new immutable set with the values from the given set.
-    ///
-    /// Parameter `allocator`: The CFAllocator which should be used to allocate
-    /// memory for the set and its storage for values. This
-    /// parameter may be NULL in which case the current default
-    /// CFAllocator is used. If this reference is not a valid
-    /// CFAllocator, the behavior is undefined.
-    ///
-    /// Parameter `theSet`: The set which is to be copied. The values from the
-    /// set are copied as pointers into the new set (that is,
-    /// the values themselves are copied, not that which the values
-    /// point to, if anything). However, the values are also
-    /// retained by the new set. The count of the new set will
-    /// be the same as the copied set. The new set uses the same
-    /// callbacks as the set to be copied. If this parameter is
-    /// not a valid CFSet, the behavior is undefined.
-    ///
-    /// Returns: A reference to the new immutable CFSet.
-    #[cfg(feature = "CFBase")]
-    pub fn CFSetCreateCopy(allocator: Option<&CFAllocator>, the_set: Option<&CFSet>) -> *mut CFSet;
+/// Creates a new immutable set with the values from the given set.
+///
+/// Parameter `allocator`: The CFAllocator which should be used to allocate
+/// memory for the set and its storage for values. This
+/// parameter may be NULL in which case the current default
+/// CFAllocator is used. If this reference is not a valid
+/// CFAllocator, the behavior is undefined.
+///
+/// Parameter `theSet`: The set which is to be copied. The values from the
+/// set are copied as pointers into the new set (that is,
+/// the values themselves are copied, not that which the values
+/// point to, if anything). However, the values are also
+/// retained by the new set. The count of the new set will
+/// be the same as the copied set. The new set uses the same
+/// callbacks as the set to be copied. If this parameter is
+/// not a valid CFSet, the behavior is undefined.
+///
+/// Returns: A reference to the new immutable CFSet.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFSetCreateCopy(
+    allocator: Option<&CFAllocator>,
+    the_set: Option<&CFSet>,
+) -> Option<CFRetained<CFSet>> {
+    extern "C-unwind" {
+        fn CFSetCreateCopy(allocator: Option<&CFAllocator>, the_set: Option<&CFSet>) -> *mut CFSet;
+    }
+    let ret = unsafe { CFSetCreateCopy(allocator, the_set) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Creates a new empty mutable set.
-    ///
-    /// Parameter `allocator`: The CFAllocator which should be used to allocate
-    /// memory for the set and its storage for values. This
-    /// parameter may be NULL in which case the current default
-    /// CFAllocator is used. If this reference is not a valid
-    /// CFAllocator, the behavior is undefined.
-    ///
-    /// Parameter `capacity`: A hint about the number of values that will be held
-    /// by the CFSet. Pass 0 for no hint. The implementation may
-    /// ignore this hint, or may use it to optimize various
-    /// operations. A set's actual capacity is only limited by
-    /// address space and available memory constraints). If this
-    /// parameter is negative, the behavior is undefined.
-    ///
-    /// Parameter `callBacks`: A C pointer to a CFSetCallBacks structure
-    /// initialized with the callbacks for the set to use on each
-    /// value in the set. A copy of the contents of the
-    /// callbacks structure is made, so that a pointer to a
-    /// structure on the stack can be passed in, or can be reused
-    /// for multiple set creations. If the version field of this
-    /// callbacks structure is not one of the defined ones for
-    /// CFSet, the behavior is undefined. The retain field may be
-    /// NULL, in which case the CFSet will do nothing to add a
-    /// retain to the contained values for the set. The release
-    /// field may be NULL, in which case the CFSet will do nothing
-    /// to remove the set's retain (if any) on the values when the
-    /// set is destroyed. If the copyDescription field is NULL,
-    /// the set will create a simple description for the value. If
-    /// the equal field is NULL, the set will use pointer equality
-    /// to test for equality of values. The hash field may be NULL,
-    /// in which case the CFSet will determine uniqueness by pointer
-    /// equality. This callbacks parameter
-    /// itself may be NULL, which is treated as if a valid structure
-    /// of version 0 with all fields NULL had been passed in.
-    /// Otherwise, if any of the fields are not valid pointers to
-    /// functions of the correct type, or this parameter is not a
-    /// valid pointer to a  CFSetCallBacks callbacks structure,
-    /// the behavior is undefined. If any of the values put into the
-    /// set is not one understood by one of the callback functions
-    /// the behavior when that callback function is used is
-    /// undefined.
-    ///
-    /// Returns: A reference to the new mutable CFSet.
-    #[cfg(feature = "CFBase")]
-    pub fn CFSetCreateMutable(
-        allocator: Option<&CFAllocator>,
-        capacity: CFIndex,
-        call_backs: *const CFSetCallBacks,
-    ) -> *mut CFMutableSet;
+/// Creates a new empty mutable set.
+///
+/// Parameter `allocator`: The CFAllocator which should be used to allocate
+/// memory for the set and its storage for values. This
+/// parameter may be NULL in which case the current default
+/// CFAllocator is used. If this reference is not a valid
+/// CFAllocator, the behavior is undefined.
+///
+/// Parameter `capacity`: A hint about the number of values that will be held
+/// by the CFSet. Pass 0 for no hint. The implementation may
+/// ignore this hint, or may use it to optimize various
+/// operations. A set's actual capacity is only limited by
+/// address space and available memory constraints). If this
+/// parameter is negative, the behavior is undefined.
+///
+/// Parameter `callBacks`: A C pointer to a CFSetCallBacks structure
+/// initialized with the callbacks for the set to use on each
+/// value in the set. A copy of the contents of the
+/// callbacks structure is made, so that a pointer to a
+/// structure on the stack can be passed in, or can be reused
+/// for multiple set creations. If the version field of this
+/// callbacks structure is not one of the defined ones for
+/// CFSet, the behavior is undefined. The retain field may be
+/// NULL, in which case the CFSet will do nothing to add a
+/// retain to the contained values for the set. The release
+/// field may be NULL, in which case the CFSet will do nothing
+/// to remove the set's retain (if any) on the values when the
+/// set is destroyed. If the copyDescription field is NULL,
+/// the set will create a simple description for the value. If
+/// the equal field is NULL, the set will use pointer equality
+/// to test for equality of values. The hash field may be NULL,
+/// in which case the CFSet will determine uniqueness by pointer
+/// equality. This callbacks parameter
+/// itself may be NULL, which is treated as if a valid structure
+/// of version 0 with all fields NULL had been passed in.
+/// Otherwise, if any of the fields are not valid pointers to
+/// functions of the correct type, or this parameter is not a
+/// valid pointer to a  CFSetCallBacks callbacks structure,
+/// the behavior is undefined. If any of the values put into the
+/// set is not one understood by one of the callback functions
+/// the behavior when that callback function is used is
+/// undefined.
+///
+/// Returns: A reference to the new mutable CFSet.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFSetCreateMutable(
+    allocator: Option<&CFAllocator>,
+    capacity: CFIndex,
+    call_backs: *const CFSetCallBacks,
+) -> Option<CFRetained<CFMutableSet>> {
+    extern "C-unwind" {
+        fn CFSetCreateMutable(
+            allocator: Option<&CFAllocator>,
+            capacity: CFIndex,
+            call_backs: *const CFSetCallBacks,
+        ) -> *mut CFMutableSet;
+    }
+    let ret = unsafe { CFSetCreateMutable(allocator, capacity, call_backs) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Creates a new immutable set with the values from the given set.
-    ///
-    /// Parameter `allocator`: The CFAllocator which should be used to allocate
-    /// memory for the set and its storage for values. This
-    /// parameter may be NULL in which case the current default
-    /// CFAllocator is used. If this reference is not a valid
-    /// CFAllocator, the behavior is undefined.
-    ///
-    /// Parameter `capacity`: A hint about the number of values that will be held
-    /// by the CFSet. Pass 0 for no hint. The implementation may
-    /// ignore this hint, or may use it to optimize various
-    /// operations. A set's actual capacity is only limited by
-    /// address space and available memory constraints).
-    /// This parameter must be greater than or equal
-    /// to the count of the set which is to be copied, or the
-    /// behavior is undefined. If this parameter is negative, the
-    /// behavior is undefined.
-    ///
-    /// Parameter `theSet`: The set which is to be copied. The values from the
-    /// set are copied as pointers into the new set (that is,
-    /// the values themselves are copied, not that which the values
-    /// point to, if anything). However, the values are also
-    /// retained by the new set. The count of the new set will
-    /// be the same as the copied set. The new set uses the same
-    /// callbacks as the set to be copied. If this parameter is
-    /// not a valid CFSet, the behavior is undefined.
-    ///
-    /// Returns: A reference to the new mutable CFSet.
-    #[cfg(feature = "CFBase")]
-    pub fn CFSetCreateMutableCopy(
-        allocator: Option<&CFAllocator>,
-        capacity: CFIndex,
-        the_set: Option<&CFSet>,
-    ) -> *mut CFMutableSet;
+/// Creates a new immutable set with the values from the given set.
+///
+/// Parameter `allocator`: The CFAllocator which should be used to allocate
+/// memory for the set and its storage for values. This
+/// parameter may be NULL in which case the current default
+/// CFAllocator is used. If this reference is not a valid
+/// CFAllocator, the behavior is undefined.
+///
+/// Parameter `capacity`: A hint about the number of values that will be held
+/// by the CFSet. Pass 0 for no hint. The implementation may
+/// ignore this hint, or may use it to optimize various
+/// operations. A set's actual capacity is only limited by
+/// address space and available memory constraints).
+/// This parameter must be greater than or equal
+/// to the count of the set which is to be copied, or the
+/// behavior is undefined. If this parameter is negative, the
+/// behavior is undefined.
+///
+/// Parameter `theSet`: The set which is to be copied. The values from the
+/// set are copied as pointers into the new set (that is,
+/// the values themselves are copied, not that which the values
+/// point to, if anything). However, the values are also
+/// retained by the new set. The count of the new set will
+/// be the same as the copied set. The new set uses the same
+/// callbacks as the set to be copied. If this parameter is
+/// not a valid CFSet, the behavior is undefined.
+///
+/// Returns: A reference to the new mutable CFSet.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFSetCreateMutableCopy(
+    allocator: Option<&CFAllocator>,
+    capacity: CFIndex,
+    the_set: Option<&CFSet>,
+) -> Option<CFRetained<CFMutableSet>> {
+    extern "C-unwind" {
+        fn CFSetCreateMutableCopy(
+            allocator: Option<&CFAllocator>,
+            capacity: CFIndex,
+            the_set: Option<&CFSet>,
+        ) -> *mut CFMutableSet;
+    }
+    let ret = unsafe { CFSetCreateMutableCopy(allocator, capacity, the_set) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

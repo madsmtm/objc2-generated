@@ -386,9 +386,16 @@ extern "C-unwind" {
     pub fn CGContextGetPathBoundingBox(c: Option<&CGContext>) -> CGRect;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGPath")]
-    pub fn CGContextCopyPath(c: Option<&CGContext>) -> *mut CGPath;
+#[cfg(feature = "CGPath")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGContextCopyPath(
+    c: Option<&CGContext>,
+) -> Option<CFRetained<CGPath>> {
+    extern "C-unwind" {
+        fn CGContextCopyPath(c: Option<&CGContext>) -> *mut CGPath;
+    }
+    let ret = unsafe { CGContextCopyPath(c) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

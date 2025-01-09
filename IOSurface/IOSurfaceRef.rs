@@ -310,14 +310,28 @@ extern "C-unwind" {
     pub fn IOSurfaceGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOSurfaceCreate(properties: &CFDictionary) -> *mut IOSurfaceRef;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn IOSurfaceCreate(
+    properties: &CFDictionary,
+) -> Option<CFRetained<IOSurfaceRef>> {
+    extern "C-unwind" {
+        fn IOSurfaceCreate(properties: &CFDictionary) -> *mut IOSurfaceRef;
+    }
+    let ret = unsafe { IOSurfaceCreate(properties) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "IOSurfaceTypes")]
-    pub fn IOSurfaceLookup(csid: IOSurfaceID) -> *mut IOSurfaceRef;
+#[cfg(all(feature = "IOSurfaceTypes", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn IOSurfaceLookup(
+    csid: IOSurfaceID,
+) -> Option<CFRetained<IOSurfaceRef>> {
+    extern "C-unwind" {
+        fn IOSurfaceLookup(csid: IOSurfaceID) -> *mut IOSurfaceRef;
+    }
+    let ret = unsafe { IOSurfaceLookup(csid) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -492,9 +506,17 @@ extern "C-unwind" {
     pub fn IOSurfaceSetValue(buffer: &IOSurfaceRef, key: &CFString, value: &CFType);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOSurfaceCopyValue(buffer: &IOSurfaceRef, key: &CFString) -> *mut CFType;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn IOSurfaceCopyValue(
+    buffer: &IOSurfaceRef,
+    key: &CFString,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn IOSurfaceCopyValue(buffer: &IOSurfaceRef, key: &CFString) -> *mut CFType;
+    }
+    let ret = unsafe { IOSurfaceCopyValue(buffer, key) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -507,9 +529,16 @@ extern "C-unwind" {
     pub fn IOSurfaceSetValues(buffer: &IOSurfaceRef, keys_and_values: &CFDictionary);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOSurfaceCopyAllValues(buffer: &IOSurfaceRef) -> *mut CFDictionary;
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn IOSurfaceCopyAllValues(
+    buffer: &IOSurfaceRef,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn IOSurfaceCopyAllValues(buffer: &IOSurfaceRef) -> *mut CFDictionary;
+    }
+    let ret = unsafe { IOSurfaceCopyAllValues(buffer) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -521,9 +550,16 @@ extern "C-unwind" {
     pub fn IOSurfaceCreateMachPort(buffer: &IOSurfaceRef) -> libc::mach_port_t;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn IOSurfaceLookupFromMachPort(port: libc::mach_port_t) -> *mut IOSurfaceRef;
+#[cfg(all(feature = "libc", feature = "objc2-core-foundation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn IOSurfaceLookupFromMachPort(
+    port: libc::mach_port_t,
+) -> Option<CFRetained<IOSurfaceRef>> {
+    extern "C-unwind" {
+        fn IOSurfaceLookupFromMachPort(port: libc::mach_port_t) -> *mut IOSurfaceRef;
+    }
+    let ret = unsafe { IOSurfaceLookupFromMachPort(port) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

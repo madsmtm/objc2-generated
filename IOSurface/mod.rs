@@ -192,9 +192,17 @@ pub use self::__IOSurfaceRef::IOSurfaceIncrementUseCount;
 pub use self::__IOSurfaceRef::IOSurfaceIsInUse;
 #[cfg(all(feature = "IOSurfaceRef", feature = "IOSurfaceTypes", feature = "libc"))]
 pub use self::__IOSurfaceRef::IOSurfaceLock;
-#[cfg(all(feature = "IOSurfaceRef", feature = "IOSurfaceTypes"))]
+#[cfg(all(
+    feature = "IOSurfaceRef",
+    feature = "IOSurfaceTypes",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__IOSurfaceRef::IOSurfaceLookup;
-#[cfg(all(feature = "IOSurfaceRef", feature = "libc"))]
+#[cfg(all(
+    feature = "IOSurfaceRef",
+    feature = "libc",
+    feature = "objc2-core-foundation"
+))]
 pub use self::__IOSurfaceRef::IOSurfaceLookupFromMachPort;
 #[cfg(feature = "IOSurfaceRef")]
 pub use self::__IOSurfaceRef::IOSurfaceMemoryLedgerFlags;

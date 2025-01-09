@@ -59,29 +59,43 @@ extern "C-unwind" {
     ) -> CVReturn;
 }
 
-extern "C-unwind" {
-    /// Returns the pool attributes dictionary for a CVOpenGLBufferPool
-    ///
-    /// Parameter `pool`: The CVOpenGLBufferPoolRef to retrieve the attributes from
-    ///
-    /// Returns: Returns the pool attributes dictionary, or NULL on failure.
-    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLBufferPoolGetAttributes(pool: &CVOpenGLBufferPool) -> *mut CFDictionary;
+/// Returns the pool attributes dictionary for a CVOpenGLBufferPool
+///
+/// Parameter `pool`: The CVOpenGLBufferPoolRef to retrieve the attributes from
+///
+/// Returns: Returns the pool attributes dictionary, or NULL on failure.
+#[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
+#[inline]
+pub unsafe extern "C-unwind" fn CVOpenGLBufferPoolGetAttributes(
+    pool: &CVOpenGLBufferPool,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CVOpenGLBufferPoolGetAttributes(pool: &CVOpenGLBufferPool) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CVOpenGLBufferPoolGetAttributes(pool) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the attributes of OpenGL buffers that will be created from this pool.
-    ///
-    /// This function is provided for those cases where you may need to know some information about the buffers that
-    /// will be created up front.
-    ///
-    /// Parameter `pool`: The CVOpenGLBufferPoolRef to retrieve the attributes from
-    ///
-    /// Returns: Returns the OpenGL buffer attributes dictionary, or NULL on failure.
-    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLBufferPoolGetOpenGLBufferAttributes(
-        pool: &CVOpenGLBufferPool,
-    ) -> *mut CFDictionary;
+/// Returns the attributes of OpenGL buffers that will be created from this pool.
+///
+/// This function is provided for those cases where you may need to know some information about the buffers that
+/// will be created up front.
+///
+/// Parameter `pool`: The CVOpenGLBufferPoolRef to retrieve the attributes from
+///
+/// Returns: Returns the OpenGL buffer attributes dictionary, or NULL on failure.
+#[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
+#[inline]
+pub unsafe extern "C-unwind" fn CVOpenGLBufferPoolGetOpenGLBufferAttributes(
+    pool: &CVOpenGLBufferPool,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CVOpenGLBufferPoolGetOpenGLBufferAttributes(
+            pool: &CVOpenGLBufferPool,
+        ) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CVOpenGLBufferPoolGetOpenGLBufferAttributes(pool) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

@@ -485,22 +485,36 @@ extern "C-unwind" {
     pub fn CMMetadataDataTypeRegistryDataTypeIsRegistered(data_type: &CFString) -> Boolean;
 }
 
-extern "C-unwind" {
-    /// Returns the data type's description (if any was provided when it was registered).
-    pub fn CMMetadataDataTypeRegistryGetDataTypeDescription(
-        data_type: &CFString,
-    ) -> NonNull<CFString>;
+/// Returns the data type's description (if any was provided when it was registered).
+#[inline]
+pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetDataTypeDescription(
+    data_type: &CFString,
+) -> CFRetained<CFString> {
+    extern "C-unwind" {
+        fn CMMetadataDataTypeRegistryGetDataTypeDescription(
+            data_type: &CFString,
+        ) -> NonNull<CFString>;
+    }
+    let ret = unsafe { CMMetadataDataTypeRegistryGetDataTypeDescription(data_type) };
+    unsafe { CFRetained::retain(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns the data type's conforming data types (if any were
-    /// provided when it was registered).
-    ///
-    /// Returns: List of conforming data types registered for the given data type.
-    /// NULL is returned if the data type has not been registered.
-    pub fn CMMetadataDataTypeRegistryGetConformingDataTypes(
-        data_type: &CFString,
-    ) -> NonNull<CFArray>;
+/// Returns the data type's conforming data types (if any were
+/// provided when it was registered).
+///
+/// Returns: List of conforming data types registered for the given data type.
+/// NULL is returned if the data type has not been registered.
+#[inline]
+pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetConformingDataTypes(
+    data_type: &CFString,
+) -> CFRetained<CFArray> {
+    extern "C-unwind" {
+        fn CMMetadataDataTypeRegistryGetConformingDataTypes(
+            data_type: &CFString,
+        ) -> NonNull<CFArray>;
+    }
+    let ret = unsafe { CMMetadataDataTypeRegistryGetConformingDataTypes(data_type) };
+    unsafe { CFRetained::retain(ret) }
 }
 
 extern "C-unwind" {
@@ -525,13 +539,19 @@ extern "C-unwind" {
     ) -> Boolean;
 }
 
-extern "C-unwind" {
-    /// Returns an array of base data type identifiers.
-    ///
-    /// There are a set of base data types that seed the data type
-    /// registry.  All valid data types will have their conformance search
-    /// end with a base data type.
-    pub fn CMMetadataDataTypeRegistryGetBaseDataTypes() -> *mut CFArray;
+/// Returns an array of base data type identifiers.
+///
+/// There are a set of base data types that seed the data type
+/// registry.  All valid data types will have their conformance search
+/// end with a base data type.
+#[inline]
+pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetBaseDataTypes(
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CMMetadataDataTypeRegistryGetBaseDataTypes() -> *mut CFArray;
+    }
+    let ret = unsafe { CMMetadataDataTypeRegistryGetBaseDataTypes() };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -543,14 +563,21 @@ extern "C-unwind" {
     pub fn CMMetadataDataTypeRegistryDataTypeIsBaseDataType(data_type: &CFString) -> Boolean;
 }
 
-extern "C-unwind" {
-    /// Returns the base data type identifier that the given data type
-    /// conforms to.
-    ///
-    /// There are a set of base data types that seed the data type
-    /// registry.  All valid data types will have their conformance search
-    /// end with a base data type.
-    pub fn CMMetadataDataTypeRegistryGetBaseDataTypeForConformingDataType(
-        data_type: &CFString,
-    ) -> NonNull<CFString>;
+/// Returns the base data type identifier that the given data type
+/// conforms to.
+///
+/// There are a set of base data types that seed the data type
+/// registry.  All valid data types will have their conformance search
+/// end with a base data type.
+#[inline]
+pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetBaseDataTypeForConformingDataType(
+    data_type: &CFString,
+) -> CFRetained<CFString> {
+    extern "C-unwind" {
+        fn CMMetadataDataTypeRegistryGetBaseDataTypeForConformingDataType(
+            data_type: &CFString,
+        ) -> NonNull<CFString>;
+    }
+    let ret = unsafe { CMMetadataDataTypeRegistryGetBaseDataTypeForConformingDataType(data_type) };
+    unsafe { CFRetained::retain(ret) }
 }

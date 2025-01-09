@@ -38,23 +38,32 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    /// Returns a specific attachment of a CMAttachmentBearer
-    ///
-    /// You can attach any CF object to a CMAttachmentBearer to store additional information. CMGetAttachment retrieves an attachment identified by a key.  Given a CVBufferRef, CMGetAttachment is equivalent to CVBufferGetAttachment.
-    ///
-    /// Parameter `target`: Target CMAttachmentBearer.
-    ///
-    /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
-    ///
-    /// Parameter `attachmentModeOut`: Returns the mode of the attachment, if desired.  May be NULL.
-    ///
-    /// Returns: If found the attachment object; else NULL.
-    pub fn CMGetAttachment(
-        target: &CMAttachmentBearer,
-        key: &CFString,
-        attachment_mode_out: *mut CMAttachmentMode,
-    ) -> *mut CFType;
+/// Returns a specific attachment of a CMAttachmentBearer
+///
+/// You can attach any CF object to a CMAttachmentBearer to store additional information. CMGetAttachment retrieves an attachment identified by a key.  Given a CVBufferRef, CMGetAttachment is equivalent to CVBufferGetAttachment.
+///
+/// Parameter `target`: Target CMAttachmentBearer.
+///
+/// Parameter `key`: Key in form of a CFString identifying the desired attachment.
+///
+/// Parameter `attachmentModeOut`: Returns the mode of the attachment, if desired.  May be NULL.
+///
+/// Returns: If found the attachment object; else NULL.
+#[inline]
+pub unsafe extern "C-unwind" fn CMGetAttachment(
+    target: &CMAttachmentBearer,
+    key: &CFString,
+    attachment_mode_out: *mut CMAttachmentMode,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn CMGetAttachment(
+            target: &CMAttachmentBearer,
+            key: &CFString,
+            attachment_mode_out: *mut CMAttachmentMode,
+        ) -> *mut CFType;
+    }
+    let ret = unsafe { CMGetAttachment(target, key, attachment_mode_out) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -77,22 +86,31 @@ extern "C-unwind" {
     pub fn CMRemoveAllAttachments(target: &CMAttachmentBearer);
 }
 
-extern "C-unwind" {
-    /// Returns all attachments of a CMAttachmentBearer
-    ///
-    /// CMCopyDictionaryOfAttachments is a convenience call that returns all attachments with their corresponding keys in a new CFDictionary that the caller must dispose by calling CFRelease.  Given a CVBufferRef, CMCopyDictionaryOfAttachments is similar to CVBufferGetAttachments, except that CVBufferGetAttachments returns a CFDictionary that may change if attachments are added later.
-    ///
-    /// Parameter `allocator`: Allocator for the new dictionary; pass kCFAllocatorDefault or NULL to use the default allocator.
-    ///
-    /// Parameter `target`: Target CMAttachmentBearer.
-    ///
-    /// Returns: A CFDictionary with all buffer attachments identified by there keys. If no attachment is present, NULL is returned.  Returns NULL
-    /// for invalid attachment mode.
-    pub fn CMCopyDictionaryOfAttachments(
-        allocator: Option<&CFAllocator>,
-        target: &CMAttachmentBearer,
-        attachment_mode: CMAttachmentMode,
-    ) -> *mut CFDictionary;
+/// Returns all attachments of a CMAttachmentBearer
+///
+/// CMCopyDictionaryOfAttachments is a convenience call that returns all attachments with their corresponding keys in a new CFDictionary that the caller must dispose by calling CFRelease.  Given a CVBufferRef, CMCopyDictionaryOfAttachments is similar to CVBufferGetAttachments, except that CVBufferGetAttachments returns a CFDictionary that may change if attachments are added later.
+///
+/// Parameter `allocator`: Allocator for the new dictionary; pass kCFAllocatorDefault or NULL to use the default allocator.
+///
+/// Parameter `target`: Target CMAttachmentBearer.
+///
+/// Returns: A CFDictionary with all buffer attachments identified by there keys. If no attachment is present, NULL is returned.  Returns NULL
+/// for invalid attachment mode.
+#[inline]
+pub unsafe extern "C-unwind" fn CMCopyDictionaryOfAttachments(
+    allocator: Option<&CFAllocator>,
+    target: &CMAttachmentBearer,
+    attachment_mode: CMAttachmentMode,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CMCopyDictionaryOfAttachments(
+            allocator: Option<&CFAllocator>,
+            target: &CMAttachmentBearer,
+            attachment_mode: CMAttachmentMode,
+        ) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CMCopyDictionaryOfAttachments(allocator, target, attachment_mode) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

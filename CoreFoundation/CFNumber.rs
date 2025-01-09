@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -125,13 +126,22 @@ extern "C-unwind" {
     pub fn CFNumberGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFNumberCreate(
-        allocator: Option<&CFAllocator>,
-        the_type: CFNumberType,
-        value_ptr: *const c_void,
-    ) -> *mut CFNumber;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFNumberCreate(
+    allocator: Option<&CFAllocator>,
+    the_type: CFNumberType,
+    value_ptr: *const c_void,
+) -> Option<CFRetained<CFNumber>> {
+    extern "C-unwind" {
+        fn CFNumberCreate(
+            allocator: Option<&CFAllocator>,
+            the_type: CFNumberType,
+            value_ptr: *const c_void,
+        ) -> *mut CFNumber;
+    }
+    let ret = unsafe { CFNumberCreate(allocator, the_type, value_ptr) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

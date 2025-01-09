@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 
 use crate::*;
 
@@ -38,38 +39,72 @@ extern "C-unwind" {
     pub fn CFBitVectorGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorCreate(
-        allocator: Option<&CFAllocator>,
-        bytes: *const u8,
-        num_bits: CFIndex,
-    ) -> *mut CFBitVector;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFBitVectorCreate(
+    allocator: Option<&CFAllocator>,
+    bytes: *const u8,
+    num_bits: CFIndex,
+) -> Option<CFRetained<CFBitVector>> {
+    extern "C-unwind" {
+        fn CFBitVectorCreate(
+            allocator: Option<&CFAllocator>,
+            bytes: *const u8,
+            num_bits: CFIndex,
+        ) -> *mut CFBitVector;
+    }
+    let ret = unsafe { CFBitVectorCreate(allocator, bytes, num_bits) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorCreateCopy(
-        allocator: Option<&CFAllocator>,
-        bv: Option<&CFBitVector>,
-    ) -> *mut CFBitVector;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFBitVectorCreateCopy(
+    allocator: Option<&CFAllocator>,
+    bv: Option<&CFBitVector>,
+) -> Option<CFRetained<CFBitVector>> {
+    extern "C-unwind" {
+        fn CFBitVectorCreateCopy(
+            allocator: Option<&CFAllocator>,
+            bv: Option<&CFBitVector>,
+        ) -> *mut CFBitVector;
+    }
+    let ret = unsafe { CFBitVectorCreateCopy(allocator, bv) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorCreateMutable(
-        allocator: Option<&CFAllocator>,
-        capacity: CFIndex,
-    ) -> *mut CFMutableBitVector;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFBitVectorCreateMutable(
+    allocator: Option<&CFAllocator>,
+    capacity: CFIndex,
+) -> Option<CFRetained<CFMutableBitVector>> {
+    extern "C-unwind" {
+        fn CFBitVectorCreateMutable(
+            allocator: Option<&CFAllocator>,
+            capacity: CFIndex,
+        ) -> *mut CFMutableBitVector;
+    }
+    let ret = unsafe { CFBitVectorCreateMutable(allocator, capacity) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorCreateMutableCopy(
-        allocator: Option<&CFAllocator>,
-        capacity: CFIndex,
-        bv: Option<&CFBitVector>,
-    ) -> *mut CFMutableBitVector;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFBitVectorCreateMutableCopy(
+    allocator: Option<&CFAllocator>,
+    capacity: CFIndex,
+    bv: Option<&CFBitVector>,
+) -> Option<CFRetained<CFMutableBitVector>> {
+    extern "C-unwind" {
+        fn CFBitVectorCreateMutableCopy(
+            allocator: Option<&CFAllocator>,
+            capacity: CFIndex,
+            bv: Option<&CFBitVector>,
+        ) -> *mut CFMutableBitVector;
+    }
+    let ret = unsafe { CFBitVectorCreateMutableCopy(allocator, capacity, bv) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

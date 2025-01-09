@@ -189,20 +189,28 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Creates a CFString with a description of a CMTagCollection.
-    ///
-    /// This can be used from within CFShow on a CMTagCollection object. It is also useful from other client debugging code.  The caller owns the returned CFString, and is responsible for releasing it.  Descriptions are not localized so are likely suitable only for debugging.
-    ///
-    /// Parameter `allocator`: CFAllocator to use in creating the description string.
-    ///
-    /// Parameter `tagCollection`: CMTagCollectionRef to describe.
-    ///
-    /// Returns: The created CFString description.
-    pub fn CMTagCollectionCopyDescription(
-        allocator: Option<&CFAllocator>,
-        tag_collection: Option<&CMTagCollection>,
-    ) -> *mut CFString;
+/// Creates a CFString with a description of a CMTagCollection.
+///
+/// This can be used from within CFShow on a CMTagCollection object. It is also useful from other client debugging code.  The caller owns the returned CFString, and is responsible for releasing it.  Descriptions are not localized so are likely suitable only for debugging.
+///
+/// Parameter `allocator`: CFAllocator to use in creating the description string.
+///
+/// Parameter `tagCollection`: CMTagCollectionRef to describe.
+///
+/// Returns: The created CFString description.
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagCollectionCopyDescription(
+    allocator: Option<&CFAllocator>,
+    tag_collection: Option<&CMTagCollection>,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CMTagCollectionCopyDescription(
+            allocator: Option<&CFAllocator>,
+            tag_collection: Option<&CMTagCollection>,
+        ) -> *mut CFString;
+    }
+    let ret = unsafe { CMTagCollectionCopyDescription(allocator, tag_collection) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -638,20 +646,28 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Returns a CFDictionary representation of a CMTagCollection.
-    ///
-    /// This is useful when putting CMTagCollections in CF container types.
-    ///
-    /// Parameter `tagCollection`: CMTagCollection to serialize as a CFDictionary.
-    ///
-    /// Parameter `allocator`: CFAllocator with which to create a dictionary. Pass kCFAllocatorDefault to use the default allocator.
-    ///
-    /// Returns: A CFDictionaryRef holding the serialized contents of the CMTagCollection.  The client is responsible for releasing the returned CFDictionary.
-    pub fn CMTagCollectionCopyAsDictionary(
-        tag_collection: &CMTagCollection,
-        allocator: Option<&CFAllocator>,
-    ) -> *mut CFDictionary;
+/// Returns a CFDictionary representation of a CMTagCollection.
+///
+/// This is useful when putting CMTagCollections in CF container types.
+///
+/// Parameter `tagCollection`: CMTagCollection to serialize as a CFDictionary.
+///
+/// Parameter `allocator`: CFAllocator with which to create a dictionary. Pass kCFAllocatorDefault to use the default allocator.
+///
+/// Returns: A CFDictionaryRef holding the serialized contents of the CMTagCollection.  The client is responsible for releasing the returned CFDictionary.
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagCollectionCopyAsDictionary(
+    tag_collection: &CMTagCollection,
+    allocator: Option<&CFAllocator>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CMTagCollectionCopyAsDictionary(
+            tag_collection: &CMTagCollection,
+            allocator: Option<&CFAllocator>,
+        ) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CMTagCollectionCopyAsDictionary(tag_collection, allocator) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -673,20 +689,28 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Returns a CFDataRef version of a CMTagCollection.
-    ///
-    /// This is useful when putting CMTagCollections in CF container types.
-    ///
-    /// Parameter `tagCollection`: CMTagCollection to serialize as a CFData.
-    ///
-    /// Parameter `allocator`: CFAllocator with which to create a CFData. Pass kCFAllocatorDefault to use the default allocator.
-    ///
-    /// Returns: A CFDataRef holding the serialized contents of the CMTagCollection.  The client is responsible for releasing the returned CFData.
-    pub fn CMTagCollectionCopyAsData(
-        tag_collection: &CMTagCollection,
-        allocator: Option<&CFAllocator>,
-    ) -> *mut CFData;
+/// Returns a CFDataRef version of a CMTagCollection.
+///
+/// This is useful when putting CMTagCollections in CF container types.
+///
+/// Parameter `tagCollection`: CMTagCollection to serialize as a CFData.
+///
+/// Parameter `allocator`: CFAllocator with which to create a CFData. Pass kCFAllocatorDefault to use the default allocator.
+///
+/// Returns: A CFDataRef holding the serialized contents of the CMTagCollection.  The client is responsible for releasing the returned CFData.
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagCollectionCopyAsData(
+    tag_collection: &CMTagCollection,
+    allocator: Option<&CFAllocator>,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn CMTagCollectionCopyAsData(
+            tag_collection: &CMTagCollection,
+            allocator: Option<&CFAllocator>,
+        ) -> *mut CFData;
+    }
+    let ret = unsafe { CMTagCollectionCopyAsData(tag_collection, allocator) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

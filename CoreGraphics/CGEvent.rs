@@ -10,66 +10,137 @@ extern "C-unwind" {
     pub fn CGEventGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGEventTypes")]
-    pub fn CGEventCreate(source: Option<&CGEventSource>) -> *mut CGEvent;
+#[cfg(feature = "CGEventTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGEventCreate(
+    source: Option<&CGEventSource>,
+) -> Option<CFRetained<CGEvent>> {
+    extern "C-unwind" {
+        fn CGEventCreate(source: Option<&CGEventSource>) -> *mut CGEvent;
+    }
+    let ret = unsafe { CGEventCreate(source) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGEventTypes")]
-    pub fn CGEventCreateData(
-        allocator: Option<&CFAllocator>,
-        event: Option<&CGEvent>,
-    ) -> *mut CFData;
+#[cfg(feature = "CGEventTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGEventCreateData(
+    allocator: Option<&CFAllocator>,
+    event: Option<&CGEvent>,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn CGEventCreateData(
+            allocator: Option<&CFAllocator>,
+            event: Option<&CGEvent>,
+        ) -> *mut CFData;
+    }
+    let ret = unsafe { CGEventCreateData(allocator, event) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGEventTypes")]
-    pub fn CGEventCreateFromData(
-        allocator: Option<&CFAllocator>,
-        data: Option<&CFData>,
-    ) -> *mut CGEvent;
+#[cfg(feature = "CGEventTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGEventCreateFromData(
+    allocator: Option<&CFAllocator>,
+    data: Option<&CFData>,
+) -> Option<CFRetained<CGEvent>> {
+    extern "C-unwind" {
+        fn CGEventCreateFromData(
+            allocator: Option<&CFAllocator>,
+            data: Option<&CFData>,
+        ) -> *mut CGEvent;
+    }
+    let ret = unsafe { CGEventCreateFromData(allocator, data) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGEventTypes")]
-    pub fn CGEventCreateMouseEvent(
-        source: Option<&CGEventSource>,
-        mouse_type: CGEventType,
-        mouse_cursor_position: CGPoint,
-        mouse_button: CGMouseButton,
-    ) -> *mut CGEvent;
+#[cfg(feature = "CGEventTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGEventCreateMouseEvent(
+    source: Option<&CGEventSource>,
+    mouse_type: CGEventType,
+    mouse_cursor_position: CGPoint,
+    mouse_button: CGMouseButton,
+) -> Option<CFRetained<CGEvent>> {
+    extern "C-unwind" {
+        fn CGEventCreateMouseEvent(
+            source: Option<&CGEventSource>,
+            mouse_type: CGEventType,
+            mouse_cursor_position: CGPoint,
+            mouse_button: CGMouseButton,
+        ) -> *mut CGEvent;
+    }
+    let ret =
+        unsafe { CGEventCreateMouseEvent(source, mouse_type, mouse_cursor_position, mouse_button) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGEventTypes", feature = "CGRemoteOperation"))]
-    pub fn CGEventCreateKeyboardEvent(
-        source: Option<&CGEventSource>,
-        virtual_key: CGKeyCode,
-        key_down: bool,
-    ) -> *mut CGEvent;
+#[cfg(all(feature = "CGEventTypes", feature = "CGRemoteOperation"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGEventCreateKeyboardEvent(
+    source: Option<&CGEventSource>,
+    virtual_key: CGKeyCode,
+    key_down: bool,
+) -> Option<CFRetained<CGEvent>> {
+    extern "C-unwind" {
+        fn CGEventCreateKeyboardEvent(
+            source: Option<&CGEventSource>,
+            virtual_key: CGKeyCode,
+            key_down: bool,
+        ) -> *mut CGEvent;
+    }
+    let ret = unsafe { CGEventCreateKeyboardEvent(source, virtual_key, key_down) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGEventTypes")]
-    pub fn CGEventCreateScrollWheelEvent2(
-        source: Option<&CGEventSource>,
-        units: CGScrollEventUnit,
-        wheel_count: u32,
-        wheel1: i32,
-        wheel2: i32,
-        wheel3: i32,
-    ) -> *mut CGEvent;
+#[cfg(feature = "CGEventTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGEventCreateScrollWheelEvent2(
+    source: Option<&CGEventSource>,
+    units: CGScrollEventUnit,
+    wheel_count: u32,
+    wheel1: i32,
+    wheel2: i32,
+    wheel3: i32,
+) -> Option<CFRetained<CGEvent>> {
+    extern "C-unwind" {
+        fn CGEventCreateScrollWheelEvent2(
+            source: Option<&CGEventSource>,
+            units: CGScrollEventUnit,
+            wheel_count: u32,
+            wheel1: i32,
+            wheel2: i32,
+            wheel3: i32,
+        ) -> *mut CGEvent;
+    }
+    let ret = unsafe {
+        CGEventCreateScrollWheelEvent2(source, units, wheel_count, wheel1, wheel2, wheel3)
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGEventTypes")]
-    pub fn CGEventCreateCopy(event: Option<&CGEvent>) -> *mut CGEvent;
+#[cfg(feature = "CGEventTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGEventCreateCopy(
+    event: Option<&CGEvent>,
+) -> Option<CFRetained<CGEvent>> {
+    extern "C-unwind" {
+        fn CGEventCreateCopy(event: Option<&CGEvent>) -> *mut CGEvent;
+    }
+    let ret = unsafe { CGEventCreateCopy(event) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGEventTypes")]
-    pub fn CGEventCreateSourceFromEvent(event: Option<&CGEvent>) -> *mut CGEventSource;
+#[cfg(feature = "CGEventTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGEventCreateSourceFromEvent(
+    event: Option<&CGEvent>,
+) -> Option<CFRetained<CGEventSource>> {
+    extern "C-unwind" {
+        fn CGEventCreateSourceFromEvent(event: Option<&CGEvent>) -> *mut CGEventSource;
+    }
+    let ret = unsafe { CGEventCreateSourceFromEvent(event) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -165,40 +236,88 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGEventTypes")]
-    pub fn CGEventTapCreate(
-        tap: CGEventTapLocation,
-        place: CGEventTapPlacement,
-        options: CGEventTapOptions,
-        events_of_interest: CGEventMask,
-        callback: CGEventTapCallBack,
-        user_info: *mut c_void,
-    ) -> *mut CFMachPort;
+#[cfg(feature = "CGEventTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGEventTapCreate(
+    tap: CGEventTapLocation,
+    place: CGEventTapPlacement,
+    options: CGEventTapOptions,
+    events_of_interest: CGEventMask,
+    callback: CGEventTapCallBack,
+    user_info: *mut c_void,
+) -> Option<CFRetained<CFMachPort>> {
+    extern "C-unwind" {
+        fn CGEventTapCreate(
+            tap: CGEventTapLocation,
+            place: CGEventTapPlacement,
+            options: CGEventTapOptions,
+            events_of_interest: CGEventMask,
+            callback: CGEventTapCallBack,
+            user_info: *mut c_void,
+        ) -> *mut CFMachPort;
+    }
+    let ret =
+        unsafe { CGEventTapCreate(tap, place, options, events_of_interest, callback, user_info) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGEventTypes")]
-    pub fn CGEventTapCreateForPSN(
-        process_serial_number: NonNull<c_void>,
-        place: CGEventTapPlacement,
-        options: CGEventTapOptions,
-        events_of_interest: CGEventMask,
-        callback: CGEventTapCallBack,
-        user_info: *mut c_void,
-    ) -> *mut CFMachPort;
+#[cfg(feature = "CGEventTypes")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGEventTapCreateForPSN(
+    process_serial_number: NonNull<c_void>,
+    place: CGEventTapPlacement,
+    options: CGEventTapOptions,
+    events_of_interest: CGEventMask,
+    callback: CGEventTapCallBack,
+    user_info: *mut c_void,
+) -> Option<CFRetained<CFMachPort>> {
+    extern "C-unwind" {
+        fn CGEventTapCreateForPSN(
+            process_serial_number: NonNull<c_void>,
+            place: CGEventTapPlacement,
+            options: CGEventTapOptions,
+            events_of_interest: CGEventMask,
+            callback: CGEventTapCallBack,
+            user_info: *mut c_void,
+        ) -> *mut CFMachPort;
+    }
+    let ret = unsafe {
+        CGEventTapCreateForPSN(
+            process_serial_number,
+            place,
+            options,
+            events_of_interest,
+            callback,
+            user_info,
+        )
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGEventTypes", feature = "libc"))]
-    pub fn CGEventTapCreateForPid(
-        pid: libc::pid_t,
-        place: CGEventTapPlacement,
-        options: CGEventTapOptions,
-        events_of_interest: CGEventMask,
-        callback: CGEventTapCallBack,
-        user_info: *mut c_void,
-    ) -> *mut CFMachPort;
+#[cfg(all(feature = "CGEventTypes", feature = "libc"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGEventTapCreateForPid(
+    pid: libc::pid_t,
+    place: CGEventTapPlacement,
+    options: CGEventTapOptions,
+    events_of_interest: CGEventMask,
+    callback: CGEventTapCallBack,
+    user_info: *mut c_void,
+) -> Option<CFRetained<CFMachPort>> {
+    extern "C-unwind" {
+        fn CGEventTapCreateForPid(
+            pid: libc::pid_t,
+            place: CGEventTapPlacement,
+            options: CGEventTapOptions,
+            events_of_interest: CGEventMask,
+            callback: CGEventTapCallBack,
+            user_info: *mut c_void,
+        ) -> *mut CFMachPort;
+    }
+    let ret = unsafe {
+        CGEventTapCreateForPid(pid, place, options, events_of_interest, callback, user_info)
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

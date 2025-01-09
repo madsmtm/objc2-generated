@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -132,180 +133,216 @@ extern "C-unwind" {
     pub fn CFArrayGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    /// Creates a new immutable array with the given values.
-    ///
-    /// Parameter `allocator`: The CFAllocator which should be used to allocate
-    /// memory for the array and its storage for values. This
-    /// parameter may be NULL in which case the current default
-    /// CFAllocator is used. If this reference is not a valid
-    /// CFAllocator, the behavior is undefined.
-    ///
-    /// Parameter `values`: A C array of the pointer-sized values to be in the
-    /// array. The values in the array are ordered in the same order
-    /// in which they appear in this C array. This parameter may be
-    /// NULL if the numValues parameter is 0. This C array is not
-    /// changed or freed by this function. If this parameter is not
-    /// a valid pointer to a C array of at least numValues pointers,
-    /// the behavior is undefined.
-    ///
-    /// Parameter `numValues`: The number of values to copy from the values C
-    /// array into the CFArray. This number will be the count of the
-    /// array.
-    /// If this parameter is negative, or greater than the number of
-    /// values actually in the value's C array, the behavior is
-    /// undefined.
-    ///
-    /// Parameter `callBacks`: A pointer to a CFArrayCallBacks structure
-    /// initialized with the callbacks for the array to use on each
-    /// value in the array. The retain callback will be used within
-    /// this function, for example, to retain all of the new values
-    /// from the values C array. A copy of the contents of the
-    /// callbacks structure is made, so that a pointer to a
-    /// structure on the stack can be passed in, or can be reused
-    /// for multiple array creations. If the version field of this
-    /// callbacks structure is not one of the defined ones for
-    /// CFArray, the behavior is undefined. The retain field may be
-    /// NULL, in which case the CFArray will do nothing to add a
-    /// retain to the contained values for the array. The release
-    /// field may be NULL, in which case the CFArray will do nothing
-    /// to remove the array's retain (if any) on the values when the
-    /// array is destroyed. If the copyDescription field is NULL,
-    /// the array will create a simple description for the value. If
-    /// the equal field is NULL, the array will use pointer equality
-    /// to test for equality of values. This callbacks parameter
-    /// itself may be NULL, which is treated as if a valid structure
-    /// of version 0 with all fields NULL had been passed in.
-    /// Otherwise, if any of the fields are not valid pointers to
-    /// functions of the correct type, or this parameter is not a
-    /// valid pointer to a  CFArrayCallBacks callbacks structure,
-    /// the behavior is undefined. If any of the values put into the
-    /// array is not one understood by one of the callback functions
-    /// the behavior when that callback function is used is
-    /// undefined.
-    ///
-    /// Returns: A reference to the new immutable CFArray.
-    #[cfg(feature = "CFBase")]
-    pub fn CFArrayCreate(
-        allocator: Option<&CFAllocator>,
-        values: *mut *const c_void,
-        num_values: CFIndex,
-        call_backs: *const CFArrayCallBacks,
-    ) -> *mut CFArray;
+/// Creates a new immutable array with the given values.
+///
+/// Parameter `allocator`: The CFAllocator which should be used to allocate
+/// memory for the array and its storage for values. This
+/// parameter may be NULL in which case the current default
+/// CFAllocator is used. If this reference is not a valid
+/// CFAllocator, the behavior is undefined.
+///
+/// Parameter `values`: A C array of the pointer-sized values to be in the
+/// array. The values in the array are ordered in the same order
+/// in which they appear in this C array. This parameter may be
+/// NULL if the numValues parameter is 0. This C array is not
+/// changed or freed by this function. If this parameter is not
+/// a valid pointer to a C array of at least numValues pointers,
+/// the behavior is undefined.
+///
+/// Parameter `numValues`: The number of values to copy from the values C
+/// array into the CFArray. This number will be the count of the
+/// array.
+/// If this parameter is negative, or greater than the number of
+/// values actually in the value's C array, the behavior is
+/// undefined.
+///
+/// Parameter `callBacks`: A pointer to a CFArrayCallBacks structure
+/// initialized with the callbacks for the array to use on each
+/// value in the array. The retain callback will be used within
+/// this function, for example, to retain all of the new values
+/// from the values C array. A copy of the contents of the
+/// callbacks structure is made, so that a pointer to a
+/// structure on the stack can be passed in, or can be reused
+/// for multiple array creations. If the version field of this
+/// callbacks structure is not one of the defined ones for
+/// CFArray, the behavior is undefined. The retain field may be
+/// NULL, in which case the CFArray will do nothing to add a
+/// retain to the contained values for the array. The release
+/// field may be NULL, in which case the CFArray will do nothing
+/// to remove the array's retain (if any) on the values when the
+/// array is destroyed. If the copyDescription field is NULL,
+/// the array will create a simple description for the value. If
+/// the equal field is NULL, the array will use pointer equality
+/// to test for equality of values. This callbacks parameter
+/// itself may be NULL, which is treated as if a valid structure
+/// of version 0 with all fields NULL had been passed in.
+/// Otherwise, if any of the fields are not valid pointers to
+/// functions of the correct type, or this parameter is not a
+/// valid pointer to a  CFArrayCallBacks callbacks structure,
+/// the behavior is undefined. If any of the values put into the
+/// array is not one understood by one of the callback functions
+/// the behavior when that callback function is used is
+/// undefined.
+///
+/// Returns: A reference to the new immutable CFArray.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFArrayCreate(
+    allocator: Option<&CFAllocator>,
+    values: *mut *const c_void,
+    num_values: CFIndex,
+    call_backs: *const CFArrayCallBacks,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CFArrayCreate(
+            allocator: Option<&CFAllocator>,
+            values: *mut *const c_void,
+            num_values: CFIndex,
+            call_backs: *const CFArrayCallBacks,
+        ) -> *mut CFArray;
+    }
+    let ret = unsafe { CFArrayCreate(allocator, values, num_values, call_backs) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Creates a new immutable array with the values from the given array.
-    ///
-    /// Parameter `allocator`: The CFAllocator which should be used to allocate
-    /// memory for the array and its storage for values. This
-    /// parameter may be NULL in which case the current default
-    /// CFAllocator is used. If this reference is not a valid
-    /// CFAllocator, the behavior is undefined.
-    ///
-    /// Parameter `theArray`: The array which is to be copied. The values from the
-    /// array are copied as pointers into the new array (that is,
-    /// the values themselves are copied, not that which the values
-    /// point to, if anything). However, the values are also
-    /// retained by the new array. The count of the new array will
-    /// be the same as the given array. The new array uses the same
-    /// callbacks as the array to be copied. If this parameter is
-    /// not a valid CFArray, the behavior is undefined.
-    ///
-    /// Returns: A reference to the new immutable CFArray.
-    #[cfg(feature = "CFBase")]
-    pub fn CFArrayCreateCopy(
-        allocator: Option<&CFAllocator>,
-        the_array: Option<&CFArray>,
-    ) -> *mut CFArray;
+/// Creates a new immutable array with the values from the given array.
+///
+/// Parameter `allocator`: The CFAllocator which should be used to allocate
+/// memory for the array and its storage for values. This
+/// parameter may be NULL in which case the current default
+/// CFAllocator is used. If this reference is not a valid
+/// CFAllocator, the behavior is undefined.
+///
+/// Parameter `theArray`: The array which is to be copied. The values from the
+/// array are copied as pointers into the new array (that is,
+/// the values themselves are copied, not that which the values
+/// point to, if anything). However, the values are also
+/// retained by the new array. The count of the new array will
+/// be the same as the given array. The new array uses the same
+/// callbacks as the array to be copied. If this parameter is
+/// not a valid CFArray, the behavior is undefined.
+///
+/// Returns: A reference to the new immutable CFArray.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFArrayCreateCopy(
+    allocator: Option<&CFAllocator>,
+    the_array: Option<&CFArray>,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CFArrayCreateCopy(
+            allocator: Option<&CFAllocator>,
+            the_array: Option<&CFArray>,
+        ) -> *mut CFArray;
+    }
+    let ret = unsafe { CFArrayCreateCopy(allocator, the_array) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Creates a new empty mutable array.
-    ///
-    /// Parameter `allocator`: The CFAllocator which should be used to allocate
-    /// memory for the array and its storage for values. This
-    /// parameter may be NULL in which case the current default
-    /// CFAllocator is used. If this reference is not a valid
-    /// CFAllocator, the behavior is undefined.
-    ///
-    /// Parameter `capacity`: A hint about the number of values that will be held
-    /// by the CFArray. Pass 0 for no hint. The implementation may
-    /// ignore this hint, or may use it to optimize various
-    /// operations. An array's actual capacity is only limited by
-    /// address space and available memory constraints). If this
-    /// parameter is negative, the behavior is undefined.
-    ///
-    /// Parameter `callBacks`: A pointer to a CFArrayCallBacks structure
-    /// initialized with the callbacks for the array to use on each
-    /// value in the array. A copy of the contents of the
-    /// callbacks structure is made, so that a pointer to a
-    /// structure on the stack can be passed in, or can be reused
-    /// for multiple array creations. If the version field of this
-    /// callbacks structure is not one of the defined ones for
-    /// CFArray, the behavior is undefined. The retain field may be
-    /// NULL, in which case the CFArray will do nothing to add a
-    /// retain to the contained values for the array. The release
-    /// field may be NULL, in which case the CFArray will do nothing
-    /// to remove the array's retain (if any) on the values when the
-    /// array is destroyed. If the copyDescription field is NULL,
-    /// the array will create a simple description for the value. If
-    /// the equal field is NULL, the array will use pointer equality
-    /// to test for equality of values. This callbacks parameter
-    /// itself may be NULL, which is treated as if a valid structure
-    /// of version 0 with all fields NULL had been passed in.
-    /// Otherwise, if any of the fields are not valid pointers to
-    /// functions of the correct type, or this parameter is not a
-    /// valid pointer to a  CFArrayCallBacks callbacks structure,
-    /// the behavior is undefined. If any of the values put into the
-    /// array is not one understood by one of the callback functions
-    /// the behavior when that callback function is used is
-    /// undefined.
-    ///
-    /// Returns: A reference to the new mutable CFArray.
-    #[cfg(feature = "CFBase")]
-    pub fn CFArrayCreateMutable(
-        allocator: Option<&CFAllocator>,
-        capacity: CFIndex,
-        call_backs: *const CFArrayCallBacks,
-    ) -> *mut CFMutableArray;
+/// Creates a new empty mutable array.
+///
+/// Parameter `allocator`: The CFAllocator which should be used to allocate
+/// memory for the array and its storage for values. This
+/// parameter may be NULL in which case the current default
+/// CFAllocator is used. If this reference is not a valid
+/// CFAllocator, the behavior is undefined.
+///
+/// Parameter `capacity`: A hint about the number of values that will be held
+/// by the CFArray. Pass 0 for no hint. The implementation may
+/// ignore this hint, or may use it to optimize various
+/// operations. An array's actual capacity is only limited by
+/// address space and available memory constraints). If this
+/// parameter is negative, the behavior is undefined.
+///
+/// Parameter `callBacks`: A pointer to a CFArrayCallBacks structure
+/// initialized with the callbacks for the array to use on each
+/// value in the array. A copy of the contents of the
+/// callbacks structure is made, so that a pointer to a
+/// structure on the stack can be passed in, or can be reused
+/// for multiple array creations. If the version field of this
+/// callbacks structure is not one of the defined ones for
+/// CFArray, the behavior is undefined. The retain field may be
+/// NULL, in which case the CFArray will do nothing to add a
+/// retain to the contained values for the array. The release
+/// field may be NULL, in which case the CFArray will do nothing
+/// to remove the array's retain (if any) on the values when the
+/// array is destroyed. If the copyDescription field is NULL,
+/// the array will create a simple description for the value. If
+/// the equal field is NULL, the array will use pointer equality
+/// to test for equality of values. This callbacks parameter
+/// itself may be NULL, which is treated as if a valid structure
+/// of version 0 with all fields NULL had been passed in.
+/// Otherwise, if any of the fields are not valid pointers to
+/// functions of the correct type, or this parameter is not a
+/// valid pointer to a  CFArrayCallBacks callbacks structure,
+/// the behavior is undefined. If any of the values put into the
+/// array is not one understood by one of the callback functions
+/// the behavior when that callback function is used is
+/// undefined.
+///
+/// Returns: A reference to the new mutable CFArray.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFArrayCreateMutable(
+    allocator: Option<&CFAllocator>,
+    capacity: CFIndex,
+    call_backs: *const CFArrayCallBacks,
+) -> Option<CFRetained<CFMutableArray>> {
+    extern "C-unwind" {
+        fn CFArrayCreateMutable(
+            allocator: Option<&CFAllocator>,
+            capacity: CFIndex,
+            call_backs: *const CFArrayCallBacks,
+        ) -> *mut CFMutableArray;
+    }
+    let ret = unsafe { CFArrayCreateMutable(allocator, capacity, call_backs) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Creates a new mutable array with the values from the given array.
-    ///
-    /// Parameter `allocator`: The CFAllocator which should be used to allocate
-    /// memory for the array and its storage for values. This
-    /// parameter may be NULL in which case the current default
-    /// CFAllocator is used. If this reference is not a valid
-    /// CFAllocator, the behavior is undefined.
-    ///
-    /// Parameter `capacity`: A hint about the number of values that will be held
-    /// by the CFArray. Pass 0 for no hint. The implementation may
-    /// ignore this hint, or may use it to optimize various
-    /// operations. An array's actual capacity is only limited by
-    /// address space and available memory constraints).
-    /// This parameter must be greater than or equal
-    /// to the count of the array which is to be copied, or the
-    /// behavior is undefined. If this parameter is negative, the
-    /// behavior is undefined.
-    ///
-    /// Parameter `theArray`: The array which is to be copied. The values from the
-    /// array are copied as pointers into the new array (that is,
-    /// the values themselves are copied, not that which the values
-    /// point to, if anything). However, the values are also
-    /// retained by the new array. The count of the new array will
-    /// be the same as the given array. The new array uses the same
-    /// callbacks as the array to be copied. If this parameter is
-    /// not a valid CFArray, the behavior is undefined.
-    ///
-    /// Returns: A reference to the new mutable CFArray.
-    #[cfg(feature = "CFBase")]
-    pub fn CFArrayCreateMutableCopy(
-        allocator: Option<&CFAllocator>,
-        capacity: CFIndex,
-        the_array: Option<&CFArray>,
-    ) -> *mut CFMutableArray;
+/// Creates a new mutable array with the values from the given array.
+///
+/// Parameter `allocator`: The CFAllocator which should be used to allocate
+/// memory for the array and its storage for values. This
+/// parameter may be NULL in which case the current default
+/// CFAllocator is used. If this reference is not a valid
+/// CFAllocator, the behavior is undefined.
+///
+/// Parameter `capacity`: A hint about the number of values that will be held
+/// by the CFArray. Pass 0 for no hint. The implementation may
+/// ignore this hint, or may use it to optimize various
+/// operations. An array's actual capacity is only limited by
+/// address space and available memory constraints).
+/// This parameter must be greater than or equal
+/// to the count of the array which is to be copied, or the
+/// behavior is undefined. If this parameter is negative, the
+/// behavior is undefined.
+///
+/// Parameter `theArray`: The array which is to be copied. The values from the
+/// array are copied as pointers into the new array (that is,
+/// the values themselves are copied, not that which the values
+/// point to, if anything). However, the values are also
+/// retained by the new array. The count of the new array will
+/// be the same as the given array. The new array uses the same
+/// callbacks as the array to be copied. If this parameter is
+/// not a valid CFArray, the behavior is undefined.
+///
+/// Returns: A reference to the new mutable CFArray.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFArrayCreateMutableCopy(
+    allocator: Option<&CFAllocator>,
+    capacity: CFIndex,
+    the_array: Option<&CFArray>,
+) -> Option<CFRetained<CFMutableArray>> {
+    extern "C-unwind" {
+        fn CFArrayCreateMutableCopy(
+            allocator: Option<&CFAllocator>,
+            capacity: CFIndex,
+            the_array: Option<&CFArray>,
+        ) -> *mut CFMutableArray;
+    }
+    let ret = unsafe { CFArrayCreateMutableCopy(allocator, capacity, the_array) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

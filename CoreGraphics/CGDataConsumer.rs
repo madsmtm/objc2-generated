@@ -57,17 +57,39 @@ extern "C-unwind" {
     pub fn CGDataConsumerGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    pub fn CGDataConsumerCreate(
-        info: *mut c_void,
-        cbks: *const CGDataConsumerCallbacks,
-    ) -> *mut CGDataConsumer;
+#[inline]
+pub unsafe extern "C-unwind" fn CGDataConsumerCreate(
+    info: *mut c_void,
+    cbks: *const CGDataConsumerCallbacks,
+) -> Option<CFRetained<CGDataConsumer>> {
+    extern "C-unwind" {
+        fn CGDataConsumerCreate(
+            info: *mut c_void,
+            cbks: *const CGDataConsumerCallbacks,
+        ) -> *mut CGDataConsumer;
+    }
+    let ret = unsafe { CGDataConsumerCreate(info, cbks) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGDataConsumerCreateWithURL(url: Option<&CFURL>) -> *mut CGDataConsumer;
+#[inline]
+pub unsafe extern "C-unwind" fn CGDataConsumerCreateWithURL(
+    url: Option<&CFURL>,
+) -> Option<CFRetained<CGDataConsumer>> {
+    extern "C-unwind" {
+        fn CGDataConsumerCreateWithURL(url: Option<&CFURL>) -> *mut CGDataConsumer;
+    }
+    let ret = unsafe { CGDataConsumerCreateWithURL(url) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGDataConsumerCreateWithCFData(data: Option<&CFMutableData>) -> *mut CGDataConsumer;
+#[inline]
+pub unsafe extern "C-unwind" fn CGDataConsumerCreateWithCFData(
+    data: Option<&CFMutableData>,
+) -> Option<CFRetained<CGDataConsumer>> {
+    extern "C-unwind" {
+        fn CGDataConsumerCreateWithCFData(data: Option<&CFMutableData>) -> *mut CGDataConsumer;
+    }
+    let ret = unsafe { CGDataConsumerCreateWithCFData(data) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

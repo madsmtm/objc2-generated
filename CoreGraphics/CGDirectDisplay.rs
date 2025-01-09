@@ -103,11 +103,19 @@ extern "C-unwind" {
     pub fn CGDisplayPixelsHigh(display: CGDirectDisplayID) -> usize;
 }
 
-extern "C-unwind" {
-    pub fn CGDisplayCopyAllDisplayModes(
-        display: CGDirectDisplayID,
-        options: Option<&CFDictionary>,
-    ) -> *mut CFArray;
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayCopyAllDisplayModes(
+    display: CGDirectDisplayID,
+    options: Option<&CFDictionary>,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CGDisplayCopyAllDisplayModes(
+            display: CGDirectDisplayID,
+            options: Option<&CFDictionary>,
+        ) -> *mut CFArray;
+    }
+    let ret = unsafe { CGDisplayCopyAllDisplayModes(display, options) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {
@@ -115,8 +123,15 @@ extern "C" {
     pub static kCGDisplayShowDuplicateLowResolutionModes: &'static CFString;
 }
 
-extern "C-unwind" {
-    pub fn CGDisplayCopyDisplayMode(display: CGDirectDisplayID) -> *mut CGDisplayMode;
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayCopyDisplayMode(
+    display: CGDirectDisplayID,
+) -> Option<CFRetained<CGDisplayMode>> {
+    extern "C-unwind" {
+        fn CGDisplayCopyDisplayMode(display: CGDirectDisplayID) -> *mut CGDisplayMode;
+    }
+    let ret = unsafe { CGDisplayCopyDisplayMode(display) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -136,9 +151,16 @@ extern "C-unwind" {
     pub fn CGDisplayModeGetHeight(mode: Option<&CGDisplayMode>) -> usize;
 }
 
-extern "C-unwind" {
-    #[deprecated = "No longer supported"]
-    pub fn CGDisplayModeCopyPixelEncoding(mode: Option<&CGDisplayMode>) -> *mut CFString;
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayModeCopyPixelEncoding(
+    mode: Option<&CGDisplayMode>,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CGDisplayModeCopyPixelEncoding(mode: Option<&CGDisplayMode>) -> *mut CFString;
+    }
+    let ret = unsafe { CGDisplayModeCopyPixelEncoding(mode) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -319,16 +341,31 @@ extern "C-unwind" {
     pub fn CGShieldingWindowLevel() -> CGWindowLevel;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGImage")]
-    #[deprecated = "Please use ScreenCaptureKit instead."]
-    pub fn CGDisplayCreateImage(display_id: CGDirectDisplayID) -> *mut CGImage;
+#[cfg(feature = "CGImage")]
+#[deprecated = "Please use ScreenCaptureKit instead."]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayCreateImage(
+    display_id: CGDirectDisplayID,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGDisplayCreateImage(display_id: CGDirectDisplayID) -> *mut CGImage;
+    }
+    let ret = unsafe { CGDisplayCreateImage(display_id) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGImage")]
-    #[deprecated = "Please use ScreenCaptureKit instead."]
-    pub fn CGDisplayCreateImageForRect(display: CGDirectDisplayID, rect: CGRect) -> *mut CGImage;
+#[cfg(feature = "CGImage")]
+#[deprecated = "Please use ScreenCaptureKit instead."]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayCreateImageForRect(
+    display: CGDirectDisplayID,
+    rect: CGRect,
+) -> Option<CFRetained<CGImage>> {
+    extern "C-unwind" {
+        fn CGDisplayCreateImageForRect(display: CGDirectDisplayID, rect: CGRect) -> *mut CGImage;
+    }
+    let ret = unsafe { CGDisplayCreateImageForRect(display, rect) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -350,9 +387,16 @@ extern "C-unwind" {
     pub fn CGGetLastMouseDelta(delta_x: *mut i32, delta_y: *mut i32);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGDisplayGetDrawingContext(display: CGDirectDisplayID) -> *mut CGContext;
+#[cfg(feature = "CGContext")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayGetDrawingContext(
+    display: CGDirectDisplayID,
+) -> Option<CFRetained<CGContext>> {
+    extern "C-unwind" {
+        fn CGDisplayGetDrawingContext(display: CGDirectDisplayID) -> *mut CGContext;
+    }
+    let ret = unsafe { CGDisplayGetDrawingContext(display) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycount?language=objc)
@@ -362,39 +406,87 @@ pub type CGDisplayCount = u32;
 #[cfg(feature = "CGError")]
 pub type CGDisplayErr = CGError;
 
-extern "C-unwind" {
-    #[deprecated = "No longer supported"]
-    pub fn CGDisplayAvailableModes(dsp: CGDirectDisplayID) -> *mut CFArray;
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayAvailableModes(
+    dsp: CGDirectDisplayID,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CGDisplayAvailableModes(dsp: CGDirectDisplayID) -> *mut CFArray;
+    }
+    let ret = unsafe { CGDisplayAvailableModes(dsp) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated = "No longer supported"]
-    pub fn CGDisplayBestModeForParameters(
-        display: CGDirectDisplayID,
-        bits_per_pixel: usize,
-        width: usize,
-        height: usize,
-        exact_match: *mut libc::boolean_t,
-    ) -> *mut CFDictionary;
+#[cfg(feature = "libc")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayBestModeForParameters(
+    display: CGDirectDisplayID,
+    bits_per_pixel: usize,
+    width: usize,
+    height: usize,
+    exact_match: *mut libc::boolean_t,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CGDisplayBestModeForParameters(
+            display: CGDirectDisplayID,
+            bits_per_pixel: usize,
+            width: usize,
+            height: usize,
+            exact_match: *mut libc::boolean_t,
+        ) -> *mut CFDictionary;
+    }
+    let ret = unsafe {
+        CGDisplayBestModeForParameters(display, bits_per_pixel, width, height, exact_match)
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated = "No longer supported"]
-    pub fn CGDisplayBestModeForParametersAndRefreshRate(
-        display: CGDirectDisplayID,
-        bits_per_pixel: usize,
-        width: usize,
-        height: usize,
-        refresh_rate: CGRefreshRate,
-        exact_match: *mut libc::boolean_t,
-    ) -> *mut CFDictionary;
+#[cfg(feature = "libc")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayBestModeForParametersAndRefreshRate(
+    display: CGDirectDisplayID,
+    bits_per_pixel: usize,
+    width: usize,
+    height: usize,
+    refresh_rate: CGRefreshRate,
+    exact_match: *mut libc::boolean_t,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CGDisplayBestModeForParametersAndRefreshRate(
+            display: CGDirectDisplayID,
+            bits_per_pixel: usize,
+            width: usize,
+            height: usize,
+            refresh_rate: CGRefreshRate,
+            exact_match: *mut libc::boolean_t,
+        ) -> *mut CFDictionary;
+    }
+    let ret = unsafe {
+        CGDisplayBestModeForParametersAndRefreshRate(
+            display,
+            bits_per_pixel,
+            width,
+            height,
+            refresh_rate,
+            exact_match,
+        )
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    #[deprecated = "No longer supported"]
-    pub fn CGDisplayCurrentMode(display: CGDirectDisplayID) -> *mut CFDictionary;
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayCurrentMode(
+    display: CGDirectDisplayID,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CGDisplayCurrentMode(display: CGDirectDisplayID) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CGDisplayCurrentMode(display) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

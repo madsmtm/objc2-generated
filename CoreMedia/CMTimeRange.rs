@@ -231,17 +231,25 @@ extern "C-unwind" {
     pub fn CMTimeRangeFromTimeToTime(start: CMTime, end: CMTime) -> CMTimeRange;
 }
 
-extern "C-unwind" {
-    /// Returns a CFDictionary version of a CMTimeRange.
-    ///
-    /// This is useful when putting CMTimeRanges in CF container types.
-    ///
-    /// Returns: A CFDictionary version of the CMTimeRange.
-    #[cfg(feature = "CMTime")]
-    pub fn CMTimeRangeCopyAsDictionary(
-        range: CMTimeRange,
-        allocator: Option<&CFAllocator>,
-    ) -> *mut CFDictionary;
+/// Returns a CFDictionary version of a CMTimeRange.
+///
+/// This is useful when putting CMTimeRanges in CF container types.
+///
+/// Returns: A CFDictionary version of the CMTimeRange.
+#[cfg(feature = "CMTime")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimeRangeCopyAsDictionary(
+    range: CMTimeRange,
+    allocator: Option<&CFAllocator>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CMTimeRangeCopyAsDictionary(
+            range: CMTimeRange,
+            allocator: Option<&CFAllocator>,
+        ) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CMTimeRangeCopyAsDictionary(range, allocator) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -269,18 +277,26 @@ extern "C" {
     pub static kCMTimeRangeDurationKey: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Creates a CFString with a description of a CMTimeRange (just like CFCopyDescription).
-    ///
-    /// This is used from within CFShow on an object that contains CMTimeRange fields. It is
-    /// also useful from other client debugging code.  The caller owns the returned CFString and is responsible for releasing it.
-    ///
-    /// Returns: The created CFString description.
-    #[cfg(feature = "CMTime")]
-    pub fn CMTimeRangeCopyDescription(
-        allocator: Option<&CFAllocator>,
-        range: CMTimeRange,
-    ) -> *mut CFString;
+/// Creates a CFString with a description of a CMTimeRange (just like CFCopyDescription).
+///
+/// This is used from within CFShow on an object that contains CMTimeRange fields. It is
+/// also useful from other client debugging code.  The caller owns the returned CFString and is responsible for releasing it.
+///
+/// Returns: The created CFString description.
+#[cfg(feature = "CMTime")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimeRangeCopyDescription(
+    allocator: Option<&CFAllocator>,
+    range: CMTimeRange,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CMTimeRangeCopyDescription(
+            allocator: Option<&CFAllocator>,
+            range: CMTimeRange,
+        ) -> *mut CFString;
+    }
+    let ret = unsafe { CMTimeRangeCopyDescription(allocator, range) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -350,17 +366,25 @@ extern "C-unwind" {
     pub fn CMTimeMappingMakeEmpty(target: CMTimeRange) -> CMTimeMapping;
 }
 
-extern "C-unwind" {
-    /// Returns a CFDictionary version of a CMTimeMapping.
-    ///
-    /// This is useful when putting CMTimeMappings in CF container types.
-    ///
-    /// Returns: A CFDictionary version of the CMTimeMapping.
-    #[cfg(feature = "CMTime")]
-    pub fn CMTimeMappingCopyAsDictionary(
-        mapping: CMTimeMapping,
-        allocator: Option<&CFAllocator>,
-    ) -> *mut CFDictionary;
+/// Returns a CFDictionary version of a CMTimeMapping.
+///
+/// This is useful when putting CMTimeMappings in CF container types.
+///
+/// Returns: A CFDictionary version of the CMTimeMapping.
+#[cfg(feature = "CMTime")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimeMappingCopyAsDictionary(
+    mapping: CMTimeMapping,
+    allocator: Option<&CFAllocator>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CMTimeMappingCopyAsDictionary(
+            mapping: CMTimeMapping,
+            allocator: Option<&CFAllocator>,
+        ) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CMTimeMappingCopyAsDictionary(mapping, allocator) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -390,18 +414,26 @@ extern "C" {
     pub static kCMTimeMappingTargetKey: &'static CFString;
 }
 
-extern "C-unwind" {
-    /// Creates a CFString with a description of a CMTimeMapping (just like CFCopyDescription).
-    ///
-    /// This is used from within CFShow on an object that contains CMTimeMapping fields. It is
-    /// also useful from other client debugging code.  The caller owns the returned CFString and is responsible for releasing it.
-    ///
-    /// Returns: The created CFString description.
-    #[cfg(feature = "CMTime")]
-    pub fn CMTimeMappingCopyDescription(
-        allocator: Option<&CFAllocator>,
-        mapping: CMTimeMapping,
-    ) -> *mut CFString;
+/// Creates a CFString with a description of a CMTimeMapping (just like CFCopyDescription).
+///
+/// This is used from within CFShow on an object that contains CMTimeMapping fields. It is
+/// also useful from other client debugging code.  The caller owns the returned CFString and is responsible for releasing it.
+///
+/// Returns: The created CFString description.
+#[cfg(feature = "CMTime")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimeMappingCopyDescription(
+    allocator: Option<&CFAllocator>,
+    mapping: CMTimeMapping,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CMTimeMappingCopyDescription(
+            allocator: Option<&CFAllocator>,
+            mapping: CMTimeMapping,
+        ) -> *mut CFString;
+    }
+    let ret = unsafe { CMTimeMappingCopyDescription(allocator, mapping) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

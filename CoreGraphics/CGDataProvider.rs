@@ -116,50 +116,105 @@ extern "C-unwind" {
     pub fn CGDataProviderGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn CGDataProviderCreateSequential(
-        info: *mut c_void,
-        callbacks: *const CGDataProviderSequentialCallbacks,
-    ) -> *mut CGDataProvider;
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDataProviderCreateSequential(
+    info: *mut c_void,
+    callbacks: *const CGDataProviderSequentialCallbacks,
+) -> Option<CFRetained<CGDataProvider>> {
+    extern "C-unwind" {
+        fn CGDataProviderCreateSequential(
+            info: *mut c_void,
+            callbacks: *const CGDataProviderSequentialCallbacks,
+        ) -> *mut CGDataProvider;
+    }
+    let ret = unsafe { CGDataProviderCreateSequential(info, callbacks) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn CGDataProviderCreateDirect(
-        info: *mut c_void,
-        size: libc::off_t,
-        callbacks: *const CGDataProviderDirectCallbacks,
-    ) -> *mut CGDataProvider;
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDataProviderCreateDirect(
+    info: *mut c_void,
+    size: libc::off_t,
+    callbacks: *const CGDataProviderDirectCallbacks,
+) -> Option<CFRetained<CGDataProvider>> {
+    extern "C-unwind" {
+        fn CGDataProviderCreateDirect(
+            info: *mut c_void,
+            size: libc::off_t,
+            callbacks: *const CGDataProviderDirectCallbacks,
+        ) -> *mut CGDataProvider;
+    }
+    let ret = unsafe { CGDataProviderCreateDirect(info, size, callbacks) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderreleasedatacallback?language=objc)
 pub type CGDataProviderReleaseDataCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>, usize)>;
 
-extern "C-unwind" {
-    pub fn CGDataProviderCreateWithData(
-        info: *mut c_void,
-        data: *const c_void,
-        size: usize,
-        release_data: CGDataProviderReleaseDataCallback,
-    ) -> *mut CGDataProvider;
+#[inline]
+pub unsafe extern "C-unwind" fn CGDataProviderCreateWithData(
+    info: *mut c_void,
+    data: *const c_void,
+    size: usize,
+    release_data: CGDataProviderReleaseDataCallback,
+) -> Option<CFRetained<CGDataProvider>> {
+    extern "C-unwind" {
+        fn CGDataProviderCreateWithData(
+            info: *mut c_void,
+            data: *const c_void,
+            size: usize,
+            release_data: CGDataProviderReleaseDataCallback,
+        ) -> *mut CGDataProvider;
+    }
+    let ret = unsafe { CGDataProviderCreateWithData(info, data, size, release_data) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGDataProviderCreateWithCFData(data: Option<&CFData>) -> *mut CGDataProvider;
+#[inline]
+pub unsafe extern "C-unwind" fn CGDataProviderCreateWithCFData(
+    data: Option<&CFData>,
+) -> Option<CFRetained<CGDataProvider>> {
+    extern "C-unwind" {
+        fn CGDataProviderCreateWithCFData(data: Option<&CFData>) -> *mut CGDataProvider;
+    }
+    let ret = unsafe { CGDataProviderCreateWithCFData(data) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGDataProviderCreateWithURL(url: Option<&CFURL>) -> *mut CGDataProvider;
+#[inline]
+pub unsafe extern "C-unwind" fn CGDataProviderCreateWithURL(
+    url: Option<&CFURL>,
+) -> Option<CFRetained<CGDataProvider>> {
+    extern "C-unwind" {
+        fn CGDataProviderCreateWithURL(url: Option<&CFURL>) -> *mut CGDataProvider;
+    }
+    let ret = unsafe { CGDataProviderCreateWithURL(url) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGDataProviderCreateWithFilename(filename: *const c_char) -> *mut CGDataProvider;
+#[inline]
+pub unsafe extern "C-unwind" fn CGDataProviderCreateWithFilename(
+    filename: *const c_char,
+) -> Option<CFRetained<CGDataProvider>> {
+    extern "C-unwind" {
+        fn CGDataProviderCreateWithFilename(filename: *const c_char) -> *mut CGDataProvider;
+    }
+    let ret = unsafe { CGDataProviderCreateWithFilename(filename) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGDataProviderCopyData(provider: Option<&CGDataProvider>) -> *mut CFData;
+#[inline]
+pub unsafe extern "C-unwind" fn CGDataProviderCopyData(
+    provider: Option<&CGDataProvider>,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn CGDataProviderCopyData(provider: Option<&CGDataProvider>) -> *mut CFData;
+    }
+    let ret = unsafe { CGDataProviderCopyData(provider) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

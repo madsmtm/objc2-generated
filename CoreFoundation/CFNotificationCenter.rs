@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -70,16 +71,34 @@ extern "C-unwind" {
     pub fn CFNotificationCenterGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    pub fn CFNotificationCenterGetLocalCenter() -> *mut CFNotificationCenter;
+#[inline]
+pub unsafe extern "C-unwind" fn CFNotificationCenterGetLocalCenter(
+) -> Option<CFRetained<CFNotificationCenter>> {
+    extern "C-unwind" {
+        fn CFNotificationCenterGetLocalCenter() -> *mut CFNotificationCenter;
+    }
+    let ret = unsafe { CFNotificationCenterGetLocalCenter() };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CFNotificationCenterGetDistributedCenter() -> *mut CFNotificationCenter;
+#[inline]
+pub unsafe extern "C-unwind" fn CFNotificationCenterGetDistributedCenter(
+) -> Option<CFRetained<CFNotificationCenter>> {
+    extern "C-unwind" {
+        fn CFNotificationCenterGetDistributedCenter() -> *mut CFNotificationCenter;
+    }
+    let ret = unsafe { CFNotificationCenterGetDistributedCenter() };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CFNotificationCenterGetDarwinNotifyCenter() -> *mut CFNotificationCenter;
+#[inline]
+pub unsafe extern "C-unwind" fn CFNotificationCenterGetDarwinNotifyCenter(
+) -> Option<CFRetained<CFNotificationCenter>> {
+    extern "C-unwind" {
+        fn CFNotificationCenterGetDarwinNotifyCenter() -> *mut CFNotificationCenter;
+    }
+    let ret = unsafe { CFNotificationCenterGetDarwinNotifyCenter() };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

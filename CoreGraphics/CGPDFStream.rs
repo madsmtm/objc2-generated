@@ -2,6 +2,7 @@
 //! DO NOT EDIT
 use core::cell::UnsafeCell;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -53,7 +54,15 @@ extern "C-unwind" {
     pub fn CGPDFStreamGetDictionary(stream: CGPDFStreamRef) -> CGPDFDictionaryRef;
 }
 
-extern "C-unwind" {
-    pub fn CGPDFStreamCopyData(stream: CGPDFStreamRef, format: *mut CGPDFDataFormat)
-        -> *mut CFData;
+#[inline]
+pub unsafe extern "C-unwind" fn CGPDFStreamCopyData(
+    stream: CGPDFStreamRef,
+    format: *mut CGPDFDataFormat,
+) -> Option<CFRetained<CFData>> {
+    extern "C-unwind" {
+        fn CGPDFStreamCopyData(stream: CGPDFStreamRef, format: *mut CGPDFDataFormat)
+            -> *mut CFData;
+    }
+    let ret = unsafe { CGPDFStreamCopyData(stream, format) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

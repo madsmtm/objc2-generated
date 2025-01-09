@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -220,252 +221,301 @@ extern "C-unwind" {
     pub fn CFDictionaryGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    /// Creates a new immutable dictionary with the given values.
-    ///
-    /// Parameter `allocator`: The CFAllocator which should be used to allocate
-    /// memory for the dictionary and its storage for values. This
-    /// parameter may be NULL in which case the current default
-    /// CFAllocator is used. If this reference is not a valid
-    /// CFAllocator, the behavior is undefined.
-    ///
-    /// Parameter `keys`: A C array of the pointer-sized keys to be used for
-    /// the parallel C array of values to be put into the dictionary.
-    /// This parameter may be NULL if the numValues parameter is 0.
-    /// This C array is not changed or freed by this function. If
-    /// this parameter is not a valid pointer to a C array of at
-    /// least numValues pointers, the behavior is undefined.
-    ///
-    /// Parameter `values`: A C array of the pointer-sized values to be in the
-    /// dictionary. This parameter may be NULL if the numValues
-    /// parameter is 0. This C array is not changed or freed by
-    /// this function. If this parameter is not a valid pointer to
-    /// a C array of at least numValues pointers, the behavior is
-    /// undefined.
-    ///
-    /// Parameter `numValues`: The number of values to copy from the keys and
-    /// values C arrays into the CFDictionary. This number will be
-    /// the count of the dictionary. If this parameter is
-    /// negative, or greater than the number of values actually
-    /// in the keys or values C arrays, the behavior is undefined.
-    ///
-    /// Parameter `keyCallBacks`: A pointer to a CFDictionaryKeyCallBacks structure
-    /// initialized with the callbacks for the dictionary to use on
-    /// each key in the dictionary. The retain callback will be used
-    /// within this function, for example, to retain all of the new
-    /// keys from the keys C array. A copy of the contents of the
-    /// callbacks structure is made, so that a pointer to a structure
-    /// on the stack can be passed in, or can be reused for multiple
-    /// dictionary creations. If the version field of this
-    /// callbacks structure is not one of the defined ones for
-    /// CFDictionary, the behavior is undefined. The retain field may
-    /// be NULL, in which case the CFDictionary will do nothing to add
-    /// a retain to the keys of the contained values. The release field
-    /// may be NULL, in which case the CFDictionary will do nothing
-    /// to remove the dictionary's retain (if any) on the keys when the
-    /// dictionary is destroyed or a key-value pair is removed. If the
-    /// copyDescription field is NULL, the dictionary will create a
-    /// simple description for a key. If the equal field is NULL, the
-    /// dictionary will use pointer equality to test for equality of
-    /// keys. If the hash field is NULL, a key will be converted from
-    /// a pointer to an integer to compute the hash code. This callbacks
-    /// parameter itself may be NULL, which is treated as if a valid
-    /// structure of version 0 with all fields NULL had been passed in.
-    /// Otherwise, if any of the fields are not valid pointers to
-    /// functions of the correct type, or this parameter is not a
-    /// valid pointer to a CFDictionaryKeyCallBacks callbacks structure,
-    /// the behavior is undefined. If any of the keys put into the
-    /// dictionary is not one understood by one of the callback functions
-    /// the behavior when that callback function is used is undefined.
-    ///
-    /// Parameter `valueCallBacks`: A pointer to a CFDictionaryValueCallBacks structure
-    /// initialized with the callbacks for the dictionary to use on
-    /// each value in the dictionary. The retain callback will be used
-    /// within this function, for example, to retain all of the new
-    /// values from the values C array. A copy of the contents of the
-    /// callbacks structure is made, so that a pointer to a structure
-    /// on the stack can be passed in, or can be reused for multiple
-    /// dictionary creations. If the version field of this callbacks
-    /// structure is not one of the defined ones for CFDictionary, the
-    /// behavior is undefined. The retain field may be NULL, in which
-    /// case the CFDictionary will do nothing to add a retain to values
-    /// as they are put into the dictionary. The release field may be
-    /// NULL, in which case the CFDictionary will do nothing to remove
-    /// the dictionary's retain (if any) on the values when the
-    /// dictionary is destroyed or a key-value pair is removed. If the
-    /// copyDescription field is NULL, the dictionary will create a
-    /// simple description for a value. If the equal field is NULL, the
-    /// dictionary will use pointer equality to test for equality of
-    /// values. This callbacks parameter itself may be NULL, which is
-    /// treated as if a valid structure of version 0 with all fields
-    /// NULL had been passed in. Otherwise,
-    /// if any of the fields are not valid pointers to functions
-    /// of the correct type, or this parameter is not a valid
-    /// pointer to a CFDictionaryValueCallBacks callbacks structure,
-    /// the behavior is undefined. If any of the values put into the
-    /// dictionary is not one understood by one of the callback functions
-    /// the behavior when that callback function is used is undefined.
-    ///
-    /// Returns: A reference to the new immutable CFDictionary.
-    #[cfg(feature = "CFBase")]
-    pub fn CFDictionaryCreate(
-        allocator: Option<&CFAllocator>,
-        keys: *mut *const c_void,
-        values: *mut *const c_void,
-        num_values: CFIndex,
-        key_call_backs: *const CFDictionaryKeyCallBacks,
-        value_call_backs: *const CFDictionaryValueCallBacks,
-    ) -> *mut CFDictionary;
+/// Creates a new immutable dictionary with the given values.
+///
+/// Parameter `allocator`: The CFAllocator which should be used to allocate
+/// memory for the dictionary and its storage for values. This
+/// parameter may be NULL in which case the current default
+/// CFAllocator is used. If this reference is not a valid
+/// CFAllocator, the behavior is undefined.
+///
+/// Parameter `keys`: A C array of the pointer-sized keys to be used for
+/// the parallel C array of values to be put into the dictionary.
+/// This parameter may be NULL if the numValues parameter is 0.
+/// This C array is not changed or freed by this function. If
+/// this parameter is not a valid pointer to a C array of at
+/// least numValues pointers, the behavior is undefined.
+///
+/// Parameter `values`: A C array of the pointer-sized values to be in the
+/// dictionary. This parameter may be NULL if the numValues
+/// parameter is 0. This C array is not changed or freed by
+/// this function. If this parameter is not a valid pointer to
+/// a C array of at least numValues pointers, the behavior is
+/// undefined.
+///
+/// Parameter `numValues`: The number of values to copy from the keys and
+/// values C arrays into the CFDictionary. This number will be
+/// the count of the dictionary. If this parameter is
+/// negative, or greater than the number of values actually
+/// in the keys or values C arrays, the behavior is undefined.
+///
+/// Parameter `keyCallBacks`: A pointer to a CFDictionaryKeyCallBacks structure
+/// initialized with the callbacks for the dictionary to use on
+/// each key in the dictionary. The retain callback will be used
+/// within this function, for example, to retain all of the new
+/// keys from the keys C array. A copy of the contents of the
+/// callbacks structure is made, so that a pointer to a structure
+/// on the stack can be passed in, or can be reused for multiple
+/// dictionary creations. If the version field of this
+/// callbacks structure is not one of the defined ones for
+/// CFDictionary, the behavior is undefined. The retain field may
+/// be NULL, in which case the CFDictionary will do nothing to add
+/// a retain to the keys of the contained values. The release field
+/// may be NULL, in which case the CFDictionary will do nothing
+/// to remove the dictionary's retain (if any) on the keys when the
+/// dictionary is destroyed or a key-value pair is removed. If the
+/// copyDescription field is NULL, the dictionary will create a
+/// simple description for a key. If the equal field is NULL, the
+/// dictionary will use pointer equality to test for equality of
+/// keys. If the hash field is NULL, a key will be converted from
+/// a pointer to an integer to compute the hash code. This callbacks
+/// parameter itself may be NULL, which is treated as if a valid
+/// structure of version 0 with all fields NULL had been passed in.
+/// Otherwise, if any of the fields are not valid pointers to
+/// functions of the correct type, or this parameter is not a
+/// valid pointer to a CFDictionaryKeyCallBacks callbacks structure,
+/// the behavior is undefined. If any of the keys put into the
+/// dictionary is not one understood by one of the callback functions
+/// the behavior when that callback function is used is undefined.
+///
+/// Parameter `valueCallBacks`: A pointer to a CFDictionaryValueCallBacks structure
+/// initialized with the callbacks for the dictionary to use on
+/// each value in the dictionary. The retain callback will be used
+/// within this function, for example, to retain all of the new
+/// values from the values C array. A copy of the contents of the
+/// callbacks structure is made, so that a pointer to a structure
+/// on the stack can be passed in, or can be reused for multiple
+/// dictionary creations. If the version field of this callbacks
+/// structure is not one of the defined ones for CFDictionary, the
+/// behavior is undefined. The retain field may be NULL, in which
+/// case the CFDictionary will do nothing to add a retain to values
+/// as they are put into the dictionary. The release field may be
+/// NULL, in which case the CFDictionary will do nothing to remove
+/// the dictionary's retain (if any) on the values when the
+/// dictionary is destroyed or a key-value pair is removed. If the
+/// copyDescription field is NULL, the dictionary will create a
+/// simple description for a value. If the equal field is NULL, the
+/// dictionary will use pointer equality to test for equality of
+/// values. This callbacks parameter itself may be NULL, which is
+/// treated as if a valid structure of version 0 with all fields
+/// NULL had been passed in. Otherwise,
+/// if any of the fields are not valid pointers to functions
+/// of the correct type, or this parameter is not a valid
+/// pointer to a CFDictionaryValueCallBacks callbacks structure,
+/// the behavior is undefined. If any of the values put into the
+/// dictionary is not one understood by one of the callback functions
+/// the behavior when that callback function is used is undefined.
+///
+/// Returns: A reference to the new immutable CFDictionary.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFDictionaryCreate(
+    allocator: Option<&CFAllocator>,
+    keys: *mut *const c_void,
+    values: *mut *const c_void,
+    num_values: CFIndex,
+    key_call_backs: *const CFDictionaryKeyCallBacks,
+    value_call_backs: *const CFDictionaryValueCallBacks,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CFDictionaryCreate(
+            allocator: Option<&CFAllocator>,
+            keys: *mut *const c_void,
+            values: *mut *const c_void,
+            num_values: CFIndex,
+            key_call_backs: *const CFDictionaryKeyCallBacks,
+            value_call_backs: *const CFDictionaryValueCallBacks,
+        ) -> *mut CFDictionary;
+    }
+    let ret = unsafe {
+        CFDictionaryCreate(
+            allocator,
+            keys,
+            values,
+            num_values,
+            key_call_backs,
+            value_call_backs,
+        )
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Creates a new immutable dictionary with the key-value pairs from
-    /// the given dictionary.
-    ///
-    /// Parameter `allocator`: The CFAllocator which should be used to allocate
-    /// memory for the dictionary and its storage for values. This
-    /// parameter may be NULL in which case the current default
-    /// CFAllocator is used. If this reference is not a valid
-    /// CFAllocator, the behavior is undefined.
-    ///
-    /// Parameter `theDict`: The dictionary which is to be copied. The keys and values
-    /// from the dictionary are copied as pointers into the new
-    /// dictionary (that is, the values themselves are copied, not
-    /// that which the values point to, if anything). However, the
-    /// keys and values are also retained by the new dictionary using
-    /// the retain function of the original dictionary.
-    /// The count of the new dictionary will be the same as the
-    /// given dictionary. The new dictionary uses the same callbacks
-    /// as the dictionary to be copied. If this parameter is
-    /// not a valid CFDictionary, the behavior is undefined.
-    ///
-    /// Returns: A reference to the new immutable CFDictionary.
-    #[cfg(feature = "CFBase")]
-    pub fn CFDictionaryCreateCopy(
-        allocator: Option<&CFAllocator>,
-        the_dict: Option<&CFDictionary>,
-    ) -> *mut CFDictionary;
+/// Creates a new immutable dictionary with the key-value pairs from
+/// the given dictionary.
+///
+/// Parameter `allocator`: The CFAllocator which should be used to allocate
+/// memory for the dictionary and its storage for values. This
+/// parameter may be NULL in which case the current default
+/// CFAllocator is used. If this reference is not a valid
+/// CFAllocator, the behavior is undefined.
+///
+/// Parameter `theDict`: The dictionary which is to be copied. The keys and values
+/// from the dictionary are copied as pointers into the new
+/// dictionary (that is, the values themselves are copied, not
+/// that which the values point to, if anything). However, the
+/// keys and values are also retained by the new dictionary using
+/// the retain function of the original dictionary.
+/// The count of the new dictionary will be the same as the
+/// given dictionary. The new dictionary uses the same callbacks
+/// as the dictionary to be copied. If this parameter is
+/// not a valid CFDictionary, the behavior is undefined.
+///
+/// Returns: A reference to the new immutable CFDictionary.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFDictionaryCreateCopy(
+    allocator: Option<&CFAllocator>,
+    the_dict: Option<&CFDictionary>,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CFDictionaryCreateCopy(
+            allocator: Option<&CFAllocator>,
+            the_dict: Option<&CFDictionary>,
+        ) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CFDictionaryCreateCopy(allocator, the_dict) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Creates a new mutable dictionary.
-    ///
-    /// Parameter `allocator`: The CFAllocator which should be used to allocate
-    /// memory for the dictionary and its storage for values. This
-    /// parameter may be NULL in which case the current default
-    /// CFAllocator is used. If this reference is not a valid
-    /// CFAllocator, the behavior is undefined.
-    ///
-    /// Parameter `capacity`: A hint about the number of values that will be held
-    /// by the CFDictionary. Pass 0 for no hint. The implementation may
-    /// ignore this hint, or may use it to optimize various
-    /// operations. A dictionary's actual capacity is only limited by
-    /// address space and available memory constraints). If this
-    /// parameter is negative, the behavior is undefined.
-    ///
-    /// Parameter `keyCallBacks`: A pointer to a CFDictionaryKeyCallBacks structure
-    /// initialized with the callbacks for the dictionary to use on
-    /// each key in the dictionary. A copy of the contents of the
-    /// callbacks structure is made, so that a pointer to a structure
-    /// on the stack can be passed in, or can be reused for multiple
-    /// dictionary creations. If the version field of this
-    /// callbacks structure is not one of the defined ones for
-    /// CFDictionary, the behavior is undefined. The retain field may
-    /// be NULL, in which case the CFDictionary will do nothing to add
-    /// a retain to the keys of the contained values. The release field
-    /// may be NULL, in which case the CFDictionary will do nothing
-    /// to remove the dictionary's retain (if any) on the keys when the
-    /// dictionary is destroyed or a key-value pair is removed. If the
-    /// copyDescription field is NULL, the dictionary will create a
-    /// simple description for a key. If the equal field is NULL, the
-    /// dictionary will use pointer equality to test for equality of
-    /// keys. If the hash field is NULL, a key will be converted from
-    /// a pointer to an integer to compute the hash code. This callbacks
-    /// parameter itself may be NULL, which is treated as if a valid
-    /// structure of version 0 with all fields NULL had been passed in.
-    /// Otherwise, if any of the fields are not valid pointers to
-    /// functions of the correct type, or this parameter is not a
-    /// valid pointer to a CFDictionaryKeyCallBacks callbacks structure,
-    /// the behavior is undefined. If any of the keys put into the
-    /// dictionary is not one understood by one of the callback functions
-    /// the behavior when that callback function is used is undefined.
-    ///
-    /// Parameter `valueCallBacks`: A pointer to a CFDictionaryValueCallBacks structure
-    /// initialized with the callbacks for the dictionary to use on
-    /// each value in the dictionary. The retain callback will be used
-    /// within this function, for example, to retain all of the new
-    /// values from the values C array. A copy of the contents of the
-    /// callbacks structure is made, so that a pointer to a structure
-    /// on the stack can be passed in, or can be reused for multiple
-    /// dictionary creations. If the version field of this callbacks
-    /// structure is not one of the defined ones for CFDictionary, the
-    /// behavior is undefined. The retain field may be NULL, in which
-    /// case the CFDictionary will do nothing to add a retain to values
-    /// as they are put into the dictionary. The release field may be
-    /// NULL, in which case the CFDictionary will do nothing to remove
-    /// the dictionary's retain (if any) on the values when the
-    /// dictionary is destroyed or a key-value pair is removed. If the
-    /// copyDescription field is NULL, the dictionary will create a
-    /// simple description for a value. If the equal field is NULL, the
-    /// dictionary will use pointer equality to test for equality of
-    /// values. This callbacks parameter itself may be NULL, which is
-    /// treated as if a valid structure of version 0 with all fields
-    /// NULL had been passed in. Otherwise,
-    /// if any of the fields are not valid pointers to functions
-    /// of the correct type, or this parameter is not a valid
-    /// pointer to a CFDictionaryValueCallBacks callbacks structure,
-    /// the behavior is undefined. If any of the values put into the
-    /// dictionary is not one understood by one of the callback functions
-    /// the behavior when that callback function is used is undefined.
-    ///
-    /// Returns: A reference to the new mutable CFDictionary.
-    #[cfg(feature = "CFBase")]
-    pub fn CFDictionaryCreateMutable(
-        allocator: Option<&CFAllocator>,
-        capacity: CFIndex,
-        key_call_backs: *const CFDictionaryKeyCallBacks,
-        value_call_backs: *const CFDictionaryValueCallBacks,
-    ) -> *mut CFMutableDictionary;
+/// Creates a new mutable dictionary.
+///
+/// Parameter `allocator`: The CFAllocator which should be used to allocate
+/// memory for the dictionary and its storage for values. This
+/// parameter may be NULL in which case the current default
+/// CFAllocator is used. If this reference is not a valid
+/// CFAllocator, the behavior is undefined.
+///
+/// Parameter `capacity`: A hint about the number of values that will be held
+/// by the CFDictionary. Pass 0 for no hint. The implementation may
+/// ignore this hint, or may use it to optimize various
+/// operations. A dictionary's actual capacity is only limited by
+/// address space and available memory constraints). If this
+/// parameter is negative, the behavior is undefined.
+///
+/// Parameter `keyCallBacks`: A pointer to a CFDictionaryKeyCallBacks structure
+/// initialized with the callbacks for the dictionary to use on
+/// each key in the dictionary. A copy of the contents of the
+/// callbacks structure is made, so that a pointer to a structure
+/// on the stack can be passed in, or can be reused for multiple
+/// dictionary creations. If the version field of this
+/// callbacks structure is not one of the defined ones for
+/// CFDictionary, the behavior is undefined. The retain field may
+/// be NULL, in which case the CFDictionary will do nothing to add
+/// a retain to the keys of the contained values. The release field
+/// may be NULL, in which case the CFDictionary will do nothing
+/// to remove the dictionary's retain (if any) on the keys when the
+/// dictionary is destroyed or a key-value pair is removed. If the
+/// copyDescription field is NULL, the dictionary will create a
+/// simple description for a key. If the equal field is NULL, the
+/// dictionary will use pointer equality to test for equality of
+/// keys. If the hash field is NULL, a key will be converted from
+/// a pointer to an integer to compute the hash code. This callbacks
+/// parameter itself may be NULL, which is treated as if a valid
+/// structure of version 0 with all fields NULL had been passed in.
+/// Otherwise, if any of the fields are not valid pointers to
+/// functions of the correct type, or this parameter is not a
+/// valid pointer to a CFDictionaryKeyCallBacks callbacks structure,
+/// the behavior is undefined. If any of the keys put into the
+/// dictionary is not one understood by one of the callback functions
+/// the behavior when that callback function is used is undefined.
+///
+/// Parameter `valueCallBacks`: A pointer to a CFDictionaryValueCallBacks structure
+/// initialized with the callbacks for the dictionary to use on
+/// each value in the dictionary. The retain callback will be used
+/// within this function, for example, to retain all of the new
+/// values from the values C array. A copy of the contents of the
+/// callbacks structure is made, so that a pointer to a structure
+/// on the stack can be passed in, or can be reused for multiple
+/// dictionary creations. If the version field of this callbacks
+/// structure is not one of the defined ones for CFDictionary, the
+/// behavior is undefined. The retain field may be NULL, in which
+/// case the CFDictionary will do nothing to add a retain to values
+/// as they are put into the dictionary. The release field may be
+/// NULL, in which case the CFDictionary will do nothing to remove
+/// the dictionary's retain (if any) on the values when the
+/// dictionary is destroyed or a key-value pair is removed. If the
+/// copyDescription field is NULL, the dictionary will create a
+/// simple description for a value. If the equal field is NULL, the
+/// dictionary will use pointer equality to test for equality of
+/// values. This callbacks parameter itself may be NULL, which is
+/// treated as if a valid structure of version 0 with all fields
+/// NULL had been passed in. Otherwise,
+/// if any of the fields are not valid pointers to functions
+/// of the correct type, or this parameter is not a valid
+/// pointer to a CFDictionaryValueCallBacks callbacks structure,
+/// the behavior is undefined. If any of the values put into the
+/// dictionary is not one understood by one of the callback functions
+/// the behavior when that callback function is used is undefined.
+///
+/// Returns: A reference to the new mutable CFDictionary.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFDictionaryCreateMutable(
+    allocator: Option<&CFAllocator>,
+    capacity: CFIndex,
+    key_call_backs: *const CFDictionaryKeyCallBacks,
+    value_call_backs: *const CFDictionaryValueCallBacks,
+) -> Option<CFRetained<CFMutableDictionary>> {
+    extern "C-unwind" {
+        fn CFDictionaryCreateMutable(
+            allocator: Option<&CFAllocator>,
+            capacity: CFIndex,
+            key_call_backs: *const CFDictionaryKeyCallBacks,
+            value_call_backs: *const CFDictionaryValueCallBacks,
+        ) -> *mut CFMutableDictionary;
+    }
+    let ret =
+        unsafe { CFDictionaryCreateMutable(allocator, capacity, key_call_backs, value_call_backs) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Creates a new mutable dictionary with the key-value pairs from
-    /// the given dictionary.
-    ///
-    /// Parameter `allocator`: The CFAllocator which should be used to allocate
-    /// memory for the dictionary and its storage for values. This
-    /// parameter may be NULL in which case the current default
-    /// CFAllocator is used. If this reference is not a valid
-    /// CFAllocator, the behavior is undefined.
-    ///
-    /// Parameter `capacity`: A hint about the number of values that will be held
-    /// by the CFDictionary. Pass 0 for no hint. The implementation may
-    /// ignore this hint, or may use it to optimize various
-    /// operations. A dictionary's actual capacity is only limited by
-    /// address space and available memory constraints).
-    /// This parameter must be greater than or equal
-    /// to the count of the dictionary which is to be copied, or the
-    /// behavior is undefined. If this parameter is negative, the
-    /// behavior is undefined.
-    ///
-    /// Parameter `theDict`: The dictionary which is to be copied. The keys and values
-    /// from the dictionary are copied as pointers into the new
-    /// dictionary (that is, the values themselves are copied, not
-    /// that which the values point to, if anything). However, the
-    /// keys and values are also retained by the new dictionary using
-    /// the retain function of the original dictionary.
-    /// The count of the new dictionary will be the same as the
-    /// given dictionary. The new dictionary uses the same callbacks
-    /// as the dictionary to be copied. If this parameter is
-    /// not a valid CFDictionary, the behavior is undefined.
-    ///
-    /// Returns: A reference to the new mutable CFDictionary.
-    #[cfg(feature = "CFBase")]
-    pub fn CFDictionaryCreateMutableCopy(
-        allocator: Option<&CFAllocator>,
-        capacity: CFIndex,
-        the_dict: Option<&CFDictionary>,
-    ) -> *mut CFMutableDictionary;
+/// Creates a new mutable dictionary with the key-value pairs from
+/// the given dictionary.
+///
+/// Parameter `allocator`: The CFAllocator which should be used to allocate
+/// memory for the dictionary and its storage for values. This
+/// parameter may be NULL in which case the current default
+/// CFAllocator is used. If this reference is not a valid
+/// CFAllocator, the behavior is undefined.
+///
+/// Parameter `capacity`: A hint about the number of values that will be held
+/// by the CFDictionary. Pass 0 for no hint. The implementation may
+/// ignore this hint, or may use it to optimize various
+/// operations. A dictionary's actual capacity is only limited by
+/// address space and available memory constraints).
+/// This parameter must be greater than or equal
+/// to the count of the dictionary which is to be copied, or the
+/// behavior is undefined. If this parameter is negative, the
+/// behavior is undefined.
+///
+/// Parameter `theDict`: The dictionary which is to be copied. The keys and values
+/// from the dictionary are copied as pointers into the new
+/// dictionary (that is, the values themselves are copied, not
+/// that which the values point to, if anything). However, the
+/// keys and values are also retained by the new dictionary using
+/// the retain function of the original dictionary.
+/// The count of the new dictionary will be the same as the
+/// given dictionary. The new dictionary uses the same callbacks
+/// as the dictionary to be copied. If this parameter is
+/// not a valid CFDictionary, the behavior is undefined.
+///
+/// Returns: A reference to the new mutable CFDictionary.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFDictionaryCreateMutableCopy(
+    allocator: Option<&CFAllocator>,
+    capacity: CFIndex,
+    the_dict: Option<&CFDictionary>,
+) -> Option<CFRetained<CFMutableDictionary>> {
+    extern "C-unwind" {
+        fn CFDictionaryCreateMutableCopy(
+            allocator: Option<&CFAllocator>,
+            capacity: CFIndex,
+            the_dict: Option<&CFDictionary>,
+        ) -> *mut CFMutableDictionary;
+    }
+    let ret = unsafe { CFDictionaryCreateMutableCopy(allocator, capacity, the_dict) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

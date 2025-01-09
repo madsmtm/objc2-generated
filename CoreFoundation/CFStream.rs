@@ -184,47 +184,90 @@ extern "C" {
     pub static kCFStreamPropertyDataWritten: Option<&'static CFStreamPropertyKey>;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFReadStreamCreateWithBytesNoCopy(
-        alloc: Option<&CFAllocator>,
-        bytes: *const u8,
-        length: CFIndex,
-        bytes_deallocator: Option<&CFAllocator>,
-    ) -> *mut CFReadStream;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFReadStreamCreateWithBytesNoCopy(
+    alloc: Option<&CFAllocator>,
+    bytes: *const u8,
+    length: CFIndex,
+    bytes_deallocator: Option<&CFAllocator>,
+) -> Option<CFRetained<CFReadStream>> {
+    extern "C-unwind" {
+        fn CFReadStreamCreateWithBytesNoCopy(
+            alloc: Option<&CFAllocator>,
+            bytes: *const u8,
+            length: CFIndex,
+            bytes_deallocator: Option<&CFAllocator>,
+        ) -> *mut CFReadStream;
+    }
+    let ret = unsafe { CFReadStreamCreateWithBytesNoCopy(alloc, bytes, length, bytes_deallocator) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFWriteStreamCreateWithBuffer(
-        alloc: Option<&CFAllocator>,
-        buffer: *mut u8,
-        buffer_capacity: CFIndex,
-    ) -> *mut CFWriteStream;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFWriteStreamCreateWithBuffer(
+    alloc: Option<&CFAllocator>,
+    buffer: *mut u8,
+    buffer_capacity: CFIndex,
+) -> Option<CFRetained<CFWriteStream>> {
+    extern "C-unwind" {
+        fn CFWriteStreamCreateWithBuffer(
+            alloc: Option<&CFAllocator>,
+            buffer: *mut u8,
+            buffer_capacity: CFIndex,
+        ) -> *mut CFWriteStream;
+    }
+    let ret = unsafe { CFWriteStreamCreateWithBuffer(alloc, buffer, buffer_capacity) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFWriteStreamCreateWithAllocatedBuffers(
-        alloc: Option<&CFAllocator>,
-        buffer_allocator: Option<&CFAllocator>,
-    ) -> *mut CFWriteStream;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFWriteStreamCreateWithAllocatedBuffers(
+    alloc: Option<&CFAllocator>,
+    buffer_allocator: Option<&CFAllocator>,
+) -> Option<CFRetained<CFWriteStream>> {
+    extern "C-unwind" {
+        fn CFWriteStreamCreateWithAllocatedBuffers(
+            alloc: Option<&CFAllocator>,
+            buffer_allocator: Option<&CFAllocator>,
+        ) -> *mut CFWriteStream;
+    }
+    let ret = unsafe { CFWriteStreamCreateWithAllocatedBuffers(alloc, buffer_allocator) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFURL"))]
-    pub fn CFReadStreamCreateWithFile(
-        alloc: Option<&CFAllocator>,
-        file_url: Option<&CFURL>,
-    ) -> *mut CFReadStream;
+#[cfg(all(feature = "CFBase", feature = "CFURL"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFReadStreamCreateWithFile(
+    alloc: Option<&CFAllocator>,
+    file_url: Option<&CFURL>,
+) -> Option<CFRetained<CFReadStream>> {
+    extern "C-unwind" {
+        fn CFReadStreamCreateWithFile(
+            alloc: Option<&CFAllocator>,
+            file_url: Option<&CFURL>,
+        ) -> *mut CFReadStream;
+    }
+    let ret = unsafe { CFReadStreamCreateWithFile(alloc, file_url) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFURL"))]
-    pub fn CFWriteStreamCreateWithFile(
-        alloc: Option<&CFAllocator>,
-        file_url: Option<&CFURL>,
-    ) -> *mut CFWriteStream;
+#[cfg(all(feature = "CFBase", feature = "CFURL"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFWriteStreamCreateWithFile(
+    alloc: Option<&CFAllocator>,
+    file_url: Option<&CFURL>,
+) -> Option<CFRetained<CFWriteStream>> {
+    extern "C-unwind" {
+        fn CFWriteStreamCreateWithFile(
+            alloc: Option<&CFAllocator>,
+            file_url: Option<&CFURL>,
+        ) -> *mut CFWriteStream;
+    }
+    let ret = unsafe { CFWriteStreamCreateWithFile(alloc, file_url) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -411,14 +454,28 @@ extern "C-unwind" {
     pub fn CFWriteStreamGetStatus(stream: Option<&CFWriteStream>) -> CFStreamStatus;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFError")]
-    pub fn CFReadStreamCopyError(stream: Option<&CFReadStream>) -> *mut CFError;
+#[cfg(feature = "CFError")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFReadStreamCopyError(
+    stream: Option<&CFReadStream>,
+) -> Option<CFRetained<CFError>> {
+    extern "C-unwind" {
+        fn CFReadStreamCopyError(stream: Option<&CFReadStream>) -> *mut CFError;
+    }
+    let ret = unsafe { CFReadStreamCopyError(stream) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFError")]
-    pub fn CFWriteStreamCopyError(stream: Option<&CFWriteStream>) -> *mut CFError;
+#[cfg(feature = "CFError")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFWriteStreamCopyError(
+    stream: Option<&CFWriteStream>,
+) -> Option<CFRetained<CFError>> {
+    extern "C-unwind" {
+        fn CFWriteStreamCopyError(stream: Option<&CFWriteStream>) -> *mut CFError;
+    }
+    let ret = unsafe { CFWriteStreamCopyError(stream) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -472,20 +529,36 @@ extern "C-unwind" {
     ) -> CFIndex;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFReadStreamCopyProperty(
-        stream: Option<&CFReadStream>,
-        property_name: Option<&CFStreamPropertyKey>,
-    ) -> *mut CFType;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFReadStreamCopyProperty(
+    stream: Option<&CFReadStream>,
+    property_name: Option<&CFStreamPropertyKey>,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn CFReadStreamCopyProperty(
+            stream: Option<&CFReadStream>,
+            property_name: Option<&CFStreamPropertyKey>,
+        ) -> *mut CFType;
+    }
+    let ret = unsafe { CFReadStreamCopyProperty(stream, property_name) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFWriteStreamCopyProperty(
-        stream: Option<&CFWriteStream>,
-        property_name: Option<&CFStreamPropertyKey>,
-    ) -> *mut CFType;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFWriteStreamCopyProperty(
+    stream: Option<&CFWriteStream>,
+    property_name: Option<&CFStreamPropertyKey>,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn CFWriteStreamCopyProperty(
+            stream: Option<&CFWriteStream>,
+            property_name: Option<&CFStreamPropertyKey>,
+        ) -> *mut CFType;
+    }
+    let ret = unsafe { CFWriteStreamCopyProperty(stream, property_name) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

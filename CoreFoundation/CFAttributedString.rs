@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 
 use crate::*;
 
@@ -36,39 +37,72 @@ extern "C-unwind" {
     pub fn CFAttributedStringGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    /// Creates an attributed string with the specified string and attributes (both copied).
-    #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
-    pub fn CFAttributedStringCreate(
-        alloc: Option<&CFAllocator>,
-        str: Option<&CFString>,
-        attributes: Option<&CFDictionary>,
-    ) -> *mut CFAttributedString;
+/// Creates an attributed string with the specified string and attributes (both copied).
+#[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFAttributedStringCreate(
+    alloc: Option<&CFAllocator>,
+    str: Option<&CFString>,
+    attributes: Option<&CFDictionary>,
+) -> Option<CFRetained<CFAttributedString>> {
+    extern "C-unwind" {
+        fn CFAttributedStringCreate(
+            alloc: Option<&CFAllocator>,
+            str: Option<&CFString>,
+            attributes: Option<&CFDictionary>,
+        ) -> *mut CFAttributedString;
+    }
+    let ret = unsafe { CFAttributedStringCreate(alloc, str, attributes) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Creates a sub-attributed string from the specified range. It's a programming error for range to specify characters outside the bounds of aStr.
-    #[cfg(feature = "CFBase")]
-    pub fn CFAttributedStringCreateWithSubstring(
-        alloc: Option<&CFAllocator>,
-        a_str: Option<&CFAttributedString>,
-        range: CFRange,
-    ) -> *mut CFAttributedString;
+/// Creates a sub-attributed string from the specified range. It's a programming error for range to specify characters outside the bounds of aStr.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFAttributedStringCreateWithSubstring(
+    alloc: Option<&CFAllocator>,
+    a_str: Option<&CFAttributedString>,
+    range: CFRange,
+) -> Option<CFRetained<CFAttributedString>> {
+    extern "C-unwind" {
+        fn CFAttributedStringCreateWithSubstring(
+            alloc: Option<&CFAllocator>,
+            a_str: Option<&CFAttributedString>,
+            range: CFRange,
+        ) -> *mut CFAttributedString;
+    }
+    let ret = unsafe { CFAttributedStringCreateWithSubstring(alloc, a_str, range) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Creates an immutable attributed string copy.
-    #[cfg(feature = "CFBase")]
-    pub fn CFAttributedStringCreateCopy(
-        alloc: Option<&CFAllocator>,
-        a_str: Option<&CFAttributedString>,
-    ) -> *mut CFAttributedString;
+/// Creates an immutable attributed string copy.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFAttributedStringCreateCopy(
+    alloc: Option<&CFAllocator>,
+    a_str: Option<&CFAttributedString>,
+) -> Option<CFRetained<CFAttributedString>> {
+    extern "C-unwind" {
+        fn CFAttributedStringCreateCopy(
+            alloc: Option<&CFAllocator>,
+            a_str: Option<&CFAttributedString>,
+        ) -> *mut CFAttributedString;
+    }
+    let ret = unsafe { CFAttributedStringCreateCopy(alloc, a_str) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the string for the attributed string. For performance reasons, this will often point at the backing store of the attributed string, and it might change if the attributed string is edited.  However, this is an implementation detail, and definitely not something that should be counted on.
-    #[cfg(feature = "CFBase")]
-    pub fn CFAttributedStringGetString(a_str: Option<&CFAttributedString>) -> *mut CFString;
+/// Returns the string for the attributed string. For performance reasons, this will often point at the backing store of the attributed string, and it might change if the attributed string is edited.  However, this is an implementation detail, and definitely not something that should be counted on.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFAttributedStringGetString(
+    a_str: Option<&CFAttributedString>,
+) -> Option<CFRetained<CFString>> {
+    extern "C-unwind" {
+        fn CFAttributedStringGetString(a_str: Option<&CFAttributedString>) -> *mut CFString;
+    }
+    let ret = unsafe { CFAttributedStringGetString(a_str) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -77,69 +111,141 @@ extern "C-unwind" {
     pub fn CFAttributedStringGetLength(a_str: Option<&CFAttributedString>) -> CFIndex;
 }
 
-extern "C-unwind" {
-    /// Returns the attributes at the specified location. If effectiveRange is not NULL, upon return *effectiveRange contains a range over which the exact same set of attributes apply. Note that for performance reasons, the returned effectiveRange is not necessarily the maximal range - for that, use CFAttributedStringGetAttributesAndLongestEffectiveRange().  It's a programming error for loc to specify a location outside the bounds of the attributed string.
-    ///
-    /// Note that the returned attribute dictionary might change in unpredictable ways from under the caller if the attributed string is edited after this call. If you wish to hang on to the dictionary long-term, you should make an actual copy of it rather than just retaining it.  Also, no assumptions should be made about the relationship of the actual CFDictionaryRef returned by this call and the dictionary originally used to set the attributes, other than the fact that the values stored in the dictionary will be identical (that is, ==) to those originally specified.
-    #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
-    pub fn CFAttributedStringGetAttributes(
-        a_str: Option<&CFAttributedString>,
-        loc: CFIndex,
-        effective_range: *mut CFRange,
-    ) -> *mut CFDictionary;
+/// Returns the attributes at the specified location. If effectiveRange is not NULL, upon return *effectiveRange contains a range over which the exact same set of attributes apply. Note that for performance reasons, the returned effectiveRange is not necessarily the maximal range - for that, use CFAttributedStringGetAttributesAndLongestEffectiveRange().  It's a programming error for loc to specify a location outside the bounds of the attributed string.
+///
+/// Note that the returned attribute dictionary might change in unpredictable ways from under the caller if the attributed string is edited after this call. If you wish to hang on to the dictionary long-term, you should make an actual copy of it rather than just retaining it.  Also, no assumptions should be made about the relationship of the actual CFDictionaryRef returned by this call and the dictionary originally used to set the attributes, other than the fact that the values stored in the dictionary will be identical (that is, ==) to those originally specified.
+#[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFAttributedStringGetAttributes(
+    a_str: Option<&CFAttributedString>,
+    loc: CFIndex,
+    effective_range: *mut CFRange,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CFAttributedStringGetAttributes(
+            a_str: Option<&CFAttributedString>,
+            loc: CFIndex,
+            effective_range: *mut CFRange,
+        ) -> *mut CFDictionary;
+    }
+    let ret = unsafe { CFAttributedStringGetAttributes(a_str, loc, effective_range) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the value of a single attribute at the specified location. If the specified attribute doesn't exist at the location, returns NULL. If effectiveRange is not NULL, upon return *effectiveRange contains a range over which the exact same attribute value applies. Note that for performance reasons, the returned effectiveRange is not necessarily the maximal range - for that, use CFAttributedStringGetAttributeAndLongestEffectiveRange(). It's a programming error for loc to specify a location outside the bounds of the attributed string.
-    #[cfg(feature = "CFBase")]
-    pub fn CFAttributedStringGetAttribute(
-        a_str: Option<&CFAttributedString>,
-        loc: CFIndex,
-        attr_name: Option<&CFString>,
-        effective_range: *mut CFRange,
-    ) -> *mut CFType;
+/// Returns the value of a single attribute at the specified location. If the specified attribute doesn't exist at the location, returns NULL. If effectiveRange is not NULL, upon return *effectiveRange contains a range over which the exact same attribute value applies. Note that for performance reasons, the returned effectiveRange is not necessarily the maximal range - for that, use CFAttributedStringGetAttributeAndLongestEffectiveRange(). It's a programming error for loc to specify a location outside the bounds of the attributed string.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFAttributedStringGetAttribute(
+    a_str: Option<&CFAttributedString>,
+    loc: CFIndex,
+    attr_name: Option<&CFString>,
+    effective_range: *mut CFRange,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn CFAttributedStringGetAttribute(
+            a_str: Option<&CFAttributedString>,
+            loc: CFIndex,
+            attr_name: Option<&CFString>,
+            effective_range: *mut CFRange,
+        ) -> *mut CFType;
+    }
+    let ret = unsafe { CFAttributedStringGetAttribute(a_str, loc, attr_name, effective_range) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the attributes at the specified location. If longestEffectiveRange is not NULL, upon return *longestEffectiveRange contains the maximal range within inRange over which the exact same set of attributes apply. The returned range is clipped to inRange. It's a programming error for loc or inRange to specify locations outside the bounds of the attributed string.
-    #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
-    pub fn CFAttributedStringGetAttributesAndLongestEffectiveRange(
-        a_str: Option<&CFAttributedString>,
-        loc: CFIndex,
-        in_range: CFRange,
-        longest_effective_range: *mut CFRange,
-    ) -> *mut CFDictionary;
+/// Returns the attributes at the specified location. If longestEffectiveRange is not NULL, upon return *longestEffectiveRange contains the maximal range within inRange over which the exact same set of attributes apply. The returned range is clipped to inRange. It's a programming error for loc or inRange to specify locations outside the bounds of the attributed string.
+#[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFAttributedStringGetAttributesAndLongestEffectiveRange(
+    a_str: Option<&CFAttributedString>,
+    loc: CFIndex,
+    in_range: CFRange,
+    longest_effective_range: *mut CFRange,
+) -> Option<CFRetained<CFDictionary>> {
+    extern "C-unwind" {
+        fn CFAttributedStringGetAttributesAndLongestEffectiveRange(
+            a_str: Option<&CFAttributedString>,
+            loc: CFIndex,
+            in_range: CFRange,
+            longest_effective_range: *mut CFRange,
+        ) -> *mut CFDictionary;
+    }
+    let ret = unsafe {
+        CFAttributedStringGetAttributesAndLongestEffectiveRange(
+            a_str,
+            loc,
+            in_range,
+            longest_effective_range,
+        )
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the value of a single attribute at the specified location. If longestEffectiveRange is not NULL, upon return *longestEffectiveRange contains the maximal range within inRange over which the exact same attribute value applies. The returned range is clipped to inRange. It's a programming error for loc or inRange to specify locations outside the bounds of the attributed string.
-    #[cfg(feature = "CFBase")]
-    pub fn CFAttributedStringGetAttributeAndLongestEffectiveRange(
-        a_str: Option<&CFAttributedString>,
-        loc: CFIndex,
-        attr_name: Option<&CFString>,
-        in_range: CFRange,
-        longest_effective_range: *mut CFRange,
-    ) -> *mut CFType;
+/// Returns the value of a single attribute at the specified location. If longestEffectiveRange is not NULL, upon return *longestEffectiveRange contains the maximal range within inRange over which the exact same attribute value applies. The returned range is clipped to inRange. It's a programming error for loc or inRange to specify locations outside the bounds of the attributed string.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFAttributedStringGetAttributeAndLongestEffectiveRange(
+    a_str: Option<&CFAttributedString>,
+    loc: CFIndex,
+    attr_name: Option<&CFString>,
+    in_range: CFRange,
+    longest_effective_range: *mut CFRange,
+) -> Option<CFRetained<CFType>> {
+    extern "C-unwind" {
+        fn CFAttributedStringGetAttributeAndLongestEffectiveRange(
+            a_str: Option<&CFAttributedString>,
+            loc: CFIndex,
+            attr_name: Option<&CFString>,
+            in_range: CFRange,
+            longest_effective_range: *mut CFRange,
+        ) -> *mut CFType;
+    }
+    let ret = unsafe {
+        CFAttributedStringGetAttributeAndLongestEffectiveRange(
+            a_str,
+            loc,
+            attr_name,
+            in_range,
+            longest_effective_range,
+        )
+    };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Creates a mutable attributed string copy. maxLength, if not 0, is a hard bound on the length of the attributed string; exceeding this size limit during any editing operation is a programming error. If 0, there is no limit on the length.
-    #[cfg(feature = "CFBase")]
-    pub fn CFAttributedStringCreateMutableCopy(
-        alloc: Option<&CFAllocator>,
-        max_length: CFIndex,
-        a_str: Option<&CFAttributedString>,
-    ) -> *mut CFMutableAttributedString;
+/// Creates a mutable attributed string copy. maxLength, if not 0, is a hard bound on the length of the attributed string; exceeding this size limit during any editing operation is a programming error. If 0, there is no limit on the length.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFAttributedStringCreateMutableCopy(
+    alloc: Option<&CFAllocator>,
+    max_length: CFIndex,
+    a_str: Option<&CFAttributedString>,
+) -> Option<CFRetained<CFMutableAttributedString>> {
+    extern "C-unwind" {
+        fn CFAttributedStringCreateMutableCopy(
+            alloc: Option<&CFAllocator>,
+            max_length: CFIndex,
+            a_str: Option<&CFAttributedString>,
+        ) -> *mut CFMutableAttributedString;
+    }
+    let ret = unsafe { CFAttributedStringCreateMutableCopy(alloc, max_length, a_str) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Creates a mutable empty attributed string. maxLength, if not 0, is a hard bound on the length of the attributed string; exceeding this size limit during any editing operation is a programming error. If 0, there is no limit on the length.
-    #[cfg(feature = "CFBase")]
-    pub fn CFAttributedStringCreateMutable(
-        alloc: Option<&CFAllocator>,
-        max_length: CFIndex,
-    ) -> *mut CFMutableAttributedString;
+/// Creates a mutable empty attributed string. maxLength, if not 0, is a hard bound on the length of the attributed string; exceeding this size limit during any editing operation is a programming error. If 0, there is no limit on the length.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFAttributedStringCreateMutable(
+    alloc: Option<&CFAllocator>,
+    max_length: CFIndex,
+) -> Option<CFRetained<CFMutableAttributedString>> {
+    extern "C-unwind" {
+        fn CFAttributedStringCreateMutable(
+            alloc: Option<&CFAllocator>,
+            max_length: CFIndex,
+        ) -> *mut CFMutableAttributedString;
+    }
+    let ret = unsafe { CFAttributedStringCreateMutable(alloc, max_length) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -154,14 +260,21 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    /// Gets the string for the attributed string as a mutable string, allowing editing the character contents of the string as if it were an CFMutableString. Attributes corresponding to the edited range are appropriately modified. If, as a result of the edit, new characters are introduced into the string, they inherit the attributes of the first replaced character from range. If no existing characters are replaced by the edit, the new characters inherit the attributes of the character preceding range if it has any, otherwise of the character following range. If the initial string is empty, the attributes for the new characters are also empty.
-    ///
-    /// (Note: This function is not yet implemented and will return NULL except for toll-free bridged instances.)
-    #[cfg(feature = "CFBase")]
-    pub fn CFAttributedStringGetMutableString(
-        a_str: Option<&CFMutableAttributedString>,
-    ) -> *mut CFMutableString;
+/// Gets the string for the attributed string as a mutable string, allowing editing the character contents of the string as if it were an CFMutableString. Attributes corresponding to the edited range are appropriately modified. If, as a result of the edit, new characters are introduced into the string, they inherit the attributes of the first replaced character from range. If no existing characters are replaced by the edit, the new characters inherit the attributes of the character preceding range if it has any, otherwise of the character following range. If the initial string is empty, the attributes for the new characters are also empty.
+///
+/// (Note: This function is not yet implemented and will return NULL except for toll-free bridged instances.)
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFAttributedStringGetMutableString(
+    a_str: Option<&CFMutableAttributedString>,
+) -> Option<CFRetained<CFMutableString>> {
+    extern "C-unwind" {
+        fn CFAttributedStringGetMutableString(
+            a_str: Option<&CFMutableAttributedString>,
+        ) -> *mut CFMutableString;
+    }
+    let ret = unsafe { CFAttributedStringGetMutableString(a_str) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

@@ -147,9 +147,16 @@ extern "C-unwind" {
     pub fn CGRectIntersectsRect(rect1: CGRect, rect2: CGRect) -> bool;
 }
 
-extern "C-unwind" {
-    /// * Persistent representations. **
-    pub fn CGPointCreateDictionaryRepresentation(point: CGPoint) -> NonNull<CFDictionary>;
+/// * Persistent representations. **
+#[inline]
+pub unsafe extern "C-unwind" fn CGPointCreateDictionaryRepresentation(
+    point: CGPoint,
+) -> CFRetained<CFDictionary> {
+    extern "C-unwind" {
+        fn CGPointCreateDictionaryRepresentation(point: CGPoint) -> NonNull<CFDictionary>;
+    }
+    let ret = unsafe { CGPointCreateDictionaryRepresentation(point) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 extern "C-unwind" {
@@ -159,8 +166,15 @@ extern "C-unwind" {
     ) -> bool;
 }
 
-extern "C-unwind" {
-    pub fn CGSizeCreateDictionaryRepresentation(size: CGSize) -> NonNull<CFDictionary>;
+#[inline]
+pub unsafe extern "C-unwind" fn CGSizeCreateDictionaryRepresentation(
+    size: CGSize,
+) -> CFRetained<CFDictionary> {
+    extern "C-unwind" {
+        fn CGSizeCreateDictionaryRepresentation(size: CGSize) -> NonNull<CFDictionary>;
+    }
+    let ret = unsafe { CGSizeCreateDictionaryRepresentation(size) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 extern "C-unwind" {
@@ -170,8 +184,15 @@ extern "C-unwind" {
     ) -> bool;
 }
 
-extern "C-unwind" {
-    pub fn CGRectCreateDictionaryRepresentation(_: CGRect) -> NonNull<CFDictionary>;
+#[inline]
+pub unsafe extern "C-unwind" fn CGRectCreateDictionaryRepresentation(
+    param1: CGRect,
+) -> CFRetained<CFDictionary> {
+    extern "C-unwind" {
+        fn CGRectCreateDictionaryRepresentation(param1: CGRect) -> NonNull<CFDictionary>;
+    }
+    let ret = unsafe { CGRectCreateDictionaryRepresentation(param1) };
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 extern "C-unwind" {

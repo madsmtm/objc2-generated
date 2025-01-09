@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -108,37 +109,73 @@ extern "C-unwind" {
     pub fn CFBagGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFBagCreate(
-        allocator: Option<&CFAllocator>,
-        values: *mut *const c_void,
-        num_values: CFIndex,
-        call_backs: *const CFBagCallBacks,
-    ) -> *mut CFBag;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFBagCreate(
+    allocator: Option<&CFAllocator>,
+    values: *mut *const c_void,
+    num_values: CFIndex,
+    call_backs: *const CFBagCallBacks,
+) -> Option<CFRetained<CFBag>> {
+    extern "C-unwind" {
+        fn CFBagCreate(
+            allocator: Option<&CFAllocator>,
+            values: *mut *const c_void,
+            num_values: CFIndex,
+            call_backs: *const CFBagCallBacks,
+        ) -> *mut CFBag;
+    }
+    let ret = unsafe { CFBagCreate(allocator, values, num_values, call_backs) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFBagCreateCopy(allocator: Option<&CFAllocator>, the_bag: Option<&CFBag>) -> *mut CFBag;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFBagCreateCopy(
+    allocator: Option<&CFAllocator>,
+    the_bag: Option<&CFBag>,
+) -> Option<CFRetained<CFBag>> {
+    extern "C-unwind" {
+        fn CFBagCreateCopy(allocator: Option<&CFAllocator>, the_bag: Option<&CFBag>) -> *mut CFBag;
+    }
+    let ret = unsafe { CFBagCreateCopy(allocator, the_bag) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFBagCreateMutable(
-        allocator: Option<&CFAllocator>,
-        capacity: CFIndex,
-        call_backs: *const CFBagCallBacks,
-    ) -> *mut CFMutableBag;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFBagCreateMutable(
+    allocator: Option<&CFAllocator>,
+    capacity: CFIndex,
+    call_backs: *const CFBagCallBacks,
+) -> Option<CFRetained<CFMutableBag>> {
+    extern "C-unwind" {
+        fn CFBagCreateMutable(
+            allocator: Option<&CFAllocator>,
+            capacity: CFIndex,
+            call_backs: *const CFBagCallBacks,
+        ) -> *mut CFMutableBag;
+    }
+    let ret = unsafe { CFBagCreateMutable(allocator, capacity, call_backs) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFBagCreateMutableCopy(
-        allocator: Option<&CFAllocator>,
-        capacity: CFIndex,
-        the_bag: Option<&CFBag>,
-    ) -> *mut CFMutableBag;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFBagCreateMutableCopy(
+    allocator: Option<&CFAllocator>,
+    capacity: CFIndex,
+    the_bag: Option<&CFBag>,
+) -> Option<CFRetained<CFMutableBag>> {
+    extern "C-unwind" {
+        fn CFBagCreateMutableCopy(
+            allocator: Option<&CFAllocator>,
+            capacity: CFIndex,
+            the_bag: Option<&CFBag>,
+        ) -> *mut CFMutableBag;
+    }
+    let ret = unsafe { CFBagCreateMutableCopy(allocator, capacity, the_bag) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

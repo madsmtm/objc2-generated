@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -45,9 +46,17 @@ extern "C-unwind" {
     pub fn CFDateGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFDateCreate(allocator: Option<&CFAllocator>, at: CFAbsoluteTime) -> *mut CFDate;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFDateCreate(
+    allocator: Option<&CFAllocator>,
+    at: CFAbsoluteTime,
+) -> Option<CFRetained<CFDate>> {
+    extern "C-unwind" {
+        fn CFDateCreate(allocator: Option<&CFAllocator>, at: CFAbsoluteTime) -> *mut CFDate;
+    }
+    let ret = unsafe { CFDateCreate(allocator, at) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

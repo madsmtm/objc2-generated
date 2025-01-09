@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 use objc2_core_foundation::*;
@@ -49,21 +50,40 @@ extern "C-unwind" {
     pub fn CGGradientGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGColorSpace")]
-    pub fn CGGradientCreateWithColorComponents(
-        space: Option<&CGColorSpace>,
-        components: *const CGFloat,
-        locations: *const CGFloat,
-        count: usize,
-    ) -> *mut CGGradient;
+#[cfg(feature = "CGColorSpace")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGGradientCreateWithColorComponents(
+    space: Option<&CGColorSpace>,
+    components: *const CGFloat,
+    locations: *const CGFloat,
+    count: usize,
+) -> Option<CFRetained<CGGradient>> {
+    extern "C-unwind" {
+        fn CGGradientCreateWithColorComponents(
+            space: Option<&CGColorSpace>,
+            components: *const CGFloat,
+            locations: *const CGFloat,
+            count: usize,
+        ) -> *mut CGGradient;
+    }
+    let ret = unsafe { CGGradientCreateWithColorComponents(space, components, locations, count) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGColorSpace")]
-    pub fn CGGradientCreateWithColors(
-        space: Option<&CGColorSpace>,
-        colors: Option<&CFArray>,
-        locations: *const CGFloat,
-    ) -> *mut CGGradient;
+#[cfg(feature = "CGColorSpace")]
+#[inline]
+pub unsafe extern "C-unwind" fn CGGradientCreateWithColors(
+    space: Option<&CGColorSpace>,
+    colors: Option<&CFArray>,
+    locations: *const CGFloat,
+) -> Option<CFRetained<CGGradient>> {
+    extern "C-unwind" {
+        fn CGGradientCreateWithColors(
+            space: Option<&CGColorSpace>,
+            colors: Option<&CFArray>,
+            locations: *const CGFloat,
+        ) -> *mut CGGradient;
+    }
+    let ret = unsafe { CGGradientCreateWithColors(space, colors, locations) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

@@ -693,26 +693,40 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Returns a CMSampleBuffer's CMBlockBuffer of media data.
-    ///
-    /// The caller does not own the returned dataBuffer, and must retain it explicitly if the caller needs to maintain a reference to it.
-    ///
-    /// Returns: CMBlockBuffer of media data. The result will be NULL if the CMSampleBuffer does not contain a CMBlockBuffer, if the
-    /// CMSampleBuffer contains a CVImageBuffer, or if there is some other error.
-    #[cfg(feature = "CMBlockBuffer")]
-    pub fn CMSampleBufferGetDataBuffer(sbuf: &CMSampleBuffer) -> *mut CMBlockBuffer;
+/// Returns a CMSampleBuffer's CMBlockBuffer of media data.
+///
+/// The caller does not own the returned dataBuffer, and must retain it explicitly if the caller needs to maintain a reference to it.
+///
+/// Returns: CMBlockBuffer of media data. The result will be NULL if the CMSampleBuffer does not contain a CMBlockBuffer, if the
+/// CMSampleBuffer contains a CVImageBuffer, or if there is some other error.
+#[cfg(feature = "CMBlockBuffer")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSampleBufferGetDataBuffer(
+    sbuf: &CMSampleBuffer,
+) -> Option<CFRetained<CMBlockBuffer>> {
+    extern "C-unwind" {
+        fn CMSampleBufferGetDataBuffer(sbuf: &CMSampleBuffer) -> *mut CMBlockBuffer;
+    }
+    let ret = unsafe { CMSampleBufferGetDataBuffer(sbuf) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns a CMSampleBuffer's CVImageBuffer of media data.
-    ///
-    /// The caller does not own the returned dataBuffer, and must retain it explicitly if the caller needs to maintain a reference to it.
-    ///
-    /// Returns: CVImageBuffer of media data. The result will be NULL if the CMSampleBuffer does not contain a CVImageBuffer, if the
-    /// CMSampleBuffer contains a CMBlockBuffer, or if there is some other error.
-    #[cfg(feature = "objc2-core-video")]
-    pub fn CMSampleBufferGetImageBuffer(sbuf: &CMSampleBuffer) -> *mut CVImageBuffer;
+/// Returns a CMSampleBuffer's CVImageBuffer of media data.
+///
+/// The caller does not own the returned dataBuffer, and must retain it explicitly if the caller needs to maintain a reference to it.
+///
+/// Returns: CVImageBuffer of media data. The result will be NULL if the CMSampleBuffer does not contain a CVImageBuffer, if the
+/// CMSampleBuffer contains a CMBlockBuffer, or if there is some other error.
+#[cfg(feature = "objc2-core-video")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSampleBufferGetImageBuffer(
+    sbuf: &CMSampleBuffer,
+) -> Option<CFRetained<CVImageBuffer>> {
+    extern "C-unwind" {
+        fn CMSampleBufferGetImageBuffer(sbuf: &CMSampleBuffer) -> *mut CVImageBuffer;
+    }
+    let ret = unsafe { CMSampleBufferGetImageBuffer(sbuf) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -1219,34 +1233,49 @@ extern "C-unwind" {
     pub fn CMSampleBufferGetTotalSampleSize(sbuf: &CMSampleBuffer) -> usize;
 }
 
-extern "C-unwind" {
-    /// Returns the format description of the samples in a CMSampleBuffer.
-    ///
-    /// On return, the caller does not own the returned formatDesc, and must retain it explicitly if the caller needs to maintain a reference to it.
-    ///
-    /// Returns: The format description of the samples in the CMSampleBuffer.  NULL is returned if there is an error.
-    #[cfg(feature = "CMFormatDescription")]
-    pub fn CMSampleBufferGetFormatDescription(sbuf: &CMSampleBuffer) -> *mut CMFormatDescription;
+/// Returns the format description of the samples in a CMSampleBuffer.
+///
+/// On return, the caller does not own the returned formatDesc, and must retain it explicitly if the caller needs to maintain a reference to it.
+///
+/// Returns: The format description of the samples in the CMSampleBuffer.  NULL is returned if there is an error.
+#[cfg(feature = "CMFormatDescription")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMSampleBufferGetFormatDescription(
+    sbuf: &CMSampleBuffer,
+) -> Option<CFRetained<CMFormatDescription>> {
+    extern "C-unwind" {
+        fn CMSampleBufferGetFormatDescription(sbuf: &CMSampleBuffer) -> *mut CMFormatDescription;
+    }
+    let ret = unsafe { CMSampleBufferGetFormatDescription(sbuf) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns a reference to a CMSampleBuffer's immutable array of mutable sample attachments dictionaries (one dictionary
-    /// per sample in the CMSampleBuffer).
-    ///
-    /// Attachments can then be added/removed directly by the caller, using CF APIs. On return, the caller does not
-    /// own the returned array of attachments dictionaries, and must retain it if the caller needs to maintain a
-    /// reference to it. If there are no sample attachments yet, and createIfNecessary is true, a new CFArray containing N empty
-    /// CFMutableDictionaries is returned (where N is the number of samples in the CMSampleBuffer), so that
-    /// attachments can be added directly by the caller. If there are no sample attachments yet, and createIfNecessary is
-    /// false, NULL is returned.  Once the CFArray has been created, subsequent calls will return it, even if there are still
-    /// no sample attachments in the array.
-    ///
-    /// Returns: A reference to the CMSampleBuffer's immutable array of mutable sample attachments dictionaries (one dictionary per sample
-    /// in the CMSampleBuffer). NULL is returned if there is an error.
-    pub fn CMSampleBufferGetSampleAttachmentsArray(
-        sbuf: &CMSampleBuffer,
-        create_if_necessary: Boolean,
-    ) -> *mut CFArray;
+/// Returns a reference to a CMSampleBuffer's immutable array of mutable sample attachments dictionaries (one dictionary
+/// per sample in the CMSampleBuffer).
+///
+/// Attachments can then be added/removed directly by the caller, using CF APIs. On return, the caller does not
+/// own the returned array of attachments dictionaries, and must retain it if the caller needs to maintain a
+/// reference to it. If there are no sample attachments yet, and createIfNecessary is true, a new CFArray containing N empty
+/// CFMutableDictionaries is returned (where N is the number of samples in the CMSampleBuffer), so that
+/// attachments can be added directly by the caller. If there are no sample attachments yet, and createIfNecessary is
+/// false, NULL is returned.  Once the CFArray has been created, subsequent calls will return it, even if there are still
+/// no sample attachments in the array.
+///
+/// Returns: A reference to the CMSampleBuffer's immutable array of mutable sample attachments dictionaries (one dictionary per sample
+/// in the CMSampleBuffer). NULL is returned if there is an error.
+#[inline]
+pub unsafe extern "C-unwind" fn CMSampleBufferGetSampleAttachmentsArray(
+    sbuf: &CMSampleBuffer,
+    create_if_necessary: Boolean,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn CMSampleBufferGetSampleAttachmentsArray(
+            sbuf: &CMSampleBuffer,
+            create_if_necessary: Boolean,
+        ) -> *mut CFArray;
+    }
+    let ret = unsafe { CMSampleBufferGetSampleAttachmentsArray(sbuf, create_if_necessary) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C" {

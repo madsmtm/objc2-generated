@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -118,59 +119,88 @@ extern "C-unwind" {
     pub fn CFTreeGetTypeID() -> CFTypeID;
 }
 
-extern "C-unwind" {
-    /// Creates a new mutable tree.
-    ///
-    /// Parameter `allocator`: The CFAllocator which should be used to allocate
-    /// memory for the tree and storage for its children.  This
-    /// parameter may be NULL in which case the current default
-    /// CFAllocator is used.  If this reference is not a valid
-    /// CFAllocator, the behavior is undefined.
-    ///
-    /// Parameter `context`: A C pointer to a CFTreeContext structure to be copied
-    /// and used as the context of the new tree.  The info parameter
-    /// will be retained by the tree if a retain function is provided.
-    /// If this value is not a valid C pointer to a CFTreeContext
-    /// structure-sized block of storage, the result is undefined.
-    /// If the version number of the storage is not a valid CFTreeContext
-    /// version number, the result is undefined.
-    ///
-    /// Returns: A reference to the new CFTree.
-    #[cfg(feature = "CFBase")]
-    pub fn CFTreeCreate(
-        allocator: Option<&CFAllocator>,
-        context: *const CFTreeContext,
-    ) -> *mut CFTree;
+/// Creates a new mutable tree.
+///
+/// Parameter `allocator`: The CFAllocator which should be used to allocate
+/// memory for the tree and storage for its children.  This
+/// parameter may be NULL in which case the current default
+/// CFAllocator is used.  If this reference is not a valid
+/// CFAllocator, the behavior is undefined.
+///
+/// Parameter `context`: A C pointer to a CFTreeContext structure to be copied
+/// and used as the context of the new tree.  The info parameter
+/// will be retained by the tree if a retain function is provided.
+/// If this value is not a valid C pointer to a CFTreeContext
+/// structure-sized block of storage, the result is undefined.
+/// If the version number of the storage is not a valid CFTreeContext
+/// version number, the result is undefined.
+///
+/// Returns: A reference to the new CFTree.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFTreeCreate(
+    allocator: Option<&CFAllocator>,
+    context: *const CFTreeContext,
+) -> Option<CFRetained<CFTree>> {
+    extern "C-unwind" {
+        fn CFTreeCreate(
+            allocator: Option<&CFAllocator>,
+            context: *const CFTreeContext,
+        ) -> *mut CFTree;
+    }
+    let ret = unsafe { CFTreeCreate(allocator, context) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the parent of the specified tree.
-    ///
-    /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
-    /// CFTree, the behavior is undefined.
-    ///
-    /// Returns: The parent of the tree.
-    pub fn CFTreeGetParent(tree: Option<&CFTree>) -> *mut CFTree;
+/// Returns the parent of the specified tree.
+///
+/// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
+/// CFTree, the behavior is undefined.
+///
+/// Returns: The parent of the tree.
+#[inline]
+pub unsafe extern "C-unwind" fn CFTreeGetParent(
+    tree: Option<&CFTree>,
+) -> Option<CFRetained<CFTree>> {
+    extern "C-unwind" {
+        fn CFTreeGetParent(tree: Option<&CFTree>) -> *mut CFTree;
+    }
+    let ret = unsafe { CFTreeGetParent(tree) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the sibling after the specified tree in the parent tree's list.
-    ///
-    /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
-    /// CFTree, the behavior is undefined.
-    ///
-    /// Returns: The next sibling of the tree.
-    pub fn CFTreeGetNextSibling(tree: Option<&CFTree>) -> *mut CFTree;
+/// Returns the sibling after the specified tree in the parent tree's list.
+///
+/// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
+/// CFTree, the behavior is undefined.
+///
+/// Returns: The next sibling of the tree.
+#[inline]
+pub unsafe extern "C-unwind" fn CFTreeGetNextSibling(
+    tree: Option<&CFTree>,
+) -> Option<CFRetained<CFTree>> {
+    extern "C-unwind" {
+        fn CFTreeGetNextSibling(tree: Option<&CFTree>) -> *mut CFTree;
+    }
+    let ret = unsafe { CFTreeGetNextSibling(tree) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns the first child of the tree.
-    ///
-    /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
-    /// CFTree, the behavior is undefined.
-    ///
-    /// Returns: The first child of the tree.
-    pub fn CFTreeGetFirstChild(tree: Option<&CFTree>) -> *mut CFTree;
+/// Returns the first child of the tree.
+///
+/// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
+/// CFTree, the behavior is undefined.
+///
+/// Returns: The first child of the tree.
+#[inline]
+pub unsafe extern "C-unwind" fn CFTreeGetFirstChild(
+    tree: Option<&CFTree>,
+) -> Option<CFRetained<CFTree>> {
+    extern "C-unwind" {
+        fn CFTreeGetFirstChild(tree: Option<&CFTree>) -> *mut CFTree;
+    }
+    let ret = unsafe { CFTreeGetFirstChild(tree) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -199,19 +229,27 @@ extern "C-unwind" {
     pub fn CFTreeGetChildCount(tree: Option<&CFTree>) -> CFIndex;
 }
 
-extern "C-unwind" {
-    /// Returns the nth child of the specified tree.
-    ///
-    /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
-    /// CFTree, the behavior is undefined.
-    ///
-    /// Parameter `idx`: The index of the child tree to be returned.  If this parameter
-    /// is less than zero or greater than the number of children of the
-    /// tree, the result is undefined.
-    ///
-    /// Returns: A reference to the specified child tree.
-    #[cfg(feature = "CFBase")]
-    pub fn CFTreeGetChildAtIndex(tree: Option<&CFTree>, idx: CFIndex) -> *mut CFTree;
+/// Returns the nth child of the specified tree.
+///
+/// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
+/// CFTree, the behavior is undefined.
+///
+/// Parameter `idx`: The index of the child tree to be returned.  If this parameter
+/// is less than zero or greater than the number of children of the
+/// tree, the result is undefined.
+///
+/// Returns: A reference to the specified child tree.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFTreeGetChildAtIndex(
+    tree: Option<&CFTree>,
+    idx: CFIndex,
+) -> Option<CFRetained<CFTree>> {
+    extern "C-unwind" {
+        fn CFTreeGetChildAtIndex(tree: Option<&CFTree>, idx: CFIndex) -> *mut CFTree;
+    }
+    let ret = unsafe { CFTreeGetChildAtIndex(tree, idx) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -252,14 +290,21 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    /// Returns the root tree of which the specified tree is a descendent.
-    ///
-    /// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
-    /// CFTree, the behavior is undefined.
-    ///
-    /// Returns: A reference to the root of the tree.
-    pub fn CFTreeFindRoot(tree: Option<&CFTree>) -> *mut CFTree;
+/// Returns the root tree of which the specified tree is a descendent.
+///
+/// Parameter `tree`: The tree to be queried.  If this parameter is not a valid
+/// CFTree, the behavior is undefined.
+///
+/// Returns: A reference to the root of the tree.
+#[inline]
+pub unsafe extern "C-unwind" fn CFTreeFindRoot(
+    tree: Option<&CFTree>,
+) -> Option<CFRetained<CFTree>> {
+    extern "C-unwind" {
+        fn CFTreeFindRoot(tree: Option<&CFTree>) -> *mut CFTree;
+    }
+    let ret = unsafe { CFTreeFindRoot(tree) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

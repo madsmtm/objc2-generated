@@ -1121,16 +1121,23 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Returns the component registrations for a given audio unit extension.
-    ///
-    /// Parameter `extensionIdentifier`: The bundle ID of the audio unit extension.
-    ///
-    /// Returns: An array of dictionaries, one for each component, in the same format as
-    /// described in AudioComponent.h for the Info.plist key "AudioComponents".
-    /// The caller should release this value when done with it.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn AudioUnitExtensionCopyComponentList(extension_identifier: &CFString) -> *mut CFArray;
+/// Returns the component registrations for a given audio unit extension.
+///
+/// Parameter `extensionIdentifier`: The bundle ID of the audio unit extension.
+///
+/// Returns: An array of dictionaries, one for each component, in the same format as
+/// described in AudioComponent.h for the Info.plist key "AudioComponents".
+/// The caller should release this value when done with it.
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioUnitExtensionCopyComponentList(
+    extension_identifier: &CFString,
+) -> Option<CFRetained<CFArray>> {
+    extern "C-unwind" {
+        fn AudioUnitExtensionCopyComponentList(extension_identifier: &CFString) -> *mut CFArray;
+    }
+    let ret = unsafe { AudioUnitExtensionCopyComponentList(extension_identifier) };
+    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitrange?language=objc)
