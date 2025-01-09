@@ -72,17 +72,6 @@ cf_type!(
 );
 
 extern "C-unwind" {
-    /// Retains a CVBuffer object
-    ///
-    /// Like CFRetain CVBufferRetain increments the retain count of a CVBuffer object. In contrast to the CF call it is NULL safe.
-    ///
-    /// Parameter `buffer`: A CVBuffer object that you want to retain.
-    ///
-    /// Returns: A CVBuffer object that is the same as the passed in buffer.
-    pub fn CVBufferRetain(buffer: Option<&CVBuffer>) -> *mut CVBuffer;
-}
-
-extern "C-unwind" {
     /// Sets or adds a attachment of a CVBuffer object
     ///
     /// You can attach any CF object to a CVBuffer object to store additional information. CVBufferGetAttachment stores an attachement identified by a key. If the key doesn't exist, the attachment will be added. If the key does exist, the existing attachment will be replaced. In bouth cases the retain count of the attachment will be incremented. The value can be any CFType but nil has no defined behavior.

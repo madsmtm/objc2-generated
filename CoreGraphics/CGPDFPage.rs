@@ -50,14 +50,6 @@ unsafe impl RefEncode for CGPDFBox {
 }
 
 extern "C-unwind" {
-    pub fn CGPDFPageRetain(page: Option<&CGPDFPage>) -> *mut CGPDFPage;
-}
-
-extern "C-unwind" {
-    pub fn CGPDFPageRelease(page: Option<&CGPDFPage>);
-}
-
-extern "C-unwind" {
     #[cfg(feature = "CGPDFDocument")]
     pub fn CGPDFPageGetDocument(page: Option<&CGPDFPage>) -> *mut CGPDFDocument;
 }

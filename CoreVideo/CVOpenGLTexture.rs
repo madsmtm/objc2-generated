@@ -18,19 +18,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Retains a CVOpenGLTexture object
-    ///
-    /// Equivalent to CFRetain, but NULL safe
-    ///
-    /// Parameter `buffer`: A CVOpenGLTexture object that you want to retain.
-    ///
-    /// Returns: A CVOpenGLTexture object that is the same as the passed in buffer.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLTextureRetain(texture: Option<&CVOpenGLTexture>) -> *mut CVOpenGLTexture;
-}
-
-extern "C-unwind" {
     /// Returns whether the image is flipped vertically or not.
     ///
     /// Parameter `image`: Target CVOpenGLTexture

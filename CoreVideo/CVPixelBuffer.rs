@@ -530,18 +530,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Retains a CVPixelBuffer object
-    ///
-    /// Equivalent to CFRetain, but NULL safe
-    ///
-    /// Parameter `texture`: A CVPixelBuffer object that you want to retain.
-    ///
-    /// Returns: A CVPixelBuffer object that is the same as the passed in buffer.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    pub fn CVPixelBufferRetain(texture: Option<&CVPixelBuffer>) -> *mut CVPixelBuffer;
-}
-
-extern "C-unwind" {
     /// Takes a CFArray of CFDictionary objects describing various pixel buffer attributes and tries to resolve them into a
     /// single dictionary.
     ///

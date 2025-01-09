@@ -328,14 +328,6 @@ pub extern "C-unwind" fn CFCopyTypeIDDescription(type_id: CFTypeID) -> *mut CFSt
     unsafe { CFCopyTypeIDDescription(type_id) }
 }
 
-extern "C-unwind" {
-    pub fn CFRetain(cf: Option<&CFType>) -> *mut CFType;
-}
-
-extern "C-unwind" {
-    pub fn CFRelease(cf: Option<&CFType>);
-}
-
 #[inline]
 pub extern "C-unwind" fn CFGetRetainCount(cf: Option<&CFType>) -> CFIndex {
     extern "C-unwind" {
@@ -370,8 +362,4 @@ pub extern "C-unwind" fn CFCopyDescription(cf: Option<&CFType>) -> *mut CFString
 
 extern "C-unwind" {
     pub fn CFGetAllocator(cf: Option<&CFType>) -> *mut CFAllocator;
-}
-
-extern "C-unwind" {
-    pub fn CFMakeCollectable(cf: Option<&CFType>) -> *mut CFType;
 }

@@ -269,10 +269,6 @@ pub use self::__CMBufferQueue::CMBufferQueueCreate;
 ))]
 pub use self::__CMBufferQueue::CMBufferQueueCreateWithHandlers;
 #[cfg(feature = "CMBufferQueue")]
-pub use self::__CMBufferQueue::CMBufferQueueDequeueAndRetain;
-#[cfg(feature = "CMBufferQueue")]
-pub use self::__CMBufferQueue::CMBufferQueueDequeueIfDataReadyAndRetain;
-#[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueEnqueue;
 #[cfg(all(feature = "CMBase", feature = "CMBufferQueue"))]
 pub use self::__CMBufferQueue::CMBufferQueueGetBufferCount;

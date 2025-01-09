@@ -41,19 +41,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Retains a CVOpenGLBuffer object
-    ///
-    /// Equivalent to CFRetain, but NULL safe
-    ///
-    /// Parameter `buffer`: A CVOpenGLBuffer object that you want to retain.
-    ///
-    /// Returns: A CVOpenGLBuffer object that is the same as the passed in buffer.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLBufferRetain(buffer: Option<&CVOpenGLBuffer>) -> *mut CVOpenGLBuffer;
-}
-
-extern "C-unwind" {
     /// Create a new CVOpenGLBuffer that may be used for OpenGL rendering purposes
     ///
     /// Parameter `width`: The width of the buffer in pixels

@@ -29,14 +29,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGLayerRetain(layer: Option<&CGLayer>) -> *mut CGLayer;
-}
-
-extern "C-unwind" {
-    pub fn CGLayerRelease(layer: Option<&CGLayer>);
-}
-
-extern "C-unwind" {
     pub fn CGLayerGetSize(layer: Option<&CGLayer>) -> CGSize;
 }
 

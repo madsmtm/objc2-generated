@@ -162,14 +162,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGDisplayModeRetain(mode: Option<&CGDisplayMode>) -> *mut CGDisplayMode;
-}
-
-extern "C-unwind" {
-    pub fn CGDisplayModeRelease(mode: Option<&CGDisplayMode>);
-}
-
-extern "C-unwind" {
     pub fn CGDisplayModeGetPixelWidth(mode: Option<&CGDisplayMode>) -> usize;
 }
 

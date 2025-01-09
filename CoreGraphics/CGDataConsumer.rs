@@ -71,11 +71,3 @@ extern "C-unwind" {
 extern "C-unwind" {
     pub fn CGDataConsumerCreateWithCFData(data: Option<&CFMutableData>) -> *mut CGDataConsumer;
 }
-
-extern "C-unwind" {
-    pub fn CGDataConsumerRetain(consumer: Option<&CGDataConsumer>) -> *mut CGDataConsumer;
-}
-
-extern "C-unwind" {
-    pub fn CGDataConsumerRelease(consumer: Option<&CGDataConsumer>);
-}

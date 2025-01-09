@@ -742,15 +742,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Context functions. *
-    pub fn CGContextRetain(c: Option<&CGContext>) -> *mut CGContext;
-}
-
-extern "C-unwind" {
-    pub fn CGContextRelease(c: Option<&CGContext>);
-}
-
-extern "C-unwind" {
     pub fn CGContextFlush(c: Option<&CGContext>);
 }
 

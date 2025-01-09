@@ -321,28 +321,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Dequeues a buffer from a CMBufferQueue.
-    ///
-    /// The buffer is released by the queue, but it is also retained for the client. Buffer ownership is thereby
-    /// transferred from queue to client.  The client need not retain the buffer, but is responsible to release
-    /// it when done with it.
-    ///
-    /// Returns: The dequeued buffer.  Will be NULL if the queue is empty.
-    pub fn CMBufferQueueDequeueAndRetain(queue: &CMBufferQueue) -> *mut CMBuffer;
-}
-
-extern "C-unwind" {
-    /// Dequeues a buffer from a CMBufferQueue if it is ready.
-    ///
-    /// The buffer is released by the queue, but it is also retained for the client. Buffer ownership is thereby
-    /// transferred from queue to client.  The client need not retain the buffer, but is responsible to release
-    /// it when done with it.
-    ///
-    /// Returns: The dequeued buffer.  Will be NULL if the queue is empty, or if the buffer to be dequeued is not yet ready.
-    pub fn CMBufferQueueDequeueIfDataReadyAndRetain(queue: &CMBufferQueue) -> *mut CMBuffer;
-}
-
-extern "C-unwind" {
     /// Retrieves the next-to-dequeue buffer from a CMBufferQueue but leaves it in the queue.
     ///
     /// This follows CF "Get" semantics -- it does not retain the returned buffer.

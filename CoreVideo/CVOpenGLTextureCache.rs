@@ -48,20 +48,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Retains a CVOpenGLTextureCache object
-    ///
-    /// Equivalent to CFRetain, but NULL safe
-    ///
-    /// Parameter `buffer`: A CVOpenGLTextureCache object that you want to retain.
-    ///
-    /// Returns: A CVOpenGLTextureCache object that is the same as the passed in buffer.
-    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLTextureCacheRetain(
-        texture_cache: Option<&CVOpenGLTextureCache>,
-    ) -> *mut CVOpenGLTextureCache;
-}
-
-extern "C-unwind" {
     /// Creates a CVOpenGLTexture object from an existing CVImageBuffer
     ///
     /// Parameter `allocator`: The CFAllocatorRef to use for allocating the CVOpenGLTexture object.  May be NULL.

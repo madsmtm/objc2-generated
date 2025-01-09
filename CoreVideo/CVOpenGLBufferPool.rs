@@ -36,20 +36,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Retains a CVOpenGLBufferPoolRef object
-    ///
-    /// Equivalent to CFRetain, but NULL safe
-    ///
-    /// Parameter `buffer`: A CVOpenGLBufferPoolRef object that you want to retain.
-    ///
-    /// Returns: A CVOpenGLBufferPoolRef object that is the same as the passed in buffer.
-    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLBufferPoolRetain(
-        open_gl_buffer_pool: Option<&CVOpenGLBufferPool>,
-    ) -> *mut CVOpenGLBufferPool;
-}
-
-extern "C-unwind" {
     /// Creates a new OpenGL Buffer pool.
     ///
     /// Equivalent to CFRelease, but NULL safe

@@ -48,11 +48,3 @@ extern "C-unwind" {
         extend_end: bool,
     ) -> *mut CGShading;
 }
-
-extern "C-unwind" {
-    pub fn CGShadingRetain(shading: Option<&CGShading>) -> *mut CGShading;
-}
-
-extern "C-unwind" {
-    pub fn CGShadingRelease(shading: Option<&CGShading>);
-}

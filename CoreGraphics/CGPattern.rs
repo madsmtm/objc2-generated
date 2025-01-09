@@ -97,11 +97,3 @@ extern "C-unwind" {
         callbacks: *const CGPatternCallbacks,
     ) -> *mut CGPattern;
 }
-
-extern "C-unwind" {
-    pub fn CGPatternRetain(pattern: Option<&CGPattern>) -> *mut CGPattern;
-}
-
-extern "C-unwind" {
-    pub fn CGPatternRelease(pattern: Option<&CGPattern>);
-}

@@ -37,19 +37,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// Retains a CVPixelBufferPoolRef object
-    ///
-    /// Equivalent to CFRetain, but NULL safe
-    ///
-    /// Parameter `buffer`: A CVPixelBufferPoolRef object that you want to retain.
-    ///
-    /// Returns: A CVPixelBufferPoolRef object that is the same as the passed in buffer.
-    pub fn CVPixelBufferPoolRetain(
-        pixel_buffer_pool: Option<&CVPixelBufferPool>,
-    ) -> *mut CVPixelBufferPool;
-}
-
-extern "C-unwind" {
     /// Creates a new Pixel Buffer pool.
     ///
     /// Parameter `allocator`: The CFAllocatorRef to use for allocating this buffer pool.  May be NULL.

@@ -81,14 +81,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGFontRetain(font: Option<&CGFont>) -> *mut CGFont;
-}
-
-extern "C-unwind" {
-    pub fn CGFontRelease(font: Option<&CGFont>);
-}
-
-extern "C-unwind" {
     pub fn CGFontGetNumberOfGlyphs(font: Option<&CGFont>) -> usize;
 }
 

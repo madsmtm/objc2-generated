@@ -67,11 +67,3 @@ extern "C-unwind" {
         locations: *const CGFloat,
     ) -> *mut CGGradient;
 }
-
-extern "C-unwind" {
-    pub fn CGGradientRetain(gradient: Option<&CGGradient>) -> *mut CGGradient;
-}
-
-extern "C-unwind" {
-    pub fn CGGradientRelease(gradient: Option<&CGGradient>);
-}

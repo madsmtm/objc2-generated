@@ -348,10 +348,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGColorSpaceRetain(space: Option<&CGColorSpace>) -> *mut CGColorSpace;
-}
-
-extern "C-unwind" {
     pub fn CGColorSpaceGetName(space: Option<&CGColorSpace>) -> *mut CFString;
 }
 

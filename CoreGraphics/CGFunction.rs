@@ -69,11 +69,3 @@ extern "C-unwind" {
         callbacks: *const CGFunctionCallbacks,
     ) -> *mut CGFunction;
 }
-
-extern "C-unwind" {
-    pub fn CGFunctionRetain(function: Option<&CGFunction>) -> *mut CGFunction;
-}
-
-extern "C-unwind" {
-    pub fn CGFunctionRelease(function: Option<&CGFunction>);
-}

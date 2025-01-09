@@ -93,14 +93,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGColorRetain(color: Option<&CGColor>) -> *mut CGColor;
-}
-
-extern "C-unwind" {
-    pub fn CGColorRelease(color: Option<&CGColor>);
-}
-
-extern "C-unwind" {
     pub fn CGColorEqualToColor(color1: Option<&CGColor>, color2: Option<&CGColor>) -> bool;
 }
 

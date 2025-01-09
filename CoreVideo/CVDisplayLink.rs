@@ -310,15 +310,3 @@ extern "C-unwind" {
         out_time: NonNull<CVTimeStamp>,
     ) -> CVReturn;
 }
-
-extern "C-unwind" {
-    /// Retains the CVDisplayLink
-    ///
-    /// Use this call to retain a CVDisplayLink.
-    ///
-    /// Parameter `displayLink`: target CVDisplayLinkRef.   NULL safe.
-    ///
-    /// Returns: If successfull the passed in dislplayLink
-    #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
-    pub fn CVDisplayLinkRetain(display_link: Option<&CVDisplayLink>) -> *mut CVDisplayLink;
-}

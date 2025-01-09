@@ -167,14 +167,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGPathRetain(path: Option<&CGPath>) -> *mut CGPath;
-}
-
-extern "C-unwind" {
-    pub fn CGPathRelease(path: Option<&CGPath>);
-}
-
-extern "C-unwind" {
     pub fn CGPathEqualToPath(path1: Option<&CGPath>, path2: Option<&CGPath>) -> bool;
 }
 

@@ -159,14 +159,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGDataProviderRetain(provider: Option<&CGDataProvider>) -> *mut CGDataProvider;
-}
-
-extern "C-unwind" {
-    pub fn CGDataProviderRelease(provider: Option<&CGDataProvider>);
-}
-
-extern "C-unwind" {
     pub fn CGDataProviderCopyData(provider: Option<&CGDataProvider>) -> *mut CFData;
 }
 

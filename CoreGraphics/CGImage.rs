@@ -276,14 +276,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGImageRetain(image: Option<&CGImage>) -> *mut CGImage;
-}
-
-extern "C-unwind" {
-    pub fn CGImageRelease(image: Option<&CGImage>);
-}
-
-extern "C-unwind" {
     pub fn CGImageIsMask(image: Option<&CGImage>) -> bool;
 }
 

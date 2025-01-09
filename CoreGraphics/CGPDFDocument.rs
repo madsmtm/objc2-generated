@@ -89,14 +89,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CGPDFDocumentRetain(document: Option<&CGPDFDocument>) -> *mut CGPDFDocument;
-}
-
-extern "C-unwind" {
-    pub fn CGPDFDocumentRelease(document: Option<&CGPDFDocument>);
-}
-
-extern "C-unwind" {
     pub fn CGPDFDocumentGetVersion(
         document: Option<&CGPDFDocument>,
         major_version: NonNull<c_int>,

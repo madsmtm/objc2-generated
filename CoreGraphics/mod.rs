@@ -294,10 +294,6 @@ pub use self::__CGColor::CGColorGetNumberOfComponents;
 pub use self::__CGColor::CGColorGetPattern;
 #[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColorGetTypeID;
-#[cfg(feature = "CGColor")]
-pub use self::__CGColor::CGColorRelease;
-#[cfg(feature = "CGColor")]
-pub use self::__CGColor::CGColorRetain;
 #[cfg(feature = "CGColorConversionInfo")]
 pub use self::__CGColorConversionInfo::kCGColorConversionBlackPointCompensation;
 #[cfg(feature = "CGColorConversionInfo")]
@@ -473,8 +469,6 @@ pub use self::__CGColorSpace::CGColorSpaceIsWideGamutRGB;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceModel;
 #[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceRetain;
-#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceSupportsOutput;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceUsesExtendedRange;
@@ -607,15 +601,11 @@ pub use self::__CGContext::CGContextMoveToPoint;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextPathContainsPoint;
 #[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextRelease;
-#[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextReplacePathWithStrokedPath;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextResetClip;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextRestoreGState;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextRetain;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextRotateCTM;
 #[cfg(feature = "CGContext")]
@@ -769,11 +759,7 @@ pub use self::__CGDataConsumer::CGDataConsumerGetTypeID;
 #[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerPutBytesCallback;
 #[cfg(feature = "CGDataConsumer")]
-pub use self::__CGDataConsumer::CGDataConsumerRelease;
-#[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerReleaseInfoCallback;
-#[cfg(feature = "CGDataConsumer")]
-pub use self::__CGDataConsumer::CGDataConsumerRetain;
 #[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProvider;
 #[cfg(feature = "CGDataProvider")]
@@ -803,15 +789,11 @@ pub use self::__CGDataProvider::CGDataProviderGetInfo;
 #[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderGetTypeID;
 #[cfg(feature = "CGDataProvider")]
-pub use self::__CGDataProvider::CGDataProviderRelease;
-#[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderReleaseBytePointerCallback;
 #[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderReleaseDataCallback;
 #[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderReleaseInfoCallback;
-#[cfg(feature = "CGDataProvider")]
-pub use self::__CGDataProvider::CGDataProviderRetain;
 #[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderRewindCallback;
 #[cfg(all(feature = "CGDataProvider", feature = "libc"))]
@@ -886,10 +868,6 @@ pub use self::__CGDirectDisplay::CGDisplayModeGetTypeID;
 pub use self::__CGDirectDisplay::CGDisplayModeGetWidth;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayModeIsUsableForDesktopGUI;
-#[cfg(feature = "CGDirectDisplay")]
-pub use self::__CGDirectDisplay::CGDisplayModeRelease;
-#[cfg(feature = "CGDirectDisplay")]
-pub use self::__CGDirectDisplay::CGDisplayModeRetain;
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 pub use self::__CGDirectDisplay::CGDisplayMoveCursorToPoint;
 #[cfg(feature = "CGDirectDisplay")]
@@ -1451,10 +1429,6 @@ pub use self::__CGFont::CGFontIndex;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontPostScriptFormat;
 #[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontRelease;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontRetain;
-#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGGlyph;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGGlyphDeprecatedEnum;
@@ -1469,11 +1443,7 @@ pub use self::__CGFunction::CGFunctionEvaluateCallback;
 #[cfg(feature = "CGFunction")]
 pub use self::__CGFunction::CGFunctionGetTypeID;
 #[cfg(feature = "CGFunction")]
-pub use self::__CGFunction::CGFunctionRelease;
-#[cfg(feature = "CGFunction")]
 pub use self::__CGFunction::CGFunctionReleaseInfoCallback;
-#[cfg(feature = "CGFunction")]
-pub use self::__CGFunction::CGFunctionRetain;
 #[cfg(feature = "CGGeometry")]
 pub use self::__CGGeometry::CGPointCreateDictionaryRepresentation;
 #[cfg(feature = "CGGeometry")]
@@ -1554,10 +1524,6 @@ pub use self::__CGGradient::CGGradientCreateWithColors;
 pub use self::__CGGradient::CGGradientDrawingOptions;
 #[cfg(feature = "CGGradient")]
 pub use self::__CGGradient::CGGradientGetTypeID;
-#[cfg(feature = "CGGradient")]
-pub use self::__CGGradient::CGGradientRelease;
-#[cfg(feature = "CGGradient")]
-pub use self::__CGGradient::CGGradientRetain;
 #[cfg(feature = "CGITUToneMapping")]
 pub use self::__CGITUToneMapping::kCGSkipBoostToHDR;
 #[cfg(feature = "CGITUToneMapping")]
@@ -1659,10 +1625,6 @@ pub use self::__CGImage::CGImageMaskCreate;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImagePixelFormatInfo;
 #[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageRelease;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageRetain;
-#[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageShouldToneMap;
 #[cfg(all(feature = "CGContext", feature = "CGLayer"))]
 pub use self::__CGLayer::CGContextDrawLayerAtPoint;
@@ -1678,10 +1640,6 @@ pub use self::__CGLayer::CGLayerGetContext;
 pub use self::__CGLayer::CGLayerGetSize;
 #[cfg(feature = "CGLayer")]
 pub use self::__CGLayer::CGLayerGetTypeID;
-#[cfg(feature = "CGLayer")]
-pub use self::__CGLayer::CGLayerRelease;
-#[cfg(feature = "CGLayer")]
-pub use self::__CGLayer::CGLayerRetain;
 #[cfg(feature = "CGPDFArray")]
 pub use self::__CGPDFArray::CGPDFArray;
 #[cfg(all(feature = "CGPDFArray", feature = "CGPDFObject", feature = "block2"))]
@@ -1935,10 +1893,6 @@ pub use self::__CGPDFDocument::CGPDFDocumentIsEncrypted;
 #[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentIsUnlocked;
 #[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentRelease;
-#[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentRetain;
-#[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentUnlockWithPassword;
 #[cfg(feature = "CGPDFObject")]
 pub use self::__CGPDFObject::CGPDFBoolean;
@@ -1988,10 +1942,6 @@ pub use self::__CGPDFPage::CGPDFPageGetPageNumber;
 pub use self::__CGPDFPage::CGPDFPageGetRotationAngle;
 #[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFPageGetTypeID;
-#[cfg(feature = "CGPDFPage")]
-pub use self::__CGPDFPage::CGPDFPageRelease;
-#[cfg(feature = "CGPDFPage")]
-pub use self::__CGPDFPage::CGPDFPageRetain;
 #[cfg(feature = "CGPDFScanner")]
 pub use self::__CGPDFScanner::CGPDFScanner;
 #[cfg(all(
@@ -2188,10 +2138,6 @@ pub use self::__CGPath::CGPathIsEmpty;
 pub use self::__CGPath::CGPathIsRect;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathMoveToPoint;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathRelease;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathRetain;
 #[cfg(feature = "CGPattern")]
 pub use self::__CGPattern::CGPattern;
 #[cfg(all(feature = "CGContext", feature = "CGPattern"))]
@@ -2203,11 +2149,7 @@ pub use self::__CGPattern::CGPatternDrawPatternCallback;
 #[cfg(feature = "CGPattern")]
 pub use self::__CGPattern::CGPatternGetTypeID;
 #[cfg(feature = "CGPattern")]
-pub use self::__CGPattern::CGPatternRelease;
-#[cfg(feature = "CGPattern")]
 pub use self::__CGPattern::CGPatternReleaseInfoCallback;
-#[cfg(feature = "CGPattern")]
-pub use self::__CGPattern::CGPatternRetain;
 #[cfg(feature = "CGPattern")]
 pub use self::__CGPattern::CGPatternTiling;
 #[cfg(all(feature = "CGError", feature = "CGRemoteOperation", feature = "libc"))]
@@ -2288,10 +2230,6 @@ pub use self::__CGShading::CGShadingCreateAxial;
 pub use self::__CGShading::CGShadingCreateRadial;
 #[cfg(feature = "CGShading")]
 pub use self::__CGShading::CGShadingGetTypeID;
-#[cfg(feature = "CGShading")]
-pub use self::__CGShading::CGShadingRelease;
-#[cfg(feature = "CGShading")]
-pub use self::__CGShading::CGShadingRetain;
 #[cfg(feature = "CGToneMapping")]
 pub use self::__CGToneMapping::CGToneMapping;
 #[cfg(feature = "CGWindow")]
