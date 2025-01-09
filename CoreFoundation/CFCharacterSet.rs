@@ -89,10 +89,17 @@ unsafe impl RefEncode for CFCharacterSetPredefinedSet {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFCharacterSet {
     /// Returns the type identifier of all CFCharacterSet instances.
-    #[cfg(feature = "CFBase")]
-    pub fn CFCharacterSetGetTypeID() -> CFTypeID;
+    #[doc(alias = "CFCharacterSetGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFCharacterSetGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFCharacterSetGetTypeID() }
+    }
 }
 
 /// Returns a predefined CFCharacterSet instance.

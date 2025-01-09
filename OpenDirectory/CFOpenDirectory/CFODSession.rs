@@ -17,14 +17,21 @@ extern "C" {
     pub static kODSessionDefault: Option<&'static ODSessionRef>;
 }
 
-extern "C-unwind" {
+#[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
+unsafe impl ConcreteType for ODSessionRef {
     /// Standard GetTypeID function support for CF-based objects
     ///
     /// Returns the typeID for ODSession objects
     ///
     /// Returns: a valid CFTypeID for the ODSession object
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn ODSessionGetTypeID() -> CFTypeID;
+    #[doc(alias = "ODSessionGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn ODSessionGetTypeID() -> CFTypeID;
+        }
+        unsafe { ODSessionGetTypeID() }
+    }
 }
 
 /// Creates an ODSession object to be passed to ODNode functions

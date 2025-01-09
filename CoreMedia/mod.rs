@@ -176,8 +176,6 @@ pub use self::__CMBlockBuffer::CMBlockBufferGetDataLength;
 #[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferGetDataPointer;
 #[cfg(feature = "CMBlockBuffer")]
-pub use self::__CMBlockBuffer::CMBlockBufferGetTypeID;
-#[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferIsEmpty;
 #[cfg(feature = "CMBlockBuffer")]
 pub use self::__CMBlockBuffer::CMBlockBufferIsRangeContiguous;
@@ -298,8 +296,6 @@ pub use self::__CMBufferQueue::CMBufferQueueGetMinDecodeTimeStamp;
 pub use self::__CMBufferQueue::CMBufferQueueGetMinPresentationTimeStamp;
 #[cfg(feature = "CMBufferQueue")]
 pub use self::__CMBufferQueue::CMBufferQueueGetTotalSize;
-#[cfg(feature = "CMBufferQueue")]
-pub use self::__CMBufferQueue::CMBufferQueueGetTypeID;
 #[cfg(all(feature = "CMBufferQueue", feature = "CMTime"))]
 pub use self::__CMBufferQueue::CMBufferQueueInstallTrigger;
 #[cfg(all(feature = "CMBufferQueue", feature = "CMTime", feature = "block2"))]
@@ -969,8 +965,6 @@ pub use self::__CMFormatDescription::CMFormatDescriptionGetMediaSubType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMFormatDescriptionGetMediaType;
 #[cfg(feature = "CMFormatDescription")]
-pub use self::__CMFormatDescription::CMFormatDescriptionGetTypeID;
-#[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMediaType;
 #[cfg(feature = "CMFormatDescription")]
 pub use self::__CMFormatDescription::CMMetadataFormatDescription;
@@ -1226,8 +1220,6 @@ pub use self::__CMMemoryPool::CMMemoryPoolCreate;
 pub use self::__CMMemoryPool::CMMemoryPoolFlush;
 #[cfg(feature = "CMMemoryPool")]
 pub use self::__CMMemoryPool::CMMemoryPoolGetAllocator;
-#[cfg(feature = "CMMemoryPool")]
-pub use self::__CMMemoryPool::CMMemoryPoolGetTypeID;
 #[cfg(feature = "CMMemoryPool")]
 pub use self::__CMMemoryPool::CMMemoryPoolInvalidate;
 #[cfg(feature = "CMMetadata")]
@@ -1674,8 +1666,6 @@ pub use self::__CMSampleBuffer::CMSampleBufferGetSampleTimingInfoArray;
 #[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::CMSampleBufferGetTotalSampleSize;
 #[cfg(feature = "CMSampleBuffer")]
-pub use self::__CMSampleBuffer::CMSampleBufferGetTypeID;
-#[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::CMSampleBufferHasDataFailed;
 #[cfg(feature = "CMSampleBuffer")]
 pub use self::__CMSampleBuffer::CMSampleBufferInvalidate;
@@ -1732,8 +1722,6 @@ pub use self::__CMSimpleQueue::CMSimpleQueueGetCount;
 #[cfg(feature = "CMSimpleQueue")]
 pub use self::__CMSimpleQueue::CMSimpleQueueGetHead;
 #[cfg(feature = "CMSimpleQueue")]
-pub use self::__CMSimpleQueue::CMSimpleQueueGetTypeID;
-#[cfg(feature = "CMSimpleQueue")]
 pub use self::__CMSimpleQueue::CMSimpleQueueReset;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::kCMClockError_AllocationFailed;
@@ -1777,8 +1765,6 @@ pub use self::__CMSync::CMClockGetAnchorTime;
 pub use self::__CMSync::CMClockGetHostTimeClock;
 #[cfg(all(feature = "CMSync", feature = "CMTime"))]
 pub use self::__CMSync::CMClockGetTime;
-#[cfg(feature = "CMSync")]
-pub use self::__CMSync::CMClockGetTypeID;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMClockInvalidate;
 #[cfg(all(feature = "CMSync", feature = "CMTime"))]
@@ -1829,8 +1815,6 @@ pub use self::__CMSync::CMTimebaseGetTime;
 pub use self::__CMSync::CMTimebaseGetTimeAndRate;
 #[cfg(all(feature = "CMSync", feature = "CMTime"))]
 pub use self::__CMSync::CMTimebaseGetTimeWithTimeScale;
-#[cfg(feature = "CMSync")]
-pub use self::__CMSync::CMTimebaseGetTypeID;
 #[cfg(feature = "CMSync")]
 pub use self::__CMSync::CMTimebaseGetUltimateMasterClock;
 #[cfg(feature = "CMSync")]
@@ -2018,8 +2002,6 @@ pub use self::__CMTagCollection::CMTagCollectionGetTagsWithCategory;
 #[cfg(all(feature = "CMBase", feature = "CMTag", feature = "CMTagCollection"))]
 pub use self::__CMTagCollection::CMTagCollectionGetTagsWithFilterFunction;
 #[cfg(feature = "CMTagCollection")]
-pub use self::__CMTagCollection::CMTagCollectionGetTypeID;
-#[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionIsEmpty;
 #[cfg(feature = "CMTagCollection")]
 pub use self::__CMTagCollection::CMTagCollectionRemoveAllTags;
@@ -2088,8 +2070,6 @@ pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupGetCount;
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupGetNumberOfMatchesForTagCollection;
 #[cfg(all(feature = "CMTagCollection", feature = "CMTaggedBufferGroup"))]
 pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupGetTagCollectionAtIndex;
-#[cfg(feature = "CMTaggedBufferGroup")]
-pub use self::__CMTaggedBufferGroup::CMTaggedBufferGroupGetTypeID;
 #[cfg(feature = "CMTextMarkup")]
 pub use self::__CMTextMarkup::kCMTextMarkupAlignmentType_End;
 #[cfg(feature = "CMTextMarkup")]

@@ -47,9 +47,16 @@ pub unsafe extern "C-unwind" fn CFDateFormatterCreateDateFormatFromTemplate(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFDateFormatterGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFDateFormatter {
+    #[doc(alias = "CFDateFormatterGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFDateFormatterGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFDateFormatterGetTypeID() }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdateformatterstyle?language=objc)

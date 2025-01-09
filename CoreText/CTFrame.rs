@@ -24,9 +24,16 @@ cf_type!(
     unsafe impl CTFrame {}
 );
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CTFrame {
     /// Returns the CFType of the frame object
-    pub fn CTFrameGetTypeID() -> CFTypeID;
+    #[doc(alias = "CTFrameGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CTFrameGetTypeID() -> CFTypeID;
+        }
+        unsafe { CTFrameGetTypeID() }
+    }
 }
 
 /// These constants specify frame progression types.

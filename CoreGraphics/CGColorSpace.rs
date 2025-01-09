@@ -432,8 +432,15 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCopyName(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGColorSpaceGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGColorSpace {
+    #[doc(alias = "CGColorSpaceGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGColorSpaceGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGColorSpaceGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

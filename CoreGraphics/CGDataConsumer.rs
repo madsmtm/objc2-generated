@@ -53,8 +53,15 @@ unsafe impl RefEncode for CGDataConsumerCallbacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn CGDataConsumerGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGDataConsumer {
+    #[doc(alias = "CGDataConsumerGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGDataConsumerGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGDataConsumerGetTypeID() }
+    }
 }
 
 #[inline]

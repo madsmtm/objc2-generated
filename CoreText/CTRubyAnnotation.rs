@@ -22,9 +22,16 @@ cf_type!(
     unsafe impl CTRubyAnnotation {}
 );
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CTRubyAnnotation {
     /// Returns the CFType of the ruby annotation object
-    pub fn CTRubyAnnotationGetTypeID() -> CFTypeID;
+    #[doc(alias = "CTRubyAnnotationGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CTRubyAnnotationGetTypeID() -> CFTypeID;
+        }
+        unsafe { CTRubyAnnotationGetTypeID() }
+    }
 }
 
 /// These constants specify how to align the ruby annotation and the base text relative to each other when they don't have the same length.

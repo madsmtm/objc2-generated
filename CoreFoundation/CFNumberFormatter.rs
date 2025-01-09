@@ -26,9 +26,16 @@ cf_type!(
     unsafe impl CFNumberFormatter {}
 );
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFNumberFormatterGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFNumberFormatter {
+    #[doc(alias = "CFNumberFormatterGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFNumberFormatterGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFNumberFormatterGetTypeID() }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle?language=objc)

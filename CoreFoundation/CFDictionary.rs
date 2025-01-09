@@ -215,10 +215,17 @@ cf_type!(
     unsafe impl CFMutableDictionary: CFDictionary {}
 );
 
-extern "C-unwind" {
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFDictionary {
     /// Returns the type identifier of all CFDictionary instances.
-    #[cfg(feature = "CFBase")]
-    pub fn CFDictionaryGetTypeID() -> CFTypeID;
+    #[doc(alias = "CFDictionaryGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFDictionaryGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFDictionaryGetTypeID() }
+    }
 }
 
 /// Creates a new immutable dictionary with the given values.

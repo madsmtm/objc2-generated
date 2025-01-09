@@ -55,8 +55,15 @@ unsafe impl RefEncode for CGFunctionCallbacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn CGFunctionGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGFunction {
+    #[doc(alias = "CGFunctionGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGFunctionGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGFunctionGetTypeID() }
+    }
 }
 
 #[inline]

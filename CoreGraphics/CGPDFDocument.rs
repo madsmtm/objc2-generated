@@ -168,8 +168,15 @@ extern "C-unwind" {
     pub fn CGPDFDocumentGetID(document: Option<&CGPDFDocument>) -> CGPDFArrayRef;
 }
 
-extern "C-unwind" {
-    pub fn CGPDFDocumentGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGPDFDocument {
+    #[doc(alias = "CGPDFDocumentGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGPDFDocumentGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGPDFDocumentGetTypeID() }
+    }
 }
 
 #[inline]

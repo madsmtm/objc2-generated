@@ -228,8 +228,15 @@ pub unsafe extern "C-unwind" fn CGColorGetPattern(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CGColorGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGColor {
+    #[doc(alias = "CGColorGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGColorGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGColorGetTypeID() }
+    }
 }
 
 extern "C" {

@@ -33,9 +33,16 @@ cf_type!(
     unsafe impl CFMutableData: CFData {}
 );
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFDataGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFData {
+    #[doc(alias = "CFDataGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFDataGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFDataGetTypeID() }
+    }
 }
 
 #[cfg(feature = "CFBase")]

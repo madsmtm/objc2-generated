@@ -34,11 +34,18 @@ cf_type!(
     unsafe impl CTMutableFontCollection: CTFontCollection {}
 );
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CTFontCollection {
     /// Returns the type identifier for Core Text font collection references.
     ///
     /// Returns: The identifier for the opaque types CTFontCollectionRef or CTMutableFontCollectionRef.
-    pub fn CTFontCollectionGetTypeID() -> CFTypeID;
+    #[doc(alias = "CTFontCollectionGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CTFontCollectionGetTypeID() -> CFTypeID;
+        }
+        unsafe { CTFontCollectionGetTypeID() }
+    }
 }
 
 /// Collection sorting callback.

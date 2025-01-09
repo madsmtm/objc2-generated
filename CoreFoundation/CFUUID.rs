@@ -73,9 +73,16 @@ unsafe impl RefEncode for CFUUIDBytes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFUUIDGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFUUID {
+    #[doc(alias = "CFUUIDGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFUUIDGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFUUIDGetTypeID() }
+    }
 }
 
 #[cfg(feature = "CFBase")]

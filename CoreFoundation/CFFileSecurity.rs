@@ -21,9 +21,16 @@ cf_type!(
     unsafe impl CFFileSecurity {}
 );
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFFileSecurityGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFFileSecurity {
+    #[doc(alias = "CFFileSecurityGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFFileSecurityGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFFileSecurityGetTypeID() }
+    }
 }
 
 #[cfg(feature = "CFBase")]

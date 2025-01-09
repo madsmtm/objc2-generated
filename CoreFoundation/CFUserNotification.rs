@@ -24,9 +24,16 @@ cf_type!(
 pub type CFUserNotificationCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFUserNotification, CFOptionFlags)>;
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFUserNotificationGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFUserNotification {
+    #[doc(alias = "CFUserNotificationGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFUserNotificationGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFUserNotificationGetTypeID() }
+    }
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFDate", feature = "CFDictionary"))]

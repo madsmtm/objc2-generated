@@ -31,10 +31,17 @@ cf_type!(
     unsafe impl CFMutableAttributedString: CFAttributedString {}
 );
 
-extern "C-unwind" {
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFAttributedString {
     /// Returns the type identifier of all CFAttributedString instances.
-    #[cfg(feature = "CFBase")]
-    pub fn CFAttributedStringGetTypeID() -> CFTypeID;
+    #[doc(alias = "CFAttributedStringGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFAttributedStringGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFAttributedStringGetTypeID() }
+    }
 }
 
 /// Creates an attributed string with the specified string and attributes (both copied).

@@ -20,8 +20,12 @@ use crate::*;
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub type CVMetalTexture = CVImageBuffer;
 
-extern "C-unwind" {
-    pub fn CVMetalTextureGetTypeID() -> CFTypeID;
+#[inline]
+pub extern "C-unwind" fn CVMetalTextureGetTypeID() -> CFTypeID {
+    extern "C-unwind" {
+        fn CVMetalTextureGetTypeID() -> CFTypeID;
+    }
+    unsafe { CVMetalTextureGetTypeID() }
 }
 
 /// Returns the Metal MTLTexture object of the CVMetalTextureRef

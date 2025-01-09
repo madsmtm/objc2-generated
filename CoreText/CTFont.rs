@@ -24,11 +24,18 @@ cf_type!(
     unsafe impl CTFont {}
 );
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CTFont {
     /// Returns the type identifier for Core Text font references.
     ///
     /// Returns: The identifier for the opaque type CTFontRef.
-    pub fn CTFontGetTypeID() -> CFTypeID;
+    #[doc(alias = "CTFontGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CTFontGetTypeID() -> CFTypeID;
+        }
+        unsafe { CTFontGetTypeID() }
+    }
 }
 
 extern "C" {

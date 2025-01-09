@@ -176,8 +176,6 @@ pub use self::__IOSurfaceRef::IOSurfaceGetRangeOfComponentOfPlane;
 pub use self::__IOSurfaceRef::IOSurfaceGetSeed;
 #[cfg(feature = "IOSurfaceRef")]
 pub use self::__IOSurfaceRef::IOSurfaceGetSubsampling;
-#[cfg(all(feature = "IOSurfaceRef", feature = "objc2-core-foundation"))]
-pub use self::__IOSurfaceRef::IOSurfaceGetTypeID;
 #[cfg(feature = "IOSurfaceRef")]
 pub use self::__IOSurfaceRef::IOSurfaceGetTypeOfComponentOfPlane;
 #[cfg(feature = "IOSurfaceRef")]

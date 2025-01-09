@@ -104,9 +104,16 @@ cf_type!(
     unsafe impl CFMutableBag: CFBag {}
 );
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFBagGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFBag {
+    #[doc(alias = "CFBagGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFBagGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFBagGetTypeID() }
+    }
 }
 
 #[cfg(feature = "CFBase")]

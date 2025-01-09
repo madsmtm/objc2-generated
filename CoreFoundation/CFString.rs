@@ -53,9 +53,16 @@ unsafe impl RefEncode for CFStringEncoding {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFString {
+    #[doc(alias = "CFStringGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFStringGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFStringGetTypeID() }
+    }
 }
 
 /// * Immutable string creation functions **

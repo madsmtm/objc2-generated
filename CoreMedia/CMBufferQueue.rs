@@ -301,13 +301,20 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CMBufferQueue {
     /// Returns the CFTypeID of CMBufferQueue objects.
     ///
     /// You can check if a CFTypeRef object is actually a CMBufferQueue by comparing CFGetTypeID(object) with CMBufferQueueGetTypeID().
     ///
     /// Returns: CFTypeID of CMBufferQueue objects.
-    pub fn CMBufferQueueGetTypeID() -> CFTypeID;
+    #[doc(alias = "CMBufferQueueGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CMBufferQueueGetTypeID() -> CFTypeID;
+        }
+        unsafe { CMBufferQueueGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

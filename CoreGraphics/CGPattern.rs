@@ -81,8 +81,15 @@ unsafe impl RefEncode for CGPatternCallbacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn CGPatternGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGPattern {
+    #[doc(alias = "CGPatternGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGPatternGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGPatternGetTypeID() }
+    }
 }
 
 #[cfg(feature = "CGContext")]

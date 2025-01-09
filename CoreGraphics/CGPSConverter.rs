@@ -117,6 +117,13 @@ extern "C-unwind" {
     pub fn CGPSConverterIsConverting(converter: &CGPSConverter) -> bool;
 }
 
-extern "C-unwind" {
-    pub fn CGPSConverterGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGPSConverter {
+    #[doc(alias = "CGPSConverterGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGPSConverterGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGPSConverterGetTypeID() }
+    }
 }

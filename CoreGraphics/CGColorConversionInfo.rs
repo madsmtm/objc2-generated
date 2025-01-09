@@ -22,8 +22,15 @@ cf_type!(
     unsafe impl CGColorConversionInfo {}
 );
 
-extern "C-unwind" {
-    pub fn CGColorConversionInfoGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGColorConversionInfo {
+    #[doc(alias = "CGColorConversionInfoGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGColorConversionInfoGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGColorConversionInfoGetTypeID() }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorconversioninfotransformtype?language=objc)

@@ -20,9 +20,16 @@ cf_type!(
     unsafe impl CTTextTab {}
 );
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CTTextTab {
     /// Returns the CFType of the text tab object
-    pub fn CTTextTabGetTypeID() -> CFTypeID;
+    #[doc(alias = "CTTextTabGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CTTextTabGetTypeID() -> CFTypeID;
+        }
+        unsafe { CTTextTabGetTypeID() }
+    }
 }
 
 extern "C" {

@@ -55,8 +55,15 @@ unsafe impl RefEncode for CGFontPostScriptFormat {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgglyphmax?language=objc)
 pub static kCGGlyphMax: CGFontIndex = kCGFontIndexMax;
 
-extern "C-unwind" {
-    pub fn CGFontGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGFont {
+    #[doc(alias = "CGFontGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGFontGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGFontGetTypeID() }
+    }
 }
 
 #[deprecated = "No longer supported"]

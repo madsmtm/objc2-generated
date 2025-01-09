@@ -108,8 +108,15 @@ cf_type!(
     unsafe impl CFNull {}
 );
 
-extern "C-unwind" {
-    pub fn CFNullGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CFNull {
+    #[doc(alias = "CFNullGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFNullGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFNullGetTypeID() }
+    }
 }
 
 extern "C" {
@@ -225,8 +232,15 @@ unsafe impl RefEncode for CFAllocatorContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn CFAllocatorGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CFAllocator {
+    #[doc(alias = "CFAllocatorGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFAllocatorGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFAllocatorGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

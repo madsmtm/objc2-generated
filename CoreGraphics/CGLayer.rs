@@ -72,6 +72,13 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    pub fn CGLayerGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGLayer {
+    #[doc(alias = "CGLayerGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGLayerGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGLayerGetTypeID() }
+    }
 }

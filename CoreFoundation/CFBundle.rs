@@ -104,9 +104,16 @@ pub unsafe extern "C-unwind" fn CFBundleGetAllBundles() -> Option<CFRetained<CFA
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFBundleGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFBundle {
+    #[doc(alias = "CFBundleGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFBundleGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFBundleGetTypeID() }
+    }
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFURL"))]

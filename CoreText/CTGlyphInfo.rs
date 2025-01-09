@@ -24,9 +24,16 @@ cf_type!(
     unsafe impl CTGlyphInfo {}
 );
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CTGlyphInfo {
     /// Returns the CFType of the glyph info object
-    pub fn CTGlyphInfoGetTypeID() -> CFTypeID;
+    #[doc(alias = "CTGlyphInfoGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CTGlyphInfoGetTypeID() -> CFTypeID;
+        }
+        unsafe { CTGlyphInfoGetTypeID() }
+    }
 }
 
 /// These constants specify character collections.

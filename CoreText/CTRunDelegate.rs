@@ -24,9 +24,16 @@ cf_type!(
     unsafe impl CTRunDelegate {}
 );
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CTRunDelegate {
     /// Returns the CFType of CTRunDelegate objects.
-    pub fn CTRunDelegateGetTypeID() -> CFTypeID;
+    #[doc(alias = "CTRunDelegateGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CTRunDelegateGetTypeID() -> CFTypeID;
+        }
+        unsafe { CTRunDelegateGetTypeID() }
+    }
 }
 
 /// The callback invoked when a CTRunDelegate is deallocated.

@@ -269,14 +269,21 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CMBlockBuffer {
     /// Obtains the CoreFoundation type ID for the CMBlockBuffer type.
     ///
     /// Obtains the CoreFoundation type ID for the CMBlockBuffer type.
     ///
     ///
     /// Returns: Returns the CFTypeID corresponding to CMBlockBuffer.
-    pub fn CMBlockBufferGetTypeID() -> CFTypeID;
+    #[doc(alias = "CMBlockBufferGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CMBlockBufferGetTypeID() -> CFTypeID;
+        }
+        unsafe { CMBlockBufferGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

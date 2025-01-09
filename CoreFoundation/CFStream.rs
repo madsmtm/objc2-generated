@@ -168,14 +168,28 @@ pub type CFReadStreamClientCallBack =
 pub type CFWriteStreamClientCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFWriteStream, CFStreamEventType, *mut c_void)>;
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFReadStreamGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFReadStream {
+    #[doc(alias = "CFReadStreamGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFReadStreamGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFReadStreamGetTypeID() }
+    }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFWriteStreamGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFWriteStream {
+    #[doc(alias = "CFWriteStreamGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFWriteStreamGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFWriteStreamGetTypeID() }
+    }
 }
 
 extern "C" {

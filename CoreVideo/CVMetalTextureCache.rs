@@ -32,8 +32,15 @@ cf_type!(
     unsafe impl CVMetalTextureCache {}
 );
 
-extern "C-unwind" {
-    pub fn CVMetalTextureCacheGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CVMetalTextureCache {
+    #[doc(alias = "CVMetalTextureCacheGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CVMetalTextureCacheGetTypeID() -> CFTypeID;
+        }
+        unsafe { CVMetalTextureCacheGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

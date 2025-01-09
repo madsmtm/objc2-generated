@@ -34,9 +34,16 @@ cf_type!(
     unsafe impl CFMutableBitVector: CFBitVector {}
 );
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFBitVector {
+    #[doc(alias = "CFBitVectorGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFBitVectorGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFBitVectorGetTypeID() }
+    }
 }
 
 #[cfg(feature = "CFBase")]

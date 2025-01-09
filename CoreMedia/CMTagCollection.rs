@@ -76,13 +76,20 @@ cf_type!(
     unsafe impl CMMutableTagCollection: CMTagCollection {}
 );
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CMTagCollection {
     /// Obtains the CoreFoundation type ID for the CMTagCollection type.
     ///
     /// Obtains the CoreFoundation type ID for the CMTagCollection type.
     ///
     /// Returns: Returns the CFTypeID corresponding to CMTagCollection.
-    pub fn CMTagCollectionGetTypeID() -> CFTypeID;
+    #[doc(alias = "CMTagCollectionGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CMTagCollectionGetTypeID() -> CFTypeID;
+        }
+        unsafe { CMTagCollectionGetTypeID() }
+    }
 }
 
 /// A callback function that can be used to iterate over a CMTagCollection. The callback is passed a CMTag and a potentially NULL context reference that can be used to implement some operation for each tag.

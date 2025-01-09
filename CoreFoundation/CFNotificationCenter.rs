@@ -66,9 +66,16 @@ unsafe impl RefEncode for CFNotificationSuspensionBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFNotificationCenterGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFNotificationCenter {
+    #[doc(alias = "CFNotificationCenterGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFNotificationCenterGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFNotificationCenterGetTypeID() }
+    }
 }
 
 #[inline]

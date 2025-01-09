@@ -20,9 +20,16 @@ cf_type!(
     unsafe impl CTTypesetter {}
 );
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CTTypesetter {
     /// Returns the CFType of the typesetter object
-    pub fn CTTypesetterGetTypeID() -> CFTypeID;
+    #[doc(alias = "CTTypesetterGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CTTypesetterGetTypeID() -> CFTypeID;
+        }
+        unsafe { CTTypesetterGetTypeID() }
+    }
 }
 
 extern "C" {

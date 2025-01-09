@@ -113,10 +113,17 @@ cf_type!(
     unsafe impl CFTree {}
 );
 
-extern "C-unwind" {
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFTree {
     /// Returns the type identifier of all CFTree instances.
-    #[cfg(feature = "CFBase")]
-    pub fn CFTreeGetTypeID() -> CFTypeID;
+    #[doc(alias = "CFTreeGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFTreeGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFTreeGetTypeID() }
+    }
 }
 
 /// Creates a new mutable tree.

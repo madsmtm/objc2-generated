@@ -50,9 +50,16 @@ pub type CFPlugInUnloadFunction = Option<unsafe extern "C-unwind" fn(*mut CFPlug
 pub type CFPlugInFactoryFunction =
     Option<unsafe extern "C-unwind" fn(*mut CFAllocator, *mut CFUUID) -> *mut c_void>;
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFPlugInGetTypeID() -> CFTypeID;
+#[cfg(all(feature = "CFBase", feature = "CFBundle"))]
+unsafe impl ConcreteType for CFPlugIn {
+    #[doc(alias = "CFPlugInGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFPlugInGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFPlugInGetTypeID() }
+    }
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFBundle", feature = "CFURL"))]
@@ -225,9 +232,16 @@ extern "C-unwind" {
     pub fn CFPlugInInstanceGetInstanceData(instance: Option<&CFPlugInInstance>) -> *mut c_void;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFPlugInInstanceGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFPlugInInstance {
+    #[doc(alias = "CFPlugInInstanceGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFPlugInInstanceGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFPlugInInstanceGetTypeID() }
+    }
 }
 
 #[cfg(feature = "CFBase")]

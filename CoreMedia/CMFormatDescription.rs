@@ -81,12 +81,19 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CMFormatDescription {
     /// Returns the CFTypeID of CMFormatDescription objects.
     ///
     /// You can check if a CFTypeRef object is actually a CMFormatDescription
     /// by comparing CFGetTypeID(object) with CMFormatDescriptionGetTypeID().
-    pub fn CMFormatDescriptionGetTypeID() -> CFTypeID;
+    #[doc(alias = "CMFormatDescriptionGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CMFormatDescriptionGetTypeID() -> CFTypeID;
+        }
+        unsafe { CMFormatDescriptionGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

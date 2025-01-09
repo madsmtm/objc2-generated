@@ -31,9 +31,16 @@ cf_type!(
     unsafe impl CFLocale {}
 );
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFLocaleGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFLocale {
+    #[doc(alias = "CFLocaleGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFLocaleGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFLocaleGetTypeID() }
+    }
 }
 
 #[inline]

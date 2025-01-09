@@ -175,9 +175,16 @@ unsafe impl RefEncode for CFSocketContext {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketnativehandle?language=objc)
 pub type CFSocketNativeHandle = c_int;
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFSocketGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFSocket {
+    #[doc(alias = "CFSocketGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFSocketGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFSocketGetTypeID() }
+    }
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFData"))]

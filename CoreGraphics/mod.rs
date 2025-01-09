@@ -292,8 +292,6 @@ pub use self::__CGColor::CGColorGetConstantColor;
 pub use self::__CGColor::CGColorGetNumberOfComponents;
 #[cfg(all(feature = "CGColor", feature = "CGPattern"))]
 pub use self::__CGColor::CGColorGetPattern;
-#[cfg(feature = "CGColor")]
-pub use self::__CGColor::CGColorGetTypeID;
 #[cfg(feature = "CGColorConversionInfo")]
 pub use self::__CGColorConversionInfo::kCGColorConversionBlackPointCompensation;
 #[cfg(feature = "CGColorConversionInfo")]
@@ -314,8 +312,6 @@ pub use self::__CGColorConversionInfo::CGColorConversionInfoCreate;
 pub use self::__CGColorConversionInfo::CGColorConversionInfoCreateForToneMapping;
 #[cfg(all(feature = "CGColorConversionInfo", feature = "CGColorSpace"))]
 pub use self::__CGColorConversionInfo::CGColorConversionInfoCreateWithOptions;
-#[cfg(feature = "CGColorConversionInfo")]
-pub use self::__CGColorConversionInfo::CGColorConversionInfoGetTypeID;
 #[cfg(feature = "CGColorConversionInfo")]
 pub use self::__CGColorConversionInfo::CGColorConversionInfoTransformType;
 #[cfg(feature = "CGColorSpace")]
@@ -457,8 +453,6 @@ pub use self::__CGColorSpace::CGColorSpaceGetName;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceGetNumberOfComponents;
 #[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceGetTypeID;
-#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceIsHDR;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceIsHLGBased;
@@ -590,8 +584,6 @@ pub use self::__CGContext::CGContextGetPathCurrentPoint;
 pub use self::__CGContext::CGContextGetTextMatrix;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextGetTextPosition;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextGetTypeID;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContextGetUserSpaceToDeviceSpaceTransform;
 #[cfg(feature = "CGContext")]
@@ -755,8 +747,6 @@ pub use self::__CGDataConsumer::CGDataConsumerCreateWithCFData;
 #[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerCreateWithURL;
 #[cfg(feature = "CGDataConsumer")]
-pub use self::__CGDataConsumer::CGDataConsumerGetTypeID;
-#[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerPutBytesCallback;
 #[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerReleaseInfoCallback;
@@ -786,8 +776,6 @@ pub use self::__CGDataProvider::CGDataProviderGetBytesAtPositionCallback;
 pub use self::__CGDataProvider::CGDataProviderGetBytesCallback;
 #[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderGetInfo;
-#[cfg(feature = "CGDataProvider")]
-pub use self::__CGDataProvider::CGDataProviderGetTypeID;
 #[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderReleaseBytePointerCallback;
 #[cfg(feature = "CGDataProvider")]
@@ -862,8 +850,6 @@ pub use self::__CGDirectDisplay::CGDisplayModeGetPixelHeight;
 pub use self::__CGDirectDisplay::CGDisplayModeGetPixelWidth;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayModeGetRefreshRate;
-#[cfg(feature = "CGDirectDisplay")]
-pub use self::__CGDirectDisplay::CGDisplayModeGetTypeID;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayModeGetWidth;
 #[cfg(feature = "CGDirectDisplay")]
@@ -1147,8 +1133,6 @@ pub use self::__CGDisplayStream::CGDisplayStreamFrameAvailableHandler;
 pub use self::__CGDisplayStream::CGDisplayStreamFrameStatus;
 #[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamGetRunLoopSource;
-#[cfg(feature = "CGDisplayStream")]
-pub use self::__CGDisplayStream::CGDisplayStreamGetTypeID;
 #[cfg(all(feature = "CGDisplayStream", feature = "CGError"))]
 pub use self::__CGDisplayStream::CGDisplayStreamStart;
 #[cfg(all(feature = "CGDisplayStream", feature = "CGError"))]
@@ -1163,8 +1147,6 @@ pub use self::__CGDisplayStream::CGDisplayStreamUpdateGetDropCount;
 pub use self::__CGDisplayStream::CGDisplayStreamUpdateGetMovedRectsDelta;
 #[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamUpdateGetRects;
-#[cfg(feature = "CGDisplayStream")]
-pub use self::__CGDisplayStream::CGDisplayStreamUpdateGetTypeID;
 #[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamUpdateRectType;
 #[cfg(feature = "CGEXRToneMappingGamma")]
@@ -1213,8 +1195,6 @@ pub use self::__CGEvent::CGEventGetLocation;
 pub use self::__CGEvent::CGEventGetTimestamp;
 #[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventGetType;
-#[cfg(feature = "CGEvent")]
-pub use self::__CGEvent::CGEventGetTypeID;
 #[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
 pub use self::__CGEvent::CGEventGetUnflippedLocation;
 #[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
@@ -1290,8 +1270,6 @@ pub use self::__CGEventSource::CGEventSourceGetLocalEventsSuppressionInterval;
 pub use self::__CGEventSource::CGEventSourceGetPixelsPerLine;
 #[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
 pub use self::__CGEventSource::CGEventSourceGetSourceStateID;
-#[cfg(feature = "CGEventSource")]
-pub use self::__CGEventSource::CGEventSourceGetTypeID;
 #[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
 pub use self::__CGEventSource::CGEventSourceGetUserData;
 #[cfg(all(
@@ -1419,8 +1397,6 @@ pub use self::__CGFont::CGFontGetNumberOfGlyphs;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontGetStemV;
 #[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontGetTypeID;
-#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontGetUnitsPerEm;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontGetXHeight;
@@ -1440,8 +1416,6 @@ pub use self::__CGFunction::CGFunctionCallbacks;
 pub use self::__CGFunction::CGFunctionCreate;
 #[cfg(feature = "CGFunction")]
 pub use self::__CGFunction::CGFunctionEvaluateCallback;
-#[cfg(feature = "CGFunction")]
-pub use self::__CGFunction::CGFunctionGetTypeID;
 #[cfg(feature = "CGFunction")]
 pub use self::__CGFunction::CGFunctionReleaseInfoCallback;
 #[cfg(feature = "CGGeometry")]
@@ -1522,8 +1496,6 @@ pub use self::__CGGradient::CGGradientCreateWithColorComponents;
 pub use self::__CGGradient::CGGradientCreateWithColors;
 #[cfg(feature = "CGGradient")]
 pub use self::__CGGradient::CGGradientDrawingOptions;
-#[cfg(feature = "CGGradient")]
-pub use self::__CGGradient::CGGradientGetTypeID;
 #[cfg(feature = "CGITUToneMapping")]
 pub use self::__CGITUToneMapping::kCGSkipBoostToHDR;
 #[cfg(feature = "CGITUToneMapping")]
@@ -1613,8 +1585,6 @@ pub use self::__CGImage::CGImageGetRenderingIntent;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageGetShouldInterpolate;
 #[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageGetTypeID;
-#[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageGetUTType;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageGetWidth;
@@ -1638,8 +1608,6 @@ pub use self::__CGLayer::CGLayerCreateWithContext;
 pub use self::__CGLayer::CGLayerGetContext;
 #[cfg(feature = "CGLayer")]
 pub use self::__CGLayer::CGLayerGetSize;
-#[cfg(feature = "CGLayer")]
-pub use self::__CGLayer::CGLayerGetTypeID;
 #[cfg(feature = "CGPDFArray")]
 pub use self::__CGPDFArray::CGPDFArray;
 #[cfg(all(feature = "CGPDFArray", feature = "CGPDFObject", feature = "block2"))]
@@ -1885,8 +1853,6 @@ pub use self::__CGPDFDocument::CGPDFDocumentGetRotationAngle;
 #[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentGetTrimBox;
 #[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentGetTypeID;
-#[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentGetVersion;
 #[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocumentIsEncrypted;
@@ -1940,8 +1906,6 @@ pub use self::__CGPDFPage::CGPDFPageGetDrawingTransform;
 pub use self::__CGPDFPage::CGPDFPageGetPageNumber;
 #[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFPageGetRotationAngle;
-#[cfg(feature = "CGPDFPage")]
-pub use self::__CGPDFPage::CGPDFPageGetTypeID;
 #[cfg(feature = "CGPDFScanner")]
 pub use self::__CGPDFScanner::CGPDFScanner;
 #[cfg(all(
@@ -2024,8 +1988,6 @@ pub use self::__CGPSConverter::CGPSConverterCreate;
 pub use self::__CGPSConverter::CGPSConverterEndDocumentCallback;
 #[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterEndPageCallback;
-#[cfg(feature = "CGPSConverter")]
-pub use self::__CGPSConverter::CGPSConverterGetTypeID;
 #[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterIsConverting;
 #[cfg(feature = "CGPSConverter")]
@@ -2129,8 +2091,6 @@ pub use self::__CGPath::CGPathGetCurrentPoint;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathGetPathBoundingBox;
 #[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathGetTypeID;
-#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathIntersectsPath;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathIsEmpty;
@@ -2146,8 +2106,6 @@ pub use self::__CGPattern::CGPatternCallbacks;
 pub use self::__CGPattern::CGPatternCreate;
 #[cfg(all(feature = "CGContext", feature = "CGPattern"))]
 pub use self::__CGPattern::CGPatternDrawPatternCallback;
-#[cfg(feature = "CGPattern")]
-pub use self::__CGPattern::CGPatternGetTypeID;
 #[cfg(feature = "CGPattern")]
 pub use self::__CGPattern::CGPatternReleaseInfoCallback;
 #[cfg(feature = "CGPattern")]
@@ -2228,8 +2186,6 @@ pub use self::__CGShading::CGShadingCreateAxial;
     feature = "CGShading"
 ))]
 pub use self::__CGShading::CGShadingCreateRadial;
-#[cfg(feature = "CGShading")]
-pub use self::__CGShading::CGShadingGetTypeID;
 #[cfg(feature = "CGToneMapping")]
 pub use self::__CGToneMapping::CGToneMapping;
 #[cfg(feature = "CGWindow")]

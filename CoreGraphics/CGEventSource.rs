@@ -6,8 +6,16 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    pub fn CGEventSourceGetTypeID() -> CFTypeID;
+#[cfg(feature = "CGEventTypes")]
+unsafe impl ConcreteType for CGEventSource {
+    #[doc(alias = "CGEventSourceGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGEventSourceGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGEventSourceGetTypeID() }
+    }
 }
 
 #[cfg(feature = "CGEventTypes")]

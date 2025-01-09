@@ -20,8 +20,15 @@ cf_type!(
     unsafe impl CGShading {}
 );
 
-extern "C-unwind" {
-    pub fn CGShadingGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGShading {
+    #[doc(alias = "CGShadingGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGShadingGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGShadingGetTypeID() }
+    }
 }
 
 #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]

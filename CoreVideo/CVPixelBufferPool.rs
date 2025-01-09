@@ -32,8 +32,15 @@ extern "C" {
     pub static kCVPixelBufferPoolMaximumBufferAgeKey: &'static CFString;
 }
 
-extern "C-unwind" {
-    pub fn CVPixelBufferPoolGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CVPixelBufferPool {
+    #[doc(alias = "CVPixelBufferPoolGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CVPixelBufferPoolGetTypeID() -> CFTypeID;
+        }
+        unsafe { CVPixelBufferPoolGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

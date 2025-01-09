@@ -211,8 +211,15 @@ unsafe impl RefEncode for CGBlendMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn CGContextGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGContext {
+    #[doc(alias = "CGContextGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGContextGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGContextGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

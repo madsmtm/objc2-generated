@@ -667,13 +667,20 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CMSampleBuffer {
     /// Returns the CFTypeID of CMSampleBuffer objects.
     ///
     /// You can check if a CFTypeRef object is actually a CMSampleBuffer by comparing CFGetTypeID(object) with CMSampleBufferGetTypeID().
     ///
     /// Returns: CFTypeID of CMSampleBuffer objects.
-    pub fn CMSampleBufferGetTypeID() -> CFTypeID;
+    #[doc(alias = "CMSampleBufferGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CMSampleBufferGetTypeID() -> CFTypeID;
+        }
+        unsafe { CMSampleBufferGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

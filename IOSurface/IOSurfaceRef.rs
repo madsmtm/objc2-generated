@@ -305,9 +305,16 @@ extern "C" {
     pub static kIOSurfaceSubsampling: &'static CFString;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn IOSurfaceGetTypeID() -> CFTypeID;
+#[cfg(feature = "objc2-core-foundation")]
+unsafe impl ConcreteType for IOSurfaceRef {
+    #[doc(alias = "IOSurfaceGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn IOSurfaceGetTypeID() -> CFTypeID;
+        }
+        unsafe { IOSurfaceGetTypeID() }
+    }
 }
 
 #[cfg(feature = "objc2-core-foundation")]

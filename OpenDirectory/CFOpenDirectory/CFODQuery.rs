@@ -22,14 +22,21 @@ use crate::*;
 pub type ODQueryCallback =
     Option<unsafe extern "C-unwind" fn(*mut ODQueryRef, *mut CFArray, *mut CFError, *mut c_void)>;
 
-extern "C-unwind" {
+#[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
+unsafe impl ConcreteType for ODQueryRef {
     /// Standard GetTypeID function support for CF-based objects
     ///
     /// Returns the typeID for the ODQuery object
     ///
     /// Returns: a valid CFTypeID for the ODQuery object
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn ODQueryGetTypeID() -> CFTypeID;
+    #[doc(alias = "ODQueryGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn ODQueryGetTypeID() -> CFTypeID;
+        }
+        unsafe { ODQueryGetTypeID() }
+    }
 }
 
 /// Creates a query with the node using the parameters provided

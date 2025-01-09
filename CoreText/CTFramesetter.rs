@@ -22,9 +22,16 @@ cf_type!(
     unsafe impl CTFramesetter {}
 );
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CTFramesetter {
     /// Returns the CFType of the framesetter object
-    pub fn CTFramesetterGetTypeID() -> CFTypeID;
+    #[doc(alias = "CTFramesetterGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CTFramesetterGetTypeID() -> CFTypeID;
+        }
+        unsafe { CTFramesetterGetTypeID() }
+    }
 }
 
 /// Creates a framesetter directly from a typesetter.

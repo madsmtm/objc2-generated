@@ -22,9 +22,16 @@ cf_type!(
     unsafe impl CTParagraphStyle {}
 );
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CTParagraphStyle {
     /// Returns the CFType of the paragraph style object
-    pub fn CTParagraphStyleGetTypeID() -> CFTypeID;
+    #[doc(alias = "CTParagraphStyleGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CTParagraphStyleGetTypeID() -> CFTypeID;
+        }
+        unsafe { CTParagraphStyleGetTypeID() }
+    }
 }
 
 /// These constants specify text alignment.

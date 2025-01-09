@@ -179,8 +179,15 @@ extern "C-unwind" {
     pub fn CGDisplayModeIsUsableForDesktopGUI(mode: Option<&CGDisplayMode>) -> bool;
 }
 
-extern "C-unwind" {
-    pub fn CGDisplayModeGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGDisplayMode {
+    #[doc(alias = "CGDisplayModeGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGDisplayModeGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGDisplayModeGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

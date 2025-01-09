@@ -159,12 +159,19 @@ unsafe impl RefEncode for CFStringTokenizerTokenType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFStringTokenizer {
     /// Get the type identifier.
     ///
     /// Returns: the type identifier of all CFStringTokenizer instances.
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringTokenizerGetTypeID() -> CFTypeID;
+    #[doc(alias = "CFStringTokenizerGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFStringTokenizerGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFStringTokenizerGetTypeID() }
+    }
 }
 
 /// Creates a tokenizer instance.

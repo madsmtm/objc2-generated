@@ -54,8 +54,15 @@ pub const kCMMemoryPoolError_AllocationFailed: OSStatus = -15490;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmemorypoolerror_invalidparameter?language=objc)
 pub const kCMMemoryPoolError_InvalidParameter: OSStatus = -15491;
 
-extern "C-unwind" {
-    pub fn CMMemoryPoolGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CMMemoryPool {
+    #[doc(alias = "CMMemoryPoolGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CMMemoryPoolGetTypeID() -> CFTypeID;
+        }
+        unsafe { CMMemoryPoolGetTypeID() }
+    }
 }
 
 extern "C" {

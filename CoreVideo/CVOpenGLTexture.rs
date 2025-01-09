@@ -12,9 +12,13 @@ use crate::*;
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub type CVOpenGLTexture = CVImageBuffer;
 
-extern "C-unwind" {
-    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLTextureGetTypeID() -> CFTypeID;
+#[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
+#[inline]
+pub extern "C-unwind" fn CVOpenGLTextureGetTypeID() -> CFTypeID {
+    extern "C-unwind" {
+        fn CVOpenGLTextureGetTypeID() -> CFTypeID;
+    }
+    unsafe { CVOpenGLTextureGetTypeID() }
 }
 
 extern "C-unwind" {

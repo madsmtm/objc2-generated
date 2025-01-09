@@ -241,10 +241,16 @@ unsafe impl RefEncode for CFXMLParserContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-    pub fn CFXMLParserGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFXMLParser {
+    #[doc(alias = "CFXMLParserGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFXMLParserGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFXMLParserGetTypeID() }
+    }
 }
 
 #[cfg(all(

@@ -525,8 +525,12 @@ extern "C" {
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub type CVPixelBuffer = CVImageBuffer;
 
-extern "C-unwind" {
-    pub fn CVPixelBufferGetTypeID() -> CFTypeID;
+#[inline]
+pub extern "C-unwind" fn CVPixelBufferGetTypeID() -> CFTypeID {
+    extern "C-unwind" {
+        fn CVPixelBufferGetTypeID() -> CFTypeID;
+    }
+    unsafe { CVPixelBufferGetTypeID() }
 }
 
 extern "C-unwind" {

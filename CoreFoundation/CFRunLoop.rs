@@ -136,9 +136,16 @@ extern "C" {
     pub static kCFRunLoopCommonModes: Option<&'static CFRunLoopMode>;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFRunLoopGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFRunLoop {
+    #[doc(alias = "CFRunLoopGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFRunLoopGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFRunLoopGetTypeID() }
+    }
 }
 
 #[inline]
@@ -373,9 +380,16 @@ unsafe impl RefEncode for CFRunLoopSourceContext1 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFRunLoopSourceGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFRunLoopSource {
+    #[doc(alias = "CFRunLoopSourceGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFRunLoopSourceGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFRunLoopSourceGetTypeID() }
+    }
 }
 
 #[cfg(feature = "CFBase")]
@@ -457,9 +471,16 @@ unsafe impl RefEncode for CFRunLoopObserverContext {
 pub type CFRunLoopObserverCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFRunLoopObserver, CFRunLoopActivity, *mut c_void)>;
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFRunLoopObserverGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFRunLoopObserver {
+    #[doc(alias = "CFRunLoopObserverGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFRunLoopObserverGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFRunLoopObserverGetTypeID() }
+    }
 }
 
 #[cfg(feature = "CFBase")]
@@ -575,9 +596,16 @@ unsafe impl RefEncode for CFRunLoopTimerContext {
 pub type CFRunLoopTimerCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFRunLoopTimer, *mut c_void)>;
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFRunLoopTimerGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFRunLoopTimer {
+    #[doc(alias = "CFRunLoopTimerGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFRunLoopTimerGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFRunLoopTimerGetTypeID() }
+    }
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFDate"))]

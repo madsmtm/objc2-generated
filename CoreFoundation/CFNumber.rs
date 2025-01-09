@@ -31,9 +31,16 @@ extern "C" {
     pub static kCFBooleanFalse: Option<&'static CFBoolean>;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFBooleanGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFBoolean {
+    #[doc(alias = "CFBooleanGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFBooleanGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFBooleanGetTypeID() }
+    }
 }
 
 extern "C-unwind" {
@@ -121,9 +128,16 @@ extern "C" {
     pub static kCFNumberNaN: Option<&'static CFNumber>;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFNumberGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFNumber {
+    #[doc(alias = "CFNumberGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFNumberGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFNumberGetTypeID() }
+    }
 }
 
 #[cfg(feature = "CFBase")]

@@ -9,14 +9,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern "C-unwind" {
+#[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
+unsafe impl ConcreteType for ODRecordRef {
     /// Standard GetTypeID function support for CF-based objects
     ///
     /// Returns the typeID for the ODRecord object
     ///
     /// Returns: a valid CFTypeID for the ODRecord object
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn ODRecordGetTypeID() -> CFTypeID;
+    #[doc(alias = "ODRecordGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn ODRecordGetTypeID() -> CFTypeID;
+        }
+        unsafe { ODRecordGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

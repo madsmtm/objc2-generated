@@ -26,10 +26,17 @@ cf_type!(
     unsafe impl CFError {}
 );
 
-extern "C-unwind" {
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFError {
     /// Returns the type identifier of all CFError instances.
-    #[cfg(feature = "CFBase")]
-    pub fn CFErrorGetTypeID() -> CFTypeID;
+    #[doc(alias = "CFErrorGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFErrorGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFErrorGetTypeID() }
+    }
 }
 
 extern "C" {

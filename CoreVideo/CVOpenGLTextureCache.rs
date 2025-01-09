@@ -42,9 +42,15 @@ extern "C" {
     pub static kCVOpenGLTextureCacheChromaSamplingModeBestPerformance: &'static CFString;
 }
 
-extern "C-unwind" {
-    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLTextureCacheGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CVOpenGLTextureCache {
+    #[doc(alias = "CVOpenGLTextureCacheGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CVOpenGLTextureCacheGetTypeID() -> CFTypeID;
+        }
+        unsafe { CVOpenGLTextureCacheGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

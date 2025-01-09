@@ -181,10 +181,17 @@ cf_type!(
     unsafe impl CFMutableSet: CFSet {}
 );
 
-extern "C-unwind" {
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFSet {
     /// Returns the type identifier of all CFSet instances.
-    #[cfg(feature = "CFBase")]
-    pub fn CFSetGetTypeID() -> CFTypeID;
+    #[doc(alias = "CFSetGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFSetGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFSetGetTypeID() }
+    }
 }
 
 /// Creates a new immutable set with the given values.

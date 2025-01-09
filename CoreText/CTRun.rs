@@ -71,9 +71,16 @@ unsafe impl RefEncode for CTRunStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CTRun {
     /// Returns the CFType of the run object
-    pub fn CTRunGetTypeID() -> CFTypeID;
+    #[doc(alias = "CTRunGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CTRunGetTypeID() -> CFTypeID;
+        }
+        unsafe { CTRunGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

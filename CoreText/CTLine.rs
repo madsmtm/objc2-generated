@@ -130,9 +130,16 @@ unsafe impl RefEncode for CTLineTruncationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CTLine {
     /// Returns the CFType of the line object
-    pub fn CTLineGetTypeID() -> CFTypeID;
+    #[doc(alias = "CTLineGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CTLineGetTypeID() -> CFTypeID;
+        }
+        unsafe { CTLineGetTypeID() }
+    }
 }
 
 /// Creates a single immutable line object directly from an

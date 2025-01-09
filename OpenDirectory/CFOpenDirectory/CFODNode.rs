@@ -9,14 +9,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
-extern "C-unwind" {
+#[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
+unsafe impl ConcreteType for ODNodeRef {
     /// Standard GetTypeID function support for CF-based objects
     ///
     /// Returns the typeID for the ODNode objects
     ///
     /// Returns: a valid CFTypeID for the ODNode object
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn ODNodeGetTypeID() -> CFTypeID;
+    #[doc(alias = "ODNodeGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn ODNodeGetTypeID() -> CFTypeID;
+        }
+        unsafe { ODNodeGetTypeID() }
+    }
 }
 
 /// Creates an ODNodeRef based on a specific node type

@@ -67,9 +67,16 @@ unsafe impl RefEncode for CFFileDescriptorContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFFileDescriptorGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFFileDescriptor {
+    #[doc(alias = "CFFileDescriptorGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFFileDescriptorGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFFileDescriptorGetTypeID() }
+    }
 }
 
 #[cfg(feature = "CFBase")]

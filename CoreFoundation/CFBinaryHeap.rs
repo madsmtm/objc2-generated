@@ -144,10 +144,17 @@ cf_type!(
     unsafe impl CFBinaryHeap {}
 );
 
-extern "C-unwind" {
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFBinaryHeap {
     /// Returns the type identifier of all CFBinaryHeap instances.
-    #[cfg(feature = "CFBase")]
-    pub fn CFBinaryHeapGetTypeID() -> CFTypeID;
+    #[doc(alias = "CFBinaryHeapGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFBinaryHeapGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFBinaryHeapGetTypeID() }
+    }
 }
 
 /// Creates a new mutable binary heap with the given values.

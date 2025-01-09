@@ -20,8 +20,12 @@ use crate::*;
 #[cfg(feature = "CVBuffer")]
 pub type CVMetalBuffer = CVBuffer;
 
-extern "C-unwind" {
-    pub fn CVMetalBufferGetTypeID() -> CFTypeID;
+#[inline]
+pub extern "C-unwind" fn CVMetalBufferGetTypeID() -> CFTypeID {
+    extern "C-unwind" {
+        fn CVMetalBufferGetTypeID() -> CFTypeID;
+    }
+    unsafe { CVMetalBufferGetTypeID() }
 }
 
 /// Returns the Metal MTLBuffer object of the CVMetalBufferRef

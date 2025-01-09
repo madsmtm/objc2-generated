@@ -31,14 +31,21 @@ cf_type!(
     unsafe impl CMSimpleQueue {}
 );
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CMSimpleQueue {
     /// Returns the CFTypeID of CMSimpleQueue objects.
     ///
     /// You can check if a CFTypeRef object is actually a CMSimpleQueue by comparing CFGetTypeID(object)
     /// with CMSimpleQueueGetTypeID().
     ///
     /// Returns: CFTypeID of CMSimpleQueue objects.
-    pub fn CMSimpleQueueGetTypeID() -> CFTypeID;
+    #[doc(alias = "CMSimpleQueueGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CMSimpleQueueGetTypeID() -> CFTypeID;
+        }
+        unsafe { CMSimpleQueueGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

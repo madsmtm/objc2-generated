@@ -112,8 +112,15 @@ unsafe impl RefEncode for CGDataProviderDirectCallbacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn CGDataProviderGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGDataProvider {
+    #[doc(alias = "CGDataProviderGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGDataProviderGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGDataProviderGetTypeID() }
+    }
 }
 
 #[cfg(feature = "libc")]

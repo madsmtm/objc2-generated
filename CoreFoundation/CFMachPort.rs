@@ -61,9 +61,16 @@ pub type CFMachPortCallBack =
 pub type CFMachPortInvalidationCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFMachPort, *mut c_void)>;
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFMachPortGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFMachPort {
+    #[doc(alias = "CFMachPortGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFMachPortGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFMachPortGetTypeID() }
+    }
 }
 
 #[cfg(feature = "CFBase")]

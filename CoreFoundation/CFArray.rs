@@ -127,10 +127,17 @@ cf_type!(
     unsafe impl CFMutableArray: CFArray {}
 );
 
-extern "C-unwind" {
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFArray {
     /// Returns the type identifier of all CFArray instances.
-    #[cfg(feature = "CFBase")]
-    pub fn CFArrayGetTypeID() -> CFTypeID;
+    #[doc(alias = "CFArrayGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFArrayGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFArrayGetTypeID() }
+    }
 }
 
 /// Creates a new immutable array with the given values.

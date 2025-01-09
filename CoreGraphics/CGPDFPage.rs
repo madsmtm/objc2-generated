@@ -89,6 +89,13 @@ extern "C-unwind" {
     pub fn CGPDFPageGetDictionary(page: Option<&CGPDFPage>) -> CGPDFDictionaryRef;
 }
 
-extern "C-unwind" {
-    pub fn CGPDFPageGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGPDFPage {
+    #[doc(alias = "CGPDFPageGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGPDFPageGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGPDFPageGetTypeID() }
+    }
 }

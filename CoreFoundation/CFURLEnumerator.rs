@@ -21,9 +21,16 @@ cf_type!(
     unsafe impl CFURLEnumerator {}
 );
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFURLEnumeratorGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFURLEnumerator {
+    #[doc(alias = "CFURLEnumeratorGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFURLEnumeratorGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFURLEnumeratorGetTypeID() }
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions?language=objc)

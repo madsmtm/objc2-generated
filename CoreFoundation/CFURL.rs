@@ -48,9 +48,16 @@ cf_type!(
     unsafe impl CFURL {}
 );
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFURLGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFURL {
+    #[doc(alias = "CFURLGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFURLGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFURLGetTypeID() }
+    }
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFString"))]

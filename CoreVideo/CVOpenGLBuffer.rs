@@ -35,9 +35,13 @@ extern "C" {
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub type CVOpenGLBuffer = CVImageBuffer;
 
-extern "C-unwind" {
-    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLBufferGetTypeID() -> CFTypeID;
+#[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
+#[inline]
+pub extern "C-unwind" fn CVOpenGLBufferGetTypeID() -> CFTypeID {
+    extern "C-unwind" {
+        fn CVOpenGLBufferGetTypeID() -> CFTypeID;
+    }
+    unsafe { CVOpenGLBufferGetTypeID() }
 }
 
 extern "C-unwind" {

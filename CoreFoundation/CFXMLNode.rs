@@ -349,10 +349,16 @@ unsafe impl RefEncode for CFXMLEntityReferenceInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-    pub fn CFXMLNodeGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFXMLNode {
+    #[doc(alias = "CFXMLNodeGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFXMLNodeGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFXMLNodeGetTypeID() }
+    }
 }
 
 #[cfg(feature = "CFBase")]

@@ -163,8 +163,6 @@ pub use self::__CVDisplayLink::CVDisplayLinkGetNominalOutputVideoRefreshPeriod;
 #[cfg(all(feature = "CVBase", feature = "CVDisplayLink"))]
 pub use self::__CVDisplayLink::CVDisplayLinkGetOutputVideoLatency;
 #[cfg(feature = "CVDisplayLink")]
-pub use self::__CVDisplayLink::CVDisplayLinkGetTypeID;
-#[cfg(feature = "CVDisplayLink")]
 pub use self::__CVDisplayLink::CVDisplayLinkIsRunning;
 #[cfg(all(feature = "CVBase", feature = "CVDisplayLink", feature = "CVReturn"))]
 pub use self::__CVDisplayLink::CVDisplayLinkOutputCallback;
@@ -414,8 +412,6 @@ pub use self::__CVMetalBufferCache::CVMetalBufferCacheCreate;
 pub use self::__CVMetalBufferCache::CVMetalBufferCacheCreateBufferFromImage;
 #[cfg(all(feature = "CVBase", feature = "CVMetalBufferCache"))]
 pub use self::__CVMetalBufferCache::CVMetalBufferCacheFlush;
-#[cfg(feature = "CVMetalBufferCache")]
-pub use self::__CVMetalBufferCache::CVMetalBufferCacheGetTypeID;
 #[cfg(feature = "CVMetalTexture")]
 pub use self::__CVMetalTexture::kCVMetalTextureStorageMode;
 #[cfg(feature = "CVMetalTexture")]
@@ -468,8 +464,6 @@ pub use self::__CVMetalTextureCache::CVMetalTextureCacheCreate;
 pub use self::__CVMetalTextureCache::CVMetalTextureCacheCreateTextureFromImage;
 #[cfg(all(feature = "CVBase", feature = "CVMetalTextureCache"))]
 pub use self::__CVMetalTextureCache::CVMetalTextureCacheFlush;
-#[cfg(feature = "CVMetalTextureCache")]
-pub use self::__CVMetalTextureCache::CVMetalTextureCacheGetTypeID;
 #[cfg(feature = "CVOpenGLBuffer")]
 pub use self::__CVOpenGLBuffer::kCVOpenGLBufferHeight;
 #[cfg(feature = "CVOpenGLBuffer")]
@@ -521,8 +515,6 @@ pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolCreateOpenGLBuffer;
 pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolGetAttributes;
 #[cfg(feature = "CVOpenGLBufferPool")]
 pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolGetOpenGLBufferAttributes;
-#[cfg(feature = "CVOpenGLBufferPool")]
-pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolGetTypeID;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
@@ -557,8 +549,6 @@ pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCache;
 pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCacheCreateTextureFromImage;
 #[cfg(all(feature = "CVBase", feature = "CVOpenGLTextureCache"))]
 pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCacheFlush;
-#[cfg(feature = "CVOpenGLTextureCache")]
-pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCacheGetTypeID;
 #[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferBytesPerRowAlignmentKey;
 #[cfg(feature = "CVPixelBuffer")]
@@ -1032,8 +1022,6 @@ pub use self::__CVPixelBufferPool::CVPixelBufferPoolFlushFlags;
 pub use self::__CVPixelBufferPool::CVPixelBufferPoolGetAttributes;
 #[cfg(feature = "CVPixelBufferPool")]
 pub use self::__CVPixelBufferPool::CVPixelBufferPoolGetPixelBufferAttributes;
-#[cfg(feature = "CVPixelBufferPool")]
-pub use self::__CVPixelBufferPool::CVPixelBufferPoolGetTypeID;
 #[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatBitsPerBlock;
 #[cfg(feature = "CVPixelFormatDescription")]

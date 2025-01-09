@@ -41,9 +41,16 @@ cf_type!(
     unsafe impl CFDate {}
 );
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFDateGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFDate {
+    #[doc(alias = "CFDateGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFDateGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFDateGetTypeID() }
+    }
 }
 
 #[cfg(feature = "CFBase")]

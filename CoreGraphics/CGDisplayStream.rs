@@ -113,12 +113,18 @@ pub type CGDisplayStreamFrameAvailableHandler = *mut block2::Block<
     dyn Fn(CGDisplayStreamFrameStatus, u64, *mut IOSurfaceRef, *mut CGDisplayStreamUpdate),
 >;
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CGDisplayStreamUpdate {
     /// Returns the CF "class" ID for CGDisplayStreamUpdate
     ///
     /// Returns: The CFTypeID of the CGDisplayStreamUpdate class.
-    #[deprecated = "Please use ScreenCaptureKit instead."]
-    pub fn CGDisplayStreamUpdateGetTypeID() -> CFTypeID;
+    #[doc(alias = "CGDisplayStreamUpdateGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGDisplayStreamUpdateGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGDisplayStreamUpdateGetTypeID() }
+    }
 }
 
 extern "C-unwind" {
@@ -279,12 +285,18 @@ extern "C" {
     pub static kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995: &'static CFString;
 }
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CGDisplayStream {
     /// Returns the CF "class" ID for CGDisplayStream
     ///
     /// Returns: The CFTypeID of the CGDisplayStream class.
-    #[deprecated = "Please use ScreenCaptureKit instead."]
-    pub fn CGDisplayStreamGetTypeID() -> CFTypeID;
+    #[doc(alias = "CGDisplayStreamGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGDisplayStreamGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGDisplayStreamGetTypeID() }
+    }
 }
 
 /// Creates a new CGDisplayStream intended to be used with a CFRunLoop

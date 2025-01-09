@@ -21,9 +21,16 @@ cf_type!(
     unsafe impl CFCalendar {}
 );
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFCalendarGetTypeID() -> CFTypeID;
+#[cfg(feature = "CFBase")]
+unsafe impl ConcreteType for CFCalendar {
+    #[doc(alias = "CFCalendarGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFCalendarGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFCalendarGetTypeID() }
+    }
 }
 
 #[inline]

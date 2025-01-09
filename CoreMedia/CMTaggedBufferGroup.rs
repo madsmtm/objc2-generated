@@ -52,8 +52,15 @@ cf_type!(
     unsafe impl CMTaggedBufferGroup {}
 );
 
-extern "C-unwind" {
-    pub fn CMTaggedBufferGroupGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CMTaggedBufferGroup {
+    #[doc(alias = "CMTaggedBufferGroupGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CMTaggedBufferGroupGetTypeID() -> CFTypeID;
+        }
+        unsafe { CMTaggedBufferGroupGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

@@ -46,8 +46,15 @@ unsafe impl RefEncode for CGGradientDrawingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn CGGradientGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGGradient {
+    #[doc(alias = "CGGradientGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGGradientGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGGradientGetTypeID() }
+    }
 }
 
 #[cfg(feature = "CGColorSpace")]

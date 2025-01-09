@@ -30,9 +30,15 @@ extern "C" {
     pub static kCVOpenGLBufferPoolMaximumBufferAgeKey: &'static CFString;
 }
 
-extern "C-unwind" {
-    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLBufferPoolGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CVOpenGLBufferPool {
+    #[doc(alias = "CVOpenGLBufferPoolGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CVOpenGLBufferPoolGetTypeID() -> CFTypeID;
+        }
+        unsafe { CVOpenGLBufferPoolGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

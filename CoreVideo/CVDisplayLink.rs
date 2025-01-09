@@ -47,9 +47,15 @@ pub type CVDisplayLinkOutputHandler = *mut block2::Block<
     ) -> CVReturn,
 >;
 
-extern "C-unwind" {
-    #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
-    pub fn CVDisplayLinkGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CVDisplayLink {
+    #[doc(alias = "CVDisplayLinkGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CVDisplayLinkGetTypeID() -> CFTypeID;
+        }
+        unsafe { CVDisplayLinkGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

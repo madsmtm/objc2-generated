@@ -19,8 +19,6 @@ mod __CFODSession;
 #[path = "CFOpenDirectoryConstants.rs"]
 mod __CFOpenDirectoryConstants;
 
-#[cfg(all(feature = "CFODContext", feature = "objc2-core-foundation"))]
-pub use self::__CFODContext::ODContextGetTypeID;
 #[cfg(all(
     feature = "CFODNode",
     feature = "CFOpenDirectory",
@@ -128,8 +126,6 @@ pub use self::__CFODNode::ODNodeCustomFunction;
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODNode::ODNodeGetName;
-#[cfg(all(feature = "CFODNode", feature = "objc2-core-foundation"))]
-pub use self::__CFODNode::ODNodeGetTypeID;
 #[cfg(all(
     feature = "CFODNode",
     feature = "CFOpenDirectory",
@@ -215,8 +211,6 @@ pub use self::__CFODQuery::ODQueryCreateWithNode;
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODQuery::ODQueryCreateWithNodeType;
-#[cfg(all(feature = "CFODQuery", feature = "objc2-core-foundation"))]
-pub use self::__CFODQuery::ODQueryGetTypeID;
 #[cfg(all(
     feature = "CFODQuery",
     feature = "CFOpenDirectory",
@@ -336,8 +330,6 @@ pub use self::__CFODRecord::ODRecordGetRecordName;
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODRecord::ODRecordGetRecordType;
-#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
-pub use self::__CFODRecord::ODRecordGetTypeID;
 #[cfg(all(
     feature = "CFODRecord",
     feature = "CFOpenDirectory",
@@ -457,8 +449,6 @@ pub use self::__CFODSession::ODSessionCopyNodeNames;
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODSession::ODSessionCreate;
-#[cfg(all(feature = "CFODSession", feature = "objc2-core-foundation"))]
-pub use self::__CFODSession::ODSessionGetTypeID;
 #[cfg(feature = "CFOpenDirectoryConstants")]
 pub use self::__CFOpenDirectoryConstants::kODAttributeTypeAccessControlEntry;
 #[cfg(feature = "CFOpenDirectoryConstants")]

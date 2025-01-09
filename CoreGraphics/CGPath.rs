@@ -82,8 +82,15 @@ unsafe impl RefEncode for CGLineCap {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    pub fn CGPathGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGPath {
+    #[doc(alias = "CGPathGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGPathGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGPathGetTypeID() }
+    }
 }
 
 #[inline]

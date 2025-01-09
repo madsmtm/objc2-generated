@@ -447,8 +447,6 @@ pub use self::__CTFont::CTFontGetSlantAngle;
 pub use self::__CTFont::CTFontGetStringEncoding;
 #[cfg(all(feature = "CTFont", feature = "CTFontTraits"))]
 pub use self::__CTFont::CTFontGetSymbolicTraits;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontGetTypeID;
 #[cfg(all(feature = "CTFont", feature = "CTRunDelegate", feature = "objc2"))]
 pub use self::__CTFont::CTFontGetTypographicBoundsForAdaptiveImageProvider;
 #[cfg(feature = "CTFont")]
@@ -505,8 +503,6 @@ pub use self::__CTFontCollection::CTFontCollectionCreateMatchingFontDescriptorsW
 pub use self::__CTFontCollection::CTFontCollectionCreateMutableCopy;
 #[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionCreateWithFontDescriptors;
-#[cfg(feature = "CTFontCollection")]
-pub use self::__CTFontCollection::CTFontCollectionGetTypeID;
 #[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionSetExclusionDescriptors;
 #[cfg(feature = "CTFontCollection")]
@@ -621,8 +617,6 @@ pub use self::__CTFontDescriptor::CTFontDescriptorCreateMatchingFontDescriptors;
 pub use self::__CTFontDescriptor::CTFontDescriptorCreateWithAttributes;
 #[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorCreateWithNameAndSize;
-#[cfg(feature = "CTFontDescriptor")]
-pub use self::__CTFontDescriptor::CTFontDescriptorGetTypeID;
 #[cfg(all(feature = "CTFontDescriptor", feature = "block2"))]
 pub use self::__CTFontDescriptor::CTFontDescriptorMatchFontDescriptorsWithProgressHandler;
 #[cfg(feature = "CTFontDescriptor")]
@@ -746,8 +740,6 @@ pub use self::__CTFrame::CTFrameGetPath;
 #[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::CTFrameGetStringRange;
 #[cfg(feature = "CTFrame")]
-pub use self::__CTFrame::CTFrameGetTypeID;
-#[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::CTFrameGetVisibleStringRange;
 #[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::CTFramePathFillRule;
@@ -765,8 +757,6 @@ pub use self::__CTFramesetter::CTFramesetterCreateFrame;
 pub use self::__CTFramesetter::CTFramesetterCreateWithAttributedString;
 #[cfg(all(feature = "CTFramesetter", feature = "CTTypesetter"))]
 pub use self::__CTFramesetter::CTFramesetterCreateWithTypesetter;
-#[cfg(feature = "CTFramesetter")]
-pub use self::__CTFramesetter::CTFramesetterGetTypeID;
 #[cfg(all(feature = "CTFramesetter", feature = "CTTypesetter"))]
 pub use self::__CTFramesetter::CTFramesetterGetTypesetter;
 #[cfg(feature = "CTFramesetter")]
@@ -793,8 +783,6 @@ pub use self::__CTGlyphInfo::CTGlyphInfoGetCharacterIdentifier;
 pub use self::__CTGlyphInfo::CTGlyphInfoGetGlyph;
 #[cfg(feature = "CTGlyphInfo")]
 pub use self::__CTGlyphInfo::CTGlyphInfoGetGlyphName;
-#[cfg(feature = "CTGlyphInfo")]
-pub use self::__CTGlyphInfo::CTGlyphInfoGetTypeID;
 #[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLine;
 #[cfg(feature = "CTLine")]
@@ -828,8 +816,6 @@ pub use self::__CTLine::CTLineGetStringRange;
 #[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineGetTrailingWhitespaceWidth;
 #[cfg(feature = "CTLine")]
-pub use self::__CTLine::CTLineGetTypeID;
-#[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineGetTypographicBounds;
 #[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineTruncationType;
@@ -841,8 +827,6 @@ pub use self::__CTParagraphStyle::CTParagraphStyle;
 pub use self::__CTParagraphStyle::CTParagraphStyleCreate;
 #[cfg(feature = "CTParagraphStyle")]
 pub use self::__CTParagraphStyle::CTParagraphStyleCreateCopy;
-#[cfg(feature = "CTParagraphStyle")]
-pub use self::__CTParagraphStyle::CTParagraphStyleGetTypeID;
 #[cfg(feature = "CTParagraphStyle")]
 pub use self::__CTParagraphStyle::CTParagraphStyleGetValueForSpecifier;
 #[cfg(feature = "CTParagraphStyle")]
@@ -873,8 +857,6 @@ pub use self::__CTRubyAnnotation::CTRubyAnnotationGetOverhang;
 pub use self::__CTRubyAnnotation::CTRubyAnnotationGetSizeFactor;
 #[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAnnotationGetTextForPosition;
-#[cfg(feature = "CTRubyAnnotation")]
-pub use self::__CTRubyAnnotation::CTRubyAnnotationGetTypeID;
 #[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyOverhang;
 #[cfg(feature = "CTRubyAnnotation")]
@@ -914,8 +896,6 @@ pub use self::__CTRun::CTRunGetStringRange;
 #[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunGetTextMatrix;
 #[cfg(feature = "CTRun")]
-pub use self::__CTRun::CTRunGetTypeID;
-#[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunGetTypographicBounds;
 #[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunStatus;
@@ -939,8 +919,6 @@ pub use self::__CTRunDelegate::CTRunDelegateGetAscentCallback;
 pub use self::__CTRunDelegate::CTRunDelegateGetDescentCallback;
 #[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateGetRefCon;
-#[cfg(feature = "CTRunDelegate")]
-pub use self::__CTRunDelegate::CTRunDelegateGetTypeID;
 #[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateGetWidthCallback;
 #[cfg(feature = "CTStringAttributes")]
@@ -1015,8 +993,6 @@ pub use self::__CTTextTab::CTTextTabGetAlignment;
 pub use self::__CTTextTab::CTTextTabGetLocation;
 #[cfg(feature = "CTTextTab")]
 pub use self::__CTTextTab::CTTextTabGetOptions;
-#[cfg(feature = "CTTextTab")]
-pub use self::__CTTextTab::CTTextTabGetTypeID;
 #[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::kCTTypesetterOptionAllowUnboundedLayout;
 #[cfg(feature = "CTTypesetter")]
@@ -1033,8 +1009,6 @@ pub use self::__CTTypesetter::CTTypesetterCreateLineWithOffset;
 pub use self::__CTTypesetter::CTTypesetterCreateWithAttributedString;
 #[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::CTTypesetterCreateWithAttributedStringAndOptions;
-#[cfg(feature = "CTTypesetter")]
-pub use self::__CTTypesetter::CTTypesetterGetTypeID;
 #[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::CTTypesetterSuggestClusterBreak;
 #[cfg(feature = "CTTypesetter")]

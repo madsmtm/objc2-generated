@@ -7,9 +7,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFTimeZoneGetTypeID() -> CFTypeID;
+#[cfg(all(feature = "CFBase", feature = "CFDate"))]
+unsafe impl ConcreteType for CFTimeZone {
+    #[doc(alias = "CFTimeZoneGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CFTimeZoneGetTypeID() -> CFTypeID;
+        }
+        unsafe { CFTimeZoneGetTypeID() }
+    }
 }
 
 #[cfg(feature = "CFDate")]

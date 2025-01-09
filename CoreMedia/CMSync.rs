@@ -91,9 +91,16 @@ pub const kCMSyncError_AllocationFailed: OSStatus = -12754;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsyncerror_ratemustbenonzero?language=objc)
 pub const kCMSyncError_RateMustBeNonZero: OSStatus = -12755;
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CMClock {
     /// Returns the CFTypeID for CMClock.
-    pub fn CMClockGetTypeID() -> CFTypeID;
+    #[doc(alias = "CMClockGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CMClockGetTypeID() -> CFTypeID;
+        }
+        unsafe { CMClockGetTypeID() }
+    }
 }
 
 /// Returns a reference to the singleton clock logically identified with host time.
@@ -163,9 +170,16 @@ extern "C-unwind" {
     pub fn CMClockInvalidate(clock: &CMClock);
 }
 
-extern "C-unwind" {
+unsafe impl ConcreteType for CMTimebase {
     /// Returns the CFTypeID for CMTimebase.
-    pub fn CMTimebaseGetTypeID() -> CFTypeID;
+    #[doc(alias = "CMTimebaseGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CMTimebaseGetTypeID() -> CFTypeID;
+        }
+        unsafe { CMTimebaseGetTypeID() }
+    }
 }
 
 extern "C-unwind" {

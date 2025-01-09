@@ -160,8 +160,15 @@ pub static kCGBitmapByteOrder16Host: CGBitmapInfo = CGBitmapInfo(CGBitmapInfo::B
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgbitmapbyteorder32host?language=objc)
 pub static kCGBitmapByteOrder32Host: CGBitmapInfo = CGBitmapInfo(CGBitmapInfo::ByteOrder32Little.0);
 
-extern "C-unwind" {
-    pub fn CGImageGetTypeID() -> CFTypeID;
+unsafe impl ConcreteType for CGImage {
+    #[doc(alias = "CGImageGetTypeID")]
+    #[inline]
+    fn type_id() -> CFTypeID {
+        extern "C-unwind" {
+            fn CGImageGetTypeID() -> CFTypeID;
+        }
+        unsafe { CGImageGetTypeID() }
+    }
 }
 
 #[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
