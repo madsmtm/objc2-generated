@@ -405,17 +405,17 @@ pub unsafe extern "C-unwind" fn CFXMLNodeCreateCopy(
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-    pub fn CFXMLNodeGetTypeCode(node: Option<&CFXMLNode>) -> CFXMLNodeTypeCode;
+    pub fn CFXMLNodeGetTypeCode(node: &CFXMLNode) -> CFXMLNodeTypeCode;
 }
 
 #[cfg(feature = "CFBase")]
 #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLNodeGetString(
-    node: Option<&CFXMLNode>,
+    node: &CFXMLNode,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFXMLNodeGetString(node: Option<&CFXMLNode>) -> *mut CFString;
+        fn CFXMLNodeGetString(node: &CFXMLNode) -> *mut CFString;
     }
     let ret = unsafe { CFXMLNodeGetString(node) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
@@ -423,13 +423,13 @@ pub unsafe extern "C-unwind" fn CFXMLNodeGetString(
 
 extern "C-unwind" {
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-    pub fn CFXMLNodeGetInfoPtr(node: Option<&CFXMLNode>) -> *const c_void;
+    pub fn CFXMLNodeGetInfoPtr(node: &CFXMLNode) -> *const c_void;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-    pub fn CFXMLNodeGetVersion(node: Option<&CFXMLNode>) -> CFIndex;
+    pub fn CFXMLNodeGetVersion(node: &CFXMLNode) -> CFIndex;
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFTree"))]
@@ -453,10 +453,10 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateWithNode(
 #[deprecated = "CFXMLNode is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFXMLTreeGetNode(
-    xml_tree: Option<&CFXMLTree>,
+    xml_tree: &CFXMLTree,
 ) -> Option<CFRetained<CFXMLNode>> {
     extern "C-unwind" {
-        fn CFXMLTreeGetNode(xml_tree: Option<&CFXMLTree>) -> *mut CFXMLNode;
+        fn CFXMLTreeGetNode(xml_tree: &CFXMLTree) -> *mut CFXMLNode;
     }
     let ret = unsafe { CFXMLTreeGetNode(xml_tree) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })

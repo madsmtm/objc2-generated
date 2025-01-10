@@ -142,22 +142,22 @@ unsafe impl RefEncode for CFURLEnumeratorResult {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFError", feature = "CFURL"))]
     pub fn CFURLEnumeratorGetNextURL(
-        enumerator: Option<&CFURLEnumerator>,
+        enumerator: &CFURLEnumerator,
         url: *mut *mut CFURL,
         error: *mut *mut CFError,
     ) -> CFURLEnumeratorResult;
 }
 
 extern "C-unwind" {
-    pub fn CFURLEnumeratorSkipDescendents(enumerator: Option<&CFURLEnumerator>);
+    pub fn CFURLEnumeratorSkipDescendents(enumerator: &CFURLEnumerator);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFURLEnumeratorGetDescendentLevel(enumerator: Option<&CFURLEnumerator>) -> CFIndex;
+    pub fn CFURLEnumeratorGetDescendentLevel(enumerator: &CFURLEnumerator) -> CFIndex;
 }
 
 extern "C-unwind" {
     #[deprecated = "Use File System Events API instead"]
-    pub fn CFURLEnumeratorGetSourceDidChange(enumerator: Option<&CFURLEnumerator>) -> Boolean;
+    pub fn CFURLEnumeratorGetSourceDidChange(enumerator: &CFURLEnumerator) -> Boolean;
 }

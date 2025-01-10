@@ -266,7 +266,7 @@ extern "C-unwind" {
     /// Parameter `theOtherset`: The character set to be checked whether or not it is a subset of theSet.
     /// If this parameter is not a valid CFCharacterSet, the behavior is undefined.
     pub fn CFCharacterSetIsSupersetOfSet(
-        the_set: Option<&CFCharacterSet>,
+        the_set: &CFCharacterSet,
         the_otherset: Option<&CFCharacterSet>,
     ) -> Boolean;
 }
@@ -281,10 +281,7 @@ extern "C-unwind" {
     /// The valid value range is from 0 to 16.  If the value is outside of the valid
     /// plane number range, the behavior is undefined.
     #[cfg(feature = "CFBase")]
-    pub fn CFCharacterSetHasMemberInPlane(
-        the_set: Option<&CFCharacterSet>,
-        the_plane: CFIndex,
-    ) -> Boolean;
+    pub fn CFCharacterSetHasMemberInPlane(the_set: &CFCharacterSet, the_plane: CFIndex) -> Boolean;
 }
 
 /// Creates a new empty mutable character set.
@@ -378,10 +375,7 @@ extern "C-unwind" {
     /// non-BMP planes.
     ///
     /// Returns: true, if the value is in the character set, otherwise false.
-    pub fn CFCharacterSetIsCharacterMember(
-        the_set: Option<&CFCharacterSet>,
-        the_char: UniChar,
-    ) -> Boolean;
+    pub fn CFCharacterSetIsCharacterMember(the_set: &CFCharacterSet, the_char: UniChar) -> Boolean;
 }
 
 extern "C-unwind" {
@@ -395,7 +389,7 @@ extern "C-unwind" {
     ///
     /// Returns: true, if the value is in the character set, otherwise false.
     pub fn CFCharacterSetIsLongCharacterMember(
-        the_set: Option<&CFCharacterSet>,
+        the_set: &CFCharacterSet,
         the_char: UTF32Char,
     ) -> Boolean;
 }

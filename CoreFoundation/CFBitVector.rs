@@ -116,53 +116,38 @@ pub unsafe extern "C-unwind" fn CFBitVectorCreateMutableCopy(
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorGetCount(bv: Option<&CFBitVector>) -> CFIndex;
+    pub fn CFBitVectorGetCount(bv: &CFBitVector) -> CFIndex;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorGetCountOfBit(
-        bv: Option<&CFBitVector>,
-        range: CFRange,
-        value: CFBit,
-    ) -> CFIndex;
+    pub fn CFBitVectorGetCountOfBit(bv: &CFBitVector, range: CFRange, value: CFBit) -> CFIndex;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorContainsBit(
-        bv: Option<&CFBitVector>,
-        range: CFRange,
-        value: CFBit,
-    ) -> Boolean;
+    pub fn CFBitVectorContainsBit(bv: &CFBitVector, range: CFRange, value: CFBit) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorGetBitAtIndex(bv: Option<&CFBitVector>, idx: CFIndex) -> CFBit;
+    pub fn CFBitVectorGetBitAtIndex(bv: &CFBitVector, idx: CFIndex) -> CFBit;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorGetBits(bv: Option<&CFBitVector>, range: CFRange, bytes: *mut u8);
+    pub fn CFBitVectorGetBits(bv: &CFBitVector, range: CFRange, bytes: *mut u8);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorGetFirstIndexOfBit(
-        bv: Option<&CFBitVector>,
-        range: CFRange,
-        value: CFBit,
-    ) -> CFIndex;
+    pub fn CFBitVectorGetFirstIndexOfBit(bv: &CFBitVector, range: CFRange, value: CFBit)
+        -> CFIndex;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorGetLastIndexOfBit(
-        bv: Option<&CFBitVector>,
-        range: CFRange,
-        value: CFBit,
-    ) -> CFIndex;
+    pub fn CFBitVectorGetLastIndexOfBit(bv: &CFBitVector, range: CFRange, value: CFBit) -> CFIndex;
 }
 
 extern "C-unwind" {

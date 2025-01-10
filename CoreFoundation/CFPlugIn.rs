@@ -81,10 +81,10 @@ pub unsafe extern "C-unwind" fn CFPlugInCreate(
 #[cfg(feature = "CFBundle")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPlugInGetBundle(
-    plug_in: Option<&CFPlugIn>,
+    plug_in: &CFPlugIn,
 ) -> Option<CFRetained<CFBundle>> {
     extern "C-unwind" {
-        fn CFPlugInGetBundle(plug_in: Option<&CFPlugIn>) -> *mut CFBundle;
+        fn CFPlugInGetBundle(plug_in: &CFPlugIn) -> *mut CFBundle;
     }
     let ret = unsafe { CFPlugInGetBundle(plug_in) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
@@ -92,12 +92,12 @@ pub unsafe extern "C-unwind" fn CFPlugInGetBundle(
 
 extern "C-unwind" {
     #[cfg(feature = "CFBundle")]
-    pub fn CFPlugInSetLoadOnDemand(plug_in: Option<&CFPlugIn>, flag: Boolean);
+    pub fn CFPlugInSetLoadOnDemand(plug_in: &CFPlugIn, flag: Boolean);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBundle")]
-    pub fn CFPlugInIsLoadOnDemand(plug_in: Option<&CFPlugIn>) -> Boolean;
+    pub fn CFPlugInIsLoadOnDemand(plug_in: &CFPlugIn) -> Boolean;
 }
 
 #[cfg(all(feature = "CFArray", feature = "CFUUID"))]
@@ -210,7 +210,7 @@ pub type CFPlugInInstanceDeallocateInstanceDataFunction =
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFPlugInInstanceGetInterfaceFunctionTable(
-        instance: Option<&CFPlugInInstance>,
+        instance: &CFPlugInInstance,
         interface_name: Option<&CFString>,
         ftbl: *mut *mut c_void,
     ) -> Boolean;
@@ -219,17 +219,17 @@ extern "C-unwind" {
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPlugInInstanceGetFactoryName(
-    instance: Option<&CFPlugInInstance>,
+    instance: &CFPlugInInstance,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFPlugInInstanceGetFactoryName(instance: Option<&CFPlugInInstance>) -> *mut CFString;
+        fn CFPlugInInstanceGetFactoryName(instance: &CFPlugInInstance) -> *mut CFString;
     }
     let ret = unsafe { CFPlugInInstanceGetFactoryName(instance) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
-    pub fn CFPlugInInstanceGetInstanceData(instance: Option<&CFPlugInInstance>) -> *mut c_void;
+    pub fn CFPlugInInstanceGetInstanceData(instance: &CFPlugInInstance) -> *mut c_void;
 }
 
 #[cfg(feature = "CFBase")]

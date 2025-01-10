@@ -533,7 +533,7 @@ extern "C-unwind" {
     ///
     /// Returns: The number of values in the dictionary.
     #[cfg(feature = "CFBase")]
-    pub fn CFDictionaryGetCount(the_dict: Option<&CFDictionary>) -> CFIndex;
+    pub fn CFDictionaryGetCount(the_dict: &CFDictionary) -> CFIndex;
 }
 
 extern "C-unwind" {
@@ -554,10 +554,7 @@ extern "C-unwind" {
     /// Returns: Returns 1 if a matching key is used by the dictionary,
     /// 0 otherwise.
     #[cfg(feature = "CFBase")]
-    pub fn CFDictionaryGetCountOfKey(
-        the_dict: Option<&CFDictionary>,
-        key: *const c_void,
-    ) -> CFIndex;
+    pub fn CFDictionaryGetCountOfKey(the_dict: &CFDictionary, key: *const c_void) -> CFIndex;
 }
 
 extern "C-unwind" {
@@ -575,10 +572,7 @@ extern "C-unwind" {
     ///
     /// Returns: The number of times the given value occurs in the dictionary.
     #[cfg(feature = "CFBase")]
-    pub fn CFDictionaryGetCountOfValue(
-        the_dict: Option<&CFDictionary>,
-        value: *const c_void,
-    ) -> CFIndex;
+    pub fn CFDictionaryGetCountOfValue(the_dict: &CFDictionary, value: *const c_void) -> CFIndex;
 }
 
 extern "C-unwind" {
@@ -597,7 +591,7 @@ extern "C-unwind" {
     /// the behavior is undefined.
     ///
     /// Returns: true, if the key is in the dictionary, otherwise false.
-    pub fn CFDictionaryContainsKey(the_dict: Option<&CFDictionary>, key: *const c_void) -> Boolean;
+    pub fn CFDictionaryContainsKey(the_dict: &CFDictionary, key: *const c_void) -> Boolean;
 }
 
 extern "C-unwind" {
@@ -614,10 +608,7 @@ extern "C-unwind" {
     /// the behavior is undefined.
     ///
     /// Returns: true, if the value is in the dictionary, otherwise false.
-    pub fn CFDictionaryContainsValue(
-        the_dict: Option<&CFDictionary>,
-        value: *const c_void,
-    ) -> Boolean;
+    pub fn CFDictionaryContainsValue(the_dict: &CFDictionary, value: *const c_void) -> Boolean;
 }
 
 extern "C-unwind" {
@@ -640,10 +631,7 @@ extern "C-unwind" {
     /// can be a valid value in some dictionaries, the function
     /// CFDictionaryGetValueIfPresent() must be used to distinguish
     /// NULL-no-found from NULL-is-the-value.
-    pub fn CFDictionaryGetValue(
-        the_dict: Option<&CFDictionary>,
-        key: *const c_void,
-    ) -> *const c_void;
+    pub fn CFDictionaryGetValue(the_dict: &CFDictionary, key: *const c_void) -> *const c_void;
 }
 
 extern "C-unwind" {
@@ -671,7 +659,7 @@ extern "C-unwind" {
     ///
     /// Returns: true, if a matching key was found, false otherwise.
     pub fn CFDictionaryGetValueIfPresent(
-        the_dict: Option<&CFDictionary>,
+        the_dict: &CFDictionary,
         key: *const c_void,
         value: *mut *const c_void,
     ) -> Boolean;
@@ -699,7 +687,7 @@ extern "C-unwind" {
     /// pointer to a C array of at least CFDictionaryGetCount() pointers,
     /// or NULL, the behavior is undefined.
     pub fn CFDictionaryGetKeysAndValues(
-        the_dict: Option<&CFDictionary>,
+        the_dict: &CFDictionary,
         keys: *mut *const c_void,
         values: *mut *const c_void,
     );
@@ -724,7 +712,7 @@ extern "C-unwind" {
     /// what is expected by the applier function, the behavior is
     /// undefined.
     pub fn CFDictionaryApplyFunction(
-        the_dict: Option<&CFDictionary>,
+        the_dict: &CFDictionary,
         applier: CFDictionaryApplierFunction,
         context: *mut c_void,
     );

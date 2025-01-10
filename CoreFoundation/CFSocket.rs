@@ -305,33 +305,31 @@ pub unsafe extern "C-unwind" fn CFSocketCreateConnectedToSocketSignature(
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData"))]
-    pub fn CFSocketSetAddress(s: Option<&CFSocket>, address: Option<&CFData>) -> CFSocketError;
+    pub fn CFSocketSetAddress(s: &CFSocket, address: Option<&CFData>) -> CFSocketError;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
     pub fn CFSocketConnectToAddress(
-        s: Option<&CFSocket>,
+        s: &CFSocket,
         address: Option<&CFData>,
         timeout: CFTimeInterval,
     ) -> CFSocketError;
 }
 
 extern "C-unwind" {
-    pub fn CFSocketInvalidate(s: Option<&CFSocket>);
+    pub fn CFSocketInvalidate(s: &CFSocket);
 }
 
 extern "C-unwind" {
-    pub fn CFSocketIsValid(s: Option<&CFSocket>) -> Boolean;
+    pub fn CFSocketIsValid(s: &CFSocket) -> Boolean;
 }
 
 #[cfg(feature = "CFData")]
 #[inline]
-pub unsafe extern "C-unwind" fn CFSocketCopyAddress(
-    s: Option<&CFSocket>,
-) -> Option<CFRetained<CFData>> {
+pub unsafe extern "C-unwind" fn CFSocketCopyAddress(s: &CFSocket) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
-        fn CFSocketCopyAddress(s: Option<&CFSocket>) -> *mut CFData;
+        fn CFSocketCopyAddress(s: &CFSocket) -> *mut CFData;
     }
     let ret = unsafe { CFSocketCopyAddress(s) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -340,10 +338,10 @@ pub unsafe extern "C-unwind" fn CFSocketCopyAddress(
 #[cfg(feature = "CFData")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFSocketCopyPeerAddress(
-    s: Option<&CFSocket>,
+    s: &CFSocket,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
-        fn CFSocketCopyPeerAddress(s: Option<&CFSocket>) -> *mut CFData;
+        fn CFSocketCopyPeerAddress(s: &CFSocket) -> *mut CFData;
     }
     let ret = unsafe { CFSocketCopyPeerAddress(s) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -351,11 +349,11 @@ pub unsafe extern "C-unwind" fn CFSocketCopyPeerAddress(
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFSocketGetContext(s: Option<&CFSocket>, context: *mut CFSocketContext);
+    pub fn CFSocketGetContext(s: &CFSocket, context: *mut CFSocketContext);
 }
 
 extern "C-unwind" {
-    pub fn CFSocketGetNative(s: Option<&CFSocket>) -> CFSocketNativeHandle;
+    pub fn CFSocketGetNative(s: &CFSocket) -> CFSocketNativeHandle;
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]
@@ -378,28 +376,28 @@ pub unsafe extern "C-unwind" fn CFSocketCreateRunLoopSource(
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFSocketGetSocketFlags(s: Option<&CFSocket>) -> CFOptionFlags;
+    pub fn CFSocketGetSocketFlags(s: &CFSocket) -> CFOptionFlags;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFSocketSetSocketFlags(s: Option<&CFSocket>, flags: CFOptionFlags);
+    pub fn CFSocketSetSocketFlags(s: &CFSocket, flags: CFOptionFlags);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFSocketDisableCallBacks(s: Option<&CFSocket>, call_back_types: CFOptionFlags);
+    pub fn CFSocketDisableCallBacks(s: &CFSocket, call_back_types: CFOptionFlags);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFSocketEnableCallBacks(s: Option<&CFSocket>, call_back_types: CFOptionFlags);
+    pub fn CFSocketEnableCallBacks(s: &CFSocket, call_back_types: CFOptionFlags);
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
     pub fn CFSocketSendData(
-        s: Option<&CFSocket>,
+        s: &CFSocket,
         address: Option<&CFData>,
         data: Option<&CFData>,
         timeout: CFTimeInterval,

@@ -187,40 +187,36 @@ pub unsafe extern "C-unwind" fn CFBagCreateMutableCopy(
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBagGetCount(the_bag: Option<&CFBag>) -> CFIndex;
+    pub fn CFBagGetCount(the_bag: &CFBag) -> CFIndex;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFBagGetCountOfValue(the_bag: Option<&CFBag>, value: *const c_void) -> CFIndex;
+    pub fn CFBagGetCountOfValue(the_bag: &CFBag, value: *const c_void) -> CFIndex;
 }
 
 extern "C-unwind" {
-    pub fn CFBagContainsValue(the_bag: Option<&CFBag>, value: *const c_void) -> Boolean;
+    pub fn CFBagContainsValue(the_bag: &CFBag, value: *const c_void) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFBagGetValue(the_bag: Option<&CFBag>, value: *const c_void) -> *const c_void;
+    pub fn CFBagGetValue(the_bag: &CFBag, value: *const c_void) -> *const c_void;
 }
 
 extern "C-unwind" {
     pub fn CFBagGetValueIfPresent(
-        the_bag: Option<&CFBag>,
+        the_bag: &CFBag,
         candidate: *const c_void,
         value: *mut *const c_void,
     ) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFBagGetValues(the_bag: Option<&CFBag>, values: *mut *const c_void);
+    pub fn CFBagGetValues(the_bag: &CFBag, values: *mut *const c_void);
 }
 
 extern "C-unwind" {
-    pub fn CFBagApplyFunction(
-        the_bag: Option<&CFBag>,
-        applier: CFBagApplierFunction,
-        context: *mut c_void,
-    );
+    pub fn CFBagApplyFunction(the_bag: &CFBag, applier: CFBagApplierFunction, context: *mut c_void);
 }
 
 extern "C-unwind" {

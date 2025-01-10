@@ -67,12 +67,12 @@ pub unsafe extern "C-unwind" fn CFDateCreate(
 }
 
 extern "C-unwind" {
-    pub fn CFDateGetAbsoluteTime(the_date: Option<&CFDate>) -> CFAbsoluteTime;
+    pub fn CFDateGetAbsoluteTime(the_date: &CFDate) -> CFAbsoluteTime;
 }
 
 extern "C-unwind" {
     pub fn CFDateGetTimeIntervalSinceDate(
-        the_date: Option<&CFDate>,
+        the_date: &CFDate,
         other_date: Option<&CFDate>,
     ) -> CFTimeInterval;
 }
@@ -80,7 +80,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFDateCompare(
-        the_date: Option<&CFDate>,
+        the_date: &CFDate,
         other_date: Option<&CFDate>,
         context: *mut c_void,
     ) -> CFComparisonResult;

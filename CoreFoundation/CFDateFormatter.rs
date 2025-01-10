@@ -178,10 +178,10 @@ pub unsafe extern "C-unwind" fn CFDateFormatterCreate(
 #[cfg(feature = "CFLocale")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDateFormatterGetLocale(
-    formatter: Option<&CFDateFormatter>,
+    formatter: &CFDateFormatter,
 ) -> Option<CFRetained<CFLocale>> {
     extern "C-unwind" {
-        fn CFDateFormatterGetLocale(formatter: Option<&CFDateFormatter>) -> *mut CFLocale;
+        fn CFDateFormatterGetLocale(formatter: &CFDateFormatter) -> *mut CFLocale;
     }
     let ret = unsafe { CFDateFormatterGetLocale(formatter) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
@@ -189,23 +189,21 @@ pub unsafe extern "C-unwind" fn CFDateFormatterGetLocale(
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDateFormatterGetDateStyle(formatter: Option<&CFDateFormatter>)
-        -> CFDateFormatterStyle;
+    pub fn CFDateFormatterGetDateStyle(formatter: &CFDateFormatter) -> CFDateFormatterStyle;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDateFormatterGetTimeStyle(formatter: Option<&CFDateFormatter>)
-        -> CFDateFormatterStyle;
+    pub fn CFDateFormatterGetTimeStyle(formatter: &CFDateFormatter) -> CFDateFormatterStyle;
 }
 
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDateFormatterGetFormat(
-    formatter: Option<&CFDateFormatter>,
+    formatter: &CFDateFormatter,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFDateFormatterGetFormat(formatter: Option<&CFDateFormatter>) -> *mut CFString;
+        fn CFDateFormatterGetFormat(formatter: &CFDateFormatter) -> *mut CFString;
     }
     let ret = unsafe { CFDateFormatterGetFormat(formatter) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
@@ -213,10 +211,7 @@ pub unsafe extern "C-unwind" fn CFDateFormatterGetFormat(
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDateFormatterSetFormat(
-        formatter: Option<&CFDateFormatter>,
-        format_string: Option<&CFString>,
-    );
+    pub fn CFDateFormatterSetFormat(formatter: &CFDateFormatter, format_string: Option<&CFString>);
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFDate"))]
@@ -278,7 +273,7 @@ pub unsafe extern "C-unwind" fn CFDateFormatterCreateDateFromString(
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDate"))]
     pub fn CFDateFormatterGetAbsoluteTimeFromString(
-        formatter: Option<&CFDateFormatter>,
+        formatter: &CFDateFormatter,
         string: Option<&CFString>,
         rangep: *mut CFRange,
         atp: *mut CFAbsoluteTime,
@@ -288,7 +283,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFDateFormatterSetProperty(
-        formatter: Option<&CFDateFormatter>,
+        formatter: &CFDateFormatter,
         key: Option<&CFString>,
         value: Option<&CFType>,
     );
@@ -297,12 +292,12 @@ extern "C-unwind" {
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFDateFormatterCopyProperty(
-    formatter: Option<&CFDateFormatter>,
+    formatter: &CFDateFormatter,
     key: Option<&CFDateFormatterKey>,
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
         fn CFDateFormatterCopyProperty(
-            formatter: Option<&CFDateFormatter>,
+            formatter: &CFDateFormatter,
             key: Option<&CFDateFormatterKey>,
         ) -> *mut CFType;
     }

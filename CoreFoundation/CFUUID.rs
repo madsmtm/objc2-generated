@@ -229,7 +229,7 @@ pub unsafe extern "C-unwind" fn CFUUIDGetConstantUUIDWithBytes(
 }
 
 extern "C-unwind" {
-    pub fn CFUUIDGetUUIDBytes(uuid: Option<&CFUUID>) -> CFUUIDBytes;
+    pub fn CFUUIDGetUUIDBytes(uuid: &CFUUID) -> CFUUIDBytes;
 }
 
 #[cfg(feature = "CFBase")]

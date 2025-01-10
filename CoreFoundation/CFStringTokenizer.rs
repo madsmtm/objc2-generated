@@ -26,12 +26,12 @@ use crate::*;
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFStringTokenizerCopyBestStringLanguage(
-    string: Option<&CFString>,
+    string: &CFString,
     range: CFRange,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn CFStringTokenizerCopyBestStringLanguage(
-            string: Option<&CFString>,
+            string: &CFString,
             range: CFRange,
         ) -> *mut CFString;
     }
@@ -228,7 +228,7 @@ extern "C-unwind" {
     /// specified range must not exceed the length of the string.
     #[cfg(feature = "CFBase")]
     pub fn CFStringTokenizerSetString(
-        tokenizer: Option<&CFStringTokenizer>,
+        tokenizer: &CFStringTokenizer,
         string: Option<&CFString>,
         range: CFRange,
     );
@@ -253,7 +253,7 @@ extern "C-unwind" {
     /// (or) derived subtokens can be obtained by calling CFStringTokenizerGetCurrentSubTokens.
     #[cfg(feature = "CFBase")]
     pub fn CFStringTokenizerGoToTokenAtIndex(
-        tokenizer: Option<&CFStringTokenizer>,
+        tokenizer: &CFStringTokenizer,
         index: CFIndex,
     ) -> CFStringTokenizerTokenType;
 }
@@ -282,7 +282,7 @@ extern "C-unwind" {
     /// (or) derived subtokens can be obtained by calling CFStringTokenizerGetCurrentSubTokens.
     #[cfg(feature = "CFBase")]
     pub fn CFStringTokenizerAdvanceToNextToken(
-        tokenizer: Option<&CFStringTokenizer>,
+        tokenizer: &CFStringTokenizer,
     ) -> CFStringTokenizerTokenType;
 }
 
@@ -294,7 +294,7 @@ extern "C-unwind" {
     ///
     /// Returns: Range of current token, or {kCFNotFound,0} if there is no current token.
     #[cfg(feature = "CFBase")]
-    pub fn CFStringTokenizerGetCurrentTokenRange(tokenizer: Option<&CFStringTokenizer>) -> CFRange;
+    pub fn CFStringTokenizerGetCurrentTokenRange(tokenizer: &CFStringTokenizer) -> CFRange;
 }
 
 /// Copies the specified attribute of current token.
@@ -311,12 +311,12 @@ extern "C-unwind" {
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFStringTokenizerCopyCurrentTokenAttribute(
-    tokenizer: Option<&CFStringTokenizer>,
+    tokenizer: &CFStringTokenizer,
     attribute: CFOptionFlags,
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
         fn CFStringTokenizerCopyCurrentTokenAttribute(
-            tokenizer: Option<&CFStringTokenizer>,
+            tokenizer: &CFStringTokenizer,
             attribute: CFOptionFlags,
         ) -> *mut CFType;
     }
@@ -354,7 +354,7 @@ extern "C-unwind" {
     /// the ordinary non-derived subtokens are added to the derivedSubTokens array.
     #[cfg(all(feature = "CFArray", feature = "CFBase"))]
     pub fn CFStringTokenizerGetCurrentSubTokens(
-        tokenizer: Option<&CFStringTokenizer>,
+        tokenizer: &CFStringTokenizer,
         ranges: *mut CFRange,
         max_range_length: CFIndex,
         derived_sub_tokens: Option<&CFMutableArray>,

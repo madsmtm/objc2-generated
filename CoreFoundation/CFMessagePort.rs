@@ -127,16 +127,16 @@ pub unsafe extern "C-unwind" fn CFMessagePortCreateRemote(
 }
 
 extern "C-unwind" {
-    pub fn CFMessagePortIsRemote(ms: Option<&CFMessagePort>) -> Boolean;
+    pub fn CFMessagePortIsRemote(ms: &CFMessagePort) -> Boolean;
 }
 
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFMessagePortGetName(
-    ms: Option<&CFMessagePort>,
+    ms: &CFMessagePort,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFMessagePortGetName(ms: Option<&CFMessagePort>) -> *mut CFString;
+        fn CFMessagePortGetName(ms: &CFMessagePort) -> *mut CFString;
     }
     let ret = unsafe { CFMessagePortGetName(ms) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
@@ -144,32 +144,31 @@ pub unsafe extern "C-unwind" fn CFMessagePortGetName(
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFMessagePortSetName(ms: Option<&CFMessagePort>, new_name: Option<&CFString>)
-        -> Boolean;
+    pub fn CFMessagePortSetName(ms: &CFMessagePort, new_name: Option<&CFString>) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFMessagePortGetContext(ms: Option<&CFMessagePort>, context: *mut CFMessagePortContext);
+    pub fn CFMessagePortGetContext(ms: &CFMessagePort, context: *mut CFMessagePortContext);
 }
 
 extern "C-unwind" {
-    pub fn CFMessagePortInvalidate(ms: Option<&CFMessagePort>);
+    pub fn CFMessagePortInvalidate(ms: &CFMessagePort);
 }
 
 extern "C-unwind" {
-    pub fn CFMessagePortIsValid(ms: Option<&CFMessagePort>) -> Boolean;
+    pub fn CFMessagePortIsValid(ms: &CFMessagePort) -> Boolean;
 }
 
 extern "C-unwind" {
     pub fn CFMessagePortGetInvalidationCallBack(
-        ms: Option<&CFMessagePort>,
+        ms: &CFMessagePort,
     ) -> CFMessagePortInvalidationCallBack;
 }
 
 extern "C-unwind" {
     pub fn CFMessagePortSetInvalidationCallBack(
-        ms: Option<&CFMessagePort>,
+        ms: &CFMessagePort,
         callout: CFMessagePortInvalidationCallBack,
     );
 }
@@ -177,7 +176,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
     pub fn CFMessagePortSendRequest(
-        remote: Option<&CFMessagePort>,
+        remote: &CFMessagePort,
         msgid: i32,
         data: Option<&CFData>,
         send_timeout: CFTimeInterval,

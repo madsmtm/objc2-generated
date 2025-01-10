@@ -99,10 +99,10 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterCreate(
 #[cfg(feature = "CFLocale")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNumberFormatterGetLocale(
-    formatter: Option<&CFNumberFormatter>,
+    formatter: &CFNumberFormatter,
 ) -> Option<CFRetained<CFLocale>> {
     extern "C-unwind" {
-        fn CFNumberFormatterGetLocale(formatter: Option<&CFNumberFormatter>) -> *mut CFLocale;
+        fn CFNumberFormatterGetLocale(formatter: &CFNumberFormatter) -> *mut CFLocale;
     }
     let ret = unsafe { CFNumberFormatterGetLocale(formatter) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
@@ -110,18 +110,16 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterGetLocale(
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFNumberFormatterGetStyle(
-        formatter: Option<&CFNumberFormatter>,
-    ) -> CFNumberFormatterStyle;
+    pub fn CFNumberFormatterGetStyle(formatter: &CFNumberFormatter) -> CFNumberFormatterStyle;
 }
 
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNumberFormatterGetFormat(
-    formatter: Option<&CFNumberFormatter>,
+    formatter: &CFNumberFormatter,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFNumberFormatterGetFormat(formatter: Option<&CFNumberFormatter>) -> *mut CFString;
+        fn CFNumberFormatterGetFormat(formatter: &CFNumberFormatter) -> *mut CFString;
     }
     let ret = unsafe { CFNumberFormatterGetFormat(formatter) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
@@ -130,7 +128,7 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterGetFormat(
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFNumberFormatterSetFormat(
-        formatter: Option<&CFNumberFormatter>,
+        formatter: &CFNumberFormatter,
         format_string: Option<&CFString>,
     );
 }
@@ -226,7 +224,7 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterCreateNumberFromString(
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFNumber"))]
     pub fn CFNumberFormatterGetValueFromString(
-        formatter: Option<&CFNumberFormatter>,
+        formatter: &CFNumberFormatter,
         string: Option<&CFString>,
         rangep: *mut CFRange,
         number_type: CFNumberType,
@@ -237,7 +235,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFNumberFormatterSetProperty(
-        formatter: Option<&CFNumberFormatter>,
+        formatter: &CFNumberFormatter,
         key: Option<&CFNumberFormatterKey>,
         value: Option<&CFType>,
     );
@@ -246,12 +244,12 @@ extern "C-unwind" {
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFNumberFormatterCopyProperty(
-    formatter: Option<&CFNumberFormatter>,
+    formatter: &CFNumberFormatter,
     key: Option<&CFNumberFormatterKey>,
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
         fn CFNumberFormatterCopyProperty(
-            formatter: Option<&CFNumberFormatter>,
+            formatter: &CFNumberFormatter,
             key: Option<&CFNumberFormatterKey>,
         ) -> *mut CFType;
     }

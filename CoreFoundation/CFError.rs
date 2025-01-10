@@ -201,10 +201,10 @@ pub unsafe extern "C-unwind" fn CFErrorCreateWithUserInfoKeysAndValues(
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFErrorGetDomain(
-    err: Option<&CFError>,
+    err: &CFError,
 ) -> Option<CFRetained<CFErrorDomain>> {
     extern "C-unwind" {
-        fn CFErrorGetDomain(err: Option<&CFError>) -> *mut CFErrorDomain;
+        fn CFErrorGetDomain(err: &CFError) -> *mut CFErrorDomain;
     }
     let ret = unsafe { CFErrorGetDomain(err) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
@@ -217,7 +217,7 @@ extern "C-unwind" {
     ///
     /// Returns: The error code of the CFError (not an error return for the current call).
     #[cfg(feature = "CFBase")]
-    pub fn CFErrorGetCode(err: Option<&CFError>) -> CFIndex;
+    pub fn CFErrorGetCode(err: &CFError) -> CFIndex;
 }
 
 /// Returns CFError userInfo dictionary.
@@ -230,10 +230,10 @@ extern "C-unwind" {
 #[cfg(feature = "CFDictionary")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFErrorCopyUserInfo(
-    err: Option<&CFError>,
+    err: &CFError,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn CFErrorCopyUserInfo(err: Option<&CFError>) -> *mut CFDictionary;
+        fn CFErrorCopyUserInfo(err: &CFError) -> *mut CFDictionary;
     }
     let ret = unsafe { CFErrorCopyUserInfo(err) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -254,10 +254,10 @@ pub unsafe extern "C-unwind" fn CFErrorCopyUserInfo(
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFErrorCopyDescription(
-    err: Option<&CFError>,
+    err: &CFError,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFErrorCopyDescription(err: Option<&CFError>) -> *mut CFString;
+        fn CFErrorCopyDescription(err: &CFError) -> *mut CFString;
     }
     let ret = unsafe { CFErrorCopyDescription(err) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -275,10 +275,10 @@ pub unsafe extern "C-unwind" fn CFErrorCopyDescription(
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFErrorCopyFailureReason(
-    err: Option<&CFError>,
+    err: &CFError,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFErrorCopyFailureReason(err: Option<&CFError>) -> *mut CFString;
+        fn CFErrorCopyFailureReason(err: &CFError) -> *mut CFString;
     }
     let ret = unsafe { CFErrorCopyFailureReason(err) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -296,10 +296,10 @@ pub unsafe extern "C-unwind" fn CFErrorCopyFailureReason(
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFErrorCopyRecoverySuggestion(
-    err: Option<&CFError>,
+    err: &CFError,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFErrorCopyRecoverySuggestion(err: Option<&CFError>) -> *mut CFString;
+        fn CFErrorCopyRecoverySuggestion(err: &CFError) -> *mut CFString;
     }
     let ret = unsafe { CFErrorCopyRecoverySuggestion(err) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })

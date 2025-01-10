@@ -169,10 +169,10 @@ pub unsafe extern "C-unwind" fn CFRunLoopGetMain() -> Option<CFRetained<CFRunLoo
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFRunLoopCopyCurrentMode(
-    rl: Option<&CFRunLoop>,
+    rl: &CFRunLoop,
 ) -> Option<CFRetained<CFRunLoopMode>> {
     extern "C-unwind" {
-        fn CFRunLoopCopyCurrentMode(rl: Option<&CFRunLoop>) -> *mut CFRunLoopMode;
+        fn CFRunLoopCopyCurrentMode(rl: &CFRunLoop) -> *mut CFRunLoopMode;
     }
     let ret = unsafe { CFRunLoopCopyCurrentMode(rl) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -181,10 +181,10 @@ pub unsafe extern "C-unwind" fn CFRunLoopCopyCurrentMode(
 #[cfg(feature = "CFArray")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFRunLoopCopyAllModes(
-    rl: Option<&CFRunLoop>,
+    rl: &CFRunLoop,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CFRunLoopCopyAllModes(rl: Option<&CFRunLoop>) -> *mut CFArray;
+        fn CFRunLoopCopyAllModes(rl: &CFRunLoop) -> *mut CFArray;
     }
     let ret = unsafe { CFRunLoopCopyAllModes(rl) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -192,13 +192,13 @@ pub unsafe extern "C-unwind" fn CFRunLoopCopyAllModes(
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFRunLoopAddCommonMode(rl: Option<&CFRunLoop>, mode: Option<&CFRunLoopMode>);
+    pub fn CFRunLoopAddCommonMode(rl: &CFRunLoop, mode: Option<&CFRunLoopMode>);
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDate"))]
     pub fn CFRunLoopGetNextTimerFireDate(
-        rl: Option<&CFRunLoop>,
+        rl: &CFRunLoop,
         mode: Option<&CFRunLoopMode>,
     ) -> CFAbsoluteTime;
 }
@@ -217,21 +217,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CFRunLoopIsWaiting(rl: Option<&CFRunLoop>) -> Boolean;
+    pub fn CFRunLoopIsWaiting(rl: &CFRunLoop) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFRunLoopWakeUp(rl: Option<&CFRunLoop>);
+    pub fn CFRunLoopWakeUp(rl: &CFRunLoop);
 }
 
 extern "C-unwind" {
-    pub fn CFRunLoopStop(rl: Option<&CFRunLoop>);
+    pub fn CFRunLoopStop(rl: &CFRunLoop);
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "block2"))]
     pub fn CFRunLoopPerformBlock(
-        rl: Option<&CFRunLoop>,
+        rl: &CFRunLoop,
         mode: Option<&CFType>,
         block: Option<&block2::Block<dyn Fn()>>,
     );
@@ -240,7 +240,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFRunLoopContainsSource(
-        rl: Option<&CFRunLoop>,
+        rl: &CFRunLoop,
         source: Option<&CFRunLoopSource>,
         mode: Option<&CFRunLoopMode>,
     ) -> Boolean;
@@ -249,7 +249,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFRunLoopAddSource(
-        rl: Option<&CFRunLoop>,
+        rl: &CFRunLoop,
         source: Option<&CFRunLoopSource>,
         mode: Option<&CFRunLoopMode>,
     );
@@ -258,7 +258,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFRunLoopRemoveSource(
-        rl: Option<&CFRunLoop>,
+        rl: &CFRunLoop,
         source: Option<&CFRunLoopSource>,
         mode: Option<&CFRunLoopMode>,
     );
@@ -267,7 +267,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFRunLoopContainsObserver(
-        rl: Option<&CFRunLoop>,
+        rl: &CFRunLoop,
         observer: Option<&CFRunLoopObserver>,
         mode: Option<&CFRunLoopMode>,
     ) -> Boolean;
@@ -276,7 +276,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFRunLoopAddObserver(
-        rl: Option<&CFRunLoop>,
+        rl: &CFRunLoop,
         observer: Option<&CFRunLoopObserver>,
         mode: Option<&CFRunLoopMode>,
     );
@@ -285,7 +285,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFRunLoopRemoveObserver(
-        rl: Option<&CFRunLoop>,
+        rl: &CFRunLoop,
         observer: Option<&CFRunLoopObserver>,
         mode: Option<&CFRunLoopMode>,
     );
@@ -294,7 +294,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFRunLoopContainsTimer(
-        rl: Option<&CFRunLoop>,
+        rl: &CFRunLoop,
         timer: Option<&CFRunLoopTimer>,
         mode: Option<&CFRunLoopMode>,
     ) -> Boolean;
@@ -303,7 +303,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFRunLoopAddTimer(
-        rl: Option<&CFRunLoop>,
+        rl: &CFRunLoop,
         timer: Option<&CFRunLoopTimer>,
         mode: Option<&CFRunLoopMode>,
     );
@@ -312,7 +312,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFRunLoopRemoveTimer(
-        rl: Option<&CFRunLoop>,
+        rl: &CFRunLoop,
         timer: Option<&CFRunLoopTimer>,
         mode: Option<&CFRunLoopMode>,
     );
@@ -412,27 +412,27 @@ pub unsafe extern "C-unwind" fn CFRunLoopSourceCreate(
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFRunLoopSourceGetOrder(source: Option<&CFRunLoopSource>) -> CFIndex;
+    pub fn CFRunLoopSourceGetOrder(source: &CFRunLoopSource) -> CFIndex;
 }
 
 extern "C-unwind" {
-    pub fn CFRunLoopSourceInvalidate(source: Option<&CFRunLoopSource>);
+    pub fn CFRunLoopSourceInvalidate(source: &CFRunLoopSource);
 }
 
 extern "C-unwind" {
-    pub fn CFRunLoopSourceIsValid(source: Option<&CFRunLoopSource>) -> Boolean;
+    pub fn CFRunLoopSourceIsValid(source: &CFRunLoopSource) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFRunLoopSourceGetContext(
-        source: Option<&CFRunLoopSource>,
+        source: &CFRunLoopSource,
         context: *mut CFRunLoopSourceContext,
     );
 }
 
 extern "C-unwind" {
-    pub fn CFRunLoopSourceSignal(source: Option<&CFRunLoopSource>);
+    pub fn CFRunLoopSourceSignal(source: &CFRunLoopSource);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservercontext?language=objc)
@@ -533,30 +533,30 @@ pub unsafe extern "C-unwind" fn CFRunLoopObserverCreateWithHandler(
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFRunLoopObserverGetActivities(observer: Option<&CFRunLoopObserver>) -> CFOptionFlags;
+    pub fn CFRunLoopObserverGetActivities(observer: &CFRunLoopObserver) -> CFOptionFlags;
 }
 
 extern "C-unwind" {
-    pub fn CFRunLoopObserverDoesRepeat(observer: Option<&CFRunLoopObserver>) -> Boolean;
+    pub fn CFRunLoopObserverDoesRepeat(observer: &CFRunLoopObserver) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFRunLoopObserverGetOrder(observer: Option<&CFRunLoopObserver>) -> CFIndex;
+    pub fn CFRunLoopObserverGetOrder(observer: &CFRunLoopObserver) -> CFIndex;
 }
 
 extern "C-unwind" {
-    pub fn CFRunLoopObserverInvalidate(observer: Option<&CFRunLoopObserver>);
+    pub fn CFRunLoopObserverInvalidate(observer: &CFRunLoopObserver);
 }
 
 extern "C-unwind" {
-    pub fn CFRunLoopObserverIsValid(observer: Option<&CFRunLoopObserver>) -> Boolean;
+    pub fn CFRunLoopObserverIsValid(observer: &CFRunLoopObserver) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFRunLoopObserverGetContext(
-        observer: Option<&CFRunLoopObserver>,
+        observer: &CFRunLoopObserver,
         context: *mut CFRunLoopObserverContext,
     );
 }
@@ -666,50 +666,47 @@ pub unsafe extern "C-unwind" fn CFRunLoopTimerCreateWithHandler(
 
 extern "C-unwind" {
     #[cfg(feature = "CFDate")]
-    pub fn CFRunLoopTimerGetNextFireDate(timer: Option<&CFRunLoopTimer>) -> CFAbsoluteTime;
+    pub fn CFRunLoopTimerGetNextFireDate(timer: &CFRunLoopTimer) -> CFAbsoluteTime;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFDate")]
-    pub fn CFRunLoopTimerSetNextFireDate(timer: Option<&CFRunLoopTimer>, fire_date: CFAbsoluteTime);
+    pub fn CFRunLoopTimerSetNextFireDate(timer: &CFRunLoopTimer, fire_date: CFAbsoluteTime);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFDate")]
-    pub fn CFRunLoopTimerGetInterval(timer: Option<&CFRunLoopTimer>) -> CFTimeInterval;
+    pub fn CFRunLoopTimerGetInterval(timer: &CFRunLoopTimer) -> CFTimeInterval;
 }
 
 extern "C-unwind" {
-    pub fn CFRunLoopTimerDoesRepeat(timer: Option<&CFRunLoopTimer>) -> Boolean;
+    pub fn CFRunLoopTimerDoesRepeat(timer: &CFRunLoopTimer) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFRunLoopTimerGetOrder(timer: Option<&CFRunLoopTimer>) -> CFIndex;
+    pub fn CFRunLoopTimerGetOrder(timer: &CFRunLoopTimer) -> CFIndex;
 }
 
 extern "C-unwind" {
-    pub fn CFRunLoopTimerInvalidate(timer: Option<&CFRunLoopTimer>);
+    pub fn CFRunLoopTimerInvalidate(timer: &CFRunLoopTimer);
 }
 
 extern "C-unwind" {
-    pub fn CFRunLoopTimerIsValid(timer: Option<&CFRunLoopTimer>) -> Boolean;
+    pub fn CFRunLoopTimerIsValid(timer: &CFRunLoopTimer) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFRunLoopTimerGetContext(
-        timer: Option<&CFRunLoopTimer>,
-        context: *mut CFRunLoopTimerContext,
-    );
+    pub fn CFRunLoopTimerGetContext(timer: &CFRunLoopTimer, context: *mut CFRunLoopTimerContext);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFDate")]
-    pub fn CFRunLoopTimerGetTolerance(timer: Option<&CFRunLoopTimer>) -> CFTimeInterval;
+    pub fn CFRunLoopTimerGetTolerance(timer: &CFRunLoopTimer) -> CFTimeInterval;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFDate")]
-    pub fn CFRunLoopTimerSetTolerance(timer: Option<&CFRunLoopTimer>, tolerance: CFTimeInterval);
+    pub fn CFRunLoopTimerSetTolerance(timer: &CFRunLoopTimer, tolerance: CFTimeInterval);
 }

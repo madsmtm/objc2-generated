@@ -121,17 +121,14 @@ unsafe impl RefEncode for CFPropertyListFormat {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFPropertyListIsValid(
-        plist: Option<&CFPropertyList>,
-        format: CFPropertyListFormat,
-    ) -> Boolean;
+    pub fn CFPropertyListIsValid(plist: &CFPropertyList, format: CFPropertyListFormat) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFStream"))]
     #[deprecated = "Use CFPropertyListWrite instead."]
     pub fn CFPropertyListWriteToStream(
-        property_list: Option<&CFPropertyList>,
+        property_list: &CFPropertyList,
         stream: Option<&CFWriteStream>,
         format: CFPropertyListFormat,
         error_string: *mut *mut CFString,
@@ -236,7 +233,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithStream(
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFError", feature = "CFStream"))]
     pub fn CFPropertyListWrite(
-        property_list: Option<&CFPropertyList>,
+        property_list: &CFPropertyList,
         stream: Option<&CFWriteStream>,
         format: CFPropertyListFormat,
         options: CFOptionFlags,

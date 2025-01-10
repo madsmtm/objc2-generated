@@ -409,7 +409,7 @@ extern "C-unwind" {
     ///
     /// Returns: The number of values in the set.
     #[cfg(feature = "CFBase")]
-    pub fn CFSetGetCount(the_set: Option<&CFSet>) -> CFIndex;
+    pub fn CFSetGetCount(the_set: &CFSet) -> CFIndex;
 }
 
 extern "C-unwind" {
@@ -429,7 +429,7 @@ extern "C-unwind" {
     ///
     /// Returns: The number of times the given value occurs in the set.
     #[cfg(feature = "CFBase")]
-    pub fn CFSetGetCountOfValue(the_set: Option<&CFSet>, value: *const c_void) -> CFIndex;
+    pub fn CFSetGetCountOfValue(the_set: &CFSet, value: *const c_void) -> CFIndex;
 }
 
 extern "C-unwind" {
@@ -446,7 +446,7 @@ extern "C-unwind" {
     /// the behavior is undefined.
     ///
     /// Returns: true, if the value is in the set, otherwise false.
-    pub fn CFSetContainsValue(the_set: Option<&CFSet>, value: *const c_void) -> Boolean;
+    pub fn CFSetContainsValue(the_set: &CFSet, value: *const c_void) -> Boolean;
 }
 
 extern "C-unwind" {
@@ -462,7 +462,7 @@ extern "C-unwind" {
     /// callback, the behavior is undefined.
     ///
     /// Returns: The value in the set with the given hash.
-    pub fn CFSetGetValue(the_set: Option<&CFSet>, value: *const c_void) -> *const c_void;
+    pub fn CFSetGetValue(the_set: &CFSet, value: *const c_void) -> *const c_void;
 }
 
 extern "C-unwind" {
@@ -489,7 +489,7 @@ extern "C-unwind" {
     ///
     /// Returns: True if the value was present in the set, otherwise false.
     pub fn CFSetGetValueIfPresent(
-        the_set: Option<&CFSet>,
+        the_set: &CFSet,
         candidate: *const c_void,
         value: *mut *const c_void,
     ) -> Boolean;
@@ -506,7 +506,7 @@ extern "C-unwind" {
     /// in the same order in which they appear in the set. If this
     /// parameter is not a valid pointer to a C array of at least
     /// CFSetGetCount() pointers, the behavior is undefined.
-    pub fn CFSetGetValues(the_set: Option<&CFSet>, values: *mut *const c_void);
+    pub fn CFSetGetValues(the_set: &CFSet, values: *mut *const c_void);
 }
 
 extern "C-unwind" {
@@ -527,11 +527,7 @@ extern "C-unwind" {
     /// otherwise unused by this function. If the context is not
     /// what is expected by the applier function, the behavior is
     /// undefined.
-    pub fn CFSetApplyFunction(
-        the_set: Option<&CFSet>,
-        applier: CFSetApplierFunction,
-        context: *mut c_void,
-    );
+    pub fn CFSetApplyFunction(the_set: &CFSet, applier: CFSetApplierFunction, context: *mut c_void);
 }
 
 extern "C-unwind" {

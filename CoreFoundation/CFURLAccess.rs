@@ -30,7 +30,7 @@ extern "C-unwind" {
     #[cfg(all(feature = "CFData", feature = "CFDictionary", feature = "CFURL"))]
     #[deprecated = "For resource data, use the CFWriteStream API. For file resource properties, use CFURLSetResourcePropertiesForKeys."]
     pub fn CFURLWriteDataAndPropertiesToResource(
-        url: Option<&CFURL>,
+        url: &CFURL,
         data_to_write: Option<&CFData>,
         properties_to_write: Option<&CFDictionary>,
         error_code: *mut i32,
@@ -40,7 +40,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFURL")]
     #[deprecated = "Use CFURLGetFileSystemRepresentation and removefile(3) instead."]
-    pub fn CFURLDestroyResource(url: Option<&CFURL>, error_code: *mut i32) -> Boolean;
+    pub fn CFURLDestroyResource(url: &CFURL, error_code: *mut i32) -> Boolean;
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFURL"))]

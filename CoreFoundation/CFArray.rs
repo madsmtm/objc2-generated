@@ -360,7 +360,7 @@ extern "C-unwind" {
     ///
     /// Returns: The number of values in the array.
     #[cfg(feature = "CFBase")]
-    pub fn CFArrayGetCount(the_array: Option<&CFArray>) -> CFIndex;
+    pub fn CFArrayGetCount(the_array: &CFArray) -> CFIndex;
 }
 
 extern "C-unwind" {
@@ -387,7 +387,7 @@ extern "C-unwind" {
     /// within the specified range.
     #[cfg(feature = "CFBase")]
     pub fn CFArrayGetCountOfValue(
-        the_array: Option<&CFArray>,
+        the_array: &CFArray,
         range: CFRange,
         value: *const c_void,
     ) -> CFIndex;
@@ -417,7 +417,7 @@ extern "C-unwind" {
     /// otherwise false.
     #[cfg(feature = "CFBase")]
     pub fn CFArrayContainsValue(
-        the_array: Option<&CFArray>,
+        the_array: &CFArray,
         range: CFRange,
         value: *const c_void,
     ) -> Boolean;
@@ -436,7 +436,7 @@ extern "C-unwind" {
     ///
     /// Returns: The value with the given index in the array.
     #[cfg(feature = "CFBase")]
-    pub fn CFArrayGetValueAtIndex(the_array: Option<&CFArray>, idx: CFIndex) -> *const c_void;
+    pub fn CFArrayGetValueAtIndex(the_array: &CFArray, idx: CFIndex) -> *const c_void;
 }
 
 extern "C-unwind" {
@@ -459,11 +459,7 @@ extern "C-unwind" {
     /// parameter is not a valid pointer to a C array of at least
     /// range.length pointers, the behavior is undefined.
     #[cfg(feature = "CFBase")]
-    pub fn CFArrayGetValues(
-        the_array: Option<&CFArray>,
-        range: CFRange,
-        values: *mut *const c_void,
-    );
+    pub fn CFArrayGetValues(the_array: &CFArray, range: CFRange, values: *mut *const c_void);
 }
 
 extern "C-unwind" {
@@ -494,7 +490,7 @@ extern "C-unwind" {
     /// undefined.
     #[cfg(feature = "CFBase")]
     pub fn CFArrayApplyFunction(
-        the_array: Option<&CFArray>,
+        the_array: &CFArray,
         range: CFRange,
         applier: CFArrayApplierFunction,
         context: *mut c_void,
@@ -527,7 +523,7 @@ extern "C-unwind" {
     /// kCFNotFound if no value in the range matched.
     #[cfg(feature = "CFBase")]
     pub fn CFArrayGetFirstIndexOfValue(
-        the_array: Option<&CFArray>,
+        the_array: &CFArray,
         range: CFRange,
         value: *const c_void,
     ) -> CFIndex;
@@ -559,7 +555,7 @@ extern "C-unwind" {
     /// kCFNotFound if no value in the range matched.
     #[cfg(feature = "CFBase")]
     pub fn CFArrayGetLastIndexOfValue(
-        the_array: Option<&CFArray>,
+        the_array: &CFArray,
         range: CFRange,
         value: *const c_void,
     ) -> CFIndex;
@@ -607,7 +603,7 @@ extern "C-unwind" {
     /// of) the values in the range.
     #[cfg(feature = "CFBase")]
     pub fn CFArrayBSearchValues(
-        the_array: Option<&CFArray>,
+        the_array: &CFArray,
         range: CFRange,
         value: *const c_void,
         comparator: CFComparatorFunction,

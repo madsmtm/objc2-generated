@@ -312,10 +312,10 @@ pub unsafe extern "C-unwind" fn CFLocaleCreateCopy(
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFLocaleGetIdentifier(
-    locale: Option<&CFLocale>,
+    locale: &CFLocale,
 ) -> Option<CFRetained<CFLocaleIdentifier>> {
     extern "C-unwind" {
-        fn CFLocaleGetIdentifier(locale: Option<&CFLocale>) -> *mut CFLocaleIdentifier;
+        fn CFLocaleGetIdentifier(locale: &CFLocale) -> *mut CFLocaleIdentifier;
     }
     let ret = unsafe { CFLocaleGetIdentifier(locale) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
@@ -324,11 +324,11 @@ pub unsafe extern "C-unwind" fn CFLocaleGetIdentifier(
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFLocaleGetValue(
-    locale: Option<&CFLocale>,
+    locale: &CFLocale,
     key: Option<&CFLocaleKey>,
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
-        fn CFLocaleGetValue(locale: Option<&CFLocale>, key: Option<&CFLocaleKey>) -> *mut CFType;
+        fn CFLocaleGetValue(locale: &CFLocale, key: Option<&CFLocaleKey>) -> *mut CFType;
     }
     let ret = unsafe { CFLocaleGetValue(locale, key) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
@@ -337,13 +337,13 @@ pub unsafe extern "C-unwind" fn CFLocaleGetValue(
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFLocaleCopyDisplayNameForPropertyValue(
-    display_locale: Option<&CFLocale>,
+    display_locale: &CFLocale,
     key: Option<&CFLocaleKey>,
     value: Option<&CFString>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn CFLocaleCopyDisplayNameForPropertyValue(
-            display_locale: Option<&CFLocale>,
+            display_locale: &CFLocale,
             key: Option<&CFLocaleKey>,
             value: Option<&CFString>,
         ) -> *mut CFString;

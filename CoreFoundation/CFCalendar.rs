@@ -63,10 +63,10 @@ pub unsafe extern "C-unwind" fn CFCalendarCreateWithIdentifier(
 #[cfg(all(feature = "CFBase", feature = "CFLocale"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFCalendarGetIdentifier(
-    calendar: Option<&CFCalendar>,
+    calendar: &CFCalendar,
 ) -> Option<CFRetained<CFCalendarIdentifier>> {
     extern "C-unwind" {
-        fn CFCalendarGetIdentifier(calendar: Option<&CFCalendar>) -> *mut CFCalendarIdentifier;
+        fn CFCalendarGetIdentifier(calendar: &CFCalendar) -> *mut CFCalendarIdentifier;
     }
     let ret = unsafe { CFCalendarGetIdentifier(calendar) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
@@ -75,10 +75,10 @@ pub unsafe extern "C-unwind" fn CFCalendarGetIdentifier(
 #[cfg(feature = "CFLocale")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFCalendarCopyLocale(
-    calendar: Option<&CFCalendar>,
+    calendar: &CFCalendar,
 ) -> Option<CFRetained<CFLocale>> {
     extern "C-unwind" {
-        fn CFCalendarCopyLocale(calendar: Option<&CFCalendar>) -> *mut CFLocale;
+        fn CFCalendarCopyLocale(calendar: &CFCalendar) -> *mut CFLocale;
     }
     let ret = unsafe { CFCalendarCopyLocale(calendar) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -86,16 +86,16 @@ pub unsafe extern "C-unwind" fn CFCalendarCopyLocale(
 
 extern "C-unwind" {
     #[cfg(feature = "CFLocale")]
-    pub fn CFCalendarSetLocale(calendar: Option<&CFCalendar>, locale: Option<&CFLocale>);
+    pub fn CFCalendarSetLocale(calendar: &CFCalendar, locale: Option<&CFLocale>);
 }
 
 #[cfg(feature = "CFDate")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFCalendarCopyTimeZone(
-    calendar: Option<&CFCalendar>,
+    calendar: &CFCalendar,
 ) -> Option<CFRetained<CFTimeZone>> {
     extern "C-unwind" {
-        fn CFCalendarCopyTimeZone(calendar: Option<&CFCalendar>) -> *mut CFTimeZone;
+        fn CFCalendarCopyTimeZone(calendar: &CFCalendar) -> *mut CFTimeZone;
     }
     let ret = unsafe { CFCalendarCopyTimeZone(calendar) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -103,27 +103,27 @@ pub unsafe extern "C-unwind" fn CFCalendarCopyTimeZone(
 
 extern "C-unwind" {
     #[cfg(feature = "CFDate")]
-    pub fn CFCalendarSetTimeZone(calendar: Option<&CFCalendar>, tz: Option<&CFTimeZone>);
+    pub fn CFCalendarSetTimeZone(calendar: &CFCalendar, tz: Option<&CFTimeZone>);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFCalendarGetFirstWeekday(calendar: Option<&CFCalendar>) -> CFIndex;
+    pub fn CFCalendarGetFirstWeekday(calendar: &CFCalendar) -> CFIndex;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFCalendarSetFirstWeekday(calendar: Option<&CFCalendar>, wkdy: CFIndex);
+    pub fn CFCalendarSetFirstWeekday(calendar: &CFCalendar, wkdy: CFIndex);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFCalendarGetMinimumDaysInFirstWeek(calendar: Option<&CFCalendar>) -> CFIndex;
+    pub fn CFCalendarGetMinimumDaysInFirstWeek(calendar: &CFCalendar) -> CFIndex;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFCalendarSetMinimumDaysInFirstWeek(calendar: Option<&CFCalendar>, mwd: CFIndex);
+    pub fn CFCalendarSetMinimumDaysInFirstWeek(calendar: &CFCalendar, mwd: CFIndex);
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit?language=objc)
@@ -181,24 +181,18 @@ unsafe impl RefEncode for CFCalendarUnit {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFCalendarGetMinimumRangeOfUnit(
-        calendar: Option<&CFCalendar>,
-        unit: CFCalendarUnit,
-    ) -> CFRange;
+    pub fn CFCalendarGetMinimumRangeOfUnit(calendar: &CFCalendar, unit: CFCalendarUnit) -> CFRange;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFCalendarGetMaximumRangeOfUnit(
-        calendar: Option<&CFCalendar>,
-        unit: CFCalendarUnit,
-    ) -> CFRange;
+    pub fn CFCalendarGetMaximumRangeOfUnit(calendar: &CFCalendar, unit: CFCalendarUnit) -> CFRange;
 }
 
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDate"))]
     pub fn CFCalendarGetRangeOfUnit(
-        calendar: Option<&CFCalendar>,
+        calendar: &CFCalendar,
         smaller_unit: CFCalendarUnit,
         bigger_unit: CFCalendarUnit,
         at: CFAbsoluteTime,
@@ -208,7 +202,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDate"))]
     pub fn CFCalendarGetOrdinalityOfUnit(
-        calendar: Option<&CFCalendar>,
+        calendar: &CFCalendar,
         smaller_unit: CFCalendarUnit,
         bigger_unit: CFCalendarUnit,
         at: CFAbsoluteTime,
@@ -218,7 +212,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDate"))]
     pub fn CFCalendarGetTimeRangeOfUnit(
-        calendar: Option<&CFCalendar>,
+        calendar: &CFCalendar,
         unit: CFCalendarUnit,
         at: CFAbsoluteTime,
         startp: *mut CFAbsoluteTime,

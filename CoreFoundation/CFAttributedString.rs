@@ -103,10 +103,10 @@ pub unsafe extern "C-unwind" fn CFAttributedStringCreateCopy(
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFAttributedStringGetString(
-    a_str: Option<&CFAttributedString>,
+    a_str: &CFAttributedString,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFAttributedStringGetString(a_str: Option<&CFAttributedString>) -> *mut CFString;
+        fn CFAttributedStringGetString(a_str: &CFAttributedString) -> *mut CFString;
     }
     let ret = unsafe { CFAttributedStringGetString(a_str) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
@@ -115,7 +115,7 @@ pub unsafe extern "C-unwind" fn CFAttributedStringGetString(
 extern "C-unwind" {
     /// Returns the length of the attributed string in characters; same as CFStringGetLength(CFAttributedStringGetString(aStr))
     #[cfg(feature = "CFBase")]
-    pub fn CFAttributedStringGetLength(a_str: Option<&CFAttributedString>) -> CFIndex;
+    pub fn CFAttributedStringGetLength(a_str: &CFAttributedString) -> CFIndex;
 }
 
 /// Returns the attributes at the specified location. If effectiveRange is not NULL, upon return *effectiveRange contains a range over which the exact same set of attributes apply. Note that for performance reasons, the returned effectiveRange is not necessarily the maximal range - for that, use CFAttributedStringGetAttributesAndLongestEffectiveRange().  It's a programming error for loc to specify a location outside the bounds of the attributed string.
@@ -124,13 +124,13 @@ extern "C-unwind" {
 #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFAttributedStringGetAttributes(
-    a_str: Option<&CFAttributedString>,
+    a_str: &CFAttributedString,
     loc: CFIndex,
     effective_range: *mut CFRange,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
         fn CFAttributedStringGetAttributes(
-            a_str: Option<&CFAttributedString>,
+            a_str: &CFAttributedString,
             loc: CFIndex,
             effective_range: *mut CFRange,
         ) -> *mut CFDictionary;
@@ -143,14 +143,14 @@ pub unsafe extern "C-unwind" fn CFAttributedStringGetAttributes(
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFAttributedStringGetAttribute(
-    a_str: Option<&CFAttributedString>,
+    a_str: &CFAttributedString,
     loc: CFIndex,
     attr_name: Option<&CFString>,
     effective_range: *mut CFRange,
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
         fn CFAttributedStringGetAttribute(
-            a_str: Option<&CFAttributedString>,
+            a_str: &CFAttributedString,
             loc: CFIndex,
             attr_name: Option<&CFString>,
             effective_range: *mut CFRange,
@@ -164,14 +164,14 @@ pub unsafe extern "C-unwind" fn CFAttributedStringGetAttribute(
 #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFAttributedStringGetAttributesAndLongestEffectiveRange(
-    a_str: Option<&CFAttributedString>,
+    a_str: &CFAttributedString,
     loc: CFIndex,
     in_range: CFRange,
     longest_effective_range: *mut CFRange,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
         fn CFAttributedStringGetAttributesAndLongestEffectiveRange(
-            a_str: Option<&CFAttributedString>,
+            a_str: &CFAttributedString,
             loc: CFIndex,
             in_range: CFRange,
             longest_effective_range: *mut CFRange,
@@ -192,7 +192,7 @@ pub unsafe extern "C-unwind" fn CFAttributedStringGetAttributesAndLongestEffecti
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFAttributedStringGetAttributeAndLongestEffectiveRange(
-    a_str: Option<&CFAttributedString>,
+    a_str: &CFAttributedString,
     loc: CFIndex,
     attr_name: Option<&CFString>,
     in_range: CFRange,
@@ -200,7 +200,7 @@ pub unsafe extern "C-unwind" fn CFAttributedStringGetAttributeAndLongestEffectiv
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
         fn CFAttributedStringGetAttributeAndLongestEffectiveRange(
-            a_str: Option<&CFAttributedString>,
+            a_str: &CFAttributedString,
             loc: CFIndex,
             attr_name: Option<&CFString>,
             in_range: CFRange,
@@ -340,7 +340,7 @@ extern "C-unwind" {
     /// Fills bidiLevels by applying the Unicode Bidi Algorithm (P, X, W, N, and I) to the characters in range. Returns true if the result is not uni-level LTR (in other words, needing further Bidi processing). baseDirection is NSWritingDirection (NSWritingDirectionNatural, NSWritingDirectionLeftToRight, and NSWritingDirectionRightToLeft).  Understands NSWritingDirectionAttributeName values.
     #[cfg(feature = "CFBase")]
     pub fn CFAttributedStringGetBidiLevelsAndResolvedDirections(
-        attributed_string: Option<&CFAttributedString>,
+        attributed_string: &CFAttributedString,
         range: CFRange,
         base_direction: i8,
         bidi_levels: *mut u8,

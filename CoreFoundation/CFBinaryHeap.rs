@@ -275,7 +275,7 @@ extern "C-unwind" {
     ///
     /// Returns: The number of values in the binary heap.
     #[cfg(feature = "CFBase")]
-    pub fn CFBinaryHeapGetCount(heap: Option<&CFBinaryHeap>) -> CFIndex;
+    pub fn CFBinaryHeapGetCount(heap: &CFBinaryHeap) -> CFIndex;
 }
 
 extern "C-unwind" {
@@ -293,10 +293,7 @@ extern "C-unwind" {
     ///
     /// Returns: The number of times the given value occurs in the binary heap.
     #[cfg(feature = "CFBase")]
-    pub fn CFBinaryHeapGetCountOfValue(
-        heap: Option<&CFBinaryHeap>,
-        value: *const c_void,
-    ) -> CFIndex;
+    pub fn CFBinaryHeapGetCountOfValue(heap: &CFBinaryHeap, value: *const c_void) -> CFIndex;
 }
 
 extern "C-unwind" {
@@ -313,7 +310,7 @@ extern "C-unwind" {
     /// the behavior is undefined.
     ///
     /// Returns: true, if the value is in the specified binary heap, otherwise false.
-    pub fn CFBinaryHeapContainsValue(heap: Option<&CFBinaryHeap>, value: *const c_void) -> Boolean;
+    pub fn CFBinaryHeapContainsValue(heap: &CFBinaryHeap, value: *const c_void) -> Boolean;
 }
 
 extern "C-unwind" {
@@ -325,7 +322,7 @@ extern "C-unwind" {
     ///
     /// Returns: A reference to the minimum value in the binary heap, or NULL if the
     /// binary heap contains no values.
-    pub fn CFBinaryHeapGetMinimum(heap: Option<&CFBinaryHeap>) -> *const c_void;
+    pub fn CFBinaryHeapGetMinimum(heap: &CFBinaryHeap) -> *const c_void;
 }
 
 extern "C-unwind" {
@@ -342,7 +339,7 @@ extern "C-unwind" {
     ///
     /// Returns: true, if a minimum value was found in the specified binary heap, otherwise false.
     pub fn CFBinaryHeapGetMinimumIfPresent(
-        heap: Option<&CFBinaryHeap>,
+        heap: &CFBinaryHeap,
         value: *mut *const c_void,
     ) -> Boolean;
 }
@@ -357,7 +354,7 @@ extern "C-unwind" {
     /// values from the binary heap. The values in the C array are ordered
     /// from least to greatest. If this parameter is not a valid pointer to a
     /// C array of at least CFBinaryHeapGetCount() pointers, the behavior is undefined.
-    pub fn CFBinaryHeapGetValues(heap: Option<&CFBinaryHeap>, values: *mut *const c_void);
+    pub fn CFBinaryHeapGetValues(heap: &CFBinaryHeap, values: *mut *const c_void);
 }
 
 extern "C-unwind" {
@@ -379,7 +376,7 @@ extern "C-unwind" {
     /// what is expected by the applier function, the behavior is
     /// undefined.
     pub fn CFBinaryHeapApplyFunction(
-        heap: Option<&CFBinaryHeap>,
+        heap: &CFBinaryHeap,
         applier: CFBinaryHeapApplierFunction,
         context: *mut c_void,
     );
@@ -395,7 +392,7 @@ extern "C-unwind" {
     /// the binary heap using the retain callback provided when the binary heap
     /// was created. If the value is not of the sort expected by the
     /// retain callback, the behavior is undefined.
-    pub fn CFBinaryHeapAddValue(heap: Option<&CFBinaryHeap>, value: *const c_void);
+    pub fn CFBinaryHeapAddValue(heap: &CFBinaryHeap, value: *const c_void);
 }
 
 extern "C-unwind" {
@@ -403,7 +400,7 @@ extern "C-unwind" {
     ///
     /// Parameter `heap`: The binary heap from which the minimum value is to be removed. If this
     /// parameter is not a valid mutable CFBinaryHeap, the behavior is undefined.
-    pub fn CFBinaryHeapRemoveMinimumValue(heap: Option<&CFBinaryHeap>);
+    pub fn CFBinaryHeapRemoveMinimumValue(heap: &CFBinaryHeap);
 }
 
 extern "C-unwind" {
@@ -412,5 +409,5 @@ extern "C-unwind" {
     /// Parameter `heap`: The binary heap from which all of the values are to be
     /// removed. If this parameter is not a valid mutable CFBinaryHeap,
     /// the behavior is undefined.
-    pub fn CFBinaryHeapRemoveAllValues(heap: Option<&CFBinaryHeap>);
+    pub fn CFBinaryHeapRemoveAllValues(heap: &CFBinaryHeap);
 }

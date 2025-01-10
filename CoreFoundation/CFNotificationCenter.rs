@@ -111,7 +111,7 @@ pub unsafe extern "C-unwind" fn CFNotificationCenterGetDarwinNotifyCenter(
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
     pub fn CFNotificationCenterAddObserver(
-        center: Option<&CFNotificationCenter>,
+        center: &CFNotificationCenter,
         observer: *const c_void,
         call_back: CFNotificationCallback,
         name: Option<&CFString>,
@@ -123,7 +123,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFNotificationCenterRemoveObserver(
-        center: Option<&CFNotificationCenter>,
+        center: &CFNotificationCenter,
         observer: *const c_void,
         name: Option<&CFNotificationName>,
         object: *const c_void,
@@ -132,7 +132,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     pub fn CFNotificationCenterRemoveEveryObserver(
-        center: Option<&CFNotificationCenter>,
+        center: &CFNotificationCenter,
         observer: *const c_void,
     );
 }
@@ -140,7 +140,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
     pub fn CFNotificationCenterPostNotification(
-        center: Option<&CFNotificationCenter>,
+        center: &CFNotificationCenter,
         name: Option<&CFNotificationName>,
         object: *const c_void,
         user_info: Option<&CFDictionary>,
@@ -158,7 +158,7 @@ pub const kCFNotificationPostToAllSessions: CFOptionFlags = 1 << 1;
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
     pub fn CFNotificationCenterPostNotificationWithOptions(
-        center: Option<&CFNotificationCenter>,
+        center: &CFNotificationCenter,
         name: Option<&CFNotificationName>,
         object: *const c_void,
         user_info: Option<&CFDictionary>,

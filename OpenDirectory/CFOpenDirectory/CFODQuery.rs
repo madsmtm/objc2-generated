@@ -203,13 +203,13 @@ pub unsafe extern "C-unwind" fn ODQueryCreateWithNodeType(
 #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
 #[inline]
 pub unsafe extern "C-unwind" fn ODQueryCopyResults(
-    query: Option<&ODQueryRef>,
+    query: &ODQueryRef,
     allow_partial_results: bool,
     error: *mut *mut CFError,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
         fn ODQueryCopyResults(
-            query: Option<&ODQueryRef>,
+            query: &ODQueryRef,
             allow_partial_results: bool,
             error: *mut *mut CFError,
         ) -> *mut CFArray;
@@ -228,7 +228,7 @@ extern "C-unwind" {
     ///
     /// Parameter `query`: an ODQueryRef to use
     #[cfg(feature = "CFOpenDirectory")]
-    pub fn ODQuerySynchronize(query: Option<&ODQueryRef>);
+    pub fn ODQuerySynchronize(query: &ODQueryRef);
 }
 
 extern "C-unwind" {
@@ -244,7 +244,7 @@ extern "C-unwind" {
     /// Parameter `userInfo`: a user-defined pointer to be passed back to the Query callback function
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODQuerySetCallback(
-        query: Option<&ODQueryRef>,
+        query: &ODQueryRef,
         callback: ODQueryCallback,
         user_info: *mut c_void,
     );
@@ -265,7 +265,7 @@ extern "C-unwind" {
     /// Parameter `runLoopMode`: a CFStringRef with the runloop mode to add the ODQueryRef to
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODQueryScheduleWithRunLoop(
-        query: Option<&ODQueryRef>,
+        query: &ODQueryRef,
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFString>,
     );
@@ -283,7 +283,7 @@ extern "C-unwind" {
     /// Parameter `runLoopMode`: a CFStringRef of the mode to remove the ODQuery from
     #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
     pub fn ODQueryUnscheduleFromRunLoop(
-        query: Option<&ODQueryRef>,
+        query: &ODQueryRef,
         run_loop: Option<&CFRunLoop>,
         run_loop_mode: Option<&CFString>,
     );

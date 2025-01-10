@@ -119,31 +119,29 @@ pub unsafe extern "C-unwind" fn CFMachPortCreateWithPort(
 
 extern "C-unwind" {
     #[cfg(feature = "libc")]
-    pub fn CFMachPortGetPort(port: Option<&CFMachPort>) -> libc::mach_port_t;
+    pub fn CFMachPortGetPort(port: &CFMachPort) -> libc::mach_port_t;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFMachPortGetContext(port: Option<&CFMachPort>, context: *mut CFMachPortContext);
+    pub fn CFMachPortGetContext(port: &CFMachPort, context: *mut CFMachPortContext);
 }
 
 extern "C-unwind" {
-    pub fn CFMachPortInvalidate(port: Option<&CFMachPort>);
+    pub fn CFMachPortInvalidate(port: &CFMachPort);
 }
 
 extern "C-unwind" {
-    pub fn CFMachPortIsValid(port: Option<&CFMachPort>) -> Boolean;
+    pub fn CFMachPortIsValid(port: &CFMachPort) -> Boolean;
 }
 
 extern "C-unwind" {
-    pub fn CFMachPortGetInvalidationCallBack(
-        port: Option<&CFMachPort>,
-    ) -> CFMachPortInvalidationCallBack;
+    pub fn CFMachPortGetInvalidationCallBack(port: &CFMachPort) -> CFMachPortInvalidationCallBack;
 }
 
 extern "C-unwind" {
     pub fn CFMachPortSetInvalidationCallBack(
-        port: Option<&CFMachPort>,
+        port: &CFMachPort,
         callout: CFMachPortInvalidationCallBack,
     );
 }

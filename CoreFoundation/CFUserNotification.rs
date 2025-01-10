@@ -61,7 +61,7 @@ pub unsafe extern "C-unwind" fn CFUserNotificationCreate(
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDate"))]
     pub fn CFUserNotificationReceiveResponse(
-        user_notification: Option<&CFUserNotification>,
+        user_notification: &CFUserNotification,
         timeout: CFTimeInterval,
         response_flags: *mut CFOptionFlags,
     ) -> i32;
@@ -70,13 +70,13 @@ extern "C-unwind" {
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFUserNotificationGetResponseValue(
-    user_notification: Option<&CFUserNotification>,
+    user_notification: &CFUserNotification,
     key: Option<&CFString>,
     idx: CFIndex,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn CFUserNotificationGetResponseValue(
-            user_notification: Option<&CFUserNotification>,
+            user_notification: &CFUserNotification,
             key: Option<&CFString>,
             idx: CFIndex,
         ) -> *mut CFString;
@@ -88,11 +88,11 @@ pub unsafe extern "C-unwind" fn CFUserNotificationGetResponseValue(
 #[cfg(feature = "CFDictionary")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFUserNotificationGetResponseDictionary(
-    user_notification: Option<&CFUserNotification>,
+    user_notification: &CFUserNotification,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
         fn CFUserNotificationGetResponseDictionary(
-            user_notification: Option<&CFUserNotification>,
+            user_notification: &CFUserNotification,
         ) -> *mut CFDictionary;
     }
     let ret = unsafe { CFUserNotificationGetResponseDictionary(user_notification) };
@@ -102,7 +102,7 @@ pub unsafe extern "C-unwind" fn CFUserNotificationGetResponseDictionary(
 extern "C-unwind" {
     #[cfg(all(feature = "CFBase", feature = "CFDate", feature = "CFDictionary"))]
     pub fn CFUserNotificationUpdate(
-        user_notification: Option<&CFUserNotification>,
+        user_notification: &CFUserNotification,
         timeout: CFTimeInterval,
         flags: CFOptionFlags,
         dictionary: Option<&CFDictionary>,
@@ -110,7 +110,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    pub fn CFUserNotificationCancel(user_notification: Option<&CFUserNotification>) -> i32;
+    pub fn CFUserNotificationCancel(user_notification: &CFUserNotification) -> i32;
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]

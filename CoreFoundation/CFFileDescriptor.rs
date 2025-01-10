@@ -104,40 +104,31 @@ pub unsafe extern "C-unwind" fn CFFileDescriptorCreate(
 
 extern "C-unwind" {
     pub fn CFFileDescriptorGetNativeDescriptor(
-        f: Option<&CFFileDescriptor>,
+        f: &CFFileDescriptor,
     ) -> CFFileDescriptorNativeDescriptor;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFFileDescriptorGetContext(
-        f: Option<&CFFileDescriptor>,
-        context: *mut CFFileDescriptorContext,
-    );
+    pub fn CFFileDescriptorGetContext(f: &CFFileDescriptor, context: *mut CFFileDescriptorContext);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFFileDescriptorEnableCallBacks(
-        f: Option<&CFFileDescriptor>,
-        call_back_types: CFOptionFlags,
-    );
+    pub fn CFFileDescriptorEnableCallBacks(f: &CFFileDescriptor, call_back_types: CFOptionFlags);
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFFileDescriptorDisableCallBacks(
-        f: Option<&CFFileDescriptor>,
-        call_back_types: CFOptionFlags,
-    );
+    pub fn CFFileDescriptorDisableCallBacks(f: &CFFileDescriptor, call_back_types: CFOptionFlags);
 }
 
 extern "C-unwind" {
-    pub fn CFFileDescriptorInvalidate(f: Option<&CFFileDescriptor>);
+    pub fn CFFileDescriptorInvalidate(f: &CFFileDescriptor);
 }
 
 extern "C-unwind" {
-    pub fn CFFileDescriptorIsValid(f: Option<&CFFileDescriptor>) -> Boolean;
+    pub fn CFFileDescriptorIsValid(f: &CFFileDescriptor) -> Boolean;
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]

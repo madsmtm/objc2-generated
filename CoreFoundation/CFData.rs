@@ -135,11 +135,11 @@ pub unsafe extern "C-unwind" fn CFDataCreateMutableCopy(
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDataGetLength(the_data: Option<&CFData>) -> CFIndex;
+    pub fn CFDataGetLength(the_data: &CFData) -> CFIndex;
 }
 
 extern "C-unwind" {
-    pub fn CFDataGetBytePtr(the_data: Option<&CFData>) -> *const u8;
+    pub fn CFDataGetBytePtr(the_data: &CFData) -> *const u8;
 }
 
 extern "C-unwind" {
@@ -148,7 +148,7 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFDataGetBytes(the_data: Option<&CFData>, range: CFRange, buffer: *mut u8);
+    pub fn CFDataGetBytes(the_data: &CFData, range: CFRange, buffer: *mut u8);
 }
 
 extern "C-unwind" {
@@ -210,7 +210,7 @@ unsafe impl RefEncode for CFDataSearchFlags {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFDataFind(
-        the_data: Option<&CFData>,
+        the_data: &CFData,
         data_to_find: Option<&CFData>,
         search_range: CFRange,
         compare_options: CFDataSearchFlags,

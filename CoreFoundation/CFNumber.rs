@@ -44,7 +44,7 @@ unsafe impl ConcreteType for CFBoolean {
 }
 
 extern "C-unwind" {
-    pub fn CFBooleanGetValue(boolean: Option<&CFBoolean>) -> Boolean;
+    pub fn CFBooleanGetValue(boolean: &CFBoolean) -> Boolean;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype?language=objc)
@@ -160,22 +160,22 @@ pub unsafe extern "C-unwind" fn CFNumberCreate(
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFNumberGetType(number: Option<&CFNumber>) -> CFNumberType;
+    pub fn CFNumberGetType(number: &CFNumber) -> CFNumberType;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
-    pub fn CFNumberGetByteSize(number: Option<&CFNumber>) -> CFIndex;
+    pub fn CFNumberGetByteSize(number: &CFNumber) -> CFIndex;
 }
 
 extern "C-unwind" {
-    pub fn CFNumberIsFloatType(number: Option<&CFNumber>) -> Boolean;
+    pub fn CFNumberIsFloatType(number: &CFNumber) -> Boolean;
 }
 
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFNumberGetValue(
-        number: Option<&CFNumber>,
+        number: &CFNumber,
         the_type: CFNumberType,
         value_ptr: *mut c_void,
     ) -> Boolean;
@@ -184,7 +184,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[cfg(feature = "CFBase")]
     pub fn CFNumberCompare(
-        number: Option<&CFNumber>,
+        number: &CFNumber,
         other_number: Option<&CFNumber>,
         context: *mut c_void,
     ) -> CFComparisonResult;

@@ -166,11 +166,9 @@ pub unsafe extern "C-unwind" fn CFTreeCreate(
 ///
 /// Returns: The parent of the tree.
 #[inline]
-pub unsafe extern "C-unwind" fn CFTreeGetParent(
-    tree: Option<&CFTree>,
-) -> Option<CFRetained<CFTree>> {
+pub unsafe extern "C-unwind" fn CFTreeGetParent(tree: &CFTree) -> Option<CFRetained<CFTree>> {
     extern "C-unwind" {
-        fn CFTreeGetParent(tree: Option<&CFTree>) -> *mut CFTree;
+        fn CFTreeGetParent(tree: &CFTree) -> *mut CFTree;
     }
     let ret = unsafe { CFTreeGetParent(tree) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
@@ -183,11 +181,9 @@ pub unsafe extern "C-unwind" fn CFTreeGetParent(
 ///
 /// Returns: The next sibling of the tree.
 #[inline]
-pub unsafe extern "C-unwind" fn CFTreeGetNextSibling(
-    tree: Option<&CFTree>,
-) -> Option<CFRetained<CFTree>> {
+pub unsafe extern "C-unwind" fn CFTreeGetNextSibling(tree: &CFTree) -> Option<CFRetained<CFTree>> {
     extern "C-unwind" {
-        fn CFTreeGetNextSibling(tree: Option<&CFTree>) -> *mut CFTree;
+        fn CFTreeGetNextSibling(tree: &CFTree) -> *mut CFTree;
     }
     let ret = unsafe { CFTreeGetNextSibling(tree) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
@@ -200,11 +196,9 @@ pub unsafe extern "C-unwind" fn CFTreeGetNextSibling(
 ///
 /// Returns: The first child of the tree.
 #[inline]
-pub unsafe extern "C-unwind" fn CFTreeGetFirstChild(
-    tree: Option<&CFTree>,
-) -> Option<CFRetained<CFTree>> {
+pub unsafe extern "C-unwind" fn CFTreeGetFirstChild(tree: &CFTree) -> Option<CFRetained<CFTree>> {
     extern "C-unwind" {
-        fn CFTreeGetFirstChild(tree: Option<&CFTree>) -> *mut CFTree;
+        fn CFTreeGetFirstChild(tree: &CFTree) -> *mut CFTree;
     }
     let ret = unsafe { CFTreeGetFirstChild(tree) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
@@ -222,7 +216,7 @@ extern "C-unwind" {
     /// result is undefined.  If the version number of the storage is not
     /// a valid CFTreeContext version number, the result is undefined.
     #[cfg(feature = "CFBase")]
-    pub fn CFTreeGetContext(tree: Option<&CFTree>, context: *mut CFTreeContext);
+    pub fn CFTreeGetContext(tree: &CFTree, context: *mut CFTreeContext);
 }
 
 extern "C-unwind" {
@@ -233,7 +227,7 @@ extern "C-unwind" {
     ///
     /// Returns: The number of children.
     #[cfg(feature = "CFBase")]
-    pub fn CFTreeGetChildCount(tree: Option<&CFTree>) -> CFIndex;
+    pub fn CFTreeGetChildCount(tree: &CFTree) -> CFIndex;
 }
 
 /// Returns the nth child of the specified tree.
@@ -249,11 +243,11 @@ extern "C-unwind" {
 #[cfg(feature = "CFBase")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFTreeGetChildAtIndex(
-    tree: Option<&CFTree>,
+    tree: &CFTree,
     idx: CFIndex,
 ) -> Option<CFRetained<CFTree>> {
     extern "C-unwind" {
-        fn CFTreeGetChildAtIndex(tree: Option<&CFTree>, idx: CFIndex) -> *mut CFTree;
+        fn CFTreeGetChildAtIndex(tree: &CFTree, idx: CFIndex) -> *mut CFTree;
     }
     let ret = unsafe { CFTreeGetChildAtIndex(tree, idx) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
@@ -268,7 +262,7 @@ extern "C-unwind" {
     /// Parameter `children`: A C array of pointer-sized values to be filled with
     /// children from the tree.  If this parameter is not a valid pointer to a
     /// C array of at least CFTreeGetChildCount() pointers, the behavior is undefined.
-    pub fn CFTreeGetChildren(tree: Option<&CFTree>, children: *mut *mut CFTree);
+    pub fn CFTreeGetChildren(tree: &CFTree, children: *mut *mut CFTree);
 }
 
 extern "C-unwind" {
@@ -291,7 +285,7 @@ extern "C-unwind" {
     /// what is expected by the applier function, the behavior is
     /// undefined.
     pub fn CFTreeApplyFunctionToChildren(
-        tree: Option<&CFTree>,
+        tree: &CFTree,
         applier: CFTreeApplierFunction,
         context: *mut c_void,
     );
@@ -304,11 +298,9 @@ extern "C-unwind" {
 ///
 /// Returns: A reference to the root of the tree.
 #[inline]
-pub unsafe extern "C-unwind" fn CFTreeFindRoot(
-    tree: Option<&CFTree>,
-) -> Option<CFRetained<CFTree>> {
+pub unsafe extern "C-unwind" fn CFTreeFindRoot(tree: &CFTree) -> Option<CFRetained<CFTree>> {
     extern "C-unwind" {
-        fn CFTreeFindRoot(tree: Option<&CFTree>) -> *mut CFTree;
+        fn CFTreeFindRoot(tree: &CFTree) -> *mut CFTree;
     }
     let ret = unsafe { CFTreeFindRoot(tree) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
@@ -329,7 +321,7 @@ extern "C-unwind" {
     /// If the version number of the storage is not a valid CFTreeContext
     /// version number, the result is undefined.
     #[cfg(feature = "CFBase")]
-    pub fn CFTreeSetContext(tree: Option<&CFTree>, context: *const CFTreeContext);
+    pub fn CFTreeSetContext(tree: &CFTree, context: *const CFTreeContext);
 }
 
 extern "C-unwind" {
@@ -342,7 +334,7 @@ extern "C-unwind" {
     /// If this parameter is not a valid CFTree, the behavior is undefined.
     /// If this parameter is a tree which is already a child of any tree,
     /// the behavior is undefined.
-    pub fn CFTreePrependChild(tree: Option<&CFTree>, new_child: Option<&CFTree>);
+    pub fn CFTreePrependChild(tree: &CFTree, new_child: Option<&CFTree>);
 }
 
 extern "C-unwind" {
@@ -355,7 +347,7 @@ extern "C-unwind" {
     /// If this parameter is not a valid CFTree, the behavior is undefined.
     /// If this parameter is a tree which is already a child of any tree,
     /// the behavior is undefined.
-    pub fn CFTreeAppendChild(tree: Option<&CFTree>, new_child: Option<&CFTree>);
+    pub fn CFTreeAppendChild(tree: &CFTree, new_child: Option<&CFTree>);
 }
 
 extern "C-unwind" {
@@ -370,7 +362,7 @@ extern "C-unwind" {
     /// If this parameter is not a valid CFTree, the behavior is undefined.
     /// If this parameter is a tree which is already a child of any tree,
     /// the behavior is undefined.
-    pub fn CFTreeInsertSibling(tree: Option<&CFTree>, new_sibling: Option<&CFTree>);
+    pub fn CFTreeInsertSibling(tree: &CFTree, new_sibling: Option<&CFTree>);
 }
 
 extern "C-unwind" {
@@ -378,7 +370,7 @@ extern "C-unwind" {
     ///
     /// Parameter `tree`: The tree to be removed.  If this parameter is not a valid
     /// CFTree, the behavior is undefined.
-    pub fn CFTreeRemove(tree: Option<&CFTree>);
+    pub fn CFTreeRemove(tree: &CFTree);
 }
 
 extern "C-unwind" {
@@ -386,7 +378,7 @@ extern "C-unwind" {
     ///
     /// Parameter `tree`: The tree to remove all children from.  If this parameter is not a valid
     /// CFTree, the behavior is undefined.
-    pub fn CFTreeRemoveAllChildren(tree: Option<&CFTree>);
+    pub fn CFTreeRemoveAllChildren(tree: &CFTree);
 }
 
 extern "C-unwind" {
@@ -409,7 +401,7 @@ extern "C-unwind" {
     /// undefined.
     #[cfg(feature = "CFBase")]
     pub fn CFTreeSortChildren(
-        tree: Option<&CFTree>,
+        tree: &CFTree,
         comparator: CFComparatorFunction,
         context: *mut c_void,
     );
