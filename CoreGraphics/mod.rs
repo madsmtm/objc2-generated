@@ -1505,10 +1505,6 @@ pub use self::__CGITUToneMapping::kCGUseBT1886ForCoreVideoGamma;
 #[cfg(feature = "CGITUToneMapping")]
 pub use self::__CGITUToneMapping::kCGUseLegacyHDREcosystem;
 #[cfg(feature = "CGImage")]
-pub use self::__CGImage::kCGBitmapByteOrder16Host;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::kCGBitmapByteOrder32Host;
-#[cfg(feature = "CGImage")]
 pub use self::__CGImage::kCGDefaultHDRImageContentHeadroom;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGBitmapInfo;

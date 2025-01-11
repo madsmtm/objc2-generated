@@ -10,37 +10,11 @@ use crate::*;
 #[cfg(feature = "CFBase")]
 pub type CFByteOrder = CFIndex;
 
-// TODO: pub fn CFByteOrderGetCurrent() -> CFByteOrder;
-
 // TODO: pub fn CFSwapInt16(arg: u16,) -> u16;
 
 // TODO: pub fn CFSwapInt32(arg: u32,) -> u32;
 
 // TODO: pub fn CFSwapInt64(arg: u64,) -> u64;
-
-// TODO: pub fn CFSwapInt16BigToHost(arg: u16,) -> u16;
-
-// TODO: pub fn CFSwapInt32BigToHost(arg: u32,) -> u32;
-
-// TODO: pub fn CFSwapInt64BigToHost(arg: u64,) -> u64;
-
-// TODO: pub fn CFSwapInt16HostToBig(arg: u16,) -> u16;
-
-// TODO: pub fn CFSwapInt32HostToBig(arg: u32,) -> u32;
-
-// TODO: pub fn CFSwapInt64HostToBig(arg: u64,) -> u64;
-
-// TODO: pub fn CFSwapInt16LittleToHost(arg: u16,) -> u16;
-
-// TODO: pub fn CFSwapInt32LittleToHost(arg: u32,) -> u32;
-
-// TODO: pub fn CFSwapInt64LittleToHost(arg: u64,) -> u64;
-
-// TODO: pub fn CFSwapInt16HostToLittle(arg: u16,) -> u16;
-
-// TODO: pub fn CFSwapInt32HostToLittle(arg: u32,) -> u32;
-
-// TODO: pub fn CFSwapInt64HostToLittle(arg: u64,) -> u64;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfswappedfloat32?language=objc)
 #[repr(C)]
@@ -75,19 +49,3 @@ unsafe impl Encode for CFSwappedFloat64 {
 unsafe impl RefEncode for CFSwappedFloat64 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
-
-// TODO: pub fn CFConvertFloat32HostToSwapped(arg: f32,) -> CFSwappedFloat32;
-
-// TODO: pub fn CFConvertFloat32SwappedToHost(arg: CFSwappedFloat32,) -> f32;
-
-// TODO: pub fn CFConvertFloat64HostToSwapped(arg: f64,) -> CFSwappedFloat64;
-
-// TODO: pub fn CFConvertFloat64SwappedToHost(arg: CFSwappedFloat64,) -> f64;
-
-// TODO: pub fn CFConvertFloatHostToSwapped(arg: c_float,) -> CFSwappedFloat32;
-
-// TODO: pub fn CFConvertFloatSwappedToHost(arg: CFSwappedFloat32,) -> c_float;
-
-// TODO: pub fn CFConvertDoubleHostToSwapped(arg: c_double,) -> CFSwappedFloat64;
-
-// TODO: pub fn CFConvertDoubleSwappedToHost(arg: CFSwappedFloat64,) -> c_double;

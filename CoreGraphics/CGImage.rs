@@ -154,12 +154,6 @@ unsafe impl RefEncode for CGBitmapInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgbitmapbyteorder16host?language=objc)
-pub static kCGBitmapByteOrder16Host: CGBitmapInfo = CGBitmapInfo(CGBitmapInfo::ByteOrder16Little.0);
-
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgbitmapbyteorder32host?language=objc)
-pub static kCGBitmapByteOrder32Host: CGBitmapInfo = CGBitmapInfo(CGBitmapInfo::ByteOrder32Little.0);
-
 unsafe impl ConcreteType for CGImage {
     #[doc(alias = "CGImageGetTypeID")]
     #[inline]

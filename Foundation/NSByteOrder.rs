@@ -96,19 +96,3 @@ unsafe impl Sync for NSSwappedDouble {}
 // TODO: pub fn NSSwapFloat(x: NSSwappedFloat,) -> NSSwappedFloat;
 
 // TODO: pub fn NSSwapDouble(x: NSSwappedDouble,) -> NSSwappedDouble;
-
-// TODO: pub fn NSSwapBigDoubleToHost(x: NSSwappedDouble,) -> c_double;
-
-// TODO: pub fn NSSwapBigFloatToHost(x: NSSwappedFloat,) -> c_float;
-
-// TODO: pub fn NSSwapHostDoubleToBig(x: c_double,) -> NSSwappedDouble;
-
-// TODO: pub fn NSSwapHostFloatToBig(x: c_float,) -> NSSwappedFloat;
-
-// TODO: pub fn NSSwapLittleDoubleToHost(x: NSSwappedDouble,) -> c_double;
-
-// TODO: pub fn NSSwapLittleFloatToHost(x: NSSwappedFloat,) -> c_float;
-
-// TODO: pub fn NSSwapHostDoubleToLittle(x: c_double,) -> NSSwappedDouble;
-
-// TODO: pub fn NSSwapHostFloatToLittle(x: c_float,) -> NSSwappedFloat;
