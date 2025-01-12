@@ -2016,7 +2016,13 @@ pub use self::__SFNTLayoutTypes::BslnFormat2Part;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::BslnFormat3Part;
 #[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::BslnFormatUnion;
+#[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::BslnTable;
+#[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::BslnTableFormat;
+#[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::BslnTablePtr;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::JustDirectionTable;
 #[cfg(feature = "SFNTLayoutTypes")]
@@ -2048,6 +2054,8 @@ pub use self::__SFNTLayoutTypes::JustificationFlags;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::KernArrayOffset;
 #[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::KernFormatSpecificHeader;
+#[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::KernIndexArrayHeader;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::KernKerningPair;
@@ -2070,6 +2078,10 @@ pub use self::__SFNTLayoutTypes::KernStateEntry;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::KernStateHeader;
 #[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::KernSubtableHeader;
+#[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::KernSubtableHeaderPtr;
+#[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::KernSubtableInfo;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::KernTableFormat;
@@ -2082,6 +2094,8 @@ pub use self::__SFNTLayoutTypes::KernTableHeaderPtr;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::KernVersion0Header;
 #[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::KernVersion0SubtableHeader;
+#[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::KerxAnchorPointAction;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::KerxArrayOffset;
@@ -2093,6 +2107,8 @@ pub use self::__SFNTLayoutTypes::KerxControlPointEntry;
 pub use self::__SFNTLayoutTypes::KerxControlPointHeader;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::KerxCoordinateAction;
+#[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::KerxFormatSpecificHeader;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::KerxIndexArrayHeader;
 #[cfg(feature = "SFNTLayoutTypes")]
@@ -2111,6 +2127,10 @@ pub use self::__SFNTLayoutTypes::KerxStateEntry;
 pub use self::__SFNTLayoutTypes::KerxStateHeader;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::KerxSubtableCoverage;
+#[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::KerxSubtableHeader;
+#[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::KerxSubtableHeaderPtr;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::KerxTableHeader;
 #[cfg(feature = "SFNTLayoutTypes")]
@@ -2142,6 +2162,10 @@ pub use self::__SFNTLayoutTypes::MortLigatureSubtable;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::MortRearrangementSubtable;
 #[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::MortSpecificSubtable;
+#[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::MortSubtable;
+#[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::MortSubtableMaskFlags;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::MortSwashSubtable;
@@ -2157,6 +2181,10 @@ pub use self::__SFNTLayoutTypes::MorxInsertionSubtable;
 pub use self::__SFNTLayoutTypes::MorxLigatureSubtable;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::MorxRearrangementSubtable;
+#[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::MorxSpecificSubtable;
+#[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::MorxSubtable;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::MorxTable;
 #[cfg(feature = "SFNTLayoutTypes")]
@@ -2181,6 +2209,8 @@ pub use self::__SFNTLayoutTypes::ROTAHeader;
 pub use self::__SFNTLayoutTypes::SFNTLookupArrayHeader;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::SFNTLookupBinarySearchHeader;
+#[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::SFNTLookupFormatSpecificHeader;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::SFNTLookupKind;
 #[cfg(feature = "SFNTLayoutTypes")]

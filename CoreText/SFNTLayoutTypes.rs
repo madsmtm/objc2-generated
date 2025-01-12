@@ -841,9 +841,39 @@ unsafe impl RefEncode for SFNTLookupSingleHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupformatspecificheader?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union SFNTLookupFormatSpecificHeader {
+    pub theArray: SFNTLookupArrayHeader,
+    pub segment: SFNTLookupSegmentHeader,
+    pub single: SFNTLookupSingleHeader,
+    pub trimmedArray: SFNTLookupTrimmedArrayHeader,
+    pub vector: SFNTLookupVectorHeader,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for SFNTLookupFormatSpecificHeader {
+    const ENCODING: Encoding = Encoding::Union(
+        "SFNTLookupFormatSpecificHeader",
+        &[
+            <SFNTLookupArrayHeader>::ENCODING,
+            <SFNTLookupSegmentHeader>::ENCODING,
+            <SFNTLookupSingleHeader>::ENCODING,
+            <SFNTLookupTrimmedArrayHeader>::ENCODING,
+            <SFNTLookupVectorHeader>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for SFNTLookupFormatSpecificHeader {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookuptable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy)]
 pub struct SFNTLookupTable {
     pub format: SFNTLookupTableFormat,
     pub fsHeader: SFNTLookupFormatSpecificHeader,
@@ -1165,7 +1195,7 @@ unsafe impl RefEncode for LcarCaretClassEntry {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/lcarcarettable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy)]
 pub struct LcarCaretTable {
     pub version: Fixed,
     pub format: u16,
@@ -1451,7 +1481,7 @@ unsafe impl RefEncode for JustWidthDeltaGroup {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpostcomptable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy)]
 pub struct JustPostcompTable {
     pub lookupTable: SFNTLookupTable,
 }
@@ -1469,7 +1499,7 @@ unsafe impl RefEncode for JustPostcompTable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/justdirectiontable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy)]
 pub struct JustDirectionTable {
     pub justClass: u16,
     pub widthDeltaClusters: u16,
@@ -1565,7 +1595,7 @@ unsafe impl RefEncode for OpbdSideValues {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/opbdtable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy)]
 pub struct OpbdTable {
     pub version: Fixed,
     pub format: OpbdTableFormat,
@@ -1757,7 +1787,7 @@ unsafe impl RefEncode for MortLigatureSubtable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortswashsubtable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy)]
 pub struct MortSwashSubtable {
     pub lookup: SFNTLookupTable,
 }
@@ -1787,6 +1817,64 @@ unsafe impl Encode for MortInsertionSubtable {
 
 #[cfg(feature = "objc2")]
 unsafe impl RefEncode for MortInsertionSubtable {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortspecificsubtable?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union MortSpecificSubtable {
+    pub rearrangement: MortRearrangementSubtable,
+    pub contextual: MortContextualSubtable,
+    pub ligature: MortLigatureSubtable,
+    pub swash: MortSwashSubtable,
+    pub insertion: MortInsertionSubtable,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MortSpecificSubtable {
+    const ENCODING: Encoding = Encoding::Union(
+        "MortSpecificSubtable",
+        &[
+            <MortRearrangementSubtable>::ENCODING,
+            <MortContextualSubtable>::ENCODING,
+            <MortLigatureSubtable>::ENCODING,
+            <MortSwashSubtable>::ENCODING,
+            <MortInsertionSubtable>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MortSpecificSubtable {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortsubtable?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct MortSubtable {
+    pub length: u16,
+    pub coverage: u16,
+    pub flags: MortSubtableMaskFlags,
+    pub u: MortSpecificSubtable,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MortSubtable {
+    const ENCODING: Encoding = Encoding::Struct(
+        "MortSubtable",
+        &[
+            <u16>::ENCODING,
+            <u16>::ENCODING,
+            <MortSubtableMaskFlags>::ENCODING,
+            <MortSpecificSubtable>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MortSubtable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
@@ -1977,6 +2065,64 @@ unsafe impl RefEncode for MorxInsertionSubtable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxspecificsubtable?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union MorxSpecificSubtable {
+    pub rearrangement: MorxRearrangementSubtable,
+    pub contextual: MorxContextualSubtable,
+    pub ligature: MorxLigatureSubtable,
+    pub swash: MortSwashSubtable,
+    pub insertion: MorxInsertionSubtable,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MorxSpecificSubtable {
+    const ENCODING: Encoding = Encoding::Union(
+        "MorxSpecificSubtable",
+        &[
+            <MorxRearrangementSubtable>::ENCODING,
+            <MorxContextualSubtable>::ENCODING,
+            <MorxLigatureSubtable>::ENCODING,
+            <MortSwashSubtable>::ENCODING,
+            <MorxInsertionSubtable>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MorxSpecificSubtable {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxsubtable?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct MorxSubtable {
+    pub length: u32,
+    pub coverage: u32,
+    pub flags: MortSubtableMaskFlags,
+    pub u: MorxSpecificSubtable,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MorxSubtable {
+    const ENCODING: Encoding = Encoding::Struct(
+        "MorxSubtable",
+        &[
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <MortSubtableMaskFlags>::ENCODING,
+            <MorxSpecificSubtable>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MorxSubtable {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxchain?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -2106,7 +2252,7 @@ pub type PropCharProperties = u16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/proptable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy)]
 pub struct PropTable {
     pub version: Fixed,
     pub format: u16,
@@ -2577,6 +2723,93 @@ unsafe impl RefEncode for KernIndexArrayHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernformatspecificheader?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union KernFormatSpecificHeader {
+    pub orderedList: KernOrderedListHeader,
+    pub stateTable: KernStateHeader,
+    pub simpleArray: KernSimpleArrayHeader,
+    pub indexArray: KernIndexArrayHeader,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for KernFormatSpecificHeader {
+    const ENCODING: Encoding = Encoding::Union(
+        "KernFormatSpecificHeader",
+        &[
+            <KernOrderedListHeader>::ENCODING,
+            <KernStateHeader>::ENCODING,
+            <KernSimpleArrayHeader>::ENCODING,
+            <KernIndexArrayHeader>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for KernFormatSpecificHeader {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernversion0subtableheader?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct KernVersion0SubtableHeader {
+    pub version: u16,
+    pub length: u16,
+    pub stInfo: KernSubtableInfo,
+    pub fsHeader: KernFormatSpecificHeader,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for KernVersion0SubtableHeader {
+    const ENCODING: Encoding = Encoding::Struct(
+        "KernVersion0SubtableHeader",
+        &[
+            <u16>::ENCODING,
+            <u16>::ENCODING,
+            <KernSubtableInfo>::ENCODING,
+            <KernFormatSpecificHeader>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for KernVersion0SubtableHeader {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernsubtableheader?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct KernSubtableHeader {
+    pub length: i32,
+    pub stInfo: KernSubtableInfo,
+    pub tupleIndex: i16,
+    pub fsHeader: KernFormatSpecificHeader,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for KernSubtableHeader {
+    const ENCODING: Encoding = Encoding::Struct(
+        "KernSubtableHeader",
+        &[
+            <i32>::ENCODING,
+            <KernSubtableInfo>::ENCODING,
+            <i16>::ENCODING,
+            <KernFormatSpecificHeader>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for KernSubtableHeader {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernsubtableheaderptr?language=objc)
+pub type KernSubtableHeaderPtr = *mut KernSubtableHeader;
+
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxtag?language=objc)
 pub const kKERXTag: c_int = 0x6B657278;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxcurrentversion?language=objc)
@@ -2965,6 +3198,67 @@ unsafe impl RefEncode for KerxIndexArrayHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxformatspecificheader?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union KerxFormatSpecificHeader {
+    pub orderedList: KerxOrderedListHeader,
+    pub stateTable: KerxStateHeader,
+    pub simpleArray: KerxSimpleArrayHeader,
+    pub indexArray: KerxIndexArrayHeader,
+    pub controlPoint: KerxControlPointHeader,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for KerxFormatSpecificHeader {
+    const ENCODING: Encoding = Encoding::Union(
+        "KerxFormatSpecificHeader",
+        &[
+            <KerxOrderedListHeader>::ENCODING,
+            <KerxStateHeader>::ENCODING,
+            <KerxSimpleArrayHeader>::ENCODING,
+            <KerxIndexArrayHeader>::ENCODING,
+            <KerxControlPointHeader>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for KerxFormatSpecificHeader {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxsubtableheader?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct KerxSubtableHeader {
+    pub length: u32,
+    pub stInfo: KerxSubtableCoverage,
+    pub tupleCount: u32,
+    pub fsHeader: KerxFormatSpecificHeader,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for KerxSubtableHeader {
+    const ENCODING: Encoding = Encoding::Struct(
+        "KerxSubtableHeader",
+        &[
+            <u32>::ENCODING,
+            <KerxSubtableCoverage>::ENCODING,
+            <u32>::ENCODING,
+            <KerxFormatSpecificHeader>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for KerxSubtableHeader {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxsubtableheaderptr?language=objc)
+pub type KerxSubtableHeaderPtr = *mut KerxSubtableHeader;
+
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslntag?language=objc)
 pub const kBSLNTag: c_uint = 0x62736C6E;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslncurrentversion?language=objc)
@@ -3021,7 +3315,7 @@ unsafe impl RefEncode for BslnFormat0Part {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnformat1part?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy)]
 pub struct BslnFormat1Part {
     pub deltas: [i16; 32],
     pub mappingData: SFNTLookupTable,
@@ -3061,7 +3355,7 @@ unsafe impl RefEncode for BslnFormat2Part {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnformat3part?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy)]
 pub struct BslnFormat3Part {
     pub stdGlyph: u16,
     pub ctlPoints: [i16; 32],
@@ -3085,12 +3379,71 @@ unsafe impl RefEncode for BslnFormat3Part {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnformatunion?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union BslnFormatUnion {
+    pub fmt0Part: BslnFormat0Part,
+    pub fmt1Part: BslnFormat1Part,
+    pub fmt2Part: BslnFormat2Part,
+    pub fmt3Part: BslnFormat3Part,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for BslnFormatUnion {
+    const ENCODING: Encoding = Encoding::Union(
+        "BslnFormatUnion",
+        &[
+            <BslnFormat0Part>::ENCODING,
+            <BslnFormat1Part>::ENCODING,
+            <BslnFormat2Part>::ENCODING,
+            <BslnFormat3Part>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for BslnFormatUnion {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslntableformat?language=objc)
 pub type BslnTableFormat = u16;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslntable?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct BslnTable {
+    pub version: Fixed,
+    pub format: BslnTableFormat,
+    pub defaultBaseline: u16,
+    pub parts: BslnFormatUnion,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for BslnTable {
+    const ENCODING: Encoding = Encoding::Struct(
+        "BslnTable",
+        &[
+            <Fixed>::ENCODING,
+            <BslnTableFormat>::ENCODING,
+            <u16>::ENCODING,
+            <BslnFormatUnion>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for BslnTable {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslntableptr?language=objc)
+pub type BslnTablePtr = *mut BslnTable;
+
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/almxheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy)]
 pub struct ALMXHeader {
     pub Version: Fixed,
     pub Flags: u16,
@@ -3152,7 +3505,7 @@ unsafe impl RefEncode for ALMXGlyphEntry {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/rotaheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy)]
 pub struct ROTAHeader {
     pub Version: Fixed,
     pub Flags: u16,

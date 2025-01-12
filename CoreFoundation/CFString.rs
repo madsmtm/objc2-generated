@@ -8,48 +8,51 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringencoding?language=objc)
+pub type CFStringEncoding = u32;
+
+/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct CFStringEncoding(pub u32);
-impl CFStringEncoding {
+pub struct CFStringBuiltInEncodings(pub CFStringEncoding);
+impl CFStringBuiltInEncodings {
     #[doc(alias = "kCFStringEncodingMacRoman")]
-    pub const MacRoman: Self = Self(0);
+    pub const EncodingMacRoman: Self = Self(0);
     #[doc(alias = "kCFStringEncodingWindowsLatin1")]
-    pub const WindowsLatin1: Self = Self(0x0500);
+    pub const EncodingWindowsLatin1: Self = Self(0x0500);
     #[doc(alias = "kCFStringEncodingISOLatin1")]
-    pub const ISOLatin1: Self = Self(0x0201);
+    pub const EncodingISOLatin1: Self = Self(0x0201);
     #[doc(alias = "kCFStringEncodingNextStepLatin")]
-    pub const NextStepLatin: Self = Self(0x0B01);
+    pub const EncodingNextStepLatin: Self = Self(0x0B01);
     #[doc(alias = "kCFStringEncodingASCII")]
-    pub const ASCII: Self = Self(0x0600);
+    pub const EncodingASCII: Self = Self(0x0600);
     #[doc(alias = "kCFStringEncodingUnicode")]
-    pub const Unicode: Self = Self(0x0100);
+    pub const EncodingUnicode: Self = Self(0x0100);
     #[doc(alias = "kCFStringEncodingUTF8")]
-    pub const UTF8: Self = Self(0x08000100);
+    pub const EncodingUTF8: Self = Self(0x08000100);
     #[doc(alias = "kCFStringEncodingNonLossyASCII")]
-    pub const NonLossyASCII: Self = Self(0x0BFF);
+    pub const EncodingNonLossyASCII: Self = Self(0x0BFF);
     #[doc(alias = "kCFStringEncodingUTF16")]
-    pub const UTF16: Self = Self(0x0100);
+    pub const EncodingUTF16: Self = Self(0x0100);
     #[doc(alias = "kCFStringEncodingUTF16BE")]
-    pub const UTF16BE: Self = Self(0x10000100);
+    pub const EncodingUTF16BE: Self = Self(0x10000100);
     #[doc(alias = "kCFStringEncodingUTF16LE")]
-    pub const UTF16LE: Self = Self(0x14000100);
+    pub const EncodingUTF16LE: Self = Self(0x14000100);
     #[doc(alias = "kCFStringEncodingUTF32")]
-    pub const UTF32: Self = Self(0x0c000100);
+    pub const EncodingUTF32: Self = Self(0x0c000100);
     #[doc(alias = "kCFStringEncodingUTF32BE")]
-    pub const UTF32BE: Self = Self(0x18000100);
+    pub const EncodingUTF32BE: Self = Self(0x18000100);
     #[doc(alias = "kCFStringEncodingUTF32LE")]
-    pub const UTF32LE: Self = Self(0x1c000100);
+    pub const EncodingUTF32LE: Self = Self(0x1c000100);
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl Encode for CFStringEncoding {
-    const ENCODING: Encoding = u32::ENCODING;
+unsafe impl Encode for CFStringBuiltInEncodings {
+    const ENCODING: Encoding = CFStringEncoding::ENCODING;
 }
 
 #[cfg(feature = "objc2")]
-unsafe impl RefEncode for CFStringEncoding {
+unsafe impl RefEncode for CFStringBuiltInEncodings {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 

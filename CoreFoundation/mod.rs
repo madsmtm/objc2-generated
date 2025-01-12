@@ -2179,6 +2179,8 @@ pub use self::__CFString::CFStringAppendCString;
 pub use self::__CFString::CFStringAppendCharacters;
 #[cfg(all(feature = "CFBase", feature = "CFString"))]
 pub use self::__CFString::CFStringAppendPascalString;
+#[cfg(feature = "CFString")]
+pub use self::__CFString::CFStringBuiltInEncodings;
 #[cfg(all(feature = "CFBase", feature = "CFLocale", feature = "CFString"))]
 pub use self::__CFString::CFStringCapitalize;
 #[cfg(all(feature = "CFBase", feature = "CFString"))]
