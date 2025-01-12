@@ -1611,6 +1611,8 @@ pub const kMORTLigatureType: c_int = 2;
 pub const kMORTSwashType: c_int = 4;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortinsertiontype?language=objc)
 pub const kMORTInsertionType: c_int = 5;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortliglastaction?language=objc)
+pub const kMORTLigLastAction: c_int = -2147483648;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortligstoreligature?language=objc)
 pub const kMORTLigStoreLigature: c_int = 0x40000000;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortligformoffsetmask?language=objc)
@@ -1876,6 +1878,8 @@ unsafe impl RefEncode for MortTable {
 pub const kMORXTag: c_int = 0x6D6F7278;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmorxcurrentversion?language=objc)
 pub const kMORXCurrentVersion: c_int = 0x00020000;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmorxcoververtical?language=objc)
+pub const kMORXCoverVertical: c_int = -2147483648;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmorxcoverdescending?language=objc)
 pub const kMORXCoverDescending: c_int = 0x40000000;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmorxcoverignorevertical?language=objc)
@@ -2577,6 +2581,8 @@ unsafe impl RefEncode for KernIndexArrayHeader {
 pub const kKERXTag: c_int = 0x6B657278;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxcurrentversion?language=objc)
 pub const kKERXCurrentVersion: c_int = 0x00020000;
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxvertical?language=objc)
+pub const kKERXVertical: c_int = -2147483648;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxresetcrossstream?language=objc)
 pub const kKERXResetCrossStream: c_int = 0x8000;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxcrossstream?language=objc)

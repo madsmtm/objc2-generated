@@ -52,6 +52,12 @@ unsafe impl RefEncode for CGFontPostScriptFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontindexmax?language=objc)
+pub static kCGFontIndexMax: CGFontIndex = 65534;
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontindexinvalid?language=objc)
+pub static kCGFontIndexInvalid: CGFontIndex = 65535;
+
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgglyphmax?language=objc)
 pub static kCGGlyphMax: CGFontIndex = kCGFontIndexMax;
 

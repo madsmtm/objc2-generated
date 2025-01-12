@@ -1339,6 +1339,10 @@ pub use self::__CGEventTypes::CGScrollPhase;
 #[cfg(feature = "CGEventTypes")]
 pub(crate) use self::__CGEventTypes::__CGEventTapProxy;
 #[cfg(feature = "CGFont")]
+pub use self::__CGFont::kCGFontIndexInvalid;
+#[cfg(feature = "CGFont")]
+pub use self::__CGFont::kCGFontIndexMax;
+#[cfg(feature = "CGFont")]
 pub use self::__CGFont::kCGFontVariationAxisDefaultValue;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::kCGFontVariationAxisMaxValue;

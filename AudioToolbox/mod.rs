@@ -124,6 +124,8 @@ pub use self::__AUAudioUnit::AUAudioUnitBusType;
 pub use self::__AUAudioUnit::AUAudioUnitPreset;
 #[cfg(feature = "AUAudioUnit")]
 pub use self::__AUAudioUnit::AUAudioUnitStatus;
+#[cfg(all(feature = "AUAudioUnit", feature = "AudioUnitProperties"))]
+pub use self::__AUAudioUnit::AUEventSampleTimeImmediate;
 #[cfg(all(feature = "AUAudioUnit", feature = "block2"))]
 pub use self::__AUAudioUnit::AUHostMusicalContextBlock;
 #[cfg(all(feature = "AUAudioUnit", feature = "block2"))]

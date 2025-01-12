@@ -63,6 +63,8 @@ unsafe impl ConcreteType for CTRubyAnnotation {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTRubyAlignment(pub u8);
 impl CTRubyAlignment {
+    #[doc(alias = "kCTRubyAlignmentInvalid")]
+    pub const Invalid: Self = Self(255);
     #[doc(alias = "kCTRubyAlignmentAuto")]
     pub const Auto: Self = Self(0);
     #[doc(alias = "kCTRubyAlignmentStart")]
@@ -109,6 +111,8 @@ unsafe impl RefEncode for CTRubyAlignment {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTRubyOverhang(pub u8);
 impl CTRubyOverhang {
+    #[doc(alias = "kCTRubyOverhangInvalid")]
+    pub const Invalid: Self = Self(255);
     #[doc(alias = "kCTRubyOverhangAuto")]
     pub const Auto: Self = Self(0);
     #[doc(alias = "kCTRubyOverhangStart")]

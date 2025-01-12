@@ -132,7 +132,7 @@ bitflags::bitflags! {
         const Load = 4;
 #[deprecated]
         #[doc(alias = "WebDragDestinationActionAny")]
-        const Any = 4294967295;
+        const Any = c_uint::MAX as _;
     }
 }
 
@@ -171,7 +171,7 @@ bitflags::bitflags! {
         const Selection = 8;
 #[deprecated]
         #[doc(alias = "WebDragSourceActionAny")]
-        const Any = 4294967295;
+        const Any = c_uint::MAX as _;
     }
 }
 

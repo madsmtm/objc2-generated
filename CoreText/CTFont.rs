@@ -389,6 +389,8 @@ pub unsafe extern "C-unwind" fn CTFontCreateWithFontDescriptorAndOptions(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CTFontUIFontType(pub u32);
 impl CTFontUIFontType {
+    #[doc(alias = "kCTFontUIFontNone")]
+    pub const None: Self = Self(4294967295);
     #[doc(alias = "kCTFontUIFontUser")]
     pub const User: Self = Self(0);
     #[doc(alias = "kCTFontUIFontUserFixedPitch")]

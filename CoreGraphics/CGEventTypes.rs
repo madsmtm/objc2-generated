@@ -231,9 +231,9 @@ impl CGEventType {
     #[doc(alias = "kCGEventOtherMouseDragged")]
     pub const OtherMouseDragged: Self = Self(27);
     #[doc(alias = "kCGEventTapDisabledByTimeout")]
-    pub const TapDisabledByTimeout: Self = Self(0xFFFFFFFE);
+    pub const TapDisabledByTimeout: Self = Self(4294967294);
     #[doc(alias = "kCGEventTapDisabledByUserInput")]
-    pub const TapDisabledByUserInput: Self = Self(0xFFFFFFFF);
+    pub const TapDisabledByUserInput: Self = Self(4294967295);
 }
 
 #[cfg(feature = "objc2")]

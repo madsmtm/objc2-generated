@@ -834,6 +834,25 @@ extern_protocol!(
     }
 );
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharacterzeroadvancementaction?language=objc)
+#[deprecated]
+pub const NSControlCharacterZeroAdvancementAction: c_uint = 1;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharacterwhitespaceaction?language=objc)
+#[deprecated]
+pub const NSControlCharacterWhitespaceAction: c_uint = 2;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharacterhorizontaltabaction?language=objc)
+#[deprecated]
+pub const NSControlCharacterHorizontalTabAction: c_uint = 4;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharacterlinebreakaction?language=objc)
+#[deprecated]
+pub const NSControlCharacterLineBreakAction: c_uint = 8;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharacterparagraphbreakaction?language=objc)
+#[deprecated]
+pub const NSControlCharacterParagraphBreakAction: c_uint = 16;
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharactercontainerbreakaction?language=objc)
+#[deprecated]
+pub const NSControlCharacterContainerBreakAction: c_uint = 32;
+
 extern_methods!(
     /// NSLayoutManagerDeprecated
     unsafe impl NSLayoutManager {

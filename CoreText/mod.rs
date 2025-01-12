@@ -1430,6 +1430,8 @@ pub use self::__SFNTLayoutTypes::kKERXValuesAreLong;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::kKERXVariation;
 #[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::kKERXVertical;
+#[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::kKanaSpacingType;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::kKanaToRomanizationSelector;
@@ -1516,6 +1518,8 @@ pub use self::__SFNTLayoutTypes::kMORTLigFormOffsetMask;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::kMORTLigFormOffsetShift;
 #[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::kMORTLigLastAction;
+#[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::kMORTLigStoreLigature;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::kMORTLigatureType;
@@ -1577,6 +1581,8 @@ pub use self::__SFNTLayoutTypes::kMORXCoverIgnoreVertical;
 pub use self::__SFNTLayoutTypes::kMORXCoverLogicalOrder;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::kMORXCoverTypeMask;
+#[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::kMORXCoverVertical;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::kMORXCurrentVersion;
 #[cfg(feature = "SFNTLayoutTypes")]

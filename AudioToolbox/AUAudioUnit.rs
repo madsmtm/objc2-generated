@@ -20,6 +20,10 @@ pub type MIDIChannelNumber = u8;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitstatus?language=objc)
 pub type AUAudioUnitStatus = OSStatus;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aueventsampletimeimmediate?language=objc)
+#[cfg(feature = "AudioUnitProperties")]
+pub const AUEventSampleTimeImmediate: AUEventSampleTime = -4294967296;
+
 /// A number of audio sample frames.
 ///
 /// This is `uint32_t` for impedence-matching with the pervasive use of `UInt32` in AudioToolbox

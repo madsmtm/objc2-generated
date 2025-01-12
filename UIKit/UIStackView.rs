@@ -76,8 +76,7 @@ pub static UIStackViewSpacingUseDefault: CGFloat = c_float::MAX as _;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackviewspacingusesystem?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
-pub static UIStackViewSpacingUseSystem: CGFloat =
-    0.000000000000000000000000000000000000011754943508222875 as _;
+pub static UIStackViewSpacingUseSystem: CGFloat = c_float::MIN as _;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackview?language=objc)
