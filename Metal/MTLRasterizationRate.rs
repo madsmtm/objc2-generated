@@ -150,7 +150,12 @@ extern_methods!(
 );
 
 extern_methods!(
-    unsafe impl MTLRasterizationRateLayerDescriptor {}
+    unsafe impl MTLRasterizationRateLayerDescriptor {
+        #[cfg(feature = "MTLTypes")]
+        /// Setter for [`sampleCount`][Self::sampleCount].
+        #[method(setSampleCount:)]
+        pub unsafe fn setSampleCount(&self, sample_count: MTLSize);
+    }
 );
 
 extern_class!(
