@@ -258,11 +258,18 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    /// Checks if a compressed pixel format is supported on the current platform.
-    ///
-    /// Parameter `pixelFormatType`: compressed pixel format.
-    ///
-    /// Returns: True if pixel format is supported on the current platform.
-    pub fn CVIsCompressedPixelFormatAvailable(pixel_format_type: OSType) -> Boolean;
+/// Checks if a compressed pixel format is supported on the current platform.
+///
+/// Parameter `pixelFormatType`: compressed pixel format.
+///
+/// Returns: True if pixel format is supported on the current platform.
+#[inline]
+pub unsafe extern "C-unwind" fn CVIsCompressedPixelFormatAvailable(
+    pixel_format_type: OSType,
+) -> bool {
+    extern "C-unwind" {
+        fn CVIsCompressedPixelFormatAvailable(pixel_format_type: OSType) -> Boolean;
+    }
+    let ret = unsafe { CVIsCompressedPixelFormatAvailable(pixel_format_type) };
+    ret != 0
 }

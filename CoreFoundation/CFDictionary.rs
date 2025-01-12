@@ -575,40 +575,56 @@ extern "C-unwind" {
     pub fn CFDictionaryGetCountOfValue(the_dict: &CFDictionary, value: *const c_void) -> CFIndex;
 }
 
-extern "C-unwind" {
-    /// Reports whether or not the key is in the dictionary.
-    ///
-    /// Parameter `theDict`: The dictionary to be searched. If this parameter is
-    /// not a valid CFDictionary, the behavior is undefined.
-    ///
-    /// Parameter `key`: The key for which to find matches in the dictionary. The
-    /// hash() and equal() key callbacks provided when the dictionary
-    /// was created are used to compare. If the hash() key callback
-    /// was NULL, the key is treated as a pointer and converted to
-    /// an integer. If the equal() key callback was NULL, pointer
-    /// equality (in C, ==) is used. If key, or any of the keys in
-    /// the dictionary, are not understood by the equal() callback,
-    /// the behavior is undefined.
-    ///
-    /// Returns: true, if the key is in the dictionary, otherwise false.
-    pub fn CFDictionaryContainsKey(the_dict: &CFDictionary, key: *const c_void) -> Boolean;
+/// Reports whether or not the key is in the dictionary.
+///
+/// Parameter `theDict`: The dictionary to be searched. If this parameter is
+/// not a valid CFDictionary, the behavior is undefined.
+///
+/// Parameter `key`: The key for which to find matches in the dictionary. The
+/// hash() and equal() key callbacks provided when the dictionary
+/// was created are used to compare. If the hash() key callback
+/// was NULL, the key is treated as a pointer and converted to
+/// an integer. If the equal() key callback was NULL, pointer
+/// equality (in C, ==) is used. If key, or any of the keys in
+/// the dictionary, are not understood by the equal() callback,
+/// the behavior is undefined.
+///
+/// Returns: true, if the key is in the dictionary, otherwise false.
+#[inline]
+pub unsafe extern "C-unwind" fn CFDictionaryContainsKey(
+    the_dict: &CFDictionary,
+    key: *const c_void,
+) -> bool {
+    extern "C-unwind" {
+        fn CFDictionaryContainsKey(the_dict: &CFDictionary, key: *const c_void) -> Boolean;
+    }
+    let ret = unsafe { CFDictionaryContainsKey(the_dict, key) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Reports whether or not the value is in the dictionary.
-    ///
-    /// Parameter `theDict`: The dictionary to be searched. If this parameter is
-    /// not a valid CFDictionary, the behavior is undefined.
-    ///
-    /// Parameter `value`: The value for which to find matches in the dictionary. The
-    /// equal() callback provided when the dictionary was created is
-    /// used to compare. If the equal() callback was NULL, pointer
-    /// equality (in C, ==) is used. If value, or any of the values
-    /// in the dictionary, are not understood by the equal() callback,
-    /// the behavior is undefined.
-    ///
-    /// Returns: true, if the value is in the dictionary, otherwise false.
-    pub fn CFDictionaryContainsValue(the_dict: &CFDictionary, value: *const c_void) -> Boolean;
+/// Reports whether or not the value is in the dictionary.
+///
+/// Parameter `theDict`: The dictionary to be searched. If this parameter is
+/// not a valid CFDictionary, the behavior is undefined.
+///
+/// Parameter `value`: The value for which to find matches in the dictionary. The
+/// equal() callback provided when the dictionary was created is
+/// used to compare. If the equal() callback was NULL, pointer
+/// equality (in C, ==) is used. If value, or any of the values
+/// in the dictionary, are not understood by the equal() callback,
+/// the behavior is undefined.
+///
+/// Returns: true, if the value is in the dictionary, otherwise false.
+#[inline]
+pub unsafe extern "C-unwind" fn CFDictionaryContainsValue(
+    the_dict: &CFDictionary,
+    value: *const c_void,
+) -> bool {
+    extern "C-unwind" {
+        fn CFDictionaryContainsValue(the_dict: &CFDictionary, value: *const c_void) -> Boolean;
+    }
+    let ret = unsafe { CFDictionaryContainsValue(the_dict, value) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -634,35 +650,44 @@ extern "C-unwind" {
     pub fn CFDictionaryGetValue(the_dict: &CFDictionary, key: *const c_void) -> *const c_void;
 }
 
-extern "C-unwind" {
-    /// Retrieves the value associated with the given key.
-    ///
-    /// Parameter `theDict`: The dictionary to be queried. If this parameter is
-    /// not a valid CFDictionary, the behavior is undefined.
-    ///
-    /// Parameter `key`: The key for which to find a match in the dictionary. The
-    /// hash() and equal() key callbacks provided when the dictionary
-    /// was created are used to compare. If the hash() key callback
-    /// was NULL, the key is treated as a pointer and converted to
-    /// an integer. If the equal() key callback was NULL, pointer
-    /// equality (in C, ==) is used. If key, or any of the keys in
-    /// the dictionary, are not understood by the equal() callback,
-    /// the behavior is undefined.
-    ///
-    /// Parameter `value`: A pointer to memory which should be filled with the
-    /// pointer-sized value if a matching key is found. If no key
-    /// match is found, the contents of the storage pointed to by
-    /// this parameter are undefined. This parameter may be NULL,
-    /// in which case the value from the dictionary is not returned
-    /// (but the return value of this function still indicates
-    /// whether or not the key-value pair was present).
-    ///
-    /// Returns: true, if a matching key was found, false otherwise.
-    pub fn CFDictionaryGetValueIfPresent(
-        the_dict: &CFDictionary,
-        key: *const c_void,
-        value: *mut *const c_void,
-    ) -> Boolean;
+/// Retrieves the value associated with the given key.
+///
+/// Parameter `theDict`: The dictionary to be queried. If this parameter is
+/// not a valid CFDictionary, the behavior is undefined.
+///
+/// Parameter `key`: The key for which to find a match in the dictionary. The
+/// hash() and equal() key callbacks provided when the dictionary
+/// was created are used to compare. If the hash() key callback
+/// was NULL, the key is treated as a pointer and converted to
+/// an integer. If the equal() key callback was NULL, pointer
+/// equality (in C, ==) is used. If key, or any of the keys in
+/// the dictionary, are not understood by the equal() callback,
+/// the behavior is undefined.
+///
+/// Parameter `value`: A pointer to memory which should be filled with the
+/// pointer-sized value if a matching key is found. If no key
+/// match is found, the contents of the storage pointed to by
+/// this parameter are undefined. This parameter may be NULL,
+/// in which case the value from the dictionary is not returned
+/// (but the return value of this function still indicates
+/// whether or not the key-value pair was present).
+///
+/// Returns: true, if a matching key was found, false otherwise.
+#[inline]
+pub unsafe extern "C-unwind" fn CFDictionaryGetValueIfPresent(
+    the_dict: &CFDictionary,
+    key: *const c_void,
+    value: *mut *const c_void,
+) -> bool {
+    extern "C-unwind" {
+        fn CFDictionaryGetValueIfPresent(
+            the_dict: &CFDictionary,
+            key: *const c_void,
+            value: *mut *const c_void,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFDictionaryGetValueIfPresent(the_dict, key, value) };
+    ret != 0
 }
 
 extern "C-unwind" {

@@ -416,19 +416,27 @@ extern "C-unwind" {
     ) -> AudioComponent;
 }
 
-extern "C-unwind" {
-    /// Determines if an audio component instance implements a particular component
-    /// API call as signified by the specified selector identifier token.
-    ///
-    /// Parameter `inInstance`: the audio component instance
-    ///
-    /// Parameter `inSelectorID`: a number to signify the audio component API (component selector) as appropriate for the instance's component type.
-    ///
-    /// Returns: a boolean
-    pub fn AudioComponentInstanceCanDo(
-        in_instance: AudioComponentInstance,
-        in_selector_id: i16,
-    ) -> Boolean;
+/// Determines if an audio component instance implements a particular component
+/// API call as signified by the specified selector identifier token.
+///
+/// Parameter `inInstance`: the audio component instance
+///
+/// Parameter `inSelectorID`: a number to signify the audio component API (component selector) as appropriate for the instance's component type.
+///
+/// Returns: a boolean
+#[inline]
+pub unsafe extern "C-unwind" fn AudioComponentInstanceCanDo(
+    in_instance: AudioComponentInstance,
+    in_selector_id: i16,
+) -> bool {
+    extern "C-unwind" {
+        fn AudioComponentInstanceCanDo(
+            in_instance: AudioComponentInstance,
+            in_selector_id: i16,
+        ) -> Boolean;
+    }
+    let ret = unsafe { AudioComponentInstanceCanDo(in_instance, in_selector_id) };
+    ret != 0
 }
 
 extern "C-unwind" {

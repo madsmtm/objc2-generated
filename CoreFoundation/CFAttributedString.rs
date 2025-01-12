@@ -284,15 +284,26 @@ pub unsafe extern "C-unwind" fn CFAttributedStringGetMutableString(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Sets the value of multiple attributes over the specified range, which should be valid. If clearOtherAttributes is false, existing attributes (which aren't being replaced) are left alone; otherwise they are cleared. The dictionary should be setup for "usual" CF type usage --- CFString keys, and arbitrary CFType values. Note that after this call, further mutations to the replacement dictionary argument by the caller will not affect the contents of the attributed string.
-    #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
-    pub fn CFAttributedStringSetAttributes(
-        a_str: Option<&CFMutableAttributedString>,
-        range: CFRange,
-        replacement: Option<&CFDictionary>,
-        clear_other_attributes: Boolean,
-    );
+/// Sets the value of multiple attributes over the specified range, which should be valid. If clearOtherAttributes is false, existing attributes (which aren't being replaced) are left alone; otherwise they are cleared. The dictionary should be setup for "usual" CF type usage --- CFString keys, and arbitrary CFType values. Note that after this call, further mutations to the replacement dictionary argument by the caller will not affect the contents of the attributed string.
+#[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFAttributedStringSetAttributes(
+    a_str: Option<&CFMutableAttributedString>,
+    range: CFRange,
+    replacement: Option<&CFDictionary>,
+    clear_other_attributes: bool,
+) {
+    extern "C-unwind" {
+        fn CFAttributedStringSetAttributes(
+            a_str: Option<&CFMutableAttributedString>,
+            range: CFRange,
+            replacement: Option<&CFDictionary>,
+            clear_other_attributes: Boolean,
+        );
+    }
+    unsafe {
+        CFAttributedStringSetAttributes(a_str, range, replacement, clear_other_attributes as _)
+    }
 }
 
 extern "C-unwind" {

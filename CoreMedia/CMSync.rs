@@ -156,9 +156,14 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Indicates whether it is possible for two clocks to drift relative to each other.
-    pub fn CMClockMightDrift(clock: &CMClock, other_clock: &CMClock) -> Boolean;
+/// Indicates whether it is possible for two clocks to drift relative to each other.
+#[inline]
+pub unsafe extern "C-unwind" fn CMClockMightDrift(clock: &CMClock, other_clock: &CMClock) -> bool {
+    extern "C-unwind" {
+        fn CMClockMightDrift(clock: &CMClock, other_clock: &CMClock) -> Boolean;
+    }
+    let ret = unsafe { CMClockMightDrift(clock, other_clock) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -553,15 +558,23 @@ extern "C-unwind" {
     ) -> CMTime;
 }
 
-extern "C-unwind" {
-    /// Reports whether it is possible for one timebase/clock to drift relative to the other.
-    ///
-    /// A timebase can drift relative to another if their ultimate source clocks that can drift relative
-    /// to each other.
-    pub fn CMSyncMightDrift(
-        clock_or_timebase1: &CMClockOrTimebase,
-        clock_or_timebase2: &CMClockOrTimebase,
-    ) -> Boolean;
+/// Reports whether it is possible for one timebase/clock to drift relative to the other.
+///
+/// A timebase can drift relative to another if their ultimate source clocks that can drift relative
+/// to each other.
+#[inline]
+pub unsafe extern "C-unwind" fn CMSyncMightDrift(
+    clock_or_timebase1: &CMClockOrTimebase,
+    clock_or_timebase2: &CMClockOrTimebase,
+) -> bool {
+    extern "C-unwind" {
+        fn CMSyncMightDrift(
+            clock_or_timebase1: &CMClockOrTimebase,
+            clock_or_timebase2: &CMClockOrTimebase,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CMSyncMightDrift(clock_or_timebase1, clock_or_timebase2) };
+    ret != 0
 }
 
 extern "C-unwind" {

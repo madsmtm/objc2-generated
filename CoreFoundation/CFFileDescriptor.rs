@@ -84,7 +84,7 @@ unsafe impl ConcreteType for CFFileDescriptor {
 pub unsafe extern "C-unwind" fn CFFileDescriptorCreate(
     allocator: Option<&CFAllocator>,
     fd: CFFileDescriptorNativeDescriptor,
-    close_on_invalidate: Boolean,
+    close_on_invalidate: bool,
     callout: CFFileDescriptorCallBack,
     context: *const CFFileDescriptorContext,
 ) -> Option<CFRetained<CFFileDescriptor>> {
@@ -97,8 +97,9 @@ pub unsafe extern "C-unwind" fn CFFileDescriptorCreate(
             context: *const CFFileDescriptorContext,
         ) -> *mut CFFileDescriptor;
     }
-    let ret =
-        unsafe { CFFileDescriptorCreate(allocator, fd, close_on_invalidate, callout, context) };
+    let ret = unsafe {
+        CFFileDescriptorCreate(allocator, fd, close_on_invalidate as _, callout, context)
+    };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
@@ -127,8 +128,13 @@ extern "C-unwind" {
     pub fn CFFileDescriptorInvalidate(f: &CFFileDescriptor);
 }
 
-extern "C-unwind" {
-    pub fn CFFileDescriptorIsValid(f: &CFFileDescriptor) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn CFFileDescriptorIsValid(f: &CFFileDescriptor) -> bool {
+    extern "C-unwind" {
+        fn CFFileDescriptorIsValid(f: &CFFileDescriptor) -> Boolean;
+    }
+    let ret = unsafe { CFFileDescriptorIsValid(f) };
+    ret != 0
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFRunLoop"))]

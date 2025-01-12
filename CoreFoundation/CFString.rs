@@ -112,7 +112,7 @@ pub unsafe extern "C-unwind" fn CFStringCreateWithBytes(
     bytes: *const u8,
     num_bytes: CFIndex,
     encoding: CFStringEncoding,
-    is_external_representation: Boolean,
+    is_external_representation: bool,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn CFStringCreateWithBytes(
@@ -129,7 +129,7 @@ pub unsafe extern "C-unwind" fn CFStringCreateWithBytes(
             bytes,
             num_bytes,
             encoding,
-            is_external_representation,
+            is_external_representation as _,
         )
     };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -203,7 +203,7 @@ pub unsafe extern "C-unwind" fn CFStringCreateWithBytesNoCopy(
     bytes: *const u8,
     num_bytes: CFIndex,
     encoding: CFStringEncoding,
-    is_external_representation: Boolean,
+    is_external_representation: bool,
     contents_deallocator: Option<&CFAllocator>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -222,7 +222,7 @@ pub unsafe extern "C-unwind" fn CFStringCreateWithBytesNoCopy(
             bytes,
             num_bytes,
             encoding,
-            is_external_representation,
+            is_external_representation as _,
             contents_deallocator,
         )
     };
@@ -365,24 +365,44 @@ extern "C-unwind" {
     pub fn CFStringGetCharacters(the_string: &CFString, range: CFRange, buffer: *mut UniChar);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringGetPascalString(
-        the_string: &CFString,
-        buffer: StringPtr,
-        buffer_size: CFIndex,
-        encoding: CFStringEncoding,
-    ) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFStringGetPascalString(
+    the_string: &CFString,
+    buffer: StringPtr,
+    buffer_size: CFIndex,
+    encoding: CFStringEncoding,
+) -> bool {
+    extern "C-unwind" {
+        fn CFStringGetPascalString(
+            the_string: &CFString,
+            buffer: StringPtr,
+            buffer_size: CFIndex,
+            encoding: CFStringEncoding,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFStringGetPascalString(the_string, buffer, buffer_size, encoding) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringGetCString(
-        the_string: &CFString,
-        buffer: *mut c_char,
-        buffer_size: CFIndex,
-        encoding: CFStringEncoding,
-    ) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFStringGetCString(
+    the_string: &CFString,
+    buffer: *mut c_char,
+    buffer_size: CFIndex,
+    encoding: CFStringEncoding,
+) -> bool {
+    extern "C-unwind" {
+        fn CFStringGetCString(
+            the_string: &CFString,
+            buffer: *mut c_char,
+            buffer_size: CFIndex,
+            encoding: CFStringEncoding,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFStringGetCString(the_string, buffer, buffer_size, encoding) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -406,18 +426,42 @@ extern "C-unwind" {
     pub fn CFStringGetCharactersPtr(the_string: &CFString) -> *const UniChar;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringGetBytes(
-        the_string: &CFString,
-        range: CFRange,
-        encoding: CFStringEncoding,
-        loss_byte: u8,
-        is_external_representation: Boolean,
-        buffer: *mut u8,
-        max_buf_len: CFIndex,
-        used_buf_len: *mut CFIndex,
-    ) -> CFIndex;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFStringGetBytes(
+    the_string: &CFString,
+    range: CFRange,
+    encoding: CFStringEncoding,
+    loss_byte: u8,
+    is_external_representation: bool,
+    buffer: *mut u8,
+    max_buf_len: CFIndex,
+    used_buf_len: *mut CFIndex,
+) -> CFIndex {
+    extern "C-unwind" {
+        fn CFStringGetBytes(
+            the_string: &CFString,
+            range: CFRange,
+            encoding: CFStringEncoding,
+            loss_byte: u8,
+            is_external_representation: Boolean,
+            buffer: *mut u8,
+            max_buf_len: CFIndex,
+            used_buf_len: *mut CFIndex,
+        ) -> CFIndex;
+    }
+    unsafe {
+        CFStringGetBytes(
+            the_string,
+            range,
+            encoding,
+            loss_byte,
+            is_external_representation as _,
+            buffer,
+            max_buf_len,
+            used_buf_len,
+        )
+    }
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFData"))]
@@ -481,14 +525,23 @@ extern "C-unwind" {
     ) -> CFIndex;
 }
 
-extern "C-unwind" {
-    /// * FileSystem path conversion functions **
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringGetFileSystemRepresentation(
-        string: &CFString,
-        buffer: *mut c_char,
-        max_buf_len: CFIndex,
-    ) -> Boolean;
+/// * FileSystem path conversion functions **
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFStringGetFileSystemRepresentation(
+    string: &CFString,
+    buffer: *mut c_char,
+    max_buf_len: CFIndex,
+) -> bool {
+    extern "C-unwind" {
+        fn CFStringGetFileSystemRepresentation(
+            string: &CFString,
+            buffer: *mut c_char,
+            max_buf_len: CFIndex,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFStringGetFileSystemRepresentation(string, buffer, max_buf_len) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -582,27 +635,67 @@ extern "C-unwind" {
     ) -> CFComparisonResult;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFLocale"))]
-    pub fn CFStringFindWithOptionsAndLocale(
-        the_string: &CFString,
-        string_to_find: Option<&CFString>,
-        range_to_search: CFRange,
-        search_options: CFStringCompareFlags,
-        locale: Option<&CFLocale>,
-        result: *mut CFRange,
-    ) -> Boolean;
+#[cfg(all(feature = "CFBase", feature = "CFLocale"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFStringFindWithOptionsAndLocale(
+    the_string: &CFString,
+    string_to_find: Option<&CFString>,
+    range_to_search: CFRange,
+    search_options: CFStringCompareFlags,
+    locale: Option<&CFLocale>,
+    result: *mut CFRange,
+) -> bool {
+    extern "C-unwind" {
+        fn CFStringFindWithOptionsAndLocale(
+            the_string: &CFString,
+            string_to_find: Option<&CFString>,
+            range_to_search: CFRange,
+            search_options: CFStringCompareFlags,
+            locale: Option<&CFLocale>,
+            result: *mut CFRange,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        CFStringFindWithOptionsAndLocale(
+            the_string,
+            string_to_find,
+            range_to_search,
+            search_options,
+            locale,
+            result,
+        )
+    };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringFindWithOptions(
-        the_string: &CFString,
-        string_to_find: Option<&CFString>,
-        range_to_search: CFRange,
-        search_options: CFStringCompareFlags,
-        result: *mut CFRange,
-    ) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFStringFindWithOptions(
+    the_string: &CFString,
+    string_to_find: Option<&CFString>,
+    range_to_search: CFRange,
+    search_options: CFStringCompareFlags,
+    result: *mut CFRange,
+) -> bool {
+    extern "C-unwind" {
+        fn CFStringFindWithOptions(
+            the_string: &CFString,
+            string_to_find: Option<&CFString>,
+            range_to_search: CFRange,
+            search_options: CFStringCompareFlags,
+            result: *mut CFRange,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        CFStringFindWithOptions(
+            the_string,
+            string_to_find,
+            range_to_search,
+            search_options,
+            result,
+        )
+    };
+    ret != 0
 }
 
 #[cfg(all(feature = "CFArray", feature = "CFBase"))]
@@ -644,14 +737,30 @@ extern "C-unwind" {
     ) -> CFRange;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringHasPrefix(the_string: &CFString, prefix: Option<&CFString>) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFStringHasPrefix(
+    the_string: &CFString,
+    prefix: Option<&CFString>,
+) -> bool {
+    extern "C-unwind" {
+        fn CFStringHasPrefix(the_string: &CFString, prefix: Option<&CFString>) -> Boolean;
+    }
+    let ret = unsafe { CFStringHasPrefix(the_string, prefix) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringHasSuffix(the_string: &CFString, suffix: Option<&CFString>) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFStringHasSuffix(
+    the_string: &CFString,
+    suffix: Option<&CFString>,
+) -> bool {
+    extern "C-unwind" {
+        fn CFStringHasSuffix(the_string: &CFString, suffix: Option<&CFString>) -> Boolean;
+    }
+    let ret = unsafe { CFStringHasSuffix(the_string, suffix) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -675,47 +784,60 @@ extern "C-unwind" {
     ) -> CFRange;
 }
 
-extern "C-unwind" {
-    /// Query the range of the first character contained in the specified character set.
-    ///
-    /// Parameter `theString`: The CFString which is to be searched.  If this
-    /// parameter is not a valid CFString, the behavior is
-    /// undefined.
-    ///
-    /// Parameter `theSet`: The CFCharacterSet against which the membership
-    /// of characters is checked.  If this parameter is not a valid
-    /// CFCharacterSet, the behavior is undefined.
-    ///
-    /// Parameter `rangeToSearch`: The range of characters within the string to search. If
-    /// the range location or end point (defined by the location
-    /// plus length minus 1) are outside the index space of the
-    /// string (0 to N-1 inclusive, where N is the length of the
-    /// string), the behavior is undefined. If the range length is
-    /// negative, the behavior is undefined. The range may be empty
-    /// (length 0), in which case no search is performed.
-    ///
-    /// Parameter `searchOptions`: The bitwise-or'ed option flags to control
-    /// the search behavior.  The supported options are
-    /// kCFCompareBackwards andkCFCompareAnchored.
-    /// If other option flags are specified, the behavior
-    /// is undefined.
-    ///
-    /// Parameter `result`: The pointer to a CFRange supplied by the caller in
-    /// which the search result is stored.  Note that the length
-    /// of this range can be more than 1, if for instance the
-    /// result is a composed character. If a pointer to an invalid
-    /// memory is specified, the behavior is undefined.
-    ///
-    /// Returns: true, if at least a character which is a member of the character
-    /// set is found and result is filled, otherwise, false.
-    #[cfg(all(feature = "CFBase", feature = "CFCharacterSet"))]
-    pub fn CFStringFindCharacterFromSet(
-        the_string: &CFString,
-        the_set: Option<&CFCharacterSet>,
-        range_to_search: CFRange,
-        search_options: CFStringCompareFlags,
-        result: *mut CFRange,
-    ) -> Boolean;
+/// Query the range of the first character contained in the specified character set.
+///
+/// Parameter `theString`: The CFString which is to be searched.  If this
+/// parameter is not a valid CFString, the behavior is
+/// undefined.
+///
+/// Parameter `theSet`: The CFCharacterSet against which the membership
+/// of characters is checked.  If this parameter is not a valid
+/// CFCharacterSet, the behavior is undefined.
+///
+/// Parameter `rangeToSearch`: The range of characters within the string to search. If
+/// the range location or end point (defined by the location
+/// plus length minus 1) are outside the index space of the
+/// string (0 to N-1 inclusive, where N is the length of the
+/// string), the behavior is undefined. If the range length is
+/// negative, the behavior is undefined. The range may be empty
+/// (length 0), in which case no search is performed.
+///
+/// Parameter `searchOptions`: The bitwise-or'ed option flags to control
+/// the search behavior.  The supported options are
+/// kCFCompareBackwards andkCFCompareAnchored.
+/// If other option flags are specified, the behavior
+/// is undefined.
+///
+/// Parameter `result`: The pointer to a CFRange supplied by the caller in
+/// which the search result is stored.  Note that the length
+/// of this range can be more than 1, if for instance the
+/// result is a composed character. If a pointer to an invalid
+/// memory is specified, the behavior is undefined.
+///
+/// Returns: true, if at least a character which is a member of the character
+/// set is found and result is filled, otherwise, false.
+#[cfg(all(feature = "CFBase", feature = "CFCharacterSet"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFStringFindCharacterFromSet(
+    the_string: &CFString,
+    the_set: Option<&CFCharacterSet>,
+    range_to_search: CFRange,
+    search_options: CFStringCompareFlags,
+    result: *mut CFRange,
+) -> bool {
+    extern "C-unwind" {
+        fn CFStringFindCharacterFromSet(
+            the_string: &CFString,
+            the_set: Option<&CFCharacterSet>,
+            range_to_search: CFRange,
+            search_options: CFStringCompareFlags,
+            result: *mut CFRange,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        CFStringFindCharacterFromSet(the_string, the_set, range_to_search, search_options, result)
+    };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -781,9 +903,16 @@ extern "C-unwind" {
     ) -> CFIndex;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFLocale")]
-    pub fn CFStringIsHyphenationAvailableForLocale(locale: Option<&CFLocale>) -> Boolean;
+#[cfg(feature = "CFLocale")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFStringIsHyphenationAvailableForLocale(
+    locale: Option<&CFLocale>,
+) -> bool {
+    extern "C-unwind" {
+        fn CFStringIsHyphenationAvailableForLocale(locale: Option<&CFLocale>) -> Boolean;
+    }
+    let ret = unsafe { CFStringIsHyphenationAvailableForLocale(locale) };
+    ret != 0
 }
 
 /// * Exploding and joining strings with a separator string **
@@ -1034,14 +1163,24 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFStringTransform(
-        string: Option<&CFMutableString>,
-        range: *mut CFRange,
-        transform: Option<&CFString>,
-        reverse: Boolean,
-    ) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFStringTransform(
+    string: Option<&CFMutableString>,
+    range: *mut CFRange,
+    transform: Option<&CFString>,
+    reverse: bool,
+) -> bool {
+    extern "C-unwind" {
+        fn CFStringTransform(
+            string: Option<&CFMutableString>,
+            range: *mut CFRange,
+            transform: Option<&CFString>,
+            reverse: Boolean,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFStringTransform(string, range, transform, reverse as _) };
+    ret != 0
 }
 
 extern "C" {
@@ -1140,9 +1279,14 @@ extern "C" {
     pub static kCFStringTransformStripDiacritics: Option<&'static CFString>;
 }
 
-extern "C-unwind" {
-    /// * General encoding related functionality **
-    pub fn CFStringIsEncodingAvailable(encoding: CFStringEncoding) -> Boolean;
+/// * General encoding related functionality **
+#[inline]
+pub unsafe extern "C-unwind" fn CFStringIsEncodingAvailable(encoding: CFStringEncoding) -> bool {
+    extern "C-unwind" {
+        fn CFStringIsEncodingAvailable(encoding: CFStringEncoding) -> Boolean;
+    }
+    let ret = unsafe { CFStringIsEncodingAvailable(encoding) };
+    ret != 0
 }
 
 extern "C-unwind" {

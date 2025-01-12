@@ -124,9 +124,18 @@ extern "C-unwind" {
     pub fn CFBitVectorGetCountOfBit(bv: &CFBitVector, range: CFRange, value: CFBit) -> CFIndex;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFBitVectorContainsBit(bv: &CFBitVector, range: CFRange, value: CFBit) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFBitVectorContainsBit(
+    bv: &CFBitVector,
+    range: CFRange,
+    value: CFBit,
+) -> bool {
+    extern "C-unwind" {
+        fn CFBitVectorContainsBit(bv: &CFBitVector, range: CFRange, value: CFBit) -> Boolean;
+    }
+    let ret = unsafe { CFBitVectorContainsBit(bv, range, value) };
+    ret != 0
 }
 
 extern "C-unwind" {

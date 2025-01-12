@@ -126,8 +126,13 @@ pub unsafe extern "C-unwind" fn CFMessagePortCreateRemote(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CFMessagePortIsRemote(ms: &CFMessagePort) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn CFMessagePortIsRemote(ms: &CFMessagePort) -> bool {
+    extern "C-unwind" {
+        fn CFMessagePortIsRemote(ms: &CFMessagePort) -> Boolean;
+    }
+    let ret = unsafe { CFMessagePortIsRemote(ms) };
+    ret != 0
 }
 
 #[cfg(feature = "CFBase")]
@@ -142,9 +147,17 @@ pub unsafe extern "C-unwind" fn CFMessagePortGetName(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFMessagePortSetName(ms: &CFMessagePort, new_name: Option<&CFString>) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFMessagePortSetName(
+    ms: &CFMessagePort,
+    new_name: Option<&CFString>,
+) -> bool {
+    extern "C-unwind" {
+        fn CFMessagePortSetName(ms: &CFMessagePort, new_name: Option<&CFString>) -> Boolean;
+    }
+    let ret = unsafe { CFMessagePortSetName(ms, new_name) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -156,8 +169,13 @@ extern "C-unwind" {
     pub fn CFMessagePortInvalidate(ms: &CFMessagePort);
 }
 
-extern "C-unwind" {
-    pub fn CFMessagePortIsValid(ms: &CFMessagePort) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn CFMessagePortIsValid(ms: &CFMessagePort) -> bool {
+    extern "C-unwind" {
+        fn CFMessagePortIsValid(ms: &CFMessagePort) -> Boolean;
+    }
+    let ret = unsafe { CFMessagePortIsValid(ms) };
+    ret != 0
 }
 
 extern "C-unwind" {

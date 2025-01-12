@@ -270,14 +270,24 @@ pub unsafe extern "C-unwind" fn CFDateFormatterCreateDateFromString(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFDate"))]
-    pub fn CFDateFormatterGetAbsoluteTimeFromString(
-        formatter: &CFDateFormatter,
-        string: Option<&CFString>,
-        rangep: *mut CFRange,
-        atp: *mut CFAbsoluteTime,
-    ) -> Boolean;
+#[cfg(all(feature = "CFBase", feature = "CFDate"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFDateFormatterGetAbsoluteTimeFromString(
+    formatter: &CFDateFormatter,
+    string: Option<&CFString>,
+    rangep: *mut CFRange,
+    atp: *mut CFAbsoluteTime,
+) -> bool {
+    extern "C-unwind" {
+        fn CFDateFormatterGetAbsoluteTimeFromString(
+            formatter: &CFDateFormatter,
+            string: Option<&CFString>,
+            rangep: *mut CFRange,
+            atp: *mut CFAbsoluteTime,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFDateFormatterGetAbsoluteTimeFromString(formatter, string, rangep, atp) };
+    ret != 0
 }
 
 extern "C-unwind" {

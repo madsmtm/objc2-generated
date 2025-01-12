@@ -240,13 +240,18 @@ pub unsafe extern "C-unwind" fn CVBufferCopyAttachment(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns true if an attachment with the passed key is present on a CVBuffer object.
-    ///
-    /// Parameter `buffer`: Target CVBuffer object.
-    ///
-    /// Parameter `key`: Key in form of a CFString identifying the desired attachment.
-    ///
-    /// Returns: True if an attachment with this key is present, otherwise false.
-    pub fn CVBufferHasAttachment(buffer: &CVBuffer, key: &CFString) -> Boolean;
+/// Returns true if an attachment with the passed key is present on a CVBuffer object.
+///
+/// Parameter `buffer`: Target CVBuffer object.
+///
+/// Parameter `key`: Key in form of a CFString identifying the desired attachment.
+///
+/// Returns: True if an attachment with this key is present, otherwise false.
+#[inline]
+pub unsafe extern "C-unwind" fn CVBufferHasAttachment(buffer: &CVBuffer, key: &CFString) -> bool {
+    extern "C-unwind" {
+        fn CVBufferHasAttachment(buffer: &CVBuffer, key: &CFString) -> Boolean;
+    }
+    let ret = unsafe { CVBufferHasAttachment(buffer, key) };
+    ret != 0
 }

@@ -480,9 +480,16 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Tests a data type identifier to see if it has been registered.
-    pub fn CMMetadataDataTypeRegistryDataTypeIsRegistered(data_type: &CFString) -> Boolean;
+/// Tests a data type identifier to see if it has been registered.
+#[inline]
+pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeIsRegistered(
+    data_type: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn CMMetadataDataTypeRegistryDataTypeIsRegistered(data_type: &CFString) -> Boolean;
+    }
+    let ret = unsafe { CMMetadataDataTypeRegistryDataTypeIsRegistered(data_type) };
+    ret != 0
 }
 
 /// Returns the data type's description (if any was provided when it was registered).
@@ -517,26 +524,36 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetConformingDataTypes
     unsafe { CFRetained::retain(ret) }
 }
 
-extern "C-unwind" {
-    /// Checks to see if a data type conforms to another data type.
-    ///
-    /// A given data type will conform to a second data type if any of
-    /// the following are true:
-    /// <ul>
-    /// 1. The data type identifiers are the same.
-    /// <li>
-    /// 2. The first data type identifier's conformance list contains the second data type identifier.
-    /// <li>
-    /// 3. A recursive search of the conforming data types for each element in the first
-    /// <li>
-    /// data type's conformance list yields the second data type identifer.
-    /// </ul>
-    ///
-    /// Returns: True if the first data type conforms to the second data type.
-    pub fn CMMetadataDataTypeRegistryDataTypeConformsToDataType(
-        data_type: &CFString,
-        conforms_to_data_type: &CFString,
-    ) -> Boolean;
+/// Checks to see if a data type conforms to another data type.
+///
+/// A given data type will conform to a second data type if any of
+/// the following are true:
+/// <ul>
+/// 1. The data type identifiers are the same.
+/// <li>
+/// 2. The first data type identifier's conformance list contains the second data type identifier.
+/// <li>
+/// 3. A recursive search of the conforming data types for each element in the first
+/// <li>
+/// data type's conformance list yields the second data type identifer.
+/// </ul>
+///
+/// Returns: True if the first data type conforms to the second data type.
+#[inline]
+pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeConformsToDataType(
+    data_type: &CFString,
+    conforms_to_data_type: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn CMMetadataDataTypeRegistryDataTypeConformsToDataType(
+            data_type: &CFString,
+            conforms_to_data_type: &CFString,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        CMMetadataDataTypeRegistryDataTypeConformsToDataType(data_type, conforms_to_data_type)
+    };
+    ret != 0
 }
 
 /// Returns an array of base data type identifiers.
@@ -554,13 +571,20 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetBaseDataTypes(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Tests a data type identifier to see if it represents a base data type.
-    ///
-    /// This is simply a convenience method to test to see if a given
-    /// data type identifier is in the array returned by
-    /// CMMetadataDataTypeRegistryGetBaseDataTypes.
-    pub fn CMMetadataDataTypeRegistryDataTypeIsBaseDataType(data_type: &CFString) -> Boolean;
+/// Tests a data type identifier to see if it represents a base data type.
+///
+/// This is simply a convenience method to test to see if a given
+/// data type identifier is in the array returned by
+/// CMMetadataDataTypeRegistryGetBaseDataTypes.
+#[inline]
+pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeIsBaseDataType(
+    data_type: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn CMMetadataDataTypeRegistryDataTypeIsBaseDataType(data_type: &CFString) -> Boolean;
+    }
+    let ret = unsafe { CMMetadataDataTypeRegistryDataTypeIsBaseDataType(data_type) };
+    ret != 0
 }
 
 /// Returns the base data type identifier that the given data type

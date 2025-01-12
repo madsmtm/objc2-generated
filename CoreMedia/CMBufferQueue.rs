@@ -405,11 +405,16 @@ pub unsafe extern "C-unwind" fn CMBufferQueueCopyHead(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns whether or not a CMBufferQueue is empty.
-    ///
-    /// Returns: Whether or not the CMBufferQueue is empty. If queue is NULL, true is returned.
-    pub fn CMBufferQueueIsEmpty(queue: &CMBufferQueue) -> Boolean;
+/// Returns whether or not a CMBufferQueue is empty.
+///
+/// Returns: Whether or not the CMBufferQueue is empty. If queue is NULL, true is returned.
+#[inline]
+pub unsafe extern "C-unwind" fn CMBufferQueueIsEmpty(queue: &CMBufferQueue) -> bool {
+    extern "C-unwind" {
+        fn CMBufferQueueIsEmpty(queue: &CMBufferQueue) -> Boolean;
+    }
+    let ret = unsafe { CMBufferQueueIsEmpty(queue) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -420,22 +425,32 @@ extern "C-unwind" {
     pub fn CMBufferQueueMarkEndOfData(queue: &CMBufferQueue) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Returns whether or not a CMBufferQueue has been marked with EOD.
-    ///
-    /// Returns: Whether or not the CMBufferQueue has been marked with EOD.
-    /// If queue is NULL, true is returned (a NULL queue is considered to
-    /// be empty, and permanently at EOD).
-    pub fn CMBufferQueueContainsEndOfData(queue: &CMBufferQueue) -> Boolean;
+/// Returns whether or not a CMBufferQueue has been marked with EOD.
+///
+/// Returns: Whether or not the CMBufferQueue has been marked with EOD.
+/// If queue is NULL, true is returned (a NULL queue is considered to
+/// be empty, and permanently at EOD).
+#[inline]
+pub unsafe extern "C-unwind" fn CMBufferQueueContainsEndOfData(queue: &CMBufferQueue) -> bool {
+    extern "C-unwind" {
+        fn CMBufferQueueContainsEndOfData(queue: &CMBufferQueue) -> Boolean;
+    }
+    let ret = unsafe { CMBufferQueueContainsEndOfData(queue) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Returns whether or not a CMBufferQueue has been marked with EOD, and is now empty.
-    ///
-    /// Returns: Whether or not the CMBufferQueue has been marked with EOD, and is now empty.
-    /// If queue is NULL, true is returned (a NULL queue is considered to
-    /// be empty, and permanently at EOD).
-    pub fn CMBufferQueueIsAtEndOfData(queue: &CMBufferQueue) -> Boolean;
+/// Returns whether or not a CMBufferQueue has been marked with EOD, and is now empty.
+///
+/// Returns: Whether or not the CMBufferQueue has been marked with EOD, and is now empty.
+/// If queue is NULL, true is returned (a NULL queue is considered to
+/// be empty, and permanently at EOD).
+#[inline]
+pub unsafe extern "C-unwind" fn CMBufferQueueIsAtEndOfData(queue: &CMBufferQueue) -> bool {
+    extern "C-unwind" {
+        fn CMBufferQueueIsAtEndOfData(queue: &CMBufferQueue) -> Boolean;
+    }
+    let ret = unsafe { CMBufferQueueIsAtEndOfData(queue) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -716,16 +731,24 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Tests whether the trigger condition is true.
-    ///
-    /// Whereas the trigger callback will only be called when the condition goes from false
-    /// to true, CMBufferQueueTestTrigger always returns the condition's current status.
-    /// The triggerToken must be one that has been installed on this queue.
-    pub fn CMBufferQueueTestTrigger(
-        queue: &CMBufferQueue,
-        trigger_token: CMBufferQueueTriggerToken,
-    ) -> Boolean;
+/// Tests whether the trigger condition is true.
+///
+/// Whereas the trigger callback will only be called when the condition goes from false
+/// to true, CMBufferQueueTestTrigger always returns the condition's current status.
+/// The triggerToken must be one that has been installed on this queue.
+#[inline]
+pub unsafe extern "C-unwind" fn CMBufferQueueTestTrigger(
+    queue: &CMBufferQueue,
+    trigger_token: CMBufferQueueTriggerToken,
+) -> bool {
+    extern "C-unwind" {
+        fn CMBufferQueueTestTrigger(
+            queue: &CMBufferQueue,
+            trigger_token: CMBufferQueueTriggerToken,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CMBufferQueueTestTrigger(queue, trigger_token) };
+    ret != 0
 }
 
 extern "C-unwind" {

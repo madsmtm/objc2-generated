@@ -387,40 +387,51 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Activate or deactivate the AudioSession.
-    ///
-    /// Call this function with active set to true to activate this AudioSession (interrupt
-    /// the currently active AudioSession).
-    /// Call this function with active set to false to deactivate this AudioSession (allow
-    /// another interrupted AudioSession to resume).
-    /// When active is true this call may fail if the currently active AudioSession has a higher priority.
-    ///
-    /// Parameter `active`: A Boolean indicating if you want to make this AudioSession active or inactive.
-    #[deprecated = "no longer supported"]
-    pub fn AudioSessionSetActive(active: Boolean) -> OSStatus;
+/// Activate or deactivate the AudioSession.
+///
+/// Call this function with active set to true to activate this AudioSession (interrupt
+/// the currently active AudioSession).
+/// Call this function with active set to false to deactivate this AudioSession (allow
+/// another interrupted AudioSession to resume).
+/// When active is true this call may fail if the currently active AudioSession has a higher priority.
+///
+/// Parameter `active`: A Boolean indicating if you want to make this AudioSession active or inactive.
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioSessionSetActive(active: bool) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioSessionSetActive(active: Boolean) -> OSStatus;
+    }
+    unsafe { AudioSessionSetActive(active as _) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionsetactiveflag_notifyothersondeactivation?language=objc)
 pub const kAudioSessionSetActiveFlag_NotifyOthersOnDeactivation: c_uint = 1 << 0;
 
-extern "C-unwind" {
-    /// Same functionality as AudioSessionSetActive, with an additional flags parameter for
-    /// refining behavior.
-    ///
-    /// Call this function with active set to true to activate this AudioSession (interrupt
-    /// the currently active AudioSession).
-    /// Call this function with active set to false to deactivate this AudioSession (allow
-    /// another interrupted AudioSession to resume).
-    /// Pass in one or more flags to refine the behavior during activation or deactivation.
-    /// When active is true this call may fail if the currently active AudioSession has a
-    /// higher priority.
-    ///
-    /// Parameter `active`: A Boolean indicating if you want to make this AudioSession active or inactive.
-    ///
-    /// Parameter `inFlags`: A bitmap containing one or more flags from the AudioSessionActivationFlags enum.
-    #[deprecated = "no longer supported"]
-    pub fn AudioSessionSetActiveWithFlags(active: Boolean, in_flags: u32) -> OSStatus;
+/// Same functionality as AudioSessionSetActive, with an additional flags parameter for
+/// refining behavior.
+///
+/// Call this function with active set to true to activate this AudioSession (interrupt
+/// the currently active AudioSession).
+/// Call this function with active set to false to deactivate this AudioSession (allow
+/// another interrupted AudioSession to resume).
+/// Pass in one or more flags to refine the behavior during activation or deactivation.
+/// When active is true this call may fail if the currently active AudioSession has a
+/// higher priority.
+///
+/// Parameter `active`: A Boolean indicating if you want to make this AudioSession active or inactive.
+///
+/// Parameter `inFlags`: A bitmap containing one or more flags from the AudioSessionActivationFlags enum.
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioSessionSetActiveWithFlags(
+    active: bool,
+    in_flags: u32,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioSessionSetActiveWithFlags(active: Boolean, in_flags: u32) -> OSStatus;
+    }
+    unsafe { AudioSessionSetActiveWithFlags(active as _, in_flags) }
 }
 
 extern "C-unwind" {

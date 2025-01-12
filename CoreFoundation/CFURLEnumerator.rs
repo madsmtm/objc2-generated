@@ -157,7 +157,14 @@ extern "C-unwind" {
     pub fn CFURLEnumeratorGetDescendentLevel(enumerator: &CFURLEnumerator) -> CFIndex;
 }
 
-extern "C-unwind" {
-    #[deprecated = "Use File System Events API instead"]
-    pub fn CFURLEnumeratorGetSourceDidChange(enumerator: &CFURLEnumerator) -> Boolean;
+#[deprecated = "Use File System Events API instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFURLEnumeratorGetSourceDidChange(
+    enumerator: &CFURLEnumerator,
+) -> bool {
+    extern "C-unwind" {
+        fn CFURLEnumeratorGetSourceDidChange(enumerator: &CFURLEnumerator) -> Boolean;
+    }
+    let ret = unsafe { CFURLEnumeratorGetSourceDidChange(enumerator) };
+    ret != 0
 }

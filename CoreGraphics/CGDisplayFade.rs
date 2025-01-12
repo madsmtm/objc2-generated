@@ -41,22 +41,51 @@ extern "C-unwind" {
     pub fn CGReleaseDisplayFadeReservation(token: CGDisplayFadeReservationToken) -> CGError;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGError", feature = "libc"))]
-    pub fn CGDisplayFade(
-        token: CGDisplayFadeReservationToken,
-        duration: CGDisplayFadeInterval,
-        start_blend: CGDisplayBlendFraction,
-        end_blend: CGDisplayBlendFraction,
-        red_blend: c_float,
-        green_blend: c_float,
-        blue_blend: c_float,
-        synchronous: libc::boolean_t,
-    ) -> CGError;
+#[cfg(all(feature = "CGError", feature = "libc"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayFade(
+    token: CGDisplayFadeReservationToken,
+    duration: CGDisplayFadeInterval,
+    start_blend: CGDisplayBlendFraction,
+    end_blend: CGDisplayBlendFraction,
+    red_blend: c_float,
+    green_blend: c_float,
+    blue_blend: c_float,
+    synchronous: bool,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGDisplayFade(
+            token: CGDisplayFadeReservationToken,
+            duration: CGDisplayFadeInterval,
+            start_blend: CGDisplayBlendFraction,
+            end_blend: CGDisplayBlendFraction,
+            red_blend: c_float,
+            green_blend: c_float,
+            blue_blend: c_float,
+            synchronous: libc::boolean_t,
+        ) -> CGError;
+    }
+    unsafe {
+        CGDisplayFade(
+            token,
+            duration,
+            start_blend,
+            end_blend,
+            red_blend,
+            green_blend,
+            blue_blend,
+            synchronous as _,
+        )
+    }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated = "No longer supported"]
-    pub fn CGDisplayFadeOperationInProgress() -> libc::boolean_t;
+#[cfg(feature = "libc")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayFadeOperationInProgress() -> bool {
+    extern "C-unwind" {
+        fn CGDisplayFadeOperationInProgress() -> libc::boolean_t;
+    }
+    let ret = unsafe { CGDisplayFadeOperationInProgress() };
+    ret != 0
 }

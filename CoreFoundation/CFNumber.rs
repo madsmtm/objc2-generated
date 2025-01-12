@@ -43,8 +43,13 @@ unsafe impl ConcreteType for CFBoolean {
     }
 }
 
-extern "C-unwind" {
-    pub fn CFBooleanGetValue(boolean: &CFBoolean) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn CFBooleanGetValue(boolean: &CFBoolean) -> bool {
+    extern "C-unwind" {
+        fn CFBooleanGetValue(boolean: &CFBoolean) -> Boolean;
+    }
+    let ret = unsafe { CFBooleanGetValue(boolean) };
+    ret != 0
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype?language=objc)
@@ -168,17 +173,31 @@ extern "C-unwind" {
     pub fn CFNumberGetByteSize(number: &CFNumber) -> CFIndex;
 }
 
-extern "C-unwind" {
-    pub fn CFNumberIsFloatType(number: &CFNumber) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn CFNumberIsFloatType(number: &CFNumber) -> bool {
+    extern "C-unwind" {
+        fn CFNumberIsFloatType(number: &CFNumber) -> Boolean;
+    }
+    let ret = unsafe { CFNumberIsFloatType(number) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFNumberGetValue(
-        number: &CFNumber,
-        the_type: CFNumberType,
-        value_ptr: *mut c_void,
-    ) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFNumberGetValue(
+    number: &CFNumber,
+    the_type: CFNumberType,
+    value_ptr: *mut c_void,
+) -> bool {
+    extern "C-unwind" {
+        fn CFNumberGetValue(
+            number: &CFNumber,
+            the_type: CFNumberType,
+            value_ptr: *mut c_void,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFNumberGetValue(number, the_type, value_ptr) };
+    ret != 0
 }
 
 extern "C-unwind" {

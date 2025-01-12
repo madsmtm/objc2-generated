@@ -265,16 +265,21 @@ extern "C-unwind" {
         -> c_double;
 }
 
-extern "C-unwind" {
-    /// Retrieves the running state of a CVDisplayLink.
-    ///
-    /// This call queries the running state of the given CVDisplayLink.
-    ///
-    /// Parameter `displayLink`: The CVDisplayLink to get the running state from.
-    ///
-    /// Returns: A boolean describing the running state. It returns true if it is running and false if it is not running or the CVDisplayLink is invalid.
-    #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
-    pub fn CVDisplayLinkIsRunning(display_link: &CVDisplayLink) -> Boolean;
+/// Retrieves the running state of a CVDisplayLink.
+///
+/// This call queries the running state of the given CVDisplayLink.
+///
+/// Parameter `displayLink`: The CVDisplayLink to get the running state from.
+///
+/// Returns: A boolean describing the running state. It returns true if it is running and false if it is not running or the CVDisplayLink is invalid.
+#[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
+#[inline]
+pub unsafe extern "C-unwind" fn CVDisplayLinkIsRunning(display_link: &CVDisplayLink) -> bool {
+    extern "C-unwind" {
+        fn CVDisplayLinkIsRunning(display_link: &CVDisplayLink) -> Boolean;
+    }
+    let ret = unsafe { CVDisplayLinkIsRunning(display_link) };
+    ret != 0
 }
 
 extern "C-unwind" {

@@ -332,20 +332,30 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Checks to see if a given format description matches a tagged buffer group.
-    ///
-    /// Parameter `desc`: The format description to validate.
-    ///
-    /// Parameter `taggedBufferGroup`: The tagged buffer group to validate against.
-    ///
-    /// Returns true if the CMTaggedBufferGroupFormatDescription could be used to create a
-    /// CMSampleBuffer wrapping the CMTaggedBufferGroup using CMSampleBufferCreateForTaggedBufferGroup.
-    #[cfg(feature = "CMFormatDescription")]
-    pub fn CMTaggedBufferGroupFormatDescriptionMatchesTaggedBufferGroup(
-        desc: &CMTaggedBufferGroupFormatDescription,
-        tagged_buffer_group: &CMTaggedBufferGroup,
-    ) -> Boolean;
+/// Checks to see if a given format description matches a tagged buffer group.
+///
+/// Parameter `desc`: The format description to validate.
+///
+/// Parameter `taggedBufferGroup`: The tagged buffer group to validate against.
+///
+/// Returns true if the CMTaggedBufferGroupFormatDescription could be used to create a
+/// CMSampleBuffer wrapping the CMTaggedBufferGroup using CMSampleBufferCreateForTaggedBufferGroup.
+#[cfg(feature = "CMFormatDescription")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTaggedBufferGroupFormatDescriptionMatchesTaggedBufferGroup(
+    desc: &CMTaggedBufferGroupFormatDescription,
+    tagged_buffer_group: &CMTaggedBufferGroup,
+) -> bool {
+    extern "C-unwind" {
+        fn CMTaggedBufferGroupFormatDescriptionMatchesTaggedBufferGroup(
+            desc: &CMTaggedBufferGroupFormatDescription,
+            tagged_buffer_group: &CMTaggedBufferGroup,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        CMTaggedBufferGroupFormatDescriptionMatchesTaggedBufferGroup(desc, tagged_buffer_group)
+    };
+    ret != 0
 }
 
 extern "C-unwind" {

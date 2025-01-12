@@ -492,12 +492,22 @@ pub unsafe extern "C-unwind" fn CFWriteStreamCopyError(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CFReadStreamOpen(stream: &CFReadStream) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn CFReadStreamOpen(stream: &CFReadStream) -> bool {
+    extern "C-unwind" {
+        fn CFReadStreamOpen(stream: &CFReadStream) -> Boolean;
+    }
+    let ret = unsafe { CFReadStreamOpen(stream) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    pub fn CFWriteStreamOpen(stream: &CFWriteStream) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn CFWriteStreamOpen(stream: &CFWriteStream) -> bool {
+    extern "C-unwind" {
+        fn CFWriteStreamOpen(stream: &CFWriteStream) -> Boolean;
+    }
+    let ret = unsafe { CFWriteStreamOpen(stream) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -508,8 +518,13 @@ extern "C-unwind" {
     pub fn CFWriteStreamClose(stream: &CFWriteStream);
 }
 
-extern "C-unwind" {
-    pub fn CFReadStreamHasBytesAvailable(stream: &CFReadStream) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn CFReadStreamHasBytesAvailable(stream: &CFReadStream) -> bool {
+    extern "C-unwind" {
+        fn CFReadStreamHasBytesAvailable(stream: &CFReadStream) -> Boolean;
+    }
+    let ret = unsafe { CFReadStreamHasBytesAvailable(stream) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -530,8 +545,13 @@ extern "C-unwind" {
     ) -> *const u8;
 }
 
-extern "C-unwind" {
-    pub fn CFWriteStreamCanAcceptBytes(stream: &CFWriteStream) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn CFWriteStreamCanAcceptBytes(stream: &CFWriteStream) -> bool {
+    extern "C-unwind" {
+        fn CFWriteStreamCanAcceptBytes(stream: &CFWriteStream) -> Boolean;
+    }
+    let ret = unsafe { CFWriteStreamCanAcceptBytes(stream) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -575,42 +595,80 @@ pub unsafe extern "C-unwind" fn CFWriteStreamCopyProperty(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFReadStreamSetProperty(
-        stream: &CFReadStream,
-        property_name: Option<&CFStreamPropertyKey>,
-        property_value: Option<&CFType>,
-    ) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFReadStreamSetProperty(
+    stream: &CFReadStream,
+    property_name: Option<&CFStreamPropertyKey>,
+    property_value: Option<&CFType>,
+) -> bool {
+    extern "C-unwind" {
+        fn CFReadStreamSetProperty(
+            stream: &CFReadStream,
+            property_name: Option<&CFStreamPropertyKey>,
+            property_value: Option<&CFType>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFReadStreamSetProperty(stream, property_name, property_value) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFWriteStreamSetProperty(
-        stream: &CFWriteStream,
-        property_name: Option<&CFStreamPropertyKey>,
-        property_value: Option<&CFType>,
-    ) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFWriteStreamSetProperty(
+    stream: &CFWriteStream,
+    property_name: Option<&CFStreamPropertyKey>,
+    property_value: Option<&CFType>,
+) -> bool {
+    extern "C-unwind" {
+        fn CFWriteStreamSetProperty(
+            stream: &CFWriteStream,
+            property_name: Option<&CFStreamPropertyKey>,
+            property_value: Option<&CFType>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFWriteStreamSetProperty(stream, property_name, property_value) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFReadStreamSetClient(
-        stream: &CFReadStream,
-        stream_events: CFOptionFlags,
-        client_cb: CFReadStreamClientCallBack,
-        client_context: *mut CFStreamClientContext,
-    ) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFReadStreamSetClient(
+    stream: &CFReadStream,
+    stream_events: CFOptionFlags,
+    client_cb: CFReadStreamClientCallBack,
+    client_context: *mut CFStreamClientContext,
+) -> bool {
+    extern "C-unwind" {
+        fn CFReadStreamSetClient(
+            stream: &CFReadStream,
+            stream_events: CFOptionFlags,
+            client_cb: CFReadStreamClientCallBack,
+            client_context: *mut CFStreamClientContext,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFReadStreamSetClient(stream, stream_events, client_cb, client_context) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFWriteStreamSetClient(
-        stream: &CFWriteStream,
-        stream_events: CFOptionFlags,
-        client_cb: CFWriteStreamClientCallBack,
-        client_context: *mut CFStreamClientContext,
-    ) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFWriteStreamSetClient(
+    stream: &CFWriteStream,
+    stream_events: CFOptionFlags,
+    client_cb: CFWriteStreamClientCallBack,
+    client_context: *mut CFStreamClientContext,
+) -> bool {
+    extern "C-unwind" {
+        fn CFWriteStreamSetClient(
+            stream: &CFWriteStream,
+            stream_events: CFOptionFlags,
+            client_cb: CFWriteStreamClientCallBack,
+            client_context: *mut CFStreamClientContext,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFWriteStreamSetClient(stream, stream_events, client_cb, client_context) };
+    ret != 0
 }
 
 extern "C-unwind" {

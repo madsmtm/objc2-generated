@@ -51,14 +51,23 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGDirectDisplay", feature = "CGError", feature = "libc"))]
-    pub fn CGConfigureDisplayStereoOperation(
-        config: CGDisplayConfigRef,
-        display: CGDirectDisplayID,
-        stereo: libc::boolean_t,
-        force_blue_line: libc::boolean_t,
-    ) -> CGError;
+#[cfg(all(feature = "CGDirectDisplay", feature = "CGError", feature = "libc"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGConfigureDisplayStereoOperation(
+    config: CGDisplayConfigRef,
+    display: CGDirectDisplayID,
+    stereo: bool,
+    force_blue_line: bool,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGConfigureDisplayStereoOperation(
+            config: CGDisplayConfigRef,
+            display: CGDirectDisplayID,
+            stereo: libc::boolean_t,
+            force_blue_line: libc::boolean_t,
+        ) -> CGError;
+    }
+    unsafe { CGConfigureDisplayStereoOperation(config, display, stereo as _, force_blue_line as _) }
 }
 
 extern "C-unwind" {
@@ -177,54 +186,103 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGDirectDisplay", feature = "CGError", feature = "libc"))]
-    pub fn CGDisplaySetStereoOperation(
-        display: CGDirectDisplayID,
-        stereo: libc::boolean_t,
-        force_blue_line: libc::boolean_t,
-        option: CGConfigureOption,
-    ) -> CGError;
+#[cfg(all(feature = "CGDirectDisplay", feature = "CGError", feature = "libc"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplaySetStereoOperation(
+    display: CGDirectDisplayID,
+    stereo: bool,
+    force_blue_line: bool,
+    option: CGConfigureOption,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGDisplaySetStereoOperation(
+            display: CGDirectDisplayID,
+            stereo: libc::boolean_t,
+            force_blue_line: libc::boolean_t,
+            option: CGConfigureOption,
+        ) -> CGError;
+    }
+    unsafe { CGDisplaySetStereoOperation(display, stereo as _, force_blue_line as _, option) }
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
-    pub fn CGDisplayIsActive(display: CGDirectDisplayID) -> libc::boolean_t;
+#[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayIsActive(display: CGDirectDisplayID) -> bool {
+    extern "C-unwind" {
+        fn CGDisplayIsActive(display: CGDirectDisplayID) -> libc::boolean_t;
+    }
+    let ret = unsafe { CGDisplayIsActive(display) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
-    pub fn CGDisplayIsAsleep(display: CGDirectDisplayID) -> libc::boolean_t;
+#[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayIsAsleep(display: CGDirectDisplayID) -> bool {
+    extern "C-unwind" {
+        fn CGDisplayIsAsleep(display: CGDirectDisplayID) -> libc::boolean_t;
+    }
+    let ret = unsafe { CGDisplayIsAsleep(display) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
-    pub fn CGDisplayIsOnline(display: CGDirectDisplayID) -> libc::boolean_t;
+#[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayIsOnline(display: CGDirectDisplayID) -> bool {
+    extern "C-unwind" {
+        fn CGDisplayIsOnline(display: CGDirectDisplayID) -> libc::boolean_t;
+    }
+    let ret = unsafe { CGDisplayIsOnline(display) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
-    pub fn CGDisplayIsMain(display: CGDirectDisplayID) -> libc::boolean_t;
+#[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayIsMain(display: CGDirectDisplayID) -> bool {
+    extern "C-unwind" {
+        fn CGDisplayIsMain(display: CGDirectDisplayID) -> libc::boolean_t;
+    }
+    let ret = unsafe { CGDisplayIsMain(display) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
-    pub fn CGDisplayIsBuiltin(display: CGDirectDisplayID) -> libc::boolean_t;
+#[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayIsBuiltin(display: CGDirectDisplayID) -> bool {
+    extern "C-unwind" {
+        fn CGDisplayIsBuiltin(display: CGDirectDisplayID) -> libc::boolean_t;
+    }
+    let ret = unsafe { CGDisplayIsBuiltin(display) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
-    pub fn CGDisplayIsInMirrorSet(display: CGDirectDisplayID) -> libc::boolean_t;
+#[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayIsInMirrorSet(display: CGDirectDisplayID) -> bool {
+    extern "C-unwind" {
+        fn CGDisplayIsInMirrorSet(display: CGDirectDisplayID) -> libc::boolean_t;
+    }
+    let ret = unsafe { CGDisplayIsInMirrorSet(display) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
-    pub fn CGDisplayIsAlwaysInMirrorSet(display: CGDirectDisplayID) -> libc::boolean_t;
+#[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayIsAlwaysInMirrorSet(display: CGDirectDisplayID) -> bool {
+    extern "C-unwind" {
+        fn CGDisplayIsAlwaysInMirrorSet(display: CGDirectDisplayID) -> libc::boolean_t;
+    }
+    let ret = unsafe { CGDisplayIsAlwaysInMirrorSet(display) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
-    pub fn CGDisplayIsInHWMirrorSet(display: CGDirectDisplayID) -> libc::boolean_t;
+#[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayIsInHWMirrorSet(display: CGDirectDisplayID) -> bool {
+    extern "C-unwind" {
+        fn CGDisplayIsInHWMirrorSet(display: CGDirectDisplayID) -> libc::boolean_t;
+    }
+    let ret = unsafe { CGDisplayIsInHWMirrorSet(display) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -232,14 +290,26 @@ extern "C-unwind" {
     pub fn CGDisplayMirrorsDisplay(display: CGDirectDisplayID) -> CGDirectDisplayID;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
-    pub fn CGDisplayUsesOpenGLAcceleration(display: CGDirectDisplayID) -> libc::boolean_t;
+#[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayUsesOpenGLAcceleration(
+    display: CGDirectDisplayID,
+) -> bool {
+    extern "C-unwind" {
+        fn CGDisplayUsesOpenGLAcceleration(display: CGDirectDisplayID) -> libc::boolean_t;
+    }
+    let ret = unsafe { CGDisplayUsesOpenGLAcceleration(display) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
-    pub fn CGDisplayIsStereo(display: CGDirectDisplayID) -> libc::boolean_t;
+#[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayIsStereo(display: CGDirectDisplayID) -> bool {
+    extern "C-unwind" {
+        fn CGDisplayIsStereo(display: CGDirectDisplayID) -> libc::boolean_t;
+    }
+    let ret = unsafe { CGDisplayIsStereo(display) };
+    ret != 0
 }
 
 extern "C-unwind" {

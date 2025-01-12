@@ -75,53 +75,79 @@ pub unsafe extern "C-unwind" fn SCPreferencesPathGetLink(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Associates a dictionary with the specified path.
-    ///
-    /// Parameter `prefs`: The preferences session.
-    ///
-    /// Parameter `path`: A string that represents the path to be updated.
-    ///
-    /// Parameter `value`: A dictionary that represents the data to be
-    /// stored at the specified path.
-    ///
-    /// Returns: Returns TRUE if successful; FALSE otherwise.
-    #[cfg(feature = "SCPreferences")]
-    pub fn SCPreferencesPathSetValue(
-        prefs: &SCPreferences,
-        path: &CFString,
-        value: &CFDictionary,
-    ) -> Boolean;
+/// Associates a dictionary with the specified path.
+///
+/// Parameter `prefs`: The preferences session.
+///
+/// Parameter `path`: A string that represents the path to be updated.
+///
+/// Parameter `value`: A dictionary that represents the data to be
+/// stored at the specified path.
+///
+/// Returns: Returns TRUE if successful; FALSE otherwise.
+#[cfg(feature = "SCPreferences")]
+#[inline]
+pub unsafe extern "C-unwind" fn SCPreferencesPathSetValue(
+    prefs: &SCPreferences,
+    path: &CFString,
+    value: &CFDictionary,
+) -> bool {
+    extern "C-unwind" {
+        fn SCPreferencesPathSetValue(
+            prefs: &SCPreferences,
+            path: &CFString,
+            value: &CFDictionary,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCPreferencesPathSetValue(prefs, path, value) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Associates a link to a second dictionary at the
-    /// specified path.
-    ///
-    /// Parameter `prefs`: The preferences session.
-    ///
-    /// Parameter `path`: A string that represents the path to be updated.
-    ///
-    /// Parameter `link`: A string that represents the link to be stored
-    /// at the specified path.
-    ///
-    /// Returns: Returns TRUE if successful; FALSE otherwise.
-    #[cfg(feature = "SCPreferences")]
-    pub fn SCPreferencesPathSetLink(
-        prefs: &SCPreferences,
-        path: &CFString,
-        link: &CFString,
-    ) -> Boolean;
+/// Associates a link to a second dictionary at the
+/// specified path.
+///
+/// Parameter `prefs`: The preferences session.
+///
+/// Parameter `path`: A string that represents the path to be updated.
+///
+/// Parameter `link`: A string that represents the link to be stored
+/// at the specified path.
+///
+/// Returns: Returns TRUE if successful; FALSE otherwise.
+#[cfg(feature = "SCPreferences")]
+#[inline]
+pub unsafe extern "C-unwind" fn SCPreferencesPathSetLink(
+    prefs: &SCPreferences,
+    path: &CFString,
+    link: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn SCPreferencesPathSetLink(
+            prefs: &SCPreferences,
+            path: &CFString,
+            link: &CFString,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCPreferencesPathSetLink(prefs, path, link) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Removes the data associated with the specified path.
-    ///
-    /// Parameter `prefs`: The preferences session.
-    ///
-    /// Parameter `path`: A string that represents the path to be returned.
-    ///
-    /// Returns: Returns TRUE if successful; FALSE otherwise.
-    #[cfg(feature = "SCPreferences")]
-    pub fn SCPreferencesPathRemoveValue(prefs: &SCPreferences, path: &CFString) -> Boolean;
+/// Removes the data associated with the specified path.
+///
+/// Parameter `prefs`: The preferences session.
+///
+/// Parameter `path`: A string that represents the path to be returned.
+///
+/// Returns: Returns TRUE if successful; FALSE otherwise.
+#[cfg(feature = "SCPreferences")]
+#[inline]
+pub unsafe extern "C-unwind" fn SCPreferencesPathRemoveValue(
+    prefs: &SCPreferences,
+    path: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn SCPreferencesPathRemoveValue(prefs: &SCPreferences, path: &CFString) -> Boolean;
+    }
+    let ret = unsafe { SCPreferencesPathRemoveValue(prefs, path) };
+    ret != 0
 }

@@ -209,15 +209,26 @@ extern "C-unwind" {
     ) -> CFIndex;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFDate"))]
-    pub fn CFCalendarGetTimeRangeOfUnit(
-        calendar: &CFCalendar,
-        unit: CFCalendarUnit,
-        at: CFAbsoluteTime,
-        startp: *mut CFAbsoluteTime,
-        tip: *mut CFTimeInterval,
-    ) -> Boolean;
+#[cfg(all(feature = "CFBase", feature = "CFDate"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFCalendarGetTimeRangeOfUnit(
+    calendar: &CFCalendar,
+    unit: CFCalendarUnit,
+    at: CFAbsoluteTime,
+    startp: *mut CFAbsoluteTime,
+    tip: *mut CFTimeInterval,
+) -> bool {
+    extern "C-unwind" {
+        fn CFCalendarGetTimeRangeOfUnit(
+            calendar: &CFCalendar,
+            unit: CFCalendarUnit,
+            at: CFAbsoluteTime,
+            startp: *mut CFAbsoluteTime,
+            tip: *mut CFTimeInterval,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFCalendarGetTimeRangeOfUnit(calendar, unit, at, startp, tip) };
+    ret != 0
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcalendarcomponentswrap?language=objc)

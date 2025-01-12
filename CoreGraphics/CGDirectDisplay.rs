@@ -299,10 +299,15 @@ unsafe impl RefEncode for CGCaptureOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated = "No longer supported"]
-    pub fn CGDisplayIsCaptured(display: CGDirectDisplayID) -> libc::boolean_t;
+#[cfg(feature = "libc")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGDisplayIsCaptured(display: CGDirectDisplayID) -> bool {
+    extern "C-unwind" {
+        fn CGDisplayIsCaptured(display: CGDirectDisplayID) -> libc::boolean_t;
+    }
+    let ret = unsafe { CGDisplayIsCaptured(display) };
+    ret != 0
 }
 
 extern "C-unwind" {

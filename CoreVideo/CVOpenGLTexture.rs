@@ -21,13 +21,18 @@ pub extern "C-unwind" fn CVOpenGLTextureGetTypeID() -> CFTypeID {
     unsafe { CVOpenGLTextureGetTypeID() }
 }
 
-extern "C-unwind" {
-    /// Returns whether the image is flipped vertically or not.
-    ///
-    /// Parameter `image`: Target CVOpenGLTexture
-    ///
-    /// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLTextureIsFlipped(image: &CVOpenGLTexture) -> Boolean;
+/// Returns whether the image is flipped vertically or not.
+///
+/// Parameter `image`: Target CVOpenGLTexture
+///
+/// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
+#[inline]
+pub unsafe extern "C-unwind" fn CVOpenGLTextureIsFlipped(image: &CVOpenGLTexture) -> bool {
+    extern "C-unwind" {
+        fn CVOpenGLTextureIsFlipped(image: &CVOpenGLTexture) -> Boolean;
+    }
+    let ret = unsafe { CVOpenGLTextureIsFlipped(image) };
+    ret != 0
 }

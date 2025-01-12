@@ -407,13 +407,18 @@ extern "C" {
 
 // TODO: pub fn CMTagHasCategory(tag: CMTag,category: CMTagCategory,) -> Boolean;
 
-extern "C-unwind" {
-    /// Checks if the tag represents a signed 64-bit value.
-    ///
-    /// Parameter `tag`: CMTag to evaluate.
-    ///
-    /// Returns: Returns true if the CMTag carries a signed 64-bit value indicated by a data type of kCMTagDataType_SInt64, false otherwise.
-    pub fn CMTagHasSInt64Value(tag: CMTag) -> Boolean;
+/// Checks if the tag represents a signed 64-bit value.
+///
+/// Parameter `tag`: CMTag to evaluate.
+///
+/// Returns: Returns true if the CMTag carries a signed 64-bit value indicated by a data type of kCMTagDataType_SInt64, false otherwise.
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagHasSInt64Value(tag: CMTag) -> bool {
+    extern "C-unwind" {
+        fn CMTagHasSInt64Value(tag: CMTag) -> Boolean;
+    }
+    let ret = unsafe { CMTagHasSInt64Value(tag) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -427,13 +432,18 @@ extern "C-unwind" {
     pub fn CMTagGetSInt64Value(tag: CMTag) -> i64;
 }
 
-extern "C-unwind" {
-    /// Checks if the tag represents a 64-bit float value.
-    ///
-    /// Parameter `tag`: CMTag to evaluate.
-    ///
-    /// Returns: Returns true if the CMTag carries a 64-bit float indicated by a data type of kCMTagDataType_Float64, false otherwise.
-    pub fn CMTagHasFloat64Value(tag: CMTag) -> Boolean;
+/// Checks if the tag represents a 64-bit float value.
+///
+/// Parameter `tag`: CMTag to evaluate.
+///
+/// Returns: Returns true if the CMTag carries a 64-bit float indicated by a data type of kCMTagDataType_Float64, false otherwise.
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagHasFloat64Value(tag: CMTag) -> bool {
+    extern "C-unwind" {
+        fn CMTagHasFloat64Value(tag: CMTag) -> Boolean;
+    }
+    let ret = unsafe { CMTagHasFloat64Value(tag) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -447,13 +457,18 @@ extern "C-unwind" {
     pub fn CMTagGetFloat64Value(tag: CMTag) -> f64;
 }
 
-extern "C-unwind" {
-    /// Checks if the tag represents an OSType value.
-    ///
-    /// Parameter `tag`: CMTag to evaluate.
-    ///
-    /// Returns: Returns true if the CMTag carries an OSType indicated by a data type of kCMTagDataType_OSType, false otherwise.
-    pub fn CMTagHasOSTypeValue(tag: CMTag) -> Boolean;
+/// Checks if the tag represents an OSType value.
+///
+/// Parameter `tag`: CMTag to evaluate.
+///
+/// Returns: Returns true if the CMTag carries an OSType indicated by a data type of kCMTagDataType_OSType, false otherwise.
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagHasOSTypeValue(tag: CMTag) -> bool {
+    extern "C-unwind" {
+        fn CMTagHasOSTypeValue(tag: CMTag) -> Boolean;
+    }
+    let ret = unsafe { CMTagHasOSTypeValue(tag) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -467,13 +482,18 @@ extern "C-unwind" {
     pub fn CMTagGetOSTypeValue(tag: CMTag) -> OSType;
 }
 
-extern "C-unwind" {
-    /// Checks if the tag represents an flags value.
-    ///
-    /// Parameter `tag`: CMTag to evaluate.
-    ///
-    /// Returns: Returns true if the CMTag carries 64 bits of flags indicated by a data type of kCMTagDataType_Flags, false otherwise.
-    pub fn CMTagHasFlagsValue(tag: CMTag) -> Boolean;
+/// Checks if the tag represents an flags value.
+///
+/// Parameter `tag`: CMTag to evaluate.
+///
+/// Returns: Returns true if the CMTag carries 64 bits of flags indicated by a data type of kCMTagDataType_Flags, false otherwise.
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagHasFlagsValue(tag: CMTag) -> bool {
+    extern "C-unwind" {
+        fn CMTagHasFlagsValue(tag: CMTag) -> Boolean;
+    }
+    let ret = unsafe { CMTagHasFlagsValue(tag) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -539,17 +559,22 @@ extern "C-unwind" {
     pub fn CMTagMakeWithFlagsValue(category: CMTagCategory, flags_for_tag: u64) -> CMTag;
 }
 
-extern "C-unwind" {
-    /// Tests if two CMTags are equal.
-    ///
-    /// Function evaluates if two tags are structurally equivalent. It performs a field by field comparison.
-    ///
-    /// Parameter `tag1`: First CMTag to test for equality.
-    ///
-    /// Parameter `tag2`: Second CMTag to test for equality.
-    ///
-    /// Returns: Returns true if the two tags are equal, false otherwise.
-    pub fn CMTagEqualToTag(tag1: CMTag, tag2: CMTag) -> Boolean;
+/// Tests if two CMTags are equal.
+///
+/// Function evaluates if two tags are structurally equivalent. It performs a field by field comparison.
+///
+/// Parameter `tag1`: First CMTag to test for equality.
+///
+/// Parameter `tag2`: Second CMTag to test for equality.
+///
+/// Returns: Returns true if the two tags are equal, false otherwise.
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagEqualToTag(tag1: CMTag, tag2: CMTag) -> bool {
+    extern "C-unwind" {
+        fn CMTagEqualToTag(tag1: CMTag, tag2: CMTag) -> Boolean;
+    }
+    let ret = unsafe { CMTagEqualToTag(tag1, tag2) };
+    ret != 0
 }
 
 extern "C-unwind" {

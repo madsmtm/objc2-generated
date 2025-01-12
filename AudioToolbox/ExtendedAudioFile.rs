@@ -110,29 +110,37 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Wrap an AudioFileID in an ExtAudioFileRef.
-    ///
-    /// Parameter `inFileID`: The AudioFileID to wrap.
-    ///
-    /// Parameter `inForWriting`: True if the AudioFileID is a new file opened for writing.
-    ///
-    /// Parameter `outExtAudioFile`: On exit, a newly-allocated ExtAudioFileRef.
-    ///
-    /// Returns: An OSStatus error code.
-    ///
-    ///
-    /// Allocates a new ExtAudioFileRef which wraps an existing AudioFileID. The
-    /// client is responsible for keeping the AudioFileID open until the
-    /// ExtAudioFileRef is disposed. Disposing the ExtAudioFileRef will not close
-    /// the AudioFileID when this Wrap API call is used, so the client is also
-    /// responsible for closing the AudioFileID when finished with it.
-    #[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
-    pub fn ExtAudioFileWrapAudioFileID(
-        in_file_id: AudioFileID,
-        in_for_writing: Boolean,
-        out_ext_audio_file: NonNull<ExtAudioFileRef>,
-    ) -> OSStatus;
+/// Wrap an AudioFileID in an ExtAudioFileRef.
+///
+/// Parameter `inFileID`: The AudioFileID to wrap.
+///
+/// Parameter `inForWriting`: True if the AudioFileID is a new file opened for writing.
+///
+/// Parameter `outExtAudioFile`: On exit, a newly-allocated ExtAudioFileRef.
+///
+/// Returns: An OSStatus error code.
+///
+///
+/// Allocates a new ExtAudioFileRef which wraps an existing AudioFileID. The
+/// client is responsible for keeping the AudioFileID open until the
+/// ExtAudioFileRef is disposed. Disposing the ExtAudioFileRef will not close
+/// the AudioFileID when this Wrap API call is used, so the client is also
+/// responsible for closing the AudioFileID when finished with it.
+#[cfg(all(feature = "AudioFile", feature = "AudioUnitProperties"))]
+#[inline]
+pub unsafe extern "C-unwind" fn ExtAudioFileWrapAudioFileID(
+    in_file_id: AudioFileID,
+    in_for_writing: bool,
+    out_ext_audio_file: NonNull<ExtAudioFileRef>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ExtAudioFileWrapAudioFileID(
+            in_file_id: AudioFileID,
+            in_for_writing: Boolean,
+            out_ext_audio_file: NonNull<ExtAudioFileRef>,
+        ) -> OSStatus;
+    }
+    unsafe { ExtAudioFileWrapAudioFileID(in_file_id, in_for_writing as _, out_ext_audio_file) }
 }
 
 extern "C-unwind" {

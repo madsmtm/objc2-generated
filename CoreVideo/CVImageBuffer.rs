@@ -445,14 +445,19 @@ extern "C-unwind" {
     pub fn CVImageBufferGetCleanRect(image_buffer: &CVImageBuffer) -> CGRect;
 }
 
-extern "C-unwind" {
-    /// Returns whether the image is flipped vertically or not.
-    ///
-    /// Parameter `imageBuffer`: target
-    ///
-    /// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left.
-    #[cfg(feature = "CVBuffer")]
-    pub fn CVImageBufferIsFlipped(image_buffer: &CVImageBuffer) -> Boolean;
+/// Returns whether the image is flipped vertically or not.
+///
+/// Parameter `imageBuffer`: target
+///
+/// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left.
+#[cfg(feature = "CVBuffer")]
+#[inline]
+pub unsafe extern "C-unwind" fn CVImageBufferIsFlipped(image_buffer: &CVImageBuffer) -> bool {
+    extern "C-unwind" {
+        fn CVImageBufferIsFlipped(image_buffer: &CVImageBuffer) -> Boolean;
+    }
+    let ret = unsafe { CVImageBufferIsFlipped(image_buffer) };
+    ret != 0
 }
 
 /// Returns the color space of a CVImageBuffer.

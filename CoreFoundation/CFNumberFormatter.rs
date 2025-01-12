@@ -221,15 +221,28 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterCreateNumberFromString(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFNumber"))]
-    pub fn CFNumberFormatterGetValueFromString(
-        formatter: &CFNumberFormatter,
-        string: Option<&CFString>,
-        rangep: *mut CFRange,
-        number_type: CFNumberType,
-        value_ptr: *mut c_void,
-    ) -> Boolean;
+#[cfg(all(feature = "CFBase", feature = "CFNumber"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFNumberFormatterGetValueFromString(
+    formatter: &CFNumberFormatter,
+    string: Option<&CFString>,
+    rangep: *mut CFRange,
+    number_type: CFNumberType,
+    value_ptr: *mut c_void,
+) -> bool {
+    extern "C-unwind" {
+        fn CFNumberFormatterGetValueFromString(
+            formatter: &CFNumberFormatter,
+            string: Option<&CFString>,
+            rangep: *mut CFRange,
+            number_type: CFNumberType,
+            value_ptr: *mut c_void,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        CFNumberFormatterGetValueFromString(formatter, string, rangep, number_type, value_ptr)
+    };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -553,11 +566,26 @@ unsafe impl RefEncode for CFNumberFormatterPadPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFNumberFormatterGetDecimalInfoForCurrencyCode(
-        currency_code: Option<&CFString>,
-        default_fraction_digits: *mut i32,
-        rounding_increment: *mut c_double,
-    ) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFNumberFormatterGetDecimalInfoForCurrencyCode(
+    currency_code: Option<&CFString>,
+    default_fraction_digits: *mut i32,
+    rounding_increment: *mut c_double,
+) -> bool {
+    extern "C-unwind" {
+        fn CFNumberFormatterGetDecimalInfoForCurrencyCode(
+            currency_code: Option<&CFString>,
+            default_fraction_digits: *mut i32,
+            rounding_increment: *mut c_double,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        CFNumberFormatterGetDecimalInfoForCurrencyCode(
+            currency_code,
+            default_fraction_digits,
+            rounding_increment,
+        )
+    };
+    ret != 0
 }

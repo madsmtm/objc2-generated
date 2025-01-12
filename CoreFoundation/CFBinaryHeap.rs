@@ -296,21 +296,29 @@ extern "C-unwind" {
     pub fn CFBinaryHeapGetCountOfValue(heap: &CFBinaryHeap, value: *const c_void) -> CFIndex;
 }
 
-extern "C-unwind" {
-    /// Reports whether or not the value is in the binary heap.
-    ///
-    /// Parameter `heap`: The binary heap to be searched. If this parameter is not a
-    /// valid CFBinaryHeap, the behavior is undefined.
-    ///
-    /// Parameter `value`: The value for which to find matches in the binary heap. The
-    /// compare() callback provided when the binary heap was created is
-    /// used to compare. If the compare() callback was NULL, pointer
-    /// equality (in C, ==) is used. If value, or any of the values
-    /// in the binary heap, are not understood by the compare() callback,
-    /// the behavior is undefined.
-    ///
-    /// Returns: true, if the value is in the specified binary heap, otherwise false.
-    pub fn CFBinaryHeapContainsValue(heap: &CFBinaryHeap, value: *const c_void) -> Boolean;
+/// Reports whether or not the value is in the binary heap.
+///
+/// Parameter `heap`: The binary heap to be searched. If this parameter is not a
+/// valid CFBinaryHeap, the behavior is undefined.
+///
+/// Parameter `value`: The value for which to find matches in the binary heap. The
+/// compare() callback provided when the binary heap was created is
+/// used to compare. If the compare() callback was NULL, pointer
+/// equality (in C, ==) is used. If value, or any of the values
+/// in the binary heap, are not understood by the compare() callback,
+/// the behavior is undefined.
+///
+/// Returns: true, if the value is in the specified binary heap, otherwise false.
+#[inline]
+pub unsafe extern "C-unwind" fn CFBinaryHeapContainsValue(
+    heap: &CFBinaryHeap,
+    value: *const c_void,
+) -> bool {
+    extern "C-unwind" {
+        fn CFBinaryHeapContainsValue(heap: &CFBinaryHeap, value: *const c_void) -> Boolean;
+    }
+    let ret = unsafe { CFBinaryHeapContainsValue(heap, value) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -325,23 +333,31 @@ extern "C-unwind" {
     pub fn CFBinaryHeapGetMinimum(heap: &CFBinaryHeap) -> *const c_void;
 }
 
-extern "C-unwind" {
-    /// Returns the minimum value is in the binary heap, if present.  If the heap contains several equal
-    /// minimum values, any one may be returned.
-    ///
-    /// Parameter `heap`: The binary heap to be searched. If this parameter is not a
-    /// valid CFBinaryHeap, the behavior is undefined.
-    ///
-    /// Parameter `value`: A C pointer to pointer-sized storage to be filled with the minimum value in
-    /// the binary heap.  If this value is not a valid C pointer to a pointer-sized block
-    /// of storage, the result is undefined.  If the result of the function is false, the value
-    /// stored at this address is undefined.
-    ///
-    /// Returns: true, if a minimum value was found in the specified binary heap, otherwise false.
-    pub fn CFBinaryHeapGetMinimumIfPresent(
-        heap: &CFBinaryHeap,
-        value: *mut *const c_void,
-    ) -> Boolean;
+/// Returns the minimum value is in the binary heap, if present.  If the heap contains several equal
+/// minimum values, any one may be returned.
+///
+/// Parameter `heap`: The binary heap to be searched. If this parameter is not a
+/// valid CFBinaryHeap, the behavior is undefined.
+///
+/// Parameter `value`: A C pointer to pointer-sized storage to be filled with the minimum value in
+/// the binary heap.  If this value is not a valid C pointer to a pointer-sized block
+/// of storage, the result is undefined.  If the result of the function is false, the value
+/// stored at this address is undefined.
+///
+/// Returns: true, if a minimum value was found in the specified binary heap, otherwise false.
+#[inline]
+pub unsafe extern "C-unwind" fn CFBinaryHeapGetMinimumIfPresent(
+    heap: &CFBinaryHeap,
+    value: *mut *const c_void,
+) -> bool {
+    extern "C-unwind" {
+        fn CFBinaryHeapGetMinimumIfPresent(
+            heap: &CFBinaryHeap,
+            value: *mut *const c_void,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFBinaryHeapGetMinimumIfPresent(heap, value) };
+    ret != 0
 }
 
 extern "C-unwind" {

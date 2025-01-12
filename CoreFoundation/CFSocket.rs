@@ -321,8 +321,13 @@ extern "C-unwind" {
     pub fn CFSocketInvalidate(s: &CFSocket);
 }
 
-extern "C-unwind" {
-    pub fn CFSocketIsValid(s: &CFSocket) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn CFSocketIsValid(s: &CFSocket) -> bool {
+    extern "C-unwind" {
+        fn CFSocketIsValid(s: &CFSocket) -> Boolean;
+    }
+    let ret = unsafe { CFSocketIsValid(s) };
+    ret != 0
 }
 
 #[cfg(feature = "CFData")]

@@ -131,8 +131,13 @@ extern "C-unwind" {
     pub fn CFMachPortInvalidate(port: &CFMachPort);
 }
 
-extern "C-unwind" {
-    pub fn CFMachPortIsValid(port: &CFMachPort) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn CFMachPortIsValid(port: &CFMachPort) -> bool {
+    extern "C-unwind" {
+        fn CFMachPortIsValid(port: &CFMachPort) -> Boolean;
+    }
+    let ret = unsafe { CFMachPortIsValid(port) };
+    ret != 0
 }
 
 extern "C-unwind" {

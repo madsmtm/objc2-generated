@@ -789,14 +789,19 @@ extern "C-unwind" {
     pub fn CVPixelBufferGetDataSize(pixel_buffer: &CVPixelBuffer) -> usize;
 }
 
-extern "C-unwind" {
-    /// Returns if the PixelBuffer is planar.
-    ///
-    /// Parameter `pixelBuffer`: Target PixelBuffer.
-    ///
-    /// Returns: True if the PixelBuffer was created using CVPixelBufferCreateWithPlanarBytes.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    pub fn CVPixelBufferIsPlanar(pixel_buffer: &CVPixelBuffer) -> Boolean;
+/// Returns if the PixelBuffer is planar.
+///
+/// Parameter `pixelBuffer`: Target PixelBuffer.
+///
+/// Returns: True if the PixelBuffer was created using CVPixelBufferCreateWithPlanarBytes.
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CVPixelBufferIsPlanar(pixel_buffer: &CVPixelBuffer) -> bool {
+    extern "C-unwind" {
+        fn CVPixelBufferIsPlanar(pixel_buffer: &CVPixelBuffer) -> Boolean;
+    }
+    let ret = unsafe { CVPixelBufferIsPlanar(pixel_buffer) };
+    ret != 0
 }
 
 extern "C-unwind" {

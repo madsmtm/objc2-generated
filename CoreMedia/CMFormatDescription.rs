@@ -96,37 +96,62 @@ unsafe impl ConcreteType for CMFormatDescription {
     }
 }
 
-extern "C-unwind" {
-    /// Compares two CMFormatDescription objects for equality.
-    ///
-    /// This calls CFEqual on the provided CMFormatDescription objects.
-    /// In contrast to the CF call it is NULL safe.
-    pub fn CMFormatDescriptionEqual(
-        format_description: Option<&CMFormatDescription>,
-        other_format_description: Option<&CMFormatDescription>,
-    ) -> Boolean;
+/// Compares two CMFormatDescription objects for equality.
+///
+/// This calls CFEqual on the provided CMFormatDescription objects.
+/// In contrast to the CF call it is NULL safe.
+#[inline]
+pub unsafe extern "C-unwind" fn CMFormatDescriptionEqual(
+    format_description: Option<&CMFormatDescription>,
+    other_format_description: Option<&CMFormatDescription>,
+) -> bool {
+    extern "C-unwind" {
+        fn CMFormatDescriptionEqual(
+            format_description: Option<&CMFormatDescription>,
+            other_format_description: Option<&CMFormatDescription>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CMFormatDescriptionEqual(format_description, other_format_description) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Compares two CMFormatDescription objects for equality, ignoring differences in specified lists of format description extension keys and sample description extension keys.
-    ///
-    /// This function is NULL safe.
-    /// If any keys are passed, kCMFormatDescriptionExtension_VerbatimSampleDescription
-    /// and kCMFormatDescriptionExtension_VerbatimISOSampleEntry will also be automatically
-    /// ignored for the purpose of comparison.
-    ///
-    /// Parameter `formatDescriptionExtensionKeysToIgnore`: Either a single format description extension key (CFString)
-    /// or a CFArray of such keys.
-    ///
-    /// Parameter `sampleDescriptionExtensionAtomKeysToIgnore`: Either a single sample description extension atom key (four-character CFString)
-    /// or a CFArray of such keys.
-    /// See kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms.
-    pub fn CMFormatDescriptionEqualIgnoringExtensionKeys(
-        format_description: Option<&CMFormatDescription>,
-        other_format_description: Option<&CMFormatDescription>,
-        format_description_extension_keys_to_ignore: Option<&CFType>,
-        sample_description_extension_atom_keys_to_ignore: Option<&CFType>,
-    ) -> Boolean;
+/// Compares two CMFormatDescription objects for equality, ignoring differences in specified lists of format description extension keys and sample description extension keys.
+///
+/// This function is NULL safe.
+/// If any keys are passed, kCMFormatDescriptionExtension_VerbatimSampleDescription
+/// and kCMFormatDescriptionExtension_VerbatimISOSampleEntry will also be automatically
+/// ignored for the purpose of comparison.
+///
+/// Parameter `formatDescriptionExtensionKeysToIgnore`: Either a single format description extension key (CFString)
+/// or a CFArray of such keys.
+///
+/// Parameter `sampleDescriptionExtensionAtomKeysToIgnore`: Either a single sample description extension atom key (four-character CFString)
+/// or a CFArray of such keys.
+/// See kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms.
+#[inline]
+pub unsafe extern "C-unwind" fn CMFormatDescriptionEqualIgnoringExtensionKeys(
+    format_description: Option<&CMFormatDescription>,
+    other_format_description: Option<&CMFormatDescription>,
+    format_description_extension_keys_to_ignore: Option<&CFType>,
+    sample_description_extension_atom_keys_to_ignore: Option<&CFType>,
+) -> bool {
+    extern "C-unwind" {
+        fn CMFormatDescriptionEqualIgnoringExtensionKeys(
+            format_description: Option<&CMFormatDescription>,
+            other_format_description: Option<&CMFormatDescription>,
+            format_description_extension_keys_to_ignore: Option<&CFType>,
+            sample_description_extension_atom_keys_to_ignore: Option<&CFType>,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        CMFormatDescriptionEqualIgnoringExtensionKeys(
+            format_description,
+            other_format_description,
+            format_description_extension_keys_to_ignore,
+            sample_description_extension_atom_keys_to_ignore,
+        )
+    };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -423,32 +448,49 @@ pub const kCMAudioFormatDescriptionMask_All: CMAudioFormatDescriptionMask =
         | kCMAudioFormatDescriptionMask_ChannelLayout
         | kCMAudioFormatDescriptionMask_Extensions;
 
-extern "C-unwind" {
-    /// Evaluates equality for the specified parts of two audio format descriptions.
-    ///
-    /// Bits in equalityMask specify the caller's interest in the equality of various parts of the descriptions.
-    /// Bits set and returned in equalityMaskOut represent the subset of those parts that are equal.
-    /// If there is any sort of error that prevents the comparison from occurring, false will be returned, and
-    /// all bits in equalityMaskOut will be cleared. If you pass kCMAudioFormatDescriptionMask_All in equalityMask,
-    /// and NULL for equalityMaskOut, this API is equivalent to CFEqual(desc1, desc2).
-    ///
-    /// On releases up to macOS 12, iOS 15, tvOS 15 and watchOS 8, the kCMAudioFormatDescriptionMask_Extensions
-    /// flag was ignored in equalityMask. So this API always treated two audio format descriptions as equal even
-    /// when they had different extensions.
-    ///
-    /// Starting with macOS 13, iOS 16, tvOS 16 and watchOS 9, kCMAudioFormatDescriptionMask_Extensions is correctly
-    /// accounted for when determining equality of two audio format descriptions. This also affects CFEqual(desc1, desc2)
-    /// as it will return false when two audio format descriptions have different extensions.
-    ///
-    ///
-    /// Returns: The result of the comparison.  True if all parts in which the caller is interested are equal.
-    /// False if any of the parts in which the caller is interested are not equal.
-    pub fn CMAudioFormatDescriptionEqual(
-        format_description: &CMAudioFormatDescription,
-        other_format_description: &CMAudioFormatDescription,
-        equality_mask: CMAudioFormatDescriptionMask,
-        equality_mask_out: *mut CMAudioFormatDescriptionMask,
-    ) -> Boolean;
+/// Evaluates equality for the specified parts of two audio format descriptions.
+///
+/// Bits in equalityMask specify the caller's interest in the equality of various parts of the descriptions.
+/// Bits set and returned in equalityMaskOut represent the subset of those parts that are equal.
+/// If there is any sort of error that prevents the comparison from occurring, false will be returned, and
+/// all bits in equalityMaskOut will be cleared. If you pass kCMAudioFormatDescriptionMask_All in equalityMask,
+/// and NULL for equalityMaskOut, this API is equivalent to CFEqual(desc1, desc2).
+///
+/// On releases up to macOS 12, iOS 15, tvOS 15 and watchOS 8, the kCMAudioFormatDescriptionMask_Extensions
+/// flag was ignored in equalityMask. So this API always treated two audio format descriptions as equal even
+/// when they had different extensions.
+///
+/// Starting with macOS 13, iOS 16, tvOS 16 and watchOS 9, kCMAudioFormatDescriptionMask_Extensions is correctly
+/// accounted for when determining equality of two audio format descriptions. This also affects CFEqual(desc1, desc2)
+/// as it will return false when two audio format descriptions have different extensions.
+///
+///
+/// Returns: The result of the comparison.  True if all parts in which the caller is interested are equal.
+/// False if any of the parts in which the caller is interested are not equal.
+#[inline]
+pub unsafe extern "C-unwind" fn CMAudioFormatDescriptionEqual(
+    format_description: &CMAudioFormatDescription,
+    other_format_description: &CMAudioFormatDescription,
+    equality_mask: CMAudioFormatDescriptionMask,
+    equality_mask_out: *mut CMAudioFormatDescriptionMask,
+) -> bool {
+    extern "C-unwind" {
+        fn CMAudioFormatDescriptionEqual(
+            format_description: &CMAudioFormatDescription,
+            other_format_description: &CMAudioFormatDescription,
+            equality_mask: CMAudioFormatDescriptionMask,
+            equality_mask_out: *mut CMAudioFormatDescriptionMask,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        CMAudioFormatDescriptionEqual(
+            format_description,
+            other_format_description,
+            equality_mask,
+            equality_mask_out,
+        )
+    };
+    ret != 0
 }
 
 /// Synonym type used for manipulating video CMFormatDescriptions
@@ -1313,26 +1355,47 @@ extern "C-unwind" {
     ) -> CMVideoDimensions;
 }
 
-extern "C-unwind" {
-    /// Returns the dimensions, adjusted to take pixel aspect ratio and/or clean aperture into account.
-    ///
-    /// Pixel aspect ratio is used to adjust the width, leaving the height alone.
-    pub fn CMVideoFormatDescriptionGetPresentationDimensions(
-        video_desc: &CMVideoFormatDescription,
-        use_pixel_aspect_ratio: Boolean,
-        use_clean_aperture: Boolean,
-    ) -> CGSize;
+/// Returns the dimensions, adjusted to take pixel aspect ratio and/or clean aperture into account.
+///
+/// Pixel aspect ratio is used to adjust the width, leaving the height alone.
+#[inline]
+pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionGetPresentationDimensions(
+    video_desc: &CMVideoFormatDescription,
+    use_pixel_aspect_ratio: bool,
+    use_clean_aperture: bool,
+) -> CGSize {
+    extern "C-unwind" {
+        fn CMVideoFormatDescriptionGetPresentationDimensions(
+            video_desc: &CMVideoFormatDescription,
+            use_pixel_aspect_ratio: Boolean,
+            use_clean_aperture: Boolean,
+        ) -> CGSize;
+    }
+    unsafe {
+        CMVideoFormatDescriptionGetPresentationDimensions(
+            video_desc,
+            use_pixel_aspect_ratio as _,
+            use_clean_aperture as _,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Returns the clean aperture.
-    ///
-    /// The clean aperture is a rectangle that defines the portion of the encoded pixel dimensions
-    /// that represents image data valid for display.
-    pub fn CMVideoFormatDescriptionGetCleanAperture(
-        video_desc: &CMVideoFormatDescription,
-        origin_is_at_top_left: Boolean,
-    ) -> CGRect;
+/// Returns the clean aperture.
+///
+/// The clean aperture is a rectangle that defines the portion of the encoded pixel dimensions
+/// that represents image data valid for display.
+#[inline]
+pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionGetCleanAperture(
+    video_desc: &CMVideoFormatDescription,
+    origin_is_at_top_left: bool,
+) -> CGRect {
+    extern "C-unwind" {
+        fn CMVideoFormatDescriptionGetCleanAperture(
+            video_desc: &CMVideoFormatDescription,
+            origin_is_at_top_left: Boolean,
+        ) -> CGRect;
+    }
+    unsafe { CMVideoFormatDescriptionGetCleanAperture(video_desc, origin_is_at_top_left as _) }
 }
 
 /// Returns an array of the keys that are used both as CMVideoFormatDescription extensions
@@ -1370,18 +1433,26 @@ pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionGetExtensionKeysCommonWi
     unsafe { CFRetained::retain(ret) }
 }
 
-extern "C-unwind" {
-    /// Checks to see if a given format description matches an image buffer.
-    ///
-    /// This function uses the keys returned by CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers
-    /// to compares the extensions of the given format description to the attachments of the
-    /// given image buffer (if an attachment is absent in either it must be absent in both).
-    /// It also checks kCMFormatDescriptionExtension_BytesPerRow against CVPixelBufferGetBytesPerRow, if applicable.
-    #[cfg(feature = "objc2-core-video")]
-    pub fn CMVideoFormatDescriptionMatchesImageBuffer(
-        desc: &CMVideoFormatDescription,
-        image_buffer: &CVImageBuffer,
-    ) -> Boolean;
+/// Checks to see if a given format description matches an image buffer.
+///
+/// This function uses the keys returned by CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers
+/// to compares the extensions of the given format description to the attachments of the
+/// given image buffer (if an attachment is absent in either it must be absent in both).
+/// It also checks kCMFormatDescriptionExtension_BytesPerRow against CVPixelBufferGetBytesPerRow, if applicable.
+#[cfg(feature = "objc2-core-video")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionMatchesImageBuffer(
+    desc: &CMVideoFormatDescription,
+    image_buffer: &CVImageBuffer,
+) -> bool {
+    extern "C-unwind" {
+        fn CMVideoFormatDescriptionMatchesImageBuffer(
+            desc: &CMVideoFormatDescription,
+            image_buffer: &CVImageBuffer,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CMVideoFormatDescriptionMatchesImageBuffer(desc, image_buffer) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -1690,16 +1761,32 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Returns the default text box.
-    ///
-    /// Within a text track, text is rendered within a text box.  There is a default text box set, which can be over-ridden by a sample. The function can return kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry a default text box.
-    pub fn CMTextFormatDescriptionGetDefaultTextBox(
-        desc: &CMFormatDescription,
-        origin_is_at_top_left: Boolean,
-        height_of_text_track: CGFloat,
-        default_text_box_out: NonNull<CGRect>,
-    ) -> OSStatus;
+/// Returns the default text box.
+///
+/// Within a text track, text is rendered within a text box.  There is a default text box set, which can be over-ridden by a sample. The function can return kCMFormatDescriptionError_ValueNotAvailable for format descriptions that do not carry a default text box.
+#[inline]
+pub unsafe extern "C-unwind" fn CMTextFormatDescriptionGetDefaultTextBox(
+    desc: &CMFormatDescription,
+    origin_is_at_top_left: bool,
+    height_of_text_track: CGFloat,
+    default_text_box_out: NonNull<CGRect>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn CMTextFormatDescriptionGetDefaultTextBox(
+            desc: &CMFormatDescription,
+            origin_is_at_top_left: Boolean,
+            height_of_text_track: CGFloat,
+            default_text_box_out: NonNull<CGRect>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        CMTextFormatDescriptionGetDefaultTextBox(
+            desc,
+            origin_is_at_top_left as _,
+            height_of_text_track,
+            default_text_box_out,
+        )
+    }
 }
 
 extern "C-unwind" {

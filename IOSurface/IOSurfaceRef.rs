@@ -596,12 +596,22 @@ extern "C-unwind" {
     pub fn IOSurfaceGetUseCount(buffer: &IOSurfaceRef) -> i32;
 }
 
-extern "C-unwind" {
-    pub fn IOSurfaceIsInUse(buffer: &IOSurfaceRef) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn IOSurfaceIsInUse(buffer: &IOSurfaceRef) -> bool {
+    extern "C-unwind" {
+        fn IOSurfaceIsInUse(buffer: &IOSurfaceRef) -> Boolean;
+    }
+    let ret = unsafe { IOSurfaceIsInUse(buffer) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    pub fn IOSurfaceAllowsPixelSizeCasting(buffer: &IOSurfaceRef) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn IOSurfaceAllowsPixelSizeCasting(buffer: &IOSurfaceRef) -> bool {
+    extern "C-unwind" {
+        fn IOSurfaceAllowsPixelSizeCasting(buffer: &IOSurfaceRef) -> Boolean;
+    }
+    let ret = unsafe { IOSurfaceAllowsPixelSizeCasting(buffer) };
+    ret != 0
 }
 
 extern "C-unwind" {

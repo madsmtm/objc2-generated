@@ -230,67 +230,104 @@ extern "C-unwind" {
     pub fn CMTagCollectionGetCount(tag_collection: &CMTagCollection) -> CMItemCount;
 }
 
-extern "C-unwind" {
-    /// Checks if the tag collection contains a specific tag.
-    ///
-    /// Parameter `tagCollection`: CMTagCollection to check.
-    ///
-    /// Parameter `tag`: CMTag to find.
-    ///
-    /// Returns: Returns true if the indicated CMTag is contained within the CMTagCollection, false otherwise.
-    #[cfg(feature = "CMTag")]
-    pub fn CMTagCollectionContainsTag(tag_collection: &CMTagCollection, tag: CMTag) -> Boolean;
+/// Checks if the tag collection contains a specific tag.
+///
+/// Parameter `tagCollection`: CMTagCollection to check.
+///
+/// Parameter `tag`: CMTag to find.
+///
+/// Returns: Returns true if the indicated CMTag is contained within the CMTagCollection, false otherwise.
+#[cfg(feature = "CMTag")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagCollectionContainsTag(
+    tag_collection: &CMTagCollection,
+    tag: CMTag,
+) -> bool {
+    extern "C-unwind" {
+        fn CMTagCollectionContainsTag(tag_collection: &CMTagCollection, tag: CMTag) -> Boolean;
+    }
+    let ret = unsafe { CMTagCollectionContainsTag(tag_collection, tag) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Checks if all the tags in a tag collection are present in another tag collection.
-    ///
-    /// Tests if a collection of tags specified by a CMTagCollection are contained within another tag collection in its entirety. Partial containment will report false. Complete containment will report true.
-    ///
-    /// Parameter `tagCollection`: CMTagCollectionRef used to check.
-    ///
-    /// Parameter `containedTagCollection`: CMTagCollectionRef whose contents should be checked for containment in tagCollection.
-    ///
-    /// Returns: Returns true if all CMTags in a collection are contained within the specified CMTagCollection, false otherwise.
-    pub fn CMTagCollectionContainsTagsOfCollection(
-        tag_collection: &CMTagCollection,
-        contained_tag_collection: &CMTagCollection,
-    ) -> Boolean;
+/// Checks if all the tags in a tag collection are present in another tag collection.
+///
+/// Tests if a collection of tags specified by a CMTagCollection are contained within another tag collection in its entirety. Partial containment will report false. Complete containment will report true.
+///
+/// Parameter `tagCollection`: CMTagCollectionRef used to check.
+///
+/// Parameter `containedTagCollection`: CMTagCollectionRef whose contents should be checked for containment in tagCollection.
+///
+/// Returns: Returns true if all CMTags in a collection are contained within the specified CMTagCollection, false otherwise.
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagCollectionContainsTagsOfCollection(
+    tag_collection: &CMTagCollection,
+    contained_tag_collection: &CMTagCollection,
+) -> bool {
+    extern "C-unwind" {
+        fn CMTagCollectionContainsTagsOfCollection(
+            tag_collection: &CMTagCollection,
+            contained_tag_collection: &CMTagCollection,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        CMTagCollectionContainsTagsOfCollection(tag_collection, contained_tag_collection)
+    };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Checks if all the specified tags are contained in a tag collection.
-    ///
-    /// Tests if the tags specified by a buffer of CMTags are contained within another tag collection in its entirety. Partial containment will report false. Complete containment will report true.
-    ///
-    /// Parameter `tagCollection`: CMTagCollectionRef to check.
-    ///
-    /// Parameter `containedTags`: The non-NULL address to a CMTag array whose CMTags should be checked for containment in tagCollection.
-    ///
-    /// Parameter `containedTagCount`: The number of CMTag elements in the buffer containedTags. Zero is allowed but will report true.
-    ///
-    /// Returns: Returns true if all CMTags in a buffer of CMTags are contained within the CMTagCollection, false otherwise.
-    #[cfg(all(feature = "CMBase", feature = "CMTag"))]
-    pub fn CMTagCollectionContainsSpecifiedTags(
-        tag_collection: &CMTagCollection,
-        contained_tags: NonNull<CMTag>,
-        contained_tag_count: CMItemCount,
-    ) -> Boolean;
+/// Checks if all the specified tags are contained in a tag collection.
+///
+/// Tests if the tags specified by a buffer of CMTags are contained within another tag collection in its entirety. Partial containment will report false. Complete containment will report true.
+///
+/// Parameter `tagCollection`: CMTagCollectionRef to check.
+///
+/// Parameter `containedTags`: The non-NULL address to a CMTag array whose CMTags should be checked for containment in tagCollection.
+///
+/// Parameter `containedTagCount`: The number of CMTag elements in the buffer containedTags. Zero is allowed but will report true.
+///
+/// Returns: Returns true if all CMTags in a buffer of CMTags are contained within the CMTagCollection, false otherwise.
+#[cfg(all(feature = "CMBase", feature = "CMTag"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagCollectionContainsSpecifiedTags(
+    tag_collection: &CMTagCollection,
+    contained_tags: NonNull<CMTag>,
+    contained_tag_count: CMItemCount,
+) -> bool {
+    extern "C-unwind" {
+        fn CMTagCollectionContainsSpecifiedTags(
+            tag_collection: &CMTagCollection,
+            contained_tags: NonNull<CMTag>,
+            contained_tag_count: CMItemCount,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        CMTagCollectionContainsSpecifiedTags(tag_collection, contained_tags, contained_tag_count)
+    };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Tests if a CMTagCategory is used by any CMTags within the tag container.
-    ///
-    /// Parameter `tagCollection`: CMTagCollectionRef to check.
-    ///
-    /// Parameter `category`: CMTagCategory whose value should be checked for containment in tagCollection.
-    ///
-    /// Returns: Returns true if tagCollection contains at least one CMTag with the specified category, false otherwise.
-    #[cfg(feature = "CMTag")]
-    pub fn CMTagCollectionContainsCategory(
-        tag_collection: &CMTagCollection,
-        category: CMTagCategory,
-    ) -> Boolean;
+/// Tests if a CMTagCategory is used by any CMTags within the tag container.
+///
+/// Parameter `tagCollection`: CMTagCollectionRef to check.
+///
+/// Parameter `category`: CMTagCategory whose value should be checked for containment in tagCollection.
+///
+/// Returns: Returns true if tagCollection contains at least one CMTag with the specified category, false otherwise.
+#[cfg(feature = "CMTag")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagCollectionContainsCategory(
+    tag_collection: &CMTagCollection,
+    category: CMTagCategory,
+) -> bool {
+    extern "C-unwind" {
+        fn CMTagCollectionContainsCategory(
+            tag_collection: &CMTagCollection,
+            category: CMTagCategory,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CMTagCollectionContainsCategory(tag_collection, category) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -472,15 +509,20 @@ extern "C-unwind" {
     ) -> CMTag;
 }
 
-extern "C-unwind" {
-    /// Reports if the tag collection contains no tags.
-    ///
-    /// This is a convenience name for set like use but is the same as the expression: CMTagCollectionIsEmptyGetCount() == 0.
-    ///
-    /// Parameter `tagCollection`: CMTagCollectionRef to iterate.
-    ///
-    /// Returns: True if there are no tags, false otherwise.
-    pub fn CMTagCollectionIsEmpty(tag_collection: &CMTagCollection) -> Boolean;
+/// Reports if the tag collection contains no tags.
+///
+/// This is a convenience name for set like use but is the same as the expression: CMTagCollectionIsEmptyGetCount() == 0.
+///
+/// Parameter `tagCollection`: CMTagCollectionRef to iterate.
+///
+/// Returns: True if there are no tags, false otherwise.
+#[inline]
+pub unsafe extern "C-unwind" fn CMTagCollectionIsEmpty(tag_collection: &CMTagCollection) -> bool {
+    extern "C-unwind" {
+        fn CMTagCollectionIsEmpty(tag_collection: &CMTagCollection) -> Boolean;
+    }
+    let ret = unsafe { CMTagCollectionIsEmpty(tag_collection) };
+    ret != 0
 }
 
 extern "C-unwind" {

@@ -113,7 +113,7 @@ pub unsafe extern "C-unwind" fn CFTimeZoneCreateWithTimeIntervalFromGMT(
 pub unsafe extern "C-unwind" fn CFTimeZoneCreateWithName(
     allocator: Option<&CFAllocator>,
     name: Option<&CFString>,
-    try_abbrev: Boolean,
+    try_abbrev: bool,
 ) -> Option<CFRetained<CFTimeZone>> {
     extern "C-unwind" {
         fn CFTimeZoneCreateWithName(
@@ -122,7 +122,7 @@ pub unsafe extern "C-unwind" fn CFTimeZoneCreateWithName(
             try_abbrev: Boolean,
         ) -> *mut CFTimeZone;
     }
-    let ret = unsafe { CFTimeZoneCreateWithName(allocator, name, try_abbrev) };
+    let ret = unsafe { CFTimeZoneCreateWithName(allocator, name, try_abbrev as _) };
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
@@ -164,9 +164,17 @@ pub unsafe extern "C-unwind" fn CFTimeZoneCopyAbbreviation(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFDate")]
-    pub fn CFTimeZoneIsDaylightSavingTime(tz: &CFTimeZone, at: CFAbsoluteTime) -> Boolean;
+#[cfg(feature = "CFDate")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFTimeZoneIsDaylightSavingTime(
+    tz: &CFTimeZone,
+    at: CFAbsoluteTime,
+) -> bool {
+    extern "C-unwind" {
+        fn CFTimeZoneIsDaylightSavingTime(tz: &CFTimeZone, at: CFAbsoluteTime) -> Boolean;
+    }
+    let ret = unsafe { CFTimeZoneIsDaylightSavingTime(tz, at) };
+    ret != 0
 }
 
 extern "C-unwind" {

@@ -271,18 +271,31 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Examine a big-endian SoundDescription data structure in a CMBlockBuffer, and report whether the sample tables will need to use the legacy CBR layout.
-    ///
-    ///
-    /// Parameter `soundDescriptionBlockBuffer`: CMBlockBuffer containing SoundDescription data structure in big-endian byte ordering.
-    ///
-    /// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
-    #[cfg(feature = "CMBlockBuffer")]
-    pub fn CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout(
-        sound_description_block_buffer: &CMBlockBuffer,
-        flavor: Option<&CMSoundDescriptionFlavor>,
-    ) -> Boolean;
+/// Examine a big-endian SoundDescription data structure in a CMBlockBuffer, and report whether the sample tables will need to use the legacy CBR layout.
+///
+///
+/// Parameter `soundDescriptionBlockBuffer`: CMBlockBuffer containing SoundDescription data structure in big-endian byte ordering.
+///
+/// Parameter `flavor`: kCMSoundDescriptionFlavor constant or NULL for QuickTimeMovie flavor.
+#[cfg(feature = "CMBlockBuffer")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout(
+    sound_description_block_buffer: &CMBlockBuffer,
+    flavor: Option<&CMSoundDescriptionFlavor>,
+) -> bool {
+    extern "C-unwind" {
+        fn CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout(
+            sound_description_block_buffer: &CMBlockBuffer,
+            flavor: Option<&CMSoundDescriptionFlavor>,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        CMDoesBigEndianSoundDescriptionRequireLegacyCBRSampleTableLayout(
+            sound_description_block_buffer,
+            flavor,
+        )
+    };
+    ret != 0
 }
 
 extern "C-unwind" {

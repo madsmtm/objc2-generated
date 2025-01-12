@@ -166,68 +166,88 @@ pub unsafe extern "C-unwind" fn SCPreferencesCreate(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Locks access to the configuration preferences.
-    ///
-    /// This function obtains exclusive access to the configuration
-    /// preferences.  Clients attempting to obtain exclusive access
-    /// to the preferences will either receive a kSCStatusPrefsBusy
-    /// error or block waiting for the lock to be released.
-    ///
-    /// Parameter `prefs`: The preferences session.
-    ///
-    /// Parameter `wait`: A boolean flag indicating whether the calling process
-    /// should block waiting for another process to complete its update
-    /// operation and release its lock.
-    ///
-    /// Returns: Returns TRUE if the lock was obtained;
-    /// FALSE if an error occurred.
-    pub fn SCPreferencesLock(prefs: &SCPreferences, wait: Boolean) -> Boolean;
+/// Locks access to the configuration preferences.
+///
+/// This function obtains exclusive access to the configuration
+/// preferences.  Clients attempting to obtain exclusive access
+/// to the preferences will either receive a kSCStatusPrefsBusy
+/// error or block waiting for the lock to be released.
+///
+/// Parameter `prefs`: The preferences session.
+///
+/// Parameter `wait`: A boolean flag indicating whether the calling process
+/// should block waiting for another process to complete its update
+/// operation and release its lock.
+///
+/// Returns: Returns TRUE if the lock was obtained;
+/// FALSE if an error occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn SCPreferencesLock(prefs: &SCPreferences, wait: bool) -> bool {
+    extern "C-unwind" {
+        fn SCPreferencesLock(prefs: &SCPreferences, wait: Boolean) -> Boolean;
+    }
+    let ret = unsafe { SCPreferencesLock(prefs, wait as _) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Commits changes made to the configuration preferences to
-    /// persistent storage.
-    ///
-    /// This function commits any changes to permanent storage.
-    /// Implicit calls to the SCPreferencesLock and SCPreferencesUnlock
-    /// functions will be made if exclusive access has not already been
-    /// established.
-    ///
-    /// Note: This routine commits changes to persistent storage.
-    /// Call the SCPreferencesApplyChanges function to apply the
-    /// changes to the running system.
-    ///
-    /// Parameter `prefs`: The preferences session.
-    ///
-    /// Returns: Returns TRUE if the lock was obtained;
-    /// FALSE if an error occurred.
-    pub fn SCPreferencesCommitChanges(prefs: &SCPreferences) -> Boolean;
+/// Commits changes made to the configuration preferences to
+/// persistent storage.
+///
+/// This function commits any changes to permanent storage.
+/// Implicit calls to the SCPreferencesLock and SCPreferencesUnlock
+/// functions will be made if exclusive access has not already been
+/// established.
+///
+/// Note: This routine commits changes to persistent storage.
+/// Call the SCPreferencesApplyChanges function to apply the
+/// changes to the running system.
+///
+/// Parameter `prefs`: The preferences session.
+///
+/// Returns: Returns TRUE if the lock was obtained;
+/// FALSE if an error occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn SCPreferencesCommitChanges(prefs: &SCPreferences) -> bool {
+    extern "C-unwind" {
+        fn SCPreferencesCommitChanges(prefs: &SCPreferences) -> Boolean;
+    }
+    let ret = unsafe { SCPreferencesCommitChanges(prefs) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Requests that the currently stored configuration
-    /// preferences be applied to the active configuration.
-    ///
-    /// Parameter `prefs`: The preferences session.
-    ///
-    /// Returns: Returns TRUE if the lock was obtained;
-    /// FALSE if an error occurred.
-    pub fn SCPreferencesApplyChanges(prefs: &SCPreferences) -> Boolean;
+/// Requests that the currently stored configuration
+/// preferences be applied to the active configuration.
+///
+/// Parameter `prefs`: The preferences session.
+///
+/// Returns: Returns TRUE if the lock was obtained;
+/// FALSE if an error occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn SCPreferencesApplyChanges(prefs: &SCPreferences) -> bool {
+    extern "C-unwind" {
+        fn SCPreferencesApplyChanges(prefs: &SCPreferences) -> Boolean;
+    }
+    let ret = unsafe { SCPreferencesApplyChanges(prefs) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Releases exclusive access to the configuration preferences.
-    ///
-    /// This function releases the exclusive access lock to the
-    /// preferences.  Other clients will be now be able to establish
-    /// exclusive access to the preferences.
-    ///
-    /// Parameter `prefs`: The preferences session.
-    ///
-    /// Returns: Returns TRUE if the lock was obtained;
-    /// FALSE if an error occurred.
-    pub fn SCPreferencesUnlock(prefs: &SCPreferences) -> Boolean;
+/// Releases exclusive access to the configuration preferences.
+///
+/// This function releases the exclusive access lock to the
+/// preferences.  Other clients will be now be able to establish
+/// exclusive access to the preferences.
+///
+/// Parameter `prefs`: The preferences session.
+///
+/// Returns: Returns TRUE if the lock was obtained;
+/// FALSE if an error occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn SCPreferencesUnlock(prefs: &SCPreferences) -> bool {
+    extern "C-unwind" {
+        fn SCPreferencesUnlock(prefs: &SCPreferences) -> Boolean;
+    }
+    let ret = unsafe { SCPreferencesUnlock(prefs) };
+    ret != 0
 }
 
 /// Returns a sequence of bytes that can be used to determine
@@ -291,133 +311,186 @@ pub unsafe extern "C-unwind" fn SCPreferencesGetValue(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Adds data for a preference key.
-    ///
-    /// This function associates new data with the specified key.
-    /// To commit these changes to permanent storage, a call must
-    /// be made to the SCPreferencesCommitChanges function.
-    ///
-    /// Parameter `prefs`: The preferences session.
-    ///
-    /// Parameter `key`: The preference key to be updated.
-    ///
-    /// Parameter `value`: The CFPropertyListRef object containing the
-    /// value to be associated with the specified preference key.
-    ///
-    /// Returns: Returns TRUE if the value was added;
-    /// FALSE if the key already exists or
-    /// if an error occurred.
-    pub fn SCPreferencesAddValue(
-        prefs: &SCPreferences,
-        key: &CFString,
-        value: &CFPropertyList,
-    ) -> Boolean;
+/// Adds data for a preference key.
+///
+/// This function associates new data with the specified key.
+/// To commit these changes to permanent storage, a call must
+/// be made to the SCPreferencesCommitChanges function.
+///
+/// Parameter `prefs`: The preferences session.
+///
+/// Parameter `key`: The preference key to be updated.
+///
+/// Parameter `value`: The CFPropertyListRef object containing the
+/// value to be associated with the specified preference key.
+///
+/// Returns: Returns TRUE if the value was added;
+/// FALSE if the key already exists or
+/// if an error occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn SCPreferencesAddValue(
+    prefs: &SCPreferences,
+    key: &CFString,
+    value: &CFPropertyList,
+) -> bool {
+    extern "C-unwind" {
+        fn SCPreferencesAddValue(
+            prefs: &SCPreferences,
+            key: &CFString,
+            value: &CFPropertyList,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCPreferencesAddValue(prefs, key, value) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Updates the data associated with a preference key.
-    ///
-    /// This function adds or replaces the value associated with the
-    /// specified key.  To commit these changes to permanent storage
-    /// a call must be made to the SCPreferencesCommitChanges function.
-    ///
-    /// Parameter `prefs`: The preferences session.
-    ///
-    /// Parameter `key`: The preference key to be updated.
-    ///
-    /// Parameter `value`: The CFPropertyListRef object containing the
-    /// data to be associated with the specified preference key.
-    ///
-    /// Returns: Returns TRUE if the value was set;
-    /// FALSE if an error occurred.
-    pub fn SCPreferencesSetValue(
-        prefs: &SCPreferences,
-        key: &CFString,
-        value: &CFPropertyList,
-    ) -> Boolean;
+/// Updates the data associated with a preference key.
+///
+/// This function adds or replaces the value associated with the
+/// specified key.  To commit these changes to permanent storage
+/// a call must be made to the SCPreferencesCommitChanges function.
+///
+/// Parameter `prefs`: The preferences session.
+///
+/// Parameter `key`: The preference key to be updated.
+///
+/// Parameter `value`: The CFPropertyListRef object containing the
+/// data to be associated with the specified preference key.
+///
+/// Returns: Returns TRUE if the value was set;
+/// FALSE if an error occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn SCPreferencesSetValue(
+    prefs: &SCPreferences,
+    key: &CFString,
+    value: &CFPropertyList,
+) -> bool {
+    extern "C-unwind" {
+        fn SCPreferencesSetValue(
+            prefs: &SCPreferences,
+            key: &CFString,
+            value: &CFPropertyList,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCPreferencesSetValue(prefs, key, value) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Removes the data associated with a preference key.
-    ///
-    /// This function removes the data associated with the specified
-    /// key.  To commit these changes to permanent storage a call must
-    /// be made to the SCPreferencesCommitChanges function.
-    ///
-    /// Parameter `prefs`: The preferences session.
-    ///
-    /// Parameter `key`: The preference key to be removed.
-    ///
-    /// Returns: Returns TRUE if the value was removed;
-    /// FALSE if the key did not exist or if an error occurred.
-    pub fn SCPreferencesRemoveValue(prefs: &SCPreferences, key: &CFString) -> Boolean;
+/// Removes the data associated with a preference key.
+///
+/// This function removes the data associated with the specified
+/// key.  To commit these changes to permanent storage a call must
+/// be made to the SCPreferencesCommitChanges function.
+///
+/// Parameter `prefs`: The preferences session.
+///
+/// Parameter `key`: The preference key to be removed.
+///
+/// Returns: Returns TRUE if the value was removed;
+/// FALSE if the key did not exist or if an error occurred.
+#[inline]
+pub unsafe extern "C-unwind" fn SCPreferencesRemoveValue(
+    prefs: &SCPreferences,
+    key: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn SCPreferencesRemoveValue(prefs: &SCPreferences, key: &CFString) -> Boolean;
+    }
+    let ret = unsafe { SCPreferencesRemoveValue(prefs, key) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Assigns a callback to a preferences session.  The function
-    /// is called when the changes to the preferences have been
-    /// committed or applied.
-    ///
-    /// Parameter `prefs`: The preferences session.
-    ///
-    /// Parameter `callout`: The function to be called when the preferences have
-    /// been changed or applied.
-    /// If NULL, the current callback is removed.
-    ///
-    /// Parameter `context`: The SCPreferencesContext associated with
-    /// the callout.
-    ///
-    /// Returns: Returns TRUE if the notification client was successfully set.
-    pub fn SCPreferencesSetCallback(
-        prefs: &SCPreferences,
-        callout: SCPreferencesCallBack,
-        context: *mut SCPreferencesContext,
-    ) -> Boolean;
+/// Assigns a callback to a preferences session.  The function
+/// is called when the changes to the preferences have been
+/// committed or applied.
+///
+/// Parameter `prefs`: The preferences session.
+///
+/// Parameter `callout`: The function to be called when the preferences have
+/// been changed or applied.
+/// If NULL, the current callback is removed.
+///
+/// Parameter `context`: The SCPreferencesContext associated with
+/// the callout.
+///
+/// Returns: Returns TRUE if the notification client was successfully set.
+#[inline]
+pub unsafe extern "C-unwind" fn SCPreferencesSetCallback(
+    prefs: &SCPreferences,
+    callout: SCPreferencesCallBack,
+    context: *mut SCPreferencesContext,
+) -> bool {
+    extern "C-unwind" {
+        fn SCPreferencesSetCallback(
+            prefs: &SCPreferences,
+            callout: SCPreferencesCallBack,
+            context: *mut SCPreferencesContext,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCPreferencesSetCallback(prefs, callout, context) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Schedule commit and apply notifications for the specified
-    /// preferences session using the specified run loop and mode.
-    ///
-    /// Parameter `prefs`: The preferences session.
-    ///
-    /// Parameter `runLoop`: A reference to a run loop on which the notification
-    /// should be scheduled.
-    /// Must be non-NULL.
-    ///
-    /// Parameter `runLoopMode`: The mode on which to schedule the notification.
-    /// Must be non-NULL.
-    ///
-    /// Returns: Returns TRUE if the notifications are successfully scheduled;
-    /// FALSE otherwise.
-    pub fn SCPreferencesScheduleWithRunLoop(
-        prefs: &SCPreferences,
-        run_loop: &CFRunLoop,
-        run_loop_mode: &CFString,
-    ) -> Boolean;
+/// Schedule commit and apply notifications for the specified
+/// preferences session using the specified run loop and mode.
+///
+/// Parameter `prefs`: The preferences session.
+///
+/// Parameter `runLoop`: A reference to a run loop on which the notification
+/// should be scheduled.
+/// Must be non-NULL.
+///
+/// Parameter `runLoopMode`: The mode on which to schedule the notification.
+/// Must be non-NULL.
+///
+/// Returns: Returns TRUE if the notifications are successfully scheduled;
+/// FALSE otherwise.
+#[inline]
+pub unsafe extern "C-unwind" fn SCPreferencesScheduleWithRunLoop(
+    prefs: &SCPreferences,
+    run_loop: &CFRunLoop,
+    run_loop_mode: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn SCPreferencesScheduleWithRunLoop(
+            prefs: &SCPreferences,
+            run_loop: &CFRunLoop,
+            run_loop_mode: &CFString,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCPreferencesScheduleWithRunLoop(prefs, run_loop, run_loop_mode) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Unschedule commit and apply notifications for the specified
-    /// preferences session from the specified run loop and mode.
-    ///
-    /// Parameter `prefs`: The preferences session.
-    ///
-    /// Parameter `runLoop`: A reference to a run loop from which the notification
-    /// should be unscheduled.
-    /// Must be non-NULL.
-    ///
-    /// Parameter `runLoopMode`: The mode on which to unschedule the notification.
-    /// Must be non-NULL.
-    ///
-    /// Returns: Returns TRUE if the notifications are successfully unscheduled;
-    /// FALSE otherwise.
-    pub fn SCPreferencesUnscheduleFromRunLoop(
-        prefs: &SCPreferences,
-        run_loop: &CFRunLoop,
-        run_loop_mode: &CFString,
-    ) -> Boolean;
+/// Unschedule commit and apply notifications for the specified
+/// preferences session from the specified run loop and mode.
+///
+/// Parameter `prefs`: The preferences session.
+///
+/// Parameter `runLoop`: A reference to a run loop from which the notification
+/// should be unscheduled.
+/// Must be non-NULL.
+///
+/// Parameter `runLoopMode`: The mode on which to unschedule the notification.
+/// Must be non-NULL.
+///
+/// Returns: Returns TRUE if the notifications are successfully unscheduled;
+/// FALSE otherwise.
+#[inline]
+pub unsafe extern "C-unwind" fn SCPreferencesUnscheduleFromRunLoop(
+    prefs: &SCPreferences,
+    run_loop: &CFRunLoop,
+    run_loop_mode: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn SCPreferencesUnscheduleFromRunLoop(
+            prefs: &SCPreferences,
+            run_loop: &CFRunLoop,
+            run_loop_mode: &CFString,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCPreferencesUnscheduleFromRunLoop(prefs, run_loop, run_loop_mode) };
+    ret != 0
 }
 
 extern "C-unwind" {

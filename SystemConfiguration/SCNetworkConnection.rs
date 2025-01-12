@@ -233,28 +233,39 @@ unsafe impl ConcreteType for SCNetworkConnection {
     }
 }
 
-extern "C-unwind" {
-    /// Provides the default service ID and a dictionary of user
-    /// options for the connection.  Applications can use the
-    /// returned serviceID and userOptions values to open a
-    /// connection on the fly.
-    ///
-    /// Parameter `selectionOptions`: Currently unimplemented. Pass NULL for this
-    /// version.
-    ///
-    /// Parameter `serviceID`: Reference to the default serviceID for starting
-    /// connections, this value will be returned by the function.
-    ///
-    /// Parameter `userOptions`: Reference to default userOptions for starting
-    /// connections, this will be returned by the function.
-    ///
-    /// Returns: Returns TRUE if there is a valid service to dial;
-    /// FALSE if the function was unable to retrieve a service to dial.
-    pub fn SCNetworkConnectionCopyUserPreferences(
-        selection_options: Option<&CFDictionary>,
-        service_id: NonNull<*mut CFString>,
-        user_options: NonNull<*mut CFDictionary>,
-    ) -> Boolean;
+/// Provides the default service ID and a dictionary of user
+/// options for the connection.  Applications can use the
+/// returned serviceID and userOptions values to open a
+/// connection on the fly.
+///
+/// Parameter `selectionOptions`: Currently unimplemented. Pass NULL for this
+/// version.
+///
+/// Parameter `serviceID`: Reference to the default serviceID for starting
+/// connections, this value will be returned by the function.
+///
+/// Parameter `userOptions`: Reference to default userOptions for starting
+/// connections, this will be returned by the function.
+///
+/// Returns: Returns TRUE if there is a valid service to dial;
+/// FALSE if the function was unable to retrieve a service to dial.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkConnectionCopyUserPreferences(
+    selection_options: Option<&CFDictionary>,
+    service_id: NonNull<*mut CFString>,
+    user_options: NonNull<*mut CFDictionary>,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkConnectionCopyUserPreferences(
+            selection_options: Option<&CFDictionary>,
+            service_id: NonNull<*mut CFString>,
+            user_options: NonNull<*mut CFDictionary>,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        SCNetworkConnectionCopyUserPreferences(selection_options, service_id, user_options)
+    };
+    ret != 0
 }
 
 /// Creates a new connection reference to use for getting
@@ -445,82 +456,99 @@ pub unsafe extern "C-unwind" fn SCNetworkConnectionCopyStatistics(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Starts the connection for the SCNetworkConnection.
-    /// The connection process is asynchronous and the function will
-    /// return immediately.  The connection status can be obtained
-    /// by polling or by callback.  The connection is made with the
-    /// default settings from the administrator.  Some of the settings
-    /// can be overridden for the duration of the connection.  These
-    /// are specified in an options dictionary.  The options dictionary
-    /// uses the same format as a network service defined in the system
-    /// configuration preferences schema.
-    ///
-    /// Note: Starting and stopping of connections is implicitly
-    /// arbitrated.  Calling SCNetworkConnectionStart on a connection
-    /// already started will indicate that the application has
-    /// interest in the connection and it shouldn't be stopped by
-    /// anyone else.
-    ///
-    /// Parameter `connection`: The SCNetworkConnection to start.
-    ///
-    /// Parameter `userOptions`: The options dictionary to start the connection with.
-    /// If userOptions is NULL, the default settings will be used.
-    /// If userOptions are specified, they must be in the same format
-    /// as network services stored in the system configuration
-    /// preferences schema.  The options will override the default
-    /// settings defined for the service.
-    ///
-    /// For security reasons, not all options can be overridden; the
-    /// appropriate merging of all settings will be done before the
-    /// connection is established, and inappropriate options will be
-    /// ignored.
-    ///
-    /// Parameter `linger`: This parameter indicates whether or not the connection
-    /// can stay around when the application no longer has interest
-    /// in it.  A typical application should pass FALSE, and the
-    /// connection will be automatically stopped when the reference
-    /// is released or if the application quits.  If the application
-    /// passes TRUE, the application can release the reference or
-    /// exit and the connection will be maintained until a timeout
-    /// event, until a specific stop request occurs, or until an
-    /// error is encountered.
-    ///
-    /// Returns: Returns TRUE if the connection was correctly started (the
-    /// actual connection is not established yet, and the connection
-    /// status needs to be periodically checked); FALSE if the
-    /// connection request was not started.  The error must be
-    /// retrieved from the SCError function.
-    pub fn SCNetworkConnectionStart(
-        connection: &SCNetworkConnection,
-        user_options: Option<&CFDictionary>,
-        linger: Boolean,
-    ) -> Boolean;
+/// Starts the connection for the SCNetworkConnection.
+/// The connection process is asynchronous and the function will
+/// return immediately.  The connection status can be obtained
+/// by polling or by callback.  The connection is made with the
+/// default settings from the administrator.  Some of the settings
+/// can be overridden for the duration of the connection.  These
+/// are specified in an options dictionary.  The options dictionary
+/// uses the same format as a network service defined in the system
+/// configuration preferences schema.
+///
+/// Note: Starting and stopping of connections is implicitly
+/// arbitrated.  Calling SCNetworkConnectionStart on a connection
+/// already started will indicate that the application has
+/// interest in the connection and it shouldn't be stopped by
+/// anyone else.
+///
+/// Parameter `connection`: The SCNetworkConnection to start.
+///
+/// Parameter `userOptions`: The options dictionary to start the connection with.
+/// If userOptions is NULL, the default settings will be used.
+/// If userOptions are specified, they must be in the same format
+/// as network services stored in the system configuration
+/// preferences schema.  The options will override the default
+/// settings defined for the service.
+///
+/// For security reasons, not all options can be overridden; the
+/// appropriate merging of all settings will be done before the
+/// connection is established, and inappropriate options will be
+/// ignored.
+///
+/// Parameter `linger`: This parameter indicates whether or not the connection
+/// can stay around when the application no longer has interest
+/// in it.  A typical application should pass FALSE, and the
+/// connection will be automatically stopped when the reference
+/// is released or if the application quits.  If the application
+/// passes TRUE, the application can release the reference or
+/// exit and the connection will be maintained until a timeout
+/// event, until a specific stop request occurs, or until an
+/// error is encountered.
+///
+/// Returns: Returns TRUE if the connection was correctly started (the
+/// actual connection is not established yet, and the connection
+/// status needs to be periodically checked); FALSE if the
+/// connection request was not started.  The error must be
+/// retrieved from the SCError function.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkConnectionStart(
+    connection: &SCNetworkConnection,
+    user_options: Option<&CFDictionary>,
+    linger: bool,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkConnectionStart(
+            connection: &SCNetworkConnection,
+            user_options: Option<&CFDictionary>,
+            linger: Boolean,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkConnectionStart(connection, user_options, linger as _) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Stops the connection for the SCNetworkConnection.
-    /// The disconnection process is asynchronous and the function
-    /// will return immediately.  The connection status can be
-    /// obtained by polling or by callback.  This function performs
-    /// an arbitrated stop of the connection.  If several applications
-    /// have marked their interest in the connection, by calling
-    /// SCNetworkConnectionStart, the call will succeed but the
-    /// actual connection will be maintained until the last interested
-    /// application calls SCNetworkConnectionStop.
-    ///
-    /// In certain cases, you might want to stop the connection anyway.
-    /// In these cases, you set the forceDisconnect argument to TRUE.
-    ///
-    /// Parameter `connection`: The SCNetworkConnection to stop.
-    ///
-    /// Returns: Returns TRUE if the disconnection request succeeded;
-    /// FALSE if the disconnection request failed.
-    /// The error must be retrieved from the SCError function.
-    pub fn SCNetworkConnectionStop(
-        connection: &SCNetworkConnection,
-        force_disconnect: Boolean,
-    ) -> Boolean;
+/// Stops the connection for the SCNetworkConnection.
+/// The disconnection process is asynchronous and the function
+/// will return immediately.  The connection status can be
+/// obtained by polling or by callback.  This function performs
+/// an arbitrated stop of the connection.  If several applications
+/// have marked their interest in the connection, by calling
+/// SCNetworkConnectionStart, the call will succeed but the
+/// actual connection will be maintained until the last interested
+/// application calls SCNetworkConnectionStop.
+///
+/// In certain cases, you might want to stop the connection anyway.
+/// In these cases, you set the forceDisconnect argument to TRUE.
+///
+/// Parameter `connection`: The SCNetworkConnection to stop.
+///
+/// Returns: Returns TRUE if the disconnection request succeeded;
+/// FALSE if the disconnection request failed.
+/// The error must be retrieved from the SCError function.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkConnectionStop(
+    connection: &SCNetworkConnection,
+    force_disconnect: bool,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkConnectionStop(
+            connection: &SCNetworkConnection,
+            force_disconnect: Boolean,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkConnectionStop(connection, force_disconnect as _) };
+    ret != 0
 }
 
 /// Copies the user options used to start the connection.
@@ -545,40 +573,60 @@ pub unsafe extern "C-unwind" fn SCNetworkConnectionCopyUserOptions(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Schedules a connection with the run loop.
-    ///
-    /// Parameter `connection`: The SCNetworkConnection to schedule.
-    ///
-    /// Parameter `runLoop`: The run loop to schedule with.
-    ///
-    /// Parameter `runLoopMode`: The run loop mode.
-    ///
-    /// Returns: Returns TRUE if the connection is scheduled successfully;
-    /// FALSE if the scheduling failed.
-    /// The error can be retrieved using the SCError function.
-    pub fn SCNetworkConnectionScheduleWithRunLoop(
-        connection: &SCNetworkConnection,
-        run_loop: &CFRunLoop,
-        run_loop_mode: &CFString,
-    ) -> Boolean;
+/// Schedules a connection with the run loop.
+///
+/// Parameter `connection`: The SCNetworkConnection to schedule.
+///
+/// Parameter `runLoop`: The run loop to schedule with.
+///
+/// Parameter `runLoopMode`: The run loop mode.
+///
+/// Returns: Returns TRUE if the connection is scheduled successfully;
+/// FALSE if the scheduling failed.
+/// The error can be retrieved using the SCError function.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkConnectionScheduleWithRunLoop(
+    connection: &SCNetworkConnection,
+    run_loop: &CFRunLoop,
+    run_loop_mode: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkConnectionScheduleWithRunLoop(
+            connection: &SCNetworkConnection,
+            run_loop: &CFRunLoop,
+            run_loop_mode: &CFString,
+        ) -> Boolean;
+    }
+    let ret =
+        unsafe { SCNetworkConnectionScheduleWithRunLoop(connection, run_loop, run_loop_mode) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Unschedules a connection from the run loop.
-    ///
-    /// Parameter `connection`: The SCNetworkConnection to unschedule.
-    ///
-    /// Parameter `runLoop`: The run loop to unschedule from.
-    ///
-    /// Parameter `runLoopMode`: The run loop mode.
-    ///
-    /// Returns: Returns TRUE if the connection is unscheduled successfully;
-    /// FALSE if the unscheduling failed.
-    /// The error can be retrieved using the SCError function.
-    pub fn SCNetworkConnectionUnscheduleFromRunLoop(
-        connection: &SCNetworkConnection,
-        run_loop: &CFRunLoop,
-        run_loop_mode: &CFString,
-    ) -> Boolean;
+/// Unschedules a connection from the run loop.
+///
+/// Parameter `connection`: The SCNetworkConnection to unschedule.
+///
+/// Parameter `runLoop`: The run loop to unschedule from.
+///
+/// Parameter `runLoopMode`: The run loop mode.
+///
+/// Returns: Returns TRUE if the connection is unscheduled successfully;
+/// FALSE if the unscheduling failed.
+/// The error can be retrieved using the SCError function.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkConnectionUnscheduleFromRunLoop(
+    connection: &SCNetworkConnection,
+    run_loop: &CFRunLoop,
+    run_loop_mode: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkConnectionUnscheduleFromRunLoop(
+            connection: &SCNetworkConnection,
+            run_loop: &CFRunLoop,
+            run_loop_mode: &CFString,
+        ) -> Boolean;
+    }
+    let ret =
+        unsafe { SCNetworkConnectionUnscheduleFromRunLoop(connection, run_loop, run_loop_mode) };
+    ret != 0
 }

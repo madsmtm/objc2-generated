@@ -6,50 +6,65 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// Provides Captive Network Support with an updated list of
-    /// SSIDs that this application will perform authentication on.
-    ///
-    /// Captive Network Support suppresses showing the Web Sheet
-    /// for a captive Wi-Fi network if that network's SSID is in the
-    /// specified list.
-    ///
-    /// On iOS, the registrations persist until the application is
-    /// removed from the device.
-    ///
-    /// On MacOSX, the registrations persist as long as the application
-    /// is running.
-    ///
-    ///
-    /// Parameter `ssidArray`: A CFArray of CFStrings of the SSIDs.
-    ///
-    /// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
-    #[deprecated]
-    pub fn CNSetSupportedSSIDs(ssid_array: &CFArray) -> Boolean;
+/// Provides Captive Network Support with an updated list of
+/// SSIDs that this application will perform authentication on.
+///
+/// Captive Network Support suppresses showing the Web Sheet
+/// for a captive Wi-Fi network if that network's SSID is in the
+/// specified list.
+///
+/// On iOS, the registrations persist until the application is
+/// removed from the device.
+///
+/// On MacOSX, the registrations persist as long as the application
+/// is running.
+///
+///
+/// Parameter `ssidArray`: A CFArray of CFStrings of the SSIDs.
+///
+/// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CNSetSupportedSSIDs(ssid_array: &CFArray) -> bool {
+    extern "C-unwind" {
+        fn CNSetSupportedSSIDs(ssid_array: &CFArray) -> Boolean;
+    }
+    let ret = unsafe { CNSetSupportedSSIDs(ssid_array) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Tells Captive Network Support that your application has
-    /// authenticated the device to the network. Captive Network Support
-    /// will notify the rest of the system that WiFi is now a viable
-    /// interface.
-    ///
-    /// Parameter `interfaceName`: Name of the interface that is now online.
-    ///
-    /// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
-    #[deprecated]
-    pub fn CNMarkPortalOnline(interface_name: &CFString) -> Boolean;
+/// Tells Captive Network Support that your application has
+/// authenticated the device to the network. Captive Network Support
+/// will notify the rest of the system that WiFi is now a viable
+/// interface.
+///
+/// Parameter `interfaceName`: Name of the interface that is now online.
+///
+/// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CNMarkPortalOnline(interface_name: &CFString) -> bool {
+    extern "C-unwind" {
+        fn CNMarkPortalOnline(interface_name: &CFString) -> Boolean;
+    }
+    let ret = unsafe { CNMarkPortalOnline(interface_name) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Tells Captive Network Support that the device is not
-    /// authenticated on the given network interface.
-    ///
-    /// Parameter `interfaceName`: Name of the interface that is still captive.
-    ///
-    /// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
-    #[deprecated]
-    pub fn CNMarkPortalOffline(interface_name: &CFString) -> Boolean;
+/// Tells Captive Network Support that the device is not
+/// authenticated on the given network interface.
+///
+/// Parameter `interfaceName`: Name of the interface that is still captive.
+///
+/// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn CNMarkPortalOffline(interface_name: &CFString) -> bool {
+    extern "C-unwind" {
+        fn CNMarkPortalOffline(interface_name: &CFString) -> Boolean;
+    }
+    let ret = unsafe { CNMarkPortalOffline(interface_name) };
+    ret != 0
 }
 
 /// copies a list of all interfaces CaptiveNetworkSupport is monitoring.

@@ -744,25 +744,32 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Disposes an existing audio queue.
-    ///
-    /// Disposing of the audio queue also disposes of all its resources, including its buffers.
-    ///
-    ///
-    /// Parameter `inAQ`: The audio queue you want to dispose of
-    ///
-    /// Parameter `inImmediate`: If you pass true, the audio queue is disposed of immediately (that is, synchronously).
-    /// If you pass false, disposal does not take place until all enqueued buffers are
-    /// processed. Whether you call AudioQueueDispose synchronously or asynchronously, you can
-    /// no longer interact with the queue, and the queue no longer invokes any callbacks to your
-    /// application after the function returns.
-    ///
-    /// Note that if AudioQueueDispose is called from a buffer completion callback or property
-    /// listener, you may receive further callbacks afterwards.
-    ///
-    /// Returns: An OSStatus result code.
-    pub fn AudioQueueDispose(in_aq: AudioQueueRef, in_immediate: Boolean) -> OSStatus;
+/// Disposes an existing audio queue.
+///
+/// Disposing of the audio queue also disposes of all its resources, including its buffers.
+///
+///
+/// Parameter `inAQ`: The audio queue you want to dispose of
+///
+/// Parameter `inImmediate`: If you pass true, the audio queue is disposed of immediately (that is, synchronously).
+/// If you pass false, disposal does not take place until all enqueued buffers are
+/// processed. Whether you call AudioQueueDispose synchronously or asynchronously, you can
+/// no longer interact with the queue, and the queue no longer invokes any callbacks to your
+/// application after the function returns.
+///
+/// Note that if AudioQueueDispose is called from a buffer completion callback or property
+/// listener, you may receive further callbacks afterwards.
+///
+/// Returns: An OSStatus result code.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueDispose(
+    in_aq: AudioQueueRef,
+    in_immediate: bool,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueDispose(in_aq: AudioQueueRef, in_immediate: Boolean) -> OSStatus;
+    }
+    unsafe { AudioQueueDispose(in_aq, in_immediate as _) }
 }
 
 extern "C-unwind" {
@@ -996,32 +1003,39 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// Stops playing or recording audio.
-    ///
-    /// This function resets the audio queue and stops the audio hardware associated with the
-    /// queue if it is not in use by other audio services. Synchronous stops occur immediately,
-    /// regardless of previously buffered audio data. Asynchronous stops occur after all queued
-    /// buffers have been played or recorded.
-    ///
-    ///
-    /// Parameter `inAQ`: The audio queue to stop.
-    ///
-    /// Parameter `inImmediate`: If you pass true, the stop request occurs immediately (that is, synchronously), and the
-    /// function returns when the audio queue has stopped. Buffer callbacks are invoked during
-    /// the stopping. If you pass false, the function returns immediately, but the queue does
-    /// not stop until all its queued buffers are played or filled (that is, the stop occurs
-    /// asynchronously). Buffer callbacks are invoked as necessary until the queue actually
-    /// stops. Also, a playback audio queue callback calls this function when there is no more
-    /// audio to play.
-    ///
-    /// Note that when stopping immediately, all pending buffer callbacks are normally invoked
-    /// during the process of stopping. But if the calling thread is responding to a buffer
-    /// callback, then it is possible for additional buffer callbacks to occur after
-    /// AudioQueueStop returns.
-    ///
-    /// Returns: An OSStatus result code.
-    pub fn AudioQueueStop(in_aq: AudioQueueRef, in_immediate: Boolean) -> OSStatus;
+/// Stops playing or recording audio.
+///
+/// This function resets the audio queue and stops the audio hardware associated with the
+/// queue if it is not in use by other audio services. Synchronous stops occur immediately,
+/// regardless of previously buffered audio data. Asynchronous stops occur after all queued
+/// buffers have been played or recorded.
+///
+///
+/// Parameter `inAQ`: The audio queue to stop.
+///
+/// Parameter `inImmediate`: If you pass true, the stop request occurs immediately (that is, synchronously), and the
+/// function returns when the audio queue has stopped. Buffer callbacks are invoked during
+/// the stopping. If you pass false, the function returns immediately, but the queue does
+/// not stop until all its queued buffers are played or filled (that is, the stop occurs
+/// asynchronously). Buffer callbacks are invoked as necessary until the queue actually
+/// stops. Also, a playback audio queue callback calls this function when there is no more
+/// audio to play.
+///
+/// Note that when stopping immediately, all pending buffer callbacks are normally invoked
+/// during the process of stopping. But if the calling thread is responding to a buffer
+/// callback, then it is possible for additional buffer callbacks to occur after
+/// AudioQueueStop returns.
+///
+/// Returns: An OSStatus result code.
+#[inline]
+pub unsafe extern "C-unwind" fn AudioQueueStop(
+    in_aq: AudioQueueRef,
+    in_immediate: bool,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioQueueStop(in_aq: AudioQueueRef, in_immediate: Boolean) -> OSStatus;
+    }
+    unsafe { AudioQueueStop(in_aq, in_immediate as _) }
 }
 
 extern "C-unwind" {

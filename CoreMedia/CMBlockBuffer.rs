@@ -551,40 +551,54 @@ extern "C-unwind" {
     pub fn CMBlockBufferGetDataLength(the_buffer: &CMBlockBuffer) -> usize;
 }
 
-extern "C-unwind" {
-    /// Determines whether the specified range within the given CMBlockBuffer is contiguous.
-    ///
-    /// Determines whether the specified range within the given CMBlockBuffer is contiguous. if CMBlockBufferGetDataPointer()
-    /// were to be called with the same parameters, the returned pointer would address the desired number of bytes.
-    ///
-    ///
-    /// Parameter `theBuffer`: CMBlockBuffer to examine. Must not be NULL
-    ///
-    /// Parameter `offset`: Offset within the buffer's offset range.
-    ///
-    /// Parameter `length`: Desired number of bytes to access at offset. If zero, the number of bytes available at offset
-    /// (dataLength – offset), contiguous or not, is used.
-    ///
-    ///
-    /// Returns: Returns true if the specified range is contiguous within the CMBlockBuffer, false otherwise. Also returns false if the
-    /// CMBlockBuffer is NULL or empty.
-    pub fn CMBlockBufferIsRangeContiguous(
-        the_buffer: &CMBlockBuffer,
-        offset: usize,
-        length: usize,
-    ) -> Boolean;
+/// Determines whether the specified range within the given CMBlockBuffer is contiguous.
+///
+/// Determines whether the specified range within the given CMBlockBuffer is contiguous. if CMBlockBufferGetDataPointer()
+/// were to be called with the same parameters, the returned pointer would address the desired number of bytes.
+///
+///
+/// Parameter `theBuffer`: CMBlockBuffer to examine. Must not be NULL
+///
+/// Parameter `offset`: Offset within the buffer's offset range.
+///
+/// Parameter `length`: Desired number of bytes to access at offset. If zero, the number of bytes available at offset
+/// (dataLength – offset), contiguous or not, is used.
+///
+///
+/// Returns: Returns true if the specified range is contiguous within the CMBlockBuffer, false otherwise. Also returns false if the
+/// CMBlockBuffer is NULL or empty.
+#[inline]
+pub unsafe extern "C-unwind" fn CMBlockBufferIsRangeContiguous(
+    the_buffer: &CMBlockBuffer,
+    offset: usize,
+    length: usize,
+) -> bool {
+    extern "C-unwind" {
+        fn CMBlockBufferIsRangeContiguous(
+            the_buffer: &CMBlockBuffer,
+            offset: usize,
+            length: usize,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CMBlockBufferIsRangeContiguous(the_buffer, offset, length) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Indicates whether the given CMBlockBuffer is empty.
-    ///
-    /// Indicates whether the given CMBlockBuffer is empty, i.e., devoid of any memoryBlocks or CMBlockBuffer references.
-    /// Note that a CMBlockBuffer containing a not-yet allocated memoryBlock is not considered empty.
-    ///
-    ///
-    /// Parameter `theBuffer`: CMBlockBuffer to examine. Must not be NULL
-    ///
-    ///
-    /// Returns: Returns the result of the emptiness test. Will return false if the CMBlockBuffer is NULL.
-    pub fn CMBlockBufferIsEmpty(the_buffer: &CMBlockBuffer) -> Boolean;
+/// Indicates whether the given CMBlockBuffer is empty.
+///
+/// Indicates whether the given CMBlockBuffer is empty, i.e., devoid of any memoryBlocks or CMBlockBuffer references.
+/// Note that a CMBlockBuffer containing a not-yet allocated memoryBlock is not considered empty.
+///
+///
+/// Parameter `theBuffer`: CMBlockBuffer to examine. Must not be NULL
+///
+///
+/// Returns: Returns the result of the emptiness test. Will return false if the CMBlockBuffer is NULL.
+#[inline]
+pub unsafe extern "C-unwind" fn CMBlockBufferIsEmpty(the_buffer: &CMBlockBuffer) -> bool {
+    extern "C-unwind" {
+        fn CMBlockBufferIsEmpty(the_buffer: &CMBlockBuffer) -> Boolean;
+    }
+    let ret = unsafe { CMBlockBufferIsEmpty(the_buffer) };
+    ret != 0
 }

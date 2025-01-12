@@ -61,66 +61,146 @@ pub unsafe extern "C-unwind" fn CFFileSecurityCreateCopy(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFUUID")]
-    pub fn CFFileSecurityCopyOwnerUUID(
-        file_sec: &CFFileSecurity,
-        owner_uuid: *mut *mut CFUUID,
-    ) -> Boolean;
+#[cfg(feature = "CFUUID")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFFileSecurityCopyOwnerUUID(
+    file_sec: &CFFileSecurity,
+    owner_uuid: *mut *mut CFUUID,
+) -> bool {
+    extern "C-unwind" {
+        fn CFFileSecurityCopyOwnerUUID(
+            file_sec: &CFFileSecurity,
+            owner_uuid: *mut *mut CFUUID,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFFileSecurityCopyOwnerUUID(file_sec, owner_uuid) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFUUID")]
-    pub fn CFFileSecuritySetOwnerUUID(
-        file_sec: &CFFileSecurity,
-        owner_uuid: Option<&CFUUID>,
-    ) -> Boolean;
+#[cfg(feature = "CFUUID")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFFileSecuritySetOwnerUUID(
+    file_sec: &CFFileSecurity,
+    owner_uuid: Option<&CFUUID>,
+) -> bool {
+    extern "C-unwind" {
+        fn CFFileSecuritySetOwnerUUID(
+            file_sec: &CFFileSecurity,
+            owner_uuid: Option<&CFUUID>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFFileSecuritySetOwnerUUID(file_sec, owner_uuid) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFUUID")]
-    pub fn CFFileSecurityCopyGroupUUID(
-        file_sec: &CFFileSecurity,
-        group_uuid: *mut *mut CFUUID,
-    ) -> Boolean;
+#[cfg(feature = "CFUUID")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFFileSecurityCopyGroupUUID(
+    file_sec: &CFFileSecurity,
+    group_uuid: *mut *mut CFUUID,
+) -> bool {
+    extern "C-unwind" {
+        fn CFFileSecurityCopyGroupUUID(
+            file_sec: &CFFileSecurity,
+            group_uuid: *mut *mut CFUUID,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFFileSecurityCopyGroupUUID(file_sec, group_uuid) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFUUID")]
-    pub fn CFFileSecuritySetGroupUUID(
-        file_sec: &CFFileSecurity,
-        group_uuid: Option<&CFUUID>,
-    ) -> Boolean;
+#[cfg(feature = "CFUUID")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFFileSecuritySetGroupUUID(
+    file_sec: &CFFileSecurity,
+    group_uuid: Option<&CFUUID>,
+) -> bool {
+    extern "C-unwind" {
+        fn CFFileSecuritySetGroupUUID(
+            file_sec: &CFFileSecurity,
+            group_uuid: Option<&CFUUID>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFFileSecuritySetGroupUUID(file_sec, group_uuid) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn CFFileSecurityGetOwner(file_sec: &CFFileSecurity, owner: *mut libc::uid_t) -> Boolean;
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFFileSecurityGetOwner(
+    file_sec: &CFFileSecurity,
+    owner: *mut libc::uid_t,
+) -> bool {
+    extern "C-unwind" {
+        fn CFFileSecurityGetOwner(file_sec: &CFFileSecurity, owner: *mut libc::uid_t) -> Boolean;
+    }
+    let ret = unsafe { CFFileSecurityGetOwner(file_sec, owner) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn CFFileSecuritySetOwner(file_sec: &CFFileSecurity, owner: libc::uid_t) -> Boolean;
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFFileSecuritySetOwner(
+    file_sec: &CFFileSecurity,
+    owner: libc::uid_t,
+) -> bool {
+    extern "C-unwind" {
+        fn CFFileSecuritySetOwner(file_sec: &CFFileSecurity, owner: libc::uid_t) -> Boolean;
+    }
+    let ret = unsafe { CFFileSecuritySetOwner(file_sec, owner) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn CFFileSecurityGetGroup(file_sec: &CFFileSecurity, group: *mut libc::gid_t) -> Boolean;
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFFileSecurityGetGroup(
+    file_sec: &CFFileSecurity,
+    group: *mut libc::gid_t,
+) -> bool {
+    extern "C-unwind" {
+        fn CFFileSecurityGetGroup(file_sec: &CFFileSecurity, group: *mut libc::gid_t) -> Boolean;
+    }
+    let ret = unsafe { CFFileSecurityGetGroup(file_sec, group) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn CFFileSecuritySetGroup(file_sec: &CFFileSecurity, group: libc::gid_t) -> Boolean;
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFFileSecuritySetGroup(
+    file_sec: &CFFileSecurity,
+    group: libc::gid_t,
+) -> bool {
+    extern "C-unwind" {
+        fn CFFileSecuritySetGroup(file_sec: &CFFileSecurity, group: libc::gid_t) -> Boolean;
+    }
+    let ret = unsafe { CFFileSecuritySetGroup(file_sec, group) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn CFFileSecurityGetMode(file_sec: &CFFileSecurity, mode: *mut libc::mode_t) -> Boolean;
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFFileSecurityGetMode(
+    file_sec: &CFFileSecurity,
+    mode: *mut libc::mode_t,
+) -> bool {
+    extern "C-unwind" {
+        fn CFFileSecurityGetMode(file_sec: &CFFileSecurity, mode: *mut libc::mode_t) -> Boolean;
+    }
+    let ret = unsafe { CFFileSecurityGetMode(file_sec, mode) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn CFFileSecuritySetMode(file_sec: &CFFileSecurity, mode: libc::mode_t) -> Boolean;
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFFileSecuritySetMode(
+    file_sec: &CFFileSecurity,
+    mode: libc::mode_t,
+) -> bool {
+    extern "C-unwind" {
+        fn CFFileSecuritySetMode(file_sec: &CFFileSecurity, mode: libc::mode_t) -> Boolean;
+    }
+    let ret = unsafe { CFFileSecuritySetMode(file_sec, mode) };
+    ret != 0
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearoptions?language=objc)
@@ -157,10 +237,18 @@ unsafe impl RefEncode for CFFileSecurityClearOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFFileSecurityClearProperties(
-        file_sec: &CFFileSecurity,
-        clear_property_mask: CFFileSecurityClearOptions,
-    ) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFFileSecurityClearProperties(
+    file_sec: &CFFileSecurity,
+    clear_property_mask: CFFileSecurityClearOptions,
+) -> bool {
+    extern "C-unwind" {
+        fn CFFileSecurityClearProperties(
+            file_sec: &CFFileSecurity,
+            clear_property_mask: CFFileSecurityClearOptions,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFFileSecurityClearProperties(file_sec, clear_property_mask) };
+    ret != 0
 }

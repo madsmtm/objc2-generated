@@ -4359,174 +4359,276 @@ extern "C-unwind" {
     pub fn AudioFileComponentOptimize(in_component: AudioFileComponent) -> OSStatus;
 }
 
-extern "C-unwind" {
-    /// implements AudioFileReadBytes.
-    ///
-    ///
-    /// Returns kAudioFileEndOfFileError when read encounters end of file.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inUseCache`: true if it is desired to cache the data upon read, else false
-    ///
-    /// Parameter `inStartingByte`: the byte offset of the audio data desired to be returned
-    ///
-    /// Parameter `ioNumBytes`: on input, the number of bytes to read, on output, the number of
-    /// bytes actually read.
-    ///
-    /// Parameter `outBuffer`: outBuffer should be a void * to user allocated memory large enough for the requested bytes.
-    ///
-    /// Returns: returns noErr if successful.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioFileComponentReadBytes(
-        in_component: AudioFileComponent,
-        in_use_cache: Boolean,
-        in_starting_byte: i64,
-        io_num_bytes: NonNull<u32>,
-        out_buffer: NonNull<c_void>,
-    ) -> OSStatus;
+/// implements AudioFileReadBytes.
+///
+///
+/// Returns kAudioFileEndOfFileError when read encounters end of file.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inUseCache`: true if it is desired to cache the data upon read, else false
+///
+/// Parameter `inStartingByte`: the byte offset of the audio data desired to be returned
+///
+/// Parameter `ioNumBytes`: on input, the number of bytes to read, on output, the number of
+/// bytes actually read.
+///
+/// Parameter `outBuffer`: outBuffer should be a void * to user allocated memory large enough for the requested bytes.
+///
+/// Returns: returns noErr if successful.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentReadBytes(
+    in_component: AudioFileComponent,
+    in_use_cache: bool,
+    in_starting_byte: i64,
+    io_num_bytes: NonNull<u32>,
+    out_buffer: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentReadBytes(
+            in_component: AudioFileComponent,
+            in_use_cache: Boolean,
+            in_starting_byte: i64,
+            io_num_bytes: NonNull<u32>,
+            out_buffer: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentReadBytes(
+            in_component,
+            in_use_cache as _,
+            in_starting_byte,
+            io_num_bytes,
+            out_buffer,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileWriteBytes.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inUseCache`: true if it is desired to cache the data upon write, else false
-    ///
-    /// Parameter `inStartingByte`: the byte offset where the audio data should be written
-    ///
-    /// Parameter `ioNumBytes`: on input, the number of bytes to write, on output, the number of
-    /// bytes actually written.
-    ///
-    /// Parameter `inBuffer`: inBuffer should be a void * containing the bytes to be written
-    ///
-    /// Returns: returns noErr if successful.
-    #[cfg(feature = "AudioComponent")]
-    pub fn AudioFileComponentWriteBytes(
-        in_component: AudioFileComponent,
-        in_use_cache: Boolean,
-        in_starting_byte: i64,
-        io_num_bytes: NonNull<u32>,
-        in_buffer: NonNull<c_void>,
-    ) -> OSStatus;
+/// implements AudioFileWriteBytes.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inUseCache`: true if it is desired to cache the data upon write, else false
+///
+/// Parameter `inStartingByte`: the byte offset where the audio data should be written
+///
+/// Parameter `ioNumBytes`: on input, the number of bytes to write, on output, the number of
+/// bytes actually written.
+///
+/// Parameter `inBuffer`: inBuffer should be a void * containing the bytes to be written
+///
+/// Returns: returns noErr if successful.
+#[cfg(feature = "AudioComponent")]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentWriteBytes(
+    in_component: AudioFileComponent,
+    in_use_cache: bool,
+    in_starting_byte: i64,
+    io_num_bytes: NonNull<u32>,
+    in_buffer: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentWriteBytes(
+            in_component: AudioFileComponent,
+            in_use_cache: Boolean,
+            in_starting_byte: i64,
+            io_num_bytes: NonNull<u32>,
+            in_buffer: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentWriteBytes(
+            in_component,
+            in_use_cache as _,
+            in_starting_byte,
+            io_num_bytes,
+            in_buffer,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileReadPackets.
-    ///
-    /// For all uncompressed formats, packets == frames.
-    /// ioNumPackets less than requested indicates end of file.
-    ///
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inUseCache`: true if it is desired to cache the data upon read, else false
-    ///
-    /// Parameter `outNumBytes`: on output, the number of bytes actually returned
-    ///
-    /// Parameter `outPacketDescriptions`: on output, an array of packet descriptions describing
-    /// the packets being returned. NULL may be passed for this
-    /// parameter. Nothing will be returned for linear pcm data.
-    ///
-    /// Parameter `inStartingPacket`: the packet index of the first packet desired to be returned
-    ///
-    /// Parameter `ioNumPackets`: on input, the number of packets to read, on output, the number of
-    /// packets actually read.
-    ///
-    /// Parameter `outBuffer`: outBuffer should be a pointer to user allocated memory of size:
-    /// number of packets requested times file's maximum (or upper bound on)
-    /// packet size.
-    ///
-    /// Returns: returns noErr if successful.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
-    pub fn AudioFileComponentReadPackets(
-        in_component: AudioFileComponent,
-        in_use_cache: Boolean,
-        out_num_bytes: NonNull<u32>,
-        out_packet_descriptions: *mut AudioStreamPacketDescription,
-        in_starting_packet: i64,
-        io_num_packets: NonNull<u32>,
-        out_buffer: NonNull<c_void>,
-    ) -> OSStatus;
+/// implements AudioFileReadPackets.
+///
+/// For all uncompressed formats, packets == frames.
+/// ioNumPackets less than requested indicates end of file.
+///
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inUseCache`: true if it is desired to cache the data upon read, else false
+///
+/// Parameter `outNumBytes`: on output, the number of bytes actually returned
+///
+/// Parameter `outPacketDescriptions`: on output, an array of packet descriptions describing
+/// the packets being returned. NULL may be passed for this
+/// parameter. Nothing will be returned for linear pcm data.
+///
+/// Parameter `inStartingPacket`: the packet index of the first packet desired to be returned
+///
+/// Parameter `ioNumPackets`: on input, the number of packets to read, on output, the number of
+/// packets actually read.
+///
+/// Parameter `outBuffer`: outBuffer should be a pointer to user allocated memory of size:
+/// number of packets requested times file's maximum (or upper bound on)
+/// packet size.
+///
+/// Returns: returns noErr if successful.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentReadPackets(
+    in_component: AudioFileComponent,
+    in_use_cache: bool,
+    out_num_bytes: NonNull<u32>,
+    out_packet_descriptions: *mut AudioStreamPacketDescription,
+    in_starting_packet: i64,
+    io_num_packets: NonNull<u32>,
+    out_buffer: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentReadPackets(
+            in_component: AudioFileComponent,
+            in_use_cache: Boolean,
+            out_num_bytes: NonNull<u32>,
+            out_packet_descriptions: *mut AudioStreamPacketDescription,
+            in_starting_packet: i64,
+            io_num_packets: NonNull<u32>,
+            out_buffer: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentReadPackets(
+            in_component,
+            in_use_cache as _,
+            out_num_bytes,
+            out_packet_descriptions,
+            in_starting_packet,
+            io_num_packets,
+            out_buffer,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileReadPacketData.
-    ///
-    /// For all uncompressed formats, packets == frames.
-    /// If the byte size of the number packets requested is
-    /// less than the buffer size, ioNumBytes will be reduced.
-    /// If the buffer is too small for the number of packets
-    /// requested, ioNumPackets and ioNumBytes will be reduced
-    /// to the number of packets that can be accommodated and their byte size.
-    /// Returns kAudioFileEndOfFileError when read encounters end of file.
-    ///
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inUseCache`: true if it is desired to cache the data upon read, else false
-    ///
-    /// Parameter `ioNumBytes`: on input the size of outBuffer in bytes.
-    /// on output, the number of bytes actually returned.
-    ///
-    /// Parameter `outPacketDescriptions`: on output, an array of packet descriptions describing
-    /// the packets being returned. NULL may be passed for this
-    /// parameter. Nothing will be returned for linear pcm data.
-    ///
-    /// Parameter `inStartingPacket`: the packet index of the first packet desired to be returned
-    ///
-    /// Parameter `ioNumPackets`: on input, the number of packets to read, on output, the number of
-    /// packets actually read.
-    ///
-    /// Parameter `outBuffer`: outBuffer should be a pointer to user allocated memory.
-    ///
-    /// Returns: returns noErr if successful.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
-    pub fn AudioFileComponentReadPacketData(
-        in_component: AudioFileComponent,
-        in_use_cache: Boolean,
-        io_num_bytes: NonNull<u32>,
-        out_packet_descriptions: *mut AudioStreamPacketDescription,
-        in_starting_packet: i64,
-        io_num_packets: NonNull<u32>,
-        out_buffer: NonNull<c_void>,
-    ) -> OSStatus;
+/// implements AudioFileReadPacketData.
+///
+/// For all uncompressed formats, packets == frames.
+/// If the byte size of the number packets requested is
+/// less than the buffer size, ioNumBytes will be reduced.
+/// If the buffer is too small for the number of packets
+/// requested, ioNumPackets and ioNumBytes will be reduced
+/// to the number of packets that can be accommodated and their byte size.
+/// Returns kAudioFileEndOfFileError when read encounters end of file.
+///
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inUseCache`: true if it is desired to cache the data upon read, else false
+///
+/// Parameter `ioNumBytes`: on input the size of outBuffer in bytes.
+/// on output, the number of bytes actually returned.
+///
+/// Parameter `outPacketDescriptions`: on output, an array of packet descriptions describing
+/// the packets being returned. NULL may be passed for this
+/// parameter. Nothing will be returned for linear pcm data.
+///
+/// Parameter `inStartingPacket`: the packet index of the first packet desired to be returned
+///
+/// Parameter `ioNumPackets`: on input, the number of packets to read, on output, the number of
+/// packets actually read.
+///
+/// Parameter `outBuffer`: outBuffer should be a pointer to user allocated memory.
+///
+/// Returns: returns noErr if successful.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentReadPacketData(
+    in_component: AudioFileComponent,
+    in_use_cache: bool,
+    io_num_bytes: NonNull<u32>,
+    out_packet_descriptions: *mut AudioStreamPacketDescription,
+    in_starting_packet: i64,
+    io_num_packets: NonNull<u32>,
+    out_buffer: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentReadPacketData(
+            in_component: AudioFileComponent,
+            in_use_cache: Boolean,
+            io_num_bytes: NonNull<u32>,
+            out_packet_descriptions: *mut AudioStreamPacketDescription,
+            in_starting_packet: i64,
+            io_num_packets: NonNull<u32>,
+            out_buffer: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentReadPacketData(
+            in_component,
+            in_use_cache as _,
+            io_num_bytes,
+            out_packet_descriptions,
+            in_starting_packet,
+            io_num_packets,
+            out_buffer,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// implements AudioFileWritePackets.
-    ///
-    /// For all uncompressed formats, packets == frames.
-    ///
-    /// Parameter `inComponent`: an AudioFileComponent
-    ///
-    /// Parameter `inUseCache`: true if it is desired to cache the data upon write, else false
-    ///
-    /// Parameter `inNumBytes`: the number of bytes being provided for write
-    ///
-    /// Parameter `inPacketDescriptions`: an array of packet descriptions describing the packets being
-    /// provided. Not all formats require packet descriptions to be
-    /// provided. NULL may be passed if no descriptions are required.
-    ///
-    /// Parameter `inStartingPacket`: the packet index of where the first packet provided should be placed.
-    ///
-    /// Parameter `ioNumPackets`: on input, the number of packets to write, on output, the number of
-    /// packets actually written.
-    ///
-    /// Parameter `inBuffer`: a void * to user allocated memory containing the packets to write.
-    ///
-    /// Returns: returns noErr if successful.
-    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
-    pub fn AudioFileComponentWritePackets(
-        in_component: AudioFileComponent,
-        in_use_cache: Boolean,
-        in_num_bytes: u32,
-        in_packet_descriptions: *const AudioStreamPacketDescription,
-        in_starting_packet: i64,
-        io_num_packets: NonNull<u32>,
-        in_buffer: NonNull<c_void>,
-    ) -> OSStatus;
+/// implements AudioFileWritePackets.
+///
+/// For all uncompressed formats, packets == frames.
+///
+/// Parameter `inComponent`: an AudioFileComponent
+///
+/// Parameter `inUseCache`: true if it is desired to cache the data upon write, else false
+///
+/// Parameter `inNumBytes`: the number of bytes being provided for write
+///
+/// Parameter `inPacketDescriptions`: an array of packet descriptions describing the packets being
+/// provided. Not all formats require packet descriptions to be
+/// provided. NULL may be passed if no descriptions are required.
+///
+/// Parameter `inStartingPacket`: the packet index of where the first packet provided should be placed.
+///
+/// Parameter `ioNumPackets`: on input, the number of packets to write, on output, the number of
+/// packets actually written.
+///
+/// Parameter `inBuffer`: a void * to user allocated memory containing the packets to write.
+///
+/// Returns: returns noErr if successful.
+#[cfg(all(feature = "AudioComponent", feature = "objc2-core-audio-types"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioFileComponentWritePackets(
+    in_component: AudioFileComponent,
+    in_use_cache: bool,
+    in_num_bytes: u32,
+    in_packet_descriptions: *const AudioStreamPacketDescription,
+    in_starting_packet: i64,
+    io_num_packets: NonNull<u32>,
+    in_buffer: NonNull<c_void>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn AudioFileComponentWritePackets(
+            in_component: AudioFileComponent,
+            in_use_cache: Boolean,
+            in_num_bytes: u32,
+            in_packet_descriptions: *const AudioStreamPacketDescription,
+            in_starting_packet: i64,
+            io_num_packets: NonNull<u32>,
+            in_buffer: NonNull<c_void>,
+        ) -> OSStatus;
+    }
+    unsafe {
+        AudioFileComponentWritePackets(
+            in_component,
+            in_use_cache as _,
+            in_num_bytes,
+            in_packet_descriptions,
+            in_starting_packet,
+            io_num_packets,
+            in_buffer,
+        )
+    }
 }
 
 extern "C-unwind" {

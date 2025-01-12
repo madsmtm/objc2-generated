@@ -459,66 +459,97 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetLocalizedDisplayName(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Stores the configuration settings for the interface.
-    ///
-    /// Parameter `interface`: The network interface.
-    ///
-    /// Parameter `config`: The configuration settings to associate with this interface.
-    ///
-    /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-    pub fn SCNetworkInterfaceSetConfiguration(
-        interface: &SCNetworkInterface,
-        config: Option<&CFDictionary>,
-    ) -> Boolean;
+/// Stores the configuration settings for the interface.
+///
+/// Parameter `interface`: The network interface.
+///
+/// Parameter `config`: The configuration settings to associate with this interface.
+///
+/// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkInterfaceSetConfiguration(
+    interface: &SCNetworkInterface,
+    config: Option<&CFDictionary>,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkInterfaceSetConfiguration(
+            interface: &SCNetworkInterface,
+            config: Option<&CFDictionary>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkInterfaceSetConfiguration(interface, config) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Stores the configuration settings for the interface.
-    ///
-    /// Parameter `interface`: The network interface.
-    ///
-    /// Parameter `config`: The configuration settings to associate with this interface.
-    ///
-    /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-    pub fn SCNetworkInterfaceSetExtendedConfiguration(
-        interface: &SCNetworkInterface,
-        extended_type: &CFString,
-        config: Option<&CFDictionary>,
-    ) -> Boolean;
+/// Stores the configuration settings for the interface.
+///
+/// Parameter `interface`: The network interface.
+///
+/// Parameter `config`: The configuration settings to associate with this interface.
+///
+/// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkInterfaceSetExtendedConfiguration(
+    interface: &SCNetworkInterface,
+    extended_type: &CFString,
+    config: Option<&CFDictionary>,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkInterfaceSetExtendedConfiguration(
+            interface: &SCNetworkInterface,
+            extended_type: &CFString,
+            config: Option<&CFDictionary>,
+        ) -> Boolean;
+    }
+    let ret =
+        unsafe { SCNetworkInterfaceSetExtendedConfiguration(interface, extended_type, config) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// For the specified network interface, returns information
-    /// about the currently requested media options, the active media
-    /// options, and the media options which are available.
-    ///
-    /// Parameter `interface`: The desired network interface.
-    ///
-    /// Parameter `current`: A pointer to memory that will be filled with a CFDictionaryRef
-    /// representing the currently requested media options (subtype, options).
-    /// If NULL, the current options will not be returned.
-    ///
-    /// Parameter `active`: A pointer to memory that will be filled with a CFDictionaryRef
-    /// representing the active media options (subtype, options).
-    /// If NULL, the active options will not be returned.
-    ///
-    /// Parameter `available`: A pointer to memory that will be filled with a CFArrayRef
-    /// representing the possible media options (subtype, options).
-    /// If NULL, the available options will not be returned.
-    ///
-    /// Parameter `filter`: A boolean indicating whether the available options should be
-    /// filtered to exclude those options which would not normally be
-    /// requested by a user/admin (e.g. hw-loopback).
-    ///
-    /// Returns: TRUE if requested information has been returned.
-    pub fn SCNetworkInterfaceCopyMediaOptions(
-        interface: &SCNetworkInterface,
-        current: *mut *mut CFDictionary,
-        active: *mut *mut CFDictionary,
-        available: *mut *mut CFArray,
-        filter: Boolean,
-    ) -> Boolean;
+/// For the specified network interface, returns information
+/// about the currently requested media options, the active media
+/// options, and the media options which are available.
+///
+/// Parameter `interface`: The desired network interface.
+///
+/// Parameter `current`: A pointer to memory that will be filled with a CFDictionaryRef
+/// representing the currently requested media options (subtype, options).
+/// If NULL, the current options will not be returned.
+///
+/// Parameter `active`: A pointer to memory that will be filled with a CFDictionaryRef
+/// representing the active media options (subtype, options).
+/// If NULL, the active options will not be returned.
+///
+/// Parameter `available`: A pointer to memory that will be filled with a CFArrayRef
+/// representing the possible media options (subtype, options).
+/// If NULL, the available options will not be returned.
+///
+/// Parameter `filter`: A boolean indicating whether the available options should be
+/// filtered to exclude those options which would not normally be
+/// requested by a user/admin (e.g. hw-loopback).
+///
+/// Returns: TRUE if requested information has been returned.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkInterfaceCopyMediaOptions(
+    interface: &SCNetworkInterface,
+    current: *mut *mut CFDictionary,
+    active: *mut *mut CFDictionary,
+    available: *mut *mut CFArray,
+    filter: bool,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkInterfaceCopyMediaOptions(
+            interface: &SCNetworkInterface,
+            current: *mut *mut CFDictionary,
+            active: *mut *mut CFDictionary,
+            available: *mut *mut CFArray,
+            filter: Boolean,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        SCNetworkInterfaceCopyMediaOptions(interface, current, active, available, filter as _)
+    };
+    ret != 0
 }
 
 /// For the provided interface configuration options, return a list
@@ -569,87 +600,121 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceCopyMediaSubTypeOptions(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// For the specified network interface, returns information
-    /// about the currently MTU setting and the range of allowable
-    /// values.
-    ///
-    /// Parameter `interface`: The desired network interface.
-    ///
-    /// Parameter `mtu_cur`: A pointer to memory that will be filled with the current
-    /// MTU setting for the interface.
-    ///
-    /// Parameter `mtu_min`: A pointer to memory that will be filled with the minimum
-    /// MTU setting for the interface.  If negative, the minimum setting
-    /// could not be determined.
-    ///
-    /// Parameter `mtu_max`: A pointer to memory that will be filled with the maximum
-    /// MTU setting for the interface.  If negative, the maximum setting
-    /// could not be determined.
-    ///
-    /// Returns: TRUE if requested information has been returned.
-    pub fn SCNetworkInterfaceCopyMTU(
-        interface: &SCNetworkInterface,
-        mtu_cur: *mut c_int,
-        mtu_min: *mut c_int,
-        mtu_max: *mut c_int,
-    ) -> Boolean;
+/// For the specified network interface, returns information
+/// about the currently MTU setting and the range of allowable
+/// values.
+///
+/// Parameter `interface`: The desired network interface.
+///
+/// Parameter `mtu_cur`: A pointer to memory that will be filled with the current
+/// MTU setting for the interface.
+///
+/// Parameter `mtu_min`: A pointer to memory that will be filled with the minimum
+/// MTU setting for the interface.  If negative, the minimum setting
+/// could not be determined.
+///
+/// Parameter `mtu_max`: A pointer to memory that will be filled with the maximum
+/// MTU setting for the interface.  If negative, the maximum setting
+/// could not be determined.
+///
+/// Returns: TRUE if requested information has been returned.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkInterfaceCopyMTU(
+    interface: &SCNetworkInterface,
+    mtu_cur: *mut c_int,
+    mtu_min: *mut c_int,
+    mtu_max: *mut c_int,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkInterfaceCopyMTU(
+            interface: &SCNetworkInterface,
+            mtu_cur: *mut c_int,
+            mtu_min: *mut c_int,
+            mtu_max: *mut c_int,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkInterfaceCopyMTU(interface, mtu_cur, mtu_min, mtu_max) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// For the specified network interface, sets the requested
-    /// media subtype and options.
-    ///
-    /// Parameter `interface`: The desired network interface.
-    ///
-    /// Parameter `subtype`: The desired media subtype (e.g. "autoselect", "100baseTX", ...).
-    /// If NULL, no specific media subtype will be requested.
-    ///
-    /// Parameter `options`: The desired media options (e.g. "half-duplex", "full-duplex", ...).
-    /// If NULL, no specific media options will be requested.
-    ///
-    /// Returns: TRUE if the configuration was updated; FALSE if an error was encountered.
-    pub fn SCNetworkInterfaceSetMediaOptions(
-        interface: &SCNetworkInterface,
-        subtype: Option<&CFString>,
-        options: Option<&CFArray>,
-    ) -> Boolean;
+/// For the specified network interface, sets the requested
+/// media subtype and options.
+///
+/// Parameter `interface`: The desired network interface.
+///
+/// Parameter `subtype`: The desired media subtype (e.g. "autoselect", "100baseTX", ...).
+/// If NULL, no specific media subtype will be requested.
+///
+/// Parameter `options`: The desired media options (e.g. "half-duplex", "full-duplex", ...).
+/// If NULL, no specific media options will be requested.
+///
+/// Returns: TRUE if the configuration was updated; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkInterfaceSetMediaOptions(
+    interface: &SCNetworkInterface,
+    subtype: Option<&CFString>,
+    options: Option<&CFArray>,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkInterfaceSetMediaOptions(
+            interface: &SCNetworkInterface,
+            subtype: Option<&CFString>,
+            options: Option<&CFArray>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkInterfaceSetMediaOptions(interface, subtype, options) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// For the specified network interface, sets the
-    /// requested MTU setting.
-    ///
-    /// Parameter `interface`: The desired network interface.
-    ///
-    /// Parameter `mtu`: The desired MTU setting for the interface.
-    /// If zero, the interface will use the default MTU setting.
-    ///
-    /// Returns: TRUE if the configuration was updated; FALSE if an error was encountered.
-    pub fn SCNetworkInterfaceSetMTU(interface: &SCNetworkInterface, mtu: c_int) -> Boolean;
+/// For the specified network interface, sets the
+/// requested MTU setting.
+///
+/// Parameter `interface`: The desired network interface.
+///
+/// Parameter `mtu`: The desired MTU setting for the interface.
+/// If zero, the interface will use the default MTU setting.
+///
+/// Returns: TRUE if the configuration was updated; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkInterfaceSetMTU(
+    interface: &SCNetworkInterface,
+    mtu: c_int,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkInterfaceSetMTU(interface: &SCNetworkInterface, mtu: c_int) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkInterfaceSetMTU(interface, mtu) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Sends a notification to interested network configuration
-    /// agents to immediately retry their configuration. For example,
-    /// calling this function will cause the DHCP client to contact
-    /// the DHCP server immediately rather than waiting until its
-    /// timeout has expired.  The utility of this function is to
-    /// allow the caller to give a hint to the system that the
-    /// network infrastructure or configuration has changed.
-    ///
-    /// Note: This function requires root (euid==0) privilege or,
-    /// alternatively, you may pass an SCNetworkInterface which
-    /// is derived from a sequence of calls to :
-    ///
-    /// SCPreferencesCreateWithAuthorization
-    /// SCNetworkSetCopy...
-    /// SCNetworkServiceGetInterface
-    ///
-    /// Parameter `interface`: The desired network interface.
-    ///
-    /// Returns: Returns TRUE if the notification was sent; FALSE otherwise.
-    pub fn SCNetworkInterfaceForceConfigurationRefresh(interface: &SCNetworkInterface) -> Boolean;
+/// Sends a notification to interested network configuration
+/// agents to immediately retry their configuration. For example,
+/// calling this function will cause the DHCP client to contact
+/// the DHCP server immediately rather than waiting until its
+/// timeout has expired.  The utility of this function is to
+/// allow the caller to give a hint to the system that the
+/// network infrastructure or configuration has changed.
+///
+/// Note: This function requires root (euid==0) privilege or,
+/// alternatively, you may pass an SCNetworkInterface which
+/// is derived from a sequence of calls to :
+///
+/// SCPreferencesCreateWithAuthorization
+/// SCNetworkSetCopy...
+/// SCNetworkServiceGetInterface
+///
+/// Parameter `interface`: The desired network interface.
+///
+/// Returns: Returns TRUE if the notification was sent; FALSE otherwise.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkInterfaceForceConfigurationRefresh(
+    interface: &SCNetworkInterface,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkInterfaceForceConfigurationRefresh(interface: &SCNetworkInterface) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkInterfaceForceConfigurationRefresh(interface) };
+    ret != 0
 }
 
 /// Returns all Ethernet Bond interfaces on the system.
@@ -707,13 +772,18 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceCreate(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Removes the SCBondInterface from the configuration.
-    ///
-    /// Parameter `bond`: The SCBondInterface interface.
-    ///
-    /// Returns: TRUE if the interface was removed; FALSE if an error was encountered.
-    pub fn SCBondInterfaceRemove(bond: &SCBondInterface) -> Boolean;
+/// Removes the SCBondInterface from the configuration.
+///
+/// Parameter `bond`: The SCBondInterface interface.
+///
+/// Returns: TRUE if the interface was removed; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCBondInterfaceRemove(bond: &SCBondInterface) -> bool {
+    extern "C-unwind" {
+        fn SCBondInterfaceRemove(bond: &SCBondInterface) -> Boolean;
+    }
+    let ret = unsafe { SCBondInterfaceRemove(bond) };
+    ret != 0
 }
 
 /// Returns the member interfaces for the specified Ethernet Bond interface.
@@ -749,42 +819,66 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceGetOptions(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Sets the member interfaces for the specified Ethernet Bond interface.
-    ///
-    /// Parameter `bond`: The SCBondInterface interface.
-    ///
-    /// Parameter `members`: The desired member interfaces.
-    ///
-    /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-    pub fn SCBondInterfaceSetMemberInterfaces(bond: &SCBondInterface, members: &CFArray)
-        -> Boolean;
+/// Sets the member interfaces for the specified Ethernet Bond interface.
+///
+/// Parameter `bond`: The SCBondInterface interface.
+///
+/// Parameter `members`: The desired member interfaces.
+///
+/// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCBondInterfaceSetMemberInterfaces(
+    bond: &SCBondInterface,
+    members: &CFArray,
+) -> bool {
+    extern "C-unwind" {
+        fn SCBondInterfaceSetMemberInterfaces(bond: &SCBondInterface, members: &CFArray)
+            -> Boolean;
+    }
+    let ret = unsafe { SCBondInterfaceSetMemberInterfaces(bond, members) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Sets the localized display name for the specified Ethernet Bond interface.
-    ///
-    /// Parameter `bond`: The SCBondInterface interface.
-    ///
-    /// Parameter `newName`: The new display name.
-    ///
-    /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-    pub fn SCBondInterfaceSetLocalizedDisplayName(
-        bond: &SCBondInterface,
-        new_name: &CFString,
-    ) -> Boolean;
+/// Sets the localized display name for the specified Ethernet Bond interface.
+///
+/// Parameter `bond`: The SCBondInterface interface.
+///
+/// Parameter `newName`: The new display name.
+///
+/// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCBondInterfaceSetLocalizedDisplayName(
+    bond: &SCBondInterface,
+    new_name: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn SCBondInterfaceSetLocalizedDisplayName(
+            bond: &SCBondInterface,
+            new_name: &CFString,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCBondInterfaceSetLocalizedDisplayName(bond, new_name) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Sets the configuration settings for the specified Ethernet Bond interface.
-    ///
-    /// Parameter `bond`: The SCBondInterface interface.
-    ///
-    /// Parameter `newOptions`: The new configuration settings.
-    ///
-    /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-    pub fn SCBondInterfaceSetOptions(bond: &SCBondInterface, new_options: &CFDictionary)
-        -> Boolean;
+/// Sets the configuration settings for the specified Ethernet Bond interface.
+///
+/// Parameter `bond`: The SCBondInterface interface.
+///
+/// Parameter `newOptions`: The new configuration settings.
+///
+/// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCBondInterfaceSetOptions(
+    bond: &SCBondInterface,
+    new_options: &CFDictionary,
+) -> bool {
+    extern "C-unwind" {
+        fn SCBondInterfaceSetOptions(bond: &SCBondInterface, new_options: &CFDictionary)
+            -> Boolean;
+    }
+    let ret = unsafe { SCBondInterfaceSetOptions(bond, new_options) };
+    ret != 0
 }
 
 /// Returns the status of the specified Ethernet Bond interface.
@@ -926,13 +1020,18 @@ pub unsafe extern "C-unwind" fn SCVLANInterfaceCreate(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Removes the SCVLANInterface from the configuration.
-    ///
-    /// Parameter `vlan`: The SCVLANInterface interface.
-    ///
-    /// Returns: TRUE if the interface was removed; FALSE if an error was encountered.
-    pub fn SCVLANInterfaceRemove(vlan: &SCVLANInterface) -> Boolean;
+/// Removes the SCVLANInterface from the configuration.
+///
+/// Parameter `vlan`: The SCVLANInterface interface.
+///
+/// Returns: TRUE if the interface was removed; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCVLANInterfaceRemove(vlan: &SCVLANInterface) -> bool {
+    extern "C-unwind" {
+        fn SCVLANInterfaceRemove(vlan: &SCVLANInterface) -> Boolean;
+    }
+    let ret = unsafe { SCVLANInterfaceRemove(vlan) };
+    ret != 0
 }
 
 /// Returns the physical interface for the specified VLAN interface.
@@ -984,53 +1083,78 @@ pub unsafe extern "C-unwind" fn SCVLANInterfaceGetOptions(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Updates the specified VLAN interface.
-    ///
-    /// Parameter `vlan`: The SCVLANInterface interface.
-    ///
-    /// Parameter `physical`: The physical interface to associate with the VLAN.
-    ///
-    /// Parameter `tag`: The tag to associate with the VLAN.
-    ///
-    /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-    ///
-    /// Note: the tag must be in the range (1
-    /// <
-    /// = tag
-    /// <
-    /// = 4094)
-    pub fn SCVLANInterfaceSetPhysicalInterfaceAndTag(
-        vlan: &SCVLANInterface,
-        physical: &SCNetworkInterface,
-        tag: &CFNumber,
-    ) -> Boolean;
+/// Updates the specified VLAN interface.
+///
+/// Parameter `vlan`: The SCVLANInterface interface.
+///
+/// Parameter `physical`: The physical interface to associate with the VLAN.
+///
+/// Parameter `tag`: The tag to associate with the VLAN.
+///
+/// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+///
+/// Note: the tag must be in the range (1
+/// <
+/// = tag
+/// <
+/// = 4094)
+#[inline]
+pub unsafe extern "C-unwind" fn SCVLANInterfaceSetPhysicalInterfaceAndTag(
+    vlan: &SCVLANInterface,
+    physical: &SCNetworkInterface,
+    tag: &CFNumber,
+) -> bool {
+    extern "C-unwind" {
+        fn SCVLANInterfaceSetPhysicalInterfaceAndTag(
+            vlan: &SCVLANInterface,
+            physical: &SCNetworkInterface,
+            tag: &CFNumber,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCVLANInterfaceSetPhysicalInterfaceAndTag(vlan, physical, tag) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Sets the localized display name for the specified VLAN interface.
-    ///
-    /// Parameter `vlan`: The SCVLANInterface interface.
-    ///
-    /// Parameter `newName`: The new display name.
-    ///
-    /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-    pub fn SCVLANInterfaceSetLocalizedDisplayName(
-        vlan: &SCVLANInterface,
-        new_name: &CFString,
-    ) -> Boolean;
+/// Sets the localized display name for the specified VLAN interface.
+///
+/// Parameter `vlan`: The SCVLANInterface interface.
+///
+/// Parameter `newName`: The new display name.
+///
+/// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCVLANInterfaceSetLocalizedDisplayName(
+    vlan: &SCVLANInterface,
+    new_name: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn SCVLANInterfaceSetLocalizedDisplayName(
+            vlan: &SCVLANInterface,
+            new_name: &CFString,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCVLANInterfaceSetLocalizedDisplayName(vlan, new_name) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Sets the configuration settings for the specified VLAN interface.
-    ///
-    /// Parameter `vlan`: The SCVLANInterface interface.
-    ///
-    /// Parameter `newOptions`: The new configuration settings.
-    ///
-    /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-    pub fn SCVLANInterfaceSetOptions(vlan: &SCVLANInterface, new_options: &CFDictionary)
-        -> Boolean;
+/// Sets the configuration settings for the specified VLAN interface.
+///
+/// Parameter `vlan`: The SCVLANInterface interface.
+///
+/// Parameter `newOptions`: The new configuration settings.
+///
+/// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCVLANInterfaceSetOptions(
+    vlan: &SCVLANInterface,
+    new_options: &CFDictionary,
+) -> bool {
+    extern "C-unwind" {
+        fn SCVLANInterfaceSetOptions(vlan: &SCVLANInterface, new_options: &CFDictionary)
+            -> Boolean;
+    }
+    let ret = unsafe { SCVLANInterfaceSetOptions(vlan, new_options) };
+    ret != 0
 }
 
 unsafe impl ConcreteType for SCNetworkProtocol {
@@ -1063,13 +1187,18 @@ pub unsafe extern "C-unwind" fn SCNetworkProtocolGetConfiguration(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Returns whether this protocol has been enabled.
-    ///
-    /// Parameter `protocol`: The network protocol.
-    ///
-    /// Returns: TRUE if the protocol is enabled.
-    pub fn SCNetworkProtocolGetEnabled(protocol: &SCNetworkProtocol) -> Boolean;
+/// Returns whether this protocol has been enabled.
+///
+/// Parameter `protocol`: The network protocol.
+///
+/// Returns: TRUE if the protocol is enabled.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkProtocolGetEnabled(protocol: &SCNetworkProtocol) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkProtocolGetEnabled(protocol: &SCNetworkProtocol) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkProtocolGetEnabled(protocol) };
+    ret != 0
 }
 
 /// Returns the associated network protocol type.
@@ -1088,29 +1217,45 @@ pub unsafe extern "C-unwind" fn SCNetworkProtocolGetProtocolType(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Stores the configuration settings for the protocol.
-    ///
-    /// Parameter `protocol`: The network protocol.
-    ///
-    /// Parameter `config`: The configuration settings to associate with this protocol.
-    ///
-    /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-    pub fn SCNetworkProtocolSetConfiguration(
-        protocol: &SCNetworkProtocol,
-        config: Option<&CFDictionary>,
-    ) -> Boolean;
+/// Stores the configuration settings for the protocol.
+///
+/// Parameter `protocol`: The network protocol.
+///
+/// Parameter `config`: The configuration settings to associate with this protocol.
+///
+/// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkProtocolSetConfiguration(
+    protocol: &SCNetworkProtocol,
+    config: Option<&CFDictionary>,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkProtocolSetConfiguration(
+            protocol: &SCNetworkProtocol,
+            config: Option<&CFDictionary>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkProtocolSetConfiguration(protocol, config) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Enables or disables the protocol.
-    ///
-    /// Parameter `protocol`: The network protocol.
-    ///
-    /// Parameter `enabled`: TRUE if the protocol should be enabled.
-    ///
-    /// Returns: TRUE if the enabled status was saved; FALSE if an error was encountered.
-    pub fn SCNetworkProtocolSetEnabled(protocol: &SCNetworkProtocol, enabled: Boolean) -> Boolean;
+/// Enables or disables the protocol.
+///
+/// Parameter `protocol`: The network protocol.
+///
+/// Parameter `enabled`: TRUE if the protocol should be enabled.
+///
+/// Returns: TRUE if the enabled status was saved; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkProtocolSetEnabled(
+    protocol: &SCNetworkProtocol,
+    enabled: bool,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkProtocolSetEnabled(protocol: &SCNetworkProtocol, enabled: Boolean) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkProtocolSetEnabled(protocol, enabled as _) };
+    ret != 0
 }
 
 unsafe impl ConcreteType for SCNetworkService {
@@ -1125,22 +1270,30 @@ unsafe impl ConcreteType for SCNetworkService {
     }
 }
 
-extern "C-unwind" {
-    /// Adds a network protocol of the specified type to the
-    /// service.  The protocol configuration is set to default values
-    /// that are appropriate for the interface associated with the
-    /// service.
-    ///
-    /// Parameter `service`: The network service.
-    ///
-    /// Parameter `protocolType`: The type of SCNetworkProtocol to be added to the service.
-    ///
-    /// Returns: TRUE if the protocol was added to the service; FALSE if the
-    /// protocol was already present or an error was encountered.
-    pub fn SCNetworkServiceAddProtocolType(
-        service: &SCNetworkService,
-        protocol_type: &CFString,
-    ) -> Boolean;
+/// Adds a network protocol of the specified type to the
+/// service.  The protocol configuration is set to default values
+/// that are appropriate for the interface associated with the
+/// service.
+///
+/// Parameter `service`: The network service.
+///
+/// Parameter `protocolType`: The type of SCNetworkProtocol to be added to the service.
+///
+/// Returns: TRUE if the protocol was added to the service; FALSE if the
+/// protocol was already present or an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkServiceAddProtocolType(
+    service: &SCNetworkService,
+    protocol_type: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkServiceAddProtocolType(
+            service: &SCNetworkService,
+            protocol_type: &CFString,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkServiceAddProtocolType(service, protocol_type) };
+    ret != 0
 }
 
 /// Returns all available network services for the specified preferences.
@@ -1227,25 +1380,37 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceCopy(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Establishes the "default" configuration for a network
-    /// service.  This configuration includes the addition of
-    /// network protocols for the service (with "default"
-    /// configuration options).
-    ///
-    /// Parameter `service`: The network service.
-    ///
-    /// Returns: TRUE if the configuration was updated; FALSE if an error was encountered.
-    pub fn SCNetworkServiceEstablishDefaultConfiguration(service: &SCNetworkService) -> Boolean;
+/// Establishes the "default" configuration for a network
+/// service.  This configuration includes the addition of
+/// network protocols for the service (with "default"
+/// configuration options).
+///
+/// Parameter `service`: The network service.
+///
+/// Returns: TRUE if the configuration was updated; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkServiceEstablishDefaultConfiguration(
+    service: &SCNetworkService,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkServiceEstablishDefaultConfiguration(service: &SCNetworkService) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkServiceEstablishDefaultConfiguration(service) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Returns whether this service has been enabled.
-    ///
-    /// Parameter `service`: The network service.
-    ///
-    /// Returns: TRUE if the service is enabled.
-    pub fn SCNetworkServiceGetEnabled(service: &SCNetworkService) -> Boolean;
+/// Returns whether this service has been enabled.
+///
+/// Parameter `service`: The network service.
+///
+/// Returns: TRUE if the service is enabled.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkServiceGetEnabled(service: &SCNetworkService) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkServiceGetEnabled(service: &SCNetworkService) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkServiceGetEnabled(service) };
+    ret != 0
 }
 
 /// Returns the network interface associated with the service.
@@ -1320,55 +1485,84 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceGetServiceID(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Removes the network service from the configuration.
-    ///
-    /// Parameter `service`: The network service.
-    ///
-    /// Returns: TRUE if the service was removed; FALSE if an error was encountered.
-    pub fn SCNetworkServiceRemove(service: &SCNetworkService) -> Boolean;
+/// Removes the network service from the configuration.
+///
+/// Parameter `service`: The network service.
+///
+/// Returns: TRUE if the service was removed; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkServiceRemove(service: &SCNetworkService) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkServiceRemove(service: &SCNetworkService) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkServiceRemove(service) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Removes the network protocol of the specified type from the service.
-    ///
-    /// Parameter `service`: The network service.
-    ///
-    /// Parameter `protocolType`: The type of SCNetworkProtocol to be removed from the service.
-    ///
-    /// Returns: TRUE if the protocol was removed to the service; FALSE if the
-    /// protocol was not configured or an error was encountered.
-    pub fn SCNetworkServiceRemoveProtocolType(
-        service: &SCNetworkService,
-        protocol_type: &CFString,
-    ) -> Boolean;
+/// Removes the network protocol of the specified type from the service.
+///
+/// Parameter `service`: The network service.
+///
+/// Parameter `protocolType`: The type of SCNetworkProtocol to be removed from the service.
+///
+/// Returns: TRUE if the protocol was removed to the service; FALSE if the
+/// protocol was not configured or an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkServiceRemoveProtocolType(
+    service: &SCNetworkService,
+    protocol_type: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkServiceRemoveProtocolType(
+            service: &SCNetworkService,
+            protocol_type: &CFString,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkServiceRemoveProtocolType(service, protocol_type) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Enables or disables the service.
-    ///
-    /// Parameter `service`: The network service.
-    ///
-    /// Parameter `enabled`: TRUE if the service should be enabled.
-    ///
-    /// Returns: TRUE if the enabled status was saved; FALSE if an error was encountered.
-    pub fn SCNetworkServiceSetEnabled(service: &SCNetworkService, enabled: Boolean) -> Boolean;
+/// Enables or disables the service.
+///
+/// Parameter `service`: The network service.
+///
+/// Parameter `enabled`: TRUE if the service should be enabled.
+///
+/// Returns: TRUE if the enabled status was saved; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkServiceSetEnabled(
+    service: &SCNetworkService,
+    enabled: bool,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkServiceSetEnabled(service: &SCNetworkService, enabled: Boolean) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkServiceSetEnabled(service, enabled as _) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Stores the [user specified] name for the service.
-    ///
-    /// Parameter `service`: The network service.
-    ///
-    /// Parameter `name`: The [user defined] name to associate with the service.
-    ///
-    /// Returns: TRUE if the name was saved; FALSE if an error was encountered.
-    ///
-    /// Note: although not technically required, the [user specified] names
-    /// for all services within any given set should be unique.  As such, an
-    /// error will be returned if you attemp to name two services with the
-    /// same string.
-    pub fn SCNetworkServiceSetName(service: &SCNetworkService, name: Option<&CFString>) -> Boolean;
+/// Stores the [user specified] name for the service.
+///
+/// Parameter `service`: The network service.
+///
+/// Parameter `name`: The [user defined] name to associate with the service.
+///
+/// Returns: TRUE if the name was saved; FALSE if an error was encountered.
+///
+/// Note: although not technically required, the [user specified] names
+/// for all services within any given set should be unique.  As such, an
+/// error will be returned if you attemp to name two services with the
+/// same string.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkServiceSetName(
+    service: &SCNetworkService,
+    name: Option<&CFString>,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkServiceSetName(service: &SCNetworkService, name: Option<&CFString>) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkServiceSetName(service, name) };
+    ret != 0
 }
 
 unsafe impl ConcreteType for SCNetworkSet {
@@ -1383,36 +1577,52 @@ unsafe impl ConcreteType for SCNetworkSet {
     }
 }
 
-extern "C-unwind" {
-    /// Adds the network service to the set.
-    ///
-    /// Parameter `set`: The network set.
-    ///
-    /// Parameter `service`: The service to be added.
-    ///
-    /// Returns: TRUE if the service was added to the set; FALSE if the
-    /// service was already present or an error was encountered.
-    ///
-    /// Note: prior to Mac OS X 10.5, the Network Preferences UI
-    /// did not support having a single service being a member of
-    /// more than one set.  An error will be returned if you attempt
-    /// to add a service to more than one set on a pre-10.5 system.
-    pub fn SCNetworkSetAddService(set: &SCNetworkSet, service: &SCNetworkService) -> Boolean;
+/// Adds the network service to the set.
+///
+/// Parameter `set`: The network set.
+///
+/// Parameter `service`: The service to be added.
+///
+/// Returns: TRUE if the service was added to the set; FALSE if the
+/// service was already present or an error was encountered.
+///
+/// Note: prior to Mac OS X 10.5, the Network Preferences UI
+/// did not support having a single service being a member of
+/// more than one set.  An error will be returned if you attempt
+/// to add a service to more than one set on a pre-10.5 system.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkSetAddService(
+    set: &SCNetworkSet,
+    service: &SCNetworkService,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkSetAddService(set: &SCNetworkSet, service: &SCNetworkService) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkSetAddService(set, service) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Checks if an interface is represented by at least one
-    /// network service in the specified set.
-    ///
-    /// Parameter `set`: The network set.
-    ///
-    /// Parameter `interface`: The network interface.
-    ///
-    /// Returns: TRUE if the interface is represented in the set; FALSE if not.
-    pub fn SCNetworkSetContainsInterface(
-        set: &SCNetworkSet,
-        interface: &SCNetworkInterface,
-    ) -> Boolean;
+/// Checks if an interface is represented by at least one
+/// network service in the specified set.
+///
+/// Parameter `set`: The network set.
+///
+/// Parameter `interface`: The network interface.
+///
+/// Returns: TRUE if the interface is represented in the set; FALSE if not.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkSetContainsInterface(
+    set: &SCNetworkSet,
+    interface: &SCNetworkInterface,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkSetContainsInterface(
+            set: &SCNetworkSet,
+            interface: &SCNetworkInterface,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkSetContainsInterface(set, interface) };
+    ret != 0
 }
 
 /// Returns all available sets for the specified preferences.
@@ -1560,59 +1770,93 @@ pub unsafe extern "C-unwind" fn SCNetworkSetGetServiceOrder(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    /// Removes the set from the configuration.
-    ///
-    /// Parameter `set`: The network set.
-    ///
-    /// Returns: TRUE if the set was removed; FALSE if an error was encountered.
-    pub fn SCNetworkSetRemove(set: &SCNetworkSet) -> Boolean;
+/// Removes the set from the configuration.
+///
+/// Parameter `set`: The network set.
+///
+/// Returns: TRUE if the set was removed; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkSetRemove(set: &SCNetworkSet) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkSetRemove(set: &SCNetworkSet) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkSetRemove(set) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Removes the network service from the set.
-    ///
-    /// Parameter `set`: The network set.
-    ///
-    /// Parameter `service`: The service to be removed.
-    ///
-    /// Returns: TRUE if the service was removed from the set; FALSE if the
-    /// service was not already present or an error was encountered.
-    pub fn SCNetworkSetRemoveService(set: &SCNetworkSet, service: &SCNetworkService) -> Boolean;
+/// Removes the network service from the set.
+///
+/// Parameter `set`: The network set.
+///
+/// Parameter `service`: The service to be removed.
+///
+/// Returns: TRUE if the service was removed from the set; FALSE if the
+/// service was not already present or an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkSetRemoveService(
+    set: &SCNetworkSet,
+    service: &SCNetworkService,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkSetRemoveService(set: &SCNetworkSet, service: &SCNetworkService) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkSetRemoveService(set, service) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Specifies the set that should be the "current" set.
-    ///
-    /// Parameter `set`: The network set.
-    ///
-    /// Returns: TRUE if the current set was updated;
-    /// FALSE if an error was encountered.
-    pub fn SCNetworkSetSetCurrent(set: &SCNetworkSet) -> Boolean;
+/// Specifies the set that should be the "current" set.
+///
+/// Parameter `set`: The network set.
+///
+/// Returns: TRUE if the current set was updated;
+/// FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkSetSetCurrent(set: &SCNetworkSet) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkSetSetCurrent(set: &SCNetworkSet) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkSetSetCurrent(set) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Stores the [user specified] name for the set.
-    ///
-    /// Parameter `set`: The network set.
-    ///
-    /// Parameter `name`: The [user defined] name to associate with the set.
-    ///
-    /// Returns: TRUE if the name was saved; FALSE if an error was encountered.
-    ///
-    /// Note: although not technically required, the [user specified] names
-    /// for all set should be unique.  As such, an error will be returned if
-    /// you attemp to name two sets with the same string.
-    pub fn SCNetworkSetSetName(set: &SCNetworkSet, name: Option<&CFString>) -> Boolean;
+/// Stores the [user specified] name for the set.
+///
+/// Parameter `set`: The network set.
+///
+/// Parameter `name`: The [user defined] name to associate with the set.
+///
+/// Returns: TRUE if the name was saved; FALSE if an error was encountered.
+///
+/// Note: although not technically required, the [user specified] names
+/// for all set should be unique.  As such, an error will be returned if
+/// you attemp to name two sets with the same string.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkSetSetName(
+    set: &SCNetworkSet,
+    name: Option<&CFString>,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkSetSetName(set: &SCNetworkSet, name: Option<&CFString>) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkSetSetName(set, name) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Stores the [user specified] ordering of network services for the set.
-    ///
-    /// Parameter `set`: The network set.
-    ///
-    /// Parameter `newOrder`: The ordered list of CFStringRef service identifiers for the set.
-    ///
-    /// Returns: TRUE if the new service order was saved; FALSE if an error was encountered.
-    pub fn SCNetworkSetSetServiceOrder(set: &SCNetworkSet, new_order: &CFArray) -> Boolean;
+/// Stores the [user specified] ordering of network services for the set.
+///
+/// Parameter `set`: The network set.
+///
+/// Parameter `newOrder`: The ordered list of CFStringRef service identifiers for the set.
+///
+/// Returns: TRUE if the new service order was saved; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCNetworkSetSetServiceOrder(
+    set: &SCNetworkSet,
+    new_order: &CFArray,
+) -> bool {
+    extern "C-unwind" {
+        fn SCNetworkSetSetServiceOrder(set: &SCNetworkSet, new_order: &CFArray) -> Boolean;
+    }
+    let ret = unsafe { SCNetworkSetSetServiceOrder(set, new_order) };
+    ret != 0
 }

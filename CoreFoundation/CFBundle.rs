@@ -322,13 +322,22 @@ pub unsafe extern "C-unwind" fn CFBundleCopyInfoDictionaryInDirectory(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFURL")]
-    pub fn CFBundleGetPackageInfoInDirectory(
-        url: Option<&CFURL>,
-        package_type: *mut u32,
-        package_creator: *mut u32,
-    ) -> Boolean;
+#[cfg(feature = "CFURL")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFBundleGetPackageInfoInDirectory(
+    url: Option<&CFURL>,
+    package_type: *mut u32,
+    package_creator: *mut u32,
+) -> bool {
+    extern "C-unwind" {
+        fn CFBundleGetPackageInfoInDirectory(
+            url: Option<&CFURL>,
+            package_type: *mut u32,
+            package_creator: *mut u32,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFBundleGetPackageInfoInDirectory(url, package_type, package_creator) };
+    ret != 0
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFURL"))]
@@ -601,25 +610,51 @@ pub unsafe extern "C-unwind" fn CFBundleCopyExecutableArchitectures(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFError")]
-    pub fn CFBundlePreflightExecutable(bundle: &CFBundle, error: *mut *mut CFError) -> Boolean;
+#[cfg(feature = "CFError")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFBundlePreflightExecutable(
+    bundle: &CFBundle,
+    error: *mut *mut CFError,
+) -> bool {
+    extern "C-unwind" {
+        fn CFBundlePreflightExecutable(bundle: &CFBundle, error: *mut *mut CFError) -> Boolean;
+    }
+    let ret = unsafe { CFBundlePreflightExecutable(bundle, error) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFError")]
-    pub fn CFBundleLoadExecutableAndReturnError(
-        bundle: &CFBundle,
-        error: *mut *mut CFError,
-    ) -> Boolean;
+#[cfg(feature = "CFError")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFBundleLoadExecutableAndReturnError(
+    bundle: &CFBundle,
+    error: *mut *mut CFError,
+) -> bool {
+    extern "C-unwind" {
+        fn CFBundleLoadExecutableAndReturnError(
+            bundle: &CFBundle,
+            error: *mut *mut CFError,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFBundleLoadExecutableAndReturnError(bundle, error) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    pub fn CFBundleLoadExecutable(bundle: &CFBundle) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn CFBundleLoadExecutable(bundle: &CFBundle) -> bool {
+    extern "C-unwind" {
+        fn CFBundleLoadExecutable(bundle: &CFBundle) -> Boolean;
+    }
+    let ret = unsafe { CFBundleLoadExecutable(bundle) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    pub fn CFBundleIsExecutableLoaded(bundle: &CFBundle) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn CFBundleIsExecutableLoaded(bundle: &CFBundle) -> bool {
+    extern "C-unwind" {
+        fn CFBundleIsExecutableLoaded(bundle: &CFBundle) -> Boolean;
+    }
+    let ret = unsafe { CFBundleIsExecutableLoaded(bundle) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -676,18 +711,33 @@ pub unsafe extern "C-unwind" fn CFBundleCopyAuxiliaryExecutableURL(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    pub fn CFBundleIsExecutableLoadable(bundle: &CFBundle) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn CFBundleIsExecutableLoadable(bundle: &CFBundle) -> bool {
+    extern "C-unwind" {
+        fn CFBundleIsExecutableLoadable(bundle: &CFBundle) -> Boolean;
+    }
+    let ret = unsafe { CFBundleIsExecutableLoadable(bundle) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFURL")]
-    pub fn CFBundleIsExecutableLoadableForURL(url: Option<&CFURL>) -> Boolean;
+#[cfg(feature = "CFURL")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFBundleIsExecutableLoadableForURL(url: Option<&CFURL>) -> bool {
+    extern "C-unwind" {
+        fn CFBundleIsExecutableLoadableForURL(url: Option<&CFURL>) -> Boolean;
+    }
+    let ret = unsafe { CFBundleIsExecutableLoadableForURL(url) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn CFBundleIsArchitectureLoadable(arch: libc::cpu_type_t) -> Boolean;
+#[cfg(feature = "libc")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFBundleIsArchitectureLoadable(arch: libc::cpu_type_t) -> bool {
+    extern "C-unwind" {
+        fn CFBundleIsArchitectureLoadable(arch: libc::cpu_type_t) -> Boolean;
+    }
+    let ret = unsafe { CFBundleIsArchitectureLoadable(arch) };
+    ret != 0
 }
 
 #[inline]

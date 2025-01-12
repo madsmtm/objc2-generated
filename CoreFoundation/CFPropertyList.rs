@@ -119,9 +119,17 @@ unsafe impl RefEncode for CFPropertyListFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFPropertyListIsValid(plist: &CFPropertyList, format: CFPropertyListFormat) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFPropertyListIsValid(
+    plist: &CFPropertyList,
+    format: CFPropertyListFormat,
+) -> bool {
+    extern "C-unwind" {
+        fn CFPropertyListIsValid(plist: &CFPropertyList, format: CFPropertyListFormat) -> Boolean;
+    }
+    let ret = unsafe { CFPropertyListIsValid(plist, format) };
+    ret != 0
 }
 
 extern "C-unwind" {

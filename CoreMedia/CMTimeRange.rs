@@ -91,60 +91,78 @@ extern "C-unwind" {
     pub fn CMTimeRangeGetIntersection(range: CMTimeRange, other_range: CMTimeRange) -> CMTimeRange;
 }
 
-extern "C-unwind" {
-    /// Returns a Boolean value that indicates whether two CMTimeRanges are identical.
-    ///
-    /// This function returns a Boolean value that indicates whether the time ranges specified by the
-    /// <i>
-    /// range1
-    /// </i>
-    /// and
-    /// <i>
-    /// range2
-    /// </i>
-    /// parameters are identical.
-    ///
-    /// Returns: Returns true if the two time ranges are identical, false if they differ.
-    #[cfg(feature = "CMTime")]
-    pub fn CMTimeRangeEqual(range1: CMTimeRange, range2: CMTimeRange) -> Boolean;
+/// Returns a Boolean value that indicates whether two CMTimeRanges are identical.
+///
+/// This function returns a Boolean value that indicates whether the time ranges specified by the
+/// <i>
+/// range1
+/// </i>
+/// and
+/// <i>
+/// range2
+/// </i>
+/// parameters are identical.
+///
+/// Returns: Returns true if the two time ranges are identical, false if they differ.
+#[cfg(feature = "CMTime")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimeRangeEqual(range1: CMTimeRange, range2: CMTimeRange) -> bool {
+    extern "C-unwind" {
+        fn CMTimeRangeEqual(range1: CMTimeRange, range2: CMTimeRange) -> Boolean;
+    }
+    let ret = unsafe { CMTimeRangeEqual(range1, range2) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Indicates whether a time is contained within a time range.
-    ///
-    /// This function returns a Boolean value that indicates whether the time specified by the
-    /// <i>
-    /// time
-    /// </i>
-    /// parameter
-    /// is contained within the range specified by the
-    /// <i>
-    /// range
-    /// </i>
-    /// parameter.
-    ///
-    /// Returns: Returns true if the specified time is contained within the specified time range, false if it is not.
-    #[cfg(feature = "CMTime")]
-    pub fn CMTimeRangeContainsTime(range: CMTimeRange, time: CMTime) -> Boolean;
+/// Indicates whether a time is contained within a time range.
+///
+/// This function returns a Boolean value that indicates whether the time specified by the
+/// <i>
+/// time
+/// </i>
+/// parameter
+/// is contained within the range specified by the
+/// <i>
+/// range
+/// </i>
+/// parameter.
+///
+/// Returns: Returns true if the specified time is contained within the specified time range, false if it is not.
+#[cfg(feature = "CMTime")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimeRangeContainsTime(range: CMTimeRange, time: CMTime) -> bool {
+    extern "C-unwind" {
+        fn CMTimeRangeContainsTime(range: CMTimeRange, time: CMTime) -> Boolean;
+    }
+    let ret = unsafe { CMTimeRangeContainsTime(range, time) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Indicates whether a time range is contained within a time range.
-    ///
-    /// This function returns a Boolean value that indicates whether the time range specified by the
-    /// <i>
-    /// range
-    /// </i>
-    /// parameter
-    /// contains the range specified by the
-    /// <i>
-    /// otherRange
-    /// </i>
-    /// parameter.
-    ///
-    /// Returns: Returns true if the second time range is contained within the first time range, false if it is not.
-    #[cfg(feature = "CMTime")]
-    pub fn CMTimeRangeContainsTimeRange(range: CMTimeRange, other_range: CMTimeRange) -> Boolean;
+/// Indicates whether a time range is contained within a time range.
+///
+/// This function returns a Boolean value that indicates whether the time range specified by the
+/// <i>
+/// range
+/// </i>
+/// parameter
+/// contains the range specified by the
+/// <i>
+/// otherRange
+/// </i>
+/// parameter.
+///
+/// Returns: Returns true if the second time range is contained within the first time range, false if it is not.
+#[cfg(feature = "CMTime")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMTimeRangeContainsTimeRange(
+    range: CMTimeRange,
+    other_range: CMTimeRange,
+) -> bool {
+    extern "C-unwind" {
+        fn CMTimeRangeContainsTimeRange(range: CMTimeRange, other_range: CMTimeRange) -> Boolean;
+    }
+    let ret = unsafe { CMTimeRangeContainsTimeRange(range, other_range) };
+    ret != 0
 }
 
 extern "C-unwind" {

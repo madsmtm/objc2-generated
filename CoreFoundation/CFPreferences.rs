@@ -57,13 +57,24 @@ pub unsafe extern "C-unwind" fn CFPreferencesCopyAppValue(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFPreferencesGetAppBooleanValue(
-        key: &CFString,
-        application_id: &CFString,
-        key_exists_and_has_valid_format: *mut Boolean,
-    ) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFPreferencesGetAppBooleanValue(
+    key: &CFString,
+    application_id: &CFString,
+    key_exists_and_has_valid_format: *mut Boolean,
+) -> bool {
+    extern "C-unwind" {
+        fn CFPreferencesGetAppBooleanValue(
+            key: &CFString,
+            application_id: &CFString,
+            key_exists_and_has_valid_format: *mut Boolean,
+        ) -> Boolean;
+    }
+    let ret = unsafe {
+        CFPreferencesGetAppBooleanValue(key, application_id, key_exists_and_has_valid_format)
+    };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -97,9 +108,14 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFPreferencesAppSynchronize(application_id: &CFString) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFPreferencesAppSynchronize(application_id: &CFString) -> bool {
+    extern "C-unwind" {
+        fn CFPreferencesAppSynchronize(application_id: &CFString) -> Boolean;
+    }
+    let ret = unsafe { CFPreferencesAppSynchronize(application_id) };
+    ret != 0
 }
 
 #[cfg(feature = "CFBase")]
@@ -165,13 +181,22 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFPreferencesSynchronize(
-        application_id: &CFString,
-        user_name: &CFString,
-        host_name: &CFString,
-    ) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFPreferencesSynchronize(
+    application_id: &CFString,
+    user_name: &CFString,
+    host_name: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn CFPreferencesSynchronize(
+            application_id: &CFString,
+            user_name: &CFString,
+            host_name: &CFString,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFPreferencesSynchronize(application_id, user_name, host_name) };
+    ret != 0
 }
 
 #[cfg(all(feature = "CFArray", feature = "CFBase"))]
@@ -209,7 +234,15 @@ pub unsafe extern "C-unwind" fn CFPreferencesCopyKeyList(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    pub fn CFPreferencesAppValueIsForced(key: &CFString, application_id: &CFString) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFPreferencesAppValueIsForced(
+    key: &CFString,
+    application_id: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn CFPreferencesAppValueIsForced(key: &CFString, application_id: &CFString) -> Boolean;
+    }
+    let ret = unsafe { CFPreferencesAppValueIsForced(key, application_id) };
+    ret != 0
 }

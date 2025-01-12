@@ -6,26 +6,35 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    /// Updates the DHCP client preferences to include the
-    /// given list of options for the given application ID.
-    ///
-    /// Parameter `applicationID`: The application's preference ID, for example:
-    /// "com.apple.SystemPreferences".
-    ///
-    /// Parameter `options`: An array of 8-bit values containing the
-    /// DHCP option codes (see RFC 2132) for this application ID.
-    /// A NULL value will clear the list of options for this
-    /// application ID.
-    ///
-    /// Parameter `count`: The number of elements in the options parameter.
-    ///
-    /// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
-    pub fn DHCPClientPreferencesSetApplicationOptions(
-        application_id: &CFString,
-        options: *const u8,
-        count: CFIndex,
-    ) -> Boolean;
+/// Updates the DHCP client preferences to include the
+/// given list of options for the given application ID.
+///
+/// Parameter `applicationID`: The application's preference ID, for example:
+/// "com.apple.SystemPreferences".
+///
+/// Parameter `options`: An array of 8-bit values containing the
+/// DHCP option codes (see RFC 2132) for this application ID.
+/// A NULL value will clear the list of options for this
+/// application ID.
+///
+/// Parameter `count`: The number of elements in the options parameter.
+///
+/// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
+#[inline]
+pub unsafe extern "C-unwind" fn DHCPClientPreferencesSetApplicationOptions(
+    application_id: &CFString,
+    options: *const u8,
+    count: CFIndex,
+) -> bool {
+    extern "C-unwind" {
+        fn DHCPClientPreferencesSetApplicationOptions(
+            application_id: &CFString,
+            options: *const u8,
+            count: CFIndex,
+        ) -> Boolean;
+    }
+    let ret = unsafe { DHCPClientPreferencesSetApplicationOptions(application_id, options, count) };
+    ret != 0
 }
 
 extern "C-unwind" {

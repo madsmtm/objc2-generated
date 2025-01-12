@@ -257,31 +257,47 @@ pub unsafe extern "C-unwind" fn CFCharacterSetCreateInvertedSet(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Reports whether or not the character set is a superset of the character set specified as the second parameter.
-    ///
-    /// Parameter `theSet`: The character set to be checked for the membership of theOtherSet.
-    /// If this parameter is not a valid CFCharacterSet, the behavior is undefined.
-    ///
-    /// Parameter `theOtherset`: The character set to be checked whether or not it is a subset of theSet.
-    /// If this parameter is not a valid CFCharacterSet, the behavior is undefined.
-    pub fn CFCharacterSetIsSupersetOfSet(
-        the_set: &CFCharacterSet,
-        the_otherset: Option<&CFCharacterSet>,
-    ) -> Boolean;
+/// Reports whether or not the character set is a superset of the character set specified as the second parameter.
+///
+/// Parameter `theSet`: The character set to be checked for the membership of theOtherSet.
+/// If this parameter is not a valid CFCharacterSet, the behavior is undefined.
+///
+/// Parameter `theOtherset`: The character set to be checked whether or not it is a subset of theSet.
+/// If this parameter is not a valid CFCharacterSet, the behavior is undefined.
+#[inline]
+pub unsafe extern "C-unwind" fn CFCharacterSetIsSupersetOfSet(
+    the_set: &CFCharacterSet,
+    the_otherset: Option<&CFCharacterSet>,
+) -> bool {
+    extern "C-unwind" {
+        fn CFCharacterSetIsSupersetOfSet(
+            the_set: &CFCharacterSet,
+            the_otherset: Option<&CFCharacterSet>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFCharacterSetIsSupersetOfSet(the_set, the_otherset) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Reports whether or not the character set contains at least one member character in the specified plane.
-    ///
-    /// Parameter `theSet`: The character set to be checked for the membership.  If this
-    /// parameter is not a valid CFCharacterSet, the behavior is undefined.
-    ///
-    /// Parameter `thePlane`: The plane number to be checked for the membership.
-    /// The valid value range is from 0 to 16.  If the value is outside of the valid
-    /// plane number range, the behavior is undefined.
-    #[cfg(feature = "CFBase")]
-    pub fn CFCharacterSetHasMemberInPlane(the_set: &CFCharacterSet, the_plane: CFIndex) -> Boolean;
+/// Reports whether or not the character set contains at least one member character in the specified plane.
+///
+/// Parameter `theSet`: The character set to be checked for the membership.  If this
+/// parameter is not a valid CFCharacterSet, the behavior is undefined.
+///
+/// Parameter `thePlane`: The plane number to be checked for the membership.
+/// The valid value range is from 0 to 16.  If the value is outside of the valid
+/// plane number range, the behavior is undefined.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFCharacterSetHasMemberInPlane(
+    the_set: &CFCharacterSet,
+    the_plane: CFIndex,
+) -> bool {
+    extern "C-unwind" {
+        fn CFCharacterSetHasMemberInPlane(the_set: &CFCharacterSet, the_plane: CFIndex) -> Boolean;
+    }
+    let ret = unsafe { CFCharacterSetHasMemberInPlane(the_set, the_plane) };
+    ret != 0
 }
 
 /// Creates a new empty mutable character set.
@@ -363,35 +379,51 @@ pub unsafe extern "C-unwind" fn CFCharacterSetCreateMutableCopy(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Reports whether or not the Unicode character is in the character set.
-    ///
-    /// Parameter `theSet`: The character set to be searched. If this parameter
-    /// is not a valid CFCharacterSet, the behavior is undefined.
-    ///
-    /// Parameter `theChar`: The Unicode character for which to test against the
-    /// character set.  Note that this function takes 16-bit Unicode
-    /// character value; hence, it does not support access to the
-    /// non-BMP planes.
-    ///
-    /// Returns: true, if the value is in the character set, otherwise false.
-    pub fn CFCharacterSetIsCharacterMember(the_set: &CFCharacterSet, the_char: UniChar) -> Boolean;
+/// Reports whether or not the Unicode character is in the character set.
+///
+/// Parameter `theSet`: The character set to be searched. If this parameter
+/// is not a valid CFCharacterSet, the behavior is undefined.
+///
+/// Parameter `theChar`: The Unicode character for which to test against the
+/// character set.  Note that this function takes 16-bit Unicode
+/// character value; hence, it does not support access to the
+/// non-BMP planes.
+///
+/// Returns: true, if the value is in the character set, otherwise false.
+#[inline]
+pub unsafe extern "C-unwind" fn CFCharacterSetIsCharacterMember(
+    the_set: &CFCharacterSet,
+    the_char: UniChar,
+) -> bool {
+    extern "C-unwind" {
+        fn CFCharacterSetIsCharacterMember(the_set: &CFCharacterSet, the_char: UniChar) -> Boolean;
+    }
+    let ret = unsafe { CFCharacterSetIsCharacterMember(the_set, the_char) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Reports whether or not the UTF-32 character is in the character set.
-    ///
-    /// Parameter `theSet`: The character set to be searched. If this parameter
-    /// is not a valid CFCharacterSet, the behavior is undefined.
-    ///
-    /// Parameter `theChar`: The UTF-32 character for which to test against the
-    /// character set.
-    ///
-    /// Returns: true, if the value is in the character set, otherwise false.
-    pub fn CFCharacterSetIsLongCharacterMember(
-        the_set: &CFCharacterSet,
-        the_char: UTF32Char,
-    ) -> Boolean;
+/// Reports whether or not the UTF-32 character is in the character set.
+///
+/// Parameter `theSet`: The character set to be searched. If this parameter
+/// is not a valid CFCharacterSet, the behavior is undefined.
+///
+/// Parameter `theChar`: The UTF-32 character for which to test against the
+/// character set.
+///
+/// Returns: true, if the value is in the character set, otherwise false.
+#[inline]
+pub unsafe extern "C-unwind" fn CFCharacterSetIsLongCharacterMember(
+    the_set: &CFCharacterSet,
+    the_char: UTF32Char,
+) -> bool {
+    extern "C-unwind" {
+        fn CFCharacterSetIsLongCharacterMember(
+            the_set: &CFCharacterSet,
+            the_char: UTF32Char,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFCharacterSetIsLongCharacterMember(the_set, the_char) };
+    ret != 0
 }
 
 /// Creates a new immutable data with the bitmap representation from the given character set.

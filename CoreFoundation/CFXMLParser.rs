@@ -410,9 +410,14 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
-    pub fn CFXMLParserParse(parser: &CFXMLParser) -> Boolean;
+#[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFXMLParserParse(parser: &CFXMLParser) -> bool {
+    extern "C-unwind" {
+        fn CFXMLParserParse(parser: &CFXMLParser) -> Boolean;
+    }
+    let ret = unsafe { CFXMLParserParse(parser) };
+    ret != 0
 }
 
 #[cfg(all(

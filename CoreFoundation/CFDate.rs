@@ -205,10 +205,18 @@ unsafe impl RefEncode for CFGregorianUnitFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CFBase")]
-    #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-    pub fn CFGregorianDateIsValid(gdate: CFGregorianDate, unit_flags: CFOptionFlags) -> Boolean;
+#[cfg(feature = "CFBase")]
+#[deprecated = "Use CFCalendar or NSCalendar API instead"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFGregorianDateIsValid(
+    gdate: CFGregorianDate,
+    unit_flags: CFOptionFlags,
+) -> bool {
+    extern "C-unwind" {
+        fn CFGregorianDateIsValid(gdate: CFGregorianDate, unit_flags: CFOptionFlags) -> Boolean;
+    }
+    let ret = unsafe { CFGregorianDateIsValid(gdate, unit_flags) };
+    ret != 0
 }
 
 extern "C-unwind" {

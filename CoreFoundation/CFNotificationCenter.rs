@@ -137,15 +137,33 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
-    pub fn CFNotificationCenterPostNotification(
-        center: &CFNotificationCenter,
-        name: Option<&CFNotificationName>,
-        object: *const c_void,
-        user_info: Option<&CFDictionary>,
-        deliver_immediately: Boolean,
-    );
+#[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CFNotificationCenterPostNotification(
+    center: &CFNotificationCenter,
+    name: Option<&CFNotificationName>,
+    object: *const c_void,
+    user_info: Option<&CFDictionary>,
+    deliver_immediately: bool,
+) {
+    extern "C-unwind" {
+        fn CFNotificationCenterPostNotification(
+            center: &CFNotificationCenter,
+            name: Option<&CFNotificationName>,
+            object: *const c_void,
+            user_info: Option<&CFDictionary>,
+            deliver_immediately: Boolean,
+        );
+    }
+    unsafe {
+        CFNotificationCenterPostNotification(
+            center,
+            name,
+            object,
+            user_info,
+            deliver_immediately as _,
+        )
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnotificationdeliverimmediately?language=objc)

@@ -51,14 +51,19 @@ pub unsafe extern "C-unwind" fn CVMetalTextureGetTexture(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns whether the image is flipped vertically or not.
-    ///
-    /// Parameter `image`: Target CVMetalTexture
-    ///
-    /// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    pub fn CVMetalTextureIsFlipped(image: &CVMetalTexture) -> Boolean;
+/// Returns whether the image is flipped vertically or not.
+///
+/// Parameter `image`: Target CVMetalTexture
+///
+/// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CVMetalTextureIsFlipped(image: &CVMetalTexture) -> bool {
+    extern "C-unwind" {
+        fn CVMetalTextureIsFlipped(image: &CVMetalTexture) -> Boolean;
+    }
+    let ret = unsafe { CVMetalTextureIsFlipped(image) };
+    ret != 0
 }
 
 extern "C" {

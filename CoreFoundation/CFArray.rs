@@ -393,34 +393,43 @@ extern "C-unwind" {
     ) -> CFIndex;
 }
 
-extern "C-unwind" {
-    /// Reports whether or not the value is in the array.
-    ///
-    /// Parameter `theArray`: The array to be searched. If this parameter is not a
-    /// valid CFArray, the behavior is undefined.
-    ///
-    /// Parameter `range`: The range within the array to search. If the range
-    /// location or end point (defined by the location plus length
-    /// minus 1) is outside the index space of the array (0 to
-    /// N-1 inclusive, where N is the count of the array), the
-    /// behavior is undefined. If the range length is negative, the
-    /// behavior is undefined. The range may be empty (length 0).
-    ///
-    /// Parameter `value`: The value for which to find matches in the array. The
-    /// equal() callback provided when the array was created is
-    /// used to compare. If the equal() callback was NULL, pointer
-    /// equality (in C, ==) is used. If value, or any of the values
-    /// in the array, are not understood by the equal() callback,
-    /// the behavior is undefined.
-    ///
-    /// Returns: true, if the value is in the specified range of the array,
-    /// otherwise false.
-    #[cfg(feature = "CFBase")]
-    pub fn CFArrayContainsValue(
-        the_array: &CFArray,
-        range: CFRange,
-        value: *const c_void,
-    ) -> Boolean;
+/// Reports whether or not the value is in the array.
+///
+/// Parameter `theArray`: The array to be searched. If this parameter is not a
+/// valid CFArray, the behavior is undefined.
+///
+/// Parameter `range`: The range within the array to search. If the range
+/// location or end point (defined by the location plus length
+/// minus 1) is outside the index space of the array (0 to
+/// N-1 inclusive, where N is the count of the array), the
+/// behavior is undefined. If the range length is negative, the
+/// behavior is undefined. The range may be empty (length 0).
+///
+/// Parameter `value`: The value for which to find matches in the array. The
+/// equal() callback provided when the array was created is
+/// used to compare. If the equal() callback was NULL, pointer
+/// equality (in C, ==) is used. If value, or any of the values
+/// in the array, are not understood by the equal() callback,
+/// the behavior is undefined.
+///
+/// Returns: true, if the value is in the specified range of the array,
+/// otherwise false.
+#[cfg(feature = "CFBase")]
+#[inline]
+pub unsafe extern "C-unwind" fn CFArrayContainsValue(
+    the_array: &CFArray,
+    range: CFRange,
+    value: *const c_void,
+) -> bool {
+    extern "C-unwind" {
+        fn CFArrayContainsValue(
+            the_array: &CFArray,
+            range: CFRange,
+            value: *const c_void,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFArrayContainsValue(the_array, range, value) };
+    ret != 0
 }
 
 extern "C-unwind" {

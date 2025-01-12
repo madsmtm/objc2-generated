@@ -195,20 +195,34 @@ extern "C-unwind" {
     pub fn CFBagGetCountOfValue(the_bag: &CFBag, value: *const c_void) -> CFIndex;
 }
 
-extern "C-unwind" {
-    pub fn CFBagContainsValue(the_bag: &CFBag, value: *const c_void) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn CFBagContainsValue(the_bag: &CFBag, value: *const c_void) -> bool {
+    extern "C-unwind" {
+        fn CFBagContainsValue(the_bag: &CFBag, value: *const c_void) -> Boolean;
+    }
+    let ret = unsafe { CFBagContainsValue(the_bag, value) };
+    ret != 0
 }
 
 extern "C-unwind" {
     pub fn CFBagGetValue(the_bag: &CFBag, value: *const c_void) -> *const c_void;
 }
 
-extern "C-unwind" {
-    pub fn CFBagGetValueIfPresent(
-        the_bag: &CFBag,
-        candidate: *const c_void,
-        value: *mut *const c_void,
-    ) -> Boolean;
+#[inline]
+pub unsafe extern "C-unwind" fn CFBagGetValueIfPresent(
+    the_bag: &CFBag,
+    candidate: *const c_void,
+    value: *mut *const c_void,
+) -> bool {
+    extern "C-unwind" {
+        fn CFBagGetValueIfPresent(
+            the_bag: &CFBag,
+            candidate: *const c_void,
+            value: *mut *const c_void,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFBagGetValueIfPresent(the_bag, candidate, value) };
+    ret != 0
 }
 
 extern "C-unwind" {

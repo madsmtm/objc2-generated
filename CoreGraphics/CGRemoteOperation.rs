@@ -137,16 +137,26 @@ extern "C-unwind" {
     pub fn CGReleaseScreenRefreshRects(rects: *mut CGRect);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated = "No longer supported"]
-    pub fn CGCursorIsVisible() -> libc::boolean_t;
+#[cfg(feature = "libc")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGCursorIsVisible() -> bool {
+    extern "C-unwind" {
+        fn CGCursorIsVisible() -> libc::boolean_t;
+    }
+    let ret = unsafe { CGCursorIsVisible() };
+    ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated = "No longer supported"]
-    pub fn CGCursorIsDrawnInFramebuffer() -> libc::boolean_t;
+#[cfg(feature = "libc")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGCursorIsDrawnInFramebuffer() -> bool {
+    extern "C-unwind" {
+        fn CGCursorIsDrawnInFramebuffer() -> libc::boolean_t;
+    }
+    let ret = unsafe { CGCursorIsDrawnInFramebuffer() };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -154,9 +164,13 @@ extern "C-unwind" {
     pub fn CGWarpMouseCursorPosition(new_cursor_position: CGPoint) -> CGError;
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGError", feature = "libc"))]
-    pub fn CGAssociateMouseAndMouseCursorPosition(connected: libc::boolean_t) -> CGError;
+#[cfg(all(feature = "CGError", feature = "libc"))]
+#[inline]
+pub unsafe extern "C-unwind" fn CGAssociateMouseAndMouseCursorPosition(connected: bool) -> CGError {
+    extern "C-unwind" {
+        fn CGAssociateMouseAndMouseCursorPosition(connected: libc::boolean_t) -> CGError;
+    }
+    unsafe { CGAssociateMouseAndMouseCursorPosition(connected as _) }
 }
 
 #[inline]
@@ -168,26 +182,42 @@ pub unsafe extern "C-unwind" fn CGWindowServerCreateServerPort() -> Option<CFRet
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGError", feature = "libc"))]
-    #[deprecated = "No longer supported"]
-    pub fn CGEnableEventStateCombining(combine_state: libc::boolean_t) -> CGError;
+#[cfg(all(feature = "CGError", feature = "libc"))]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGEnableEventStateCombining(combine_state: bool) -> CGError {
+    extern "C-unwind" {
+        fn CGEnableEventStateCombining(combine_state: libc::boolean_t) -> CGError;
+    }
+    unsafe { CGEnableEventStateCombining(combine_state as _) }
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGError", feature = "libc"))]
-    #[deprecated = "No longer supported"]
-    pub fn CGInhibitLocalEvents(inhibit: libc::boolean_t) -> CGError;
+#[cfg(all(feature = "CGError", feature = "libc"))]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGInhibitLocalEvents(inhibit: bool) -> CGError {
+    extern "C-unwind" {
+        fn CGInhibitLocalEvents(inhibit: libc::boolean_t) -> CGError;
+    }
+    unsafe { CGInhibitLocalEvents(inhibit as _) }
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGError", feature = "libc"))]
-    #[deprecated = "No longer supported"]
-    pub fn CGPostKeyboardEvent(
-        key_char: CGCharCode,
-        virtual_key: CGKeyCode,
-        key_down: libc::boolean_t,
-    ) -> CGError;
+#[cfg(all(feature = "CGError", feature = "libc"))]
+#[deprecated = "No longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn CGPostKeyboardEvent(
+    key_char: CGCharCode,
+    virtual_key: CGKeyCode,
+    key_down: bool,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGPostKeyboardEvent(
+            key_char: CGCharCode,
+            virtual_key: CGKeyCode,
+            key_down: libc::boolean_t,
+        ) -> CGError;
+    }
+    unsafe { CGPostKeyboardEvent(key_char, virtual_key, key_down as _) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfiltermask?language=objc)

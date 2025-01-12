@@ -368,11 +368,12 @@ pub extern "C-unwind" fn CFGetRetainCount(cf: Option<&CFType>) -> CFIndex {
 }
 
 #[inline]
-pub extern "C-unwind" fn CFEqual(cf1: Option<&CFType>, cf2: Option<&CFType>) -> Boolean {
+pub extern "C-unwind" fn CFEqual(cf1: Option<&CFType>, cf2: Option<&CFType>) -> bool {
     extern "C-unwind" {
         fn CFEqual(cf1: Option<&CFType>, cf2: Option<&CFType>) -> Boolean;
     }
-    unsafe { CFEqual(cf1, cf2) }
+    let ret = unsafe { CFEqual(cf1, cf2) };
+    ret != 0
 }
 
 #[inline]

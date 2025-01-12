@@ -432,21 +432,26 @@ extern "C-unwind" {
     pub fn CFSetGetCountOfValue(the_set: &CFSet, value: *const c_void) -> CFIndex;
 }
 
-extern "C-unwind" {
-    /// Reports whether or not the value is in the set.
-    ///
-    /// Parameter `theSet`: The set to be searched. If this parameter is not a
-    /// valid CFSet, the behavior is undefined.
-    ///
-    /// Parameter `value`: The value for which to find matches in the set. The
-    /// equal() callback provided when the set was created is
-    /// used to compare. If the equal() callback was NULL, pointer
-    /// equality (in C, ==) is used. If value, or any of the values
-    /// in the set, are not understood by the equal() callback,
-    /// the behavior is undefined.
-    ///
-    /// Returns: true, if the value is in the set, otherwise false.
-    pub fn CFSetContainsValue(the_set: &CFSet, value: *const c_void) -> Boolean;
+/// Reports whether or not the value is in the set.
+///
+/// Parameter `theSet`: The set to be searched. If this parameter is not a
+/// valid CFSet, the behavior is undefined.
+///
+/// Parameter `value`: The value for which to find matches in the set. The
+/// equal() callback provided when the set was created is
+/// used to compare. If the equal() callback was NULL, pointer
+/// equality (in C, ==) is used. If value, or any of the values
+/// in the set, are not understood by the equal() callback,
+/// the behavior is undefined.
+///
+/// Returns: true, if the value is in the set, otherwise false.
+#[inline]
+pub unsafe extern "C-unwind" fn CFSetContainsValue(the_set: &CFSet, value: *const c_void) -> bool {
+    extern "C-unwind" {
+        fn CFSetContainsValue(the_set: &CFSet, value: *const c_void) -> Boolean;
+    }
+    let ret = unsafe { CFSetContainsValue(the_set, value) };
+    ret != 0
 }
 
 extern "C-unwind" {
@@ -465,34 +470,43 @@ extern "C-unwind" {
     pub fn CFSetGetValue(the_set: &CFSet, value: *const c_void) -> *const c_void;
 }
 
-extern "C-unwind" {
-    /// Retrieves a value in the set which hashes the same as the specified value,
-    /// if present.
-    ///
-    /// Parameter `theSet`: The set to be queried. If this parameter is not a
-    /// valid CFSet, the behavior is undefined.
-    ///
-    /// Parameter `candidate`: This value is hashed and compared with values in the
-    /// set to determine which value to retrieve. The equal() callback provided when
-    /// the set was created is used to compare. If the equal() callback
-    /// was NULL, pointer equality (in C, ==) is used. If a value, or
-    /// any of the values in the set, are not understood by the equal()
-    /// callback, the behavior is undefined.
-    ///
-    /// Parameter `value`: A pointer to memory which should be filled with the
-    /// pointer-sized value if a matching value is found. If no
-    /// match is found, the contents of the storage pointed to by
-    /// this parameter are undefined. This parameter may be NULL,
-    /// in which case the value from the dictionary is not returned
-    /// (but the return value of this function still indicates
-    /// whether or not the value was present).
-    ///
-    /// Returns: True if the value was present in the set, otherwise false.
-    pub fn CFSetGetValueIfPresent(
-        the_set: &CFSet,
-        candidate: *const c_void,
-        value: *mut *const c_void,
-    ) -> Boolean;
+/// Retrieves a value in the set which hashes the same as the specified value,
+/// if present.
+///
+/// Parameter `theSet`: The set to be queried. If this parameter is not a
+/// valid CFSet, the behavior is undefined.
+///
+/// Parameter `candidate`: This value is hashed and compared with values in the
+/// set to determine which value to retrieve. The equal() callback provided when
+/// the set was created is used to compare. If the equal() callback
+/// was NULL, pointer equality (in C, ==) is used. If a value, or
+/// any of the values in the set, are not understood by the equal()
+/// callback, the behavior is undefined.
+///
+/// Parameter `value`: A pointer to memory which should be filled with the
+/// pointer-sized value if a matching value is found. If no
+/// match is found, the contents of the storage pointed to by
+/// this parameter are undefined. This parameter may be NULL,
+/// in which case the value from the dictionary is not returned
+/// (but the return value of this function still indicates
+/// whether or not the value was present).
+///
+/// Returns: True if the value was present in the set, otherwise false.
+#[inline]
+pub unsafe extern "C-unwind" fn CFSetGetValueIfPresent(
+    the_set: &CFSet,
+    candidate: *const c_void,
+    value: *mut *const c_void,
+) -> bool {
+    extern "C-unwind" {
+        fn CFSetGetValueIfPresent(
+            the_set: &CFSet,
+            candidate: *const c_void,
+            value: *mut *const c_void,
+        ) -> Boolean;
+    }
+    let ret = unsafe { CFSetGetValueIfPresent(the_set, candidate, value) };
+    ret != 0
 }
 
 extern "C-unwind" {

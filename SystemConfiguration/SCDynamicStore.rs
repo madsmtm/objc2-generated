@@ -299,44 +299,62 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCopyKeyList(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Adds the key-value pair to the dynamic store if no
-    /// such key already exists.
-    ///
-    /// Parameter `store`: The dynamic store session.
-    ///
-    /// Parameter `key`: The key of the value to add to the dynamic store.
-    ///
-    /// Parameter `value`: The value to add to the dynamic store.
-    ///
-    /// Returns: Returns TRUE if the key was added; FALSE if the key was already
-    /// present in the dynamic store or if an error was encountered.
-    pub fn SCDynamicStoreAddValue(
-        store: Option<&SCDynamicStore>,
-        key: &CFString,
-        value: &CFPropertyList,
-    ) -> Boolean;
+/// Adds the key-value pair to the dynamic store if no
+/// such key already exists.
+///
+/// Parameter `store`: The dynamic store session.
+///
+/// Parameter `key`: The key of the value to add to the dynamic store.
+///
+/// Parameter `value`: The value to add to the dynamic store.
+///
+/// Returns: Returns TRUE if the key was added; FALSE if the key was already
+/// present in the dynamic store or if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCDynamicStoreAddValue(
+    store: Option<&SCDynamicStore>,
+    key: &CFString,
+    value: &CFPropertyList,
+) -> bool {
+    extern "C-unwind" {
+        fn SCDynamicStoreAddValue(
+            store: Option<&SCDynamicStore>,
+            key: &CFString,
+            value: &CFPropertyList,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCDynamicStoreAddValue(store, key, value) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Temporarily adds the key-value pair to the dynamic store
-    /// if no such key already exists.  Unless the key is updated by another
-    /// session, the key-value pair will be removed automatically when the
-    /// session is closed.
-    ///
-    /// Parameter `store`: The dynamic store session.
-    ///
-    /// Parameter `key`: The key of the value to add to the dynamic store.
-    ///
-    /// Parameter `value`: The value to add to the dynamic store.
-    ///
-    /// Returns: Returns TRUE if the key was added; FALSE if the key was already
-    /// present in the dynamic store or if an error was encountered.
-    pub fn SCDynamicStoreAddTemporaryValue(
-        store: &SCDynamicStore,
-        key: &CFString,
-        value: &CFPropertyList,
-    ) -> Boolean;
+/// Temporarily adds the key-value pair to the dynamic store
+/// if no such key already exists.  Unless the key is updated by another
+/// session, the key-value pair will be removed automatically when the
+/// session is closed.
+///
+/// Parameter `store`: The dynamic store session.
+///
+/// Parameter `key`: The key of the value to add to the dynamic store.
+///
+/// Parameter `value`: The value to add to the dynamic store.
+///
+/// Returns: Returns TRUE if the key was added; FALSE if the key was already
+/// present in the dynamic store or if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCDynamicStoreAddTemporaryValue(
+    store: &SCDynamicStore,
+    key: &CFString,
+    value: &CFPropertyList,
+) -> bool {
+    extern "C-unwind" {
+        fn SCDynamicStoreAddTemporaryValue(
+            store: &SCDynamicStore,
+            key: &CFString,
+            value: &CFPropertyList,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCDynamicStoreAddTemporaryValue(store, key, value) };
+    ret != 0
 }
 
 /// Gets the value of the specified key from the dynamic store.
@@ -394,90 +412,135 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCopyMultiple(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    /// Adds or replaces a value in the dynamic store for
-    /// the specified key.
-    ///
-    /// Parameter `store`: The dynamic store session.
-    ///
-    /// Parameter `key`: The key you want to set.
-    ///
-    /// Parameter `value`: The value to add to or replace in the dynamic store.
-    ///
-    /// Returns: Returns TRUE if the key was updated; FALSE if an error was encountered.
-    pub fn SCDynamicStoreSetValue(
-        store: Option<&SCDynamicStore>,
-        key: &CFString,
-        value: &CFPropertyList,
-    ) -> Boolean;
+/// Adds or replaces a value in the dynamic store for
+/// the specified key.
+///
+/// Parameter `store`: The dynamic store session.
+///
+/// Parameter `key`: The key you want to set.
+///
+/// Parameter `value`: The value to add to or replace in the dynamic store.
+///
+/// Returns: Returns TRUE if the key was updated; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCDynamicStoreSetValue(
+    store: Option<&SCDynamicStore>,
+    key: &CFString,
+    value: &CFPropertyList,
+) -> bool {
+    extern "C-unwind" {
+        fn SCDynamicStoreSetValue(
+            store: Option<&SCDynamicStore>,
+            key: &CFString,
+            value: &CFPropertyList,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCDynamicStoreSetValue(store, key, value) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Updates multiple values in the dynamic store.
-    ///
-    /// Parameter `store`: The dynamic store session.
-    ///
-    /// Parameter `keysToSet`: A dictionary of key-value pairs you want to set into the dynamic store.
-    ///
-    /// Parameter `keysToRemove`: An array of keys you want to remove from the dynamic store.
-    ///
-    /// Parameter `keysToNotify`: An array of keys to flag as changed (without changing their values).
-    ///
-    /// Returns: Returns TRUE if the dynamic store updates were successful; FALSE if an error was encountered.
-    pub fn SCDynamicStoreSetMultiple(
-        store: Option<&SCDynamicStore>,
-        keys_to_set: Option<&CFDictionary>,
-        keys_to_remove: Option<&CFArray>,
-        keys_to_notify: Option<&CFArray>,
-    ) -> Boolean;
+/// Updates multiple values in the dynamic store.
+///
+/// Parameter `store`: The dynamic store session.
+///
+/// Parameter `keysToSet`: A dictionary of key-value pairs you want to set into the dynamic store.
+///
+/// Parameter `keysToRemove`: An array of keys you want to remove from the dynamic store.
+///
+/// Parameter `keysToNotify`: An array of keys to flag as changed (without changing their values).
+///
+/// Returns: Returns TRUE if the dynamic store updates were successful; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCDynamicStoreSetMultiple(
+    store: Option<&SCDynamicStore>,
+    keys_to_set: Option<&CFDictionary>,
+    keys_to_remove: Option<&CFArray>,
+    keys_to_notify: Option<&CFArray>,
+) -> bool {
+    extern "C-unwind" {
+        fn SCDynamicStoreSetMultiple(
+            store: Option<&SCDynamicStore>,
+            keys_to_set: Option<&CFDictionary>,
+            keys_to_remove: Option<&CFArray>,
+            keys_to_notify: Option<&CFArray>,
+        ) -> Boolean;
+    }
+    let ret =
+        unsafe { SCDynamicStoreSetMultiple(store, keys_to_set, keys_to_remove, keys_to_notify) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Removes the value of the specified key from the
-    /// dynamic store.
-    ///
-    /// Parameter `store`: The dynamic store session.
-    ///
-    /// Parameter `key`: The key of the value you want to remove.
-    ///
-    /// Returns: Returns TRUE if the key was removed; FALSE if no value was
-    /// located or an error was encountered.
-    pub fn SCDynamicStoreRemoveValue(store: Option<&SCDynamicStore>, key: &CFString) -> Boolean;
+/// Removes the value of the specified key from the
+/// dynamic store.
+///
+/// Parameter `store`: The dynamic store session.
+///
+/// Parameter `key`: The key of the value you want to remove.
+///
+/// Returns: Returns TRUE if the key was removed; FALSE if no value was
+/// located or an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCDynamicStoreRemoveValue(
+    store: Option<&SCDynamicStore>,
+    key: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn SCDynamicStoreRemoveValue(store: Option<&SCDynamicStore>, key: &CFString) -> Boolean;
+    }
+    let ret = unsafe { SCDynamicStoreRemoveValue(store, key) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Triggers a notification to be delivered for the
-    /// specified key in the dynamic store.
-    ///
-    /// Parameter `store`: The dynamic store session.
-    ///
-    /// Parameter `key`: The key that should be flagged as changed.  Any dynamic store sessions
-    /// that are monitoring this key will received a notification.  Note that the
-    /// key's value is not updated.
-    ///
-    /// Returns: Returns TRUE if the notification was processed; FALSE if an error was encountered.
-    pub fn SCDynamicStoreNotifyValue(store: Option<&SCDynamicStore>, key: &CFString) -> Boolean;
+/// Triggers a notification to be delivered for the
+/// specified key in the dynamic store.
+///
+/// Parameter `store`: The dynamic store session.
+///
+/// Parameter `key`: The key that should be flagged as changed.  Any dynamic store sessions
+/// that are monitoring this key will received a notification.  Note that the
+/// key's value is not updated.
+///
+/// Returns: Returns TRUE if the notification was processed; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCDynamicStoreNotifyValue(
+    store: Option<&SCDynamicStore>,
+    key: &CFString,
+) -> bool {
+    extern "C-unwind" {
+        fn SCDynamicStoreNotifyValue(store: Option<&SCDynamicStore>, key: &CFString) -> Boolean;
+    }
+    let ret = unsafe { SCDynamicStoreNotifyValue(store, key) };
+    ret != 0
 }
 
-extern "C-unwind" {
-    /// Specifies a set of specific keys and key patterns
-    /// that should be monitored for changes.
-    ///
-    /// Parameter `store`: The dynamic store session being watched.
-    ///
-    /// Parameter `keys`: An array of keys to be monitored; NULL if no specific keys
-    /// are to be monitored.
-    ///
-    /// Parameter `patterns`: An array of regex(3) pattern strings used to match keys to be monitored;
-    /// NULL if no key patterns are to be monitored.
-    ///
-    /// Returns: Returns TRUE if the set of notification keys and patterns was successfully
-    /// updated; FALSE if an error was encountered.
-    pub fn SCDynamicStoreSetNotificationKeys(
-        store: &SCDynamicStore,
-        keys: Option<&CFArray>,
-        patterns: Option<&CFArray>,
-    ) -> Boolean;
+/// Specifies a set of specific keys and key patterns
+/// that should be monitored for changes.
+///
+/// Parameter `store`: The dynamic store session being watched.
+///
+/// Parameter `keys`: An array of keys to be monitored; NULL if no specific keys
+/// are to be monitored.
+///
+/// Parameter `patterns`: An array of regex(3) pattern strings used to match keys to be monitored;
+/// NULL if no key patterns are to be monitored.
+///
+/// Returns: Returns TRUE if the set of notification keys and patterns was successfully
+/// updated; FALSE if an error was encountered.
+#[inline]
+pub unsafe extern "C-unwind" fn SCDynamicStoreSetNotificationKeys(
+    store: &SCDynamicStore,
+    keys: Option<&CFArray>,
+    patterns: Option<&CFArray>,
+) -> bool {
+    extern "C-unwind" {
+        fn SCDynamicStoreSetNotificationKeys(
+            store: &SCDynamicStore,
+            keys: Option<&CFArray>,
+            patterns: Option<&CFArray>,
+        ) -> Boolean;
+    }
+    let ret = unsafe { SCDynamicStoreSetNotificationKeys(store, keys, patterns) };
+    ret != 0
 }
 
 /// Returns an array of CFString keys representing the
