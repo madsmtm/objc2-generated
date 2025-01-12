@@ -6,6 +6,8 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-audio-toolbox")]
 #[cfg(not(target_os = "watchos"))]
 use objc2_audio_toolbox::*;
+#[cfg(feature = "objc2-core-midi")]
+use objc2_core_midi::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -199,6 +201,13 @@ extern_methods!(
         /// Parameter `midiData`: a NSData object containing the complete SysEx data including start(F0) and termination(F7) bytes.
         #[method(sendMIDISysExEvent:)]
         pub unsafe fn sendMIDISysExEvent(&self, midi_data: &NSData);
+
+        #[cfg(feature = "objc2-core-midi")]
+        /// sends a MIDI event list to the instrument.
+        ///
+        /// Parameter `eventList`: the MIDIEventList
+        #[method(sendMIDIEventList:)]
+        pub unsafe fn sendMIDIEventList(&self, event_list: NonNull<MIDIEventList>);
     }
 );
 

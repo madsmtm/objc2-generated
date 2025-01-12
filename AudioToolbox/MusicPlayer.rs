@@ -7,6 +7,8 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-midi")]
+use objc2_core_midi::*;
 
 use crate::*;
 
@@ -937,6 +939,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Makes the target of all of the tracks in the sequence a MIDI endpoint
+    ///
+    /// This is a convenience function, and is equivalent to iterating through all of the tracks in a sequence
+    /// and targeting each track to the MIDI endpoint
+    ///
+    ///
+    /// Parameter `inSequence`: the sequence
+    ///
+    /// Parameter `inEndpoint`: the MIDI endpoint
+    #[cfg(feature = "objc2-core-midi")]
+    pub fn MusicSequenceSetMIDIEndpoint(
+        in_sequence: MusicSequence,
+        in_endpoint: MIDIEndpointRef,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
     /// Set the sequence type (the default is beats)
     ///
     /// These two calls allow you to get and set a MusicSequence type; specifying
@@ -1284,6 +1303,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the track's target to the specified MIDI endpoint
+    ///
+    /// When played, the track will send all of its events to the specified MIDI Endpoint.
+    ///
+    /// Parameter `inTrack`: the track
+    ///
+    /// Parameter `inEndpoint`: the new MIDI endpoint
+    #[cfg(feature = "objc2-core-midi")]
+    pub fn MusicTrackSetDestMIDIEndpoint(
+        in_track: MusicTrack,
+        in_endpoint: MIDIEndpointRef,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
     /// Gets the track's target if it is an AUNode
     ///
     /// Returns kAudioToolboxErr_IllegalTrackDestination if the track's target is a MIDIEndpointRef
@@ -1294,6 +1328,22 @@ extern "C-unwind" {
     /// Parameter `outNode`: the node target for the track
     #[cfg(feature = "AUGraph")]
     pub fn MusicTrackGetDestNode(in_track: MusicTrack, out_node: NonNull<AUNode>) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Gets the track's target if it is a MIDI Endpoint
+    ///
+    /// Returns kAudioToolboxErr_IllegalTrackDestination if the track's target is an AUNode
+    /// and NOT a MIDI Endpoint
+    ///
+    /// Parameter `inTrack`: the track
+    ///
+    /// Parameter `outEndpoint`: the MIDI Endpoint target for the track
+    #[cfg(feature = "objc2-core-midi")]
+    pub fn MusicTrackGetDestMIDIEndpoint(
+        in_track: MusicTrack,
+        out_endpoint: NonNull<MIDIEndpointRef>,
+    ) -> OSStatus;
 }
 
 extern "C-unwind" {

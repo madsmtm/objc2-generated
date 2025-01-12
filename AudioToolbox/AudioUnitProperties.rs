@@ -7,6 +7,8 @@ use objc2::__framework_prelude::*;
 use objc2_core_audio_types::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-midi")]
+use objc2_core_midi::*;
 
 use crate::*;
 
@@ -624,6 +626,42 @@ unsafe impl Encode for AUHostVersionIdentifier {
 
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl RefEncode for AUHostVersionIdentifier {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumidioutputcallback?language=objc)
+#[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-midi"))]
+pub type AUMIDIOutputCallback = Option<
+    unsafe extern "C-unwind" fn(
+        *mut c_void,
+        NonNull<AudioTimeStamp>,
+        u32,
+        NonNull<MIDIPacketList>,
+    ) -> OSStatus,
+>;
+
+/// Set by host application to provide the callback and user data for an audio
+/// unit that provides MIDI output
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumidioutputcallbackstruct?language=objc)
+#[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-midi"))]
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct AUMIDIOutputCallbackStruct {
+    pub midiOutputCallback: AUMIDIOutputCallback,
+    pub userData: *mut c_void,
+}
+
+#[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-midi"))]
+unsafe impl Encode for AUMIDIOutputCallbackStruct {
+    const ENCODING: Encoding = Encoding::Struct(
+        "AUMIDIOutputCallbackStruct",
+        &[<AUMIDIOutputCallback>::ENCODING, <*mut c_void>::ENCODING],
+    );
+}
+
+#[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-midi"))]
+unsafe impl RefEncode for AUMIDIOutputCallbackStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 

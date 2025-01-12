@@ -141,6 +141,12 @@ pub use self::__AUAudioUnit::AUHostTransportStateFlags;
 pub use self::__AUAudioUnit::AUInputHandler;
 #[cfg(all(
     feature = "AUAudioUnit",
+    feature = "block2",
+    feature = "objc2-core-midi"
+))]
+pub use self::__AUAudioUnit::AUMIDICIProfileChangedBlock;
+#[cfg(all(
+    feature = "AUAudioUnit",
     feature = "AudioUnitProperties",
     feature = "block2"
 ))]
@@ -3392,6 +3398,18 @@ pub use self::__AudioUnitProperties::AUHostVersionIdentifier;
     feature = "objc2-core-audio-types"
 ))]
 pub use self::__AudioUnitProperties::AUInputSamplesInOutputCallbackStruct;
+#[cfg(all(
+    feature = "AudioUnitProperties",
+    feature = "objc2-core-audio-types",
+    feature = "objc2-core-midi"
+))]
+pub use self::__AudioUnitProperties::AUMIDIOutputCallback;
+#[cfg(all(
+    feature = "AudioUnitProperties",
+    feature = "objc2-core-audio-types",
+    feature = "objc2-core-midi"
+))]
+pub use self::__AudioUnitProperties::AUMIDIOutputCallbackStruct;
 #[cfg(feature = "AudioUnitProperties")]
 pub use self::__AudioUnitProperties::AUNumVersion;
 #[cfg(all(feature = "AUComponent", feature = "AudioUnitProperties"))]
@@ -3885,6 +3903,12 @@ pub use self::__MusicDevice::MusicDeviceGroupID;
 pub use self::__MusicDevice::MusicDeviceInstrumentID;
 #[cfg(all(feature = "AudioComponent", feature = "MusicDevice"))]
 pub use self::__MusicDevice::MusicDeviceMIDIEvent;
+#[cfg(all(
+    feature = "AudioComponent",
+    feature = "MusicDevice",
+    feature = "objc2-core-midi"
+))]
+pub use self::__MusicDevice::MusicDeviceMIDIEventList;
 #[cfg(feature = "MusicDevice")]
 pub use self::__MusicDevice::MusicDeviceMIDIEventProc;
 #[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
@@ -4111,6 +4135,8 @@ pub use self::__MusicPlayer::MusicSequenceReverse;
 pub use self::__MusicPlayer::MusicSequenceSaveSMFData;
 #[cfg(all(feature = "AUGraph", feature = "MusicPlayer"))]
 pub use self::__MusicPlayer::MusicSequenceSetAUGraph;
+#[cfg(all(feature = "MusicPlayer", feature = "objc2-core-midi"))]
+pub use self::__MusicPlayer::MusicSequenceSetMIDIEndpoint;
 #[cfg(feature = "MusicPlayer")]
 pub use self::__MusicPlayer::MusicSequenceSetSequenceType;
 #[cfg(feature = "MusicPlayer")]
@@ -4129,6 +4155,8 @@ pub use self::__MusicPlayer::MusicTrackClear;
 pub use self::__MusicPlayer::MusicTrackCopyInsert;
 #[cfg(feature = "MusicPlayer")]
 pub use self::__MusicPlayer::MusicTrackCut;
+#[cfg(all(feature = "MusicPlayer", feature = "objc2-core-midi"))]
+pub use self::__MusicPlayer::MusicTrackGetDestMIDIEndpoint;
 #[cfg(all(feature = "AUGraph", feature = "MusicPlayer"))]
 pub use self::__MusicPlayer::MusicTrackGetDestNode;
 #[cfg(feature = "MusicPlayer")]
@@ -4173,6 +4201,8 @@ pub use self::__MusicPlayer::MusicTrackNewMetaEvent;
 pub use self::__MusicPlayer::MusicTrackNewParameterEvent;
 #[cfg(feature = "MusicPlayer")]
 pub use self::__MusicPlayer::MusicTrackNewUserEvent;
+#[cfg(all(feature = "MusicPlayer", feature = "objc2-core-midi"))]
+pub use self::__MusicPlayer::MusicTrackSetDestMIDIEndpoint;
 #[cfg(all(feature = "AUGraph", feature = "MusicPlayer"))]
 pub use self::__MusicPlayer::MusicTrackSetDestNode;
 #[cfg(feature = "MusicPlayer")]
@@ -4204,6 +4234,8 @@ use objc2::__framework_prelude::*;
 use objc2_core_audio_types::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
+#[cfg(feature = "objc2-core-midi")]
+use objc2_core_midi::*;
 
 use crate::*;
 
@@ -6299,6 +6331,29 @@ extern "C-unwind" {
         in_ca_clock: CAClockRef,
         in_bar_beat_time: NonNull<CABarBeatTime>,
         out_beats: NonNull<CAClockBeats>,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Provides MIDI messages to a clock without using CoreMIDI
+    ///
+    /// In some situations, a client may wish to drive a clock using MIDI Time Code or
+    /// beat clock obtained from a source other than Core MIDI. To do so,
+    /// construct MIDIPacketLists containing the timecode or beat clock messages,
+    /// and pass them to this function.
+    ///
+    ///
+    /// Parameter `inCAClock`: The clock object.
+    ///
+    ///
+    /// Parameter `inMIDIPacketList`: The MIDI events to be parsed.
+    ///
+    ///
+    /// Returns: An OSStatus error code.
+    #[cfg(feature = "objc2-core-midi")]
+    pub fn CAClockParseMIDI(
+        in_ca_clock: CAClockRef,
+        in_midi_packet_list: NonNull<MIDIPacketList>,
     ) -> OSStatus;
 }
 

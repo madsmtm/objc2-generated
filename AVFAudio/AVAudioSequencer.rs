@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-midi")]
+use objc2_core_midi::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -473,6 +475,15 @@ extern_methods!(
         /// Setter for [`destinationAudioUnit`][Self::destinationAudioUnit].
         #[method(setDestinationAudioUnit:)]
         pub unsafe fn setDestinationAudioUnit(&self, destination_audio_unit: Option<&AVAudioUnit>);
+
+        #[cfg(feature = "objc2-core-midi")]
+        #[method(destinationMIDIEndpoint)]
+        pub unsafe fn destinationMIDIEndpoint(&self) -> MIDIEndpointRef;
+
+        #[cfg(feature = "objc2-core-midi")]
+        /// Setter for [`destinationMIDIEndpoint`][Self::destinationMIDIEndpoint].
+        #[method(setDestinationMIDIEndpoint:)]
+        pub unsafe fn setDestinationMIDIEndpoint(&self, destination_midi_endpoint: MIDIEndpointRef);
 
         #[cfg(feature = "AVAudioTypes")]
         /// The timestamp range in beats for the loop

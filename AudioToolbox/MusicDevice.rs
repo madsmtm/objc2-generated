@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-midi")]
+use objc2_core_midi::*;
 
 use crate::*;
 
@@ -223,6 +225,42 @@ extern "C-unwind" {
         in_unit: MusicDeviceComponent,
         in_data: NonNull<u8>,
         in_length: u32,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Used to send MIDI messages to an audio unit
+    ///
+    ///
+    /// This API is suitable for sending Universal MIDI Packet (UMP) MIDI messages to an audio unit. The message must be
+    /// a full non-SysEx event, a partial SysEx event, or a complete SysEx event. Running status is not allowed. MIDI 1.0 in
+    /// universal packets (MIDI-1UP) and MIDI 2.0 messages are allowed. All events sent via MusicDeviceMIDIEventList will
+    /// be delivered to the audio unit in the MIDI protocol returned by kAudioUnitProperty_AudioUnitMIDIProtocol.
+    ///
+    /// This is bridged to the v2 API property kAudioUnitProperty_MIDIOutputCallback.
+    ///
+    ///
+    /// Parameter `inUnit`: The audio unit
+    ///
+    /// Parameter `inOffsetSampleFrame`: If you are scheduling the MIDIEventList from the audio unit's render thread, then you can supply a
+    /// sample offset that the audio unit may apply within its next audio unit render.
+    /// This allows you to schedule to the sample, the time when a MIDI command is applied and is particularly
+    /// important when starting new notes. If you are not scheduling in the audio unit's render thread,
+    /// then you should set this value to 0
+    ///
+    /// inOffsetSampleFrame should serve as the base offset for each packet's timestamp i.e.
+    /// sampleOffset = inOffsetSampleFrame + evtList.packet[0].timeStamp
+    ///
+    ///
+    /// Parameter `evtList`: The MIDIEventList to be sent
+    ///
+    ///
+    /// Returns: noErr, or an audio unit error code
+    #[cfg(all(feature = "AudioComponent", feature = "objc2-core-midi"))]
+    pub fn MusicDeviceMIDIEventList(
+        in_unit: MusicDeviceComponent,
+        in_offset_sample_frame: u32,
+        evt_list: NonNull<MIDIEventList>,
     ) -> OSStatus;
 }
 

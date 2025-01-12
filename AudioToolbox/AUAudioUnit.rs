@@ -5,6 +5,8 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-audio-types")]
 use objc2_core_audio_types::*;
+#[cfg(feature = "objc2-core-midi")]
+use objc2_core_midi::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -264,6 +266,22 @@ pub type AUHostMusicalContextBlock = *mut block2::Block<
         *mut c_double,
     ) -> Bool,
 >;
+
+/// Block by which hosts are informed of an audio unit having enabled or disabled a
+/// MIDI-CI profile.
+///
+/// Parameter `cable`: The virtual MIDI cable on which the event occured.
+///
+/// Parameter `channel`: The MIDI channel on which the profile was enabled or disabled.
+///
+/// Parameter `profile`: The MIDI-CI profile.
+///
+/// Parameter `enabled`: YES if the profile was enabled, NO if the profile was disabled.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumidiciprofilechangedblock?language=objc)
+#[cfg(all(feature = "block2", feature = "objc2-core-midi"))]
+pub type AUMIDICIProfileChangedBlock =
+    *mut block2::Block<dyn Fn(u8, MIDIChannelNumber, NonNull<MIDICIProfile>, Bool)>;
 
 /// Flags describing the host's transport state.
 ///
@@ -723,6 +741,47 @@ extern_methods!(
             midi_output_event_block: AUMIDIOutputEventBlock,
         );
 
+        #[cfg(feature = "objc2-core-midi")]
+        /// The MIDI protocol used by the Audio Unit for receiving MIDIEventList data.
+        ///
+        /// Subclassers should override to return the desired protocol in which the Audio Unit wants
+        /// to receive input MIDI data, otherwise the Audio Unit will default to receiving legacy MIDI.
+        ///
+        /// All translatable messages will be converted (if necessary) to this protocol prior to delivery
+        /// to the Audio Unit.
+        ///
+        /// This is bridged to the v2 API property kAudioUnitProperty_AudioUnitMIDIProtocol.
+        #[method(AudioUnitMIDIProtocol)]
+        pub unsafe fn AudioUnitMIDIProtocol(&self) -> MIDIProtocolID;
+
+        #[cfg(feature = "objc2-core-midi")]
+        /// The MIDI protocol to be used by the host for receiving MIDIEventList data.
+        ///
+        /// Hosts should set this property to the protocol they wish to receive MIDIEventList data
+        /// from the Audio Unit. This should be set prior to initialization, all translatable messages
+        /// will be converted  (if necessary) to this property's protocol prior to delivery to the host.
+        ///
+        /// Host should setup in the following order:
+        /// - Set hostMIDIProtocol
+        /// - Set MIDIOutputEventListBlock
+        /// - Call allocateRenderResourcesAndReturnError
+        ///
+        /// This is bridged to the v2 API property kAudioUnitProperty_HostMIDIProtocol.
+        ///
+        /// Notes:
+        /// - If overriding this property, subclassers must call [super setHostMIDIProtocol:]
+        /// - hostMIDIProtocol should be set before attempting to query AudioUnitMIDIProtocol
+        /// or calling allocateRenderResourcesAndReturnError to allow Audio Units to
+        /// optionally match their input MIDI protocol to the desired host protocol and prevent
+        /// protocol conversion.
+        #[method(hostMIDIProtocol)]
+        pub unsafe fn hostMIDIProtocol(&self) -> MIDIProtocolID;
+
+        #[cfg(feature = "objc2-core-midi")]
+        /// Setter for [`hostMIDIProtocol`][Self::hostMIDIProtocol].
+        #[method(setHostMIDIProtocol:)]
+        pub unsafe fn setHostMIDIProtocol(&self, host_midi_protocol: MIDIProtocolID);
+
         /// A persistable snapshot of the Audio Unit's properties and parameters, suitable for
         /// saving as a user preset.
         ///
@@ -1138,6 +1197,82 @@ extern_methods!(
         /// Setter for [`channelMap`][Self::channelMap].
         #[method(setChannelMap:)]
         pub unsafe fn setChannelMap(&self, channel_map: Option<&NSArray<NSNumber>>);
+
+        #[cfg(feature = "objc2-core-midi")]
+        /// Given a MIDI cable and channel number, return the supported MIDI-CI Profiles.
+        ///
+        /// Parameter `cable`: The virtual MIDI cable for which the profiles are requested.
+        ///
+        /// Parameter `channel`: The MIDI channel for which the profiles are requested.
+        ///
+        /// Returns: A MIDICIProfileState object containing all the supported MIDI-CI profiles for this channel
+        /// on this cable.
+        #[method_id(@__retain_semantics Other profileStateForCable:channel:)]
+        pub unsafe fn profileStateForCable_channel(
+            &self,
+            cable: u8,
+            channel: MIDIChannelNumber,
+        ) -> Retained<MIDICIProfileState>;
+
+        #[cfg(feature = "objc2-core-midi")]
+        /// Enable a MIDI-CI Profile on the specified cable/channel.
+        ///
+        /// Parameter `profile`: The MIDI-CI profile to be enabled.
+        ///
+        /// Parameter `cable`: The virtual MIDI cable.
+        ///
+        /// Parameter `channel`: The MIDI channel.
+        ///
+        /// Parameter `outError`: Returned in the event of failure.
+        ///
+        /// Returns: YES for success. NO in the event of a failure, in which case the error is returned
+        /// in outError.
+        #[method(enableProfile:cable:onChannel:error:_)]
+        pub unsafe fn enableProfile_cable_onChannel_error(
+            &self,
+            profile: &MIDICIProfile,
+            cable: u8,
+            channel: MIDIChannelNumber,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(feature = "objc2-core-midi")]
+        /// Disable a MIDI-CI Profile on the specified cable/channel.
+        ///
+        /// Parameter `profile`: The MIDI-CI profile to be disabled.
+        ///
+        /// Parameter `cable`: The virtual MIDI cable.
+        ///
+        /// Parameter `channel`: The MIDI channel.
+        ///
+        /// Parameter `outError`: Returned in the event of failure.
+        ///
+        /// Returns: YES for success. NO in the event of a failure, in which case the error is returned
+        /// in outError.
+        #[method(disableProfile:cable:onChannel:error:_)]
+        pub unsafe fn disableProfile_cable_onChannel_error(
+            &self,
+            profile: &MIDICIProfile,
+            cable: u8,
+            channel: MIDIChannelNumber,
+        ) -> Result<(), Retained<NSError>>;
+
+        #[cfg(all(feature = "block2", feature = "objc2-core-midi"))]
+        /// A block called when a device notifies that a MIDI-CI profile has been enabled or
+        /// disabled.
+        ///
+        /// Since enabling / disabling MIDI-CI profiles is an asynchronous operation, the host can set
+        /// this block and the audio unit is expected to call it every time the state of a MIDI-CI
+        /// profile has changed.
+        #[method(profileChangedBlock)]
+        pub unsafe fn profileChangedBlock(&self) -> AUMIDICIProfileChangedBlock;
+
+        #[cfg(all(feature = "block2", feature = "objc2-core-midi"))]
+        /// Setter for [`profileChangedBlock`][Self::profileChangedBlock].
+        #[method(setProfileChangedBlock:)]
+        pub unsafe fn setProfileChangedBlock(
+            &self,
+            profile_changed_block: AUMIDICIProfileChangedBlock,
+        );
 
         /// Returns an object for bidirectional communication between an Audio Unit and its host.
         ///
