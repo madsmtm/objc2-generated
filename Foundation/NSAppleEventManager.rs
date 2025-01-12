@@ -5,6 +5,9 @@ use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-services")]
+#[cfg(target_vendor = "apple")]
+use objc2_core_services::*;
 
 use crate::*;
 
@@ -54,6 +57,39 @@ impl NSAppleEventManager {
         #[unsafe(method(sharedAppleEventManager))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedAppleEventManager() -> Retained<NSAppleEventManager>;
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(setEventHandler:andSelector:forEventClass:andEventID:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setEventHandler_andSelector_forEventClass_andEventID(
+            &self,
+            handler: &AnyObject,
+            handle_event_selector: Sel,
+            event_class: AEEventClass,
+            event_id: AEEventID,
+        );
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(removeEventHandlerForEventClass:andEventID:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn removeEventHandlerForEventClass_andEventID(
+            &self,
+            event_class: AEEventClass,
+            event_id: AEEventID,
+        );
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(dispatchRawAppleEvent:withRawReply:handlerRefCon:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn dispatchRawAppleEvent_withRawReply_handlerRefCon(
+            &self,
+            the_apple_event: NonNull<AppleEvent>,
+            the_reply: NonNull<AppleEvent>,
+            handler_ref_con: SRefCon,
+        ) -> OSErr;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
         #[unsafe(method(currentAppleEvent))]

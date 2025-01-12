@@ -3,6 +3,9 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-services")]
+#[cfg(target_vendor = "apple")]
+use objc2_core_services::*;
 
 use crate::*;
 
@@ -75,6 +78,25 @@ impl NSAppleEventDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn nullDescriptor() -> Retained<NSAppleEventDescriptor>;
 
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(descriptorWithDescriptorType:bytes:length:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn descriptorWithDescriptorType_bytes_length(
+            descriptor_type: DescType,
+            bytes: *const c_void,
+            byte_count: NSUInteger,
+        ) -> Option<Retained<NSAppleEventDescriptor>>;
+
+        #[cfg(all(feature = "NSData", feature = "objc2-core-services"))]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(descriptorWithDescriptorType:data:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn descriptorWithDescriptorType_data(
+            descriptor_type: DescType,
+            data: Option<&NSData>,
+        ) -> Option<Retained<NSAppleEventDescriptor>>;
+
         #[unsafe(method(descriptorWithBoolean:))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithBoolean(boolean: Boolean) -> Retained<NSAppleEventDescriptor>;
@@ -115,6 +137,18 @@ impl NSAppleEventDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn descriptorWithFileURL(file_url: &NSURL) -> Retained<NSAppleEventDescriptor>;
 
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(appleEventWithEventClass:eventID:targetDescriptor:returnID:transactionID:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn appleEventWithEventClass_eventID_targetDescriptor_returnID_transactionID(
+            event_class: AEEventClass,
+            event_id: AEEventID,
+            target_descriptor: Option<&NSAppleEventDescriptor>,
+            return_id: AEReturnID,
+            transaction_id: AETransactionID,
+        ) -> Retained<NSAppleEventDescriptor>;
+
         #[unsafe(method(listDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn listDescriptor() -> Retained<NSAppleEventDescriptor>;
@@ -148,6 +182,49 @@ impl NSAppleEventDescriptor {
             application_url: &NSURL,
         ) -> Retained<NSAppleEventDescriptor>;
 
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(initWithAEDescNoCopy:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithAEDescNoCopy(
+            this: Allocated<Self>,
+            ae_desc: NonNull<AEDesc>,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(initWithDescriptorType:bytes:length:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithDescriptorType_bytes_length(
+            this: Allocated<Self>,
+            descriptor_type: DescType,
+            bytes: *const c_void,
+            byte_count: NSUInteger,
+        ) -> Option<Retained<Self>>;
+
+        #[cfg(all(feature = "NSData", feature = "objc2-core-services"))]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(initWithDescriptorType:data:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithDescriptorType_data(
+            this: Allocated<Self>,
+            descriptor_type: DescType,
+            data: Option<&NSData>,
+        ) -> Option<Retained<Self>>;
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(initWithEventClass:eventID:targetDescriptor:returnID:transactionID:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithEventClass_eventID_targetDescriptor_returnID_transactionID(
+            this: Allocated<Self>,
+            event_class: AEEventClass,
+            event_id: AEEventID,
+            target_descriptor: Option<&NSAppleEventDescriptor>,
+            return_id: AEReturnID,
+            transaction_id: AETransactionID,
+        ) -> Retained<Self>;
+
         #[unsafe(method(initListDescriptor))]
         #[unsafe(method_family = init)]
         pub unsafe fn initListDescriptor(this: Allocated<Self>) -> Retained<Self>;
@@ -155,6 +232,18 @@ impl NSAppleEventDescriptor {
         #[unsafe(method(initRecordDescriptor))]
         #[unsafe(method_family = init)]
         pub unsafe fn initRecordDescriptor(this: Allocated<Self>) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(aeDesc))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn aeDesc(&self) -> *const AEDesc;
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(descriptorType))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn descriptorType(&self) -> DescType;
 
         #[cfg(feature = "NSData")]
         #[unsafe(method(data))]
@@ -196,6 +285,83 @@ impl NSAppleEventDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn fileURLValue(&self) -> Option<Retained<NSURL>>;
 
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(eventClass))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn eventClass(&self) -> AEEventClass;
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(eventID))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn eventID(&self) -> AEEventID;
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(returnID))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn returnID(&self) -> AEReturnID;
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(transactionID))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn transactionID(&self) -> AETransactionID;
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(setParamDescriptor:forKeyword:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setParamDescriptor_forKeyword(
+            &self,
+            descriptor: &NSAppleEventDescriptor,
+            keyword: AEKeyword,
+        );
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(paramDescriptorForKeyword:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn paramDescriptorForKeyword(
+            &self,
+            keyword: AEKeyword,
+        ) -> Option<Retained<NSAppleEventDescriptor>>;
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(removeParamDescriptorWithKeyword:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn removeParamDescriptorWithKeyword(&self, keyword: AEKeyword);
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(setAttributeDescriptor:forKeyword:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAttributeDescriptor_forKeyword(
+            &self,
+            descriptor: &NSAppleEventDescriptor,
+            keyword: AEKeyword,
+        );
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(attributeDescriptorForKeyword:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn attributeDescriptorForKeyword(
+            &self,
+            keyword: AEKeyword,
+        ) -> Option<Retained<NSAppleEventDescriptor>>;
+
+        #[cfg(all(feature = "NSDate", feature = "NSError"))]
+        #[unsafe(method(sendEventWithOptions:timeout:error:_))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn sendEventWithOptions_timeout_error(
+            &self,
+            send_options: NSAppleEventSendOptions,
+            timeout_in_seconds: NSTimeInterval,
+        ) -> Result<Retained<NSAppleEventDescriptor>, Retained<NSError>>;
+
         #[unsafe(method(isRecordDescriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn isRecordDescriptor(&self) -> bool;
@@ -222,6 +388,46 @@ impl NSAppleEventDescriptor {
         #[unsafe(method(removeDescriptorAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeDescriptorAtIndex(&self, index: NSInteger);
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(setDescriptor:forKeyword:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDescriptor_forKeyword(
+            &self,
+            descriptor: &NSAppleEventDescriptor,
+            keyword: AEKeyword,
+        );
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(descriptorForKeyword:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn descriptorForKeyword(
+            &self,
+            keyword: AEKeyword,
+        ) -> Option<Retained<NSAppleEventDescriptor>>;
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(removeDescriptorWithKeyword:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn removeDescriptorWithKeyword(&self, keyword: AEKeyword);
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(keywordForDescriptorAtIndex:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn keywordForDescriptorAtIndex(&self, index: NSInteger) -> AEKeyword;
+
+        #[cfg(feature = "objc2-core-services")]
+        #[cfg(target_vendor = "apple")]
+        #[unsafe(method(coerceToDescriptorType:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn coerceToDescriptorType(
+            &self,
+            descriptor_type: DescType,
+        ) -> Option<Retained<NSAppleEventDescriptor>>;
     );
 }
 

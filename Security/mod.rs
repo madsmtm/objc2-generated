@@ -370,12 +370,6 @@ pub use self::__AuthorizationDB::AuthorizationRightRemove;
 #[cfg(all(feature = "Authorization", feature = "AuthorizationDB"))]
 pub use self::__AuthorizationDB::AuthorizationRightSet;
 #[cfg(feature = "AuthorizationPlugin")]
-pub use self::__AuthorizationPlugin::kAuthorizationCallbacksVersion;
-#[cfg(feature = "AuthorizationPlugin")]
-pub use self::__AuthorizationPlugin::kAuthorizationPluginInterfaceVersion;
-#[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
-pub use self::__AuthorizationPlugin::AuthorizationCallbacks;
-#[cfg(feature = "AuthorizationPlugin")]
 pub use self::__AuthorizationPlugin::AuthorizationContextFlags;
 #[cfg(feature = "AuthorizationPlugin")]
 pub use self::__AuthorizationPlugin::AuthorizationEngineRef;
@@ -384,11 +378,7 @@ pub use self::__AuthorizationPlugin::AuthorizationMechanismId;
 #[cfg(feature = "AuthorizationPlugin")]
 pub use self::__AuthorizationPlugin::AuthorizationMechanismRef;
 #[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
-pub use self::__AuthorizationPlugin::AuthorizationPluginCreate;
-#[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
 pub use self::__AuthorizationPlugin::AuthorizationPluginId;
-#[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
-pub use self::__AuthorizationPlugin::AuthorizationPluginInterface;
 #[cfg(feature = "AuthorizationPlugin")]
 pub use self::__AuthorizationPlugin::AuthorizationPluginRef;
 #[cfg(feature = "AuthorizationPlugin")]
@@ -396,9 +386,21 @@ pub use self::__AuthorizationPlugin::AuthorizationResult;
 #[cfg(feature = "AuthorizationPlugin")]
 pub use self::__AuthorizationPlugin::AuthorizationSessionId;
 #[cfg(feature = "AuthorizationPlugin")]
-pub use self::__AuthorizationPlugin::AuthorizationValue;
-#[cfg(feature = "AuthorizationPlugin")]
 pub use self::__AuthorizationPlugin::AuthorizationValueVector;
+#[cfg(feature = "AuthorizationPlugin")]
+pub(crate) use self::__AuthorizationPlugin::__OpaqueAuthorizationEngine;
+#[cfg(feature = "AuthorizationPlugin")]
+pub use self::__AuthorizationPlugin::kAuthorizationCallbacksVersion;
+#[cfg(feature = "AuthorizationPlugin")]
+pub use self::__AuthorizationPlugin::kAuthorizationPluginInterfaceVersion;
+#[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
+pub use self::__AuthorizationPlugin::AuthorizationCallbacks;
+#[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
+pub use self::__AuthorizationPlugin::AuthorizationPluginCreate;
+#[cfg(all(feature = "Authorization", feature = "AuthorizationPlugin"))]
+pub use self::__AuthorizationPlugin::AuthorizationPluginInterface;
+#[cfg(feature = "AuthorizationPlugin")]
+pub use self::__AuthorizationPlugin::AuthorizationValue;
 #[cfg(feature = "CMSDecoder")]
 pub use self::__CMSDecoder::CMSDecoder;
 #[cfg(feature = "CMSDecoder")]
@@ -4936,6 +4938,14 @@ pub use self::__certextensions::CE_QC_Statements;
 pub use self::__certextensions::CE_SemanticsInformation;
 #[cfg(all(feature = "SecAsn1Types", feature = "certextensions"))]
 pub use self::__certextensions::CE_SubjectKeyID;
+#[cfg(all(
+    feature = "SecAsn1Types",
+    feature = "certextensions",
+    feature = "cssmconfig",
+    feature = "cssmtype",
+    feature = "x509defs"
+))]
+pub(crate) use self::__certextensions::__CE_DistributionPointName_dpn;
 #[cfg(all(feature = "cssmaci", feature = "cssmconfig", feature = "cssmtype"))]
 pub use self::__cssmaci::cssm_spi_ac_funcs;
 #[cfg(all(feature = "cssmaci", feature = "cssmconfig", feature = "cssmtype"))]
