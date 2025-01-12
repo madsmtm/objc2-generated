@@ -4230,6 +4230,8 @@ use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-audio")]
+use objc2_core_audio::*;
 #[cfg(feature = "objc2-core-audio-types")]
 use objc2_core_audio_types::*;
 #[cfg(feature = "objc2-core-foundation")]
@@ -4238,6 +4240,221 @@ use objc2_core_foundation::*;
 use objc2_core_midi::*;
 
 use crate::*;
+
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareserviceproperty_servicerestarted?language=objc)
+#[cfg(feature = "objc2-core-audio")]
+pub const kAudioHardwareServiceProperty_ServiceRestarted: AudioObjectPropertySelector = 0x73727374;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareservicedeviceproperty_virtualmainvolume?language=objc)
+#[cfg(feature = "objc2-core-audio")]
+pub const kAudioHardwareServiceDeviceProperty_VirtualMainVolume: AudioObjectPropertySelector =
+    0x766d7663;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareservicedeviceproperty_virtualmastervolume?language=objc)
+#[cfg(feature = "objc2-core-audio")]
+#[deprecated]
+pub const kAudioHardwareServiceDeviceProperty_VirtualMasterVolume: AudioObjectPropertySelector =
+    kAudioHardwareServiceDeviceProperty_VirtualMainVolume;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareservicedeviceproperty_virtualmainbalance?language=objc)
+#[cfg(feature = "objc2-core-audio")]
+pub const kAudioHardwareServiceDeviceProperty_VirtualMainBalance: AudioObjectPropertySelector =
+    0x766d6263;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareservicedeviceproperty_virtualmasterbalance?language=objc)
+#[cfg(feature = "objc2-core-audio")]
+#[deprecated]
+pub const kAudioHardwareServiceDeviceProperty_VirtualMasterBalance: AudioObjectPropertySelector =
+    kAudioHardwareServiceDeviceProperty_VirtualMainBalance;
+
+/// Queries an AudioObject about whether or not it has the given property.
+///
+/// Parameter `inObjectID`: The AudioObject to query.
+///
+/// Parameter `inAddress`: An AudioObjectPropertyAddress indicating which property is being queried.
+///
+/// Returns: A Boolean indicating whether or not the AudioObject has the given property.
+#[cfg(feature = "objc2-core-audio")]
+#[deprecated = "no longer supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn AudioHardwareServiceHasProperty(
+    in_object_id: AudioObjectID,
+    in_address: *const AudioObjectPropertyAddress,
+) -> bool {
+    extern "C-unwind" {
+        fn AudioHardwareServiceHasProperty(
+            in_object_id: AudioObjectID,
+            in_address: *const AudioObjectPropertyAddress,
+        ) -> Boolean;
+    }
+    let ret = unsafe { AudioHardwareServiceHasProperty(in_object_id, in_address) };
+    ret != 0
+}
+
+extern "C-unwind" {
+    /// Queries an AudioObject about whether or not the given property can be set using
+    /// AudioHardwareServiceSetPropertyData.
+    ///
+    /// Parameter `inObjectID`: The AudioObject to query.
+    ///
+    /// Parameter `inAddress`: An AudioObjectPropertyAddress indicating which property is being queried.
+    ///
+    /// Parameter `outIsSettable`: A Boolean indicating whether or not the property can be set.
+    ///
+    /// Returns: An OSStatus indicating success or failure.
+    #[cfg(feature = "objc2-core-audio")]
+    #[deprecated = "no longer supported"]
+    pub fn AudioHardwareServiceIsPropertySettable(
+        in_object_id: AudioObjectID,
+        in_address: *const AudioObjectPropertyAddress,
+        out_is_settable: *mut Boolean,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Queries an AudioObject to find the size of the data for the given property.
+    ///
+    /// Parameter `inObjectID`: The AudioObject to query.
+    ///
+    /// Parameter `inAddress`: An AudioObjectPropertyAddress indicating which property is being queried.
+    ///
+    /// Parameter `inQualifierDataSize`: A UInt32 indicating the size of the buffer pointed to by inQualifierData.
+    /// Note that not all properties require qualification, in which case this
+    /// value will be 0.
+    ///
+    /// Parameter `inQualifierData`: A buffer of data to be used in determining the data of the property being
+    /// queried. Note that not all properties require qualification, in which case
+    /// this value will be NULL.
+    ///
+    /// Parameter `outDataSize`: A UInt32 indicating how many bytes the data for the given property occupies.
+    ///
+    /// Returns: An OSStatus indicating success or failure.
+    #[cfg(feature = "objc2-core-audio")]
+    #[deprecated = "no longer supported"]
+    pub fn AudioHardwareServiceGetPropertyDataSize(
+        in_object_id: AudioObjectID,
+        in_address: *const AudioObjectPropertyAddress,
+        in_qualifier_data_size: u32,
+        in_qualifier_data: *const c_void,
+        out_data_size: *mut u32,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Queries an AudioObject to get the data of the given property and places it in
+    /// the provided buffer.
+    ///
+    /// Parameter `inObjectID`: The AudioObject to query.
+    ///
+    /// Parameter `inAddress`: An AudioObjectPropertyAddress indicating which property is being queried.
+    ///
+    /// Parameter `inQualifierDataSize`: A UInt32 indicating the size of the buffer pointed to by inQualifierData.
+    /// Note that not all properties require qualification, in which case this
+    /// value will be 0.
+    ///
+    /// Parameter `inQualifierData`: A buffer of data to be used in determining the data of the property being
+    /// queried. Note that not all properties require qualification, in which case
+    /// this value will be NULL.
+    ///
+    /// Parameter `ioDataSize`: A UInt32 which on entry indicates the size of the buffer pointed to by
+    /// outData and on exit indicates how much of the buffer was used.
+    ///
+    /// Parameter `outData`: The buffer into which the AudioObject will put the data for the given
+    /// property.
+    ///
+    /// Returns: An OSStatus indicating success or failure.
+    #[cfg(feature = "objc2-core-audio")]
+    #[deprecated = "no longer supported"]
+    pub fn AudioHardwareServiceGetPropertyData(
+        in_object_id: AudioObjectID,
+        in_address: *const AudioObjectPropertyAddress,
+        in_qualifier_data_size: u32,
+        in_qualifier_data: *const c_void,
+        io_data_size: *mut u32,
+        out_data: *mut c_void,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Tells an AudioObject to change the value of the given property using the
+    /// provided data.
+    ///
+    /// Note that the value of the property should not be considered changed until the
+    /// HAL has called the listeners as many properties values are changed
+    /// asynchronously.
+    ///
+    /// Parameter `inObjectID`: The AudioObject to change.
+    ///
+    /// Parameter `inAddress`: An AudioObjectPropertyAddress indicating which property is being changed.
+    ///
+    /// Parameter `inQualifierDataSize`: A UInt32 indicating the size of the buffer pointed to by inQualifierData.
+    /// Note that not all properties require qualification, in which case this
+    /// value will be 0.
+    ///
+    /// Parameter `inQualifierData`: A buffer of data to be used in determining the data of the property being
+    /// queried. Note that not all properties require qualification, in which case
+    /// this value will be NULL.
+    ///
+    /// Parameter `inDataSize`: A UInt32 indicating the size of the buffer pointed to by inData.
+    ///
+    /// Parameter `inData`: The buffer containing the data to be used to change the property's value.
+    ///
+    /// Returns: An OSStatus indicating success or failure.
+    #[cfg(feature = "objc2-core-audio")]
+    #[deprecated = "no longer supported"]
+    pub fn AudioHardwareServiceSetPropertyData(
+        in_object_id: AudioObjectID,
+        in_address: *const AudioObjectPropertyAddress,
+        in_qualifier_data_size: u32,
+        in_qualifier_data: *const c_void,
+        in_data_size: u32,
+        in_data: *const c_void,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Registers the given AudioObjectPropertyListenerProc to receive notifications
+    /// when the given properties change.
+    ///
+    /// Parameter `inObjectID`: The AudioObject to register the listener with.
+    ///
+    /// Parameter `inAddress`: The AudioObjectPropertyAddresses indicating which property the listener
+    /// should be notified about.
+    ///
+    /// Parameter `inListener`: The AudioObjectPropertyListenerProc to call.
+    ///
+    /// Parameter `inClientData`: A pointer to client data that is passed to the listener when it is called.
+    ///
+    /// Returns: An OSStatus indicating success or failure.
+    #[cfg(feature = "objc2-core-audio")]
+    #[deprecated = "no longer supported"]
+    pub fn AudioHardwareServiceAddPropertyListener(
+        in_object_id: AudioObjectID,
+        in_address: *const AudioObjectPropertyAddress,
+        in_listener: AudioObjectPropertyListenerProc,
+        in_client_data: *mut c_void,
+    ) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// Unregisters the given AudioObjectPropertyListenerProc from receiving
+    /// notifications when the given properties change.
+    ///
+    /// Parameter `inObjectID`: The AudioObject to unregister the listener from.
+    ///
+    /// Parameter `inAddress`: The AudioObjectPropertyAddresses indicating which property the listener
+    /// will stop being notified about.
+    ///
+    /// Parameter `inListener`: The AudioObjectPropertyListenerProc being removed.
+    ///
+    /// Parameter `inClientData`: A pointer to client data that is passed to the listener when it is called.
+    ///
+    /// Returns: An OSStatus indicating success or failure.
+    #[cfg(feature = "objc2-core-audio")]
+    #[deprecated = "no longer supported"]
+    pub fn AudioHardwareServiceRemovePropertyListener(
+        in_object_id: AudioObjectID,
+        in_address: *const AudioObjectPropertyAddress,
+        in_listener: AudioObjectPropertyListenerProc,
+        in_client_data: *mut c_void,
+    ) -> OSStatus;
+}
 
 /// represents an instance of an AudioFileComponent.
 ///

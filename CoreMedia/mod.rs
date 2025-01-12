@@ -105,6 +105,24 @@ pub use self::__CMAttachment::CMSetAttachments;
 pub use self::__CMAudioClock::CMAudioClockCreate;
 #[cfg(all(feature = "CMAudioDeviceClock", feature = "CMSync"))]
 pub use self::__CMAudioDeviceClock::CMAudioDeviceClockCreate;
+#[cfg(all(
+    feature = "CMAudioDeviceClock",
+    feature = "CMSync",
+    feature = "objc2-core-audio"
+))]
+pub use self::__CMAudioDeviceClock::CMAudioDeviceClockCreateFromAudioDeviceID;
+#[cfg(all(
+    feature = "CMAudioDeviceClock",
+    feature = "CMSync",
+    feature = "objc2-core-audio"
+))]
+pub use self::__CMAudioDeviceClock::CMAudioDeviceClockGetAudioDevice;
+#[cfg(all(
+    feature = "CMAudioDeviceClock",
+    feature = "CMSync",
+    feature = "objc2-core-audio"
+))]
+pub use self::__CMAudioDeviceClock::CMAudioDeviceClockSetAudioDeviceID;
 #[cfg(all(feature = "CMAudioDeviceClock", feature = "CMSync"))]
 pub use self::__CMAudioDeviceClock::CMAudioDeviceClockSetAudioDeviceUID;
 #[cfg(feature = "CMBase")]
