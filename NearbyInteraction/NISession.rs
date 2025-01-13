@@ -3,6 +3,9 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-ar-kit")]
+#[cfg(target_os = "ios")]
+use objc2_ar_kit::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -75,6 +78,22 @@ extern_methods!(
         /// calling -runWithConfiguration: after invalidation will result in an error.
         #[method(invalidate)]
         pub unsafe fn invalidate(&self);
+
+        #[cfg(feature = "objc2-ar-kit")]
+        #[cfg(target_os = "ios")]
+        /// Provide an ARSession object for use with the NISession
+        ///
+        /// Parameter `session`: The ARSession to use for camera assistance
+        ///
+        /// If not provided, an ARSession will be created automatically if the cameraAssistanceEnabled property on the configuration is YES
+        ///
+        /// The developer is responsible for running the ARSession if provided.
+        ///
+        /// If the ARConfiguration used to run the session is not compatible with the NISession, the NISession will invalidate with error
+        ///
+        /// If the platform does not support camera assistance or an ARSession is provided without enabling cameraAssistanceEnabled property in the NIConfiguration, the NISession will invalidate with error (see NIError.h)
+        #[method(setARSession:)]
+        pub unsafe fn setARSession(&self, session: &ARSession);
     }
 );
 
