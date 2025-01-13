@@ -2,28 +2,22 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-metal")]
 use objc2_metal::*;
 
 use crate::*;
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_object_cp_layer_renderer_capabilities?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "objc2")]
     pub struct CP_OBJECT_cp_layer_renderer_capabilities;
 );
 
-#[cfg(feature = "objc2")]
 unsafe impl NSObjectProtocol for CP_OBJECT_cp_layer_renderer_capabilities {}
 
-#[cfg(feature = "objc2")]
 extern_methods!(
-    #[cfg(feature = "objc2")]
     unsafe impl CP_OBJECT_cp_layer_renderer_capabilities {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -78,7 +72,7 @@ extern "C-unwind" {
     ///
     /// Use this function to determine the pixel arrangements and characteristics
     /// you can apply to the layer.
-    #[cfg(all(feature = "objc2", feature = "objc2-metal"))]
+    #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_capabilities_supported_color_format(
         layer_capabilities: &cp_layer_renderer_capabilities_t,
         index: usize,
@@ -109,7 +103,7 @@ extern "C-unwind" {
     ///
     /// Use this function to determine what depth texture formats the layer
     /// supports.
-    #[cfg(all(feature = "objc2", feature = "objc2-metal"))]
+    #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_capabilities_supported_depth_format(
         layer_capabilities: &cp_layer_renderer_capabilities_t,
         index: usize,
@@ -133,12 +127,10 @@ bitflags::bitflags! {
     }
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl Encode for cp_supported_layouts_options {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for cp_supported_layouts_options {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

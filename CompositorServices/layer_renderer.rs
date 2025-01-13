@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-metal")]
 use objc2_metal::*;
@@ -44,31 +43,24 @@ impl cp_layer_renderer_state {
     pub const invalidated: Self = Self(3);
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl Encode for cp_layer_renderer_state {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for cp_layer_renderer_state {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_object_cp_layer_renderer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "objc2")]
     pub struct CP_OBJECT_cp_layer_renderer;
 );
 
-#[cfg(feature = "objc2")]
 unsafe impl NSObjectProtocol for CP_OBJECT_cp_layer_renderer {}
 
-#[cfg(feature = "objc2")]
 extern_methods!(
-    #[cfg(feature = "objc2")]
     unsafe impl CP_OBJECT_cp_layer_renderer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -92,7 +84,7 @@ pub type cp_layer_renderer_t = CP_OBJECT_cp_layer_renderer;
 /// function to retrieve those details. The system uses this information during the
 /// initial setup of the layer's data structures. Changes you make to the
 /// returned structure don't affect the layer's current configuration.
-#[cfg(all(feature = "layer_renderer_configuration", feature = "objc2"))]
+#[cfg(feature = "layer_renderer_configuration")]
 #[inline]
 pub unsafe extern "C-unwind" fn cp_layer_renderer_get_configuration(
     layer_renderer: &cp_layer_renderer_t,
@@ -116,7 +108,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_configuration(
 /// The layer properties include details about the layer's textures,
 /// such as their organization and the location of drawable views in those
 /// textures.
-#[cfg(all(feature = "layer_renderer_properties", feature = "objc2"))]
+#[cfg(feature = "layer_renderer_properties")]
 #[inline]
 pub unsafe extern "C-unwind" fn cp_layer_renderer_get_properties(
     layer_renderer: &cp_layer_renderer_t,
@@ -140,7 +132,7 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_properties(
 /// The system uses the returned device to create the textures you use for
 /// drawing. It also uses the device to create synchronization events for
 /// the layer.
-#[cfg(all(feature = "objc2", feature = "objc2-metal"))]
+#[cfg(feature = "objc2-metal")]
 #[inline]
 pub unsafe extern "C-unwind" fn cp_layer_renderer_get_device(
     layer_renderer: &cp_layer_renderer_t,

@@ -2,28 +2,22 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-metal")]
 use objc2_metal::*;
 
 use crate::*;
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_object_cp_layer_renderer_configuration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "objc2")]
     pub struct CP_OBJECT_cp_layer_renderer_configuration;
 );
 
-#[cfg(feature = "objc2")]
 unsafe impl NSObjectProtocol for CP_OBJECT_cp_layer_renderer_configuration {}
 
-#[cfg(feature = "objc2")]
 extern_methods!(
-    #[cfg(feature = "objc2")]
     unsafe impl CP_OBJECT_cp_layer_renderer_configuration {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -48,7 +42,7 @@ extern "C-unwind" {
     ///
     /// The compositor creates the color textures using the pixel format
     /// information you provide.
-    #[cfg(all(feature = "objc2", feature = "objc2-metal"))]
+    #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_get_color_format(
         configuration: &cp_layer_renderer_configuration_t,
     ) -> MTLPixelFormat;
@@ -68,7 +62,7 @@ extern "C-unwind" {
     /// Use this function to modify the configuration details for your layer. Call the
     /// ``cp_layer_renderer_capabilities_supported_color_format`` function to determine which
     /// pixel formats the layer’s color textures support.
-    #[cfg(all(feature = "objc2", feature = "objc2-metal"))]
+    #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_set_color_format(
         configuration: &cp_layer_renderer_configuration_t,
         color_format: MTLPixelFormat,
@@ -91,7 +85,7 @@ extern "C-unwind" {
     /// might be readable and writable. For more information, see
     /// <doc
     /// ://com.apple.documentation/documentation/metal/mtltextureusage>.
-    #[cfg(all(feature = "objc2", feature = "objc2-metal"))]
+    #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_get_color_usage(
         configuration: &cp_layer_renderer_configuration_t,
     ) -> MTLTextureUsage;
@@ -114,7 +108,7 @@ extern "C-unwind" {
     /// might be readable and writable. For more information, see
     /// <doc
     /// ://com.apple.documentation/documentation/metal/mtltextureusage>.
-    #[cfg(all(feature = "objc2", feature = "objc2-metal"))]
+    #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_set_color_usage(
         configuration: &cp_layer_renderer_configuration_t,
         color_usage: MTLTextureUsage,
@@ -133,7 +127,7 @@ extern "C-unwind" {
     ///
     /// The compositor creates the depth textures using the pixel format
     /// information you provide.
-    #[cfg(all(feature = "objc2", feature = "objc2-metal"))]
+    #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_get_depth_format(
         configuration: &cp_layer_renderer_configuration_t,
     ) -> MTLPixelFormat;
@@ -153,7 +147,7 @@ extern "C-unwind" {
     /// Use this function to modify the configuration details for your layer. Call the
     /// ``cp_layer_renderer_capabilities_supported_depth_format`` function to determine which
     /// pixel formats the layer’s depth textures supports.
-    #[cfg(all(feature = "objc2", feature = "objc2-metal"))]
+    #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_set_depth_format(
         configuration: &cp_layer_renderer_configuration_t,
         depth_format: MTLPixelFormat,
@@ -175,7 +169,7 @@ extern "C-unwind" {
     /// might be readable and writable. For more information, see
     /// <doc
     /// ://com.apple.documentation/documentation/metal/mtltextureusage>.
-    #[cfg(all(feature = "objc2", feature = "objc2-metal"))]
+    #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_get_depth_usage(
         configuration: &cp_layer_renderer_configuration_t,
     ) -> MTLTextureUsage;
@@ -194,7 +188,7 @@ extern "C-unwind" {
     /// textures.
     ///
     /// Use this function to modify the configuration details for your layer.
-    #[cfg(all(feature = "objc2", feature = "objc2-metal"))]
+    #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_set_depth_usage(
         configuration: &cp_layer_renderer_configuration_t,
         depth_usage: MTLTextureUsage,

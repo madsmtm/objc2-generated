@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
@@ -106,12 +105,12 @@ impl cp_layer_renderer_configuration_error_code {
     pub const unsupported_near_plane_distance: Self = Self(-104);
 }
 
-#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "objc2-core-foundation")]
 unsafe impl Encode for cp_layer_renderer_configuration_error_code {
     const ENCODING: Encoding = CFIndex::ENCODING;
 }
 
-#[cfg(all(feature = "objc2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "objc2-core-foundation")]
 unsafe impl RefEncode for cp_layer_renderer_configuration_error_code {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }

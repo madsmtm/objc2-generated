@@ -82,19 +82,19 @@ pub use self::__cp_types::cp_time_to_cf_time_interval;
 pub use self::__cp_types::cp_time_wait_until;
 #[cfg(feature = "drawable")]
 pub use self::__drawable::cp_drawable;
-#[cfg(all(feature = "drawable", feature = "objc2", feature = "objc2-metal"))]
+#[cfg(all(feature = "drawable", feature = "objc2-metal"))]
 pub use self::__drawable::cp_drawable_encode_present;
-#[cfg(all(feature = "drawable", feature = "objc2", feature = "objc2-metal"))]
+#[cfg(all(feature = "drawable", feature = "objc2-metal"))]
 pub use self::__drawable::cp_drawable_get_color_texture;
-#[cfg(all(feature = "drawable", feature = "objc2", feature = "objc2-metal"))]
+#[cfg(all(feature = "drawable", feature = "objc2-metal"))]
 pub use self::__drawable::cp_drawable_get_depth_texture;
-#[cfg(all(feature = "drawable", feature = "objc2", feature = "objc2-metal"))]
+#[cfg(all(feature = "drawable", feature = "objc2-metal"))]
 pub use self::__drawable::cp_drawable_get_flipped_rasterization_rate_map;
 #[cfg(all(feature = "drawable", feature = "frame_timing"))]
 pub use self::__drawable::cp_drawable_get_frame_timing;
 #[cfg(all(feature = "cp_types", feature = "drawable"))]
 pub use self::__drawable::cp_drawable_get_presentation_frame_index;
-#[cfg(all(feature = "drawable", feature = "objc2", feature = "objc2-metal"))]
+#[cfg(all(feature = "drawable", feature = "objc2-metal"))]
 pub use self::__drawable::cp_drawable_get_rasterization_rate_map;
 #[cfg(feature = "drawable")]
 pub use self::__drawable::cp_drawable_get_rasterization_rate_map_count;
@@ -140,21 +140,13 @@ pub use self::__frame_timing::cp_frame_timing_get_rendering_deadline;
 pub use self::__frame_timing::cp_frame_timing_get_trackable_anchor_time;
 #[cfg(feature = "frame_timing")]
 pub use self::__frame_timing::cp_frame_timing_t;
-#[cfg(all(
-    feature = "layer_renderer",
-    feature = "layer_renderer_configuration",
-    feature = "objc2"
-))]
+#[cfg(all(feature = "layer_renderer", feature = "layer_renderer_configuration"))]
 pub use self::__layer_renderer::cp_layer_renderer_get_configuration;
-#[cfg(all(feature = "layer_renderer", feature = "objc2", feature = "objc2-metal"))]
+#[cfg(all(feature = "layer_renderer", feature = "objc2-metal"))]
 pub use self::__layer_renderer::cp_layer_renderer_get_device;
 #[cfg(feature = "layer_renderer")]
 pub use self::__layer_renderer::cp_layer_renderer_get_minimum_frame_repeat_count;
-#[cfg(all(
-    feature = "layer_renderer",
-    feature = "layer_renderer_properties",
-    feature = "objc2"
-))]
+#[cfg(all(feature = "layer_renderer", feature = "layer_renderer_properties"))]
 pub use self::__layer_renderer::cp_layer_renderer_get_properties;
 #[cfg(feature = "layer_renderer")]
 pub use self::__layer_renderer::cp_layer_renderer_get_state;
@@ -168,21 +160,13 @@ pub use self::__layer_renderer::cp_layer_renderer_state;
 pub use self::__layer_renderer::cp_layer_renderer_t;
 #[cfg(feature = "layer_renderer")]
 pub use self::__layer_renderer::cp_layer_renderer_wait_until_running;
-#[cfg(all(feature = "layer_renderer", feature = "objc2"))]
+#[cfg(feature = "layer_renderer")]
 pub use self::__layer_renderer::CP_OBJECT_cp_layer_renderer;
-#[cfg(all(
-    feature = "layer_renderer_capabilities",
-    feature = "objc2",
-    feature = "objc2-metal"
-))]
+#[cfg(all(feature = "layer_renderer_capabilities", feature = "objc2-metal"))]
 pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_supported_color_format;
 #[cfg(feature = "layer_renderer_capabilities")]
 pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_supported_color_formats_count;
-#[cfg(all(
-    feature = "layer_renderer_capabilities",
-    feature = "objc2",
-    feature = "objc2-metal"
-))]
+#[cfg(all(feature = "layer_renderer_capabilities", feature = "objc2-metal"))]
 pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_supported_depth_format;
 #[cfg(feature = "layer_renderer_capabilities")]
 pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_supported_depth_formats_count;
@@ -201,31 +185,15 @@ pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_supp
 pub use self::__layer_renderer_capabilities::cp_layer_renderer_capabilities_t;
 #[cfg(feature = "layer_renderer_capabilities")]
 pub use self::__layer_renderer_capabilities::cp_supported_layouts_options;
-#[cfg(all(feature = "layer_renderer_capabilities", feature = "objc2"))]
+#[cfg(feature = "layer_renderer_capabilities")]
 pub use self::__layer_renderer_capabilities::CP_OBJECT_cp_layer_renderer_capabilities;
-#[cfg(all(
-    feature = "layer_renderer_configuration",
-    feature = "objc2",
-    feature = "objc2-metal"
-))]
+#[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_get_color_format;
-#[cfg(all(
-    feature = "layer_renderer_configuration",
-    feature = "objc2",
-    feature = "objc2-metal"
-))]
+#[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_get_color_usage;
-#[cfg(all(
-    feature = "layer_renderer_configuration",
-    feature = "objc2",
-    feature = "objc2-metal"
-))]
+#[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_get_depth_format;
-#[cfg(all(
-    feature = "layer_renderer_configuration",
-    feature = "objc2",
-    feature = "objc2-metal"
-))]
+#[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_get_depth_usage;
 #[cfg(feature = "layer_renderer_configuration")]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_get_foveation_enabled;
@@ -236,29 +204,13 @@ pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_ge
     feature = "layer_renderer_layout"
 ))]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_get_layout;
-#[cfg(all(
-    feature = "layer_renderer_configuration",
-    feature = "objc2",
-    feature = "objc2-metal"
-))]
+#[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_set_color_format;
-#[cfg(all(
-    feature = "layer_renderer_configuration",
-    feature = "objc2",
-    feature = "objc2-metal"
-))]
+#[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_set_color_usage;
-#[cfg(all(
-    feature = "layer_renderer_configuration",
-    feature = "objc2",
-    feature = "objc2-metal"
-))]
+#[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_set_depth_format;
-#[cfg(all(
-    feature = "layer_renderer_configuration",
-    feature = "objc2",
-    feature = "objc2-metal"
-))]
+#[cfg(all(feature = "layer_renderer_configuration", feature = "objc2-metal"))]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_set_depth_usage;
 #[cfg(feature = "layer_renderer_configuration")]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_set_foveation_enabled;
@@ -271,14 +223,13 @@ pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_se
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_set_layout;
 #[cfg(feature = "layer_renderer_configuration")]
 pub use self::__layer_renderer_configuration::cp_layer_renderer_configuration_t;
-#[cfg(all(feature = "layer_renderer_configuration", feature = "objc2"))]
+#[cfg(feature = "layer_renderer_configuration")]
 pub use self::__layer_renderer_configuration::CP_OBJECT_cp_layer_renderer_configuration;
 #[cfg(feature = "layer_renderer_layout")]
 pub use self::__layer_renderer_layout::cp_layer_renderer_layout;
 #[cfg(all(
     feature = "layer_renderer_configuration",
     feature = "layer_renderer_properties",
-    feature = "objc2",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__layer_renderer_properties::cp_layer_renderer_properties_create_using_configuration;
@@ -294,15 +245,11 @@ pub use self::__layer_renderer_properties::cp_layer_renderer_properties_t;
 pub use self::__layer_renderer_properties::cp_texture_topology;
 #[cfg(feature = "layer_renderer_properties")]
 pub use self::__layer_renderer_properties::cp_texture_topology_get_array_length;
-#[cfg(all(
-    feature = "layer_renderer_properties",
-    feature = "objc2",
-    feature = "objc2-metal"
-))]
+#[cfg(all(feature = "layer_renderer_properties", feature = "objc2-metal"))]
 pub use self::__layer_renderer_properties::cp_texture_topology_get_texture_type;
 #[cfg(feature = "layer_renderer_properties")]
 pub use self::__layer_renderer_properties::cp_texture_topology_t;
-#[cfg(all(feature = "layer_renderer_properties", feature = "objc2"))]
+#[cfg(feature = "layer_renderer_properties")]
 pub use self::__layer_renderer_properties::CP_OBJECT_cp_layer_renderer_properties;
 #[cfg(feature = "view")]
 pub use self::__view::cp_view;

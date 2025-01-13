@@ -4,7 +4,6 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-metal")]
 use objc2_metal::*;
@@ -36,12 +35,10 @@ impl cp_drawable_state {
     pub const presenting: Self = Self(2);
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl Encode for cp_drawable_state {
     const ENCODING: Encoding = u32::ENCODING;
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for cp_drawable_state {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
@@ -54,7 +51,6 @@ pub struct cp_drawable {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for cp_drawable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_drawable", &[]));
 }
@@ -90,7 +86,7 @@ extern "C-unwind" {
 /// for your content. The layer’s texture topology determines the layout and
 /// content for each texture. The drawable’s views contain information
 /// about how those views map to the textures.
-#[cfg(all(feature = "objc2", feature = "objc2-metal"))]
+#[cfg(feature = "objc2-metal")]
 #[inline]
 pub unsafe extern "C-unwind" fn cp_drawable_get_depth_texture(
     drawable: cp_drawable_t,
@@ -120,7 +116,7 @@ pub unsafe extern "C-unwind" fn cp_drawable_get_depth_texture(
 /// you want to appear onscreen. The layer’s texture topology determines
 /// the layout and content for each texture. The drawable’s views contain
 /// information about how those views map to the textures.
-#[cfg(all(feature = "objc2", feature = "objc2-metal"))]
+#[cfg(feature = "objc2-metal")]
 #[inline]
 pub unsafe extern "C-unwind" fn cp_drawable_get_color_texture(
     drawable: cp_drawable_t,
@@ -166,7 +162,7 @@ extern "C-unwind" {
 /// resolutions. For example, when foveation is enabled, the drawable
 /// includes a rasterization rate map to render the portions of the texture
 /// in someone’s peripheral vision at a lower resolution.
-#[cfg(all(feature = "objc2", feature = "objc2-metal"))]
+#[cfg(feature = "objc2-metal")]
 #[inline]
 pub unsafe extern "C-unwind" fn cp_drawable_get_rasterization_rate_map(
     drawable: cp_drawable_t,
@@ -206,7 +202,7 @@ pub unsafe extern "C-unwind" fn cp_drawable_get_rasterization_rate_map(
 /// In order to generate Y flipped rasterization rate maps in your rendering session,
 /// update the ``cp_layer_renderer_configuration_t`` using the function
 /// ``cp_layer_renderer_configuration_set_generate_flipped_rasterization_rate_maps``.
-#[cfg(all(feature = "objc2", feature = "objc2-metal"))]
+#[cfg(feature = "objc2-metal")]
 #[inline]
 pub unsafe extern "C-unwind" fn cp_drawable_get_flipped_rasterization_rate_map(
     drawable: cp_drawable_t,
@@ -275,7 +271,7 @@ extern "C-unwind" {
     /// ://com.apple.documentation/documentation/metal/mtlcommandbuffer/1443003-commit>
     /// method. The function adds a presentation event to the buffer that
     /// causes the compositor to display your frame.
-    #[cfg(all(feature = "objc2", feature = "objc2-metal"))]
+    #[cfg(feature = "objc2-metal")]
     pub fn cp_drawable_encode_present(
         drawable: cp_drawable_t,
         command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,

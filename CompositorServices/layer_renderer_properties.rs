@@ -3,7 +3,6 @@
 use core::cell::UnsafeCell;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
@@ -20,7 +19,6 @@ pub struct cp_texture_topology {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for cp_texture_topology {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_texture_topology", &[]));
 }
@@ -61,27 +59,22 @@ extern "C-unwind" {
     /// example, a single texture might store one or both views for the left
     /// and right eyes of a head-mounted display. The texture type indicates
     /// this content organization strategy.
-    #[cfg(all(feature = "objc2", feature = "objc2-metal"))]
+    #[cfg(feature = "objc2-metal")]
     pub fn cp_texture_topology_get_texture_type(
         texture_topology: cp_texture_topology_t,
     ) -> MTLTextureType;
 }
 
-#[cfg(feature = "objc2")]
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_object_cp_layer_renderer_properties?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "objc2")]
     pub struct CP_OBJECT_cp_layer_renderer_properties;
 );
 
-#[cfg(feature = "objc2")]
 unsafe impl NSObjectProtocol for CP_OBJECT_cp_layer_renderer_properties {}
 
-#[cfg(feature = "objc2")]
 extern_methods!(
-    #[cfg(feature = "objc2")]
     unsafe impl CP_OBJECT_cp_layer_renderer_properties {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -116,7 +109,6 @@ pub type cp_layer_renderer_properties_t = CP_OBJECT_cp_layer_renderer_properties
 /// of your app's render pipeline.
 #[cfg(all(
     feature = "layer_renderer_configuration",
-    feature = "objc2",
     feature = "objc2-core-foundation"
 ))]
 #[inline]

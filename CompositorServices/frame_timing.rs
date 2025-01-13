@@ -3,7 +3,6 @@
 use core::cell::UnsafeCell;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
 use crate::*;
@@ -16,7 +15,6 @@ pub struct cp_frame_timing {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for cp_frame_timing {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_frame_timing", &[]));
 }

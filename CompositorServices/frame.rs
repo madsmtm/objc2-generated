@@ -4,7 +4,6 @@ use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
-#[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
 use crate::*;
@@ -17,7 +16,6 @@ pub struct cp_frame {
     _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
 }
 
-#[cfg(feature = "objc2")]
 unsafe impl RefEncode for cp_frame {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_frame", &[]));
 }
