@@ -40,12 +40,24 @@ pub use self::__MTKModel::MTKMesh;
 pub use self::__MTKModel::MTKMeshBuffer;
 #[cfg(feature = "MTKModel")]
 pub use self::__MTKModel::MTKMeshBufferAllocator;
+#[cfg(all(feature = "MTKModel", feature = "objc2-model-io"))]
+pub use self::__MTKModel::MTKMetalVertexDescriptorFromModelIO;
+#[cfg(all(feature = "MTKModel", feature = "objc2-model-io"))]
+pub use self::__MTKModel::MTKMetalVertexDescriptorFromModelIOWithError;
+#[cfg(all(feature = "MTKModel", feature = "objc2-model-io"))]
+pub use self::__MTKModel::MTKMetalVertexFormatFromModelIO;
 #[cfg(feature = "MTKModel")]
 pub use self::__MTKModel::MTKModelError;
 #[cfg(feature = "MTKModel")]
 pub use self::__MTKModel::MTKModelErrorDomain;
 #[cfg(feature = "MTKModel")]
 pub use self::__MTKModel::MTKModelErrorKey;
+#[cfg(all(feature = "MTKModel", feature = "objc2-model-io"))]
+pub use self::__MTKModel::MTKModelIOVertexDescriptorFromMetal;
+#[cfg(all(feature = "MTKModel", feature = "objc2-model-io"))]
+pub use self::__MTKModel::MTKModelIOVertexDescriptorFromMetalWithError;
+#[cfg(all(feature = "MTKModel", feature = "objc2-model-io"))]
+pub use self::__MTKModel::MTKModelIOVertexFormatFromMetal;
 #[cfg(feature = "MTKModel")]
 pub use self::__MTKModel::MTKSubmesh;
 #[cfg(feature = "MTKTextureLoader")]

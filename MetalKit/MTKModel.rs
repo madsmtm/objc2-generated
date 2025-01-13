@@ -5,6 +5,8 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 use objc2_metal::*;
+#[cfg(feature = "objc2-model-io")]
+use objc2_model_io::*;
 
 use crate::*;
 
@@ -99,6 +101,13 @@ extern_methods!(
         #[method_id(@__retain_semantics Other allocator)]
         pub unsafe fn allocator(&self) -> Retained<MTKMeshBufferAllocator>;
 
+        #[cfg(feature = "objc2-model-io")]
+        /// Zone from which this buffer was created (if it was created from a zone).
+        ///
+        /// A single MetalBuffer is allocated for each zone.  Each zone could have many MTKMeshBuffers, each with it's own offset.  If a MTKMeshBufferAllocator is used, Model I/O will attempt to load all vertex and index data of a single mesh into a single zone.  This allows the GPU to achieve a higher cache hit rate when drawing the mesh.  So although there maybe many MTKMeshBuffers for a model they will be backed with the same contigous MetalBuffer.
+        #[method_id(@__retain_semantics Other zone)]
+        pub unsafe fn zone(&self) -> Option<Retained<ProtocolObject<dyn MDLMeshBufferZone>>>;
+
         /// Metal Buffer backing vertex/index data.
         ///
         /// Many MTKMeshBuffers may reference the same buffer, but each with it's own offset.  (i.e. Many MTKMeshBuffers may be suballocated from a single buffer)
@@ -108,6 +117,11 @@ extern_methods!(
         /// Byte offset of the data within the metal buffer.
         #[method(offset)]
         pub unsafe fn offset(&self) -> NSUInteger;
+
+        #[cfg(feature = "objc2-model-io")]
+        /// the intended type of the buffer
+        #[method(type)]
+        pub unsafe fn r#type(&self) -> MDLMeshBufferType;
     }
 );
 
@@ -205,11 +219,56 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        #[cfg(feature = "objc2-model-io")]
+        /// Initialize the mesh and the mesh's submeshes.
+        ///
+        /// Parameter `mesh`: Model I/O Mesh from which to create this MetalKit mesh
+        ///
+        /// Parameter `device`: Metal device on which to create mesh resources
+        ///
+        /// Parameter `error`: Pointer to an NSError object set if an error occurred
+        ///
+        /// The designated initializer for this class.  This does NOT initialize any meshes that are children of the Model I/O mesh, only submeshes that are part of the given mesh.  An exception is raised if vertexBuffer objects in the given mesh and the indexBuffer of any submesh in this mesh have not been created with a MTKMeshBufferAllocator object.  If a submesh using MDLGeometryTypeQuads or MDLGeometryTypeTopology is used, that submesh will be copied, and recreated to use MDLGeometryTypeTriangles, before this routine creates the MTKSubmesh.
+        #[method_id(@__retain_semantics Init initWithMesh:device:error:_)]
+        pub unsafe fn initWithMesh_device_error(
+            this: Allocated<Self>,
+            mesh: &MDLMesh,
+            device: &ProtocolObject<dyn MTLDevice>,
+        ) -> Result<Retained<Self>, Retained<NSError>>;
+
+        #[cfg(feature = "objc2-model-io")]
+        /// Initialize all meshes in a Model I/O asset.
+        ///
+        /// Parameter `asset`: Model I/O asset from which to create MetalKit meshes
+        ///
+        /// Parameter `device`: Metal device on which to create mesh resources
+        ///
+        /// Parameter `sourceMeshes`: Array built by this method containing MDLMesh objects corresponding the returned MTKMesh objects
+        ///
+        /// Parameter `error`: Pointer to an NSError object set if an error occurred
+        ///
+        /// Returns: MetalKit Meshes created from the Model I/O asset
+        ///
+        /// A convenience method to create MetalKit meshes from each mesh in a Model I/O asset.  resulting meshes are returned while the corresponding Model I/O meshes from which they were generated will appear in the sourceMeshes array.  All vertexBuffer objects in each MDLMesh object in the asset and the indexBuffer of each submesh within each of these meshes must have been created using a MTKMeshBufferAllocator object.  Thus
+        #[method_id(@__retain_semantics New newMeshesFromAsset:device:sourceMeshes:error:_)]
+        pub unsafe fn newMeshesFromAsset_device_sourceMeshes_error(
+            asset: &MDLAsset,
+            device: &ProtocolObject<dyn MTLDevice>,
+            source_meshes: Option<&mut Option<Retained<NSArray<MDLMesh>>>>,
+        ) -> Result<Retained<NSArray<MTKMesh>>, Retained<NSError>>;
+
         /// Array of buffers in which mesh vertex data resides.
         ///
         /// This is filled with mesh buffer objects using the layout described by the vertexDescriptor property.  Elements in this array can be [NSNull null] if the vertexDescriptor does not specify elements for buffer for the given index
         #[method_id(@__retain_semantics Other vertexBuffers)]
         pub unsafe fn vertexBuffers(&self) -> Retained<NSArray<MTKMeshBuffer>>;
+
+        #[cfg(feature = "objc2-model-io")]
+        /// Model I/O vertex descriptor specifying the layout of data in vertexBuffers.
+        ///
+        /// This is not directly used by this object, but the application can use this information to determine rendering state or create a Metal vertex descriptor to build a RenderPipelineState object capable of interpreting data in 'vertexBuffers'.  Changing propties in the object will not result in the relayout data in vertex descriptor and thus will make the vertex descriptor no loger describe the layout of vertes data and verticies. (i.e. don't change properties in this vertexDescriptor)
+        #[method_id(@__retain_semantics Other vertexDescriptor)]
+        pub unsafe fn vertexDescriptor(&self) -> Retained<MDLVertexDescriptor>;
 
         /// Submeshes containing index buffers to rendering mesh vertices.
         #[method_id(@__retain_semantics Other submeshes)]
@@ -238,3 +297,93 @@ extern_methods!(
         pub unsafe fn new() -> Retained<Self>;
     }
 );
+
+/// Partially converts a Metal vertex descriptor to a Model I/O vertex descriptor
+///
+/// This method can only set vertex format, offset, bufferIndex, and stride information in the produced Model I/O vertex descriptor.  It does not add any semantic information such at attributes names.  Names must be set in the returned Model I/O vertex descriptor before it can be applied to a a Model I/O mesh.
+#[cfg(feature = "objc2-model-io")]
+#[inline]
+pub unsafe extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetal(
+    metal_descriptor: &MTLVertexDescriptor,
+) -> Retained<MDLVertexDescriptor> {
+    extern "C-unwind" {
+        fn MTKModelIOVertexDescriptorFromMetal(
+            metal_descriptor: &MTLVertexDescriptor,
+        ) -> NonNull<MDLVertexDescriptor>;
+    }
+    let ret = unsafe { MTKModelIOVertexDescriptorFromMetal(metal_descriptor) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+/// Partially converts a Metal vertex descriptor to a Model I/O vertex descriptor
+///
+/// This method can only set vertex format, offset, bufferIndex, and stride information in the produced Model I/O vertex descriptor.  It does not add any semantic information such at attributes names.  Names must be set in the returned Model I/O vertex descriptor before it can be applied to a a Model I/O mesh. If error is nonnull, and the conversion cannot be made, it will be set.
+#[cfg(feature = "objc2-model-io")]
+#[inline]
+pub unsafe extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetalWithError(
+    metal_descriptor: &MTLVertexDescriptor,
+    error: *mut *mut NSError,
+) -> Retained<MDLVertexDescriptor> {
+    extern "C-unwind" {
+        fn MTKModelIOVertexDescriptorFromMetalWithError(
+            metal_descriptor: &MTLVertexDescriptor,
+            error: *mut *mut NSError,
+        ) -> NonNull<MDLVertexDescriptor>;
+    }
+    let ret = unsafe { MTKModelIOVertexDescriptorFromMetalWithError(metal_descriptor, error) };
+    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
+}
+
+/// Partially converts a Model I/O vertex descriptor to a Metal vertex descriptor
+///
+/// This method can only set vertex format, offset, bufferIndex, and stride information in the produced Metal vertex descriptor. It simply copies attributes 1 for 1. Thus attributes in the given Model I/O vertex descriptor must be arranged in the correct order for the resulting descriptor to properly map mesh data to vertex shader inputs.  Layout stepFunction and stepRates for the resulting MTLVertexDescriptor must also be set by application.
+#[cfg(feature = "objc2-model-io")]
+#[inline]
+pub unsafe extern "C-unwind" fn MTKMetalVertexDescriptorFromModelIO(
+    model_io_descriptor: &MDLVertexDescriptor,
+) -> Option<Retained<MTLVertexDescriptor>> {
+    extern "C-unwind" {
+        fn MTKMetalVertexDescriptorFromModelIO(
+            model_io_descriptor: &MDLVertexDescriptor,
+        ) -> *mut MTLVertexDescriptor;
+    }
+    let ret = unsafe { MTKMetalVertexDescriptorFromModelIO(model_io_descriptor) };
+    unsafe { Retained::retain_autoreleased(ret) }
+}
+
+/// Partially converts a Model I/O vertex descriptor to a Metal vertex descriptor
+///
+/// This method can only set vertex format, offset, bufferIndex, and stride information in the produced Metal vertex descriptor. It simply copies attributes 1 for 1. Thus attributes in the given Model I/O vertex descriptor must be arranged in the correct order for the resulting descriptor to properly map mesh data to vertex shader inputs.  Layout stepFunction and stepRates for the resulting MTLVertexDescriptor must also be set by application.  If error is nonnull, and the conversion cannot be made, it will be set.
+#[cfg(feature = "objc2-model-io")]
+#[inline]
+pub unsafe extern "C-unwind" fn MTKMetalVertexDescriptorFromModelIOWithError(
+    model_io_descriptor: &MDLVertexDescriptor,
+    error: *mut *mut NSError,
+) -> Option<Retained<MTLVertexDescriptor>> {
+    extern "C-unwind" {
+        fn MTKMetalVertexDescriptorFromModelIOWithError(
+            model_io_descriptor: &MDLVertexDescriptor,
+            error: *mut *mut NSError,
+        ) -> *mut MTLVertexDescriptor;
+    }
+    let ret = unsafe { MTKMetalVertexDescriptorFromModelIOWithError(model_io_descriptor, error) };
+    unsafe { Retained::retain_autoreleased(ret) }
+}
+
+extern "C-unwind" {
+    /// Converts a Metal vertex format to a Model I/O vertex format
+    ///
+    /// Returns: A Model I/O vertexformat correspoinding to the given Metal vertex format.  Returns MDLVertexFormatInvalid if no matching Model I/O vertex format exists.
+    #[cfg(feature = "objc2-model-io")]
+    pub fn MTKModelIOVertexFormatFromMetal(vertex_format: MTLVertexFormat) -> MDLVertexFormat;
+}
+
+extern "C-unwind" {
+    /// Converts a Model I/O vertex format to a Metal vertex format
+    ///
+    /// Returns: A Metal vertexformat correspoinding to the given Model I/O vertex format.  Returns MTLVertexFormatInvalid if no matching Metal vertex format exists.
+    #[cfg(feature = "objc2-model-io")]
+    pub fn MTKMetalVertexFormatFromModelIO(vertex_format: MDLVertexFormat) -> MTLVertexFormat;
+}

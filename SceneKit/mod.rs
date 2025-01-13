@@ -142,6 +142,20 @@ mod __SceneKitDeprecated;
 #[path = "SceneKitTypes.rs"]
 mod __SceneKitTypes;
 
+#[cfg(feature = "ModelIO")]
+pub use self::__ModelIO::MDLAssetSCNModelIO;
+#[cfg(feature = "ModelIO")]
+pub use self::__ModelIO::MDLCameraSCNModelIO;
+#[cfg(feature = "ModelIO")]
+pub use self::__ModelIO::MDLLightSCNModelIO;
+#[cfg(feature = "ModelIO")]
+pub use self::__ModelIO::MDLMaterialSCNModelIO;
+#[cfg(feature = "ModelIO")]
+pub use self::__ModelIO::MDLMeshSCNModelIO;
+#[cfg(feature = "ModelIO")]
+pub use self::__ModelIO::MDLObjectSCNModelIO;
+#[cfg(feature = "ModelIO")]
+pub use self::__ModelIO::MDLSubmeshSCNModelIO;
 #[cfg(feature = "SCNAction")]
 pub use self::__SCNAction::SCNAction;
 #[cfg(all(feature = "SCNAction", feature = "block2"))]

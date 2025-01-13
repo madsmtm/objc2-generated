@@ -12,6 +12,8 @@ use objc2_core_foundation::*;
 use objc2_core_graphics::*;
 use objc2_foundation::*;
 use objc2_metal::*;
+#[cfg(feature = "objc2-model-io")]
+use objc2_model_io::*;
 
 use crate::*;
 
@@ -443,6 +445,22 @@ extern_methods!(
             completion_handler: MTKTextureLoaderCallback,
         );
 
+        #[cfg(all(feature = "block2", feature = "objc2-model-io"))]
+        /// Asynchronously create a Metal texture and load image data from the given MDLTexture
+        ///
+        /// Parameter `texture`: MDLTexture containing image data from which to create the texture
+        ///
+        /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
+        ///
+        /// Parameter `completionHandler`: Block called when texture has been loaded and fully initialized
+        #[method(newTextureWithMDLTexture:options:completionHandler:)]
+        pub unsafe fn newTextureWithMDLTexture_options_completionHandler(
+            &self,
+            texture: &MDLTexture,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
+            completion_handler: MTKTextureLoaderCallback,
+        );
+
         /// Synchronously create a Metal texture and load image data from the file at URL
         ///
         /// Returns: The Metal texture. nil if an error occured
@@ -489,6 +507,23 @@ extern_methods!(
         pub unsafe fn newTextureWithCGImage_options_error(
             &self,
             cg_image: &CGImage,
+            options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
+        ) -> Result<Retained<ProtocolObject<dyn MTLTexture>>, Retained<NSError>>;
+
+        #[cfg(feature = "objc2-model-io")]
+        /// Synchronously create a Metal texture and load image data from the given MDLTexture
+        ///
+        /// Returns: The Metal texture. nil if an error occured
+        ///
+        /// Parameter `texture`: MDLTexture containing image data from which to create the texture
+        ///
+        /// Parameter `options`: Dictonary of MTKTextureLoaderOptions
+        ///
+        /// Parameter `error`: Pointer to an autoreleased NSError object which will be set if an error occurred
+        #[method_id(@__retain_semantics New newTextureWithMDLTexture:options:error:_)]
+        pub unsafe fn newTextureWithMDLTexture_options_error(
+            &self,
+            texture: &MDLTexture,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLTexture>>, Retained<NSError>>;
 
