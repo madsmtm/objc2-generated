@@ -76,7 +76,7 @@ unsafe impl RefEncode for UIDropSessionProgressIndicatorStyle {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropsession?language=objc)
     pub unsafe trait UIDropSession:
-        NSProgressReporting + UIDragDropSession + MainThreadOnly
+        UIDragDropSession + NSProgressReporting + MainThreadOnly
     {
         #[method_id(@__retain_semantics Other localDragSession)]
         unsafe fn localDragSession(&self) -> Option<Retained<ProtocolObject<dyn UIDragSession>>>;

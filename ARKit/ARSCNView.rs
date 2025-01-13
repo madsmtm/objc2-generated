@@ -14,7 +14,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arscnviewdelegate?language=objc)
     #[cfg(all(feature = "ARSession", feature = "objc2", feature = "objc2-scene-kit"))]
     pub unsafe trait ARSCNViewDelegate:
-        ARSessionObserver + SCNSceneRendererDelegate
+        SCNSceneRendererDelegate + ARSessionObserver
     {
         #[cfg(feature = "ARAnchor")]
         /// Implement this to provide a custom node for the given anchor.

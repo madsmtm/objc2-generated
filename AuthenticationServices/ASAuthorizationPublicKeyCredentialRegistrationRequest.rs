@@ -10,7 +10,7 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialregistrationrequest?language=objc)
     pub unsafe trait ASAuthorizationPublicKeyCredentialRegistrationRequest:
-        NSCopying + NSObjectProtocol + NSSecureCoding
+        NSObjectProtocol + NSSecureCoding + NSCopying
     {
         /// The Relying Party identifier used to scope this request.
         #[method_id(@__retain_semantics Other relyingPartyIdentifier)]

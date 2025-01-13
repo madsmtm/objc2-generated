@@ -14,7 +14,7 @@ pub type UIConfigurationStateCustomKey = NSString;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationstate?language=objc)
     pub unsafe trait UIConfigurationState:
-        NSCopying + NSObjectProtocol + NSSecureCoding + MainThreadOnly
+        NSObjectProtocol + NSCopying + NSSecureCoding + MainThreadOnly
     {
         #[cfg(feature = "UITraitCollection")]
         /// Returns a new instance with the specified trait collection.

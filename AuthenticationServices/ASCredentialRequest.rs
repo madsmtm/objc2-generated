@@ -37,7 +37,7 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialrequest?language=objc)
     pub unsafe trait ASCredentialRequest:
-        NSCopying + NSObjectProtocol + NSSecureCoding
+        NSObjectProtocol + NSSecureCoding + NSCopying
     {
         /// The type of credential used for this request.
         #[method(type)]

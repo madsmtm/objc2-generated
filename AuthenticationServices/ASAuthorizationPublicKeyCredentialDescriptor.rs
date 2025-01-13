@@ -10,7 +10,7 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialdescriptor?language=objc)
     pub unsafe trait ASAuthorizationPublicKeyCredentialDescriptor:
-        NSCopying + NSObjectProtocol + NSSecureCoding
+        NSObjectProtocol + NSSecureCoding + NSCopying
     {
         /// An identifier that uniquely identifies a specific credential.
         #[method_id(@__retain_semantics Other credentialID)]

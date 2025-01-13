@@ -332,7 +332,7 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationdatasource?language=objc)
     pub unsafe trait MPSCNNBatchNormalizationDataSource:
-        NSCopying + NSObjectProtocol
+        NSObjectProtocol + NSCopying
     {
         /// Returns the number of feature channels within images to be normalized
         /// using the supplied parameters.

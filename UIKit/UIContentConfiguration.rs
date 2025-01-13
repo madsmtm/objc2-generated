@@ -10,7 +10,7 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentconfiguration?language=objc)
     pub unsafe trait UIContentConfiguration:
-        NSCopying + NSObjectProtocol + MainThreadOnly
+        NSObjectProtocol + NSCopying + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Initializes and returns a new instance of the content view using this configuration.

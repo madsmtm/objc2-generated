@@ -8,7 +8,7 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcredential?language=objc)
     pub unsafe trait ASAuthorizationCredential:
-        NSCopying + NSObjectProtocol + NSSecureCoding
+        NSObjectProtocol + NSCopying + NSSecureCoding
     {
     }
 );

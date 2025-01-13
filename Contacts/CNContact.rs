@@ -59,7 +59,7 @@ extern_protocol!(
     /// This protocol is reserved for Contacts framework usage.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnkeydescriptor?language=objc)
-    pub unsafe trait CNKeyDescriptor: NSCopying + NSObjectProtocol + NSSecureCoding {}
+    pub unsafe trait CNKeyDescriptor: NSObjectProtocol + NSSecureCoding + NSCopying {}
 );
 
 unsafe impl CNKeyDescriptor for NSString {}

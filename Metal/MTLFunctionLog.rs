@@ -25,7 +25,7 @@ unsafe impl RefEncode for MTLFunctionLogType {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogcontainer?language=objc)
-    pub unsafe trait MTLLogContainer: NSFastEnumeration + NSObjectProtocol {}
+    pub unsafe trait MTLLogContainer: NSObjectProtocol + NSFastEnumeration {}
 );
 
 extern_protocol!(

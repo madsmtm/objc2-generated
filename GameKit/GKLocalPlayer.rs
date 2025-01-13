@@ -147,7 +147,7 @@ extern_protocol!(
         feature = "GKTurnBasedMatch"
     ))]
     pub unsafe trait GKLocalPlayerListener:
-        GKChallengeListener + GKInviteEventListener + GKSavedGameListener + GKTurnBasedEventListener
+        GKChallengeListener + GKInviteEventListener + GKTurnBasedEventListener + GKSavedGameListener
     {
     }
 );

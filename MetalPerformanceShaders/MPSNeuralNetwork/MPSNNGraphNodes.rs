@@ -88,7 +88,7 @@ extern_protocol!(
     /// Normal MPSImages and MPSStates don't do that part.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpshandle?language=objc)
-    pub unsafe trait MPSHandle: NSObjectProtocol + NSSecureCoding {
+    pub unsafe trait MPSHandle: NSSecureCoding + NSObjectProtocol {
         /// A label to be attached to associated MTLResources for this node
         ///
         /// Returns: A human readable string for debugging purposes
@@ -6113,7 +6113,7 @@ extern_methods!(
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetransformprovider?language=objc)
-    pub unsafe trait MPSImageTransformProvider: NSObjectProtocol + NSSecureCoding {
+    pub unsafe trait MPSImageTransformProvider: NSSecureCoding + NSObjectProtocol {
         #[cfg(all(feature = "MPSCoreTypes", feature = "MPSImage"))]
         #[method(transformForSourceImage:handle:)]
         unsafe fn transformForSourceImage_handle(
@@ -8792,7 +8792,7 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcallback?language=objc)
     pub unsafe trait MPSNNGramMatrixCallback:
-        NSCopying + NSObjectProtocol + NSSecureCoding
+        NSObjectProtocol + NSSecureCoding + NSCopying
     {
         #[cfg(feature = "MPSImage")]
         /// Returns the desired alpha scaling value.
@@ -8982,7 +8982,7 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlosscallback?language=objc)
     pub unsafe trait MPSNNLossCallback:
-        NSCopying + NSObjectProtocol + NSSecureCoding
+        NSObjectProtocol + NSSecureCoding + NSCopying
     {
         #[cfg(feature = "MPSImage")]
         /// Returns the desired loss scaling weight value.

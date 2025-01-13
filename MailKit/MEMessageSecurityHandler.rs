@@ -40,7 +40,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesecurityhandler?language=objc)
     #[cfg(all(feature = "MEMessageDecoder", feature = "MEMessageEncoder"))]
     pub unsafe trait MEMessageSecurityHandler:
-        MEMessageDecoder + MEMessageEncoder + MainThreadOnly
+        MEMessageEncoder + MEMessageDecoder + MainThreadOnly
     {
         #[cfg(all(
             feature = "MEExtensionViewController",

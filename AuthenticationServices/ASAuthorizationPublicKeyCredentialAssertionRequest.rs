@@ -10,7 +10,7 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialassertionrequest?language=objc)
     pub unsafe trait ASAuthorizationPublicKeyCredentialAssertionRequest:
-        NSCopying + NSObjectProtocol + NSSecureCoding
+        NSObjectProtocol + NSSecureCoding + NSCopying
     {
         /// The challenge to use when signing the request.
         #[method_id(@__retain_semantics Other challenge)]

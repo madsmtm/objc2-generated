@@ -9,7 +9,7 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domeventtarget?language=objc)
     #[deprecated]
-    pub unsafe trait DOMEventTarget: NSCopying + NSObjectProtocol {
+    pub unsafe trait DOMEventTarget: NSObjectProtocol + NSCopying {
         #[cfg(feature = "DOMEventListener")]
         #[method(addEventListener:listener:useCapture:)]
         unsafe fn addEventListener_listener_useCapture(

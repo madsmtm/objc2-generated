@@ -557,7 +557,7 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitchangeregistration?language=objc)
     pub unsafe trait UITraitChangeRegistration:
-        NSCopying + NSObjectProtocol + MainThreadOnly
+        NSObjectProtocol + NSCopying + MainThreadOnly
     {
     }
 );

@@ -11,5 +11,5 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskviewdelegate?language=objc)
     #[cfg(all(feature = "ARSession", feature = "objc2", feature = "objc2-sprite-kit"))]
-    pub unsafe trait ARSKViewDelegate: ARSessionObserver + SKViewDelegate {}
+    pub unsafe trait ARSKViewDelegate: SKViewDelegate + ARSessionObserver {}
 );

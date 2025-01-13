@@ -235,7 +235,7 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayallocator?language=objc)
     pub unsafe trait MPSNDArrayAllocator:
-        NSCopying + NSObjectProtocol + NSSecureCoding
+        NSObjectProtocol + NSSecureCoding + NSCopying
     {
         #[cfg(feature = "MPSKernel")]
         /// Create a new MPSNDArray

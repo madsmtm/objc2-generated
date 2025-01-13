@@ -287,7 +287,7 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderreplicatedextension?language=objc)
     pub unsafe trait NSFileProviderReplicatedExtension:
-        NSFileProviderEnumerating + NSObjectProtocol
+        NSObjectProtocol + NSFileProviderEnumerating
     {
         #[cfg(feature = "NSFileProviderDomain")]
         /// Create a new instance of the replicated provider for the specified domain.

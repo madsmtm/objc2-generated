@@ -36,7 +36,7 @@ extern_protocol!(
     /// 3D mixing settings and then move from one environment to another.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiomixing?language=objc)
-    pub unsafe trait AVAudioMixing: AVAudio3DMixing + AVAudioStereoMixing {
+    pub unsafe trait AVAudioMixing: AVAudioStereoMixing + AVAudio3DMixing {
         #[cfg(all(feature = "AVAudioNode", feature = "AVAudioTypes"))]
         /// Returns the AVAudioMixingDestination object corresponding to specified mixer node and
         /// its input bus

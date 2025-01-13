@@ -12,7 +12,7 @@ extern_protocol!(
     /// `UIHoverEffect` like `UIHoverAutomaticEffect`.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihovereffect?language=objc)
-    pub unsafe trait UIHoverEffect: NSCopying + NSObjectProtocol + MainThreadOnly {}
+    pub unsafe trait UIHoverEffect: NSObjectProtocol + NSCopying + MainThreadOnly {}
 );
 
 extern_class!(

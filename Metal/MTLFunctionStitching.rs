@@ -79,7 +79,7 @@ extern_protocol!(
     /// A node used in a graph for stitching.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionstitchingnode?language=objc)
-    pub unsafe trait MTLFunctionStitchingNode: NSCopying + NSObjectProtocol {}
+    pub unsafe trait MTLFunctionStitchingNode: NSObjectProtocol + NSCopying {}
 );
 
 extern_class!(

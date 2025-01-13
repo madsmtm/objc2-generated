@@ -78,7 +78,7 @@ extern_protocol!(
     /// Supports deep copy of data by conforming to the NSCopying protocol
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmeshbuffer?language=objc)
-    pub unsafe trait MDLMeshBuffer: NSCopying + NSObjectProtocol {
+    pub unsafe trait MDLMeshBuffer: NSObjectProtocol + NSCopying {
         /// Fills buffer with data at offset
         ///
         /// Parameter `data`: Data to fill buffer with

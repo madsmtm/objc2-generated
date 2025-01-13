@@ -155,7 +155,7 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalizationdatasource?language=objc)
     pub unsafe trait MPSCNNInstanceNormalizationDataSource:
-        NSCopying + NSObjectProtocol
+        NSObjectProtocol + NSCopying
     {
         /// Return a pointer to an array containing the gamma terms.
         #[method(gamma)]
