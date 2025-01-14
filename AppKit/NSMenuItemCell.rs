@@ -106,23 +106,16 @@ extern_methods!(
         #[method(keyEquivalentWidth)]
         pub unsafe fn keyEquivalentWidth(&self) -> CGFloat;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(stateImageRectForBounds:)]
         pub unsafe fn stateImageRectForBounds(&self, cell_frame: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(titleRectForBounds:)]
         pub unsafe fn titleRectForBounds(&self, cell_frame: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(keyEquivalentRectForBounds:)]
         pub unsafe fn keyEquivalentRectForBounds(&self, cell_frame: NSRect) -> NSRect;
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawSeparatorItemWithFrame:inView:)]
         pub unsafe fn drawSeparatorItemWithFrame_inView(
             &self,
@@ -130,11 +123,7 @@ extern_methods!(
             control_view: &NSView,
         );
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawStateImageWithFrame:inView:)]
         pub unsafe fn drawStateImageWithFrame_inView(
             &self,
@@ -142,27 +131,15 @@ extern_methods!(
             control_view: &NSView,
         );
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawImageWithFrame:inView:)]
         pub unsafe fn drawImageWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawTitleWithFrame:inView:)]
         pub unsafe fn drawTitleWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawKeyEquivalentWithFrame:inView:)]
         pub unsafe fn drawKeyEquivalentWithFrame_inView(
             &self,
@@ -170,11 +147,7 @@ extern_methods!(
             control_view: &NSView,
         );
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawBorderAndBackgroundWithFrame:inView:)]
         pub unsafe fn drawBorderAndBackgroundWithFrame_inView(
             &self,

@@ -25,19 +25,25 @@ mod __MPSMatrixSolve;
 #[path = "MPSMatrixTypes.rs"]
 mod __MPSMatrixTypes;
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixCombination"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrixCombination"
+))]
 pub use self::__MPSMatrixCombination::MPSMatrixCopy;
 #[cfg(feature = "MPSMatrixCombination")]
 pub use self::__MPSMatrixCombination::MPSMatrixCopyDescriptor;
 #[cfg(feature = "MPSMatrixCombination")]
 pub use self::__MPSMatrixCombination::MPSMatrixCopyOffsets;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSMatrixDecomposition",
     feature = "MPSMatrixTypes"
 ))]
 pub use self::__MPSMatrixDecomposition::MPSMatrixDecompositionCholesky;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSMatrixDecomposition",
     feature = "MPSMatrixTypes"
@@ -46,72 +52,97 @@ pub use self::__MPSMatrixDecomposition::MPSMatrixDecompositionLU;
 #[cfg(feature = "MPSMatrixDecomposition")]
 pub use self::__MPSMatrixDecomposition::MPSMatrixDecompositionStatus;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSMatrixFindTopK",
     feature = "MPSMatrixTypes"
 ))]
 pub use self::__MPSMatrixFindTopK::MPSMatrixFindTopK;
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixMultiplication"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrixMultiplication"
+))]
 pub use self::__MPSMatrixMultiplication::MPSMatrixMultiplication;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSMatrixMultiplication",
     feature = "MPSMatrixTypes"
 ))]
 pub use self::__MPSMatrixMultiplication::MPSMatrixVectorMultiplication;
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixRandom"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrixRandom"
+))]
 pub use self::__MPSMatrixRandom::MPSMatrixRandom;
 #[cfg(feature = "MPSMatrixRandom")]
 pub use self::__MPSMatrixRandom::MPSMatrixRandomDistribution;
 #[cfg(feature = "MPSMatrixRandom")]
 pub use self::__MPSMatrixRandom::MPSMatrixRandomDistributionDescriptor;
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixRandom"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrixRandom"
+))]
 pub use self::__MPSMatrixRandom::MPSMatrixRandomMTGP32;
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixRandom"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrixRandom"
+))]
 pub use self::__MPSMatrixRandom::MPSMatrixRandomPhilox;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSMatrixSoftMax",
     feature = "MPSMatrixTypes"
 ))]
 pub use self::__MPSMatrixSoftMax::MPSMatrixLogSoftMax;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSMatrixSoftMax",
     feature = "MPSMatrixTypes"
 ))]
 pub use self::__MPSMatrixSoftMax::MPSMatrixLogSoftMaxGradient;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSMatrixSoftMax",
     feature = "MPSMatrixTypes"
 ))]
 pub use self::__MPSMatrixSoftMax::MPSMatrixSoftMax;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSMatrixSoftMax",
     feature = "MPSMatrixTypes"
 ))]
 pub use self::__MPSMatrixSoftMax::MPSMatrixSoftMaxGradient;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSMatrixSolve",
     feature = "MPSMatrixTypes"
 ))]
 pub use self::__MPSMatrixSolve::MPSMatrixSolveCholesky;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSMatrixSolve",
     feature = "MPSMatrixTypes"
 ))]
 pub use self::__MPSMatrixSolve::MPSMatrixSolveLU;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSMatrixSolve",
     feature = "MPSMatrixTypes"
 ))]
 pub use self::__MPSMatrixSolve::MPSMatrixSolveTriangular;
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 pub use self::__MPSMatrixTypes::MPSMatrixBinaryKernel;
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 pub use self::__MPSMatrixTypes::MPSMatrixUnaryKernel;

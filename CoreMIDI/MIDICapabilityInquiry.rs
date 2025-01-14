@@ -46,7 +46,7 @@ unsafe impl RefEncode for MIDICIDeviceIdentification {
 pub static MIDIChannelsWholePort: MIDIChannelNumber = 0x7f;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciinitiatiormuid?language=objc)
-#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+#[cfg(feature = "objc2-foundation")]
 pub type MIDICIInitiatiorMUID = NSNumber;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilestatelist?language=objc)

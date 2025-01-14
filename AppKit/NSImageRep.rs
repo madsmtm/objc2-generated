@@ -72,11 +72,9 @@ extern_methods!(
         #[method(draw)]
         pub unsafe fn draw(&self) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawAtPoint:)]
         pub unsafe fn drawAtPoint(&self, point: NSPoint) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawInRect:)]
         pub unsafe fn drawInRect(&self, rect: NSRect) -> bool;
 
@@ -92,11 +90,9 @@ extern_methods!(
             hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
         ) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`size`][Self::size].
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: NSSize);
@@ -239,11 +235,7 @@ extern_methods!(
             pasteboard: &NSPasteboard,
         ) -> Option<Retained<NSImageRep>>;
 
-        #[cfg(all(
-            feature = "NSGraphicsContext",
-            feature = "objc2-core-foundation",
-            feature = "objc2-core-graphics"
-        ))]
+        #[cfg(all(feature = "NSGraphicsContext", feature = "objc2-core-graphics"))]
         #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Other CGImageForProposedRect:context:hints:)]
         pub unsafe fn CGImageForProposedRect_context_hints(

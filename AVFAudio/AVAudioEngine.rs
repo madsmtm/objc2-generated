@@ -711,7 +711,6 @@ extern_methods!(
         #[cfg(all(
             feature = "AVAudioFormat",
             feature = "AVAudioNode",
-            feature = "block2",
             feature = "objc2-audio-toolbox"
         ))]
         #[cfg(not(target_os = "watchos"))]
@@ -755,7 +754,6 @@ extern_methods!(
         #[cfg(all(
             feature = "AVAudioFormat",
             feature = "AVAudioNode",
-            feature = "block2",
             feature = "objc2-audio-toolbox"
         ))]
         #[cfg(not(target_os = "watchos"))]

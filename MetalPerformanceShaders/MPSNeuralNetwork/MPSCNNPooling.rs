@@ -18,29 +18,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpooling?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNPooling;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNPooling {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNPooling {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNPooling {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNPooling {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNPooling {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPooling {
         /// Initialize a pooling filter
         ///
@@ -108,7 +108,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPooling {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -128,7 +128,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPooling {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -147,29 +147,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingmax?language=objc)
     #[unsafe(super(MPSCNNPooling, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNPoolingMax;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNPoolingMax {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNPoolingMax {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNPoolingMax {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNPoolingMax {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNPoolingMax {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingMax {
         /// Initialize a MPSCNNPoolingMax pooling filter
         ///
@@ -214,7 +214,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNPooling`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingMax {
         /// Initialize a pooling filter
         ///
@@ -243,7 +243,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingMax {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -263,7 +263,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingMax {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -289,29 +289,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingaverage?language=objc)
     #[unsafe(super(MPSCNNPooling, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNPoolingAverage;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNPoolingAverage {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNPoolingAverage {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNPoolingAverage {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNPoolingAverage {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNPoolingAverage {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingAverage {
         /// How much zero padding to apply to both left and right borders of the input image for average pooling,
         /// when using
@@ -390,7 +390,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNPooling`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingAverage {
         /// Initialize a pooling filter
         ///
@@ -419,7 +419,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingAverage {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -439,7 +439,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingAverage {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -459,29 +459,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingl2norm?language=objc)
     #[unsafe(super(MPSCNNPooling, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNPoolingL2Norm;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNPoolingL2Norm {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNPoolingL2Norm {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNPoolingL2Norm {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNPoolingL2Norm {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNPoolingL2Norm {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingL2Norm {
         /// Initialize a MPSCNNPoolingL2Norm pooling filter
         ///
@@ -526,7 +526,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNPooling`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingL2Norm {
         /// Initialize a pooling filter
         ///
@@ -555,7 +555,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingL2Norm {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -575,7 +575,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingL2Norm {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -594,29 +594,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndilatedpoolingmax?language=objc)
     #[unsafe(super(MPSCNNPooling, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNDilatedPoolingMax;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNDilatedPoolingMax {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNDilatedPoolingMax {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNDilatedPoolingMax {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNDilatedPoolingMax {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNDilatedPoolingMax {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNDilatedPoolingMax {
         /// dilationRateX for accessing the image passed in as source
         #[method(dilationRateX)]
@@ -676,7 +676,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNPooling`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNDilatedPoolingMax {
         /// Initialize a pooling filter
         ///
@@ -728,7 +728,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNDilatedPoolingMax {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -748,7 +748,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNDilatedPoolingMax {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -803,29 +803,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolinggradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNPoolingGradient;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNPoolingGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNPoolingGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNPoolingGradient {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNPoolingGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNPoolingGradient {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingGradient {
         /// An optional source size which defines together with primaryOffset, the set of input gradient
         /// pixels to take into account in the gradient computations.
@@ -908,7 +908,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingGradient {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -928,7 +928,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingGradient {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -986,29 +986,29 @@ extern_class!(
         NSObject
     ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNPoolingAverageGradient;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNPoolingAverageGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNPoolingAverageGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNPoolingAverageGradient {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNPoolingAverageGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNPoolingAverageGradient {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingAverageGradient {
         /// How much zero padding to apply to both left and right borders of the input image for average pooling,
         /// when using
@@ -1087,7 +1087,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNPoolingGradient`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingAverageGradient {
         /// Initialize a gradient pooling filter
         ///
@@ -1116,7 +1116,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingAverageGradient {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -1136,7 +1136,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingAverageGradient {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1195,29 +1195,29 @@ extern_class!(
         NSObject
     ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNPoolingMaxGradient;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNPoolingMaxGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNPoolingMaxGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNPoolingMaxGradient {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNPoolingMaxGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNPoolingMaxGradient {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingMaxGradient {
         /// Initialize a gradient max pooling filter
         ///
@@ -1262,7 +1262,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNPoolingGradient`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingMaxGradient {
         /// Initialize a gradient pooling filter
         ///
@@ -1291,7 +1291,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingMaxGradient {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -1311,7 +1311,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingMaxGradient {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1356,29 +1356,29 @@ extern_class!(
         NSObject
     ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNPoolingL2NormGradient;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNPoolingL2NormGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNPoolingL2NormGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNPoolingL2NormGradient {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNPoolingL2NormGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNPoolingL2NormGradient {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingL2NormGradient {
         /// Initialize a gradient L2-norm pooling filter
         ///
@@ -1423,7 +1423,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNPoolingGradient`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingL2NormGradient {
         /// Initialize a gradient pooling filter
         ///
@@ -1452,7 +1452,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingL2NormGradient {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -1472,7 +1472,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNPoolingL2NormGradient {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1497,29 +1497,29 @@ extern_class!(
         NSObject
     ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNDilatedPoolingMaxGradient;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNDilatedPoolingMaxGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNDilatedPoolingMaxGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNDilatedPoolingMaxGradient {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNDilatedPoolingMaxGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNDilatedPoolingMaxGradient {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNDilatedPoolingMaxGradient {
         /// Initialize a MPSCNNDilatedPoolingMaxGradient pooling filter
         ///
@@ -1580,7 +1580,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNPoolingGradient`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNDilatedPoolingMaxGradient {
         /// Initialize a gradient pooling filter
         ///
@@ -1609,7 +1609,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNDilatedPoolingMaxGradient {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -1629,7 +1629,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNDilatedPoolingMaxGradient {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

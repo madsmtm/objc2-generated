@@ -2,10 +2,8 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use core::ptr::NonNull;
-use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
-use objc2_foundation::*;
 
 use crate::*;
 
@@ -18,11 +16,11 @@ use crate::*;
 /// inError and inResults are NULL then the query has completed.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odquerycallback?language=objc)
-#[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
+#[cfg(feature = "objc2-core-foundation")]
 pub type ODQueryCallback =
     Option<unsafe extern "C-unwind" fn(*mut ODQueryRef, *mut CFArray, *mut CFError, *mut c_void)>;
 
-#[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
+#[cfg(feature = "objc2-core-foundation")]
 unsafe impl ConcreteType for ODQueryRef {
     /// Standard GetTypeID function support for CF-based objects
     ///
@@ -66,7 +64,6 @@ unsafe impl ConcreteType for ODQueryRef {
 /// Returns: an ODQueryRef which should be passed into ODQueryCopyResults for immediate results or
 /// ODQueryScheduleWithRunLoop for background behavior
 #[cfg(all(
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
@@ -139,7 +136,6 @@ pub unsafe extern "C-unwind" fn ODQueryCreateWithNode(
 /// ODQueryScheduleWithRunLoop for background behavior, see ODQueryCallback for details on RunLoop
 /// behavior.
 #[cfg(all(
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
@@ -200,7 +196,7 @@ pub unsafe extern "C-unwind" fn ODQueryCreateWithNodeType(
 /// Returns: a CFArrayRef comprised of ODRecord objects.  If partial results were requested but are complete, then
 /// NULL will be returned with outError set to NULL. If an error occurs, NULL will be returned and
 /// outError should be checked accordingly.
-#[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
+#[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn ODQueryCopyResults(
     query: &ODQueryRef,
@@ -227,7 +223,6 @@ extern "C-unwind" {
     /// all existing results should be thrown away in preparation for new results.
     ///
     /// Parameter `query`: an ODQueryRef to use
-    #[cfg(feature = "CFOpenDirectory")]
     pub fn ODQuerySynchronize(query: &ODQueryRef);
 }
 
@@ -242,7 +237,7 @@ extern "C-unwind" {
     /// Parameter `callback`: a function to call when a query has results to return
     ///
     /// Parameter `userInfo`: a user-defined pointer to be passed back to the Query callback function
-    #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "objc2-core-foundation")]
     pub fn ODQuerySetCallback(
         query: &ODQueryRef,
         callback: ODQueryCallback,
@@ -263,7 +258,7 @@ extern "C-unwind" {
     /// Parameter `runLoop`: a CFRunLoopRef to put the ODQueryRef source onto
     ///
     /// Parameter `runLoopMode`: a CFStringRef with the runloop mode to add the ODQueryRef to
-    #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "objc2-core-foundation")]
     pub fn ODQueryScheduleWithRunLoop(
         query: &ODQueryRef,
         run_loop: Option<&CFRunLoop>,
@@ -281,7 +276,7 @@ extern "C-unwind" {
     /// Parameter `runLoop`: a CFRunLoopRef to remove the ODQuery source from
     ///
     /// Parameter `runLoopMode`: a CFStringRef of the mode to remove the ODQuery from
-    #[cfg(all(feature = "CFOpenDirectory", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "objc2-core-foundation")]
     pub fn ODQueryUnscheduleFromRunLoop(
         query: &ODQueryRef,
         run_loop: Option<&CFRunLoop>,

@@ -16,29 +16,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixunarykernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSMatrixUnaryKernel;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSMatrixUnaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSMatrixUnaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSMatrixUnaryKernel {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSMatrixUnaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSMatrixUnaryKernel {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixUnaryKernel {
         /// The origin, relative to [0, 0] in the source matrix, at which to
         /// start reading values.  This property is modifiable and defaults to
@@ -90,7 +90,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixUnaryKernel {
         /// Standard init with default properties per filter type
         ///
@@ -143,7 +143,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixUnaryKernel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -162,29 +162,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixbinarykernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSMatrixBinaryKernel;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSMatrixBinaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSMatrixBinaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSMatrixBinaryKernel {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSMatrixBinaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSMatrixBinaryKernel {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixBinaryKernel {
         /// The origin, relative to [0, 0] in the primary source matrix, at which to
         /// start reading values.  This property is modifiable and defaults to
@@ -251,7 +251,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixBinaryKernel {
         /// Standard init with default properties per filter type
         ///
@@ -304,7 +304,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixBinaryKernel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

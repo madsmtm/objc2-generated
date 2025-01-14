@@ -15,15 +15,15 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnnormalizationgammaandbetastate?language=objc)
     #[unsafe(super(MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSState")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     pub struct MPSCNNNormalizationGammaAndBetaState;
 );
 
-#[cfg(feature = "MPSState")]
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 unsafe impl NSObjectProtocol for MPSCNNNormalizationGammaAndBetaState {}
 
 extern_methods!(
-    #[cfg(feature = "MPSState")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSCNNNormalizationGammaAndBetaState {
         /// A MTLBuffer containing the gamma terms.
         #[method_id(@__retain_semantics Other gamma)]
@@ -69,7 +69,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSState`
-    #[cfg(feature = "MPSState")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSCNNNormalizationGammaAndBetaState {
         /// Create a MPSState holding a temporary MTLBuffer
         ///
@@ -165,7 +165,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSState")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSCNNNormalizationGammaAndBetaState {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;

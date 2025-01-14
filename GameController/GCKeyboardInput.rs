@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 
 use crate::*;
 

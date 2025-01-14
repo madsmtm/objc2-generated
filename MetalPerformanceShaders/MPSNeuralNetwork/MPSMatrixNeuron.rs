@@ -32,29 +32,64 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneuron?language=objc)
     #[unsafe(super(MPSMatrixUnaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSMatrix",
+        feature = "MPSMatrixTypes"
+    ))]
     pub struct MPSMatrixNeuron;
 );
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl NSCoding for MPSMatrixNeuron {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl NSCopying for MPSMatrixNeuron {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl CopyingHelper for MPSMatrixNeuron {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl NSObjectProtocol for MPSMatrixNeuron {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl NSSecureCoding for MPSMatrixNeuron {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSMatrix",
+        feature = "MPSMatrixTypes"
+    ))]
     unsafe impl MPSMatrixNeuron {
         /// The number of input vectors which make up the input array.  This
         /// is equivalent to the number of rows to consider from the primary
@@ -180,7 +215,6 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "MPSMatrix")]
         /// Encode a MPSMatrixNeuron object to a command buffer.
         ///
         ///
@@ -253,7 +287,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSMatrix",
+        feature = "MPSMatrixTypes"
+    ))]
     unsafe impl MPSMatrixNeuron {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -273,7 +312,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSMatrix",
+        feature = "MPSMatrixTypes"
+    ))]
     unsafe impl MPSMatrixNeuron {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -299,29 +343,64 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneurongradient?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSMatrix",
+        feature = "MPSMatrixTypes"
+    ))]
     pub struct MPSMatrixNeuronGradient;
 );
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl NSCoding for MPSMatrixNeuronGradient {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl NSCopying for MPSMatrixNeuronGradient {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl CopyingHelper for MPSMatrixNeuronGradient {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl NSObjectProtocol for MPSMatrixNeuronGradient {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl NSSecureCoding for MPSMatrixNeuronGradient {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSMatrix",
+        feature = "MPSMatrixTypes"
+    ))]
     unsafe impl MPSMatrixNeuronGradient {
         /// The number of input vectors which make up the input array.
         #[method(sourceNumberOfFeatureVectors)]
@@ -429,7 +508,6 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "MPSMatrix")]
         /// Encode a MPSMatrixNeuronGradient object to a command buffer and compute
         /// its gradient with respect to its input data.
         ///
@@ -504,7 +582,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSMatrix",
+        feature = "MPSMatrixTypes"
+    ))]
     unsafe impl MPSMatrixNeuronGradient {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -524,7 +607,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSMatrix",
+        feature = "MPSMatrixTypes"
+    ))]
     unsafe impl MPSMatrixNeuronGradient {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

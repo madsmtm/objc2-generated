@@ -6,8 +6,6 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-cloud-kit")]
 #[cfg(target_vendor = "apple")]
 use objc2_cloud_kit::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -315,7 +313,6 @@ extern_protocol!(
             items: &NSArray,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[optional]
         #[method(sharingService:sourceFrameOnScreenForShareItem:)]
         unsafe fn sharingService_sourceFrameOnScreenForShareItem(
@@ -324,7 +321,7 @@ extern_protocol!(
             item: &AnyObject,
         ) -> NSRect;
 
-        #[cfg(all(feature = "NSImage", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSImage")]
         /// When non-nil, the image returned would be used for the transitioning animation. When nil, the transitioning animation is disabled.
         #[optional]
         #[method_id(@__retain_semantics Other sharingService:transitionImageForShareItem:contentRect:)]
@@ -345,11 +342,7 @@ extern_protocol!(
             sharing_content_scope: NonNull<NSSharingContentScope>,
         ) -> Option<Retained<NSWindow>>;
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// The following method is invoked when the service is performed and wants to display its contents in a popover. The delegate should return the view that will act as the anchor of the popover, along with the target rectangle within the bounds of that view and preferred edge of that rectangle for the popover to appear. The delegate may also return nil, indicating that there is no anchoring view currently available, in which case the service may attempt to display the service via some other means.
         ///
         /// The service named NSSharingServiceNameCloudSharing prefers to display itself using a popover anchored to an "Add People" or "Share" button. If no such button is available or visible, return nil.
@@ -504,11 +497,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// Shows the picker, populated with sharing services related to the instance items. When the user selects one of the sharing services, the sharing service will be performed. Note that this method must be called on mouseDown.
         #[method(showRelativeToRect:ofView:preferredEdge:)]
         pub unsafe fn showRelativeToRect_ofView_preferredEdge(

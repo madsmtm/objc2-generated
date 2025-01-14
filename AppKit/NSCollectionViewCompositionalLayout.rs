@@ -282,7 +282,7 @@ unsafe impl RefEncode for NSCollectionLayoutSectionOrthogonalScrollingBehavior {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutsectionvisibleitemsinvalidationhandler?language=objc)
-#[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+#[cfg(feature = "block2")]
 pub type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = *mut block2::Block<
     dyn Fn(
         NonNull<NSArray<ProtocolObject<dyn NSCollectionLayoutVisibleItem>>>,
@@ -370,13 +370,13 @@ extern_methods!(
             supplementaries_follow_content_insets: bool,
         );
 
-        #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "block2")]
         #[method(visibleItemsInvalidationHandler)]
         pub unsafe fn visibleItemsInvalidationHandler(
             &self,
         ) -> NSCollectionLayoutSectionVisibleItemsInvalidationHandler;
 
-        #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "block2")]
         /// Setter for [`visibleItemsInvalidationHandler`][Self::visibleItemsInvalidationHandler].
         #[method(setVisibleItemsInvalidationHandler:)]
         pub unsafe fn setVisibleItemsInvalidationHandler(
@@ -474,11 +474,9 @@ unsafe impl NSObjectProtocol for NSCollectionLayoutGroupCustomItem {}
 
 extern_methods!(
     unsafe impl NSCollectionLayoutGroupCustomItem {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other customItemWithFrame:)]
         pub unsafe fn customItemWithFrame(frame: NSRect, mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other customItemWithFrame:zIndex:)]
         pub unsafe fn customItemWithFrame_zIndex(
             frame: NSRect,
@@ -492,7 +490,6 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frame)]
         pub unsafe fn frame(&self) -> NSRect;
 
@@ -906,7 +903,6 @@ extern_methods!(
             alignment: NSRectAlignment,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other boundarySupplementaryItemWithLayoutSize:elementKind:alignment:absoluteOffset:)]
         pub unsafe fn boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset(
             layout_size: &NSCollectionLayoutSize,
@@ -938,7 +934,6 @@ extern_methods!(
         #[method(alignment)]
         pub unsafe fn alignment(&self) -> NSRectAlignment;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(offset)]
         pub unsafe fn offset(&self) -> NSPoint;
     }
@@ -1057,7 +1052,6 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other layoutAnchorWithEdges:absoluteOffset:)]
         pub unsafe fn layoutAnchorWithEdges_absoluteOffset(
             edges: NSDirectionalRectEdge,
@@ -1065,7 +1059,6 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other layoutAnchorWithEdges:fractionalOffset:)]
         pub unsafe fn layoutAnchorWithEdges_fractionalOffset(
             edges: NSDirectionalRectEdge,
@@ -1082,7 +1075,6 @@ extern_methods!(
         #[method(edges)]
         pub unsafe fn edges(&self) -> NSDirectionalRectEdge;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(offset)]
         pub unsafe fn offset(&self) -> NSPoint;
 
@@ -1097,11 +1089,9 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutcontainer?language=objc)
     pub unsafe trait NSCollectionLayoutContainer: NSObjectProtocol + MainThreadOnly {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(contentSize)]
         unsafe fn contentSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(effectiveContentSize)]
         unsafe fn effectiveContentSize(&self) -> NSSize;
 
@@ -1153,11 +1143,9 @@ extern_protocol!(
         #[method(setHidden:)]
         unsafe fn setHidden(&self, hidden: bool);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(center)]
         unsafe fn center(&self) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[method(setCenter:)]
         unsafe fn setCenter(&self, center: NSPoint);
@@ -1168,11 +1156,9 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other indexPath)]
         unsafe fn indexPath(&self) -> Retained<NSIndexPath>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frame)]
         unsafe fn frame(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(bounds)]
         unsafe fn bounds(&self) -> NSRect;
 

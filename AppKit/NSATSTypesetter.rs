@@ -44,7 +44,6 @@ extern_methods!(
     /// NSPantherCompatibility
     #[cfg(feature = "NSTypesetter")]
     unsafe impl NSATSTypesetter {
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(lineFragmentRectForProposedRect:remainingRect:)]
         pub unsafe fn lineFragmentRectForProposedRect_remainingRect(
@@ -135,7 +134,6 @@ extern_methods!(
         #[method(paragraphSeparatorGlyphRange)]
         pub unsafe fn paragraphSeparatorGlyphRange(&self) -> NSRange;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(layoutParagraphAtPoint:)]
         pub unsafe fn layoutParagraphAtPoint(
             &self,
@@ -177,7 +175,6 @@ extern_methods!(
         #[method(setHardInvalidation:forGlyphRange:)]
         pub unsafe fn setHardInvalidation_forGlyphRange(&self, flag: bool, glyph_range: NSRange);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(getLineFragmentRect:usedRect:forParagraphSeparatorGlyphRange:atProposedOrigin:)]
         pub unsafe fn getLineFragmentRect_usedRect_forParagraphSeparatorGlyphRange_atProposedOrigin(
             &self,
@@ -221,7 +218,7 @@ extern_methods!(
         #[method(hyphenCharacterForGlyphAtIndex:)]
         pub unsafe fn hyphenCharacterForGlyphAtIndex(&self, glyph_index: NSUInteger) -> UTF32Char;
 
-        #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSTextContainer")]
         #[method(boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
         pub unsafe fn boundingBoxForControlGlyphAtIndex_forTextContainer_proposedLineFragment_glyphPosition_characterIndex(
             &self,

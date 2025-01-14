@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -79,7 +77,6 @@ extern_methods!(
         #[method(languageLevel)]
         pub unsafe fn languageLevel(&self) -> NSInteger;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(pageSizeForPaper:)]
         pub unsafe fn pageSizeForPaper(&self, paper_name: &NSPrinterPaperName) -> NSSize;
 
@@ -133,13 +130,11 @@ extern_methods!(
         #[method(intForKey:inTable:)]
         pub unsafe fn intForKey_inTable(&self, key: Option<&NSString>, table: &NSString) -> c_int;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(rectForKey:inTable:)]
         pub unsafe fn rectForKey_inTable(&self, key: Option<&NSString>, table: &NSString)
             -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(sizeForKey:inTable:)]
         pub unsafe fn sizeForKey_inTable(&self, key: Option<&NSString>, table: &NSString)
@@ -161,7 +156,6 @@ extern_methods!(
             table: &NSString,
         ) -> Option<Retained<NSArray>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(imageRectForPaper:)]
         pub unsafe fn imageRectForPaper(&self, paper_name: Option<&NSString>) -> NSRect;

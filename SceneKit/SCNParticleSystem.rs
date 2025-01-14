@@ -1132,11 +1132,7 @@ extern_methods!(
     /// SCNParticleSystemSupport
     #[cfg(feature = "SCNScene")]
     unsafe impl SCNScene {
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         #[method(addParticleSystem:withTransform:)]
         pub unsafe fn addParticleSystem_withTransform(

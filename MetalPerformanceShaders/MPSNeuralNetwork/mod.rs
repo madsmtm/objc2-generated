@@ -100,6 +100,7 @@ mod __MPSRNNLayer;
 #[cfg(all(
     feature = "MPSCNNBatchNormalization",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNBatchNormalization::MPSCNNBatchNormalization;
@@ -108,11 +109,13 @@ pub use self::__MPSCNNBatchNormalization::MPSCNNBatchNormalizationDataSource;
 #[cfg(all(
     feature = "MPSCNNBatchNormalization",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNBatchNormalization::MPSCNNBatchNormalizationGradient;
 #[cfg(all(
     feature = "MPSCNNBatchNormalization",
+    feature = "MPSCore",
     feature = "MPSNNGradientState",
     feature = "MPSState"
 ))]
@@ -120,32 +123,41 @@ pub use self::__MPSCNNBatchNormalization::MPSCNNBatchNormalizationState;
 #[cfg(all(
     feature = "MPSCNNBatchNormalization",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNBatchNormalization::MPSCNNBatchNormalizationStatistics;
 #[cfg(all(
     feature = "MPSCNNBatchNormalization",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNBatchNormalization::MPSCNNBatchNormalizationStatisticsGradient;
-#[cfg(all(feature = "MPSCNNBatchNormalization", feature = "MPSState"))]
+#[cfg(all(
+    feature = "MPSCNNBatchNormalization",
+    feature = "MPSCore",
+    feature = "MPSState"
+))]
 pub use self::__MPSCNNBatchNormalization::MPSCNNNormalizationMeanAndVarianceState;
 #[cfg(all(
     feature = "MPSCNNConvolution",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNConvolution::MPSCNNBinaryConvolution;
 #[cfg(all(
     feature = "MPSCNNConvolution",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNConvolution::MPSCNNBinaryFullyConnected;
 #[cfg(all(
     feature = "MPSCNNConvolution",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNConvolution::MPSCNNConvolution;
@@ -156,6 +168,7 @@ pub use self::__MPSCNNConvolution::MPSCNNConvolutionDescriptor;
 #[cfg(all(
     feature = "MPSCNNConvolution",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNConvolution::MPSCNNConvolutionGradient;
@@ -163,12 +176,14 @@ pub use self::__MPSCNNConvolution::MPSCNNConvolutionGradient;
 pub use self::__MPSCNNConvolution::MPSCNNConvolutionGradientOption;
 #[cfg(all(
     feature = "MPSCNNConvolution",
+    feature = "MPSCore",
     feature = "MPSNNGradientState",
     feature = "MPSState"
 ))]
 pub use self::__MPSCNNConvolution::MPSCNNConvolutionGradientState;
 #[cfg(all(
     feature = "MPSCNNConvolution",
+    feature = "MPSCore",
     feature = "MPSNNGradientState",
     feature = "MPSState"
 ))]
@@ -176,28 +191,36 @@ pub use self::__MPSCNNConvolution::MPSCNNConvolutionGradientStateBatch;
 #[cfg(all(
     feature = "MPSCNNConvolution",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNConvolution::MPSCNNConvolutionTranspose;
 #[cfg(all(
     feature = "MPSCNNConvolution",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNConvolution::MPSCNNConvolutionTransposeGradient;
 #[cfg(all(
     feature = "MPSCNNConvolution",
+    feature = "MPSCore",
     feature = "MPSNNGradientState",
     feature = "MPSState"
 ))]
 pub use self::__MPSCNNConvolution::MPSCNNConvolutionTransposeGradientState;
 #[cfg(all(
     feature = "MPSCNNConvolution",
+    feature = "MPSCore",
     feature = "MPSNNGradientState",
     feature = "MPSState"
 ))]
 pub use self::__MPSCNNConvolution::MPSCNNConvolutionTransposeGradientStateBatch;
-#[cfg(all(feature = "MPSCNNConvolution", feature = "MPSState"))]
+#[cfg(all(
+    feature = "MPSCNNConvolution",
+    feature = "MPSCore",
+    feature = "MPSState"
+))]
 pub use self::__MPSCNNConvolution::MPSCNNConvolutionWeightsAndBiasesState;
 #[cfg(feature = "MPSCNNConvolution")]
 pub use self::__MPSCNNConvolution::MPSCNNConvolutionWeightsLayout;
@@ -206,12 +229,14 @@ pub use self::__MPSCNNConvolution::MPSCNNDepthWiseConvolutionDescriptor;
 #[cfg(all(
     feature = "MPSCNNConvolution",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNConvolution::MPSCNNFullyConnected;
 #[cfg(all(
     feature = "MPSCNNConvolution",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNConvolution::MPSCNNFullyConnectedGradient;
@@ -222,35 +247,41 @@ pub use self::__MPSCNNConvolution::MPSCNNWeightsQuantizationType;
 #[cfg(all(
     feature = "MPSCNNConvolution",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNConvolution::MPSNNGramMatrixCalculation;
 #[cfg(all(
     feature = "MPSCNNConvolution",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNConvolution::MPSNNGramMatrixCalculationGradient;
 #[cfg(all(
     feature = "MPSCNNDropout",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNDropout::MPSCNNDropout;
 #[cfg(all(
     feature = "MPSCNNDropout",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNDropout::MPSCNNDropoutGradient;
 #[cfg(all(
     feature = "MPSCNNDropout",
+    feature = "MPSCore",
     feature = "MPSNNGradientState",
     feature = "MPSState"
 ))]
 pub use self::__MPSCNNDropout::MPSCNNDropoutGradientState;
 #[cfg(all(
     feature = "MPSCNNDropout",
+    feature = "MPSCore",
     feature = "MPSNNGradientState",
     feature = "MPSState"
 ))]
@@ -258,6 +289,7 @@ pub use self::__MPSCNNDropout::MPSCNNDropoutGradientStateBatch;
 #[cfg(all(
     feature = "MPSCNNGroupNormalization",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNGroupNormalization::MPSCNNGroupNormalization;
@@ -266,17 +298,20 @@ pub use self::__MPSCNNGroupNormalization::MPSCNNGroupNormalizationDataSource;
 #[cfg(all(
     feature = "MPSCNNGroupNormalization",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNGroupNormalization::MPSCNNGroupNormalizationGradient;
 #[cfg(all(
     feature = "MPSCNNGroupNormalization",
+    feature = "MPSCore",
     feature = "MPSNNGradientState",
     feature = "MPSState"
 ))]
 pub use self::__MPSCNNGroupNormalization::MPSCNNGroupNormalizationGradientState;
 #[cfg(all(
     feature = "MPSCNNGroupNormalization",
+    feature = "MPSCore",
     feature = "MPSNNGradientState",
     feature = "MPSState"
 ))]
@@ -284,6 +319,7 @@ pub use self::__MPSCNNGroupNormalization::MPSCNNGroupNormalizationGradientStateB
 #[cfg(all(
     feature = "MPSCNNInstanceNormalization",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNInstanceNormalization::MPSCNNInstanceNormalization;
@@ -292,32 +328,36 @@ pub use self::__MPSCNNInstanceNormalization::MPSCNNInstanceNormalizationDataSour
 #[cfg(all(
     feature = "MPSCNNInstanceNormalization",
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNInstanceNormalization::MPSCNNInstanceNormalizationGradient;
 #[cfg(all(
     feature = "MPSCNNInstanceNormalization",
+    feature = "MPSCore",
     feature = "MPSNNGradientState",
     feature = "MPSState"
 ))]
 pub use self::__MPSCNNInstanceNormalization::MPSCNNInstanceNormalizationGradientState;
 #[cfg(all(
     feature = "MPSCNNInstanceNormalization",
+    feature = "MPSCore",
     feature = "MPSNNGradientState",
     feature = "MPSState"
 ))]
 pub use self::__MPSCNNInstanceNormalization::MPSCNNInstanceNormalizationGradientStateBatch;
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 pub use self::__MPSCNNKernel::MPSCNNBinaryKernel;
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 pub use self::__MPSCNNKernel::MPSCNNGradientKernel;
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 pub use self::__MPSCNNKernel::MPSCNNKernel;
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 pub use self::__MPSCNNKernel::MPSCNNMultiaryKernel;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNLoss",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNLoss::MPSCNNLoss;
@@ -325,13 +365,14 @@ pub use self::__MPSCNNLoss::MPSCNNLoss;
 pub use self::__MPSCNNLoss::MPSCNNLossDataDescriptor;
 #[cfg(feature = "MPSCNNLoss")]
 pub use self::__MPSCNNLoss::MPSCNNLossDescriptor;
-#[cfg(all(feature = "MPSCNNLoss", feature = "MPSState"))]
+#[cfg(all(feature = "MPSCNNLoss", feature = "MPSCore", feature = "MPSState"))]
 pub use self::__MPSCNNLoss::MPSCNNLossLabels;
-#[cfg(all(feature = "MPSCNNLoss", feature = "MPSState"))]
+#[cfg(all(feature = "MPSCNNLoss", feature = "MPSCore", feature = "MPSState"))]
 pub use self::__MPSCNNLoss::MPSCNNLossLabelsBatch;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNLoss",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNLoss::MPSCNNYOLOLoss;
@@ -340,53 +381,62 @@ pub use self::__MPSCNNLoss::MPSCNNYOLOLossDescriptor;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNLoss",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNLoss::MPSNNForwardLoss;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNLoss",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNLoss::MPSNNInitialGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNLoss",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNLoss::MPSNNLossGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNMath",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNMath::MPSCNNAdd;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNMath",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNMath::MPSCNNAddGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNMath",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNMath::MPSCNNArithmetic;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNMath",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNMath::MPSCNNArithmeticGradient;
 #[cfg(all(
     feature = "MPSCNNMath",
+    feature = "MPSCore",
     feature = "MPSNNGradientState",
     feature = "MPSState"
 ))]
 pub use self::__MPSCNNMath::MPSCNNArithmeticGradientState;
 #[cfg(all(
     feature = "MPSCNNMath",
+    feature = "MPSCore",
     feature = "MPSNNGradientState",
     feature = "MPSState"
 ))]
@@ -394,36 +444,42 @@ pub use self::__MPSCNNMath::MPSCNNArithmeticGradientStateBatch;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNMath",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNMath::MPSCNNDivide;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNMath",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNMath::MPSCNNMultiply;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNMath",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNMath::MPSCNNMultiplyGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNMath",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNMath::MPSCNNSubtract;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNMath",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNMath::MPSCNNSubtractGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNMath",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNMath::MPSNNCompare;
@@ -432,96 +488,112 @@ pub use self::__MPSCNNMath::MPSNNComparisonType;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNeuron",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNeuron::MPSCNNNeuron;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNeuron",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNeuron::MPSCNNNeuronAbsolute;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNeuron",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNeuron::MPSCNNNeuronELU;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNeuron",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNeuron::MPSCNNNeuronExponential;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNeuron",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNeuron::MPSCNNNeuronGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNeuron",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNeuron::MPSCNNNeuronHardSigmoid;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNeuron",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNeuron::MPSCNNNeuronLinear;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNeuron",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNeuron::MPSCNNNeuronLogarithm;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNeuron",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNeuron::MPSCNNNeuronPReLU;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNeuron",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNeuron::MPSCNNNeuronPower;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNeuron",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNeuron::MPSCNNNeuronReLU;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNeuron",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNeuron::MPSCNNNeuronReLUN;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNeuron",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNeuron::MPSCNNNeuronSigmoid;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNeuron",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNeuron::MPSCNNNeuronSoftPlus;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNeuron",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNeuron::MPSCNNNeuronSoftSign;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNeuron",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNeuron::MPSCNNNeuronTanH;
@@ -532,122 +604,146 @@ pub use self::__MPSCNNNeuronType::MPSCNNNeuronType;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNormalization",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNormalization::MPSCNNCrossChannelNormalization;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNormalization",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNormalization::MPSCNNCrossChannelNormalizationGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNormalization",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNormalization::MPSCNNLocalContrastNormalization;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNormalization",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNormalization::MPSCNNLocalContrastNormalizationGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNormalization",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNormalization::MPSCNNSpatialNormalization;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNNormalization",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNNormalization::MPSCNNSpatialNormalizationGradient;
-#[cfg(all(feature = "MPSCNNNormalizationWeights", feature = "MPSState"))]
+#[cfg(all(
+    feature = "MPSCNNNormalizationWeights",
+    feature = "MPSCore",
+    feature = "MPSState"
+))]
 pub use self::__MPSCNNNormalizationWeights::MPSCNNNormalizationGammaAndBetaState;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNPooling",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNPooling::MPSCNNDilatedPoolingMax;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNPooling",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNPooling::MPSCNNDilatedPoolingMaxGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNPooling",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNPooling::MPSCNNPooling;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNPooling",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNPooling::MPSCNNPoolingAverage;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNPooling",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNPooling::MPSCNNPoolingAverageGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNPooling",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNPooling::MPSCNNPoolingGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNPooling",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNPooling::MPSCNNPoolingL2Norm;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNPooling",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNPooling::MPSCNNPoolingL2NormGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNPooling",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNPooling::MPSCNNPoolingMax;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNPooling",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNPooling::MPSCNNPoolingMaxGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNSoftMax",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNSoftMax::MPSCNNLogSoftMax;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNSoftMax",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNSoftMax::MPSCNNLogSoftMaxGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNSoftMax",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNSoftMax::MPSCNNSoftMax;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNSoftMax",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNSoftMax::MPSCNNSoftMaxGradient;
@@ -658,92 +754,139 @@ pub use self::__MPSCNNTypes::MPSCNNReductionType;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNUpsampling",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNUpsampling::MPSCNNUpsampling;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNUpsampling",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNUpsampling::MPSCNNUpsamplingBilinear;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNUpsampling",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNUpsampling::MPSCNNUpsamplingBilinearGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNUpsampling",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNUpsampling::MPSCNNUpsamplingGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNUpsampling",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNUpsampling::MPSCNNUpsamplingNearest;
 #[cfg(all(
     feature = "MPSCNNKernel",
     feature = "MPSCNNUpsampling",
+    feature = "MPSCore",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSCNNUpsampling::MPSCNNUpsamplingNearestGradient;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
+    feature = "MPSMatrix",
     feature = "MPSMatrixBatchNormalization",
     feature = "MPSMatrixTypes"
 ))]
 pub use self::__MPSMatrixBatchNormalization::MPSMatrixBatchNormalization;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
+    feature = "MPSMatrix",
     feature = "MPSMatrixBatchNormalization",
     feature = "MPSMatrixTypes"
 ))]
 pub use self::__MPSMatrixBatchNormalization::MPSMatrixBatchNormalizationGradient;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
+    feature = "MPSMatrix",
     feature = "MPSMatrixFullyConnected",
     feature = "MPSMatrixTypes"
 ))]
 pub use self::__MPSMatrixFullyConnected::MPSMatrixFullyConnected;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
+    feature = "MPSMatrix",
     feature = "MPSMatrixFullyConnected",
     feature = "MPSMatrixTypes"
 ))]
 pub use self::__MPSMatrixFullyConnected::MPSMatrixFullyConnectedGradient;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
+    feature = "MPSMatrix",
     feature = "MPSMatrixNeuron",
     feature = "MPSMatrixTypes"
 ))]
 pub use self::__MPSMatrixNeuron::MPSMatrixNeuron;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
+    feature = "MPSMatrix",
     feature = "MPSMatrixNeuron",
     feature = "MPSMatrixTypes"
 ))]
 pub use self::__MPSMatrixNeuron::MPSMatrixNeuronGradient;
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixSum"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixSum"))]
 pub use self::__MPSMatrixSum::MPSMatrixSum;
-#[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
 pub use self::__MPSNNGradientState::MPSNNBinaryGradientState;
-#[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
 pub use self::__MPSNNGradientState::MPSNNBinaryGradientStateBatch;
-#[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
 pub use self::__MPSNNGradientState::MPSNNGradientState;
-#[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
 pub use self::__MPSNNGradientState::MPSNNGradientStateBatch;
-#[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
 pub use self::__MPSNNGradientState::MPSNNMultiaryGradientState;
-#[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
 pub use self::__MPSNNGradientState::MPSNNMultiaryGradientStateBatch;
-#[cfg(all(feature = "MPSKernel", feature = "MPSNNGraph"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSNNGraph"))]
 pub use self::__MPSNNGraph::MPSNNGraph;
-#[cfg(all(feature = "MPSImage", feature = "MPSNNGraph", feature = "block2"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSImage",
+    feature = "MPSNNGraph",
+    feature = "block2"
+))]
 pub use self::__MPSNNGraph::MPSNNGraphCompletionHandler;
 #[cfg(feature = "MPSNNGraphNodes")]
 pub use self::__MPSNNGraphNodes::MPSCNNBatchNormalizationGradientNode;
@@ -983,174 +1126,217 @@ pub use self::__MPSNNGraphNodes::MPSNNTrainableNode;
 pub use self::__MPSNNGraphNodes::MPSNNUnaryReductionNode;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNGridSample"
 ))]
 pub use self::__MPSNNGridSample::MPSNNGridSample;
-#[cfg(all(feature = "MPSKernel", feature = "MPSNNOptimizers"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNNOptimizers"
+))]
 pub use self::__MPSNNOptimizers::MPSNNOptimizer;
-#[cfg(all(feature = "MPSKernel", feature = "MPSNNOptimizers"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNNOptimizers"
+))]
 pub use self::__MPSNNOptimizers::MPSNNOptimizerAdam;
 #[cfg(feature = "MPSNNOptimizers")]
 pub use self::__MPSNNOptimizers::MPSNNOptimizerDescriptor;
-#[cfg(all(feature = "MPSKernel", feature = "MPSNNOptimizers"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNNOptimizers"
+))]
 pub use self::__MPSNNOptimizers::MPSNNOptimizerRMSProp;
-#[cfg(all(feature = "MPSKernel", feature = "MPSNNOptimizers"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNNOptimizers"
+))]
 pub use self::__MPSNNOptimizers::MPSNNOptimizerStochasticGradientDescent;
 #[cfg(feature = "MPSNNOptimizers")]
 pub use self::__MPSNNOptimizers::MPSNNRegularizationType;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNLocalCorrelation;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceBinary;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceColumnMax;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceColumnMean;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceColumnMin;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceColumnSum;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceFeatureChannelsAndWeightsMean;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceFeatureChannelsAndWeightsSum;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceFeatureChannelsArgumentMax;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceFeatureChannelsArgumentMin;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceFeatureChannelsMax;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceFeatureChannelsMean;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceFeatureChannelsMin;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceFeatureChannelsSum;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceRowMax;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceRowMean;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceRowMin;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceRowSum;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReduce"
 ))]
 pub use self::__MPSNNReduce::MPSNNReduceUnary;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReshape"
 ))]
 pub use self::__MPSNNReshape::MPSNNPad;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReshape"
 ))]
 pub use self::__MPSNNReshape::MPSNNPadGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReshape"
 ))]
 pub use self::__MPSNNReshape::MPSNNReshape;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNReshape"
 ))]
 pub use self::__MPSNNReshape::MPSNNReshapeGradient;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNResize"
 ))]
 pub use self::__MPSNNResize::MPSNNCropAndResizeBilinear;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNResize"
 ))]
 pub use self::__MPSNNResize::MPSNNResizeBilinear;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNNSlice"
 ))]
@@ -1185,21 +1371,22 @@ pub use self::__MPSRNNLayer::MPSRNNBidirectionalCombineMode;
 pub use self::__MPSRNNLayer::MPSRNNDescriptor;
 #[cfg(all(
     feature = "MPSCNNKernel",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSRNNLayer"
 ))]
 pub use self::__MPSRNNLayer::MPSRNNImageInferenceLayer;
 #[cfg(feature = "MPSRNNLayer")]
 pub use self::__MPSRNNLayer::MPSRNNMatrixId;
-#[cfg(all(feature = "MPSKernel", feature = "MPSRNNLayer"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSRNNLayer"))]
 pub use self::__MPSRNNLayer::MPSRNNMatrixInferenceLayer;
-#[cfg(all(feature = "MPSKernel", feature = "MPSRNNLayer"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSRNNLayer"))]
 pub use self::__MPSRNNLayer::MPSRNNMatrixTrainingLayer;
-#[cfg(all(feature = "MPSRNNLayer", feature = "MPSState"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSRNNLayer", feature = "MPSState"))]
 pub use self::__MPSRNNLayer::MPSRNNMatrixTrainingState;
-#[cfg(all(feature = "MPSRNNLayer", feature = "MPSState"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSRNNLayer", feature = "MPSState"))]
 pub use self::__MPSRNNLayer::MPSRNNRecurrentImageState;
-#[cfg(all(feature = "MPSRNNLayer", feature = "MPSState"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSRNNLayer", feature = "MPSState"))]
 pub use self::__MPSRNNLayer::MPSRNNRecurrentMatrixState;
 #[cfg(feature = "MPSRNNLayer")]
 pub use self::__MPSRNNLayer::MPSRNNSequenceDirection;

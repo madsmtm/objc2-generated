@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -93,7 +91,6 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinputservermousetracker?language=objc)
     pub unsafe trait NSInputServerMouseTracker {
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(mouseDownOnCharacterIndex:atCoordinate:withModifier:client:)]
         unsafe fn mouseDownOnCharacterIndex_atCoordinate_withModifier_client(
@@ -104,7 +101,6 @@ extern_protocol!(
             sender: Option<&AnyObject>,
         ) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(mouseDraggedOnCharacterIndex:atCoordinate:withModifier:client:)]
         unsafe fn mouseDraggedOnCharacterIndex_atCoordinate_withModifier_client(
@@ -115,7 +111,6 @@ extern_protocol!(
             sender: Option<&AnyObject>,
         ) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(mouseUpOnCharacterIndex:atCoordinate:withModifier:client:)]
         unsafe fn mouseUpOnCharacterIndex_atCoordinate_withModifier_client(

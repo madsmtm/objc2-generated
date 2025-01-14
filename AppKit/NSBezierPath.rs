@@ -129,11 +129,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bezierPath)]
         pub unsafe fn bezierPath() -> Retained<NSBezierPath>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other bezierPathWithRect:)]
         pub unsafe fn bezierPathWithRect(rect: NSRect) -> Retained<NSBezierPath>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other bezierPathWithOvalInRect:)]
         pub unsafe fn bezierPathWithOvalInRect(rect: NSRect) -> Retained<NSBezierPath>;
 
@@ -161,23 +159,18 @@ extern_methods!(
         #[method(setCGPath:)]
         pub unsafe fn setCGPath(&self, cg_path: &CGPath);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(fillRect:)]
         pub unsafe fn fillRect(rect: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(strokeRect:)]
         pub unsafe fn strokeRect(rect: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(clipRect:)]
         pub unsafe fn clipRect(rect: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(strokeLineFromPoint:toPoint:)]
         pub unsafe fn strokeLineFromPoint_toPoint(point1: NSPoint, point2: NSPoint);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawPackedGlyphs:atPoint:)]
         pub unsafe fn drawPackedGlyphs_atPoint(packed_glyphs: NonNull<c_char>, point: NSPoint);
 
@@ -229,15 +222,12 @@ extern_methods!(
         #[method(setDefaultLineWidth:)]
         pub unsafe fn setDefaultLineWidth(default_line_width: CGFloat);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(moveToPoint:)]
         pub unsafe fn moveToPoint(&self, point: NSPoint);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(lineToPoint:)]
         pub unsafe fn lineToPoint(&self, point: NSPoint);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(curveToPoint:controlPoint1:controlPoint2:)]
         pub unsafe fn curveToPoint_controlPoint1_controlPoint2(
             &self,
@@ -246,7 +236,6 @@ extern_methods!(
             control_point2: NSPoint,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(curveToPoint:controlPoint:)]
         pub unsafe fn curveToPoint_controlPoint(&self, end_point: NSPoint, control_point: NSPoint);
 
@@ -256,15 +245,12 @@ extern_methods!(
         #[method(removeAllPoints)]
         pub unsafe fn removeAllPoints(&self);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(relativeMoveToPoint:)]
         pub unsafe fn relativeMoveToPoint(&self, point: NSPoint);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(relativeLineToPoint:)]
         pub unsafe fn relativeLineToPoint(&self, point: NSPoint);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(relativeCurveToPoint:controlPoint1:controlPoint2:)]
         pub unsafe fn relativeCurveToPoint_controlPoint1_controlPoint2(
             &self,
@@ -273,7 +259,6 @@ extern_methods!(
             control_point2: NSPoint,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(relativeCurveToPoint:controlPoint:)]
         pub unsafe fn relativeCurveToPoint_controlPoint(
             &self,
@@ -371,22 +356,18 @@ extern_methods!(
         #[method(isEmpty)]
         pub unsafe fn isEmpty(&self) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(currentPoint)]
         pub unsafe fn currentPoint(&self) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(controlPointBounds)]
         pub unsafe fn controlPointBounds(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> NSRect;
 
         #[method(elementCount)]
         pub unsafe fn elementCount(&self) -> NSInteger;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(elementAtIndex:associatedPoints:)]
         pub unsafe fn elementAtIndex_associatedPoints(
             &self,
@@ -397,18 +378,15 @@ extern_methods!(
         #[method(elementAtIndex:)]
         pub unsafe fn elementAtIndex(&self, index: NSInteger) -> NSBezierPathElement;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(setAssociatedPoints:atIndex:)]
         pub unsafe fn setAssociatedPoints_atIndex(&self, points: NSPointArray, index: NSInteger);
 
         #[method(appendBezierPath:)]
         pub unsafe fn appendBezierPath(&self, path: &NSBezierPath);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(appendBezierPathWithRect:)]
         pub unsafe fn appendBezierPathWithRect(&self, rect: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(appendBezierPathWithPoints:count:)]
         pub unsafe fn appendBezierPathWithPoints_count(
             &self,
@@ -416,7 +394,6 @@ extern_methods!(
             count: NSInteger,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(appendBezierPathWithOvalInRect:)]
         pub unsafe fn appendBezierPathWithOvalInRect(&self, rect: NSRect);
 
@@ -474,7 +451,6 @@ extern_methods!(
             y_radius: CGFloat,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(containsPoint:)]
         pub unsafe fn containsPoint(&self, point: NSPoint) -> bool;
     }

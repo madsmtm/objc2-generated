@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-uniform-type-identifiers")]
 #[cfg(target_vendor = "apple")]
@@ -841,7 +839,7 @@ extern_methods!(
         #[method(noteUserDefaultsChanged)]
         pub unsafe fn noteUserDefaultsChanged(&self);
 
-        #[cfg(all(feature = "NSImage", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSImage")]
         #[deprecated]
         #[method(slideImage:from:to:)]
         pub unsafe fn slideImage_from_to(
@@ -887,12 +885,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other launchedApplications)]
         pub unsafe fn launchedApplications(&self) -> Option<Retained<NSArray>>;
 
-        #[cfg(all(
-            feature = "NSImage",
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSImage", feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use -[NSWorkspace openURL:] instead."]
         #[method(openFile:fromImage:at:inView:)]
         pub unsafe fn openFile_fromImage_at_inView(

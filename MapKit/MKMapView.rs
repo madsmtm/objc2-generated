@@ -193,7 +193,7 @@ extern_methods!(
         #[method(mapRectThatFits:)]
         pub unsafe fn mapRectThatFits(&self, map_rect: MKMapRect) -> MKMapRect;
 
-        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "MKGeometry")]
         #[method(setVisibleMapRect:edgePadding:animated:)]
         pub unsafe fn setVisibleMapRect_edgePadding_animated(
             &self,
@@ -202,7 +202,7 @@ extern_methods!(
             animate: bool,
         );
 
-        #[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "MKGeometry")]
         #[method(mapRectThatFits:edgePadding:)]
         pub unsafe fn mapRectThatFits_edgePadding(
             &self,
@@ -545,7 +545,6 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKMapView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 

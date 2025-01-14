@@ -83,7 +83,6 @@ extern_methods!(
             selector: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Other sortDescriptorWithKey:ascending:comparator:)]
         pub unsafe fn sortDescriptorWithKey_ascending_comparator(
             key: Option<&NSString>,
@@ -91,7 +90,6 @@ extern_methods!(
             cmptr: NSComparator,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Init initWithKey:ascending:comparator:)]
         pub unsafe fn initWithKey_ascending_comparator(
             this: Allocated<Self>,

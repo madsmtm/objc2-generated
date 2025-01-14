@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -65,11 +63,9 @@ extern_methods!(
         #[method(setVisible:)]
         pub unsafe fn setVisible(&self, visible: bool);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frame)]
         pub unsafe fn frame(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`frame`][Self::frame].
         #[method(setFrame:)]
         pub unsafe fn setFrame(&self, frame: NSRect);

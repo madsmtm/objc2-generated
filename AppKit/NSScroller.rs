@@ -199,7 +199,6 @@ extern_methods!(
         #[method(setKnobStyle:)]
         pub unsafe fn setKnobStyle(&self, knob_style: NSScrollerKnobStyle);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(rectForPart:)]
         pub unsafe fn rectForPart(&self, part_code: NSScrollerPart) -> NSRect;
 
@@ -221,11 +220,9 @@ extern_methods!(
         #[method(drawKnob)]
         pub unsafe fn drawKnob(&self);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawKnobSlotInRect:highlight:)]
         pub unsafe fn drawKnobSlotInRect_highlight(&self, slot_rect: NSRect, flag: bool);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(testPart:)]
         pub unsafe fn testPart(&self, point: NSPoint) -> NSScrollerPart;
 
@@ -251,7 +248,6 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSScroller {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 

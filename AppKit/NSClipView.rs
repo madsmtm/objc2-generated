@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -79,7 +77,6 @@ extern_methods!(
         #[method(setDocumentView:)]
         pub unsafe fn setDocumentView(&self, document_view: Option<&NSView>);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(documentRect)]
         pub unsafe fn documentRect(&self) -> NSRect;
 
@@ -92,7 +89,6 @@ extern_methods!(
         #[method(setDocumentCursor:)]
         pub unsafe fn setDocumentCursor(&self, document_cursor: Option<&NSCursor>);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(documentVisibleRect)]
         pub unsafe fn documentVisibleRect(&self) -> NSRect;
 
@@ -106,19 +102,15 @@ extern_methods!(
         #[method(autoscroll:)]
         pub unsafe fn autoscroll(&self, event: &NSEvent) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(scrollToPoint:)]
         pub unsafe fn scrollToPoint(&self, new_origin: NSPoint);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(constrainBoundsRect:)]
         pub unsafe fn constrainBoundsRect(&self, proposed_bounds: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(contentInsets)]
         pub unsafe fn contentInsets(&self) -> NSEdgeInsets;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentInsets`][Self::contentInsets].
         #[method(setContentInsets:)]
         pub unsafe fn setContentInsets(&self, content_insets: NSEdgeInsets);
@@ -139,7 +131,6 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSClipView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
@@ -176,7 +167,6 @@ extern_methods!(
         #[method(reflectScrolledClipView:)]
         pub unsafe fn reflectScrolledClipView(&self, clip_view: &NSClipView);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(scrollClipView:toPoint:)]
         pub unsafe fn scrollClipView_toPoint(&self, clip_view: &NSClipView, point: NSPoint);
     }
@@ -185,7 +175,6 @@ extern_methods!(
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSClipView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Use -constrainBoundsRect: instead."]
         #[method(constrainScrollPoint:)]
         pub unsafe fn constrainScrollPoint(&self, new_origin: NSPoint) -> NSPoint;

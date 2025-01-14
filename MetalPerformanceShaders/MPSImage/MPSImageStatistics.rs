@@ -17,29 +17,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagestatisticsminandmax?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     pub struct MPSImageStatisticsMinAndMax;
 );
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSImageStatisticsMinAndMax {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSImageStatisticsMinAndMax {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageStatisticsMinAndMax {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSImageStatisticsMinAndMax {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageStatisticsMinAndMax {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageStatisticsMinAndMax {
         /// The source rectangle to use when reading data.
         ///
@@ -92,7 +92,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageStatisticsMinAndMax {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -112,7 +112,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageStatisticsMinAndMax {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -131,29 +131,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagestatisticsmeanandvariance?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     pub struct MPSImageStatisticsMeanAndVariance;
 );
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSImageStatisticsMeanAndVariance {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSImageStatisticsMeanAndVariance {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageStatisticsMeanAndVariance {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSImageStatisticsMeanAndVariance {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageStatisticsMeanAndVariance {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageStatisticsMeanAndVariance {
         /// The source rectangle to use when reading data.
         ///
@@ -206,7 +206,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageStatisticsMeanAndVariance {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -226,7 +226,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageStatisticsMeanAndVariance {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -242,29 +242,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagestatisticsmean?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     pub struct MPSImageStatisticsMean;
 );
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSImageStatisticsMean {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSImageStatisticsMean {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageStatisticsMean {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSImageStatisticsMean {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageStatisticsMean {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageStatisticsMean {
         /// The source rectangle to use when reading data.
         ///
@@ -317,7 +317,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageStatisticsMean {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -337,7 +337,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageStatisticsMean {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

@@ -16,29 +16,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamax?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     pub struct MPSImageAreaMax;
 );
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSImageAreaMax {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSImageAreaMax {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageAreaMax {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSImageAreaMax {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageAreaMax {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageAreaMax {
         /// The height of the filter window. Must be an odd number.
         #[method(kernelHeight)]
@@ -93,7 +93,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageAreaMax {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -113,7 +113,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageAreaMax {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -132,35 +132,35 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageareamin?language=objc)
     #[unsafe(super(MPSImageAreaMax, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     pub struct MPSImageAreaMin;
 );
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSImageAreaMin {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSImageAreaMin {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageAreaMin {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSImageAreaMin {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageAreaMin {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageAreaMin {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `MPSImageAreaMax`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageAreaMin {
         /// Set the kernel height and width
         ///
@@ -207,7 +207,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageAreaMin {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -227,7 +227,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageAreaMin {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -260,29 +260,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedilate?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     pub struct MPSImageDilate;
 );
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSImageDilate {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSImageDilate {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageDilate {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSImageDilate {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageDilate {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageDilate {
         /// The height of the filter window. Must be an odd number.
         #[method(kernelHeight)]
@@ -352,7 +352,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageDilate {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -372,7 +372,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageDilate {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -407,35 +407,35 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageerode?language=objc)
     #[unsafe(super(MPSImageDilate, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     pub struct MPSImageErode;
 );
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSImageErode {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSImageErode {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageErode {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSImageErode {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageErode {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageErode {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `MPSImageDilate`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageErode {
         /// Init a object with kernel height, width and weight values.
         ///
@@ -497,7 +497,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageErode {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -517,7 +517,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageErode {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

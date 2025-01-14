@@ -129,7 +129,6 @@ extern "C-unwind" {
         feature = "CVImageBuffer",
         feature = "CVMetalTexture",
         feature = "CVReturn",
-        feature = "objc2",
         feature = "objc2-metal"
     ))]
     #[cfg(not(target_os = "watchos"))]

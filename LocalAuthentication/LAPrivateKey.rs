@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-security")]
 use objc2_security::*;
@@ -30,11 +28,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other publicKey)]
         pub unsafe fn publicKey(&self) -> Retained<LAPublicKey>;
 
-        #[cfg(all(
-            feature = "block2",
-            feature = "objc2-core-foundation",
-            feature = "objc2-security"
-        ))]
+        #[cfg(all(feature = "block2", feature = "objc2-security"))]
         /// Generates a digital signature for the given data.
         ///
         /// Parameter `data`: The data to be signed, typically the digest of the actual data.
@@ -51,7 +45,7 @@ extern_methods!(
             handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
+        #[cfg(feature = "objc2-security")]
         /// Checks if the the provided algorithm can be used for signing data
         ///
         /// Parameter `algorithm`: Cryptographic algorithm
@@ -60,11 +54,7 @@ extern_methods!(
         #[method(canSignUsingSecKeyAlgorithm:)]
         pub unsafe fn canSignUsingSecKeyAlgorithm(&self, algorithm: &SecKeyAlgorithm) -> bool;
 
-        #[cfg(all(
-            feature = "block2",
-            feature = "objc2-core-foundation",
-            feature = "objc2-security"
-        ))]
+        #[cfg(all(feature = "block2", feature = "objc2-security"))]
         /// Decrypts the given ciphertext
         ///
         /// Parameter `data`: The data to decrypt. The length and format of the data must conform to chosen algorithm,
@@ -82,7 +72,7 @@ extern_methods!(
             handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
+        #[cfg(feature = "objc2-security")]
         /// Checks if the the provided algorithm can be used for decryption
         ///
         /// Parameter `algorithm`: Cryptographic algorithm
@@ -91,11 +81,7 @@ extern_methods!(
         #[method(canDecryptUsingSecKeyAlgorithm:)]
         pub unsafe fn canDecryptUsingSecKeyAlgorithm(&self, algorithm: &SecKeyAlgorithm) -> bool;
 
-        #[cfg(all(
-            feature = "block2",
-            feature = "objc2-core-foundation",
-            feature = "objc2-security"
-        ))]
+        #[cfg(all(feature = "block2", feature = "objc2-security"))]
         /// Performs a Diffie-Hellman style key exchange operation
         ///
         /// Parameter `publicKey`: Remote party's public key.
@@ -116,7 +102,7 @@ extern_methods!(
             handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
+        #[cfg(feature = "objc2-security")]
         /// Checks if the the provided algorithm can be used for performing key exchanges
         ///
         /// Parameter `algorithm`: Cryptographic algorithm

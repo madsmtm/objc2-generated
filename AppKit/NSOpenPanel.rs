@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -181,7 +179,7 @@ extern_methods!(
         feature = "NSWindow"
     ))]
     unsafe impl NSOpenPanel {
-        #[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSGraphics")]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Allocated<Self>,
@@ -191,11 +189,7 @@ extern_methods!(
             flag: bool,
         ) -> Retained<Self>;
 
-        #[cfg(all(
-            feature = "NSGraphics",
-            feature = "NSScreen",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSGraphics", feature = "NSScreen"))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Allocated<Self>,

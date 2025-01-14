@@ -190,7 +190,6 @@ extern_category!(
     /// Category on [`NSString`].
     /// ********************** Deprecated ***********************
     pub unsafe trait NSStringDrawingDeprecated {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawWithRect:options:attributes:)]
         unsafe fn drawWithRect_options_attributes(
             &self,
@@ -199,7 +198,6 @@ extern_category!(
             attributes: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(boundingRectWithSize:options:attributes:)]
         unsafe fn boundingRectWithSize_options_attributes(
             &self,
@@ -216,11 +214,9 @@ extern_category!(
     /// Category "NSStringDrawingDeprecated" on [`NSAttributedString`].
     #[doc(alias = "NSStringDrawingDeprecated")]
     pub unsafe trait NSAttributedStringNSStringDrawingDeprecated {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawWithRect:options:)]
         unsafe fn drawWithRect_options(&self, rect: NSRect, options: NSStringDrawingOptions);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(boundingRectWithSize:options:)]
         unsafe fn boundingRectWithSize_options(
             &self,

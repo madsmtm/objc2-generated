@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -262,11 +260,7 @@ extern_protocol!(
         #[method(selectAndShowRange:)]
         unsafe fn selectAndShowRange(&self, range: NSRange);
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other viewForRange:firstRect:actualRange:)]
         unsafe fn viewForRange_firstRect_actualRange(
             &self,

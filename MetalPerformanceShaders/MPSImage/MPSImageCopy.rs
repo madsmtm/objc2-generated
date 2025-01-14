@@ -21,29 +21,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagecopytomatrix?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSImageCopyToMatrix;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSImageCopyToMatrix {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSImageCopyToMatrix {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageCopyToMatrix {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSImageCopyToMatrix {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageCopyToMatrix {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSImageCopyToMatrix {
         /// The origin, relative to [0, 0] in the destination matrix, at which to
         /// start writing results.  This property is modifiable and defaults
@@ -69,7 +69,6 @@ extern_methods!(
             destination_matrix_batch_index: NSUInteger,
         );
 
-        #[cfg(feature = "MPSImage")]
         /// The data layout to use
         ///
         /// Returns the data layout.  When copying from a MPSImage to a MPSMatrix, this
@@ -79,7 +78,6 @@ extern_methods!(
         #[method(dataLayout)]
         pub unsafe fn dataLayout(&self) -> MPSDataLayout;
 
-        #[cfg(feature = "MPSImage")]
         /// Initialize a MPSMatrixCopy object on a device
         ///
         /// Parameter `device`: The device the kernel will run on
@@ -114,7 +112,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[cfg(all(feature = "MPSImage", feature = "MPSMatrix"))]
+        #[cfg(feature = "MPSMatrix")]
         /// Encode a kernel that copies a MPSImage to a MPSMatrix into a command buffer
         /// using a MTLComputeCommandEncoder.
         ///
@@ -138,7 +136,7 @@ extern_methods!(
             destination_matrix: &MPSMatrix,
         );
 
-        #[cfg(all(feature = "MPSImage", feature = "MPSMatrix", feature = "MPSNDArray"))]
+        #[cfg(all(feature = "MPSMatrix", feature = "MPSNDArray"))]
         /// Encode a kernel that copies a MPSImageBatch to a MPSMatrix into a command buffer
         /// using a MTLComputeCommandEncoder.
         ///
@@ -169,7 +167,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSImageCopyToMatrix {
         /// Standard init with default properties per filter type
         ///
@@ -202,7 +200,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSImageCopyToMatrix {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -219,29 +217,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixcopytoimage?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSMatrixCopyToImage;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSMatrixCopyToImage {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSMatrixCopyToImage {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSMatrixCopyToImage {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSMatrixCopyToImage {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSMatrixCopyToImage {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixCopyToImage {
         /// The origin, relative to [0, 0] in the source matrix.
         /// This property is modifiable and defaults
@@ -264,7 +262,6 @@ extern_methods!(
         #[method(setSourceMatrixBatchIndex:)]
         pub unsafe fn setSourceMatrixBatchIndex(&self, source_matrix_batch_index: NSUInteger);
 
-        #[cfg(feature = "MPSImage")]
         /// The data layout to use
         ///
         /// Returns the data layout.  When copying from a MPSMatrix to a MPSImage, this
@@ -274,7 +271,6 @@ extern_methods!(
         #[method(dataLayout)]
         pub unsafe fn dataLayout(&self) -> MPSDataLayout;
 
-        #[cfg(feature = "MPSImage")]
         /// Initialize a MPSMatrixCopyToImage object on a device
         ///
         /// Parameter `device`: The device the kernel will run on
@@ -309,7 +305,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[cfg(all(feature = "MPSImage", feature = "MPSMatrix"))]
+        #[cfg(feature = "MPSMatrix")]
         /// Encode a kernel that copies a MPSMatrix to a MPSImage into a command buffer
         /// using a MTLComputeCommandEncoder.
         ///
@@ -333,7 +329,7 @@ extern_methods!(
             destination_image: &MPSImage,
         );
 
-        #[cfg(all(feature = "MPSImage", feature = "MPSMatrix", feature = "MPSNDArray"))]
+        #[cfg(all(feature = "MPSMatrix", feature = "MPSNDArray"))]
         /// Encode a kernel that copies a MPSMatrix to a MPSImageBatch into a command buffer
         /// using a MTLComputeCommandEncoder.
         ///
@@ -364,7 +360,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixCopyToImage {
         /// Standard init with default properties per filter type
         ///
@@ -397,7 +393,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixCopyToImage {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

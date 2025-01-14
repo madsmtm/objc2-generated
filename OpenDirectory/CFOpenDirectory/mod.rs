@@ -21,433 +21,235 @@ mod __CFOpenDirectoryConstants;
 
 #[cfg(all(
     feature = "CFODNode",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODNode::ODNodeAddAccountPolicy;
-#[cfg(all(
-    feature = "CFODNode",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODNode", feature = "objc2-core-foundation"))]
 pub use self::__CFODNode::ODNodeCopyAccountPolicies;
-#[cfg(all(
-    feature = "CFODNode",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODNode", feature = "objc2-core-foundation"))]
 pub use self::__CFODNode::ODNodeCopyDetails;
-#[cfg(all(
-    feature = "CFODNode",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODNode", feature = "objc2-core-foundation"))]
 pub use self::__CFODNode::ODNodeCopyPolicies;
 #[cfg(all(
     feature = "CFODNode",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODNode::ODNodeCopyRecord;
-#[cfg(all(
-    feature = "CFODNode",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODNode", feature = "objc2-core-foundation"))]
 pub use self::__CFODNode::ODNodeCopySubnodeNames;
 #[cfg(all(
     feature = "CFODNode",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODNode::ODNodeCopySupportedAttributes;
-#[cfg(all(
-    feature = "CFODNode",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODNode", feature = "objc2-core-foundation"))]
 pub use self::__CFODNode::ODNodeCopySupportedPolicies;
-#[cfg(all(
-    feature = "CFODNode",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODNode", feature = "objc2-core-foundation"))]
 pub use self::__CFODNode::ODNodeCopySupportedRecordTypes;
-#[cfg(all(
-    feature = "CFODNode",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODNode", feature = "objc2-core-foundation"))]
 pub use self::__CFODNode::ODNodeCopyUnreachableSubnodeNames;
-#[cfg(all(
-    feature = "CFODNode",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODNode", feature = "objc2-core-foundation"))]
 pub use self::__CFODNode::ODNodeCreateCopy;
 #[cfg(all(
     feature = "CFODNode",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODNode::ODNodeCreateRecord;
-#[cfg(all(
-    feature = "CFODNode",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODNode", feature = "objc2-core-foundation"))]
 pub use self::__CFODNode::ODNodeCreateWithName;
 #[cfg(all(
     feature = "CFODNode",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODNode::ODNodeCreateWithNodeType;
-#[cfg(all(
-    feature = "CFODNode",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODNode", feature = "objc2-core-foundation"))]
 pub use self::__CFODNode::ODNodeCustomCall;
-#[cfg(all(
-    feature = "CFODNode",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODNode", feature = "objc2-core-foundation"))]
 pub use self::__CFODNode::ODNodeCustomFunction;
-#[cfg(all(
-    feature = "CFODNode",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODNode", feature = "objc2-core-foundation"))]
 pub use self::__CFODNode::ODNodeGetName;
-#[cfg(all(
-    feature = "CFODNode",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODNode", feature = "objc2-core-foundation"))]
 pub use self::__CFODNode::ODNodePasswordContentCheck;
 #[cfg(all(
     feature = "CFODNode",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODNode::ODNodeRemoveAccountPolicy;
 #[cfg(all(
     feature = "CFODNode",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODNode::ODNodeRemovePolicy;
-#[cfg(all(
-    feature = "CFODNode",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODNode", feature = "objc2-core-foundation"))]
 pub use self::__CFODNode::ODNodeSetAccountPolicies;
 #[cfg(all(
     feature = "CFODNode",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODNode::ODNodeSetCredentials;
 #[cfg(all(
     feature = "CFODNode",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODNode::ODNodeSetCredentialsExtended;
-#[cfg(all(
-    feature = "CFODNode",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODNode", feature = "objc2-core-foundation"))]
 pub use self::__CFODNode::ODNodeSetCredentialsUsingKerberosCache;
-#[cfg(all(
-    feature = "CFODNode",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODNode", feature = "objc2-core-foundation"))]
 pub use self::__CFODNode::ODNodeSetPolicies;
 #[cfg(all(
     feature = "CFODNode",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODNode::ODNodeSetPolicy;
-#[cfg(all(
-    feature = "CFODQuery",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODQuery", feature = "objc2-core-foundation"))]
 pub use self::__CFODQuery::ODQueryCallback;
-#[cfg(all(
-    feature = "CFODQuery",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODQuery", feature = "objc2-core-foundation"))]
 pub use self::__CFODQuery::ODQueryCopyResults;
 #[cfg(all(
     feature = "CFODQuery",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODQuery::ODQueryCreateWithNode;
 #[cfg(all(
     feature = "CFODQuery",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODQuery::ODQueryCreateWithNodeType;
-#[cfg(all(
-    feature = "CFODQuery",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODQuery", feature = "objc2-core-foundation"))]
 pub use self::__CFODQuery::ODQueryScheduleWithRunLoop;
-#[cfg(all(
-    feature = "CFODQuery",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODQuery", feature = "objc2-core-foundation"))]
 pub use self::__CFODQuery::ODQuerySetCallback;
-#[cfg(all(feature = "CFODQuery", feature = "CFOpenDirectory"))]
+#[cfg(feature = "CFODQuery")]
 pub use self::__CFODQuery::ODQuerySynchronize;
-#[cfg(all(
-    feature = "CFODQuery",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODQuery", feature = "objc2-core-foundation"))]
 pub use self::__CFODQuery::ODQueryUnscheduleFromRunLoop;
 #[cfg(all(
     feature = "CFODRecord",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODRecord::ODRecordAddAccountPolicy;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordAddMember;
 #[cfg(all(
     feature = "CFODRecord",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODRecord::ODRecordAddValue;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordAuthenticationAllowed;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordChangePassword;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordContainsMember;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordCopyAccountPolicies;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordCopyDetails;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordCopyEffectivePolicies;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordCopyPasswordPolicy;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordCopyPolicies;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordCopySupportedPolicies;
 #[cfg(all(
     feature = "CFODRecord",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODRecord::ODRecordCopyValues;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordDelete;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordGetRecordName;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordGetRecordType;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordPasswordChangeAllowed;
 #[cfg(all(
     feature = "CFODRecord",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODRecord::ODRecordRemoveAccountPolicy;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordRemoveMember;
 #[cfg(all(
     feature = "CFODRecord",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODRecord::ODRecordRemovePolicy;
 #[cfg(all(
     feature = "CFODRecord",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODRecord::ODRecordRemoveValue;
-#[cfg(all(feature = "CFODRecord", feature = "CFOpenDirectory"))]
+#[cfg(feature = "CFODRecord")]
 pub use self::__CFODRecord::ODRecordSecondsUntilAuthenticationsExpire;
-#[cfg(all(feature = "CFODRecord", feature = "CFOpenDirectory"))]
+#[cfg(feature = "CFODRecord")]
 pub use self::__CFODRecord::ODRecordSecondsUntilPasswordExpires;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordSetAccountPolicies;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordSetNodeCredentials;
 #[cfg(all(
     feature = "CFODRecord",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODRecord::ODRecordSetNodeCredentialsExtended;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordSetNodeCredentialsUsingKerberosCache;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordSetPolicies;
 #[cfg(all(
     feature = "CFODRecord",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODRecord::ODRecordSetPolicy;
 #[cfg(all(
     feature = "CFODRecord",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODRecord::ODRecordSetValue;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordSynchronize;
-#[cfg(all(
-    feature = "CFODRecord",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODRecord", feature = "objc2-core-foundation"))]
 pub use self::__CFODRecord::ODRecordVerifyPassword;
 #[cfg(all(
     feature = "CFODRecord",
-    feature = "CFOpenDirectory",
     feature = "CFOpenDirectoryConstants",
     feature = "objc2-core-foundation"
 ))]
 pub use self::__CFODRecord::ODRecordVerifyPasswordExtended;
-#[cfg(all(feature = "CFODRecord", feature = "CFOpenDirectory"))]
+#[cfg(feature = "CFODRecord")]
 pub use self::__CFODRecord::ODRecordWillAuthenticationsExpire;
-#[cfg(all(feature = "CFODRecord", feature = "CFOpenDirectory"))]
+#[cfg(feature = "CFODRecord")]
 pub use self::__CFODRecord::ODRecordWillPasswordExpire;
-#[cfg(all(feature = "CFODSession", feature = "CFOpenDirectory"))]
+#[cfg(feature = "CFODSession")]
 pub use self::__CFODSession::kODSessionDefault;
-#[cfg(all(
-    feature = "CFODSession",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODSession", feature = "objc2-core-foundation"))]
 pub use self::__CFODSession::ODSessionCopyNodeNames;
-#[cfg(all(
-    feature = "CFODSession",
-    feature = "CFOpenDirectory",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "CFODSession", feature = "objc2-core-foundation"))]
 pub use self::__CFODSession::ODSessionCreate;
 #[cfg(feature = "CFOpenDirectoryConstants")]
 pub use self::__CFOpenDirectoryConstants::kODAttributeTypeAccessControlEntry;

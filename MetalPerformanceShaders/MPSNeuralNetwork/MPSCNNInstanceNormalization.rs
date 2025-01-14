@@ -20,15 +20,27 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalizationgradientstate?language=objc)
     #[unsafe(super(MPSNNGradientState, MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSNNGradientState",
+        feature = "MPSState"
+    ))]
     pub struct MPSCNNInstanceNormalizationGradientState;
 );
 
-#[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
 unsafe impl NSObjectProtocol for MPSCNNInstanceNormalizationGradientState {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSNNGradientState",
+        feature = "MPSState"
+    ))]
     unsafe impl MPSCNNInstanceNormalizationGradientState {
         #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
         /// The MPSCNNInstanceNormalization object that created this state object.
@@ -93,7 +105,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSState`
-    #[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSNNGradientState",
+        feature = "MPSState"
+    ))]
     unsafe impl MPSCNNInstanceNormalizationGradientState {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
@@ -136,7 +152,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSNNGradientState",
+        feature = "MPSState"
+    ))]
     unsafe impl MPSCNNInstanceNormalizationGradientState {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -144,7 +164,11 @@ extern_methods!(
 );
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalizationgradientstatebatch?language=objc)
-#[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
 pub type MPSCNNInstanceNormalizationGradientStateBatch =
     NSArray<MPSCNNInstanceNormalizationGradientState>;
 
@@ -176,6 +200,7 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "MPSCNNNormalizationWeights",
+            feature = "MPSCore",
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
@@ -213,7 +238,11 @@ extern_protocol!(
             instance_normalization_state_batch: &MPSCNNInstanceNormalizationGradientStateBatch,
         ) -> Option<Retained<MPSCNNNormalizationGammaAndBetaState>>;
 
-        #[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+        #[cfg(all(
+            feature = "MPSCore",
+            feature = "MPSNNGradientState",
+            feature = "MPSState"
+        ))]
         /// Compute new gamma and beta values using current values and gradients contained within a
         /// batch MPSCNNInstanceNormalizationState objects.  Perform the update on the CPU.
         ///
@@ -299,29 +328,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalization?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNInstanceNormalization;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNInstanceNormalization {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNInstanceNormalization {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNInstanceNormalization {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNInstanceNormalization {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNInstanceNormalization {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNInstanceNormalization {
         /// The epsilon value used to bias the variance when normalizing.
         #[method(epsilon)]
@@ -443,7 +472,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNInstanceNormalization {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -463,7 +492,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNInstanceNormalization {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -481,35 +510,35 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalizationgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNInstanceNormalizationGradient;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNInstanceNormalizationGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNInstanceNormalizationGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNInstanceNormalizationGradient {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNInstanceNormalizationGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNInstanceNormalizationGradient {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNInstanceNormalizationGradient {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNGradientKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNInstanceNormalizationGradient {
         /// Standard init with default properties per filter type
         ///
@@ -548,7 +577,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNInstanceNormalizationGradient {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -568,7 +597,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNInstanceNormalizationGradient {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

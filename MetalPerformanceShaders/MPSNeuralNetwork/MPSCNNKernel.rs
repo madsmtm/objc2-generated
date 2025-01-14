@@ -64,29 +64,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNKernel;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNKernel {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNKernel {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNKernel {
         /// Standard init with default properties per filter type
         ///
@@ -898,7 +898,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNKernel {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -918,7 +918,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNKernel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -938,29 +938,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinarykernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNBinaryKernel;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNBinaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNBinaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNBinaryKernel {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNBinaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNBinaryKernel {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBinaryKernel {
         /// Standard init with default properties per filter type
         ///
@@ -1782,7 +1782,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBinaryKernel {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -1802,7 +1802,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBinaryKernel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1861,29 +1861,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnngradientkernel?language=objc)
     #[unsafe(super(MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNGradientKernel;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNGradientKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNGradientKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNGradientKernel {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNGradientKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNGradientKernel {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNGradientKernel {
         /// Standard init with default properties per filter type
         ///
@@ -2106,7 +2106,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNGradientKernel {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -2126,7 +2126,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNGradientKernel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -2146,29 +2146,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNMultiaryKernel;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNMultiaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNMultiaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNMultiaryKernel {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNMultiaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNMultiaryKernel {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNMultiaryKernel {
         /// Standard init with default properties per filter type
         ///
@@ -3024,7 +3024,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNMultiaryKernel {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -3044,7 +3044,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNMultiaryKernel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -81,7 +79,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other buttonToolTip)]
         pub unsafe fn buttonToolTip(&self) -> Retained<NSString>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(minContentSize)]
         pub unsafe fn minContentSize(&self) -> NSSize;
     }

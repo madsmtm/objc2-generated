@@ -182,29 +182,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizer?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSNNOptimizer;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSNNOptimizer {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSNNOptimizer {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNOptimizer {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSNNOptimizer {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNNOptimizer {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizer {
         /// The learningRate at which we update values
         ///
@@ -261,7 +261,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizer {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -301,7 +301,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizer {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -330,29 +330,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizerstochasticgradientdescent?language=objc)
     #[unsafe(super(MPSNNOptimizer, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSNNOptimizerStochasticGradientDescent;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSNNOptimizerStochasticGradientDescent {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSNNOptimizerStochasticGradientDescent {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNOptimizerStochasticGradientDescent {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSNNOptimizerStochasticGradientDescent {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNNOptimizerStochasticGradientDescent {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizerStochasticGradientDescent {
         /// The momentumScale at which we update momentum for values array
         ///
@@ -628,7 +628,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizerStochasticGradientDescent {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -668,7 +668,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizerStochasticGradientDescent {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -692,29 +692,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizerrmsprop?language=objc)
     #[unsafe(super(MPSNNOptimizer, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSNNOptimizerRMSProp;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSNNOptimizerRMSProp {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSNNOptimizerRMSProp {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNOptimizerRMSProp {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSNNOptimizerRMSProp {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNNOptimizerRMSProp {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizerRMSProp {
         /// The decay at which we update sumOfSquares
         ///
@@ -944,7 +944,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizerRMSProp {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -984,7 +984,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizerRMSProp {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1020,29 +1020,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizeradam?language=objc)
     #[unsafe(super(MPSNNOptimizer, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSNNOptimizerAdam;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSNNOptimizerAdam {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSNNOptimizerAdam {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNOptimizerAdam {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSNNOptimizerAdam {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNNOptimizerAdam {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizerAdam {
         /// The beta1 at which we update values
         ///
@@ -1523,7 +1523,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizerAdam {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -1563,7 +1563,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizerAdam {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

@@ -19,15 +19,27 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationstate?language=objc)
     #[unsafe(super(MPSNNGradientState, MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSNNGradientState",
+        feature = "MPSState"
+    ))]
     pub struct MPSCNNBatchNormalizationState;
 );
 
-#[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNNGradientState",
+    feature = "MPSState"
+))]
 unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationState {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSNNGradientState",
+        feature = "MPSState"
+    ))]
     unsafe impl MPSCNNBatchNormalizationState {
         #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
         #[method_id(@__retain_semantics Other batchNormalization)]
@@ -89,7 +101,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSState`
-    #[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSNNGradientState",
+        feature = "MPSState"
+    ))]
     unsafe impl MPSCNNBatchNormalizationState {
         /// Create a new autoreleased temporary state object without underlying resource
         ///
@@ -154,7 +170,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSNNGradientState",
+        feature = "MPSState"
+    ))]
     unsafe impl MPSCNNBatchNormalizationState {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -168,15 +188,15 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnnormalizationmeanandvariancestate?language=objc)
     #[unsafe(super(MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSState")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     pub struct MPSCNNNormalizationMeanAndVarianceState;
 );
 
-#[cfg(feature = "MPSState")]
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 unsafe impl NSObjectProtocol for MPSCNNNormalizationMeanAndVarianceState {}
 
 extern_methods!(
-    #[cfg(feature = "MPSState")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSCNNNormalizationMeanAndVarianceState {
         /// A MTLBuffer containing the mean terms.
         #[method_id(@__retain_semantics Other mean)]
@@ -222,7 +242,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSState`
-    #[cfg(feature = "MPSState")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSCNNNormalizationMeanAndVarianceState {
         /// Create a MPSState holding a temporary MTLBuffer
         ///
@@ -318,7 +338,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSState")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSCNNNormalizationMeanAndVarianceState {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -385,6 +405,7 @@ extern_protocol!(
 
         #[cfg(all(
             feature = "MPSCNNNormalizationWeights",
+            feature = "MPSCore",
             feature = "MPSNNGradientState",
             feature = "MPSState"
         ))]
@@ -411,7 +432,11 @@ extern_protocol!(
             batch_normalization_state: &MPSCNNBatchNormalizationState,
         ) -> Option<Retained<MPSCNNNormalizationGammaAndBetaState>>;
 
-        #[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+        #[cfg(all(
+            feature = "MPSCore",
+            feature = "MPSNNGradientState",
+            feature = "MPSState"
+        ))]
         /// Compute new mean and variance values using current batch statistics contained within a
         /// MPSCNNBatchNormalizationState.  Perform the update using a GPU.
         ///
@@ -434,7 +459,11 @@ extern_protocol!(
             batch_normalization_state: &MPSCNNBatchNormalizationState,
         ) -> Option<Retained<MPSCNNNormalizationMeanAndVarianceState>>;
 
-        #[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+        #[cfg(all(
+            feature = "MPSCore",
+            feature = "MPSNNGradientState",
+            feature = "MPSState"
+        ))]
         /// Compute new gamma and beta values using current values and gradients contained within a
         /// MPSCNNBatchNormalizationState.  Perform the update using the CPU.
         ///
@@ -451,7 +480,11 @@ extern_protocol!(
             batch_normalization_state: &MPSCNNBatchNormalizationState,
         ) -> bool;
 
-        #[cfg(all(feature = "MPSNNGradientState", feature = "MPSState"))]
+        #[cfg(all(
+            feature = "MPSCore",
+            feature = "MPSNNGradientState",
+            feature = "MPSState"
+        ))]
         /// Compute new mean and variance values using current batch statistics contained within a
         /// MPSCNNBatchNormalizationState.  Perform the update using the CPU.
         ///
@@ -530,29 +563,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalization?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNBatchNormalization;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNBatchNormalization {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNBatchNormalization {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNBatchNormalization {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNBatchNormalization {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNBatchNormalization {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalization {
         /// The number of feature channels in an image to be normalized.
         #[method(numberOfFeatureChannels)]
@@ -828,7 +861,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalization {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -848,7 +881,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalization {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -870,29 +903,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationstatistics?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNBatchNormalizationStatistics;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNBatchNormalizationStatistics {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNBatchNormalizationStatistics {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNBatchNormalizationStatistics {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationStatistics {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNBatchNormalizationStatistics {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalizationStatistics {
         /// Initialize this kernel on a device.
         ///
@@ -984,7 +1017,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalizationStatistics {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -1004,7 +1037,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalizationStatistics {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1030,29 +1063,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNBatchNormalizationGradient;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNBatchNormalizationGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNBatchNormalizationGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNBatchNormalizationGradient {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNBatchNormalizationGradient {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalizationGradient {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Initializes a batch normalization gradient kernel using a device and neuron descriptor.
@@ -1239,7 +1272,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNGradientKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalizationGradient {
         /// Standard init with default properties per filter type
         ///
@@ -1258,7 +1291,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalizationGradient {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -1278,7 +1311,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalizationGradient {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1298,29 +1331,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationstatisticsgradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNBatchNormalizationStatisticsGradient;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNBatchNormalizationStatisticsGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNBatchNormalizationStatisticsGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNBatchNormalizationStatisticsGradient {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationStatisticsGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNBatchNormalizationStatisticsGradient {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalizationStatisticsGradient {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Initializes a batch normalization statistics gradient kernel using a device and neuron descriptor.
@@ -1446,7 +1479,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNGradientKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalizationStatisticsGradient {
         /// Standard init with default properties per filter type
         ///
@@ -1465,7 +1498,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalizationStatisticsGradient {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -1485,7 +1518,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNBatchNormalizationStatisticsGradient {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

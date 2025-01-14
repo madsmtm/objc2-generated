@@ -26,29 +26,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsampling?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNUpsampling;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNUpsampling {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNUpsampling {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNUpsampling {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNUpsampling {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNUpsampling {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsampling {
         /// The upsampling scale factor for the x dimension. The default value is 1.
         #[method(scaleFactorX)]
@@ -74,7 +74,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsampling {
         /// NSSecureCoding compatability
         ///
@@ -100,7 +100,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsampling {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -120,7 +120,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsampling {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -138,29 +138,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingnearest?language=objc)
     #[unsafe(super(MPSCNNUpsampling, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNUpsamplingNearest;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNUpsamplingNearest {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNUpsamplingNearest {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNUpsamplingNearest {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNUpsamplingNearest {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNUpsamplingNearest {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearest {
         /// Initialize the nearest spatial upsampling filter.
         ///
@@ -183,7 +183,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNUpsampling`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearest {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -195,7 +195,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearest {
         /// NSSecureCoding compatability
         ///
@@ -221,7 +221,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearest {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -241,7 +241,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearest {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -259,29 +259,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilinear?language=objc)
     #[unsafe(super(MPSCNNUpsampling, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNUpsamplingBilinear;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNUpsamplingBilinear {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNUpsamplingBilinear {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNUpsamplingBilinear {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNUpsamplingBilinear {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNUpsamplingBilinear {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinear {
         /// Initialize the bilinear spatial upsampling filter.
         ///
@@ -325,7 +325,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNUpsampling`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinear {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -337,7 +337,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinear {
         /// NSSecureCoding compatability
         ///
@@ -363,7 +363,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinear {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -383,7 +383,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinear {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -436,29 +436,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplinggradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNUpsamplingGradient;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNUpsamplingGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNUpsamplingGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNUpsamplingGradient {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNUpsamplingGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNUpsamplingGradient {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingGradient {
         /// The downsampling scale factor for the x dimension. The default value is 1.
         #[method(scaleFactorX)]
@@ -478,7 +478,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNGradientKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingGradient {
         /// NSSecureCoding compatability
         ///
@@ -504,7 +504,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingGradient {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -524,7 +524,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingGradient {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -548,29 +548,29 @@ extern_class!(
         NSObject
     ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNUpsamplingNearestGradient;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNUpsamplingNearestGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNUpsamplingNearestGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNUpsamplingNearestGradient {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNUpsamplingNearestGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNUpsamplingNearestGradient {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearestGradient {
         /// Initialize the nearest spatial upsampling filter.
         ///
@@ -593,7 +593,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNUpsamplingGradient`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearestGradient {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -605,7 +605,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNGradientKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearestGradient {
         /// NSSecureCoding compatability
         ///
@@ -631,7 +631,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearestGradient {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -651,7 +651,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingNearestGradient {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -675,29 +675,29 @@ extern_class!(
         NSObject
     ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSCNNUpsamplingBilinearGradient;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSCNNUpsamplingBilinearGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSCNNUpsamplingBilinearGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSCNNUpsamplingBilinearGradient {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSCNNUpsamplingBilinearGradient {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSCNNUpsamplingBilinearGradient {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinearGradient {
         /// Initialize the bilinear spatial downsampling filter.
         ///
@@ -720,7 +720,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNUpsamplingGradient`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinearGradient {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -732,7 +732,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSCNNGradientKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinearGradient {
         /// NSSecureCoding compatability
         ///
@@ -758,7 +758,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinearGradient {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -778,7 +778,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSCNNUpsamplingBilinearGradient {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

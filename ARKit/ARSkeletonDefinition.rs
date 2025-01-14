@@ -10,54 +10,54 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointname?language=objc)
 // NS_TYPED_ENUM
-#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+#[cfg(feature = "objc2-foundation")]
 pub type ARSkeletonJointName = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointnameroot?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameRoot: &'static ARSkeletonJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointnamehead?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameHead: &'static ARSkeletonJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointnamelefthand?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameLeftHand: &'static ARSkeletonJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointnamerighthand?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameRightHand: &'static ARSkeletonJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointnameleftfoot?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameLeftFoot: &'static ARSkeletonJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointnamerightfoot?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameRightFoot: &'static ARSkeletonJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointnameleftshoulder?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameLeftShoulder: &'static ARSkeletonJointName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointnamerightshoulder?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameRightShoulder: &'static ARSkeletonJointName;
 }
 

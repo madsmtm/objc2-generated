@@ -61,20 +61,16 @@ unsafe impl NSObjectProtocol for NSCollectionViewLayoutAttributes {}
 
 extern_methods!(
     unsafe impl NSCollectionViewLayoutAttributes {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frame)]
         pub unsafe fn frame(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`frame`][Self::frame].
         #[method(setFrame:)]
         pub unsafe fn setFrame(&self, frame: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`size`][Self::size].
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: NSSize);
@@ -267,20 +263,16 @@ extern_methods!(
             &self,
         ) -> Option<Retained<NSDictionary<NSCollectionViewDecorationElementKind, NSSet<NSIndexPath>>>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(contentOffsetAdjustment)]
         pub unsafe fn contentOffsetAdjustment(&self) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentOffsetAdjustment`][Self::contentOffsetAdjustment].
         #[method(setContentOffsetAdjustment:)]
         pub unsafe fn setContentOffsetAdjustment(&self, content_offset_adjustment: NSPoint);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(contentSizeAdjustment)]
         pub unsafe fn contentSizeAdjustment(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentSizeAdjustment`][Self::contentSizeAdjustment].
         #[method(setContentSizeAdjustment:)]
         pub unsafe fn setContentSizeAdjustment(&self, content_size_adjustment: NSSize);
@@ -369,7 +361,6 @@ extern_methods!(
         #[method(prepareLayout)]
         pub unsafe fn prepareLayout(&self);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other layoutAttributesForElementsInRect:)]
         pub unsafe fn layoutAttributesForElementsInRect(
             &self,
@@ -397,7 +388,6 @@ extern_methods!(
             index_path: &NSIndexPath,
         ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other layoutAttributesForDropTargetAtPoint:)]
         pub unsafe fn layoutAttributesForDropTargetAtPoint(
             &self,
@@ -410,11 +400,9 @@ extern_methods!(
             index_path: &NSIndexPath,
         ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(shouldInvalidateLayoutForBoundsChange:)]
         pub unsafe fn shouldInvalidateLayoutForBoundsChange(&self, new_bounds: NSRect) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other invalidationContextForBoundsChange:)]
         pub unsafe fn invalidationContextForBoundsChange(
             &self,
@@ -435,7 +423,6 @@ extern_methods!(
             original_attributes: &NSCollectionViewLayoutAttributes,
         ) -> Retained<NSCollectionViewLayoutInvalidationContext>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(targetContentOffsetForProposedContentOffset:withScrollingVelocity:)]
         pub unsafe fn targetContentOffsetForProposedContentOffset_withScrollingVelocity(
             &self,
@@ -443,14 +430,12 @@ extern_methods!(
             velocity: NSPoint,
         ) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(targetContentOffsetForProposedContentOffset:)]
         pub unsafe fn targetContentOffsetForProposedContentOffset(
             &self,
             proposed_content_offset: NSPoint,
         ) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(collectionViewContentSize)]
         pub unsafe fn collectionViewContentSize(&self) -> NSSize;
     }
@@ -468,7 +453,6 @@ extern_methods!(
         #[method(finalizeCollectionViewUpdates)]
         pub unsafe fn finalizeCollectionViewUpdates(&self);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(prepareForAnimatedBoundsChange:)]
         pub unsafe fn prepareForAnimatedBoundsChange(&self, old_bounds: NSRect);
 

@@ -100,8 +100,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "NSCollectionViewLayout",
             feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method(collectionView:layout:sizeForItemAtIndexPath:)]
@@ -115,8 +114,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "NSCollectionViewLayout",
             feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method(collectionView:layout:insetForSectionAtIndex:)]
@@ -160,8 +158,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "NSCollectionViewLayout",
             feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method(collectionView:layout:referenceSizeForHeaderInSection:)]
@@ -175,8 +172,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "NSCollectionViewLayout",
             feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method(collectionView:layout:referenceSizeForFooterInSection:)]
@@ -224,20 +220,16 @@ extern_methods!(
         #[method(setMinimumInteritemSpacing:)]
         pub unsafe fn setMinimumInteritemSpacing(&self, minimum_interitem_spacing: CGFloat);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(itemSize)]
         pub unsafe fn itemSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`itemSize`][Self::itemSize].
         #[method(setItemSize:)]
         pub unsafe fn setItemSize(&self, item_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(estimatedItemSize)]
         pub unsafe fn estimatedItemSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`estimatedItemSize`][Self::estimatedItemSize].
         #[method(setEstimatedItemSize:)]
         pub unsafe fn setEstimatedItemSize(&self, estimated_item_size: NSSize);
@@ -249,29 +241,23 @@ extern_methods!(
         #[method(setScrollDirection:)]
         pub unsafe fn setScrollDirection(&self, scroll_direction: NSCollectionViewScrollDirection);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(headerReferenceSize)]
         pub unsafe fn headerReferenceSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`headerReferenceSize`][Self::headerReferenceSize].
         #[method(setHeaderReferenceSize:)]
         pub unsafe fn setHeaderReferenceSize(&self, header_reference_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(footerReferenceSize)]
         pub unsafe fn footerReferenceSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`footerReferenceSize`][Self::footerReferenceSize].
         #[method(setFooterReferenceSize:)]
         pub unsafe fn setFooterReferenceSize(&self, footer_reference_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(sectionInset)]
         pub unsafe fn sectionInset(&self) -> NSEdgeInsets;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`sectionInset`][Self::sectionInset].
         #[method(setSectionInset:)]
         pub unsafe fn setSectionInset(&self, section_inset: NSEdgeInsets);

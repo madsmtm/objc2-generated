@@ -102,7 +102,6 @@ extern_methods!(
         #[method(paragraphSeparatorCharacterRange)]
         pub unsafe fn paragraphSeparatorCharacterRange(&self) -> NSRange;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(layoutParagraphAtPoint:)]
         pub unsafe fn layoutParagraphAtPoint(
             &self,
@@ -145,7 +144,6 @@ extern_methods!(
             rect: NSRect,
         ) -> CGFloat;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(getLineFragmentRect:usedRect:forParagraphSeparatorGlyphRange:atProposedOrigin:)]
         pub unsafe fn getLineFragmentRect_usedRect_forParagraphSeparatorGlyphRange_atProposedOrigin(
             &self,
@@ -198,7 +196,7 @@ extern_methods!(
             max_num_lines: NSUInteger,
         ) -> NSRange;
 
-        #[cfg(all(feature = "NSLayoutManager", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSLayoutManager")]
         #[method(printingAdjustmentInLayoutManager:forNominallySpacedGlyphRange:packedGlyphs:count:)]
         pub unsafe fn printingAdjustmentInLayoutManager_forNominallySpacedGlyphRange_packedGlyphs_count(
             layout_mgr: &NSLayoutManager,
@@ -272,7 +270,7 @@ extern_methods!(
         #[method(hyphenCharacterForGlyphAtIndex:)]
         pub unsafe fn hyphenCharacterForGlyphAtIndex(&self, glyph_index: NSUInteger) -> UTF32Char;
 
-        #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSTextContainer")]
         #[method(boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
         pub unsafe fn boundingBoxForControlGlyphAtIndex_forTextContainer_proposedLineFragment_glyphPosition_characterIndex(
             &self,
@@ -345,7 +343,6 @@ extern_methods!(
             glyph_range: NSRange,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(setAttachmentSize:forGlyphRange:)]
         pub unsafe fn setAttachmentSize_forGlyphRange(
             &self,

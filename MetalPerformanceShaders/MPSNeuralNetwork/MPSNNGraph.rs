@@ -15,7 +15,7 @@ use crate::*;
 /// Parameter `error`: If an error occurs, more information might be found here.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraphcompletionhandler?language=objc)
-#[cfg(all(feature = "MPSImage", feature = "block2"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImage", feature = "block2"))]
 pub type MPSNNGraphCompletionHandler = *mut block2::Block<dyn Fn(*mut MPSImage, *mut NSError)>;
 
 extern_class!(
@@ -54,29 +54,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSNNGraph;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSNNGraph {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSNNGraph {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNGraph {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSNNGraph {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNNGraph {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNGraph {
         #[cfg(feature = "MPSNNGraphNodes")]
         /// Initialize a MPSNNGraph object on a device starting with resultImage working backward
@@ -536,7 +536,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNGraph {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -556,7 +556,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNGraph {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

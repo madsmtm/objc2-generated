@@ -171,12 +171,10 @@ extern_methods!(
         #[method(setAlignment:)]
         pub unsafe fn setAlignment(&self, alignment: NSLayoutAttribute);
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Default padding inside the StackView, around all of the subviews.
         #[method(edgeInsets)]
         pub unsafe fn edgeInsets(&self) -> NSEdgeInsets;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`edgeInsets`][Self::edgeInsets].
         #[method(setEdgeInsets:)]
         pub unsafe fn setEdgeInsets(&self, edge_insets: NSEdgeInsets);
@@ -288,7 +286,6 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSStackView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 

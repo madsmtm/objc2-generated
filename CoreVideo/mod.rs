@@ -457,7 +457,6 @@ pub use self::__CVMetalTextureCache::CVMetalTextureCacheCreate;
     feature = "CVMetalTexture",
     feature = "CVMetalTextureCache",
     feature = "CVReturn",
-    feature = "objc2",
     feature = "objc2-metal"
 ))]
 #[cfg(not(target_os = "watchos"))]

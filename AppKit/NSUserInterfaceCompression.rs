@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -102,7 +100,6 @@ extern_protocol!(
             prioritized_options: &NSArray<NSUserInterfaceCompressionOptions>,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(minimumSizeWithPrioritizedCompressionOptions:)]
         unsafe fn minimumSizeWithPrioritizedCompressionOptions(
             &self,

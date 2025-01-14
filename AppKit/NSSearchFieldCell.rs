@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -131,15 +129,12 @@ extern_methods!(
         #[method(resetCancelButtonCell)]
         pub unsafe fn resetCancelButtonCell(&self);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(searchTextRectForBounds:)]
         pub unsafe fn searchTextRectForBounds(&self, rect: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(searchButtonRectForBounds:)]
         pub unsafe fn searchButtonRectForBounds(&self, rect: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(cancelButtonRectForBounds:)]
         pub unsafe fn cancelButtonRectForBounds(&self, rect: NSRect) -> NSRect;
 

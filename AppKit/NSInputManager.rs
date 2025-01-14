@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -55,12 +53,10 @@ extern_protocol!(
         #[method(selectedRange)]
         unsafe fn selectedRange(&self) -> NSRange;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(firstRectForCharacterRange:)]
         unsafe fn firstRectForCharacterRange(&self, range: NSRange) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(characterIndexForPoint:)]
         unsafe fn characterIndexForPoint(&self, point: NSPoint) -> NSUInteger;

@@ -16,21 +16,21 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraygradientstate?language=objc)
     #[unsafe(super(MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSState")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     pub struct MPSNDArrayGradientState;
 );
 
-#[cfg(feature = "MPSState")]
+#[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 unsafe impl NSObjectProtocol for MPSNDArrayGradientState {}
 
 extern_methods!(
-    #[cfg(feature = "MPSState")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSNDArrayGradientState {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `MPSState`
-    #[cfg(feature = "MPSState")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSNDArrayGradientState {
         /// Create a MPSState holding a temporary MTLBuffer
         ///
@@ -126,7 +126,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSState")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
     unsafe impl MPSNDArrayGradientState {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;

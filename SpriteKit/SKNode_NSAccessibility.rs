@@ -2,9 +2,6 @@
 //! DO NOT EDIT
 use core::ffi::*;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-app-kit")]
-#[cfg(target_os = "macos")]
-use objc2_app_kit::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 use objc2_foundation::*;

@@ -134,7 +134,6 @@ extern_methods!(
         #[method(setVertical:)]
         pub unsafe fn setVertical(&self, vertical: bool);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(trackRect)]
         pub unsafe fn trackRect(&self) -> NSRect;
 
@@ -142,22 +141,18 @@ extern_methods!(
         #[method(knobThickness)]
         pub unsafe fn knobThickness(&self) -> CGFloat;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(knobRectFlipped:)]
         pub unsafe fn knobRectFlipped(&self, flipped: bool) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(barRectFlipped:)]
         pub unsafe fn barRectFlipped(&self, flipped: bool) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawKnob:)]
         pub unsafe fn drawKnob_(&self, knob_rect: NSRect);
 
         #[method(drawKnob)]
         pub unsafe fn drawKnob(&self);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawBarInside:flipped:)]
         pub unsafe fn drawBarInside_flipped(&self, rect: NSRect, flipped: bool);
     }
@@ -228,11 +223,9 @@ extern_methods!(
         #[method(tickMarkValueAtIndex:)]
         pub unsafe fn tickMarkValueAtIndex(&self, index: NSInteger) -> c_double;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(rectOfTickMarkAtIndex:)]
         pub unsafe fn rectOfTickMarkAtIndex(&self, index: NSInteger) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(indexOfTickMarkAtPoint:)]
         pub unsafe fn indexOfTickMarkAtPoint(&self, point: NSPoint) -> NSInteger;
 

@@ -295,11 +295,11 @@ extern_methods!(
         #[method_id(@__retain_semantics Other crownSequencer)]
         pub unsafe fn crownSequencer(&self) -> Retained<WKCrownSequencer>;
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-ui-kit"))]
+        #[cfg(feature = "objc2-ui-kit")]
         #[method(contentSafeAreaInsets)]
         pub unsafe fn contentSafeAreaInsets(&self) -> UIEdgeInsets;
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-ui-kit"))]
+        #[cfg(feature = "objc2-ui-kit")]
         #[method(systemMinimumLayoutMargins)]
         pub unsafe fn systemMinimumLayoutMargins(&self) -> NSDirectionalEdgeInsets;
 

@@ -942,15 +942,13 @@ pub use self::__NSAccessibility::NSAccessibilityActionDescription;
 #[cfg(all(
     feature = "NSAccessibility",
     feature = "NSResponder",
-    feature = "NSView",
-    feature = "objc2-core-foundation"
+    feature = "NSView"
 ))]
 pub use self::__NSAccessibility::NSAccessibilityFrameInView;
 #[cfg(all(
     feature = "NSAccessibility",
     feature = "NSResponder",
-    feature = "NSView",
-    feature = "objc2-core-foundation"
+    feature = "NSView"
 ))]
 pub use self::__NSAccessibility::NSAccessibilityPointInView;
 #[cfg(all(feature = "NSAccessibility", feature = "NSAccessibilityConstants"))]
@@ -2731,11 +2729,7 @@ pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutItem;
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutSection;
 #[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutSectionOrthogonalScrollingBehavior;
-#[cfg(all(
-    feature = "NSCollectionViewCompositionalLayout",
-    feature = "block2",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "NSCollectionViewCompositionalLayout", feature = "block2"))]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutSectionVisibleItemsInvalidationHandler;
 #[cfg(feature = "NSCollectionViewCompositionalLayout")]
 pub use self::__NSCollectionViewCompositionalLayout::NSCollectionLayoutSize;
@@ -3909,7 +3903,7 @@ pub use self::__NSGraphics::NSCompositeSourceOver;
 pub use self::__NSGraphics::NSCompositeXOR;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCompositingOperation;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCopyBits;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSCountWindows;
@@ -3945,39 +3939,35 @@ pub use self::__NSGraphics::NSDeviceWhiteColorSpace;
 pub use self::__NSGraphics::NSDisableScreenUpdates;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDisplayGamut;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDottedFrameRect;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDrawButton;
-#[cfg(all(
-    feature = "NSColor",
-    feature = "NSGraphics",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "NSColor", feature = "NSGraphics"))]
 pub use self::__NSGraphics::NSDrawColorTiledRects;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDrawDarkBezel;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDrawGrayBezel;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDrawGroove;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDrawLightBezel;
 #[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSDrawTiledRects;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDrawWhiteBezel;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDrawWindowBackground;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSEnableScreenUpdates;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSEraseRect;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSFocusRingPlacement;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSFocusRingType;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSFrameRect;
 #[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSFrameRectWithWidth;
@@ -3985,7 +3975,7 @@ pub use self::__NSGraphics::NSFrameRectWithWidth;
 pub use self::__NSGraphics::NSFrameRectWithWidthUsingOperation;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSGetWindowServerMemory;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSHighlightRect;
 #[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSLightGray;
@@ -3997,41 +3987,29 @@ pub use self::__NSGraphics::NSNumberOfColorComponents;
 pub use self::__NSGraphics::NSPatternColorSpace;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSPlanarFromDepth;
-#[cfg(all(
-    feature = "NSColor",
-    feature = "NSGraphics",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "NSColor", feature = "NSGraphics"))]
 pub use self::__NSGraphics::NSReadPixel;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSRectClip;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSRectClipList;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSRectFill;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSRectFillList;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSRectFillListUsingOperation;
-#[cfg(all(
-    feature = "NSColor",
-    feature = "NSGraphics",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "NSColor", feature = "NSGraphics"))]
 pub use self::__NSGraphics::NSRectFillListWithColors;
-#[cfg(all(
-    feature = "NSColor",
-    feature = "NSGraphics",
-    feature = "objc2-core-foundation"
-))]
+#[cfg(all(feature = "NSColor", feature = "NSGraphics"))]
 pub use self::__NSGraphics::NSRectFillListWithColorsUsingOperation;
 #[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSRectFillListWithGrays;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSRectFillUsingOperation;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSSetFocusRingStyle;
-#[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSShowAnimationEffect;
 #[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
 pub use self::__NSGraphics::NSWhite;

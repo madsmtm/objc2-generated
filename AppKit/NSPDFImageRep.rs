@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -46,7 +44,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other PDFRepresentation)]
         pub unsafe fn PDFRepresentation(&self) -> Retained<NSData>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(bounds)]
         pub unsafe fn bounds(&self) -> NSRect;
 

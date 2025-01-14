@@ -24,29 +24,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagescale?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     pub struct MPSImageScale;
 );
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSImageScale {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSImageScale {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageScale {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSImageScale {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageScale {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageScale {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -141,7 +141,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageScale {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -161,7 +161,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageScale {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -187,29 +187,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagelanczosscale?language=objc)
     #[unsafe(super(MPSImageScale, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     pub struct MPSImageLanczosScale;
 );
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSImageLanczosScale {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSImageLanczosScale {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageLanczosScale {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSImageLanczosScale {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageLanczosScale {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageLanczosScale {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -241,7 +241,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageLanczosScale {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -261,7 +261,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageLanczosScale {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -280,29 +280,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebilinearscale?language=objc)
     #[unsafe(super(MPSImageScale, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     pub struct MPSImageBilinearScale;
 );
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSImageBilinearScale {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSImageBilinearScale {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSImageBilinearScale {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSImageBilinearScale {}
 
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSImageBilinearScale {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageBilinearScale {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -334,7 +334,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageBilinearScale {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -354,7 +354,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
     unsafe impl MPSImageBilinearScale {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

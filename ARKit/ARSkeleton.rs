@@ -3,8 +3,6 @@
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-foundation")]
-use objc2_foundation::*;
 #[cfg(feature = "objc2-vision")]
 use objc2_vision::*;
 

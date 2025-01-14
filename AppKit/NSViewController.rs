@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -157,11 +155,9 @@ extern_methods!(
         #[method(viewDidDisappear)]
         pub unsafe fn viewDidDisappear(&self);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(preferredContentSize)]
         pub unsafe fn preferredContentSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`preferredContentSize`][Self::preferredContentSize].
         #[method(setPreferredContentSize:)]
         pub unsafe fn setPreferredContentSize(&self, preferred_content_size: NSSize);
@@ -232,11 +228,7 @@ extern_methods!(
         #[method(presentViewControllerAsModalWindow:)]
         pub unsafe fn presentViewControllerAsModalWindow(&self, view_controller: &NSViewController);
 
-        #[cfg(all(
-            feature = "NSPopover",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSPopover", feature = "NSView"))]
         #[method(presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:)]
         pub unsafe fn presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior(
             &self,
@@ -247,11 +239,7 @@ extern_methods!(
             behavior: NSPopoverBehavior,
         );
 
-        #[cfg(all(
-            feature = "NSPopover",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSPopover", feature = "NSView"))]
         #[method(presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:hasFullSizeContent:)]
         pub unsafe fn presentViewController_asPopoverRelativeToRect_ofView_preferredEdge_behavior_hasFullSizeContent(
             &self,
@@ -314,7 +302,6 @@ extern_methods!(
             view_controller: &NSViewController,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(viewWillTransitionToSize:)]
         pub unsafe fn viewWillTransitionToSize(&self, new_size: NSSize);
     }
@@ -369,20 +356,16 @@ extern_methods!(
         #[method(setSourceItemView:)]
         pub unsafe fn setSourceItemView(&self, source_item_view: Option<&NSView>);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(preferredScreenOrigin)]
         pub unsafe fn preferredScreenOrigin(&self) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`preferredScreenOrigin`][Self::preferredScreenOrigin].
         #[method(setPreferredScreenOrigin:)]
         pub unsafe fn setPreferredScreenOrigin(&self, preferred_screen_origin: NSPoint);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(preferredMinimumSize)]
         pub unsafe fn preferredMinimumSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(preferredMaximumSize)]
         pub unsafe fn preferredMaximumSize(&self) -> NSSize;
     }

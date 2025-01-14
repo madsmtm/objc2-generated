@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -155,15 +153,12 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSSearchField {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(searchTextBounds)]
         pub unsafe fn searchTextBounds(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(searchButtonBounds)]
         pub unsafe fn searchButtonBounds(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(cancelButtonBounds)]
         pub unsafe fn cancelButtonBounds(&self) -> NSRect;
 
@@ -240,7 +235,6 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSSearchField {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
@@ -289,17 +283,14 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSSearchField {
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(rectForSearchTextWhenCentered:)]
         pub unsafe fn rectForSearchTextWhenCentered(&self, is_centered: bool) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(rectForSearchButtonWhenCentered:)]
         pub unsafe fn rectForSearchButtonWhenCentered(&self, is_centered: bool) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(rectForCancelButtonWhenCentered:)]
         pub unsafe fn rectForCancelButtonWhenCentered(&self, is_centered: bool) -> NSRect;

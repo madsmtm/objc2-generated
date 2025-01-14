@@ -74,11 +74,9 @@ extern_methods!(
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: &NSImage);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(imageOrigin)]
         pub unsafe fn imageOrigin(&self) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`imageOrigin`][Self::imageOrigin].
         #[method(setImageOrigin:)]
         pub unsafe fn setImageOrigin(&self, image_origin: NSPoint);
@@ -110,7 +108,6 @@ extern_methods!(
             represented_object: Option<&ProtocolObject<dyn NSCopying>>,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// ************************ Ruler facilities *************************
         #[method(imageRectInRuler)]
         pub unsafe fn imageRectInRuler(&self) -> NSRect;
@@ -119,7 +116,6 @@ extern_methods!(
         #[method(thicknessRequiredInRuler)]
         pub unsafe fn thicknessRequiredInRuler(&self) -> CGFloat;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawRect:)]
         pub unsafe fn drawRect(&self, rect: NSRect);
 

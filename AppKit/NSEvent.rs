@@ -704,7 +704,6 @@ extern_methods!(
         #[method(pressure)]
         pub unsafe fn pressure(&self) -> c_float;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(locationInWindow)]
         pub unsafe fn locationInWindow(&self) -> NSPoint;
 
@@ -819,7 +818,6 @@ extern_methods!(
         #[method(buttonMask)]
         pub unsafe fn buttonMask(&self) -> NSEventButtonMask;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(tilt)]
         pub unsafe fn tilt(&self) -> NSPoint;
 
@@ -920,7 +918,7 @@ extern_methods!(
         #[method(stopPeriodicEvents)]
         pub unsafe fn stopPeriodicEvents();
 
-        #[cfg(all(feature = "NSGraphicsContext", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSGraphicsContext")]
         #[method_id(@__retain_semantics Other mouseEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:)]
         pub unsafe fn mouseEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_clickCount_pressure(
             r#type: NSEventType,
@@ -934,7 +932,7 @@ extern_methods!(
             pressure: c_float,
         ) -> Option<Retained<NSEvent>>;
 
-        #[cfg(all(feature = "NSGraphicsContext", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSGraphicsContext")]
         #[method_id(@__retain_semantics Other keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:)]
         pub unsafe fn keyEventWithType_location_modifierFlags_timestamp_windowNumber_context_characters_charactersIgnoringModifiers_isARepeat_keyCode(
             r#type: NSEventType,
@@ -949,7 +947,7 @@ extern_methods!(
             code: c_ushort,
         ) -> Option<Retained<NSEvent>>;
 
-        #[cfg(all(feature = "NSGraphicsContext", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSGraphicsContext")]
         #[method_id(@__retain_semantics Other enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:)]
         pub unsafe fn enterExitEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_trackingNumber_userData(
             r#type: NSEventType,
@@ -963,7 +961,7 @@ extern_methods!(
             data: *mut c_void,
         ) -> Option<Retained<NSEvent>>;
 
-        #[cfg(all(feature = "NSGraphicsContext", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSGraphicsContext")]
         #[method_id(@__retain_semantics Other otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:)]
         pub unsafe fn otherEventWithType_location_modifierFlags_timestamp_windowNumber_context_subtype_data1_data2(
             r#type: NSEventType,
@@ -977,7 +975,6 @@ extern_methods!(
             d2: NSInteger,
         ) -> Option<Retained<NSEvent>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(mouseLocation)]
         pub unsafe fn mouseLocation() -> NSPoint;
 

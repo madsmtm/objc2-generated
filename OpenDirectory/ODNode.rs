@@ -21,7 +21,11 @@ unsafe impl NSObjectProtocol for ODNode {}
 
 extern_methods!(
     unsafe impl ODNode {
-        #[cfg(all(feature = "CFOpenDirectoryConstants", feature = "ODSession"))]
+        #[cfg(all(
+            feature = "CFOpenDirectory",
+            feature = "CFOpenDirectoryConstants",
+            feature = "ODSession"
+        ))]
         /// Create an autoreleased ODNode of the given type, optionally in a specific session.
         ///
         /// Autoreleased instance of an ODNode with a provided ODSession and ODNodeType.  outError is
@@ -45,7 +49,11 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<Self>>;
 
-        #[cfg(all(feature = "CFOpenDirectoryConstants", feature = "ODSession"))]
+        #[cfg(all(
+            feature = "CFOpenDirectory",
+            feature = "CFOpenDirectoryConstants",
+            feature = "ODSession"
+        ))]
         /// Initialize an ODNode instance of the given type, optionally in a specific session.
         ///
         /// initialize instance of an ODNode with a provided ODSession and ODNodeType.  outError is
@@ -122,7 +130,7 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSArray>>;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Will return a list of attribute types supported for that attribute if possible
         ///
         /// Will return a list of attribute types supported for that attribute if possible.  If no specific
@@ -135,7 +143,7 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSArray>>;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Sets the credentials for interaction with the ODNode
         ///
         /// Sets the credentials for interaction with the ODNode.  Record references, etc. will use these credentials
@@ -151,7 +159,7 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Allows use of other OpenDirectory types of authentications to set the credentials for an ODNode
         ///
         /// Allows the caller to use other types of authentications that are available in OpenDirectory, that may
@@ -179,7 +187,11 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
-        #[cfg(all(feature = "CFOpenDirectoryConstants", feature = "ODRecord"))]
+        #[cfg(all(
+            feature = "CFOpenDirectory",
+            feature = "CFOpenDirectoryConstants",
+            feature = "ODRecord"
+        ))]
         /// Creates a record in this node, using the given name and attributes.
         ///
         /// Takes all the provided attributes and type to create an entire record.  The function will assign a
@@ -194,7 +206,11 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<ODRecord>>;
 
-        #[cfg(all(feature = "CFOpenDirectoryConstants", feature = "ODRecord"))]
+        #[cfg(all(
+            feature = "CFOpenDirectory",
+            feature = "CFOpenDirectoryConstants",
+            feature = "ODRecord"
+        ))]
         /// Returns an ODRecord object that references the requested type and name
         ///
         /// Returns an ODRecord object that references the requested type and name.  The record will have cached the
@@ -275,7 +291,7 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// This will set a specific policy setting for the node.
         ///
         /// This will set a specific policy setting for the node.
@@ -288,7 +304,7 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// This will remove a specific policy setting from the node.
         ///
         /// This will remove a specific policy setting from the node.
@@ -300,7 +316,7 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// This will add an account policy to the node for the specified category.
         ///
         /// This will add an account policy to the node for the specified category.
@@ -330,7 +346,7 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// This will remove an account policy from the node for the specified category.
         ///
         /// This will remove an account policy from the node for the specified category.

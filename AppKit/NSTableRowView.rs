@@ -170,19 +170,15 @@ extern_methods!(
         #[method(setBackgroundColor:)]
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawBackgroundInRect:)]
         pub unsafe fn drawBackgroundInRect(&self, dirty_rect: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawSelectionInRect:)]
         pub unsafe fn drawSelectionInRect(&self, dirty_rect: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawSeparatorInRect:)]
         pub unsafe fn drawSeparatorInRect(&self, dirty_rect: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawDraggingDestinationFeedbackInRect:)]
         pub unsafe fn drawDraggingDestinationFeedbackInRect(&self, dirty_rect: NSRect);
 
@@ -198,7 +194,6 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableRowView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 

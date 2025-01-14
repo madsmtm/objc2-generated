@@ -6,9 +6,6 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 use objc2_foundation::*;
-#[cfg(feature = "objc2-quartz-core")]
-#[cfg(not(target_os = "watchos"))]
-use objc2_quartz_core::*;
 
 use crate::*;
 
@@ -280,7 +277,6 @@ extern_methods!(
             feature = "SCNNode",
             feature = "SceneKitTypes",
             feature = "block2",
-            feature = "objc2-core-foundation",
             feature = "objc2-quartz-core"
         ))]
         #[cfg(not(target_os = "watchos"))]

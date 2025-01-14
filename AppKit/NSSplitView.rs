@@ -113,7 +113,6 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSSplitViewDelegate>>,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawDividerInRect:)]
         pub unsafe fn drawDividerInRect(&self, rect: NSRect);
 
@@ -174,7 +173,6 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSplitView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
@@ -314,11 +312,7 @@ extern_protocol!(
             divider_index: NSInteger,
         ) -> CGFloat;
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(splitView:resizeSubviewsWithOldSize:)]
         unsafe fn splitView_resizeSubviewsWithOldSize(
@@ -345,11 +339,7 @@ extern_protocol!(
             divider_index: NSInteger,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:)]
         unsafe fn splitView_effectiveRect_forDrawnRect_ofDividerAtIndex(
@@ -360,11 +350,7 @@ extern_protocol!(
             divider_index: NSInteger,
         ) -> NSRect;
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(splitView:additionalEffectiveRectOfDividerAtIndex:)]
         unsafe fn splitView_additionalEffectiveRectOfDividerAtIndex(

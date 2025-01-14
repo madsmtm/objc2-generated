@@ -6,8 +6,6 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -51,7 +49,7 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn CNContactPickerDelegate>>,
         );
 
-        #[cfg(all(feature = "objc2-app-kit", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Shows the picker popover relative to a positioning rect for a view with a preferred edge. See NSPopover for more information.
         #[method(showRelativeToRect:ofView:preferredEdge:)]

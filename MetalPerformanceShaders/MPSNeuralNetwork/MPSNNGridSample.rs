@@ -12,29 +12,29 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngridsample?language=objc)
     #[unsafe(super(MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSNNGridSample;
 );
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSNNGridSample {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSNNGridSample {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNNGridSample {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSNNGridSample {}
 
-#[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNNGridSample {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNGridSample {
         /// This determines whether the pixel locations from the grid are used as the input coordinate (if set to YES) or
         /// is added to the input coordinate (if set to NO).
@@ -84,7 +84,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNGridSample {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -104,7 +104,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSKernel"))]
+    #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNGridSample {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

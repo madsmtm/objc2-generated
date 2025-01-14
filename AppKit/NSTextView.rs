@@ -220,7 +220,7 @@ unsafe impl NSUserInterfaceValidations for NSTextView {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
     unsafe impl NSTextView {
-        #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSTextContainer")]
         /// ************************** Initializing ***************************
         #[method_id(@__retain_semantics Init initWithFrame:textContainer:)]
         pub unsafe fn initWithFrame_textContainer(
@@ -235,7 +235,6 @@ extern_methods!(
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
@@ -265,16 +264,13 @@ extern_methods!(
         #[method(replaceTextContainer:)]
         pub unsafe fn replaceTextContainer(&self, new_container: &NSTextContainer);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(textContainerInset)]
         pub unsafe fn textContainerInset(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`textContainerInset`][Self::textContainerInset].
         #[method(setTextContainerInset:)]
         pub unsafe fn setTextContainerInset(&self, text_container_inset: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(textContainerOrigin)]
         pub unsafe fn textContainerOrigin(&self) -> NSPoint;
 
@@ -302,7 +298,6 @@ extern_methods!(
         #[method(insertText:)]
         pub unsafe fn insertText(&self, insert_string: &AnyObject);
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// ************************* Sizing methods **************************
         #[method(setConstrainedFrameSize:)]
         pub unsafe fn setConstrainedFrameSize(&self, desired_size: NSSize);
@@ -448,7 +443,6 @@ extern_methods!(
         #[method(rulerView:handleMouseDown:)]
         pub unsafe fn rulerView_handleMouseDown(&self, ruler: &NSRulerView, event: &NSEvent);
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// ************************* Fine display control **************************
         #[method(setNeedsDisplayInRect:avoidAdditionalLayout:)]
         pub unsafe fn setNeedsDisplayInRect_avoidAdditionalLayout(&self, rect: NSRect, flag: bool);
@@ -456,7 +450,7 @@ extern_methods!(
         #[method(shouldDrawInsertionPoint)]
         pub unsafe fn shouldDrawInsertionPoint(&self) -> bool;
 
-        #[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSColor")]
         #[method(drawInsertionPointInRect:color:turnedOn:)]
         pub unsafe fn drawInsertionPointInRect_color_turnedOn(
             &self,
@@ -465,7 +459,6 @@ extern_methods!(
             flag: bool,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawViewBackgroundInRect:)]
         pub unsafe fn drawViewBackgroundInRect(&self, rect: NSRect);
 
@@ -504,7 +497,6 @@ extern_methods!(
         #[method(changeLayoutOrientation:)]
         pub unsafe fn changeLayoutOrientation(&self, sender: Option<&AnyObject>);
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// *********************** Helper for subclassers ************************
         #[method(characterIndexForInsertionAtPoint:)]
         pub unsafe fn characterIndexForInsertionAtPoint(&self, point: NSPoint) -> NSUInteger;
@@ -651,7 +643,7 @@ extern_methods!(
     /// NSDragging
     #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
     unsafe impl NSTextView {
-        #[cfg(all(feature = "NSEvent", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSEvent")]
         #[method(dragSelectionWithEvent:offset:slideBack:)]
         pub unsafe fn dragSelectionWithEvent_offset_slideBack(
             &self,
@@ -660,11 +652,7 @@ extern_methods!(
             slide_back: bool,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "NSEvent",
-            feature = "NSImage",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSImage"))]
         #[method_id(@__retain_semantics Other dragImageForSelectionWithEvent:origin:)]
         pub unsafe fn dragImageForSelectionWithEvent_origin(
             &self,
@@ -1388,7 +1376,7 @@ extern_methods!(
             text_highlight_attributes: &NSDictionary<NSAttributedStringKey, AnyObject>,
         );
 
-        #[cfg(all(feature = "NSTextRange", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSTextRange")]
         #[method(drawTextHighlightBackgroundForTextRange:origin:)]
         pub unsafe fn drawTextHighlightBackgroundForTextRange_origin(
             &self,
@@ -1430,8 +1418,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "NSResponder",
             feature = "NSTextAttachmentCell",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method(textView:clickedOnCell:inRect:atIndex:)]
@@ -1446,8 +1433,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "NSResponder",
             feature = "NSTextAttachmentCell",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method(textView:doubleClickedOnCell:inRect:atIndex:)]
@@ -1463,8 +1449,7 @@ extern_protocol!(
             feature = "NSEvent",
             feature = "NSResponder",
             feature = "NSTextAttachmentCell",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method(textView:draggedCell:inRect:event:atIndex:)]
@@ -1765,8 +1750,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "NSResponder",
             feature = "NSTextAttachmentCell",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[deprecated = "Use -textView:clickedOnCell:inRect:atIndex: instead"]
         #[optional]
@@ -1781,8 +1765,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "NSResponder",
             feature = "NSTextAttachmentCell",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[deprecated = "Use -textView:doubleClickedOnCell:inRect:atIndex: instead"]
         #[optional]
@@ -1798,8 +1781,7 @@ extern_protocol!(
             feature = "NSEvent",
             feature = "NSResponder",
             feature = "NSTextAttachmentCell",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[deprecated = "Use -textView:draggedCell:inRect:event:atIndex: instead"]
         #[optional]

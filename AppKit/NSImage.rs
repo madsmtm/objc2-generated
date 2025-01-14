@@ -156,7 +156,6 @@ extern_methods!(
             value: c_double,
         ) -> Option<Retained<Self>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithSize:)]
         pub unsafe fn initWithSize(this: Allocated<Self>, size: NSSize) -> Retained<Self>;
 
@@ -200,7 +199,7 @@ extern_methods!(
             data: &NSData,
         ) -> Option<Retained<Self>>;
 
-        #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "block2")]
         #[method_id(@__retain_semantics Other imageWithSize:flipped:drawingHandler:)]
         pub unsafe fn imageWithSize_flipped_drawingHandler(
             size: NSSize,
@@ -208,11 +207,9 @@ extern_methods!(
             drawing_handler: &block2::Block<dyn Fn(NSRect) -> Bool>,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`size`][Self::size].
         #[method(setSize:)]
         pub unsafe fn setSize(&self, size: NSSize);
@@ -299,7 +296,7 @@ extern_methods!(
             hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
         );
 
-        #[cfg(all(feature = "NSImageRep", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSImageRep")]
         #[method(drawRepresentation:inRect:)]
         pub unsafe fn drawRepresentation_inRect(
             &self,
@@ -307,7 +304,6 @@ extern_methods!(
             rect: NSRect,
         ) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawInRect:)]
         pub unsafe fn drawInRect(&self, rect: NSRect);
 
@@ -369,11 +365,9 @@ extern_methods!(
         #[method(setCacheMode:)]
         pub unsafe fn setCacheMode(&self, cache_mode: NSImageCacheMode);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(alignmentRect)]
         pub unsafe fn alignmentRect(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`alignmentRect`][Self::alignmentRect].
         #[method(setAlignmentRect:)]
         pub unsafe fn setAlignmentRect(&self, alignment_rect: NSRect);
@@ -395,7 +389,7 @@ extern_methods!(
             accessibility_description: Option<&NSString>,
         );
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         #[method_id(@__retain_semantics Init initWithCGImage:size:)]
         pub unsafe fn initWithCGImage_size(
@@ -407,7 +401,6 @@ extern_methods!(
         #[cfg(all(
             feature = "NSGraphicsContext",
             feature = "NSImageRep",
-            feature = "objc2-core-foundation",
             feature = "objc2-core-graphics"
         ))]
         #[cfg(target_vendor = "apple")]
@@ -419,11 +412,7 @@ extern_methods!(
             hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
         ) -> Option<Retained<CGImage>>;
 
-        #[cfg(all(
-            feature = "NSGraphicsContext",
-            feature = "NSImageRep",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSGraphicsContext", feature = "NSImageRep"))]
         #[method_id(@__retain_semantics Other bestRepresentationForRect:context:hints:)]
         pub unsafe fn bestRepresentationForRect_context_hints(
             &self,
@@ -432,11 +421,7 @@ extern_methods!(
             hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
         ) -> Option<Retained<NSImageRep>>;
 
-        #[cfg(all(
-            feature = "NSGraphicsContext",
-            feature = "NSImageRep",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSGraphicsContext", feature = "NSImageRep"))]
         #[method(hitTestRect:withImageDestinationRect:context:hints:flipped:)]
         pub unsafe fn hitTestRect_withImageDestinationRect_context_hints_flipped(
             &self,
@@ -461,11 +446,9 @@ extern_methods!(
             layer_contents_scale: CGFloat,
         ) -> Retained<AnyObject>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(capInsets)]
         pub unsafe fn capInsets(&self) -> NSEdgeInsets;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`capInsets`][Self::capInsets].
         #[method(setCapInsets:)]
         pub unsafe fn setCapInsets(&self, cap_insets: NSEdgeInsets);
@@ -536,7 +519,6 @@ unsafe impl NSItemProviderWriting for NSImage {}
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagedelegate?language=objc)
     pub unsafe trait NSImageDelegate: NSObjectProtocol {
-        #[cfg(feature = "objc2-core-foundation")]
         #[optional]
         #[method_id(@__retain_semantics Other imageDidNotDraw:inRect:)]
         unsafe fn imageDidNotDraw_inRect(
@@ -693,7 +675,7 @@ extern_methods!(
             fraction: CGFloat,
         );
 
-        #[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSGraphics")]
         #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
         #[method(compositeToPoint:operation:)]
         pub unsafe fn compositeToPoint_operation(
@@ -702,7 +684,7 @@ extern_methods!(
             operation: NSCompositingOperation,
         );
 
-        #[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSGraphics")]
         #[deprecated = "Use -drawAtPoint:... or -drawInRect:... methods instead"]
         #[method(compositeToPoint:fromRect:operation:)]
         pub unsafe fn compositeToPoint_fromRect_operation(

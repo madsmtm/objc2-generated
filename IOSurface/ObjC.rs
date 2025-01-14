@@ -11,138 +11,138 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykey?language=objc)
 // NS_TYPED_ENUM
-#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+#[cfg(feature = "objc2-foundation")]
 pub type IOSurfacePropertyKey = NSString;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeyallocsize?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyAllocSize: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeywidth?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyWidth: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeyheight?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyHeight: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeybytesperrow?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyBytesPerRow: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeybytesperelement?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyBytesPerElement: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeyelementwidth?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyElementWidth: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeyelementheight?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyElementHeight: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeyoffset?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyOffset: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeyplaneinfo?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyPlaneInfo: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeyplanewidth?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyPlaneWidth: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeyplaneheight?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyPlaneHeight: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeyplanebytesperrow?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyPlaneBytesPerRow: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeyplaneoffset?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyPlaneOffset: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeyplanesize?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyPlaneSize: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeyplanebase?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyPlaneBase: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeyplanebytesperelement?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyPlaneBytesPerElement: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeyplaneelementwidth?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyPlaneElementWidth: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeyplaneelementheight?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyPlaneElementHeight: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeycachemode?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyCacheMode: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeypixelformat?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyPixelFormat: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeypixelsizecastingallowed?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyPixelSizeCastingAllowed: &'static IOSurfacePropertyKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertykeyname?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyKeyName: &'static IOSurfacePropertyKey;
 }
 
@@ -311,6 +311,6 @@ extern_methods!(
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepropertyallocsizekey?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static IOSurfacePropertyAllocSizeKey: &'static IOSurfacePropertyKey;
 }

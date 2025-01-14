@@ -26,11 +26,9 @@ unsafe impl NSObjectProtocol for NSCollectionViewGridLayout {}
 extern_methods!(
     #[cfg(feature = "NSCollectionViewLayout")]
     unsafe impl NSCollectionViewGridLayout {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(margins)]
         pub unsafe fn margins(&self) -> NSEdgeInsets;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`margins`][Self::margins].
         #[method(setMargins:)]
         pub unsafe fn setMargins(&self, margins: NSEdgeInsets);
@@ -67,20 +65,16 @@ extern_methods!(
         #[method(setMaximumNumberOfColumns:)]
         pub unsafe fn setMaximumNumberOfColumns(&self, maximum_number_of_columns: NSUInteger);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(minimumItemSize)]
         pub unsafe fn minimumItemSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumItemSize`][Self::minimumItemSize].
         #[method(setMinimumItemSize:)]
         pub unsafe fn setMinimumItemSize(&self, minimum_item_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(maximumItemSize)]
         pub unsafe fn maximumItemSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumItemSize`][Self::maximumItemSize].
         #[method(setMaximumItemSize:)]
         pub unsafe fn setMaximumItemSize(&self, maximum_item_size: NSSize);

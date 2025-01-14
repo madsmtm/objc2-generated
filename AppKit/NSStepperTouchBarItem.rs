@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -37,7 +35,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "block2")]
         /// Creates an `NSStepperTouchBarItem` using the result of `drawingHandler` to display the stepper's value as an image
         ///
         ///

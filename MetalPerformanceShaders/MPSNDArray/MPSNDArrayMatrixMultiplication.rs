@@ -31,29 +31,57 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraymatrixmultiplication?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryKernel, MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     pub struct MPSNDArrayMatrixMultiplication;
 );
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSCoding for MPSNDArrayMatrixMultiplication {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSCopying for MPSNDArrayMatrixMultiplication {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl CopyingHelper for MPSNDArrayMatrixMultiplication {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSObjectProtocol for MPSNDArrayMatrixMultiplication {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSSecureCoding for MPSNDArrayMatrixMultiplication {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayMatrixMultiplication {
         /// The scale factor to apply to the product.  Specified in double
         /// precision.  Will be converted to the appropriate precision in the
@@ -81,7 +109,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayMatrixMultiplication {
         #[method_id(@__retain_semantics Init initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
@@ -101,7 +133,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryBase`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayMatrixMultiplication {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -113,7 +149,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayMatrixMultiplication {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -133,7 +173,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayMatrixMultiplication {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

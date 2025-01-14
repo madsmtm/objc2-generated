@@ -81,7 +81,6 @@ unsafe impl NSUserInterfaceItemIdentification for NSScrollView {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSScrollView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
@@ -91,11 +90,7 @@ extern_methods!(
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[cfg(all(
-            feature = "NSCell",
-            feature = "NSScroller",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSCell", feature = "NSScroller"))]
         #[method(frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:)]
         pub unsafe fn frameSizeForContentSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle(
             c_size: NSSize,
@@ -107,11 +102,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> NSSize;
 
-        #[cfg(all(
-            feature = "NSCell",
-            feature = "NSScroller",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSCell", feature = "NSScroller"))]
         #[method(contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:)]
         pub unsafe fn contentSizeForFrameSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle(
             f_size: NSSize,
@@ -123,7 +114,6 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Use +frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle: instead"]
         #[method(frameSizeForContentSize:hasHorizontalScroller:hasVerticalScroller:borderType:)]
         pub unsafe fn frameSizeForContentSize_hasHorizontalScroller_hasVerticalScroller_borderType(
@@ -134,7 +124,6 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "+contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle: instead"]
         #[method(contentSizeForFrameSize:hasHorizontalScroller:hasVerticalScroller:borderType:)]
         pub unsafe fn contentSizeForFrameSize_hasHorizontalScroller_hasVerticalScroller_borderType(
@@ -145,11 +134,9 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(documentVisibleRect)]
         pub unsafe fn documentVisibleRect(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(contentSize)]
         pub unsafe fn contentSize(&self) -> NSSize;
 
@@ -394,7 +381,6 @@ extern_methods!(
         #[method(setMinMagnification:)]
         pub unsafe fn setMinMagnification(&self, min_magnification: CGFloat);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(magnifyToFitRect:)]
         pub unsafe fn magnifyToFitRect(&self, rect: NSRect);
 
@@ -420,20 +406,16 @@ extern_methods!(
             automatically_adjusts_content_insets: bool,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(contentInsets)]
         pub unsafe fn contentInsets(&self) -> NSEdgeInsets;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentInsets`][Self::contentInsets].
         #[method(setContentInsets:)]
         pub unsafe fn setContentInsets(&self, content_insets: NSEdgeInsets);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(scrollerInsets)]
         pub unsafe fn scrollerInsets(&self) -> NSEdgeInsets;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`scrollerInsets`][Self::scrollerInsets].
         #[method(setScrollerInsets:)]
         pub unsafe fn setScrollerInsets(&self, scroller_insets: NSEdgeInsets);

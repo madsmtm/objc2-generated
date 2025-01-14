@@ -351,7 +351,6 @@ unsafe impl NSUserInterfaceValidations for NSTableView {}
 extern_methods!(
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
@@ -432,11 +431,9 @@ extern_methods!(
         #[method(setGridStyleMask:)]
         pub unsafe fn setGridStyleMask(&self, grid_style_mask: NSTableViewGridLineStyle);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(intercellSpacing)]
         pub unsafe fn intercellSpacing(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`intercellSpacing`][Self::intercellSpacing].
         #[method(setIntercellSpacing:)]
         pub unsafe fn setIntercellSpacing(&self, intercell_spacing: NSSize);
@@ -618,7 +615,6 @@ extern_methods!(
         #[method(setVerticalMotionCanBeginDrag:)]
         pub unsafe fn setVerticalMotionCanBeginDrag(&self, vertical_motion_can_begin_drag: bool);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(canDragRowsWithIndexes:atPoint:)]
         pub unsafe fn canDragRowsWithIndexes_atPoint(
             &self,
@@ -626,12 +622,7 @@ extern_methods!(
             mouse_down_point: NSPoint,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "NSEvent",
-            feature = "NSImage",
-            feature = "NSTableColumn",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSImage", feature = "NSTableColumn"))]
         #[method_id(@__retain_semantics Other dragImageForRowsWithIndexes:tableColumns:event:offset:)]
         pub unsafe fn dragImageForRowsWithIndexes_tableColumns_event_offset(
             &self,
@@ -766,31 +757,24 @@ extern_methods!(
             dragging_destination_feedback_style: NSTableViewDraggingDestinationFeedbackStyle,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(rectOfColumn:)]
         pub unsafe fn rectOfColumn(&self, column: NSInteger) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(rectOfRow:)]
         pub unsafe fn rectOfRow(&self, row: NSInteger) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other columnIndexesInRect:)]
         pub unsafe fn columnIndexesInRect(&self, rect: NSRect) -> Retained<NSIndexSet>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(rowsInRect:)]
         pub unsafe fn rowsInRect(&self, rect: NSRect) -> NSRange;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(columnAtPoint:)]
         pub unsafe fn columnAtPoint(&self, point: NSPoint) -> NSInteger;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(rowAtPoint:)]
         pub unsafe fn rowAtPoint(&self, point: NSPoint) -> NSInteger;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frameOfCellAtColumn:row:)]
         pub unsafe fn frameOfCellAtColumn_row(&self, column: NSInteger, row: NSInteger) -> NSRect;
 
@@ -818,19 +802,15 @@ extern_methods!(
             select: bool,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawRow:clipRect:)]
         pub unsafe fn drawRow_clipRect(&self, row: NSInteger, clip_rect: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(highlightSelectionInClipRect:)]
         pub unsafe fn highlightSelectionInClipRect(&self, clip_rect: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawGridInClipRect:)]
         pub unsafe fn drawGridInClipRect(&self, clip_rect: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawBackgroundInClipRect:)]
         pub unsafe fn drawBackgroundInClipRect(&self, clip_rect: NSRect);
 
@@ -1073,8 +1053,7 @@ extern_protocol!(
             feature = "NSCell",
             feature = "NSResponder",
             feature = "NSTableColumn",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other tableView:toolTipForCell:rect:tableColumn:row:mouseLocation:)]
@@ -1399,8 +1378,7 @@ extern_protocol!(
             feature = "NSControl",
             feature = "NSDraggingSession",
             feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method(tableView:draggingSession:willBeginAtPoint:forRowIndexes:)]
@@ -1417,8 +1395,7 @@ extern_protocol!(
             feature = "NSDragging",
             feature = "NSDraggingSession",
             feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method(tableView:draggingSession:endedAtPoint:operation:)]
@@ -1533,11 +1510,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other selectedRowEnumerator)]
         pub unsafe fn selectedRowEnumerator(&self) -> Retained<NSEnumerator>;
 
-        #[cfg(all(
-            feature = "NSEvent",
-            feature = "NSImage",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSImage"))]
         #[deprecated]
         #[method_id(@__retain_semantics Other dragImageForRows:event:dragImageOffset:)]
         pub unsafe fn dragImageForRows_event_dragImageOffset(
@@ -1555,7 +1528,6 @@ extern_methods!(
         #[method(autoresizesAllColumnsToFit)]
         pub unsafe fn autoresizesAllColumnsToFit(&self) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(columnsInRect:)]
         pub unsafe fn columnsInRect(&self, rect: NSRect) -> NSRange;

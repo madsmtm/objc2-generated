@@ -209,11 +209,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other coveredCharacterSet)]
         pub unsafe fn coveredCharacterSet(&self) -> Retained<NSCharacterSet>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(boundingRectForFont)]
         pub unsafe fn boundingRectForFont(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(maximumAdvancement)]
         pub unsafe fn maximumAdvancement(&self) -> NSSize;
 
@@ -252,7 +250,7 @@ extern_methods!(
         #[method(isFixedPitch)]
         pub unsafe fn isFixedPitch(&self) -> bool;
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         /// ******* Glyph metrics ********
         ///
@@ -260,12 +258,12 @@ extern_methods!(
         #[method(boundingRectForCGGlyph:)]
         pub unsafe fn boundingRectForCGGlyph(&self, glyph: CGGlyph) -> NSRect;
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         #[method(advancementForCGGlyph:)]
         pub unsafe fn advancementForCGGlyph(&self, glyph: CGGlyph) -> NSSize;
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         #[method(getBoundingRects:forCGGlyphs:count:)]
         pub unsafe fn getBoundingRects_forCGGlyphs_count(
@@ -275,7 +273,7 @@ extern_methods!(
             glyph_count: NSUInteger,
         );
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         #[method(getAdvancements:forCGGlyphs:count:)]
         pub unsafe fn getAdvancements_forCGGlyphs_count(
@@ -397,15 +395,12 @@ extern_methods!(
         #[method(glyphWithName:)]
         pub unsafe fn glyphWithName(&self, name: &NSString) -> NSGlyph;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(boundingRectForGlyph:)]
         pub unsafe fn boundingRectForGlyph(&self, glyph: NSGlyph) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(advancementForGlyph:)]
         pub unsafe fn advancementForGlyph(&self, glyph: NSGlyph) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(getBoundingRects:forGlyphs:count:)]
         pub unsafe fn getBoundingRects_forGlyphs_count(
             &self,
@@ -414,7 +409,6 @@ extern_methods!(
             glyph_count: NSUInteger,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(getAdvancements:forGlyphs:count:)]
         pub unsafe fn getAdvancements_forGlyphs_count(
             &self,
@@ -423,7 +417,6 @@ extern_methods!(
             glyph_count: NSUInteger,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(getAdvancements:forPackedGlyphs:length:)]
         pub unsafe fn getAdvancements_forPackedGlyphs_length(
             &self,

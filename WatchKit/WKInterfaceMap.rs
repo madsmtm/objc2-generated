@@ -92,7 +92,7 @@ extern_methods!(
         #[method(setVisibleMapRect:)]
         pub unsafe fn setVisibleMapRect(&self, map_rect: MKMapRect);
 
-        #[cfg(all(feature = "objc2-core-location", feature = "objc2-map-kit"))]
+        #[cfg(feature = "objc2-map-kit")]
         #[method(setRegion:)]
         pub unsafe fn setRegion(&self, coordinate_region: MKCoordinateRegion);
 

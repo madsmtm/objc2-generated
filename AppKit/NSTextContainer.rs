@@ -218,23 +218,19 @@ unsafe impl RefEncode for NSLineMovementDirection {
 extern_methods!(
     /// NSTextContainerDeprecated
     unsafe impl NSTextContainer {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithContainerSize:)]
         pub unsafe fn initWithContainerSize(
             this: Allocated<Self>,
             a_container_size: NSSize,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(containerSize)]
         pub unsafe fn containerSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`containerSize`][Self::containerSize].
         #[method(setContainerSize:)]
         pub unsafe fn setContainerSize(&self, container_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(lineFragmentRectForProposedRect:sweepDirection:movementDirection:remainingRect:)]
         pub unsafe fn lineFragmentRectForProposedRect_sweepDirection_movementDirection_remainingRect(
             &self,
@@ -244,7 +240,6 @@ extern_methods!(
             remaining_rect: NSRectPointer,
         ) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(containsPoint:)]
         pub unsafe fn containsPoint(&self, point: NSPoint) -> bool;

@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -135,8 +133,7 @@ extern_methods!(
             feature = "NSPathComponentCell",
             feature = "NSResponder",
             feature = "NSTextFieldCell",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[method(rectOfPathComponentCell:withFrame:inView:)]
         pub unsafe fn rectOfPathComponentCell_withFrame_inView(
@@ -150,8 +147,7 @@ extern_methods!(
             feature = "NSPathComponentCell",
             feature = "NSResponder",
             feature = "NSTextFieldCell",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other pathComponentCellAtPoint:withFrame:inView:)]
         pub unsafe fn pathComponentCellAtPoint_withFrame_inView(
@@ -165,12 +161,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other clickedPathComponentCell)]
         pub unsafe fn clickedPathComponentCell(&self) -> Option<Retained<NSPathComponentCell>>;
 
-        #[cfg(all(
-            feature = "NSEvent",
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[method(mouseEntered:withFrame:inView:)]
         pub unsafe fn mouseEntered_withFrame_inView(
             &self,
@@ -179,12 +170,7 @@ extern_methods!(
             view: &NSView,
         );
 
-        #[cfg(all(
-            feature = "NSEvent",
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[method(mouseExited:withFrame:inView:)]
         pub unsafe fn mouseExited_withFrame_inView(
             &self,

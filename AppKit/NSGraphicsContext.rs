@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 #[cfg(target_vendor = "apple")]
 use objc2_core_graphics::*;
@@ -171,11 +169,9 @@ extern_methods!(
         #[method(setImageInterpolation:)]
         pub unsafe fn setImageInterpolation(&self, image_interpolation: NSImageInterpolation);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(patternPhase)]
         pub unsafe fn patternPhase(&self) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`patternPhase`][Self::patternPhase].
         #[method(setPatternPhase:)]
         pub unsafe fn setPatternPhase(&self, pattern_phase: NSPoint);

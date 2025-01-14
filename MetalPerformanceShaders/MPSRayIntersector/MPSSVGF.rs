@@ -114,29 +114,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpssvgf?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSSVGF;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSSVGF {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSSVGF {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSSVGF {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSSVGF {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSSVGF {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSSVGF {
         /// Controls how samples' depths are compared during reprojection, variance estimation, and
         /// bilateral filtering. The final weight is given by exp(-abs(Z1 - Z2) / depthWeight). Must be
@@ -769,7 +769,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSSVGF {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -789,7 +789,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSSVGF {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -935,7 +935,7 @@ unsafe impl NSObjectProtocol for MPSSVGFDenoiser {}
 
 extern_methods!(
     unsafe impl MPSSVGFDenoiser {
-        #[cfg(feature = "MPSKernel")]
+        #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
         /// The underlying MPSSVGF kernels object which will be used for denoising. Use this object
         /// to customize the denoising process.
         #[method_id(@__retain_semantics Other svgf)]
@@ -965,7 +965,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "MPSKernel")]
+        #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
         /// Initialize the MPSSVGFDenoiser object
         ///
         /// Parameter svgf             MPSSVGF kernels to use for denoising. This object can be used to

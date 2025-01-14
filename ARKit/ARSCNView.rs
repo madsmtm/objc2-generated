@@ -114,14 +114,14 @@ extern_protocol!(
 /// Extended debug options for an ARSCNView
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arscndebugoptions?language=objc)
-#[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
+#[cfg(feature = "objc2-scene-kit")]
 pub type ARSCNDebugOptions = SCNDebugOptions;
 
 extern "C" {
     /// Show the world origin in the scene.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arscndebugoptionshowworldorigin?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
+    #[cfg(feature = "objc2-scene-kit")]
     pub static ARSCNDebugOptionShowWorldOrigin: SCNDebugOptions;
 }
 
@@ -129,6 +129,6 @@ extern "C" {
     /// Show detected 3D feature points in the world.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arscndebugoptionshowfeaturepoints?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]
+    #[cfg(feature = "objc2-scene-kit")]
     pub static ARSCNDebugOptionShowFeaturePoints: SCNDebugOptions;
 }

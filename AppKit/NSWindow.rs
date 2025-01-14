@@ -505,7 +505,6 @@ unsafe impl NSUserInterfaceValidations for NSWindow {}
 extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSWindow {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frameRectForContentRect:styleMask:)]
         pub unsafe fn frameRectForContentRect_styleMask(
             c_rect: NSRect,
@@ -513,7 +512,6 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(contentRectForFrameRect:styleMask:)]
         pub unsafe fn contentRectForFrameRect_styleMask(
             f_rect: NSRect,
@@ -533,15 +531,13 @@ extern_methods!(
         #[method(defaultDepthLimit)]
         pub unsafe fn defaultDepthLimit(mtm: MainThreadMarker) -> NSWindowDepth;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frameRectForContentRect:)]
         pub unsafe fn frameRectForContentRect(&self, content_rect: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(contentRectForFrameRect:)]
         pub fn contentRectForFrameRect(&self, frame_rect: NSRect) -> NSRect;
 
-        #[cfg(all(feature = "NSGraphics", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSGraphics")]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Allocated<Self>,
@@ -551,11 +547,7 @@ extern_methods!(
             flag: bool,
         ) -> Retained<Self>;
 
-        #[cfg(all(
-            feature = "NSGraphics",
-            feature = "NSScreen",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSGraphics", feature = "NSScreen"))]
         #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Allocated<Self>,
@@ -611,7 +603,6 @@ extern_methods!(
         #[method(setToolbarStyle:)]
         pub unsafe fn setToolbarStyle(&self, toolbar_style: NSWindowToolbarStyle);
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// The
         /// `contentLayoutRect`will return the area inside the window that is for non-obscured content. Typically, this is the same thing as the `contentView`'s frame. However, for windows with the
         /// `NSFullSizeContentViewWindowMask`set, there needs to be a way to determine the portion that is not under the toolbar. The
@@ -739,7 +730,7 @@ extern_methods!(
         #[method(endEditingFor:)]
         pub unsafe fn endEditingFor(&self, object: Option<&AnyObject>);
 
-        #[cfg(all(feature = "NSScreen", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSScreen")]
         #[method(constrainFrameRect:toScreen:)]
         pub unsafe fn constrainFrameRect_toScreen(
             &self,
@@ -747,36 +738,28 @@ extern_methods!(
             screen: Option<&NSScreen>,
         ) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(setFrame:display:)]
         pub fn setFrame_display(&self, frame_rect: NSRect, flag: bool);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(setContentSize:)]
         pub fn setContentSize(&self, size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(setFrameOrigin:)]
         pub unsafe fn setFrameOrigin(&self, point: NSPoint);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(setFrameTopLeftPoint:)]
         pub fn setFrameTopLeftPoint(&self, point: NSPoint);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(cascadeTopLeftFromPoint:)]
         pub unsafe fn cascadeTopLeftFromPoint(&self, top_left_point: NSPoint) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// The frame to use when cascading or sizing a new window based on the receiver's position or size. This may be different from `frame` when the receiver is positioned by the system.
         #[method(cascadingReferenceFrame)]
         pub unsafe fn cascadingReferenceFrame(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frame)]
         pub fn frame(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Subclasses can override
         /// `animationResizeTime:`to control the total time for the frame change.
         /// `newFrame`is the rect passed into
@@ -784,7 +767,6 @@ extern_methods!(
         #[method(animationResizeTime:)]
         pub unsafe fn animationResizeTime(&self, new_frame: NSRect) -> NSTimeInterval;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// `setFrame:display:animate:`is equivalent to
         /// `setFrame:display:`if the
         /// `animateFlag`is NO.
@@ -802,38 +784,30 @@ extern_methods!(
         #[method(inLiveResize)]
         pub unsafe fn inLiveResize(&self) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(resizeIncrements)]
         pub unsafe fn resizeIncrements(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`resizeIncrements`][Self::resizeIncrements].
         #[method(setResizeIncrements:)]
         pub fn setResizeIncrements(&self, resize_increments: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(aspectRatio)]
         pub unsafe fn aspectRatio(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`aspectRatio`][Self::aspectRatio].
         #[method(setAspectRatio:)]
         pub unsafe fn setAspectRatio(&self, aspect_ratio: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(contentResizeIncrements)]
         pub fn contentResizeIncrements(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentResizeIncrements`][Self::contentResizeIncrements].
         #[method(setContentResizeIncrements:)]
         pub fn setContentResizeIncrements(&self, content_resize_increments: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(contentAspectRatio)]
         pub unsafe fn contentAspectRatio(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentAspectRatio`][Self::contentAspectRatio].
         #[method(setContentAspectRatio:)]
         pub unsafe fn setContentAspectRatio(&self, content_aspect_ratio: NSSize);
@@ -1081,39 +1055,30 @@ extern_methods!(
             prevents_application_termination_when_modal: bool,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertRectToScreen:)]
         pub fn convertRectToScreen(&self, rect: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertRectFromScreen:)]
         pub unsafe fn convertRectFromScreen(&self, rect: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertPointToScreen:)]
         pub unsafe fn convertPointToScreen(&self, point: NSPoint) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertPointFromScreen:)]
         pub fn convertPointFromScreen(&self, point: NSPoint) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertRectToBacking:)]
         pub unsafe fn convertRectToBacking(&self, rect: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertRectFromBacking:)]
         pub unsafe fn convertRectFromBacking(&self, rect: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertPointToBacking:)]
         pub unsafe fn convertPointToBacking(&self, point: NSPoint) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertPointFromBacking:)]
         pub unsafe fn convertPointFromBacking(&self, point: NSPoint) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Use `NSIntegralRectWithOptions()` to produce a backing store pixel aligned rectangle from the given input rectangle in window coordinates.
         #[method(backingAlignedRect:options:)]
         pub unsafe fn backingAlignedRect_options(
@@ -1137,11 +1102,9 @@ extern_methods!(
         #[method(performZoom:)]
         pub unsafe fn performZoom(&self, sender: Option<&AnyObject>);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other dataWithEPSInsideRect:)]
         pub unsafe fn dataWithEPSInsideRect(&self, rect: NSRect) -> Retained<NSData>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other dataWithPDFInsideRect:)]
         pub unsafe fn dataWithPDFInsideRect(&self, rect: NSRect) -> Retained<NSData>;
 
@@ -1328,56 +1291,44 @@ extern_methods!(
         #[method(removeFrameUsingName:)]
         pub unsafe fn removeFrameUsingName(name: &NSWindowFrameAutosaveName, mtm: MainThreadMarker);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(minSize)]
         pub unsafe fn minSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minSize`][Self::minSize].
         #[method(setMinSize:)]
         pub fn setMinSize(&self, min_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(maxSize)]
         pub unsafe fn maxSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maxSize`][Self::maxSize].
         #[method(setMaxSize:)]
         pub fn setMaxSize(&self, max_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(contentMinSize)]
         pub unsafe fn contentMinSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentMinSize`][Self::contentMinSize].
         #[method(setContentMinSize:)]
         pub unsafe fn setContentMinSize(&self, content_min_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(contentMaxSize)]
         pub unsafe fn contentMaxSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentMaxSize`][Self::contentMaxSize].
         #[method(setContentMaxSize:)]
         pub unsafe fn setContentMaxSize(&self, content_max_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(minFullScreenContentSize)]
         pub unsafe fn minFullScreenContentSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minFullScreenContentSize`][Self::minFullScreenContentSize].
         #[method(setMinFullScreenContentSize:)]
         pub unsafe fn setMinFullScreenContentSize(&self, min_full_screen_content_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(maxFullScreenContentSize)]
         pub unsafe fn maxFullScreenContentSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maxFullScreenContentSize`][Self::maxFullScreenContentSize].
         #[method(setMaxFullScreenContentSize:)]
         pub unsafe fn setMaxFullScreenContentSize(&self, max_full_screen_content_size: NSSize);
@@ -1521,7 +1472,6 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Option<Retained<NSArray<NSNumber>>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// `+windowNumberAtPoint:belowWindowWithWindowNumber:` returns the number of the frontmost window that would be hit by a mouseDown at the screen location "point".  "windowNum" can be specified to exclude a given window along with all windows above it, and may belong to any application.  If no windows are to be excluded, specify 0 for "windowNum".  The windowNumber returned may correspond to a window in another application.
         #[method(windowNumberAtPoint:belowWindowWithWindowNumber:)]
         pub unsafe fn windowNumberAtPoint_belowWindowWithWindowNumber(
@@ -1874,7 +1824,6 @@ extern_methods!(
         #[method(setIgnoresMouseEvents:)]
         pub fn setIgnoresMouseEvents(&self, ignores_mouse_events: bool);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(mouseLocationOutsideOfEventStream)]
         pub unsafe fn mouseLocationOutsideOfEventStream(&self) -> NSPoint;
     }
@@ -1923,12 +1872,7 @@ extern_methods!(
             source: &ProtocolObject<dyn NSDraggingSource>,
         ) -> Retained<NSDraggingSession>;
 
-        #[cfg(all(
-            feature = "NSEvent",
-            feature = "NSImage",
-            feature = "NSPasteboard",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSImage", feature = "NSPasteboard"))]
         #[deprecated = "Use -[NSWindow beginDraggingSessionWithItems:event:source:] instead."]
         #[method(dragImage:at:offset:event:pasteboard:source:slideBack:)]
         pub unsafe fn dragImage_at_offset_event_pasteboard_source_slideBack(
@@ -1983,12 +1927,12 @@ extern_protocol!(
             client: Option<&AnyObject>,
         ) -> Option<Retained<AnyObject>>;
 
-        #[cfg(all(feature = "NSResponder", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(windowWillResize:toSize:)]
         unsafe fn windowWillResize_toSize(&self, sender: &NSWindow, frame_size: NSSize) -> NSSize;
 
-        #[cfg(all(feature = "NSResponder", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(windowWillUseStandardFrame:defaultFrame:)]
         unsafe fn windowWillUseStandardFrame_defaultFrame(
@@ -1997,7 +1941,7 @@ extern_protocol!(
             new_frame: NSRect,
         ) -> NSRect;
 
-        #[cfg(all(feature = "NSResponder", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(windowShouldZoom:toFrame:)]
         unsafe fn windowShouldZoom_toFrame(&self, window: &NSWindow, new_frame: NSRect) -> bool;
@@ -2010,7 +1954,7 @@ extern_protocol!(
             window: &NSWindow,
         ) -> Option<Retained<NSUndoManager>>;
 
-        #[cfg(all(feature = "NSResponder", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSResponder")]
         /// Tells the delegate that the window is about to show a sheet, and gives the delegate a chance to customize the location of the sheet.
         #[optional]
         #[method(window:willPositionSheet:usingRect:)]
@@ -2037,12 +1981,7 @@ extern_protocol!(
             menu: &NSMenu,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "NSEvent",
-            feature = "NSPasteboard",
-            feature = "NSResponder",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSPasteboard", feature = "NSResponder"))]
         /// The window delegate may implement `-window:shouldDragDocumentWithEvent:from:withPasteboard:` to override
         /// `NSWindow`document icon's default drag behavior.  The delegate can prohibit the drag by returning
         /// `NO.`Before returning
@@ -2059,7 +1998,7 @@ extern_protocol!(
             pasteboard: &NSPasteboard,
         ) -> bool;
 
-        #[cfg(all(feature = "NSResponder", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSResponder")]
         #[optional]
         #[method(window:willUseFullScreenContentSize:)]
         unsafe fn window_willUseFullScreenContentSize(
@@ -2148,7 +2087,7 @@ extern_protocol!(
         #[method(windowDidFailToExitFullScreen:)]
         unsafe fn windowDidFailToExitFullScreen(&self, window: &NSWindow);
 
-        #[cfg(all(feature = "NSResponder", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSResponder")]
         /// Windows entering the version browser will be resized to the size returned by this method. If either dimension of the returned size is larger than the
         /// `maxPreferredFrameSize,`the window will also be scaled down to ensure it fits properly in the version browser. Returned sizes larger than
         /// `maxAllowedSize`will be constrained to that size. If this method is not implemented, the version browser will use `-window:willUseStandardFrame:` to determine the resulting window frame size.
@@ -2511,7 +2450,6 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "NSResponder")]
     unsafe impl NSWindow {
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "This method shouldn’t be used as it doesn’t work in all drawing situations; instead, a subview should be used that implements the desired drawing behavior"]
         #[method(cacheImageInRect:)]
         pub unsafe fn cacheImageInRect(&self, rect: NSRect);
@@ -2533,12 +2471,10 @@ extern_methods!(
         #[method(gState)]
         pub unsafe fn gState(&self) -> NSInteger;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Use -convertRectToScreen: or -convertPointToScreen: instead"]
         #[method(convertBaseToScreen:)]
         pub unsafe fn convertBaseToScreen(&self, point: NSPoint) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Use -convertRectFromScreen or -convertPointFromScreen: instead"]
         #[method(convertScreenToBase:)]
         pub unsafe fn convertScreenToBase(&self, point: NSPoint) -> NSPoint;

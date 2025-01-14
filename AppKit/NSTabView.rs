@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -213,7 +211,6 @@ extern_methods!(
         #[method(setAllowsTruncatedLabels:)]
         pub unsafe fn setAllowsTruncatedLabels(&self, allows_truncated_labels: bool);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(minimumSize)]
         pub unsafe fn minimumSize(&self) -> NSSize;
 
@@ -257,11 +254,10 @@ extern_methods!(
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTabViewDelegate>>);
 
-        #[cfg(all(feature = "NSTabViewItem", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSTabViewItem")]
         #[method_id(@__retain_semantics Other tabViewItemAtPoint:)]
         pub unsafe fn tabViewItemAtPoint(&self, point: NSPoint) -> Option<Retained<NSTabViewItem>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(contentRect)]
         pub unsafe fn contentRect(&self) -> NSRect;
 
@@ -296,7 +292,6 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTabView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 

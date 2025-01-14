@@ -59,316 +59,390 @@ mod __MPSImageTranspose;
 mod __MPSImageTypes;
 
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageConversion",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageConversion::MPSImageConversion;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageConvolution",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageConvolution::MPSImageBox;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageConvolution",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageConvolution::MPSImageCanny;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageConvolution",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageConvolution::MPSImageConvolution;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageConvolution",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageConvolution::MPSImageGaussianBlur;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageConvolution",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageConvolution::MPSImageGaussianPyramid;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageConvolution",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageConvolution::MPSImageLaplacian;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageConvolution",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageConvolution::MPSImageLaplacianPyramid;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageConvolution",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageConvolution::MPSImageLaplacianPyramidAdd;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageConvolution",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageConvolution::MPSImageLaplacianPyramidSubtract;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageConvolution",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageConvolution::MPSImagePyramid;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageConvolution",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageConvolution::MPSImageSobel;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageConvolution",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageConvolution::MPSImageTent;
-#[cfg(all(feature = "MPSImageCopy", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageCopy", feature = "MPSKernel"))]
 pub use self::__MPSImageCopy::MPSImageCopyToMatrix;
-#[cfg(all(feature = "MPSImageCopy", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageCopy", feature = "MPSKernel"))]
 pub use self::__MPSImageCopy::MPSMatrixCopyToImage;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageDistanceTransform",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageDistanceTransform::MPSImageEuclideanDistanceTransform;
-#[cfg(all(feature = "MPSImageEDLines", feature = "MPSKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSImageEDLines",
+    feature = "MPSKernel"
+))]
 pub use self::__MPSImageEDLines::MPSImageEDLines;
-#[cfg(all(feature = "MPSImageGuidedFilter", feature = "MPSKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSImageGuidedFilter",
+    feature = "MPSKernel"
+))]
 pub use self::__MPSImageGuidedFilter::MPSImageGuidedFilter;
-#[cfg(all(feature = "MPSImageHistogram", feature = "MPSKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSImageHistogram",
+    feature = "MPSKernel"
+))]
 pub use self::__MPSImageHistogram::MPSImageHistogram;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageHistogram",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageHistogram::MPSImageHistogramEqualization;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageHistogram",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageHistogram::MPSImageHistogramSpecification;
-#[cfg(all(feature = "MPSImageHistogram", feature = "MPSKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSImageHistogram",
+    feature = "MPSKernel"
+))]
 pub use self::__MPSImageHistogram::MPSImageNormalizedHistogram;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageIntegral",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageIntegral::MPSImageIntegral;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageIntegral",
     feature = "MPSImageKernel",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageIntegral::MPSImageIntegralOfSquares;
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 pub use self::__MPSImageKernel::MPSBinaryImageKernel;
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel", feature = "block2"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSImageKernel",
+    feature = "MPSKernel",
+    feature = "block2"
+))]
 pub use self::__MPSImageKernel::MPSCopyAllocator;
-#[cfg(all(feature = "MPSImageKernel", feature = "MPSKernel"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
 pub use self::__MPSImageKernel::MPSUnaryImageKernel;
-#[cfg(all(feature = "MPSImageKeypoint", feature = "MPSKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSImageKeypoint",
+    feature = "MPSKernel"
+))]
 pub use self::__MPSImageKeypoint::MPSImageFindKeypoints;
 #[cfg(feature = "MPSImageKeypoint")]
 pub use self::__MPSImageKeypoint::MPSImageKeypointRangeInfo;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageMath",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageMath::MPSImageAdd;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageMath",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageMath::MPSImageArithmetic;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageMath",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageMath::MPSImageDivide;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageMath",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageMath::MPSImageMultiply;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageMath",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageMath::MPSImageSubtract;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageMedian",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageMedian::MPSImageMedian;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageMorphology",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageMorphology::MPSImageAreaMax;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageMorphology",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageMorphology::MPSImageAreaMin;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageMorphology",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageMorphology::MPSImageDilate;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageMorphology",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageMorphology::MPSImageErode;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageReduce",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageReduce::MPSImageReduceColumnMax;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageReduce",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageReduce::MPSImageReduceColumnMean;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageReduce",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageReduce::MPSImageReduceColumnMin;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageReduce",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageReduce::MPSImageReduceColumnSum;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageReduce",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageReduce::MPSImageReduceRowMax;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageReduce",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageReduce::MPSImageReduceRowMean;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageReduce",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageReduce::MPSImageReduceRowMin;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageReduce",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageReduce::MPSImageReduceRowSum;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageReduce",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageReduce::MPSImageReduceUnary;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageResampling",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageResampling::MPSImageBilinearScale;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageResampling",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageResampling::MPSImageLanczosScale;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageResampling",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageResampling::MPSImageScale;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageStatistics",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageStatistics::MPSImageStatisticsMean;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageStatistics",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageStatistics::MPSImageStatisticsMeanAndVariance;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageStatistics",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageStatistics::MPSImageStatisticsMinAndMax;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageThreshold",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageThreshold::MPSImageThresholdBinary;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageThreshold",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageThreshold::MPSImageThresholdBinaryInverse;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageThreshold",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageThreshold::MPSImageThresholdToZero;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageThreshold",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageThreshold::MPSImageThresholdToZeroInverse;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageThreshold",
     feature = "MPSKernel"
 ))]
 pub use self::__MPSImageThreshold::MPSImageThresholdTruncate;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSImageKernel",
     feature = "MPSImageTranspose",
     feature = "MPSKernel"

@@ -81,47 +81,19 @@ pub use self::__MIDIBluetoothConnection::MIDIBluetoothDriverDisconnect;
 pub use self::__MIDICIDevice::MIDICIDevice;
 #[cfg(all(feature = "MIDICIDeviceManager", feature = "objc2"))]
 pub use self::__MIDICIDeviceManager::MIDICIDeviceManager;
-#[cfg(all(
-    feature = "MIDICIDeviceManager",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDICIDeviceManager", feature = "objc2-foundation"))]
 pub use self::__MIDICIDeviceManager::MIDICIDeviceManagerDictionaryKey;
-#[cfg(all(
-    feature = "MIDICIDeviceManager",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDICIDeviceManager", feature = "objc2-foundation"))]
 pub use self::__MIDICIDeviceManager::MIDICIDeviceObjectKey;
-#[cfg(all(
-    feature = "MIDICIDeviceManager",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDICIDeviceManager", feature = "objc2-foundation"))]
 pub use self::__MIDICIDeviceManager::MIDICIDeviceWasAddedNotification;
-#[cfg(all(
-    feature = "MIDICIDeviceManager",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDICIDeviceManager", feature = "objc2-foundation"))]
 pub use self::__MIDICIDeviceManager::MIDICIDeviceWasRemovedNotification;
-#[cfg(all(
-    feature = "MIDICIDeviceManager",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDICIDeviceManager", feature = "objc2-foundation"))]
 pub use self::__MIDICIDeviceManager::MIDICIProfileObjectKey;
-#[cfg(all(
-    feature = "MIDICIDeviceManager",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDICIDeviceManager", feature = "objc2-foundation"))]
 pub use self::__MIDICIDeviceManager::MIDICIProfileWasRemovedNotification;
-#[cfg(all(
-    feature = "MIDICIDeviceManager",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDICIDeviceManager", feature = "objc2-foundation"))]
 pub use self::__MIDICIDeviceManager::MIDICIProfileWasUpdatedNotification;
 #[cfg(feature = "MIDICapabilityInquiry")]
 pub use self::__MIDICapabilityInquiry::MIDICIDeviceIdentification;
@@ -138,11 +110,7 @@ pub use self::__MIDICapabilityInquiry::MIDICIDiscoveryManager;
     feature = "objc2-foundation"
 ))]
 pub use self::__MIDICapabilityInquiry::MIDICIDiscoveryResponseBlock;
-#[cfg(all(
-    feature = "MIDICapabilityInquiry",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDICapabilityInquiry", feature = "objc2-foundation"))]
 pub use self::__MIDICapabilityInquiry::MIDICIInitiatiorMUID;
 #[cfg(all(feature = "MIDICapabilityInquiry", feature = "objc2"))]
 pub use self::__MIDICapabilityInquiry::MIDICIProfile;
@@ -296,11 +264,7 @@ pub use self::__MIDIMessages::UMPStreamMessageFormat;
 pub use self::__MIDIMessages::UMPStreamMessageStatus;
 #[cfg(feature = "MIDIMessages")]
 pub use self::__MIDIMessages::MIDICIMUID;
-#[cfg(all(
-    feature = "MIDINetworkSession",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDINetworkSession", feature = "objc2-foundation"))]
 pub use self::__MIDINetworkSession::MIDINetworkBonjourServiceType;
 #[cfg(all(feature = "MIDINetworkSession", feature = "objc2"))]
 pub use self::__MIDINetworkSession::MIDINetworkConnection;
@@ -308,17 +272,9 @@ pub use self::__MIDINetworkSession::MIDINetworkConnection;
 pub use self::__MIDINetworkSession::MIDINetworkConnectionPolicy;
 #[cfg(all(feature = "MIDINetworkSession", feature = "objc2"))]
 pub use self::__MIDINetworkSession::MIDINetworkHost;
-#[cfg(all(
-    feature = "MIDINetworkSession",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDINetworkSession", feature = "objc2-foundation"))]
 pub use self::__MIDINetworkSession::MIDINetworkNotificationContactsDidChange;
-#[cfg(all(
-    feature = "MIDINetworkSession",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDINetworkSession", feature = "objc2-foundation"))]
 pub use self::__MIDINetworkSession::MIDINetworkNotificationSessionDidChange;
 #[cfg(all(feature = "MIDINetworkSession", feature = "objc2"))]
 pub use self::__MIDINetworkSession::MIDINetworkSession;
@@ -760,47 +716,19 @@ pub use self::__MIDIUMPEndpoint::MIDIUMPEndpoint;
 pub use self::__MIDIUMPEndpoint::MIDIUMPProtocolOptions;
 #[cfg(all(feature = "MIDIUMPEndpointManager", feature = "objc2"))]
 pub use self::__MIDIUMPEndpointManager::MIDIUMPEndpointManager;
-#[cfg(all(
-    feature = "MIDIUMPEndpointManager",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDIUMPEndpointManager", feature = "objc2-foundation"))]
 pub use self::__MIDIUMPEndpointManager::MIDIUMPEndpointManagerDictionaryKey;
-#[cfg(all(
-    feature = "MIDIUMPEndpointManager",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDIUMPEndpointManager", feature = "objc2-foundation"))]
 pub use self::__MIDIUMPEndpointManager::MIDIUMPEndpointObjectKey;
-#[cfg(all(
-    feature = "MIDIUMPEndpointManager",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDIUMPEndpointManager", feature = "objc2-foundation"))]
 pub use self::__MIDIUMPEndpointManager::MIDIUMPEndpointWasAddedNotification;
-#[cfg(all(
-    feature = "MIDIUMPEndpointManager",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDIUMPEndpointManager", feature = "objc2-foundation"))]
 pub use self::__MIDIUMPEndpointManager::MIDIUMPEndpointWasRemovedNotification;
-#[cfg(all(
-    feature = "MIDIUMPEndpointManager",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDIUMPEndpointManager", feature = "objc2-foundation"))]
 pub use self::__MIDIUMPEndpointManager::MIDIUMPEndpointWasUpdatedNotification;
-#[cfg(all(
-    feature = "MIDIUMPEndpointManager",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDIUMPEndpointManager", feature = "objc2-foundation"))]
 pub use self::__MIDIUMPEndpointManager::MIDIUMPFunctionBlockObjectKey;
-#[cfg(all(
-    feature = "MIDIUMPEndpointManager",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "MIDIUMPEndpointManager", feature = "objc2-foundation"))]
 pub use self::__MIDIUMPEndpointManager::MIDIUMPFunctionBlockWasUpdatedNotification;
 #[cfg(all(feature = "MIDIUMPFunctionBlock", feature = "objc2"))]
 pub use self::__MIDIUMPFunctionBlock::MIDIUMPFunctionBlock;

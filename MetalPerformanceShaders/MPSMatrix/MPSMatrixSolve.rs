@@ -29,29 +29,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsolvetriangular?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     pub struct MPSMatrixSolveTriangular;
 );
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSCoding for MPSMatrixSolveTriangular {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSCopying for MPSMatrixSolveTriangular {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl CopyingHelper for MPSMatrixSolveTriangular {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSObjectProtocol for MPSMatrixSolveTriangular {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSSecureCoding for MPSMatrixSolveTriangular {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveTriangular {
         /// Initialize an MPSMatrixSolveTriangular object on a device
         ///
@@ -114,7 +114,6 @@ extern_methods!(
             alpha: c_double,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "MPSMatrix")]
         /// Encode a MPSMatrixSolveTriangular kernel into a command Buffer.
         ///
         ///
@@ -155,7 +154,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveTriangular {
         /// Standard init with default properties per filter type
         ///
@@ -208,7 +207,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveTriangular {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -237,29 +236,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsolvelu?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     pub struct MPSMatrixSolveLU;
 );
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSCoding for MPSMatrixSolveLU {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSCopying for MPSMatrixSolveLU {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl CopyingHelper for MPSMatrixSolveLU {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSObjectProtocol for MPSMatrixSolveLU {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSSecureCoding for MPSMatrixSolveLU {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveLU {
         /// Initialize an MPSMatrixSolveLU object on a device
         ///
@@ -289,7 +288,6 @@ extern_methods!(
             number_of_right_hand_sides: NSUInteger,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "MPSMatrix")]
         /// Encode a MPSMatrixSolveLU kernel into a command Buffer.
         ///
         ///
@@ -338,7 +336,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveLU {
         /// Standard init with default properties per filter type
         ///
@@ -391,7 +389,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveLU {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -421,29 +419,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsolvecholesky?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     pub struct MPSMatrixSolveCholesky;
 );
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSCoding for MPSMatrixSolveCholesky {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSCopying for MPSMatrixSolveCholesky {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl CopyingHelper for MPSMatrixSolveCholesky {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSObjectProtocol for MPSMatrixSolveCholesky {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSSecureCoding for MPSMatrixSolveCholesky {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveCholesky {
         /// Initialize an MPSMatrixSolveCholesky object on a device
         ///
@@ -474,7 +472,6 @@ extern_methods!(
             number_of_right_hand_sides: NSUInteger,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "MPSMatrix")]
         /// Encode a MPSMatrixSolveCholesky kernel into a command Buffer.
         ///
         ///
@@ -515,7 +512,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveCholesky {
         /// Standard init with default properties per filter type
         ///
@@ -568,7 +565,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixSolveCholesky {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

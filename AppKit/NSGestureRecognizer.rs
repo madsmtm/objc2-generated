@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -168,11 +166,7 @@ extern_methods!(
         #[method(setDelaysRotationEvents:)]
         pub unsafe fn setDelaysRotationEvents(&self, delays_rotation_events: bool);
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(locationInView:)]
         pub unsafe fn locationInView(&self, view: Option<&NSView>) -> NSPoint;
     }

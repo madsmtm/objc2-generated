@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -141,11 +139,9 @@ extern_methods!(
             content_view_controller: Option<&NSViewController>,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(contentSize)]
         pub unsafe fn contentSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentSize`][Self::contentSize].
         #[method(setContentSize:)]
         pub unsafe fn setContentSize(&self, content_size: NSSize);
@@ -160,11 +156,9 @@ extern_methods!(
         #[method(isDetached)]
         pub unsafe fn isDetached(&self) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(positioningRect)]
         pub unsafe fn positioningRect(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`positioningRect`][Self::positioningRect].
         #[method(setPositioningRect:)]
         pub unsafe fn setPositioningRect(&self, positioning_rect: NSRect);
@@ -176,7 +170,7 @@ extern_methods!(
         #[method(setHasFullSizeContent:)]
         pub unsafe fn setHasFullSizeContent(&self, has_full_size_content: bool);
 
-        #[cfg(all(feature = "NSView", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSView")]
         /// Shows the popover anchored to the specified view.
         ///
         /// The popover will animate onscreen and eventually animate offscreen when it is closed (unless the property `animates` is set to `NO`).

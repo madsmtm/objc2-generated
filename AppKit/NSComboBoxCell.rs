@@ -89,11 +89,9 @@ extern_methods!(
         #[method(setHasVerticalScroller:)]
         pub unsafe fn setHasVerticalScroller(&self, has_vertical_scroller: bool);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(intercellSpacing)]
         pub unsafe fn intercellSpacing(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`intercellSpacing`][Self::intercellSpacing].
         #[method(setIntercellSpacing:)]
         pub unsafe fn setIntercellSpacing(&self, intercell_spacing: NSSize);

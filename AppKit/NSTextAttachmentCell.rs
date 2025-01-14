@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -13,11 +11,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachmentcellprotocol?language=objc)
     #[name = "NSTextAttachmentCell"]
     pub unsafe trait NSTextAttachmentCellProtocol: NSObjectProtocol {
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawWithFrame:inView:)]
         unsafe fn drawWithFrame_inView(
             &self,
@@ -29,11 +23,7 @@ extern_protocol!(
         #[method(wantsToTrackMouse)]
         unsafe fn wantsToTrackMouse(&self, mtm: MainThreadMarker) -> bool;
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(highlight:withFrame:inView:)]
         unsafe fn highlight_withFrame_inView(
             &self,
@@ -43,12 +33,7 @@ extern_protocol!(
             mtm: MainThreadMarker,
         );
 
-        #[cfg(all(
-            feature = "NSEvent",
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[method(trackMouse:inRect:ofView:untilMouseUp:)]
         unsafe fn trackMouse_inRect_ofView_untilMouseUp(
             &self,
@@ -59,11 +44,9 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(cellSize)]
         unsafe fn cellSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(cellBaselineOffset)]
         unsafe fn cellBaselineOffset(&self) -> NSPoint;
 
@@ -76,11 +59,7 @@ extern_protocol!(
         #[method(setAttachment:)]
         unsafe fn setAttachment(&self, attachment: Option<&NSTextAttachment>);
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawWithFrame:inView:characterIndex:)]
         unsafe fn drawWithFrame_inView_characterIndex(
             &self,
@@ -93,8 +72,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "NSLayoutManager",
             feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[method(drawWithFrame:inView:characterIndex:layoutManager:)]
         unsafe fn drawWithFrame_inView_characterIndex_layoutManager(
@@ -106,12 +84,7 @@ extern_protocol!(
             mtm: MainThreadMarker,
         );
 
-        #[cfg(all(
-            feature = "NSEvent",
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[method(wantsToTrackMouseForEvent:inRect:ofView:atCharacterIndex:)]
         unsafe fn wantsToTrackMouseForEvent_inRect_ofView_atCharacterIndex(
             &self,
@@ -122,12 +95,7 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "NSEvent",
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[method(trackMouse:inRect:ofView:atCharacterIndex:untilMouseUp:)]
         unsafe fn trackMouse_inRect_ofView_atCharacterIndex_untilMouseUp(
             &self,
@@ -139,7 +107,7 @@ extern_protocol!(
             mtm: MainThreadMarker,
         ) -> bool;
 
-        #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSTextContainer")]
         #[method(cellFrameForTextContainer:proposedLineFragment:glyphPosition:characterIndex:)]
         unsafe fn cellFrameForTextContainer_proposedLineFragment_glyphPosition_characterIndex(
             &self,

@@ -86,7 +86,6 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other validAttributesForMarkedText)]
         unsafe fn validAttributesForMarkedText(&self) -> Retained<NSArray<NSAttributedStringKey>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(firstRectForCharacterRange:actualRange:)]
         unsafe fn firstRectForCharacterRange_actualRange(
             &self,
@@ -94,7 +93,6 @@ extern_protocol!(
             actual_range: NSRangePointer,
         ) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(characterIndexForPoint:)]
         unsafe fn characterIndexForPoint(&self, point: NSPoint) -> NSUInteger;
 
@@ -124,12 +122,10 @@ extern_protocol!(
         #[method(preferredTextAccessoryPlacement)]
         unsafe fn preferredTextAccessoryPlacement(&self) -> NSTextCursorAccessoryPlacement;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[optional]
         #[method(unionRectInVisibleSelectedRange)]
         unsafe fn unionRectInVisibleSelectedRange(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[optional]
         #[method(documentVisibleRect)]
         unsafe fn documentVisibleRect(&self) -> NSRect;

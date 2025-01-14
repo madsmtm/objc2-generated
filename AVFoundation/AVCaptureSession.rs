@@ -8,9 +8,6 @@ use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
 use objc2_foundation::*;
-#[cfg(feature = "objc2-quartz-core")]
-#[cfg(not(target_os = "watchos"))]
-use objc2_quartz_core::*;
 
 use crate::*;
 

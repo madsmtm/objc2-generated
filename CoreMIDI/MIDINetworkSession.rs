@@ -11,19 +11,19 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinetworkbonjourservicetype?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static MIDINetworkBonjourServiceType: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinetworknotificationcontactsdidchange?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static MIDINetworkNotificationContactsDidChange: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinetworknotificationsessiondidchange?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static MIDINetworkNotificationSessionDidChange: &'static NSString;
 }
 

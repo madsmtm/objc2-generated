@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -143,7 +141,6 @@ extern_methods!(
         #[method(setNumberOfMajorTickMarks:)]
         pub unsafe fn setNumberOfMajorTickMarks(&self, number_of_major_tick_marks: NSInteger);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(rectOfTickMarkAtIndex:)]
         pub unsafe fn rectOfTickMarkAtIndex(&self, index: NSInteger) -> NSRect;
 

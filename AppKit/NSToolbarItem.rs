@@ -6,8 +6,6 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-cloud-kit")]
 #[cfg(target_vendor = "apple")]
 use objc2_cloud_kit::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -216,7 +214,6 @@ extern_methods!(
         #[method(setHidden:)]
         pub unsafe fn setHidden(&self, hidden: bool);
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Unless you have already set your own custom view, you should not call these methods.
         /// The min size should be small enough to look nice in all display modes.
         /// If you do not set a min/max size, the view's size properties will be calculated using constraints. Apps linked before 10.14 will use the view's current size.
@@ -225,18 +222,15 @@ extern_methods!(
         #[method(minSize)]
         pub unsafe fn minSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minSize`][Self::minSize].
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(setMinSize:)]
         pub unsafe fn setMinSize(&self, min_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(maxSize)]
         pub unsafe fn maxSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maxSize`][Self::maxSize].
         #[deprecated = "This property is no longer recommended. Instead, let the system automatically measure the size of the view using constraints."]
         #[method(setMaxSize:)]

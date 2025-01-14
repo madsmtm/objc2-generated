@@ -31,10 +31,15 @@ mod __MPSTemporalAA;
 #[path = "MPSTriangleAccelerationStructure.rs"]
 mod __MPSTriangleAccelerationStructure;
 
-#[cfg(all(feature = "MPSAccelerationStructure", feature = "MPSKernel"))]
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel"
+))]
 pub use self::__MPSAccelerationStructure::MPSAccelerationStructure;
 #[cfg(all(
     feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "block2"
 ))]
@@ -47,6 +52,7 @@ pub use self::__MPSAccelerationStructure::MPSAccelerationStructureUsage;
 pub use self::__MPSAccelerationStructureGroup::MPSAccelerationStructureGroup;
 #[cfg(all(
     feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
     feature = "MPSInstanceAccelerationStructure",
     feature = "MPSKernel"
 ))]
@@ -55,6 +61,7 @@ pub use self::__MPSInstanceAccelerationStructure::MPSInstanceAccelerationStructu
 pub use self::__MPSInstanceAccelerationStructure::MPSTransformType;
 #[cfg(all(
     feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSPolygonAccelerationStructure"
 ))]
@@ -65,6 +72,7 @@ pub use self::__MPSPolygonAccelerationStructure::MPSPolygonType;
 pub use self::__MPSPolygonBuffer::MPSPolygonBuffer;
 #[cfg(all(
     feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSPolygonAccelerationStructure",
     feature = "MPSQuadrilateralAccelerationStructure"
@@ -86,10 +94,11 @@ pub use self::__MPSRayIntersectorTypes::MPSRayOriginMaskDirectionMaxDistance;
 pub use self::__MPSRayIntersectorTypes::MPSRayOriginMinDistanceDirectionMaxDistance;
 #[cfg(feature = "MPSRayIntersectorTypes")]
 pub use self::__MPSRayIntersectorTypes::MPSRayPackedOriginDirection;
-#[cfg(all(feature = "MPSKernel", feature = "MPSTemporalAA"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSTemporalAA"))]
 pub use self::__MPSTemporalAA::MPSTemporalAA;
 #[cfg(all(
     feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSPolygonAccelerationStructure",
     feature = "MPSTriangleAccelerationStructure"
@@ -103,7 +112,7 @@ pub use self::__MPSSVGF::MPSSVGFDenoiser;
 pub use self::__MPSSVGF::MPSSVGFTextureAllocator;
 #[cfg(feature = "MPSSVGF")]
 pub use self::__MPSSVGF::MPSTemporalWeighting;
-#[cfg(all(feature = "MPSKernel", feature = "MPSSVGF"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSSVGF"))]
 pub use self::__MPSSVGF::MPSSVGF;
 use core::ffi::*;
 use core::ptr::NonNull;
@@ -802,30 +811,30 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrayintersector?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     #[deprecated]
     pub struct MPSRayIntersector;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSRayIntersector {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSRayIntersector {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSRayIntersector {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSRayIntersector {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSRayIntersector {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSRayIntersector {
         /// Whether to ignore intersections between rays and back-facing or front-facing triangles
         /// or quadrilaterals. Defaults to MTLCullModeNone.
@@ -1338,7 +1347,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSRayIntersector {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -1358,7 +1367,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSRayIntersector {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;

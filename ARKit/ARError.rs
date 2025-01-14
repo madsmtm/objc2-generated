@@ -10,7 +10,7 @@ use crate::*;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arerrordomain?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static ARErrorDomain: &'static NSString;
 }
 

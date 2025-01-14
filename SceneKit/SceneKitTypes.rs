@@ -157,25 +157,25 @@ extern "C-unwind" {
 pub type SCNQuaternion = SCNVector4;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4?language=objc)
-#[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
+#[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
 pub type SCNMatrix4 = CATransform3D;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4identity?language=objc)
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
+    #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     pub static SCNMatrix4Identity: SCNMatrix4;
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
+    #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4IsIdentity(m: SCNMatrix4) -> bool;
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
+    #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4EqualToMatrix4(a: SCNMatrix4, b: SCNMatrix4) -> bool;
 }
@@ -212,13 +212,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
+    #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4Invert(m: SCNMatrix4) -> SCNMatrix4;
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
+    #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     pub fn SCNMatrix4Mult(a: SCNMatrix4, b: SCNMatrix4) -> SCNMatrix4;
 }
@@ -236,7 +236,7 @@ extern_category!(
         #[method_id(@__retain_semantics Other valueWithSCNVector4:)]
         unsafe fn valueWithSCNVector4(v: SCNVector4) -> Retained<NSValue>;
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
+        #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
         #[method_id(@__retain_semantics Other valueWithSCNMatrix4:)]
         unsafe fn valueWithSCNMatrix4(v: SCNMatrix4) -> Retained<NSValue>;
@@ -249,7 +249,7 @@ extern_category!(
         #[method(SCNVector4Value)]
         unsafe fn SCNVector4Value(&self) -> SCNVector4;
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
+        #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
         #[method(SCNMatrix4Value)]
         unsafe fn SCNMatrix4Value(&self) -> SCNMatrix4;

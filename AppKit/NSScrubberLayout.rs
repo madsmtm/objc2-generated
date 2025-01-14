@@ -42,11 +42,9 @@ extern_methods!(
         #[method(setItemIndex:)]
         pub unsafe fn setItemIndex(&self, item_index: NSInteger);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frame)]
         pub unsafe fn frame(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`frame`][Self::frame].
         #[method(setFrame:)]
         pub unsafe fn setFrame(&self, frame: NSRect);
@@ -105,7 +103,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other scrubber)]
         pub unsafe fn scrubber(&self) -> Option<Retained<NSScrubber>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// The currently visible rectangle, in the coordinate space of the scrubber content. Returns
         /// `NSZeroRect`if the receiver is not assigned to a scrubber.
         #[method(visibleRect)]
@@ -127,7 +124,6 @@ extern_methods!(
         #[method(prepareLayout)]
         pub unsafe fn prepareLayout(&self);
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Returns the content size for all elements within the scrubber. The base implementation returns
         /// `NSZeroSize.`
         #[method(scrubberContentSize)]
@@ -141,7 +137,6 @@ extern_methods!(
             index: NSInteger,
         ) -> Option<Retained<NSScrubberLayoutAttributes>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Returns the set of layout attributes for all items within the provided rectangle. The base implementation returns an empty set.
         #[method_id(@__retain_semantics Other layoutAttributesForItemsInRect:)]
         pub unsafe fn layoutAttributesForItemsInRect(
@@ -163,7 +158,6 @@ extern_methods!(
         #[method(shouldInvalidateLayoutForHighlightChange)]
         pub unsafe fn shouldInvalidateLayoutForHighlightChange(&self) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// If
         /// `YES,`the scrubber will invalidate its layout in response to a change in the visible region. The default value is
         /// `NO.`Subclasses which rely on the size or origin of the visible region should return
@@ -196,11 +190,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberflowlayoutdelegate?language=objc)
     #[cfg(feature = "NSScrubber")]
     pub unsafe trait NSScrubberFlowLayoutDelegate: NSScrubberDelegate {
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
         #[method(scrubber:layout:sizeForItemAtIndex:)]
         unsafe fn scrubber_layout_sizeForItemAtIndex(
@@ -245,12 +235,10 @@ extern_methods!(
         #[method(setItemSpacing:)]
         pub unsafe fn setItemSpacing(&self, item_spacing: CGFloat);
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// The frame size for each item, if not provided by the scrubber's delegate. The default value is { 50.0, 30.0 }.
         #[method(itemSize)]
         pub unsafe fn itemSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`itemSize`][Self::itemSize].
         #[method(setItemSize:)]
         pub unsafe fn setItemSize(&self, item_size: NSSize);

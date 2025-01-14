@@ -6,8 +6,6 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 use objc2_foundation::*;
-#[cfg(feature = "objc2-metal")]
-use objc2_metal::*;
 
 use crate::*;
 

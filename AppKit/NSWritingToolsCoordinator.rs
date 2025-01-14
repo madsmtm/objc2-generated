@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 #[cfg(feature = "objc2-core-graphics")]
 #[cfg(target_vendor = "apple")]
 use objc2_core_graphics::*;
@@ -767,7 +765,7 @@ extern_protocol!(
             completion: &block2::Block<dyn Fn()>,
         );
 
-        #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "block2")]
         /// Asks the delegate to provide the location of the character at the
         /// specified point in your view’s coordinate system.
         ///
@@ -1034,11 +1032,7 @@ extern_protocol!(
             completion: &block2::Block<dyn Fn(*mut NSArray<NSTextPreview>)>,
         );
 
-        #[cfg(all(
-            feature = "NSWritingToolsCoordinatorContext",
-            feature = "block2",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSWritingToolsCoordinatorContext", feature = "block2"))]
         /// Asks the delegate for a preview image and layout information for the
         /// specified text.
         ///
@@ -1300,7 +1294,7 @@ unsafe impl NSObjectProtocol for NSTextPreview {}
 
 extern_methods!(
     unsafe impl NSTextPreview {
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         /// Creates a text preview using the specified image and rectangles that indicate
         /// the portions of text to highlight.
@@ -1331,7 +1325,7 @@ extern_methods!(
             candidate_rects: &NSArray<NSValue>,
         ) -> Retained<Self>;
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
+        #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
         /// Creates a text preview using the specified image.
         ///
@@ -1363,7 +1357,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other previewImage)]
         pub unsafe fn previewImage(&self) -> Retained<CGImage>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// The frame rectangle that places the preview image directly over the
         /// matching text.
         ///

@@ -138,22 +138,18 @@ extern_methods!(
         #[method(setTitleFont:)]
         pub unsafe fn setTitleFont(&self, title_font: &NSFont);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(borderRect)]
         pub unsafe fn borderRect(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(titleRect)]
         pub unsafe fn titleRect(&self) -> NSRect;
 
         #[method_id(@__retain_semantics Other titleCell)]
         pub unsafe fn titleCell(&self) -> Retained<AnyObject>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(contentViewMargins)]
         pub unsafe fn contentViewMargins(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentViewMargins`][Self::contentViewMargins].
         #[method(setContentViewMargins:)]
         pub unsafe fn setContentViewMargins(&self, content_view_margins: NSSize);
@@ -161,7 +157,6 @@ extern_methods!(
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(setFrameFromContentFrame:)]
         pub unsafe fn setFrameFromContentFrame(&self, content_frame: NSRect);
 
@@ -221,7 +216,6 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBox {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 

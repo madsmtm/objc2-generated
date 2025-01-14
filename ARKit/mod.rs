@@ -235,325 +235,113 @@ pub use self::__ARDepthData::ARDepthData;
 pub use self::__AREnvironmentProbeAnchor::AREnvironmentProbeAnchor;
 #[cfg(all(feature = "ARError", feature = "objc2"))]
 pub use self::__ARError::ARErrorCode;
-#[cfg(all(feature = "ARError", feature = "objc2", feature = "objc2-foundation"))]
+#[cfg(all(feature = "ARError", feature = "objc2-foundation"))]
 pub use self::__ARError::ARErrorDomain;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocation;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationBrowDownLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationBrowDownRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationBrowInnerUp;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationBrowOuterUpLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationBrowOuterUpRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationCheekPuff;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationCheekSquintLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationCheekSquintRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationEyeBlinkLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationEyeBlinkRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationEyeLookDownLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationEyeLookDownRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationEyeLookInLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationEyeLookInRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationEyeLookOutLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationEyeLookOutRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationEyeLookUpLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationEyeLookUpRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationEyeSquintLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationEyeSquintRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationEyeWideLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationEyeWideRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationJawForward;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationJawLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationJawOpen;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationJawRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthClose;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthDimpleLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthDimpleRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthFrownLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthFrownRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthFunnel;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthLowerDownLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthLowerDownRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthPressLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthPressRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthPucker;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthRollLower;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthRollUpper;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthShrugLower;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthShrugUpper;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthSmileLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthSmileRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthStretchLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthStretchRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthUpperUpLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationMouthUpperUpRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationNoseSneerLeft;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationNoseSneerRight;
-#[cfg(all(
-    feature = "ARFaceAnchor",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARFaceAnchor", feature = "objc2-foundation"))]
 pub use self::__ARFaceAnchor::ARBlendShapeLocationTongueOut;
 #[cfg(all(feature = "ARAnchor", feature = "ARFaceAnchor", feature = "objc2"))]
 pub use self::__ARFaceAnchor::ARFaceAnchor;
@@ -641,11 +429,7 @@ pub use self::__ARRaycastResult::ARRaycastResult;
 pub use self::__ARReferenceImage::ARReferenceImage;
 #[cfg(all(feature = "ARReferenceObject", feature = "objc2"))]
 pub use self::__ARReferenceObject::ARReferenceObject;
-#[cfg(all(
-    feature = "ARReferenceObject",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARReferenceObject", feature = "objc2-foundation"))]
 pub use self::__ARReferenceObject::ARReferenceObjectArchiveExtension;
 #[cfg(all(
     feature = "ARSCNFaceGeometry",
@@ -659,11 +443,11 @@ pub use self::__ARSCNFaceGeometry::ARSCNFaceGeometry;
     feature = "objc2-scene-kit"
 ))]
 pub use self::__ARSCNPlaneGeometry::ARSCNPlaneGeometry;
-#[cfg(all(feature = "ARSCNView", feature = "objc2", feature = "objc2-scene-kit"))]
+#[cfg(all(feature = "ARSCNView", feature = "objc2-scene-kit"))]
 pub use self::__ARSCNView::ARSCNDebugOptionShowFeaturePoints;
-#[cfg(all(feature = "ARSCNView", feature = "objc2", feature = "objc2-scene-kit"))]
+#[cfg(all(feature = "ARSCNView", feature = "objc2-scene-kit"))]
 pub use self::__ARSCNView::ARSCNDebugOptionShowWorldOrigin;
-#[cfg(all(feature = "ARSCNView", feature = "objc2", feature = "objc2-scene-kit"))]
+#[cfg(all(feature = "ARSCNView", feature = "objc2-scene-kit"))]
 pub use self::__ARSCNView::ARSCNDebugOptions;
 #[cfg(all(
     feature = "ARSCNView",
@@ -705,59 +489,23 @@ pub use self::__ARSkeleton::ARSkeleton3D;
 pub use self::__ARSkeleton::ARSkeletonJointNameForRecognizedPointKey;
 #[cfg(all(feature = "ARSkeletonDefinition", feature = "objc2"))]
 pub use self::__ARSkeletonDefinition::ARSkeletonDefinition;
-#[cfg(all(
-    feature = "ARSkeletonDefinition",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARSkeletonDefinition", feature = "objc2-foundation"))]
 pub use self::__ARSkeletonDefinition::ARSkeletonJointName;
-#[cfg(all(
-    feature = "ARSkeletonDefinition",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARSkeletonDefinition", feature = "objc2-foundation"))]
 pub use self::__ARSkeletonDefinition::ARSkeletonJointNameHead;
-#[cfg(all(
-    feature = "ARSkeletonDefinition",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARSkeletonDefinition", feature = "objc2-foundation"))]
 pub use self::__ARSkeletonDefinition::ARSkeletonJointNameLeftFoot;
-#[cfg(all(
-    feature = "ARSkeletonDefinition",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARSkeletonDefinition", feature = "objc2-foundation"))]
 pub use self::__ARSkeletonDefinition::ARSkeletonJointNameLeftHand;
-#[cfg(all(
-    feature = "ARSkeletonDefinition",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARSkeletonDefinition", feature = "objc2-foundation"))]
 pub use self::__ARSkeletonDefinition::ARSkeletonJointNameLeftShoulder;
-#[cfg(all(
-    feature = "ARSkeletonDefinition",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARSkeletonDefinition", feature = "objc2-foundation"))]
 pub use self::__ARSkeletonDefinition::ARSkeletonJointNameRightFoot;
-#[cfg(all(
-    feature = "ARSkeletonDefinition",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARSkeletonDefinition", feature = "objc2-foundation"))]
 pub use self::__ARSkeletonDefinition::ARSkeletonJointNameRightHand;
-#[cfg(all(
-    feature = "ARSkeletonDefinition",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARSkeletonDefinition", feature = "objc2-foundation"))]
 pub use self::__ARSkeletonDefinition::ARSkeletonJointNameRightShoulder;
-#[cfg(all(
-    feature = "ARSkeletonDefinition",
-    feature = "objc2",
-    feature = "objc2-foundation"
-))]
+#[cfg(all(feature = "ARSkeletonDefinition", feature = "objc2-foundation"))]
 pub use self::__ARSkeletonDefinition::ARSkeletonJointNameRoot;
 #[cfg(all(feature = "ARTrackedRaycast", feature = "objc2"))]
 pub use self::__ARTrackedRaycast::ARTrackedRaycast;

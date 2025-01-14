@@ -40,7 +40,7 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Similar to calling -[ODNode setCredentialsWithRecordType:] except credentials are only set for this particular record's
         /// node
         ///
@@ -92,7 +92,7 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Allows use of other OpenDirectory types of authentications
         ///
         /// Allows the caller to use other types of authentications that are available in OpenDirectory, that may
@@ -161,7 +161,7 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSDictionary>>;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Returns an NSArray of NSString or NSData values of the attribute
         ///
         /// Returns an NSArray of NSString or NSData depending on the type of data.  Binary data will be
@@ -173,7 +173,7 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<NSArray>>;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Will take a mixture of NSData or NSString or an NSArray of either type when setting the values of an attribute
         ///
         /// Will take a mixture of NSData or NSString or an NSArray of either type when setting the values of an attribute.
@@ -186,7 +186,7 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Removes all the values for an attribute.
         ///
         /// Removes all the values for an attribute.  outError is optional parameter, nil can be passed if
@@ -198,7 +198,7 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Will add a value to an attribute
         ///
         /// Will add a value to an attribute.  Should be either NSData or NSString type.  outError is optional
@@ -211,7 +211,7 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Will remove a value from an attribute
         ///
         /// Will remove a value from an attribute.  Should be either NSData or NSString type.  outError is optional
@@ -277,7 +277,7 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// This will set a specific policy setting for the record.
         ///
         /// This will set a specific policy setting for the record.
@@ -290,7 +290,7 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// This will remove a specific policy setting from the record.
         ///
         /// This will remove a specific policy setting from the record.
@@ -302,7 +302,7 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// This will add a specific policy to the specific category for the record.
         ///
         /// This will add a specific policy to the specific category for the record.
@@ -332,7 +332,7 @@ extern_methods!(
             error: Option<&mut Option<Retained<NSError>>>,
         ) -> bool;
 
-        #[cfg(feature = "CFOpenDirectoryConstants")]
+        #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// This will remove a specific policy from the specific category for the record.
         ///
         /// This will remove a specific policy from the specific category for the record.

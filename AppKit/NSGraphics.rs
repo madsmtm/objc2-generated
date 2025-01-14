@@ -526,12 +526,10 @@ extern "C" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn NSRectFill(rect: NSRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn NSRectFillList(rects: NonNull<NSRect>, count: NSInteger);
 }
 
@@ -541,7 +539,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "NSColor")]
     pub fn NSRectFillListWithColors(
         rects: NonNull<NSRect>,
         colors: NonNull<NonNull<NSColor>>,
@@ -550,12 +548,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn NSRectFillUsingOperation(rect: NSRect, op: NSCompositingOperation);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn NSRectFillListUsingOperation(
         rects: NonNull<NSRect>,
         count: NSInteger,
@@ -564,7 +560,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "NSColor")]
     pub fn NSRectFillListWithColorsUsingOperation(
         rects: NonNull<NSRect>,
         colors: NonNull<NonNull<NSColor>>,
@@ -574,7 +570,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn NSFrameRect(rect: NSRect);
 }
 
@@ -593,12 +588,10 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn NSRectClip(rect: NSRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn NSRectClipList(rects: NonNull<NSRect>, count: NSInteger);
 }
 
@@ -614,31 +607,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn NSDrawGrayBezel(rect: NSRect, clip_rect: NSRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn NSDrawGroove(rect: NSRect, clip_rect: NSRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn NSDrawWhiteBezel(rect: NSRect, clip_rect: NSRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn NSDrawButton(rect: NSRect, clip_rect: NSRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn NSEraseRect(rect: NSRect);
 }
 
-#[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]
+#[cfg(feature = "NSColor")]
 #[deprecated = "Use -[NSBitmapImageRep colorAtX:y:] to interrogate pixel values.  If necessary, use -[NSView cacheDisplayInRect:toBitmapImageRep:] to snapshot a view hierarchy into an NSBitmapImageRep."]
 #[inline]
 pub unsafe extern "C-unwind" fn NSReadPixel(passed_point: NSPoint) -> Option<Retained<NSColor>> {
@@ -650,7 +638,6 @@ pub unsafe extern "C-unwind" fn NSReadPixel(passed_point: NSPoint) -> Option<Ret
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn NSHighlightRect(rect: NSRect);
 }
@@ -670,7 +657,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]
+    #[cfg(feature = "NSColor")]
     pub fn NSDrawColorTiledRects(
         bounds_rect: NSRect,
         clip_rect: NSRect,
@@ -681,22 +668,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn NSDrawDarkBezel(rect: NSRect, clip_rect: NSRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn NSDrawLightBezel(rect: NSRect, clip_rect: NSRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn NSDottedFrameRect(rect: NSRect);
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     pub fn NSDrawWindowBackground(rect: NSRect);
 }
 
@@ -736,7 +719,6 @@ unsafe impl RefEncode for NSAnimationEffect {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "Use +[NSCursor disappearingItemCursor] instead"]
     pub fn NSShowAnimationEffect(
         animation_effect: NSAnimationEffect,
@@ -769,7 +751,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn NSCopyBits(src_g_state: NSInteger, src_rect: NSRect, dest_point: NSPoint);
 }

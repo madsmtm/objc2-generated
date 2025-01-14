@@ -5,8 +5,6 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -489,11 +487,7 @@ extern_protocol!(
         #[method(webView:setResizable:)]
         unsafe fn webView_setResizable(&self, sender: Option<&WebView>, resizable: bool);
 
-        #[cfg(all(
-            feature = "WebView",
-            feature = "objc2-app-kit",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Set the window's frame rect
         ///
@@ -509,11 +503,7 @@ extern_protocol!(
         #[method(webView:setFrame:)]
         unsafe fn webView_setFrame(&self, sender: Option<&WebView>, frame: NSRect);
 
-        #[cfg(all(
-            feature = "WebView",
-            feature = "objc2-app-kit",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Parameter `sender`: The WebView sending the delegate method.
         ///
@@ -794,11 +784,7 @@ extern_protocol!(
             dragging_info: Option<&ProtocolObject<dyn NSDraggingInfo>>,
         );
 
-        #[cfg(all(
-            feature = "WebView",
-            feature = "objc2-app-kit",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Controls behavior when dragging from a WebView
         ///
@@ -817,11 +803,7 @@ extern_protocol!(
             point: NSPoint,
         ) -> NSUInteger;
 
-        #[cfg(all(
-            feature = "WebView",
-            feature = "objc2-app-kit",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Informs that a drag a has begun from a WebView
         ///
@@ -903,11 +885,7 @@ extern_protocol!(
         #[method(webViewFooterHeight:)]
         unsafe fn webViewFooterHeight(&self, sender: Option<&WebView>) -> c_float;
 
-        #[cfg(all(
-            feature = "WebView",
-            feature = "objc2-app-kit",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Parameter `sender`: The WebView sending the delegate method
         ///
@@ -919,11 +897,7 @@ extern_protocol!(
         #[method(webView:drawHeaderInRect:)]
         unsafe fn webView_drawHeaderInRect(&self, sender: Option<&WebView>, rect: NSRect);
 
-        #[cfg(all(
-            feature = "WebView",
-            feature = "objc2-app-kit",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// Parameter `sender`: The WebView sending the delegate method
         ///
@@ -969,22 +943,14 @@ extern_protocol!(
             default_text: Option<&NSString>,
         ) -> Option<Retained<NSString>>;
 
-        #[cfg(all(
-            feature = "WebView",
-            feature = "objc2-app-kit",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
         #[method(webView:setContentRect:)]
         unsafe fn webView_setContentRect(&self, sender: Option<&WebView>, frame: NSRect);
 
-        #[cfg(all(
-            feature = "WebView",
-            feature = "objc2-app-kit",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]

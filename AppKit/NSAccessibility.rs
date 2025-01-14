@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -84,7 +82,6 @@ extern_category!(
         #[method(accessibilityIsIgnored)]
         unsafe fn accessibilityIsIgnored(&self) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other accessibilityHitTest:)]
         unsafe fn accessibilityHitTest(&self, point: NSPoint) -> Option<Retained<AnyObject>>;
 
@@ -157,20 +154,12 @@ extern "C" {
 }
 
 extern "C-unwind" {
-    #[cfg(all(
-        feature = "NSResponder",
-        feature = "NSView",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub fn NSAccessibilityFrameInView(parent_view: &NSView, frame: NSRect) -> NSRect;
 }
 
 extern "C-unwind" {
-    #[cfg(all(
-        feature = "NSResponder",
-        feature = "NSView",
-        feature = "objc2-core-foundation"
-    ))]
+    #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     pub fn NSAccessibilityPointInView(parent_view: &NSView, point: NSPoint) -> NSPoint;
 }
 

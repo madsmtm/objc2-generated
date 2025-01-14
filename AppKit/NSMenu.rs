@@ -141,12 +141,7 @@ extern_methods!(
             font: Option<&NSFont>,
         );
 
-        #[cfg(all(
-            feature = "NSMenuItem",
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSMenuItem", feature = "NSResponder", feature = "NSView"))]
         #[method(popUpMenuPositioningItem:atLocation:inView:)]
         pub unsafe fn popUpMenuPositioningItem_atLocation_inView(
             &self,
@@ -311,7 +306,6 @@ extern_methods!(
         #[method(setMinimumWidth:)]
         pub unsafe fn setMinimumWidth(&self, minimum_width: CGFloat);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(size)]
         pub unsafe fn size(&self) -> NSSize;
 
@@ -505,7 +499,7 @@ extern_protocol!(
         #[method(menu:willHighlightItem:)]
         unsafe fn menu_willHighlightItem(&self, menu: &NSMenu, item: Option<&NSMenuItem>);
 
-        #[cfg(all(feature = "NSScreen", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSScreen")]
         #[optional]
         #[method(confinementRectForMenu:onScreen:)]
         unsafe fn confinementRectForMenu_onScreen(
@@ -636,7 +630,6 @@ extern_methods!(
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(locationForSubmenu:)]
         pub unsafe fn locationForSubmenu(&self, submenu: Option<&NSMenu>) -> NSPoint;

@@ -242,7 +242,6 @@ unsafe impl NSSecureCoding for NSBitmapImageRep {}
 extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSBitmapImageRep {
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Use -[NSView cacheDisplayInRect:toBitmapImageRep:] to snapshot a view."]
         #[method_id(@__retain_semantics Init initWithFocusedViewRect:)]
         pub unsafe fn initWithFocusedViewRect(

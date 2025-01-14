@@ -554,12 +554,12 @@ extern_methods!(
         #[method(setTransform:)]
         pub unsafe fn setTransform(&self, transform: CGAffineTransform);
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
+        #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
         #[method(transform3D)]
         pub unsafe fn transform3D(&self) -> CATransform3D;
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-quartz-core"))]
+        #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`transform3D`][Self::transform3D].
         #[method(setTransform3D:)]

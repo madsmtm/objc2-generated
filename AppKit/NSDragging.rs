@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -149,11 +147,9 @@ extern_protocol!(
         #[method(draggingSourceOperationMask)]
         unsafe fn draggingSourceOperationMask(&self) -> NSDragOperation;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(draggingLocation)]
         unsafe fn draggingLocation(&self) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(draggedImageLocation)]
         unsafe fn draggedImageLocation(&self) -> NSPoint;
 
@@ -172,7 +168,6 @@ extern_protocol!(
         #[method(draggingSequenceNumber)]
         unsafe fn draggingSequenceNumber(&self) -> NSInteger;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(slideDraggedImageTo:)]
         unsafe fn slideDraggedImageTo(&self, screen_point: NSPoint);
 
@@ -293,7 +288,7 @@ extern_protocol!(
             context: NSDraggingContext,
         ) -> NSDragOperation;
 
-        #[cfg(all(feature = "NSDraggingSession", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSDraggingSession")]
         #[optional]
         #[method(draggingSession:willBeginAtPoint:)]
         unsafe fn draggingSession_willBeginAtPoint(
@@ -302,7 +297,7 @@ extern_protocol!(
             screen_point: NSPoint,
         );
 
-        #[cfg(all(feature = "NSDraggingSession", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSDraggingSession")]
         #[optional]
         #[method(draggingSession:movedToPoint:)]
         unsafe fn draggingSession_movedToPoint(
@@ -311,7 +306,7 @@ extern_protocol!(
             screen_point: NSPoint,
         );
 
-        #[cfg(all(feature = "NSDraggingSession", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSDraggingSession")]
         #[optional]
         #[method(draggingSession:endedAtPoint:operation:)]
         unsafe fn draggingSession_endedAtPoint_operation(

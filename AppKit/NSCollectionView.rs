@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -451,11 +449,9 @@ extern_methods!(
             index_path: &NSIndexPath,
         ) -> Option<Retained<NSCollectionViewLayoutAttributes>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frameForItemAtIndex:)]
         pub unsafe fn frameForItemAtIndex(&self, index: NSUInteger) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frameForItemAtIndex:withNumberOfItems:)]
         pub unsafe fn frameForItemAtIndex_withNumberOfItems(
             &self,
@@ -614,7 +610,6 @@ extern_methods!(
             item: &NSCollectionViewItem,
         ) -> Option<Retained<NSIndexPath>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other indexPathForItemAtPoint:)]
         pub unsafe fn indexPathForItemAtPoint(
             &self,
@@ -696,11 +691,7 @@ extern_methods!(
             local_destination: bool,
         );
 
-        #[cfg(all(
-            feature = "NSEvent",
-            feature = "NSImage",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSImage"))]
         #[method_id(@__retain_semantics Other draggingImageForItemsAtIndexPaths:withEvent:offset:)]
         pub unsafe fn draggingImageForItemsAtIndexPaths_withEvent_offset(
             &self,
@@ -709,11 +700,7 @@ extern_methods!(
             drag_image_offset: NSPointPointer,
         ) -> Retained<NSImage>;
 
-        #[cfg(all(
-            feature = "NSEvent",
-            feature = "NSImage",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSImage"))]
         #[method_id(@__retain_semantics Other draggingImageForItemsAtIndexes:withEvent:offset:)]
         pub unsafe fn draggingImageForItemsAtIndexes_withEvent_offset(
             &self,
@@ -728,7 +715,6 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSCollectionView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
@@ -894,8 +880,7 @@ extern_protocol!(
             feature = "NSEvent",
             feature = "NSImage",
             feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other collectionView:draggingImageForItemsAtIndexPaths:withEvent:offset:)]
@@ -911,8 +896,7 @@ extern_protocol!(
             feature = "NSEvent",
             feature = "NSImage",
             feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other collectionView:draggingImageForItemsAtIndexes:withEvent:offset:)]
@@ -989,8 +973,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "NSDraggingSession",
             feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method(collectionView:draggingSession:willBeginAtPoint:forItemsAtIndexPaths:)]
@@ -1005,8 +988,7 @@ extern_protocol!(
         #[cfg(all(
             feature = "NSDraggingSession",
             feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method(collectionView:draggingSession:willBeginAtPoint:forItemsAtIndexes:)]
@@ -1022,8 +1004,7 @@ extern_protocol!(
             feature = "NSDragging",
             feature = "NSDraggingSession",
             feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method(collectionView:draggingSession:endedAtPoint:dragOperation:)]
@@ -1252,23 +1233,19 @@ extern_methods!(
         #[method(setMaxNumberOfColumns:)]
         pub unsafe fn setMaxNumberOfColumns(&self, max_number_of_columns: NSUInteger);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its minimumItemSize instead"]
         #[method(minItemSize)]
         pub unsafe fn minItemSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minItemSize`][Self::minItemSize].
         #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its minimumItemSize instead"]
         #[method(setMinItemSize:)]
         pub unsafe fn setMinItemSize(&self, min_item_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its maximumItemSize instead"]
         #[method(maxItemSize)]
         pub unsafe fn maxItemSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maxItemSize`][Self::maxItemSize].
         #[deprecated = "Use NSCollectionViewGridLayout as the receiver's collectionViewLayout, setting its maximumItemSize instead"]
         #[method(setMaxItemSize:)]

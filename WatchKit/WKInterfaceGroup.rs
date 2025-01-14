@@ -32,7 +32,7 @@ extern_methods!(
         #[method(setCornerRadius:)]
         pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-ui-kit"))]
+        #[cfg(feature = "objc2-ui-kit")]
         #[method(setContentInset:)]
         pub unsafe fn setContentInset(&self, content_inset: UIEdgeInsets);
 

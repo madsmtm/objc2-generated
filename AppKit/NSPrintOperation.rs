@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -77,12 +75,7 @@ extern_methods!(
             print_info: &NSPrintInfo,
         ) -> Retained<NSPrintOperation>;
 
-        #[cfg(all(
-            feature = "NSPrintInfo",
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSPrintInfo", feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other PDFOperationWithView:insideRect:toData:printInfo:)]
         pub unsafe fn PDFOperationWithView_insideRect_toData_printInfo(
             view: &NSView,
@@ -91,12 +84,7 @@ extern_methods!(
             print_info: &NSPrintInfo,
         ) -> Retained<NSPrintOperation>;
 
-        #[cfg(all(
-            feature = "NSPrintInfo",
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSPrintInfo", feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other PDFOperationWithView:insideRect:toPath:printInfo:)]
         pub unsafe fn PDFOperationWithView_insideRect_toPath_printInfo(
             view: &NSView,
@@ -105,12 +93,7 @@ extern_methods!(
             print_info: &NSPrintInfo,
         ) -> Retained<NSPrintOperation>;
 
-        #[cfg(all(
-            feature = "NSPrintInfo",
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSPrintInfo", feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other EPSOperationWithView:insideRect:toData:printInfo:)]
         pub unsafe fn EPSOperationWithView_insideRect_toData_printInfo(
             view: &NSView,
@@ -119,12 +102,7 @@ extern_methods!(
             print_info: &NSPrintInfo,
         ) -> Retained<NSPrintOperation>;
 
-        #[cfg(all(
-            feature = "NSPrintInfo",
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSPrintInfo", feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other EPSOperationWithView:insideRect:toPath:printInfo:)]
         pub unsafe fn EPSOperationWithView_insideRect_toPath_printInfo(
             view: &NSView,
@@ -137,11 +115,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other printOperationWithView:)]
         pub unsafe fn printOperationWithView(view: &NSView) -> Retained<NSPrintOperation>;
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other PDFOperationWithView:insideRect:toData:)]
         pub unsafe fn PDFOperationWithView_insideRect_toData(
             view: &NSView,
@@ -149,11 +123,7 @@ extern_methods!(
             data: &NSMutableData,
         ) -> Retained<NSPrintOperation>;
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other EPSOperationWithView:insideRect:toData:)]
         pub unsafe fn EPSOperationWithView_insideRect_toData(
             view: &NSView,

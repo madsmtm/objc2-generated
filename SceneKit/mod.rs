@@ -717,39 +717,19 @@ pub use self::__SceneKitTypes::SCNActionTimingMode;
 pub use self::__SceneKitTypes::SCNColorMask;
 #[cfg(feature = "SceneKitTypes")]
 pub use self::__SceneKitTypes::SCNErrorDomain;
-#[cfg(all(
-    feature = "SceneKitTypes",
-    feature = "objc2-core-foundation",
-    feature = "objc2-quartz-core"
-))]
+#[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
 #[cfg(not(target_os = "watchos"))]
 pub use self::__SceneKitTypes::SCNMatrix4;
-#[cfg(all(
-    feature = "SceneKitTypes",
-    feature = "objc2-core-foundation",
-    feature = "objc2-quartz-core"
-))]
+#[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
 #[cfg(not(target_os = "watchos"))]
 pub use self::__SceneKitTypes::SCNMatrix4EqualToMatrix4;
-#[cfg(all(
-    feature = "SceneKitTypes",
-    feature = "objc2-core-foundation",
-    feature = "objc2-quartz-core"
-))]
+#[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
 #[cfg(not(target_os = "watchos"))]
 pub use self::__SceneKitTypes::SCNMatrix4Identity;
-#[cfg(all(
-    feature = "SceneKitTypes",
-    feature = "objc2-core-foundation",
-    feature = "objc2-quartz-core"
-))]
+#[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
 #[cfg(not(target_os = "watchos"))]
 pub use self::__SceneKitTypes::SCNMatrix4Invert;
-#[cfg(all(
-    feature = "SceneKitTypes",
-    feature = "objc2-core-foundation",
-    feature = "objc2-quartz-core"
-))]
+#[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
 #[cfg(not(target_os = "watchos"))]
 pub use self::__SceneKitTypes::SCNMatrix4IsIdentity;
 #[cfg(all(
@@ -759,11 +739,7 @@ pub use self::__SceneKitTypes::SCNMatrix4IsIdentity;
 ))]
 #[cfg(not(target_os = "watchos"))]
 pub use self::__SceneKitTypes::SCNMatrix4MakeRotation;
-#[cfg(all(
-    feature = "SceneKitTypes",
-    feature = "objc2-core-foundation",
-    feature = "objc2-quartz-core"
-))]
+#[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
 #[cfg(not(target_os = "watchos"))]
 pub use self::__SceneKitTypes::SCNMatrix4Mult;
 #[cfg(all(

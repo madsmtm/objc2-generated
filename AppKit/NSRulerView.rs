@@ -254,11 +254,9 @@ extern_methods!(
         #[method(invalidateHashMarks)]
         pub unsafe fn invalidateHashMarks(&self);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawHashMarksAndLabelsInRect:)]
         pub unsafe fn drawHashMarksAndLabelsInRect(&self, rect: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawMarkersInRect:)]
         pub unsafe fn drawMarkersInRect(&self, rect: NSRect);
 
@@ -272,7 +270,6 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSRulerView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }

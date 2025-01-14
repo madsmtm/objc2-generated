@@ -23,29 +23,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixfindtopk?language=objc)
     #[unsafe(super(MPSMatrixUnaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     pub struct MPSMatrixFindTopK;
 );
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSCoding for MPSMatrixFindTopK {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSCopying for MPSMatrixFindTopK {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl CopyingHelper for MPSMatrixFindTopK {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSObjectProtocol for MPSMatrixFindTopK {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
 unsafe impl NSSecureCoding for MPSMatrixFindTopK {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixFindTopK {
         /// The number of rows to consider from the source in the operation.
         /// This property is modifiable and defaults to NSUIntegerMax and the number is
@@ -159,7 +159,6 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "MPSMatrix")]
         /// Encode a MPSMatrixFindTopK object to a command buffer.
         ///
         ///
@@ -239,7 +238,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixFindTopK {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -259,7 +258,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixFindTopK {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

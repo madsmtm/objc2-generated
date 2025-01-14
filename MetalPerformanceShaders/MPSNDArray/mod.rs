@@ -29,48 +29,89 @@ mod __MPSNDArrayStridedSlice;
 mod __MPSNDArrayTypes;
 
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayGather",
     feature = "MPSNDArrayKernel"
 ))]
 pub use self::__MPSNDArrayGather::MPSNDArrayGather;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayGather",
     feature = "MPSNDArrayKernel"
 ))]
 pub use self::__MPSNDArrayGather::MPSNDArrayGatherGradient;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSNDArrayGather",
     feature = "MPSNDArrayGradientState",
     feature = "MPSState"
 ))]
 pub use self::__MPSNDArrayGather::MPSNDArrayGatherGradientState;
-#[cfg(all(feature = "MPSNDArrayGradientState", feature = "MPSState"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSNDArrayGradientState",
+    feature = "MPSState"
+))]
 pub use self::__MPSNDArrayGradientState::MPSNDArrayGradientState;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayIdentity",
     feature = "MPSNDArrayKernel"
 ))]
 pub use self::__MPSNDArrayIdentity::MPSNDArrayIdentity;
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 pub use self::__MPSNDArrayKernel::MPSNDArrayBinaryKernel;
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 pub use self::__MPSNDArrayKernel::MPSNDArrayBinaryPrimaryGradientKernel;
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 pub use self::__MPSNDArrayKernel::MPSNDArrayBinarySecondaryGradientKernel;
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 pub use self::__MPSNDArrayKernel::MPSNDArrayMultiaryBase;
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 pub use self::__MPSNDArrayKernel::MPSNDArrayMultiaryGradientKernel;
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 pub use self::__MPSNDArrayKernel::MPSNDArrayMultiaryKernel;
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 pub use self::__MPSNDArrayKernel::MPSNDArrayUnaryGradientKernel;
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 pub use self::__MPSNDArrayKernel::MPSNDArrayUnaryKernel;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel",
     feature = "MPSNDArrayMatrixMultiplication"
@@ -85,18 +126,21 @@ pub use self::__MPSNDArrayQuantization::MPSNDArrayQuantizationDescriptor;
 #[cfg(feature = "MPSNDArrayQuantization")]
 pub use self::__MPSNDArrayQuantization::MPSNDArrayQuantizationScheme;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel",
     feature = "MPSNDArrayQuantizedMatrixMultiplication"
 ))]
 pub use self::__MPSNDArrayQuantizedMatrixMultiplication::MPSNDArrayAffineInt4Dequantize;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel",
     feature = "MPSNDArrayQuantizedMatrixMultiplication"
 ))]
 pub use self::__MPSNDArrayQuantizedMatrixMultiplication::MPSNDArrayLUTDequantize;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel",
     feature = "MPSNDArrayMatrixMultiplication",
@@ -104,18 +148,21 @@ pub use self::__MPSNDArrayQuantizedMatrixMultiplication::MPSNDArrayLUTDequantize
 ))]
 pub use self::__MPSNDArrayQuantizedMatrixMultiplication::MPSNDArrayQuantizedMatrixMultiplication;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel",
     feature = "MPSNDArrayQuantizedMatrixMultiplication"
 ))]
 pub use self::__MPSNDArrayQuantizedMatrixMultiplication::MPSNDArrayVectorLUTDequantize;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel",
     feature = "MPSNDArrayStridedSlice"
 ))]
 pub use self::__MPSNDArrayStridedSlice::MPSNDArrayStridedSlice;
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel",
     feature = "MPSNDArrayStridedSlice"

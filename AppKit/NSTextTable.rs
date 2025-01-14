@@ -239,7 +239,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other borderColorForEdge:)]
         pub unsafe fn borderColorForEdge(&self, edge: NSRectEdge) -> Option<Retained<NSColor>>;
 
-        #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSTextContainer")]
         #[method(rectForLayoutAtPoint:inRect:textContainer:characterRange:)]
         pub unsafe fn rectForLayoutAtPoint_inRect_textContainer_characterRange(
             &self,
@@ -249,7 +249,7 @@ extern_methods!(
             char_range: NSRange,
         ) -> NSRect;
 
-        #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSTextContainer")]
         #[method(boundsRectForContentRect:inRect:textContainer:characterRange:)]
         pub unsafe fn boundsRectForContentRect_inRect_textContainer_characterRange(
             &self,
@@ -262,8 +262,7 @@ extern_methods!(
         #[cfg(all(
             feature = "NSLayoutManager",
             feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[method(drawBackgroundWithFrame:inView:characterRange:layoutManager:)]
         pub unsafe fn drawBackgroundWithFrame_inView_characterRange_layoutManager(
@@ -397,7 +396,7 @@ extern_methods!(
         #[method(setHidesEmptyCells:)]
         pub unsafe fn setHidesEmptyCells(&self, hides_empty_cells: bool);
 
-        #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSTextContainer")]
         #[method(rectForBlock:layoutAtPoint:inRect:textContainer:characterRange:)]
         pub unsafe fn rectForBlock_layoutAtPoint_inRect_textContainer_characterRange(
             &self,
@@ -408,7 +407,7 @@ extern_methods!(
             char_range: NSRange,
         ) -> NSRect;
 
-        #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSTextContainer")]
         #[method(boundsRectForBlock:contentRect:inRect:textContainer:characterRange:)]
         pub unsafe fn boundsRectForBlock_contentRect_inRect_textContainer_characterRange(
             &self,
@@ -422,8 +421,7 @@ extern_methods!(
         #[cfg(all(
             feature = "NSLayoutManager",
             feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[method(drawBackgroundForBlock:withFrame:inView:characterRange:layoutManager:)]
         pub unsafe fn drawBackgroundForBlock_withFrame_inView_characterRange_layoutManager(

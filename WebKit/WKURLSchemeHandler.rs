@@ -3,9 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-app-kit")]
-#[cfg(target_os = "macos")]
-use objc2_app_kit::*;
 
 use crate::*;
 

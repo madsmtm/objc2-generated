@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -152,11 +150,9 @@ extern_methods!(
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawLabel:inRect:)]
         pub unsafe fn drawLabel_inRect(&self, should_truncate_label: bool, label_rect: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(sizeOfLabel:)]
         pub unsafe fn sizeOfLabel(&self, compute_min: bool) -> NSSize;
     }

@@ -33,11 +33,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(shadowOffset)]
         pub unsafe fn shadowOffset(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`shadowOffset`][Self::shadowOffset].
         #[method(setShadowOffset:)]
         pub unsafe fn setShadowOffset(&self, shadow_offset: NSSize);

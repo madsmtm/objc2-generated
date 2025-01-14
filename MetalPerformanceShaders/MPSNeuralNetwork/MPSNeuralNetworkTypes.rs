@@ -249,7 +249,12 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other label)]
         unsafe fn label(&self) -> Retained<NSString>;
 
-        #[cfg(all(feature = "MPSImage", feature = "MPSKernel", feature = "MPSState"))]
+        #[cfg(all(
+            feature = "MPSCore",
+            feature = "MPSImage",
+            feature = "MPSKernel",
+            feature = "MPSState"
+        ))]
         /// Determine padding and sizing of result images
         ///
         /// A MPSNNPaddingMethod must both return a valid MPSImageDescriptor

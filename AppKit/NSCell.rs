@@ -527,32 +527,22 @@ extern_methods!(
         #[method(setCellAttribute:to:)]
         pub unsafe fn setCellAttribute_to(&self, parameter: NSCellAttribute, value: NSInteger);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(imageRectForBounds:)]
         pub unsafe fn imageRectForBounds(&self, rect: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(titleRectForBounds:)]
         pub unsafe fn titleRectForBounds(&self, rect: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawingRectForBounds:)]
         pub unsafe fn drawingRectForBounds(&self, rect: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(cellSize)]
         pub unsafe fn cellSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(cellSizeForBounds:)]
         pub unsafe fn cellSizeForBounds(&self, rect: NSRect) -> NSSize;
 
-        #[cfg(all(
-            feature = "NSColor",
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSColor", feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other highlightColorWithFrame:inView:)]
         pub unsafe fn highlightColorWithFrame_inView(
             &self,
@@ -560,7 +550,6 @@ extern_methods!(
             control_view: &NSView,
         ) -> Option<Retained<NSColor>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(calcDrawInfo:)]
         pub unsafe fn calcDrawInfo(&self, rect: NSRect);
 
@@ -568,11 +557,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other setUpFieldEditorAttributes:)]
         pub unsafe fn setUpFieldEditorAttributes(&self, text_obj: &NSText) -> Retained<NSText>;
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawInteriorWithFrame:inView:)]
         pub unsafe fn drawInteriorWithFrame_inView(
             &self,
@@ -580,19 +565,11 @@ extern_methods!(
             control_view: &NSView,
         );
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawWithFrame:inView:)]
         pub unsafe fn drawWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(highlight:withFrame:inView:)]
         pub unsafe fn highlight_withFrame_inView(
             &self,
@@ -611,11 +588,7 @@ extern_methods!(
             interval: NonNull<c_float>,
         );
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(startTrackingAt:inView:)]
         pub unsafe fn startTrackingAt_inView(
             &self,
@@ -623,11 +596,7 @@ extern_methods!(
             control_view: &NSView,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(continueTracking:at:inView:)]
         pub unsafe fn continueTracking_at_inView(
             &self,
@@ -636,11 +605,7 @@ extern_methods!(
             control_view: &NSView,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(stopTracking:at:inView:mouseIsUp:)]
         pub unsafe fn stopTracking_at_inView_mouseIsUp(
             &self,
@@ -650,12 +615,7 @@ extern_methods!(
             flag: bool,
         );
 
-        #[cfg(all(
-            feature = "NSEvent",
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[method(trackMouse:inRect:ofView:untilMouseUp:)]
         pub unsafe fn trackMouse_inRect_ofView_untilMouseUp(
             &self,
@@ -669,8 +629,7 @@ extern_methods!(
             feature = "NSEvent",
             feature = "NSResponder",
             feature = "NSText",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[method(editWithFrame:inView:editor:delegate:event:)]
         pub unsafe fn editWithFrame_inView_editor_delegate_event(
@@ -682,12 +641,7 @@ extern_methods!(
             event: Option<&NSEvent>,
         );
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSText",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
         #[method(selectWithFrame:inView:editor:delegate:start:length:)]
         pub unsafe fn selectWithFrame_inView_editor_delegate_start_length(
             &self,
@@ -703,11 +657,7 @@ extern_methods!(
         #[method(endEditing:)]
         pub unsafe fn endEditing(&self, text_obj: &NSText);
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(resetCursorRect:inView:)]
         pub unsafe fn resetCursorRect_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
@@ -724,8 +674,7 @@ extern_methods!(
             feature = "NSEvent",
             feature = "NSMenu",
             feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other menuForEvent:inRect:ofView:)]
         pub unsafe fn menuForEvent_inRect_ofView(
@@ -812,8 +761,7 @@ extern_methods!(
         #[cfg(all(
             feature = "NSDraggingItem",
             feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[method_id(@__retain_semantics Other draggingImageComponentsWithFrame:inView:)]
         pub unsafe fn draggingImageComponentsWithFrame_inView(
@@ -868,11 +816,7 @@ extern_methods!(
         #[method(defaultFocusRingType)]
         pub unsafe fn defaultFocusRingType(mtm: MainThreadMarker) -> NSFocusRingType;
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawFocusRingMaskWithFrame:inView:)]
         pub unsafe fn drawFocusRingMaskWithFrame_inView(
             &self,
@@ -880,11 +824,7 @@ extern_methods!(
             control_view: &NSView,
         );
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(focusRingMaskBoundsForFrame:inView:)]
         pub unsafe fn focusRingMaskBoundsForFrame_inView(
             &self,
@@ -970,12 +910,7 @@ unsafe impl RefEncode for NSCellHitResult {
 extern_methods!(
     /// NSCellHitTest
     unsafe impl NSCell {
-        #[cfg(all(
-            feature = "NSEvent",
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSResponder", feature = "NSView"))]
         #[method(hitTestForEvent:inRect:ofView:)]
         pub unsafe fn hitTestForEvent_inRect_ofView(
             &self,
@@ -989,11 +924,7 @@ extern_methods!(
 extern_methods!(
     /// NSCellExpansion
     unsafe impl NSCell {
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(expansionFrameWithFrame:inView:)]
         pub unsafe fn expansionFrameWithFrame_inView(
             &self,
@@ -1001,11 +932,7 @@ extern_methods!(
             view: &NSView,
         ) -> NSRect;
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawWithExpansionFrame:inView:)]
         pub unsafe fn drawWithExpansionFrame_inView(&self, cell_frame: NSRect, view: &NSView);
     }

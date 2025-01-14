@@ -9,7 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscopyallocator?language=objc)
-#[cfg(all(feature = "MPSKernel", feature = "block2"))]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "block2"))]
 pub type MPSCopyAllocator = *mut block2::Block<
     dyn Fn(
         NonNull<MPSKernel>,
@@ -26,29 +26,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSUnaryImageKernel;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSUnaryImageKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSUnaryImageKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSUnaryImageKernel {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSUnaryImageKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSUnaryImageKernel {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSUnaryImageKernel {
         #[cfg(feature = "MPSCoreTypes")]
         /// The position of the destination clip rectangle origin relative to the source buffer.
@@ -250,7 +250,6 @@ extern_methods!(
             destination_texture: &ProtocolObject<dyn MTLTexture>,
         );
 
-        #[cfg(feature = "MPSImage")]
         /// Encode a MPSKernel into a command Buffer.  The operation shall proceed out-of-place.
         ///
         /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
@@ -302,7 +301,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSUnaryImageKernel {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -322,7 +321,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSUnaryImageKernel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -340,29 +339,29 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsbinaryimagekernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSBinaryImageKernel;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSBinaryImageKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSBinaryImageKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSBinaryImageKernel {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSBinaryImageKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSBinaryImageKernel {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSBinaryImageKernel {
         #[cfg(feature = "MPSCoreTypes")]
         /// The position of the destination clip rectangle origin relative to the primary source buffer.
@@ -630,7 +629,6 @@ extern_methods!(
             destination_texture: &ProtocolObject<dyn MTLTexture>,
         );
 
-        #[cfg(feature = "MPSImage")]
         /// Encode a MPSKernel into a command Buffer.  The operation shall proceed out-of-place.
         ///
         /// Parameter `commandBuffer`: A valid MTLCommandBuffer to receive the encoded filter
@@ -719,7 +717,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSBinaryImageKernel {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -739,7 +737,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSBinaryImageKernel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

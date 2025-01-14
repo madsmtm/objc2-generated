@@ -142,12 +142,10 @@ extern_methods!(
         #[method(setContentOffset:)]
         pub unsafe fn setContentOffset(&self, content_offset: CGPoint);
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// The Sticker Browser View content inset.
         #[method(contentInset)]
         pub unsafe fn contentInset(&self) -> UIEdgeInsets;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentInset`][Self::contentInset].
         #[method(setContentInset:)]
         pub unsafe fn setContentInset(&self, content_inset: UIEdgeInsets);

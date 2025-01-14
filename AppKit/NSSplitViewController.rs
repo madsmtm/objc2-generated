@@ -206,11 +206,7 @@ extern_methods!(
             divider_index: NSInteger,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "NSSplitView",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSSplitView", feature = "NSView"))]
         #[method(splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:)]
         pub unsafe fn splitView_effectiveRect_forDrawnRect_ofDividerAtIndex(
             &self,
@@ -220,11 +216,7 @@ extern_methods!(
             divider_index: NSInteger,
         ) -> NSRect;
 
-        #[cfg(all(
-            feature = "NSSplitView",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSSplitView", feature = "NSView"))]
         #[method(splitView:additionalEffectiveRectOfDividerAtIndex:)]
         pub unsafe fn splitView_additionalEffectiveRectOfDividerAtIndex(
             &self,

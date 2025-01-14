@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -98,7 +96,7 @@ unsafe impl NSSecureCoding for NSCursor {}
 
 extern_methods!(
     unsafe impl NSCursor {
-        #[cfg(all(feature = "NSImage", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSImage")]
         #[method_id(@__retain_semantics Init initWithImage:hotSpot:)]
         pub fn initWithImage_hotSpot(
             this: Allocated<Self>,
@@ -113,7 +111,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other image)]
         pub unsafe fn image(&self) -> Retained<NSImage>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(hotSpot)]
         pub unsafe fn hotSpot(&self) -> NSPoint;
 
@@ -279,11 +276,7 @@ extern_methods!(
 extern_methods!(
     /// NSDeprecated
     unsafe impl NSCursor {
-        #[cfg(all(
-            feature = "NSColor",
-            feature = "NSImage",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSColor", feature = "NSImage"))]
         #[deprecated = "Color hints are ignored. Use -initWithImage:hotSpot: instead"]
         #[method_id(@__retain_semantics Init initWithImage:foregroundColorHint:backgroundColorHint:hotSpot:)]
         pub unsafe fn initWithImage_foregroundColorHint_backgroundColorHint_hotSpot(

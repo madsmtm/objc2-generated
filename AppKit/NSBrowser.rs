@@ -412,11 +412,9 @@ extern_methods!(
         #[method(sendAction)]
         pub unsafe fn sendAction(&self) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(titleFrameOfColumn:)]
         pub unsafe fn titleFrameOfColumn(&self, column: NSInteger) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawTitleOfColumn:inRect:)]
         pub unsafe fn drawTitleOfColumn_inRect(&self, column: NSInteger, rect: NSRect);
 
@@ -424,19 +422,15 @@ extern_methods!(
         #[method(titleHeight)]
         pub unsafe fn titleHeight(&self) -> CGFloat;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frameOfColumn:)]
         pub unsafe fn frameOfColumn(&self, column: NSInteger) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frameOfInsideOfColumn:)]
         pub unsafe fn frameOfInsideOfColumn(&self, column: NSInteger) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frameOfRow:inColumn:)]
         pub unsafe fn frameOfRow_inColumn(&self, row: NSInteger, column: NSInteger) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(getRow:column:forPoint:)]
         pub unsafe fn getRow_column_forPoint(
             &self,
@@ -533,11 +527,7 @@ extern_methods!(
             event: &NSEvent,
         ) -> bool;
 
-        #[cfg(all(
-            feature = "NSEvent",
-            feature = "NSImage",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSImage"))]
         #[method_id(@__retain_semantics Other draggingImageForRowsWithIndexes:inColumn:withEvent:offset:)]
         pub unsafe fn draggingImageForRowsWithIndexes_inColumn_withEvent_offset(
             &self,
@@ -586,7 +576,6 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSBrowser {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
@@ -868,8 +857,7 @@ extern_protocol!(
             feature = "NSEvent",
             feature = "NSImage",
             feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other browser:draggingImageForRowsWithIndexes:inColumn:withEvent:offset:)]

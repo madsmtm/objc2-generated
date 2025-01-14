@@ -163,7 +163,7 @@ extern_methods!(
         #[method(setHandle:)]
         pub unsafe fn setHandle(&self, handle: Option<&ProtocolObject<dyn MPSHandle>>);
 
-        #[cfg(feature = "MPSCoreTypes")]
+        #[cfg(all(feature = "MPSCore", feature = "MPSCoreTypes"))]
         /// The preferred precision for the image
         ///
         /// Default: MPSImageFeatureChannelFormatNone, meaning MPS should pick a format
@@ -171,12 +171,12 @@ extern_methods!(
         #[method(format)]
         pub unsafe fn format(&self) -> MPSImageFeatureChannelFormat;
 
-        #[cfg(feature = "MPSCoreTypes")]
+        #[cfg(all(feature = "MPSCore", feature = "MPSCoreTypes"))]
         /// Setter for [`format`][Self::format].
         #[method(setFormat:)]
         pub unsafe fn setFormat(&self, format: MPSImageFeatureChannelFormat);
 
-        #[cfg(feature = "MPSImage")]
+        #[cfg(all(feature = "MPSCore", feature = "MPSImage"))]
         /// Configurability for image allocation
         ///
         /// Allows you to influence how the image is allocated
@@ -184,7 +184,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Other imageAllocator)]
         pub unsafe fn imageAllocator(&self) -> Retained<ProtocolObject<dyn MPSImageAllocator>>;
 
-        #[cfg(feature = "MPSImage")]
+        #[cfg(all(feature = "MPSCore", feature = "MPSImage"))]
         /// Setter for [`imageAllocator`][Self::imageAllocator].
         #[method(setImageAllocator:)]
         pub unsafe fn setImageAllocator(
@@ -6114,7 +6114,7 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetransformprovider?language=objc)
     pub unsafe trait MPSImageTransformProvider: NSSecureCoding + NSObjectProtocol {
-        #[cfg(all(feature = "MPSCoreTypes", feature = "MPSImage"))]
+        #[cfg(all(feature = "MPSCore", feature = "MPSCoreTypes", feature = "MPSImage"))]
         #[method(transformForSourceImage:handle:)]
         unsafe fn transformForSourceImage_handle(
             &self,
@@ -8116,7 +8116,7 @@ extern_methods!(
         #[method(setFillValue:)]
         pub unsafe fn setFillValue(&self, fill_value: c_float);
 
-        #[cfg(feature = "MPSCoreTypes")]
+        #[cfg(all(feature = "MPSCore", feature = "MPSCoreTypes"))]
         /// Init a node representing a autoreleased MPSNNPad kernel
         ///
         /// Parameter `source`: The MPSNNImageNode representing the source MPSImage for the filter
@@ -8139,7 +8139,7 @@ extern_methods!(
             edge_mode: MPSImageEdgeMode,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "MPSCoreTypes")]
+        #[cfg(all(feature = "MPSCore", feature = "MPSCoreTypes"))]
         /// Init a node representing a MPSNNPad kernel
         ///
         /// Parameter `source`: The MPSNNImageNode representing the source MPSImage for the filter
@@ -8794,7 +8794,7 @@ extern_protocol!(
     pub unsafe trait MPSNNGramMatrixCallback:
         NSObjectProtocol + NSSecureCoding + NSCopying
     {
-        #[cfg(feature = "MPSImage")]
+        #[cfg(all(feature = "MPSCore", feature = "MPSImage"))]
         /// Returns the desired alpha scaling value.
         ///
         /// Parameter `sourceImage`: One of the source images in the batch given as a reference for the alpha computation.
@@ -8984,7 +8984,7 @@ extern_protocol!(
     pub unsafe trait MPSNNLossCallback:
         NSObjectProtocol + NSSecureCoding + NSCopying
     {
-        #[cfg(feature = "MPSImage")]
+        #[cfg(all(feature = "MPSCore", feature = "MPSImage"))]
         /// Returns the desired loss scaling weight value.
         ///
         /// Parameter `sourceImage`: One of the source images in the batch given as a reference.

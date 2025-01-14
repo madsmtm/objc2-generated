@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -58,11 +56,9 @@ extern_methods!(
         #[method(setOrientation:)]
         pub unsafe fn setOrientation(&self, orientation: NSPaperOrientation);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(paperSize)]
         pub unsafe fn paperSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`paperSize`][Self::paperSize].
         #[method(setPaperSize:)]
         pub unsafe fn setPaperSize(&self, paper_size: NSSize);

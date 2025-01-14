@@ -6,7 +6,6 @@ use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
-use objc2_core_foundation::*;
 
 use crate::*;
 

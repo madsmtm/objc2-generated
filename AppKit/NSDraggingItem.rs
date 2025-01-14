@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -62,11 +60,9 @@ extern_methods!(
         #[method(setContents:)]
         pub unsafe fn setContents(&self, contents: Option<&AnyObject>);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frame)]
         pub unsafe fn frame(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`frame`][Self::frame].
         #[method(setFrame:)]
         pub unsafe fn setFrame(&self, frame: NSRect);
@@ -105,11 +101,9 @@ extern_methods!(
         #[method_id(@__retain_semantics Other item)]
         pub unsafe fn item(&self) -> Retained<AnyObject>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(draggingFrame)]
         pub unsafe fn draggingFrame(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`draggingFrame`][Self::draggingFrame].
         #[method(setDraggingFrame:)]
         pub unsafe fn setDraggingFrame(&self, dragging_frame: NSRect);
@@ -130,7 +124,6 @@ extern_methods!(
             >,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(setDraggingFrame:contents:)]
         pub unsafe fn setDraggingFrame_contents(&self, frame: NSRect, contents: Option<&AnyObject>);
 

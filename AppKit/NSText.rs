@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -92,7 +90,6 @@ unsafe impl NSUserInterfaceItemIdentification for NSText {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSText {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
@@ -248,20 +245,16 @@ extern_methods!(
         #[method(setFont:range:)]
         pub unsafe fn setFont_range(&self, font: &NSFont, range: NSRange);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(maxSize)]
         pub unsafe fn maxSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maxSize`][Self::maxSize].
         #[method(setMaxSize:)]
         pub unsafe fn setMaxSize(&self, max_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(minSize)]
         pub unsafe fn minSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minSize`][Self::minSize].
         #[method(setMinSize:)]
         pub unsafe fn setMinSize(&self, min_size: NSSize);

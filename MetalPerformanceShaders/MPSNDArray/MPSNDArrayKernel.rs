@@ -12,29 +12,29 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraymultiarybase?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSNDArrayMultiaryBase;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSNDArrayMultiaryBase {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSNDArrayMultiaryBase {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNDArrayMultiaryBase {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSNDArrayMultiaryBase {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNDArrayMultiaryBase {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryBase {
         #[cfg(feature = "MPSNDArrayTypes")]
         /// Read offsets to use when addressing a source NDArray
@@ -99,7 +99,6 @@ extern_methods!(
             source_index: NSUInteger,
         ) -> MPSNDArraySizes;
 
-        #[cfg(feature = "MPSNDArray")]
         /// Method to allocate the result image for -encodeToCommandBuffer:sourceImage:
         ///
         /// Default: MPSTemporaryImage.defaultAllocator
@@ -108,7 +107,6 @@ extern_methods!(
             &self,
         ) -> Retained<ProtocolObject<dyn MPSNDArrayAllocator>>;
 
-        #[cfg(feature = "MPSNDArray")]
         /// Setter for [`destinationArrayAllocator`][Self::destinationArrayAllocator].
         #[method(setDestinationArrayAllocator:)]
         pub unsafe fn setDestinationArrayAllocator(
@@ -170,7 +168,7 @@ extern_methods!(
             device: Option<&ProtocolObject<dyn MTLDevice>>,
         ) -> Retained<Self>;
 
-        #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        #[cfg(feature = "MPSState")]
         #[method_id(@__retain_semantics Other resultStateForSourceArrays:sourceStates:destinationArray:)]
         pub unsafe fn resultStateForSourceArrays_sourceStates_destinationArray(
             &self,
@@ -179,7 +177,7 @@ extern_methods!(
             destination_array: &MPSNDArray,
         ) -> Option<Retained<MPSState>>;
 
-        #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        #[cfg(feature = "MPSState")]
         /// Return a descriptor suitable for allocating a NSArray to receive the result
         ///
         /// The object properties (kernelSize, offsets, edgeMode, etc.) should be properly
@@ -203,7 +201,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryBase {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -223,7 +221,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryBase {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -237,29 +235,29 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraymultiarykernel?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSNDArrayMultiaryKernel;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSNDArrayMultiaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSNDArrayMultiaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNDArrayMultiaryKernel {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSNDArrayMultiaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNDArrayMultiaryKernel {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryKernel {
         #[method_id(@__retain_semantics Init initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
@@ -275,7 +273,6 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "MPSNDArray")]
         /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
         ///
         /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
@@ -292,7 +289,6 @@ extern_methods!(
             source_arrays: &NSArray<MPSNDArray>,
         ) -> Retained<MPSNDArray>;
 
-        #[cfg(feature = "MPSNDArray")]
         /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
         ///
         /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
@@ -309,7 +305,7 @@ extern_methods!(
             destination: &MPSNDArray,
         );
 
-        #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        #[cfg(feature = "MPSState")]
         /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
         ///
         /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
@@ -332,7 +328,7 @@ extern_methods!(
             output_state_is_temporary: bool,
         ) -> Retained<MPSNDArray>;
 
-        #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        #[cfg(feature = "MPSState")]
         /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
         ///
         /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
@@ -353,7 +349,6 @@ extern_methods!(
             destination: &MPSNDArray,
         );
 
-        #[cfg(feature = "MPSNDArray")]
         /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
         ///
         /// Parameter `encoder`: The MTLComputeCommandEncoder that the kernel will be encoded on
@@ -378,7 +373,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryBase`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryKernel {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -390,7 +385,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryKernel {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -410,7 +405,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryKernel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -424,29 +419,29 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraymultiarygradientkernel?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSNDArrayMultiaryGradientKernel;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSNDArrayMultiaryGradientKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSNDArrayMultiaryGradientKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNDArrayMultiaryGradientKernel {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSNDArrayMultiaryGradientKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNDArrayMultiaryGradientKernel {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryGradientKernel {
         #[method_id(@__retain_semantics Init initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
@@ -479,7 +474,7 @@ extern_methods!(
             source_gradient_index: NSUInteger,
         ) -> Retained<Self>;
 
-        #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        #[cfg(feature = "MPSState")]
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:sourceArrays:sourceGradient:gradientState:)]
         pub unsafe fn encodeToCommandBuffer_sourceArrays_sourceGradient_gradientState(
             &self,
@@ -489,7 +484,7 @@ extern_methods!(
             state: &MPSState,
         ) -> Retained<MPSNDArray>;
 
-        #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        #[cfg(feature = "MPSState")]
         #[method(encodeToCommandBuffer:sourceArrays:sourceGradient:gradientState:destinationArray:)]
         pub unsafe fn encodeToCommandBuffer_sourceArrays_sourceGradient_gradientState_destinationArray(
             &self,
@@ -504,7 +499,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryBase`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryGradientKernel {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -516,7 +511,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryGradientKernel {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -536,7 +531,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayMultiaryGradientKernel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -550,29 +545,29 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayunarykernel?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryKernel, MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSNDArrayUnaryKernel;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSNDArrayUnaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSNDArrayUnaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNDArrayUnaryKernel {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSNDArrayUnaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNDArrayUnaryKernel {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayUnaryKernel {
         #[cfg(feature = "MPSNDArrayTypes")]
         /// The coordinate of the position read from this source array which is
@@ -635,7 +630,6 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "MPSNDArray")]
         /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
         ///
         /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
@@ -651,7 +645,6 @@ extern_methods!(
             source_array: &MPSNDArray,
         ) -> Retained<MPSNDArray>;
 
-        #[cfg(feature = "MPSNDArray")]
         /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
         ///
         /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
@@ -667,7 +660,7 @@ extern_methods!(
             destination: &MPSNDArray,
         );
 
-        #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        #[cfg(feature = "MPSState")]
         /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
         ///
         /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
@@ -689,7 +682,7 @@ extern_methods!(
             output_state_is_temporary: bool,
         ) -> Retained<MPSNDArray>;
 
-        #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        #[cfg(feature = "MPSState")]
         /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
         ///
         /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
@@ -713,7 +706,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayUnaryKernel {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -733,7 +726,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayUnaryKernel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -752,29 +745,29 @@ extern_class!(
         NSObject
     ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSNDArrayUnaryGradientKernel;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSNDArrayUnaryGradientKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSNDArrayUnaryGradientKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNDArrayUnaryGradientKernel {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSNDArrayUnaryGradientKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNDArrayUnaryGradientKernel {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayUnaryGradientKernel {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -797,7 +790,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        #[cfg(feature = "MPSState")]
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:sourceArray:sourceGradient:gradientState:)]
         pub unsafe fn encodeToCommandBuffer_sourceArray_sourceGradient_gradientState(
             &self,
@@ -807,7 +800,7 @@ extern_methods!(
             state: &MPSState,
         ) -> Retained<MPSNDArray>;
 
-        #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        #[cfg(feature = "MPSState")]
         #[method(encodeToCommandBuffer:sourceArray:sourceGradient:gradientState:destinationArray:)]
         pub unsafe fn encodeToCommandBuffer_sourceArray_sourceGradient_gradientState_destinationArray(
             &self,
@@ -822,7 +815,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryGradientKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayUnaryGradientKernel {
         #[method_id(@__retain_semantics Init initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
@@ -835,7 +828,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayUnaryGradientKernel {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -855,7 +848,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayUnaryGradientKernel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -869,29 +862,29 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraybinarykernel?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryKernel, MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSNDArrayBinaryKernel;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSNDArrayBinaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSNDArrayBinaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNDArrayBinaryKernel {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSNDArrayBinaryKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNDArrayBinaryKernel {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinaryKernel {
         #[cfg(feature = "MPSNDArrayTypes")]
         /// The coordinate of the position read from this source array which is
@@ -995,7 +988,6 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "MPSNDArray")]
         /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
         ///
         /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
@@ -1014,7 +1006,6 @@ extern_methods!(
             secondary_source_array: &MPSNDArray,
         ) -> Retained<MPSNDArray>;
 
-        #[cfg(feature = "MPSNDArray")]
         /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
         ///
         /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
@@ -1033,7 +1024,7 @@ extern_methods!(
             destination: &MPSNDArray,
         );
 
-        #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        #[cfg(feature = "MPSState")]
         /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
         ///
         /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
@@ -1058,7 +1049,7 @@ extern_methods!(
             output_state_is_temporary: bool,
         ) -> Retained<MPSNDArray>;
 
-        #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        #[cfg(feature = "MPSState")]
         /// Encode a simple inference NDArray kernel and return a NDArray to hold the result
         ///
         /// Parameter `cmdBuf`: The command buffer into which to encode the kernel
@@ -1085,7 +1076,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinaryKernel {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -1105,7 +1096,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinaryKernel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1126,29 +1117,29 @@ extern_class!(
         NSObject
     ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSNDArrayBinaryPrimaryGradientKernel;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSNDArrayBinaryPrimaryGradientKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSNDArrayBinaryPrimaryGradientKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNDArrayBinaryPrimaryGradientKernel {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSNDArrayBinaryPrimaryGradientKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNDArrayBinaryPrimaryGradientKernel {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinaryPrimaryGradientKernel {
         #[method_id(@__retain_semantics Init initWithDevice:sourceCount:sourceGradientIndex:)]
         pub unsafe fn initWithDevice_sourceCount_sourceGradientIndex(
@@ -1171,7 +1162,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        #[cfg(feature = "MPSState")]
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:)]
         pub unsafe fn encodeToCommandBuffer_primarySourceArray_secondarySourceArray_sourceGradient_gradientState(
             &self,
@@ -1182,7 +1173,7 @@ extern_methods!(
             state: &MPSState,
         ) -> Retained<MPSNDArray>;
 
-        #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        #[cfg(feature = "MPSState")]
         #[method(encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:destinationArray:)]
         pub unsafe fn encodeToCommandBuffer_primarySourceArray_secondarySourceArray_sourceGradient_gradientState_destinationArray(
             &self,
@@ -1198,7 +1189,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryGradientKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinaryPrimaryGradientKernel {
         #[method_id(@__retain_semantics Init initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
@@ -1211,7 +1202,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinaryPrimaryGradientKernel {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -1231,7 +1222,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinaryPrimaryGradientKernel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -1252,29 +1243,29 @@ extern_class!(
         NSObject
     ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSNDArrayBinarySecondaryGradientKernel;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSNDArrayBinarySecondaryGradientKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSNDArrayBinarySecondaryGradientKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSNDArrayBinarySecondaryGradientKernel {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSNDArrayBinarySecondaryGradientKernel {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSNDArrayBinarySecondaryGradientKernel {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinarySecondaryGradientKernel {
         #[method_id(@__retain_semantics Init initWithDevice:sourceCount:sourceGradientIndex:)]
         pub unsafe fn initWithDevice_sourceCount_sourceGradientIndex(
@@ -1297,7 +1288,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        #[cfg(feature = "MPSState")]
         #[method_id(@__retain_semantics Other encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:)]
         pub unsafe fn encodeToCommandBuffer_primarySourceArray_secondarySourceArray_sourceGradient_gradientState(
             &self,
@@ -1308,7 +1299,7 @@ extern_methods!(
             state: &MPSState,
         ) -> Retained<MPSNDArray>;
 
-        #[cfg(all(feature = "MPSNDArray", feature = "MPSState"))]
+        #[cfg(feature = "MPSState")]
         #[method(encodeToCommandBuffer:primarySourceArray:secondarySourceArray:sourceGradient:gradientState:destinationArray:)]
         pub unsafe fn encodeToCommandBuffer_primarySourceArray_secondarySourceArray_sourceGradient_gradientState_destinationArray(
             &self,
@@ -1324,7 +1315,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryGradientKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinarySecondaryGradientKernel {
         #[method_id(@__retain_semantics Init initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
@@ -1337,7 +1328,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinarySecondaryGradientKernel {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -1357,7 +1348,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNDArrayBinarySecondaryGradientKernel {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

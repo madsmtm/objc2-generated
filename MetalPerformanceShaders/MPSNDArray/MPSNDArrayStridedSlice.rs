@@ -23,29 +23,57 @@ extern_class!(
         NSObject
     ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     pub struct MPSNDArrayStridedSlice;
 );
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSCoding for MPSNDArrayStridedSlice {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSCopying for MPSNDArrayStridedSlice {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl CopyingHelper for MPSNDArrayStridedSlice {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSObjectProtocol for MPSNDArrayStridedSlice {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSSecureCoding for MPSNDArrayStridedSlice {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayStridedSlice {
         #[cfg(feature = "MPSNDArrayTypes")]
         /// The strides to use when slicing the input array.
@@ -61,7 +89,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSNDArrayUnaryKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayStridedSlice {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -87,7 +119,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayStridedSlice {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -107,7 +143,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayStridedSlice {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -132,35 +172,67 @@ extern_class!(
         NSObject
     ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     pub struct MPSNDArrayStridedSliceGradient;
 );
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSCoding for MPSNDArrayStridedSliceGradient {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSCopying for MPSNDArrayStridedSliceGradient {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl CopyingHelper for MPSNDArrayStridedSliceGradient {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSObjectProtocol for MPSNDArrayStridedSliceGradient {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSSecureCoding for MPSNDArrayStridedSliceGradient {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayStridedSliceGradient {}
 );
 
 extern_methods!(
     /// Methods declared on superclass `MPSNDArrayUnaryGradientKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayStridedSliceGradient {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -187,7 +259,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryGradientKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayStridedSliceGradient {
         #[method_id(@__retain_semantics Init initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
@@ -200,7 +276,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayStridedSliceGradient {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -220,7 +300,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayStridedSliceGradient {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

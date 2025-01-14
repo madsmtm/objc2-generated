@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -82,11 +80,7 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSTableHeaderCell {
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawSortIndicatorWithFrame:inView:ascending:priority:)]
         pub unsafe fn drawSortIndicatorWithFrame_inView_ascending_priority(
             &self,
@@ -96,7 +90,6 @@ extern_methods!(
             priority: NSInteger,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(sortIndicatorRectForBounds:)]
         pub unsafe fn sortIndicatorRectForBounds(&self, rect: NSRect) -> NSRect;
     }

@@ -90,7 +90,6 @@ extern_methods!(
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawFromPoint:toPoint:options:)]
         pub unsafe fn drawFromPoint_toPoint_options(
             &self,
@@ -118,7 +117,6 @@ extern_methods!(
             options: NSGradientDrawingOptions,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawInRect:relativeCenterPosition:)]
         pub unsafe fn drawInRect_relativeCenterPosition(
             &self,
@@ -126,7 +124,7 @@ extern_methods!(
             relative_center_position: NSPoint,
         );
 
-        #[cfg(all(feature = "NSBezierPath", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSBezierPath")]
         #[method(drawInBezierPath:relativeCenterPosition:)]
         pub unsafe fn drawInBezierPath_relativeCenterPosition(
             &self,

@@ -58,7 +58,7 @@ unsafe impl NSObjectProtocol for MPSMatrixCopyDescriptor {}
 
 extern_methods!(
     unsafe impl MPSMatrixCopyDescriptor {
-        #[cfg(feature = "MPSMatrix")]
+        #[cfg(feature = "MPSCore")]
         /// convenience allocator for single copies
         #[method_id(@__retain_semantics Other descriptorWithSourceMatrix:destinationMatrix:offsets:)]
         pub unsafe fn descriptorWithSourceMatrix_destinationMatrix_offsets(
@@ -85,7 +85,7 @@ extern_methods!(
             count: NSUInteger,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "MPSMatrix")]
+        #[cfg(feature = "MPSCore")]
         /// Initialize a MPSMatrixCopyDescriptor using offsets generated on the CPU
         ///
         /// This is for one at a time intialization of the copy operations
@@ -106,7 +106,7 @@ extern_methods!(
             offsets: MPSMatrixCopyOffsets,
         );
 
-        #[cfg(feature = "MPSMatrix")]
+        #[cfg(feature = "MPSCore")]
         /// Initialize a MPSMatrixCopyDescriptor using offsets generated on the GPU
         ///
         /// Use this method when the offsets needed are coming from GPU based computation.
@@ -149,29 +149,29 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixcopy?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     pub struct MPSMatrixCopy;
 );
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCoding for MPSMatrixCopy {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSCopying for MPSMatrixCopy {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl CopyingHelper for MPSMatrixCopy {
     type Result = Self;
 }
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSObjectProtocol for MPSMatrixCopy {}
 
-#[cfg(feature = "MPSKernel")]
+#[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 unsafe impl NSSecureCoding for MPSMatrixCopy {}
 
 extern_methods!(
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixCopy {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -228,7 +228,6 @@ extern_methods!(
             copy_descriptor: &MPSMatrixCopyDescriptor,
         );
 
-        #[cfg(feature = "MPSMatrix")]
         /// Encode the copy operations to the command buffer.
         /// This of the encode version support permuting the outputs with custom vectors of indices.
         /// The permutations are defined on the destination indices and are the same for each copy
@@ -290,7 +289,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixCopy {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -310,7 +309,7 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(feature = "MPSKernel")]
+    #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixCopy {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

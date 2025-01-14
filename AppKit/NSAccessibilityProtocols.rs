@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -13,7 +11,6 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityelementprotocol?language=objc)
     #[name = "NSAccessibilityElement"]
     pub unsafe trait NSAccessibilityElementProtocol: NSObjectProtocol {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityFrame)]
         unsafe fn accessibilityFrame(&self) -> NSRect;
 
@@ -109,7 +106,6 @@ extern_protocol!(
         #[method(accessibilityRangeForLine:)]
         unsafe fn accessibilityRangeForLine(&self, line_number: NSInteger) -> NSRange;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityFrameForRange:)]
         unsafe fn accessibilityFrameForRange(&self, range: NSRange) -> NSRect;
     }
@@ -289,7 +285,6 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylayoutitem?language=objc)
     pub unsafe trait NSAccessibilityLayoutItem: NSAccessibilityGroup {
-        #[cfg(feature = "objc2-core-foundation")]
         #[optional]
         #[method(setAccessibilityFrame:)]
         unsafe fn setAccessibilityFrame(&self, frame: NSRect);
@@ -337,11 +332,9 @@ extern_protocol!(
         #[method(setAccessibilityElement:)]
         unsafe fn setAccessibilityElement(&self, accessibility_element: bool);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityFrame)]
         unsafe fn accessibilityFrame(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`accessibilityFrame`][Self::accessibilityFrame].
         #[method(setAccessibilityFrame:)]
         unsafe fn setAccessibilityFrame(&self, accessibility_frame: NSRect);
@@ -353,11 +346,9 @@ extern_protocol!(
         #[method(setAccessibilityFocused:)]
         unsafe fn setAccessibilityFocused(&self, accessibility_focused: bool);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityActivationPoint)]
         unsafe fn accessibilityActivationPoint(&self) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`accessibilityActivationPoint`][Self::accessibilityActivationPoint].
         #[method(setAccessibilityActivationPoint:)]
         unsafe fn setAccessibilityActivationPoint(&self, accessibility_activation_point: NSPoint);
@@ -893,19 +884,15 @@ extern_protocol!(
             accessibility_vertical_unit_description: Option<&NSString>,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityLayoutPointForScreenPoint:)]
         unsafe fn accessibilityLayoutPointForScreenPoint(&self, point: NSPoint) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityLayoutSizeForScreenSize:)]
         unsafe fn accessibilityLayoutSizeForScreenSize(&self, size: NSSize) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityScreenPointForLayoutPoint:)]
         unsafe fn accessibilityScreenPointForLayoutPoint(&self, point: NSPoint) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityScreenSizeForLayoutSize:)]
         unsafe fn accessibilityScreenSizeForLayoutSize(&self, size: NSSize) -> NSSize;
 
@@ -1370,14 +1357,12 @@ extern_protocol!(
         #[method_id(@__retain_semantics Other accessibilityStringForRange:)]
         unsafe fn accessibilityStringForRange(&self, range: NSRange) -> Option<Retained<NSString>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityRangeForPosition:)]
         unsafe fn accessibilityRangeForPosition(&self, point: NSPoint) -> NSRange;
 
         #[method(accessibilityRangeForIndex:)]
         unsafe fn accessibilityRangeForIndex(&self, index: NSInteger) -> NSRange;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityFrameForRange:)]
         unsafe fn accessibilityFrameForRange(&self, range: NSRange) -> NSRect;
 

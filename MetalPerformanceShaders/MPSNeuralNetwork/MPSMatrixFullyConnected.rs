@@ -31,29 +31,64 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixfullyconnected?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSMatrix",
+        feature = "MPSMatrixTypes"
+    ))]
     pub struct MPSMatrixFullyConnected;
 );
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl NSCoding for MPSMatrixFullyConnected {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl NSCopying for MPSMatrixFullyConnected {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl CopyingHelper for MPSMatrixFullyConnected {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl NSObjectProtocol for MPSMatrixFullyConnected {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl NSSecureCoding for MPSMatrixFullyConnected {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSMatrix",
+        feature = "MPSMatrixTypes"
+    ))]
     unsafe impl MPSMatrixFullyConnected {
         /// The number of input vectors which make up the input array.  This
         /// is equivalent to the number of rows to consider from the primary
@@ -176,7 +211,6 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "MPSMatrix")]
         /// Encode a MPSMatrixFullyConnected object to a command buffer.
         ///
         ///
@@ -255,7 +289,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSMatrix",
+        feature = "MPSMatrixTypes"
+    ))]
     unsafe impl MPSMatrixFullyConnected {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -275,7 +314,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSMatrix",
+        feature = "MPSMatrixTypes"
+    ))]
     unsafe impl MPSMatrixFullyConnected {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -305,29 +349,64 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixfullyconnectedgradient?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSMatrix",
+        feature = "MPSMatrixTypes"
+    ))]
     pub struct MPSMatrixFullyConnectedGradient;
 );
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl NSCoding for MPSMatrixFullyConnectedGradient {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl NSCopying for MPSMatrixFullyConnectedGradient {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl CopyingHelper for MPSMatrixFullyConnectedGradient {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl NSObjectProtocol for MPSMatrixFullyConnectedGradient {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSMatrix",
+    feature = "MPSMatrixTypes"
+))]
 unsafe impl NSSecureCoding for MPSMatrixFullyConnectedGradient {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSMatrix",
+        feature = "MPSMatrixTypes"
+    ))]
     unsafe impl MPSMatrixFullyConnectedGradient {
         /// The number of input vectors which make up the input array.
         /// This is equivalent to the number of rows in both the input
@@ -393,7 +472,6 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "MPSMatrix")]
         /// Encode a MPSMatrixFullyConnectedGradient object to a command buffer and
         /// produce the gradient of the loss function with respect to the input data.
         ///
@@ -422,7 +500,6 @@ extern_methods!(
             result_gradient_for_data_matrix: &MPSMatrix,
         );
 
-        #[cfg(feature = "MPSMatrix")]
         /// Encode a MPSMatrixFullyConnectedGradient object to a command buffer and
         /// produce the gradient of the loss function with respect to the weight matrix
         /// and bias vector.
@@ -498,7 +575,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSMatrix",
+        feature = "MPSMatrixTypes"
+    ))]
     unsafe impl MPSMatrixFullyConnectedGradient {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -518,7 +600,12 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSMatrixTypes"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSMatrix",
+        feature = "MPSMatrixTypes"
+    ))]
     unsafe impl MPSMatrixFullyConnectedGradient {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

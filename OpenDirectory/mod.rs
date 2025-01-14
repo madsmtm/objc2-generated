@@ -102,7 +102,6 @@ pub use self::__ODSession::ODSessionProxyPassword;
 pub use self::__ODSession::ODSessionProxyPort;
 #[cfg(feature = "ODSession")]
 pub use self::__ODSession::ODSessionProxyUsername;
-use objc2::__framework_prelude::*;
 use objc2_foundation::*;
 
 use crate::*;

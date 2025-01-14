@@ -220,7 +220,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other localizedStringForKey:)]
         pub unsafe fn localizedStringForKey(key: &NSString) -> Retained<NSString>;
 
-        #[cfg(feature = "block2")]
         /// The contact comparator for a given sort order.
         #[method(comparatorForNameSortOrder:)]
         pub unsafe fn comparatorForNameSortOrder(sort_order: CNContactSortOrder) -> NSComparator;

@@ -355,20 +355,11 @@ extern_methods!(
         #[method(mouseExited:)]
         pub unsafe fn mouseExited(&self, event: &NSEvent);
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawBezelWithFrame:inView:)]
         pub unsafe fn drawBezelWithFrame_inView(&self, frame: NSRect, control_view: &NSView);
 
-        #[cfg(all(
-            feature = "NSImage",
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSImage", feature = "NSResponder", feature = "NSView"))]
         #[method(drawImage:withFrame:inView:)]
         pub unsafe fn drawImage_withFrame_inView(
             &self,
@@ -377,11 +368,7 @@ extern_methods!(
             control_view: &NSView,
         );
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawTitle:withFrame:inView:)]
         pub unsafe fn drawTitle_withFrame_inView(
             &self,

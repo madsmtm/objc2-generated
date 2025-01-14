@@ -16,7 +16,7 @@ extern "C" {
     /// MIDI-CI Device which has been added to the subsystem.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicidevicewasaddednotification?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static MIDICIDeviceWasAddedNotification: &'static NSNotificationName;
 }
 
@@ -29,7 +29,7 @@ extern "C" {
     /// MIDI-CI Device which has been removed or has had its MUID invalidated.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicidevicewasremovednotification?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static MIDICIDeviceWasRemovedNotification: &'static NSNotificationName;
 }
 
@@ -42,7 +42,7 @@ extern "C" {
     /// was recently enabled or disabled.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilewasupdatednotification?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static MIDICIProfileWasUpdatedNotification: &'static NSNotificationName;
 }
 
@@ -55,20 +55,20 @@ extern "C" {
     /// has been removed.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilewasremovednotification?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static MIDICIProfileWasRemovedNotification: &'static NSNotificationName;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicidevicemanagerdictionarykey?language=objc)
 // NS_TYPED_ENUM
-#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+#[cfg(feature = "objc2-foundation")]
 pub type MIDICIDeviceManagerDictionaryKey = NSString;
 
 extern "C" {
     /// Value is an MIDIUMPEndpoint.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicideviceobjectkey?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static MIDICIDeviceObjectKey: &'static MIDICIDeviceManagerDictionaryKey;
 }
 
@@ -76,7 +76,7 @@ extern "C" {
     /// Value is an MIDIUMPCIProfile
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofileobjectkey?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static MIDICIProfileObjectKey: &'static MIDICIDeviceManagerDictionaryKey;
 }
 

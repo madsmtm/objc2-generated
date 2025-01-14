@@ -866,15 +866,12 @@ extern_methods!(
         #[method(fullscreenState)]
         pub unsafe fn fullscreenState(&self) -> WKFullscreenState;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(minimumViewportInset)]
         pub unsafe fn minimumViewportInset(&self) -> NSEdgeInsets;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(maximumViewportInset)]
         pub unsafe fn maximumViewportInset(&self) -> NSEdgeInsets;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(setMinimumViewportInset:maximumViewportInset:)]
         pub unsafe fn setMinimumViewportInset_maximumViewportInset(
             &self,
@@ -916,7 +913,6 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl WKWebView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }

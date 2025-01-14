@@ -5,8 +5,6 @@ use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 use objc2_app_kit::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -121,7 +119,6 @@ extern_methods!(
             delegate: Option<&AnyObject>,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(candidateFrame)]
         pub unsafe fn candidateFrame(&self) -> NSRect;
 
@@ -183,7 +180,6 @@ extern_methods!(
         #[method(selectedCandidate)]
         pub unsafe fn selectedCandidate(&self) -> NSInteger;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Positions the top-left corner of the candidate window’s frame rectangle at a given point in screen coordinates.
         #[method(setCandidateFrameTopLeft:)]
         pub unsafe fn setCandidateFrameTopLeft(&self, point: NSPoint);

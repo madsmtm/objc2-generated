@@ -284,11 +284,9 @@ extern_methods!(
         #[method(setPaperName:)]
         pub unsafe fn setPaperName(&self, paper_name: Option<&NSPrinterPaperName>);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(paperSize)]
         pub unsafe fn paperSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`paperSize`][Self::paperSize].
         #[method(setPaperSize:)]
         pub unsafe fn setPaperSize(&self, paper_size: NSSize);
@@ -395,7 +393,6 @@ extern_methods!(
         #[method(setUpPrintOperationDefaultValues)]
         pub unsafe fn setUpPrintOperationDefaultValues(&self);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(imageablePageBounds)]
         pub unsafe fn imageablePageBounds(&self) -> NSRect;
 
@@ -455,7 +452,7 @@ extern_methods!(
         #[method(setDefaultPrinter:)]
         pub unsafe fn setDefaultPrinter(printer: Option<&NSPrinter>);
 
-        #[cfg(all(feature = "NSPrinter", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSPrinter")]
         #[deprecated = "Use -[NSPrinter pageSizeForPaper:] instead"]
         #[method(sizeForPaperName:)]
         pub unsafe fn sizeForPaperName(name: Option<&NSPrinterPaperName>) -> NSSize;

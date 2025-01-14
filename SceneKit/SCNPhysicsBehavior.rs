@@ -6,9 +6,6 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 use objc2_foundation::*;
-#[cfg(feature = "objc2-quartz-core")]
-#[cfg(not(target_os = "watchos"))]
-use objc2_quartz_core::*;
 
 use crate::*;
 
@@ -414,7 +411,6 @@ extern_methods!(
         #[cfg(all(
             feature = "SCNPhysicsBody",
             feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
             feature = "objc2-quartz-core"
         ))]
         #[cfg(not(target_os = "watchos"))]
@@ -429,7 +425,6 @@ extern_methods!(
         #[cfg(all(
             feature = "SCNPhysicsBody",
             feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
             feature = "objc2-quartz-core"
         ))]
         #[cfg(not(target_os = "watchos"))]
@@ -443,20 +438,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bodyA)]
         pub unsafe fn bodyA(&self) -> Retained<SCNPhysicsBody>;
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         #[method(frameA)]
         pub unsafe fn frameA(&self) -> SCNMatrix4;
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`frameA`][Self::frameA].
         #[method(setFrameA:)]
@@ -466,20 +453,12 @@ extern_methods!(
         #[method_id(@__retain_semantics Other bodyB)]
         pub unsafe fn bodyB(&self) -> Option<Retained<SCNPhysicsBody>>;
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         #[method(frameB)]
         pub unsafe fn frameB(&self) -> SCNMatrix4;
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`frameB`][Self::frameB].
         #[method(setFrameB:)]

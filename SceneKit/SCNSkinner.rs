@@ -3,12 +3,7 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
-#[cfg(feature = "objc2-quartz-core")]
-#[cfg(not(target_os = "watchos"))]
-use objc2_quartz_core::*;
 
 use crate::*;
 
@@ -78,21 +73,13 @@ extern_methods!(
         #[method(setBaseGeometry:)]
         pub unsafe fn setBaseGeometry(&self, base_geometry: Option<&SCNGeometry>);
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Specifies the transform of the baseGeometry at the time when the mesh was bound to a skeleton. This transforms the baseGeometry from object space to a space on which the skinning then applies.
         #[method(baseGeometryBindTransform)]
         pub unsafe fn baseGeometryBindTransform(&self) -> SCNMatrix4;
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`baseGeometryBindTransform`][Self::baseGeometryBindTransform].
         #[method(setBaseGeometryBindTransform:)]

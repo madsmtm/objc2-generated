@@ -660,7 +660,6 @@ extern_methods!(
         #[method(writeToPasteboard:)]
         pub unsafe fn writeToPasteboard(&self, paste_board: &NSPasteboard);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawSwatchInRect:)]
         pub unsafe fn drawSwatchInRect(&self, rect: NSRect);
 

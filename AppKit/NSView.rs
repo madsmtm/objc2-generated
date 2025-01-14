@@ -179,7 +179,6 @@ unsafe impl NSUserInterfaceItemIdentification for NSView {}
 extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
@@ -222,7 +221,6 @@ extern_methods!(
         #[method(isHiddenOrHasHiddenAncestor)]
         pub unsafe fn isHiddenOrHasHiddenAncestor(&self) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(getRectsBeingDrawn:count:)]
         pub unsafe fn getRectsBeingDrawn_count(
             &self,
@@ -230,7 +228,6 @@ extern_methods!(
             count: *mut NSInteger,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(needsToDrawRect:)]
         pub unsafe fn needsToDrawRect(&self, rect: NSRect) -> bool;
 
@@ -304,11 +301,9 @@ extern_methods!(
         #[method(setPostsFrameChangedNotifications:)]
         pub fn setPostsFrameChangedNotifications(&self, posts_frame_changed_notifications: bool);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(resizeSubviewsWithOldSize:)]
         pub unsafe fn resizeSubviewsWithOldSize(&self, old_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(resizeWithOldSuperviewSize:)]
         pub unsafe fn resizeWithOldSuperviewSize(&self, old_size: NSSize);
 
@@ -326,19 +321,15 @@ extern_methods!(
         #[method(setAutoresizingMask:)]
         pub unsafe fn setAutoresizingMask(&self, autoresizing_mask: NSAutoresizingMaskOptions);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(setFrameOrigin:)]
         pub unsafe fn setFrameOrigin(&self, new_origin: NSPoint);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(setFrameSize:)]
         pub unsafe fn setFrameSize(&self, new_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frame)]
         pub fn frame(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`frame`][Self::frame].
         #[method(setFrame:)]
         pub unsafe fn setFrame(&self, frame: NSRect);
@@ -361,11 +352,9 @@ extern_methods!(
         #[method(setFrameCenterRotation:)]
         pub unsafe fn setFrameCenterRotation(&self, frame_center_rotation: CGFloat);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(setBoundsOrigin:)]
         pub unsafe fn setBoundsOrigin(&self, new_origin: NSPoint);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(setBoundsSize:)]
         pub unsafe fn setBoundsSize(&self, new_size: NSSize);
 
@@ -378,11 +367,9 @@ extern_methods!(
         #[method(setBoundsRotation:)]
         pub unsafe fn setBoundsRotation(&self, bounds_rotation: CGFloat);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(translateOriginToPoint:)]
         pub unsafe fn translateOriginToPoint(&self, translation: NSPoint);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(scaleUnitSquareToSize:)]
         pub unsafe fn scaleUnitSquareToSize(&self, new_unit_size: NSSize);
 
@@ -390,11 +377,9 @@ extern_methods!(
         #[method(rotateByAngle:)]
         pub unsafe fn rotateByAngle(&self, angle: CGFloat);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(bounds)]
         pub fn bounds(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bounds`][Self::bounds].
         #[method(setBounds:)]
         pub unsafe fn setBounds(&self, bounds: NSRect);
@@ -411,31 +396,24 @@ extern_methods!(
         #[method(isOpaque)]
         pub unsafe fn isOpaque(&self) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertPoint:fromView:)]
         pub fn convertPoint_fromView(&self, point: NSPoint, view: Option<&NSView>) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertPoint:toView:)]
         pub unsafe fn convertPoint_toView(&self, point: NSPoint, view: Option<&NSView>) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertSize:fromView:)]
         pub unsafe fn convertSize_fromView(&self, size: NSSize, view: Option<&NSView>) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertSize:toView:)]
         pub unsafe fn convertSize_toView(&self, size: NSSize, view: Option<&NSView>) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertRect:fromView:)]
         pub unsafe fn convertRect_fromView(&self, rect: NSRect, view: Option<&NSView>) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertRect:toView:)]
         pub fn convertRect_toView(&self, rect: NSRect, view: Option<&NSView>) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(backingAlignedRect:options:)]
         pub unsafe fn backingAlignedRect_options(
             &self,
@@ -443,55 +421,42 @@ extern_methods!(
             options: NSAlignmentOptions,
         ) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(centerScanRect:)]
         pub unsafe fn centerScanRect(&self, rect: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertPointToBacking:)]
         pub unsafe fn convertPointToBacking(&self, point: NSPoint) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertPointFromBacking:)]
         pub unsafe fn convertPointFromBacking(&self, point: NSPoint) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertSizeToBacking:)]
         pub unsafe fn convertSizeToBacking(&self, size: NSSize) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertSizeFromBacking:)]
         pub unsafe fn convertSizeFromBacking(&self, size: NSSize) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertRectToBacking:)]
         pub unsafe fn convertRectToBacking(&self, rect: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertRectFromBacking:)]
         pub unsafe fn convertRectFromBacking(&self, rect: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertPointToLayer:)]
         pub unsafe fn convertPointToLayer(&self, point: NSPoint) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertPointFromLayer:)]
         pub unsafe fn convertPointFromLayer(&self, point: NSPoint) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertSizeToLayer:)]
         pub unsafe fn convertSizeToLayer(&self, size: NSSize) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertSizeFromLayer:)]
         pub unsafe fn convertSizeFromLayer(&self, size: NSSize) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertRectToLayer:)]
         pub unsafe fn convertRectToLayer(&self, rect: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(convertRectFromLayer:)]
         pub unsafe fn convertRectFromLayer(&self, rect: NSRect) -> NSRect;
 
@@ -506,7 +471,6 @@ extern_methods!(
         #[method(canDraw)]
         pub unsafe fn canDraw(&self) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(setNeedsDisplayInRect:)]
         pub unsafe fn setNeedsDisplayInRect(&self, invalid_rect: NSRect);
 
@@ -537,7 +501,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other focusView)]
         pub unsafe fn focusView(mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// The portion of the view that isn’t clipped by its superviews.
         ///
         /// Visibility, as reflected by this property, doesn’t account for whether other view or window objects overlap the current view or whether the current view is installed in a window at all. This value of this property is `NSZeroRect` if the current view is effectively hidden.
@@ -555,27 +518,22 @@ extern_methods!(
         #[method(displayIfNeededIgnoringOpacity)]
         pub unsafe fn displayIfNeededIgnoringOpacity(&self);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(displayRect:)]
         pub unsafe fn displayRect(&self, rect: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(displayIfNeededInRect:)]
         pub unsafe fn displayIfNeededInRect(&self, rect: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(displayRectIgnoringOpacity:)]
         pub unsafe fn displayRectIgnoringOpacity(&self, rect: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(displayIfNeededInRectIgnoringOpacity:)]
         pub unsafe fn displayIfNeededInRectIgnoringOpacity(&self, rect: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawRect:)]
         pub unsafe fn drawRect(&self, dirty_rect: NSRect);
 
-        #[cfg(all(feature = "NSGraphicsContext", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSGraphicsContext")]
         #[method(displayRectIgnoringOpacity:inContext:)]
         pub unsafe fn displayRectIgnoringOpacity_inContext(
             &self,
@@ -583,22 +541,14 @@ extern_methods!(
             context: &NSGraphicsContext,
         );
 
-        #[cfg(all(
-            feature = "NSBitmapImageRep",
-            feature = "NSImageRep",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSBitmapImageRep", feature = "NSImageRep"))]
         #[method_id(@__retain_semantics Other bitmapImageRepForCachingDisplayInRect:)]
         pub unsafe fn bitmapImageRepForCachingDisplayInRect(
             &self,
             rect: NSRect,
         ) -> Option<Retained<NSBitmapImageRep>>;
 
-        #[cfg(all(
-            feature = "NSBitmapImageRep",
-            feature = "NSImageRep",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSBitmapImageRep", feature = "NSImageRep"))]
         #[method(cacheDisplayInRect:toBitmapImageRep:)]
         pub unsafe fn cacheDisplayInRect_toBitmapImageRep(
             &self,
@@ -609,11 +559,9 @@ extern_methods!(
         #[method(viewWillDraw)]
         pub unsafe fn viewWillDraw(&self);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(scrollPoint:)]
         pub unsafe fn scrollPoint(&self, point: NSPoint);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(scrollRectToVisible:)]
         pub unsafe fn scrollRectToVisible(&self, rect: NSRect) -> bool;
 
@@ -621,16 +569,13 @@ extern_methods!(
         #[method(autoscroll:)]
         pub unsafe fn autoscroll(&self, event: &NSEvent) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(adjustScroll:)]
         pub unsafe fn adjustScroll(&self, new_visible: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Use NSScrollView to achieve scrolling views."]
         #[method(scrollRect:by:)]
         pub unsafe fn scrollRect_by(&self, rect: NSRect, delta: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(translateRectsNeedingDisplayInRect:by:)]
         pub unsafe fn translateRectsNeedingDisplayInRect_by(
             &self,
@@ -638,11 +583,9 @@ extern_methods!(
             delta: NSSize,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other hitTest:)]
         pub unsafe fn hitTest(&self, point: NSPoint) -> Option<Retained<NSView>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(mouse:inRect:)]
         pub unsafe fn mouse_inRect(&self, point: NSPoint, rect: NSRect) -> bool;
 
@@ -869,7 +812,6 @@ extern_methods!(
         #[method(setToolTip:)]
         pub unsafe fn setToolTip(&self, tool_tip: Option<&NSString>);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(addToolTipRect:owner:userData:)]
         pub unsafe fn addToolTipRect_owner_userData(
             &self,
@@ -896,7 +838,6 @@ extern_methods!(
         #[method(preservesContentDuringLiveResize)]
         pub unsafe fn preservesContentDuringLiveResize(&self) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(rectPreservedDuringLiveResize)]
         pub unsafe fn rectPreservedDuringLiveResize(&self) -> NSRect;
 
@@ -904,7 +845,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other inputContext)]
         pub fn inputContext(&self) -> Option<Retained<NSTextInputContext>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(rectForSmartMagnificationAtPoint:inRect:)]
         pub unsafe fn rectForSmartMagnificationAtPoint_inRect(
             &self,
@@ -930,15 +870,12 @@ extern_methods!(
         #[method(isCompatibleWithResponsiveScrolling)]
         pub unsafe fn isCompatibleWithResponsiveScrolling(mtm: MainThreadMarker) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(prepareContentInRect:)]
         pub unsafe fn prepareContentInRect(&self, rect: NSRect);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(preparedContentRect)]
         pub unsafe fn preparedContentRect(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`preparedContentRect`][Self::preparedContentRect].
         #[method(setPreparedContentRect:)]
         pub unsafe fn setPreparedContentRect(&self, prepared_content_rect: NSRect);
@@ -994,7 +931,7 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewtooltipowner?language=objc)
     pub unsafe trait NSViewToolTipOwner: NSObjectProtocol + MainThreadOnly {
-        #[cfg(all(feature = "NSResponder", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSResponder")]
         #[method_id(@__retain_semantics Other view:stringForToolTip:point:userData:)]
         unsafe fn view_stringForToolTip_point_userData(
             &self,
@@ -1011,7 +948,6 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontentselectioninfo?language=objc)
     pub unsafe trait NSViewContentSelectionInfo: NSObjectProtocol {
-        #[cfg(feature = "objc2-core-foundation")]
         #[optional]
         #[method(selectionAnchorRect)]
         unsafe fn selectionAnchorRect(&self) -> NSRect;
@@ -1041,7 +977,6 @@ extern_methods!(
         #[method(canBecomeKeyView)]
         pub unsafe fn canBecomeKeyView(&self) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(setKeyboardFocusRingNeedsDisplayInRect:)]
         pub unsafe fn setKeyboardFocusRingNeedsDisplayInRect(&self, rect: NSRect);
 
@@ -1061,7 +996,6 @@ extern_methods!(
         #[method(drawFocusRingMask)]
         pub unsafe fn drawFocusRingMask(&self);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(focusRingMaskBounds)]
         pub unsafe fn focusRingMaskBounds(&self) -> NSRect;
 
@@ -1074,7 +1008,7 @@ extern_methods!(
     /// NSPrinting
     #[cfg(feature = "NSResponder")]
     unsafe impl NSView {
-        #[cfg(all(feature = "NSPasteboard", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSPasteboard")]
         #[method(writeEPSInsideRect:toPasteboard:)]
         pub unsafe fn writeEPSInsideRect_toPasteboard(
             &self,
@@ -1082,11 +1016,10 @@ extern_methods!(
             pasteboard: &NSPasteboard,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other dataWithEPSInsideRect:)]
         pub unsafe fn dataWithEPSInsideRect(&self, rect: NSRect) -> Retained<NSData>;
 
-        #[cfg(all(feature = "NSPasteboard", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSPasteboard")]
         #[method(writePDFInsideRect:toPasteboard:)]
         pub unsafe fn writePDFInsideRect_toPasteboard(
             &self,
@@ -1094,7 +1027,6 @@ extern_methods!(
             pasteboard: &NSPasteboard,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Other dataWithPDFInsideRect:)]
         pub unsafe fn dataWithPDFInsideRect(&self, rect: NSRect) -> Retained<NSData>;
 
@@ -1132,15 +1064,12 @@ extern_methods!(
             bottom_limit: CGFloat,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(rectForPage:)]
         pub unsafe fn rectForPage(&self, page: NSInteger) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(locationOfPrintRect:)]
         pub unsafe fn locationOfPrintRect(&self, rect: NSRect) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawPageBorderWithSize:)]
         pub unsafe fn drawPageBorderWithSize(&self, border_size: NSSize);
 
@@ -1150,7 +1079,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other pageFooter)]
         pub unsafe fn pageFooter(&self) -> Retained<NSAttributedString>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// * This method is obsolete.  It will never be invoked from within AppKit, and NSView's implementation of it does nothing. **
         #[deprecated = "This is never invoked and the NSView implementation does nothing"]
         #[method(drawSheetBorderWithSize:)]
@@ -1165,7 +1093,6 @@ extern_methods!(
         #[method(endDocument)]
         pub unsafe fn endDocument(&self);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(beginPageInRect:atPlacement:)]
         pub unsafe fn beginPageInRect_atPlacement(&self, rect: NSRect, location: NSPoint);
 
@@ -1281,7 +1208,6 @@ extern_methods!(
     /// NSDefinition
     #[cfg(feature = "NSResponder")]
     unsafe impl NSView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(showDefinitionForAttributedString:atPoint:)]
         pub unsafe fn showDefinitionForAttributedString_atPoint(
             &self,
@@ -1289,7 +1215,7 @@ extern_methods!(
             text_baseline_origin: NSPoint,
         );
 
-        #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "block2")]
         #[method(showDefinitionForAttributedString:range:options:baselineOriginProvider:)]
         pub unsafe fn showDefinitionForAttributedString_range_options_baselineOriginProvider(
             &self,
@@ -1355,15 +1281,12 @@ extern_methods!(
     /// NSSafeAreas
     #[cfg(feature = "NSResponder")]
     unsafe impl NSView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(safeAreaInsets)]
         pub unsafe fn safeAreaInsets(&self) -> NSEdgeInsets;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(additionalSafeAreaInsets)]
         pub unsafe fn additionalSafeAreaInsets(&self) -> NSEdgeInsets;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`additionalSafeAreaInsets`][Self::additionalSafeAreaInsets].
         #[method(setAdditionalSafeAreaInsets:)]
         pub unsafe fn setAdditionalSafeAreaInsets(&self, additional_safe_area_insets: NSEdgeInsets);
@@ -1372,7 +1295,6 @@ extern_methods!(
         #[method_id(@__retain_semantics Other safeAreaLayoutGuide)]
         pub unsafe fn safeAreaLayoutGuide(&self) -> Retained<NSLayoutGuide>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(safeAreaRect)]
         pub unsafe fn safeAreaRect(&self) -> NSRect;
 
@@ -1401,11 +1323,11 @@ extern_methods!(
         #[method(updateTrackingAreas)]
         pub unsafe fn updateTrackingAreas(&self);
 
-        #[cfg(all(feature = "NSCursor", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSCursor")]
         #[method(addCursorRect:cursor:)]
         pub fn addCursorRect_cursor(&self, rect: NSRect, object: &NSCursor);
 
-        #[cfg(all(feature = "NSCursor", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSCursor")]
         #[method(removeCursorRect:cursor:)]
         pub unsafe fn removeCursorRect_cursor(&self, rect: NSRect, object: &NSCursor);
 
@@ -1415,7 +1337,6 @@ extern_methods!(
         #[method(resetCursorRects)]
         pub unsafe fn resetCursorRects(&self);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(addTrackingRect:owner:userData:assumeInside:)]
         pub unsafe fn addTrackingRect_owner_userData_assumeInside(
             &self,
@@ -1449,12 +1370,7 @@ extern_methods!(
     /// NSDeprecated
     #[cfg(feature = "NSResponder")]
     unsafe impl NSView {
-        #[cfg(all(
-            feature = "NSEvent",
-            feature = "NSImage",
-            feature = "NSPasteboard",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSImage", feature = "NSPasteboard"))]
         #[deprecated = "Use -beginDraggingSessionWithItems:event:source: instead"]
         #[method(dragImage:at:offset:event:pasteboard:source:slideBack:)]
         pub unsafe fn dragImage_at_offset_event_pasteboard_source_slideBack(
@@ -1468,7 +1384,7 @@ extern_methods!(
             slide_flag: bool,
         );
 
-        #[cfg(all(feature = "NSEvent", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSEvent")]
         #[deprecated = "Use -beginDraggingSessionWithItems:event:source: instead"]
         #[method(dragFile:fromRect:slideBack:event:)]
         pub unsafe fn dragFile_fromRect_slideBack_event(
@@ -1479,7 +1395,7 @@ extern_methods!(
             event: &NSEvent,
         ) -> bool;
 
-        #[cfg(all(feature = "NSEvent", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSEvent")]
         #[deprecated = "Use -beginDraggingSessionWithItems:event:source: with an NSFilePromiseProvider instead"]
         #[method(dragPromisedFilesOfTypes:fromRect:source:slideBack:event:)]
         pub unsafe fn dragPromisedFilesOfTypes_fromRect_source_slideBack_event(
@@ -1491,32 +1407,26 @@ extern_methods!(
             event: &NSEvent,
         ) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(convertPointToBase:)]
         pub unsafe fn convertPointToBase(&self, point: NSPoint) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(convertPointFromBase:)]
         pub unsafe fn convertPointFromBase(&self, point: NSPoint) -> NSPoint;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(convertSizeToBase:)]
         pub unsafe fn convertSizeToBase(&self, size: NSSize) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(convertSizeFromBase:)]
         pub unsafe fn convertSizeFromBase(&self, size: NSSize) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(convertRectToBase:)]
         pub unsafe fn convertRectToBase(&self, rect: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[method(convertRectFromBase:)]
         pub unsafe fn convertRectFromBase(&self, rect: NSRect) -> NSRect;

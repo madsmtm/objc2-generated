@@ -431,15 +431,12 @@ extern_methods!(
     /// NSConstraintBasedLayoutLayering
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(alignmentRectForFrame:)]
         pub unsafe fn alignmentRectForFrame(&self, frame: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frameForAlignmentRect:)]
         pub unsafe fn frameForAlignmentRect(&self, alignment_rect: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(alignmentRectInsets)]
         pub unsafe fn alignmentRectInsets(&self) -> NSEdgeInsets;
 
@@ -455,7 +452,6 @@ extern_methods!(
         #[method(baselineOffsetFromBottom)]
         pub unsafe fn baselineOffsetFromBottom(&self) -> CGFloat;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(intrinsicContentSize)]
         pub unsafe fn intrinsicContentSize(&self) -> NSSize;
 
@@ -543,7 +539,6 @@ extern_methods!(
     /// NSConstraintBasedLayoutFittingSize
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(fittingSize)]
         pub unsafe fn fittingSize(&self) -> NSSize;
     }

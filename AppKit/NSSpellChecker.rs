@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -221,12 +219,7 @@ extern_methods!(
             >,
         ) -> NSInteger;
 
-        #[cfg(all(
-            feature = "NSMenu",
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSMenu", feature = "NSResponder", feature = "NSView"))]
         #[method_id(@__retain_semantics Other menuForResult:string:options:atLocation:inView:)]
         pub unsafe fn menuForResult_string_options_atLocation_inView(
             &self,
@@ -361,12 +354,7 @@ extern_methods!(
             tag: NSInteger,
         );
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "block2",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView", feature = "block2"))]
         #[method(showCorrectionIndicatorOfType:primaryString:alternativeStrings:forStringInRect:view:completionHandler:)]
         pub unsafe fn showCorrectionIndicatorOfType_primaryString_alternativeStrings_forStringInRect_view_completionHandler(
             &self,

@@ -139,7 +139,6 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSlider {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
@@ -205,11 +204,9 @@ extern_methods!(
         #[method(tickMarkValueAtIndex:)]
         pub unsafe fn tickMarkValueAtIndex(&self, index: NSInteger) -> c_double;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(rectOfTickMarkAtIndex:)]
         pub unsafe fn rectOfTickMarkAtIndex(&self, index: NSInteger) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(indexOfTickMarkAtPoint:)]
         pub unsafe fn indexOfTickMarkAtPoint(&self, point: NSPoint) -> NSInteger;
 

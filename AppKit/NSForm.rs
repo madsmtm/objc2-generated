@@ -178,7 +178,6 @@ extern_methods!(
         #[method(selectTextAtIndex:)]
         pub unsafe fn selectTextAtIndex(&self, index: NSInteger);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(setFrameSize:)]
         pub unsafe fn setFrameSize(&self, new_size: NSSize);
 
@@ -209,11 +208,10 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSForm {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[cfg(all(feature = "NSCell", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Init initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_prototype_numberOfRows_numberOfColumns(
             this: Allocated<Self>,
@@ -224,7 +222,6 @@ extern_methods!(
             cols_wide: NSInteger,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_cellClass_numberOfRows_numberOfColumns(
             this: Allocated<Self>,

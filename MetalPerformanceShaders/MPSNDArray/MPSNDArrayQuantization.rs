@@ -52,7 +52,7 @@ unsafe impl NSObjectProtocol for MPSNDArrayQuantizationDescriptor {}
 
 extern_methods!(
     unsafe impl MPSNDArrayQuantizationDescriptor {
-        #[cfg(feature = "MPSCoreTypes")]
+        #[cfg(all(feature = "MPSCore", feature = "MPSCoreTypes"))]
         /// The datatype to use with quantization - the default is MPSDataTypeUint8
         #[method(quantizationDataType)]
         pub unsafe fn quantizationDataType(&self) -> MPSDataType;
@@ -127,7 +127,7 @@ extern_methods!(
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[cfg(feature = "MPSCoreTypes")]
+        #[cfg(all(feature = "MPSCore", feature = "MPSCoreTypes"))]
         /// Initializes an affine quantization descriptor.
         ///
         /// Parameter `quantizationDataType`: Which quantized datatype is used.
@@ -176,7 +176,7 @@ unsafe impl NSObjectProtocol for MPSNDArrayLUTQuantizationDescriptor {}
 
 extern_methods!(
     unsafe impl MPSNDArrayLUTQuantizationDescriptor {
-        #[cfg(feature = "MPSCoreTypes")]
+        #[cfg(all(feature = "MPSCore", feature = "MPSCoreTypes"))]
         /// Initializes a scalar lookup-table quantization descriptor.
         ///
         /// Parameter `quantizationDataType`: Which quantized datatype is used.
@@ -188,7 +188,7 @@ extern_methods!(
             quantization_data_type: MPSDataType,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "MPSCoreTypes")]
+        #[cfg(all(feature = "MPSCore", feature = "MPSCoreTypes"))]
         /// Initializes a vector lookup-table quantization descriptor.
         ///
         /// Parameter `quantizationDataType`: Which quantized datatype is used.

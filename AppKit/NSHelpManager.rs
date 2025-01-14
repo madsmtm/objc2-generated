@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -59,7 +57,6 @@ extern_methods!(
             object: &AnyObject,
         ) -> Option<Retained<NSAttributedString>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(showContextHelpForObject:locationHint:)]
         pub unsafe fn showContextHelpForObject_locationHint(
             &self,

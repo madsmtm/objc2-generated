@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -33,27 +31,15 @@ extern_methods!(
         #[method(setButtonMask:)]
         pub unsafe fn setButtonMask(&self, button_mask: NSUInteger);
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(translationInView:)]
         pub unsafe fn translationInView(&self, view: Option<&NSView>) -> NSPoint;
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(setTranslation:inView:)]
         pub unsafe fn setTranslation_inView(&self, translation: NSPoint, view: Option<&NSView>);
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(velocityInView:)]
         pub unsafe fn velocityInView(&self, view: Option<&NSView>) -> NSPoint;
 

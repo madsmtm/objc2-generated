@@ -7,9 +7,6 @@ use objc2::__framework_prelude::*;
 use objc2_av_foundation::*;
 #[cfg(feature = "objc2-core-media")]
 use objc2_core_media::*;
-#[cfg(feature = "objc2-quartz-core")]
-#[cfg(not(target_os = "watchos"))]
-use objc2_quartz_core::*;
 
 use crate::*;
 
@@ -130,7 +127,7 @@ extern_methods!(
     /// AVSampleBufferDisplayLayerSupport
     #[cfg(feature = "AVPictureInPictureController")]
     unsafe impl AVPictureInPictureControllerContentSource {
-        #[cfg(all(feature = "objc2-av-foundation", feature = "objc2-quartz-core"))]
+        #[cfg(feature = "objc2-av-foundation")]
         #[cfg(not(target_os = "watchos"))]
         /// Parameter `sampleBufferDisplayLayer`: The sample buffer display layer to be shown in Picture in Picture.
         ///
@@ -144,7 +141,7 @@ extern_methods!(
             playback_delegate: &ProtocolObject<dyn AVPictureInPictureSampleBufferPlaybackDelegate>,
         ) -> Retained<Self>;
 
-        #[cfg(all(feature = "objc2-av-foundation", feature = "objc2-quartz-core"))]
+        #[cfg(feature = "objc2-av-foundation")]
         #[cfg(not(target_os = "watchos"))]
         /// The receiver's sample buffer display layer.
         #[method_id(@__retain_semantics Other sampleBufferDisplayLayer)]

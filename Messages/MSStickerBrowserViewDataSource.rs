@@ -2,8 +2,6 @@
 //! DO NOT EDIT
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-ui-kit")]
-use objc2_ui_kit::*;
 
 use crate::*;
 

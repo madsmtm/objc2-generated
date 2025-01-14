@@ -47,6 +47,7 @@ extern_class!(
     ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
+        feature = "MPSCore",
         feature = "MPSKernel",
         feature = "MPSNDArrayKernel",
         feature = "MPSNDArrayMatrixMultiplication"
@@ -55,6 +56,7 @@ extern_class!(
 );
 
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel",
     feature = "MPSNDArrayMatrixMultiplication"
@@ -62,6 +64,7 @@ extern_class!(
 unsafe impl NSCoding for MPSNDArrayQuantizedMatrixMultiplication {}
 
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel",
     feature = "MPSNDArrayMatrixMultiplication"
@@ -69,6 +72,7 @@ unsafe impl NSCoding for MPSNDArrayQuantizedMatrixMultiplication {}
 unsafe impl NSCopying for MPSNDArrayQuantizedMatrixMultiplication {}
 
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel",
     feature = "MPSNDArrayMatrixMultiplication"
@@ -78,6 +82,7 @@ unsafe impl CopyingHelper for MPSNDArrayQuantizedMatrixMultiplication {
 }
 
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel",
     feature = "MPSNDArrayMatrixMultiplication"
@@ -85,6 +90,7 @@ unsafe impl CopyingHelper for MPSNDArrayQuantizedMatrixMultiplication {
 unsafe impl NSObjectProtocol for MPSNDArrayQuantizedMatrixMultiplication {}
 
 #[cfg(all(
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSNDArrayKernel",
     feature = "MPSNDArrayMatrixMultiplication"
@@ -93,6 +99,7 @@ unsafe impl NSSecureCoding for MPSNDArrayQuantizedMatrixMultiplication {}
 
 extern_methods!(
     #[cfg(all(
+        feature = "MPSCore",
         feature = "MPSKernel",
         feature = "MPSNDArrayKernel",
         feature = "MPSNDArrayMatrixMultiplication"
@@ -126,6 +133,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryKernel`
     #[cfg(all(
+        feature = "MPSCore",
         feature = "MPSKernel",
         feature = "MPSNDArrayKernel",
         feature = "MPSNDArrayMatrixMultiplication"
@@ -143,6 +151,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryBase`
     #[cfg(all(
+        feature = "MPSCore",
         feature = "MPSKernel",
         feature = "MPSNDArrayKernel",
         feature = "MPSNDArrayMatrixMultiplication"
@@ -159,6 +168,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(
+        feature = "MPSCore",
         feature = "MPSKernel",
         feature = "MPSNDArrayKernel",
         feature = "MPSNDArrayMatrixMultiplication"
@@ -183,6 +193,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
+        feature = "MPSCore",
         feature = "MPSKernel",
         feature = "MPSNDArrayKernel",
         feature = "MPSNDArrayMatrixMultiplication"
@@ -206,29 +217,57 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraylutdequantize?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryKernel, MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     pub struct MPSNDArrayLUTDequantize;
 );
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSCoding for MPSNDArrayLUTDequantize {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSCopying for MPSNDArrayLUTDequantize {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl CopyingHelper for MPSNDArrayLUTDequantize {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSObjectProtocol for MPSNDArrayLUTDequantize {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSSecureCoding for MPSNDArrayLUTDequantize {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayLUTDequantize {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -247,7 +286,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayLUTDequantize {
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
@@ -260,7 +303,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayLUTDequantize {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -280,7 +327,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayLUTDequantize {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -300,29 +351,57 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayvectorlutdequantize?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryKernel, MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     pub struct MPSNDArrayVectorLUTDequantize;
 );
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSCoding for MPSNDArrayVectorLUTDequantize {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSCopying for MPSNDArrayVectorLUTDequantize {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl CopyingHelper for MPSNDArrayVectorLUTDequantize {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSObjectProtocol for MPSNDArrayVectorLUTDequantize {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSSecureCoding for MPSNDArrayVectorLUTDequantize {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayVectorLUTDequantize {
         /// Which axis in the destination will receive the vector component, must be less than 4.
         #[method(vectorAxis)]
@@ -357,7 +436,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayVectorLUTDequantize {
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
@@ -370,7 +453,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryBase`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayVectorLUTDequantize {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -382,7 +469,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayVectorLUTDequantize {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -402,7 +493,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayVectorLUTDequantize {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
@@ -422,29 +517,57 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayaffineint4dequantize?language=objc)
     #[unsafe(super(MPSNDArrayMultiaryKernel, MPSNDArrayMultiaryBase, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     pub struct MPSNDArrayAffineInt4Dequantize;
 );
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSCoding for MPSNDArrayAffineInt4Dequantize {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSCopying for MPSNDArrayAffineInt4Dequantize {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl CopyingHelper for MPSNDArrayAffineInt4Dequantize {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSObjectProtocol for MPSNDArrayAffineInt4Dequantize {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSSecureCoding for MPSNDArrayAffineInt4Dequantize {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayAffineInt4Dequantize {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -478,7 +601,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSNDArrayMultiaryKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayAffineInt4Dequantize {
         #[method_id(@__retain_semantics Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
@@ -491,7 +618,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayAffineInt4Dequantize {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -511,7 +642,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayAffineInt4Dequantize {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

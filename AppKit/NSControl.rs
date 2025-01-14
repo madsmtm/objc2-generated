@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -56,7 +54,6 @@ unsafe impl NSUserInterfaceItemIdentification for NSControl {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSControl {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
@@ -188,7 +185,6 @@ extern_methods!(
         #[method(setDoubleValue:)]
         pub unsafe fn setDoubleValue(&self, double_value: c_double);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(sizeThatFits:)]
         pub unsafe fn sizeThatFits(&self, size: NSSize) -> NSSize;
 
@@ -278,11 +274,9 @@ extern_methods!(
         #[method(setAllowsExpansionToolTips:)]
         pub unsafe fn setAllowsExpansionToolTips(&self, allows_expansion_tool_tips: bool);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(expansionFrameWithFrame:)]
         pub unsafe fn expansionFrameWithFrame(&self, content_frame: NSRect) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(drawWithExpansionFrame:inView:)]
         pub unsafe fn drawWithExpansionFrame_inView(&self, content_frame: NSRect, view: &NSView);
     }
@@ -320,11 +314,7 @@ extern_methods!(
         #[method(validateEditing)]
         pub unsafe fn validateEditing(&self);
 
-        #[cfg(all(
-            feature = "NSEvent",
-            feature = "NSText",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSEvent", feature = "NSText"))]
         #[method(editWithFrame:editor:delegate:event:)]
         pub unsafe fn editWithFrame_editor_delegate_event(
             &self,
@@ -334,7 +324,7 @@ extern_methods!(
             event: &NSEvent,
         );
 
-        #[cfg(all(feature = "NSText", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSText")]
         #[method(selectWithFrame:editor:delegate:start:length:)]
         pub unsafe fn selectWithFrame_editor_delegate_start_length(
             &self,

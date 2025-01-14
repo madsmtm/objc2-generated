@@ -49,7 +49,11 @@ unsafe impl NSObjectProtocol for ODQuery {}
 
 extern_methods!(
     unsafe impl ODQuery {
-        #[cfg(all(feature = "CFOpenDirectoryConstants", feature = "ODNode"))]
+        #[cfg(all(
+            feature = "CFOpenDirectory",
+            feature = "CFOpenDirectoryConstants",
+            feature = "ODNode"
+        ))]
         /// Creates an autoreleased query with the node using the parameters provided
         ///
         /// Creates an autoreleased query with the node using the supplied query parameters.  Some parameters
@@ -68,7 +72,11 @@ extern_methods!(
             out_error: Option<&mut Option<Retained<NSError>>>,
         ) -> Option<Retained<ODQuery>>;
 
-        #[cfg(all(feature = "CFOpenDirectoryConstants", feature = "ODNode"))]
+        #[cfg(all(
+            feature = "CFOpenDirectory",
+            feature = "CFOpenDirectoryConstants",
+            feature = "ODNode"
+        ))]
         /// Creates a query with the node using the parameters provided
         ///
         /// Creates a query with the node using the supplied query parameters.  Some parameters

@@ -79,11 +79,9 @@ extern_methods!(
         #[method(resizedColumn)]
         pub unsafe fn resizedColumn(&self) -> NSInteger;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(headerRectOfColumn:)]
         pub unsafe fn headerRectOfColumn(&self, column: NSInteger) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(columnAtPoint:)]
         pub unsafe fn columnAtPoint(&self, point: NSPoint) -> NSInteger;
     }
@@ -93,7 +91,6 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableHeaderView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 

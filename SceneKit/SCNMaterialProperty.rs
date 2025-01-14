@@ -9,9 +9,6 @@ use objc2_foundation::*;
 #[cfg(feature = "objc2-metal")]
 #[cfg(not(target_os = "watchos"))]
 use objc2_metal::*;
-#[cfg(feature = "objc2-quartz-core")]
-#[cfg(not(target_os = "watchos"))]
-use objc2_quartz_core::*;
 
 use crate::*;
 
@@ -150,21 +147,13 @@ extern_methods!(
         #[method(setMipFilter:)]
         pub unsafe fn setMipFilter(&self, mip_filter: SCNFilterMode);
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Determines the receiver's contents transform. Animatable.
         #[method(contentsTransform)]
         pub unsafe fn contentsTransform(&self) -> SCNMatrix4;
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`contentsTransform`][Self::contentsTransform].
         #[method(setContentsTransform:)]

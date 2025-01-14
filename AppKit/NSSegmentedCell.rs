@@ -160,11 +160,7 @@ extern_methods!(
         #[method(setSegmentStyle:)]
         pub unsafe fn setSegmentStyle(&self, segment_style: NSSegmentStyle);
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(drawSegment:inFrame:withView:)]
         pub unsafe fn drawSegment_inFrame_withView(
             &self,

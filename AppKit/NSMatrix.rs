@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -109,11 +107,10 @@ unsafe impl NSViewToolTipOwner for NSMatrix {}
 extern_methods!(
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSMatrix {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[cfg(all(feature = "NSCell", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSCell")]
         #[method_id(@__retain_semantics Init initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_prototype_numberOfRows_numberOfColumns(
             this: Allocated<Self>,
@@ -124,7 +121,6 @@ extern_methods!(
             cols_wide: NSInteger,
         ) -> Retained<Self>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_cellClass_numberOfRows_numberOfColumns(
             this: Allocated<Self>,
@@ -244,20 +240,16 @@ extern_methods!(
         #[method(selectCellWithTag:)]
         pub unsafe fn selectCellWithTag(&self, tag: NSInteger) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(cellSize)]
         pub unsafe fn cellSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`cellSize`][Self::cellSize].
         #[method(setCellSize:)]
         pub unsafe fn setCellSize(&self, cell_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(intercellSpacing)]
         pub unsafe fn intercellSpacing(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`intercellSpacing`][Self::intercellSpacing].
         #[method(setIntercellSpacing:)]
         pub unsafe fn setIntercellSpacing(&self, intercell_spacing: NSSize);
@@ -326,7 +318,6 @@ extern_methods!(
             col: NSInteger,
         ) -> Option<Retained<NSCell>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(cellFrameAtRow:column:)]
         pub unsafe fn cellFrameAtRow_column(&self, row: NSInteger, col: NSInteger) -> NSRect;
 
@@ -339,7 +330,6 @@ extern_methods!(
             cell: &NSCell,
         ) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(getRow:column:forPoint:)]
         pub unsafe fn getRow_column_forPoint(
             &self,

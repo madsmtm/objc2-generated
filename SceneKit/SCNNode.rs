@@ -9,9 +9,6 @@ use objc2_core_foundation::*;
 #[cfg(not(target_os = "watchos"))]
 use objc2_core_image::*;
 use objc2_foundation::*;
-#[cfg(feature = "objc2-quartz-core")]
-#[cfg(not(target_os = "watchos"))]
-use objc2_quartz_core::*;
 
 use crate::*;
 
@@ -214,11 +211,7 @@ extern_methods!(
         #[method(setMorpher:)]
         pub unsafe fn setMorpher(&self, morpher: Option<&SCNMorpher>);
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Determines the receiver's transform. Animatable.
         ///
@@ -226,31 +219,19 @@ extern_methods!(
         #[method(transform)]
         pub unsafe fn transform(&self) -> SCNMatrix4;
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`transform`][Self::transform].
         #[method(setTransform:)]
         pub unsafe fn setTransform(&self, transform: SCNMatrix4);
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Determines the receiver's transform in world space (relative to the scene's root node). Animatable.
         #[method(worldTransform)]
         pub unsafe fn worldTransform(&self) -> SCNMatrix4;
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         #[method(setWorldTransform:)]
         pub unsafe fn setWorldTransform(&self, world_transform: SCNMatrix4);
@@ -336,21 +317,13 @@ extern_methods!(
         #[method(setScale:)]
         pub unsafe fn setScale(&self, scale: SCNVector3);
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Determines the receiver's pivot. Animatable.
         #[method(pivot)]
         pub unsafe fn pivot(&self) -> SCNMatrix4;
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`pivot`][Self::pivot].
         #[method(setPivot:)]
@@ -546,11 +519,7 @@ extern_methods!(
             node: Option<&SCNNode>,
         ) -> SCNVector3;
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Converts a transform from the receiver’s coordinate system to that of the specified node.
         ///
@@ -564,11 +533,7 @@ extern_methods!(
             node: Option<&SCNNode>,
         ) -> SCNMatrix4;
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Converts a transform from the coordinate system of a given node to that of the receiver.
         ///

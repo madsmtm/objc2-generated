@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -192,11 +190,7 @@ extern_protocol!(
             identifier: &NSPageControllerObjectIdentifier,
         ) -> Retained<NSViewController>;
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSViewController",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         #[optional]
         #[method(pageController:frameForObject:)]
         unsafe fn pageController_frameForObject(

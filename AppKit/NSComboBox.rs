@@ -242,11 +242,9 @@ extern_methods!(
         #[method(setHasVerticalScroller:)]
         pub unsafe fn setHasVerticalScroller(&self, has_vertical_scroller: bool);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(intercellSpacing)]
         pub unsafe fn intercellSpacing(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`intercellSpacing`][Self::intercellSpacing].
         #[method(setIntercellSpacing:)]
         pub unsafe fn setIntercellSpacing(&self, intercell_spacing: NSSize);
@@ -380,7 +378,6 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSComboBox {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 

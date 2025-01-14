@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -23,10 +21,7 @@ unsafe impl NSObjectProtocol for NSAccessibilityElement {}
 
 extern_methods!(
     unsafe impl NSAccessibilityElement {
-        #[cfg(all(
-            feature = "NSAccessibilityConstants",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(feature = "NSAccessibilityConstants")]
         #[method_id(@__retain_semantics Other accessibilityElementWithRole:frame:label:parent:)]
         pub unsafe fn accessibilityElementWithRole_frame_label_parent(
             role: &NSAccessibilityRole,
@@ -38,11 +33,9 @@ extern_methods!(
         #[method(accessibilityAddChildElement:)]
         pub unsafe fn accessibilityAddChildElement(&self, child_element: &NSAccessibilityElement);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(accessibilityFrameInParentSpace)]
         pub unsafe fn accessibilityFrameInParentSpace(&self) -> NSRect;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`accessibilityFrameInParentSpace`][Self::accessibilityFrameInParentSpace].
         #[method(setAccessibilityFrameInParentSpace:)]
         pub unsafe fn setAccessibilityFrameInParentSpace(

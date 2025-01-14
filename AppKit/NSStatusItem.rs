@@ -225,7 +225,6 @@ extern_methods!(
         #[method(setView:)]
         pub unsafe fn setView(&self, view: Option<&NSView>);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "Use the standard button instead which handles highlight drawing, making this method obsolete"]
         #[method(drawStatusBarBackgroundInRect:withHighlight:)]
         pub unsafe fn drawStatusBarBackgroundInRect_withHighlight(

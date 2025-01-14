@@ -21,29 +21,57 @@ extern_class!(
         NSObject
     ))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     pub struct MPSNDArrayIdentity;
 );
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSCoding for MPSNDArrayIdentity {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSCopying for MPSNDArrayIdentity {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl CopyingHelper for MPSNDArrayIdentity {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSObjectProtocol for MPSNDArrayIdentity {}
 
-#[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+#[cfg(all(
+    feature = "MPSCore",
+    feature = "MPSKernel",
+    feature = "MPSNDArrayKernel"
+))]
 unsafe impl NSSecureCoding for MPSNDArrayIdentity {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayIdentity {
         #[method_id(@__retain_semantics Init initWithDevice:)]
         pub unsafe fn initWithDevice(
@@ -51,7 +79,7 @@ extern_methods!(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[cfg(all(feature = "MPSCoreTypes", feature = "MPSNDArray"))]
+        #[cfg(feature = "MPSCoreTypes")]
         /// Do a reshape operation, either by trying to alias the array, returning an arrayview, or by copying.
         ///
         /// Parameter `cmdBuf`: The command buffer into which to encode the kernel, or to create a temporary array alias.
@@ -75,7 +103,6 @@ extern_methods!(
             destination_array: Option<&MPSNDArray>,
         ) -> Option<Retained<MPSNDArray>>;
 
-        #[cfg(feature = "MPSNDArray")]
         #[method_id(@__retain_semantics Other reshapeWithCommandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:)]
         pub unsafe fn reshapeWithCommandBuffer_sourceArray_dimensionCount_dimensionSizes_destinationArray(
             &self,
@@ -86,7 +113,7 @@ extern_methods!(
             destination_array: Option<&MPSNDArray>,
         ) -> Option<Retained<MPSNDArray>>;
 
-        #[cfg(all(feature = "MPSCoreTypes", feature = "MPSNDArray"))]
+        #[cfg(feature = "MPSCoreTypes")]
         #[method_id(@__retain_semantics Other reshapeWithCommandEncoder:commandBuffer:sourceArray:shape:destinationArray:)]
         pub unsafe fn reshapeWithCommandEncoder_commandBuffer_sourceArray_shape_destinationArray(
             &self,
@@ -97,7 +124,6 @@ extern_methods!(
             destination_array: Option<&MPSNDArray>,
         ) -> Option<Retained<MPSNDArray>>;
 
-        #[cfg(feature = "MPSNDArray")]
         #[method_id(@__retain_semantics Other reshapeWithCommandEncoder:commandBuffer:sourceArray:dimensionCount:dimensionSizes:destinationArray:)]
         pub unsafe fn reshapeWithCommandEncoder_commandBuffer_sourceArray_dimensionCount_dimensionSizes_destinationArray(
             &self,
@@ -113,7 +139,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSNDArrayUnaryKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayIdentity {
         #[method_id(@__retain_semantics Init initWithDevice:sourceCount:)]
         pub unsafe fn initWithDevice_sourceCount(
@@ -133,7 +163,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayIdentity {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -153,7 +187,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSKernel", feature = "MPSNDArrayKernel"))]
+    #[cfg(all(
+        feature = "MPSCore",
+        feature = "MPSKernel",
+        feature = "MPSNDArrayKernel"
+    ))]
     unsafe impl MPSNDArrayIdentity {
         #[method_id(@__retain_semantics Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

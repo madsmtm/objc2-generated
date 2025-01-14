@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -269,22 +267,14 @@ extern_methods!(
         #[method_id(@__retain_semantics Other titleOfSelectedItem)]
         pub unsafe fn titleOfSelectedItem(&self) -> Option<Retained<NSString>>;
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(attachPopUpWithFrame:inView:)]
         pub unsafe fn attachPopUpWithFrame_inView(&self, cell_frame: NSRect, control_view: &NSView);
 
         #[method(dismissPopUp)]
         pub unsafe fn dismissPopUp(&self);
 
-        #[cfg(all(
-            feature = "NSResponder",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
-        ))]
+        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[method(performClickWithFrame:inView:)]
         pub unsafe fn performClickWithFrame_inView(&self, frame: NSRect, control_view: &NSView);
 

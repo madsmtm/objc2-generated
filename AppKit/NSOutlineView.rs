@@ -290,7 +290,6 @@ extern_methods!(
         #[method(setAutoresizesOutlineColumn:)]
         pub unsafe fn setAutoresizesOutlineColumn(&self, autoresizes_outline_column: bool);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(frameOfOutlineCellAtRow:)]
         pub unsafe fn frameOfOutlineCellAtRow(&self, row: NSInteger) -> NSRect;
 
@@ -379,7 +378,6 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSOutlineView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
@@ -560,8 +558,7 @@ extern_protocol!(
             feature = "NSDraggingSession",
             feature = "NSResponder",
             feature = "NSTableView",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:draggingSession:willBeginAtPoint:forItems:)]
@@ -579,8 +576,7 @@ extern_protocol!(
             feature = "NSDraggingSession",
             feature = "NSResponder",
             feature = "NSTableView",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method(outlineView:draggingSession:endedAtPoint:operation:)]
@@ -856,8 +852,7 @@ extern_protocol!(
             feature = "NSResponder",
             feature = "NSTableColumn",
             feature = "NSTableView",
-            feature = "NSView",
-            feature = "objc2-core-foundation"
+            feature = "NSView"
         ))]
         #[optional]
         #[method_id(@__retain_semantics Other outlineView:toolTipForCell:rect:tableColumn:item:mouseLocation:)]

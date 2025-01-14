@@ -133,7 +133,6 @@ extern_methods!(
         #[method(isReadyForDisplay)]
         pub unsafe fn isReadyForDisplay(&self) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// The current size and position of the video image as displayed within the receiver's view's bounds.
         #[method(videoBounds)]
         pub unsafe fn videoBounds(&self) -> NSRect;
@@ -258,7 +257,6 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl AVPlayerView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 

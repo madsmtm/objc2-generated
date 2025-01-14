@@ -9,9 +9,6 @@ use objc2_app_kit::*;
 #[cfg(feature = "objc2-av-foundation")]
 use objc2_av_foundation::*;
 use objc2_foundation::*;
-#[cfg(feature = "objc2-quartz-core")]
-#[cfg(not(target_os = "watchos"))]
-use objc2_quartz_core::*;
 
 use crate::*;
 
@@ -55,7 +52,7 @@ extern_methods!(
             content_source: &AVPictureInPictureControllerContentSource,
         ) -> Retained<Self>;
 
-        #[cfg(all(feature = "objc2-av-foundation", feature = "objc2-quartz-core"))]
+        #[cfg(feature = "objc2-av-foundation")]
         #[cfg(not(target_os = "watchos"))]
         /// Parameter `playerLayer`: The player layer from which to source the media content for the Picture in Picture controller.
         ///
@@ -79,7 +76,7 @@ extern_methods!(
             content_source: Option<&AVPictureInPictureControllerContentSource>,
         );
 
-        #[cfg(all(feature = "objc2-av-foundation", feature = "objc2-quartz-core"))]
+        #[cfg(feature = "objc2-av-foundation")]
         #[cfg(not(target_os = "watchos"))]
         /// The receiver's player layer.
         #[method_id(@__retain_semantics Other playerLayer)]
@@ -186,7 +183,7 @@ extern_methods!(
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[cfg(all(feature = "objc2-av-foundation", feature = "objc2-quartz-core"))]
+        #[cfg(feature = "objc2-av-foundation")]
         #[cfg(not(target_os = "watchos"))]
         /// Parameter `playerLayer`: The player layer to be shown in Picture in Picture.
         ///
@@ -197,7 +194,7 @@ extern_methods!(
             player_layer: &AVPlayerLayer,
         ) -> Retained<Self>;
 
-        #[cfg(all(feature = "objc2-av-foundation", feature = "objc2-quartz-core"))]
+        #[cfg(feature = "objc2-av-foundation")]
         #[cfg(not(target_os = "watchos"))]
         /// The receiver's player layer.
         #[method_id(@__retain_semantics Other playerLayer)]

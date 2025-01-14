@@ -24,6 +24,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
         feature = "MPSAccelerationStructure",
+        feature = "MPSCore",
         feature = "MPSKernel",
         feature = "MPSPolygonAccelerationStructure"
     ))]
@@ -33,6 +34,7 @@ extern_class!(
 
 #[cfg(all(
     feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSPolygonAccelerationStructure"
 ))]
@@ -40,6 +42,7 @@ unsafe impl NSCoding for MPSQuadrilateralAccelerationStructure {}
 
 #[cfg(all(
     feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSPolygonAccelerationStructure"
 ))]
@@ -47,6 +50,7 @@ unsafe impl NSCopying for MPSQuadrilateralAccelerationStructure {}
 
 #[cfg(all(
     feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSPolygonAccelerationStructure"
 ))]
@@ -56,6 +60,7 @@ unsafe impl CopyingHelper for MPSQuadrilateralAccelerationStructure {
 
 #[cfg(all(
     feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSPolygonAccelerationStructure"
 ))]
@@ -63,6 +68,7 @@ unsafe impl NSObjectProtocol for MPSQuadrilateralAccelerationStructure {}
 
 #[cfg(all(
     feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
     feature = "MPSKernel",
     feature = "MPSPolygonAccelerationStructure"
 ))]
@@ -71,6 +77,7 @@ unsafe impl NSSecureCoding for MPSQuadrilateralAccelerationStructure {}
 extern_methods!(
     #[cfg(all(
         feature = "MPSAccelerationStructure",
+        feature = "MPSCore",
         feature = "MPSKernel",
         feature = "MPSPolygonAccelerationStructure"
     ))]
@@ -92,6 +99,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSAccelerationStructure`
     #[cfg(all(
         feature = "MPSAccelerationStructure",
+        feature = "MPSCore",
         feature = "MPSKernel",
         feature = "MPSPolygonAccelerationStructure"
     ))]
@@ -153,6 +161,7 @@ extern_methods!(
     /// Methods declared on superclass `MPSKernel`
     #[cfg(all(
         feature = "MPSAccelerationStructure",
+        feature = "MPSCore",
         feature = "MPSKernel",
         feature = "MPSPolygonAccelerationStructure"
     ))]
@@ -177,6 +186,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(
         feature = "MPSAccelerationStructure",
+        feature = "MPSCore",
         feature = "MPSKernel",
         feature = "MPSPolygonAccelerationStructure"
     ))]

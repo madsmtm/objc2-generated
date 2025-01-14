@@ -149,7 +149,6 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SCNView {
-        #[cfg(feature = "objc2-core-foundation")]
         /// Initializes and returns a newly allocated SCNView object with a specified frame rectangle.
         ///
         /// Parameter `frame`: The frame rectangle for the created view object.
@@ -290,7 +289,6 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl SCNView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 

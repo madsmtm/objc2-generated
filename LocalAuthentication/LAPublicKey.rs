@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-security")]
 use objc2_security::*;
@@ -34,11 +32,7 @@ extern_methods!(
             handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
-        #[cfg(all(
-            feature = "block2",
-            feature = "objc2-core-foundation",
-            feature = "objc2-security"
-        ))]
+        #[cfg(all(feature = "block2", feature = "objc2-security"))]
         /// Encrypts the given data
         ///
         /// Parameter `data`: The data to encrypt.
@@ -56,7 +50,7 @@ extern_methods!(
             handler: &block2::Block<dyn Fn(*mut NSData, *mut NSError)>,
         );
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
+        #[cfg(feature = "objc2-security")]
         /// Checks if the the provided algorithm can be used for encryption with the key.
         ///
         /// Parameter `algorithm`: Cryptographic algorithm
@@ -65,11 +59,7 @@ extern_methods!(
         #[method(canEncryptUsingSecKeyAlgorithm:)]
         pub unsafe fn canEncryptUsingSecKeyAlgorithm(&self, algorithm: &SecKeyAlgorithm) -> bool;
 
-        #[cfg(all(
-            feature = "block2",
-            feature = "objc2-core-foundation",
-            feature = "objc2-security"
-        ))]
+        #[cfg(all(feature = "block2", feature = "objc2-security"))]
         /// Verifies a digital signature for the given data.
         ///
         /// Parameter `signedData`: The signed data.
@@ -89,7 +79,7 @@ extern_methods!(
             handler: &block2::Block<dyn Fn(*mut NSError)>,
         );
 
-        #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-security"))]
+        #[cfg(feature = "objc2-security")]
         /// Checks if the the provided algorithm can be used for verifying signatures with the key.
         ///
         /// Parameter `algorithm`: Cryptographic algorithm

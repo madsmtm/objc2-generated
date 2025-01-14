@@ -61,7 +61,6 @@ unsafe impl NSObjectProtocol for NSDrawer {}
 extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSDrawer {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithContentSize:preferredEdge:)]
         pub unsafe fn initWithContentSize_preferredEdge(
             this: Allocated<Self>,
@@ -125,29 +124,23 @@ extern_methods!(
         #[method(edge)]
         pub unsafe fn edge(&self) -> NSRectEdge;
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(contentSize)]
         pub unsafe fn contentSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentSize`][Self::contentSize].
         #[method(setContentSize:)]
         pub unsafe fn setContentSize(&self, content_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(minContentSize)]
         pub unsafe fn minContentSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minContentSize`][Self::minContentSize].
         #[method(setMinContentSize:)]
         pub unsafe fn setMinContentSize(&self, min_content_size: NSSize);
 
-        #[cfg(feature = "objc2-core-foundation")]
         #[method(maxContentSize)]
         pub unsafe fn maxContentSize(&self) -> NSSize;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maxContentSize`][Self::maxContentSize].
         #[method(setMaxContentSize:)]
         pub unsafe fn setMaxContentSize(&self, max_content_size: NSSize);
@@ -221,7 +214,7 @@ extern_protocol!(
         #[method(drawerShouldClose:)]
         unsafe fn drawerShouldClose(&self, sender: &NSDrawer) -> bool;
 
-        #[cfg(all(feature = "NSResponder", feature = "objc2-core-foundation"))]
+        #[cfg(feature = "NSResponder")]
         #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
         #[optional]
         #[method(drawerWillResizeContents:toSize:)]

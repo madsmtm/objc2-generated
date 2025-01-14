@@ -6,9 +6,6 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-core-foundation")]
 use objc2_core_foundation::*;
 use objc2_foundation::*;
-#[cfg(feature = "objc2-quartz-core")]
-#[cfg(not(target_os = "watchos"))]
-use objc2_quartz_core::*;
 
 use crate::*;
 
@@ -170,21 +167,13 @@ extern_methods!(
         #[method(setOrthographicScale:)]
         pub unsafe fn setOrthographicScale(&self, orthographic_scale: c_double);
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Determines the projection transform used by the camera to project the world onscreen.
         #[method(projectionTransform)]
         pub unsafe fn projectionTransform(&self) -> SCNMatrix4;
 
-        #[cfg(all(
-            feature = "SceneKitTypes",
-            feature = "objc2-core-foundation",
-            feature = "objc2-quartz-core"
-        ))]
+        #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`projectionTransform`][Self::projectionTransform].
         #[method(setProjectionTransform:)]

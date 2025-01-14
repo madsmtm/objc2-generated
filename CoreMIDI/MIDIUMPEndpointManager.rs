@@ -15,7 +15,7 @@ extern "C" {
     /// The MIDIUMPEndpoint sent in userInfo is the endpoint which was recently discovered.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpendpointwasaddednotification?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static MIDIUMPEndpointWasAddedNotification: &'static NSNotificationName;
 }
 
@@ -30,7 +30,7 @@ extern "C" {
     /// disposed.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpendpointwasremovednotification?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static MIDIUMPEndpointWasRemovedNotification: &'static NSNotificationName;
 }
 
@@ -42,7 +42,7 @@ extern "C" {
     /// If this notification is posted, an Endpoint Info Notification was sent from the UMP endpoint in userInfo.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpendpointwasupdatednotification?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static MIDIUMPEndpointWasUpdatedNotification: &'static NSNotificationName;
 }
 
@@ -54,20 +54,20 @@ extern "C" {
     /// enabled state, Group configuration, UI hint, MIDI 1.0 status, etc..
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpfunctionblockwasupdatednotification?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static MIDIUMPFunctionBlockWasUpdatedNotification: &'static NSNotificationName;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpendpointmanagerdictionarykey?language=objc)
 // NS_TYPED_ENUM
-#[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+#[cfg(feature = "objc2-foundation")]
 pub type MIDIUMPEndpointManagerDictionaryKey = NSString;
 
 extern "C" {
     /// Value is a MIDIUMPEndpoint
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpendpointobjectkey?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static MIDIUMPEndpointObjectKey: &'static MIDIUMPEndpointManagerDictionaryKey;
 }
 
@@ -75,7 +75,7 @@ extern "C" {
     /// Value is a MIDIUMPFunctionBlock
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpfunctionblockobjectkey?language=objc)
-    #[cfg(all(feature = "objc2", feature = "objc2-foundation"))]
+    #[cfg(feature = "objc2-foundation")]
     pub static MIDIUMPFunctionBlockObjectKey: &'static MIDIUMPEndpointManagerDictionaryKey;
 }
 

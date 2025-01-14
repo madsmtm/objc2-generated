@@ -6,8 +6,6 @@ use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 use objc2_app_kit::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -200,7 +198,6 @@ extern_methods!(
         #[method(registerURLSchemeAsLocal:)]
         pub unsafe fn registerURLSchemeAsLocal(scheme: Option<&NSString>, mtm: MainThreadMarker);
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// The designated initializer for WebView.
         ///
         /// Initialize a WebView with the supplied parameters. This method will
@@ -591,7 +588,6 @@ extern_methods!(
         #[method(isLoading)]
         pub unsafe fn isLoading(&self) -> bool;
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Parameter `point`: A point in the coordinates of the WebView
         ///
         /// Returns: An element dictionary describing the point
@@ -643,7 +639,6 @@ extern_methods!(
             pasteboard: Option<&NSPasteboard>,
         );
 
-        #[cfg(feature = "objc2-core-foundation")]
         /// Parameter `point`: A point in the coordinates of the WebView
         ///
         /// This method moves the caret that shows where something being dragged will be dropped. It may cause the WebView to scroll
@@ -719,7 +714,6 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl WebView {
-        #[cfg(feature = "objc2-core-foundation")]
         #[method_id(@__retain_semantics Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
@@ -881,8 +875,7 @@ extern_methods!(
         #[cfg(all(
             feature = "DOMObject",
             feature = "DOMRange",
-            feature = "WebScriptObject",
-            feature = "objc2-core-foundation"
+            feature = "WebScriptObject"
         ))]
         #[deprecated = "No longer supported; please adopt WKWebView."]
         #[method_id(@__retain_semantics Other editableDOMRangeForPoint:)]

@@ -151,30 +151,58 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure?language=objc)
     #[unsafe(super(MPSAccelerationStructure, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[cfg(all(feature = "MPSAccelerationStructure", feature = "MPSKernel"))]
+    #[cfg(all(
+        feature = "MPSAccelerationStructure",
+        feature = "MPSCore",
+        feature = "MPSKernel"
+    ))]
     #[deprecated]
     pub struct MPSInstanceAccelerationStructure;
 );
 
-#[cfg(all(feature = "MPSAccelerationStructure", feature = "MPSKernel"))]
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel"
+))]
 unsafe impl NSCoding for MPSInstanceAccelerationStructure {}
 
-#[cfg(all(feature = "MPSAccelerationStructure", feature = "MPSKernel"))]
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel"
+))]
 unsafe impl NSCopying for MPSInstanceAccelerationStructure {}
 
-#[cfg(all(feature = "MPSAccelerationStructure", feature = "MPSKernel"))]
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel"
+))]
 unsafe impl CopyingHelper for MPSInstanceAccelerationStructure {
     type Result = Self;
 }
 
-#[cfg(all(feature = "MPSAccelerationStructure", feature = "MPSKernel"))]
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel"
+))]
 unsafe impl NSObjectProtocol for MPSInstanceAccelerationStructure {}
 
-#[cfg(all(feature = "MPSAccelerationStructure", feature = "MPSKernel"))]
+#[cfg(all(
+    feature = "MPSAccelerationStructure",
+    feature = "MPSCore",
+    feature = "MPSKernel"
+))]
 unsafe impl NSSecureCoding for MPSInstanceAccelerationStructure {}
 
 extern_methods!(
-    #[cfg(all(feature = "MPSAccelerationStructure", feature = "MPSKernel"))]
+    #[cfg(all(
+        feature = "MPSAccelerationStructure",
+        feature = "MPSCore",
+        feature = "MPSKernel"
+    ))]
     unsafe impl MPSInstanceAccelerationStructure {
         #[cfg(feature = "MPSPolygonAccelerationStructure")]
         /// Acceleration structures available for use in this instance acceleration structure. Each
@@ -294,7 +322,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSAccelerationStructure`
-    #[cfg(all(feature = "MPSAccelerationStructure", feature = "MPSKernel"))]
+    #[cfg(all(
+        feature = "MPSAccelerationStructure",
+        feature = "MPSCore",
+        feature = "MPSKernel"
+    ))]
     unsafe impl MPSInstanceAccelerationStructure {
         #[deprecated]
         #[method_id(@__retain_semantics Init init)]
@@ -351,7 +383,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `MPSKernel`
-    #[cfg(all(feature = "MPSAccelerationStructure", feature = "MPSKernel"))]
+    #[cfg(all(
+        feature = "MPSAccelerationStructure",
+        feature = "MPSCore",
+        feature = "MPSKernel"
+    ))]
     unsafe impl MPSInstanceAccelerationStructure {
         /// Called by NSCoder to decode MPSKernels
         ///
@@ -371,7 +407,11 @@ extern_methods!(
 
 extern_methods!(
     /// Methods declared on superclass `NSObject`
-    #[cfg(all(feature = "MPSAccelerationStructure", feature = "MPSKernel"))]
+    #[cfg(all(
+        feature = "MPSAccelerationStructure",
+        feature = "MPSCore",
+        feature = "MPSKernel"
+    ))]
     unsafe impl MPSInstanceAccelerationStructure {
         #[method_id(@__retain_semantics New new)]
         pub unsafe fn new() -> Retained<Self>;
