@@ -367,36 +367,9 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreatePattern(
     NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/colorsyncprofile?language=objc)
-#[repr(C)]
-pub struct ColorSyncProfile {
-    inner: [u8; 0],
-    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
-}
-
-cf_type!(
-    #[encoding_name = "ColorSyncProfile"]
-    unsafe impl ColorSyncProfile {}
-);
-
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendedrange?language=objc)
     pub static kCGColorSpaceExtendedRange: &'static CFString;
-}
-
-#[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceCreateWithColorSyncProfile(
-    param1: Option<&ColorSyncProfile>,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CGColorSpace>> {
-    extern "C-unwind" {
-        fn CGColorSpaceCreateWithColorSyncProfile(
-            param1: Option<&ColorSyncProfile>,
-            options: Option<&CFDictionary>,
-        ) -> *mut CGColorSpace;
-    }
-    let ret = unsafe { CGColorSpaceCreateWithColorSyncProfile(param1, options) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]

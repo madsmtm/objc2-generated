@@ -429,8 +429,6 @@ pub use self::__CGColorSpace::CGColorSpaceCreateLinearized;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCreatePattern;
 #[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCreateWithColorSyncProfile;
-#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCreateWithICCData;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceCreateWithICCProfile;
@@ -468,8 +466,6 @@ pub use self::__CGColorSpace::CGColorSpaceSupportsOutput;
 pub use self::__CGColorSpace::CGColorSpaceUsesExtendedRange;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceUsesITUR_2100TF;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::ColorSyncProfile;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGBlendMode;
 #[cfg(feature = "CGContext")]

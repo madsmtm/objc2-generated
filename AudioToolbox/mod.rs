@@ -189,8 +189,6 @@ pub use self::__AUAudioUnit::AUScheduleMIDIEventBlock;
 pub use self::__AUAudioUnit::AUScheduleParameterBlock;
 #[cfg(all(feature = "AUAudioUnit", feature = "block2"))]
 pub use self::__AUAudioUnit::CallHostBlock;
-#[cfg(feature = "AUAudioUnit")]
-pub use self::__AUAudioUnit::MIDIChannelNumber;
 #[cfg(feature = "AUAudioUnitImplementation")]
 pub use self::__AUAudioUnitImplementation::AUAudioUnitFactory;
 #[cfg(all(feature = "AUAudioUnit", feature = "AUAudioUnitImplementation"))]

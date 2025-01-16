@@ -14,9 +14,6 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudioobjectid?language=objc)
 pub type AUAudioObjectID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/midichannelnumber?language=objc)
-pub type MIDIChannelNumber = u8;
-
 /// A result code returned from an audio unit's render function.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitstatus?language=objc)
