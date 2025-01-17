@@ -3,7 +3,6 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
-use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 
 use crate::*;

@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::cell::UnsafeCell;
 use core::marker::{PhantomData, PhantomPinned};
-use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 #[cfg(feature = "objc2-metal")]
 use objc2_metal::*;
