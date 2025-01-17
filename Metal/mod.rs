@@ -496,6 +496,8 @@ pub use self::__MTLDevice::MTLAutoreleasedComputePipelineReflection;
 pub use self::__MTLDevice::MTLAutoreleasedRenderPipelineReflection;
 #[cfg(feature = "MTLDevice")]
 pub use self::__MTLDevice::MTLCopyAllDevices;
+#[cfg(all(feature = "MTLDevice", feature = "block2"))]
+pub use self::__MTLDevice::MTLCopyAllDevicesWithObserver;
 #[cfg(feature = "MTLDevice")]
 pub use self::__MTLDevice::MTLCounterSamplingPoint;
 #[cfg(feature = "MTLDevice")]

@@ -207,6 +207,15 @@ extern_methods!(
         #[method(resolveWithTimeout:)]
         pub unsafe fn resolveWithTimeout(&self, timeout: NSTimeInterval);
 
+        #[cfg(feature = "NSStream")]
+        #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
+        #[method(getInputStream:outputStream:)]
+        pub unsafe fn getInputStream_outputStream(
+            &self,
+            input_stream: *mut *mut NSInputStream,
+            output_stream: *mut *mut NSOutputStream,
+        ) -> bool;
+
         #[cfg(feature = "NSData")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[method(setTXTRecordData:)]

@@ -97,6 +97,25 @@ extern_methods!(
             opt: NSPropertyListReadOptions,
             format: *mut NSPropertyListFormat,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
+
+        #[cfg(all(feature = "NSData", feature = "NSString"))]
+        #[deprecated = "Use dataWithPropertyList:format:options:error: instead."]
+        #[method_id(@__retain_semantics Other dataFromPropertyList:format:errorDescription:)]
+        pub unsafe fn dataFromPropertyList_format_errorDescription(
+            plist: &AnyObject,
+            format: NSPropertyListFormat,
+            error_string: *mut *mut NSString,
+        ) -> Option<Retained<NSData>>;
+
+        #[cfg(all(feature = "NSData", feature = "NSString"))]
+        #[deprecated = "Use propertyListWithData:options:format:error: instead."]
+        #[method_id(@__retain_semantics Other propertyListFromData:mutabilityOption:format:errorDescription:)]
+        pub unsafe fn propertyListFromData_mutabilityOption_format_errorDescription(
+            data: &NSData,
+            opt: NSPropertyListMutabilityOptions,
+            format: *mut NSPropertyListFormat,
+            error_string: *mut *mut NSString,
+        ) -> Option<Retained<AnyObject>>;
     }
 );
 

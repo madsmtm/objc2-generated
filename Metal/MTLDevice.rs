@@ -104,6 +104,28 @@ pub type MTLDeviceNotificationHandler = *mut block2::Block<
     dyn Fn(NonNull<ProtocolObject<dyn MTLDevice>>, NonNull<MTLDeviceNotificationName>),
 >;
 
+/// Returns an NSArray of the current set of available Metal devices and installs a notification handler
+/// to be notified of any further changes (additions, removals, etc.).  The observer return value is retained by Metal and may be
+/// passed to MTLRemoveDeviceObserver() if the application no longer wishes to receive notifications.
+///
+/// Note: The observer out parameter is returned with a +1 retain count in addition to the retain mentioned above.
+#[cfg(feature = "block2")]
+#[inline]
+pub unsafe extern "C-unwind" fn MTLCopyAllDevicesWithObserver(
+    observer: NonNull<*mut ProtocolObject<dyn NSObjectProtocol>>,
+    handler: MTLDeviceNotificationHandler,
+) -> Retained<NSArray<ProtocolObject<dyn MTLDevice>>> {
+    extern "C-unwind" {
+        fn MTLCopyAllDevicesWithObserver(
+            observer: NonNull<*mut ProtocolObject<dyn NSObjectProtocol>>,
+            handler: MTLDeviceNotificationHandler,
+        ) -> *mut NSArray<ProtocolObject<dyn MTLDevice>>;
+    }
+    let ret = unsafe { MTLCopyAllDevicesWithObserver(observer, handler) };
+    unsafe { Retained::from_raw(ret) }
+        .expect("function was marked as returning non-null, but actually returned NULL")
+}
+
 extern "C-unwind" {
     /// Removes a previously installed observer for device change notifications.
     pub fn MTLRemoveDeviceObserver(observer: &ProtocolObject<dyn NSObjectProtocol>);
