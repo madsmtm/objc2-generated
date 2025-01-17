@@ -96,8 +96,8 @@ pub unsafe extern "C-unwind" fn SecEncodeTransformCreate(
         fn SecEncodeTransformCreate(
             encode_type: &CFType,
             error: *mut *mut CFError,
-        ) -> *mut SecTransform;
+        ) -> Option<NonNull<SecTransform>>;
     }
     let ret = unsafe { SecEncodeTransformCreate(encode_type, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

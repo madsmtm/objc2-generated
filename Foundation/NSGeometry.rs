@@ -322,10 +322,10 @@ pub unsafe extern "C-unwind" fn NSIntersectsRect(a_rect: NSRect, b_rect: NSRect)
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromPoint(a_point: NSPoint) -> Retained<NSString> {
     extern "C-unwind" {
-        fn NSStringFromPoint(a_point: NSPoint) -> NonNull<NSString>;
+        fn NSStringFromPoint(a_point: NSPoint) -> *mut NSString;
     }
     let ret = unsafe { NSStringFromPoint(a_point) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -333,10 +333,10 @@ pub unsafe extern "C-unwind" fn NSStringFromPoint(a_point: NSPoint) -> Retained<
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromSize(a_size: NSSize) -> Retained<NSString> {
     extern "C-unwind" {
-        fn NSStringFromSize(a_size: NSSize) -> NonNull<NSString>;
+        fn NSStringFromSize(a_size: NSSize) -> *mut NSString;
     }
     let ret = unsafe { NSStringFromSize(a_size) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -344,10 +344,10 @@ pub unsafe extern "C-unwind" fn NSStringFromSize(a_size: NSSize) -> Retained<NSS
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromRect(a_rect: NSRect) -> Retained<NSString> {
     extern "C-unwind" {
-        fn NSStringFromRect(a_rect: NSRect) -> NonNull<NSString>;
+        fn NSStringFromRect(a_rect: NSRect) -> *mut NSString;
     }
     let ret = unsafe { NSStringFromRect(a_rect) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 

@@ -209,10 +209,10 @@ pub unsafe extern "C-unwind" fn SCNetworkReachabilityCreateWithAddress(
         fn SCNetworkReachabilityCreateWithAddress(
             allocator: Option<&CFAllocator>,
             address: NonNull<libc::sockaddr>,
-        ) -> *mut SCNetworkReachability;
+        ) -> Option<NonNull<SCNetworkReachability>>;
     }
     let ret = unsafe { SCNetworkReachabilityCreateWithAddress(allocator, address) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a reference to the specified network
@@ -241,12 +241,12 @@ pub unsafe extern "C-unwind" fn SCNetworkReachabilityCreateWithAddressPair(
             allocator: Option<&CFAllocator>,
             local_address: *const libc::sockaddr,
             remote_address: *const libc::sockaddr,
-        ) -> *mut SCNetworkReachability;
+        ) -> Option<NonNull<SCNetworkReachability>>;
     }
     let ret = unsafe {
         SCNetworkReachabilityCreateWithAddressPair(allocator, local_address, remote_address)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a reference to the specified network host or node
@@ -270,10 +270,10 @@ pub unsafe extern "C-unwind" fn SCNetworkReachabilityCreateWithName(
         fn SCNetworkReachabilityCreateWithName(
             allocator: Option<&CFAllocator>,
             nodename: NonNull<c_char>,
-        ) -> *mut SCNetworkReachability;
+        ) -> Option<NonNull<SCNetworkReachability>>;
     }
     let ret = unsafe { SCNetworkReachabilityCreateWithName(allocator, nodename) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 unsafe impl ConcreteType for SCNetworkReachability {

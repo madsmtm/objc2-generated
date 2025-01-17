@@ -28,10 +28,10 @@ pub unsafe extern "C-unwind" fn UIAccessibilityConvertPathToScreenCoordinates(
         fn UIAccessibilityConvertPathToScreenCoordinates(
             path: &UIBezierPath,
             view: &UIView,
-        ) -> NonNull<UIBezierPath>;
+        ) -> *mut UIBezierPath;
     }
     let ret = unsafe { UIAccessibilityConvertPathToScreenCoordinates(path, view) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 

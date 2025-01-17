@@ -275,10 +275,10 @@ pub unsafe extern "C-unwind" fn SSLCreateContext(
             alloc: Option<&CFAllocator>,
             protocol_side: SSLProtocolSide,
             connection_type: SSLConnectionType,
-        ) -> *mut SSLContext;
+        ) -> Option<NonNull<SSLContext>>;
     }
     let ret = unsafe { SSLCreateContext(alloc, protocol_side, connection_type) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[deprecated = "No longer supported. Use Network.framework."]

@@ -192,10 +192,10 @@ pub unsafe extern "C-unwind" fn SecTransformCreateFromExternalRepresentation(
         fn SecTransformCreateFromExternalRepresentation(
             dictionary: &CFDictionary,
             error: *mut *mut CFError,
-        ) -> *mut SecTransform;
+        ) -> Option<NonNull<SecTransform>>;
     }
     let ret = unsafe { SecTransformCreateFromExternalRepresentation(dictionary, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Create a CFDictionaryRef that contains enough
@@ -222,9 +222,10 @@ pub unsafe extern "C-unwind" fn SecTransformCopyExternalRepresentation(
     extern "C-unwind" {
         fn SecTransformCopyExternalRepresentation(
             transform_ref: &SecTransform,
-        ) -> NonNull<CFDictionary>;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SecTransformCopyExternalRepresentation(transform_ref) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -252,9 +253,10 @@ pub unsafe extern "C-unwind" fn SecTransformCopyExternalRepresentation(
 pub unsafe extern "C-unwind" fn SecTransformCreateGroupTransform() -> CFRetained<SecGroupTransform>
 {
     extern "C-unwind" {
-        fn SecTransformCreateGroupTransform() -> NonNull<SecGroupTransform>;
+        fn SecTransformCreateGroupTransform() -> Option<NonNull<SecGroupTransform>>;
     }
     let ret = unsafe { SecTransformCreateGroupTransform() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -372,7 +374,7 @@ pub unsafe extern "C-unwind" fn SecTransformConnectTransforms(
             destination_attribute_name: &CFString,
             group: &SecGroupTransform,
             error: *mut *mut CFError,
-        ) -> *mut SecGroupTransform;
+        ) -> Option<NonNull<SecGroupTransform>>;
     }
     let ret = unsafe {
         SecTransformConnectTransforms(
@@ -384,7 +386,7 @@ pub unsafe extern "C-unwind" fn SecTransformConnectTransforms(
             error,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Set a static value as the value of an attribute in a
@@ -461,10 +463,13 @@ pub unsafe extern "C-unwind" fn SecTransformGetAttribute(
     key: &CFString,
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
-        fn SecTransformGetAttribute(transform_ref: &SecTransform, key: &CFString) -> *mut CFType;
+        fn SecTransformGetAttribute(
+            transform_ref: &SecTransform,
+            key: &CFString,
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { SecTransformGetAttribute(transform_ref, key) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Finds a member of a transform group by its name.
@@ -496,10 +501,10 @@ pub unsafe extern "C-unwind" fn SecTransformFindByName(
         fn SecTransformFindByName(
             transform: &SecGroupTransform,
             name: &CFString,
-        ) -> *mut SecTransform;
+        ) -> Option<NonNull<SecTransform>>;
     }
     let ret = unsafe { SecTransformFindByName(transform, name) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Executes a Transform or transform group synchronously.
@@ -547,9 +552,10 @@ pub unsafe extern "C-unwind" fn SecTransformExecute(
         fn SecTransformExecute(
             transform_ref: &SecTransform,
             error_ref: *mut *mut CFError,
-        ) -> NonNull<CFType>;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { SecTransformExecute(transform_ref, error_ref) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 

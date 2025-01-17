@@ -436,9 +436,9 @@ pub unsafe extern "C-unwind" fn CWMergeNetworks(
     networks: &NSSet<CWNetwork>,
 ) -> Retained<NSSet<CWNetwork>> {
     extern "C-unwind" {
-        fn CWMergeNetworks(networks: &NSSet<CWNetwork>) -> NonNull<NSSet<CWNetwork>>;
+        fn CWMergeNetworks(networks: &NSSet<CWNetwork>) -> *mut NSSet<CWNetwork>;
     }
     let ret = unsafe { CWMergeNetworks(networks) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }

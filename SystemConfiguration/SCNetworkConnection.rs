@@ -304,11 +304,11 @@ pub unsafe extern "C-unwind" fn SCNetworkConnectionCreateWithServiceID(
             service_id: &CFString,
             callout: SCNetworkConnectionCallBack,
             context: *mut SCNetworkConnectionContext,
-        ) -> *mut SCNetworkConnection;
+        ) -> Option<NonNull<SCNetworkConnection>>;
     }
     let ret =
         unsafe { SCNetworkConnectionCreateWithServiceID(allocator, service_id, callout, context) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the service ID associated with the SCNetworkConnection.
@@ -321,10 +321,12 @@ pub unsafe extern "C-unwind" fn SCNetworkConnectionCopyServiceID(
     connection: &SCNetworkConnection,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn SCNetworkConnectionCopyServiceID(connection: &SCNetworkConnection) -> *mut CFString;
+        fn SCNetworkConnectionCopyServiceID(
+            connection: &SCNetworkConnection,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCNetworkConnectionCopyServiceID(connection) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -401,10 +403,10 @@ pub unsafe extern "C-unwind" fn SCNetworkConnectionCopyExtendedStatus(
     extern "C-unwind" {
         fn SCNetworkConnectionCopyExtendedStatus(
             connection: &SCNetworkConnection,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SCNetworkConnectionCopyExtendedStatus(connection) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the statistics of the SCNetworkConnection.
@@ -449,11 +451,12 @@ pub unsafe extern "C-unwind" fn SCNetworkConnectionCopyStatistics(
     connection: &SCNetworkConnection,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn SCNetworkConnectionCopyStatistics(connection: &SCNetworkConnection)
-            -> *mut CFDictionary;
+        fn SCNetworkConnectionCopyStatistics(
+            connection: &SCNetworkConnection,
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SCNetworkConnectionCopyStatistics(connection) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Starts the connection for the SCNetworkConnection.
@@ -567,10 +570,10 @@ pub unsafe extern "C-unwind" fn SCNetworkConnectionCopyUserOptions(
     extern "C-unwind" {
         fn SCNetworkConnectionCopyUserOptions(
             connection: &SCNetworkConnection,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SCNetworkConnectionCopyUserOptions(connection) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Schedules a connection with the run loop.

@@ -32,10 +32,10 @@ pub unsafe extern "C-unwind" fn CGLayerCreateWithContext(
             context: Option<&CGContext>,
             size: CGSize,
             auxiliary_info: Option<&CFDictionary>,
-        ) -> *mut CGLayer;
+        ) -> Option<NonNull<CGLayer>>;
     }
     let ret = unsafe { CGLayerCreateWithContext(context, size, auxiliary_info) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -48,10 +48,10 @@ pub unsafe extern "C-unwind" fn CGLayerGetContext(
     layer: Option<&CGLayer>,
 ) -> Option<CFRetained<CGContext>> {
     extern "C-unwind" {
-        fn CGLayerGetContext(layer: Option<&CGLayer>) -> *mut CGContext;
+        fn CGLayerGetContext(layer: Option<&CGLayer>) -> Option<NonNull<CGContext>>;
     }
     let ret = unsafe { CGLayerGetContext(layer) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

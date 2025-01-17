@@ -120,10 +120,10 @@ pub unsafe extern "C-unwind" fn SecIdentityCopyPreferred(
             name: &CFString,
             key_usage: Option<&CFArray>,
             valid_issuers: Option<&CFArray>,
-        ) -> *mut SecIdentity;
+        ) -> Option<NonNull<SecIdentity>>;
     }
     let ret = unsafe { SecIdentityCopyPreferred(name, key_usage, valid_issuers) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

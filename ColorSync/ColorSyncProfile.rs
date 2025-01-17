@@ -376,11 +376,13 @@ pub unsafe extern "C-unwind" fn ColorSyncProfileCreate(
     error: *mut *mut CFError,
 ) -> Option<CFRetained<ColorSyncProfile>> {
     extern "C-unwind" {
-        fn ColorSyncProfileCreate(data: &CFData, error: *mut *mut CFError)
-            -> *mut ColorSyncProfile;
+        fn ColorSyncProfileCreate(
+            data: &CFData,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<ColorSyncProfile>>;
     }
     let ret = unsafe { ColorSyncProfileCreate(data, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -392,10 +394,10 @@ pub unsafe extern "C-unwind" fn ColorSyncProfileCreateWithURL(
         fn ColorSyncProfileCreateWithURL(
             url: &CFURL,
             error: *mut *mut CFError,
-        ) -> *mut ColorSyncProfile;
+        ) -> Option<NonNull<ColorSyncProfile>>;
     }
     let ret = unsafe { ColorSyncProfileCreateWithURL(url, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -403,10 +405,10 @@ pub unsafe extern "C-unwind" fn ColorSyncProfileCreateWithName(
     name: &CFString,
 ) -> Option<CFRetained<ColorSyncProfile>> {
     extern "C-unwind" {
-        fn ColorSyncProfileCreateWithName(name: &CFString) -> *mut ColorSyncProfile;
+        fn ColorSyncProfileCreateWithName(name: &CFString) -> Option<NonNull<ColorSyncProfile>>;
     }
     let ret = unsafe { ColorSyncProfileCreateWithName(name) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -414,10 +416,12 @@ pub unsafe extern "C-unwind" fn ColorSyncProfileCreateWithDisplayID(
     display_id: u32,
 ) -> Option<CFRetained<ColorSyncProfile>> {
     extern "C-unwind" {
-        fn ColorSyncProfileCreateWithDisplayID(display_id: u32) -> *mut ColorSyncProfile;
+        fn ColorSyncProfileCreateWithDisplayID(
+            display_id: u32,
+        ) -> Option<NonNull<ColorSyncProfile>>;
     }
     let ret = unsafe { ColorSyncProfileCreateWithDisplayID(display_id) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -431,20 +435,20 @@ pub unsafe extern "C-unwind" fn ColorSyncProfileCreateDeviceProfile(
             device_class: &CFString,
             device_id: &CFUUID,
             profile_id: &CFType,
-        ) -> *mut ColorSyncProfile;
+        ) -> Option<NonNull<ColorSyncProfile>>;
     }
     let ret = unsafe { ColorSyncProfileCreateDeviceProfile(device_class, device_id, profile_id) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
 pub unsafe extern "C-unwind" fn ColorSyncProfileCreateMutable(
 ) -> Option<CFRetained<ColorSyncMutableProfile>> {
     extern "C-unwind" {
-        fn ColorSyncProfileCreateMutable() -> *mut ColorSyncMutableProfile;
+        fn ColorSyncProfileCreateMutable() -> Option<NonNull<ColorSyncMutableProfile>>;
     }
     let ret = unsafe { ColorSyncProfileCreateMutable() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -454,10 +458,10 @@ pub unsafe extern "C-unwind" fn ColorSyncProfileCreateMutableCopy(
     extern "C-unwind" {
         fn ColorSyncProfileCreateMutableCopy(
             prof: &ColorSyncProfile,
-        ) -> *mut ColorSyncMutableProfile;
+        ) -> Option<NonNull<ColorSyncMutableProfile>>;
     }
     let ret = unsafe { ColorSyncProfileCreateMutableCopy(prof) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -469,10 +473,10 @@ pub unsafe extern "C-unwind" fn ColorSyncProfileCreateLink(
         fn ColorSyncProfileCreateLink(
             profile_info: &CFArray,
             options: Option<&CFDictionary>,
-        ) -> *mut ColorSyncProfile;
+        ) -> Option<NonNull<ColorSyncProfile>>;
     }
     let ret = unsafe { ColorSyncProfileCreateLink(profile_info, options) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -537,12 +541,12 @@ pub unsafe extern "C-unwind" fn ColorSyncProfileCreateDisplayTransferTablesFromV
         fn ColorSyncProfileCreateDisplayTransferTablesFromVCGT(
             profile: &ColorSyncProfile,
             n_samples_per_channel: NonNull<usize>,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe {
         ColorSyncProfileCreateDisplayTransferTablesFromVCGT(profile, n_samples_per_channel)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncmd5?language=objc)
@@ -575,9 +579,10 @@ pub unsafe extern "C-unwind" fn ColorSyncProfileCopyData(
         fn ColorSyncProfileCopyData(
             prof: &ColorSyncProfile,
             error: *mut *mut CFError,
-        ) -> NonNull<CFData>;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { ColorSyncProfileCopyData(prof, error) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -590,9 +595,10 @@ pub unsafe extern "C-unwind" fn ColorSyncProfileGetURL(
         fn ColorSyncProfileGetURL(
             prof: &ColorSyncProfile,
             error: *mut *mut CFError,
-        ) -> NonNull<CFURL>;
+        ) -> Option<NonNull<CFURL>>;
     }
     let ret = unsafe { ColorSyncProfileGetURL(prof, error) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::retain(ret) }
 }
 
@@ -601,9 +607,10 @@ pub unsafe extern "C-unwind" fn ColorSyncProfileCopyHeader(
     prof: &ColorSyncProfile,
 ) -> CFRetained<CFData> {
     extern "C-unwind" {
-        fn ColorSyncProfileCopyHeader(prof: &ColorSyncProfile) -> NonNull<CFData>;
+        fn ColorSyncProfileCopyHeader(prof: &ColorSyncProfile) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { ColorSyncProfileCopyHeader(prof) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -616,10 +623,12 @@ pub unsafe extern "C-unwind" fn ColorSyncProfileCopyDescriptionString(
     prof: &ColorSyncProfile,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn ColorSyncProfileCopyDescriptionString(prof: &ColorSyncProfile) -> *mut CFString;
+        fn ColorSyncProfileCopyDescriptionString(
+            prof: &ColorSyncProfile,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { ColorSyncProfileCopyDescriptionString(prof) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -627,10 +636,10 @@ pub unsafe extern "C-unwind" fn ColorSyncProfileCopyTagSignatures(
     prof: &ColorSyncProfile,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn ColorSyncProfileCopyTagSignatures(prof: &ColorSyncProfile) -> *mut CFArray;
+        fn ColorSyncProfileCopyTagSignatures(prof: &ColorSyncProfile) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { ColorSyncProfileCopyTagSignatures(prof) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -643,10 +652,13 @@ pub unsafe extern "C-unwind" fn ColorSyncProfileCopyTag(
     signature: &CFString,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
-        fn ColorSyncProfileCopyTag(prof: &ColorSyncProfile, signature: &CFString) -> *mut CFData;
+        fn ColorSyncProfileCopyTag(
+            prof: &ColorSyncProfile,
+            signature: &CFString,
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { ColorSyncProfileCopyTag(prof, signature) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

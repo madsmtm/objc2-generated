@@ -1128,9 +1128,10 @@ extern "C" {
 #[inline]
 pub unsafe extern "C-unwind" fn SCCopyLastError() -> CFRetained<CFError> {
     extern "C-unwind" {
-        fn SCCopyLastError() -> NonNull<CFError>;
+        fn SCCopyLastError() -> Option<NonNull<CFError>>;
     }
     let ret = unsafe { SCCopyLastError() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -1142,13 +1143,18 @@ extern "C-unwind" {
     pub fn SCError() -> c_int;
 }
 
-extern "C-unwind" {
-    /// Returns a pointer to the message string
-    /// associated with the specified status or error
-    /// number.
-    ///
-    /// Parameter `status`: The status or error number.
-    ///
-    /// Returns: Returns a pointer to the error message string.
-    pub fn SCErrorString(status: c_int) -> NonNull<c_char>;
+/// Returns a pointer to the message string
+/// associated with the specified status or error
+/// number.
+///
+/// Parameter `status`: The status or error number.
+///
+/// Returns: Returns a pointer to the error message string.
+#[inline]
+pub unsafe extern "C-unwind" fn SCErrorString(status: c_int) -> NonNull<c_char> {
+    extern "C-unwind" {
+        fn SCErrorString(status: c_int) -> Option<NonNull<c_char>>;
+    }
+    let ret = unsafe { SCErrorString(status) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }

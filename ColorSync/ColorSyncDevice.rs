@@ -175,10 +175,10 @@ pub unsafe extern "C-unwind" fn ColorSyncDeviceCopyDeviceInfo(
         fn ColorSyncDeviceCopyDeviceInfo(
             device_class: &CFString,
             dev_id: &CFUUID,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { ColorSyncDeviceCopyDeviceInfo(device_class, dev_id) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdeviceprofileiteratecallback?language=objc)
@@ -197,9 +197,10 @@ pub unsafe extern "C-unwind" fn CGDisplayCreateUUIDFromDisplayID(
     display_id: u32,
 ) -> CFRetained<CFUUID> {
     extern "C-unwind" {
-        fn CGDisplayCreateUUIDFromDisplayID(display_id: u32) -> NonNull<CFUUID>;
+        fn CGDisplayCreateUUIDFromDisplayID(display_id: u32) -> Option<NonNull<CFUUID>>;
     }
     let ret = unsafe { CGDisplayCreateUUIDFromDisplayID(display_id) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 

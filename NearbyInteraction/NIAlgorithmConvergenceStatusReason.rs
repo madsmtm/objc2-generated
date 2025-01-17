@@ -54,9 +54,9 @@ pub unsafe extern "C-unwind" fn NIAlgorithmConvergenceStatusReasonDescription(
     extern "C-unwind" {
         fn NIAlgorithmConvergenceStatusReasonDescription(
             reason: &NIAlgorithmConvergenceStatusReason,
-        ) -> NonNull<NSString>;
+        ) -> *mut NSString;
     }
     let ret = unsafe { NIAlgorithmConvergenceStatusReasonDescription(reason) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }

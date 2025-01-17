@@ -399,10 +399,10 @@ pub unsafe extern "C-unwind" fn CGContextCopyPath(
     c: Option<&CGContext>,
 ) -> Option<CFRetained<CGPath>> {
     extern "C-unwind" {
-        fn CGContextCopyPath(c: Option<&CGContext>) -> *mut CGPath;
+        fn CGContextCopyPath(c: Option<&CGContext>) -> Option<NonNull<CGPath>>;
     }
     let ret = unsafe { CGContextCopyPath(c) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

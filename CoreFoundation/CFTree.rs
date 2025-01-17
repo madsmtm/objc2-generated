@@ -153,10 +153,10 @@ pub unsafe extern "C-unwind" fn CFTreeCreate(
         fn CFTreeCreate(
             allocator: Option<&CFAllocator>,
             context: *const CFTreeContext,
-        ) -> *mut CFTree;
+        ) -> Option<NonNull<CFTree>>;
     }
     let ret = unsafe { CFTreeCreate(allocator, context) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the parent of the specified tree.
@@ -168,10 +168,10 @@ pub unsafe extern "C-unwind" fn CFTreeCreate(
 #[inline]
 pub unsafe extern "C-unwind" fn CFTreeGetParent(tree: &CFTree) -> Option<CFRetained<CFTree>> {
     extern "C-unwind" {
-        fn CFTreeGetParent(tree: &CFTree) -> *mut CFTree;
+        fn CFTreeGetParent(tree: &CFTree) -> Option<NonNull<CFTree>>;
     }
     let ret = unsafe { CFTreeGetParent(tree) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the sibling after the specified tree in the parent tree's list.
@@ -183,10 +183,10 @@ pub unsafe extern "C-unwind" fn CFTreeGetParent(tree: &CFTree) -> Option<CFRetai
 #[inline]
 pub unsafe extern "C-unwind" fn CFTreeGetNextSibling(tree: &CFTree) -> Option<CFRetained<CFTree>> {
     extern "C-unwind" {
-        fn CFTreeGetNextSibling(tree: &CFTree) -> *mut CFTree;
+        fn CFTreeGetNextSibling(tree: &CFTree) -> Option<NonNull<CFTree>>;
     }
     let ret = unsafe { CFTreeGetNextSibling(tree) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the first child of the tree.
@@ -198,10 +198,10 @@ pub unsafe extern "C-unwind" fn CFTreeGetNextSibling(tree: &CFTree) -> Option<CF
 #[inline]
 pub unsafe extern "C-unwind" fn CFTreeGetFirstChild(tree: &CFTree) -> Option<CFRetained<CFTree>> {
     extern "C-unwind" {
-        fn CFTreeGetFirstChild(tree: &CFTree) -> *mut CFTree;
+        fn CFTreeGetFirstChild(tree: &CFTree) -> Option<NonNull<CFTree>>;
     }
     let ret = unsafe { CFTreeGetFirstChild(tree) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -247,10 +247,10 @@ pub unsafe extern "C-unwind" fn CFTreeGetChildAtIndex(
     idx: CFIndex,
 ) -> Option<CFRetained<CFTree>> {
     extern "C-unwind" {
-        fn CFTreeGetChildAtIndex(tree: &CFTree, idx: CFIndex) -> *mut CFTree;
+        fn CFTreeGetChildAtIndex(tree: &CFTree, idx: CFIndex) -> Option<NonNull<CFTree>>;
     }
     let ret = unsafe { CFTreeGetChildAtIndex(tree, idx) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -300,10 +300,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn CFTreeFindRoot(tree: &CFTree) -> Option<CFRetained<CFTree>> {
     extern "C-unwind" {
-        fn CFTreeFindRoot(tree: &CFTree) -> *mut CFTree;
+        fn CFTreeFindRoot(tree: &CFTree) -> Option<NonNull<CFTree>>;
     }
     let ret = unsafe { CFTreeFindRoot(tree) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

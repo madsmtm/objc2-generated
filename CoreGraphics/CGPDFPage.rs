@@ -56,10 +56,10 @@ pub unsafe extern "C-unwind" fn CGPDFPageGetDocument(
     page: Option<&CGPDFPage>,
 ) -> Option<CFRetained<CGPDFDocument>> {
     extern "C-unwind" {
-        fn CGPDFPageGetDocument(page: Option<&CGPDFPage>) -> *mut CGPDFDocument;
+        fn CGPDFPageGetDocument(page: Option<&CGPDFPage>) -> Option<NonNull<CGPDFDocument>>;
     }
     let ret = unsafe { CGPDFPageGetDocument(page) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

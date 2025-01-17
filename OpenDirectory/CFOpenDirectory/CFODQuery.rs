@@ -90,7 +90,7 @@ pub unsafe extern "C-unwind" fn ODQueryCreateWithNode(
             return_attribute_or_list: Option<&CFType>,
             max_results: CFIndex,
             error: *mut *mut CFError,
-        ) -> *mut ODQueryRef;
+        ) -> Option<NonNull<ODQueryRef>>;
     }
     let ret = unsafe {
         ODQueryCreateWithNode(
@@ -105,7 +105,7 @@ pub unsafe extern "C-unwind" fn ODQueryCreateWithNode(
             error,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a query object that is initialized to a particular node type.
@@ -162,7 +162,7 @@ pub unsafe extern "C-unwind" fn ODQueryCreateWithNodeType(
             return_attribute_or_list: Option<&CFType>,
             max_results: CFIndex,
             error: *mut *mut CFError,
-        ) -> *mut ODQueryRef;
+        ) -> Option<NonNull<ODQueryRef>>;
     }
     let ret = unsafe {
         ODQueryCreateWithNodeType(
@@ -177,7 +177,7 @@ pub unsafe extern "C-unwind" fn ODQueryCreateWithNodeType(
             error,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns results from a provided ODQueryRef synchronously
@@ -208,10 +208,10 @@ pub unsafe extern "C-unwind" fn ODQueryCopyResults(
             query: &ODQueryRef,
             allow_partial_results: bool,
             error: *mut *mut CFError,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { ODQueryCopyResults(query, allow_partial_results, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

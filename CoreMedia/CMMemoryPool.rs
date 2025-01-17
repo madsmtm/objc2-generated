@@ -80,9 +80,10 @@ pub unsafe extern "C-unwind" fn CMMemoryPoolCreate(
     options: Option<&CFDictionary>,
 ) -> CFRetained<CMMemoryPool> {
     extern "C-unwind" {
-        fn CMMemoryPoolCreate(options: Option<&CFDictionary>) -> NonNull<CMMemoryPool>;
+        fn CMMemoryPoolCreate(options: Option<&CFDictionary>) -> Option<NonNull<CMMemoryPool>>;
     }
     let ret = unsafe { CMMemoryPoolCreate(options) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -92,9 +93,10 @@ pub unsafe extern "C-unwind" fn CMMemoryPoolGetAllocator(
     pool: &CMMemoryPool,
 ) -> CFRetained<CFAllocator> {
     extern "C-unwind" {
-        fn CMMemoryPoolGetAllocator(pool: &CMMemoryPool) -> NonNull<CFAllocator>;
+        fn CMMemoryPoolGetAllocator(pool: &CMMemoryPool) -> Option<NonNull<CFAllocator>>;
     }
     let ret = unsafe { CMMemoryPoolGetAllocator(pool) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::retain(ret) }
 }
 

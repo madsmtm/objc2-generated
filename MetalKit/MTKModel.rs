@@ -309,10 +309,10 @@ pub unsafe extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetal(
     extern "C-unwind" {
         fn MTKModelIOVertexDescriptorFromMetal(
             metal_descriptor: &MTLVertexDescriptor,
-        ) -> NonNull<MDLVertexDescriptor>;
+        ) -> *mut MDLVertexDescriptor;
     }
     let ret = unsafe { MTKModelIOVertexDescriptorFromMetal(metal_descriptor) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -329,10 +329,10 @@ pub unsafe extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetalWithError(
         fn MTKModelIOVertexDescriptorFromMetalWithError(
             metal_descriptor: &MTLVertexDescriptor,
             error: *mut *mut NSError,
-        ) -> NonNull<MDLVertexDescriptor>;
+        ) -> *mut MDLVertexDescriptor;
     }
     let ret = unsafe { MTKModelIOVertexDescriptorFromMetalWithError(metal_descriptor, error) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 

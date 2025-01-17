@@ -24,10 +24,10 @@ pub unsafe extern "C-unwind" fn SCPreferencesPathCreateUniqueChild(
         fn SCPreferencesPathCreateUniqueChild(
             prefs: &SCPreferences,
             prefix: &CFString,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCPreferencesPathCreateUniqueChild(prefs, prefix) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the dictionary associated with the specified
@@ -46,10 +46,13 @@ pub unsafe extern "C-unwind" fn SCPreferencesPathGetValue(
     path: &CFString,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn SCPreferencesPathGetValue(prefs: &SCPreferences, path: &CFString) -> *mut CFDictionary;
+        fn SCPreferencesPathGetValue(
+            prefs: &SCPreferences,
+            path: &CFString,
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SCPreferencesPathGetValue(prefs, path) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the link (if one exists) associated with the
@@ -68,10 +71,13 @@ pub unsafe extern "C-unwind" fn SCPreferencesPathGetLink(
     path: &CFString,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn SCPreferencesPathGetLink(prefs: &SCPreferences, path: &CFString) -> *mut CFString;
+        fn SCPreferencesPathGetLink(
+            prefs: &SCPreferences,
+            path: &CFString,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCPreferencesPathGetLink(prefs, path) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Associates a dictionary with the specified path.

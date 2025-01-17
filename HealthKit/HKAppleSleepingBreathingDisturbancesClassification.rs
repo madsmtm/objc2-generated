@@ -58,11 +58,11 @@ pub unsafe extern "C-unwind" fn HKAppleSleepingBreathingDisturbancesMinimumQuant
     extern "C-unwind" {
         fn HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(
             classification: HKAppleSleepingBreathingDisturbancesClassification,
-        ) -> NonNull<HKQuantity>;
+        ) -> *mut HKQuantity;
     }
     let ret = unsafe {
         HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(classification)
     };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }

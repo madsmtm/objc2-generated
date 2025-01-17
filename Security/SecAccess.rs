@@ -231,10 +231,10 @@ pub unsafe extern "C-unwind" fn SecAccessCreateWithOwnerAndACL(
             owner_type: SecAccessOwnerType,
             acls: Option<&CFArray>,
             error: *mut *mut CFError,
-        ) -> *mut SecAccess;
+        ) -> Option<NonNull<SecAccess>>;
     }
     let ret = unsafe { SecAccessCreateWithOwnerAndACL(user_id, group_id, owner_type, acls, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -346,8 +346,8 @@ pub unsafe extern "C-unwind" fn SecAccessCopyMatchingACLList(
         fn SecAccessCopyMatchingACLList(
             access_ref: &SecAccess,
             authorization_tag: &CFType,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SecAccessCopyMatchingACLList(access_ref, authorization_tag) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

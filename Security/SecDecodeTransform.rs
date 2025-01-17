@@ -41,8 +41,8 @@ pub unsafe extern "C-unwind" fn SecDecodeTransformCreate(
         fn SecDecodeTransformCreate(
             decode_type: &CFType,
             error: *mut *mut CFError,
-        ) -> *mut SecTransform;
+        ) -> Option<NonNull<SecTransform>>;
     }
     let ret = unsafe { SecDecodeTransformCreate(decode_type, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

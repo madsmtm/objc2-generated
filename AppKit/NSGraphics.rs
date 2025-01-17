@@ -443,8 +443,13 @@ extern "C-unwind" {
     pub fn NSNumberOfColorComponents(color_space_name: &NSColorSpaceName) -> NSInteger;
 }
 
-extern "C-unwind" {
-    pub fn NSAvailableWindowDepths() -> NonNull<NSWindowDepth>;
+#[inline]
+pub unsafe extern "C-unwind" fn NSAvailableWindowDepths() -> NonNull<NSWindowDepth> {
+    extern "C-unwind" {
+        fn NSAvailableWindowDepths() -> Option<NonNull<NSWindowDepth>>;
+    }
+    let ret = unsafe { NSAvailableWindowDepths() };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C" {

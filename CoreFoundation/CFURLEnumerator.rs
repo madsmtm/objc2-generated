@@ -85,12 +85,12 @@ pub unsafe extern "C-unwind" fn CFURLEnumeratorCreateForDirectoryURL(
             directory_url: Option<&CFURL>,
             option: CFURLEnumeratorOptions,
             property_keys: Option<&CFArray>,
-        ) -> *mut CFURLEnumerator;
+        ) -> Option<NonNull<CFURLEnumerator>>;
     }
     let ret = unsafe {
         CFURLEnumeratorCreateForDirectoryURL(alloc, directory_url, option, property_keys)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFArray", feature = "CFBase"))]
@@ -105,10 +105,10 @@ pub unsafe extern "C-unwind" fn CFURLEnumeratorCreateForMountedVolumes(
             alloc: Option<&CFAllocator>,
             option: CFURLEnumeratorOptions,
             property_keys: Option<&CFArray>,
-        ) -> *mut CFURLEnumerator;
+        ) -> Option<NonNull<CFURLEnumerator>>;
     }
     let ret = unsafe { CFURLEnumeratorCreateForMountedVolumes(alloc, option, property_keys) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult?language=objc)

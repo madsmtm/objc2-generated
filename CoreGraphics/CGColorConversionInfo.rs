@@ -67,10 +67,10 @@ pub unsafe extern "C-unwind" fn CGColorConversionInfoCreate(
         fn CGColorConversionInfoCreate(
             src: Option<&CGColorSpace>,
             dst: Option<&CGColorSpace>,
-        ) -> *mut CGColorConversionInfo;
+        ) -> Option<NonNull<CGColorConversionInfo>>;
     }
     let ret = unsafe { CGColorConversionInfoCreate(src, dst) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CGColorSpace")]
@@ -85,10 +85,10 @@ pub unsafe extern "C-unwind" fn CGColorConversionInfoCreateWithOptions(
             src: &CGColorSpace,
             dst: &CGColorSpace,
             options: Option<&CFDictionary>,
-        ) -> *mut CGColorConversionInfo;
+        ) -> Option<NonNull<CGColorConversionInfo>>;
     }
     let ret = unsafe { CGColorConversionInfoCreateWithOptions(src, dst, options) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CGColorSpace", feature = "CGToneMapping"))]
@@ -111,7 +111,7 @@ pub unsafe extern "C-unwind" fn CGColorConversionInfoCreateForToneMapping(
             method: CGToneMapping,
             options: Option<&CFDictionary>,
             error: *mut *mut CFError,
-        ) -> *mut CGColorConversionInfo;
+        ) -> Option<NonNull<CGColorConversionInfo>>;
     }
     let ret = unsafe {
         CGColorConversionInfoCreateForToneMapping(
@@ -124,7 +124,7 @@ pub unsafe extern "C-unwind" fn CGColorConversionInfoCreateForToneMapping(
             error,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorbufferformat?language=objc)

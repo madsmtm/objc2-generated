@@ -506,10 +506,10 @@ pub unsafe extern "C-unwind" fn SecTrustCopyPublicKey(
     trust: &SecTrust,
 ) -> Option<CFRetained<SecKey>> {
     extern "C-unwind" {
-        fn SecTrustCopyPublicKey(trust: &SecTrust) -> *mut SecKey;
+        fn SecTrustCopyPublicKey(trust: &SecTrust) -> Option<NonNull<SecKey>>;
     }
     let ret = unsafe { SecTrustCopyPublicKey(trust) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Return the public key for a leaf certificate after it has
@@ -527,10 +527,10 @@ pub unsafe extern "C-unwind" fn SecTrustCopyPublicKey(
 #[inline]
 pub unsafe extern "C-unwind" fn SecTrustCopyKey(trust: &SecTrust) -> Option<CFRetained<SecKey>> {
     extern "C-unwind" {
-        fn SecTrustCopyKey(trust: &SecTrust) -> *mut SecKey;
+        fn SecTrustCopyKey(trust: &SecTrust) -> Option<NonNull<SecKey>>;
     }
     let ret = unsafe { SecTrustCopyKey(trust) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -571,10 +571,13 @@ pub unsafe extern "C-unwind" fn SecTrustGetCertificateAtIndex(
     ix: CFIndex,
 ) -> Option<CFRetained<SecCertificate>> {
     extern "C-unwind" {
-        fn SecTrustGetCertificateAtIndex(trust: &SecTrust, ix: CFIndex) -> *mut SecCertificate;
+        fn SecTrustGetCertificateAtIndex(
+            trust: &SecTrust,
+            ix: CFIndex,
+        ) -> Option<NonNull<SecCertificate>>;
     }
     let ret = unsafe { SecTrustGetCertificateAtIndex(trust, ix) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns an opaque cookie which will allow future evaluations
@@ -598,10 +601,10 @@ pub unsafe extern "C-unwind" fn SecTrustCopyExceptions(
     trust: &SecTrust,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
-        fn SecTrustCopyExceptions(trust: &SecTrust) -> *mut CFData;
+        fn SecTrustCopyExceptions(trust: &SecTrust) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { SecTrustCopyExceptions(trust) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -655,10 +658,10 @@ pub unsafe extern "C-unwind" fn SecTrustCopyProperties(
     trust: &SecTrust,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn SecTrustCopyProperties(trust: &SecTrust) -> *mut CFArray;
+        fn SecTrustCopyProperties(trust: &SecTrust) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SecTrustCopyProperties(trust) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns a dictionary containing information about the
@@ -678,10 +681,10 @@ pub unsafe extern "C-unwind" fn SecTrustCopyResult(
     trust: &SecTrust,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn SecTrustCopyResult(trust: &SecTrust) -> *mut CFDictionary;
+        fn SecTrustCopyResult(trust: &SecTrust) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SecTrustCopyResult(trust) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -729,10 +732,10 @@ pub unsafe extern "C-unwind" fn SecTrustCopyCertificateChain(
     trust: &SecTrust,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn SecTrustCopyCertificateChain(trust: &SecTrust) -> *mut CFArray;
+        fn SecTrustCopyCertificateChain(trust: &SecTrust) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SecTrustCopyCertificateChain(trust) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Specifies a user-specified trust setting value.

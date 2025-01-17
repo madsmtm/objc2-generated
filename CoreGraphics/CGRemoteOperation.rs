@@ -176,10 +176,10 @@ pub unsafe extern "C-unwind" fn CGAssociateMouseAndMouseCursorPosition(connected
 #[inline]
 pub unsafe extern "C-unwind" fn CGWindowServerCreateServerPort() -> Option<CFRetained<CFMachPort>> {
     extern "C-unwind" {
-        fn CGWindowServerCreateServerPort() -> *mut CFMachPort;
+        fn CGWindowServerCreateServerPort() -> Option<NonNull<CFMachPort>>;
     }
     let ret = unsafe { CGWindowServerCreateServerPort() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CGError", feature = "libc"))]
@@ -289,10 +289,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn CGWindowServerCFMachPort() -> Option<CFRetained<CFMachPort>> {
     extern "C-unwind" {
-        fn CGWindowServerCFMachPort() -> *mut CFMachPort;
+        fn CGWindowServerCFMachPort() -> Option<NonNull<CFMachPort>>;
     }
     let ret = unsafe { CGWindowServerCFMachPort() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectcount?language=objc)

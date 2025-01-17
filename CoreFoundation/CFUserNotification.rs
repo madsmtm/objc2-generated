@@ -52,10 +52,10 @@ pub unsafe extern "C-unwind" fn CFUserNotificationCreate(
             flags: CFOptionFlags,
             error: *mut i32,
             dictionary: Option<&CFDictionary>,
-        ) -> *mut CFUserNotification;
+        ) -> Option<NonNull<CFUserNotification>>;
     }
     let ret = unsafe { CFUserNotificationCreate(allocator, timeout, flags, error, dictionary) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -79,10 +79,10 @@ pub unsafe extern "C-unwind" fn CFUserNotificationGetResponseValue(
             user_notification: &CFUserNotification,
             key: Option<&CFString>,
             idx: CFIndex,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFUserNotificationGetResponseValue(user_notification, key, idx) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[cfg(feature = "CFDictionary")]
@@ -93,10 +93,10 @@ pub unsafe extern "C-unwind" fn CFUserNotificationGetResponseDictionary(
     extern "C-unwind" {
         fn CFUserNotificationGetResponseDictionary(
             user_notification: &CFUserNotification,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CFUserNotificationGetResponseDictionary(user_notification) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -127,12 +127,12 @@ pub unsafe extern "C-unwind" fn CFUserNotificationCreateRunLoopSource(
             user_notification: Option<&CFUserNotification>,
             callout: CFUserNotificationCallBack,
             order: CFIndex,
-        ) -> *mut CFRunLoopSource;
+        ) -> Option<NonNull<CFRunLoopSource>>;
     }
     let ret = unsafe {
         CFUserNotificationCreateRunLoopSource(allocator, user_notification, callout, order)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

@@ -141,10 +141,10 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCreate(
             name: &CFString,
             callout: SCDynamicStoreCallBack,
             context: *mut SCDynamicStoreContext,
-        ) -> *mut SCDynamicStore;
+        ) -> Option<NonNull<SCDynamicStore>>;
     }
     let ret = unsafe { SCDynamicStoreCreate(allocator, name, callout, context) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a new session used to interact with the dynamic
@@ -220,12 +220,12 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCreateWithOptions(
             store_options: Option<&CFDictionary>,
             callout: SCDynamicStoreCallBack,
             context: *mut SCDynamicStoreContext,
-        ) -> *mut SCDynamicStore;
+        ) -> Option<NonNull<SCDynamicStore>>;
     }
     let ret = unsafe {
         SCDynamicStoreCreateWithOptions(allocator, name, store_options, callout, context)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {
@@ -267,10 +267,10 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCreateRunLoopSource(
             allocator: Option<&CFAllocator>,
             store: &SCDynamicStore,
             order: CFIndex,
-        ) -> *mut CFRunLoopSource;
+        ) -> Option<NonNull<CFRunLoopSource>>;
     }
     let ret = unsafe { SCDynamicStoreCreateRunLoopSource(allocator, store, order) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns an array of CFString keys representing the
@@ -293,10 +293,10 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCopyKeyList(
         fn SCDynamicStoreCopyKeyList(
             store: Option<&SCDynamicStore>,
             pattern: &CFString,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCDynamicStoreCopyKeyList(store, pattern) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Adds the key-value pair to the dynamic store if no
@@ -375,10 +375,10 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCopyValue(
         fn SCDynamicStoreCopyValue(
             store: Option<&SCDynamicStore>,
             key: &CFString,
-        ) -> *mut CFPropertyList;
+        ) -> Option<NonNull<CFPropertyList>>;
     }
     let ret = unsafe { SCDynamicStoreCopyValue(store, key) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Gets the values of multiple keys in the dynamic store.
@@ -406,10 +406,10 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCopyMultiple(
             store: Option<&SCDynamicStore>,
             keys: Option<&CFArray>,
             patterns: Option<&CFArray>,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SCDynamicStoreCopyMultiple(store, keys, patterns) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Adds or replaces a value in the dynamic store for
@@ -559,8 +559,8 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCopyNotifiedKeys(
     store: &SCDynamicStore,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn SCDynamicStoreCopyNotifiedKeys(store: &SCDynamicStore) -> *mut CFArray;
+        fn SCDynamicStoreCopyNotifiedKeys(store: &SCDynamicStore) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCDynamicStoreCopyNotifiedKeys(store) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

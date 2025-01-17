@@ -484,9 +484,10 @@ pub unsafe extern "C-unwind" fn CTParagraphStyleCreate(
         fn CTParagraphStyleCreate(
             settings: *const CTParagraphStyleSetting,
             setting_count: usize,
-        ) -> NonNull<CTParagraphStyle>;
+        ) -> Option<NonNull<CTParagraphStyle>>;
     }
     let ret = unsafe { CTParagraphStyleCreate(settings, setting_count) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -507,9 +508,10 @@ pub unsafe extern "C-unwind" fn CTParagraphStyleCreateCopy(
     extern "C-unwind" {
         fn CTParagraphStyleCreateCopy(
             paragraph_style: &CTParagraphStyle,
-        ) -> NonNull<CTParagraphStyle>;
+        ) -> Option<NonNull<CTParagraphStyle>>;
     }
     let ret = unsafe { CTParagraphStyleCreateCopy(paragraph_style) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 

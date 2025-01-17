@@ -58,10 +58,10 @@ pub extern "C-unwind" fn MTLCreateSystemDefaultDevice(
 #[inline]
 pub extern "C-unwind" fn MTLCopyAllDevices() -> Retained<NSArray<ProtocolObject<dyn MTLDevice>>> {
     extern "C-unwind" {
-        fn MTLCopyAllDevices() -> NonNull<NSArray<ProtocolObject<dyn MTLDevice>>>;
+        fn MTLCopyAllDevices() -> *mut NSArray<ProtocolObject<dyn MTLDevice>>;
     }
     let ret = unsafe { MTLCopyAllDevices() };
-    unsafe { Retained::from_raw(ret.as_ptr()) }
+    unsafe { Retained::from_raw(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 

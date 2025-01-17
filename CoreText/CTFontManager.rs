@@ -17,9 +17,10 @@ use crate::*;
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontManagerCopyAvailablePostScriptNames() -> CFRetained<CFArray> {
     extern "C-unwind" {
-        fn CTFontManagerCopyAvailablePostScriptNames() -> NonNull<CFArray>;
+        fn CTFontManagerCopyAvailablePostScriptNames() -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFontManagerCopyAvailablePostScriptNames() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -30,9 +31,10 @@ pub unsafe extern "C-unwind" fn CTFontManagerCopyAvailablePostScriptNames() -> C
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontManagerCopyAvailableFontFamilyNames() -> CFRetained<CFArray> {
     extern "C-unwind" {
-        fn CTFontManagerCopyAvailableFontFamilyNames() -> NonNull<CFArray>;
+        fn CTFontManagerCopyAvailableFontFamilyNames() -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFontManagerCopyAvailableFontFamilyNames() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -43,9 +45,10 @@ pub unsafe extern "C-unwind" fn CTFontManagerCopyAvailableFontFamilyNames() -> C
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontManagerCopyAvailableFontURLs() -> CFRetained<CFArray> {
     extern "C-unwind" {
-        fn CTFontManagerCopyAvailableFontURLs() -> NonNull<CFArray>;
+        fn CTFontManagerCopyAvailableFontURLs() -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFontManagerCopyAvailableFontURLs() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -81,10 +84,10 @@ pub unsafe extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromURL(
     file_url: &CFURL,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CTFontManagerCreateFontDescriptorsFromURL(file_url: &CFURL) -> *mut CFArray;
+        fn CTFontManagerCreateFontDescriptorsFromURL(file_url: &CFURL) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFontManagerCreateFontDescriptorsFromURL(file_url) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns a font descriptor representing the font in the supplied data.
@@ -104,10 +107,12 @@ pub unsafe extern "C-unwind" fn CTFontManagerCreateFontDescriptorFromData(
     data: &CFData,
 ) -> Option<CFRetained<CTFontDescriptor>> {
     extern "C-unwind" {
-        fn CTFontManagerCreateFontDescriptorFromData(data: &CFData) -> *mut CTFontDescriptor;
+        fn CTFontManagerCreateFontDescriptorFromData(
+            data: &CFData,
+        ) -> Option<NonNull<CTFontDescriptor>>;
     }
     let ret = unsafe { CTFontManagerCreateFontDescriptorFromData(data) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns an array of font descriptors for the fonts in the supplied data.
@@ -123,9 +128,10 @@ pub unsafe extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromData(
     data: &CFData,
 ) -> CFRetained<CFArray> {
     extern "C-unwind" {
-        fn CTFontManagerCreateFontDescriptorsFromData(data: &CFData) -> NonNull<CFArray>;
+        fn CTFontManagerCreateFontDescriptorsFromData(data: &CFData) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFontManagerCreateFontDescriptorsFromData(data) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -470,9 +476,10 @@ pub unsafe extern "C-unwind" fn CTFontManagerCopyRegisteredFontDescriptors(
         fn CTFontManagerCopyRegisteredFontDescriptors(
             scope: CTFontManagerScope,
             enabled: bool,
-        ) -> NonNull<CFArray>;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFontManagerCopyRegisteredFontDescriptors(scope, enabled) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -530,12 +537,12 @@ pub unsafe extern "C-unwind" fn CTFontManagerCreateFontRequestRunLoopSource(
             create_matches_callback: &block2::Block<
                 dyn Fn(NonNull<CFDictionary>, libc::pid_t) -> NonNull<CFArray>,
             >,
-        ) -> *mut CFRunLoopSource;
+        ) -> Option<NonNull<CFRunLoopSource>>;
     }
     let ret = unsafe {
         CTFontManagerCreateFontRequestRunLoopSource(source_order, create_matches_callback)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {

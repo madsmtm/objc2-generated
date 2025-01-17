@@ -211,15 +211,23 @@ pub unsafe extern "C-unwind" fn NSCopyHashTableWithZone(
     zone: *mut NSZone,
 ) -> Retained<NSHashTable> {
     extern "C-unwind" {
-        fn NSCopyHashTableWithZone(table: &NSHashTable, zone: *mut NSZone) -> NonNull<NSHashTable>;
+        fn NSCopyHashTableWithZone(table: &NSHashTable, zone: *mut NSZone) -> *mut NSHashTable;
     }
     let ret = unsafe { NSCopyHashTableWithZone(table, zone) };
-    unsafe { Retained::from_raw(ret.as_ptr()) }
+    unsafe { Retained::from_raw(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    pub fn NSHashGet(table: &NSHashTable, pointer: *const c_void) -> NonNull<c_void>;
+#[inline]
+pub unsafe extern "C-unwind" fn NSHashGet(
+    table: &NSHashTable,
+    pointer: *const c_void,
+) -> NonNull<c_void> {
+    extern "C-unwind" {
+        fn NSHashGet(table: &NSHashTable, pointer: *const c_void) -> Option<NonNull<c_void>>;
+    }
+    let ret = unsafe { NSHashGet(table, pointer) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {
@@ -258,10 +266,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromHashTable(table: &NSHashTable) -> Retained<NSString> {
     extern "C-unwind" {
-        fn NSStringFromHashTable(table: &NSHashTable) -> NonNull<NSString>;
+        fn NSStringFromHashTable(table: &NSHashTable) -> *mut NSString;
     }
     let ret = unsafe { NSStringFromHashTable(table) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -269,10 +277,10 @@ pub unsafe extern "C-unwind" fn NSStringFromHashTable(table: &NSHashTable) -> Re
 #[inline]
 pub unsafe extern "C-unwind" fn NSAllHashTableObjects(table: &NSHashTable) -> Retained<NSArray> {
     extern "C-unwind" {
-        fn NSAllHashTableObjects(table: &NSHashTable) -> NonNull<NSArray>;
+        fn NSAllHashTableObjects(table: &NSHashTable) -> *mut NSArray;
     }
     let ret = unsafe { NSAllHashTableObjects(table) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -335,10 +343,10 @@ pub unsafe extern "C-unwind" fn NSCreateHashTableWithZone(
             call_backs: NSHashTableCallBacks,
             capacity: NSUInteger,
             zone: *mut NSZone,
-        ) -> NonNull<NSHashTable>;
+        ) -> *mut NSHashTable;
     }
     let ret = unsafe { NSCreateHashTableWithZone(call_backs, capacity, zone) };
-    unsafe { Retained::from_raw(ret.as_ptr()) }
+    unsafe { Retained::from_raw(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -352,10 +360,10 @@ pub unsafe extern "C-unwind" fn NSCreateHashTable(
         fn NSCreateHashTable(
             call_backs: NSHashTableCallBacks,
             capacity: NSUInteger,
-        ) -> NonNull<NSHashTable>;
+        ) -> *mut NSHashTable;
     }
     let ret = unsafe { NSCreateHashTable(call_backs, capacity) };
-    unsafe { Retained::from_raw(ret.as_ptr()) }
+    unsafe { Retained::from_raw(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 

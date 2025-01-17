@@ -323,10 +323,10 @@ pub unsafe extern "C-unwind" fn IOSurfaceCreate(
     properties: &CFDictionary,
 ) -> Option<CFRetained<IOSurfaceRef>> {
     extern "C-unwind" {
-        fn IOSurfaceCreate(properties: &CFDictionary) -> *mut IOSurfaceRef;
+        fn IOSurfaceCreate(properties: &CFDictionary) -> Option<NonNull<IOSurfaceRef>>;
     }
     let ret = unsafe { IOSurfaceCreate(properties) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "IOSurfaceTypes", feature = "objc2-core-foundation"))]
@@ -335,10 +335,10 @@ pub unsafe extern "C-unwind" fn IOSurfaceLookup(
     csid: IOSurfaceID,
 ) -> Option<CFRetained<IOSurfaceRef>> {
     extern "C-unwind" {
-        fn IOSurfaceLookup(csid: IOSurfaceID) -> *mut IOSurfaceRef;
+        fn IOSurfaceLookup(csid: IOSurfaceID) -> Option<NonNull<IOSurfaceRef>>;
     }
     let ret = unsafe { IOSurfaceLookup(csid) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -384,8 +384,13 @@ extern "C-unwind" {
     pub fn IOSurfaceGetBytesPerRow(buffer: &IOSurfaceRef) -> usize;
 }
 
-extern "C-unwind" {
-    pub fn IOSurfaceGetBaseAddress(buffer: &IOSurfaceRef) -> NonNull<c_void>;
+#[inline]
+pub unsafe extern "C-unwind" fn IOSurfaceGetBaseAddress(buffer: &IOSurfaceRef) -> NonNull<c_void> {
+    extern "C-unwind" {
+        fn IOSurfaceGetBaseAddress(buffer: &IOSurfaceRef) -> Option<NonNull<c_void>>;
+    }
+    let ret = unsafe { IOSurfaceGetBaseAddress(buffer) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {
@@ -424,11 +429,19 @@ extern "C-unwind" {
     pub fn IOSurfaceGetBytesPerRowOfPlane(buffer: &IOSurfaceRef, plane_index: usize) -> usize;
 }
 
-extern "C-unwind" {
-    pub fn IOSurfaceGetBaseAddressOfPlane(
-        buffer: &IOSurfaceRef,
-        plane_index: usize,
-    ) -> NonNull<c_void>;
+#[inline]
+pub unsafe extern "C-unwind" fn IOSurfaceGetBaseAddressOfPlane(
+    buffer: &IOSurfaceRef,
+    plane_index: usize,
+) -> NonNull<c_void> {
+    extern "C-unwind" {
+        fn IOSurfaceGetBaseAddressOfPlane(
+            buffer: &IOSurfaceRef,
+            plane_index: usize,
+        ) -> Option<NonNull<c_void>>;
+    }
+    let ret = unsafe { IOSurfaceGetBaseAddressOfPlane(buffer, plane_index) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {
@@ -520,10 +533,10 @@ pub unsafe extern "C-unwind" fn IOSurfaceCopyValue(
     key: &CFString,
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
-        fn IOSurfaceCopyValue(buffer: &IOSurfaceRef, key: &CFString) -> *mut CFType;
+        fn IOSurfaceCopyValue(buffer: &IOSurfaceRef, key: &CFString) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { IOSurfaceCopyValue(buffer, key) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -542,10 +555,10 @@ pub unsafe extern "C-unwind" fn IOSurfaceCopyAllValues(
     buffer: &IOSurfaceRef,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn IOSurfaceCopyAllValues(buffer: &IOSurfaceRef) -> *mut CFDictionary;
+        fn IOSurfaceCopyAllValues(buffer: &IOSurfaceRef) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { IOSurfaceCopyAllValues(buffer) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -563,10 +576,10 @@ pub unsafe extern "C-unwind" fn IOSurfaceLookupFromMachPort(
     port: libc::mach_port_t,
 ) -> Option<CFRetained<IOSurfaceRef>> {
     extern "C-unwind" {
-        fn IOSurfaceLookupFromMachPort(port: libc::mach_port_t) -> *mut IOSurfaceRef;
+        fn IOSurfaceLookupFromMachPort(port: libc::mach_port_t) -> Option<NonNull<IOSurfaceRef>>;
     }
     let ret = unsafe { IOSurfaceLookupFromMachPort(port) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

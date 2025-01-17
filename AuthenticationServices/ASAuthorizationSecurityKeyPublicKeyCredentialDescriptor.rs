@@ -43,10 +43,10 @@ pub unsafe extern "C-unwind" fn ASAuthorizationAllSupportedPublicKeyCredentialDe
 ) -> Retained<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>> {
     extern "C-unwind" {
         fn ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports(
-        ) -> NonNull<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>>;
+        ) -> *mut NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>;
     }
     let ret = unsafe { ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports() };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 

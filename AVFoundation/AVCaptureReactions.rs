@@ -81,10 +81,10 @@ pub unsafe extern "C-unwind" fn AVCaptureReactionSystemImageNameForType(
     extern "C-unwind" {
         fn AVCaptureReactionSystemImageNameForType(
             reaction_type: &AVCaptureReactionType,
-        ) -> NonNull<NSString>;
+        ) -> *mut NSString;
     }
     let ret = unsafe { AVCaptureReactionSystemImageNameForType(reaction_type) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 

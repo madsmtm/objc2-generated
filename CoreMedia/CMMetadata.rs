@@ -499,9 +499,10 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetDataTypeDescription
     extern "C-unwind" {
         fn CMMetadataDataTypeRegistryGetDataTypeDescription(
             data_type: &CFString,
-        ) -> NonNull<CFString>;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CMMetadataDataTypeRegistryGetDataTypeDescription(data_type) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::retain(ret) }
 }
 
@@ -517,9 +518,10 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetConformingDataTypes
     extern "C-unwind" {
         fn CMMetadataDataTypeRegistryGetConformingDataTypes(
             data_type: &CFString,
-        ) -> NonNull<CFArray>;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CMMetadataDataTypeRegistryGetConformingDataTypes(data_type) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::retain(ret) }
 }
 
@@ -564,10 +566,10 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeConformsToData
 pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetBaseDataTypes(
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CMMetadataDataTypeRegistryGetBaseDataTypes() -> *mut CFArray;
+        fn CMMetadataDataTypeRegistryGetBaseDataTypes() -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CMMetadataDataTypeRegistryGetBaseDataTypes() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Tests a data type identifier to see if it represents a base data type.
@@ -599,8 +601,9 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetBaseDataTypeForConf
     extern "C-unwind" {
         fn CMMetadataDataTypeRegistryGetBaseDataTypeForConformingDataType(
             data_type: &CFString,
-        ) -> NonNull<CFString>;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CMMetadataDataTypeRegistryGetBaseDataTypeForConformingDataType(data_type) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::retain(ret) }
 }

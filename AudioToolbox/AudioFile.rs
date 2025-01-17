@@ -413,7 +413,7 @@ unsafe impl RefEncode for AudioFileRegionList {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-// TODO: pub fn NextAudioFileRegion(in_af_region_ptr: NonNull<AudioFileRegion>,) -> NonNull<AudioFileRegion>;
+// TODO: pub fn NextAudioFileRegion(in_af_region_ptr: NonNull<AudioFileRegion>,)-> Option<NonNull<AudioFileRegion>>;
 
 /// used for properties kAudioFilePropertyPacketToFrame and kAudioFilePropertyFrameToPacket
 ///

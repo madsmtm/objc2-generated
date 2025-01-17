@@ -36,10 +36,10 @@ unsafe impl ConcreteType for CFCalendar {
 #[inline]
 pub unsafe extern "C-unwind" fn CFCalendarCopyCurrent() -> Option<CFRetained<CFCalendar>> {
     extern "C-unwind" {
-        fn CFCalendarCopyCurrent() -> *mut CFCalendar;
+        fn CFCalendarCopyCurrent() -> Option<NonNull<CFCalendar>>;
     }
     let ret = unsafe { CFCalendarCopyCurrent() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a calendar.  The identifiers are the `kCF*Calendar` constants in CFLocale.h.
@@ -53,10 +53,10 @@ pub unsafe extern "C-unwind" fn CFCalendarCreateWithIdentifier(
         fn CFCalendarCreateWithIdentifier(
             allocator: Option<&CFAllocator>,
             identifier: Option<&CFCalendarIdentifier>,
-        ) -> *mut CFCalendar;
+        ) -> Option<NonNull<CFCalendar>>;
     }
     let ret = unsafe { CFCalendarCreateWithIdentifier(allocator, identifier) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the calendar's identifier.
@@ -66,10 +66,10 @@ pub unsafe extern "C-unwind" fn CFCalendarGetIdentifier(
     calendar: &CFCalendar,
 ) -> Option<CFRetained<CFCalendarIdentifier>> {
     extern "C-unwind" {
-        fn CFCalendarGetIdentifier(calendar: &CFCalendar) -> *mut CFCalendarIdentifier;
+        fn CFCalendarGetIdentifier(calendar: &CFCalendar) -> Option<NonNull<CFCalendarIdentifier>>;
     }
     let ret = unsafe { CFCalendarGetIdentifier(calendar) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[cfg(feature = "CFLocale")]
@@ -78,10 +78,10 @@ pub unsafe extern "C-unwind" fn CFCalendarCopyLocale(
     calendar: &CFCalendar,
 ) -> Option<CFRetained<CFLocale>> {
     extern "C-unwind" {
-        fn CFCalendarCopyLocale(calendar: &CFCalendar) -> *mut CFLocale;
+        fn CFCalendarCopyLocale(calendar: &CFCalendar) -> Option<NonNull<CFLocale>>;
     }
     let ret = unsafe { CFCalendarCopyLocale(calendar) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -95,10 +95,10 @@ pub unsafe extern "C-unwind" fn CFCalendarCopyTimeZone(
     calendar: &CFCalendar,
 ) -> Option<CFRetained<CFTimeZone>> {
     extern "C-unwind" {
-        fn CFCalendarCopyTimeZone(calendar: &CFCalendar) -> *mut CFTimeZone;
+        fn CFCalendarCopyTimeZone(calendar: &CFCalendar) -> Option<NonNull<CFTimeZone>>;
     }
     let ret = unsafe { CFCalendarCopyTimeZone(calendar) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

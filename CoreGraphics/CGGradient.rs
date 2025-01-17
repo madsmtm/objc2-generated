@@ -70,10 +70,10 @@ pub unsafe extern "C-unwind" fn CGGradientCreateWithColorComponents(
             components: *const CGFloat,
             locations: *const CGFloat,
             count: usize,
-        ) -> *mut CGGradient;
+        ) -> Option<NonNull<CGGradient>>;
     }
     let ret = unsafe { CGGradientCreateWithColorComponents(space, components, locations, count) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CGColorSpace")]
@@ -88,8 +88,8 @@ pub unsafe extern "C-unwind" fn CGGradientCreateWithColors(
             space: Option<&CGColorSpace>,
             colors: Option<&CFArray>,
             locations: *const CGFloat,
-        ) -> *mut CGGradient;
+        ) -> Option<NonNull<CGGradient>>;
     }
     let ret = unsafe { CGGradientCreateWithColors(space, colors, locations) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

@@ -74,10 +74,10 @@ pub unsafe extern "C-unwind" fn CNMarkPortalOffline(interface_name: &CFString) -
 #[inline]
 pub unsafe extern "C-unwind" fn CNCopySupportedInterfaces() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CNCopySupportedInterfaces() -> *mut CFArray;
+        fn CNCopySupportedInterfaces() -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CNCopySupportedInterfaces() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {
@@ -140,8 +140,8 @@ pub unsafe extern "C-unwind" fn CNCopyCurrentNetworkInfo(
     interface_name: &CFString,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn CNCopyCurrentNetworkInfo(interface_name: &CFString) -> *mut CFDictionary;
+        fn CNCopyCurrentNetworkInfo(interface_name: &CFString) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CNCopyCurrentNetworkInfo(interface_name) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

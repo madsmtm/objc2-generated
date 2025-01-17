@@ -48,11 +48,11 @@ pub unsafe extern "C-unwind" fn CGShadingCreateAxial(
             function: Option<&CGFunction>,
             extend_start: bool,
             extend_end: bool,
-        ) -> *mut CGShading;
+        ) -> Option<NonNull<CGShading>>;
     }
     let ret =
         unsafe { CGShadingCreateAxial(space, start, end, function, extend_start, extend_end) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
@@ -77,7 +77,7 @@ pub unsafe extern "C-unwind" fn CGShadingCreateRadial(
             function: Option<&CGFunction>,
             extend_start: bool,
             extend_end: bool,
-        ) -> *mut CGShading;
+        ) -> Option<NonNull<CGShading>>;
     }
     let ret = unsafe {
         CGShadingCreateRadial(
@@ -91,5 +91,5 @@ pub unsafe extern "C-unwind" fn CGShadingCreateRadial(
             extend_end,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

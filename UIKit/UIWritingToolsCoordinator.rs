@@ -573,10 +573,10 @@ pub unsafe extern "C-unwind" fn UIWritingToolsCoordinatorTextAnimationDebugDescr
     extern "C-unwind" {
         fn UIWritingToolsCoordinatorTextAnimationDebugDescription(
             animation_type: UIWritingToolsCoordinatorTextAnimation,
-        ) -> NonNull<NSString>;
+        ) -> *mut NSString;
     }
     let ret = unsafe { UIWritingToolsCoordinatorTextAnimationDebugDescription(animation_type) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 

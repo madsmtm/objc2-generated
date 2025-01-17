@@ -122,9 +122,10 @@ pub unsafe extern "C-unwind" fn SecDigestTransformCreate(
             digest_type: Option<&CFType>,
             digest_length: CFIndex,
             error: *mut *mut CFError,
-        ) -> NonNull<SecTransform>;
+        ) -> Option<NonNull<SecTransform>>;
     }
     let ret = unsafe { SecDigestTransformCreate(digest_type, digest_length, error) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 

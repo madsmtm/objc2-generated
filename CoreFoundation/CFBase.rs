@@ -250,10 +250,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn CFAllocatorGetDefault() -> Option<CFRetained<CFAllocator>> {
     extern "C-unwind" {
-        fn CFAllocatorGetDefault() -> *mut CFAllocator;
+        fn CFAllocatorGetDefault() -> Option<NonNull<CFAllocator>>;
     }
     let ret = unsafe { CFAllocatorGetDefault() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[inline]
@@ -265,10 +265,10 @@ pub unsafe extern "C-unwind" fn CFAllocatorCreate(
         fn CFAllocatorCreate(
             allocator: Option<&CFAllocator>,
             context: *mut CFAllocatorContext,
-        ) -> *mut CFAllocator;
+        ) -> Option<NonNull<CFAllocator>>;
     }
     let ret = unsafe { CFAllocatorCreate(allocator, context) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -353,10 +353,10 @@ pub extern "C-unwind" fn CFCopyTypeIDDescription(
     type_id: CFTypeID,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFCopyTypeIDDescription(type_id: CFTypeID) -> *mut CFString;
+        fn CFCopyTypeIDDescription(type_id: CFTypeID) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFCopyTypeIDDescription(type_id) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -387,10 +387,10 @@ pub extern "C-unwind" fn CFHash(cf: Option<&CFType>) -> CFHashCode {
 #[inline]
 pub extern "C-unwind" fn CFCopyDescription(cf: Option<&CFType>) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFCopyDescription(cf: Option<&CFType>) -> *mut CFString;
+        fn CFCopyDescription(cf: Option<&CFType>) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFCopyDescription(cf) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -398,8 +398,8 @@ pub unsafe extern "C-unwind" fn CFGetAllocator(
     cf: Option<&CFType>,
 ) -> Option<CFRetained<CFAllocator>> {
     extern "C-unwind" {
-        fn CFGetAllocator(cf: Option<&CFType>) -> *mut CFAllocator;
+        fn CFGetAllocator(cf: Option<&CFType>) -> Option<NonNull<CFAllocator>>;
     }
     let ret = unsafe { CFGetAllocator(cf) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }

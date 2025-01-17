@@ -378,11 +378,11 @@ pub unsafe extern "C-unwind" fn CFXMLNodeCreate(
             data_string: Option<&CFString>,
             additional_info_ptr: *const c_void,
             version: CFIndex,
-        ) -> *mut CFXMLNode;
+        ) -> Option<NonNull<CFXMLNode>>;
     }
     let ret =
         unsafe { CFXMLNodeCreate(alloc, xml_type, data_string, additional_info_ptr, version) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -396,10 +396,10 @@ pub unsafe extern "C-unwind" fn CFXMLNodeCreateCopy(
         fn CFXMLNodeCreateCopy(
             alloc: Option<&CFAllocator>,
             orig_node: Option<&CFXMLNode>,
-        ) -> *mut CFXMLNode;
+        ) -> Option<NonNull<CFXMLNode>>;
     }
     let ret = unsafe { CFXMLNodeCreateCopy(alloc, orig_node) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -415,10 +415,10 @@ pub unsafe extern "C-unwind" fn CFXMLNodeGetString(
     node: &CFXMLNode,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFXMLNodeGetString(node: &CFXMLNode) -> *mut CFString;
+        fn CFXMLNodeGetString(node: &CFXMLNode) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFXMLNodeGetString(node) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -443,10 +443,10 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateWithNode(
         fn CFXMLTreeCreateWithNode(
             allocator: Option<&CFAllocator>,
             node: Option<&CFXMLNode>,
-        ) -> *mut CFXMLTree;
+        ) -> Option<NonNull<CFXMLTree>>;
     }
     let ret = unsafe { CFXMLTreeCreateWithNode(allocator, node) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFTree")]
@@ -456,8 +456,8 @@ pub unsafe extern "C-unwind" fn CFXMLTreeGetNode(
     xml_tree: &CFXMLTree,
 ) -> Option<CFRetained<CFXMLNode>> {
     extern "C-unwind" {
-        fn CFXMLTreeGetNode(xml_tree: &CFXMLTree) -> *mut CFXMLNode;
+        fn CFXMLTreeGetNode(xml_tree: &CFXMLTree) -> Option<NonNull<CFXMLNode>>;
     }
     let ret = unsafe { CFXMLTreeGetNode(xml_tree) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }

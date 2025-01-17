@@ -1271,9 +1271,12 @@ pub unsafe extern "C-unwind" fn MusicSequenceGetInfoDictionary(
     in_sequence: MusicSequence,
 ) -> CFRetained<CFDictionary> {
     extern "C-unwind" {
-        fn MusicSequenceGetInfoDictionary(in_sequence: MusicSequence) -> NonNull<CFDictionary>;
+        fn MusicSequenceGetInfoDictionary(
+            in_sequence: MusicSequence,
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { MusicSequenceGetInfoDictionary(in_sequence) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::retain(ret) }
 }
 

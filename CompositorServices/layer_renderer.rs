@@ -92,10 +92,10 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_configuration(
     extern "C-unwind" {
         fn cp_layer_renderer_get_configuration(
             layer_renderer: &cp_layer_renderer_t,
-        ) -> NonNull<cp_layer_renderer_configuration_t>;
+        ) -> *mut cp_layer_renderer_configuration_t;
     }
     let ret = unsafe { cp_layer_renderer_get_configuration(layer_renderer) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -116,10 +116,10 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_properties(
     extern "C-unwind" {
         fn cp_layer_renderer_get_properties(
             layer_renderer: &cp_layer_renderer_t,
-        ) -> NonNull<cp_layer_renderer_properties_t>;
+        ) -> *mut cp_layer_renderer_properties_t;
     }
     let ret = unsafe { cp_layer_renderer_get_properties(layer_renderer) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -140,10 +140,10 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_device(
     extern "C-unwind" {
         fn cp_layer_renderer_get_device(
             layer_renderer: &cp_layer_renderer_t,
-        ) -> NonNull<ProtocolObject<dyn MTLDevice>>;
+        ) -> *mut ProtocolObject<dyn MTLDevice>;
     }
     let ret = unsafe { cp_layer_renderer_get_device(layer_renderer) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 

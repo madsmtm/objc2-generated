@@ -96,10 +96,10 @@ pub unsafe extern "C-unwind" fn cp_drawable_get_depth_texture(
         fn cp_drawable_get_depth_texture(
             drawable: cp_drawable_t,
             index: usize,
-        ) -> NonNull<ProtocolObject<dyn MTLTexture>>;
+        ) -> *mut ProtocolObject<dyn MTLTexture>;
     }
     let ret = unsafe { cp_drawable_get_depth_texture(drawable, index) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -126,10 +126,10 @@ pub unsafe extern "C-unwind" fn cp_drawable_get_color_texture(
         fn cp_drawable_get_color_texture(
             drawable: cp_drawable_t,
             index: usize,
-        ) -> NonNull<ProtocolObject<dyn MTLTexture>>;
+        ) -> *mut ProtocolObject<dyn MTLTexture>;
     }
     let ret = unsafe { cp_drawable_get_color_texture(drawable, index) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -172,10 +172,10 @@ pub unsafe extern "C-unwind" fn cp_drawable_get_rasterization_rate_map(
         fn cp_drawable_get_rasterization_rate_map(
             drawable: cp_drawable_t,
             index: usize,
-        ) -> NonNull<ProtocolObject<dyn MTLRasterizationRateMap>>;
+        ) -> *mut ProtocolObject<dyn MTLRasterizationRateMap>;
     }
     let ret = unsafe { cp_drawable_get_rasterization_rate_map(drawable, index) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -212,10 +212,10 @@ pub unsafe extern "C-unwind" fn cp_drawable_get_flipped_rasterization_rate_map(
         fn cp_drawable_get_flipped_rasterization_rate_map(
             drawable: cp_drawable_t,
             index: usize,
-        ) -> NonNull<ProtocolObject<dyn MTLRasterizationRateMap>>;
+        ) -> *mut ProtocolObject<dyn MTLRasterizationRateMap>;
     }
     let ret = unsafe { cp_drawable_get_flipped_rasterization_rate_map(drawable, index) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 

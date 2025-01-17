@@ -28,10 +28,10 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCopyComputerName(
         fn SCDynamicStoreCopyComputerName(
             store: Option<&SCDynamicStore>,
             name_encoding: *mut CFStringEncoding,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCDynamicStoreCopyComputerName(store, name_encoding) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Gets the name, user ID, and group ID of the currently
@@ -69,10 +69,10 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCopyConsoleUser(
             store: Option<&SCDynamicStore>,
             uid: *mut libc::uid_t,
             gid: *mut libc::gid_t,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCDynamicStoreCopyConsoleUser(store, uid, gid) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Gets the current local host name.
@@ -90,10 +90,12 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCopyLocalHostName(
     store: Option<&SCDynamicStore>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn SCDynamicStoreCopyLocalHostName(store: Option<&SCDynamicStore>) -> *mut CFString;
+        fn SCDynamicStoreCopyLocalHostName(
+            store: Option<&SCDynamicStore>,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCDynamicStoreCopyLocalHostName(store) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Gets the current location identifier.
@@ -112,10 +114,10 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCopyLocation(
     store: Option<&SCDynamicStore>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn SCDynamicStoreCopyLocation(store: Option<&SCDynamicStore>) -> *mut CFString;
+        fn SCDynamicStoreCopyLocation(store: Option<&SCDynamicStore>) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCDynamicStoreCopyLocation(store) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Gets the current internet proxy settings.
@@ -337,8 +339,10 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCopyProxies(
     store: Option<&SCDynamicStore>,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn SCDynamicStoreCopyProxies(store: Option<&SCDynamicStore>) -> *mut CFDictionary;
+        fn SCDynamicStoreCopyProxies(
+            store: Option<&SCDynamicStore>,
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SCDynamicStoreCopyProxies(store) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

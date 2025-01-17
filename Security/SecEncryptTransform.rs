@@ -169,9 +169,10 @@ pub unsafe extern "C-unwind" fn SecEncryptTransformCreate(
         fn SecEncryptTransformCreate(
             key_ref: &SecKey,
             error: *mut *mut CFError,
-        ) -> NonNull<SecTransform>;
+        ) -> Option<NonNull<SecTransform>>;
     }
     let ret = unsafe { SecEncryptTransformCreate(key_ref, error) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -200,9 +201,10 @@ pub unsafe extern "C-unwind" fn SecDecryptTransformCreate(
         fn SecDecryptTransformCreate(
             key_ref: &SecKey,
             error: *mut *mut CFError,
-        ) -> NonNull<SecTransform>;
+        ) -> Option<NonNull<SecTransform>>;
     }
     let ret = unsafe { SecDecryptTransformCreate(key_ref, error) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 

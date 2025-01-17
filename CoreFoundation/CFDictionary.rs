@@ -332,7 +332,7 @@ pub unsafe extern "C-unwind" fn CFDictionaryCreate(
             num_values: CFIndex,
             key_call_backs: *const CFDictionaryKeyCallBacks,
             value_call_backs: *const CFDictionaryValueCallBacks,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe {
         CFDictionaryCreate(
@@ -344,7 +344,7 @@ pub unsafe extern "C-unwind" fn CFDictionaryCreate(
             value_call_backs,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a new immutable dictionary with the key-value pairs from
@@ -378,10 +378,10 @@ pub unsafe extern "C-unwind" fn CFDictionaryCreateCopy(
         fn CFDictionaryCreateCopy(
             allocator: Option<&CFAllocator>,
             the_dict: Option<&CFDictionary>,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CFDictionaryCreateCopy(allocator, the_dict) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a new mutable dictionary.
@@ -469,11 +469,11 @@ pub unsafe extern "C-unwind" fn CFDictionaryCreateMutable(
             capacity: CFIndex,
             key_call_backs: *const CFDictionaryKeyCallBacks,
             value_call_backs: *const CFDictionaryValueCallBacks,
-        ) -> *mut CFMutableDictionary;
+        ) -> Option<NonNull<CFMutableDictionary>>;
     }
     let ret =
         unsafe { CFDictionaryCreateMutable(allocator, capacity, key_call_backs, value_call_backs) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a new mutable dictionary with the key-value pairs from
@@ -519,10 +519,10 @@ pub unsafe extern "C-unwind" fn CFDictionaryCreateMutableCopy(
             allocator: Option<&CFAllocator>,
             capacity: CFIndex,
             the_dict: Option<&CFDictionary>,
-        ) -> *mut CFMutableDictionary;
+        ) -> Option<NonNull<CFMutableDictionary>>;
     }
     let ret = unsafe { CFDictionaryCreateMutableCopy(allocator, capacity, the_dict) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

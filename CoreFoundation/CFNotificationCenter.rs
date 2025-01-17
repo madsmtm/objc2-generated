@@ -82,30 +82,30 @@ unsafe impl ConcreteType for CFNotificationCenter {
 pub unsafe extern "C-unwind" fn CFNotificationCenterGetLocalCenter(
 ) -> Option<CFRetained<CFNotificationCenter>> {
     extern "C-unwind" {
-        fn CFNotificationCenterGetLocalCenter() -> *mut CFNotificationCenter;
+        fn CFNotificationCenterGetLocalCenter() -> Option<NonNull<CFNotificationCenter>>;
     }
     let ret = unsafe { CFNotificationCenterGetLocalCenter() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[inline]
 pub unsafe extern "C-unwind" fn CFNotificationCenterGetDistributedCenter(
 ) -> Option<CFRetained<CFNotificationCenter>> {
     extern "C-unwind" {
-        fn CFNotificationCenterGetDistributedCenter() -> *mut CFNotificationCenter;
+        fn CFNotificationCenterGetDistributedCenter() -> Option<NonNull<CFNotificationCenter>>;
     }
     let ret = unsafe { CFNotificationCenterGetDistributedCenter() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[inline]
 pub unsafe extern "C-unwind" fn CFNotificationCenterGetDarwinNotifyCenter(
 ) -> Option<CFRetained<CFNotificationCenter>> {
     extern "C-unwind" {
-        fn CFNotificationCenterGetDarwinNotifyCenter() -> *mut CFNotificationCenter;
+        fn CFNotificationCenterGetDarwinNotifyCenter() -> Option<NonNull<CFNotificationCenter>>;
     }
     let ret = unsafe { CFNotificationCenterGetDarwinNotifyCenter() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

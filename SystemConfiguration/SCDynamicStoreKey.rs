@@ -34,9 +34,10 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkGlobalEntity(
             allocator: Option<&CFAllocator>,
             domain: &CFString,
             entity: &CFString,
-        ) -> NonNull<CFString>;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCDynamicStoreKeyCreateNetworkGlobalEntity(allocator, domain, entity) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -64,9 +65,10 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkInterface(
         fn SCDynamicStoreKeyCreateNetworkInterface(
             allocator: Option<&CFAllocator>,
             domain: &CFString,
-        ) -> NonNull<CFString>;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCDynamicStoreKeyCreateNetworkInterface(allocator, domain) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -104,10 +106,11 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkInterfaceEntity(
             domain: &CFString,
             ifname: &CFString,
             entity: Option<&CFString>,
-        ) -> NonNull<CFString>;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret =
         unsafe { SCDynamicStoreKeyCreateNetworkInterfaceEntity(allocator, domain, ifname, entity) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -145,11 +148,12 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateNetworkServiceEntity(
             domain: &CFString,
             service_id: &CFString,
             entity: Option<&CFString>,
-        ) -> NonNull<CFString>;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe {
         SCDynamicStoreKeyCreateNetworkServiceEntity(allocator, domain, service_id, entity)
     };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -172,9 +176,10 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateComputerName(
     extern "C-unwind" {
         fn SCDynamicStoreKeyCreateComputerName(
             allocator: Option<&CFAllocator>,
-        ) -> NonNull<CFString>;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCDynamicStoreKeyCreateComputerName(allocator) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -194,10 +199,12 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateConsoleUser(
     allocator: Option<&CFAllocator>,
 ) -> CFRetained<CFString> {
     extern "C-unwind" {
-        fn SCDynamicStoreKeyCreateConsoleUser(allocator: Option<&CFAllocator>)
-            -> NonNull<CFString>;
+        fn SCDynamicStoreKeyCreateConsoleUser(
+            allocator: Option<&CFAllocator>,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCDynamicStoreKeyCreateConsoleUser(allocator) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -218,9 +225,12 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateHostNames(
     allocator: Option<&CFAllocator>,
 ) -> CFRetained<CFString> {
     extern "C-unwind" {
-        fn SCDynamicStoreKeyCreateHostNames(allocator: Option<&CFAllocator>) -> NonNull<CFString>;
+        fn SCDynamicStoreKeyCreateHostNames(
+            allocator: Option<&CFAllocator>,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCDynamicStoreKeyCreateHostNames(allocator) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -241,9 +251,12 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateLocation(
     allocator: Option<&CFAllocator>,
 ) -> CFRetained<CFString> {
     extern "C-unwind" {
-        fn SCDynamicStoreKeyCreateLocation(allocator: Option<&CFAllocator>) -> NonNull<CFString>;
+        fn SCDynamicStoreKeyCreateLocation(
+            allocator: Option<&CFAllocator>,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCDynamicStoreKeyCreateLocation(allocator) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -264,8 +277,11 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreKeyCreateProxies(
     allocator: Option<&CFAllocator>,
 ) -> CFRetained<CFString> {
     extern "C-unwind" {
-        fn SCDynamicStoreKeyCreateProxies(allocator: Option<&CFAllocator>) -> NonNull<CFString>;
+        fn SCDynamicStoreKeyCreateProxies(
+            allocator: Option<&CFAllocator>,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCDynamicStoreKeyCreateProxies(allocator) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }

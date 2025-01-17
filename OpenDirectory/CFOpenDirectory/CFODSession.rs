@@ -64,10 +64,10 @@ pub unsafe extern "C-unwind" fn ODSessionCreate(
             allocator: Option<&CFAllocator>,
             options: Option<&CFDictionary>,
             error: *mut *mut CFError,
-        ) -> *mut ODSessionRef;
+        ) -> Option<NonNull<ODSessionRef>>;
     }
     let ret = unsafe { ODSessionCreate(allocator, options, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the node names that are registered on this ODSession
@@ -93,8 +93,8 @@ pub unsafe extern "C-unwind" fn ODSessionCopyNodeNames(
             allocator: Option<&CFAllocator>,
             session: Option<&ODSessionRef>,
             error: *mut *mut CFError,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { ODSessionCopyNodeNames(allocator, session, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

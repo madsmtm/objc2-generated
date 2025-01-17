@@ -12,9 +12,9 @@ use crate::*;
 #[inline]
 pub unsafe extern "C-unwind" fn AXNameFromColor(color: &CGColor) -> Retained<NSString> {
     extern "C-unwind" {
-        fn AXNameFromColor(color: &CGColor) -> NonNull<NSString>;
+        fn AXNameFromColor(color: &CGColor) -> *mut NSString;
     }
     let ret = unsafe { AXNameFromColor(color) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }

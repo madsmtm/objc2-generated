@@ -231,9 +231,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn CTFrameGetPath(frame: &CTFrame) -> CFRetained<CGPath> {
     extern "C-unwind" {
-        fn CTFrameGetPath(frame: &CTFrame) -> NonNull<CGPath>;
+        fn CTFrameGetPath(frame: &CTFrame) -> Option<NonNull<CGPath>>;
     }
     let ret = unsafe { CTFrameGetPath(frame) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::retain(ret) }
 }
 
@@ -258,10 +259,10 @@ pub unsafe extern "C-unwind" fn CTFrameGetFrameAttributes(
     frame: &CTFrame,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn CTFrameGetFrameAttributes(frame: &CTFrame) -> *mut CFDictionary;
+        fn CTFrameGetFrameAttributes(frame: &CTFrame) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CTFrameGetFrameAttributes(frame) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns an array of lines that make up the frame.
@@ -283,9 +284,10 @@ pub unsafe extern "C-unwind" fn CTFrameGetFrameAttributes(
 #[inline]
 pub unsafe extern "C-unwind" fn CTFrameGetLines(frame: &CTFrame) -> CFRetained<CFArray> {
     extern "C-unwind" {
-        fn CTFrameGetLines(frame: &CTFrame) -> NonNull<CFArray>;
+        fn CTFrameGetLines(frame: &CTFrame) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFrameGetLines(frame) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::retain(ret) }
 }
 

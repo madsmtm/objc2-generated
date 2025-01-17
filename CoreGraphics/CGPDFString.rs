@@ -39,10 +39,10 @@ pub unsafe extern "C-unwind" fn CGPDFStringCopyTextString(
     string: CGPDFStringRef,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CGPDFStringCopyTextString(string: CGPDFStringRef) -> *mut CFString;
+        fn CGPDFStringCopyTextString(string: CGPDFStringRef) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CGPDFStringCopyTextString(string) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -50,8 +50,8 @@ pub unsafe extern "C-unwind" fn CGPDFStringCopyDate(
     string: CGPDFStringRef,
 ) -> Option<CFRetained<CFDate>> {
     extern "C-unwind" {
-        fn CGPDFStringCopyDate(string: CGPDFStringRef) -> *mut CFDate;
+        fn CGPDFStringCopyDate(string: CGPDFStringRef) -> Option<NonNull<CFDate>>;
     }
     let ret = unsafe { CGPDFStringCopyDate(string) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

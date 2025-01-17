@@ -131,10 +131,10 @@ pub unsafe extern "C-unwind" fn ODRecordCopyPasswordPolicy(
             allocator: Option<&CFAllocator>,
             record: Option<&ODRecordRef>,
             error: *mut *mut CFError,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { ODRecordCopyPasswordPolicy(allocator, record, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -230,10 +230,10 @@ pub unsafe extern "C-unwind" fn ODRecordGetRecordType(
     record: &ODRecordRef,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn ODRecordGetRecordType(record: &ODRecordRef) -> *mut CFString;
+        fn ODRecordGetRecordType(record: &ODRecordRef) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { ODRecordGetRecordType(record) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the official record name of an ODRecordRef
@@ -250,10 +250,10 @@ pub unsafe extern "C-unwind" fn ODRecordGetRecordName(
     record: &ODRecordRef,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn ODRecordGetRecordName(record: &ODRecordRef) -> *mut CFString;
+        fn ODRecordGetRecordName(record: &ODRecordRef) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { ODRecordGetRecordName(record) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the value of an attribute as an array of CFStringRef or CFDataRef types
@@ -285,10 +285,10 @@ pub unsafe extern "C-unwind" fn ODRecordCopyValues(
             record: &ODRecordRef,
             attribute: Option<&ODAttributeType>,
             error: *mut *mut CFError,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { ODRecordCopyValues(record, attribute, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -402,10 +402,10 @@ pub unsafe extern "C-unwind" fn ODRecordCopyDetails(
             record: &ODRecordRef,
             attributes: Option<&CFArray>,
             error: *mut *mut CFError,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { ODRecordCopyDetails(record, attributes, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -524,10 +524,10 @@ pub unsafe extern "C-unwind" fn ODRecordCopyPolicies(
         fn ODRecordCopyPolicies(
             record: &ODRecordRef,
             error: *mut *mut CFError,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { ODRecordCopyPolicies(record, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// This will copy the effective policies for the record (merging any node-level policies).
@@ -550,10 +550,10 @@ pub unsafe extern "C-unwind" fn ODRecordCopyEffectivePolicies(
         fn ODRecordCopyEffectivePolicies(
             record: &ODRecordRef,
             error: *mut *mut CFError,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { ODRecordCopyEffectivePolicies(record, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// This will return a dictionary of supported policies.
@@ -578,10 +578,10 @@ pub unsafe extern "C-unwind" fn ODRecordCopySupportedPolicies(
         fn ODRecordCopySupportedPolicies(
             record: &ODRecordRef,
             error: *mut *mut CFError,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { ODRecordCopySupportedPolicies(record, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -773,10 +773,10 @@ pub unsafe extern "C-unwind" fn ODRecordCopyAccountPolicies(
         fn ODRecordCopyAccountPolicies(
             record: &ODRecordRef,
             error: *mut *mut CFError,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { ODRecordCopyAccountPolicies(record, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

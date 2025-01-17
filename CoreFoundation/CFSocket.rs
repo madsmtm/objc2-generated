@@ -207,7 +207,7 @@ pub unsafe extern "C-unwind" fn CFSocketCreate(
             call_back_types: CFOptionFlags,
             callout: CFSocketCallBack,
             context: *const CFSocketContext,
-        ) -> *mut CFSocket;
+        ) -> Option<NonNull<CFSocket>>;
     }
     let ret = unsafe {
         CFSocketCreate(
@@ -220,7 +220,7 @@ pub unsafe extern "C-unwind" fn CFSocketCreate(
             context,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFData"))]
@@ -239,11 +239,11 @@ pub unsafe extern "C-unwind" fn CFSocketCreateWithNative(
             call_back_types: CFOptionFlags,
             callout: CFSocketCallBack,
             context: *const CFSocketContext,
-        ) -> *mut CFSocket;
+        ) -> Option<NonNull<CFSocket>>;
     }
     let ret =
         unsafe { CFSocketCreateWithNative(allocator, sock, call_back_types, callout, context) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFData"))]
@@ -262,12 +262,12 @@ pub unsafe extern "C-unwind" fn CFSocketCreateWithSocketSignature(
             call_back_types: CFOptionFlags,
             callout: CFSocketCallBack,
             context: *const CFSocketContext,
-        ) -> *mut CFSocket;
+        ) -> Option<NonNull<CFSocket>>;
     }
     let ret = unsafe {
         CFSocketCreateWithSocketSignature(allocator, signature, call_back_types, callout, context)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFData", feature = "CFDate"))]
@@ -288,7 +288,7 @@ pub unsafe extern "C-unwind" fn CFSocketCreateConnectedToSocketSignature(
             callout: CFSocketCallBack,
             context: *const CFSocketContext,
             timeout: CFTimeInterval,
-        ) -> *mut CFSocket;
+        ) -> Option<NonNull<CFSocket>>;
     }
     let ret = unsafe {
         CFSocketCreateConnectedToSocketSignature(
@@ -300,7 +300,7 @@ pub unsafe extern "C-unwind" fn CFSocketCreateConnectedToSocketSignature(
             timeout,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -334,10 +334,10 @@ pub unsafe extern "C-unwind" fn CFSocketIsValid(s: &CFSocket) -> bool {
 #[inline]
 pub unsafe extern "C-unwind" fn CFSocketCopyAddress(s: &CFSocket) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
-        fn CFSocketCopyAddress(s: &CFSocket) -> *mut CFData;
+        fn CFSocketCopyAddress(s: &CFSocket) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CFSocketCopyAddress(s) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFData")]
@@ -346,10 +346,10 @@ pub unsafe extern "C-unwind" fn CFSocketCopyPeerAddress(
     s: &CFSocket,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
-        fn CFSocketCopyPeerAddress(s: &CFSocket) -> *mut CFData;
+        fn CFSocketCopyPeerAddress(s: &CFSocket) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CFSocketCopyPeerAddress(s) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -373,10 +373,10 @@ pub unsafe extern "C-unwind" fn CFSocketCreateRunLoopSource(
             allocator: Option<&CFAllocator>,
             s: Option<&CFSocket>,
             order: CFIndex,
-        ) -> *mut CFRunLoopSource;
+        ) -> Option<NonNull<CFRunLoopSource>>;
     }
     let ret = unsafe { CFSocketCreateRunLoopSource(allocator, s, order) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

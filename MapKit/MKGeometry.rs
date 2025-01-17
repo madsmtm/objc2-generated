@@ -196,11 +196,11 @@ extern "C" {
 
 // TODO: pub fn MKMapRectIsEmpty(rect: MKMapRect,) -> Bool;
 
-// TODO: pub fn MKStringFromMapPoint(point: MKMapPoint,) -> NonNull<NSString>;
+// TODO: pub fn MKStringFromMapPoint(point: MKMapPoint,)-> *mut NSString;
 
-// TODO: pub fn MKStringFromMapSize(size: MKMapSize,) -> NonNull<NSString>;
+// TODO: pub fn MKStringFromMapSize(size: MKMapSize,)-> *mut NSString;
 
-// TODO: pub fn MKStringFromMapRect(rect: MKMapRect,) -> NonNull<NSString>;
+// TODO: pub fn MKStringFromMapRect(rect: MKMapRect,)-> *mut NSString;
 
 extern "C-unwind" {
     pub fn MKMapRectUnion(rect1: MKMapRect, rect2: MKMapRect) -> MKMapRect;

@@ -92,10 +92,10 @@ pub unsafe extern "C-unwind" fn NSAllocateObject(
             a_class: &AnyClass,
             extra_bytes: NSUInteger,
             zone: *mut NSZone,
-        ) -> NonNull<AnyObject>;
+        ) -> *mut AnyObject;
     }
     let ret = unsafe { NSAllocateObject(a_class, extra_bytes, zone) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -116,10 +116,10 @@ pub unsafe extern "C-unwind" fn NSCopyObject(
             object: &AnyObject,
             extra_bytes: NSUInteger,
             zone: *mut NSZone,
-        ) -> NonNull<AnyObject>;
+        ) -> *mut AnyObject;
     }
     let ret = unsafe { NSCopyObject(object, extra_bytes, zone) };
-    unsafe { Retained::from_raw(ret.as_ptr()) }
+    unsafe { Retained::from_raw(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 

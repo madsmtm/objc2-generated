@@ -456,9 +456,10 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateWithNameAndSize(
         fn CTFontDescriptorCreateWithNameAndSize(
             name: &CFString,
             size: CGFloat,
-        ) -> NonNull<CTFontDescriptor>;
+        ) -> Option<NonNull<CTFontDescriptor>>;
     }
     let ret = unsafe { CTFontDescriptorCreateWithNameAndSize(name, size) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -476,9 +477,10 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateWithAttributes(
     extern "C-unwind" {
         fn CTFontDescriptorCreateWithAttributes(
             attributes: &CFDictionary,
-        ) -> NonNull<CTFontDescriptor>;
+        ) -> Option<NonNull<CTFontDescriptor>>;
     }
     let ret = unsafe { CTFontDescriptorCreateWithAttributes(attributes) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -511,9 +513,10 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithAttributes(
         fn CTFontDescriptorCreateCopyWithAttributes(
             original: &CTFontDescriptor,
             attributes: &CFDictionary,
-        ) -> NonNull<CTFontDescriptor>;
+        ) -> Option<NonNull<CTFontDescriptor>>;
     }
     let ret = unsafe { CTFontDescriptorCreateCopyWithAttributes(original, attributes) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -536,10 +539,10 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithFamily(
         fn CTFontDescriptorCreateCopyWithFamily(
             original: &CTFontDescriptor,
             family: &CFString,
-        ) -> *mut CTFontDescriptor;
+        ) -> Option<NonNull<CTFontDescriptor>>;
     }
     let ret = unsafe { CTFontDescriptorCreateCopyWithFamily(original, family) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns a new font descriptor based on the original descriptor having the specified symbolic traits.
@@ -567,12 +570,12 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithSymbolicTraits(
             original: &CTFontDescriptor,
             sym_trait_value: CTFontSymbolicTraits,
             sym_trait_mask: CTFontSymbolicTraits,
-        ) -> *mut CTFontDescriptor;
+        ) -> Option<NonNull<CTFontDescriptor>>;
     }
     let ret = unsafe {
         CTFontDescriptorCreateCopyWithSymbolicTraits(original, sym_trait_value, sym_trait_mask)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a copy of the original font descriptor with a new variation instance.
@@ -599,11 +602,12 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithVariation(
             original: &CTFontDescriptor,
             variation_identifier: &CFNumber,
             variation_value: CGFloat,
-        ) -> NonNull<CTFontDescriptor>;
+        ) -> Option<NonNull<CTFontDescriptor>>;
     }
     let ret = unsafe {
         CTFontDescriptorCreateCopyWithVariation(original, variation_identifier, variation_value)
     };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -634,7 +638,7 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithFeature(
             original: &CTFontDescriptor,
             feature_type_identifier: &CFNumber,
             feature_selector_identifier: &CFNumber,
-        ) -> NonNull<CTFontDescriptor>;
+        ) -> Option<NonNull<CTFontDescriptor>>;
     }
     let ret = unsafe {
         CTFontDescriptorCreateCopyWithFeature(
@@ -643,6 +647,7 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithFeature(
             feature_selector_identifier,
         )
     };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -665,11 +670,11 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateMatchingFontDescriptors(
         fn CTFontDescriptorCreateMatchingFontDescriptors(
             descriptor: &CTFontDescriptor,
             mandatory_attributes: Option<&CFSet>,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret =
         unsafe { CTFontDescriptorCreateMatchingFontDescriptors(descriptor, mandatory_attributes) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns an the single preferred matching font descriptor based on the original descriptor and system precedence.
@@ -691,11 +696,11 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateMatchingFontDescriptor(
         fn CTFontDescriptorCreateMatchingFontDescriptor(
             descriptor: &CTFontDescriptor,
             mandatory_attributes: Option<&CFSet>,
-        ) -> *mut CTFontDescriptor;
+        ) -> Option<NonNull<CTFontDescriptor>>;
     }
     let ret =
         unsafe { CTFontDescriptorCreateMatchingFontDescriptor(descriptor, mandatory_attributes) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Progress state
@@ -802,9 +807,12 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCopyAttributes(
     descriptor: &CTFontDescriptor,
 ) -> CFRetained<CFDictionary> {
     extern "C-unwind" {
-        fn CTFontDescriptorCopyAttributes(descriptor: &CTFontDescriptor) -> NonNull<CFDictionary>;
+        fn CTFontDescriptorCopyAttributes(
+            descriptor: &CTFontDescriptor,
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CTFontDescriptorCopyAttributes(descriptor) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -827,10 +835,10 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCopyAttribute(
         fn CTFontDescriptorCopyAttribute(
             descriptor: &CTFontDescriptor,
             attribute: &CFString,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { CTFontDescriptorCopyAttribute(descriptor, attribute) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// function    CTFontDescriptorCopyLocalizedAttribute
@@ -863,8 +871,8 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCopyLocalizedAttribute(
             descriptor: &CTFontDescriptor,
             attribute: &CFString,
             language: *mut *mut CFString,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { CTFontDescriptorCopyLocalizedAttribute(descriptor, attribute, language) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

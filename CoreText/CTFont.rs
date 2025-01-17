@@ -230,9 +230,10 @@ pub unsafe extern "C-unwind" fn CTFontCreateWithName(
             name: &CFString,
             size: CGFloat,
             matrix: *const CGAffineTransform,
-        ) -> NonNull<CTFont>;
+        ) -> Option<NonNull<CTFont>>;
     }
     let ret = unsafe { CTFontCreateWithName(name, size, matrix) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -261,9 +262,10 @@ pub unsafe extern "C-unwind" fn CTFontCreateWithFontDescriptor(
             descriptor: &CTFontDescriptor,
             size: CGFloat,
             matrix: *const CGAffineTransform,
-        ) -> NonNull<CTFont>;
+        ) -> Option<NonNull<CTFont>>;
     }
     let ret = unsafe { CTFontCreateWithFontDescriptor(descriptor, size, matrix) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -336,9 +338,10 @@ pub unsafe extern "C-unwind" fn CTFontCreateWithNameAndOptions(
             size: CGFloat,
             matrix: *const CGAffineTransform,
             options: CTFontOptions,
-        ) -> NonNull<CTFont>;
+        ) -> Option<NonNull<CTFont>>;
     }
     let ret = unsafe { CTFontCreateWithNameAndOptions(name, size, matrix, options) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -372,10 +375,11 @@ pub unsafe extern "C-unwind" fn CTFontCreateWithFontDescriptorAndOptions(
             size: CGFloat,
             matrix: *const CGAffineTransform,
             options: CTFontOptions,
-        ) -> NonNull<CTFont>;
+        ) -> Option<NonNull<CTFont>>;
     }
     let ret =
         unsafe { CTFontCreateWithFontDescriptorAndOptions(descriptor, size, matrix, options) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -541,10 +545,10 @@ pub unsafe extern "C-unwind" fn CTFontCreateUIFontForLanguage(
             ui_type: CTFontUIFontType,
             size: CGFloat,
             language: Option<&CFString>,
-        ) -> *mut CTFont;
+        ) -> Option<NonNull<CTFont>>;
     }
     let ret = unsafe { CTFontCreateUIFontForLanguage(ui_type, size, language) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns a new font with additional attributes based on the original font.
@@ -580,9 +584,10 @@ pub unsafe extern "C-unwind" fn CTFontCreateCopyWithAttributes(
             size: CGFloat,
             matrix: *const CGAffineTransform,
             attributes: Option<&CTFontDescriptor>,
-        ) -> NonNull<CTFont>;
+        ) -> Option<NonNull<CTFont>>;
     }
     let ret = unsafe { CTFontCreateCopyWithAttributes(font, size, matrix, attributes) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -621,12 +626,12 @@ pub unsafe extern "C-unwind" fn CTFontCreateCopyWithSymbolicTraits(
             matrix: *const CGAffineTransform,
             sym_trait_value: CTFontSymbolicTraits,
             sym_trait_mask: CTFontSymbolicTraits,
-        ) -> *mut CTFont;
+        ) -> Option<NonNull<CTFont>>;
     }
     let ret = unsafe {
         CTFontCreateCopyWithSymbolicTraits(font, size, matrix, sym_trait_value, sym_trait_mask)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns a new font in the specified family based on the traits of the original font.
@@ -658,10 +663,10 @@ pub unsafe extern "C-unwind" fn CTFontCreateCopyWithFamily(
             size: CGFloat,
             matrix: *const CGAffineTransform,
             family: &CFString,
-        ) -> *mut CTFont;
+        ) -> Option<NonNull<CTFont>>;
     }
     let ret = unsafe { CTFontCreateCopyWithFamily(font, size, matrix, family) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns a new font reference that can best map the given string range based on the current font.
@@ -698,9 +703,10 @@ pub unsafe extern "C-unwind" fn CTFontCreateForString(
             current_font: &CTFont,
             string: &CFString,
             range: CFRange,
-        ) -> NonNull<CTFont>;
+        ) -> Option<NonNull<CTFont>>;
     }
     let ret = unsafe { CTFontCreateForString(current_font, string, range) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -743,9 +749,10 @@ pub unsafe extern "C-unwind" fn CTFontCreateForStringWithLanguage(
             string: &CFString,
             range: CFRange,
             language: Option<&CFString>,
-        ) -> NonNull<CTFont>;
+        ) -> Option<NonNull<CTFont>>;
     }
     let ret = unsafe { CTFontCreateForStringWithLanguage(current_font, string, range, language) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -762,9 +769,10 @@ pub unsafe extern "C-unwind" fn CTFontCopyFontDescriptor(
     font: &CTFont,
 ) -> CFRetained<CTFontDescriptor> {
     extern "C-unwind" {
-        fn CTFontCopyFontDescriptor(font: &CTFont) -> NonNull<CTFontDescriptor>;
+        fn CTFontCopyFontDescriptor(font: &CTFont) -> Option<NonNull<CTFontDescriptor>>;
     }
     let ret = unsafe { CTFontCopyFontDescriptor(font) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -784,10 +792,10 @@ pub unsafe extern "C-unwind" fn CTFontCopyAttribute(
     attribute: &CFString,
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
-        fn CTFontCopyAttribute(font: &CTFont, attribute: &CFString) -> *mut CFType;
+        fn CTFontCopyAttribute(font: &CTFont, attribute: &CFString) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { CTFontCopyAttribute(font, attribute) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -834,9 +842,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCopyTraits(font: &CTFont) -> CFRetained<CFDictionary> {
     extern "C-unwind" {
-        fn CTFontCopyTraits(font: &CTFont) -> NonNull<CFDictionary>;
+        fn CTFontCopyTraits(font: &CTFont) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CTFontCopyTraits(font) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -859,10 +868,10 @@ pub unsafe extern "C-unwind" fn CTFontCopyDefaultCascadeListForLanguages(
         fn CTFontCopyDefaultCascadeListForLanguages(
             font: &CTFont,
             language_pref_list: Option<&CFArray>,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFontCopyDefaultCascadeListForLanguages(font, language_pref_list) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the PostScript name.
@@ -875,9 +884,10 @@ pub unsafe extern "C-unwind" fn CTFontCopyDefaultCascadeListForLanguages(
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCopyPostScriptName(font: &CTFont) -> CFRetained<CFString> {
     extern "C-unwind" {
-        fn CTFontCopyPostScriptName(font: &CTFont) -> NonNull<CFString>;
+        fn CTFontCopyPostScriptName(font: &CTFont) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CTFontCopyPostScriptName(font) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -891,9 +901,10 @@ pub unsafe extern "C-unwind" fn CTFontCopyPostScriptName(font: &CTFont) -> CFRet
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCopyFamilyName(font: &CTFont) -> CFRetained<CFString> {
     extern "C-unwind" {
-        fn CTFontCopyFamilyName(font: &CTFont) -> NonNull<CFString>;
+        fn CTFontCopyFamilyName(font: &CTFont) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CTFontCopyFamilyName(font) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -907,9 +918,10 @@ pub unsafe extern "C-unwind" fn CTFontCopyFamilyName(font: &CTFont) -> CFRetaine
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCopyFullName(font: &CTFont) -> CFRetained<CFString> {
     extern "C-unwind" {
-        fn CTFontCopyFullName(font: &CTFont) -> NonNull<CFString>;
+        fn CTFontCopyFullName(font: &CTFont) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CTFontCopyFullName(font) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -923,9 +935,10 @@ pub unsafe extern "C-unwind" fn CTFontCopyFullName(font: &CTFont) -> CFRetained<
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCopyDisplayName(font: &CTFont) -> CFRetained<CFString> {
     extern "C-unwind" {
-        fn CTFontCopyDisplayName(font: &CTFont) -> NonNull<CFString>;
+        fn CTFontCopyDisplayName(font: &CTFont) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CTFontCopyDisplayName(font) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -945,10 +958,10 @@ pub unsafe extern "C-unwind" fn CTFontCopyName(
     name_key: &CFString,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CTFontCopyName(font: &CTFont, name_key: &CFString) -> *mut CFString;
+        fn CTFontCopyName(font: &CTFont, name_key: &CFString) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CTFontCopyName(font, name_key) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns a reference to a localized font name.
@@ -976,10 +989,10 @@ pub unsafe extern "C-unwind" fn CTFontCopyLocalizedName(
             font: &CTFont,
             name_key: &CFString,
             actual_language: *mut *mut CFString,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CTFontCopyLocalizedName(font, name_key, actual_language) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the Unicode character set of the font.
@@ -994,9 +1007,10 @@ pub unsafe extern "C-unwind" fn CTFontCopyCharacterSet(
     font: &CTFont,
 ) -> CFRetained<CFCharacterSet> {
     extern "C-unwind" {
-        fn CTFontCopyCharacterSet(font: &CTFont) -> NonNull<CFCharacterSet>;
+        fn CTFontCopyCharacterSet(font: &CTFont) -> Option<NonNull<CFCharacterSet>>;
     }
     let ret = unsafe { CTFontCopyCharacterSet(font) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -1021,9 +1035,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCopySupportedLanguages(font: &CTFont) -> CFRetained<CFArray> {
     extern "C-unwind" {
-        fn CTFontCopySupportedLanguages(font: &CTFont) -> NonNull<CFArray>;
+        fn CTFontCopySupportedLanguages(font: &CTFont) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFontCopySupportedLanguages(font) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -1215,10 +1230,10 @@ pub unsafe extern "C-unwind" fn CTFontCopyNameForGlyph(
     glyph: CGGlyph,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CTFontCopyNameForGlyph(font: &CTFont, glyph: CGGlyph) -> *mut CFString;
+        fn CTFontCopyNameForGlyph(font: &CTFont, glyph: CGGlyph) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CTFontCopyNameForGlyph(font, glyph) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -1365,10 +1380,10 @@ pub unsafe extern "C-unwind" fn CTFontCreatePathForGlyph(
             font: &CTFont,
             glyph: CGGlyph,
             matrix: *const CGAffineTransform,
-        ) -> *mut CGPath;
+        ) -> Option<NonNull<CGPath>>;
     }
     let ret = unsafe { CTFontCreatePathForGlyph(font, glyph, matrix) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {
@@ -1451,10 +1466,10 @@ pub unsafe extern "C-unwind" fn CTFontCopyVariationAxes(
     font: &CTFont,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CTFontCopyVariationAxes(font: &CTFont) -> *mut CFArray;
+        fn CTFontCopyVariationAxes(font: &CTFont) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFontCopyVariationAxes(font) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns a variation dictionary.
@@ -1476,10 +1491,10 @@ pub unsafe extern "C-unwind" fn CTFontCopyVariation(
     font: &CTFont,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn CTFontCopyVariation(font: &CTFont) -> *mut CFDictionary;
+        fn CTFontCopyVariation(font: &CTFont) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CTFontCopyVariation(font) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {
@@ -1624,10 +1639,10 @@ extern "C" {
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCopyFeatures(font: &CTFont) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CTFontCopyFeatures(font: &CTFont) -> *mut CFArray;
+        fn CTFontCopyFeatures(font: &CTFont) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFontCopyFeatures(font) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns an array of font feature setting tuples
@@ -1645,10 +1660,10 @@ pub unsafe extern "C-unwind" fn CTFontCopyFeatureSettings(
     font: &CTFont,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CTFontCopyFeatureSettings(font: &CTFont) -> *mut CFArray;
+        fn CTFontCopyFeatureSettings(font: &CTFont) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFontCopyFeatureSettings(font) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns a CGFontRef and attributes.
@@ -1671,9 +1686,10 @@ pub unsafe extern "C-unwind" fn CTFontCopyGraphicsFont(
         fn CTFontCopyGraphicsFont(
             font: &CTFont,
             attributes: *mut *mut CTFontDescriptor,
-        ) -> NonNull<CGFont>;
+        ) -> Option<NonNull<CGFont>>;
     }
     let ret = unsafe { CTFontCopyGraphicsFont(font, attributes) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -1707,9 +1723,10 @@ pub unsafe extern "C-unwind" fn CTFontCreateWithGraphicsFont(
             size: CGFloat,
             matrix: *const CGAffineTransform,
             attributes: Option<&CTFontDescriptor>,
-        ) -> NonNull<CTFont>;
+        ) -> Option<NonNull<CTFont>>;
     }
     let ret = unsafe { CTFontCreateWithGraphicsFont(graphics_font, size, matrix, attributes) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -1749,9 +1766,10 @@ pub unsafe extern "C-unwind" fn CTFontCreateWithQuickdrawInstance(
             identifier: i16,
             style: u8,
             size: CGFloat,
-        ) -> NonNull<CTFont>;
+        ) -> Option<NonNull<CTFont>>;
     }
     let ret = unsafe { CTFontCreateWithQuickdrawInstance(name, identifier, style, size) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -1951,10 +1969,13 @@ pub unsafe extern "C-unwind" fn CTFontCopyAvailableTables(
     options: CTFontTableOptions,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CTFontCopyAvailableTables(font: &CTFont, options: CTFontTableOptions) -> *mut CFArray;
+        fn CTFontCopyAvailableTables(
+            font: &CTFont,
+            options: CTFontTableOptions,
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFontCopyAvailableTables(font, options) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -1997,10 +2018,10 @@ pub unsafe extern "C-unwind" fn CTFontCopyTable(
             font: &CTFont,
             table: CTFontTableTag,
             options: CTFontTableOptions,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CTFontCopyTable(font, table, options) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

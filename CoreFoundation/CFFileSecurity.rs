@@ -38,10 +38,11 @@ pub unsafe extern "C-unwind" fn CFFileSecurityCreate(
     allocator: Option<&CFAllocator>,
 ) -> Option<CFRetained<CFFileSecurity>> {
     extern "C-unwind" {
-        fn CFFileSecurityCreate(allocator: Option<&CFAllocator>) -> *mut CFFileSecurity;
+        fn CFFileSecurityCreate(allocator: Option<&CFAllocator>)
+            -> Option<NonNull<CFFileSecurity>>;
     }
     let ret = unsafe { CFFileSecurityCreate(allocator) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -54,10 +55,10 @@ pub unsafe extern "C-unwind" fn CFFileSecurityCreateCopy(
         fn CFFileSecurityCreateCopy(
             allocator: Option<&CFAllocator>,
             file_sec: Option<&CFFileSecurity>,
-        ) -> *mut CFFileSecurity;
+        ) -> Option<NonNull<CFFileSecurity>>;
     }
     let ret = unsafe { CFFileSecurityCreateCopy(allocator, file_sec) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFUUID")]

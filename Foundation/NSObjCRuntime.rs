@@ -25,10 +25,10 @@ pub type NSRunLoopMode = NSString;
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromSelector(a_selector: Sel) -> Retained<NSString> {
     extern "C-unwind" {
-        fn NSStringFromSelector(a_selector: Sel) -> NonNull<NSString>;
+        fn NSStringFromSelector(a_selector: Sel) -> *mut NSString;
     }
     let ret = unsafe { NSStringFromSelector(a_selector) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -41,10 +41,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromClass(a_class: &AnyClass) -> Retained<NSString> {
     extern "C-unwind" {
-        fn NSStringFromClass(a_class: &AnyClass) -> NonNull<NSString>;
+        fn NSStringFromClass(a_class: &AnyClass) -> *mut NSString;
     }
     let ret = unsafe { NSStringFromClass(a_class) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -57,10 +57,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromProtocol(proto: &AnyProtocol) -> Retained<NSString> {
     extern "C-unwind" {
-        fn NSStringFromProtocol(proto: &AnyProtocol) -> NonNull<NSString>;
+        fn NSStringFromProtocol(proto: &AnyProtocol) -> *mut NSString;
     }
     let ret = unsafe { NSStringFromProtocol(proto) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -76,12 +76,21 @@ pub unsafe extern "C-unwind" fn NSProtocolFromString(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    pub fn NSGetSizeAndAlignment(
-        type_ptr: NonNull<c_char>,
-        sizep: *mut NSUInteger,
-        alignp: *mut NSUInteger,
-    ) -> NonNull<c_char>;
+#[inline]
+pub unsafe extern "C-unwind" fn NSGetSizeAndAlignment(
+    type_ptr: NonNull<c_char>,
+    sizep: *mut NSUInteger,
+    alignp: *mut NSUInteger,
+) -> NonNull<c_char> {
+    extern "C-unwind" {
+        fn NSGetSizeAndAlignment(
+            type_ptr: NonNull<c_char>,
+            sizep: *mut NSUInteger,
+            alignp: *mut NSUInteger,
+        ) -> Option<NonNull<c_char>>;
+    }
+    let ret = unsafe { NSGetSizeAndAlignment(type_ptr, sizep, alignp) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparator?language=objc)

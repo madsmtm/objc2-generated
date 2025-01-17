@@ -156,9 +156,9 @@ unsafe impl RefEncode for HKAuthorizationRequestStatus {
 pub unsafe extern "C-unwind" fn HKCategoryValueSleepAnalysisAsleepValues(
 ) -> Retained<NSSet<NSNumber>> {
     extern "C-unwind" {
-        fn HKCategoryValueSleepAnalysisAsleepValues() -> NonNull<NSSet<NSNumber>>;
+        fn HKCategoryValueSleepAnalysisAsleepValues() -> *mut NSSet<NSNumber>;
     }
     let ret = unsafe { HKCategoryValueSleepAnalysisAsleepValues() };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }

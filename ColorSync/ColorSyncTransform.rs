@@ -42,10 +42,10 @@ pub unsafe extern "C-unwind" fn ColorSyncTransformCreate(
         fn ColorSyncTransformCreate(
             profile_sequence: Option<&CFArray>,
             options: Option<&CFDictionary>,
-        ) -> *mut ColorSyncTransform;
+        ) -> Option<NonNull<ColorSyncTransform>>;
     }
     let ret = unsafe { ColorSyncTransformCreate(profile_sequence, options) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -59,10 +59,10 @@ pub unsafe extern "C-unwind" fn ColorSyncTransformCopyProperty(
             transform: &ColorSyncTransform,
             key: &CFType,
             options: Option<&CFDictionary>,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { ColorSyncTransformCopyProperty(transform, key, options) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -78,10 +78,12 @@ pub unsafe extern "C-unwind" fn ColorSyncTransformGetProfileSequence(
     transform: &ColorSyncTransform,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn ColorSyncTransformGetProfileSequence(transform: &ColorSyncTransform) -> *mut CFArray;
+        fn ColorSyncTransformGetProfileSequence(
+            transform: &ColorSyncTransform,
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { ColorSyncTransformGetProfileSequence(transform) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdatadepth?language=objc)
@@ -442,8 +444,9 @@ pub unsafe extern "C-unwind" fn ColorSyncCreateCodeFragment(
         fn ColorSyncCreateCodeFragment(
             profile_sequence: &CFArray,
             options: &CFDictionary,
-        ) -> NonNull<CFType>;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { ColorSyncCreateCodeFragment(profile_sequence, options) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }

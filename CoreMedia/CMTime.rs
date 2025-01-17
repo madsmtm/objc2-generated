@@ -472,10 +472,10 @@ pub unsafe extern "C-unwind" fn CMTimeCopyAsDictionary(
         fn CMTimeCopyAsDictionary(
             time: CMTime,
             allocator: Option<&CFAllocator>,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CMTimeCopyAsDictionary(time, allocator) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -529,10 +529,13 @@ pub unsafe extern "C-unwind" fn CMTimeCopyDescription(
     time: CMTime,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CMTimeCopyDescription(allocator: Option<&CFAllocator>, time: CMTime) -> *mut CFString;
+        fn CMTimeCopyDescription(
+            allocator: Option<&CFAllocator>,
+            time: CMTime,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CMTimeCopyDescription(allocator, time) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

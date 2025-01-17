@@ -114,12 +114,12 @@ pub unsafe extern "C-unwind" fn CGPatternCreate(
             tiling: CGPatternTiling,
             is_colored: bool,
             callbacks: *const CGPatternCallbacks,
-        ) -> *mut CGPattern;
+        ) -> Option<NonNull<CGPattern>>;
     }
     let ret = unsafe {
         CGPatternCreate(
             info, bounds, matrix, x_step, y_step, tiling, is_colored, callbacks,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

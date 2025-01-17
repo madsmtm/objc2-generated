@@ -300,10 +300,13 @@ pub unsafe extern "C-unwind" fn SecCopyErrorMessageString(
     reserved: *mut c_void,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn SecCopyErrorMessageString(status: OSStatus, reserved: *mut c_void) -> *mut CFString;
+        fn SecCopyErrorMessageString(
+            status: OSStatus,
+            reserved: *mut c_void,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SecCopyErrorMessageString(status, reserved) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/errsecsuccess?language=objc)

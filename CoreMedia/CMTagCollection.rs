@@ -214,10 +214,10 @@ pub unsafe extern "C-unwind" fn CMTagCollectionCopyDescription(
         fn CMTagCollectionCopyDescription(
             allocator: Option<&CFAllocator>,
             tag_collection: Option<&CMTagCollection>,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CMTagCollectionCopyDescription(allocator, tag_collection) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -713,10 +713,10 @@ pub unsafe extern "C-unwind" fn CMTagCollectionCopyAsDictionary(
         fn CMTagCollectionCopyAsDictionary(
             tag_collection: &CMTagCollection,
             allocator: Option<&CFAllocator>,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CMTagCollectionCopyAsDictionary(tag_collection, allocator) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -756,10 +756,10 @@ pub unsafe extern "C-unwind" fn CMTagCollectionCopyAsData(
         fn CMTagCollectionCopyAsData(
             tag_collection: &CMTagCollection,
             allocator: Option<&CFAllocator>,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CMTagCollectionCopyAsData(tag_collection, allocator) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

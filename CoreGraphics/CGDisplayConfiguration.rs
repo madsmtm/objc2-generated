@@ -353,9 +353,10 @@ pub unsafe extern "C-unwind" fn CGDisplayCopyColorSpace(
     display: CGDirectDisplayID,
 ) -> CFRetained<CGColorSpace> {
     extern "C-unwind" {
-        fn CGDisplayCopyColorSpace(display: CGDirectDisplayID) -> NonNull<CGColorSpace>;
+        fn CGDisplayCopyColorSpace(display: CGDirectDisplayID) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGDisplayCopyColorSpace(display) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 

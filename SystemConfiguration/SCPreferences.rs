@@ -162,10 +162,10 @@ pub unsafe extern "C-unwind" fn SCPreferencesCreate(
             allocator: Option<&CFAllocator>,
             name: &CFString,
             prefs_id: Option<&CFString>,
-        ) -> *mut SCPreferences;
+        ) -> Option<NonNull<SCPreferences>>;
     }
     let ret = unsafe { SCPreferencesCreate(allocator, name, prefs_id) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Initiates access to the per-system set of configuration
@@ -204,11 +204,11 @@ pub unsafe extern "C-unwind" fn SCPreferencesCreateWithAuthorization(
             name: &CFString,
             prefs_id: Option<&CFString>,
             authorization: AuthorizationRef,
-        ) -> *mut SCPreferences;
+        ) -> Option<NonNull<SCPreferences>>;
     }
     let ret =
         unsafe { SCPreferencesCreateWithAuthorization(allocator, name, prefs_id, authorization) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Locks access to the configuration preferences.
@@ -307,10 +307,10 @@ pub unsafe extern "C-unwind" fn SCPreferencesGetSignature(
     prefs: &SCPreferences,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
-        fn SCPreferencesGetSignature(prefs: &SCPreferences) -> *mut CFData;
+        fn SCPreferencesGetSignature(prefs: &SCPreferences) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { SCPreferencesGetSignature(prefs) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns an array of currently defined preference keys.
@@ -324,10 +324,10 @@ pub unsafe extern "C-unwind" fn SCPreferencesCopyKeyList(
     prefs: &SCPreferences,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn SCPreferencesCopyKeyList(prefs: &SCPreferences) -> *mut CFArray;
+        fn SCPreferencesCopyKeyList(prefs: &SCPreferences) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCPreferencesCopyKeyList(prefs) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the data associated with a preference key.
@@ -350,10 +350,13 @@ pub unsafe extern "C-unwind" fn SCPreferencesGetValue(
     key: &CFString,
 ) -> Option<CFRetained<CFPropertyList>> {
     extern "C-unwind" {
-        fn SCPreferencesGetValue(prefs: &SCPreferences, key: &CFString) -> *mut CFPropertyList;
+        fn SCPreferencesGetValue(
+            prefs: &SCPreferences,
+            key: &CFString,
+        ) -> Option<NonNull<CFPropertyList>>;
     }
     let ret = unsafe { SCPreferencesGetValue(prefs, key) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Adds data for a preference key.

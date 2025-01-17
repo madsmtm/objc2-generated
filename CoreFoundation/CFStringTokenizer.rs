@@ -33,10 +33,10 @@ pub unsafe extern "C-unwind" fn CFStringTokenizerCopyBestStringLanguage(
         fn CFStringTokenizerCopyBestStringLanguage(
             string: &CFString,
             range: CFRange,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFStringTokenizerCopyBestStringLanguage(string, range) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringtokenizer?language=objc)
@@ -210,10 +210,10 @@ pub unsafe extern "C-unwind" fn CFStringTokenizerCreate(
             range: CFRange,
             options: CFOptionFlags,
             locale: Option<&CFLocale>,
-        ) -> *mut CFStringTokenizer;
+        ) -> Option<NonNull<CFStringTokenizer>>;
     }
     let ret = unsafe { CFStringTokenizerCreate(alloc, string, range, options, locale) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -318,10 +318,10 @@ pub unsafe extern "C-unwind" fn CFStringTokenizerCopyCurrentTokenAttribute(
         fn CFStringTokenizerCopyCurrentTokenAttribute(
             tokenizer: &CFStringTokenizer,
             attribute: CFOptionFlags,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { CFStringTokenizerCopyCurrentTokenAttribute(tokenizer, attribute) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

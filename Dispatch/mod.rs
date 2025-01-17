@@ -845,20 +845,25 @@ extern "C" {
     ) -> dispatch_queue_t;
 }
 
-extern "C" {
-    /// Returns the label of the given queue, as specified when the queue was
-    /// created, or the empty string if a NULL label was specified.
-    ///
-    /// Passing DISPATCH_CURRENT_QUEUE_LABEL will return the label of the current
-    /// queue.
-    ///
-    ///
-    /// Parameter `queue`: The queue to query, or DISPATCH_CURRENT_QUEUE_LABEL.
-    ///
-    ///
-    /// Returns: The label of the queue.
-    #[must_use]
-    pub fn dispatch_queue_get_label(queue: dispatch_queue_t) -> NonNull<c_char>;
+/// Returns the label of the given queue, as specified when the queue was
+/// created, or the empty string if a NULL label was specified.
+///
+/// Passing DISPATCH_CURRENT_QUEUE_LABEL will return the label of the current
+/// queue.
+///
+///
+/// Parameter `queue`: The queue to query, or DISPATCH_CURRENT_QUEUE_LABEL.
+///
+///
+/// Returns: The label of the queue.
+#[must_use]
+#[inline]
+pub unsafe extern "C" fn dispatch_queue_get_label(queue: dispatch_queue_t) -> NonNull<c_char> {
+    extern "C" {
+        fn dispatch_queue_get_label(queue: dispatch_queue_t) -> Option<NonNull<c_char>>;
+    }
+    let ret = unsafe { dispatch_queue_get_label(queue) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C" {

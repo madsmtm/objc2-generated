@@ -297,42 +297,54 @@ extern "C-unwind" {
     ) -> f32;
 }
 
-extern "C-unwind" {
-    /// Format a parameter value into a string.
-    ///
-    /// Parameter `inParameterValue`: The parameter value to be formatted.
-    ///
-    /// Parameter `inParameter`: The Audio Unit, scope, element, and parameter whose value this is.
-    ///
-    /// Parameter `inTextBuffer`: The character array to receive the formatted text.  Should be at least 32
-    /// characters.
-    ///
-    /// Parameter `inDigits`: The resolution of the string (see example above).
-    ///
-    /// Returns: `inTextBuffer`
-    ///
-    ///
-    /// Formats a floating point value into a string.  Computes a power of 10 to which the value
-    /// will be rounded and displayed as follows:  if the the parameter is logarithmic (Hertz),
-    /// the number of significant digits is inDigits - pow10(inParameterValue) + 1.  Otherwise,
-    /// it is inDigits - pow10(maxValue - minValue) + 1.
-    ///
-    /// Example for inDigits=3:
-    ///
-    /// pow10 | range        |  digits after decimal place display
-    /// ------|--------------|------------------------------------
-    /// -2    | .0100-.0999  |  4
-    /// -1    | .100-.999    |  3
-    /// 0     | 1.00-9.99    |  2
-    /// 1     | 10.0-99.9    |  1
-    /// 2     | 100-999      |  0
-    /// 3     | 1000-9990    |  -1
-    /// 4     | 10000-99900  |  -2
-    #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
-    pub fn AUParameterFormatValue(
-        in_parameter_value: f64,
-        in_parameter: NonNull<AudioUnitParameter>,
-        in_text_buffer: NonNull<c_char>,
-        in_digits: u32,
-    ) -> NonNull<c_char>;
+/// Format a parameter value into a string.
+///
+/// Parameter `inParameterValue`: The parameter value to be formatted.
+///
+/// Parameter `inParameter`: The Audio Unit, scope, element, and parameter whose value this is.
+///
+/// Parameter `inTextBuffer`: The character array to receive the formatted text.  Should be at least 32
+/// characters.
+///
+/// Parameter `inDigits`: The resolution of the string (see example above).
+///
+/// Returns: `inTextBuffer`
+///
+///
+/// Formats a floating point value into a string.  Computes a power of 10 to which the value
+/// will be rounded and displayed as follows:  if the the parameter is logarithmic (Hertz),
+/// the number of significant digits is inDigits - pow10(inParameterValue) + 1.  Otherwise,
+/// it is inDigits - pow10(maxValue - minValue) + 1.
+///
+/// Example for inDigits=3:
+///
+/// pow10 | range        |  digits after decimal place display
+/// ------|--------------|------------------------------------
+/// -2    | .0100-.0999  |  4
+/// -1    | .100-.999    |  3
+/// 0     | 1.00-9.99    |  2
+/// 1     | 10.0-99.9    |  1
+/// 2     | 100-999      |  0
+/// 3     | 1000-9990    |  -1
+/// 4     | 10000-99900  |  -2
+#[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
+#[inline]
+pub unsafe extern "C-unwind" fn AUParameterFormatValue(
+    in_parameter_value: f64,
+    in_parameter: NonNull<AudioUnitParameter>,
+    in_text_buffer: NonNull<c_char>,
+    in_digits: u32,
+) -> NonNull<c_char> {
+    extern "C-unwind" {
+        fn AUParameterFormatValue(
+            in_parameter_value: f64,
+            in_parameter: NonNull<AudioUnitParameter>,
+            in_text_buffer: NonNull<c_char>,
+            in_digits: u32,
+        ) -> Option<NonNull<c_char>>;
+    }
+    let ret = unsafe {
+        AUParameterFormatValue(in_parameter_value, in_parameter, in_text_buffer, in_digits)
+    };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }

@@ -28,10 +28,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromRange(range: NSRange) -> Retained<NSString> {
     extern "C-unwind" {
-        fn NSStringFromRange(range: NSRange) -> NonNull<NSString>;
+        fn NSStringFromRange(range: NSRange) -> *mut NSString;
     }
     let ret = unsafe { NSStringFromRange(range) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 

@@ -60,10 +60,13 @@ pub unsafe extern "C-unwind" fn CFDateCreate(
     at: CFAbsoluteTime,
 ) -> Option<CFRetained<CFDate>> {
     extern "C-unwind" {
-        fn CFDateCreate(allocator: Option<&CFAllocator>, at: CFAbsoluteTime) -> *mut CFDate;
+        fn CFDateCreate(
+            allocator: Option<&CFAllocator>,
+            at: CFAbsoluteTime,
+        ) -> Option<NonNull<CFDate>>;
     }
     let ret = unsafe { CFDateCreate(allocator, at) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

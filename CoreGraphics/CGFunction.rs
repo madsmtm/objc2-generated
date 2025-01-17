@@ -83,7 +83,7 @@ pub unsafe extern "C-unwind" fn CGFunctionCreate(
             range_dimension: usize,
             range: *const CGFloat,
             callbacks: *const CGFunctionCallbacks,
-        ) -> *mut CGFunction;
+        ) -> Option<NonNull<CGFunction>>;
     }
     let ret = unsafe {
         CGFunctionCreate(
@@ -95,5 +95,5 @@ pub unsafe extern "C-unwind" fn CGFunctionCreate(
             callbacks,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

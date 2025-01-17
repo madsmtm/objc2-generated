@@ -981,12 +981,10 @@ pub unsafe extern "C-unwind" fn MLCActivationTypeDebugDescription(
     activation_type: MLCActivationType,
 ) -> Retained<NSString> {
     extern "C-unwind" {
-        fn MLCActivationTypeDebugDescription(
-            activation_type: MLCActivationType,
-        ) -> NonNull<NSString>;
+        fn MLCActivationTypeDebugDescription(activation_type: MLCActivationType) -> *mut NSString;
     }
     let ret = unsafe { MLCActivationTypeDebugDescription(activation_type) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -998,10 +996,10 @@ pub unsafe extern "C-unwind" fn MLCArithmeticOperationDebugDescription(
     extern "C-unwind" {
         fn MLCArithmeticOperationDebugDescription(
             operation: MLCArithmeticOperation,
-        ) -> NonNull<NSString>;
+        ) -> *mut NSString;
     }
     let ret = unsafe { MLCArithmeticOperationDebugDescription(operation) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -1011,10 +1009,10 @@ pub unsafe extern "C-unwind" fn MLCPaddingPolicyDebugDescription(
     padding_policy: MLCPaddingPolicy,
 ) -> Retained<NSString> {
     extern "C-unwind" {
-        fn MLCPaddingPolicyDebugDescription(padding_policy: MLCPaddingPolicy) -> NonNull<NSString>;
+        fn MLCPaddingPolicyDebugDescription(padding_policy: MLCPaddingPolicy) -> *mut NSString;
     }
     let ret = unsafe { MLCPaddingPolicyDebugDescription(padding_policy) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -1024,10 +1022,10 @@ pub unsafe extern "C-unwind" fn MLCLossTypeDebugDescription(
     loss_type: MLCLossType,
 ) -> Retained<NSString> {
     extern "C-unwind" {
-        fn MLCLossTypeDebugDescription(loss_type: MLCLossType) -> NonNull<NSString>;
+        fn MLCLossTypeDebugDescription(loss_type: MLCLossType) -> *mut NSString;
     }
     let ret = unsafe { MLCLossTypeDebugDescription(loss_type) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -1037,10 +1035,10 @@ pub unsafe extern "C-unwind" fn MLCReductionTypeDebugDescription(
     reduction_type: MLCReductionType,
 ) -> Retained<NSString> {
     extern "C-unwind" {
-        fn MLCReductionTypeDebugDescription(reduction_type: MLCReductionType) -> NonNull<NSString>;
+        fn MLCReductionTypeDebugDescription(reduction_type: MLCReductionType) -> *mut NSString;
     }
     let ret = unsafe { MLCReductionTypeDebugDescription(reduction_type) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -1050,10 +1048,10 @@ pub unsafe extern "C-unwind" fn MLCPaddingTypeDebugDescription(
     padding_type: MLCPaddingType,
 ) -> Retained<NSString> {
     extern "C-unwind" {
-        fn MLCPaddingTypeDebugDescription(padding_type: MLCPaddingType) -> NonNull<NSString>;
+        fn MLCPaddingTypeDebugDescription(padding_type: MLCPaddingType) -> *mut NSString;
     }
     let ret = unsafe { MLCPaddingTypeDebugDescription(padding_type) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -1065,10 +1063,10 @@ pub unsafe extern "C-unwind" fn MLCConvolutionTypeDebugDescription(
     extern "C-unwind" {
         fn MLCConvolutionTypeDebugDescription(
             convolution_type: MLCConvolutionType,
-        ) -> NonNull<NSString>;
+        ) -> *mut NSString;
     }
     let ret = unsafe { MLCConvolutionTypeDebugDescription(convolution_type) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -1078,10 +1076,10 @@ pub unsafe extern "C-unwind" fn MLCPoolingTypeDebugDescription(
     pooling_type: MLCPoolingType,
 ) -> Retained<NSString> {
     extern "C-unwind" {
-        fn MLCPoolingTypeDebugDescription(pooling_type: MLCPoolingType) -> NonNull<NSString>;
+        fn MLCPoolingTypeDebugDescription(pooling_type: MLCPoolingType) -> *mut NSString;
     }
     let ret = unsafe { MLCPoolingTypeDebugDescription(pooling_type) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -1091,11 +1089,10 @@ pub unsafe extern "C-unwind" fn MLCSoftmaxOperationDebugDescription(
     operation: MLCSoftmaxOperation,
 ) -> Retained<NSString> {
     extern "C-unwind" {
-        fn MLCSoftmaxOperationDebugDescription(operation: MLCSoftmaxOperation)
-            -> NonNull<NSString>;
+        fn MLCSoftmaxOperationDebugDescription(operation: MLCSoftmaxOperation) -> *mut NSString;
     }
     let ret = unsafe { MLCSoftmaxOperationDebugDescription(operation) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -1105,10 +1102,10 @@ pub unsafe extern "C-unwind" fn MLCSampleModeDebugDescription(
     mode: MLCSampleMode,
 ) -> Retained<NSString> {
     extern "C-unwind" {
-        fn MLCSampleModeDebugDescription(mode: MLCSampleMode) -> NonNull<NSString>;
+        fn MLCSampleModeDebugDescription(mode: MLCSampleMode) -> *mut NSString;
     }
     let ret = unsafe { MLCSampleModeDebugDescription(mode) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -1118,10 +1115,10 @@ pub unsafe extern "C-unwind" fn MLCLSTMResultModeDebugDescription(
     mode: MLCLSTMResultMode,
 ) -> Retained<NSString> {
     extern "C-unwind" {
-        fn MLCLSTMResultModeDebugDescription(mode: MLCLSTMResultMode) -> NonNull<NSString>;
+        fn MLCLSTMResultModeDebugDescription(mode: MLCLSTMResultMode) -> *mut NSString;
     }
     let ret = unsafe { MLCLSTMResultModeDebugDescription(mode) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -1133,10 +1130,10 @@ pub unsafe extern "C-unwind" fn MLCComparisonOperationDebugDescription(
     extern "C-unwind" {
         fn MLCComparisonOperationDebugDescription(
             operation: MLCComparisonOperation,
-        ) -> NonNull<NSString>;
+        ) -> *mut NSString;
     }
     let ret = unsafe { MLCComparisonOperationDebugDescription(operation) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -1148,9 +1145,9 @@ pub unsafe extern "C-unwind" fn MLCGradientClippingTypeDebugDescription(
     extern "C-unwind" {
         fn MLCGradientClippingTypeDebugDescription(
             gradient_clipping_type: MLCGradientClippingType,
-        ) -> NonNull<NSString>;
+        ) -> *mut NSString;
     }
     let ret = unsafe { MLCGradientClippingTypeDebugDescription(gradient_clipping_type) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }

@@ -60,9 +60,11 @@ pub unsafe extern "C-unwind" fn CGPDFStreamCopyData(
     format: *mut CGPDFDataFormat,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
-        fn CGPDFStreamCopyData(stream: CGPDFStreamRef, format: *mut CGPDFDataFormat)
-            -> *mut CFData;
+        fn CGPDFStreamCopyData(
+            stream: CGPDFStreamRef,
+            format: *mut CGPDFDataFormat,
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CGPDFStreamCopyData(stream, format) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

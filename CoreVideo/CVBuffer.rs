@@ -115,10 +115,10 @@ pub unsafe extern "C-unwind" fn CVBufferGetAttachment(
             buffer: &CVBuffer,
             key: &CFString,
             attachment_mode: *mut CVAttachmentMode,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { CVBufferGetAttachment(buffer, key, attachment_mode) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -159,10 +159,10 @@ pub unsafe extern "C-unwind" fn CVBufferGetAttachments(
         fn CVBufferGetAttachments(
             buffer: &CVBuffer,
             attachment_mode: CVAttachmentMode,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CVBufferGetAttachments(buffer, attachment_mode) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -206,10 +206,10 @@ pub unsafe extern "C-unwind" fn CVBufferCopyAttachments(
         fn CVBufferCopyAttachments(
             buffer: &CVBuffer,
             attachment_mode: CVAttachmentMode,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CVBufferCopyAttachments(buffer, attachment_mode) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns a retained specific attachment of a CVBuffer object. It is the caller’s responsibility to release the returned value.
@@ -234,10 +234,10 @@ pub unsafe extern "C-unwind" fn CVBufferCopyAttachment(
             buffer: &CVBuffer,
             key: &CFString,
             attachment_mode: *mut CVAttachmentMode,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { CVBufferCopyAttachment(buffer, key, attachment_mode) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns true if an attachment with the passed key is present on a CVBuffer object.

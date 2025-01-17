@@ -93,10 +93,10 @@ pub unsafe extern "C-unwind" fn CGPSConverterCreate(
             info: *mut c_void,
             callbacks: NonNull<CGPSConverterCallbacks>,
             options: Option<&CFDictionary>,
-        ) -> *mut CGPSConverter;
+        ) -> Option<NonNull<CGPSConverter>>;
     }
     let ret = unsafe { CGPSConverterCreate(info, callbacks, options) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

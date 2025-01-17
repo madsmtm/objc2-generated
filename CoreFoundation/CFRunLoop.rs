@@ -151,19 +151,19 @@ unsafe impl ConcreteType for CFRunLoop {
 #[inline]
 pub unsafe extern "C-unwind" fn CFRunLoopGetCurrent() -> Option<CFRetained<CFRunLoop>> {
     extern "C-unwind" {
-        fn CFRunLoopGetCurrent() -> *mut CFRunLoop;
+        fn CFRunLoopGetCurrent() -> Option<NonNull<CFRunLoop>>;
     }
     let ret = unsafe { CFRunLoopGetCurrent() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[inline]
 pub unsafe extern "C-unwind" fn CFRunLoopGetMain() -> Option<CFRetained<CFRunLoop>> {
     extern "C-unwind" {
-        fn CFRunLoopGetMain() -> *mut CFRunLoop;
+        fn CFRunLoopGetMain() -> Option<NonNull<CFRunLoop>>;
     }
     let ret = unsafe { CFRunLoopGetMain() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -172,10 +172,10 @@ pub unsafe extern "C-unwind" fn CFRunLoopCopyCurrentMode(
     rl: &CFRunLoop,
 ) -> Option<CFRetained<CFRunLoopMode>> {
     extern "C-unwind" {
-        fn CFRunLoopCopyCurrentMode(rl: &CFRunLoop) -> *mut CFRunLoopMode;
+        fn CFRunLoopCopyCurrentMode(rl: &CFRunLoop) -> Option<NonNull<CFRunLoopMode>>;
     }
     let ret = unsafe { CFRunLoopCopyCurrentMode(rl) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFArray")]
@@ -184,10 +184,10 @@ pub unsafe extern "C-unwind" fn CFRunLoopCopyAllModes(
     rl: &CFRunLoop,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CFRunLoopCopyAllModes(rl: &CFRunLoop) -> *mut CFArray;
+        fn CFRunLoopCopyAllModes(rl: &CFRunLoop) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CFRunLoopCopyAllModes(rl) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -465,10 +465,10 @@ pub unsafe extern "C-unwind" fn CFRunLoopSourceCreate(
             allocator: Option<&CFAllocator>,
             order: CFIndex,
             context: *mut CFRunLoopSourceContext,
-        ) -> *mut CFRunLoopSource;
+        ) -> Option<NonNull<CFRunLoopSource>>;
     }
     let ret = unsafe { CFRunLoopSourceCreate(allocator, order, context) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -567,12 +567,12 @@ pub unsafe extern "C-unwind" fn CFRunLoopObserverCreate(
             order: CFIndex,
             callout: CFRunLoopObserverCallBack,
             context: *mut CFRunLoopObserverContext,
-        ) -> *mut CFRunLoopObserver;
+        ) -> Option<NonNull<CFRunLoopObserver>>;
     }
     let ret = unsafe {
         CFRunLoopObserverCreate(allocator, activities, repeats as _, order, callout, context)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "block2"))]
@@ -591,12 +591,12 @@ pub unsafe extern "C-unwind" fn CFRunLoopObserverCreateWithHandler(
             repeats: Boolean,
             order: CFIndex,
             block: Option<&block2::Block<dyn Fn(*mut CFRunLoopObserver, CFRunLoopActivity)>>,
-        ) -> *mut CFRunLoopObserver;
+        ) -> Option<NonNull<CFRunLoopObserver>>;
     }
     let ret = unsafe {
         CFRunLoopObserverCreateWithHandler(allocator, activities, repeats as _, order, block)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -706,14 +706,14 @@ pub unsafe extern "C-unwind" fn CFRunLoopTimerCreate(
             order: CFIndex,
             callout: CFRunLoopTimerCallBack,
             context: *mut CFRunLoopTimerContext,
-        ) -> *mut CFRunLoopTimer;
+        ) -> Option<NonNull<CFRunLoopTimer>>;
     }
     let ret = unsafe {
         CFRunLoopTimerCreate(
             allocator, fire_date, interval, flags, order, callout, context,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFDate", feature = "block2"))]
@@ -734,12 +734,12 @@ pub unsafe extern "C-unwind" fn CFRunLoopTimerCreateWithHandler(
             flags: CFOptionFlags,
             order: CFIndex,
             block: Option<&block2::Block<dyn Fn(*mut CFRunLoopTimer)>>,
-        ) -> *mut CFRunLoopTimer;
+        ) -> Option<NonNull<CFRunLoopTimer>>;
     }
     let ret = unsafe {
         CFRunLoopTimerCreateWithHandler(allocator, fire_date, interval, flags, order, block)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

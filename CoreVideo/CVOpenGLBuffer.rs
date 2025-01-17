@@ -78,8 +78,10 @@ pub unsafe extern "C-unwind" fn CVOpenGLBufferGetAttributes(
     open_gl_buffer: &CVOpenGLBuffer,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn CVOpenGLBufferGetAttributes(open_gl_buffer: &CVOpenGLBuffer) -> *mut CFDictionary;
+        fn CVOpenGLBufferGetAttributes(
+            open_gl_buffer: &CVOpenGLBuffer,
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CVOpenGLBufferGetAttributes(open_gl_buffer) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }

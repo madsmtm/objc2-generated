@@ -49,12 +49,12 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateFromXMLData(
             xml_data: Option<&CFData>,
             mutability_option: CFOptionFlags,
             error_string: *mut *mut CFString,
-        ) -> *mut CFPropertyList;
+        ) -> Option<NonNull<CFPropertyList>>;
     }
     let ret = unsafe {
         CFPropertyListCreateFromXMLData(allocator, xml_data, mutability_option, error_string)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFData"))]
@@ -68,10 +68,10 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateXMLData(
         fn CFPropertyListCreateXMLData(
             allocator: Option<&CFAllocator>,
             property_list: Option<&CFPropertyList>,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CFPropertyListCreateXMLData(allocator, property_list) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -86,10 +86,10 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateDeepCopy(
             allocator: Option<&CFAllocator>,
             property_list: Option<&CFPropertyList>,
             mutability_option: CFOptionFlags,
-        ) -> *mut CFPropertyList;
+        ) -> Option<NonNull<CFPropertyList>>;
     }
     let ret = unsafe { CFPropertyListCreateDeepCopy(allocator, property_list, mutability_option) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpropertylistformat?language=objc)
@@ -161,7 +161,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateFromStream(
             mutability_option: CFOptionFlags,
             format: *mut CFPropertyListFormat,
             error_string: *mut *mut CFString,
-        ) -> *mut CFPropertyList;
+        ) -> Option<NonNull<CFPropertyList>>;
     }
     let ret = unsafe {
         CFPropertyListCreateFromStream(
@@ -173,7 +173,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateFromStream(
             error_string,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpropertylistreadcorrupterror?language=objc)
@@ -205,10 +205,10 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithData(
             options: CFOptionFlags,
             format: *mut CFPropertyListFormat,
             error: *mut *mut CFError,
-        ) -> *mut CFPropertyList;
+        ) -> Option<NonNull<CFPropertyList>>;
     }
     let ret = unsafe { CFPropertyListCreateWithData(allocator, data, options, format, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFError", feature = "CFStream"))]
@@ -229,12 +229,12 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithStream(
             options: CFOptionFlags,
             format: *mut CFPropertyListFormat,
             error: *mut *mut CFError,
-        ) -> *mut CFPropertyList;
+        ) -> Option<NonNull<CFPropertyList>>;
     }
     let ret = unsafe {
         CFPropertyListCreateWithStream(allocator, stream, stream_length, options, format, error)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -264,8 +264,8 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateData(
             format: CFPropertyListFormat,
             options: CFOptionFlags,
             error: *mut *mut CFError,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CFPropertyListCreateData(allocator, property_list, format, options, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

@@ -256,10 +256,10 @@ pub unsafe extern "C-unwind" fn CFSetCreate(
             values: *mut *const c_void,
             num_values: CFIndex,
             call_backs: *const CFSetCallBacks,
-        ) -> *mut CFSet;
+        ) -> Option<NonNull<CFSet>>;
     }
     let ret = unsafe { CFSetCreate(allocator, values, num_values, call_backs) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a new immutable set with the values from the given set.
@@ -287,10 +287,13 @@ pub unsafe extern "C-unwind" fn CFSetCreateCopy(
     the_set: Option<&CFSet>,
 ) -> Option<CFRetained<CFSet>> {
     extern "C-unwind" {
-        fn CFSetCreateCopy(allocator: Option<&CFAllocator>, the_set: Option<&CFSet>) -> *mut CFSet;
+        fn CFSetCreateCopy(
+            allocator: Option<&CFAllocator>,
+            the_set: Option<&CFSet>,
+        ) -> Option<NonNull<CFSet>>;
     }
     let ret = unsafe { CFSetCreateCopy(allocator, the_set) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a new empty mutable set.
@@ -349,10 +352,10 @@ pub unsafe extern "C-unwind" fn CFSetCreateMutable(
             allocator: Option<&CFAllocator>,
             capacity: CFIndex,
             call_backs: *const CFSetCallBacks,
-        ) -> *mut CFMutableSet;
+        ) -> Option<NonNull<CFMutableSet>>;
     }
     let ret = unsafe { CFSetCreateMutable(allocator, capacity, call_backs) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a new immutable set with the values from the given set.
@@ -395,10 +398,10 @@ pub unsafe extern "C-unwind" fn CFSetCreateMutableCopy(
             allocator: Option<&CFAllocator>,
             capacity: CFIndex,
             the_set: Option<&CFSet>,
-        ) -> *mut CFMutableSet;
+        ) -> Option<NonNull<CFMutableSet>>;
     }
     let ret = unsafe { CFSetCreateMutableCopy(allocator, capacity, the_set) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

@@ -254,10 +254,10 @@ pub unsafe extern "C-unwind" fn DADiskCreateFromBSDName(
             allocator: Option<&CFAllocator>,
             session: &DASession,
             name: NonNull<c_char>,
-        ) -> *mut DADisk;
+        ) -> Option<NonNull<DADisk>>;
     }
     let ret = unsafe { DADiskCreateFromBSDName(allocator, session, name) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a new disk object.
@@ -285,10 +285,10 @@ pub unsafe extern "C-unwind" fn DADiskCreateFromVolumePath(
             allocator: Option<&CFAllocator>,
             session: &DASession,
             path: &CFURL,
-        ) -> *mut DADisk;
+        ) -> Option<NonNull<DADisk>>;
     }
     let ret = unsafe { DADiskCreateFromVolumePath(allocator, session, path) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -321,10 +321,10 @@ pub unsafe extern "C-unwind" fn DADiskCopyDescription(
     disk: &DADisk,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn DADiskCopyDescription(disk: &DADisk) -> *mut CFDictionary;
+        fn DADiskCopyDescription(disk: &DADisk) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { DADiskCopyDescription(disk) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Obtain the associated whole disk object for the specified disk.
@@ -339,8 +339,8 @@ pub unsafe extern "C-unwind" fn DADiskCopyDescription(
 #[inline]
 pub unsafe extern "C-unwind" fn DADiskCopyWholeDisk(disk: &DADisk) -> Option<CFRetained<DADisk>> {
     extern "C-unwind" {
-        fn DADiskCopyWholeDisk(disk: &DADisk) -> *mut DADisk;
+        fn DADiskCopyWholeDisk(disk: &DADisk) -> Option<NonNull<DADisk>>;
     }
     let ret = unsafe { DADiskCopyWholeDisk(disk) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

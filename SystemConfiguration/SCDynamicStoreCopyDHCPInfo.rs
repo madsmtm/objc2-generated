@@ -31,10 +31,10 @@ pub unsafe extern "C-unwind" fn SCDynamicStoreCopyDHCPInfo(
         fn SCDynamicStoreCopyDHCPInfo(
             store: Option<&SCDynamicStore>,
             service_id: Option<&CFString>,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SCDynamicStoreCopyDHCPInfo(store, service_id) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns a non-NULL CFDataRef containing the DHCP
@@ -56,10 +56,10 @@ pub unsafe extern "C-unwind" fn DHCPInfoGetOptionData(
     code: u8,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
-        fn DHCPInfoGetOptionData(info: &CFDictionary, code: u8) -> *mut CFData;
+        fn DHCPInfoGetOptionData(info: &CFDictionary, code: u8) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { DHCPInfoGetOptionData(info, code) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns a CFDateRef corresponding to the lease start time,
@@ -78,10 +78,10 @@ pub unsafe extern "C-unwind" fn DHCPInfoGetLeaseStartTime(
     info: &CFDictionary,
 ) -> Option<CFRetained<CFDate>> {
     extern "C-unwind" {
-        fn DHCPInfoGetLeaseStartTime(info: &CFDictionary) -> *mut CFDate;
+        fn DHCPInfoGetLeaseStartTime(info: &CFDictionary) -> Option<NonNull<CFDate>>;
     }
     let ret = unsafe { DHCPInfoGetLeaseStartTime(info) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns a CFDateRef corresponding to the lease expiration time,
@@ -101,8 +101,8 @@ pub unsafe extern "C-unwind" fn DHCPInfoGetLeaseExpirationTime(
     info: &CFDictionary,
 ) -> Option<CFRetained<CFDate>> {
     extern "C-unwind" {
-        fn DHCPInfoGetLeaseExpirationTime(info: &CFDictionary) -> *mut CFDate;
+        fn DHCPInfoGetLeaseExpirationTime(info: &CFDictionary) -> Option<NonNull<CFDate>>;
     }
     let ret = unsafe { DHCPInfoGetLeaseExpirationTime(info) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }

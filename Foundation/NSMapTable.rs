@@ -233,10 +233,10 @@ pub unsafe extern "C-unwind" fn NSCopyMapTableWithZone(
     zone: *mut NSZone,
 ) -> Retained<NSMapTable> {
     extern "C-unwind" {
-        fn NSCopyMapTableWithZone(table: &NSMapTable, zone: *mut NSZone) -> NonNull<NSMapTable>;
+        fn NSCopyMapTableWithZone(table: &NSMapTable, zone: *mut NSZone) -> *mut NSMapTable;
     }
     let ret = unsafe { NSCopyMapTableWithZone(table, zone) };
-    unsafe { Retained::from_raw(ret.as_ptr()) }
+    unsafe { Retained::from_raw(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -314,10 +314,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromMapTable(table: &NSMapTable) -> Retained<NSString> {
     extern "C-unwind" {
-        fn NSStringFromMapTable(table: &NSMapTable) -> NonNull<NSString>;
+        fn NSStringFromMapTable(table: &NSMapTable) -> *mut NSString;
     }
     let ret = unsafe { NSStringFromMapTable(table) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -325,10 +325,10 @@ pub unsafe extern "C-unwind" fn NSStringFromMapTable(table: &NSMapTable) -> Reta
 #[inline]
 pub unsafe extern "C-unwind" fn NSAllMapTableKeys(table: &NSMapTable) -> Retained<NSArray> {
     extern "C-unwind" {
-        fn NSAllMapTableKeys(table: &NSMapTable) -> NonNull<NSArray>;
+        fn NSAllMapTableKeys(table: &NSMapTable) -> *mut NSArray;
     }
     let ret = unsafe { NSAllMapTableKeys(table) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -336,10 +336,10 @@ pub unsafe extern "C-unwind" fn NSAllMapTableKeys(table: &NSMapTable) -> Retaine
 #[inline]
 pub unsafe extern "C-unwind" fn NSAllMapTableValues(table: &NSMapTable) -> Retained<NSArray> {
     extern "C-unwind" {
-        fn NSAllMapTableValues(table: &NSMapTable) -> NonNull<NSArray>;
+        fn NSAllMapTableValues(table: &NSMapTable) -> *mut NSArray;
     }
     let ret = unsafe { NSAllMapTableValues(table) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -423,10 +423,10 @@ pub unsafe extern "C-unwind" fn NSCreateMapTableWithZone(
             value_call_backs: NSMapTableValueCallBacks,
             capacity: NSUInteger,
             zone: *mut NSZone,
-        ) -> NonNull<NSMapTable>;
+        ) -> *mut NSMapTable;
     }
     let ret = unsafe { NSCreateMapTableWithZone(key_call_backs, value_call_backs, capacity, zone) };
-    unsafe { Retained::from_raw(ret.as_ptr()) }
+    unsafe { Retained::from_raw(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -442,10 +442,10 @@ pub unsafe extern "C-unwind" fn NSCreateMapTable(
             key_call_backs: NSMapTableKeyCallBacks,
             value_call_backs: NSMapTableValueCallBacks,
             capacity: NSUInteger,
-        ) -> NonNull<NSMapTable>;
+        ) -> *mut NSMapTable;
     }
     let ret = unsafe { NSCreateMapTable(key_call_backs, value_call_backs, capacity) };
-    unsafe { Retained::from_raw(ret.as_ptr()) }
+    unsafe { Retained::from_raw(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 

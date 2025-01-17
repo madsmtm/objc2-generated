@@ -54,10 +54,10 @@ pub unsafe extern "C-unwind" fn ODNodeCreateWithNodeType(
             session: Option<&ODSessionRef>,
             node_type: ODNodeType,
             error: *mut *mut CFError,
-        ) -> *mut ODNodeRef;
+        ) -> Option<NonNull<ODNodeRef>>;
     }
     let ret = unsafe { ODNodeCreateWithNodeType(allocator, session, node_type, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates an ODNodeRef based on a partciular node name
@@ -88,10 +88,10 @@ pub unsafe extern "C-unwind" fn ODNodeCreateWithName(
             session: Option<&ODSessionRef>,
             node_name: Option<&CFString>,
             error: *mut *mut CFError,
-        ) -> *mut ODNodeRef;
+        ) -> Option<NonNull<ODNodeRef>>;
     }
     let ret = unsafe { ODNodeCreateWithName(allocator, session, node_name, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a copy, including any remote credentials used for Proxy and/or Node authentication
@@ -118,10 +118,10 @@ pub unsafe extern "C-unwind" fn ODNodeCreateCopy(
             allocator: Option<&CFAllocator>,
             node: Option<&ODNodeRef>,
             error: *mut *mut CFError,
-        ) -> *mut ODNodeRef;
+        ) -> Option<NonNull<ODNodeRef>>;
     }
     let ret = unsafe { ODNodeCreateCopy(allocator, node, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns a CFArray of subnode names for this node, which may contain sub-nodes or search policy nodes
@@ -141,10 +141,13 @@ pub unsafe extern "C-unwind" fn ODNodeCopySubnodeNames(
     error: *mut *mut CFError,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn ODNodeCopySubnodeNames(node: &ODNodeRef, error: *mut *mut CFError) -> *mut CFArray;
+        fn ODNodeCopySubnodeNames(
+            node: &ODNodeRef,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { ODNodeCopySubnodeNames(node, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Will return names of subnodes that are not currently reachable.
@@ -168,10 +171,10 @@ pub unsafe extern "C-unwind" fn ODNodeCopyUnreachableSubnodeNames(
         fn ODNodeCopyUnreachableSubnodeNames(
             node: &ODNodeRef,
             error: *mut *mut CFError,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { ODNodeCopyUnreachableSubnodeNames(node, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the node name of the node that was opened
@@ -185,10 +188,10 @@ pub unsafe extern "C-unwind" fn ODNodeCopyUnreachableSubnodeNames(
 #[inline]
 pub unsafe extern "C-unwind" fn ODNodeGetName(node: &ODNodeRef) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn ODNodeGetName(node: &ODNodeRef) -> *mut CFString;
+        fn ODNodeGetName(node: &ODNodeRef) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { ODNodeGetName(node) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns a dictionary with details about the node in dictionary form
@@ -215,10 +218,10 @@ pub unsafe extern "C-unwind" fn ODNodeCopyDetails(
             node: &ODNodeRef,
             keys: Option<&CFArray>,
             error: *mut *mut CFError,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { ODNodeCopyDetails(node, keys, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns a CFArrayRef of the record types supported by this node.
@@ -241,10 +244,10 @@ pub unsafe extern "C-unwind" fn ODNodeCopySupportedRecordTypes(
         fn ODNodeCopySupportedRecordTypes(
             node: &ODNodeRef,
             error: *mut *mut CFError,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { ODNodeCopySupportedRecordTypes(node, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Will return a list of attribute types supported for that attribute if possible
@@ -275,10 +278,10 @@ pub unsafe extern "C-unwind" fn ODNodeCopySupportedAttributes(
             node: &ODNodeRef,
             record_type: Option<&ODRecordType>,
             error: *mut *mut CFError,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { ODNodeCopySupportedAttributes(node, record_type, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -407,10 +410,10 @@ pub unsafe extern "C-unwind" fn ODNodeCreateRecord(
             record_name: Option<&CFString>,
             attribute_dict: Option<&CFDictionary>,
             error: *mut *mut CFError,
-        ) -> *mut ODRecordRef;
+        ) -> Option<NonNull<ODRecordRef>>;
     }
     let ret = unsafe { ODNodeCreateRecord(node, record_type, record_name, attribute_dict, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Simple API to open / create a references to a particular record on a Node
@@ -451,10 +454,10 @@ pub unsafe extern "C-unwind" fn ODNodeCopyRecord(
             record_name: Option<&CFString>,
             attributes: Option<&CFType>,
             error: *mut *mut CFError,
-        ) -> *mut ODRecordRef;
+        ) -> Option<NonNull<ODRecordRef>>;
     }
     let ret = unsafe { ODNodeCopyRecord(node, record_type, record_name, attributes, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Sends a custom call to a node.
@@ -484,10 +487,10 @@ pub unsafe extern "C-unwind" fn ODNodeCustomCall(
             custom_code: CFIndex,
             data: Option<&CFData>,
             error: *mut *mut CFError,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { ODNodeCustomCall(node, custom_code, data, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Sends a named custom function call to a node.
@@ -524,10 +527,10 @@ pub unsafe extern "C-unwind" fn ODNodeCustomFunction(
             function: Option<&CFString>,
             payload: Option<&CFType>,
             error: *mut *mut CFError,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { ODNodeCustomFunction(node, function, payload, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// This will copy any policies configured for the node.
@@ -547,10 +550,13 @@ pub unsafe extern "C-unwind" fn ODNodeCopyPolicies(
     error: *mut *mut CFError,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn ODNodeCopyPolicies(node: &ODNodeRef, error: *mut *mut CFError) -> *mut CFDictionary;
+        fn ODNodeCopyPolicies(
+            node: &ODNodeRef,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { ODNodeCopyPolicies(node, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// This will return a dictionary of supported policies.
@@ -575,10 +581,10 @@ pub unsafe extern "C-unwind" fn ODNodeCopySupportedPolicies(
         fn ODNodeCopySupportedPolicies(
             node: &ODNodeRef,
             error: *mut *mut CFError,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { ODNodeCopySupportedPolicies(node, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -768,10 +774,10 @@ pub unsafe extern "C-unwind" fn ODNodeCopyAccountPolicies(
         fn ODNodeCopyAccountPolicies(
             node: &ODNodeRef,
             error: *mut *mut CFError,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { ODNodeCopyAccountPolicies(node, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

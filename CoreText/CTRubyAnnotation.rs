@@ -238,11 +238,12 @@ pub unsafe extern "C-unwind" fn CTRubyAnnotationCreateWithAttributes(
             position: CTRubyPosition,
             string: &CFString,
             attributes: &CFDictionary,
-        ) -> NonNull<CTRubyAnnotation>;
+        ) -> Option<NonNull<CTRubyAnnotation>>;
     }
     let ret = unsafe {
         CTRubyAnnotationCreateWithAttributes(alignment, overhang, position, string, attributes)
     };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -263,9 +264,10 @@ pub unsafe extern "C-unwind" fn CTRubyAnnotationCreateCopy(
     extern "C-unwind" {
         fn CTRubyAnnotationCreateCopy(
             ruby_annotation: &CTRubyAnnotation,
-        ) -> NonNull<CTRubyAnnotation>;
+        ) -> Option<NonNull<CTRubyAnnotation>>;
     }
     let ret = unsafe { CTRubyAnnotationCreateCopy(ruby_annotation) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -325,8 +327,8 @@ pub unsafe extern "C-unwind" fn CTRubyAnnotationGetTextForPosition(
         fn CTRubyAnnotationGetTextForPosition(
             ruby_annotation: &CTRubyAnnotation,
             position: CTRubyPosition,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CTRubyAnnotationGetTextForPosition(ruby_annotation, position) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }

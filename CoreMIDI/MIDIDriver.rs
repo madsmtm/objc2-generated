@@ -361,9 +361,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn MIDIGetDriverIORunLoop() -> CFRetained<CFRunLoop> {
     extern "C-unwind" {
-        fn MIDIGetDriverIORunLoop() -> NonNull<CFRunLoop>;
+        fn MIDIGetDriverIORunLoop() -> Option<NonNull<CFRunLoop>>;
     }
     let ret = unsafe { MIDIGetDriverIORunLoop() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::retain(ret) }
 }
 

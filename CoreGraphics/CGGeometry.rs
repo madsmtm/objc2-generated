@@ -153,9 +153,10 @@ pub unsafe extern "C-unwind" fn CGPointCreateDictionaryRepresentation(
     point: CGPoint,
 ) -> CFRetained<CFDictionary> {
     extern "C-unwind" {
-        fn CGPointCreateDictionaryRepresentation(point: CGPoint) -> NonNull<CFDictionary>;
+        fn CGPointCreateDictionaryRepresentation(point: CGPoint) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CGPointCreateDictionaryRepresentation(point) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -171,9 +172,10 @@ pub unsafe extern "C-unwind" fn CGSizeCreateDictionaryRepresentation(
     size: CGSize,
 ) -> CFRetained<CFDictionary> {
     extern "C-unwind" {
-        fn CGSizeCreateDictionaryRepresentation(size: CGSize) -> NonNull<CFDictionary>;
+        fn CGSizeCreateDictionaryRepresentation(size: CGSize) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CGSizeCreateDictionaryRepresentation(size) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -189,9 +191,10 @@ pub unsafe extern "C-unwind" fn CGRectCreateDictionaryRepresentation(
     param1: CGRect,
 ) -> CFRetained<CFDictionary> {
     extern "C-unwind" {
-        fn CGRectCreateDictionaryRepresentation(param1: CGRect) -> NonNull<CFDictionary>;
+        fn CGRectCreateDictionaryRepresentation(param1: CGRect) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CGRectCreateDictionaryRepresentation(param1) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 

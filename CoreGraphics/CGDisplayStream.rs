@@ -167,10 +167,10 @@ pub unsafe extern "C-unwind" fn CGDisplayStreamUpdateCreateMergedUpdate(
         fn CGDisplayStreamUpdateCreateMergedUpdate(
             first_update: Option<&CGDisplayStreamUpdate>,
             second_update: Option<&CGDisplayStreamUpdate>,
-        ) -> *mut CGDisplayStreamUpdate;
+        ) -> Option<NonNull<CGDisplayStreamUpdate>>;
     }
     let ret = unsafe { CGDisplayStreamUpdateCreateMergedUpdate(first_update, second_update) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -348,7 +348,7 @@ pub unsafe extern "C-unwind" fn CGDisplayStreamCreate(
             pixel_format: i32,
             properties: Option<&CFDictionary>,
             handler: CGDisplayStreamFrameAvailableHandler,
-        ) -> *mut CGDisplayStream;
+        ) -> Option<NonNull<CGDisplayStream>>;
     }
     let ret = unsafe {
         CGDisplayStreamCreate(
@@ -360,7 +360,7 @@ pub unsafe extern "C-unwind" fn CGDisplayStreamCreate(
             handler,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -403,8 +403,8 @@ pub unsafe extern "C-unwind" fn CGDisplayStreamGetRunLoopSource(
     extern "C-unwind" {
         fn CGDisplayStreamGetRunLoopSource(
             display_stream: Option<&CGDisplayStream>,
-        ) -> *mut CFRunLoopSource;
+        ) -> Option<NonNull<CFRunLoopSource>>;
     }
     let ret = unsafe { CGDisplayStreamGetRunLoopSource(display_stream) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }

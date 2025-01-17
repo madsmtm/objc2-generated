@@ -76,9 +76,10 @@ pub unsafe extern "C-unwind" fn CTTextTabCreate(
             alignment: CTTextAlignment,
             location: c_double,
             options: Option<&CFDictionary>,
-        ) -> NonNull<CTTextTab>;
+        ) -> Option<NonNull<CTTextTab>>;
     }
     let ret = unsafe { CTTextTabCreate(alignment, location, options) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -118,8 +119,8 @@ pub unsafe extern "C-unwind" fn CTTextTabGetOptions(
     tab: &CTTextTab,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn CTTextTabGetOptions(tab: &CTTextTab) -> *mut CFDictionary;
+        fn CTTextTabGetOptions(tab: &CTTextTab) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CTTextTabGetOptions(tab) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }

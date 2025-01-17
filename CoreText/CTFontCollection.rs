@@ -109,9 +109,10 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCreateFromAvailableFonts(
     extern "C-unwind" {
         fn CTFontCollectionCreateFromAvailableFonts(
             options: Option<&CFDictionary>,
-        ) -> NonNull<CTFontCollection>;
+        ) -> Option<NonNull<CTFontCollection>>;
     }
     let ret = unsafe { CTFontCollectionCreateFromAvailableFonts(options) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -134,9 +135,10 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCreateWithFontDescriptors(
         fn CTFontCollectionCreateWithFontDescriptors(
             query_descriptors: Option<&CFArray>,
             options: Option<&CFDictionary>,
-        ) -> NonNull<CTFontCollection>;
+        ) -> Option<NonNull<CTFontCollection>>;
     }
     let ret = unsafe { CTFontCollectionCreateWithFontDescriptors(query_descriptors, options) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -164,11 +166,12 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCreateCopyWithFontDescriptors(
             original: &CTFontCollection,
             query_descriptors: Option<&CFArray>,
             options: Option<&CFDictionary>,
-        ) -> NonNull<CTFontCollection>;
+        ) -> Option<NonNull<CTFontCollection>>;
     }
     let ret = unsafe {
         CTFontCollectionCreateCopyWithFontDescriptors(original, query_descriptors, options)
     };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -186,9 +189,10 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCreateMutableCopy(
     extern "C-unwind" {
         fn CTFontCollectionCreateMutableCopy(
             original: &CTFontCollection,
-        ) -> NonNull<CTMutableFontCollection>;
+        ) -> Option<NonNull<CTMutableFontCollection>>;
     }
     let ret = unsafe { CTFontCollectionCreateMutableCopy(original) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -204,10 +208,12 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCopyQueryDescriptors(
     collection: &CTFontCollection,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CTFontCollectionCopyQueryDescriptors(collection: &CTFontCollection) -> *mut CFArray;
+        fn CTFontCollectionCopyQueryDescriptors(
+            collection: &CTFontCollection,
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFontCollectionCopyQueryDescriptors(collection) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -236,10 +242,12 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCopyExclusionDescriptors(
     collection: &CTFontCollection,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CTFontCollectionCopyExclusionDescriptors(collection: &CTFontCollection) -> *mut CFArray;
+        fn CTFontCollectionCopyExclusionDescriptors(
+            collection: &CTFontCollection,
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFontCollectionCopyExclusionDescriptors(collection) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -270,10 +278,10 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptors(
     extern "C-unwind" {
         fn CTFontCollectionCreateMatchingFontDescriptors(
             collection: &CTFontCollection,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFontCollectionCreateMatchingFontDescriptors(collection) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the array of matching font descriptors sorted with the callback function.
@@ -301,7 +309,7 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptorsSor
             collection: &CTFontCollection,
             sort_callback: CTFontCollectionSortDescriptorsCallback,
             ref_con: *mut c_void,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe {
         CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(
@@ -310,7 +318,7 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptorsSor
             ref_con,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns an array of font descriptors matching the collection.
@@ -332,11 +340,11 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptorsWit
         fn CTFontCollectionCreateMatchingFontDescriptorsWithOptions(
             collection: &CTFontCollection,
             options: Option<&CFDictionary>,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret =
         unsafe { CTFontCollectionCreateMatchingFontDescriptorsWithOptions(collection, options) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns an array of font descriptors matching the specified family, one descriptor for each style in the collection.
@@ -360,12 +368,12 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptorsFor
             collection: &CTFontCollection,
             family_name: &CFString,
             options: Option<&CFDictionary>,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe {
         CTFontCollectionCreateMatchingFontDescriptorsForFamily(collection, family_name, options)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Option bits for use with CTFontCollectionCopyFontAttribute(s).
@@ -426,9 +434,10 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCopyFontAttribute(
             collection: &CTFontCollection,
             attribute_name: &CFString,
             options: CTFontCollectionCopyOptions,
-        ) -> NonNull<CFArray>;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFontCollectionCopyFontAttribute(collection, attribute_name, options) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -456,8 +465,9 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCopyFontAttributes(
             collection: &CTFontCollection,
             attribute_names: &CFSet,
             options: CTFontCollectionCopyOptions,
-        ) -> NonNull<CFArray>;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTFontCollectionCopyFontAttributes(collection, attribute_names, options) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }

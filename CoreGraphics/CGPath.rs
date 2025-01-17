@@ -96,9 +96,10 @@ unsafe impl ConcreteType for CGPath {
 #[inline]
 pub unsafe extern "C-unwind" fn CGPathCreateMutable() -> CFRetained<CGMutablePath> {
     extern "C-unwind" {
-        fn CGPathCreateMutable() -> NonNull<CGMutablePath>;
+        fn CGPathCreateMutable() -> Option<NonNull<CGMutablePath>>;
     }
     let ret = unsafe { CGPathCreateMutable() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -107,10 +108,10 @@ pub unsafe extern "C-unwind" fn CGPathCreateCopy(
     path: Option<&CGPath>,
 ) -> Option<CFRetained<CGPath>> {
     extern "C-unwind" {
-        fn CGPathCreateCopy(path: Option<&CGPath>) -> *mut CGPath;
+        fn CGPathCreateCopy(path: Option<&CGPath>) -> Option<NonNull<CGPath>>;
     }
     let ret = unsafe { CGPathCreateCopy(path) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -122,10 +123,10 @@ pub unsafe extern "C-unwind" fn CGPathCreateCopyByTransformingPath(
         fn CGPathCreateCopyByTransformingPath(
             path: Option<&CGPath>,
             transform: *const CGAffineTransform,
-        ) -> *mut CGPath;
+        ) -> Option<NonNull<CGPath>>;
     }
     let ret = unsafe { CGPathCreateCopyByTransformingPath(path, transform) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -133,10 +134,10 @@ pub unsafe extern "C-unwind" fn CGPathCreateMutableCopy(
     path: Option<&CGPath>,
 ) -> Option<CFRetained<CGMutablePath>> {
     extern "C-unwind" {
-        fn CGPathCreateMutableCopy(path: Option<&CGPath>) -> *mut CGMutablePath;
+        fn CGPathCreateMutableCopy(path: Option<&CGPath>) -> Option<NonNull<CGMutablePath>>;
     }
     let ret = unsafe { CGPathCreateMutableCopy(path) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -148,10 +149,10 @@ pub unsafe extern "C-unwind" fn CGPathCreateMutableCopyByTransformingPath(
         fn CGPathCreateMutableCopyByTransformingPath(
             path: Option<&CGPath>,
             transform: *const CGAffineTransform,
-        ) -> *mut CGMutablePath;
+        ) -> Option<NonNull<CGMutablePath>>;
     }
     let ret = unsafe { CGPathCreateMutableCopyByTransformingPath(path, transform) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -163,9 +164,10 @@ pub unsafe extern "C-unwind" fn CGPathCreateWithRect(
         fn CGPathCreateWithRect(
             rect: CGRect,
             transform: *const CGAffineTransform,
-        ) -> NonNull<CGPath>;
+        ) -> Option<NonNull<CGPath>>;
     }
     let ret = unsafe { CGPathCreateWithRect(rect, transform) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -178,9 +180,10 @@ pub unsafe extern "C-unwind" fn CGPathCreateWithEllipseInRect(
         fn CGPathCreateWithEllipseInRect(
             rect: CGRect,
             transform: *const CGAffineTransform,
-        ) -> NonNull<CGPath>;
+        ) -> Option<NonNull<CGPath>>;
     }
     let ret = unsafe { CGPathCreateWithEllipseInRect(rect, transform) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -197,9 +200,10 @@ pub unsafe extern "C-unwind" fn CGPathCreateWithRoundedRect(
             corner_width: CGFloat,
             corner_height: CGFloat,
             transform: *const CGAffineTransform,
-        ) -> NonNull<CGPath>;
+        ) -> Option<NonNull<CGPath>>;
     }
     let ret = unsafe { CGPathCreateWithRoundedRect(rect, corner_width, corner_height, transform) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -228,10 +232,10 @@ pub unsafe extern "C-unwind" fn CGPathCreateCopyByDashingPath(
             phase: CGFloat,
             lengths: *const CGFloat,
             count: usize,
-        ) -> *mut CGPath;
+        ) -> Option<NonNull<CGPath>>;
     }
     let ret = unsafe { CGPathCreateCopyByDashingPath(path, transform, phase, lengths, count) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -251,7 +255,7 @@ pub unsafe extern "C-unwind" fn CGPathCreateCopyByStrokingPath(
             line_cap: CGLineCap,
             line_join: CGLineJoin,
             miter_limit: CGFloat,
-        ) -> *mut CGPath;
+        ) -> Option<NonNull<CGPath>>;
     }
     let ret = unsafe {
         CGPathCreateCopyByStrokingPath(
@@ -263,7 +267,7 @@ pub unsafe extern "C-unwind" fn CGPathCreateCopyByStrokingPath(
             miter_limit,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -498,10 +502,10 @@ pub unsafe extern "C-unwind" fn CGPathCreateCopyByNormalizing(
         fn CGPathCreateCopyByNormalizing(
             path: Option<&CGPath>,
             even_odd_fill_rule: bool,
-        ) -> *mut CGPath;
+        ) -> Option<NonNull<CGPath>>;
     }
     let ret = unsafe { CGPathCreateCopyByNormalizing(path, even_odd_fill_rule) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -515,10 +519,10 @@ pub unsafe extern "C-unwind" fn CGPathCreateCopyByUnioningPath(
             path: Option<&CGPath>,
             mask_path: Option<&CGPath>,
             even_odd_fill_rule: bool,
-        ) -> *mut CGPath;
+        ) -> Option<NonNull<CGPath>>;
     }
     let ret = unsafe { CGPathCreateCopyByUnioningPath(path, mask_path, even_odd_fill_rule) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -532,10 +536,10 @@ pub unsafe extern "C-unwind" fn CGPathCreateCopyByIntersectingPath(
             path: Option<&CGPath>,
             mask_path: Option<&CGPath>,
             even_odd_fill_rule: bool,
-        ) -> *mut CGPath;
+        ) -> Option<NonNull<CGPath>>;
     }
     let ret = unsafe { CGPathCreateCopyByIntersectingPath(path, mask_path, even_odd_fill_rule) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -549,10 +553,10 @@ pub unsafe extern "C-unwind" fn CGPathCreateCopyBySubtractingPath(
             path: Option<&CGPath>,
             mask_path: Option<&CGPath>,
             even_odd_fill_rule: bool,
-        ) -> *mut CGPath;
+        ) -> Option<NonNull<CGPath>>;
     }
     let ret = unsafe { CGPathCreateCopyBySubtractingPath(path, mask_path, even_odd_fill_rule) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -566,11 +570,11 @@ pub unsafe extern "C-unwind" fn CGPathCreateCopyBySymmetricDifferenceOfPath(
             path: Option<&CGPath>,
             mask_path: Option<&CGPath>,
             even_odd_fill_rule: bool,
-        ) -> *mut CGPath;
+        ) -> Option<NonNull<CGPath>>;
     }
     let ret =
         unsafe { CGPathCreateCopyBySymmetricDifferenceOfPath(path, mask_path, even_odd_fill_rule) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -584,11 +588,11 @@ pub unsafe extern "C-unwind" fn CGPathCreateCopyOfLineBySubtractingPath(
             path: Option<&CGPath>,
             mask_path: Option<&CGPath>,
             even_odd_fill_rule: bool,
-        ) -> *mut CGPath;
+        ) -> Option<NonNull<CGPath>>;
     }
     let ret =
         unsafe { CGPathCreateCopyOfLineBySubtractingPath(path, mask_path, even_odd_fill_rule) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -602,11 +606,11 @@ pub unsafe extern "C-unwind" fn CGPathCreateCopyOfLineByIntersectingPath(
             path: Option<&CGPath>,
             mask_path: Option<&CGPath>,
             even_odd_fill_rule: bool,
-        ) -> *mut CGPath;
+        ) -> Option<NonNull<CGPath>>;
     }
     let ret =
         unsafe { CGPathCreateCopyOfLineByIntersectingPath(path, mask_path, even_odd_fill_rule) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -618,10 +622,10 @@ pub unsafe extern "C-unwind" fn CGPathCreateSeparateComponents(
         fn CGPathCreateSeparateComponents(
             path: Option<&CGPath>,
             even_odd_fill_rule: bool,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CGPathCreateSeparateComponents(path, even_odd_fill_rule) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -633,10 +637,10 @@ pub unsafe extern "C-unwind" fn CGPathCreateCopyByFlattening(
         fn CGPathCreateCopyByFlattening(
             path: Option<&CGPath>,
             flattening_threshold: CGFloat,
-        ) -> *mut CGPath;
+        ) -> Option<NonNull<CGPath>>;
     }
     let ret = unsafe { CGPathCreateCopyByFlattening(path, flattening_threshold) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

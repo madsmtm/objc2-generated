@@ -76,8 +76,8 @@ extern "C-unwind" {
 pub unsafe extern "C-unwind" fn SecCreateSharedWebCredentialPassword(
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn SecCreateSharedWebCredentialPassword() -> *mut CFString;
+        fn SecCreateSharedWebCredentialPassword() -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SecCreateSharedWebCredentialPassword() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

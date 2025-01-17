@@ -60,10 +60,10 @@ pub unsafe extern "C-unwind" fn CMGetAttachment(
             target: &CMAttachmentBearer,
             key: &CFString,
             attachment_mode_out: *mut CMAttachmentMode,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { CMGetAttachment(target, key, attachment_mode_out) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -107,10 +107,10 @@ pub unsafe extern "C-unwind" fn CMCopyDictionaryOfAttachments(
             allocator: Option<&CFAllocator>,
             target: &CMAttachmentBearer,
             attachment_mode: CMAttachmentMode,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CMCopyDictionaryOfAttachments(allocator, target, attachment_mode) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

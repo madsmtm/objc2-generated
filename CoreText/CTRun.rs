@@ -114,9 +114,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn CTRunGetAttributes(run: &CTRun) -> CFRetained<CFDictionary> {
     extern "C-unwind" {
-        fn CTRunGetAttributes(run: &CTRun) -> NonNull<CFDictionary>;
+        fn CTRunGetAttributes(run: &CTRun) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CTRunGetAttributes(run) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::retain(ret) }
 }
 

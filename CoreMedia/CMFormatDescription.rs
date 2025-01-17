@@ -194,10 +194,12 @@ pub unsafe extern "C-unwind" fn CMFormatDescriptionGetExtensions(
     desc: &CMFormatDescription,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn CMFormatDescriptionGetExtensions(desc: &CMFormatDescription) -> *mut CFDictionary;
+        fn CMFormatDescriptionGetExtensions(
+            desc: &CMFormatDescription,
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CMFormatDescriptionGetExtensions(desc) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C" {
@@ -278,10 +280,10 @@ pub unsafe extern "C-unwind" fn CMFormatDescriptionGetExtension(
         fn CMFormatDescriptionGetExtension(
             desc: &CMFormatDescription,
             extension_key: &CFString,
-        ) -> *mut CFPropertyList;
+        ) -> Option<NonNull<CFPropertyList>>;
     }
     let ret = unsafe { CMFormatDescriptionGetExtension(desc, extension_key) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Four-character codes identifying the code type. Certain codec types are also audio formats.
@@ -1427,9 +1429,11 @@ pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionGetCleanAperture(
 pub unsafe extern "C-unwind" fn CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers(
 ) -> CFRetained<CFArray> {
     extern "C-unwind" {
-        fn CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers() -> NonNull<CFArray>;
+        fn CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers(
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CMVideoFormatDescriptionGetExtensionKeysCommonWithImageBuffers() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::retain(ret) }
 }
 
@@ -2033,10 +2037,10 @@ pub unsafe extern "C-unwind" fn CMMetadataFormatDescriptionGetKeyWithLocalID(
         fn CMMetadataFormatDescriptionGetKeyWithLocalID(
             desc: &CMMetadataFormatDescription,
             local_key_id: OSType,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CMMetadataFormatDescriptionGetKeyWithLocalID(desc, local_key_id) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[inline]
@@ -2046,8 +2050,8 @@ pub unsafe extern "C-unwind" fn CMMetadataFormatDescriptionGetIdentifiers(
     extern "C-unwind" {
         fn CMMetadataFormatDescriptionGetIdentifiers(
             desc: &CMMetadataFormatDescription,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CMMetadataFormatDescriptionGetIdentifiers(desc) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }

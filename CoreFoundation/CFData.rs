@@ -57,10 +57,10 @@ pub unsafe extern "C-unwind" fn CFDataCreate(
             allocator: Option<&CFAllocator>,
             bytes: *const u8,
             length: CFIndex,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CFDataCreate(allocator, bytes, length) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -77,10 +77,10 @@ pub unsafe extern "C-unwind" fn CFDataCreateWithBytesNoCopy(
             bytes: *const u8,
             length: CFIndex,
             bytes_deallocator: Option<&CFAllocator>,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CFDataCreateWithBytesNoCopy(allocator, bytes, length, bytes_deallocator) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -93,10 +93,10 @@ pub unsafe extern "C-unwind" fn CFDataCreateCopy(
         fn CFDataCreateCopy(
             allocator: Option<&CFAllocator>,
             the_data: Option<&CFData>,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CFDataCreateCopy(allocator, the_data) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -109,10 +109,10 @@ pub unsafe extern "C-unwind" fn CFDataCreateMutable(
         fn CFDataCreateMutable(
             allocator: Option<&CFAllocator>,
             capacity: CFIndex,
-        ) -> *mut CFMutableData;
+        ) -> Option<NonNull<CFMutableData>>;
     }
     let ret = unsafe { CFDataCreateMutable(allocator, capacity) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -127,10 +127,10 @@ pub unsafe extern "C-unwind" fn CFDataCreateMutableCopy(
             allocator: Option<&CFAllocator>,
             capacity: CFIndex,
             the_data: Option<&CFData>,
-        ) -> *mut CFMutableData;
+        ) -> Option<NonNull<CFMutableData>>;
     }
     let ret = unsafe { CFDataCreateMutableCopy(allocator, capacity, the_data) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

@@ -9,8 +9,8 @@ use crate::*;
 pub unsafe extern "C-unwind" fn CGSessionCopyCurrentDictionary() -> Option<CFRetained<CFDictionary>>
 {
     extern "C-unwind" {
-        fn CGSessionCopyCurrentDictionary() -> *mut CFDictionary;
+        fn CGSessionCopyCurrentDictionary() -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CGSessionCopyCurrentDictionary() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

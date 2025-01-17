@@ -263,16 +263,29 @@ unsafe impl RefEncode for CMBufferHandlers {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// Returns a pointer to a callback struct for unsorted CMSampleBuffers, provided as a convenience.
-    #[cfg(feature = "CMTime")]
-    pub fn CMBufferQueueGetCallbacksForUnsortedSampleBuffers() -> NonNull<CMBufferCallbacks>;
+/// Returns a pointer to a callback struct for unsorted CMSampleBuffers, provided as a convenience.
+#[cfg(feature = "CMTime")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMBufferQueueGetCallbacksForUnsortedSampleBuffers(
+) -> NonNull<CMBufferCallbacks> {
+    extern "C-unwind" {
+        fn CMBufferQueueGetCallbacksForUnsortedSampleBuffers() -> Option<NonNull<CMBufferCallbacks>>;
+    }
+    let ret = unsafe { CMBufferQueueGetCallbacksForUnsortedSampleBuffers() };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    /// Returns a pointer to a callback struct for CMSampleBuffers sorted by output presentation timestamp, provided as a convenience.
-    #[cfg(feature = "CMTime")]
-    pub fn CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS() -> NonNull<CMBufferCallbacks>;
+/// Returns a pointer to a callback struct for CMSampleBuffers sorted by output presentation timestamp, provided as a convenience.
+#[cfg(feature = "CMTime")]
+#[inline]
+pub unsafe extern "C-unwind" fn CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS(
+) -> NonNull<CMBufferCallbacks> {
+    extern "C-unwind" {
+        fn CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS(
+        ) -> Option<NonNull<CMBufferCallbacks>>;
+    }
+    let ret = unsafe { CMBufferQueueGetCallbacksForSampleBuffersSortedByOutputPTS() };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {
@@ -339,10 +352,10 @@ pub unsafe extern "C-unwind" fn CMBufferQueueDequeueAndRetain(
     queue: &CMBufferQueue,
 ) -> Option<CFRetained<CMBuffer>> {
     extern "C-unwind" {
-        fn CMBufferQueueDequeueAndRetain(queue: &CMBufferQueue) -> *mut CMBuffer;
+        fn CMBufferQueueDequeueAndRetain(queue: &CMBufferQueue) -> Option<NonNull<CMBuffer>>;
     }
     let ret = unsafe { CMBufferQueueDequeueAndRetain(queue) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Dequeues a buffer from a CMBufferQueue if it is ready.
@@ -357,10 +370,12 @@ pub unsafe extern "C-unwind" fn CMBufferQueueDequeueIfDataReadyAndRetain(
     queue: &CMBufferQueue,
 ) -> Option<CFRetained<CMBuffer>> {
     extern "C-unwind" {
-        fn CMBufferQueueDequeueIfDataReadyAndRetain(queue: &CMBufferQueue) -> *mut CMBuffer;
+        fn CMBufferQueueDequeueIfDataReadyAndRetain(
+            queue: &CMBufferQueue,
+        ) -> Option<NonNull<CMBuffer>>;
     }
     let ret = unsafe { CMBufferQueueDequeueIfDataReadyAndRetain(queue) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Retrieves the next-to-dequeue buffer from a CMBufferQueue but leaves it in the queue.
@@ -379,10 +394,10 @@ pub unsafe extern "C-unwind" fn CMBufferQueueGetHead(
     queue: &CMBufferQueue,
 ) -> Option<CFRetained<CMBuffer>> {
     extern "C-unwind" {
-        fn CMBufferQueueGetHead(queue: &CMBufferQueue) -> *mut CMBuffer;
+        fn CMBufferQueueGetHead(queue: &CMBufferQueue) -> Option<NonNull<CMBuffer>>;
     }
     let ret = unsafe { CMBufferQueueGetHead(queue) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Retrieves
@@ -399,10 +414,10 @@ pub unsafe extern "C-unwind" fn CMBufferQueueCopyHead(
     queue: &CMBufferQueue,
 ) -> Option<CFRetained<CMBuffer>> {
     extern "C-unwind" {
-        fn CMBufferQueueCopyHead(queue: &CMBufferQueue) -> *mut CMBuffer;
+        fn CMBufferQueueCopyHead(queue: &CMBufferQueue) -> Option<NonNull<CMBuffer>>;
     }
     let ret = unsafe { CMBufferQueueCopyHead(queue) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns whether or not a CMBufferQueue is empty.

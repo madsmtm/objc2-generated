@@ -60,10 +60,13 @@ pub unsafe extern "C-unwind" fn SecSignTransformCreate(
     error: *mut *mut CFError,
 ) -> Option<CFRetained<SecTransform>> {
     extern "C-unwind" {
-        fn SecSignTransformCreate(key: &SecKey, error: *mut *mut CFError) -> *mut SecTransform;
+        fn SecSignTransformCreate(
+            key: &SecKey,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<SecTransform>>;
     }
     let ret = unsafe { SecSignTransformCreate(key, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a verify computation object.
@@ -100,8 +103,8 @@ pub unsafe extern "C-unwind" fn SecVerifyTransformCreate(
             key: &SecKey,
             signature: Option<&CFData>,
             error: *mut *mut CFError,
-        ) -> *mut SecTransform;
+        ) -> Option<NonNull<SecTransform>>;
     }
     let ret = unsafe { SecVerifyTransformCreate(key, signature, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

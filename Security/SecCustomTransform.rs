@@ -360,10 +360,10 @@ pub unsafe extern "C-unwind" fn SecTransformSetAttributeAction(
             action: &CFString,
             attribute: Option<&SecTransformStringOrAttribute>,
             new_action: SecTransformAttributeActionBlock,
-        ) -> *mut CFError;
+        ) -> Option<NonNull<CFError>>;
     }
     let ret = unsafe { SecTransformSetAttributeAction(r#ref, action, attribute, new_action) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Change the way a custom transform will do data processing.
@@ -427,10 +427,10 @@ pub unsafe extern "C-unwind" fn SecTransformSetDataAction(
             r#ref: SecTransformImplementationRef,
             action: &CFString,
             new_action: SecTransformDataBlock,
-        ) -> *mut CFError;
+        ) -> Option<NonNull<CFError>>;
     }
     let ret = unsafe { SecTransformSetDataAction(r#ref, action, new_action) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[cfg(feature = "block2")]
@@ -446,10 +446,10 @@ pub unsafe extern "C-unwind" fn SecTransformSetTransformAction(
             r#ref: SecTransformImplementationRef,
             action: &CFString,
             new_action: SecTransformActionBlock,
-        ) -> *mut CFError;
+        ) -> Option<NonNull<CFError>>;
     }
     let ret = unsafe { SecTransformSetTransformAction(r#ref, action, new_action) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Allow a custom transform to get an attribute value
@@ -480,10 +480,10 @@ pub unsafe extern "C-unwind" fn SecTranformCustomGetAttribute(
             r#ref: SecTransformImplementationRef,
             attribute: &SecTransformStringOrAttribute,
             r#type: SecTransformMetaAttributeType,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { SecTranformCustomGetAttribute(r#ref, attribute, r#type) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Allow a custom transform to get an attribute value
@@ -515,10 +515,10 @@ pub unsafe extern "C-unwind" fn SecTransformCustomGetAttribute(
             r#ref: SecTransformImplementationRef,
             attribute: &SecTransformStringOrAttribute,
             r#type: SecTransformMetaAttributeType,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { SecTransformCustomGetAttribute(r#ref, attribute, r#type) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Allow a custom transform to set an attribute value
@@ -560,10 +560,10 @@ pub unsafe extern "C-unwind" fn SecTransformCustomSetAttribute(
             attribute: &SecTransformStringOrAttribute,
             r#type: SecTransformMetaAttributeType,
             value: Option<&CFType>,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { SecTransformCustomSetAttribute(r#ref, attribute, r#type, value) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Allows for putting a single value back for a specific
@@ -596,10 +596,10 @@ pub unsafe extern "C-unwind" fn SecTransformPushbackAttribute(
             r#ref: SecTransformImplementationRef,
             attribute: &SecTransformStringOrAttribute,
             value: &CFType,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { SecTransformPushbackAttribute(r#ref, attribute, value) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// A function pointer to a function that will create a
@@ -794,10 +794,13 @@ pub unsafe extern "C-unwind" fn SecTransformCreate(
     error: *mut *mut CFError,
 ) -> Option<CFRetained<SecTransform>> {
     extern "C-unwind" {
-        fn SecTransformCreate(name: &CFString, error: *mut *mut CFError) -> *mut SecTransform;
+        fn SecTransformCreate(
+            name: &CFString,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<SecTransform>>;
     }
     let ret = unsafe { SecTransformCreate(name, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns back A CFTypeRef from inside a processData
@@ -827,8 +830,9 @@ pub unsafe extern "C-unwind" fn SecTransformCreate(
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformNoData() -> CFRetained<CFType> {
     extern "C-unwind" {
-        fn SecTransformNoData() -> NonNull<CFType>;
+        fn SecTransformNoData() -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { SecTransformNoData() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::retain(ret) }
 }

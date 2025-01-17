@@ -95,12 +95,12 @@ pub unsafe extern "C-unwind" fn CFFileDescriptorCreate(
             close_on_invalidate: Boolean,
             callout: CFFileDescriptorCallBack,
             context: *const CFFileDescriptorContext,
-        ) -> *mut CFFileDescriptor;
+        ) -> Option<NonNull<CFFileDescriptor>>;
     }
     let ret = unsafe {
         CFFileDescriptorCreate(allocator, fd, close_on_invalidate as _, callout, context)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -149,8 +149,8 @@ pub unsafe extern "C-unwind" fn CFFileDescriptorCreateRunLoopSource(
             allocator: Option<&CFAllocator>,
             f: Option<&CFFileDescriptor>,
             order: CFIndex,
-        ) -> *mut CFRunLoopSource;
+        ) -> Option<NonNull<CFRunLoopSource>>;
     }
     let ret = unsafe { CFFileDescriptorCreateRunLoopSource(allocator, f, order) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

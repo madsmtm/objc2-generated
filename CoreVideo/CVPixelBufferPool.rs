@@ -72,10 +72,12 @@ pub unsafe extern "C-unwind" fn CVPixelBufferPoolGetAttributes(
     pool: &CVPixelBufferPool,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn CVPixelBufferPoolGetAttributes(pool: &CVPixelBufferPool) -> *mut CFDictionary;
+        fn CVPixelBufferPoolGetAttributes(
+            pool: &CVPixelBufferPool,
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CVPixelBufferPoolGetAttributes(pool) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the attributes of pixel buffers that will be created from this pool.
@@ -91,11 +93,12 @@ pub unsafe extern "C-unwind" fn CVPixelBufferPoolGetPixelBufferAttributes(
     pool: &CVPixelBufferPool,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn CVPixelBufferPoolGetPixelBufferAttributes(pool: &CVPixelBufferPool)
-            -> *mut CFDictionary;
+        fn CVPixelBufferPoolGetPixelBufferAttributes(
+            pool: &CVPixelBufferPool,
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CVPixelBufferPoolGetPixelBufferAttributes(pool) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

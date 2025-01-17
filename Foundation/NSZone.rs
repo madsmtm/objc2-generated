@@ -6,8 +6,13 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-extern "C-unwind" {
-    pub fn NSDefaultMallocZone() -> NonNull<NSZone>;
+#[inline]
+pub unsafe extern "C-unwind" fn NSDefaultMallocZone() -> NonNull<NSZone> {
+    extern "C-unwind" {
+        fn NSDefaultMallocZone() -> Option<NonNull<NSZone>>;
+    }
+    let ret = unsafe { NSDefaultMallocZone() };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 #[inline]
@@ -21,9 +26,10 @@ pub unsafe extern "C-unwind" fn NSCreateZone(
             start_size: NSUInteger,
             granularity: NSUInteger,
             can_free: Bool,
-        ) -> NonNull<NSZone>;
+        ) -> Option<NonNull<NSZone>>;
     }
-    unsafe { NSCreateZone(start_size, granularity, Bool::new(can_free)) }
+    let ret = unsafe { NSCreateZone(start_size, granularity, Bool::new(can_free)) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {
@@ -39,10 +45,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn NSZoneName(zone: *mut NSZone) -> Retained<NSString> {
     extern "C-unwind" {
-        fn NSZoneName(zone: *mut NSZone) -> NonNull<NSString>;
+        fn NSZoneName(zone: *mut NSZone) -> *mut NSString;
     }
     let ret = unsafe { NSZoneName(zone) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -50,20 +56,50 @@ extern "C-unwind" {
     pub fn NSZoneFromPointer(ptr: NonNull<c_void>) -> *mut NSZone;
 }
 
-extern "C-unwind" {
-    pub fn NSZoneMalloc(zone: *mut NSZone, size: NSUInteger) -> NonNull<c_void>;
+#[inline]
+pub unsafe extern "C-unwind" fn NSZoneMalloc(
+    zone: *mut NSZone,
+    size: NSUInteger,
+) -> NonNull<c_void> {
+    extern "C-unwind" {
+        fn NSZoneMalloc(zone: *mut NSZone, size: NSUInteger) -> Option<NonNull<c_void>>;
+    }
+    let ret = unsafe { NSZoneMalloc(zone, size) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    pub fn NSZoneCalloc(
-        zone: *mut NSZone,
-        num_elems: NSUInteger,
-        byte_size: NSUInteger,
-    ) -> NonNull<c_void>;
+#[inline]
+pub unsafe extern "C-unwind" fn NSZoneCalloc(
+    zone: *mut NSZone,
+    num_elems: NSUInteger,
+    byte_size: NSUInteger,
+) -> NonNull<c_void> {
+    extern "C-unwind" {
+        fn NSZoneCalloc(
+            zone: *mut NSZone,
+            num_elems: NSUInteger,
+            byte_size: NSUInteger,
+        ) -> Option<NonNull<c_void>>;
+    }
+    let ret = unsafe { NSZoneCalloc(zone, num_elems, byte_size) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    pub fn NSZoneRealloc(zone: *mut NSZone, ptr: *mut c_void, size: NSUInteger) -> NonNull<c_void>;
+#[inline]
+pub unsafe extern "C-unwind" fn NSZoneRealloc(
+    zone: *mut NSZone,
+    ptr: *mut c_void,
+    size: NSUInteger,
+) -> NonNull<c_void> {
+    extern "C-unwind" {
+        fn NSZoneRealloc(
+            zone: *mut NSZone,
+            ptr: *mut c_void,
+            size: NSUInteger,
+        ) -> Option<NonNull<c_void>>;
+    }
+    let ret = unsafe { NSZoneRealloc(zone, ptr, size) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {
@@ -75,16 +111,33 @@ pub const NSScannedOption: NSUInteger = 1 << 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscollectordisabledoption?language=objc)
 pub const NSCollectorDisabledOption: NSUInteger = 1 << 1;
 
-extern "C-unwind" {
-    pub fn NSAllocateCollectable(size: NSUInteger, options: NSUInteger) -> NonNull<c_void>;
+#[inline]
+pub unsafe extern "C-unwind" fn NSAllocateCollectable(
+    size: NSUInteger,
+    options: NSUInteger,
+) -> NonNull<c_void> {
+    extern "C-unwind" {
+        fn NSAllocateCollectable(size: NSUInteger, options: NSUInteger) -> Option<NonNull<c_void>>;
+    }
+    let ret = unsafe { NSAllocateCollectable(size, options) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    pub fn NSReallocateCollectable(
-        ptr: *mut c_void,
-        size: NSUInteger,
-        options: NSUInteger,
-    ) -> NonNull<c_void>;
+#[inline]
+pub unsafe extern "C-unwind" fn NSReallocateCollectable(
+    ptr: *mut c_void,
+    size: NSUInteger,
+    options: NSUInteger,
+) -> NonNull<c_void> {
+    extern "C-unwind" {
+        fn NSReallocateCollectable(
+            ptr: *mut c_void,
+            size: NSUInteger,
+            options: NSUInteger,
+        ) -> Option<NonNull<c_void>>;
+    }
+    let ret = unsafe { NSReallocateCollectable(ptr, size, options) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {
@@ -103,8 +156,13 @@ extern "C-unwind" {
     pub fn NSRoundDownToMultipleOfPageSize(bytes: NSUInteger) -> NSUInteger;
 }
 
-extern "C-unwind" {
-    pub fn NSAllocateMemoryPages(bytes: NSUInteger) -> NonNull<c_void>;
+#[inline]
+pub unsafe extern "C-unwind" fn NSAllocateMemoryPages(bytes: NSUInteger) -> NonNull<c_void> {
+    extern "C-unwind" {
+        fn NSAllocateMemoryPages(bytes: NSUInteger) -> Option<NonNull<c_void>>;
+    }
+    let ret = unsafe { NSAllocateMemoryPages(bytes) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {

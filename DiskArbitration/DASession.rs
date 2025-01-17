@@ -45,10 +45,10 @@ pub unsafe extern "C-unwind" fn DASessionCreate(
     allocator: Option<&CFAllocator>,
 ) -> Option<CFRetained<DASession>> {
     extern "C-unwind" {
-        fn DASessionCreate(allocator: Option<&CFAllocator>) -> *mut DASession;
+        fn DASessionCreate(allocator: Option<&CFAllocator>) -> Option<NonNull<DASession>>;
     }
     let ret = unsafe { DASessionCreate(allocator) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -109,10 +109,12 @@ pub unsafe extern "C-unwind" fn DAApprovalSessionCreate(
     allocator: Option<&CFAllocator>,
 ) -> Option<CFRetained<DAApprovalSession>> {
     extern "C-unwind" {
-        fn DAApprovalSessionCreate(allocator: Option<&CFAllocator>) -> *mut DAApprovalSession;
+        fn DAApprovalSessionCreate(
+            allocator: Option<&CFAllocator>,
+        ) -> Option<NonNull<DAApprovalSession>>;
     }
     let ret = unsafe { DAApprovalSessionCreate(allocator) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

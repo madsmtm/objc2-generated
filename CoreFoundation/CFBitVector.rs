@@ -58,10 +58,10 @@ pub unsafe extern "C-unwind" fn CFBitVectorCreate(
             allocator: Option<&CFAllocator>,
             bytes: *const u8,
             num_bits: CFIndex,
-        ) -> *mut CFBitVector;
+        ) -> Option<NonNull<CFBitVector>>;
     }
     let ret = unsafe { CFBitVectorCreate(allocator, bytes, num_bits) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -74,10 +74,10 @@ pub unsafe extern "C-unwind" fn CFBitVectorCreateCopy(
         fn CFBitVectorCreateCopy(
             allocator: Option<&CFAllocator>,
             bv: Option<&CFBitVector>,
-        ) -> *mut CFBitVector;
+        ) -> Option<NonNull<CFBitVector>>;
     }
     let ret = unsafe { CFBitVectorCreateCopy(allocator, bv) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -90,10 +90,10 @@ pub unsafe extern "C-unwind" fn CFBitVectorCreateMutable(
         fn CFBitVectorCreateMutable(
             allocator: Option<&CFAllocator>,
             capacity: CFIndex,
-        ) -> *mut CFMutableBitVector;
+        ) -> Option<NonNull<CFMutableBitVector>>;
     }
     let ret = unsafe { CFBitVectorCreateMutable(allocator, capacity) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -108,10 +108,10 @@ pub unsafe extern "C-unwind" fn CFBitVectorCreateMutableCopy(
             allocator: Option<&CFAllocator>,
             capacity: CFIndex,
             bv: Option<&CFBitVector>,
-        ) -> *mut CFMutableBitVector;
+        ) -> Option<NonNull<CFMutableBitVector>>;
     }
     let ret = unsafe { CFBitVectorCreateMutableCopy(allocator, capacity, bv) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

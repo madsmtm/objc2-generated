@@ -129,10 +129,10 @@ pub unsafe extern "C-unwind" fn CTGlyphInfoCreateWithGlyphName(
             glyph_name: &CFString,
             font: &CTFont,
             base_string: &CFString,
-        ) -> *mut CTGlyphInfo;
+        ) -> Option<NonNull<CTGlyphInfo>>;
     }
     let ret = unsafe { CTGlyphInfoCreateWithGlyphName(glyph_name, font, base_string) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates an immutable glyph info object.
@@ -165,10 +165,10 @@ pub unsafe extern "C-unwind" fn CTGlyphInfoCreateWithGlyph(
             glyph: CGGlyph,
             font: &CTFont,
             base_string: &CFString,
-        ) -> *mut CTGlyphInfo;
+        ) -> Option<NonNull<CTGlyphInfo>>;
     }
     let ret = unsafe { CTGlyphInfoCreateWithGlyph(glyph, font, base_string) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates an immutable glyph info object.
@@ -201,10 +201,10 @@ pub unsafe extern "C-unwind" fn CTGlyphInfoCreateWithCharacterIdentifier(
             cid: CGFontIndex,
             collection: CTCharacterCollection,
             base_string: &CFString,
-        ) -> *mut CTGlyphInfo;
+        ) -> Option<NonNull<CTGlyphInfo>>;
     }
     let ret = unsafe { CTGlyphInfoCreateWithCharacterIdentifier(cid, collection, base_string) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Gets the glyph name for a glyph info, if applicable.
@@ -223,10 +223,10 @@ pub unsafe extern "C-unwind" fn CTGlyphInfoGetGlyphName(
     glyph_info: &CTGlyphInfo,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CTGlyphInfoGetGlyphName(glyph_info: &CTGlyphInfo) -> *mut CFString;
+        fn CTGlyphInfoGetGlyphName(glyph_info: &CTGlyphInfo) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CTGlyphInfoGetGlyphName(glyph_info) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

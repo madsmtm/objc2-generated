@@ -90,10 +90,10 @@ pub unsafe extern "C-unwind" fn CFUUIDCreate(
     alloc: Option<&CFAllocator>,
 ) -> Option<CFRetained<CFUUID>> {
     extern "C-unwind" {
-        fn CFUUIDCreate(alloc: Option<&CFAllocator>) -> *mut CFUUID;
+        fn CFUUIDCreate(alloc: Option<&CFAllocator>) -> Option<NonNull<CFUUID>>;
     }
     let ret = unsafe { CFUUIDCreate(alloc) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -136,7 +136,7 @@ pub unsafe extern "C-unwind" fn CFUUIDCreateWithBytes(
             byte13: u8,
             byte14: u8,
             byte15: u8,
-        ) -> *mut CFUUID;
+        ) -> Option<NonNull<CFUUID>>;
     }
     let ret = unsafe {
         CFUUIDCreateWithBytes(
@@ -144,7 +144,7 @@ pub unsafe extern "C-unwind" fn CFUUIDCreateWithBytes(
             byte11, byte12, byte13, byte14, byte15,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -157,10 +157,10 @@ pub unsafe extern "C-unwind" fn CFUUIDCreateFromString(
         fn CFUUIDCreateFromString(
             alloc: Option<&CFAllocator>,
             uuid_str: Option<&CFString>,
-        ) -> *mut CFUUID;
+        ) -> Option<NonNull<CFUUID>>;
     }
     let ret = unsafe { CFUUIDCreateFromString(alloc, uuid_str) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -170,10 +170,13 @@ pub unsafe extern "C-unwind" fn CFUUIDCreateString(
     uuid: Option<&CFUUID>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFUUIDCreateString(alloc: Option<&CFAllocator>, uuid: Option<&CFUUID>) -> *mut CFString;
+        fn CFUUIDCreateString(
+            alloc: Option<&CFAllocator>,
+            uuid: Option<&CFUUID>,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFUUIDCreateString(alloc, uuid) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -216,7 +219,7 @@ pub unsafe extern "C-unwind" fn CFUUIDGetConstantUUIDWithBytes(
             byte13: u8,
             byte14: u8,
             byte15: u8,
-        ) -> *mut CFUUID;
+        ) -> Option<NonNull<CFUUID>>;
     }
     let ret = unsafe {
         CFUUIDGetConstantUUIDWithBytes(
@@ -224,7 +227,7 @@ pub unsafe extern "C-unwind" fn CFUUIDGetConstantUUIDWithBytes(
             byte11, byte12, byte13, byte14, byte15,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -241,8 +244,8 @@ pub unsafe extern "C-unwind" fn CFUUIDCreateFromUUIDBytes(
         fn CFUUIDCreateFromUUIDBytes(
             alloc: Option<&CFAllocator>,
             bytes: CFUUIDBytes,
-        ) -> *mut CFUUID;
+        ) -> Option<NonNull<CFUUID>>;
     }
     let ret = unsafe { CFUUIDCreateFromUUIDBytes(alloc, bytes) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

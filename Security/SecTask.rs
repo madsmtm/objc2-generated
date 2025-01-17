@@ -45,10 +45,10 @@ pub unsafe extern "C-unwind" fn SecTaskCreateFromSelf(
     allocator: Option<&CFAllocator>,
 ) -> Option<CFRetained<SecTask>> {
     extern "C-unwind" {
-        fn SecTaskCreateFromSelf(allocator: Option<&CFAllocator>) -> *mut SecTask;
+        fn SecTaskCreateFromSelf(allocator: Option<&CFAllocator>) -> Option<NonNull<SecTask>>;
     }
     let ret = unsafe { SecTaskCreateFromSelf(allocator) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the value of a single entitlement for the represented
@@ -81,10 +81,10 @@ pub unsafe extern "C-unwind" fn SecTaskCopyValueForEntitlement(
             task: &SecTask,
             entitlement: &CFString,
             error: *mut *mut CFError,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { SecTaskCopyValueForEntitlement(task, entitlement, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the values of multiple entitlements for the represented
@@ -110,10 +110,10 @@ pub unsafe extern "C-unwind" fn SecTaskCopyValuesForEntitlements(
             task: &SecTask,
             entitlements: &CFArray,
             error: *mut *mut CFError,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SecTaskCopyValuesForEntitlements(task, entitlements, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Return the value of the codesigning identifier.
@@ -129,10 +129,13 @@ pub unsafe extern "C-unwind" fn SecTaskCopySigningIdentifier(
     error: *mut *mut CFError,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn SecTaskCopySigningIdentifier(task: &SecTask, error: *mut *mut CFError) -> *mut CFString;
+        fn SecTaskCopySigningIdentifier(
+            task: &SecTask,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SecTaskCopySigningIdentifier(task, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

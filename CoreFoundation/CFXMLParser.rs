@@ -279,7 +279,7 @@ pub unsafe extern "C-unwind" fn CFXMLParserCreate(
             version_of_nodes: CFIndex,
             call_backs: *mut CFXMLParserCallBacks,
             context: *mut CFXMLParserContext,
-        ) -> *mut CFXMLParser;
+        ) -> Option<NonNull<CFXMLParser>>;
     }
     let ret = unsafe {
         CFXMLParserCreate(
@@ -292,7 +292,7 @@ pub unsafe extern "C-unwind" fn CFXMLParserCreate(
             context,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(
@@ -319,7 +319,7 @@ pub unsafe extern "C-unwind" fn CFXMLParserCreateWithDataFromURL(
             version_of_nodes: CFIndex,
             call_backs: *mut CFXMLParserCallBacks,
             context: *mut CFXMLParserContext,
-        ) -> *mut CFXMLParser;
+        ) -> Option<NonNull<CFXMLParser>>;
     }
     let ret = unsafe {
         CFXMLParserCreateWithDataFromURL(
@@ -331,7 +331,7 @@ pub unsafe extern "C-unwind" fn CFXMLParserCreateWithDataFromURL(
             context,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -358,10 +358,10 @@ pub unsafe extern "C-unwind" fn CFXMLParserGetSourceURL(
     parser: &CFXMLParser,
 ) -> Option<CFRetained<CFURL>> {
     extern "C-unwind" {
-        fn CFXMLParserGetSourceURL(parser: &CFXMLParser) -> *mut CFURL;
+        fn CFXMLParserGetSourceURL(parser: &CFXMLParser) -> Option<NonNull<CFURL>>;
     }
     let ret = unsafe { CFXMLParserGetSourceURL(parser) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -394,10 +394,10 @@ pub unsafe extern "C-unwind" fn CFXMLParserCopyErrorDescription(
     parser: &CFXMLParser,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFXMLParserCopyErrorDescription(parser: &CFXMLParser) -> *mut CFString;
+        fn CFXMLParserCopyErrorDescription(parser: &CFXMLParser) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFXMLParserCopyErrorDescription(parser) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -443,7 +443,7 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromData(
             data_source: Option<&CFURL>,
             parse_options: CFOptionFlags,
             version_of_nodes: CFIndex,
-        ) -> *mut CFXMLTree;
+        ) -> Option<NonNull<CFXMLTree>>;
     }
     let ret = unsafe {
         CFXMLTreeCreateFromData(
@@ -454,7 +454,7 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromData(
             version_of_nodes,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(
@@ -483,7 +483,7 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromDataWithError(
             parse_options: CFOptionFlags,
             version_of_nodes: CFIndex,
             error_dict: *mut *mut CFDictionary,
-        ) -> *mut CFXMLTree;
+        ) -> Option<NonNull<CFXMLTree>>;
     }
     let ret = unsafe {
         CFXMLTreeCreateFromDataWithError(
@@ -495,7 +495,7 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromDataWithError(
             error_dict,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(
@@ -518,12 +518,12 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateWithDataFromURL(
             data_source: Option<&CFURL>,
             parse_options: CFOptionFlags,
             version_of_nodes: CFIndex,
-        ) -> *mut CFXMLTree;
+        ) -> Option<NonNull<CFXMLTree>>;
     }
     let ret = unsafe {
         CFXMLTreeCreateWithDataFromURL(allocator, data_source, parse_options, version_of_nodes)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(
@@ -542,10 +542,10 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateXMLData(
         fn CFXMLTreeCreateXMLData(
             allocator: Option<&CFAllocator>,
             xml_tree: Option<&CFXMLTree>,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CFXMLTreeCreateXMLData(allocator, xml_tree) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
@@ -560,11 +560,11 @@ pub unsafe extern "C-unwind" fn CFXMLCreateStringByEscapingEntities(
             allocator: Option<&CFAllocator>,
             string: Option<&CFString>,
             entities_dictionary: Option<&CFDictionary>,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret =
         unsafe { CFXMLCreateStringByEscapingEntities(allocator, string, entities_dictionary) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
@@ -579,11 +579,11 @@ pub unsafe extern "C-unwind" fn CFXMLCreateStringByUnescapingEntities(
             allocator: Option<&CFAllocator>,
             string: Option<&CFString>,
             entities_dictionary: Option<&CFDictionary>,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret =
         unsafe { CFXMLCreateStringByUnescapingEntities(allocator, string, entities_dictionary) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {

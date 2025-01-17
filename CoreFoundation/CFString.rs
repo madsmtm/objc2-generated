@@ -81,10 +81,10 @@ pub unsafe extern "C-unwind" fn CFStringCreateWithPascalString(
             alloc: Option<&CFAllocator>,
             p_str: ConstStr255Param,
             encoding: CFStringEncoding,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFStringCreateWithPascalString(alloc, p_str, encoding) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -99,10 +99,10 @@ pub unsafe extern "C-unwind" fn CFStringCreateWithCString(
             alloc: Option<&CFAllocator>,
             c_str: *const c_char,
             encoding: CFStringEncoding,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFStringCreateWithCString(alloc, c_str, encoding) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -121,7 +121,7 @@ pub unsafe extern "C-unwind" fn CFStringCreateWithBytes(
             num_bytes: CFIndex,
             encoding: CFStringEncoding,
             is_external_representation: Boolean,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe {
         CFStringCreateWithBytes(
@@ -132,7 +132,7 @@ pub unsafe extern "C-unwind" fn CFStringCreateWithBytes(
             is_external_representation as _,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -147,10 +147,10 @@ pub unsafe extern "C-unwind" fn CFStringCreateWithCharacters(
             alloc: Option<&CFAllocator>,
             chars: *const UniChar,
             num_chars: CFIndex,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFStringCreateWithCharacters(alloc, chars, num_chars) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -167,12 +167,12 @@ pub unsafe extern "C-unwind" fn CFStringCreateWithPascalStringNoCopy(
             p_str: ConstStr255Param,
             encoding: CFStringEncoding,
             contents_deallocator: Option<&CFAllocator>,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe {
         CFStringCreateWithPascalStringNoCopy(alloc, p_str, encoding, contents_deallocator)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -189,11 +189,11 @@ pub unsafe extern "C-unwind" fn CFStringCreateWithCStringNoCopy(
             c_str: *const c_char,
             encoding: CFStringEncoding,
             contents_deallocator: Option<&CFAllocator>,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret =
         unsafe { CFStringCreateWithCStringNoCopy(alloc, c_str, encoding, contents_deallocator) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -214,7 +214,7 @@ pub unsafe extern "C-unwind" fn CFStringCreateWithBytesNoCopy(
             encoding: CFStringEncoding,
             is_external_representation: Boolean,
             contents_deallocator: Option<&CFAllocator>,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe {
         CFStringCreateWithBytesNoCopy(
@@ -226,7 +226,7 @@ pub unsafe extern "C-unwind" fn CFStringCreateWithBytesNoCopy(
             contents_deallocator,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -243,12 +243,12 @@ pub unsafe extern "C-unwind" fn CFStringCreateWithCharactersNoCopy(
             chars: *const UniChar,
             num_chars: CFIndex,
             contents_deallocator: Option<&CFAllocator>,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe {
         CFStringCreateWithCharactersNoCopy(alloc, chars, num_chars, contents_deallocator)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -263,10 +263,10 @@ pub unsafe extern "C-unwind" fn CFStringCreateWithSubstring(
             alloc: Option<&CFAllocator>,
             str: Option<&CFString>,
             range: CFRange,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFStringCreateWithSubstring(alloc, str, range) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -279,10 +279,10 @@ pub unsafe extern "C-unwind" fn CFStringCreateCopy(
         fn CFStringCreateCopy(
             alloc: Option<&CFAllocator>,
             the_string: Option<&CFString>,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFStringCreateCopy(alloc, the_string) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -295,10 +295,10 @@ pub unsafe extern "C-unwind" fn CFStringCreateMutable(
         fn CFStringCreateMutable(
             alloc: Option<&CFAllocator>,
             max_length: CFIndex,
-        ) -> *mut CFMutableString;
+        ) -> Option<NonNull<CFMutableString>>;
     }
     let ret = unsafe { CFStringCreateMutable(alloc, max_length) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -313,10 +313,10 @@ pub unsafe extern "C-unwind" fn CFStringCreateMutableCopy(
             alloc: Option<&CFAllocator>,
             max_length: CFIndex,
             the_string: Option<&CFString>,
-        ) -> *mut CFMutableString;
+        ) -> Option<NonNull<CFMutableString>>;
     }
     let ret = unsafe { CFStringCreateMutableCopy(alloc, max_length, the_string) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -335,7 +335,7 @@ pub unsafe extern "C-unwind" fn CFStringCreateMutableWithExternalCharactersNoCop
             num_chars: CFIndex,
             capacity: CFIndex,
             external_characters_allocator: Option<&CFAllocator>,
-        ) -> *mut CFMutableString;
+        ) -> Option<NonNull<CFMutableString>>;
     }
     let ret = unsafe {
         CFStringCreateMutableWithExternalCharactersNoCopy(
@@ -346,7 +346,7 @@ pub unsafe extern "C-unwind" fn CFStringCreateMutableWithExternalCharactersNoCop
             external_characters_allocator,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -476,10 +476,10 @@ pub unsafe extern "C-unwind" fn CFStringCreateFromExternalRepresentation(
             alloc: Option<&CFAllocator>,
             data: Option<&CFData>,
             encoding: CFStringEncoding,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFStringCreateFromExternalRepresentation(alloc, data, encoding) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFData"))]
@@ -496,11 +496,11 @@ pub unsafe extern "C-unwind" fn CFStringCreateExternalRepresentation(
             the_string: Option<&CFString>,
             encoding: CFStringEncoding,
             loss_byte: u8,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret =
         unsafe { CFStringCreateExternalRepresentation(alloc, the_string, encoding, loss_byte) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -559,10 +559,10 @@ pub unsafe extern "C-unwind" fn CFStringCreateWithFileSystemRepresentation(
         fn CFStringCreateWithFileSystemRepresentation(
             alloc: Option<&CFAllocator>,
             buffer: *const c_char,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFStringCreateWithFileSystemRepresentation(alloc, buffer) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags?language=objc)
@@ -714,7 +714,7 @@ pub unsafe extern "C-unwind" fn CFStringCreateArrayWithFindResults(
             string_to_find: Option<&CFString>,
             range_to_search: CFRange,
             compare_options: CFStringCompareFlags,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe {
         CFStringCreateArrayWithFindResults(
@@ -725,7 +725,7 @@ pub unsafe extern "C-unwind" fn CFStringCreateArrayWithFindResults(
             compare_options,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -928,10 +928,10 @@ pub unsafe extern "C-unwind" fn CFStringCreateByCombiningStrings(
             alloc: Option<&CFAllocator>,
             the_array: Option<&CFArray>,
             separator_string: Option<&CFString>,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFStringCreateByCombiningStrings(alloc, the_array, separator_string) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFArray", feature = "CFBase"))]
@@ -946,11 +946,11 @@ pub unsafe extern "C-unwind" fn CFStringCreateArrayBySeparatingStrings(
             alloc: Option<&CFAllocator>,
             the_string: Option<&CFString>,
             separator_string: Option<&CFString>,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret =
         unsafe { CFStringCreateArrayBySeparatingStrings(alloc, the_string, separator_string) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -1299,10 +1299,10 @@ pub unsafe extern "C-unwind" fn CFStringGetNameOfEncoding(
     encoding: CFStringEncoding,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFStringGetNameOfEncoding(encoding: CFStringEncoding) -> *mut CFString;
+        fn CFStringGetNameOfEncoding(encoding: CFStringEncoding) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFStringGetNameOfEncoding(encoding) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -1332,10 +1332,12 @@ pub unsafe extern "C-unwind" fn CFStringConvertEncodingToIANACharSetName(
     encoding: CFStringEncoding,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFStringConvertEncodingToIANACharSetName(encoding: CFStringEncoding) -> *mut CFString;
+        fn CFStringConvertEncodingToIANACharSetName(
+            encoding: CFStringEncoding,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFStringConvertEncodingToIANACharSetName(encoding) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

@@ -119,10 +119,10 @@ pub unsafe extern "C-unwind" fn CFCharacterSetGetPredefined(
     extern "C-unwind" {
         fn CFCharacterSetGetPredefined(
             the_set_identifier: CFCharacterSetPredefinedSet,
-        ) -> *mut CFCharacterSet;
+        ) -> Option<NonNull<CFCharacterSet>>;
     }
     let ret = unsafe { CFCharacterSetGetPredefined(the_set_identifier) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Creates a new immutable character set with the values from the given range.
@@ -151,10 +151,10 @@ pub unsafe extern "C-unwind" fn CFCharacterSetCreateWithCharactersInRange(
         fn CFCharacterSetCreateWithCharactersInRange(
             alloc: Option<&CFAllocator>,
             the_range: CFRange,
-        ) -> *mut CFCharacterSet;
+        ) -> Option<NonNull<CFCharacterSet>>;
     }
     let ret = unsafe { CFCharacterSetCreateWithCharactersInRange(alloc, the_range) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a new immutable character set with the values in the given string.
@@ -181,10 +181,10 @@ pub unsafe extern "C-unwind" fn CFCharacterSetCreateWithCharactersInString(
         fn CFCharacterSetCreateWithCharactersInString(
             alloc: Option<&CFAllocator>,
             the_string: Option<&CFString>,
-        ) -> *mut CFCharacterSet;
+        ) -> Option<NonNull<CFCharacterSet>>;
     }
     let ret = unsafe { CFCharacterSetCreateWithCharactersInString(alloc, the_string) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a new immutable character set with the bitmap representtion in the given data.
@@ -222,10 +222,10 @@ pub unsafe extern "C-unwind" fn CFCharacterSetCreateWithBitmapRepresentation(
         fn CFCharacterSetCreateWithBitmapRepresentation(
             alloc: Option<&CFAllocator>,
             the_data: Option<&CFData>,
-        ) -> *mut CFCharacterSet;
+        ) -> Option<NonNull<CFCharacterSet>>;
     }
     let ret = unsafe { CFCharacterSetCreateWithBitmapRepresentation(alloc, the_data) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a new immutable character set that is the invert of the specified character set.
@@ -251,10 +251,10 @@ pub unsafe extern "C-unwind" fn CFCharacterSetCreateInvertedSet(
         fn CFCharacterSetCreateInvertedSet(
             alloc: Option<&CFAllocator>,
             the_set: Option<&CFCharacterSet>,
-        ) -> *mut CFCharacterSet;
+        ) -> Option<NonNull<CFCharacterSet>>;
     }
     let ret = unsafe { CFCharacterSetCreateInvertedSet(alloc, the_set) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Reports whether or not the character set is a superset of the character set specified as the second parameter.
@@ -315,10 +315,12 @@ pub unsafe extern "C-unwind" fn CFCharacterSetCreateMutable(
     alloc: Option<&CFAllocator>,
 ) -> Option<CFRetained<CFMutableCharacterSet>> {
     extern "C-unwind" {
-        fn CFCharacterSetCreateMutable(alloc: Option<&CFAllocator>) -> *mut CFMutableCharacterSet;
+        fn CFCharacterSetCreateMutable(
+            alloc: Option<&CFAllocator>,
+        ) -> Option<NonNull<CFMutableCharacterSet>>;
     }
     let ret = unsafe { CFCharacterSetCreateMutable(alloc) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a new character set with the values from the given character set.  This function tries to compact the backing store where applicable.
@@ -344,10 +346,10 @@ pub unsafe extern "C-unwind" fn CFCharacterSetCreateCopy(
         fn CFCharacterSetCreateCopy(
             alloc: Option<&CFAllocator>,
             the_set: Option<&CFCharacterSet>,
-        ) -> *mut CFCharacterSet;
+        ) -> Option<NonNull<CFCharacterSet>>;
     }
     let ret = unsafe { CFCharacterSetCreateCopy(alloc, the_set) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a new mutable character set with the values from the given character set.
@@ -373,10 +375,10 @@ pub unsafe extern "C-unwind" fn CFCharacterSetCreateMutableCopy(
         fn CFCharacterSetCreateMutableCopy(
             alloc: Option<&CFAllocator>,
             the_set: Option<&CFCharacterSet>,
-        ) -> *mut CFMutableCharacterSet;
+        ) -> Option<NonNull<CFMutableCharacterSet>>;
     }
     let ret = unsafe { CFCharacterSetCreateMutableCopy(alloc, the_set) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Reports whether or not the Unicode character is in the character set.
@@ -452,10 +454,10 @@ pub unsafe extern "C-unwind" fn CFCharacterSetCreateBitmapRepresentation(
         fn CFCharacterSetCreateBitmapRepresentation(
             alloc: Option<&CFAllocator>,
             the_set: Option<&CFCharacterSet>,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CFCharacterSetCreateBitmapRepresentation(alloc, the_set) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

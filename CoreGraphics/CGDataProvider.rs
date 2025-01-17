@@ -133,10 +133,10 @@ pub unsafe extern "C-unwind" fn CGDataProviderCreateSequential(
         fn CGDataProviderCreateSequential(
             info: *mut c_void,
             callbacks: *const CGDataProviderSequentialCallbacks,
-        ) -> *mut CGDataProvider;
+        ) -> Option<NonNull<CGDataProvider>>;
     }
     let ret = unsafe { CGDataProviderCreateSequential(info, callbacks) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "libc")]
@@ -151,10 +151,10 @@ pub unsafe extern "C-unwind" fn CGDataProviderCreateDirect(
             info: *mut c_void,
             size: libc::off_t,
             callbacks: *const CGDataProviderDirectCallbacks,
-        ) -> *mut CGDataProvider;
+        ) -> Option<NonNull<CGDataProvider>>;
     }
     let ret = unsafe { CGDataProviderCreateDirect(info, size, callbacks) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderreleasedatacallback?language=objc)
@@ -174,10 +174,10 @@ pub unsafe extern "C-unwind" fn CGDataProviderCreateWithData(
             data: *const c_void,
             size: usize,
             release_data: CGDataProviderReleaseDataCallback,
-        ) -> *mut CGDataProvider;
+        ) -> Option<NonNull<CGDataProvider>>;
     }
     let ret = unsafe { CGDataProviderCreateWithData(info, data, size, release_data) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -185,10 +185,11 @@ pub unsafe extern "C-unwind" fn CGDataProviderCreateWithCFData(
     data: Option<&CFData>,
 ) -> Option<CFRetained<CGDataProvider>> {
     extern "C-unwind" {
-        fn CGDataProviderCreateWithCFData(data: Option<&CFData>) -> *mut CGDataProvider;
+        fn CGDataProviderCreateWithCFData(data: Option<&CFData>)
+            -> Option<NonNull<CGDataProvider>>;
     }
     let ret = unsafe { CGDataProviderCreateWithCFData(data) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -196,10 +197,10 @@ pub unsafe extern "C-unwind" fn CGDataProviderCreateWithURL(
     url: Option<&CFURL>,
 ) -> Option<CFRetained<CGDataProvider>> {
     extern "C-unwind" {
-        fn CGDataProviderCreateWithURL(url: Option<&CFURL>) -> *mut CGDataProvider;
+        fn CGDataProviderCreateWithURL(url: Option<&CFURL>) -> Option<NonNull<CGDataProvider>>;
     }
     let ret = unsafe { CGDataProviderCreateWithURL(url) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -207,10 +208,12 @@ pub unsafe extern "C-unwind" fn CGDataProviderCreateWithFilename(
     filename: *const c_char,
 ) -> Option<CFRetained<CGDataProvider>> {
     extern "C-unwind" {
-        fn CGDataProviderCreateWithFilename(filename: *const c_char) -> *mut CGDataProvider;
+        fn CGDataProviderCreateWithFilename(
+            filename: *const c_char,
+        ) -> Option<NonNull<CGDataProvider>>;
     }
     let ret = unsafe { CGDataProviderCreateWithFilename(filename) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -218,10 +221,10 @@ pub unsafe extern "C-unwind" fn CGDataProviderCopyData(
     provider: Option<&CGDataProvider>,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
-        fn CGDataProviderCopyData(provider: Option<&CGDataProvider>) -> *mut CFData;
+        fn CGDataProviderCopyData(provider: Option<&CGDataProvider>) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CGDataProviderCopyData(provider) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

@@ -157,10 +157,10 @@ pub unsafe extern "C-unwind" fn CFNumberCreate(
             allocator: Option<&CFAllocator>,
             the_type: CFNumberType,
             value_ptr: *const c_void,
-        ) -> *mut CFNumber;
+        ) -> Option<NonNull<CFNumber>>;
     }
     let ret = unsafe { CFNumberCreate(allocator, the_type, value_ptr) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

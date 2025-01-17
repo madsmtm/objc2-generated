@@ -264,10 +264,10 @@ pub unsafe extern "C-unwind" fn CMTimeRangeCopyAsDictionary(
         fn CMTimeRangeCopyAsDictionary(
             range: CMTimeRange,
             allocator: Option<&CFAllocator>,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CMTimeRangeCopyAsDictionary(range, allocator) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -311,10 +311,10 @@ pub unsafe extern "C-unwind" fn CMTimeRangeCopyDescription(
         fn CMTimeRangeCopyDescription(
             allocator: Option<&CFAllocator>,
             range: CMTimeRange,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CMTimeRangeCopyDescription(allocator, range) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -399,10 +399,10 @@ pub unsafe extern "C-unwind" fn CMTimeMappingCopyAsDictionary(
         fn CMTimeMappingCopyAsDictionary(
             mapping: CMTimeMapping,
             allocator: Option<&CFAllocator>,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CMTimeMappingCopyAsDictionary(mapping, allocator) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -448,10 +448,10 @@ pub unsafe extern "C-unwind" fn CMTimeMappingCopyDescription(
         fn CMTimeMappingCopyDescription(
             allocator: Option<&CFAllocator>,
             mapping: CMTimeMapping,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CMTimeMappingCopyDescription(allocator, mapping) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

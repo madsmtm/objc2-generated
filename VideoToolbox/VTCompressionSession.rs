@@ -175,10 +175,10 @@ pub unsafe extern "C-unwind" fn VTCompressionSessionGetPixelBufferPool(
     extern "C-unwind" {
         fn VTCompressionSessionGetPixelBufferPool(
             session: &VTCompressionSession,
-        ) -> *mut CVPixelBufferPool;
+        ) -> Option<NonNull<CVPixelBufferPool>>;
     }
     let ret = unsafe { VTCompressionSessionGetPixelBufferPool(session) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

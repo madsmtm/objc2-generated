@@ -8,8 +8,8 @@ use crate::*;
 #[inline]
 pub unsafe extern "C-unwind" fn CFCopyHomeDirectoryURL() -> Option<CFRetained<CFURL>> {
     extern "C-unwind" {
-        fn CFCopyHomeDirectoryURL() -> *mut CFURL;
+        fn CFCopyHomeDirectoryURL() -> Option<NonNull<CFURL>>;
     }
     let ret = unsafe { CFCopyHomeDirectoryURL() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

@@ -112,10 +112,10 @@ pub unsafe extern "C-unwind" fn CGDisplayCopyAllDisplayModes(
         fn CGDisplayCopyAllDisplayModes(
             display: CGDirectDisplayID,
             options: Option<&CFDictionary>,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CGDisplayCopyAllDisplayModes(display, options) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {
@@ -128,10 +128,10 @@ pub unsafe extern "C-unwind" fn CGDisplayCopyDisplayMode(
     display: CGDirectDisplayID,
 ) -> Option<CFRetained<CGDisplayMode>> {
     extern "C-unwind" {
-        fn CGDisplayCopyDisplayMode(display: CGDirectDisplayID) -> *mut CGDisplayMode;
+        fn CGDisplayCopyDisplayMode(display: CGDirectDisplayID) -> Option<NonNull<CGDisplayMode>>;
     }
     let ret = unsafe { CGDisplayCopyDisplayMode(display) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -157,10 +157,12 @@ pub unsafe extern "C-unwind" fn CGDisplayModeCopyPixelEncoding(
     mode: Option<&CGDisplayMode>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CGDisplayModeCopyPixelEncoding(mode: Option<&CGDisplayMode>) -> *mut CFString;
+        fn CGDisplayModeCopyPixelEncoding(
+            mode: Option<&CGDisplayMode>,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CGDisplayModeCopyPixelEncoding(mode) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -360,10 +362,10 @@ pub unsafe extern "C-unwind" fn CGDisplayCreateImage(
     display_id: CGDirectDisplayID,
 ) -> Option<CFRetained<CGImage>> {
     extern "C-unwind" {
-        fn CGDisplayCreateImage(display_id: CGDirectDisplayID) -> *mut CGImage;
+        fn CGDisplayCreateImage(display_id: CGDirectDisplayID) -> Option<NonNull<CGImage>>;
     }
     let ret = unsafe { CGDisplayCreateImage(display_id) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CGImage")]
@@ -374,10 +376,13 @@ pub unsafe extern "C-unwind" fn CGDisplayCreateImageForRect(
     rect: CGRect,
 ) -> Option<CFRetained<CGImage>> {
     extern "C-unwind" {
-        fn CGDisplayCreateImageForRect(display: CGDirectDisplayID, rect: CGRect) -> *mut CGImage;
+        fn CGDisplayCreateImageForRect(
+            display: CGDirectDisplayID,
+            rect: CGRect,
+        ) -> Option<NonNull<CGImage>>;
     }
     let ret = unsafe { CGDisplayCreateImageForRect(display, rect) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -405,10 +410,10 @@ pub unsafe extern "C-unwind" fn CGDisplayGetDrawingContext(
     display: CGDirectDisplayID,
 ) -> Option<CFRetained<CGContext>> {
     extern "C-unwind" {
-        fn CGDisplayGetDrawingContext(display: CGDirectDisplayID) -> *mut CGContext;
+        fn CGDisplayGetDrawingContext(display: CGDirectDisplayID) -> Option<NonNull<CGContext>>;
     }
     let ret = unsafe { CGDisplayGetDrawingContext(display) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycount?language=objc)
@@ -424,10 +429,10 @@ pub unsafe extern "C-unwind" fn CGDisplayAvailableModes(
     dsp: CGDirectDisplayID,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CGDisplayAvailableModes(dsp: CGDirectDisplayID) -> *mut CFArray;
+        fn CGDisplayAvailableModes(dsp: CGDirectDisplayID) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CGDisplayAvailableModes(dsp) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[cfg(feature = "libc")]
@@ -447,12 +452,12 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParameters(
             width: usize,
             height: usize,
             exact_match: *mut libc::boolean_t,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe {
         CGDisplayBestModeForParameters(display, bits_per_pixel, width, height, exact_match)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[cfg(feature = "libc")]
@@ -474,7 +479,7 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParametersAndRefreshRate(
             height: usize,
             refresh_rate: CGRefreshRate,
             exact_match: *mut libc::boolean_t,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe {
         CGDisplayBestModeForParametersAndRefreshRate(
@@ -486,7 +491,7 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParametersAndRefreshRate(
             exact_match,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[deprecated = "No longer supported"]
@@ -495,10 +500,10 @@ pub unsafe extern "C-unwind" fn CGDisplayCurrentMode(
     display: CGDirectDisplayID,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn CGDisplayCurrentMode(display: CGDirectDisplayID) -> *mut CFDictionary;
+        fn CGDisplayCurrentMode(display: CGDirectDisplayID) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CGDisplayCurrentMode(display) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

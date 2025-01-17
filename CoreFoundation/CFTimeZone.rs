@@ -23,10 +23,10 @@ unsafe impl ConcreteType for CFTimeZone {
 #[inline]
 pub unsafe extern "C-unwind" fn CFTimeZoneCopySystem() -> Option<CFRetained<CFTimeZone>> {
     extern "C-unwind" {
-        fn CFTimeZoneCopySystem() -> *mut CFTimeZone;
+        fn CFTimeZoneCopySystem() -> Option<NonNull<CFTimeZone>>;
     }
     let ret = unsafe { CFTimeZoneCopySystem() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -37,10 +37,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn CFTimeZoneCopyDefault() -> Option<CFRetained<CFTimeZone>> {
     extern "C-unwind" {
-        fn CFTimeZoneCopyDefault() -> *mut CFTimeZone;
+        fn CFTimeZoneCopyDefault() -> Option<NonNull<CFTimeZone>>;
     }
     let ret = unsafe { CFTimeZoneCopyDefault() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -52,10 +52,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn CFTimeZoneCopyKnownNames() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CFTimeZoneCopyKnownNames() -> *mut CFArray;
+        fn CFTimeZoneCopyKnownNames() -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CFTimeZoneCopyKnownNames() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFDictionary")]
@@ -63,10 +63,10 @@ pub unsafe extern "C-unwind" fn CFTimeZoneCopyKnownNames() -> Option<CFRetained<
 pub unsafe extern "C-unwind" fn CFTimeZoneCopyAbbreviationDictionary(
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn CFTimeZoneCopyAbbreviationDictionary() -> *mut CFDictionary;
+        fn CFTimeZoneCopyAbbreviationDictionary() -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CFTimeZoneCopyAbbreviationDictionary() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -86,10 +86,10 @@ pub unsafe extern "C-unwind" fn CFTimeZoneCreate(
             allocator: Option<&CFAllocator>,
             name: Option<&CFString>,
             data: Option<&CFData>,
-        ) -> *mut CFTimeZone;
+        ) -> Option<NonNull<CFTimeZone>>;
     }
     let ret = unsafe { CFTimeZoneCreate(allocator, name, data) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFDate"))]
@@ -102,10 +102,10 @@ pub unsafe extern "C-unwind" fn CFTimeZoneCreateWithTimeIntervalFromGMT(
         fn CFTimeZoneCreateWithTimeIntervalFromGMT(
             allocator: Option<&CFAllocator>,
             ti: CFTimeInterval,
-        ) -> *mut CFTimeZone;
+        ) -> Option<NonNull<CFTimeZone>>;
     }
     let ret = unsafe { CFTimeZoneCreateWithTimeIntervalFromGMT(allocator, ti) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFDate"))]
@@ -120,30 +120,30 @@ pub unsafe extern "C-unwind" fn CFTimeZoneCreateWithName(
             allocator: Option<&CFAllocator>,
             name: Option<&CFString>,
             try_abbrev: Boolean,
-        ) -> *mut CFTimeZone;
+        ) -> Option<NonNull<CFTimeZone>>;
     }
     let ret = unsafe { CFTimeZoneCreateWithName(allocator, name, try_abbrev as _) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFDate"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFTimeZoneGetName(tz: &CFTimeZone) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFTimeZoneGetName(tz: &CFTimeZone) -> *mut CFString;
+        fn CFTimeZoneGetName(tz: &CFTimeZone) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFTimeZoneGetName(tz) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[cfg(all(feature = "CFData", feature = "CFDate"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFTimeZoneGetData(tz: &CFTimeZone) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
-        fn CFTimeZoneGetData(tz: &CFTimeZone) -> *mut CFData;
+        fn CFTimeZoneGetData(tz: &CFTimeZone) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CFTimeZoneGetData(tz) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -158,10 +158,13 @@ pub unsafe extern "C-unwind" fn CFTimeZoneCopyAbbreviation(
     at: CFAbsoluteTime,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFTimeZoneCopyAbbreviation(tz: &CFTimeZone, at: CFAbsoluteTime) -> *mut CFString;
+        fn CFTimeZoneCopyAbbreviation(
+            tz: &CFTimeZone,
+            at: CFAbsoluteTime,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFTimeZoneCopyAbbreviation(tz, at) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFDate")]
@@ -237,10 +240,10 @@ pub unsafe extern "C-unwind" fn CFTimeZoneCopyLocalizedName(
             tz: &CFTimeZone,
             style: CFTimeZoneNameStyle,
             locale: Option<&CFLocale>,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFTimeZoneCopyLocalizedName(tz, style, locale) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {

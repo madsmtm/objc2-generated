@@ -254,9 +254,10 @@ unsafe impl ConcreteType for SCNetworkInterface {
 #[inline]
 pub unsafe extern "C-unwind" fn SCNetworkInterfaceCopyAll() -> CFRetained<CFArray> {
     extern "C-unwind" {
-        fn SCNetworkInterfaceCopyAll() -> NonNull<CFArray>;
+        fn SCNetworkInterfaceCopyAll() -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCNetworkInterfaceCopyAll() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -274,10 +275,10 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetSupportedInterfaceTypes(
     extern "C-unwind" {
         fn SCNetworkInterfaceGetSupportedInterfaceTypes(
             interface: &SCNetworkInterface,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCNetworkInterfaceGetSupportedInterfaceTypes(interface) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Identify all of the network protocol types (e.g. IPv4, IPv6) that
@@ -294,10 +295,10 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetSupportedProtocolTypes(
     extern "C-unwind" {
         fn SCNetworkInterfaceGetSupportedProtocolTypes(
             interface: &SCNetworkInterface,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCNetworkInterfaceGetSupportedProtocolTypes(interface) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Create a new network interface layered on top of another.  For
@@ -320,10 +321,10 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceCreateWithInterface(
         fn SCNetworkInterfaceCreateWithInterface(
             interface: &SCNetworkInterface,
             interface_type: &CFString,
-        ) -> *mut SCNetworkInterface;
+        ) -> Option<NonNull<SCNetworkInterface>>;
     }
     let ret = unsafe { SCNetworkInterfaceCreateWithInterface(interface, interface_type) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the BSD interface (en0) or device name (modem)
@@ -338,10 +339,12 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetBSDName(
     interface: &SCNetworkInterface,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn SCNetworkInterfaceGetBSDName(interface: &SCNetworkInterface) -> *mut CFString;
+        fn SCNetworkInterfaceGetBSDName(
+            interface: &SCNetworkInterface,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCNetworkInterfaceGetBSDName(interface) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the configuration settings associated with a interface.
@@ -356,10 +359,12 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetConfiguration(
     interface: &SCNetworkInterface,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn SCNetworkInterfaceGetConfiguration(interface: &SCNetworkInterface) -> *mut CFDictionary;
+        fn SCNetworkInterfaceGetConfiguration(
+            interface: &SCNetworkInterface,
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SCNetworkInterfaceGetConfiguration(interface) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the configuration settings associated with a interface.
@@ -380,10 +385,10 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetExtendedConfiguration(
         fn SCNetworkInterfaceGetExtendedConfiguration(
             interface: &SCNetworkInterface,
             extended_type: &CFString,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SCNetworkInterfaceGetExtendedConfiguration(interface, extended_type) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns a displayable link layer address for the interface.
@@ -398,10 +403,10 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetHardwareAddressString(
     extern "C-unwind" {
         fn SCNetworkInterfaceGetHardwareAddressString(
             interface: &SCNetworkInterface,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCNetworkInterfaceGetHardwareAddressString(interface) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// For layered network interfaces, return the underlying interface.
@@ -417,10 +422,10 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetInterface(
     extern "C-unwind" {
         fn SCNetworkInterfaceGetInterface(
             interface: &SCNetworkInterface,
-        ) -> *mut SCNetworkInterface;
+        ) -> Option<NonNull<SCNetworkInterface>>;
     }
     let ret = unsafe { SCNetworkInterfaceGetInterface(interface) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the associated network interface type.
@@ -433,10 +438,12 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetInterfaceType(
     interface: &SCNetworkInterface,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn SCNetworkInterfaceGetInterfaceType(interface: &SCNetworkInterface) -> *mut CFString;
+        fn SCNetworkInterfaceGetInterfaceType(
+            interface: &SCNetworkInterface,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCNetworkInterfaceGetInterfaceType(interface) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the localized name (e.g. "Ethernet", "FireWire") for
@@ -453,10 +460,10 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceGetLocalizedDisplayName(
     extern "C-unwind" {
         fn SCNetworkInterfaceGetLocalizedDisplayName(
             interface: &SCNetworkInterface,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCNetworkInterfaceGetLocalizedDisplayName(interface) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Stores the configuration settings for the interface.
@@ -565,10 +572,10 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceCopyMediaSubTypes(
     available: &CFArray,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn SCNetworkInterfaceCopyMediaSubTypes(available: &CFArray) -> *mut CFArray;
+        fn SCNetworkInterfaceCopyMediaSubTypes(available: &CFArray) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCNetworkInterfaceCopyMediaSubTypes(available) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// For the provided interface configuration options and specific
@@ -594,10 +601,10 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceCopyMediaSubTypeOptions(
         fn SCNetworkInterfaceCopyMediaSubTypeOptions(
             available: &CFArray,
             sub_type: &CFString,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCNetworkInterfaceCopyMediaSubTypeOptions(available, sub_type) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// For the specified network interface, returns information
@@ -729,9 +736,10 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceCopyAll(
     prefs: &SCPreferences,
 ) -> CFRetained<CFArray> {
     extern "C-unwind" {
-        fn SCBondInterfaceCopyAll(prefs: &SCPreferences) -> NonNull<CFArray>;
+        fn SCBondInterfaceCopyAll(prefs: &SCPreferences) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCBondInterfaceCopyAll(prefs) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -748,9 +756,12 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceCopyAvailableMemberInterfaces(
     prefs: &SCPreferences,
 ) -> CFRetained<CFArray> {
     extern "C-unwind" {
-        fn SCBondInterfaceCopyAvailableMemberInterfaces(prefs: &SCPreferences) -> NonNull<CFArray>;
+        fn SCBondInterfaceCopyAvailableMemberInterfaces(
+            prefs: &SCPreferences,
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCBondInterfaceCopyAvailableMemberInterfaces(prefs) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -766,10 +777,10 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceCreate(
     prefs: &SCPreferences,
 ) -> Option<CFRetained<SCBondInterface>> {
     extern "C-unwind" {
-        fn SCBondInterfaceCreate(prefs: &SCPreferences) -> *mut SCBondInterface;
+        fn SCBondInterfaceCreate(prefs: &SCPreferences) -> Option<NonNull<SCBondInterface>>;
     }
     let ret = unsafe { SCBondInterfaceCreate(prefs) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Removes the SCBondInterface from the configuration.
@@ -796,10 +807,10 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceGetMemberInterfaces(
     bond: &SCBondInterface,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn SCBondInterfaceGetMemberInterfaces(bond: &SCBondInterface) -> *mut CFArray;
+        fn SCBondInterfaceGetMemberInterfaces(bond: &SCBondInterface) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCBondInterfaceGetMemberInterfaces(bond) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the configuration settings associated with a Ethernet Bond interface.
@@ -813,10 +824,10 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceGetOptions(
     bond: &SCBondInterface,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn SCBondInterfaceGetOptions(bond: &SCBondInterface) -> *mut CFDictionary;
+        fn SCBondInterfaceGetOptions(bond: &SCBondInterface) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SCBondInterfaceGetOptions(bond) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Sets the member interfaces for the specified Ethernet Bond interface.
@@ -892,10 +903,10 @@ pub unsafe extern "C-unwind" fn SCBondInterfaceCopyStatus(
     bond: &SCBondInterface,
 ) -> Option<CFRetained<SCBondStatus>> {
     extern "C-unwind" {
-        fn SCBondInterfaceCopyStatus(bond: &SCBondInterface) -> *mut SCBondStatus;
+        fn SCBondInterfaceCopyStatus(bond: &SCBondInterface) -> Option<NonNull<SCBondStatus>>;
     }
     let ret = unsafe { SCBondInterfaceCopyStatus(bond) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 unsafe impl ConcreteType for SCBondStatus {
@@ -921,10 +932,10 @@ pub unsafe extern "C-unwind" fn SCBondStatusGetMemberInterfaces(
     bond_status: &SCBondStatus,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn SCBondStatusGetMemberInterfaces(bond_status: &SCBondStatus) -> *mut CFArray;
+        fn SCBondStatusGetMemberInterfaces(bond_status: &SCBondStatus) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCBondStatusGetMemberInterfaces(bond_status) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the status of a specific member interface of an
@@ -949,10 +960,10 @@ pub unsafe extern "C-unwind" fn SCBondStatusGetInterfaceStatus(
         fn SCBondStatusGetInterfaceStatus(
             bond_status: &SCBondStatus,
             interface: Option<&SCNetworkInterface>,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SCBondStatusGetInterfaceStatus(bond_status, interface) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns all VLAN interfaces on the system.
@@ -965,9 +976,10 @@ pub unsafe extern "C-unwind" fn SCVLANInterfaceCopyAll(
     prefs: &SCPreferences,
 ) -> CFRetained<CFArray> {
     extern "C-unwind" {
-        fn SCVLANInterfaceCopyAll(prefs: &SCPreferences) -> NonNull<CFArray>;
+        fn SCVLANInterfaceCopyAll(prefs: &SCPreferences) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCVLANInterfaceCopyAll(prefs) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -980,9 +992,10 @@ pub unsafe extern "C-unwind" fn SCVLANInterfaceCopyAll(
 pub unsafe extern "C-unwind" fn SCVLANInterfaceCopyAvailablePhysicalInterfaces(
 ) -> CFRetained<CFArray> {
     extern "C-unwind" {
-        fn SCVLANInterfaceCopyAvailablePhysicalInterfaces() -> NonNull<CFArray>;
+        fn SCVLANInterfaceCopyAvailablePhysicalInterfaces() -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCVLANInterfaceCopyAvailablePhysicalInterfaces() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -1014,10 +1027,10 @@ pub unsafe extern "C-unwind" fn SCVLANInterfaceCreate(
             prefs: &SCPreferences,
             physical: &SCNetworkInterface,
             tag: &CFNumber,
-        ) -> *mut SCVLANInterface;
+        ) -> Option<NonNull<SCVLANInterface>>;
     }
     let ret = unsafe { SCVLANInterfaceCreate(prefs, physical, tag) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Removes the SCVLANInterface from the configuration.
@@ -1044,10 +1057,12 @@ pub unsafe extern "C-unwind" fn SCVLANInterfaceGetPhysicalInterface(
     vlan: &SCVLANInterface,
 ) -> Option<CFRetained<SCNetworkInterface>> {
     extern "C-unwind" {
-        fn SCVLANInterfaceGetPhysicalInterface(vlan: &SCVLANInterface) -> *mut SCNetworkInterface;
+        fn SCVLANInterfaceGetPhysicalInterface(
+            vlan: &SCVLANInterface,
+        ) -> Option<NonNull<SCNetworkInterface>>;
     }
     let ret = unsafe { SCVLANInterfaceGetPhysicalInterface(vlan) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the tag for the specified VLAN interface.
@@ -1060,10 +1075,10 @@ pub unsafe extern "C-unwind" fn SCVLANInterfaceGetTag(
     vlan: &SCVLANInterface,
 ) -> Option<CFRetained<CFNumber>> {
     extern "C-unwind" {
-        fn SCVLANInterfaceGetTag(vlan: &SCVLANInterface) -> *mut CFNumber;
+        fn SCVLANInterfaceGetTag(vlan: &SCVLANInterface) -> Option<NonNull<CFNumber>>;
     }
     let ret = unsafe { SCVLANInterfaceGetTag(vlan) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the configuration settings associated with the VLAN interface.
@@ -1077,10 +1092,10 @@ pub unsafe extern "C-unwind" fn SCVLANInterfaceGetOptions(
     vlan: &SCVLANInterface,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn SCVLANInterfaceGetOptions(vlan: &SCVLANInterface) -> *mut CFDictionary;
+        fn SCVLANInterfaceGetOptions(vlan: &SCVLANInterface) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SCVLANInterfaceGetOptions(vlan) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Updates the specified VLAN interface.
@@ -1181,10 +1196,12 @@ pub unsafe extern "C-unwind" fn SCNetworkProtocolGetConfiguration(
     protocol: &SCNetworkProtocol,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn SCNetworkProtocolGetConfiguration(protocol: &SCNetworkProtocol) -> *mut CFDictionary;
+        fn SCNetworkProtocolGetConfiguration(
+            protocol: &SCNetworkProtocol,
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SCNetworkProtocolGetConfiguration(protocol) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns whether this protocol has been enabled.
@@ -1211,10 +1228,12 @@ pub unsafe extern "C-unwind" fn SCNetworkProtocolGetProtocolType(
     protocol: &SCNetworkProtocol,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn SCNetworkProtocolGetProtocolType(protocol: &SCNetworkProtocol) -> *mut CFString;
+        fn SCNetworkProtocolGetProtocolType(
+            protocol: &SCNetworkProtocol,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCNetworkProtocolGetProtocolType(protocol) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Stores the configuration settings for the protocol.
@@ -1308,10 +1327,10 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceCopyAll(
     prefs: &SCPreferences,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn SCNetworkServiceCopyAll(prefs: &SCPreferences) -> *mut CFArray;
+        fn SCNetworkServiceCopyAll(prefs: &SCPreferences) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCNetworkServiceCopyAll(prefs) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns all network protocols associated with the service.
@@ -1325,10 +1344,10 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceCopyProtocols(
     service: &SCNetworkService,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn SCNetworkServiceCopyProtocols(service: &SCNetworkService) -> *mut CFArray;
+        fn SCNetworkServiceCopyProtocols(service: &SCNetworkService) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCNetworkServiceCopyProtocols(service) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Create a new network service for the specified interface in the
@@ -1348,10 +1367,10 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceCreate(
         fn SCNetworkServiceCreate(
             prefs: &SCPreferences,
             interface: &SCNetworkInterface,
-        ) -> *mut SCNetworkService;
+        ) -> Option<NonNull<SCNetworkService>>;
     }
     let ret = unsafe { SCNetworkServiceCreate(prefs, interface) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the network service with the specified identifier.
@@ -1374,10 +1393,10 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceCopy(
         fn SCNetworkServiceCopy(
             prefs: &SCPreferences,
             service_id: &CFString,
-        ) -> *mut SCNetworkService;
+        ) -> Option<NonNull<SCNetworkService>>;
     }
     let ret = unsafe { SCNetworkServiceCopy(prefs, service_id) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Establishes the "default" configuration for a network
@@ -1424,10 +1443,12 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceGetInterface(
     service: &SCNetworkService,
 ) -> Option<CFRetained<SCNetworkInterface>> {
     extern "C-unwind" {
-        fn SCNetworkServiceGetInterface(service: &SCNetworkService) -> *mut SCNetworkInterface;
+        fn SCNetworkServiceGetInterface(
+            service: &SCNetworkService,
+        ) -> Option<NonNull<SCNetworkInterface>>;
     }
     let ret = unsafe { SCNetworkServiceGetInterface(service) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the [user specified] name associated with the service.
@@ -1440,10 +1461,10 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceGetName(
     service: &SCNetworkService,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn SCNetworkServiceGetName(service: &SCNetworkService) -> *mut CFString;
+        fn SCNetworkServiceGetName(service: &SCNetworkService) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCNetworkServiceGetName(service) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the network protocol of the specified type for
@@ -1463,10 +1484,10 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceCopyProtocol(
         fn SCNetworkServiceCopyProtocol(
             service: &SCNetworkService,
             protocol_type: &CFString,
-        ) -> *mut SCNetworkProtocol;
+        ) -> Option<NonNull<SCNetworkProtocol>>;
     }
     let ret = unsafe { SCNetworkServiceCopyProtocol(service, protocol_type) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the identifier for the service.
@@ -1479,10 +1500,10 @@ pub unsafe extern "C-unwind" fn SCNetworkServiceGetServiceID(
     service: &SCNetworkService,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn SCNetworkServiceGetServiceID(service: &SCNetworkService) -> *mut CFString;
+        fn SCNetworkServiceGetServiceID(service: &SCNetworkService) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCNetworkServiceGetServiceID(service) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Removes the network service from the configuration.
@@ -1637,10 +1658,10 @@ pub unsafe extern "C-unwind" fn SCNetworkSetCopyAll(
     prefs: &SCPreferences,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn SCNetworkSetCopyAll(prefs: &SCPreferences) -> *mut CFArray;
+        fn SCNetworkSetCopyAll(prefs: &SCPreferences) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCNetworkSetCopyAll(prefs) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the "current" set.
@@ -1654,10 +1675,10 @@ pub unsafe extern "C-unwind" fn SCNetworkSetCopyCurrent(
     prefs: &SCPreferences,
 ) -> Option<CFRetained<SCNetworkSet>> {
     extern "C-unwind" {
-        fn SCNetworkSetCopyCurrent(prefs: &SCPreferences) -> *mut SCNetworkSet;
+        fn SCNetworkSetCopyCurrent(prefs: &SCPreferences) -> Option<NonNull<SCNetworkSet>>;
     }
     let ret = unsafe { SCNetworkSetCopyCurrent(prefs) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns all network services associated with the set.
@@ -1671,10 +1692,10 @@ pub unsafe extern "C-unwind" fn SCNetworkSetCopyServices(
     set: &SCNetworkSet,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn SCNetworkSetCopyServices(set: &SCNetworkSet) -> *mut CFArray;
+        fn SCNetworkSetCopyServices(set: &SCNetworkSet) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCNetworkSetCopyServices(set) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Create a new set in the configuration.
@@ -1689,10 +1710,10 @@ pub unsafe extern "C-unwind" fn SCNetworkSetCreate(
     prefs: &SCPreferences,
 ) -> Option<CFRetained<SCNetworkSet>> {
     extern "C-unwind" {
-        fn SCNetworkSetCreate(prefs: &SCPreferences) -> *mut SCNetworkSet;
+        fn SCNetworkSetCreate(prefs: &SCPreferences) -> Option<NonNull<SCNetworkSet>>;
     }
     let ret = unsafe { SCNetworkSetCreate(prefs) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the set with the specified identifier.
@@ -1712,10 +1733,13 @@ pub unsafe extern "C-unwind" fn SCNetworkSetCopy(
     set_id: &CFString,
 ) -> Option<CFRetained<SCNetworkSet>> {
     extern "C-unwind" {
-        fn SCNetworkSetCopy(prefs: &SCPreferences, set_id: &CFString) -> *mut SCNetworkSet;
+        fn SCNetworkSetCopy(
+            prefs: &SCPreferences,
+            set_id: &CFString,
+        ) -> Option<NonNull<SCNetworkSet>>;
     }
     let ret = unsafe { SCNetworkSetCopy(prefs, set_id) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the [user specified] name associated with the set.
@@ -1728,10 +1752,10 @@ pub unsafe extern "C-unwind" fn SCNetworkSetGetName(
     set: &SCNetworkSet,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn SCNetworkSetGetName(set: &SCNetworkSet) -> *mut CFString;
+        fn SCNetworkSetGetName(set: &SCNetworkSet) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCNetworkSetGetName(set) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the identifier for the set.
@@ -1744,10 +1768,10 @@ pub unsafe extern "C-unwind" fn SCNetworkSetGetSetID(
     set: &SCNetworkSet,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn SCNetworkSetGetSetID(set: &SCNetworkSet) -> *mut CFString;
+        fn SCNetworkSetGetSetID(set: &SCNetworkSet) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SCNetworkSetGetSetID(set) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the [user specified] ordering of network services
@@ -1764,10 +1788,10 @@ pub unsafe extern "C-unwind" fn SCNetworkSetGetServiceOrder(
     set: &SCNetworkSet,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn SCNetworkSetGetServiceOrder(set: &SCNetworkSet) -> *mut CFArray;
+        fn SCNetworkSetGetServiceOrder(set: &SCNetworkSet) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SCNetworkSetGetServiceOrder(set) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Removes the set from the configuration.

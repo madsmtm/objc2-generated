@@ -70,10 +70,10 @@ pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessMinimumQuantityForClassi
     extern "C-unwind" {
         fn HKAppleWalkingSteadinessMinimumQuantityForClassification(
             classification: HKAppleWalkingSteadinessClassification,
-        ) -> NonNull<HKQuantity>;
+        ) -> *mut HKQuantity;
     }
     let ret = unsafe { HKAppleWalkingSteadinessMinimumQuantityForClassification(classification) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -88,9 +88,9 @@ pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessMaximumQuantityForClassi
     extern "C-unwind" {
         fn HKAppleWalkingSteadinessMaximumQuantityForClassification(
             classification: HKAppleWalkingSteadinessClassification,
-        ) -> NonNull<HKQuantity>;
+        ) -> *mut HKQuantity;
     }
     let ret = unsafe { HKAppleWalkingSteadinessMaximumQuantityForClassification(classification) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }

@@ -170,10 +170,10 @@ pub unsafe extern "C-unwind" fn SecPolicyCopyProperties(
     policy_ref: &SecPolicy,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn SecPolicyCopyProperties(policy_ref: &SecPolicy) -> *mut CFDictionary;
+        fn SecPolicyCopyProperties(policy_ref: &SecPolicy) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SecPolicyCopyProperties(policy_ref) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns a policy object for the default X.509 policy.
@@ -184,9 +184,10 @@ pub unsafe extern "C-unwind" fn SecPolicyCopyProperties(
 #[inline]
 pub unsafe extern "C-unwind" fn SecPolicyCreateBasicX509() -> CFRetained<SecPolicy> {
     extern "C-unwind" {
-        fn SecPolicyCreateBasicX509() -> NonNull<SecPolicy>;
+        fn SecPolicyCreateBasicX509() -> Option<NonNull<SecPolicy>>;
     }
     let ret = unsafe { SecPolicyCreateBasicX509() };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -207,9 +208,13 @@ pub unsafe extern "C-unwind" fn SecPolicyCreateSSL(
     hostname: Option<&CFString>,
 ) -> CFRetained<SecPolicy> {
     extern "C-unwind" {
-        fn SecPolicyCreateSSL(server: Boolean, hostname: Option<&CFString>) -> NonNull<SecPolicy>;
+        fn SecPolicyCreateSSL(
+            server: Boolean,
+            hostname: Option<&CFString>,
+        ) -> Option<NonNull<SecPolicy>>;
     }
     let ret = unsafe { SecPolicyCreateSSL(server as _, hostname) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -245,10 +250,11 @@ pub unsafe extern "C-unwind" fn SecPolicyCreateRevocation(
     revocation_flags: CFOptionFlags,
 ) -> Option<CFRetained<SecPolicy>> {
     extern "C-unwind" {
-        fn SecPolicyCreateRevocation(revocation_flags: CFOptionFlags) -> *mut SecPolicy;
+        fn SecPolicyCreateRevocation(revocation_flags: CFOptionFlags)
+            -> Option<NonNull<SecPolicy>>;
     }
     let ret = unsafe { SecPolicyCreateRevocation(revocation_flags) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns a policy object based on an object identifier for the
@@ -272,10 +278,10 @@ pub unsafe extern "C-unwind" fn SecPolicyCreateWithProperties(
         fn SecPolicyCreateWithProperties(
             policy_identifier: &CFType,
             properties: Option<&CFDictionary>,
-        ) -> *mut SecPolicy;
+        ) -> Option<NonNull<SecPolicy>>;
     }
     let ret = unsafe { SecPolicyCreateWithProperties(policy_identifier, properties) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {
@@ -395,10 +401,10 @@ pub unsafe extern "C-unwind" fn SecPolicyCreateWithOID(
     policy_oid: &CFType,
 ) -> Option<CFRetained<SecPolicy>> {
     extern "C-unwind" {
-        fn SecPolicyCreateWithOID(policy_oid: &CFType) -> *mut SecPolicy;
+        fn SecPolicyCreateWithOID(policy_oid: &CFType) -> Option<NonNull<SecPolicy>>;
     }
     let ret = unsafe { SecPolicyCreateWithOID(policy_oid) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

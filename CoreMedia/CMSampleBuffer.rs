@@ -874,10 +874,10 @@ pub unsafe extern "C-unwind" fn CMSampleBufferGetDataBuffer(
     sbuf: &CMSampleBuffer,
 ) -> Option<CFRetained<CMBlockBuffer>> {
     extern "C-unwind" {
-        fn CMSampleBufferGetDataBuffer(sbuf: &CMSampleBuffer) -> *mut CMBlockBuffer;
+        fn CMSampleBufferGetDataBuffer(sbuf: &CMSampleBuffer) -> Option<NonNull<CMBlockBuffer>>;
     }
     let ret = unsafe { CMSampleBufferGetDataBuffer(sbuf) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns a CMSampleBuffer's CVImageBuffer of media data.
@@ -892,10 +892,10 @@ pub unsafe extern "C-unwind" fn CMSampleBufferGetImageBuffer(
     sbuf: &CMSampleBuffer,
 ) -> Option<CFRetained<CVImageBuffer>> {
     extern "C-unwind" {
-        fn CMSampleBufferGetImageBuffer(sbuf: &CMSampleBuffer) -> *mut CVImageBuffer;
+        fn CMSampleBufferGetImageBuffer(sbuf: &CMSampleBuffer) -> Option<NonNull<CVImageBuffer>>;
     }
     let ret = unsafe { CMSampleBufferGetImageBuffer(sbuf) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -1431,10 +1431,12 @@ pub unsafe extern "C-unwind" fn CMSampleBufferGetFormatDescription(
     sbuf: &CMSampleBuffer,
 ) -> Option<CFRetained<CMFormatDescription>> {
     extern "C-unwind" {
-        fn CMSampleBufferGetFormatDescription(sbuf: &CMSampleBuffer) -> *mut CMFormatDescription;
+        fn CMSampleBufferGetFormatDescription(
+            sbuf: &CMSampleBuffer,
+        ) -> Option<NonNull<CMFormatDescription>>;
     }
     let ret = unsafe { CMSampleBufferGetFormatDescription(sbuf) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns a reference to a CMSampleBuffer's immutable array of mutable sample attachments dictionaries (one dictionary
@@ -1459,10 +1461,10 @@ pub unsafe extern "C-unwind" fn CMSampleBufferGetSampleAttachmentsArray(
         fn CMSampleBufferGetSampleAttachmentsArray(
             sbuf: &CMSampleBuffer,
             create_if_necessary: Boolean,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CMSampleBufferGetSampleAttachmentsArray(sbuf, create_if_necessary as _) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C" {

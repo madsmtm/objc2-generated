@@ -127,10 +127,10 @@ pub unsafe extern "C-unwind" fn CMTaggedBufferGroupGetTagCollectionAtIndex(
         fn CMTaggedBufferGroupGetTagCollectionAtIndex(
             group: &CMTaggedBufferGroup,
             index: CFIndex,
-        ) -> *mut CMTagCollection;
+        ) -> Option<NonNull<CMTagCollection>>;
     }
     let ret = unsafe { CMTaggedBufferGroupGetTagCollectionAtIndex(group, index) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns a CVPixelBuffer from a CMTaggedBufferGroup by sequential indexing.
@@ -150,10 +150,10 @@ pub unsafe extern "C-unwind" fn CMTaggedBufferGroupGetCVPixelBufferAtIndex(
         fn CMTaggedBufferGroupGetCVPixelBufferAtIndex(
             group: &CMTaggedBufferGroup,
             index: CFIndex,
-        ) -> *mut CVPixelBuffer;
+        ) -> Option<NonNull<CVPixelBuffer>>;
     }
     let ret = unsafe { CMTaggedBufferGroupGetCVPixelBufferAtIndex(group, index) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns a CVPixelBuffer from a CMTaggedBufferGroup by looking for a unique match for the provided tag.
@@ -177,10 +177,10 @@ pub unsafe extern "C-unwind" fn CMTaggedBufferGroupGetCVPixelBufferForTag(
             group: &CMTaggedBufferGroup,
             tag: CMTag,
             index_out: *mut CFIndex,
-        ) -> *mut CVPixelBuffer;
+        ) -> Option<NonNull<CVPixelBuffer>>;
     }
     let ret = unsafe { CMTaggedBufferGroupGetCVPixelBufferForTag(group, tag, index_out) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns a CVPixelBuffer from a CMTaggedBufferGroup by looking for a unique match for the provided tag collection.
@@ -204,12 +204,12 @@ pub unsafe extern "C-unwind" fn CMTaggedBufferGroupGetCVPixelBufferForTagCollect
             group: &CMTaggedBufferGroup,
             tag_collection: &CMTagCollection,
             index_out: *mut CFIndex,
-        ) -> *mut CVPixelBuffer;
+        ) -> Option<NonNull<CVPixelBuffer>>;
     }
     let ret = unsafe {
         CMTaggedBufferGroupGetCVPixelBufferForTagCollection(group, tag_collection, index_out)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns a CMSampleBuffer from a CMTaggedBufferGroup by sequential indexing.
@@ -229,10 +229,10 @@ pub unsafe extern "C-unwind" fn CMTaggedBufferGroupGetCMSampleBufferAtIndex(
         fn CMTaggedBufferGroupGetCMSampleBufferAtIndex(
             group: &CMTaggedBufferGroup,
             index: CFIndex,
-        ) -> *mut CMSampleBuffer;
+        ) -> Option<NonNull<CMSampleBuffer>>;
     }
     let ret = unsafe { CMTaggedBufferGroupGetCMSampleBufferAtIndex(group, index) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns a CMSampleBuffer from a CMTaggedBufferGroup by looking for a unique match for the provided tag.
@@ -256,10 +256,10 @@ pub unsafe extern "C-unwind" fn CMTaggedBufferGroupGetCMSampleBufferForTag(
             group: &CMTaggedBufferGroup,
             tag: CMTag,
             index_out: *mut CFIndex,
-        ) -> *mut CMSampleBuffer;
+        ) -> Option<NonNull<CMSampleBuffer>>;
     }
     let ret = unsafe { CMTaggedBufferGroupGetCMSampleBufferForTag(group, tag, index_out) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns a CMSampleBuffer from a CMTaggedBufferGroup by looking for a unique match for the provided tag collection.
@@ -283,12 +283,12 @@ pub unsafe extern "C-unwind" fn CMTaggedBufferGroupGetCMSampleBufferForTagCollec
             group: &CMTaggedBufferGroup,
             tag_collection: &CMTagCollection,
             index_out: *mut CFIndex,
-        ) -> *mut CMSampleBuffer;
+        ) -> Option<NonNull<CMSampleBuffer>>;
     }
     let ret = unsafe {
         CMTaggedBufferGroupGetCMSampleBufferForTagCollection(group, tag_collection, index_out)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -407,8 +407,10 @@ pub unsafe extern "C-unwind" fn CMSampleBufferGetTaggedBufferGroup(
     sbuf: &CMSampleBuffer,
 ) -> Option<CFRetained<CMTaggedBufferGroup>> {
     extern "C-unwind" {
-        fn CMSampleBufferGetTaggedBufferGroup(sbuf: &CMSampleBuffer) -> *mut CMTaggedBufferGroup;
+        fn CMSampleBufferGetTaggedBufferGroup(
+            sbuf: &CMSampleBuffer,
+        ) -> Option<NonNull<CMTaggedBufferGroup>>;
     }
     let ret = unsafe { CMSampleBufferGetTaggedBufferGroup(sbuf) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }

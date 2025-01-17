@@ -41,10 +41,10 @@ pub unsafe extern "C-unwind" fn SecCertificateCreateWithData(
         fn SecCertificateCreateWithData(
             allocator: Option<&CFAllocator>,
             data: &CFData,
-        ) -> *mut SecCertificate;
+        ) -> Option<NonNull<SecCertificate>>;
     }
     let ret = unsafe { SecCertificateCreateWithData(allocator, data) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Return the DER representation of an X.509 certificate.
@@ -59,9 +59,10 @@ pub unsafe extern "C-unwind" fn SecCertificateCopyData(
     certificate: &SecCertificate,
 ) -> CFRetained<CFData> {
     extern "C-unwind" {
-        fn SecCertificateCopyData(certificate: &SecCertificate) -> NonNull<CFData>;
+        fn SecCertificateCopyData(certificate: &SecCertificate) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { SecCertificateCopyData(certificate) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -82,10 +83,12 @@ pub unsafe extern "C-unwind" fn SecCertificateCopySubjectSummary(
     certificate: &SecCertificate,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn SecCertificateCopySubjectSummary(certificate: &SecCertificate) -> *mut CFString;
+        fn SecCertificateCopySubjectSummary(
+            certificate: &SecCertificate,
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SecCertificateCopySubjectSummary(certificate) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -134,10 +137,12 @@ pub unsafe extern "C-unwind" fn SecCertificateCopyNormalizedIssuerSequence(
     certificate: &SecCertificate,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
-        fn SecCertificateCopyNormalizedIssuerSequence(certificate: &SecCertificate) -> *mut CFData;
+        fn SecCertificateCopyNormalizedIssuerSequence(
+            certificate: &SecCertificate,
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { SecCertificateCopyNormalizedIssuerSequence(certificate) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Return the certificate's normalized subject
@@ -151,11 +156,12 @@ pub unsafe extern "C-unwind" fn SecCertificateCopyNormalizedSubjectSequence(
     certificate: &SecCertificate,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
-        fn SecCertificateCopyNormalizedSubjectSequence(certificate: &SecCertificate)
-            -> *mut CFData;
+        fn SecCertificateCopyNormalizedSubjectSequence(
+            certificate: &SecCertificate,
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { SecCertificateCopyNormalizedSubjectSequence(certificate) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Retrieves the public key for a given certificate.
@@ -171,10 +177,10 @@ pub unsafe extern "C-unwind" fn SecCertificateCopyKey(
     certificate: &SecCertificate,
 ) -> Option<CFRetained<SecKey>> {
     extern "C-unwind" {
-        fn SecCertificateCopyKey(certificate: &SecCertificate) -> *mut SecKey;
+        fn SecCertificateCopyKey(certificate: &SecCertificate) -> Option<NonNull<SecKey>>;
     }
     let ret = unsafe { SecCertificateCopyKey(certificate) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -216,10 +222,10 @@ pub unsafe extern "C-unwind" fn SecCertificateCopySerialNumberData(
         fn SecCertificateCopySerialNumberData(
             certificate: &SecCertificate,
             error: *mut *mut CFError,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { SecCertificateCopySerialNumberData(certificate, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Obtain the starting date of the given certificate.
@@ -234,10 +240,12 @@ pub unsafe extern "C-unwind" fn SecCertificateCopyNotValidBeforeDate(
     certificate: &SecCertificate,
 ) -> Option<CFRetained<CFDate>> {
     extern "C-unwind" {
-        fn SecCertificateCopyNotValidBeforeDate(certificate: &SecCertificate) -> *mut CFDate;
+        fn SecCertificateCopyNotValidBeforeDate(
+            certificate: &SecCertificate,
+        ) -> Option<NonNull<CFDate>>;
     }
     let ret = unsafe { SecCertificateCopyNotValidBeforeDate(certificate) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Obtain the expiration date of the given certificate.
@@ -252,10 +260,12 @@ pub unsafe extern "C-unwind" fn SecCertificateCopyNotValidAfterDate(
     certificate: &SecCertificate,
 ) -> Option<CFRetained<CFDate>> {
     extern "C-unwind" {
-        fn SecCertificateCopyNotValidAfterDate(certificate: &SecCertificate) -> *mut CFDate;
+        fn SecCertificateCopyNotValidAfterDate(
+            certificate: &SecCertificate,
+        ) -> Option<NonNull<CFDate>>;
     }
     let ret = unsafe { SecCertificateCopyNotValidAfterDate(certificate) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Return the certificate's serial number.
@@ -280,10 +290,10 @@ pub unsafe extern "C-unwind" fn SecCertificateCopySerialNumber(
         fn SecCertificateCopySerialNumber(
             certificate: &SecCertificate,
             error: *mut *mut CFError,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { SecCertificateCopySerialNumber(certificate, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecsubjectitemattr?language=objc)
@@ -528,10 +538,10 @@ pub unsafe extern "C-unwind" fn SecCertificateCopyPreferred(
         fn SecCertificateCopyPreferred(
             name: &CFString,
             key_usage: Option<&CFArray>,
-        ) -> *mut SecCertificate;
+        ) -> Option<NonNull<SecCertificate>>;
     }
     let ret = unsafe { SecCertificateCopyPreferred(name, key_usage) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -735,10 +745,10 @@ pub unsafe extern "C-unwind" fn SecCertificateCopyValues(
             certificate: &SecCertificate,
             keys: Option<&CFArray>,
             error: *mut *mut CFError,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SecCertificateCopyValues(certificate, keys, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Return the long description of a certificate
@@ -771,10 +781,10 @@ pub unsafe extern "C-unwind" fn SecCertificateCopyLongDescription(
             alloc: Option<&CFAllocator>,
             certificate: &SecCertificate,
             error: *mut *mut CFError,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SecCertificateCopyLongDescription(alloc, certificate, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Return the short description of a certificate
@@ -807,10 +817,10 @@ pub unsafe extern "C-unwind" fn SecCertificateCopyShortDescription(
             alloc: Option<&CFAllocator>,
             certificate: &SecCertificate,
             error: *mut *mut CFError,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { SecCertificateCopyShortDescription(alloc, certificate, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Return the certificate's normalized issuer
@@ -837,10 +847,10 @@ pub unsafe extern "C-unwind" fn SecCertificateCopyNormalizedIssuerContent(
         fn SecCertificateCopyNormalizedIssuerContent(
             certificate: &SecCertificate,
             error: *mut *mut CFError,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { SecCertificateCopyNormalizedIssuerContent(certificate, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Return the certificate's normalized subject
@@ -867,8 +877,8 @@ pub unsafe extern "C-unwind" fn SecCertificateCopyNormalizedSubjectContent(
         fn SecCertificateCopyNormalizedSubjectContent(
             certificate: &SecCertificate,
             error: *mut *mut CFError,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { SecCertificateCopyNormalizedSubjectContent(certificate, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

@@ -284,28 +284,28 @@ extern "C" {
 #[inline]
 pub unsafe extern "C-unwind" fn CGColorSpaceCreateDeviceGray() -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
-        fn CGColorSpaceCreateDeviceGray() -> *mut CGColorSpace;
+        fn CGColorSpaceCreateDeviceGray() -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGColorSpaceCreateDeviceGray() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
 pub unsafe extern "C-unwind" fn CGColorSpaceCreateDeviceRGB() -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
-        fn CGColorSpaceCreateDeviceRGB() -> *mut CGColorSpace;
+        fn CGColorSpaceCreateDeviceRGB() -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGColorSpaceCreateDeviceRGB() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
 pub unsafe extern "C-unwind" fn CGColorSpaceCreateDeviceCMYK() -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
-        fn CGColorSpaceCreateDeviceCMYK() -> *mut CGColorSpace;
+        fn CGColorSpaceCreateDeviceCMYK() -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGColorSpaceCreateDeviceCMYK() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -313,10 +313,10 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateWithICCData(
     data: Option<&CFType>,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
-        fn CGColorSpaceCreateWithICCData(data: Option<&CFType>) -> *mut CGColorSpace;
+        fn CGColorSpaceCreateWithICCData(data: Option<&CFType>) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGColorSpaceCreateWithICCData(data) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CGDataProvider")]
@@ -333,10 +333,10 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateICCBased(
             range: *const CGFloat,
             profile: Option<&CGDataProvider>,
             alternate: Option<&CGColorSpace>,
-        ) -> *mut CGColorSpace;
+        ) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGColorSpaceCreateICCBased(n_components, range, profile, alternate) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -350,10 +350,10 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateIndexed(
             base_space: Option<&CGColorSpace>,
             last_index: usize,
             color_table: *const c_uchar,
-        ) -> *mut CGColorSpace;
+        ) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGColorSpaceCreateIndexed(base_space, last_index, color_table) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -361,10 +361,12 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreatePattern(
     base_space: Option<&CGColorSpace>,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
-        fn CGColorSpaceCreatePattern(base_space: Option<&CGColorSpace>) -> *mut CGColorSpace;
+        fn CGColorSpaceCreatePattern(
+            base_space: Option<&CGColorSpace>,
+        ) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGColorSpaceCreatePattern(base_space) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {
@@ -377,10 +379,10 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateWithName(
     name: Option<&CFString>,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
-        fn CGColorSpaceCreateWithName(name: Option<&CFString>) -> *mut CGColorSpace;
+        fn CGColorSpaceCreateWithName(name: Option<&CFString>) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGColorSpaceCreateWithName(name) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -388,10 +390,10 @@ pub unsafe extern "C-unwind" fn CGColorSpaceGetName(
     space: Option<&CGColorSpace>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CGColorSpaceGetName(space: Option<&CGColorSpace>) -> *mut CFString;
+        fn CGColorSpaceGetName(space: Option<&CGColorSpace>) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CGColorSpaceGetName(space) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[inline]
@@ -399,10 +401,10 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCopyName(
     space: Option<&CGColorSpace>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CGColorSpaceCopyName(space: Option<&CGColorSpace>) -> *mut CFString;
+        fn CGColorSpaceCopyName(space: Option<&CGColorSpace>) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CGColorSpaceCopyName(space) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 unsafe impl ConcreteType for CGColorSpace {
@@ -429,10 +431,12 @@ pub unsafe extern "C-unwind" fn CGColorSpaceGetBaseColorSpace(
     space: Option<&CGColorSpace>,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
-        fn CGColorSpaceGetBaseColorSpace(space: Option<&CGColorSpace>) -> *mut CGColorSpace;
+        fn CGColorSpaceGetBaseColorSpace(
+            space: Option<&CGColorSpace>,
+        ) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGColorSpaceGetBaseColorSpace(space) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[inline]
@@ -440,9 +444,10 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCopyBaseColorSpace(
     space: &CGColorSpace,
 ) -> CFRetained<CGColorSpace> {
     extern "C-unwind" {
-        fn CGColorSpaceCopyBaseColorSpace(space: &CGColorSpace) -> NonNull<CGColorSpace>;
+        fn CGColorSpaceCopyBaseColorSpace(space: &CGColorSpace) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGColorSpaceCopyBaseColorSpace(space) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -459,10 +464,10 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCopyICCData(
     space: Option<&CGColorSpace>,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
-        fn CGColorSpaceCopyICCData(space: Option<&CGColorSpace>) -> *mut CFData;
+        fn CGColorSpaceCopyICCData(space: Option<&CGColorSpace>) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CGColorSpaceCopyICCData(space) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -494,10 +499,10 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCopyPropertyList(
     space: &CGColorSpace,
 ) -> Option<CFRetained<CFPropertyList>> {
     extern "C-unwind" {
-        fn CGColorSpaceCopyPropertyList(space: &CGColorSpace) -> *mut CFPropertyList;
+        fn CGColorSpaceCopyPropertyList(space: &CGColorSpace) -> Option<NonNull<CFPropertyList>>;
     }
     let ret = unsafe { CGColorSpaceCopyPropertyList(space) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -505,10 +510,12 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateWithPropertyList(
     plist: &CFPropertyList,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
-        fn CGColorSpaceCreateWithPropertyList(plist: &CFPropertyList) -> *mut CGColorSpace;
+        fn CGColorSpaceCreateWithPropertyList(
+            plist: &CFPropertyList,
+        ) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGColorSpaceCreateWithPropertyList(plist) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -520,10 +527,10 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateLinearized(
     space: &CGColorSpace,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
-        fn CGColorSpaceCreateLinearized(space: &CGColorSpace) -> *mut CGColorSpace;
+        fn CGColorSpaceCreateLinearized(space: &CGColorSpace) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGColorSpaceCreateLinearized(space) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -531,10 +538,10 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateExtended(
     space: &CGColorSpace,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
-        fn CGColorSpaceCreateExtended(space: &CGColorSpace) -> *mut CGColorSpace;
+        fn CGColorSpaceCreateExtended(space: &CGColorSpace) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGColorSpaceCreateExtended(space) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -542,10 +549,12 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateExtendedLinearized(
     space: &CGColorSpace,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
-        fn CGColorSpaceCreateExtendedLinearized(space: &CGColorSpace) -> *mut CGColorSpace;
+        fn CGColorSpaceCreateExtendedLinearized(
+            space: &CGColorSpace,
+        ) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGColorSpaceCreateExtendedLinearized(space) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -553,9 +562,12 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateCopyWithStandardRange(
     s: &CGColorSpace,
 ) -> CFRetained<CGColorSpace> {
     extern "C-unwind" {
-        fn CGColorSpaceCreateCopyWithStandardRange(s: &CGColorSpace) -> NonNull<CGColorSpace>;
+        fn CGColorSpaceCreateCopyWithStandardRange(
+            s: &CGColorSpace,
+        ) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGColorSpaceCreateCopyWithStandardRange(s) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -565,10 +577,11 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateWithICCProfile(
     data: Option<&CFData>,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
-        fn CGColorSpaceCreateWithICCProfile(data: Option<&CFData>) -> *mut CGColorSpace;
+        fn CGColorSpaceCreateWithICCProfile(data: Option<&CFData>)
+            -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGColorSpaceCreateWithICCProfile(data) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[deprecated = "No longer supported"]
@@ -577,10 +590,10 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCopyICCProfile(
     space: Option<&CGColorSpace>,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
-        fn CGColorSpaceCopyICCProfile(space: Option<&CGColorSpace>) -> *mut CFData;
+        fn CGColorSpaceCopyICCProfile(space: Option<&CGColorSpace>) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CGColorSpaceCopyICCProfile(space) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[deprecated = "No longer supported"]
@@ -589,8 +602,10 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateWithPlatformColorSpace(
     r#ref: *const c_void,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
-        fn CGColorSpaceCreateWithPlatformColorSpace(r#ref: *const c_void) -> *mut CGColorSpace;
+        fn CGColorSpaceCreateWithPlatformColorSpace(
+            r#ref: *const c_void,
+        ) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGColorSpaceCreateWithPlatformColorSpace(r#ref) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

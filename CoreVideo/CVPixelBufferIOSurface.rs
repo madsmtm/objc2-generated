@@ -48,10 +48,12 @@ pub unsafe extern "C-unwind" fn CVPixelBufferGetIOSurface(
     pixel_buffer: Option<&CVPixelBuffer>,
 ) -> Option<CFRetained<IOSurfaceRef>> {
     extern "C-unwind" {
-        fn CVPixelBufferGetIOSurface(pixel_buffer: Option<&CVPixelBuffer>) -> *mut IOSurfaceRef;
+        fn CVPixelBufferGetIOSurface(
+            pixel_buffer: Option<&CVPixelBuffer>,
+        ) -> Option<NonNull<IOSurfaceRef>>;
     }
     let ret = unsafe { CVPixelBufferGetIOSurface(pixel_buffer) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

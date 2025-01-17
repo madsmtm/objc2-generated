@@ -212,10 +212,10 @@ pub unsafe extern "C-unwind" fn CFReadStreamCreateWithBytesNoCopy(
             bytes: *const u8,
             length: CFIndex,
             bytes_deallocator: Option<&CFAllocator>,
-        ) -> *mut CFReadStream;
+        ) -> Option<NonNull<CFReadStream>>;
     }
     let ret = unsafe { CFReadStreamCreateWithBytesNoCopy(alloc, bytes, length, bytes_deallocator) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -230,10 +230,10 @@ pub unsafe extern "C-unwind" fn CFWriteStreamCreateWithBuffer(
             alloc: Option<&CFAllocator>,
             buffer: *mut u8,
             buffer_capacity: CFIndex,
-        ) -> *mut CFWriteStream;
+        ) -> Option<NonNull<CFWriteStream>>;
     }
     let ret = unsafe { CFWriteStreamCreateWithBuffer(alloc, buffer, buffer_capacity) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -246,10 +246,10 @@ pub unsafe extern "C-unwind" fn CFWriteStreamCreateWithAllocatedBuffers(
         fn CFWriteStreamCreateWithAllocatedBuffers(
             alloc: Option<&CFAllocator>,
             buffer_allocator: Option<&CFAllocator>,
-        ) -> *mut CFWriteStream;
+        ) -> Option<NonNull<CFWriteStream>>;
     }
     let ret = unsafe { CFWriteStreamCreateWithAllocatedBuffers(alloc, buffer_allocator) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFURL"))]
@@ -262,10 +262,10 @@ pub unsafe extern "C-unwind" fn CFReadStreamCreateWithFile(
         fn CFReadStreamCreateWithFile(
             alloc: Option<&CFAllocator>,
             file_url: Option<&CFURL>,
-        ) -> *mut CFReadStream;
+        ) -> Option<NonNull<CFReadStream>>;
     }
     let ret = unsafe { CFReadStreamCreateWithFile(alloc, file_url) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFURL"))]
@@ -278,10 +278,10 @@ pub unsafe extern "C-unwind" fn CFWriteStreamCreateWithFile(
         fn CFWriteStreamCreateWithFile(
             alloc: Option<&CFAllocator>,
             file_url: Option<&CFURL>,
-        ) -> *mut CFWriteStream;
+        ) -> Option<NonNull<CFWriteStream>>;
     }
     let ret = unsafe { CFWriteStreamCreateWithFile(alloc, file_url) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -474,10 +474,10 @@ pub unsafe extern "C-unwind" fn CFReadStreamCopyError(
     stream: &CFReadStream,
 ) -> Option<CFRetained<CFError>> {
     extern "C-unwind" {
-        fn CFReadStreamCopyError(stream: &CFReadStream) -> *mut CFError;
+        fn CFReadStreamCopyError(stream: &CFReadStream) -> Option<NonNull<CFError>>;
     }
     let ret = unsafe { CFReadStreamCopyError(stream) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFError")]
@@ -486,10 +486,10 @@ pub unsafe extern "C-unwind" fn CFWriteStreamCopyError(
     stream: &CFWriteStream,
 ) -> Option<CFRetained<CFError>> {
     extern "C-unwind" {
-        fn CFWriteStreamCopyError(stream: &CFWriteStream) -> *mut CFError;
+        fn CFWriteStreamCopyError(stream: &CFWriteStream) -> Option<NonNull<CFError>>;
     }
     let ret = unsafe { CFWriteStreamCopyError(stream) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -573,10 +573,10 @@ pub unsafe extern "C-unwind" fn CFReadStreamCopyProperty(
         fn CFReadStreamCopyProperty(
             stream: &CFReadStream,
             property_name: Option<&CFStreamPropertyKey>,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { CFReadStreamCopyProperty(stream, property_name) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -589,10 +589,10 @@ pub unsafe extern "C-unwind" fn CFWriteStreamCopyProperty(
         fn CFWriteStreamCopyProperty(
             stream: &CFWriteStream,
             property_name: Option<&CFStreamPropertyKey>,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { CFWriteStreamCopyProperty(stream, property_name) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]

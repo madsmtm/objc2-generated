@@ -248,10 +248,10 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredChildren(
     original_children: &NSArray,
 ) -> Retained<NSArray> {
     extern "C-unwind" {
-        fn NSAccessibilityUnignoredChildren(original_children: &NSArray) -> NonNull<NSArray>;
+        fn NSAccessibilityUnignoredChildren(original_children: &NSArray) -> *mut NSArray;
     }
     let ret = unsafe { NSAccessibilityUnignoredChildren(original_children) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -260,12 +260,11 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredChildrenForOnlyChild(
     original_child: &AnyObject,
 ) -> Retained<NSArray> {
     extern "C-unwind" {
-        fn NSAccessibilityUnignoredChildrenForOnlyChild(
-            original_child: &AnyObject,
-        ) -> NonNull<NSArray>;
+        fn NSAccessibilityUnignoredChildrenForOnlyChild(original_child: &AnyObject)
+            -> *mut NSArray;
     }
     let ret = unsafe { NSAccessibilityUnignoredChildrenForOnlyChild(original_child) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 

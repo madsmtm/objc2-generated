@@ -55,9 +55,12 @@ pub unsafe extern "C-unwind" fn CTFramesetterCreateWithTypesetter(
     typesetter: &CTTypesetter,
 ) -> CFRetained<CTFramesetter> {
     extern "C-unwind" {
-        fn CTFramesetterCreateWithTypesetter(typesetter: &CTTypesetter) -> NonNull<CTFramesetter>;
+        fn CTFramesetterCreateWithTypesetter(
+            typesetter: &CTTypesetter,
+        ) -> Option<NonNull<CTFramesetter>>;
     }
     let ret = unsafe { CTFramesetterCreateWithTypesetter(typesetter) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -80,9 +83,10 @@ pub unsafe extern "C-unwind" fn CTFramesetterCreateWithAttributedString(
     extern "C-unwind" {
         fn CTFramesetterCreateWithAttributedString(
             attr_string: &CFAttributedString,
-        ) -> NonNull<CTFramesetter>;
+        ) -> Option<NonNull<CTFramesetter>>;
     }
     let ret = unsafe { CTFramesetterCreateWithAttributedString(attr_string) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -129,10 +133,11 @@ pub unsafe extern "C-unwind" fn CTFramesetterCreateFrame(
             string_range: CFRange,
             path: &CGPath,
             frame_attributes: Option<&CFDictionary>,
-        ) -> NonNull<CTFrame>;
+        ) -> Option<NonNull<CTFrame>>;
     }
     let ret =
         unsafe { CTFramesetterCreateFrame(framesetter, string_range, path, frame_attributes) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -157,9 +162,11 @@ pub unsafe extern "C-unwind" fn CTFramesetterGetTypesetter(
     framesetter: &CTFramesetter,
 ) -> CFRetained<CTTypesetter> {
     extern "C-unwind" {
-        fn CTFramesetterGetTypesetter(framesetter: &CTFramesetter) -> NonNull<CTTypesetter>;
+        fn CTFramesetterGetTypesetter(framesetter: &CTFramesetter)
+            -> Option<NonNull<CTTypesetter>>;
     }
     let ret = unsafe { CTFramesetterGetTypesetter(framesetter) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::retain(ret) }
 }
 

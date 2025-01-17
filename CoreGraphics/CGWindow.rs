@@ -164,10 +164,10 @@ pub unsafe extern "C-unwind" fn CGWindowListCopyWindowInfo(
         fn CGWindowListCopyWindowInfo(
             option: CGWindowListOption,
             relative_to_window: CGWindowID,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CGWindowListCopyWindowInfo(option, relative_to_window) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -179,10 +179,10 @@ pub unsafe extern "C-unwind" fn CGWindowListCreate(
         fn CGWindowListCreate(
             option: CGWindowListOption,
             relative_to_window: CGWindowID,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CGWindowListCreate(option, relative_to_window) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -190,10 +190,12 @@ pub unsafe extern "C-unwind" fn CGWindowListCreateDescriptionFromArray(
     window_array: Option<&CFArray>,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CGWindowListCreateDescriptionFromArray(window_array: Option<&CFArray>) -> *mut CFArray;
+        fn CGWindowListCreateDescriptionFromArray(
+            window_array: Option<&CFArray>,
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CGWindowListCreateDescriptionFromArray(window_array) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowimageoption?language=objc)
@@ -243,11 +245,11 @@ pub unsafe extern "C-unwind" fn CGWindowListCreateImage(
             list_option: CGWindowListOption,
             window_id: CGWindowID,
             image_option: CGWindowImageOption,
-        ) -> *mut CGImage;
+        ) -> Option<NonNull<CGImage>>;
     }
     let ret =
         unsafe { CGWindowListCreateImage(screen_bounds, list_option, window_id, image_option) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CGImage")]
@@ -263,11 +265,11 @@ pub unsafe extern "C-unwind" fn CGWindowListCreateImageFromArray(
             screen_bounds: CGRect,
             window_array: &CFArray,
             image_option: CGWindowImageOption,
-        ) -> *mut CGImage;
+        ) -> Option<NonNull<CGImage>>;
     }
     let ret =
         unsafe { CGWindowListCreateImageFromArray(screen_bounds, window_array, image_option) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

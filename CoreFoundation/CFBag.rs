@@ -130,10 +130,10 @@ pub unsafe extern "C-unwind" fn CFBagCreate(
             values: *mut *const c_void,
             num_values: CFIndex,
             call_backs: *const CFBagCallBacks,
-        ) -> *mut CFBag;
+        ) -> Option<NonNull<CFBag>>;
     }
     let ret = unsafe { CFBagCreate(allocator, values, num_values, call_backs) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -143,10 +143,13 @@ pub unsafe extern "C-unwind" fn CFBagCreateCopy(
     the_bag: Option<&CFBag>,
 ) -> Option<CFRetained<CFBag>> {
     extern "C-unwind" {
-        fn CFBagCreateCopy(allocator: Option<&CFAllocator>, the_bag: Option<&CFBag>) -> *mut CFBag;
+        fn CFBagCreateCopy(
+            allocator: Option<&CFAllocator>,
+            the_bag: Option<&CFBag>,
+        ) -> Option<NonNull<CFBag>>;
     }
     let ret = unsafe { CFBagCreateCopy(allocator, the_bag) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -161,10 +164,10 @@ pub unsafe extern "C-unwind" fn CFBagCreateMutable(
             allocator: Option<&CFAllocator>,
             capacity: CFIndex,
             call_backs: *const CFBagCallBacks,
-        ) -> *mut CFMutableBag;
+        ) -> Option<NonNull<CFMutableBag>>;
     }
     let ret = unsafe { CFBagCreateMutable(allocator, capacity, call_backs) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -179,10 +182,10 @@ pub unsafe extern "C-unwind" fn CFBagCreateMutableCopy(
             allocator: Option<&CFAllocator>,
             capacity: CFIndex,
             the_bag: Option<&CFBag>,
-        ) -> *mut CFMutableBag;
+        ) -> Option<NonNull<CFMutableBag>>;
     }
     let ret = unsafe { CFBagCreateMutableCopy(allocator, capacity, the_bag) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

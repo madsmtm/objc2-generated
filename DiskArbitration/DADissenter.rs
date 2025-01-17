@@ -74,9 +74,10 @@ pub unsafe extern "C-unwind" fn DADissenterCreate(
             allocator: Option<&CFAllocator>,
             status: DAReturn,
             string: Option<&CFString>,
-        ) -> NonNull<DADissenter>;
+        ) -> Option<NonNull<DADissenter>>;
     }
     let ret = unsafe { DADissenterCreate(allocator, status, string) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -100,8 +101,8 @@ pub unsafe extern "C-unwind" fn DADissenterGetStatusString(
     dissenter: &DADissenter,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn DADissenterGetStatusString(dissenter: &DADissenter) -> *mut CFString;
+        fn DADissenterGetStatusString(dissenter: &DADissenter) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { DADissenterGetStatusString(dissenter) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }

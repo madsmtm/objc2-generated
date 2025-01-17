@@ -90,10 +90,10 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterCreate(
             allocator: Option<&CFAllocator>,
             locale: Option<&CFLocale>,
             style: CFNumberFormatterStyle,
-        ) -> *mut CFNumberFormatter;
+        ) -> Option<NonNull<CFNumberFormatter>>;
     }
     let ret = unsafe { CFNumberFormatterCreate(allocator, locale, style) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFLocale")]
@@ -102,10 +102,10 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterGetLocale(
     formatter: &CFNumberFormatter,
 ) -> Option<CFRetained<CFLocale>> {
     extern "C-unwind" {
-        fn CFNumberFormatterGetLocale(formatter: &CFNumberFormatter) -> *mut CFLocale;
+        fn CFNumberFormatterGetLocale(formatter: &CFNumberFormatter) -> Option<NonNull<CFLocale>>;
     }
     let ret = unsafe { CFNumberFormatterGetLocale(formatter) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -119,10 +119,10 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterGetFormat(
     formatter: &CFNumberFormatter,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFNumberFormatterGetFormat(formatter: &CFNumberFormatter) -> *mut CFString;
+        fn CFNumberFormatterGetFormat(formatter: &CFNumberFormatter) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFNumberFormatterGetFormat(formatter) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -145,10 +145,10 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterCreateStringWithNumber(
             allocator: Option<&CFAllocator>,
             formatter: Option<&CFNumberFormatter>,
             number: Option<&CFNumber>,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFNumberFormatterCreateStringWithNumber(allocator, formatter, number) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFNumber"))]
@@ -165,12 +165,12 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterCreateStringWithValue(
             formatter: Option<&CFNumberFormatter>,
             number_type: CFNumberType,
             value_ptr: *const c_void,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe {
         CFNumberFormatterCreateStringWithValue(allocator, formatter, number_type, value_ptr)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatteroptionflags?language=objc)
@@ -213,12 +213,12 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterCreateNumberFromString(
             string: Option<&CFString>,
             rangep: *mut CFRange,
             options: CFOptionFlags,
-        ) -> *mut CFNumber;
+        ) -> Option<NonNull<CFNumber>>;
     }
     let ret = unsafe {
         CFNumberFormatterCreateNumberFromString(allocator, formatter, string, rangep, options)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFNumber"))]
@@ -264,10 +264,10 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterCopyProperty(
         fn CFNumberFormatterCopyProperty(
             formatter: &CFNumberFormatter,
             key: Option<&CFNumberFormatterKey>,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { CFNumberFormatterCopyProperty(formatter, key) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {

@@ -72,10 +72,10 @@ pub unsafe extern "C-unwind" fn CFPlugInCreate(
         fn CFPlugInCreate(
             allocator: Option<&CFAllocator>,
             plug_in_url: Option<&CFURL>,
-        ) -> *mut CFPlugIn;
+        ) -> Option<NonNull<CFPlugIn>>;
     }
     let ret = unsafe { CFPlugInCreate(allocator, plug_in_url) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBundle")]
@@ -84,10 +84,10 @@ pub unsafe extern "C-unwind" fn CFPlugInGetBundle(
     plug_in: &CFPlugIn,
 ) -> Option<CFRetained<CFBundle>> {
     extern "C-unwind" {
-        fn CFPlugInGetBundle(plug_in: &CFPlugIn) -> *mut CFBundle;
+        fn CFPlugInGetBundle(plug_in: &CFPlugIn) -> Option<NonNull<CFBundle>>;
     }
     let ret = unsafe { CFPlugInGetBundle(plug_in) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[cfg(feature = "CFBundle")]
@@ -115,10 +115,12 @@ pub unsafe extern "C-unwind" fn CFPlugInFindFactoriesForPlugInType(
     type_uuid: Option<&CFUUID>,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CFPlugInFindFactoriesForPlugInType(type_uuid: Option<&CFUUID>) -> *mut CFArray;
+        fn CFPlugInFindFactoriesForPlugInType(
+            type_uuid: Option<&CFUUID>,
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CFPlugInFindFactoriesForPlugInType(type_uuid) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFArray", feature = "CFBundle", feature = "CFUUID"))]
@@ -131,10 +133,10 @@ pub unsafe extern "C-unwind" fn CFPlugInFindFactoriesForPlugInTypeInPlugIn(
         fn CFPlugInFindFactoriesForPlugInTypeInPlugIn(
             type_uuid: Option<&CFUUID>,
             plug_in: Option<&CFPlugIn>,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CFPlugInFindFactoriesForPlugInTypeInPlugIn(type_uuid, plug_in) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -279,10 +281,11 @@ pub unsafe extern "C-unwind" fn CFPlugInInstanceGetFactoryName(
     instance: &CFPlugInInstance,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFPlugInInstanceGetFactoryName(instance: &CFPlugInInstance) -> *mut CFString;
+        fn CFPlugInInstanceGetFactoryName(instance: &CFPlugInInstance)
+            -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFPlugInInstanceGetFactoryName(instance) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -317,7 +320,7 @@ pub unsafe extern "C-unwind" fn CFPlugInInstanceCreateWithInstanceDataSize(
             deallocate_instance_function: CFPlugInInstanceDeallocateInstanceDataFunction,
             factory_name: Option<&CFString>,
             get_interface_function: CFPlugInInstanceGetInterfaceFunction,
-        ) -> *mut CFPlugInInstance;
+        ) -> Option<NonNull<CFPlugInInstance>>;
     }
     let ret = unsafe {
         CFPlugInInstanceCreateWithInstanceDataSize(
@@ -328,5 +331,5 @@ pub unsafe extern "C-unwind" fn CFPlugInInstanceCreateWithInstanceDataSize(
             get_interface_function,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

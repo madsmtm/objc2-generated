@@ -75,10 +75,12 @@ pub unsafe extern "C-unwind" fn CVOpenGLBufferPoolGetAttributes(
     pool: &CVOpenGLBufferPool,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn CVOpenGLBufferPoolGetAttributes(pool: &CVOpenGLBufferPool) -> *mut CFDictionary;
+        fn CVOpenGLBufferPoolGetAttributes(
+            pool: &CVOpenGLBufferPool,
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CVOpenGLBufferPoolGetAttributes(pool) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the attributes of OpenGL buffers that will be created from this pool.
@@ -97,10 +99,10 @@ pub unsafe extern "C-unwind" fn CVOpenGLBufferPoolGetOpenGLBufferAttributes(
     extern "C-unwind" {
         fn CVOpenGLBufferPoolGetOpenGLBufferAttributes(
             pool: &CVOpenGLBufferPool,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CVOpenGLBufferPoolGetOpenGLBufferAttributes(pool) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

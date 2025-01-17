@@ -95,10 +95,10 @@ pub unsafe extern "C-unwind" fn CFURLCreatePropertyFromResource(
             url: Option<&CFURL>,
             property: Option<&CFString>,
             error_code: *mut i32,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { CFURLCreatePropertyFromResource(alloc, url, property, error_code) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror?language=objc)

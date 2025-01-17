@@ -51,10 +51,10 @@ pub unsafe extern "C-unwind" fn CFPreferencesCopyAppValue(
         fn CFPreferencesCopyAppValue(
             key: &CFString,
             application_id: &CFString,
-        ) -> *mut CFPropertyList;
+        ) -> Option<NonNull<CFPropertyList>>;
     }
     let ret = unsafe { CFPreferencesCopyAppValue(key, application_id) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -132,10 +132,10 @@ pub unsafe extern "C-unwind" fn CFPreferencesCopyValue(
             application_id: &CFString,
             user_name: &CFString,
             host_name: &CFString,
-        ) -> *mut CFPropertyList;
+        ) -> Option<NonNull<CFPropertyList>>;
     }
     let ret = unsafe { CFPreferencesCopyValue(key, application_id, user_name, host_name) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFArray", feature = "CFBase", feature = "CFDictionary"))]
@@ -152,10 +152,11 @@ pub unsafe extern "C-unwind" fn CFPreferencesCopyMultiple(
             application_id: &CFString,
             user_name: &CFString,
             host_name: &CFString,
-        ) -> NonNull<CFDictionary>;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret =
         unsafe { CFPreferencesCopyMultiple(keys_to_fetch, application_id, user_name, host_name) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -210,10 +211,10 @@ pub unsafe extern "C-unwind" fn CFPreferencesCopyApplicationList(
         fn CFPreferencesCopyApplicationList(
             user_name: &CFString,
             host_name: &CFString,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CFPreferencesCopyApplicationList(user_name, host_name) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFArray", feature = "CFBase"))]
@@ -228,10 +229,10 @@ pub unsafe extern "C-unwind" fn CFPreferencesCopyKeyList(
             application_id: &CFString,
             user_name: &CFString,
             host_name: &CFString,
-        ) -> *mut CFArray;
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CFPreferencesCopyKeyList(application_id, user_name, host_name) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]

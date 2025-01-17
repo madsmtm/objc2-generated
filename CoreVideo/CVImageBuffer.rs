@@ -368,10 +368,10 @@ pub unsafe extern "C-unwind" fn CVYCbCrMatrixGetStringForIntegerCodePoint(
     extern "C-unwind" {
         fn CVYCbCrMatrixGetStringForIntegerCodePoint(
             y_cb_cr_matrix_code_point: c_int,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CVYCbCrMatrixGetStringForIntegerCodePoint(y_cb_cr_matrix_code_point) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[inline]
@@ -381,10 +381,10 @@ pub unsafe extern "C-unwind" fn CVColorPrimariesGetStringForIntegerCodePoint(
     extern "C-unwind" {
         fn CVColorPrimariesGetStringForIntegerCodePoint(
             color_primaries_code_point: c_int,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CVColorPrimariesGetStringForIntegerCodePoint(color_primaries_code_point) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[inline]
@@ -394,11 +394,11 @@ pub unsafe extern "C-unwind" fn CVTransferFunctionGetStringForIntegerCodePoint(
     extern "C-unwind" {
         fn CVTransferFunctionGetStringForIntegerCodePoint(
             transfer_function_code_point: c_int,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret =
         unsafe { CVTransferFunctionGetStringForIntegerCodePoint(transfer_function_code_point) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Base type for all CoreVideo image buffers
@@ -472,10 +472,12 @@ pub unsafe extern "C-unwind" fn CVImageBufferGetColorSpace(
     image_buffer: &CVImageBuffer,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
-        fn CVImageBufferGetColorSpace(image_buffer: &CVImageBuffer) -> *mut CGColorSpace;
+        fn CVImageBufferGetColorSpace(
+            image_buffer: &CVImageBuffer,
+        ) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CVImageBufferGetColorSpace(image_buffer) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Attempts to synthesize a CGColorSpace from an image buffer's attachments.
@@ -497,10 +499,10 @@ pub unsafe extern "C-unwind" fn CVImageBufferCreateColorSpaceFromAttachments(
     extern "C-unwind" {
         fn CVImageBufferCreateColorSpaceFromAttachments(
             attachments: &CFDictionary,
-        ) -> *mut CGColorSpace;
+        ) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CVImageBufferCreateColorSpaceFromAttachments(attachments) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {

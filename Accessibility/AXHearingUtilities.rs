@@ -52,10 +52,10 @@ pub unsafe extern "C-unwind" fn AXSupportsBidirectionalAXMFiHearingDeviceStreami
 #[inline]
 pub unsafe extern "C-unwind" fn AXMFiHearingDevicePairedUUIDs() -> Retained<NSArray<NSUUID>> {
     extern "C-unwind" {
-        fn AXMFiHearingDevicePairedUUIDs() -> NonNull<NSArray<NSUUID>>;
+        fn AXMFiHearingDevicePairedUUIDs() -> *mut NSArray<NSUUID>;
     }
     let ret = unsafe { AXMFiHearingDevicePairedUUIDs() };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 

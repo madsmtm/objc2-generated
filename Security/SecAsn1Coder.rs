@@ -69,9 +69,17 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-extern "C-unwind" {
-    #[deprecated = "SecAsn1 is not supported"]
-    pub fn SecAsn1Malloc(coder: SecAsn1CoderRef, len: usize) -> NonNull<c_void>;
+#[deprecated = "SecAsn1 is not supported"]
+#[inline]
+pub unsafe extern "C-unwind" fn SecAsn1Malloc(
+    coder: SecAsn1CoderRef,
+    len: usize,
+) -> NonNull<c_void> {
+    extern "C-unwind" {
+        fn SecAsn1Malloc(coder: SecAsn1CoderRef, len: usize) -> Option<NonNull<c_void>>;
+    }
+    let ret = unsafe { SecAsn1Malloc(coder, len) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
 extern "C-unwind" {

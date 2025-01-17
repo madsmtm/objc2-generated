@@ -34,7 +34,7 @@ pub unsafe extern "C-unwind" fn CGBitmapContextCreateWithData(
             bitmap_info: u32,
             release_callback: CGBitmapContextReleaseDataCallback,
             release_info: *mut c_void,
-        ) -> *mut CGContext;
+        ) -> Option<NonNull<CGContext>>;
     }
     let ret = unsafe {
         CGBitmapContextCreateWithData(
@@ -49,7 +49,7 @@ pub unsafe extern "C-unwind" fn CGBitmapContextCreateWithData(
             release_info,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CGColorSpace", feature = "CGContext"))]
@@ -72,7 +72,7 @@ pub unsafe extern "C-unwind" fn CGBitmapContextCreate(
             bytes_per_row: usize,
             space: Option<&CGColorSpace>,
             bitmap_info: u32,
-        ) -> *mut CGContext;
+        ) -> Option<NonNull<CGContext>>;
     }
     let ret = unsafe {
         CGBitmapContextCreate(
@@ -85,7 +85,7 @@ pub unsafe extern "C-unwind" fn CGBitmapContextCreate(
             bitmap_info,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -124,10 +124,12 @@ pub unsafe extern "C-unwind" fn CGBitmapContextGetColorSpace(
     context: Option<&CGContext>,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
-        fn CGBitmapContextGetColorSpace(context: Option<&CGContext>) -> *mut CGColorSpace;
+        fn CGBitmapContextGetColorSpace(
+            context: Option<&CGContext>,
+        ) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CGBitmapContextGetColorSpace(context) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -146,8 +148,8 @@ pub unsafe extern "C-unwind" fn CGBitmapContextCreateImage(
     context: Option<&CGContext>,
 ) -> Option<CFRetained<CGImage>> {
     extern "C-unwind" {
-        fn CGBitmapContextCreateImage(context: Option<&CGContext>) -> *mut CGImage;
+        fn CGBitmapContextCreateImage(context: Option<&CGContext>) -> Option<NonNull<CGImage>>;
     }
     let ret = unsafe { CGBitmapContextCreateImage(context) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

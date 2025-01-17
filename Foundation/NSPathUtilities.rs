@@ -100,10 +100,10 @@ extern_methods!(
 #[inline]
 pub unsafe extern "C-unwind" fn NSUserName() -> Retained<NSString> {
     extern "C-unwind" {
-        fn NSUserName() -> NonNull<NSString>;
+        fn NSUserName() -> *mut NSString;
     }
     let ret = unsafe { NSUserName() };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -111,10 +111,10 @@ pub unsafe extern "C-unwind" fn NSUserName() -> Retained<NSString> {
 #[inline]
 pub unsafe extern "C-unwind" fn NSFullUserName() -> Retained<NSString> {
     extern "C-unwind" {
-        fn NSFullUserName() -> NonNull<NSString>;
+        fn NSFullUserName() -> *mut NSString;
     }
     let ret = unsafe { NSFullUserName() };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -122,10 +122,10 @@ pub unsafe extern "C-unwind" fn NSFullUserName() -> Retained<NSString> {
 #[inline]
 pub unsafe extern "C-unwind" fn NSHomeDirectory() -> Retained<NSString> {
     extern "C-unwind" {
-        fn NSHomeDirectory() -> NonNull<NSString>;
+        fn NSHomeDirectory() -> *mut NSString;
     }
     let ret = unsafe { NSHomeDirectory() };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -145,10 +145,10 @@ pub unsafe extern "C-unwind" fn NSHomeDirectoryForUser(
 #[inline]
 pub unsafe extern "C-unwind" fn NSTemporaryDirectory() -> Retained<NSString> {
     extern "C-unwind" {
-        fn NSTemporaryDirectory() -> NonNull<NSString>;
+        fn NSTemporaryDirectory() -> *mut NSString;
     }
     let ret = unsafe { NSTemporaryDirectory() };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -156,10 +156,10 @@ pub unsafe extern "C-unwind" fn NSTemporaryDirectory() -> Retained<NSString> {
 #[inline]
 pub unsafe extern "C-unwind" fn NSOpenStepRootDirectory() -> Retained<NSString> {
     extern "C-unwind" {
-        fn NSOpenStepRootDirectory() -> NonNull<NSString>;
+        fn NSOpenStepRootDirectory() -> *mut NSString;
     }
     let ret = unsafe { NSOpenStepRootDirectory() };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
@@ -273,11 +273,11 @@ pub unsafe extern "C-unwind" fn NSSearchPathForDirectoriesInDomains(
             directory: NSSearchPathDirectory,
             domain_mask: NSSearchPathDomainMask,
             expand_tilde: Bool,
-        ) -> NonNull<NSArray<NSString>>;
+        ) -> *mut NSArray<NSString>;
     }
     let ret = unsafe {
         NSSearchPathForDirectoriesInDomains(directory, domain_mask, Bool::new(expand_tilde))
     };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }

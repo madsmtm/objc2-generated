@@ -155,12 +155,9 @@ pub unsafe extern "C-unwind" fn NSDecimalString(
     locale: Option<&AnyObject>,
 ) -> Retained<NSString> {
     extern "C-unwind" {
-        fn NSDecimalString(
-            dcm: NonNull<NSDecimal>,
-            locale: Option<&AnyObject>,
-        ) -> NonNull<NSString>;
+        fn NSDecimalString(dcm: NonNull<NSDecimal>, locale: Option<&AnyObject>) -> *mut NSString;
     }
     let ret = unsafe { NSDecimalString(dcm, locale) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }

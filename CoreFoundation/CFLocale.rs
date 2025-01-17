@@ -45,19 +45,19 @@ unsafe impl ConcreteType for CFLocale {
 #[inline]
 pub unsafe extern "C-unwind" fn CFLocaleGetSystem() -> Option<CFRetained<CFLocale>> {
     extern "C-unwind" {
-        fn CFLocaleGetSystem() -> *mut CFLocale;
+        fn CFLocaleGetSystem() -> Option<NonNull<CFLocale>>;
     }
     let ret = unsafe { CFLocaleGetSystem() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[inline]
 pub unsafe extern "C-unwind" fn CFLocaleCopyCurrent() -> Option<CFRetained<CFLocale>> {
     extern "C-unwind" {
-        fn CFLocaleCopyCurrent() -> *mut CFLocale;
+        fn CFLocaleCopyCurrent() -> Option<NonNull<CFLocale>>;
     }
     let ret = unsafe { CFLocaleCopyCurrent() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFArray")]
@@ -65,40 +65,40 @@ pub unsafe extern "C-unwind" fn CFLocaleCopyCurrent() -> Option<CFRetained<CFLoc
 pub unsafe extern "C-unwind" fn CFLocaleCopyAvailableLocaleIdentifiers(
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CFLocaleCopyAvailableLocaleIdentifiers() -> *mut CFArray;
+        fn CFLocaleCopyAvailableLocaleIdentifiers() -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CFLocaleCopyAvailableLocaleIdentifiers() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFArray")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFLocaleCopyISOLanguageCodes() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CFLocaleCopyISOLanguageCodes() -> *mut CFArray;
+        fn CFLocaleCopyISOLanguageCodes() -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CFLocaleCopyISOLanguageCodes() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFArray")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFLocaleCopyISOCountryCodes() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CFLocaleCopyISOCountryCodes() -> *mut CFArray;
+        fn CFLocaleCopyISOCountryCodes() -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CFLocaleCopyISOCountryCodes() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFArray")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFLocaleCopyISOCurrencyCodes() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CFLocaleCopyISOCurrencyCodes() -> *mut CFArray;
+        fn CFLocaleCopyISOCurrencyCodes() -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CFLocaleCopyISOCurrencyCodes() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFArray")]
@@ -106,20 +106,20 @@ pub unsafe extern "C-unwind" fn CFLocaleCopyISOCurrencyCodes() -> Option<CFRetai
 pub unsafe extern "C-unwind" fn CFLocaleCopyCommonISOCurrencyCodes() -> Option<CFRetained<CFArray>>
 {
     extern "C-unwind" {
-        fn CFLocaleCopyCommonISOCurrencyCodes() -> *mut CFArray;
+        fn CFLocaleCopyCommonISOCurrencyCodes() -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CFLocaleCopyCommonISOCurrencyCodes() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFArray")]
 #[inline]
 pub unsafe extern "C-unwind" fn CFLocaleCopyPreferredLanguages() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CFLocaleCopyPreferredLanguages() -> *mut CFArray;
+        fn CFLocaleCopyPreferredLanguages() -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CFLocaleCopyPreferredLanguages() };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -132,12 +132,12 @@ pub unsafe extern "C-unwind" fn CFLocaleCreateCanonicalLanguageIdentifierFromStr
         fn CFLocaleCreateCanonicalLanguageIdentifierFromString(
             allocator: Option<&CFAllocator>,
             locale_identifier: Option<&CFString>,
-        ) -> *mut CFLocaleIdentifier;
+        ) -> Option<NonNull<CFLocaleIdentifier>>;
     }
     let ret = unsafe {
         CFLocaleCreateCanonicalLanguageIdentifierFromString(allocator, locale_identifier)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -150,11 +150,11 @@ pub unsafe extern "C-unwind" fn CFLocaleCreateCanonicalLocaleIdentifierFromStrin
         fn CFLocaleCreateCanonicalLocaleIdentifierFromString(
             allocator: Option<&CFAllocator>,
             locale_identifier: Option<&CFString>,
-        ) -> *mut CFLocaleIdentifier;
+        ) -> Option<NonNull<CFLocaleIdentifier>>;
     }
     let ret =
         unsafe { CFLocaleCreateCanonicalLocaleIdentifierFromString(allocator, locale_identifier) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -169,12 +169,12 @@ pub unsafe extern "C-unwind" fn CFLocaleCreateCanonicalLocaleIdentifierFromScrip
             allocator: Option<&CFAllocator>,
             lcode: LangCode,
             rcode: RegionCode,
-        ) -> *mut CFLocaleIdentifier;
+        ) -> Option<NonNull<CFLocaleIdentifier>>;
     }
     let ret = unsafe {
         CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes(allocator, lcode, rcode)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -187,10 +187,10 @@ pub unsafe extern "C-unwind" fn CFLocaleCreateLocaleIdentifierFromWindowsLocaleC
         fn CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode(
             allocator: Option<&CFAllocator>,
             lcid: u32,
-        ) -> *mut CFLocaleIdentifier;
+        ) -> Option<NonNull<CFLocaleIdentifier>>;
     }
     let ret = unsafe { CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode(allocator, lcid) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -254,10 +254,10 @@ pub unsafe extern "C-unwind" fn CFLocaleCreateComponentsFromLocaleIdentifier(
         fn CFLocaleCreateComponentsFromLocaleIdentifier(
             allocator: Option<&CFAllocator>,
             locale_id: Option<&CFLocaleIdentifier>,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CFLocaleCreateComponentsFromLocaleIdentifier(allocator, locale_id) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFDictionary"))]
@@ -270,10 +270,10 @@ pub unsafe extern "C-unwind" fn CFLocaleCreateLocaleIdentifierFromComponents(
         fn CFLocaleCreateLocaleIdentifierFromComponents(
             allocator: Option<&CFAllocator>,
             dictionary: Option<&CFDictionary>,
-        ) -> *mut CFLocaleIdentifier;
+        ) -> Option<NonNull<CFLocaleIdentifier>>;
     }
     let ret = unsafe { CFLocaleCreateLocaleIdentifierFromComponents(allocator, dictionary) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -286,10 +286,10 @@ pub unsafe extern "C-unwind" fn CFLocaleCreate(
         fn CFLocaleCreate(
             allocator: Option<&CFAllocator>,
             locale_identifier: Option<&CFLocaleIdentifier>,
-        ) -> *mut CFLocale;
+        ) -> Option<NonNull<CFLocale>>;
     }
     let ret = unsafe { CFLocaleCreate(allocator, locale_identifier) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -302,10 +302,10 @@ pub unsafe extern "C-unwind" fn CFLocaleCreateCopy(
         fn CFLocaleCreateCopy(
             allocator: Option<&CFAllocator>,
             locale: Option<&CFLocale>,
-        ) -> *mut CFLocale;
+        ) -> Option<NonNull<CFLocale>>;
     }
     let ret = unsafe { CFLocaleCreateCopy(allocator, locale) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -314,10 +314,10 @@ pub unsafe extern "C-unwind" fn CFLocaleGetIdentifier(
     locale: &CFLocale,
 ) -> Option<CFRetained<CFLocaleIdentifier>> {
     extern "C-unwind" {
-        fn CFLocaleGetIdentifier(locale: &CFLocale) -> *mut CFLocaleIdentifier;
+        fn CFLocaleGetIdentifier(locale: &CFLocale) -> Option<NonNull<CFLocaleIdentifier>>;
     }
     let ret = unsafe { CFLocaleGetIdentifier(locale) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -327,10 +327,13 @@ pub unsafe extern "C-unwind" fn CFLocaleGetValue(
     key: Option<&CFLocaleKey>,
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
-        fn CFLocaleGetValue(locale: &CFLocale, key: Option<&CFLocaleKey>) -> *mut CFType;
+        fn CFLocaleGetValue(
+            locale: &CFLocale,
+            key: Option<&CFLocaleKey>,
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { CFLocaleGetValue(locale, key) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -345,10 +348,10 @@ pub unsafe extern "C-unwind" fn CFLocaleCopyDisplayNameForPropertyValue(
             display_locale: &CFLocale,
             key: Option<&CFLocaleKey>,
             value: Option<&CFString>,
-        ) -> *mut CFString;
+        ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFLocaleCopyDisplayNameForPropertyValue(display_locale, key, value) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C" {

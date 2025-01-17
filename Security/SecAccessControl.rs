@@ -141,8 +141,8 @@ pub unsafe extern "C-unwind" fn SecAccessControlCreateWithFlags(
             protection: &CFType,
             flags: SecAccessControlCreateFlags,
             error: *mut *mut CFError,
-        ) -> *mut SecAccessControl;
+        ) -> Option<NonNull<SecAccessControl>>;
     }
     let ret = unsafe { SecAccessControlCreateWithFlags(allocator, protection, flags, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

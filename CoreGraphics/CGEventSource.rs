@@ -24,10 +24,10 @@ pub unsafe extern "C-unwind" fn CGEventSourceCreate(
     state_id: CGEventSourceStateID,
 ) -> Option<CFRetained<CGEventSource>> {
     extern "C-unwind" {
-        fn CGEventSourceCreate(state_id: CGEventSourceStateID) -> *mut CGEventSource;
+        fn CGEventSourceCreate(state_id: CGEventSourceStateID) -> Option<NonNull<CGEventSource>>;
     }
     let ret = unsafe { CGEventSourceCreate(state_id) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

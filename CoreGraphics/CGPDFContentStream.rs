@@ -53,10 +53,10 @@ pub unsafe extern "C-unwind" fn CGPDFContentStreamGetStreams(
     cs: CGPDFContentStreamRef,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn CGPDFContentStreamGetStreams(cs: CGPDFContentStreamRef) -> *mut CFArray;
+        fn CGPDFContentStreamGetStreams(cs: CGPDFContentStreamRef) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CGPDFContentStreamGetStreams(cs) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {

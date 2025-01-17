@@ -287,9 +287,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn sec_trust_copy_ref(trust: sec_trust_t) -> CFRetained<SecTrust> {
     extern "C-unwind" {
-        fn sec_trust_copy_ref(trust: sec_trust_t) -> NonNull<SecTrust>;
+        fn sec_trust_copy_ref(trust: sec_trust_t) -> Option<NonNull<SecTrust>>;
     }
     let ret = unsafe { sec_trust_copy_ref(trust) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -355,10 +356,10 @@ pub unsafe extern "C-unwind" fn sec_identity_copy_ref(
     identity: sec_identity_t,
 ) -> Option<CFRetained<SecIdentity>> {
     extern "C-unwind" {
-        fn sec_identity_copy_ref(identity: sec_identity_t) -> *mut SecIdentity;
+        fn sec_identity_copy_ref(identity: sec_identity_t) -> Option<NonNull<SecIdentity>>;
     }
     let ret = unsafe { sec_identity_copy_ref(identity) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Copy a retained reference to the underlying `CFArrayRef` container of `SecCertificateRef` types.
@@ -373,10 +374,11 @@ pub unsafe extern "C-unwind" fn sec_identity_copy_certificates_ref(
     identity: sec_identity_t,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn sec_identity_copy_certificates_ref(identity: sec_identity_t) -> *mut CFArray;
+        fn sec_identity_copy_certificates_ref(identity: sec_identity_t)
+            -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { sec_identity_copy_certificates_ref(identity) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -404,8 +406,11 @@ pub unsafe extern "C-unwind" fn sec_certificate_copy_ref(
     certificate: sec_certificate_t,
 ) -> CFRetained<SecCertificate> {
     extern "C-unwind" {
-        fn sec_certificate_copy_ref(certificate: sec_certificate_t) -> NonNull<SecCertificate>;
+        fn sec_certificate_copy_ref(
+            certificate: sec_certificate_t,
+        ) -> Option<NonNull<SecCertificate>>;
     }
     let ret = unsafe { sec_certificate_copy_ref(certificate) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }

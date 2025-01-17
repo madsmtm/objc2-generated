@@ -928,8 +928,9 @@ pub unsafe extern "C-unwind" fn CVPixelBufferCopyCreationAttributes(
     extern "C-unwind" {
         fn CVPixelBufferCopyCreationAttributes(
             pixel_buffer: &CVPixelBuffer,
-        ) -> NonNull<CFDictionary>;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CVPixelBufferCopyCreationAttributes(pixel_buffer) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }

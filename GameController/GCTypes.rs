@@ -36,10 +36,10 @@ extern "C" {
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromGCPoint2(point: GCPoint2) -> Retained<NSString> {
     extern "C-unwind" {
-        fn NSStringFromGCPoint2(point: GCPoint2) -> NonNull<NSString>;
+        fn NSStringFromGCPoint2(point: GCPoint2) -> *mut NSString;
     }
     let ret = unsafe { NSStringFromGCPoint2(point) };
-    unsafe { Retained::retain_autoreleased(ret.as_ptr()) }
+    unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 

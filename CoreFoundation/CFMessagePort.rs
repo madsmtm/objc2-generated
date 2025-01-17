@@ -103,11 +103,11 @@ pub unsafe extern "C-unwind" fn CFMessagePortCreateLocal(
             callout: CFMessagePortCallBack,
             context: *mut CFMessagePortContext,
             should_free_info: *mut Boolean,
-        ) -> *mut CFMessagePort;
+        ) -> Option<NonNull<CFMessagePort>>;
     }
     let ret =
         unsafe { CFMessagePortCreateLocal(allocator, name, callout, context, should_free_info) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -120,10 +120,10 @@ pub unsafe extern "C-unwind" fn CFMessagePortCreateRemote(
         fn CFMessagePortCreateRemote(
             allocator: Option<&CFAllocator>,
             name: Option<&CFString>,
-        ) -> *mut CFMessagePort;
+        ) -> Option<NonNull<CFMessagePort>>;
     }
     let ret = unsafe { CFMessagePortCreateRemote(allocator, name) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -141,10 +141,10 @@ pub unsafe extern "C-unwind" fn CFMessagePortGetName(
     ms: &CFMessagePort,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFMessagePortGetName(ms: &CFMessagePort) -> *mut CFString;
+        fn CFMessagePortGetName(ms: &CFMessagePort) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFMessagePortGetName(ms) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[cfg(feature = "CFBase")]
@@ -216,8 +216,8 @@ pub unsafe extern "C-unwind" fn CFMessagePortCreateRunLoopSource(
             allocator: Option<&CFAllocator>,
             local: Option<&CFMessagePort>,
             order: CFIndex,
-        ) -> *mut CFRunLoopSource;
+        ) -> Option<NonNull<CFRunLoopSource>>;
     }
     let ret = unsafe { CFMessagePortCreateRunLoopSource(allocator, local, order) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }

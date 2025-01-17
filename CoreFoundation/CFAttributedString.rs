@@ -57,10 +57,10 @@ pub unsafe extern "C-unwind" fn CFAttributedStringCreate(
             alloc: Option<&CFAllocator>,
             str: Option<&CFString>,
             attributes: Option<&CFDictionary>,
-        ) -> *mut CFAttributedString;
+        ) -> Option<NonNull<CFAttributedString>>;
     }
     let ret = unsafe { CFAttributedStringCreate(alloc, str, attributes) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a sub-attributed string from the specified range. It's a programming error for range to specify characters outside the bounds of aStr.
@@ -76,10 +76,10 @@ pub unsafe extern "C-unwind" fn CFAttributedStringCreateWithSubstring(
             alloc: Option<&CFAllocator>,
             a_str: Option<&CFAttributedString>,
             range: CFRange,
-        ) -> *mut CFAttributedString;
+        ) -> Option<NonNull<CFAttributedString>>;
     }
     let ret = unsafe { CFAttributedStringCreateWithSubstring(alloc, a_str, range) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates an immutable attributed string copy.
@@ -93,10 +93,10 @@ pub unsafe extern "C-unwind" fn CFAttributedStringCreateCopy(
         fn CFAttributedStringCreateCopy(
             alloc: Option<&CFAllocator>,
             a_str: Option<&CFAttributedString>,
-        ) -> *mut CFAttributedString;
+        ) -> Option<NonNull<CFAttributedString>>;
     }
     let ret = unsafe { CFAttributedStringCreateCopy(alloc, a_str) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Returns the string for the attributed string. For performance reasons, this will often point at the backing store of the attributed string, and it might change if the attributed string is edited.  However, this is an implementation detail, and definitely not something that should be counted on.
@@ -106,10 +106,10 @@ pub unsafe extern "C-unwind" fn CFAttributedStringGetString(
     a_str: &CFAttributedString,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn CFAttributedStringGetString(a_str: &CFAttributedString) -> *mut CFString;
+        fn CFAttributedStringGetString(a_str: &CFAttributedString) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CFAttributedStringGetString(a_str) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -133,10 +133,10 @@ pub unsafe extern "C-unwind" fn CFAttributedStringGetAttributes(
             a_str: &CFAttributedString,
             loc: CFIndex,
             effective_range: *mut CFRange,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { CFAttributedStringGetAttributes(a_str, loc, effective_range) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the value of a single attribute at the specified location. If the specified attribute doesn't exist at the location, returns NULL. If effectiveRange is not NULL, upon return *effectiveRange contains a range over which the exact same attribute value applies. Note that for performance reasons, the returned effectiveRange is not necessarily the maximal range - for that, use CFAttributedStringGetAttributeAndLongestEffectiveRange(). It's a programming error for loc to specify a location outside the bounds of the attributed string.
@@ -154,10 +154,10 @@ pub unsafe extern "C-unwind" fn CFAttributedStringGetAttribute(
             loc: CFIndex,
             attr_name: Option<&CFString>,
             effective_range: *mut CFRange,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { CFAttributedStringGetAttribute(a_str, loc, attr_name, effective_range) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the attributes at the specified location. If longestEffectiveRange is not NULL, upon return *longestEffectiveRange contains the maximal range within inRange over which the exact same set of attributes apply. The returned range is clipped to inRange. It's a programming error for loc or inRange to specify locations outside the bounds of the attributed string.
@@ -175,7 +175,7 @@ pub unsafe extern "C-unwind" fn CFAttributedStringGetAttributesAndLongestEffecti
             loc: CFIndex,
             in_range: CFRange,
             longest_effective_range: *mut CFRange,
-        ) -> *mut CFDictionary;
+        ) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe {
         CFAttributedStringGetAttributesAndLongestEffectiveRange(
@@ -185,7 +185,7 @@ pub unsafe extern "C-unwind" fn CFAttributedStringGetAttributesAndLongestEffecti
             longest_effective_range,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Returns the value of a single attribute at the specified location. If longestEffectiveRange is not NULL, upon return *longestEffectiveRange contains the maximal range within inRange over which the exact same attribute value applies. The returned range is clipped to inRange. It's a programming error for loc or inRange to specify locations outside the bounds of the attributed string.
@@ -205,7 +205,7 @@ pub unsafe extern "C-unwind" fn CFAttributedStringGetAttributeAndLongestEffectiv
             attr_name: Option<&CFString>,
             in_range: CFRange,
             longest_effective_range: *mut CFRange,
-        ) -> *mut CFType;
+        ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe {
         CFAttributedStringGetAttributeAndLongestEffectiveRange(
@@ -216,7 +216,7 @@ pub unsafe extern "C-unwind" fn CFAttributedStringGetAttributeAndLongestEffectiv
             longest_effective_range,
         )
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Creates a mutable attributed string copy. maxLength, if not 0, is a hard bound on the length of the attributed string; exceeding this size limit during any editing operation is a programming error. If 0, there is no limit on the length.
@@ -232,10 +232,10 @@ pub unsafe extern "C-unwind" fn CFAttributedStringCreateMutableCopy(
             alloc: Option<&CFAllocator>,
             max_length: CFIndex,
             a_str: Option<&CFAttributedString>,
-        ) -> *mut CFMutableAttributedString;
+        ) -> Option<NonNull<CFMutableAttributedString>>;
     }
     let ret = unsafe { CFAttributedStringCreateMutableCopy(alloc, max_length, a_str) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a mutable empty attributed string. maxLength, if not 0, is a hard bound on the length of the attributed string; exceeding this size limit during any editing operation is a programming error. If 0, there is no limit on the length.
@@ -249,10 +249,10 @@ pub unsafe extern "C-unwind" fn CFAttributedStringCreateMutable(
         fn CFAttributedStringCreateMutable(
             alloc: Option<&CFAllocator>,
             max_length: CFIndex,
-        ) -> *mut CFMutableAttributedString;
+        ) -> Option<NonNull<CFMutableAttributedString>>;
     }
     let ret = unsafe { CFAttributedStringCreateMutable(alloc, max_length) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -278,10 +278,10 @@ pub unsafe extern "C-unwind" fn CFAttributedStringGetMutableString(
     extern "C-unwind" {
         fn CFAttributedStringGetMutableString(
             a_str: Option<&CFMutableAttributedString>,
-        ) -> *mut CFMutableString;
+        ) -> Option<NonNull<CFMutableString>>;
     }
     let ret = unsafe { CFAttributedStringGetMutableString(a_str) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Sets the value of multiple attributes over the specified range, which should be valid. If clearOtherAttributes is false, existing attributes (which aren't being replaced) are left alone; otherwise they are cleared. The dictionary should be setup for "usual" CF type usage --- CFString keys, and arbitrary CFType values. Note that after this call, further mutations to the replacement dictionary argument by the caller will not affect the contents of the attributed string.

@@ -462,10 +462,10 @@ pub unsafe extern "C-unwind" fn SecKeyGenerateSymmetric(
         fn SecKeyGenerateSymmetric(
             parameters: &CFDictionary,
             error: *mut *mut CFError,
-        ) -> *mut SecKey;
+        ) -> Option<NonNull<SecKey>>;
     }
     let ret = unsafe { SecKeyGenerateSymmetric(parameters, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a symmetric key with the given data and sets the
@@ -504,10 +504,10 @@ pub unsafe extern "C-unwind" fn SecKeyCreateFromData(
             parameters: &CFDictionary,
             key_data: &CFData,
             error: *mut *mut CFError,
-        ) -> *mut SecKey;
+        ) -> Option<NonNull<SecKey>>;
     }
     let ret = unsafe { SecKeyCreateFromData(parameters, key_data, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Delivers the result from an asynchronous key pair generation.
@@ -566,10 +566,10 @@ pub unsafe extern "C-unwind" fn SecKeyDeriveFromPassword(
             password: &CFString,
             parameters: &CFDictionary,
             error: *mut *mut CFError,
-        ) -> *mut SecKey;
+        ) -> Option<NonNull<SecKey>>;
     }
     let ret = unsafe { SecKeyDeriveFromPassword(password, parameters, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Wraps a symmetric key with a symmetric key.
@@ -605,10 +605,10 @@ pub unsafe extern "C-unwind" fn SecKeyWrapSymmetric(
             wrapping_key: &SecKey,
             parameters: &CFDictionary,
             error: *mut *mut CFError,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { SecKeyWrapSymmetric(key_to_wrap, wrapping_key, parameters, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 /// Unwrap a wrapped symmetric key.
@@ -644,10 +644,10 @@ pub unsafe extern "C-unwind" fn SecKeyUnwrapSymmetric(
             unwrapping_key: &SecKey,
             parameters: &CFDictionary,
             error: *mut *mut CFError,
-        ) -> *mut SecKey;
+        ) -> Option<NonNull<SecKey>>;
     }
     let ret = unsafe { SecKeyUnwrapSymmetric(key_to_unwrap, unwrapping_key, parameters, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 extern "C-unwind" {
@@ -763,10 +763,10 @@ pub unsafe extern "C-unwind" fn SecKeyCreateRandomKey(
         fn SecKeyCreateRandomKey(
             parameters: &CFDictionary,
             error: *mut *mut CFError,
-        ) -> *mut SecKey;
+        ) -> Option<NonNull<SecKey>>;
     }
     let ret = unsafe { SecKeyCreateRandomKey(parameters, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Create a SecKey from a well-defined external representation.
@@ -800,10 +800,10 @@ pub unsafe extern "C-unwind" fn SecKeyCreateWithData(
             key_data: &CFData,
             attributes: &CFDictionary,
             error: *mut *mut CFError,
-        ) -> *mut SecKey;
+        ) -> Option<NonNull<SecKey>>;
     }
     let ret = unsafe { SecKeyCreateWithData(key_data, attributes, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -839,10 +839,13 @@ pub unsafe extern "C-unwind" fn SecKeyCopyExternalRepresentation(
     error: *mut *mut CFError,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
-        fn SecKeyCopyExternalRepresentation(key: &SecKey, error: *mut *mut CFError) -> *mut CFData;
+        fn SecKeyCopyExternalRepresentation(
+            key: &SecKey,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { SecKeyCopyExternalRepresentation(key, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Retrieve keychain attributes of a key.
@@ -870,10 +873,10 @@ pub unsafe extern "C-unwind" fn SecKeyCopyAttributes(
     key: &SecKey,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
-        fn SecKeyCopyAttributes(key: &SecKey) -> *mut CFDictionary;
+        fn SecKeyCopyAttributes(key: &SecKey) -> Option<NonNull<CFDictionary>>;
     }
     let ret = unsafe { SecKeyCopyAttributes(key) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Retrieve the public key from a key pair or private key.
@@ -887,10 +890,10 @@ pub unsafe extern "C-unwind" fn SecKeyCopyAttributes(
 #[inline]
 pub unsafe extern "C-unwind" fn SecKeyCopyPublicKey(key: &SecKey) -> Option<CFRetained<SecKey>> {
     extern "C-unwind" {
-        fn SecKeyCopyPublicKey(key: &SecKey) -> *mut SecKey;
+        fn SecKeyCopyPublicKey(key: &SecKey) -> Option<NonNull<SecKey>>;
     }
     let ret = unsafe { SecKeyCopyPublicKey(key) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Available algorithms for performing cryptographic operations with SecKey object.  String representation
@@ -1798,10 +1801,10 @@ pub unsafe extern "C-unwind" fn SecKeyCreateSignature(
             algorithm: &SecKeyAlgorithm,
             data_to_sign: &CFData,
             error: *mut *mut CFError,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { SecKeyCreateSignature(key, algorithm, data_to_sign, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Given a public key, data which has been signed, and a signature, verify the signature.
@@ -1873,10 +1876,10 @@ pub unsafe extern "C-unwind" fn SecKeyCreateEncryptedData(
             algorithm: &SecKeyAlgorithm,
             plaintext: &CFData,
             error: *mut *mut CFError,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { SecKeyCreateEncryptedData(key, algorithm, plaintext, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Decrypt a block of ciphertext.
@@ -1909,10 +1912,10 @@ pub unsafe extern "C-unwind" fn SecKeyCreateDecryptedData(
             algorithm: &SecKeyAlgorithm,
             ciphertext: &CFData,
             error: *mut *mut CFError,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { SecKeyCreateDecryptedData(key, algorithm, ciphertext, error) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// for KDF (key derivation function).
@@ -1960,12 +1963,12 @@ pub unsafe extern "C-unwind" fn SecKeyCopyKeyExchangeResult(
             public_key: &SecKey,
             parameters: &CFDictionary,
             error: *mut *mut CFError,
-        ) -> *mut CFData;
+        ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe {
         SecKeyCopyKeyExchangeResult(private_key, algorithm, public_key, parameters, error)
     };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Defines types of cryptographic operations available with SecKey instance.

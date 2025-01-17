@@ -215,10 +215,10 @@ pub unsafe extern "C-unwind" fn CFBinaryHeapCreate(
             capacity: CFIndex,
             call_backs: *const CFBinaryHeapCallBacks,
             compare_context: *const CFBinaryHeapCompareContext,
-        ) -> *mut CFBinaryHeap;
+        ) -> Option<NonNull<CFBinaryHeap>>;
     }
     let ret = unsafe { CFBinaryHeapCreate(allocator, capacity, call_backs, compare_context) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a new mutable binary heap with the values from the given binary heap.
@@ -261,10 +261,10 @@ pub unsafe extern "C-unwind" fn CFBinaryHeapCreateCopy(
             allocator: Option<&CFAllocator>,
             capacity: CFIndex,
             heap: Option<&CFBinaryHeap>,
-        ) -> *mut CFBinaryHeap;
+        ) -> Option<NonNull<CFBinaryHeap>>;
     }
     let ret = unsafe { CFBinaryHeapCreateCopy(allocator, capacity, heap) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {

@@ -244,9 +244,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn SecACLCopyAuthorizations(acl: &SecACL) -> CFRetained<CFArray> {
     extern "C-unwind" {
-        fn SecACLCopyAuthorizations(acl: &SecACL) -> NonNull<CFArray>;
+        fn SecACLCopyAuthorizations(acl: &SecACL) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { SecACLCopyAuthorizations(acl) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 

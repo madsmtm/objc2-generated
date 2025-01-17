@@ -162,9 +162,12 @@ pub unsafe extern "C-unwind" fn CTLineCreateWithAttributedString(
     attr_string: &CFAttributedString,
 ) -> CFRetained<CTLine> {
     extern "C-unwind" {
-        fn CTLineCreateWithAttributedString(attr_string: &CFAttributedString) -> NonNull<CTLine>;
+        fn CTLineCreateWithAttributedString(
+            attr_string: &CFAttributedString,
+        ) -> Option<NonNull<CTLine>>;
     }
     let ret = unsafe { CTLineCreateWithAttributedString(attr_string) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -207,10 +210,10 @@ pub unsafe extern "C-unwind" fn CTLineCreateTruncatedLine(
             width: c_double,
             truncation_type: CTLineTruncationType,
             truncation_token: Option<&CTLine>,
-        ) -> *mut CTLine;
+        ) -> Option<NonNull<CTLine>>;
     }
     let ret = unsafe { CTLineCreateTruncatedLine(line, width, truncation_type, truncation_token) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates a justified line from an existing line.
@@ -245,10 +248,10 @@ pub unsafe extern "C-unwind" fn CTLineCreateJustifiedLine(
             line: &CTLine,
             justification_factor: CGFloat,
             justification_width: c_double,
-        ) -> *mut CTLine;
+        ) -> Option<NonNull<CTLine>>;
     }
     let ret = unsafe { CTLineCreateJustifiedLine(line, justification_factor, justification_width) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 extern "C-unwind" {
@@ -276,9 +279,10 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn CTLineGetGlyphRuns(line: &CTLine) -> CFRetained<CFArray> {
     extern "C-unwind" {
-        fn CTLineGetGlyphRuns(line: &CTLine) -> NonNull<CFArray>;
+        fn CTLineGetGlyphRuns(line: &CTLine) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { CTLineGetGlyphRuns(line) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::retain(ret) }
 }
 

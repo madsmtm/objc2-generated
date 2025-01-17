@@ -91,9 +91,10 @@ pub unsafe extern "C-unwind" fn CTTypesetterCreateWithAttributedString(
     extern "C-unwind" {
         fn CTTypesetterCreateWithAttributedString(
             string: &CFAttributedString,
-        ) -> NonNull<CTTypesetter>;
+        ) -> Option<NonNull<CTTypesetter>>;
     }
     let ret = unsafe { CTTypesetterCreateWithAttributedString(string) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -128,10 +129,10 @@ pub unsafe extern "C-unwind" fn CTTypesetterCreateWithAttributedStringAndOptions
         fn CTTypesetterCreateWithAttributedStringAndOptions(
             string: &CFAttributedString,
             options: Option<&CFDictionary>,
-        ) -> *mut CTTypesetter;
+        ) -> Option<NonNull<CTTypesetter>>;
     }
     let ret = unsafe { CTTypesetterCreateWithAttributedStringAndOptions(string, options) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// Creates an immutable line from the typesetter.
@@ -167,9 +168,10 @@ pub unsafe extern "C-unwind" fn CTTypesetterCreateLineWithOffset(
             typesetter: &CTTypesetter,
             string_range: CFRange,
             offset: c_double,
-        ) -> NonNull<CTLine>;
+        ) -> Option<NonNull<CTLine>>;
     }
     let ret = unsafe { CTTypesetterCreateLineWithOffset(typesetter, string_range, offset) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
@@ -184,9 +186,10 @@ pub unsafe extern "C-unwind" fn CTTypesetterCreateLine(
         fn CTTypesetterCreateLine(
             typesetter: &CTTypesetter,
             string_range: CFRange,
-        ) -> NonNull<CTLine>;
+        ) -> Option<NonNull<CTLine>>;
     }
     let ret = unsafe { CTTypesetterCreateLine(typesetter, string_range) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 

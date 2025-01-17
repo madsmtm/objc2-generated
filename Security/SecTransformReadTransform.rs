@@ -19,8 +19,9 @@ pub unsafe extern "C-unwind" fn SecTransformCreateReadTransformWithReadStream(
     extern "C-unwind" {
         fn SecTransformCreateReadTransformWithReadStream(
             input_stream: &CFReadStream,
-        ) -> NonNull<SecTransform>;
+        ) -> Option<NonNull<SecTransform>>;
     }
     let ret = unsafe { SecTransformCreateReadTransformWithReadStream(input_stream) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }

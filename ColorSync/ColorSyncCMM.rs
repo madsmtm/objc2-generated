@@ -36,10 +36,10 @@ pub unsafe extern "C-unwind" fn ColorSyncCMMCreate(
     cmm_bundle: &CFBundle,
 ) -> Option<CFRetained<ColorSyncCMM>> {
     extern "C-unwind" {
-        fn ColorSyncCMMCreate(cmm_bundle: &CFBundle) -> *mut ColorSyncCMM;
+        fn ColorSyncCMMCreate(cmm_bundle: &CFBundle) -> Option<NonNull<ColorSyncCMM>>;
     }
     let ret = unsafe { ColorSyncCMMCreate(cmm_bundle) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -47,10 +47,10 @@ pub unsafe extern "C-unwind" fn ColorSyncCMMGetBundle(
     param1: &ColorSyncCMM,
 ) -> Option<CFRetained<CFBundle>> {
     extern "C-unwind" {
-        fn ColorSyncCMMGetBundle(param1: &ColorSyncCMM) -> *mut CFBundle;
+        fn ColorSyncCMMGetBundle(param1: &ColorSyncCMM) -> Option<NonNull<CFBundle>>;
     }
     let ret = unsafe { ColorSyncCMMGetBundle(param1) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::retain(ret) })
+    ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
 #[inline]
@@ -58,10 +58,10 @@ pub unsafe extern "C-unwind" fn ColorSyncCMMCopyLocalizedName(
     param1: &ColorSyncCMM,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn ColorSyncCMMCopyLocalizedName(param1: &ColorSyncCMM) -> *mut CFString;
+        fn ColorSyncCMMCopyLocalizedName(param1: &ColorSyncCMM) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { ColorSyncCMMCopyLocalizedName(param1) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 #[inline]
@@ -69,10 +69,10 @@ pub unsafe extern "C-unwind" fn ColorSyncCMMCopyCMMIdentifier(
     param1: &ColorSyncCMM,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
-        fn ColorSyncCMMCopyCMMIdentifier(param1: &ColorSyncCMM) -> *mut CFString;
+        fn ColorSyncCMMCopyCMMIdentifier(param1: &ColorSyncCMM) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { ColorSyncCMMCopyCMMIdentifier(param1) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccmmiteratecallback?language=objc)

@@ -1134,10 +1134,12 @@ pub unsafe extern "C-unwind" fn AudioUnitExtensionCopyComponentList(
     extension_identifier: &CFString,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
-        fn AudioUnitExtensionCopyComponentList(extension_identifier: &CFString) -> *mut CFArray;
+        fn AudioUnitExtensionCopyComponentList(
+            extension_identifier: &CFString,
+        ) -> Option<NonNull<CFArray>>;
     }
     let ret = unsafe { AudioUnitExtensionCopyComponentList(extension_identifier) };
-    NonNull::new(ret).map(|ret| unsafe { CFRetained::from_raw(ret) })
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitrange?language=objc)
