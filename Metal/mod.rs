@@ -490,6 +490,10 @@ pub use self::__MTLDevice::MTLArchitecture;
 pub use self::__MTLDevice::MTLArgumentBuffersTier;
 #[cfg(feature = "MTLDevice")]
 pub use self::__MTLDevice::MTLArgumentDescriptor;
+#[cfg(all(feature = "MTLComputePipeline", feature = "MTLDevice"))]
+pub use self::__MTLDevice::MTLAutoreleasedComputePipelineReflection;
+#[cfg(all(feature = "MTLDevice", feature = "MTLRenderPipeline"))]
+pub use self::__MTLDevice::MTLAutoreleasedRenderPipelineReflection;
 #[cfg(feature = "MTLDevice")]
 pub use self::__MTLDevice::MTLCopyAllDevices;
 #[cfg(feature = "MTLDevice")]
@@ -696,6 +700,8 @@ pub use self::__MTLIntersectionFunctionTable::MTLIntersectionFunctionTable;
 pub use self::__MTLIntersectionFunctionTable::MTLIntersectionFunctionTableDescriptor;
 #[cfg(feature = "MTLLibrary")]
 pub use self::__MTLLibrary::MTLAttribute;
+#[cfg(all(feature = "MTLArgument", feature = "MTLLibrary"))]
+pub use self::__MTLLibrary::MTLAutoreleasedArgument;
 #[cfg(feature = "MTLLibrary")]
 pub use self::__MTLLibrary::MTLCompileOptions;
 #[cfg(feature = "MTLLibrary")]

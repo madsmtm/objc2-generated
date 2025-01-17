@@ -7,6 +7,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlautoreleasedargument?language=objc)
+#[cfg(feature = "MTLArgument")]
+pub type MTLAutoreleasedArgument = MTLArgument;
+
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpatchtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -253,6 +257,16 @@ extern_protocol!(
         unsafe fn newArgumentEncoderWithBufferIndex(
             &self,
             buffer_index: NSUInteger,
+        ) -> Retained<ProtocolObject<dyn MTLArgumentEncoder>>;
+
+        #[cfg(all(feature = "MTLArgument", feature = "MTLArgumentEncoder"))]
+        /// Creates an argument encoder which will encode arguments matching the layout of the argument buffer at the given bind point index.
+        #[deprecated = "Use MTLDevice's newArgumentEncoderWithBufferBinding: instead"]
+        #[method_id(@__retain_semantics New newArgumentEncoderWithBufferIndex:reflection:)]
+        unsafe fn newArgumentEncoderWithBufferIndex_reflection(
+            &self,
+            buffer_index: NSUInteger,
+            reflection: Option<&mut Option<Retained<MTLAutoreleasedArgument>>>,
         ) -> Retained<ProtocolObject<dyn MTLArgumentEncoder>>;
 
         #[cfg(feature = "MTLFunctionDescriptor")]

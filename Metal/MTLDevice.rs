@@ -485,6 +485,14 @@ unsafe impl RefEncode for MTLSizeAndAlign {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlautoreleasedrenderpipelinereflection?language=objc)
+#[cfg(feature = "MTLRenderPipeline")]
+pub type MTLAutoreleasedRenderPipelineReflection = MTLRenderPipelineReflection;
+
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlautoreleasedcomputepipelinereflection?language=objc)
+#[cfg(feature = "MTLComputePipeline")]
+pub type MTLAutoreleasedComputePipelineReflection = MTLComputePipelineReflection;
+
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewlibrarycompletionhandler?language=objc)
 #[cfg(all(feature = "MTLLibrary", feature = "block2"))]
 pub type MTLNewLibraryCompletionHandler =
@@ -1078,6 +1086,16 @@ extern_protocol!(
             descriptor: &MTLRenderPipelineDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLRenderPipelineState>>, Retained<NSError>>;
 
+        #[cfg(feature = "MTLRenderPipeline")]
+        /// Create and compile a new MTLRenderPipelineState object synchronously and returns additional reflection information.
+        #[method_id(@__retain_semantics New newRenderPipelineStateWithDescriptor:options:reflection:error:_)]
+        unsafe fn newRenderPipelineStateWithDescriptor_options_reflection_error(
+            &self,
+            descriptor: &MTLRenderPipelineDescriptor,
+            options: MTLPipelineOption,
+            reflection: Option<&mut Option<Retained<MTLAutoreleasedRenderPipelineReflection>>>,
+        ) -> Result<Retained<ProtocolObject<dyn MTLRenderPipelineState>>, Retained<NSError>>;
+
         #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
         /// Create and compile a new MTLRenderPipelineState object asynchronously.
         #[method(newRenderPipelineStateWithDescriptor:completionHandler:)]
@@ -1103,6 +1121,16 @@ extern_protocol!(
         fn newComputePipelineStateWithFunction_error(
             &self,
             compute_function: &ProtocolObject<dyn MTLFunction>,
+        ) -> Result<Retained<ProtocolObject<dyn MTLComputePipelineState>>, Retained<NSError>>;
+
+        #[cfg(all(feature = "MTLComputePipeline", feature = "MTLLibrary"))]
+        /// Create and compile a new MTLComputePipelineState object synchronously.
+        #[method_id(@__retain_semantics New newComputePipelineStateWithFunction:options:reflection:error:_)]
+        unsafe fn newComputePipelineStateWithFunction_options_reflection_error(
+            &self,
+            compute_function: &ProtocolObject<dyn MTLFunction>,
+            options: MTLPipelineOption,
+            reflection: Option<&mut Option<Retained<MTLAutoreleasedComputePipelineReflection>>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLComputePipelineState>>, Retained<NSError>>;
 
         #[cfg(all(
@@ -1131,6 +1159,16 @@ extern_protocol!(
             options: MTLPipelineOption,
             completion_handler: MTLNewComputePipelineStateWithReflectionCompletionHandler,
         );
+
+        #[cfg(feature = "MTLComputePipeline")]
+        /// Create and compile a new MTLComputePipelineState object synchronously.
+        #[method_id(@__retain_semantics New newComputePipelineStateWithDescriptor:options:reflection:error:_)]
+        unsafe fn newComputePipelineStateWithDescriptor_options_reflection_error(
+            &self,
+            descriptor: &MTLComputePipelineDescriptor,
+            options: MTLPipelineOption,
+            reflection: Option<&mut Option<Retained<MTLAutoreleasedComputePipelineReflection>>>,
+        ) -> Result<Retained<ProtocolObject<dyn MTLComputePipelineState>>, Retained<NSError>>;
 
         #[cfg(all(feature = "MTLComputePipeline", feature = "block2"))]
         /// Create and compile a new MTLComputePipelineState object asynchronously.
@@ -1174,6 +1212,16 @@ extern_protocol!(
         fn minimumTextureBufferAlignmentForPixelFormat(&self, format: MTLPixelFormat)
             -> NSUInteger;
 
+        #[cfg(feature = "MTLRenderPipeline")]
+        /// Create and compile a new MTLRenderPipelineState object synchronously given a MTLTileRenderPipelineDescriptor.
+        #[method_id(@__retain_semantics New newRenderPipelineStateWithTileDescriptor:options:reflection:error:_)]
+        unsafe fn newRenderPipelineStateWithTileDescriptor_options_reflection_error(
+            &self,
+            descriptor: &MTLTileRenderPipelineDescriptor,
+            options: MTLPipelineOption,
+            reflection: Option<&mut Option<Retained<MTLAutoreleasedRenderPipelineReflection>>>,
+        ) -> Result<Retained<ProtocolObject<dyn MTLRenderPipelineState>>, Retained<NSError>>;
+
         #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
         /// Create and compile a new MTLRenderPipelineState object asynchronously given a MTLTileRenderPipelineDescriptor.
         #[method(newRenderPipelineStateWithTileDescriptor:options:completionHandler:)]
@@ -1183,6 +1231,16 @@ extern_protocol!(
             options: MTLPipelineOption,
             completion_handler: MTLNewRenderPipelineStateWithReflectionCompletionHandler,
         );
+
+        #[cfg(feature = "MTLRenderPipeline")]
+        /// Create and compile a new MTLRenderPipelineState object synchronously given a MTLMeshRenderPipelineDescriptor.
+        #[method_id(@__retain_semantics New newRenderPipelineStateWithMeshDescriptor:options:reflection:error:_)]
+        unsafe fn newRenderPipelineStateWithMeshDescriptor_options_reflection_error(
+            &self,
+            descriptor: &MTLMeshRenderPipelineDescriptor,
+            options: MTLPipelineOption,
+            reflection: Option<&mut Option<Retained<MTLAutoreleasedRenderPipelineReflection>>>,
+        ) -> Result<Retained<ProtocolObject<dyn MTLRenderPipelineState>>, Retained<NSError>>;
 
         #[cfg(all(feature = "MTLRenderPipeline", feature = "block2"))]
         /// Create and compile a new MTLRenderPipelineState object asynchronously given a MTLMeshRenderPipelineDescriptor.
