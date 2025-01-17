@@ -577,4 +577,4 @@ pub unsafe extern "C-unwind" fn SecTransformExecute(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secmessageblock?language=objc)
 #[cfg(feature = "block2")]
-pub type SecMessageBlock = *mut block2::Block<dyn Fn(*mut CFType, *mut CFError, Boolean)>;
+pub type SecMessageBlock = *mut block2::Block<dyn Fn(*const CFType, *mut CFError, Boolean)>;

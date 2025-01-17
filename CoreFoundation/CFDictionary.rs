@@ -35,17 +35,17 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryretaincallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFDictionaryRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFAllocator, *const c_void) -> *const c_void>;
+    Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryreleasecallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFDictionaryReleaseCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFAllocator, *const c_void)>;
+    Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionarycopydescriptioncallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFDictionaryCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>;
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdictionaryequalcallback?language=objc)
 pub type CFDictionaryEqualCallBack =

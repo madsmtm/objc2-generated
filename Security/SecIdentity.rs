@@ -192,7 +192,7 @@ extern "C-unwind" {
     pub fn SecIdentityCopySystemIdentity(
         domain: &CFString,
         id_ref: NonNull<*mut SecIdentity>,
-        actual_domain: *mut *mut CFString,
+        actual_domain: *mut *const CFString,
     ) -> OSStatus;
 }
 

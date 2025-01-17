@@ -142,7 +142,7 @@ extern "C-unwind" {
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyURLs(
         download_ref: SecureDownloadRef,
-        urls: *mut *mut CFArray,
+        urls: *mut *const CFArray,
     ) -> OSStatus;
 }
 
@@ -157,7 +157,7 @@ extern "C-unwind" {
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyName(
         download_ref: SecureDownloadRef,
-        name: *mut *mut CFString,
+        name: *mut *const CFString,
     ) -> OSStatus;
 }
 
@@ -170,7 +170,7 @@ extern "C-unwind" {
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyCreationDate(
         download_ref: SecureDownloadRef,
-        date: *mut *mut CFDate,
+        date: *mut *const CFDate,
     ) -> OSStatus;
 }
 
@@ -238,6 +238,6 @@ extern "C-unwind" {
     #[deprecated = "SecureDownload is not supported"]
     pub fn SecureDownloadCopyTicketLocation(
         url: Option<&CFURL>,
-        ticket_location: *mut *mut CFURL,
+        ticket_location: *mut *const CFURL,
     ) -> OSStatus;
 }

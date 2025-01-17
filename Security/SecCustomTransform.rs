@@ -205,7 +205,7 @@ pub type SecTransformStringOrAttribute = CFType;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformactionblock?language=objc)
 #[cfg(feature = "block2")]
-pub type SecTransformActionBlock = *mut block2::Block<dyn Fn() -> *mut CFType>;
+pub type SecTransformActionBlock = *mut block2::Block<dyn Fn() -> *const CFType>;
 
 /// A block used to override the default attribute handling
 /// for when an attribute is set.
@@ -230,7 +230,7 @@ pub type SecTransformActionBlock = *mut block2::Block<dyn Fn() -> *mut CFType>;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformattributeactionblock?language=objc)
 #[cfg(feature = "block2")]
 pub type SecTransformAttributeActionBlock =
-    *mut block2::Block<dyn Fn(NonNull<SecTransformAttribute>, NonNull<CFType>) -> *mut CFType>;
+    *mut block2::Block<dyn Fn(NonNull<SecTransformAttribute>, NonNull<CFType>) -> *const CFType>;
 
 /// A block used to override the default data handling
 /// for a transform.
@@ -260,7 +260,7 @@ pub type SecTransformAttributeActionBlock =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformdatablock?language=objc)
 #[cfg(feature = "block2")]
-pub type SecTransformDataBlock = *mut block2::Block<dyn Fn(NonNull<CFType>) -> *mut CFType>;
+pub type SecTransformDataBlock = *mut block2::Block<dyn Fn(NonNull<CFType>) -> *const CFType>;
 
 /// This is the block that is returned from an
 /// implementation of a CreateTransform function.

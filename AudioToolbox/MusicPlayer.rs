@@ -1130,7 +1130,7 @@ extern "C-unwind" {
         in_file_type: MusicSequenceFileTypeID,
         in_flags: MusicSequenceFileFlags,
         in_resolution: i16,
-        out_data: NonNull<*mut CFData>,
+        out_data: NonNull<*const CFData>,
     ) -> OSStatus;
 }
 
@@ -1900,7 +1900,7 @@ extern "C-unwind" {
     #[deprecated = "no longer supported"]
     pub fn MusicSequenceSaveSMFData(
         in_sequence: MusicSequence,
-        out_data: NonNull<*mut CFData>,
+        out_data: NonNull<*const CFData>,
         in_resolution: u16,
     ) -> OSStatus;
 }

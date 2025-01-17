@@ -34,7 +34,7 @@ extern "C-unwind" {
     /// The caller must release the returned dictionary.
     pub fn VTSessionCopySupportedPropertyDictionary(
         session: &VTSession,
-        supported_property_dictionary_out: NonNull<*mut CFDictionary>,
+        supported_property_dictionary_out: NonNull<*const CFDictionary>,
     ) -> OSStatus;
 }
 
@@ -156,6 +156,6 @@ extern "C-unwind" {
     pub fn VTSessionCopySerializableProperties(
         session: &VTSession,
         allocator: Option<&CFAllocator>,
-        dictionary_out: NonNull<*mut CFDictionary>,
+        dictionary_out: NonNull<*const CFDictionary>,
     ) -> OSStatus;
 }

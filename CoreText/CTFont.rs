@@ -982,13 +982,13 @@ pub unsafe extern "C-unwind" fn CTFontCopyName(
 pub unsafe extern "C-unwind" fn CTFontCopyLocalizedName(
     font: &CTFont,
     name_key: &CFString,
-    actual_language: *mut *mut CFString,
+    actual_language: *mut *const CFString,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn CTFontCopyLocalizedName(
             font: &CTFont,
             name_key: &CFString,
-            actual_language: *mut *mut CFString,
+            actual_language: *mut *const CFString,
         ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { CTFontCopyLocalizedName(font, name_key, actual_language) };
@@ -1680,12 +1680,12 @@ pub unsafe extern "C-unwind" fn CTFontCopyFeatureSettings(
 #[inline]
 pub unsafe extern "C-unwind" fn CTFontCopyGraphicsFont(
     font: &CTFont,
-    attributes: *mut *mut CTFontDescriptor,
+    attributes: *mut *const CTFontDescriptor,
 ) -> CFRetained<CGFont> {
     extern "C-unwind" {
         fn CTFontCopyGraphicsFont(
             font: &CTFont,
-            attributes: *mut *mut CTFontDescriptor,
+            attributes: *mut *const CTFontDescriptor,
         ) -> Option<NonNull<CGFont>>;
     }
     let ret = unsafe { CTFontCopyGraphicsFont(font, attributes) };

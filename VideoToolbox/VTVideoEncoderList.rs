@@ -13,7 +13,7 @@ extern "C-unwind" {
     /// The caller must CFRelease the returned list.
     pub fn VTCopyVideoEncoderList(
         options: Option<&CFDictionary>,
-        list_of_video_encoders_out: NonNull<*mut CFArray>,
+        list_of_video_encoders_out: NonNull<*const CFArray>,
     ) -> OSStatus;
 }
 
@@ -97,7 +97,7 @@ extern "C-unwind" {
         height: i32,
         codec_type: CMVideoCodecType,
         encoder_specification: Option<&CFDictionary>,
-        encoder_id_out: *mut *mut CFString,
-        supported_properties_out: *mut *mut CFDictionary,
+        encoder_id_out: *mut *const CFString,
+        supported_properties_out: *mut *const CFDictionary,
     ) -> OSStatus;
 }

@@ -60,7 +60,7 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-media")]
     pub fn VTCopyVideoDecoderExtensionProperties(
         format_desc: &CMFormatDescription,
-        media_extension_properties_out: NonNull<*mut CFDictionary>,
+        media_extension_properties_out: NonNull<*const CFDictionary>,
     ) -> OSStatus;
 }
 
@@ -77,7 +77,7 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-media")]
     pub fn VTCopyRAWProcessorExtensionProperties(
         format_desc: &CMFormatDescription,
-        media_extension_properties_out: NonNull<*mut CFDictionary>,
+        media_extension_properties_out: NonNull<*const CFDictionary>,
     ) -> OSStatus;
 }
 

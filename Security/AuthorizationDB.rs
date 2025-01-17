@@ -20,7 +20,7 @@ extern "C-unwind" {
     /// errAuthorizationDenied -60005 No definition found.
     pub fn AuthorizationRightGet(
         right_name: NonNull<c_char>,
-        right_definition: *mut *mut CFDictionary,
+        right_definition: *mut *const CFDictionary,
     ) -> OSStatus;
 }
 

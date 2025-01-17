@@ -40,7 +40,7 @@ pub type CFTreeReleaseCallBack = Option<unsafe extern "C-unwind" fn(*const c_voi
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftreecopydescriptioncallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFTreeCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>;
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
 /// Structure containing user-specified data and callbacks for a CFTree.
 /// Field: version The version number of the structure type being passed

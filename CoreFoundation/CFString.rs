@@ -1352,7 +1352,7 @@ extern "C-unwind" {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFStringInlineBuffer {
     pub buffer: [UniChar; 64],
-    pub theString: *mut CFString,
+    pub theString: *const CFString,
     pub directUniCharBuffer: *const UniChar,
     pub directCStringBuffer: *const c_char,
     pub rangeToBuffer: CFRange,
@@ -1366,7 +1366,7 @@ unsafe impl Encode for CFStringInlineBuffer {
         "?",
         &[
             <[UniChar; 64]>::ENCODING,
-            <*mut CFString>::ENCODING,
+            <*const CFString>::ENCODING,
             <*const UniChar>::ENCODING,
             <*const c_char>::ENCODING,
             <CFRange>::ENCODING,

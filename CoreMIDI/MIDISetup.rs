@@ -124,7 +124,7 @@ extern "C-unwind" {
     /// Returns: An OSStatus result code.
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     #[deprecated = "No longer supported"]
-    pub fn MIDISetupToData(setup: MIDISetupRef, out_data: NonNull<*mut CFData>) -> OSStatus;
+    pub fn MIDISetupToData(setup: MIDISetupRef, out_data: NonNull<*const CFData>) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -393,7 +393,7 @@ extern "C-unwind" {
     #[deprecated = "No longer supported"]
     pub fn MIDIGetSerialPortOwner(
         port_name: &CFString,
-        out_driver_name: NonNull<*mut CFString>,
+        out_driver_name: NonNull<*const CFString>,
     ) -> OSStatus;
 }
 
@@ -438,7 +438,7 @@ extern "C-unwind" {
     /// Returns: An OSStatus result code.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "No longer supported"]
-    pub fn MIDIGetSerialPortDrivers(out_driver_names: NonNull<*mut CFArray>) -> OSStatus;
+    pub fn MIDIGetSerialPortDrivers(out_driver_names: NonNull<*const CFArray>) -> OSStatus;
 }
 
 extern "C-unwind" {

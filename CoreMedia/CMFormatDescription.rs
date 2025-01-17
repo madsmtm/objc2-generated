@@ -77,7 +77,7 @@ extern "C-unwind" {
         media_type: CMMediaType,
         media_sub_type: FourCharCode,
         extensions: Option<&CFDictionary>,
-        format_description_out: NonNull<*mut CMFormatDescription>,
+        format_description_out: NonNull<*const CMFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -318,7 +318,7 @@ extern "C-unwind" {
         magic_cookie_size: usize,
         magic_cookie: *const c_void,
         extensions: Option<&CFDictionary>,
-        format_description_out: NonNull<*mut CMAudioFormatDescription>,
+        format_description_out: NonNull<*const CMAudioFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -424,7 +424,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         format_description_array: &CFArray,
         flags: u32,
-        format_description_out: NonNull<*mut CMAudioFormatDescription>,
+        format_description_out: NonNull<*const CMAudioFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -1255,7 +1255,7 @@ extern "C-unwind" {
         width: i32,
         height: i32,
         extensions: Option<&CFDictionary>,
-        format_description_out: NonNull<*mut CMVideoFormatDescription>,
+        format_description_out: NonNull<*const CMVideoFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -1277,7 +1277,7 @@ extern "C-unwind" {
     pub fn CMVideoFormatDescriptionCreateForImageBuffer(
         allocator: Option<&CFAllocator>,
         image_buffer: &CVImageBuffer,
-        format_description_out: NonNull<*mut CMVideoFormatDescription>,
+        format_description_out: NonNull<*const CMVideoFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -1293,7 +1293,7 @@ extern "C-unwind" {
         parameter_set_pointers: NonNull<NonNull<u8>>,
         parameter_set_sizes: NonNull<usize>,
         nal_unit_header_length: c_int,
-        format_description_out: NonNull<*mut CMFormatDescription>,
+        format_description_out: NonNull<*const CMFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -1310,7 +1310,7 @@ extern "C-unwind" {
         parameter_set_sizes: NonNull<usize>,
         nal_unit_header_length: c_int,
         extensions: Option<&CFDictionary>,
-        format_description_out: NonNull<*mut CMFormatDescription>,
+        format_description_out: NonNull<*const CMFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -1474,7 +1474,7 @@ extern "C-unwind" {
     /// Returns: Array of CMTagCollections. The result will be NULL if the CMVideoFormatDescription does not contain multi-image encoding parameters, or if there is some other error.
     pub fn CMVideoFormatDescriptionCopyTagCollectionArray(
         format_description: &CMVideoFormatDescription,
-        tag_collections_out: *mut *mut CFArray,
+        tag_collections_out: *mut *const CFArray,
     ) -> OSStatus;
 }
 
@@ -1533,7 +1533,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         mux_type: CMMuxedStreamType,
         extensions: Option<&CFDictionary>,
-        format_description_out: NonNull<*mut CMMuxedFormatDescription>,
+        format_description_out: NonNull<*const CMMuxedFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -1800,7 +1800,7 @@ extern "C-unwind" {
     pub fn CMTextFormatDescriptionGetFontName(
         desc: &CMFormatDescription,
         local_font_id: u16,
-        font_name_out: NonNull<*mut CFString>,
+        font_name_out: NonNull<*const CFString>,
     ) -> OSStatus;
 }
 
@@ -1851,7 +1851,7 @@ extern "C-unwind" {
         frame_quanta: u32,
         flags: u32,
         extensions: Option<&CFDictionary>,
-        format_description_out: NonNull<*mut CMTimeCodeFormatDescription>,
+        format_description_out: NonNull<*const CMTimeCodeFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -1997,7 +1997,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         metadata_type: CMMetadataFormatType,
         keys: Option<&CFArray>,
-        format_description_out: NonNull<*mut CMMetadataFormatDescription>,
+        format_description_out: NonNull<*const CMMetadataFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -2006,7 +2006,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         metadata_type: CMMetadataFormatType,
         metadata_specifications: &CFArray,
-        format_description_out: NonNull<*mut CMMetadataFormatDescription>,
+        format_description_out: NonNull<*const CMMetadataFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -2015,7 +2015,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         source_description: &CMMetadataFormatDescription,
         metadata_specifications: &CFArray,
-        format_description_out: NonNull<*mut CMMetadataFormatDescription>,
+        format_description_out: NonNull<*const CMMetadataFormatDescription>,
     ) -> OSStatus;
 }
 
@@ -2024,7 +2024,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         source_description: &CMMetadataFormatDescription,
         other_source_description: &CMMetadataFormatDescription,
-        format_description_out: NonNull<*mut CMMetadataFormatDescription>,
+        format_description_out: NonNull<*const CMMetadataFormatDescription>,
     ) -> OSStatus;
 }
 

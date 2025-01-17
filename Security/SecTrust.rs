@@ -274,7 +274,7 @@ extern "C-unwind" {
     /// Call the CFRelease function to release this reference.
     ///
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
-    pub fn SecTrustCopyPolicies(trust: &SecTrust, policies: NonNull<*mut CFArray>) -> OSStatus;
+    pub fn SecTrustCopyPolicies(trust: &SecTrust, policies: NonNull<*const CFArray>) -> OSStatus;
 }
 
 /// Specifies whether a trust evaluation is permitted to fetch missing
@@ -378,7 +378,7 @@ extern "C-unwind" {
     /// Returns: A result code. See "Security Error Codes" (SecBase.h).
     pub fn SecTrustCopyCustomAnchorCertificates(
         trust: &SecTrust,
-        anchors: NonNull<*mut CFArray>,
+        anchors: NonNull<*const CFArray>,
     ) -> OSStatus;
 }
 
@@ -890,7 +890,7 @@ extern "C-unwind" {
     pub fn SecTrustGetResult(
         trust_ref: &SecTrust,
         result: *mut SecTrustResultType,
-        cert_chain: *mut *mut CFArray,
+        cert_chain: *mut *const CFArray,
         status_chain: *mut *mut CSSM_TP_APPLE_EVIDENCE_INFO,
     ) -> OSStatus;
 }
@@ -966,5 +966,5 @@ extern "C-unwind" {
     ///
     /// This function is not available on iOS, as certificate data
     /// for system-trusted roots is currently unavailable on that platform.
-    pub fn SecTrustCopyAnchorCertificates(anchors: NonNull<*mut CFArray>) -> OSStatus;
+    pub fn SecTrustCopyAnchorCertificates(anchors: NonNull<*const CFArray>) -> OSStatus;
 }

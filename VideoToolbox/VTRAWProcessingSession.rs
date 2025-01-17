@@ -38,7 +38,7 @@ cf_type!(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingparameterchangehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type VTRAWProcessingParameterChangeHandler = *mut block2::Block<dyn Fn(*mut CFArray)>;
+pub type VTRAWProcessingParameterChangeHandler = *mut block2::Block<dyn Fn(*const CFArray)>;
 
 extern "C-unwind" {
     /// Creates a RAW video frame processing session.
@@ -174,7 +174,7 @@ extern "C-unwind" {
     /// Parameter `outParameterArray`: Pointer for receiving the RAW Processing parameter array..
     pub fn VTRAWProcessingSessionCopyProcessingParameters(
         session: &VTRAWProcessingSession,
-        out_parameter_array: NonNull<*mut CFArray>,
+        out_parameter_array: NonNull<*const CFArray>,
     ) -> OSStatus;
 }
 

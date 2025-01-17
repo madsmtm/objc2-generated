@@ -89,7 +89,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     pub fn CMSDecoderCopyDetachedContent(
         cms_decoder: &CMSDecoder,
-        detached_content_out: NonNull<*mut CFData>,
+        detached_content_out: NonNull<*const CFData>,
     ) -> OSStatus;
 }
 
@@ -147,7 +147,7 @@ extern "C-unwind" {
     pub fn CMSDecoderCopySignerEmailAddress(
         cms_decoder: &CMSDecoder,
         signer_index: usize,
-        signer_email_address_out: NonNull<*mut CFString>,
+        signer_email_address_out: NonNull<*const CFString>,
     ) -> OSStatus;
 }
 
@@ -170,21 +170,21 @@ extern "C-unwind" {
 extern "C-unwind" {
     pub fn CMSDecoderCopyEncapsulatedContentType(
         cms_decoder: &CMSDecoder,
-        e_content_type_out: NonNull<*mut CFData>,
+        e_content_type_out: NonNull<*const CFData>,
     ) -> OSStatus;
 }
 
 extern "C-unwind" {
     pub fn CMSDecoderCopyAllCerts(
         cms_decoder: &CMSDecoder,
-        certs_out: NonNull<*mut CFArray>,
+        certs_out: NonNull<*const CFArray>,
     ) -> OSStatus;
 }
 
 extern "C-unwind" {
     pub fn CMSDecoderCopyContent(
         cms_decoder: &CMSDecoder,
-        content_out: NonNull<*mut CFData>,
+        content_out: NonNull<*const CFData>,
     ) -> OSStatus;
 }
 
@@ -217,6 +217,6 @@ extern "C-unwind" {
     pub fn CMSDecoderCopySignerTimestampCertificates(
         cms_decoder: &CMSDecoder,
         signer_index: usize,
-        certificate_refs: NonNull<*mut CFArray>,
+        certificate_refs: NonNull<*const CFArray>,
     ) -> OSStatus;
 }

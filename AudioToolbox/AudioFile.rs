@@ -225,7 +225,7 @@ pub const kAudioFileMarkerType_Generic: u32 = 0;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioFileMarker {
     pub mFramePosition: f64,
-    pub mName: *mut CFString,
+    pub mName: *const CFString,
     pub mMarkerID: i32,
     pub mSMPTETime: AudioFile_SMPTE_Time,
     pub mType: u32,
@@ -239,7 +239,7 @@ unsafe impl Encode for AudioFileMarker {
         "AudioFileMarker",
         &[
             <f64>::ENCODING,
-            <*mut CFString>::ENCODING,
+            <*const CFString>::ENCODING,
             <i32>::ENCODING,
             <AudioFile_SMPTE_Time>::ENCODING,
             <u32>::ENCODING,

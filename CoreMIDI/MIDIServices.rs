@@ -2246,7 +2246,7 @@ extern "C-unwind" {
     pub fn MIDIObjectGetStringProperty(
         obj: MIDIObjectRef,
         property_id: &CFString,
-        str: NonNull<*mut CFString>,
+        str: NonNull<*const CFString>,
     ) -> OSStatus;
 }
 
@@ -2291,7 +2291,7 @@ extern "C-unwind" {
     pub fn MIDIObjectGetDataProperty(
         obj: MIDIObjectRef,
         property_id: &CFString,
-        out_data: NonNull<*mut CFData>,
+        out_data: NonNull<*const CFData>,
     ) -> OSStatus;
 }
 
@@ -2335,7 +2335,7 @@ extern "C-unwind" {
     pub fn MIDIObjectGetDictionaryProperty(
         obj: MIDIObjectRef,
         property_id: &CFString,
-        out_dict: NonNull<*mut CFDictionary>,
+        out_dict: NonNull<*const CFDictionary>,
     ) -> OSStatus;
 }
 
@@ -2383,13 +2383,13 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn MIDIObjectGetProperties(
     obj: MIDIObjectRef,
-    out_properties: NonNull<*mut CFPropertyList>,
+    out_properties: NonNull<*const CFPropertyList>,
     deep: bool,
 ) -> OSStatus {
     extern "C-unwind" {
         fn MIDIObjectGetProperties(
             obj: MIDIObjectRef,
-            out_properties: NonNull<*mut CFPropertyList>,
+            out_properties: NonNull<*const CFPropertyList>,
             deep: Boolean,
         ) -> OSStatus;
     }
@@ -2539,7 +2539,7 @@ extern "C-unwind" {
     pub fn MIDIEventPacketSysexBytesForGroup(
         pkt: NonNull<MIDIEventPacket>,
         group_index: u8,
-        out_data: NonNull<*mut CFData>,
+        out_data: NonNull<*const CFData>,
     ) -> OSStatus;
 }
 

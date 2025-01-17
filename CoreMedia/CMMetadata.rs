@@ -211,7 +211,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         key: &CFType,
         key_space: &CFString,
-        identifier_out: NonNull<*mut CFString>,
+        identifier_out: NonNull<*const CFString>,
     ) -> OSStatus;
 }
 
@@ -231,7 +231,7 @@ extern "C-unwind" {
     pub fn CMMetadataCreateKeyFromIdentifier(
         allocator: Option<&CFAllocator>,
         identifier: &CFString,
-        key_out: NonNull<*mut CFType>,
+        key_out: NonNull<*const CFType>,
     ) -> OSStatus;
 }
 
@@ -241,7 +241,7 @@ extern "C-unwind" {
     pub fn CMMetadataCreateKeyFromIdentifierAsCFData(
         allocator: Option<&CFAllocator>,
         identifier: &CFString,
-        key_out: NonNull<*mut CFData>,
+        key_out: NonNull<*const CFData>,
     ) -> OSStatus;
 }
 
@@ -250,7 +250,7 @@ extern "C-unwind" {
     pub fn CMMetadataCreateKeySpaceFromIdentifier(
         allocator: Option<&CFAllocator>,
         identifier: &CFString,
-        key_space_out: NonNull<*mut CFString>,
+        key_space_out: NonNull<*const CFString>,
     ) -> OSStatus;
 }
 

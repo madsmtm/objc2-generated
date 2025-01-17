@@ -55,7 +55,7 @@ pub struct CFSocketSignature {
     pub protocolFamily: i32,
     pub socketType: i32,
     pub protocol: i32,
-    pub address: *mut CFData,
+    pub address: *const CFData,
 }
 
 #[cfg(all(feature = "CFData", feature = "objc2"))]
@@ -66,7 +66,7 @@ unsafe impl Encode for CFSocketSignature {
             <i32>::ENCODING,
             <i32>::ENCODING,
             <i32>::ENCODING,
-            <*mut CFData>::ENCODING,
+            <*const CFData>::ENCODING,
         ],
     );
 }
@@ -135,7 +135,7 @@ pub type CFSocketCallBack = Option<
     unsafe extern "C-unwind" fn(
         *mut CFSocket,
         CFSocketCallBackType,
-        *mut CFData,
+        *const CFData,
         *const c_void,
         *mut c_void,
     ),
@@ -150,7 +150,7 @@ pub struct CFSocketContext {
     pub info: *mut c_void,
     pub retain: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>,
     pub release: Option<unsafe extern "C-unwind" fn(*const c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -162,7 +162,7 @@ unsafe impl Encode for CFSocketContext {
             <*mut c_void>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>>::ENCODING,
         ],
     );
 }
@@ -425,8 +425,8 @@ extern "C-unwind" {
         name_server_signature: *const CFSocketSignature,
         timeout: CFTimeInterval,
         name: Option<&CFString>,
-        value: *mut *mut CFPropertyList,
-        name_server_address: *mut *mut CFData,
+        value: *mut *const CFPropertyList,
+        name_server_address: *mut *const CFData,
     ) -> CFSocketError;
 }
 
@@ -447,7 +447,7 @@ extern "C-unwind" {
         timeout: CFTimeInterval,
         name: Option<&CFString>,
         signature: *mut CFSocketSignature,
-        name_server_address: *mut *mut CFData,
+        name_server_address: *mut *const CFData,
     ) -> CFSocketError;
 }
 

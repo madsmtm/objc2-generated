@@ -169,7 +169,7 @@ pub struct CMBufferCallbacks {
     /// If triggers of type kCMBufferQueueTrigger_WhenDataBecomesReady are installed,
     /// the queue will listen for this notification on the head buffer.
     /// Can be NULL (then the queue won't listen for it).
-    pub dataBecameReadyNotification: *mut CFString,
+    pub dataBecameReadyNotification: *const CFString,
     /// This callback is called (once) during enqueue and dequeue operation to
     /// update the total size of the queue. Can be NULL.  Ignored if version
     /// <
@@ -189,7 +189,7 @@ unsafe impl Encode for CMBufferCallbacks {
             <CMBufferGetTimeCallback>::ENCODING,
             <CMBufferGetBooleanCallback>::ENCODING,
             <CMBufferCompareCallback>::ENCODING,
-            <*mut CFString>::ENCODING,
+            <*const CFString>::ENCODING,
             <CMBufferGetSizeCallback>::ENCODING,
         ],
     );
@@ -235,7 +235,7 @@ pub struct CMBufferHandlers {
     /// If triggers of type kCMBufferQueueTrigger_WhenDataBecomesReady are installed,
     /// the queue will listen for this notification on the head buffer.
     /// Can be NULL (then the queue won't listen for it).
-    pub dataBecameReadyNotification: *mut CFString,
+    pub dataBecameReadyNotification: *const CFString,
     /// This block is called (once) during enqueue and dequeue operation to
     /// update the total size of the queue. Can be NULL.
     pub getSize: CMBufferGetSizeHandler,
@@ -252,7 +252,7 @@ unsafe impl Encode for CMBufferHandlers {
             <CMBufferGetTimeHandler>::ENCODING,
             <CMBufferGetBooleanHandler>::ENCODING,
             <CMBufferCompareHandler>::ENCODING,
-            <*mut CFString>::ENCODING,
+            <*const CFString>::ENCODING,
             <CMBufferGetSizeHandler>::ENCODING,
         ],
     );

@@ -864,13 +864,13 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCopyAttribute(
 pub unsafe extern "C-unwind" fn CTFontDescriptorCopyLocalizedAttribute(
     descriptor: &CTFontDescriptor,
     attribute: &CFString,
-    language: *mut *mut CFString,
+    language: *mut *const CFString,
 ) -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
         fn CTFontDescriptorCopyLocalizedAttribute(
             descriptor: &CTFontDescriptor,
             attribute: &CFString,
-            language: *mut *mut CFString,
+            language: *mut *const CFString,
         ) -> Option<NonNull<CFType>>;
     }
     let ret = unsafe { CTFontDescriptorCopyLocalizedAttribute(descriptor, attribute, language) };

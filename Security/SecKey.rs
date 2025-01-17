@@ -633,14 +633,14 @@ pub unsafe extern "C-unwind" fn SecKeyWrapSymmetric(
 #[deprecated = "No longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecKeyUnwrapSymmetric(
-    key_to_unwrap: NonNull<*mut CFData>,
+    key_to_unwrap: NonNull<*const CFData>,
     unwrapping_key: &SecKey,
     parameters: &CFDictionary,
     error: *mut *mut CFError,
 ) -> Option<CFRetained<SecKey>> {
     extern "C-unwind" {
         fn SecKeyUnwrapSymmetric(
-            key_to_unwrap: NonNull<*mut CFData>,
+            key_to_unwrap: NonNull<*const CFData>,
             unwrapping_key: &SecKey,
             parameters: &CFDictionary,
             error: *mut *mut CFError,

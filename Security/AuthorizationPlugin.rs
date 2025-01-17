@@ -236,14 +236,14 @@ pub struct AuthorizationCallbacks {
         *mut *const AuthorizationValue,
     ) -> OSStatus,
     pub GetLAContext:
-        unsafe extern "C-unwind" fn(AuthorizationEngineRef, *mut *mut CFType) -> OSStatus,
+        unsafe extern "C-unwind" fn(AuthorizationEngineRef, *mut *const CFType) -> OSStatus,
     pub GetTokenIdentities: unsafe extern "C-unwind" fn(
         AuthorizationEngineRef,
         NonNull<CFType>,
-        *mut *mut CFArray,
+        *mut *const CFArray,
     ) -> OSStatus,
     pub GetTKTokenWatcher:
-        unsafe extern "C-unwind" fn(AuthorizationEngineRef, *mut *mut CFType) -> OSStatus,
+        unsafe extern "C-unwind" fn(AuthorizationEngineRef, *mut *const CFType) -> OSStatus,
     pub RemoveHintValue:
         unsafe extern "C-unwind" fn(AuthorizationEngineRef, AuthorizationString) -> OSStatus,
     pub RemoveContextValue:
@@ -264,9 +264,9 @@ unsafe impl Encode for AuthorizationCallbacks {
         <unsafe extern "C-unwind" fn(AuthorizationEngineRef,NonNull<*const AuthorizationValueVector>,) -> OSStatus>::ENCODING,
         <unsafe extern "C-unwind" fn(AuthorizationEngineRef,*mut AuthorizationSessionId,) -> OSStatus>::ENCODING,
         <unsafe extern "C-unwind" fn(AuthorizationEngineRef,AuthorizationString,*mut *const AuthorizationValue,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,*mut *mut CFType,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,NonNull<CFType>,*mut *mut CFArray,) -> OSStatus>::ENCODING,
-        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,*mut *mut CFType,) -> OSStatus>::ENCODING,
+        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,*mut *const CFType,) -> OSStatus>::ENCODING,
+        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,NonNull<CFType>,*mut *const CFArray,) -> OSStatus>::ENCODING,
+        <unsafe extern "C-unwind" fn(AuthorizationEngineRef,*mut *const CFType,) -> OSStatus>::ENCODING,
         <unsafe extern "C-unwind" fn(AuthorizationEngineRef,AuthorizationString,) -> OSStatus>::ENCODING,
         <unsafe extern "C-unwind" fn(AuthorizationEngineRef,AuthorizationString,) -> OSStatus>::ENCODING,
     ]);

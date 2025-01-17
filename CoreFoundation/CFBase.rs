@@ -175,7 +175,7 @@ pub type CFAllocatorReleaseCallBack = Option<unsafe extern "C-unwind" fn(*const 
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorcopydescriptioncallback?language=objc)
 pub type CFAllocatorCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>;
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfallocatorallocatecallback?language=objc)
 pub type CFAllocatorAllocateCallBack =

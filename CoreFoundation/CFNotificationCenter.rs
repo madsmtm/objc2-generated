@@ -32,9 +32,9 @@ pub type CFNotificationCallback = Option<
     unsafe extern "C-unwind" fn(
         *mut CFNotificationCenter,
         *mut c_void,
-        *mut CFNotificationName,
+        *const CFNotificationName,
         *const c_void,
-        *mut CFDictionary,
+        *const CFDictionary,
     ),
 >;
 

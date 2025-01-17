@@ -44,7 +44,7 @@ extern "C-unwind" {
     pub fn SecCodeCopyStaticCode(
         code: &SecCode,
         flags: SecCSFlags,
-        static_code: NonNull<*mut SecStaticCode>,
+        static_code: NonNull<*const SecStaticCode>,
     ) -> OSStatus;
 }
 
@@ -300,7 +300,7 @@ extern "C-unwind" {
     pub fn SecCodeCopyPath(
         static_code: &SecStaticCode,
         flags: SecCSFlags,
-        path: NonNull<*mut CFURL>,
+        path: NonNull<*const CFURL>,
     ) -> OSStatus;
 }
 
@@ -495,7 +495,7 @@ extern "C-unwind" {
     pub fn SecCodeCopySigningInformation(
         code: &SecStaticCode,
         flags: SecCSFlags,
-        information: NonNull<*mut CFDictionary>,
+        information: NonNull<*const CFDictionary>,
     ) -> OSStatus;
 }
 

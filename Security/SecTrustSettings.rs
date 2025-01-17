@@ -100,7 +100,7 @@ extern "C-unwind" {
     pub fn SecTrustSettingsCopyTrustSettings(
         cert_ref: &SecCertificate,
         domain: SecTrustSettingsDomain,
-        trust_settings: NonNull<*mut CFArray>,
+        trust_settings: NonNull<*const CFArray>,
     ) -> OSStatus;
 }
 
@@ -124,7 +124,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     pub fn SecTrustSettingsCopyCertificates(
         domain: SecTrustSettingsDomain,
-        cert_array: *mut *mut CFArray,
+        cert_array: *mut *const CFArray,
     ) -> OSStatus;
 }
 
@@ -133,14 +133,14 @@ extern "C-unwind" {
     pub fn SecTrustSettingsCopyModificationDate(
         cert_ref: &SecCertificate,
         domain: SecTrustSettingsDomain,
-        modification_date: NonNull<*mut CFDate>,
+        modification_date: NonNull<*const CFDate>,
     ) -> OSStatus;
 }
 
 extern "C-unwind" {
     pub fn SecTrustSettingsCreateExternalRepresentation(
         domain: SecTrustSettingsDomain,
-        trust_settings: NonNull<*mut CFData>,
+        trust_settings: NonNull<*const CFData>,
     ) -> OSStatus;
 }
 

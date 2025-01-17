@@ -47,7 +47,7 @@ extern "C-unwind" {
     pub fn SecStaticCodeCreateWithPath(
         path: &CFURL,
         flags: SecCSFlags,
-        static_code: NonNull<*mut SecStaticCode>,
+        static_code: NonNull<*const SecStaticCode>,
     ) -> OSStatus;
 }
 
@@ -116,7 +116,7 @@ extern "C-unwind" {
         path: &CFURL,
         flags: SecCSFlags,
         attributes: &CFDictionary,
-        static_code: NonNull<*mut SecStaticCode>,
+        static_code: NonNull<*const SecStaticCode>,
     ) -> OSStatus;
 }
 

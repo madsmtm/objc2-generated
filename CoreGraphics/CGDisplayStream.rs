@@ -110,7 +110,7 @@ unsafe impl RefEncode for CGDisplayStreamFrameStatus {
 #[cfg(all(feature = "block2", feature = "objc2-io-surface"))]
 #[cfg(not(target_os = "watchos"))]
 pub type CGDisplayStreamFrameAvailableHandler = *mut block2::Block<
-    dyn Fn(CGDisplayStreamFrameStatus, u64, *mut IOSurfaceRef, *mut CGDisplayStreamUpdate),
+    dyn Fn(CGDisplayStreamFrameStatus, u64, *mut IOSurfaceRef, *const CGDisplayStreamUpdate),
 >;
 
 unsafe impl ConcreteType for CGDisplayStreamUpdate {

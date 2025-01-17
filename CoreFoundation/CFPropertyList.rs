@@ -41,14 +41,14 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateFromXMLData(
     allocator: Option<&CFAllocator>,
     xml_data: Option<&CFData>,
     mutability_option: CFOptionFlags,
-    error_string: *mut *mut CFString,
+    error_string: *mut *const CFString,
 ) -> Option<CFRetained<CFPropertyList>> {
     extern "C-unwind" {
         fn CFPropertyListCreateFromXMLData(
             allocator: Option<&CFAllocator>,
             xml_data: Option<&CFData>,
             mutability_option: CFOptionFlags,
-            error_string: *mut *mut CFString,
+            error_string: *mut *const CFString,
         ) -> Option<NonNull<CFPropertyList>>;
     }
     let ret = unsafe {
@@ -138,7 +138,7 @@ extern "C-unwind" {
         property_list: &CFPropertyList,
         stream: Option<&CFWriteStream>,
         format: CFPropertyListFormat,
-        error_string: *mut *mut CFString,
+        error_string: *mut *const CFString,
     ) -> CFIndex;
 }
 
@@ -151,7 +151,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateFromStream(
     stream_length: CFIndex,
     mutability_option: CFOptionFlags,
     format: *mut CFPropertyListFormat,
-    error_string: *mut *mut CFString,
+    error_string: *mut *const CFString,
 ) -> Option<CFRetained<CFPropertyList>> {
     extern "C-unwind" {
         fn CFPropertyListCreateFromStream(
@@ -160,7 +160,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateFromStream(
             stream_length: CFIndex,
             mutability_option: CFOptionFlags,
             format: *mut CFPropertyListFormat,
-            error_string: *mut *mut CFString,
+            error_string: *mut *const CFString,
         ) -> Option<NonNull<CFPropertyList>>;
     }
     let ret = unsafe {

@@ -65,12 +65,12 @@ pub unsafe extern "C-unwind" fn CFFileSecurityCreateCopy(
 #[inline]
 pub unsafe extern "C-unwind" fn CFFileSecurityCopyOwnerUUID(
     file_sec: &CFFileSecurity,
-    owner_uuid: *mut *mut CFUUID,
+    owner_uuid: *mut *const CFUUID,
 ) -> bool {
     extern "C-unwind" {
         fn CFFileSecurityCopyOwnerUUID(
             file_sec: &CFFileSecurity,
-            owner_uuid: *mut *mut CFUUID,
+            owner_uuid: *mut *const CFUUID,
         ) -> Boolean;
     }
     let ret = unsafe { CFFileSecurityCopyOwnerUUID(file_sec, owner_uuid) };
@@ -97,12 +97,12 @@ pub unsafe extern "C-unwind" fn CFFileSecuritySetOwnerUUID(
 #[inline]
 pub unsafe extern "C-unwind" fn CFFileSecurityCopyGroupUUID(
     file_sec: &CFFileSecurity,
-    group_uuid: *mut *mut CFUUID,
+    group_uuid: *mut *const CFUUID,
 ) -> bool {
     extern "C-unwind" {
         fn CFFileSecurityCopyGroupUUID(
             file_sec: &CFFileSecurity,
-            group_uuid: *mut *mut CFUUID,
+            group_uuid: *mut *const CFUUID,
         ) -> Boolean;
     }
     let ret = unsafe { CFFileSecurityCopyGroupUUID(file_sec, group_uuid) };

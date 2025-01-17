@@ -18,7 +18,7 @@ pub struct CFBinaryHeapCompareContext {
     pub info: *mut c_void,
     pub retain: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>,
     pub release: Option<unsafe extern "C-unwind" fn(*const c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -30,7 +30,7 @@ unsafe impl Encode for CFBinaryHeapCompareContext {
             <*mut c_void>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>>::ENCODING,
         ],
     );
 }
@@ -68,9 +68,9 @@ unsafe impl RefEncode for CFBinaryHeapCompareContext {
 pub struct CFBinaryHeapCallBacks {
     pub version: CFIndex,
     pub retain:
-        Option<unsafe extern "C-unwind" fn(*mut CFAllocator, *const c_void) -> *const c_void>,
-    pub release: Option<unsafe extern "C-unwind" fn(*mut CFAllocator, *const c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>,
+        Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void>,
+    pub release: Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>,
     pub compare: Option<
         unsafe extern "C-unwind" fn(
             *const c_void,
@@ -88,10 +88,10 @@ unsafe impl Encode for CFBinaryHeapCallBacks {
             &[
                 <CFIndex>::ENCODING,
                 <Option<
-                    unsafe extern "C-unwind" fn(*mut CFAllocator, *const c_void) -> *const c_void,
+                    unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void,
                 >>::ENCODING,
-                <Option<unsafe extern "C-unwind" fn(*mut CFAllocator, *const c_void)>>::ENCODING,
-                <Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>>::ENCODING,
+                <Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>>::ENCODING,
+                <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>>::ENCODING,
                 <Option<
                     unsafe extern "C-unwind" fn(
                         *const c_void,

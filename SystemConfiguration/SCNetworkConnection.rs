@@ -252,14 +252,14 @@ unsafe impl ConcreteType for SCNetworkConnection {
 #[inline]
 pub unsafe extern "C-unwind" fn SCNetworkConnectionCopyUserPreferences(
     selection_options: Option<&CFDictionary>,
-    service_id: NonNull<*mut CFString>,
-    user_options: NonNull<*mut CFDictionary>,
+    service_id: NonNull<*const CFString>,
+    user_options: NonNull<*const CFDictionary>,
 ) -> bool {
     extern "C-unwind" {
         fn SCNetworkConnectionCopyUserPreferences(
             selection_options: Option<&CFDictionary>,
-            service_id: NonNull<*mut CFString>,
-            user_options: NonNull<*mut CFDictionary>,
+            service_id: NonNull<*const CFString>,
+            user_options: NonNull<*const CFDictionary>,
         ) -> Boolean;
     }
     let ret = unsafe {

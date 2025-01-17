@@ -51,7 +51,7 @@ extern "C-unwind" {
     #[deprecated = "SecKeychain is deprecated"]
     pub fn SecTrustedApplicationCopyData(
         app_ref: &SecTrustedApplication,
-        data: NonNull<*mut CFData>,
+        data: NonNull<*const CFData>,
     ) -> OSStatus;
 }
 

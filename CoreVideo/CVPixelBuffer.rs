@@ -548,7 +548,7 @@ extern "C-unwind" {
     pub fn CVPixelBufferCreateResolvedAttributesDictionary(
         allocator: Option<&CFAllocator>,
         attributes: Option<&CFArray>,
-        resolved_dictionary_out: NonNull<*mut CFDictionary>,
+        resolved_dictionary_out: NonNull<*const CFDictionary>,
     ) -> CVReturn;
 }
 

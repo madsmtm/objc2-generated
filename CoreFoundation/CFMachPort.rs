@@ -30,7 +30,7 @@ pub struct CFMachPortContext {
     pub info: *mut c_void,
     pub retain: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>,
     pub release: Option<unsafe extern "C-unwind" fn(*const c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -42,7 +42,7 @@ unsafe impl Encode for CFMachPortContext {
             <*mut c_void>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>>::ENCODING,
         ],
     );
 }

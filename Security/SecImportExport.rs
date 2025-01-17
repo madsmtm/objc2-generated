@@ -140,7 +140,7 @@ unsafe impl RefEncode for SecKeyImportExportFlags {
 pub struct SecKeyImportExportParameters {
     pub version: u32,
     pub flags: SecKeyImportExportFlags,
-    pub passphrase: *mut CFType,
+    pub passphrase: *const CFType,
     pub alertTitle: NonNull<CFString>,
     pub alertPrompt: NonNull<CFString>,
     pub accessRef: *mut SecAccess,
@@ -160,7 +160,7 @@ unsafe impl Encode for SecKeyImportExportParameters {
         &[
             <u32>::ENCODING,
             <SecKeyImportExportFlags>::ENCODING,
-            <*mut CFType>::ENCODING,
+            <*const CFType>::ENCODING,
             <NonNull<CFString>>::ENCODING,
             <NonNull<CFString>>::ENCODING,
             <*mut SecAccess>::ENCODING,
@@ -187,12 +187,12 @@ unsafe impl RefEncode for SecKeyImportExportParameters {
 pub struct SecItemImportExportKeyParameters {
     pub version: u32,
     pub flags: SecKeyImportExportFlags,
-    pub passphrase: *mut CFType,
-    pub alertTitle: *mut CFString,
-    pub alertPrompt: *mut CFString,
+    pub passphrase: *const CFType,
+    pub alertTitle: *const CFString,
+    pub alertPrompt: *const CFString,
     pub accessRef: *mut SecAccess,
-    pub keyUsage: *mut CFArray,
-    pub keyAttributes: *mut CFArray,
+    pub keyUsage: *const CFArray,
+    pub keyAttributes: *const CFArray,
 }
 
 #[cfg(all(feature = "SecBase", feature = "objc2"))]
@@ -202,12 +202,12 @@ unsafe impl Encode for SecItemImportExportKeyParameters {
         &[
             <u32>::ENCODING,
             <SecKeyImportExportFlags>::ENCODING,
-            <*mut CFType>::ENCODING,
-            <*mut CFString>::ENCODING,
-            <*mut CFString>::ENCODING,
+            <*const CFType>::ENCODING,
+            <*const CFString>::ENCODING,
+            <*const CFString>::ENCODING,
             <*mut SecAccess>::ENCODING,
-            <*mut CFArray>::ENCODING,
-            <*mut CFArray>::ENCODING,
+            <*const CFArray>::ENCODING,
+            <*const CFArray>::ENCODING,
         ],
     );
 }
@@ -225,7 +225,7 @@ extern "C-unwind" {
         output_format: SecExternalFormat,
         flags: SecItemImportExportFlags,
         key_params: *const SecKeyImportExportParameters,
-        exported_data: NonNull<*mut CFData>,
+        exported_data: NonNull<*const CFData>,
     ) -> OSStatus;
 }
 
@@ -236,7 +236,7 @@ extern "C-unwind" {
         output_format: SecExternalFormat,
         flags: SecItemImportExportFlags,
         key_params: *const SecItemImportExportKeyParameters,
-        exported_data: NonNull<*mut CFData>,
+        exported_data: NonNull<*const CFData>,
     ) -> OSStatus;
 }
 
@@ -251,7 +251,7 @@ extern "C-unwind" {
         flags: SecItemImportExportFlags,
         key_params: *const SecKeyImportExportParameters,
         import_keychain: Option<&SecKeychain>,
-        out_items: *mut *mut CFArray,
+        out_items: *mut *const CFArray,
     ) -> OSStatus;
 }
 
@@ -265,7 +265,7 @@ extern "C-unwind" {
         flags: SecItemImportExportFlags,
         key_params: *const SecItemImportExportKeyParameters,
         import_keychain: Option<&SecKeychain>,
-        out_items: *mut *mut CFArray,
+        out_items: *mut *const CFArray,
     ) -> OSStatus;
 }
 
@@ -360,6 +360,6 @@ extern "C-unwind" {
     pub fn SecPKCS12Import(
         pkcs12_data: &CFData,
         options: &CFDictionary,
-        items: NonNull<*mut CFArray>,
+        items: NonNull<*const CFArray>,
     ) -> OSStatus;
 }

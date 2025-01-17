@@ -64,7 +64,7 @@ extern "C-unwind" {
     #[cfg(all(feature = "CMSync", feature = "objc2-core-audio"))]
     pub fn CMAudioDeviceClockGetAudioDevice(
         clock: &CMClock,
-        device_uid_out: *mut *mut CFString,
+        device_uid_out: *mut *const CFString,
         device_id_out: *mut AudioDeviceID,
         tracking_default_device_out: *mut Boolean,
     ) -> OSStatus;

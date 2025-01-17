@@ -120,7 +120,7 @@ unsafe impl RefEncode for CFXMLParserStatusCode {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercreatexmlstructurecallback?language=objc)
 #[cfg(feature = "CFXMLNode")]
 pub type CFXMLParserCreateXMLStructureCallBack = Option<
-    unsafe extern "C-unwind" fn(*mut CFXMLParser, *mut CFXMLNode, *mut c_void) -> *mut c_void,
+    unsafe extern "C-unwind" fn(*mut CFXMLParser, *const CFXMLNode, *mut c_void) -> *mut c_void,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseraddchildcallback?language=objc)
@@ -139,7 +139,11 @@ pub type CFXMLParserEndXMLStructureCallBack =
     feature = "CFXMLNode"
 ))]
 pub type CFXMLParserResolveExternalEntityCallBack = Option<
-    unsafe extern "C-unwind" fn(*mut CFXMLParser, *mut CFXMLExternalID, *mut c_void) -> *mut CFData,
+    unsafe extern "C-unwind" fn(
+        *mut CFXMLParser,
+        *mut CFXMLExternalID,
+        *mut c_void,
+    ) -> *const CFData,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserhandleerrorcallback?language=objc)
@@ -208,7 +212,7 @@ pub type CFXMLParserReleaseCallBack = Option<unsafe extern "C-unwind" fn(*const 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercopydescriptioncallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFXMLParserCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>;
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparsercontext?language=objc)
 #[cfg(feature = "CFBase")]
@@ -473,7 +477,7 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromDataWithError(
     data_source: Option<&CFURL>,
     parse_options: CFOptionFlags,
     version_of_nodes: CFIndex,
-    error_dict: *mut *mut CFDictionary,
+    error_dict: *mut *const CFDictionary,
 ) -> Option<CFRetained<CFXMLTree>> {
     extern "C-unwind" {
         fn CFXMLTreeCreateFromDataWithError(
@@ -482,7 +486,7 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromDataWithError(
             data_source: Option<&CFURL>,
             parse_options: CFOptionFlags,
             version_of_nodes: CFIndex,
-            error_dict: *mut *mut CFDictionary,
+            error_dict: *mut *const CFDictionary,
         ) -> Option<NonNull<CFXMLTree>>;
     }
     let ret = unsafe {

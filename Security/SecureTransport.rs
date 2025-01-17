@@ -661,13 +661,16 @@ extern "C-unwind" {
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLCopyTrustedRoots(
         context: &SSLContext,
-        trusted_roots: NonNull<*mut CFArray>,
+        trusted_roots: NonNull<*const CFArray>,
     ) -> OSStatus;
 }
 
 extern "C-unwind" {
     #[deprecated = "No longer supported. Use Network.framework."]
-    pub fn SSLCopyPeerCertificates(context: &SSLContext, certs: NonNull<*mut CFArray>) -> OSStatus;
+    pub fn SSLCopyPeerCertificates(
+        context: &SSLContext,
+        certs: NonNull<*const CFArray>,
+    ) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -710,8 +713,10 @@ extern "C-unwind" {
 
 extern "C-unwind" {
     #[deprecated = "No longer supported. Use Network.framework."]
-    pub fn SSLCopyALPNProtocols(context: &SSLContext, protocols: NonNull<*mut CFArray>)
-        -> OSStatus;
+    pub fn SSLCopyALPNProtocols(
+        context: &SSLContext,
+        protocols: NonNull<*const CFArray>,
+    ) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -783,7 +788,7 @@ extern "C-unwind" {
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLCopyCertificateAuthorities(
         context: &SSLContext,
-        certificates: NonNull<*mut CFArray>,
+        certificates: NonNull<*const CFArray>,
     ) -> OSStatus;
 }
 
@@ -791,7 +796,7 @@ extern "C-unwind" {
     #[deprecated = "No longer supported. Use Network.framework."]
     pub fn SSLCopyDistinguishedNames(
         context: &SSLContext,
-        names: NonNull<*mut CFArray>,
+        names: NonNull<*const CFArray>,
     ) -> OSStatus;
 }
 

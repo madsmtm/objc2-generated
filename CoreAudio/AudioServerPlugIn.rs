@@ -71,7 +71,7 @@ pub struct AudioServerPlugInClientInfo {
     pub mClientID: u32,
     pub mProcessID: libc::pid_t,
     pub mIsNativeEndian: Boolean,
-    pub mBundleID: *mut CFString,
+    pub mBundleID: *const CFString,
 }
 
 #[cfg(all(feature = "libc", feature = "objc2"))]
@@ -82,7 +82,7 @@ unsafe impl Encode for AudioServerPlugInClientInfo {
             <u32>::ENCODING,
             <libc::pid_t>::ENCODING,
             <Boolean>::ENCODING,
-            <*mut CFString>::ENCODING,
+            <*const CFString>::ENCODING,
         ],
     );
 }

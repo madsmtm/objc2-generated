@@ -134,7 +134,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         tags: *const CMTag,
         tag_count: CMItemCount,
-        new_collection_out: NonNull<*mut CMTagCollection>,
+        new_collection_out: NonNull<*const CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -173,7 +173,7 @@ extern "C-unwind" {
     pub fn CMTagCollectionCreateCopy(
         tag_collection: &CMTagCollection,
         allocator: Option<&CFAllocator>,
-        new_collection_copy_out: NonNull<*mut CMTagCollection>,
+        new_collection_copy_out: NonNull<*const CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -467,7 +467,7 @@ extern "C-unwind" {
         tag_collection: &CMTagCollection,
         categories: NonNull<CMTagCategory>,
         categories_count: CMItemCount,
-        collection_with_tags_of_categories: NonNull<*mut CMTagCollection>,
+        collection_with_tags_of_categories: NonNull<*const CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -540,7 +540,7 @@ extern "C-unwind" {
     pub fn CMTagCollectionCreateIntersection(
         tag_collection1: Option<&CMTagCollection>,
         tag_collection2: Option<&CMTagCollection>,
-        tag_collection_out: NonNull<*mut CMTagCollection>,
+        tag_collection_out: NonNull<*const CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -559,7 +559,7 @@ extern "C-unwind" {
     pub fn CMTagCollectionCreateUnion(
         tag_collection1: Option<&CMTagCollection>,
         tag_collection2: Option<&CMTagCollection>,
-        tag_collection_out: NonNull<*mut CMTagCollection>,
+        tag_collection_out: NonNull<*const CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -578,7 +578,7 @@ extern "C-unwind" {
     pub fn CMTagCollectionCreateDifference(
         tag_collection_minuend: Option<&CMTagCollection>,
         tag_collection_subtrahend: Option<&CMTagCollection>,
-        tag_collection_out: NonNull<*mut CMTagCollection>,
+        tag_collection_out: NonNull<*const CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -597,7 +597,7 @@ extern "C-unwind" {
     pub fn CMTagCollectionCreateExclusiveOr(
         tag_collection1: Option<&CMTagCollection>,
         tag_collection2: Option<&CMTagCollection>,
-        tag_collection_out: NonNull<*mut CMTagCollection>,
+        tag_collection_out: NonNull<*const CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -734,7 +734,7 @@ extern "C-unwind" {
     pub fn CMTagCollectionCreateFromDictionary(
         dict: &CFDictionary,
         allocator: Option<&CFAllocator>,
-        new_collection_out: NonNull<*mut CMTagCollection>,
+        new_collection_out: NonNull<*const CMTagCollection>,
     ) -> OSStatus;
 }
 
@@ -778,7 +778,7 @@ extern "C-unwind" {
     pub fn CMTagCollectionCreateFromData(
         data: &CFData,
         allocator: Option<&CFAllocator>,
-        new_collection_out: NonNull<*mut CMTagCollection>,
+        new_collection_out: NonNull<*const CMTagCollection>,
     ) -> OSStatus;
 }
 

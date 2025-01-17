@@ -13,7 +13,7 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CGColorDataFormat {
     pub version: u32,
-    pub colorspace_info: *mut CFType,
+    pub colorspace_info: *const CFType,
     pub bitmap_info: CGBitmapInfo,
     pub bits_per_component: usize,
     pub bytes_per_row: usize,
@@ -27,7 +27,7 @@ unsafe impl Encode for CGColorDataFormat {
         "?",
         &[
             <u32>::ENCODING,
-            <*mut CFType>::ENCODING,
+            <*const CFType>::ENCODING,
             <CGBitmapInfo>::ENCODING,
             <usize>::ENCODING,
             <usize>::ENCODING,

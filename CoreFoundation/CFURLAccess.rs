@@ -18,8 +18,8 @@ use crate::*;
 pub unsafe extern "C-unwind" fn CFURLCreateDataAndPropertiesFromResource(
     alloc: Option<&CFAllocator>,
     url: Option<&CFURL>,
-    resource_data: *mut *mut CFData,
-    properties: *mut *mut CFDictionary,
+    resource_data: *mut *const CFData,
+    properties: *mut *const CFDictionary,
     desired_properties: Option<&CFArray>,
     error_code: *mut i32,
 ) -> bool {
@@ -27,8 +27,8 @@ pub unsafe extern "C-unwind" fn CFURLCreateDataAndPropertiesFromResource(
         fn CFURLCreateDataAndPropertiesFromResource(
             alloc: Option<&CFAllocator>,
             url: Option<&CFURL>,
-            resource_data: *mut *mut CFData,
-            properties: *mut *mut CFDictionary,
+            resource_data: *mut *const CFData,
+            properties: *mut *const CFDictionary,
             desired_properties: Option<&CFArray>,
             error_code: *mut i32,
         ) -> Boolean;

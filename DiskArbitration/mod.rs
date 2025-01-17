@@ -378,7 +378,7 @@ extern "C-unwind" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskmountcallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskMountCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut DADissenter, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *const DADissenter, *mut c_void)>;
 
 extern "C-unwind" {
     /// Mounts the volume at the specified disk object.
@@ -423,7 +423,7 @@ extern "C-unwind" {
         options: DADiskMountOptions,
         callback: DADiskMountCallback,
         context: *mut c_void,
-        arguments: *mut *mut CFString,
+        arguments: *mut *const CFString,
     );
 }
 
@@ -442,7 +442,7 @@ extern "C-unwind" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskmountapprovalcallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskMountApprovalCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void) -> *mut DADissenter>;
+    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void) -> *const DADissenter>;
 
 extern "C-unwind" {
     /// Registers a callback function to be called whenever a volume is to be mounted.
@@ -474,7 +474,7 @@ extern "C-unwind" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskrenamecallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskRenameCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut DADissenter, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *const DADissenter, *mut c_void)>;
 
 extern "C-unwind" {
     /// Renames the volume at the specified disk object.
@@ -507,7 +507,7 @@ extern "C-unwind" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskunmountcallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskUnmountCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut DADissenter, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *const DADissenter, *mut c_void)>;
 
 extern "C-unwind" {
     /// Unmounts the volume at the specified disk object.
@@ -543,7 +543,7 @@ extern "C-unwind" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskunmountapprovalcallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskUnmountApprovalCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void) -> *mut DADissenter>;
+    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void) -> *const DADissenter>;
 
 extern "C-unwind" {
     /// Registers a callback function to be called whenever a volume is to be unmounted.
@@ -575,7 +575,7 @@ extern "C-unwind" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskejectcallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskEjectCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut DADissenter, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *const DADissenter, *mut c_void)>;
 
 extern "C-unwind" {
     /// Ejects the specified disk object.
@@ -611,7 +611,7 @@ extern "C-unwind" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskejectapprovalcallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskEjectApprovalCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void) -> *mut DADissenter>;
+    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void) -> *const DADissenter>;
 
 extern "C-unwind" {
     /// Registers a callback function to be called whenever a volume is to be ejected.
@@ -643,7 +643,7 @@ extern "C-unwind" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskclaimcallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskClaimCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut DADissenter, *mut c_void)>;
+    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *const DADissenter, *mut c_void)>;
 
 /// Type of the callback function used by DADiskClaim().
 ///
@@ -660,7 +660,7 @@ pub type DADiskClaimCallback =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskclaimreleasecallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskClaimReleaseCallback =
-    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void) -> *mut DADissenter>;
+    Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void) -> *const DADissenter>;
 
 extern "C-unwind" {
     /// Claims the specified disk object for exclusive use.

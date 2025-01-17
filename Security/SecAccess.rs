@@ -287,7 +287,7 @@ extern "C-unwind" {
         user_id: *mut libc::uid_t,
         group_id: *mut libc::gid_t,
         owner_type: *mut SecAccessOwnerType,
-        acl_list: *mut *mut CFArray,
+        acl_list: *mut *const CFArray,
     ) -> OSStatus;
 }
 
@@ -303,7 +303,7 @@ extern "C-unwind" {
     #[deprecated = "SecKeychain is deprecated"]
     pub fn SecAccessCopyACLList(
         access_ref: &SecAccess,
-        acl_list: NonNull<*mut CFArray>,
+        acl_list: NonNull<*const CFArray>,
     ) -> OSStatus;
 }
 
@@ -324,7 +324,7 @@ extern "C-unwind" {
     pub fn SecAccessCopySelectedACLList(
         access_ref: &SecAccess,
         action: CSSM_ACL_AUTHORIZATION_TAG,
-        acl_list: NonNull<*mut CFArray>,
+        acl_list: NonNull<*const CFArray>,
     ) -> OSStatus;
 }
 

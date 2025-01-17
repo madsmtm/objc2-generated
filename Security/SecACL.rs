@@ -137,8 +137,8 @@ extern "C-unwind" {
     #[deprecated = "CSSM is not supported"]
     pub fn SecACLCopySimpleContents(
         acl: &SecACL,
-        application_list: NonNull<*mut CFArray>,
-        description: NonNull<*mut CFString>,
+        application_list: NonNull<*const CFArray>,
+        description: NonNull<*const CFString>,
         prompt_selector: NonNull<CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR>,
     ) -> OSStatus;
 }
@@ -159,8 +159,8 @@ extern "C-unwind" {
     #[deprecated = "SecKeychain is deprecated"]
     pub fn SecACLCopyContents(
         acl: &SecACL,
-        application_list: NonNull<*mut CFArray>,
-        description: NonNull<*mut CFString>,
+        application_list: NonNull<*const CFArray>,
+        description: NonNull<*const CFString>,
         prompt_selector: NonNull<SecKeychainPromptSelector>,
     ) -> OSStatus;
 }

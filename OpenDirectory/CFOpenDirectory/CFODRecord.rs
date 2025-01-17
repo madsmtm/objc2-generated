@@ -88,8 +88,8 @@ extern "C-unwind" {
         record_type: Option<&ODRecordType>,
         auth_type: Option<&ODAuthenticationType>,
         auth_items: Option<&CFArray>,
-        out_auth_items: *mut *mut CFArray,
-        out_context: *mut *mut ODContextRef,
+        out_auth_items: *mut *const CFArray,
+        out_context: *mut *const ODContextRef,
         error: *mut *mut CFError,
     ) -> bool;
 }
@@ -187,8 +187,8 @@ extern "C-unwind" {
         record: &ODRecordRef,
         auth_type: Option<&ODAuthenticationType>,
         auth_items: Option<&CFArray>,
-        out_auth_items: *mut *mut CFArray,
-        out_context: *mut *mut ODContextRef,
+        out_auth_items: *mut *const CFArray,
+        out_context: *mut *const ODContextRef,
         error: *mut *mut CFError,
     ) -> bool;
 }

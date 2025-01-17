@@ -513,7 +513,7 @@ extern "C-unwind" {
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h). In addition, errSecParam (-50) may be returned if the keychain list is not specified (NULL).
     #[deprecated = "SecKeychain is deprecated"]
-    pub fn SecKeychainCopySearchList(search_list: NonNull<*mut CFArray>) -> OSStatus;
+    pub fn SecKeychainCopySearchList(search_list: NonNull<*const CFArray>) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -574,7 +574,7 @@ extern "C-unwind" {
     #[deprecated = "SecKeychain is deprecated"]
     pub fn SecKeychainCopyDomainSearchList(
         domain: SecPreferencesDomain,
-        search_list: NonNull<*mut CFArray>,
+        search_list: NonNull<*const CFArray>,
     ) -> OSStatus;
 }
 

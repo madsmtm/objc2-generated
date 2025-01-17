@@ -43,7 +43,7 @@ pub struct CFMessagePortContext {
     pub info: *mut c_void,
     pub retain: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>,
     pub release: Option<unsafe extern "C-unwind" fn(*const c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -55,7 +55,7 @@ unsafe impl Encode for CFMessagePortContext {
             <*mut c_void>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>>::ENCODING,
         ],
     );
 }
@@ -68,7 +68,12 @@ unsafe impl RefEncode for CFMessagePortContext {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportcallback?language=objc)
 #[cfg(feature = "CFData")]
 pub type CFMessagePortCallBack = Option<
-    unsafe extern "C-unwind" fn(*mut CFMessagePort, i32, *mut CFData, *mut c_void) -> *mut CFData,
+    unsafe extern "C-unwind" fn(
+        *mut CFMessagePort,
+        i32,
+        *const CFData,
+        *mut c_void,
+    ) -> *const CFData,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportinvalidationcallback?language=objc)
@@ -200,7 +205,7 @@ extern "C-unwind" {
         send_timeout: CFTimeInterval,
         rcv_timeout: CFTimeInterval,
         reply_mode: Option<&CFString>,
-        return_data: *mut *mut CFData,
+        return_data: *mut *const CFData,
     ) -> i32;
 }
 

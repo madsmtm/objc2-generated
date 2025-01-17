@@ -48,7 +48,7 @@ pub type CFPlugInUnloadFunction = Option<unsafe extern "C-unwind" fn(*mut CFPlug
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginfactoryfunction?language=objc)
 #[cfg(all(feature = "CFBase", feature = "CFUUID"))]
 pub type CFPlugInFactoryFunction =
-    Option<unsafe extern "C-unwind" fn(*mut CFAllocator, *mut CFUUID) -> *mut c_void>;
+    Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const CFUUID) -> *mut c_void>;
 
 #[cfg(all(feature = "CFBase", feature = "CFBundle"))]
 unsafe impl ConcreteType for CFPlugIn {
@@ -250,7 +250,11 @@ cf_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancegetinterfacefunction?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFPlugInInstanceGetInterfaceFunction = Option<
-    unsafe extern "C-unwind" fn(*mut CFPlugInInstance, *mut CFString, *mut *mut c_void) -> Boolean,
+    unsafe extern "C-unwind" fn(
+        *mut CFPlugInInstance,
+        *const CFString,
+        *mut *mut c_void,
+    ) -> Boolean,
 >;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancedeallocateinstancedatafunction?language=objc)

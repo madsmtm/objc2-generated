@@ -329,13 +329,13 @@ unsafe impl RefEncode for AURenderCallbackStruct {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AUPreset {
     pub presetNumber: i32,
-    pub presetName: *mut CFString,
+    pub presetName: *const CFString,
 }
 
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl Encode for AUPreset {
     const ENCODING: Encoding =
-        Encoding::Struct("AUPreset", &[<i32>::ENCODING, <*mut CFString>::ENCODING]);
+        Encoding::Struct("AUPreset", &[<i32>::ENCODING, <*const CFString>::ENCODING]);
 }
 
 #[cfg(feature = "objc2-core-foundation")]
@@ -996,9 +996,9 @@ unsafe impl RefEncode for AudioUnitParameterOptions {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioUnitParameterInfo {
     pub name: [c_char; 52],
-    pub unitName: *mut CFString,
+    pub unitName: *const CFString,
     pub clumpID: u32,
-    pub cfNameString: *mut CFString,
+    pub cfNameString: *const CFString,
     pub unit: AudioUnitParameterUnit,
     pub minValue: AudioUnitParameterValue,
     pub maxValue: AudioUnitParameterValue,
@@ -1012,9 +1012,9 @@ unsafe impl Encode for AudioUnitParameterInfo {
         "AudioUnitParameterInfo",
         &[
             <[c_char; 52]>::ENCODING,
-            <*mut CFString>::ENCODING,
+            <*const CFString>::ENCODING,
             <u32>::ENCODING,
-            <*mut CFString>::ENCODING,
+            <*const CFString>::ENCODING,
             <AudioUnitParameterUnit>::ENCODING,
             <AudioUnitParameterValue>::ENCODING,
             <AudioUnitParameterValue>::ENCODING,
@@ -1048,7 +1048,7 @@ pub const kAudioUnitParameterName_Full: c_int = -1;
 pub struct AudioUnitParameterNameInfo {
     pub inID: AudioUnitParameterID,
     pub inDesiredLength: i32,
-    pub outName: *mut CFString,
+    pub outName: *const CFString,
 }
 
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
@@ -1058,7 +1058,7 @@ unsafe impl Encode for AudioUnitParameterNameInfo {
         &[
             <AudioUnitParameterID>::ENCODING,
             <i32>::ENCODING,
-            <*mut CFString>::ENCODING,
+            <*const CFString>::ENCODING,
         ],
     );
 }
@@ -1081,7 +1081,7 @@ pub type AudioUnitParameterIDName = AudioUnitParameterNameInfo;
 pub struct AudioUnitParameterStringFromValue {
     pub inParamID: AudioUnitParameterID,
     pub inValue: NonNull<AudioUnitParameterValue>,
-    pub outString: *mut CFString,
+    pub outString: *const CFString,
 }
 
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
@@ -1091,7 +1091,7 @@ unsafe impl Encode for AudioUnitParameterStringFromValue {
         &[
             <AudioUnitParameterID>::ENCODING,
             <NonNull<AudioUnitParameterValue>>::ENCODING,
-            <*mut CFString>::ENCODING,
+            <*const CFString>::ENCODING,
         ],
     );
 }

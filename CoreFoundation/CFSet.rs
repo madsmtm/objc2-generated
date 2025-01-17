@@ -22,7 +22,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetretaincallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFSetRetainCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFAllocator, *const c_void) -> *const c_void>;
+    Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void>;
 
 /// Type of the callback function used by CFSets for releasing a retain on values.
 ///
@@ -33,7 +33,7 @@ pub type CFSetRetainCallBack =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetreleasecallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFSetReleaseCallBack =
-    Option<unsafe extern "C-unwind" fn(*mut CFAllocator, *const c_void)>;
+    Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>;
 
 /// Type of the callback function used by CFSets for describing values.
 ///
@@ -44,7 +44,7 @@ pub type CFSetReleaseCallBack =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcopydescriptioncallback?language=objc)
 #[cfg(feature = "CFBase")]
 pub type CFSetCopyDescriptionCallBack =
-    Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>;
+    Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
 /// Type of the callback function used by CFSets for comparing values.
 ///

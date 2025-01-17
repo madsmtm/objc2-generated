@@ -112,7 +112,7 @@ pub struct CFStreamClientContext {
     pub info: *mut c_void,
     pub retain: Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void>,
     pub release: Option<unsafe extern "C-unwind" fn(*mut c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut CFString>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*mut c_void) -> *const CFString>,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -124,7 +124,7 @@ unsafe impl Encode for CFStreamClientContext {
             <*mut c_void>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut c_void>>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*mut c_void)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*mut c_void) -> *mut CFString>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*mut c_void) -> *const CFString>>::ENCODING,
         ],
     );
 }

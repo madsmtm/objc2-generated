@@ -92,7 +92,7 @@ pub type CMMInitializeLinkProfileProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<ColorSyncMutableProfile>,
         NonNull<CFArray>,
-        *mut CFDictionary,
+        *const CFDictionary,
     ) -> bool,
 >;
 
@@ -102,7 +102,7 @@ pub type CMMInitializeTransformProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<ColorSyncTransform>,
         NonNull<CFArray>,
-        *mut CFDictionary,
+        *const CFDictionary,
     ) -> bool,
 >;
 
@@ -123,7 +123,7 @@ pub type CMMApplyTransformProc = Option<
         ColorSyncDataDepth,
         ColorSyncDataLayout,
         usize,
-        *mut CFDictionary,
+        *const CFDictionary,
     ) -> bool,
 >;
 
@@ -133,8 +133,8 @@ pub type CMMCreateTransformPropertyProc = Option<
     unsafe extern "C-unwind" fn(
         *mut ColorSyncTransform,
         NonNull<CFType>,
-        *mut CFDictionary,
-    ) -> *mut CFType,
+        *const CFDictionary,
+    ) -> *const CFType,
 >;
 
 extern "C" {

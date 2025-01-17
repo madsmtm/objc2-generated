@@ -397,7 +397,7 @@ extern "C-unwind" {
     #[deprecated = "SecKeychain is deprecated"]
     pub fn SecKeychainItemCreatePersistentReference(
         item_ref: &SecKeychainItem,
-        persistent_item_ref: NonNull<*mut CFData>,
+        persistent_item_ref: NonNull<*const CFData>,
     ) -> OSStatus;
 }
 

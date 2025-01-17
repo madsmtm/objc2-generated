@@ -61,7 +61,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     pub fn CMSEncoderCopySigners(
         cms_encoder: &CMSEncoder,
-        signers_out: NonNull<*mut CFArray>,
+        signers_out: NonNull<*const CFArray>,
     ) -> OSStatus;
 }
 
@@ -75,7 +75,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     pub fn CMSEncoderCopyRecipients(
         cms_encoder: &CMSEncoder,
-        recipients_out: NonNull<*mut CFArray>,
+        recipients_out: NonNull<*const CFArray>,
     ) -> OSStatus;
 }
 
@@ -119,7 +119,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     pub fn CMSEncoderCopyEncapsulatedContentType(
         cms_encoder: &CMSEncoder,
-        e_content_type_out: NonNull<*mut CFData>,
+        e_content_type_out: NonNull<*const CFData>,
     ) -> OSStatus;
 }
 
@@ -133,7 +133,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     pub fn CMSEncoderCopySupportingCerts(
         cms_encoder: &CMSEncoder,
-        certs_out: NonNull<*mut CFArray>,
+        certs_out: NonNull<*const CFArray>,
     ) -> OSStatus;
 }
 
@@ -233,7 +233,7 @@ extern "C-unwind" {
 extern "C-unwind" {
     pub fn CMSEncoderCopyEncodedContent(
         cms_encoder: &CMSEncoder,
-        encoded_content_out: NonNull<*mut CFData>,
+        encoded_content_out: NonNull<*const CFData>,
     ) -> OSStatus;
 }
 
@@ -248,7 +248,7 @@ pub unsafe extern "C-unwind" fn CMSEncode(
     signed_attributes: CMSSignedAttributes,
     content: NonNull<c_void>,
     content_len: usize,
-    encoded_content_out: NonNull<*mut CFData>,
+    encoded_content_out: NonNull<*const CFData>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMSEncode(
@@ -259,7 +259,7 @@ pub unsafe extern "C-unwind" fn CMSEncode(
             signed_attributes: CMSSignedAttributes,
             content: NonNull<c_void>,
             content_len: usize,
-            encoded_content_out: NonNull<*mut CFData>,
+            encoded_content_out: NonNull<*const CFData>,
         ) -> OSStatus;
     }
     unsafe {
@@ -285,7 +285,7 @@ pub unsafe extern "C-unwind" fn CMSEncodeContent(
     signed_attributes: CMSSignedAttributes,
     content: NonNull<c_void>,
     content_len: usize,
-    encoded_content_out: *mut *mut CFData,
+    encoded_content_out: *mut *const CFData,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMSEncodeContent(
@@ -296,7 +296,7 @@ pub unsafe extern "C-unwind" fn CMSEncodeContent(
             signed_attributes: CMSSignedAttributes,
             content: NonNull<c_void>,
             content_len: usize,
-            encoded_content_out: *mut *mut CFData,
+            encoded_content_out: *mut *const CFData,
         ) -> OSStatus;
     }
     unsafe {

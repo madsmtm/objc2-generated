@@ -1510,7 +1510,7 @@ extern "C-unwind" {
     /// more CFDataRef elements (the persistent reference), and a kSecReturnRef
     /// whose value is kCFBooleanTrue. The objects in the provided array must be
     /// of the same type.
-    pub fn SecItemCopyMatching(query: &CFDictionary, result: *mut *mut CFType) -> OSStatus;
+    pub fn SecItemCopyMatching(query: &CFDictionary, result: *mut *const CFType) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -1563,7 +1563,7 @@ extern "C-unwind" {
     /// returned as a CFDictionaryRef containing all the requested data.
     /// On iOS, if a result type is not specified, no results are returned.
     /// On macOS, the added item is returned.
-    pub fn SecItemAdd(attributes: &CFDictionary, result: *mut *mut CFType) -> OSStatus;
+    pub fn SecItemAdd(attributes: &CFDictionary, result: *mut *const CFType) -> OSStatus;
 }
 
 extern "C-unwind" {

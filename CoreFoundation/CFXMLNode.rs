@@ -84,8 +84,8 @@ unsafe impl RefEncode for CFXMLNodeTypeCode {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLElementInfo {
-    pub attributes: *mut CFDictionary,
-    pub attributeOrder: *mut CFArray,
+    pub attributes: *const CFDictionary,
+    pub attributeOrder: *const CFArray,
     pub isEmpty: Boolean,
     pub(crate) _reserved: [c_char; 3],
 }
@@ -95,8 +95,8 @@ unsafe impl Encode for CFXMLElementInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
         &[
-            <*mut CFDictionary>::ENCODING,
-            <*mut CFArray>::ENCODING,
+            <*const CFDictionary>::ENCODING,
+            <*const CFArray>::ENCODING,
             <Boolean>::ENCODING,
             <[c_char; 3]>::ENCODING,
         ],
@@ -113,12 +113,12 @@ unsafe impl RefEncode for CFXMLElementInfo {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLProcessingInstructionInfo {
-    pub dataString: *mut CFString,
+    pub dataString: *const CFString,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
 unsafe impl Encode for CFXMLProcessingInstructionInfo {
-    const ENCODING: Encoding = Encoding::Struct("?", &[<*mut CFString>::ENCODING]);
+    const ENCODING: Encoding = Encoding::Struct("?", &[<*const CFString>::ENCODING]);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -131,14 +131,16 @@ unsafe impl RefEncode for CFXMLProcessingInstructionInfo {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLDocumentInfo {
-    pub sourceURL: *mut CFURL,
+    pub sourceURL: *const CFURL,
     pub encoding: CFStringEncoding,
 }
 
 #[cfg(all(feature = "CFString", feature = "CFURL", feature = "objc2"))]
 unsafe impl Encode for CFXMLDocumentInfo {
-    const ENCODING: Encoding =
-        Encoding::Struct("?", &[<*mut CFURL>::ENCODING, <CFStringEncoding>::ENCODING]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[<*const CFURL>::ENCODING, <CFStringEncoding>::ENCODING],
+    );
 }
 
 #[cfg(all(feature = "CFString", feature = "CFURL", feature = "objc2"))]
@@ -151,14 +153,16 @@ unsafe impl RefEncode for CFXMLDocumentInfo {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLExternalID {
-    pub systemID: *mut CFURL,
-    pub publicID: *mut CFString,
+    pub systemID: *const CFURL,
+    pub publicID: *const CFString,
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFURL", feature = "objc2"))]
 unsafe impl Encode for CFXMLExternalID {
-    const ENCODING: Encoding =
-        Encoding::Struct("?", &[<*mut CFURL>::ENCODING, <*mut CFString>::ENCODING]);
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[<*const CFURL>::ENCODING, <*const CFString>::ENCODING],
+    );
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFURL", feature = "objc2"))]
@@ -207,12 +211,12 @@ unsafe impl RefEncode for CFXMLNotationInfo {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLElementTypeDeclarationInfo {
-    pub contentDescription: *mut CFString,
+    pub contentDescription: *const CFString,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
 unsafe impl Encode for CFXMLElementTypeDeclarationInfo {
-    const ENCODING: Encoding = Encoding::Struct("?", &[<*mut CFString>::ENCODING]);
+    const ENCODING: Encoding = Encoding::Struct("?", &[<*const CFString>::ENCODING]);
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -225,9 +229,9 @@ unsafe impl RefEncode for CFXMLElementTypeDeclarationInfo {
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLAttributeDeclarationInfo {
-    pub attributeName: *mut CFString,
-    pub typeString: *mut CFString,
-    pub defaultString: *mut CFString,
+    pub attributeName: *const CFString,
+    pub typeString: *const CFString,
+    pub defaultString: *const CFString,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -235,9 +239,9 @@ unsafe impl Encode for CFXMLAttributeDeclarationInfo {
     const ENCODING: Encoding = Encoding::Struct(
         "?",
         &[
-            <*mut CFString>::ENCODING,
-            <*mut CFString>::ENCODING,
-            <*mut CFString>::ENCODING,
+            <*const CFString>::ENCODING,
+            <*const CFString>::ENCODING,
+            <*const CFString>::ENCODING,
         ],
     );
 }
@@ -308,9 +312,9 @@ unsafe impl RefEncode for CFXMLEntityTypeCode {
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CFXMLEntityInfo {
     pub entityType: CFXMLEntityTypeCode,
-    pub replacementText: *mut CFString,
+    pub replacementText: *const CFString,
     pub entityID: CFXMLExternalID,
-    pub notationName: *mut CFString,
+    pub notationName: *const CFString,
 }
 
 #[cfg(all(feature = "CFBase", feature = "CFURL", feature = "objc2"))]
@@ -319,9 +323,9 @@ unsafe impl Encode for CFXMLEntityInfo {
         "?",
         &[
             <CFXMLEntityTypeCode>::ENCODING,
-            <*mut CFString>::ENCODING,
+            <*const CFString>::ENCODING,
             <CFXMLExternalID>::ENCODING,
-            <*mut CFString>::ENCODING,
+            <*const CFString>::ENCODING,
         ],
     );
 }

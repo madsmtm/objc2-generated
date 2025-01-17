@@ -106,7 +106,7 @@ extern "C-unwind" {
     #[cfg(feature = "SecBase")]
     pub fn SecCertificateCopyCommonName(
         certificate: &SecCertificate,
-        common_name: NonNull<*mut CFString>,
+        common_name: NonNull<*const CFString>,
     ) -> OSStatus;
 }
 
@@ -122,7 +122,7 @@ extern "C-unwind" {
     #[cfg(feature = "SecBase")]
     pub fn SecCertificateCopyEmailAddresses(
         certificate: &SecCertificate,
-        email_addresses: NonNull<*mut CFArray>,
+        email_addresses: NonNull<*const CFArray>,
     ) -> OSStatus;
 }
 

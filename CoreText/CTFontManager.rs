@@ -283,7 +283,7 @@ extern "C-unwind" {
     pub fn CTFontManagerRegisterFontsForURLs(
         font_ur_ls: &CFArray,
         scope: CTFontManagerScope,
-        errors: *mut *mut CFArray,
+        errors: *mut *const CFArray,
     ) -> bool;
 }
 
@@ -306,7 +306,7 @@ extern "C-unwind" {
     pub fn CTFontManagerUnregisterFontsForURLs(
         font_ur_ls: &CFArray,
         scope: CTFontManagerScope,
-        errors: *mut *mut CFArray,
+        errors: *mut *const CFArray,
     ) -> bool;
 }
 

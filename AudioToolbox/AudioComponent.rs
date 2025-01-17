@@ -310,7 +310,7 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentCopyName(
         in_component: AudioComponent,
-        out_name: NonNull<*mut CFString>,
+        out_name: NonNull<*const CFString>,
     ) -> OSStatus;
 }
 
@@ -490,7 +490,7 @@ extern "C-unwind" {
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentCopyConfigurationInfo(
         in_component: AudioComponent,
-        out_configuration_info: NonNull<*mut CFDictionary>,
+        out_configuration_info: NonNull<*const CFDictionary>,
     ) -> OSStatus;
 }
 

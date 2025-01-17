@@ -93,7 +93,7 @@ extern "C-unwind" {
     pub fn SecRequirementCopyData(
         requirement: &SecRequirement,
         flags: SecCSFlags,
-        data: NonNull<*mut CFData>,
+        data: NonNull<*const CFData>,
     ) -> OSStatus;
 }
 
@@ -121,6 +121,6 @@ extern "C-unwind" {
     pub fn SecRequirementCopyString(
         requirement: &SecRequirement,
         flags: SecCSFlags,
-        text: NonNull<*mut CFString>,
+        text: NonNull<*const CFString>,
     ) -> OSStatus;
 }

@@ -65,7 +65,7 @@ extern "C-unwind" {
     pub fn SecRequestSharedWebCredential(
         fqdn: Option<&CFString>,
         account: Option<&CFString>,
-        completion_handler: &block2::Block<dyn Fn(*mut CFArray, *mut CFError)>,
+        completion_handler: &block2::Block<dyn Fn(*const CFArray, *mut CFError)>,
     );
 }
 

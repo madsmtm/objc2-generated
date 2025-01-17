@@ -539,17 +539,17 @@ pub unsafe extern "C-unwind" fn SCNetworkInterfaceSetExtendedConfiguration(
 #[inline]
 pub unsafe extern "C-unwind" fn SCNetworkInterfaceCopyMediaOptions(
     interface: &SCNetworkInterface,
-    current: *mut *mut CFDictionary,
-    active: *mut *mut CFDictionary,
-    available: *mut *mut CFArray,
+    current: *mut *const CFDictionary,
+    active: *mut *const CFDictionary,
+    available: *mut *const CFArray,
     filter: bool,
 ) -> bool {
     extern "C-unwind" {
         fn SCNetworkInterfaceCopyMediaOptions(
             interface: &SCNetworkInterface,
-            current: *mut *mut CFDictionary,
-            active: *mut *mut CFDictionary,
-            available: *mut *mut CFArray,
+            current: *mut *const CFDictionary,
+            active: *mut *const CFDictionary,
+            available: *mut *const CFArray,
             filter: Boolean,
         ) -> Boolean;
     }

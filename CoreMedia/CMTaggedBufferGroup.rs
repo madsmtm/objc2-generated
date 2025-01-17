@@ -327,7 +327,7 @@ extern "C-unwind" {
     pub fn CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup(
         allocator: Option<&CFAllocator>,
         tagged_buffer_group: &CMTaggedBufferGroup,
-        format_description_out: NonNull<*mut CMTaggedBufferGroupFormatDescription>,
+        format_description_out: NonNull<*const CMTaggedBufferGroupFormatDescription>,
     ) -> OSStatus;
 }
 

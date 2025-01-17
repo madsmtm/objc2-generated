@@ -367,13 +367,13 @@ pub struct CFRunLoopSourceContext {
     pub info: *mut c_void,
     pub retain: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>,
     pub release: Option<unsafe extern "C-unwind" fn(*const c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>,
     pub equal: Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>,
     pub hash: Option<unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode>,
     pub schedule:
-        Option<unsafe extern "C-unwind" fn(*mut c_void, *mut CFRunLoop, *mut CFRunLoopMode)>,
+        Option<unsafe extern "C-unwind" fn(*mut c_void, *mut CFRunLoop, *const CFRunLoopMode)>,
     pub cancel:
-        Option<unsafe extern "C-unwind" fn(*mut c_void, *mut CFRunLoop, *mut CFRunLoopMode)>,
+        Option<unsafe extern "C-unwind" fn(*mut c_void, *mut CFRunLoop, *const CFRunLoopMode)>,
     pub perform: Option<unsafe extern "C-unwind" fn(*mut c_void)>,
 }
 
@@ -384,11 +384,11 @@ unsafe impl Encode for CFRunLoopSourceContext {
         <*mut c_void>::ENCODING,
         <Option<unsafe extern "C-unwind" fn(*const c_void,) -> *const c_void>>::ENCODING,
         <Option<unsafe extern "C-unwind" fn(*const c_void,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*const c_void,) -> *mut CFString>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*const c_void,) -> *const CFString>>::ENCODING,
         <Option<unsafe extern "C-unwind" fn(*const c_void,*const c_void,) -> Boolean>>::ENCODING,
         <Option<unsafe extern "C-unwind" fn(*const c_void,) -> CFHashCode>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut CFRunLoop,*mut CFRunLoopMode,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut CFRunLoop,*mut CFRunLoopMode,)>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut CFRunLoop,*const CFRunLoopMode,)>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*mut c_void,*mut CFRunLoop,*const CFRunLoopMode,)>>::ENCODING,
         <Option<unsafe extern "C-unwind" fn(*mut c_void,)>>::ENCODING,
     ]);
 }
@@ -407,7 +407,7 @@ pub struct CFRunLoopSourceContext1 {
     pub info: *mut c_void,
     pub retain: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>,
     pub release: Option<unsafe extern "C-unwind" fn(*const c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>,
     pub equal: Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>,
     pub hash: Option<unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode>,
     pub getPort: Option<unsafe extern "C-unwind" fn(*mut c_void) -> libc::mach_port_t>,
@@ -415,7 +415,7 @@ pub struct CFRunLoopSourceContext1 {
         unsafe extern "C-unwind" fn(
             *mut c_void,
             CFIndex,
-            *mut CFAllocator,
+            *const CFAllocator,
             *mut c_void,
         ) -> *mut c_void,
     >,
@@ -428,11 +428,11 @@ unsafe impl Encode for CFRunLoopSourceContext1 {
         <*mut c_void>::ENCODING,
         <Option<unsafe extern "C-unwind" fn(*const c_void,) -> *const c_void>>::ENCODING,
         <Option<unsafe extern "C-unwind" fn(*const c_void,)>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*const c_void,) -> *mut CFString>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*const c_void,) -> *const CFString>>::ENCODING,
         <Option<unsafe extern "C-unwind" fn(*const c_void,*const c_void,) -> Boolean>>::ENCODING,
         <Option<unsafe extern "C-unwind" fn(*const c_void,) -> CFHashCode>>::ENCODING,
         <Option<unsafe extern "C-unwind" fn(*mut c_void,) -> libc::mach_port_t>>::ENCODING,
-        <Option<unsafe extern "C-unwind" fn(*mut c_void,CFIndex,*mut CFAllocator,*mut c_void,) -> *mut c_void>>::ENCODING,
+        <Option<unsafe extern "C-unwind" fn(*mut c_void,CFIndex,*const CFAllocator,*mut c_void,) -> *mut c_void>>::ENCODING,
     ]);
 }
 
@@ -510,7 +510,7 @@ pub struct CFRunLoopObserverContext {
     pub info: *mut c_void,
     pub retain: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>,
     pub release: Option<unsafe extern "C-unwind" fn(*const c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -522,7 +522,7 @@ unsafe impl Encode for CFRunLoopObserverContext {
             <*mut c_void>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>>::ENCODING,
         ],
     );
 }
@@ -648,7 +648,7 @@ pub struct CFRunLoopTimerContext {
     pub info: *mut c_void,
     pub retain: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>,
     pub release: Option<unsafe extern "C-unwind" fn(*const c_void)>,
-    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>,
+    pub copyDescription: Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>,
 }
 
 #[cfg(all(feature = "CFBase", feature = "objc2"))]
@@ -660,7 +660,7 @@ unsafe impl Encode for CFRunLoopTimerContext {
             <*mut c_void>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const c_void>>::ENCODING,
             <Option<unsafe extern "C-unwind" fn(*const c_void)>>::ENCODING,
-            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *mut CFString>>::ENCODING,
+            <Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>>::ENCODING,
         ],
     );
 }
