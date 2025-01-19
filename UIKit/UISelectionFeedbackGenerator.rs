@@ -41,11 +41,11 @@ extern_methods!(
     unsafe impl UISelectionFeedbackGenerator {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// initalize the generator with a view to attach it to the provided view as an interaction.
-        #[method_id(@__retain_semantics Other feedbackGeneratorForView:)]
+        #[method_id(@__method_family Other feedbackGeneratorForView:)]
         pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -54,7 +54,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIFeedbackGenerator")]
     unsafe impl UISelectionFeedbackGenerator {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

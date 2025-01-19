@@ -54,24 +54,24 @@ extern_methods!(
             feature = "GCDeviceCursor"
         ))]
         /// Scroll is a dpad with undefined range.
-        #[method_id(@__retain_semantics Other scroll)]
+        #[method_id(@__method_family Other scroll)]
         pub unsafe fn scroll(&self) -> Retained<GCDeviceCursor>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
         /// Mouse buttons that can be used only as digital inputs
-        #[method_id(@__retain_semantics Other leftButton)]
+        #[method_id(@__method_family Other leftButton)]
         pub unsafe fn leftButton(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[method_id(@__retain_semantics Other rightButton)]
+        #[method_id(@__method_family Other rightButton)]
         pub unsafe fn rightButton(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[method_id(@__retain_semantics Other middleButton)]
+        #[method_id(@__method_family Other middleButton)]
         pub unsafe fn middleButton(&self) -> Option<Retained<GCControllerButtonInput>>;
 
         #[cfg(all(feature = "GCControllerButtonInput", feature = "GCControllerElement"))]
-        #[method_id(@__retain_semantics Other auxiliaryButtons)]
+        #[method_id(@__method_family Other auxiliaryButtons)]
         pub unsafe fn auxiliaryButtons(&self)
             -> Option<Retained<NSArray<GCControllerButtonInput>>>;
     }
@@ -81,10 +81,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GCPhysicalInputProfile")]
     unsafe impl GCMouseInput {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

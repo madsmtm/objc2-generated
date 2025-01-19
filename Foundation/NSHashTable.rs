@@ -63,7 +63,7 @@ unsafe impl<ObjectType: ?Sized + NSSecureCoding> NSSecureCoding for NSHashTable<
 extern_methods!(
     unsafe impl<ObjectType: Message> NSHashTable<ObjectType> {
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(@__retain_semantics Init initWithOptions:capacity:)]
+        #[method_id(@__method_family Init initWithOptions:capacity:)]
         pub unsafe fn initWithOptions_capacity(
             this: Allocated<Self>,
             options: NSPointerFunctionsOptions,
@@ -71,7 +71,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(@__retain_semantics Init initWithPointerFunctions:capacity:)]
+        #[method_id(@__method_family Init initWithPointerFunctions:capacity:)]
         pub unsafe fn initWithPointerFunctions_capacity(
             this: Allocated<Self>,
             functions: &NSPointerFunctions,
@@ -79,30 +79,30 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(@__retain_semantics Other hashTableWithOptions:)]
+        #[method_id(@__method_family Other hashTableWithOptions:)]
         pub unsafe fn hashTableWithOptions(
             options: NSPointerFunctionsOptions,
         ) -> Retained<NSHashTable<ObjectType>>;
 
         #[deprecated = "GC no longer supported"]
-        #[method_id(@__retain_semantics Other hashTableWithWeakObjects)]
+        #[method_id(@__method_family Other hashTableWithWeakObjects)]
         pub unsafe fn hashTableWithWeakObjects() -> Retained<AnyObject>;
 
-        #[method_id(@__retain_semantics Other weakObjectsHashTable)]
+        #[method_id(@__method_family Other weakObjectsHashTable)]
         pub unsafe fn weakObjectsHashTable() -> Retained<NSHashTable<ObjectType>>;
 
         #[cfg(feature = "NSPointerFunctions")]
-        #[method_id(@__retain_semantics Other pointerFunctions)]
+        #[method_id(@__method_family Other pointerFunctions)]
         pub unsafe fn pointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
 
-        #[method_id(@__retain_semantics Other member:)]
+        #[method_id(@__method_family Other member:)]
         pub unsafe fn member(&self, object: Option<&ObjectType>) -> Option<Retained<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
-        #[method_id(@__retain_semantics Other objectEnumerator)]
+        #[method_id(@__method_family Other objectEnumerator)]
         pub unsafe fn objectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
 
         #[method(addObject:)]
@@ -115,10 +115,10 @@ extern_methods!(
         pub unsafe fn removeAllObjects(&self);
 
         #[cfg(feature = "NSArray")]
-        #[method_id(@__retain_semantics Other allObjects)]
+        #[method_id(@__method_family Other allObjects)]
         pub unsafe fn allObjects(&self) -> Retained<NSArray<ObjectType>>;
 
-        #[method_id(@__retain_semantics Other anyObject)]
+        #[method_id(@__method_family Other anyObject)]
         pub unsafe fn anyObject(&self) -> Option<Retained<ObjectType>>;
 
         #[method(containsObject:)]
@@ -143,7 +143,7 @@ extern_methods!(
         pub unsafe fn minusHashTable(&self, other: &NSHashTable<ObjectType>);
 
         #[cfg(feature = "NSSet")]
-        #[method_id(@__retain_semantics Other setRepresentation)]
+        #[method_id(@__method_family Other setRepresentation)]
         pub unsafe fn setRepresentation(&self) -> Retained<NSSet<ObjectType>>;
     }
 );
@@ -151,10 +151,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> NSHashTable<ObjectType> {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -353,7 +353,7 @@ extern_methods!(
         /// Create the coordinator object during your view’s initialization, and assign
         /// the object to your view. Assign the coordinator to the ``NSView/writingToolsCoordinator``
         /// property of your view.
-        #[method_id(@__retain_semantics Init initWithDelegate:)]
+        #[method_id(@__method_family Init initWithDelegate:)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: Option<&ProtocolObject<dyn NSWritingToolsCoordinatorDelegate>>,
@@ -365,7 +365,7 @@ extern_methods!(
         /// object. The object must adopt the ``NSWritingToolsCoordinator/Delegate``
         /// protocol, and be capable of modifying your view’s text storage and
         /// refreshing the view’s layout and appearance.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSWritingToolsCoordinatorDelegate>>>;
@@ -377,7 +377,7 @@ extern_methods!(
         /// object. The system updates this property automatically when you assign the
         /// coordinator to the ``NSView/writingToolsCoordinator`` property of your view.
         /// The value of this property is `nil` if there is no associated view.
-        #[method_id(@__retain_semantics Other view)]
+        #[method_id(@__method_family Other view)]
         pub unsafe fn view(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -396,7 +396,7 @@ extern_methods!(
         /// If you display your view’s text using multiple text containers, implement the
         /// ``NSWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:singleContainerSubrangesOf:in:)``
         /// method to request multiple previews.
-        #[method_id(@__retain_semantics Other effectContainerView)]
+        #[method_id(@__method_family Other effectContainerView)]
         pub unsafe fn effectContainerView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -422,7 +422,7 @@ extern_methods!(
         /// ``NSWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:singleContainerSubrangesOf:in:)``
         /// and ``NSWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:decorationContainerViewFor:in:)``
         /// methods to provide separate decoration views for each container.
-        #[method_id(@__retain_semantics Other decorationContainerView)]
+        #[method_id(@__method_family Other decorationContainerView)]
         pub unsafe fn decorationContainerView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -581,10 +581,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSWritingToolsCoordinator {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -1317,7 +1317,7 @@ extern_methods!(
         /// in the coordinate space of your text view. Each rectangle contains a
         /// bounding rectangle for text that is part of the preview. When applying
         /// visual effects, the system adds highlights only to the text in the specified rectangles.
-        #[method_id(@__retain_semantics Init initWithSnapshotImage:presentationFrame:candidateRects:)]
+        #[method_id(@__method_family Init initWithSnapshotImage:presentationFrame:candidateRects:)]
         pub unsafe fn initWithSnapshotImage_presentationFrame_candidateRects(
             this: Allocated<Self>,
             snapshot_image: &CGImage,
@@ -1337,14 +1337,14 @@ extern_methods!(
         /// system uses this rectangle to place your image precisely over your view’s
         /// actual text. Set its size to the size of your snapshot image, and set its
         /// origin to the point that allows the system to place your image directly over the text.
-        #[method_id(@__retain_semantics Init initWithSnapshotImage:presentationFrame:)]
+        #[method_id(@__method_family Init initWithSnapshotImage:presentationFrame:)]
         pub unsafe fn initWithSnapshotImage_presentationFrame(
             this: Allocated<Self>,
             snapshot_image: &CGImage,
             presentation_frame: NSRect,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -1354,7 +1354,7 @@ extern_methods!(
         /// You specify this image at initialization time. The system uses it to
         /// implement any visual effects involving your view’s text. Create the image
         /// with your text on a transparent background.
-        #[method_id(@__retain_semantics Other previewImage)]
+        #[method_id(@__method_family Other previewImage)]
         pub unsafe fn previewImage(&self) -> Retained<CGImage>;
 
         /// The frame rectangle that places the preview image directly over the
@@ -1377,7 +1377,7 @@ extern_methods!(
         /// in the coordinate space of the target view. Each rectangle contains a bounding
         /// rectangle for text that is part of the preview. When applying visual effects,
         /// the system adds highlights only to the text in the specified rectangles.
-        #[method_id(@__retain_semantics Other candidateRects)]
+        #[method_id(@__method_family Other candidateRects)]
         pub unsafe fn candidateRects(&self) -> Retained<NSArray<NSValue>>;
     }
 );
@@ -1385,7 +1385,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextPreview {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

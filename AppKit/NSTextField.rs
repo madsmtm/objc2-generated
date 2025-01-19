@@ -106,14 +106,14 @@ unsafe impl NSUserInterfaceValidations for NSTextField {}
 extern_methods!(
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTextField {
-        #[method_id(@__retain_semantics Other placeholderString)]
+        #[method_id(@__method_family Other placeholderString)]
         pub unsafe fn placeholderString(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`placeholderString`][Self::placeholderString].
         #[method(setPlaceholderString:)]
         pub unsafe fn setPlaceholderString(&self, placeholder_string: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other placeholderAttributedString)]
+        #[method_id(@__method_family Other placeholderAttributedString)]
         pub unsafe fn placeholderAttributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`placeholderAttributedString`][Self::placeholderAttributedString].
@@ -124,7 +124,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__retain_semantics Other backgroundColor)]
+        #[method_id(@__method_family Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
@@ -140,7 +140,7 @@ extern_methods!(
         pub unsafe fn setDrawsBackground(&self, draws_background: bool);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__retain_semantics Other textColor)]
+        #[method_id(@__method_family Other textColor)]
         pub unsafe fn textColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
@@ -179,7 +179,7 @@ extern_methods!(
         #[method(selectText:)]
         pub unsafe fn selectText(&self, sender: Option<&AnyObject>);
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTextFieldDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -267,10 +267,10 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTextField {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -282,7 +282,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTextField {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -291,7 +291,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTextField {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -331,7 +331,7 @@ extern_methods!(
         /// Parameter `stringValue`: The title text to display in the field.
         ///
         /// Returns: An initialized text field object.
-        #[method_id(@__retain_semantics Other labelWithString:)]
+        #[method_id(@__method_family Other labelWithString:)]
         pub unsafe fn labelWithString(
             string_value: &NSString,
             mtm: MainThreadMarker,
@@ -342,7 +342,7 @@ extern_methods!(
         /// Parameter `stringValue`: The title text to display in the field.
         ///
         /// Returns: An initialized text field object.
-        #[method_id(@__retain_semantics Other wrappingLabelWithString:)]
+        #[method_id(@__method_family Other wrappingLabelWithString:)]
         pub unsafe fn wrappingLabelWithString(
             string_value: &NSString,
             mtm: MainThreadMarker,
@@ -354,7 +354,7 @@ extern_methods!(
         /// Parameter `attributedStringValue`: The attributed string to display in the field.
         ///
         /// Returns: An initialized text field object.
-        #[method_id(@__retain_semantics Other labelWithAttributedString:)]
+        #[method_id(@__method_family Other labelWithAttributedString:)]
         pub unsafe fn labelWithAttributedString(
             attributed_string_value: &NSAttributedString,
             mtm: MainThreadMarker,
@@ -365,7 +365,7 @@ extern_methods!(
         /// Parameter `stringValue`: The initial contents of the text field, or empty string for an initially empty text field.
         ///
         /// Returns: An initialized text field object.
-        #[method_id(@__retain_semantics Other textFieldWithString:)]
+        #[method_id(@__method_family Other textFieldWithString:)]
         pub unsafe fn textFieldWithString(
             string_value: &NSString,
             mtm: MainThreadMarker,
@@ -408,7 +408,7 @@ extern_protocol!(
         /// Provides a customized list of candidates to the text view’s `candidateListTouchBarItem`. Invoked from `-updateCandidates`. `NSTextView` uses the candidates returned from this method and suppress its built-in candidate generation. Returning `nil` from this delegate method allows `NSTextView` to query candidates from `NSSpellChecker`.
         /// - Returns: An array of objects that represent the elements of a selection.
         #[optional]
-        #[method_id(@__retain_semantics Other textField:textView:candidatesForSelectedRange:)]
+        #[method_id(@__method_family Other textField:textView:candidatesForSelectedRange:)]
         unsafe fn textField_textView_candidatesForSelectedRange(
             &self,
             text_field: &NSTextField,
@@ -425,7 +425,7 @@ extern_protocol!(
         /// Allows customizing the candidate list queried from `NSSpellChecker`.
         /// - Returns: An array of text objects to include in a text selection.
         #[optional]
-        #[method_id(@__retain_semantics Other textField:textView:candidates:forSelectedRange:)]
+        #[method_id(@__method_family Other textField:textView:candidates:forSelectedRange:)]
         unsafe fn textField_textView_candidates_forSelectedRange(
             &self,
             text_field: &NSTextField,

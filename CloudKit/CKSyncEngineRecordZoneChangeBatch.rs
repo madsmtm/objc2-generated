@@ -38,7 +38,7 @@ extern_methods!(
         /// If you return `nil` from the record provider, this will skip to the next pending change.
         ///
         /// This will return `nil` if there are no pending changes to send.
-        #[method_id(@__retain_semantics Init initWithPendingChanges:recordProvider:)]
+        #[method_id(@__method_family Init initWithPendingChanges:recordProvider:)]
         pub unsafe fn initWithPendingChanges_recordProvider(
             this: Allocated<Self>,
             pending_changes: &NSArray<CKSyncEnginePendingRecordZoneChange>,
@@ -57,7 +57,7 @@ extern_methods!(
         /// If you supply too many changes, or if the total size of the records is too large, then you might get a ``CKErrorLimitExceeded``.
         ///
         /// > Tip: These batch size limitations are handled automatically by the ``initWithPendingChanges:recordProvider:`` initializer.
-        #[method_id(@__retain_semantics Init initWithRecordsToSave:recordIDsToDelete:atomicByZone:)]
+        #[method_id(@__method_family Init initWithRecordsToSave:recordIDsToDelete:atomicByZone:)]
         pub unsafe fn initWithRecordsToSave_recordIDsToDelete_atomicByZone(
             this: Allocated<Self>,
             records_to_save: Option<&NSArray<CKRecord>>,
@@ -65,20 +65,20 @@ extern_methods!(
             atomic_by_zone: bool,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
         /// The records to save to the server.
-        #[method_id(@__retain_semantics Other recordsToSave)]
+        #[method_id(@__method_family Other recordsToSave)]
         pub unsafe fn recordsToSave(&self) -> Retained<NSArray<CKRecord>>;
 
         #[cfg(feature = "CKRecordID")]
         /// The IDs of the records to delete from the server.
-        #[method_id(@__retain_semantics Other recordIDsToDelete)]
+        #[method_id(@__method_family Other recordIDsToDelete)]
         pub unsafe fn recordIDsToDelete(&self) -> Retained<NSArray<CKRecordID>>;
 
         /// If set to true, the sync engine will modify these records atomically by zone.

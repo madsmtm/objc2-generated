@@ -23,11 +23,11 @@ extern_methods!(
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKCircleRenderer {
         #[cfg(all(feature = "MKCircle", feature = "MKShape"))]
-        #[method_id(@__retain_semantics Init initWithCircle:)]
+        #[method_id(@__method_family Init initWithCircle:)]
         pub unsafe fn initWithCircle(this: Allocated<Self>, circle: &MKCircle) -> Retained<Self>;
 
         #[cfg(all(feature = "MKCircle", feature = "MKShape"))]
-        #[method_id(@__retain_semantics Other circle)]
+        #[method_id(@__method_family Other circle)]
         pub unsafe fn circle(&self) -> Retained<MKCircle>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -55,7 +55,7 @@ extern_methods!(
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKCircleRenderer {
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
-        #[method_id(@__retain_semantics Init initWithOverlay:)]
+        #[method_id(@__method_family Init initWithOverlay:)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
@@ -67,10 +67,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]
     unsafe impl MKCircleRenderer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

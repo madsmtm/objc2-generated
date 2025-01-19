@@ -115,11 +115,11 @@ unsafe impl NSObjectProtocol for AVAudioApplication {}
 extern_methods!(
     unsafe impl AVAudioApplication {
         /// Returns the singleton instance
-        #[method_id(@__retain_semantics Other sharedInstance)]
+        #[method_id(@__method_family Other sharedInstance)]
         pub unsafe fn sharedInstance() -> Retained<AVAudioApplication>;
 
         /// See: `sharedInstance`
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Set the muted/unmuted state of the application's audio input. When set true, inputs
@@ -197,7 +197,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioApplication {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

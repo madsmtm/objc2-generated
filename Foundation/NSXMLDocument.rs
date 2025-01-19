@@ -58,7 +58,7 @@ unsafe impl NSObjectProtocol for NSXMLDocument {}
 extern_methods!(
     #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLDocument {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(
@@ -71,7 +71,7 @@ extern_methods!(
         /// error
         /// </tt>
         /// .
-        #[method_id(@__retain_semantics Init initWithXMLString:options:error:_)]
+        #[method_id(@__method_family Init initWithXMLString:options:error:_)]
         pub unsafe fn initWithXMLString_options_error(
             this: Allocated<Self>,
             string: &NSString,
@@ -84,7 +84,7 @@ extern_methods!(
         /// error
         /// </tt>
         /// .
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:_)]
+        #[method_id(@__method_family Init initWithContentsOfURL:options:error:_)]
         pub unsafe fn initWithContentsOfURL_options_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -97,7 +97,7 @@ extern_methods!(
         /// error
         /// </tt>
         /// .
-        #[method_id(@__retain_semantics Init initWithData:options:error:_)]
+        #[method_id(@__method_family Init initWithData:options:error:_)]
         pub unsafe fn initWithData_options_error(
             this: Allocated<Self>,
             data: &NSData,
@@ -106,7 +106,7 @@ extern_methods!(
 
         #[cfg(feature = "NSXMLElement")]
         /// Returns a document with a single child, the root element.
-        #[method_id(@__retain_semantics Init initWithRootElement:)]
+        #[method_id(@__method_family Init initWithRootElement:)]
         pub unsafe fn initWithRootElement(
             this: Allocated<Self>,
             element: Option<&NSXMLElement>,
@@ -117,7 +117,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Sets the character encoding to an IANA type.
-        #[method_id(@__retain_semantics Other characterEncoding)]
+        #[method_id(@__method_family Other characterEncoding)]
         pub unsafe fn characterEncoding(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -127,7 +127,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Sets the XML version. Should be 1.0 or 1.1.
-        #[method_id(@__retain_semantics Other version)]
+        #[method_id(@__method_family Other version)]
         pub unsafe fn version(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -156,7 +156,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Set the MIME type, eg text/xml.
-        #[method_id(@__retain_semantics Other MIMEType)]
+        #[method_id(@__method_family Other MIMEType)]
         pub unsafe fn MIMEType(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -166,7 +166,7 @@ extern_methods!(
 
         #[cfg(feature = "NSXMLDTD")]
         /// Set the associated DTD. This DTD will be output with the document.
-        #[method_id(@__retain_semantics Other DTD)]
+        #[method_id(@__method_family Other DTD)]
         pub unsafe fn DTD(&self) -> Option<Retained<NSXMLDTD>>;
 
         #[cfg(feature = "NSXMLDTD")]
@@ -181,7 +181,7 @@ extern_methods!(
 
         #[cfg(feature = "NSXMLElement")]
         /// The root element.
-        #[method_id(@__retain_semantics Other rootElement)]
+        #[method_id(@__method_family Other rootElement)]
         pub unsafe fn rootElement(&self) -> Option<Retained<NSXMLElement>>;
 
         /// Inserts a child at a particular index.
@@ -216,12 +216,12 @@ extern_methods!(
 
         #[cfg(feature = "NSData")]
         /// Invokes XMLDataWithOptions with NSXMLNodeOptionsNone.
-        #[method_id(@__retain_semantics Other XMLData)]
+        #[method_id(@__method_family Other XMLData)]
         pub unsafe fn XMLData(&self) -> Retained<NSData>;
 
         #[cfg(all(feature = "NSData", feature = "NSXMLNodeOptions"))]
         /// The representation of this node as it would appear in an XML document, encoded based on characterEncoding.
-        #[method_id(@__retain_semantics Other XMLDataWithOptions:)]
+        #[method_id(@__method_family Other XMLDataWithOptions:)]
         pub unsafe fn XMLDataWithOptions(&self, options: NSXMLNodeOptions) -> Retained<NSData>;
 
         #[cfg(all(
@@ -231,7 +231,7 @@ extern_methods!(
             feature = "NSString"
         ))]
         /// Applies XSLT with arguments (NSString key/value pairs) to this document, returning a new document.
-        #[method_id(@__retain_semantics Other objectByApplyingXSLT:arguments:error:_)]
+        #[method_id(@__method_family Other objectByApplyingXSLT:arguments:error:_)]
         pub unsafe fn objectByApplyingXSLT_arguments_error(
             &self,
             xslt: &NSData,
@@ -240,7 +240,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSDictionary", feature = "NSError", feature = "NSString"))]
         /// Applies XSLT as expressed by a string with arguments (NSString key/value pairs) to this document, returning a new document.
-        #[method_id(@__retain_semantics Other objectByApplyingXSLTString:arguments:error:_)]
+        #[method_id(@__method_family Other objectByApplyingXSLTString:arguments:error:_)]
         pub unsafe fn objectByApplyingXSLTString_arguments_error(
             &self,
             xslt: &NSString,
@@ -254,7 +254,7 @@ extern_methods!(
             feature = "NSURL"
         ))]
         /// Applies the XSLT at a URL with arguments (NSString key/value pairs) to this document, returning a new document. Error may contain a connection error from the URL.
-        #[method_id(@__retain_semantics Other objectByApplyingXSLTAtURL:arguments:error:_)]
+        #[method_id(@__method_family Other objectByApplyingXSLTAtURL:arguments:error:_)]
         pub unsafe fn objectByApplyingXSLTAtURL_arguments_error(
             &self,
             xslt_url: &NSURL,
@@ -278,12 +278,12 @@ extern_methods!(
         /// ```
         ///
         /// with options set to NSXMLNodeOptionsNone
-        #[method_id(@__retain_semantics Init initWithKind:)]
+        #[method_id(@__method_family Init initWithKind:)]
         pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
 
         #[cfg(feature = "NSXMLNodeOptions")]
         /// Inits a node with fidelity options as description NSXMLNodeOptions.h
-        #[method_id(@__retain_semantics Init initWithKind:options:)]
+        #[method_id(@__method_family Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Allocated<Self>,
             kind: NSXMLNodeKind,
@@ -296,7 +296,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLDocument {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

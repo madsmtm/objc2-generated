@@ -20,7 +20,7 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object.
-        #[method_id(@__retain_semantics Other reLUWithTensor:name:)]
+        #[method_id(@__method_family Other reLUWithTensor:name:)]
         pub unsafe fn reLUWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -35,7 +35,7 @@ extern_methods!(
         /// - source: The input tensor from forward pass.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object.
-        #[method_id(@__retain_semantics Other reLUGradientWithIncomingGradient:sourceTensor:name:)]
+        #[method_id(@__method_family Other reLUGradientWithIncomingGradient:sourceTensor:name:)]
         pub unsafe fn reLUGradientWithIncomingGradient_sourceTensor_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -50,7 +50,7 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object.
-        #[method_id(@__retain_semantics Other sigmoidWithTensor:name:)]
+        #[method_id(@__method_family Other sigmoidWithTensor:name:)]
         pub unsafe fn sigmoidWithTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -65,7 +65,7 @@ extern_methods!(
         /// - source: The input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[method_id(@__retain_semantics Other sigmoidGradientWithIncomingGradient:sourceTensor:name:)]
+        #[method_id(@__method_family Other sigmoidGradientWithIncomingGradient:sourceTensor:name:)]
         pub unsafe fn sigmoidGradientWithIncomingGradient_sourceTensor_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -81,7 +81,7 @@ extern_methods!(
         /// - axis: The axis along which softmax is computed.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[method_id(@__retain_semantics Other softMaxWithTensor:axis:name:)]
+        #[method_id(@__method_family Other softMaxWithTensor:axis:name:)]
         pub unsafe fn softMaxWithTensor_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -98,7 +98,7 @@ extern_methods!(
         /// - axis: The axis along which softmax is computed.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[method_id(@__retain_semantics Other softMaxGradientWithIncomingGradient:sourceTensor:axis:name:)]
+        #[method_id(@__method_family Other softMaxGradientWithIncomingGradient:sourceTensor:axis:name:)]
         pub unsafe fn softMaxGradientWithIncomingGradient_sourceTensor_axis_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -117,7 +117,7 @@ extern_methods!(
         /// - alpha: The scalar value alpha used by all elements in the input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[method_id(@__retain_semantics Other leakyReLUWithTensor:alpha:name:)]
+        #[method_id(@__method_family Other leakyReLUWithTensor:alpha:name:)]
         pub unsafe fn leakyReLUWithTensor_alpha_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -136,7 +136,7 @@ extern_methods!(
         /// - alpha: The alpha tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[method_id(@__retain_semantics Other leakyReLUWithTensor:alphaTensor:name:)]
+        #[method_id(@__method_family Other leakyReLUWithTensor:alphaTensor:name:)]
         pub unsafe fn leakyReLUWithTensor_alphaTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -155,7 +155,7 @@ extern_methods!(
         /// - alpha: The alpha tensor
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[method_id(@__retain_semantics Other leakyReLUGradientWithIncomingGradient:sourceTensor:alphaTensor:name:)]
+        #[method_id(@__method_family Other leakyReLUGradientWithIncomingGradient:sourceTensor:alphaTensor:name:)]
         pub unsafe fn leakyReLUGradientWithIncomingGradient_sourceTensor_alphaTensor_name(
             &self,
             gradient: &MPSGraphTensor,

@@ -32,11 +32,11 @@ unsafe impl NSSecureCoding for CIColor {}
 extern_methods!(
     unsafe impl CIColor {
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__retain_semantics Other colorWithCGColor:)]
+        #[method_id(@__method_family Other colorWithCGColor:)]
         pub unsafe fn colorWithCGColor(c: &CGColor) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other colorWithRed:green:blue:alpha:)]
+        #[method_id(@__method_family Other colorWithRed:green:blue:alpha:)]
         pub unsafe fn colorWithRed_green_blue_alpha(
             r: CGFloat,
             g: CGFloat,
@@ -45,12 +45,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other colorWithRed:green:blue:)]
+        #[method_id(@__method_family Other colorWithRed:green:blue:)]
         pub unsafe fn colorWithRed_green_blue(r: CGFloat, g: CGFloat, b: CGFloat)
             -> Retained<Self>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
-        #[method_id(@__retain_semantics Other colorWithRed:green:blue:alpha:colorSpace:)]
+        #[method_id(@__method_family Other colorWithRed:green:blue:alpha:colorSpace:)]
         pub unsafe fn colorWithRed_green_blue_alpha_colorSpace(
             r: CGFloat,
             g: CGFloat,
@@ -60,7 +60,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
-        #[method_id(@__retain_semantics Other colorWithRed:green:blue:colorSpace:)]
+        #[method_id(@__method_family Other colorWithRed:green:blue:colorSpace:)]
         pub unsafe fn colorWithRed_green_blue_colorSpace(
             r: CGFloat,
             g: CGFloat,
@@ -68,15 +68,15 @@ extern_methods!(
             color_space: &CGColorSpace,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other colorWithString:)]
+        #[method_id(@__method_family Other colorWithString:)]
         pub unsafe fn colorWithString(representation: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__retain_semantics Init initWithCGColor:)]
+        #[method_id(@__method_family Init initWithCGColor:)]
         pub unsafe fn initWithCGColor(this: Allocated<Self>, c: &CGColor) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithRed:green:blue:alpha:)]
+        #[method_id(@__method_family Init initWithRed:green:blue:alpha:)]
         pub unsafe fn initWithRed_green_blue_alpha(
             this: Allocated<Self>,
             r: CGFloat,
@@ -86,7 +86,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithRed:green:blue:)]
+        #[method_id(@__method_family Init initWithRed:green:blue:)]
         pub unsafe fn initWithRed_green_blue(
             this: Allocated<Self>,
             r: CGFloat,
@@ -95,7 +95,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
-        #[method_id(@__retain_semantics Init initWithRed:green:blue:alpha:colorSpace:)]
+        #[method_id(@__method_family Init initWithRed:green:blue:alpha:colorSpace:)]
         pub unsafe fn initWithRed_green_blue_alpha_colorSpace(
             this: Allocated<Self>,
             r: CGFloat,
@@ -106,7 +106,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
-        #[method_id(@__retain_semantics Init initWithRed:green:blue:colorSpace:)]
+        #[method_id(@__method_family Init initWithRed:green:blue:colorSpace:)]
         pub unsafe fn initWithRed_green_blue_colorSpace(
             this: Allocated<Self>,
             r: CGFloat,
@@ -138,37 +138,37 @@ extern_methods!(
         #[method(blue)]
         pub unsafe fn blue(&self) -> CGFloat;
 
-        #[method_id(@__retain_semantics Other stringRepresentation)]
+        #[method_id(@__method_family Other stringRepresentation)]
         pub unsafe fn stringRepresentation(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other blackColor)]
+        #[method_id(@__method_family Other blackColor)]
         pub unsafe fn blackColor() -> Retained<CIColor>;
 
-        #[method_id(@__retain_semantics Other whiteColor)]
+        #[method_id(@__method_family Other whiteColor)]
         pub unsafe fn whiteColor() -> Retained<CIColor>;
 
-        #[method_id(@__retain_semantics Other grayColor)]
+        #[method_id(@__method_family Other grayColor)]
         pub unsafe fn grayColor() -> Retained<CIColor>;
 
-        #[method_id(@__retain_semantics Other redColor)]
+        #[method_id(@__method_family Other redColor)]
         pub unsafe fn redColor() -> Retained<CIColor>;
 
-        #[method_id(@__retain_semantics Other greenColor)]
+        #[method_id(@__method_family Other greenColor)]
         pub unsafe fn greenColor() -> Retained<CIColor>;
 
-        #[method_id(@__retain_semantics Other blueColor)]
+        #[method_id(@__method_family Other blueColor)]
         pub unsafe fn blueColor() -> Retained<CIColor>;
 
-        #[method_id(@__retain_semantics Other cyanColor)]
+        #[method_id(@__method_family Other cyanColor)]
         pub unsafe fn cyanColor() -> Retained<CIColor>;
 
-        #[method_id(@__retain_semantics Other magentaColor)]
+        #[method_id(@__method_family Other magentaColor)]
         pub unsafe fn magentaColor() -> Retained<CIColor>;
 
-        #[method_id(@__retain_semantics Other yellowColor)]
+        #[method_id(@__method_family Other yellowColor)]
         pub unsafe fn yellowColor() -> Retained<CIColor>;
 
-        #[method_id(@__retain_semantics Other clearColor)]
+        #[method_id(@__method_family Other clearColor)]
         pub unsafe fn clearColor() -> Retained<CIColor>;
     }
 );
@@ -176,10 +176,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIColor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

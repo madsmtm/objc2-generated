@@ -31,7 +31,7 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__retain_semantics Init initWithContainer:center:transform:)]
+        #[method_id(@__method_family Init initWithContainer:center:transform:)]
         pub unsafe fn initWithContainer_center_transform(
             this: Allocated<Self>,
             container: &UIView,
@@ -44,21 +44,21 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__retain_semantics Init initWithContainer:center:)]
+        #[method_id(@__method_family Init initWithContainer:center:)]
         pub unsafe fn initWithContainer_center(
             this: Allocated<Self>,
             container: &UIView,
             center: CGPoint,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__retain_semantics Other container)]
+        #[method_id(@__method_family Other container)]
         pub unsafe fn container(&self) -> Retained<UIView>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -94,7 +94,7 @@ extern_methods!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
-        #[method_id(@__retain_semantics Init initWithView:parameters:target:)]
+        #[method_id(@__method_family Init initWithView:parameters:target:)]
         pub unsafe fn initWithView_parameters_target(
             this: Allocated<Self>,
             view: &UIView,
@@ -107,7 +107,7 @@ extern_methods!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
-        #[method_id(@__retain_semantics Init initWithView:parameters:)]
+        #[method_id(@__method_family Init initWithView:parameters:)]
         pub unsafe fn initWithView_parameters(
             this: Allocated<Self>,
             view: &UIView,
@@ -115,31 +115,31 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__retain_semantics Init initWithView:)]
+        #[method_id(@__method_family Init initWithView:)]
         pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other target)]
+        #[method_id(@__method_family Other target)]
         pub unsafe fn target(&self) -> Retained<UIPreviewTarget>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__retain_semantics Other view)]
+        #[method_id(@__method_family Other view)]
         pub unsafe fn view(&self) -> Retained<UIView>;
 
         #[cfg(feature = "UIPreviewParameters")]
-        #[method_id(@__retain_semantics Other parameters)]
+        #[method_id(@__method_family Other parameters)]
         pub unsafe fn parameters(&self) -> Retained<UIPreviewParameters>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(size)]
         pub unsafe fn size(&self) -> CGSize;
 
-        #[method_id(@__retain_semantics Other retargetedPreviewWithTarget:)]
+        #[method_id(@__method_family Other retargetedPreviewWithTarget:)]
         pub unsafe fn retargetedPreviewWithTarget(
             &self,
             new_target: &UIPreviewTarget,

@@ -46,25 +46,25 @@ extern_methods!(
     unsafe impl NSToolbarItem {
         #[cfg(feature = "NSToolbar")]
         /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
-        #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
+        #[method_id(@__method_family Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSToolbar")]
-        #[method_id(@__retain_semantics Other itemIdentifier)]
+        #[method_id(@__method_family Other itemIdentifier)]
         pub unsafe fn itemIdentifier(&self) -> Retained<NSToolbarItemIdentifier>;
 
         #[cfg(feature = "NSToolbar")]
         /// Use this to determine the toolbar in which an item is currently displayed.
-        #[method_id(@__retain_semantics Other toolbar)]
+        #[method_id(@__method_family Other toolbar)]
         pub unsafe fn toolbar(&self) -> Option<Retained<NSToolbar>>;
 
         /// Use this to set the item's label that appears in the toolbar.
         /// The label may also be used for the default `menuFormRepresentation` of the item.
         /// Also, developers should make sure the length of the label is appropriate and not too long.
-        #[method_id(@__retain_semantics Other label)]
+        #[method_id(@__method_family Other label)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
@@ -73,7 +73,7 @@ extern_methods!(
 
         /// Use this to set the item's label that appears when the item is in the customization palette.
         /// All Items must have a palette label, and for most things it is reasonable to set them to the same string as the label used in the toolbar.
-        #[method_id(@__retain_semantics Other paletteLabel)]
+        #[method_id(@__method_family Other paletteLabel)]
         pub unsafe fn paletteLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`paletteLabel`][Self::paletteLabel].
@@ -82,7 +82,7 @@ extern_methods!(
 
         /// An array of all alternate labels this item may display.
         /// The item will use the size of the longest label to prevent resizing when the label is changed.
-        #[method_id(@__retain_semantics Other possibleLabels)]
+        #[method_id(@__method_family Other possibleLabels)]
         pub unsafe fn possibleLabels(&self) -> Retained<NSSet<NSString>>;
 
         /// Setter for [`possibleLabels`][Self::possibleLabels].
@@ -90,7 +90,7 @@ extern_methods!(
         pub unsafe fn setPossibleLabels(&self, possible_labels: &NSSet<NSString>);
 
         /// Use this to set a tooltip to be used when the item is displayed in the toolbar. (forwards to `-view` if it responds)
-        #[method_id(@__retain_semantics Other toolTip)]
+        #[method_id(@__method_family Other toolTip)]
         pub unsafe fn toolTip(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`toolTip`][Self::toolTip].
@@ -106,7 +106,7 @@ extern_methods!(
         /// You could represent this as a menu by: a menu item "mode" with three submenu items "A", "B", and "C".
         /// By default, this method returns a singleton menu item with item label as the title.
         /// For standard items, the target, action is set.
-        #[method_id(@__retain_semantics Other menuFormRepresentation)]
+        #[method_id(@__method_family Other menuFormRepresentation)]
         pub unsafe fn menuFormRepresentation(&self) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
@@ -126,7 +126,7 @@ extern_methods!(
         pub unsafe fn setTag(&self, tag: NSInteger);
 
         /// Set and get the action of an item. (forwards to `-view` if it responds)
-        #[method_id(@__retain_semantics Other target)]
+        #[method_id(@__method_family Other target)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -153,7 +153,7 @@ extern_methods!(
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__retain_semantics Other image)]
+        #[method_id(@__method_family Other image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -163,7 +163,7 @@ extern_methods!(
 
         /// Set and get the title of an item.
         /// For custom views, this method will call `-setTitle:` on the view if it responds. (forwards to `-view` if it responds)
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -193,7 +193,7 @@ extern_methods!(
         /// Items with automatically generated views will return nil from this getter.
         /// Custom views may be provided but not all `NSToolbarItem` subclasses support custom views.
         /// Note that, by default, many of the set/get methods will be implemented by calls forwarded to the view you set, if it responds to it.
-        #[method_id(@__retain_semantics Other view)]
+        #[method_id(@__method_family Other view)]
         pub unsafe fn view(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -279,10 +279,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSToolbarItem {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -315,7 +315,7 @@ extern_protocol!(
         /// `NSToolbarItems` created with `NSToolbarCloudSharingItemIdentifier` use this method for further validation after sending `-validateToolbarItem:` or `-validateUserInterfaceItem:`.
         /// The validator for the item's action should return the current CKShare corresponding to the selected item, if any.
         /// The state of the item will be changed reflect the state of the CKShare.
-        #[method_id(@__retain_semantics Other cloudShareForUserInterfaceItem:)]
+        #[method_id(@__method_family Other cloudShareForUserInterfaceItem:)]
         unsafe fn cloudShareForUserInterfaceItem(
             &self,
             item: &ProtocolObject<dyn NSValidatedUserInterfaceItem>,

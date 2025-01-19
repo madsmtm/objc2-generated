@@ -31,38 +31,38 @@ unsafe impl NSSecureCoding for ASAuthorizationSingleSignOnCredential {}
 extern_methods!(
     unsafe impl ASAuthorizationSingleSignOnCredential {
         /// A state returned from the AuthenticationServices extension.
-        #[method_id(@__retain_semantics Other state)]
+        #[method_id(@__method_family Other state)]
         pub unsafe fn state(&self) -> Option<Retained<NSString>>;
 
         /// An access token used to access other systems with the authorized scopes.
-        #[method_id(@__retain_semantics Other accessToken)]
+        #[method_id(@__method_family Other accessToken)]
         pub unsafe fn accessToken(&self) -> Option<Retained<NSData>>;
 
         /// A JSON Web Token (JWT) used to communicate information about the identity of the user in a secure way to the app.
-        #[method_id(@__retain_semantics Other identityToken)]
+        #[method_id(@__method_family Other identityToken)]
         pub unsafe fn identityToken(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "ASAuthorization")]
         /// This value will contain a list of scopes for which the user provided authorization.  These may contain a subset of the requested scopes on
         ///
         /// See: ASAuthorizationOpenIDRequest.  The application should query this value to identify which scopes were returned as it maybe different from ones requested.
-        #[method_id(@__retain_semantics Other authorizedScopes)]
+        #[method_id(@__method_family Other authorizedScopes)]
         pub unsafe fn authorizedScopes(&self) -> Retained<NSArray<ASAuthorizationScope>>;
 
         /// The complete AuthenticationServices extension response with the additional outputs used by the specific technology used by the Authorization Server instance and AuthenticationServices Extension.
         ///
         /// Note: for some operations all properties can be null and the response will indicate just successful result of the operation.
-        #[method_id(@__retain_semantics Other authenticatedResponse)]
+        #[method_id(@__method_family Other authenticatedResponse)]
         pub unsafe fn authenticatedResponse(&self) -> Option<Retained<NSHTTPURLResponse>>;
 
         /// Private SecKeys returned from the AuthenticationServices extension.
-        #[method_id(@__retain_semantics Other privateKeys)]
+        #[method_id(@__method_family Other privateKeys)]
         pub unsafe fn privateKeys(&self) -> Retained<NSArray>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

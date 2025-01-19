@@ -18,14 +18,14 @@ unsafe impl NSObjectProtocol for MKMapItemRequest {}
 
 extern_methods!(
     unsafe impl MKMapItemRequest {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "MKMapItemIdentifier")]
-        #[method_id(@__retain_semantics Init initWithMapItemIdentifier:)]
+        #[method_id(@__method_family Init initWithMapItemIdentifier:)]
         pub unsafe fn initWithMapItemIdentifier(
             this: Allocated<Self>,
             identifier: &MKMapItemIdentifier,
@@ -42,7 +42,7 @@ extern_methods!(
         pub unsafe fn cancel(&self);
 
         #[cfg(feature = "MKMapItemIdentifier")]
-        #[method_id(@__retain_semantics Other mapItemIdentifier)]
+        #[method_id(@__method_family Other mapItemIdentifier)]
         pub unsafe fn mapItemIdentifier(&self) -> Option<Retained<MKMapItemIdentifier>>;
 
         #[method(isCancelled)]

@@ -31,15 +31,15 @@ extern_methods!(
     unsafe impl HMService {
         #[cfg(feature = "HMAccessory")]
         /// Accessory that provides this service.
-        #[method_id(@__retain_semantics Other accessory)]
+        #[method_id(@__method_family Other accessory)]
         pub unsafe fn accessory(&self) -> Option<Retained<HMAccessory>>;
 
         /// The type of the service, e.g. HMServiceTypeLightbulb.
-        #[method_id(@__retain_semantics Other serviceType)]
+        #[method_id(@__method_family Other serviceType)]
         pub unsafe fn serviceType(&self) -> Retained<NSString>;
 
         /// The localized description of the service.
-        #[method_id(@__retain_semantics Other localizedDescription)]
+        #[method_id(@__method_family Other localizedDescription)]
         pub unsafe fn localizedDescription(&self) -> Retained<NSString>;
 
         /// Name for the service.
@@ -47,7 +47,7 @@ extern_methods!(
         ///
         /// Returns the service's name that is associated with HomeKit. The initial value is the value of
         /// the name characteristic of the service, if it has one.
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// For HMServiceTypeOutlet and HMServiceTypeSwitch, this is the type of the associated service.
@@ -55,17 +55,17 @@ extern_methods!(
         ///
         /// This could be any of the HomeKit Accessory Profile defined services (except HMServiceTypeOutlet
         /// or HMServiceTypeSwitch) that supports HMCharacteristicTypePowerState characteristic.
-        #[method_id(@__retain_semantics Other associatedServiceType)]
+        #[method_id(@__method_family Other associatedServiceType)]
         pub unsafe fn associatedServiceType(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "HMCharacteristic")]
         /// Array of HMCharacteristic objects that represents all the characteristics
         /// provided by the service.
-        #[method_id(@__retain_semantics Other characteristics)]
+        #[method_id(@__method_family Other characteristics)]
         pub unsafe fn characteristics(&self) -> Retained<NSArray<HMCharacteristic>>;
 
         /// A unique identifier for the service.
-        #[method_id(@__retain_semantics Other uniqueIdentifier)]
+        #[method_id(@__method_family Other uniqueIdentifier)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
         /// Indicates if this service supports user interaction or not.
@@ -88,14 +88,14 @@ extern_methods!(
         ///
         /// Applications should use this property to show logical grouping of services on the accessory.
         /// linkedServices will be nil when the service does not link to any other services.
-        #[method_id(@__retain_semantics Other linkedServices)]
+        #[method_id(@__method_family Other linkedServices)]
         pub unsafe fn linkedServices(&self) -> Option<Retained<NSArray<HMService>>>;
 
         /// The Matter endpoint identifier that this service is mapped to.
         ///
         ///
         /// This property is nil for HAP accessories, and set to a valid value for Matter devices.
-        #[method_id(@__retain_semantics Other matterEndpointID)]
+        #[method_id(@__method_family Other matterEndpointID)]
         pub unsafe fn matterEndpointID(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "block2")]
@@ -147,7 +147,7 @@ extern_methods!(
         );
 
         #[deprecated = "HMService objects are created by their parent container objects. Directly creating them is not supported."]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -155,7 +155,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMService {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

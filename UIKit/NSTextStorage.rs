@@ -46,7 +46,7 @@ extern_methods!(
     unsafe impl NSTextStorage {
         #[cfg(feature = "NSLayoutManager")]
         /// ************************** Layout manager ***************************
-        #[method_id(@__retain_semantics Other layoutManagers)]
+        #[method_id(@__method_family Other layoutManagers)]
         pub unsafe fn layoutManagers(&self) -> Retained<NSArray<NSLayoutManager>>;
 
         #[cfg(feature = "NSLayoutManager")]
@@ -68,7 +68,7 @@ extern_methods!(
         pub unsafe fn changeInLength(&self) -> NSInteger;
 
         /// ************************** Delegate ***************************
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextStorageDelegate>>>;
@@ -104,7 +104,7 @@ extern_methods!(
         pub unsafe fn ensureAttributesAreFixedInRange(&self, range: NSRange);
 
         /// ************************** NSTextStorageObserving ***************************
-        #[method_id(@__retain_semantics Other textStorageObserver)]
+        #[method_id(@__method_family Other textStorageObserver)]
         pub unsafe fn textStorageObserver(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTextStorageObserving>>>;
@@ -122,10 +122,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextStorage {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -172,7 +172,7 @@ extern "C" {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstorageobserving?language=objc)
     pub unsafe trait NSTextStorageObserving: NSObjectProtocol {
-        #[method_id(@__retain_semantics Other textStorage)]
+        #[method_id(@__method_family Other textStorage)]
         unsafe fn textStorage(&self) -> Option<Retained<NSTextStorage>>;
 
         /// Setter for [`textStorage`][Self::textStorage].

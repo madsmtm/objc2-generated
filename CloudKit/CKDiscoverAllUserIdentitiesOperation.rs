@@ -28,7 +28,7 @@ extern_methods!(
     #[cfg(feature = "CKOperation")]
     unsafe impl CKDiscoverAllUserIdentitiesOperation {
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CKUserIdentity", feature = "block2"))]
@@ -92,7 +92,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CKOperation")]
     unsafe impl CKDiscoverAllUserIdentitiesOperation {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

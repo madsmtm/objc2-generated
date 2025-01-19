@@ -85,7 +85,7 @@ unsafe impl NSObjectProtocol for PHPhotoLibrary {}
 
 extern_methods!(
     unsafe impl PHPhotoLibrary {
-        #[method_id(@__retain_semantics Other sharedPhotoLibrary)]
+        #[method_id(@__method_family Other sharedPhotoLibrary)]
         pub unsafe fn sharedPhotoLibrary() -> Retained<PHPhotoLibrary>;
 
         /// Replaces
@@ -113,7 +113,7 @@ extern_methods!(
         #[method(requestAuthorization:)]
         pub unsafe fn requestAuthorization(handler: &block2::Block<dyn Fn(PHAuthorizationStatus)>);
 
-        #[method_id(@__retain_semantics Other unavailabilityReason)]
+        #[method_id(@__method_family Other unavailabilityReason)]
         pub unsafe fn unavailabilityReason(&self) -> Option<Retained<NSError>>;
 
         #[method(registerAvailabilityObserver:)]
@@ -144,14 +144,14 @@ extern_methods!(
             feature = "PHPersistentChangeFetchResult",
             feature = "PHPersistentChangeToken"
         ))]
-        #[method_id(@__retain_semantics Other fetchPersistentChangesSinceToken:error:_)]
+        #[method_id(@__method_family Other fetchPersistentChangesSinceToken:error:_)]
         pub unsafe fn fetchPersistentChangesSinceToken_error(
             &self,
             token: &PHPersistentChangeToken,
         ) -> Result<Retained<PHPersistentChangeFetchResult>, Retained<NSError>>;
 
         #[cfg(feature = "PHPersistentChangeToken")]
-        #[method_id(@__retain_semantics Other currentChangeToken)]
+        #[method_id(@__method_family Other currentChangeToken)]
         pub unsafe fn currentChangeToken(&self) -> Retained<PHPersistentChangeToken>;
     }
 );
@@ -159,10 +159,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHPhotoLibrary {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

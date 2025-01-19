@@ -28,7 +28,7 @@ extern_methods!(
     unsafe impl MDLObject {
         #[cfg(feature = "MDLTypes")]
         /// Allows applications to introspect the components on the objects.
-        #[method_id(@__retain_semantics Other components)]
+        #[method_id(@__method_family Other components)]
         pub unsafe fn components(&self) -> Retained<NSArray<ProtocolObject<dyn MDLComponent>>>;
 
         #[cfg(feature = "MDLTypes")]
@@ -44,7 +44,7 @@ extern_methods!(
         #[cfg(feature = "MDLTypes")]
         /// Extensible component support that allows user of ModelIO to customize
         /// MDLObjects to fit their format and workflow.
-        #[method_id(@__retain_semantics Other componentConformingToProtocol:)]
+        #[method_id(@__method_family Other componentConformingToProtocol:)]
         pub unsafe fn componentConformingToProtocol(
             &self,
             protocol: &AnyProtocol,
@@ -56,7 +56,7 @@ extern_methods!(
         /// Parameter `key`: The protocol that the component conforms to.
         ///
         /// See: componentConformingToProtocol:
-        #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
+        #[method_id(@__method_family Other objectForKeyedSubscript:)]
         pub unsafe fn objectForKeyedSubscript(
             &self,
             key: &AnyProtocol,
@@ -79,7 +79,7 @@ extern_methods!(
         ///
         /// Set to nil when you remove this from an object container inside the
         /// parent object.
-        #[method_id(@__retain_semantics Other parent)]
+        #[method_id(@__method_family Other parent)]
         pub unsafe fn parent(&self) -> Option<Retained<MDLObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -98,7 +98,7 @@ extern_methods!(
         /// transform of each chair would be found on the parent MDLObject, but
         /// the various items making up the chair would be found in the original
         /// object.
-        #[method_id(@__retain_semantics Other instance)]
+        #[method_id(@__method_family Other instance)]
         pub unsafe fn instance(&self) -> Option<Retained<MDLObject>>;
 
         /// Setter for [`instance`][Self::instance].
@@ -112,11 +112,11 @@ extern_methods!(
         /// Requesting a path will force any unnamed objects to became uniquely
         /// named. Any characters outside of [A-Z][a-z][0-9][:-_.] will be
         /// forced to underscore.
-        #[method_id(@__retain_semantics Other path)]
+        #[method_id(@__method_family Other path)]
         pub unsafe fn path(&self) -> Retained<NSString>;
 
         /// Return the object at the specified path, or nil if none exists there
-        #[method_id(@__retain_semantics Other objectAtPath:)]
+        #[method_id(@__method_family Other objectAtPath:)]
         pub unsafe fn objectAtPath(&self, path: &NSString) -> Retained<MDLObject>;
 
         #[cfg(feature = "block2")]
@@ -136,7 +136,7 @@ extern_methods!(
         ///
         ///
         /// See: MDLTransformComponent
-        #[method_id(@__retain_semantics Other transform)]
+        #[method_id(@__method_family Other transform)]
         pub unsafe fn transform(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MDLTransformComponent>>>;
@@ -156,7 +156,7 @@ extern_methods!(
         ///
         ///
         /// See: MDLObjectContainerComponent
-        #[method_id(@__retain_semantics Other children)]
+        #[method_id(@__method_family Other children)]
         pub unsafe fn children(&self) -> Retained<ProtocolObject<dyn MDLObjectContainerComponent>>;
 
         #[cfg(feature = "MDLTypes")]
@@ -194,10 +194,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLObject {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -232,10 +232,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLObjectContainer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

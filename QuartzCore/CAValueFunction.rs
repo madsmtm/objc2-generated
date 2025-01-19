@@ -25,10 +25,10 @@ unsafe impl NSSecureCoding for CAValueFunction {}
 
 extern_methods!(
     unsafe impl CAValueFunction {
-        #[method_id(@__retain_semantics Other functionWithName:)]
+        #[method_id(@__method_family Other functionWithName:)]
         pub unsafe fn functionWithName(name: &CAValueFunctionName) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<CAValueFunctionName>;
     }
 );
@@ -36,10 +36,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CAValueFunction {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

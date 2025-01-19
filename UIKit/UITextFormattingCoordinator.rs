@@ -36,7 +36,7 @@ unsafe impl UIFontPickerViewControllerDelegate for UITextFormattingCoordinator {
 
 extern_methods!(
     unsafe impl UITextFormattingCoordinator {
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITextFormattingCoordinatorDelegate>>>;
@@ -57,7 +57,7 @@ extern_methods!(
             feature = "UIScene",
             feature = "UIWindowScene"
         ))]
-        #[method_id(@__retain_semantics Other textFormattingCoordinatorForWindowScene:)]
+        #[method_id(@__method_family Other textFormattingCoordinatorForWindowScene:)]
         pub unsafe fn textFormattingCoordinatorForWindowScene(
             window_scene: &UIWindowScene,
         ) -> Retained<Self>;
@@ -67,13 +67,13 @@ extern_methods!(
             feature = "UIScene",
             feature = "UIWindowScene"
         ))]
-        #[method_id(@__retain_semantics Init initWithWindowScene:)]
+        #[method_id(@__method_family Init initWithWindowScene:)]
         pub unsafe fn initWithWindowScene(
             this: Allocated<Self>,
             window_scene: &UIWindowScene,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(setSelectedAttributes:isMultiple:)]
@@ -91,7 +91,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextFormattingCoordinator {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

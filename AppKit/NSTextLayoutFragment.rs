@@ -80,40 +80,40 @@ unsafe impl NSSecureCoding for NSTextLayoutFragment {}
 extern_methods!(
     unsafe impl NSTextLayoutFragment {
         #[cfg(all(feature = "NSTextElement", feature = "NSTextRange"))]
-        #[method_id(@__retain_semantics Init initWithTextElement:range:)]
+        #[method_id(@__method_family Init initWithTextElement:range:)]
         pub unsafe fn initWithTextElement_range(
             this: Allocated<Self>,
             text_element: &NSTextElement,
             range_in_element: Option<&NSTextRange>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSTextLayoutManager")]
-        #[method_id(@__retain_semantics Other textLayoutManager)]
+        #[method_id(@__method_family Other textLayoutManager)]
         pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "NSTextElement")]
-        #[method_id(@__retain_semantics Other textElement)]
+        #[method_id(@__method_family Other textElement)]
         pub unsafe fn textElement(&self) -> Option<Retained<NSTextElement>>;
 
         #[cfg(feature = "NSTextRange")]
-        #[method_id(@__retain_semantics Other rangeInElement)]
+        #[method_id(@__method_family Other rangeInElement)]
         pub unsafe fn rangeInElement(&self) -> Retained<NSTextRange>;
 
         #[cfg(feature = "NSTextLineFragment")]
-        #[method_id(@__retain_semantics Other textLineFragments)]
+        #[method_id(@__method_family Other textLineFragments)]
         pub unsafe fn textLineFragments(&self) -> Retained<NSArray<NSTextLineFragment>>;
 
         #[cfg(all(feature = "NSTextLineFragment", feature = "objc2-core-foundation"))]
-        #[method_id(@__retain_semantics Other textLineFragmentForVerticalOffset:requiresExactMatch:)]
+        #[method_id(@__method_family Other textLineFragmentForVerticalOffset:requiresExactMatch:)]
         pub unsafe fn textLineFragmentForVerticalOffset_requiresExactMatch(
             &self,
             vertical_offset: CGFloat,
@@ -121,14 +121,14 @@ extern_methods!(
         ) -> Option<Retained<NSTextLineFragment>>;
 
         #[cfg(all(feature = "NSTextLineFragment", feature = "NSTextRange"))]
-        #[method_id(@__retain_semantics Other textLineFragmentForTextLocation:isUpstreamAffinity:)]
+        #[method_id(@__method_family Other textLineFragmentForTextLocation:isUpstreamAffinity:)]
         pub unsafe fn textLineFragmentForTextLocation_isUpstreamAffinity(
             &self,
             text_location: &ProtocolObject<dyn NSTextLocation>,
             is_upstream_affinity: bool,
         ) -> Option<Retained<NSTextLineFragment>>;
 
-        #[method_id(@__retain_semantics Other layoutQueue)]
+        #[method_id(@__method_family Other layoutQueue)]
         pub unsafe fn layoutQueue(&self) -> Option<Retained<NSOperationQueue>>;
 
         /// Setter for [`layoutQueue`][Self::layoutQueue].
@@ -171,7 +171,7 @@ extern_methods!(
         pub unsafe fn drawAtPoint_inContext(&self, point: CGPoint, context: &CGContext);
 
         #[cfg(feature = "NSTextAttachment")]
-        #[method_id(@__retain_semantics Other textAttachmentViewProviders)]
+        #[method_id(@__method_family Other textAttachmentViewProviders)]
         pub unsafe fn textAttachmentViewProviders(
             &self,
         ) -> Retained<NSArray<NSTextAttachmentViewProvider>>;
@@ -188,7 +188,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextLayoutFragment {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

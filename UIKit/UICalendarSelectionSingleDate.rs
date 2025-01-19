@@ -23,7 +23,7 @@ extern_methods!(
     #[cfg(feature = "UICalendarSelection")]
     unsafe impl UICalendarSelectionSingleDate {
         /// The object that acts as the delegate of the calendar view selection
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICalendarSelectionSingleDateDelegate>>>;
@@ -32,7 +32,7 @@ extern_methods!(
         /// `nil`then nothing in the calendar
         /// view is currently selected. The default value is
         /// `nil.`
-        #[method_id(@__retain_semantics Other selectedDate)]
+        #[method_id(@__method_family Other selectedDate)]
         pub unsafe fn selectedDate(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`selectedDate`][Self::selectedDate].
@@ -48,7 +48,7 @@ extern_methods!(
         );
 
         /// Creates a new single selection with the specified delegate.
-        #[method_id(@__retain_semantics Init initWithDelegate:)]
+        #[method_id(@__method_family Init initWithDelegate:)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: Option<&ProtocolObject<dyn UICalendarSelectionSingleDateDelegate>>,
@@ -60,10 +60,10 @@ extern_methods!(
     /// Methods declared on superclass `UICalendarSelection`
     #[cfg(feature = "UICalendarSelection")]
     unsafe impl UICalendarSelectionSingleDate {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

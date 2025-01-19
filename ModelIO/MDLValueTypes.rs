@@ -34,7 +34,7 @@ extern_methods!(
         #[method(clear)]
         pub unsafe fn clear(&self);
 
-        #[method_id(@__retain_semantics Init initWithElementCount:)]
+        #[method_id(@__method_family Init initWithElementCount:)]
         pub unsafe fn initWithElementCount(
             this: Allocated<Self>,
             array_element_count: NSUInteger,
@@ -45,10 +45,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLMatrix4x4Array {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

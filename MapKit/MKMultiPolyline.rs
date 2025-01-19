@@ -27,14 +27,14 @@ extern_methods!(
     #[cfg(feature = "MKShape")]
     unsafe impl MKMultiPolyline {
         #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline"))]
-        #[method_id(@__retain_semantics Init initWithPolylines:)]
+        #[method_id(@__method_family Init initWithPolylines:)]
         pub unsafe fn initWithPolylines(
             this: Allocated<Self>,
             polylines: &NSArray<MKPolyline>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline"))]
-        #[method_id(@__retain_semantics Other polylines)]
+        #[method_id(@__method_family Other polylines)]
         pub unsafe fn polylines(&self) -> Retained<NSArray<MKPolyline>>;
     }
 );
@@ -43,10 +43,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MKShape")]
     unsafe impl MKMultiPolyline {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

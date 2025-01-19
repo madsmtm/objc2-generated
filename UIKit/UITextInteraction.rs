@@ -66,7 +66,7 @@ unsafe impl UIInteraction for UITextInteraction {}
 
 extern_methods!(
     unsafe impl UITextInteraction {
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITextInteractionDelegate>>>;
@@ -84,7 +84,7 @@ extern_methods!(
             feature = "UITextInput",
             feature = "UITextInputTraits"
         ))]
-        #[method_id(@__retain_semantics Other textInput)]
+        #[method_id(@__method_family Other textInput)]
         pub unsafe fn textInput(&self) -> Option<Retained<UIResponder>>;
 
         #[cfg(all(
@@ -101,12 +101,12 @@ extern_methods!(
         pub unsafe fn textInteractionMode(&self) -> UITextInteractionMode;
 
         #[cfg(feature = "UIGestureRecognizer")]
-        #[method_id(@__retain_semantics Other gesturesForFailureRequirements)]
+        #[method_id(@__method_family Other gesturesForFailureRequirements)]
         pub unsafe fn gesturesForFailureRequirements(
             &self,
         ) -> Retained<NSArray<UIGestureRecognizer>>;
 
-        #[method_id(@__retain_semantics Other textInteractionForMode:)]
+        #[method_id(@__method_family Other textInteractionForMode:)]
         pub unsafe fn textInteractionForMode(
             mode: UITextInteractionMode,
             mtm: MainThreadMarker,
@@ -117,10 +117,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextInteraction {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -21,14 +21,14 @@ unsafe impl NSPasteboardWriting for NSFilePromiseProvider {}
 
 extern_methods!(
     unsafe impl NSFilePromiseProvider {
-        #[method_id(@__retain_semantics Other fileType)]
+        #[method_id(@__method_family Other fileType)]
         pub unsafe fn fileType(&self) -> Retained<NSString>;
 
         /// Setter for [`fileType`][Self::fileType].
         #[method(setFileType:)]
         pub unsafe fn setFileType(&self, file_type: &NSString);
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSFilePromiseProviderDelegate>>>;
@@ -41,21 +41,21 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSFilePromiseProviderDelegate>>,
         );
 
-        #[method_id(@__retain_semantics Other userInfo)]
+        #[method_id(@__method_family Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
         #[method(setUserInfo:)]
         pub unsafe fn setUserInfo(&self, user_info: Option<&AnyObject>);
 
-        #[method_id(@__retain_semantics Init initWithFileType:delegate:)]
+        #[method_id(@__method_family Init initWithFileType:delegate:)]
         pub unsafe fn initWithFileType_delegate(
             this: Allocated<Self>,
             file_type: &NSString,
             delegate: &ProtocolObject<dyn NSFilePromiseProviderDelegate>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -63,7 +63,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFilePromiseProvider {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -71,7 +71,7 @@ extern_methods!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilepromiseproviderdelegate?language=objc)
     pub unsafe trait NSFilePromiseProviderDelegate: NSObjectProtocol {
-        #[method_id(@__retain_semantics Other filePromiseProvider:fileNameForType:)]
+        #[method_id(@__method_family Other filePromiseProvider:fileNameForType:)]
         unsafe fn filePromiseProvider_fileNameForType(
             &self,
             file_promise_provider: &NSFilePromiseProvider,
@@ -89,7 +89,7 @@ extern_protocol!(
         );
 
         #[optional]
-        #[method_id(@__retain_semantics Other operationQueueForFilePromiseProvider:)]
+        #[method_id(@__method_family Other operationQueueForFilePromiseProvider:)]
         unsafe fn operationQueueForFilePromiseProvider(
             &self,
             file_promise_provider: &NSFilePromiseProvider,

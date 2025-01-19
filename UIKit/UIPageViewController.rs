@@ -151,7 +151,7 @@ unsafe impl UITraitEnvironment for UIPageViewController {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIPageViewController {
-        #[method_id(@__retain_semantics Init initWithTransitionStyle:navigationOrientation:options:)]
+        #[method_id(@__method_family Init initWithTransitionStyle:navigationOrientation:options:)]
         pub unsafe fn initWithTransitionStyle_navigationOrientation_options(
             this: Allocated<Self>,
             style: UIPageViewControllerTransitionStyle,
@@ -159,13 +159,13 @@ extern_methods!(
             options: Option<&NSDictionary<UIPageViewControllerOptionsKey, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPageViewControllerDelegate>>>;
@@ -178,7 +178,7 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn UIPageViewControllerDelegate>>,
         );
 
-        #[method_id(@__retain_semantics Other dataSource)]
+        #[method_id(@__method_family Other dataSource)]
         pub unsafe fn dataSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPageViewControllerDataSource>>>;
@@ -208,10 +208,10 @@ extern_methods!(
         pub unsafe fn setDoubleSided(&self, double_sided: bool);
 
         #[cfg(feature = "UIGestureRecognizer")]
-        #[method_id(@__retain_semantics Other gestureRecognizers)]
+        #[method_id(@__method_family Other gestureRecognizers)]
         pub unsafe fn gestureRecognizers(&self) -> Retained<NSArray<UIGestureRecognizer>>;
 
-        #[method_id(@__retain_semantics Other viewControllers)]
+        #[method_id(@__method_family Other viewControllers)]
         pub unsafe fn viewControllers(&self) -> Option<Retained<NSArray<UIViewController>>>;
 
         #[cfg(feature = "block2")]
@@ -230,7 +230,7 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIPageViewController {
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        #[method_id(@__method_family Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
@@ -243,10 +243,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIPageViewController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -321,7 +321,7 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[method_id(@__retain_semantics Other pageViewController:viewControllerBeforeViewController:)]
+        #[method_id(@__method_family Other pageViewController:viewControllerBeforeViewController:)]
         unsafe fn pageViewController_viewControllerBeforeViewController(
             &self,
             page_view_controller: &UIPageViewController,
@@ -329,7 +329,7 @@ extern_protocol!(
         ) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[method_id(@__retain_semantics Other pageViewController:viewControllerAfterViewController:)]
+        #[method_id(@__method_family Other pageViewController:viewControllerAfterViewController:)]
         unsafe fn pageViewController_viewControllerAfterViewController(
             &self,
             page_view_controller: &UIPageViewController,

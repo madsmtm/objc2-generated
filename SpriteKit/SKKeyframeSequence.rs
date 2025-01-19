@@ -72,21 +72,21 @@ unsafe impl NSSecureCoding for SKKeyframeSequence {}
 
 extern_methods!(
     unsafe impl SKKeyframeSequence {
-        #[method_id(@__retain_semantics Init initWithKeyframeValues:times:)]
+        #[method_id(@__method_family Init initWithKeyframeValues:times:)]
         pub unsafe fn initWithKeyframeValues_times(
             this: Allocated<Self>,
             values: &NSArray,
             times: &NSArray<NSNumber>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCapacity:)]
+        #[method_id(@__method_family Init initWithCapacity:)]
         pub unsafe fn initWithCapacity(
             this: Allocated<Self>,
             num_items: NSUInteger,
         ) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -121,7 +121,7 @@ extern_methods!(
             index: NSUInteger,
         );
 
-        #[method_id(@__retain_semantics Other getKeyframeValueForIndex:)]
+        #[method_id(@__method_family Other getKeyframeValueForIndex:)]
         pub unsafe fn getKeyframeValueForIndex(&self, index: NSUInteger) -> Retained<AnyObject>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -129,7 +129,7 @@ extern_methods!(
         pub unsafe fn getKeyframeTimeForIndex(&self, index: NSUInteger) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other sampleAtTime:)]
+        #[method_id(@__method_family Other sampleAtTime:)]
         pub unsafe fn sampleAtTime(&self, time: CGFloat) -> Option<Retained<AnyObject>>;
 
         #[method(interpolationMode)]
@@ -151,10 +151,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKKeyframeSequence {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -78,7 +78,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLFrameSetElement {
         #[deprecated]
-        #[method_id(@__retain_semantics Other cols)]
+        #[method_id(@__method_family Other cols)]
         pub unsafe fn cols(&self) -> Retained<NSString>;
 
         /// Setter for [`cols`][Self::cols].
@@ -87,7 +87,7 @@ extern_methods!(
         pub unsafe fn setCols(&self, cols: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other rows)]
+        #[method_id(@__method_family Other rows)]
         pub unsafe fn rows(&self) -> Retained<NSString>;
 
         /// Setter for [`rows`][Self::rows].
@@ -108,7 +108,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLFrameSetElement {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -123,7 +123,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLFrameSetElement {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -21,7 +21,7 @@ extern_methods!(
         /// - secondaryTensor: The right-hand side tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid tensor containing the product of the input matrices.
-        #[method_id(@__retain_semantics Other matrixMultiplicationWithPrimaryTensor:secondaryTensor:name:)]
+        #[method_id(@__method_family Other matrixMultiplicationWithPrimaryTensor:secondaryTensor:name:)]
         pub unsafe fn matrixMultiplicationWithPrimaryTensor_secondaryTensor_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -44,7 +44,7 @@ extern_methods!(
         /// - resultDataType: The datatype of the return MPSGraphTensor. Must be either ``MPSDataTypeUInt32`` or ``MPSDataTypeUInt16``.
         /// - name: The name for the operation.
         /// - Returns: A valid tensor containing the hamming distance between the input tensors.
-        #[method_id(@__retain_semantics Other HammingDistanceWithPrimaryTensor:secondaryTensor:resultDataType:name:)]
+        #[method_id(@__method_family Other HammingDistanceWithPrimaryTensor:secondaryTensor:resultDataType:name:)]
         pub unsafe fn HammingDistanceWithPrimaryTensor_secondaryTensor_resultDataType_name(
             &self,
             primary_tensor: &MPSGraphTensor,
@@ -71,7 +71,7 @@ extern_methods!(
         /// - scale: A scale that is applied to the result of query and value matrix multiply.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:maskTensor:scale:name:)]
+        #[method_id(@__method_family Other scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:maskTensor:scale:name:)]
         pub unsafe fn scaledDotProductAttentionWithQueryTensor_keyTensor_valueTensor_maskTensor_scale_name(
             &self,
             query_tensor: &MPSGraphTensor,
@@ -92,7 +92,7 @@ extern_methods!(
         /// - scale: A scale that is applied on the result of query and value matrix multiply.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:scale:name:)]
+        #[method_id(@__method_family Other scaledDotProductAttentionWithQueryTensor:keyTensor:valueTensor:scale:name:)]
         pub unsafe fn scaledDotProductAttentionWithQueryTensor_keyTensor_valueTensor_scale_name(
             &self,
             query_tensor: &MPSGraphTensor,

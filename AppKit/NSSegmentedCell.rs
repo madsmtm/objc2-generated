@@ -100,7 +100,7 @@ extern_methods!(
         pub unsafe fn setImage_forSegment(&self, image: Option<&NSImage>, segment: NSInteger);
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__retain_semantics Other imageForSegment:)]
+        #[method_id(@__method_family Other imageForSegment:)]
         pub unsafe fn imageForSegment(&self, segment: NSInteger) -> Option<Retained<NSImage>>;
 
         #[method(setImageScaling:forSegment:)]
@@ -116,7 +116,7 @@ extern_methods!(
         #[method(setLabel:forSegment:)]
         pub unsafe fn setLabel_forSegment(&self, label: &NSString, segment: NSInteger);
 
-        #[method_id(@__retain_semantics Other labelForSegment:)]
+        #[method_id(@__method_family Other labelForSegment:)]
         pub unsafe fn labelForSegment(&self, segment: NSInteger) -> Option<Retained<NSString>>;
 
         #[method(setSelected:forSegment:)]
@@ -136,13 +136,13 @@ extern_methods!(
         pub unsafe fn setMenu_forSegment(&self, menu: Option<&NSMenu>, segment: NSInteger);
 
         #[cfg(feature = "NSMenu")]
-        #[method_id(@__retain_semantics Other menuForSegment:)]
+        #[method_id(@__method_family Other menuForSegment:)]
         pub unsafe fn menuForSegment(&self, segment: NSInteger) -> Option<Retained<NSMenu>>;
 
         #[method(setToolTip:forSegment:)]
         pub unsafe fn setToolTip_forSegment(&self, tool_tip: Option<&NSString>, segment: NSInteger);
 
-        #[method_id(@__retain_semantics Other toolTipForSegment:)]
+        #[method_id(@__method_family Other toolTipForSegment:)]
         pub unsafe fn toolTipForSegment(&self, segment: NSInteger) -> Option<Retained<NSString>>;
 
         #[method(setTag:forSegment:)]
@@ -175,20 +175,20 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSSegmentedCell {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initTextCell:)]
+        #[method_id(@__method_family Init initTextCell:)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__retain_semantics Init initImageCell:)]
+        #[method_id(@__method_family Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     }
 );
@@ -197,7 +197,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
     unsafe impl NSSegmentedCell {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

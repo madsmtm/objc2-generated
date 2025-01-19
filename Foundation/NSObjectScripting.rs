@@ -11,14 +11,14 @@ extern_category!(
     #[doc(alias = "NSScripting")]
     pub unsafe trait NSObjectNSScripting {
         #[cfg(feature = "NSScriptObjectSpecifiers")]
-        #[method_id(@__retain_semantics Other scriptingValueForSpecifier:)]
+        #[method_id(@__method_family Other scriptingValueForSpecifier:)]
         unsafe fn scriptingValueForSpecifier(
             &self,
             object_specifier: &NSScriptObjectSpecifier,
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other scriptingProperties)]
+        #[method_id(@__method_family Other scriptingProperties)]
         unsafe fn scriptingProperties(&self)
             -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
@@ -31,7 +31,7 @@ extern_category!(
         );
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__retain_semantics Copy copyScriptingValue:forKey:withProperties:)]
+        #[method_id(@__method_family Copy copyScriptingValue:forKey:withProperties:)]
         unsafe fn copyScriptingValue_forKey_withProperties(
             &self,
             value: &AnyObject,
@@ -40,7 +40,7 @@ extern_category!(
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__retain_semantics New newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:)]
+        #[method_id(@__method_family New newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:)]
         unsafe fn newScriptingObjectOfClass_forValueForKey_withContentsValue_properties(
             &self,
             object_class: &AnyClass,

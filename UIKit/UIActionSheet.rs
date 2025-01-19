@@ -107,7 +107,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIActionSheet {
         #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead"]
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIActionSheetDelegate>>>;
@@ -122,7 +122,7 @@ extern_methods!(
         );
 
         #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead"]
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -144,7 +144,7 @@ extern_methods!(
         pub unsafe fn addButtonWithTitle(&self, title: Option<&NSString>) -> NSInteger;
 
         #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead"]
-        #[method_id(@__retain_semantics Other buttonTitleAtIndex:)]
+        #[method_id(@__method_family Other buttonTitleAtIndex:)]
         pub unsafe fn buttonTitleAtIndex(
             &self,
             button_index: NSInteger,
@@ -222,10 +222,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIActionSheet {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -237,10 +237,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIActionSheet {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

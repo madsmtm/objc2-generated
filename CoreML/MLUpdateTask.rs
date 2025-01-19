@@ -29,7 +29,7 @@ extern_methods!(
             feature = "MLUpdateContext",
             feature = "block2"
         ))]
-        #[method_id(@__retain_semantics Other updateTaskForModelAtURL:trainingData:configuration:completionHandler:error:_)]
+        #[method_id(@__method_family Other updateTaskForModelAtURL:trainingData:configuration:completionHandler:error:_)]
         pub unsafe fn updateTaskForModelAtURL_trainingData_configuration_completionHandler_error(
             model_url: &NSURL,
             training_data: &ProtocolObject<dyn MLBatchProvider>,
@@ -42,7 +42,7 @@ extern_methods!(
             feature = "MLUpdateContext",
             feature = "block2"
         ))]
-        #[method_id(@__retain_semantics Other updateTaskForModelAtURL:trainingData:completionHandler:error:_)]
+        #[method_id(@__method_family Other updateTaskForModelAtURL:trainingData:completionHandler:error:_)]
         pub unsafe fn updateTaskForModelAtURL_trainingData_completionHandler_error(
             model_url: &NSURL,
             training_data: &ProtocolObject<dyn MLBatchProvider>,
@@ -54,7 +54,7 @@ extern_methods!(
             feature = "MLModelConfiguration",
             feature = "MLUpdateProgressHandlers"
         ))]
-        #[method_id(@__retain_semantics Other updateTaskForModelAtURL:trainingData:configuration:progressHandlers:error:_)]
+        #[method_id(@__method_family Other updateTaskForModelAtURL:trainingData:configuration:progressHandlers:error:_)]
         pub unsafe fn updateTaskForModelAtURL_trainingData_configuration_progressHandlers_error(
             model_url: &NSURL,
             training_data: &ProtocolObject<dyn MLBatchProvider>,
@@ -63,7 +63,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "MLBatchProvider", feature = "MLUpdateProgressHandlers"))]
-        #[method_id(@__retain_semantics Other updateTaskForModelAtURL:trainingData:progressHandlers:error:_)]
+        #[method_id(@__method_family Other updateTaskForModelAtURL:trainingData:progressHandlers:error:_)]
         pub unsafe fn updateTaskForModelAtURL_trainingData_progressHandlers_error(
             model_url: &NSURL,
             training_data: &ProtocolObject<dyn MLBatchProvider>,
@@ -77,10 +77,10 @@ extern_methods!(
             update_parameters: &NSDictionary<MLParameterKey, AnyObject>,
         );
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

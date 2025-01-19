@@ -34,7 +34,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowController {
         #[cfg(feature = "AMWorkflow")]
-        #[method_id(@__retain_semantics Other workflow)]
+        #[method_id(@__method_family Other workflow)]
         pub unsafe fn workflow(&self) -> Option<Retained<AMWorkflow>>;
 
         #[cfg(feature = "AMWorkflow")]
@@ -43,7 +43,7 @@ extern_methods!(
         pub unsafe fn setWorkflow(&self, workflow: Option<&AMWorkflow>);
 
         #[cfg(feature = "AMWorkflowView")]
-        #[method_id(@__retain_semantics Other workflowView)]
+        #[method_id(@__method_family Other workflowView)]
         pub unsafe fn workflowView(&self) -> Option<Retained<AMWorkflowView>>;
 
         #[cfg(feature = "AMWorkflowView")]
@@ -51,7 +51,7 @@ extern_methods!(
         #[method(setWorkflowView:)]
         pub unsafe fn setWorkflowView(&self, workflow_view: Option<&AMWorkflowView>);
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AMWorkflowControllerDelegate>>>;
@@ -94,10 +94,10 @@ extern_methods!(
     /// Methods declared on superclass `NSController`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -109,7 +109,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl AMWorkflowController {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -102,17 +102,17 @@ unsafe impl UITraitEnvironment for UIActivityIndicatorView {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIActivityIndicatorView {
-        #[method_id(@__retain_semantics Init initWithActivityIndicatorStyle:)]
+        #[method_id(@__method_family Init initWithActivityIndicatorStyle:)]
         pub unsafe fn initWithActivityIndicatorStyle(
             this: Allocated<Self>,
             style: UIActivityIndicatorViewStyle,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method(activityIndicatorViewStyle)]
@@ -133,7 +133,7 @@ extern_methods!(
         pub unsafe fn setHidesWhenStopped(&self, hides_when_stopped: bool);
 
         #[cfg(feature = "UIColor")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         pub unsafe fn color(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -156,10 +156,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIActivityIndicatorView {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

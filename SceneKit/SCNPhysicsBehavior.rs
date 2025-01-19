@@ -31,10 +31,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsBehavior {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -61,7 +61,7 @@ extern_methods!(
             feature = "SceneKitTypes",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__retain_semantics Other jointWithBodyA:axisA:anchorA:bodyB:axisB:anchorB:)]
+        #[method_id(@__method_family Other jointWithBodyA:axisA:anchorA:bodyB:axisB:anchorB:)]
         pub unsafe fn jointWithBodyA_axisA_anchorA_bodyB_axisB_anchorB(
             body_a: &SCNPhysicsBody,
             axis_a: SCNVector3,
@@ -76,7 +76,7 @@ extern_methods!(
             feature = "SceneKitTypes",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__retain_semantics Other jointWithBody:axis:anchor:)]
+        #[method_id(@__method_family Other jointWithBody:axis:anchor:)]
         pub unsafe fn jointWithBody_axis_anchor(
             body: &SCNPhysicsBody,
             axis: SCNVector3,
@@ -84,7 +84,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(@__retain_semantics Other bodyA)]
+        #[method_id(@__method_family Other bodyA)]
         pub unsafe fn bodyA(&self) -> Retained<SCNPhysicsBody>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
@@ -106,7 +106,7 @@ extern_methods!(
         pub unsafe fn setAnchorA(&self, anchor_a: SCNVector3);
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(@__retain_semantics Other bodyB)]
+        #[method_id(@__method_family Other bodyB)]
         pub unsafe fn bodyB(&self) -> Option<Retained<SCNPhysicsBody>>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
@@ -132,10 +132,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsHingeJoint {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -162,7 +162,7 @@ extern_methods!(
             feature = "SceneKitTypes",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__retain_semantics Other jointWithBodyA:anchorA:bodyB:anchorB:)]
+        #[method_id(@__method_family Other jointWithBodyA:anchorA:bodyB:anchorB:)]
         pub unsafe fn jointWithBodyA_anchorA_bodyB_anchorB(
             body_a: &SCNPhysicsBody,
             anchor_a: SCNVector3,
@@ -175,14 +175,14 @@ extern_methods!(
             feature = "SceneKitTypes",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__retain_semantics Other jointWithBody:anchor:)]
+        #[method_id(@__method_family Other jointWithBody:anchor:)]
         pub unsafe fn jointWithBody_anchor(
             body: &SCNPhysicsBody,
             anchor: SCNVector3,
         ) -> Retained<Self>;
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(@__retain_semantics Other bodyA)]
+        #[method_id(@__method_family Other bodyA)]
         pub unsafe fn bodyA(&self) -> Retained<SCNPhysicsBody>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
@@ -195,7 +195,7 @@ extern_methods!(
         pub unsafe fn setAnchorA(&self, anchor_a: SCNVector3);
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(@__retain_semantics Other bodyB)]
+        #[method_id(@__method_family Other bodyB)]
         pub unsafe fn bodyB(&self) -> Option<Retained<SCNPhysicsBody>>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
@@ -212,10 +212,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsBallSocketJoint {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -242,7 +242,7 @@ extern_methods!(
             feature = "SceneKitTypes",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__retain_semantics Other jointWithBodyA:axisA:anchorA:bodyB:axisB:anchorB:)]
+        #[method_id(@__method_family Other jointWithBodyA:axisA:anchorA:bodyB:axisB:anchorB:)]
         pub unsafe fn jointWithBodyA_axisA_anchorA_bodyB_axisB_anchorB(
             body_a: &SCNPhysicsBody,
             axis_a: SCNVector3,
@@ -257,7 +257,7 @@ extern_methods!(
             feature = "SceneKitTypes",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__retain_semantics Other jointWithBody:axis:anchor:)]
+        #[method_id(@__method_family Other jointWithBody:axis:anchor:)]
         pub unsafe fn jointWithBody_axis_anchor(
             body: &SCNPhysicsBody,
             axis: SCNVector3,
@@ -265,7 +265,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(@__retain_semantics Other bodyA)]
+        #[method_id(@__method_family Other bodyA)]
         pub unsafe fn bodyA(&self) -> Retained<SCNPhysicsBody>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
@@ -287,7 +287,7 @@ extern_methods!(
         pub unsafe fn setAnchorA(&self, anchor_a: SCNVector3);
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(@__retain_semantics Other bodyB)]
+        #[method_id(@__method_family Other bodyB)]
         pub unsafe fn bodyB(&self) -> Option<Retained<SCNPhysicsBody>>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
@@ -385,10 +385,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsSliderJoint {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -414,7 +414,7 @@ extern_methods!(
             feature = "objc2-quartz-core"
         ))]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other jointWithBodyA:frameA:bodyB:frameB:)]
+        #[method_id(@__method_family Other jointWithBodyA:frameA:bodyB:frameB:)]
         pub unsafe fn jointWithBodyA_frameA_bodyB_frameB(
             body_a: &SCNPhysicsBody,
             frame_a: SCNMatrix4,
@@ -428,14 +428,14 @@ extern_methods!(
             feature = "objc2-quartz-core"
         ))]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other jointWithBody:frame:)]
+        #[method_id(@__method_family Other jointWithBody:frame:)]
         pub unsafe fn jointWithBody_frame(
             body: &SCNPhysicsBody,
             frame: SCNMatrix4,
         ) -> Retained<Self>;
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(@__retain_semantics Other bodyA)]
+        #[method_id(@__method_family Other bodyA)]
         pub unsafe fn bodyA(&self) -> Retained<SCNPhysicsBody>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
@@ -450,7 +450,7 @@ extern_methods!(
         pub unsafe fn setFrameA(&self, frame_a: SCNMatrix4);
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(@__retain_semantics Other bodyB)]
+        #[method_id(@__method_family Other bodyB)]
         pub unsafe fn bodyB(&self) -> Option<Retained<SCNPhysicsBody>>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-quartz-core"))]
@@ -496,10 +496,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsConeTwistJoint {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -528,11 +528,11 @@ unsafe impl NSSecureCoding for SCNPhysicsVehicleWheel {}
 extern_methods!(
     unsafe impl SCNPhysicsVehicleWheel {
         #[cfg(feature = "SCNNode")]
-        #[method_id(@__retain_semantics Other wheelWithNode:)]
+        #[method_id(@__method_family Other wheelWithNode:)]
         pub unsafe fn wheelWithNode(node: &SCNNode) -> Retained<Self>;
 
         #[cfg(feature = "SCNNode")]
-        #[method_id(@__retain_semantics Other node)]
+        #[method_id(@__method_family Other node)]
         pub unsafe fn node(&self) -> Retained<SCNNode>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -639,10 +639,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsVehicleWheel {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -665,7 +665,7 @@ unsafe impl NSSecureCoding for SCNPhysicsVehicle {}
 extern_methods!(
     unsafe impl SCNPhysicsVehicle {
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(@__retain_semantics Other vehicleWithChassisBody:wheels:)]
+        #[method_id(@__method_family Other vehicleWithChassisBody:wheels:)]
         pub unsafe fn vehicleWithChassisBody_wheels(
             chassis_body: &SCNPhysicsBody,
             wheels: &NSArray<SCNPhysicsVehicleWheel>,
@@ -675,11 +675,11 @@ extern_methods!(
         #[method(speedInKilometersPerHour)]
         pub unsafe fn speedInKilometersPerHour(&self) -> CGFloat;
 
-        #[method_id(@__retain_semantics Other wheels)]
+        #[method_id(@__method_family Other wheels)]
         pub unsafe fn wheels(&self) -> Retained<NSArray<SCNPhysicsVehicleWheel>>;
 
         #[cfg(feature = "SCNPhysicsBody")]
-        #[method_id(@__retain_semantics Other chassisBody)]
+        #[method_id(@__method_family Other chassisBody)]
         pub unsafe fn chassisBody(&self) -> Retained<SCNPhysicsBody>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -699,10 +699,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsVehicle {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

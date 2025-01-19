@@ -36,11 +36,11 @@ extern_protocol!(
         unsafe fn timingCurveType(&self) -> UITimingCurveType;
 
         #[cfg(feature = "UITimingParameters")]
-        #[method_id(@__retain_semantics Other cubicTimingParameters)]
+        #[method_id(@__method_family Other cubicTimingParameters)]
         unsafe fn cubicTimingParameters(&self) -> Option<Retained<UICubicTimingParameters>>;
 
         #[cfg(feature = "UITimingParameters")]
-        #[method_id(@__retain_semantics Other springTimingParameters)]
+        #[method_id(@__method_family Other springTimingParameters)]
         unsafe fn springTimingParameters(&self) -> Option<Retained<UISpringTimingParameters>>;
     }
 );

@@ -37,27 +37,27 @@ extern_methods!(
         pub unsafe fn isFinished(&self) -> bool;
 
         /// The object (such as an image view) that the symbol effect was added to.
-        #[method_id(@__retain_semantics Other sender)]
+        #[method_id(@__method_family Other sender)]
         pub unsafe fn sender(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "objc2-symbols")]
         /// The symbol effect that has completed.
         /// There is no guarantee that this effect will be the same instance as the effect originally added.
         /// This will be `nil` if a symbol content transition was added instead.
-        #[method_id(@__retain_semantics Other effect)]
+        #[method_id(@__method_family Other effect)]
         pub unsafe fn effect(&self) -> Option<Retained<NSSymbolEffect>>;
 
         #[cfg(feature = "objc2-symbols")]
         /// The symbol content transition that has completed.
         /// There is no guarantee that this content transition will be the same instance as the content transition originally added.
         /// This will be `nil` if a symbol effect was added instead.
-        #[method_id(@__retain_semantics Other contentTransition)]
+        #[method_id(@__method_family Other contentTransition)]
         pub unsafe fn contentTransition(&self) -> Option<Retained<NSSymbolContentTransition>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

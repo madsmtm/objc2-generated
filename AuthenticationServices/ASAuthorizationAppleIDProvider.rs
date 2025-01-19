@@ -63,7 +63,7 @@ extern_methods!(
         /// See: ASAuthorizationAppleIDRequest to be serviced by
         ///
         /// See: ASAuthorizationController.
-        #[method_id(@__retain_semantics Other createRequest)]
+        #[method_id(@__method_family Other createRequest)]
         pub unsafe fn createRequest(&self) -> Retained<ASAuthorizationAppleIDRequest>;
 
         #[cfg(feature = "block2")]
@@ -93,10 +93,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAuthorizationAppleIDProvider {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -239,7 +239,7 @@ extern_category!(
     #[doc(alias = "CATransform3DAdditions")]
     pub unsafe trait NSValueCATransform3DAdditions {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other valueWithCATransform3D:)]
+        #[method_id(@__method_family Other valueWithCATransform3D:)]
         unsafe fn valueWithCATransform3D(t: CATransform3D) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-foundation")]

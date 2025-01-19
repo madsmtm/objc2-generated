@@ -25,39 +25,39 @@ unsafe impl NSObjectProtocol for HMCharacteristicMetadata {}
 
 extern_methods!(
     unsafe impl HMCharacteristicMetadata {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The minimum value for the characteristic if it has a format of "int" or "float".
-        #[method_id(@__retain_semantics Other minimumValue)]
+        #[method_id(@__method_family Other minimumValue)]
         pub unsafe fn minimumValue(&self) -> Option<Retained<NSNumber>>;
 
         /// The maximum value for the characteristic if it has a format of "int" or "float".
-        #[method_id(@__retain_semantics Other maximumValue)]
+        #[method_id(@__method_family Other maximumValue)]
         pub unsafe fn maximumValue(&self) -> Option<Retained<NSNumber>>;
 
         /// Step value for the characteristic that indicates the minimum step value allowed if it has a format of "int" or "float".
-        #[method_id(@__retain_semantics Other stepValue)]
+        #[method_id(@__method_family Other stepValue)]
         pub unsafe fn stepValue(&self) -> Option<Retained<NSNumber>>;
 
         /// Max length value for the characteristic that indicates the maximum number of UTF-8 characters allowed if it has a format of "string".
-        #[method_id(@__retain_semantics Other maxLength)]
+        #[method_id(@__method_family Other maxLength)]
         pub unsafe fn maxLength(&self) -> Option<Retained<NSNumber>>;
 
         /// The format of the value. Refer to HMCharacteristicMetadataFormat constants for supported units.
-        #[method_id(@__retain_semantics Other format)]
+        #[method_id(@__method_family Other format)]
         pub unsafe fn format(&self) -> Option<Retained<NSString>>;
 
         /// The units of the value. Refer to HMCharacteristicMetadataUnits constants for supported units.
-        #[method_id(@__retain_semantics Other units)]
+        #[method_id(@__method_family Other units)]
         pub unsafe fn units(&self) -> Option<Retained<NSString>>;
 
         /// Manufacturer provided description for the characteristic to present to the user.
-        #[method_id(@__retain_semantics Other manufacturerDescription)]
+        #[method_id(@__method_family Other manufacturerDescription)]
         pub unsafe fn manufacturerDescription(&self) -> Option<Retained<NSString>>;
 
         /// The subset of valid values supported by the characteristic when the format is unsigned integral type.
-        #[method_id(@__retain_semantics Other validValues)]
+        #[method_id(@__method_family Other validValues)]
         pub unsafe fn validValues(&self) -> Option<Retained<NSArray<NSNumber>>>;
     }
 );
@@ -65,7 +65,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMCharacteristicMetadata {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

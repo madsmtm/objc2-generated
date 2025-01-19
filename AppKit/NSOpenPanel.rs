@@ -107,10 +107,10 @@ extern_methods!(
         feature = "NSWindow"
     ))]
     unsafe impl NSOpenPanel {
-        #[method_id(@__retain_semantics Other openPanel)]
+        #[method_id(@__method_family Other openPanel)]
         pub unsafe fn openPanel(mtm: MainThreadMarker) -> Retained<NSOpenPanel>;
 
-        #[method_id(@__retain_semantics Other URLs)]
+        #[method_id(@__method_family Other URLs)]
         pub unsafe fn URLs(&self) -> Retained<NSArray<NSURL>>;
 
         #[method(resolvesAliases)]
@@ -180,7 +180,7 @@ extern_methods!(
     ))]
     unsafe impl NSOpenPanel {
         #[cfg(feature = "NSGraphics")]
-        #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
+        #[method_id(@__method_family Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Allocated<Self>,
             content_rect: NSRect,
@@ -190,7 +190,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSGraphics", feature = "NSScreen"))]
-        #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
+        #[method_id(@__method_family Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Allocated<Self>,
             content_rect: NSRect,
@@ -200,12 +200,12 @@ extern_methods!(
             screen: Option<&NSScreen>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSViewController")]
         /// Convenience method for creating an autoreleased titled window with the given contentViewController. A basic NSWindow with the following attributes is made: titled, closable, resizable, miniaturizable. The window's title is automatically bound to the contentViewController's title. The size of the window can easily be controlled by utilizing autolayout and applying size constraints to the view (or its subviews). The window has isReleasedWhenClosed set to NO, and it must be explicitly retained to keep the window instance alive. To have it automatically be freed when it is closed, do the following: [window retain] and [window setReleasedWhenClosed:YES].
-        #[method_id(@__retain_semantics Other windowWithContentViewController:)]
+        #[method_id(@__method_family Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
         ) -> Retained<Self>;
@@ -221,7 +221,7 @@ extern_methods!(
         feature = "NSWindow"
     ))]
     unsafe impl NSOpenPanel {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -235,7 +235,7 @@ extern_methods!(
         feature = "NSWindow"
     ))]
     unsafe impl NSOpenPanel {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -268,7 +268,7 @@ extern_methods!(
     ))]
     unsafe impl NSOpenPanel {
         #[deprecated]
-        #[method_id(@__retain_semantics Other filenames)]
+        #[method_id(@__method_family Other filenames)]
         pub unsafe fn filenames(&self) -> Retained<NSArray>;
 
         #[deprecated]

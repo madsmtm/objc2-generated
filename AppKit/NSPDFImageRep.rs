@@ -32,16 +32,16 @@ unsafe impl NSObjectProtocol for NSPDFImageRep {}
 extern_methods!(
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSPDFImageRep {
-        #[method_id(@__retain_semantics Other imageRepWithData:)]
+        #[method_id(@__method_family Other imageRepWithData:)]
         pub unsafe fn imageRepWithData(pdf_data: &NSData) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Init initWithData:)]
+        #[method_id(@__method_family Init initWithData:)]
         pub unsafe fn initWithData(
             this: Allocated<Self>,
             pdf_data: &NSData,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other PDFRepresentation)]
+        #[method_id(@__method_family Other PDFRepresentation)]
         pub unsafe fn PDFRepresentation(&self) -> Retained<NSData>;
 
         #[method(bounds)]
@@ -63,10 +63,10 @@ extern_methods!(
     /// Methods declared on superclass `NSImageRep`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSPDFImageRep {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -78,7 +78,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSImageRep")]
     unsafe impl NSPDFImageRep {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

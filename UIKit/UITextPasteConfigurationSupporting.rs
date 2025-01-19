@@ -12,7 +12,7 @@ extern_protocol!(
         UIPasteConfigurationSupporting + MainThreadOnly
     {
         #[cfg(feature = "UITextPasteDelegate")]
-        #[method_id(@__retain_semantics Other pasteDelegate)]
+        #[method_id(@__method_family Other pasteDelegate)]
         unsafe fn pasteDelegate(&self)
             -> Option<Retained<ProtocolObject<dyn UITextPasteDelegate>>>;
 

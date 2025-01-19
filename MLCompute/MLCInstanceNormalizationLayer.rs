@@ -30,36 +30,36 @@ extern_methods!(
 
         #[cfg(feature = "MLCTensor")]
         /// The running mean tensor
-        #[method_id(@__retain_semantics Other mean)]
+        #[method_id(@__method_family Other mean)]
         pub unsafe fn mean(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         /// The running variance tensor
-        #[method_id(@__retain_semantics Other variance)]
+        #[method_id(@__method_family Other variance)]
         pub unsafe fn variance(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         /// The beta tensor
         #[deprecated]
-        #[method_id(@__retain_semantics Other beta)]
+        #[method_id(@__method_family Other beta)]
         pub unsafe fn beta(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensor")]
         /// The gamma tensor
         #[deprecated]
-        #[method_id(@__retain_semantics Other gamma)]
+        #[method_id(@__method_family Other gamma)]
         pub unsafe fn gamma(&self) -> Option<Retained<MLCTensor>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         /// The beta tensor parameter used for optimizer update
         #[deprecated]
-        #[method_id(@__retain_semantics Other betaParameter)]
+        #[method_id(@__method_family Other betaParameter)]
         pub unsafe fn betaParameter(&self) -> Option<Retained<MLCTensorParameter>>;
 
         #[cfg(feature = "MLCTensorParameter")]
         /// The gamma tensor parameter used for optimizer update
         #[deprecated]
-        #[method_id(@__retain_semantics Other gammaParameter)]
+        #[method_id(@__method_family Other gammaParameter)]
         pub unsafe fn gammaParameter(&self) -> Option<Retained<MLCTensorParameter>>;
 
         /// A value used for numerical stability
@@ -87,7 +87,7 @@ extern_methods!(
         ///
         /// Returns: A new instance normalization layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other layerWithFeatureChannelCount:beta:gamma:varianceEpsilon:)]
+        #[method_id(@__method_family Other layerWithFeatureChannelCount:beta:gamma:varianceEpsilon:)]
         pub unsafe fn layerWithFeatureChannelCount_beta_gamma_varianceEpsilon(
             feature_channel_count: NSUInteger,
             beta: Option<&MLCTensor>,
@@ -110,7 +110,7 @@ extern_methods!(
         ///
         /// Returns: A new instance normalization layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other layerWithFeatureChannelCount:beta:gamma:varianceEpsilon:momentum:)]
+        #[method_id(@__method_family Other layerWithFeatureChannelCount:beta:gamma:varianceEpsilon:momentum:)]
         pub unsafe fn layerWithFeatureChannelCount_beta_gamma_varianceEpsilon_momentum(
             feature_channel_count: NSUInteger,
             beta: Option<&MLCTensor>,
@@ -137,7 +137,7 @@ extern_methods!(
         /// Parameter `momentum`: The  momentum value for the running mean and variance computation
         ///
         /// Returns: A new instance normalization layer.
-        #[method_id(@__retain_semantics Other layerWithFeatureChannelCount:mean:variance:beta:gamma:varianceEpsilon:momentum:)]
+        #[method_id(@__method_family Other layerWithFeatureChannelCount:mean:variance:beta:gamma:varianceEpsilon:momentum:)]
         pub unsafe fn layerWithFeatureChannelCount_mean_variance_beta_gamma_varianceEpsilon_momentum(
             feature_channel_count: NSUInteger,
             mean: &MLCTensor,
@@ -155,11 +155,11 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCInstanceNormalizationLayer {
         #[deprecated]
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

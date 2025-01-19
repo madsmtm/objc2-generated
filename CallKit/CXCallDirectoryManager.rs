@@ -40,7 +40,7 @@ unsafe impl NSObjectProtocol for CXCallDirectoryManager {}
 
 extern_methods!(
     unsafe impl CXCallDirectoryManager {
-        #[method_id(@__retain_semantics Other sharedInstance)]
+        #[method_id(@__method_family Other sharedInstance)]
         pub unsafe fn sharedInstance() -> Retained<CXCallDirectoryManager>;
 
         #[cfg(feature = "block2")]
@@ -71,10 +71,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXCallDirectoryManager {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

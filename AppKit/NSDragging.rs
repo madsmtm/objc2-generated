@@ -141,7 +141,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragginginfo?language=objc)
     pub unsafe trait NSDraggingInfo: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
-        #[method_id(@__retain_semantics Other draggingDestinationWindow)]
+        #[method_id(@__method_family Other draggingDestinationWindow)]
         unsafe fn draggingDestinationWindow(&self) -> Option<Retained<NSWindow>>;
 
         #[method(draggingSourceOperationMask)]
@@ -155,14 +155,14 @@ extern_protocol!(
 
         #[cfg(feature = "NSImage")]
         #[deprecated = "Use NSDraggingItem objects instead"]
-        #[method_id(@__retain_semantics Other draggedImage)]
+        #[method_id(@__method_family Other draggedImage)]
         unsafe fn draggedImage(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__retain_semantics Other draggingPasteboard)]
+        #[method_id(@__method_family Other draggingPasteboard)]
         unsafe fn draggingPasteboard(&self) -> Retained<NSPasteboard>;
 
-        #[method_id(@__retain_semantics Other draggingSource)]
+        #[method_id(@__method_family Other draggingSource)]
         unsafe fn draggingSource(&self) -> Option<Retained<AnyObject>>;
 
         #[method(draggingSequenceNumber)]
@@ -172,7 +172,7 @@ extern_protocol!(
         unsafe fn slideDraggedImageTo(&self, screen_point: NSPoint);
 
         #[deprecated = "Use NSFilePromiseReceiver objects instead"]
-        #[method_id(@__retain_semantics Other namesOfPromisedFilesDroppedAtDestination:)]
+        #[method_id(@__method_family Other namesOfPromisedFilesDroppedAtDestination:)]
         unsafe fn namesOfPromisedFilesDroppedAtDestination(
             &self,
             drop_destination: &NSURL,

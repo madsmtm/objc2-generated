@@ -30,17 +30,17 @@ unsafe impl NSSecureCoding for NSFetchRequestExpression {}
 
 extern_methods!(
     unsafe impl NSFetchRequestExpression {
-        #[method_id(@__retain_semantics Other expressionForFetch:context:countOnly:)]
+        #[method_id(@__method_family Other expressionForFetch:context:countOnly:)]
         pub unsafe fn expressionForFetch_context_countOnly(
             fetch: &NSExpression,
             context: &NSExpression,
             count_flag: bool,
         ) -> Retained<NSExpression>;
 
-        #[method_id(@__retain_semantics Other requestExpression)]
+        #[method_id(@__method_family Other requestExpression)]
         pub unsafe fn requestExpression(&self) -> Retained<NSExpression>;
 
-        #[method_id(@__retain_semantics Other contextExpression)]
+        #[method_id(@__method_family Other contextExpression)]
         pub unsafe fn contextExpression(&self) -> Retained<NSExpression>;
 
         #[method(isCountOnlyRequest)]
@@ -51,13 +51,13 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSExpression`
     unsafe impl NSFetchRequestExpression {
-        #[method_id(@__retain_semantics Init initWithExpressionType:)]
+        #[method_id(@__method_family Init initWithExpressionType:)]
         pub unsafe fn initWithExpressionType(
             this: Allocated<Self>,
             r#type: NSExpressionType,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -68,10 +68,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFetchRequestExpression {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

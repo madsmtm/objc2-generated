@@ -45,7 +45,7 @@ unsafe impl NSObjectProtocol for GKAccessPoint {}
 
 extern_methods!(
     unsafe impl GKAccessPoint {
-        #[method_id(@__retain_semantics Other shared)]
+        #[method_id(@__method_family Other shared)]
         pub unsafe fn shared() -> Retained<GKAccessPoint>;
 
         /// set this true to enable access point in your app.  Setting this will cause the access point to appear after the notification banner is presented.  If it already was presented it will appear immediately
@@ -92,7 +92,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(@__retain_semantics Other parentWindow)]
+        #[method_id(@__method_family Other parentWindow)]
         pub unsafe fn parentWindow(&self, mtm: MainThreadMarker) -> Option<Retained<NSWindow>>;
 
         #[cfg(feature = "objc2-app-kit")]
@@ -154,10 +154,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKAccessPoint {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

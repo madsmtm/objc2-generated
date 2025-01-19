@@ -36,16 +36,16 @@ unsafe impl NSSecureCoding for HKAttachment {}
 extern_methods!(
     unsafe impl HKAttachment {
         /// A unique identifier of the receiver in the HealthKit database.
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
 
         /// Represents the name of the file.
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         /// The Uniform Type of the file.
-        #[method_id(@__retain_semantics Other contentType)]
+        #[method_id(@__method_family Other contentType)]
         pub unsafe fn contentType(&self) -> Retained<UTType>;
 
         /// The size in bytes of the file.
@@ -53,21 +53,21 @@ extern_methods!(
         pub unsafe fn size(&self) -> NSInteger;
 
         /// The date the receiver was created.
-        #[method_id(@__retain_semantics Other creationDate)]
+        #[method_id(@__method_family Other creationDate)]
         pub unsafe fn creationDate(&self) -> Retained<NSDate>;
 
         /// Extra information describing the attachment.
         ///
         /// Keys must be NSString and values must be either NSString, NSNumber, or NSDate.
-        #[method_id(@__retain_semantics Other metadata)]
+        #[method_id(@__method_family Other metadata)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// The init method is unavailable. To create an attachment, use HKAttachmentStore.
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The new method is unavailable. To create an attachment, use HKAttachmentStore.
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

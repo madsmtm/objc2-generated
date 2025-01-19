@@ -144,7 +144,7 @@ extern_methods!(
         pub unsafe fn buttonMask(&self) -> UIEventButtonMask;
 
         #[cfg(feature = "UITouch")]
-        #[method_id(@__retain_semantics Other allTouches)]
+        #[method_id(@__method_family Other allTouches)]
         pub unsafe fn allTouches(&self) -> Option<Retained<NSSet<UITouch>>>;
 
         #[cfg(all(
@@ -153,32 +153,32 @@ extern_methods!(
             feature = "UIView",
             feature = "UIWindow"
         ))]
-        #[method_id(@__retain_semantics Other touchesForWindow:)]
+        #[method_id(@__method_family Other touchesForWindow:)]
         pub unsafe fn touchesForWindow(
             &self,
             window: &UIWindow,
         ) -> Option<Retained<NSSet<UITouch>>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UITouch", feature = "UIView"))]
-        #[method_id(@__retain_semantics Other touchesForView:)]
+        #[method_id(@__method_family Other touchesForView:)]
         pub unsafe fn touchesForView(&self, view: &UIView) -> Option<Retained<NSSet<UITouch>>>;
 
         #[cfg(all(feature = "UIGestureRecognizer", feature = "UITouch"))]
-        #[method_id(@__retain_semantics Other touchesForGestureRecognizer:)]
+        #[method_id(@__method_family Other touchesForGestureRecognizer:)]
         pub unsafe fn touchesForGestureRecognizer(
             &self,
             gesture: &UIGestureRecognizer,
         ) -> Option<Retained<NSSet<UITouch>>>;
 
         #[cfg(feature = "UITouch")]
-        #[method_id(@__retain_semantics Other coalescedTouchesForTouch:)]
+        #[method_id(@__method_family Other coalescedTouchesForTouch:)]
         pub unsafe fn coalescedTouchesForTouch(
             &self,
             touch: &UITouch,
         ) -> Option<Retained<NSArray<UITouch>>>;
 
         #[cfg(feature = "UITouch")]
-        #[method_id(@__retain_semantics Other predictedTouchesForTouch:)]
+        #[method_id(@__method_family Other predictedTouchesForTouch:)]
         pub unsafe fn predictedTouchesForTouch(
             &self,
             touch: &UITouch,
@@ -189,10 +189,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIEvent {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

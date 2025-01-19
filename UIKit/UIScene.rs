@@ -25,14 +25,14 @@ unsafe impl UIResponderStandardEditActions for UIScene {}
 extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIScene {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "UISceneOptions", feature = "UISceneSession"))]
-        #[method_id(@__retain_semantics Init initWithSession:connectionOptions:)]
+        #[method_id(@__method_family Init initWithSession:connectionOptions:)]
         pub unsafe fn initWithSession_connectionOptions(
             this: Allocated<Self>,
             session: &UISceneSession,
@@ -40,10 +40,10 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UISceneSession")]
-        #[method_id(@__retain_semantics Other session)]
+        #[method_id(@__method_family Other session)]
         pub unsafe fn session(&self) -> Retained<UISceneSession>;
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UISceneDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
@@ -63,14 +63,14 @@ extern_methods!(
             completion: Option<&block2::Block<dyn Fn(Bool)>>,
         );
 
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other subtitle)]
+        #[method_id(@__method_family Other subtitle)]
         pub unsafe fn subtitle(&self) -> Retained<NSString>;
 
         /// Setter for [`subtitle`][Self::subtitle].
@@ -78,7 +78,7 @@ extern_methods!(
         pub unsafe fn setSubtitle(&self, subtitle: &NSString);
 
         #[cfg(feature = "UISceneActivationConditions")]
-        #[method_id(@__retain_semantics Other activationConditions)]
+        #[method_id(@__method_family Other activationConditions)]
         pub unsafe fn activationConditions(&self) -> Retained<UISceneActivationConditions>;
 
         #[cfg(feature = "UISceneActivationConditions")]
@@ -144,7 +144,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIResponder")]
         #[optional]
-        #[method_id(@__retain_semantics Other stateRestorationActivityForScene:)]
+        #[method_id(@__method_family Other stateRestorationActivityForScene:)]
         unsafe fn stateRestorationActivityForScene(
             &self,
             scene: &UIScene,

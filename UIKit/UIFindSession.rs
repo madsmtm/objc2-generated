@@ -82,10 +82,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextSearchOptions {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -215,10 +215,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIFindSession {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -251,22 +251,22 @@ extern_methods!(
         #[cfg(feature = "UITextSearching")]
         /// The object responsible for actually performing the search operation and decorating found text results.
         /// See `UITextSearching.h` for more information.
-        #[method_id(@__retain_semantics Other searchableObject)]
+        #[method_id(@__method_family Other searchableObject)]
         pub unsafe fn searchableObject(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITextSearching>>>;
 
         #[cfg(feature = "UITextSearching")]
-        #[method_id(@__retain_semantics Init initWithSearchableObject:)]
+        #[method_id(@__method_family Init initWithSearchableObject:)]
         pub unsafe fn initWithSearchableObject(
             this: Allocated<Self>,
             searchable_object: &ProtocolObject<dyn UITextSearching>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

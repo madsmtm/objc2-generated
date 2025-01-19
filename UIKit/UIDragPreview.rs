@@ -30,7 +30,7 @@ extern_methods!(
             feature = "UIResponder",
             feature = "UIView"
         ))]
-        #[method_id(@__retain_semantics Init initWithView:parameters:)]
+        #[method_id(@__method_family Init initWithView:parameters:)]
         pub unsafe fn initWithView_parameters(
             this: Allocated<Self>,
             view: &UIView,
@@ -38,21 +38,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__retain_semantics Init initWithView:)]
+        #[method_id(@__method_family Init initWithView:)]
         pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__retain_semantics Other view)]
+        #[method_id(@__method_family Other view)]
         pub unsafe fn view(&self) -> Retained<UIView>;
 
         #[cfg(all(feature = "UIDragPreviewParameters", feature = "UIPreviewParameters"))]
-        #[method_id(@__retain_semantics Other parameters)]
+        #[method_id(@__method_family Other parameters)]
         pub unsafe fn parameters(&self) -> Retained<UIDragPreviewParameters>;
     }
 );

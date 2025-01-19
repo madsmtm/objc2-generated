@@ -35,7 +35,7 @@ extern_methods!(
         /// Time spent on screen and visible to the user.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[method_id(@__retain_semantics Other cumulativeForegroundTime)]
+        #[method_id(@__method_family Other cumulativeForegroundTime)]
         pub unsafe fn cumulativeForegroundTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
         /// Cumulative application background time.
@@ -43,13 +43,13 @@ extern_methods!(
         /// Time spent off screen and in the background, invisible to the user.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[method_id(@__retain_semantics Other cumulativeBackgroundTime)]
+        #[method_id(@__method_family Other cumulativeBackgroundTime)]
         pub unsafe fn cumulativeBackgroundTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
         /// Cumulative time the application spent running in the background to play audio
         ///
         /// Dimensioned as NSUnitDuration.
-        #[method_id(@__retain_semantics Other cumulativeBackgroundAudioTime)]
+        #[method_id(@__method_family Other cumulativeBackgroundAudioTime)]
         pub unsafe fn cumulativeBackgroundAudioTime(
             &self,
         ) -> Retained<NSMeasurement<NSUnitDuration>>;
@@ -57,7 +57,7 @@ extern_methods!(
         /// Cumulative time the application spent running in the background to acquire or process location.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[method_id(@__retain_semantics Other cumulativeBackgroundLocationTime)]
+        #[method_id(@__method_family Other cumulativeBackgroundLocationTime)]
         pub unsafe fn cumulativeBackgroundLocationTime(
             &self,
         ) -> Retained<NSMeasurement<NSUnitDuration>>;
@@ -68,10 +68,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppRunTimeMetric {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -36,14 +36,14 @@ unsafe impl NSSecureCoding for CAGradientLayer {}
 extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAGradientLayer {
-        #[method_id(@__retain_semantics Other colors)]
+        #[method_id(@__method_family Other colors)]
         pub unsafe fn colors(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`colors`][Self::colors].
         #[method(setColors:)]
         pub unsafe fn setColors(&self, colors: Option<&NSArray>);
 
-        #[method_id(@__retain_semantics Other locations)]
+        #[method_id(@__method_family Other locations)]
         pub unsafe fn locations(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`locations`][Self::locations].
@@ -68,7 +68,7 @@ extern_methods!(
         #[method(setEndPoint:)]
         pub unsafe fn setEndPoint(&self, end_point: CGPoint);
 
-        #[method_id(@__retain_semantics Other type)]
+        #[method_id(@__method_family Other type)]
         pub unsafe fn r#type(&self) -> Retained<CAGradientLayerType>;
 
         /// Setter for [`type`][Self::type].
@@ -82,13 +82,13 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAGradientLayer {
         /// Layer creation and initialization. *
-        #[method_id(@__retain_semantics Other layer)]
+        #[method_id(@__method_family Other layer)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithLayer:)]
+        #[method_id(@__method_family Init initWithLayer:)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
 );
@@ -97,7 +97,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CALayer")]
     unsafe impl CAGradientLayer {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

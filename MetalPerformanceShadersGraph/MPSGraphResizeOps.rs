@@ -107,7 +107,7 @@ extern_methods!(
         /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeTensor:size:mode:centerResult:alignCorners:layout:name:)]
+        #[method_id(@__method_family Other resizeTensor:size:mode:centerResult:alignCorners:layout:name:)]
         pub unsafe fn resizeTensor_size_mode_centerResult_alignCorners_layout_name(
             &self,
             images_tensor: &MPSGraphTensor,
@@ -151,7 +151,7 @@ extern_methods!(
         /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeTensor:sizeTensor:mode:centerResult:alignCorners:layout:name:)]
+        #[method_id(@__method_family Other resizeTensor:sizeTensor:mode:centerResult:alignCorners:layout:name:)]
         pub unsafe fn resizeTensor_sizeTensor_mode_centerResult_alignCorners_layout_name(
             &self,
             images_tensor: &MPSGraphTensor,
@@ -194,7 +194,7 @@ extern_methods!(
         /// - alignCorners: When YES, the result image will have the same value as the input image in the corners
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeTensor:sizeTensor:mode:centerResult:alignCorners:name:)]
+        #[method_id(@__method_family Other resizeTensor:sizeTensor:mode:centerResult:alignCorners:name:)]
         pub unsafe fn resizeTensor_sizeTensor_mode_centerResult_alignCorners_name(
             &self,
             images_tensor: &MPSGraphTensor,
@@ -238,7 +238,7 @@ extern_methods!(
         /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeNearestWithTensor:sizeTensor:nearestRoundingMode:centerResult:alignCorners:layout:name:)]
+        #[method_id(@__method_family Other resizeNearestWithTensor:sizeTensor:nearestRoundingMode:centerResult:alignCorners:layout:name:)]
         pub unsafe fn resizeNearestWithTensor_sizeTensor_nearestRoundingMode_centerResult_alignCorners_layout_name(
             &self,
             images_tensor: &MPSGraphTensor,
@@ -279,7 +279,7 @@ extern_methods!(
         /// - alignCorners: When YES, the result image will have the same value as the input image in the corners
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeNearestWithTensor:sizeTensor:nearestRoundingMode:centerResult:alignCorners:name:)]
+        #[method_id(@__method_family Other resizeNearestWithTensor:sizeTensor:nearestRoundingMode:centerResult:alignCorners:name:)]
         pub unsafe fn resizeNearestWithTensor_sizeTensor_nearestRoundingMode_centerResult_alignCorners_name(
             &self,
             images_tensor: &MPSGraphTensor,
@@ -319,7 +319,7 @@ extern_methods!(
         /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeBilinearWithTensor:sizeTensor:centerResult:alignCorners:layout:name:)]
+        #[method_id(@__method_family Other resizeBilinearWithTensor:sizeTensor:centerResult:alignCorners:layout:name:)]
         pub unsafe fn resizeBilinearWithTensor_sizeTensor_centerResult_alignCorners_layout_name(
             &self,
             images_tensor: &MPSGraphTensor,
@@ -358,7 +358,7 @@ extern_methods!(
         /// - alignCorners: When YES, the result image will have the same value as the input image in the corners
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeBilinearWithTensor:sizeTensor:centerResult:alignCorners:name:)]
+        #[method_id(@__method_family Other resizeBilinearWithTensor:sizeTensor:centerResult:alignCorners:name:)]
         pub unsafe fn resizeBilinearWithTensor_sizeTensor_centerResult_alignCorners_name(
             &self,
             images_tensor: &MPSGraphTensor,
@@ -385,7 +385,7 @@ extern_methods!(
         /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeTensor:sizeTensor:scaleOffsetTensor:mode:layout:name:)]
+        #[method_id(@__method_family Other resizeTensor:sizeTensor:scaleOffsetTensor:mode:layout:name:)]
         pub unsafe fn resizeTensor_sizeTensor_scaleOffsetTensor_mode_layout_name(
             &self,
             images_tensor: &MPSGraphTensor,
@@ -415,7 +415,7 @@ extern_methods!(
         /// - mode: The resampling mode to use. If nearest sampling is specifed, RoundPreferCeil mode will be used.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeTensor:sizeTensor:scaleTensor:offsetTensor:mode:name:)]
+        #[method_id(@__method_family Other resizeTensor:sizeTensor:scaleTensor:offsetTensor:mode:name:)]
         pub unsafe fn resizeTensor_sizeTensor_scaleTensor_offsetTensor_mode_name(
             &self,
             images_tensor: &MPSGraphTensor,
@@ -438,7 +438,7 @@ extern_methods!(
         /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeNearestWithTensor:sizeTensor:scaleOffsetTensor:nearestRoundingMode:layout:name:)]
+        #[method_id(@__method_family Other resizeNearestWithTensor:sizeTensor:scaleOffsetTensor:nearestRoundingMode:layout:name:)]
         pub unsafe fn resizeNearestWithTensor_sizeTensor_scaleOffsetTensor_nearestRoundingMode_layout_name(
             &self,
             images_tensor: &MPSGraphTensor,
@@ -468,7 +468,7 @@ extern_methods!(
         /// - nearestRoundingMode: The rounding mode to use when using nearest resampling. Default is roundPreferCeil.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeNearestWithTensor:sizeTensor:scaleTensor:offsetTensor:nearestRoundingMode:name:)]
+        #[method_id(@__method_family Other resizeNearestWithTensor:sizeTensor:scaleTensor:offsetTensor:nearestRoundingMode:name:)]
         pub unsafe fn resizeNearestWithTensor_sizeTensor_scaleTensor_offsetTensor_nearestRoundingMode_name(
             &self,
             images_tensor: &MPSGraphTensor,
@@ -491,7 +491,7 @@ extern_methods!(
         /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeBilinearWithTensor:sizeTensor:scaleOffsetTensor:layout:name:)]
+        #[method_id(@__method_family Other resizeBilinearWithTensor:sizeTensor:scaleOffsetTensor:layout:name:)]
         pub unsafe fn resizeBilinearWithTensor_sizeTensor_scaleOffsetTensor_layout_name(
             &self,
             images_tensor: &MPSGraphTensor,
@@ -519,7 +519,7 @@ extern_methods!(
         /// - offset: 1D float tensor of size equal to rank of input.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeBilinearWithTensor:sizeTensor:scaleTensor:offsetTensor:name:)]
+        #[method_id(@__method_family Other resizeBilinearWithTensor:sizeTensor:scaleTensor:offsetTensor:name:)]
         pub unsafe fn resizeBilinearWithTensor_sizeTensor_scaleTensor_offsetTensor_name(
             &self,
             images_tensor: &MPSGraphTensor,
@@ -544,7 +544,7 @@ extern_methods!(
         /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeWithGradientTensor:input:mode:centerResult:alignCorners:layout:name:)]
+        #[method_id(@__method_family Other resizeWithGradientTensor:input:mode:centerResult:alignCorners:layout:name:)]
         pub unsafe fn resizeWithGradientTensor_input_mode_centerResult_alignCorners_layout_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -571,7 +571,7 @@ extern_methods!(
         /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeNearestWithGradientTensor:input:nearestRoundingMode:centerResult:alignCorners:layout:name:)]
+        #[method_id(@__method_family Other resizeNearestWithGradientTensor:input:nearestRoundingMode:centerResult:alignCorners:layout:name:)]
         pub unsafe fn resizeNearestWithGradientTensor_input_nearestRoundingMode_centerResult_alignCorners_layout_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -597,7 +597,7 @@ extern_methods!(
         /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeBilinearWithGradientTensor:input:centerResult:alignCorners:layout:name:)]
+        #[method_id(@__method_family Other resizeBilinearWithGradientTensor:input:centerResult:alignCorners:layout:name:)]
         pub unsafe fn resizeBilinearWithGradientTensor_input_centerResult_alignCorners_layout_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -622,7 +622,7 @@ extern_methods!(
         /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeWithGradientTensor:input:scaleOffsetTensor:mode:layout:name:)]
+        #[method_id(@__method_family Other resizeWithGradientTensor:input:scaleOffsetTensor:mode:layout:name:)]
         pub unsafe fn resizeWithGradientTensor_input_scaleOffsetTensor_mode_layout_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -647,7 +647,7 @@ extern_methods!(
         /// - mode: The resampling mode to use. If nearest sampling is specifed, RoundPreferCeil mode will be used.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeWithGradientTensor:input:scaleTensor:offsetTensor:mode:name:)]
+        #[method_id(@__method_family Other resizeWithGradientTensor:input:scaleTensor:offsetTensor:mode:name:)]
         pub unsafe fn resizeWithGradientTensor_input_scaleTensor_offsetTensor_mode_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -672,7 +672,7 @@ extern_methods!(
         /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeNearestWithGradientTensor:input:scaleOffsetTensor:nearestRoundingMode:layout:name:)]
+        #[method_id(@__method_family Other resizeNearestWithGradientTensor:input:scaleOffsetTensor:nearestRoundingMode:layout:name:)]
         pub unsafe fn resizeNearestWithGradientTensor_input_scaleOffsetTensor_nearestRoundingMode_layout_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -697,7 +697,7 @@ extern_methods!(
         /// - nearestRoundingMode: The rounding mode to use when using nearest resampling. Default is roundPreferCeil.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeNearestWithGradientTensor:input:scaleTensor:offsetTensor:nearestRoundingMode:name:)]
+        #[method_id(@__method_family Other resizeNearestWithGradientTensor:input:scaleTensor:offsetTensor:nearestRoundingMode:name:)]
         pub unsafe fn resizeNearestWithGradientTensor_input_scaleTensor_offsetTensor_nearestRoundingMode_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -721,7 +721,7 @@ extern_methods!(
         /// - layout: Specifies what layout the provided tensor is in. The returned tensor will follow the same layout. Valid layouts are NHWC, NCHW, HWC, CHW, and HW.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeBilinearWithGradientTensor:input:scaleOffsetTensor:layout:name:)]
+        #[method_id(@__method_family Other resizeBilinearWithGradientTensor:input:scaleOffsetTensor:layout:name:)]
         pub unsafe fn resizeBilinearWithGradientTensor_input_scaleOffsetTensor_layout_name(
             &self,
             gradient: &MPSGraphTensor,
@@ -743,7 +743,7 @@ extern_methods!(
         /// - offset: 1D float tensor of size equal to rank of input.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other resizeBilinearWithGradientTensor:input:scaleTensor:offsetTensor:name:)]
+        #[method_id(@__method_family Other resizeBilinearWithGradientTensor:input:scaleTensor:offsetTensor:name:)]
         pub unsafe fn resizeBilinearWithGradientTensor_input_scaleTensor_offsetTensor_name(
             &self,
             gradient: &MPSGraphTensor,

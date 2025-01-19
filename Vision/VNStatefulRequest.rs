@@ -34,14 +34,14 @@ unsafe impl NSObjectProtocol for VNStatefulRequest {}
 extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNStatefulRequest {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
+        #[method_id(@__method_family Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
@@ -54,7 +54,7 @@ extern_methods!(
         /// Parameter `frameAnalysisSpacing`: The reciprocal of maximum rate at which buffers will be processed. The request will not process buffers that fall within the frameAnalysisSpacing after it has performed the analysis. The analysis is not done by wall time but by analysis of of the time stamps of the samplebuffers being processed.
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method_id(@__retain_semantics Init initWithFrameAnalysisSpacing:completionHandler:)]
+        #[method_id(@__method_family Init initWithFrameAnalysisSpacing:completionHandler:)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
             this: Allocated<Self>,
             frame_analysis_spacing: CMTime,

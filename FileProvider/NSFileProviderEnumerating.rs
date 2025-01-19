@@ -275,7 +275,7 @@ extern_methods!(
         /// the very item that the enumeration was started on.
         ///
         /// If returning nil, you must set the error out parameter.
-        #[method_id(@__retain_semantics Other enumeratorForContainerItemIdentifier:error:_)]
+        #[method_id(@__method_family Other enumeratorForContainerItemIdentifier:error:_)]
         pub unsafe fn enumeratorForContainerItemIdentifier_error(
             &self,
             container_item_identifier: &NSFileProviderItemIdentifier,

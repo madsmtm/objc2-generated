@@ -26,7 +26,7 @@ extern_methods!(
         #[cfg(feature = "MLCYOLOLossDescriptor")]
         /// The YOLO loss descriptor
         #[deprecated]
-        #[method_id(@__retain_semantics Other yoloLossDescriptor)]
+        #[method_id(@__method_family Other yoloLossDescriptor)]
         pub unsafe fn yoloLossDescriptor(&self) -> Retained<MLCYOLOLossDescriptor>;
 
         #[cfg(feature = "MLCYOLOLossDescriptor")]
@@ -36,7 +36,7 @@ extern_methods!(
         ///
         /// Returns: A new YOLO loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other layerWithDescriptor:)]
+        #[method_id(@__method_family Other layerWithDescriptor:)]
         pub unsafe fn layerWithDescriptor(
             loss_descriptor: &MLCYOLOLossDescriptor,
         ) -> Retained<Self>;
@@ -56,7 +56,7 @@ extern_methods!(
         ///
         /// Returns: A new loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other layerWithDescriptor:weights:)]
+        #[method_id(@__method_family Other layerWithDescriptor:weights:)]
         pub unsafe fn layerWithDescriptor_weights(
             loss_descriptor: &MLCLossDescriptor,
             weights: &MLCTensor,
@@ -75,7 +75,7 @@ extern_methods!(
         ///
         /// Returns: A new softmax cross entropy loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other softmaxCrossEntropyLossWithReductionType:labelSmoothing:classCount:weight:)]
+        #[method_id(@__method_family Other softmaxCrossEntropyLossWithReductionType:labelSmoothing:classCount:weight:)]
         pub unsafe fn softmaxCrossEntropyLossWithReductionType_labelSmoothing_classCount_weight(
             reduction_type: MLCReductionType,
             label_smoothing: c_float,
@@ -96,7 +96,7 @@ extern_methods!(
         ///
         /// Returns: A new softmax cross entropy loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other softmaxCrossEntropyLossWithReductionType:labelSmoothing:classCount:weights:)]
+        #[method_id(@__method_family Other softmaxCrossEntropyLossWithReductionType:labelSmoothing:classCount:weights:)]
         pub unsafe fn softmaxCrossEntropyLossWithReductionType_labelSmoothing_classCount_weights(
             reduction_type: MLCReductionType,
             label_smoothing: c_float,
@@ -117,7 +117,7 @@ extern_methods!(
         ///
         /// Returns: A new categorical cross entropy loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other categoricalCrossEntropyLossWithReductionType:labelSmoothing:classCount:weight:)]
+        #[method_id(@__method_family Other categoricalCrossEntropyLossWithReductionType:labelSmoothing:classCount:weight:)]
         pub unsafe fn categoricalCrossEntropyLossWithReductionType_labelSmoothing_classCount_weight(
             reduction_type: MLCReductionType,
             label_smoothing: c_float,
@@ -138,7 +138,7 @@ extern_methods!(
         ///
         /// Returns: A new categorical cross entropy loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other categoricalCrossEntropyLossWithReductionType:labelSmoothing:classCount:weights:)]
+        #[method_id(@__method_family Other categoricalCrossEntropyLossWithReductionType:labelSmoothing:classCount:weights:)]
         pub unsafe fn categoricalCrossEntropyLossWithReductionType_labelSmoothing_classCount_weights(
             reduction_type: MLCReductionType,
             label_smoothing: c_float,
@@ -157,7 +157,7 @@ extern_methods!(
         ///
         /// Returns: A new sigmoid cross entropy loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other sigmoidCrossEntropyLossWithReductionType:labelSmoothing:weight:)]
+        #[method_id(@__method_family Other sigmoidCrossEntropyLossWithReductionType:labelSmoothing:weight:)]
         pub unsafe fn sigmoidCrossEntropyLossWithReductionType_labelSmoothing_weight(
             reduction_type: MLCReductionType,
             label_smoothing: c_float,
@@ -175,7 +175,7 @@ extern_methods!(
         ///
         /// Returns: A new sigmoid cross entropy loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other sigmoidCrossEntropyLossWithReductionType:labelSmoothing:weights:)]
+        #[method_id(@__method_family Other sigmoidCrossEntropyLossWithReductionType:labelSmoothing:weights:)]
         pub unsafe fn sigmoidCrossEntropyLossWithReductionType_labelSmoothing_weights(
             reduction_type: MLCReductionType,
             label_smoothing: c_float,
@@ -193,7 +193,7 @@ extern_methods!(
         ///
         /// Returns: A new log loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other logLossWithReductionType:epsilon:weight:)]
+        #[method_id(@__method_family Other logLossWithReductionType:epsilon:weight:)]
         pub unsafe fn logLossWithReductionType_epsilon_weight(
             reduction_type: MLCReductionType,
             epsilon: c_float,
@@ -211,7 +211,7 @@ extern_methods!(
         ///
         /// Returns: A new log loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other logLossWithReductionType:epsilon:weights:)]
+        #[method_id(@__method_family Other logLossWithReductionType:epsilon:weights:)]
         pub unsafe fn logLossWithReductionType_epsilon_weights(
             reduction_type: MLCReductionType,
             epsilon: c_float,
@@ -229,7 +229,7 @@ extern_methods!(
         ///
         /// Returns: A new huber loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other huberLossWithReductionType:delta:weight:)]
+        #[method_id(@__method_family Other huberLossWithReductionType:delta:weight:)]
         pub unsafe fn huberLossWithReductionType_delta_weight(
             reduction_type: MLCReductionType,
             delta: c_float,
@@ -247,7 +247,7 @@ extern_methods!(
         ///
         /// Returns: A new huber loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other huberLossWithReductionType:delta:weights:)]
+        #[method_id(@__method_family Other huberLossWithReductionType:delta:weights:)]
         pub unsafe fn huberLossWithReductionType_delta_weights(
             reduction_type: MLCReductionType,
             delta: c_float,
@@ -263,7 +263,7 @@ extern_methods!(
         ///
         /// Returns: A new L1 i.e. mean absolute error loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other meanAbsoluteErrorLossWithReductionType:weight:)]
+        #[method_id(@__method_family Other meanAbsoluteErrorLossWithReductionType:weight:)]
         pub unsafe fn meanAbsoluteErrorLossWithReductionType_weight(
             reduction_type: MLCReductionType,
             weight: c_float,
@@ -278,7 +278,7 @@ extern_methods!(
         ///
         /// Returns: A new L1 i.e. mean absolute error loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other meanAbsoluteErrorLossWithReductionType:weights:)]
+        #[method_id(@__method_family Other meanAbsoluteErrorLossWithReductionType:weights:)]
         pub unsafe fn meanAbsoluteErrorLossWithReductionType_weights(
             reduction_type: MLCReductionType,
             weights: Option<&MLCTensor>,
@@ -293,7 +293,7 @@ extern_methods!(
         ///
         /// Returns: A new L2 i.e. mean squared error loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other meanSquaredErrorLossWithReductionType:weight:)]
+        #[method_id(@__method_family Other meanSquaredErrorLossWithReductionType:weight:)]
         pub unsafe fn meanSquaredErrorLossWithReductionType_weight(
             reduction_type: MLCReductionType,
             weight: c_float,
@@ -308,7 +308,7 @@ extern_methods!(
         ///
         /// Returns: A new L2 i.e. mean squared error loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other meanSquaredErrorLossWithReductionType:weights:)]
+        #[method_id(@__method_family Other meanSquaredErrorLossWithReductionType:weights:)]
         pub unsafe fn meanSquaredErrorLossWithReductionType_weights(
             reduction_type: MLCReductionType,
             weights: Option<&MLCTensor>,
@@ -323,7 +323,7 @@ extern_methods!(
         ///
         /// Returns: A new hinge loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other hingeLossWithReductionType:weight:)]
+        #[method_id(@__method_family Other hingeLossWithReductionType:weight:)]
         pub unsafe fn hingeLossWithReductionType_weight(
             reduction_type: MLCReductionType,
             weight: c_float,
@@ -338,7 +338,7 @@ extern_methods!(
         ///
         /// Returns: A new hinge loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other hingeLossWithReductionType:weights:)]
+        #[method_id(@__method_family Other hingeLossWithReductionType:weights:)]
         pub unsafe fn hingeLossWithReductionType_weights(
             reduction_type: MLCReductionType,
             weights: Option<&MLCTensor>,
@@ -353,7 +353,7 @@ extern_methods!(
         ///
         /// Returns: A new cosine distance loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other cosineDistanceLossWithReductionType:weight:)]
+        #[method_id(@__method_family Other cosineDistanceLossWithReductionType:weight:)]
         pub unsafe fn cosineDistanceLossWithReductionType_weight(
             reduction_type: MLCReductionType,
             weight: c_float,
@@ -368,7 +368,7 @@ extern_methods!(
         ///
         /// Returns: A new cosine distance loss layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other cosineDistanceLossWithReductionType:weights:)]
+        #[method_id(@__method_family Other cosineDistanceLossWithReductionType:weights:)]
         pub unsafe fn cosineDistanceLossWithReductionType_weights(
             reduction_type: MLCReductionType,
             weights: Option<&MLCTensor>,
@@ -381,11 +381,11 @@ extern_methods!(
     #[cfg(all(feature = "MLCLayer", feature = "MLCLossLayer"))]
     unsafe impl MLCYOLOLossLayer {
         #[deprecated]
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

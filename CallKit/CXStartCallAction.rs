@@ -36,26 +36,26 @@ extern_methods!(
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXStartCallAction {
         #[cfg(feature = "CXHandle")]
-        #[method_id(@__retain_semantics Init initWithCallUUID:handle:)]
+        #[method_id(@__method_family Init initWithCallUUID:handle:)]
         pub unsafe fn initWithCallUUID_handle(
             this: Allocated<Self>,
             call_uuid: &NSUUID,
             handle: &CXHandle,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Init initWithCallUUID:)]
+        #[method_id(@__method_family Init initWithCallUUID:)]
         pub unsafe fn initWithCallUUID(this: Allocated<Self>, call_uuid: &NSUUID)
             -> Retained<Self>;
 
         #[cfg(feature = "CXHandle")]
         /// Handle for the party to call
-        #[method_id(@__retain_semantics Other handle)]
+        #[method_id(@__method_family Other handle)]
         pub unsafe fn handle(&self) -> Retained<CXHandle>;
 
         #[cfg(feature = "CXHandle")]
@@ -63,7 +63,7 @@ extern_methods!(
         #[method(setHandle:)]
         pub unsafe fn setHandle(&self, handle: &CXHandle);
 
-        #[method_id(@__retain_semantics Other contactIdentifier)]
+        #[method_id(@__method_family Other contactIdentifier)]
         pub unsafe fn contactIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`contactIdentifier`][Self::contactIdentifier].
@@ -87,7 +87,7 @@ extern_methods!(
     /// Methods declared on superclass `CXCallAction`
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXStartCallAction {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -96,7 +96,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
     unsafe impl CXStartCallAction {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -25,7 +25,7 @@ extern_methods!(
         pub unsafe fn addCaption(&self, input: &AVCaption);
 
         #[cfg(all(feature = "AVCaptionGroup", feature = "objc2-core-media"))]
-        #[method_id(@__retain_semantics Other flushAddedCaptionsIntoGroupsUpToTime:)]
+        #[method_id(@__method_family Other flushAddedCaptionsIntoGroupsUpToTime:)]
         pub unsafe fn flushAddedCaptionsIntoGroupsUpToTime(
             &self,
             up_to_time: CMTime,
@@ -36,10 +36,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCaptionGrouper {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

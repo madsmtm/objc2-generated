@@ -196,7 +196,7 @@ unsafe impl NSObjectProtocol for WKInterfaceDevice {}
 
 extern_methods!(
     unsafe impl WKInterfaceDevice {
-        #[method_id(@__retain_semantics Other currentDevice)]
+        #[method_id(@__method_family Other currentDevice)]
         pub unsafe fn currentDevice() -> Retained<WKInterfaceDevice>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -220,7 +220,7 @@ extern_methods!(
         #[method(batteryState)]
         pub unsafe fn batteryState(&self) -> WKInterfaceDeviceBatteryState;
 
-        #[method_id(@__retain_semantics Other preferredContentSizeCategory)]
+        #[method_id(@__method_family Other preferredContentSizeCategory)]
         pub unsafe fn preferredContentSizeCategory(&self) -> Retained<NSString>;
 
         #[method(layoutDirection)]
@@ -237,19 +237,19 @@ extern_methods!(
             semantic_content_attribute: WKInterfaceSemanticContentAttribute,
         ) -> WKInterfaceLayoutDirection;
 
-        #[method_id(@__retain_semantics Other systemVersion)]
+        #[method_id(@__method_family Other systemVersion)]
         pub unsafe fn systemVersion(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other model)]
+        #[method_id(@__method_family Other model)]
         pub unsafe fn model(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other localizedModel)]
+        #[method_id(@__method_family Other localizedModel)]
         pub unsafe fn localizedModel(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other systemName)]
+        #[method_id(@__method_family Other systemName)]
         pub unsafe fn systemName(&self) -> Retained<NSString>;
 
         #[method(waterResistanceRating)]
@@ -261,7 +261,7 @@ extern_methods!(
         #[method(supportsAudioStreaming)]
         pub unsafe fn supportsAudioStreaming(&self) -> bool;
 
-        #[method_id(@__retain_semantics Other identifierForVendor)]
+        #[method_id(@__method_family Other identifierForVendor)]
         pub unsafe fn identifierForVendor(&self) -> Option<Retained<NSUUID>>;
 
         #[method(playHaptic:)]
@@ -275,10 +275,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKInterfaceDevice {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

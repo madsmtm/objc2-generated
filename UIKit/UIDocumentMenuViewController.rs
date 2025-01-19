@@ -103,7 +103,7 @@ extern_methods!(
     unsafe impl UIDocumentMenuViewController {
         #[cfg(feature = "UIDocumentPickerViewController")]
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
-        #[method_id(@__retain_semantics Init initWithDocumentTypes:inMode:)]
+        #[method_id(@__method_family Init initWithDocumentTypes:inMode:)]
         pub unsafe fn initWithDocumentTypes_inMode(
             this: Allocated<Self>,
             allowed_ut_is: &NSArray<NSString>,
@@ -112,7 +112,7 @@ extern_methods!(
 
         #[cfg(feature = "UIDocumentPickerViewController")]
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
-        #[method_id(@__retain_semantics Init initWithURL:inMode:)]
+        #[method_id(@__method_family Init initWithURL:inMode:)]
         pub unsafe fn initWithURL_inMode(
             this: Allocated<Self>,
             url: &NSURL,
@@ -120,7 +120,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -138,7 +138,7 @@ extern_methods!(
         );
 
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIDocumentMenuDelegate>>>;
@@ -158,7 +158,7 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentMenuViewController {
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        #[method_id(@__method_family Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
@@ -171,10 +171,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentMenuViewController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -51,10 +51,10 @@ extern_methods!(
         pub unsafe fn ambientColorTemperature(&self) -> CGFloat;
 
         /// Unavailable
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -89,7 +89,7 @@ extern_methods!(
         ///
         /// The data is an array of 27 32-bit floating-point values, containing three non-interleaved data sets
         /// corresponding to the red, green, and blue sets of coefficients.
-        #[method_id(@__retain_semantics Other sphericalHarmonicsCoefficients)]
+        #[method_id(@__method_family Other sphericalHarmonicsCoefficients)]
         pub unsafe fn sphericalHarmonicsCoefficients(&self) -> Retained<NSData>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -105,10 +105,10 @@ extern_methods!(
     #[cfg(feature = "objc2")]
     unsafe impl ARDirectionalLightEstimate {
         /// Unavailable
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

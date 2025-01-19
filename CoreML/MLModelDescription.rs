@@ -26,36 +26,36 @@ extern_methods!(
     unsafe impl MLModelDescription {
         #[cfg(feature = "MLFeatureDescription")]
         /// Description of the inputs to the model
-        #[method_id(@__retain_semantics Other inputDescriptionsByName)]
+        #[method_id(@__method_family Other inputDescriptionsByName)]
         pub unsafe fn inputDescriptionsByName(
             &self,
         ) -> Retained<NSDictionary<NSString, MLFeatureDescription>>;
 
         #[cfg(feature = "MLFeatureDescription")]
         /// Description of the outputs from the model
-        #[method_id(@__retain_semantics Other outputDescriptionsByName)]
+        #[method_id(@__method_family Other outputDescriptionsByName)]
         pub unsafe fn outputDescriptionsByName(
             &self,
         ) -> Retained<NSDictionary<NSString, MLFeatureDescription>>;
 
         #[cfg(feature = "MLFeatureDescription")]
         /// Description of the state features.
-        #[method_id(@__retain_semantics Other stateDescriptionsByName)]
+        #[method_id(@__method_family Other stateDescriptionsByName)]
         pub unsafe fn stateDescriptionsByName(
             &self,
         ) -> Retained<NSDictionary<NSString, MLFeatureDescription>>;
 
         /// Name of the primary target / predicted output feature in the output descriptions
-        #[method_id(@__retain_semantics Other predictedFeatureName)]
+        #[method_id(@__method_family Other predictedFeatureName)]
         pub unsafe fn predictedFeatureName(&self) -> Option<Retained<NSString>>;
 
         /// Key for all predicted probabilities stored as a MLFeatureTypeDictionary in the output descriptions
-        #[method_id(@__retain_semantics Other predictedProbabilitiesName)]
+        #[method_id(@__method_family Other predictedProbabilitiesName)]
         pub unsafe fn predictedProbabilitiesName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MLModelMetadataKeys")]
         /// Optional metadata describing the model
-        #[method_id(@__retain_semantics Other metadata)]
+        #[method_id(@__method_family Other metadata)]
         pub unsafe fn metadata(&self) -> Retained<NSDictionary<MLModelMetadataKey, AnyObject>>;
 
         /// Array to map a class index to the corresponding label, which is either Number or String.
@@ -67,7 +67,7 @@ extern_methods!(
         /// 2. Otherwise, if the pipeline model has only one sub model with non-nil classLabels property, use the property value.
         ///
         /// 3. Otherwise, the property is nil.
-        #[method_id(@__retain_semantics Other classLabels)]
+        #[method_id(@__method_family Other classLabels)]
         pub unsafe fn classLabels(&self) -> Option<Retained<NSArray<AnyObject>>>;
     }
 );
@@ -75,10 +75,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLModelDescription {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -91,7 +91,7 @@ extern_methods!(
         pub unsafe fn isUpdatable(&self) -> bool;
 
         #[cfg(feature = "MLFeatureDescription")]
-        #[method_id(@__retain_semantics Other trainingInputDescriptionsByName)]
+        #[method_id(@__method_family Other trainingInputDescriptionsByName)]
         pub unsafe fn trainingInputDescriptionsByName(
             &self,
         ) -> Retained<NSDictionary<NSString, MLFeatureDescription>>;
@@ -107,7 +107,7 @@ extern_methods!(
             feature = "MLParameterDescription",
             feature = "MLParameterKey"
         ))]
-        #[method_id(@__retain_semantics Other parameterDescriptionsByKey)]
+        #[method_id(@__method_family Other parameterDescriptionsByKey)]
         pub unsafe fn parameterDescriptionsByKey(
             &self,
         ) -> Retained<NSDictionary<MLParameterKey, MLParameterDescription>>;

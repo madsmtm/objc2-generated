@@ -11,7 +11,7 @@ extern_category!(
     #[doc(alias = "MediaPlayerAdditions")]
     pub unsafe trait NSUserActivityMediaPlayerAdditions {
         /// A unique identifier relative to the app's media content catalog for the displayed media item.
-        #[method_id(@__retain_semantics Other externalMediaContentIdentifier)]
+        #[method_id(@__method_family Other externalMediaContentIdentifier)]
         unsafe fn externalMediaContentIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`externalMediaContentIdentifier`][Self::externalMediaContentIdentifier].

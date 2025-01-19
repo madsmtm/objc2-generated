@@ -80,16 +80,16 @@ unsafe impl NSObjectProtocol for NSPopover {}
 extern_methods!(
     #[cfg(feature = "NSResponder")]
     unsafe impl NSPopover {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSPopoverDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -101,7 +101,7 @@ extern_methods!(
         /// The appearance of the popover. The popover's contentView will inherit this appearance. The default effective appearance is the NSAppearanceNameVibrantLight appearance.
         /// If nil is set, nil will be returned, and the effective appearance will return to the default.
         /// To prevent conflicts with the previous appearance property, this is only available for apps that target 10.10 and higher.
-        #[method_id(@__retain_semantics Other appearance)]
+        #[method_id(@__method_family Other appearance)]
         pub unsafe fn appearance(&self) -> Option<Retained<NSAppearance>>;
 
         #[cfg(feature = "NSAppearance")]
@@ -110,7 +110,7 @@ extern_methods!(
         pub unsafe fn setAppearance(&self, appearance: Option<&NSAppearance>);
 
         #[cfg(feature = "NSAppearance")]
-        #[method_id(@__retain_semantics Other effectiveAppearance)]
+        #[method_id(@__method_family Other effectiveAppearance)]
         pub unsafe fn effectiveAppearance(&self) -> Retained<NSAppearance>;
 
         #[method(behavior)]
@@ -128,7 +128,7 @@ extern_methods!(
         pub unsafe fn setAnimates(&self, animates: bool);
 
         #[cfg(feature = "NSViewController")]
-        #[method_id(@__retain_semantics Other contentViewController)]
+        #[method_id(@__method_family Other contentViewController)]
         pub unsafe fn contentViewController(&self) -> Option<Retained<NSViewController>>;
 
         #[cfg(feature = "NSViewController")]
@@ -213,7 +213,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSResponder")]
     unsafe impl NSPopover {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -308,7 +308,7 @@ extern_protocol!(
         ///
         /// Returns: The custom window to detach to.
         #[optional]
-        #[method_id(@__retain_semantics Other detachableWindowForPopover:)]
+        #[method_id(@__method_family Other detachableWindowForPopover:)]
         unsafe fn detachableWindowForPopover(
             &self,
             popover: &NSPopover,

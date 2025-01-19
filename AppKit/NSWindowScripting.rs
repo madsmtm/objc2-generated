@@ -48,19 +48,19 @@ extern_methods!(
         #[method(setIsZoomed:)]
         pub unsafe fn setIsZoomed(&self, flag: bool);
 
-        #[method_id(@__retain_semantics Other handleCloseScriptCommand:)]
+        #[method_id(@__method_family Other handleCloseScriptCommand:)]
         pub unsafe fn handleCloseScriptCommand(
             &self,
             command: &NSCloseCommand,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__retain_semantics Other handlePrintScriptCommand:)]
+        #[method_id(@__method_family Other handlePrintScriptCommand:)]
         pub unsafe fn handlePrintScriptCommand(
             &self,
             command: &NSScriptCommand,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__retain_semantics Other handleSaveScriptCommand:)]
+        #[method_id(@__method_family Other handleSaveScriptCommand:)]
         pub unsafe fn handleSaveScriptCommand(
             &self,
             command: &NSScriptCommand,

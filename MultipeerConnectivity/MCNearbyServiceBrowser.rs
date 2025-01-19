@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for MCNearbyServiceBrowser {}
 extern_methods!(
     unsafe impl MCNearbyServiceBrowser {
         #[cfg(feature = "MCPeerID")]
-        #[method_id(@__retain_semantics Init initWithPeer:serviceType:)]
+        #[method_id(@__method_family Init initWithPeer:serviceType:)]
         pub unsafe fn initWithPeer_serviceType(
             this: Allocated<Self>,
             my_peer_id: &MCPeerID,
@@ -42,7 +42,7 @@ extern_methods!(
             timeout: NSTimeInterval,
         );
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MCNearbyServiceBrowserDelegate>>>;
@@ -56,10 +56,10 @@ extern_methods!(
         );
 
         #[cfg(feature = "MCPeerID")]
-        #[method_id(@__retain_semantics Other myPeerID)]
+        #[method_id(@__method_family Other myPeerID)]
         pub unsafe fn myPeerID(&self) -> Retained<MCPeerID>;
 
-        #[method_id(@__retain_semantics Other serviceType)]
+        #[method_id(@__method_family Other serviceType)]
         pub unsafe fn serviceType(&self) -> Retained<NSString>;
     }
 );
@@ -67,10 +67,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MCNearbyServiceBrowser {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

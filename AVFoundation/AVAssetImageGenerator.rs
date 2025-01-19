@@ -115,14 +115,14 @@ unsafe impl NSObjectProtocol for AVAssetImageGenerator {}
 
 extern_methods!(
     unsafe impl AVAssetImageGenerator {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
-        #[method_id(@__retain_semantics Other asset)]
+        #[method_id(@__method_family Other asset)]
         pub unsafe fn asset(&self) -> Retained<AVAsset>;
 
         #[method(appliesPreferredTrackTransform)]
@@ -144,7 +144,7 @@ extern_methods!(
         #[method(setMaximumSize:)]
         pub unsafe fn setMaximumSize(&self, maximum_size: CGSize);
 
-        #[method_id(@__retain_semantics Other apertureMode)]
+        #[method_id(@__method_family Other apertureMode)]
         pub unsafe fn apertureMode(&self) -> Option<Retained<AVAssetImageGeneratorApertureMode>>;
 
         /// Setter for [`apertureMode`][Self::apertureMode].
@@ -157,7 +157,7 @@ extern_methods!(
         /// Configures the video dynamic range for the output CGImage
         ///
         /// Default is AVAssetImageGeneratorDynamicRangePolicyForceSDR
-        #[method_id(@__retain_semantics Other dynamicRangePolicy)]
+        #[method_id(@__method_family Other dynamicRangePolicy)]
         pub unsafe fn dynamicRangePolicy(
             &self,
         ) -> Retained<AVAssetImageGeneratorDynamicRangePolicy>;
@@ -179,7 +179,7 @@ extern_methods!(
         /// - "renderSize" width or height is less than zero
         /// - "frameDuration" is invalid or less than or equal to zero
         /// - "sourceTrackIDForFrameTiming" is less than zero
-        #[method_id(@__retain_semantics Other videoComposition)]
+        #[method_id(@__method_family Other videoComposition)]
         pub unsafe fn videoComposition(&self) -> Option<Retained<AVVideoComposition>>;
 
         #[cfg(feature = "AVVideoComposition")]
@@ -188,7 +188,7 @@ extern_methods!(
         pub unsafe fn setVideoComposition(&self, video_composition: Option<&AVVideoComposition>);
 
         #[cfg(feature = "AVVideoCompositing")]
-        #[method_id(@__retain_semantics Other customVideoCompositor)]
+        #[method_id(@__method_family Other customVideoCompositor)]
         pub unsafe fn customVideoCompositor(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVVideoCompositing>>>;
@@ -232,7 +232,7 @@ extern_methods!(
         /// are being generated.
         ///
         /// AVAssetImageGenerator will use the default enabled video track(s) to generate images.
-        #[method_id(@__retain_semantics Other assetImageGeneratorWithAsset:)]
+        #[method_id(@__method_family Other assetImageGeneratorWithAsset:)]
         pub unsafe fn assetImageGeneratorWithAsset(asset: &AVAsset) -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
@@ -253,7 +253,7 @@ extern_methods!(
         /// are being generated.
         ///
         /// AVAssetImageGenerator will use the default enabled video track(s) to generate images.
-        #[method_id(@__retain_semantics Init initWithAsset:)]
+        #[method_id(@__method_family Init initWithAsset:)]
         pub unsafe fn initWithAsset(this: Allocated<Self>, asset: &AVAsset) -> Retained<Self>;
 
         #[cfg(all(

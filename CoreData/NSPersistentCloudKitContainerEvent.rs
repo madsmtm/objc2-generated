@@ -55,31 +55,31 @@ unsafe impl NSObjectProtocol for NSPersistentCloudKitContainerEvent {}
 
 extern_methods!(
     unsafe impl NSPersistentCloudKitContainerEvent {
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
 
-        #[method_id(@__retain_semantics Other storeIdentifier)]
+        #[method_id(@__method_family Other storeIdentifier)]
         pub unsafe fn storeIdentifier(&self) -> Retained<NSString>;
 
         #[method(type)]
         pub unsafe fn r#type(&self) -> NSPersistentCloudKitContainerEventType;
 
-        #[method_id(@__retain_semantics Other startDate)]
+        #[method_id(@__method_family Other startDate)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
-        #[method_id(@__retain_semantics Other endDate)]
+        #[method_id(@__method_family Other endDate)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
         #[method(succeeded)]
         pub unsafe fn succeeded(&self) -> bool;
 
-        #[method_id(@__retain_semantics Other error)]
+        #[method_id(@__method_family Other error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

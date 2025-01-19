@@ -32,7 +32,7 @@ unsafe impl NSObjectProtocol for HMTimerTrigger {}
 extern_methods!(
     #[cfg(feature = "HMTrigger")]
     unsafe impl HMTimerTrigger {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize a new HMTimerTrigger object.
@@ -60,7 +60,7 @@ extern_methods!(
         /// HMErrorCodeRecurrenceTooSmall is returned if recurrence interval is less than 5 minutes.
         /// HMErrorCodeRecurrenceTooLarge is returned if recurrence interval is greater than 5 weeks.
         /// HMErrorCodeFireDateInPast is returned if recurrence is nil and fireDate is in the past.
-        #[method_id(@__retain_semantics Init initWithName:fireDate:recurrence:)]
+        #[method_id(@__method_family Init initWithName:fireDate:recurrence:)]
         pub unsafe fn initWithName_fireDate_recurrence(
             this: Allocated<Self>,
             name: &NSString,
@@ -69,7 +69,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithName:fireDate:timeZone:recurrence:recurrenceCalendar:)]
+        #[method_id(@__method_family Init initWithName:fireDate:timeZone:recurrence:recurrenceCalendar:)]
         pub unsafe fn initWithName_fireDate_timeZone_recurrence_recurrenceCalendar(
             this: Allocated<Self>,
             name: &NSString,
@@ -88,11 +88,11 @@ extern_methods!(
         ///
         ///
         /// Note: Should be at least 1 minute ahead for reliable firing.
-        #[method_id(@__retain_semantics Other fireDate)]
+        #[method_id(@__method_family Other fireDate)]
         pub unsafe fn fireDate(&self) -> Retained<NSDate>;
 
         #[deprecated = "Use HMEventTrigger with HMCalendarEvent for triggers based on a time-zone-relative time of day"]
-        #[method_id(@__retain_semantics Other timeZone)]
+        #[method_id(@__method_family Other timeZone)]
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         /// The date components that specify how a trigger is to be repeated.
@@ -106,11 +106,11 @@ extern_methods!(
         /// recurrence to 1. The minimum recurrence interval is 5 minutes, maximum recurrence
         /// interval is 5 weeks and the recurrence interval must be specified in multiples of
         /// whole minutes. Examples are 5 minutes, 6 minutes, 1 day, 2 weeks.
-        #[method_id(@__retain_semantics Other recurrence)]
+        #[method_id(@__method_family Other recurrence)]
         pub unsafe fn recurrence(&self) -> Option<Retained<NSDateComponents>>;
 
         #[deprecated = "No longer supported"]
-        #[method_id(@__retain_semantics Other recurrenceCalendar)]
+        #[method_id(@__method_family Other recurrenceCalendar)]
         pub unsafe fn recurrenceCalendar(&self) -> Option<Retained<NSCalendar>>;
 
         #[cfg(feature = "block2")]
@@ -171,7 +171,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HMTrigger")]
     unsafe impl HMTimerTrigger {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

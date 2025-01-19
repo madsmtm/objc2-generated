@@ -22,36 +22,36 @@ unsafe impl NSObjectProtocol for NSPersistentContainer {}
 
 extern_methods!(
     unsafe impl NSPersistentContainer {
-        #[method_id(@__retain_semantics Other persistentContainerWithName:)]
+        #[method_id(@__method_family Other persistentContainerWithName:)]
         pub unsafe fn persistentContainerWithName(name: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectModel")]
-        #[method_id(@__retain_semantics Other persistentContainerWithName:managedObjectModel:)]
+        #[method_id(@__method_family Other persistentContainerWithName:managedObjectModel:)]
         pub unsafe fn persistentContainerWithName_managedObjectModel(
             name: &NSString,
             model: &NSManagedObjectModel,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other defaultDirectoryURL)]
+        #[method_id(@__method_family Other defaultDirectoryURL)]
         pub unsafe fn defaultDirectoryURL() -> Retained<NSURL>;
 
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSManagedObjectContext")]
-        #[method_id(@__retain_semantics Other viewContext)]
+        #[method_id(@__method_family Other viewContext)]
         pub unsafe fn viewContext(&self) -> Retained<NSManagedObjectContext>;
 
         #[cfg(feature = "NSManagedObjectModel")]
-        #[method_id(@__retain_semantics Other managedObjectModel)]
+        #[method_id(@__method_family Other managedObjectModel)]
         pub unsafe fn managedObjectModel(&self) -> Retained<NSManagedObjectModel>;
 
         #[cfg(feature = "NSPersistentStoreCoordinator")]
-        #[method_id(@__retain_semantics Other persistentStoreCoordinator)]
+        #[method_id(@__method_family Other persistentStoreCoordinator)]
         pub unsafe fn persistentStoreCoordinator(&self) -> Retained<NSPersistentStoreCoordinator>;
 
         #[cfg(feature = "NSPersistentStoreDescription")]
-        #[method_id(@__retain_semantics Other persistentStoreDescriptions)]
+        #[method_id(@__method_family Other persistentStoreDescriptions)]
         pub unsafe fn persistentStoreDescriptions(
             &self,
         ) -> Retained<NSArray<NSPersistentStoreDescription>>;
@@ -64,11 +64,11 @@ extern_methods!(
             persistent_store_descriptions: &NSArray<NSPersistentStoreDescription>,
         );
 
-        #[method_id(@__retain_semantics Init initWithName:)]
+        #[method_id(@__method_family Init initWithName:)]
         pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectModel")]
-        #[method_id(@__retain_semantics Init initWithName:managedObjectModel:)]
+        #[method_id(@__method_family Init initWithName:managedObjectModel:)]
         pub unsafe fn initWithName_managedObjectModel(
             this: Allocated<Self>,
             name: &NSString,
@@ -83,7 +83,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSManagedObjectContext")]
-        #[method_id(@__retain_semantics New newBackgroundContext)]
+        #[method_id(@__method_family New newBackgroundContext)]
         pub unsafe fn newBackgroundContext(&self) -> Retained<NSManagedObjectContext>;
 
         #[cfg(all(feature = "NSManagedObjectContext", feature = "block2"))]
@@ -98,10 +98,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPersistentContainer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

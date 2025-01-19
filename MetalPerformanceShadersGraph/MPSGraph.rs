@@ -254,7 +254,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSGraphExecutable")]
         /// The dictionary used during runtime to lookup the ``MPSGraphExecutable`` which correspond to the ``symbolName``.
-        #[method_id(@__retain_semantics Other callables)]
+        #[method_id(@__method_family Other callables)]
         pub unsafe fn callables(&self) -> Option<Retained<MPSGraphCallableMap>>;
 
         #[cfg(feature = "MPSGraphExecutable")]
@@ -268,10 +268,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphCompilationDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -345,7 +345,7 @@ extern_methods!(
         /// The compilation descriptor for the graph.
         ///
         /// Default value is nil.
-        #[method_id(@__retain_semantics Other compilationDescriptor)]
+        #[method_id(@__method_family Other compilationDescriptor)]
         pub unsafe fn compilationDescriptor(
             &self,
         ) -> Option<Retained<MPSGraphCompilationDescriptor>>;
@@ -389,10 +389,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphExecutionDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -426,16 +426,16 @@ extern_methods!(
         pub unsafe fn setOptions(&self, options: MPSGraphOptions);
 
         /// Creates a new graph to insert nodes in.
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Initialize an MPSGraph to insert nodes in.
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MPSGraphTensor")]
         /// Array of all the placeholder tensors.
-        #[method_id(@__retain_semantics Other placeholderTensors)]
+        #[method_id(@__method_family Other placeholderTensors)]
         pub unsafe fn placeholderTensors(&self) -> Retained<NSArray<MPSGraphTensor>>;
 
         #[cfg(all(
@@ -455,7 +455,7 @@ extern_methods!(
         /// - targetOperations: Operations to be completed at the end of the run.
         /// - compilationDescriptor: compilation descriptor to set different compilation parameters.
         /// - Returns: A valid MPSGraphExecutable object
-        #[method_id(@__retain_semantics Other compileWithDevice:feeds:targetTensors:targetOperations:compilationDescriptor:)]
+        #[method_id(@__method_family Other compileWithDevice:feeds:targetTensors:targetOperations:compilationDescriptor:)]
         pub unsafe fn compileWithDevice_feeds_targetTensors_targetOperations_compilationDescriptor(
             &self,
             device: Option<&MPSGraphDevice>,
@@ -479,7 +479,7 @@ extern_methods!(
         /// - targetTensors: Tensors for which the caller wishes MPSGraphTensorData to be returned.
         /// - targetOperations: Operations to be completed at the end of the run.
         /// - Returns: A valid MPSGraphTensor : MPSGraphTensorData dictionary with results synchronized to the CPU memory.
-        #[method_id(@__retain_semantics Other runWithFeeds:targetTensors:targetOperations:)]
+        #[method_id(@__method_family Other runWithFeeds:targetTensors:targetOperations:)]
         pub unsafe fn runWithFeeds_targetTensors_targetOperations(
             &self,
             feeds: &MPSGraphTensorDataDictionary,
@@ -502,7 +502,7 @@ extern_methods!(
         /// - targetTensors: Tensors for which the caller wishes MPSGraphTensorData to be returned.
         /// - targetOperations: Operations to be completed at the end of the run.
         /// - Returns: A valid MPSGraphTensor : MPSGraphTensorData dictionary with results synchronized to the CPU memory.
-        #[method_id(@__retain_semantics Other runWithMTLCommandQueue:feeds:targetTensors:targetOperations:)]
+        #[method_id(@__method_family Other runWithMTLCommandQueue:feeds:targetTensors:targetOperations:)]
         pub unsafe fn runWithMTLCommandQueue_feeds_targetTensors_targetOperations(
             &self,
             command_queue: &ProtocolObject<dyn MTLCommandQueue>,
@@ -549,7 +549,7 @@ extern_methods!(
         /// - targetOperations: Operations to be completed at the end of the run.
         /// - executionDescriptor: ExecutionDescriptor to be passed in and used.
         /// - Returns: A valid MPSGraphTensor : MPSGraphTensorData dictionary with results synchronized to the CPU memory.
-        #[method_id(@__retain_semantics Other runAsyncWithFeeds:targetTensors:targetOperations:executionDescriptor:)]
+        #[method_id(@__method_family Other runAsyncWithFeeds:targetTensors:targetOperations:executionDescriptor:)]
         pub unsafe fn runAsyncWithFeeds_targetTensors_targetOperations_executionDescriptor(
             &self,
             feeds: &MPSGraphTensorDataDictionary,
@@ -574,7 +574,7 @@ extern_methods!(
         /// - targetOperations: Operations to be completed at the end of the run.
         /// - executionDescriptor: ExecutionDescriptor to be passed in and used.
         /// - Returns: A valid MPSGraphTensor : MPSGraphTensorData dictionary with results synchronized to the CPU memory if MPSGraphOptionsSynchronizeResults set.
-        #[method_id(@__retain_semantics Other runAsyncWithMTLCommandQueue:feeds:targetTensors:targetOperations:executionDescriptor:)]
+        #[method_id(@__method_family Other runAsyncWithMTLCommandQueue:feeds:targetTensors:targetOperations:executionDescriptor:)]
         pub unsafe fn runAsyncWithMTLCommandQueue_feeds_targetTensors_targetOperations_executionDescriptor(
             &self,
             command_queue: &ProtocolObject<dyn MTLCommandQueue>,
@@ -626,7 +626,7 @@ extern_methods!(
         /// - targetOperations: Operations to be completed at the end of the run.
         /// - executionDescriptor: ExecutionDescriptor to be passed in and used.
         /// - Returns: A valid MPSGraphTensor : MPSGraphTensorData dictionary with results synchronized to the CPU memory if MPSGraphOptionsSynchronizeResults set.
-        #[method_id(@__retain_semantics Other encodeToCommandBuffer:feeds:targetTensors:targetOperations:executionDescriptor:)]
+        #[method_id(@__method_family Other encodeToCommandBuffer:feeds:targetTensors:targetOperations:executionDescriptor:)]
         pub unsafe fn encodeToCommandBuffer_feeds_targetTensors_targetOperations_executionDescriptor(
             &self,
             command_buffer: &MPSCommandBuffer,

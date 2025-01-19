@@ -17,7 +17,7 @@ unsafe impl NSObjectProtocol for NSMethodSignature {}
 
 extern_methods!(
     unsafe impl NSMethodSignature {
-        #[method_id(@__retain_semantics Other signatureWithObjCTypes:)]
+        #[method_id(@__method_family Other signatureWithObjCTypes:)]
         pub unsafe fn signatureWithObjCTypes(
             types: NonNull<c_char>,
         ) -> Option<Retained<NSMethodSignature>>;
@@ -45,10 +45,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMethodSignature {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

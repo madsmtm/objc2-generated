@@ -34,7 +34,7 @@ extern_methods!(
     #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
     unsafe impl VZVirtioSoundDeviceInputStreamConfiguration {
         /// Initialize the input stream configuration.
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZAudioInputStreamSource")]
@@ -43,7 +43,7 @@ extern_methods!(
         /// Not specifying a Source will have a default handler that produces audio silence.
         ///
         /// See: VZAudioInputStreamSource
-        #[method_id(@__retain_semantics Other source)]
+        #[method_id(@__method_family Other source)]
         pub unsafe fn source(&self) -> Option<Retained<VZAudioInputStreamSource>>;
 
         #[cfg(feature = "VZAudioInputStreamSource")]
@@ -57,7 +57,7 @@ extern_methods!(
     /// Methods declared on superclass `VZVirtioSoundDeviceStreamConfiguration`
     #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
     unsafe impl VZVirtioSoundDeviceInputStreamConfiguration {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

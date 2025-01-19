@@ -103,7 +103,7 @@ extern_methods!(
         /// If supportedChannelCounts is nil, then any number less than or equal to maximumChannelCount
         /// is supported. If setting supportedChannelCounts makes the current format unsupported, then
         /// format will be set to nil. The default value is nil.
-        #[method_id(@__retain_semantics Other supportedChannelCounts)]
+        #[method_id(@__method_family Other supportedChannelCounts)]
         pub unsafe fn supportedChannelCounts(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`supportedChannelCounts`][Self::supportedChannelCounts].
@@ -150,7 +150,7 @@ extern_methods!(
         #[cfg(feature = "AudioUnitProperties")]
         /// Create an AUParameter.
         /// See AUParameter's properties for descriptions of the arguments.
-        #[method_id(@__retain_semantics Other createParameterWithIdentifier:name:address:min:max:unit:unitName:flags:valueStrings:dependentParameters:)]
+        #[method_id(@__method_family Other createParameterWithIdentifier:name:address:min:max:unit:unitName:flags:valueStrings:dependentParameters:)]
         pub unsafe fn createParameterWithIdentifier_name_address_min_max_unit_unitName_flags_valueStrings_dependentParameters(
             identifier: &NSString,
             name: &NSString,
@@ -171,7 +171,7 @@ extern_methods!(
         /// Parameter `name`: The group's human-readable name (localized).
         ///
         /// Parameter `children`: The group's child nodes.
-        #[method_id(@__retain_semantics Other createGroupWithIdentifier:name:children:)]
+        #[method_id(@__method_family Other createGroupWithIdentifier:name:children:)]
         pub unsafe fn createGroupWithIdentifier_name_children(
             identifier: &NSString,
             name: &NSString,
@@ -185,7 +185,7 @@ extern_methods!(
         /// groups, sharing certain immutable state between the instances.
         ///
         /// Template groups may not appear in trees except at the root.
-        #[method_id(@__retain_semantics Other createGroupTemplate:)]
+        #[method_id(@__method_family Other createGroupTemplate:)]
         pub unsafe fn createGroupTemplate(
             children: &NSArray<AUParameterNode>,
         ) -> Retained<AUParameterGroup>;
@@ -200,7 +200,7 @@ extern_methods!(
         ///
         /// Parameter `addressOffset`: The new group's parameters' addresses will be offset from those in
         /// the template by this value.
-        #[method_id(@__retain_semantics Other createGroupFromTemplate:identifier:name:addressOffset:)]
+        #[method_id(@__method_family Other createGroupFromTemplate:identifier:name:addressOffset:)]
         pub unsafe fn createGroupFromTemplate_identifier_name_addressOffset(
             template_group: &AUParameterGroup,
             identifier: &NSString,
@@ -211,7 +211,7 @@ extern_methods!(
         /// Create an AUParameterTree.
         ///
         /// Parameter `children`: The tree's top-level child nodes.
-        #[method_id(@__retain_semantics Other createTreeWithChildren:)]
+        #[method_id(@__method_family Other createTreeWithChildren:)]
         pub unsafe fn createTreeWithChildren(
             children: &NSArray<AUParameterNode>,
         ) -> Retained<AUParameterTree>;
@@ -383,7 +383,7 @@ extern_methods!(
     /// Methods declared on superclass `AUAudioUnit`
     #[cfg(feature = "AUAudioUnit")]
     unsafe impl AUAudioUnitV2Bridge {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "AudioComponent")]
@@ -396,7 +396,7 @@ extern_methods!(
         /// Parameter `options`: Options for loading the unit in-process or out-of-process.
         ///
         /// Parameter `outError`: Returned in the event of failure.
-        #[method_id(@__retain_semantics Init initWithComponentDescription:options:error:_)]
+        #[method_id(@__method_family Init initWithComponentDescription:options:error:_)]
         pub unsafe fn initWithComponentDescription_options_error(
             this: Allocated<Self>,
             component_description: AudioComponentDescription,
@@ -405,7 +405,7 @@ extern_methods!(
 
         #[cfg(feature = "AudioComponent")]
         /// Convenience initializer (omits options).
-        #[method_id(@__retain_semantics Init initWithComponentDescription:error:_)]
+        #[method_id(@__method_family Init initWithComponentDescription:error:_)]
         pub unsafe fn initWithComponentDescription_error(
             this: Allocated<Self>,
             component_description: AudioComponentDescription,
@@ -417,7 +417,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AUAudioUnit")]
     unsafe impl AUAudioUnitV2Bridge {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -443,7 +443,7 @@ extern_protocol!(
         /// Note that in non-ARC code, "create" methods return unretained objects (unlike "create"
         /// C functions); the implementor should return an object with reference count 1 but
         /// autoreleased.
-        #[method_id(@__retain_semantics Other createAudioUnitWithComponentDescription:error:_)]
+        #[method_id(@__method_family Other createAudioUnitWithComponentDescription:error:_)]
         unsafe fn createAudioUnitWithComponentDescription_error(
             &self,
             desc: AudioComponentDescription,

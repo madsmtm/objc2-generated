@@ -25,11 +25,11 @@ unsafe impl NSPasteboardWriting for NSPasteboardItem {}
 extern_methods!(
     unsafe impl NSPasteboardItem {
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__retain_semantics Other types)]
+        #[method_id(@__method_family Other types)]
         pub unsafe fn types(&self) -> Retained<NSArray<NSPasteboardType>>;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__retain_semantics Other availableTypeFromArray:)]
+        #[method_id(@__method_family Other availableTypeFromArray:)]
         pub unsafe fn availableTypeFromArray(
             &self,
             types: &NSArray<NSPasteboardType>,
@@ -64,16 +64,16 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__retain_semantics Other dataForType:)]
+        #[method_id(@__method_family Other dataForType:)]
         pub unsafe fn dataForType(&self, r#type: &NSPasteboardType) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__retain_semantics Other stringForType:)]
+        #[method_id(@__method_family Other stringForType:)]
         pub unsafe fn stringForType(&self, r#type: &NSPasteboardType)
             -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__retain_semantics Other propertyListForType:)]
+        #[method_id(@__method_family Other propertyListForType:)]
         pub unsafe fn propertyListForType(
             &self,
             r#type: &NSPasteboardType,
@@ -84,10 +84,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPasteboardItem {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -21,7 +21,7 @@ extern_protocol!(
     {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[method_id(@__retain_semantics Other printerPickerControllerParentViewController:)]
+        #[method_id(@__method_family Other printerPickerControllerParentViewController:)]
         unsafe fn printerPickerControllerParentViewController(
             &self,
             printer_picker_controller: &UIPrinterPickerController,
@@ -97,7 +97,7 @@ extern_methods!(
         /// UI that allows the user to select a printer. This is only used with the
         /// UIPrintInteractionController's printWithoutUIToPrinter: method.
         /// If no printer should be preselected, use a value of nil for the parameter.
-        #[method_id(@__retain_semantics Other printerPickerControllerWithInitiallySelectedPrinter:)]
+        #[method_id(@__method_family Other printerPickerControllerWithInitiallySelectedPrinter:)]
         pub unsafe fn printerPickerControllerWithInitiallySelectedPrinter(
             printer: Option<&UIPrinter>,
             mtm: MainThreadMarker,
@@ -106,10 +106,10 @@ extern_methods!(
         #[cfg(feature = "UIPrinter")]
         /// The selected printer. Set this before presenting the UI to show the currently
         /// selected printer. Use this to determine which printer the user selected.
-        #[method_id(@__retain_semantics Other selectedPrinter)]
+        #[method_id(@__method_family Other selectedPrinter)]
         pub unsafe fn selectedPrinter(&self) -> Option<Retained<UIPrinter>>;
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPrinterPickerControllerDelegate>>>;
@@ -162,10 +162,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrinterPickerController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

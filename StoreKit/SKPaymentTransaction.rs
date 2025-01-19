@@ -55,33 +55,33 @@ unsafe impl NSObjectProtocol for SKPaymentTransaction {}
 extern_methods!(
     unsafe impl SKPaymentTransaction {
         #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
-        #[method_id(@__retain_semantics Other error)]
+        #[method_id(@__method_family Other error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
-        #[method_id(@__retain_semantics Other originalTransaction)]
+        #[method_id(@__method_family Other originalTransaction)]
         pub unsafe fn originalTransaction(&self) -> Option<Retained<SKPaymentTransaction>>;
 
         #[cfg(feature = "SKPayment")]
         #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
-        #[method_id(@__retain_semantics Other payment)]
+        #[method_id(@__method_family Other payment)]
         pub unsafe fn payment(&self) -> Retained<SKPayment>;
 
         #[cfg(feature = "SKDownload")]
         #[deprecated = "Hosted content is no longer supported"]
-        #[method_id(@__retain_semantics Other downloads)]
+        #[method_id(@__method_family Other downloads)]
         pub unsafe fn downloads(&self) -> Retained<NSArray<SKDownload>>;
 
         #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
-        #[method_id(@__retain_semantics Other transactionDate)]
+        #[method_id(@__method_family Other transactionDate)]
         pub unsafe fn transactionDate(&self) -> Option<Retained<NSDate>>;
 
         #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
-        #[method_id(@__retain_semantics Other transactionIdentifier)]
+        #[method_id(@__method_family Other transactionIdentifier)]
         pub unsafe fn transactionIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other transactionReceipt)]
+        #[method_id(@__method_family Other transactionReceipt)]
         pub unsafe fn transactionReceipt(&self) -> Option<Retained<NSData>>;
 
         #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
@@ -93,10 +93,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPaymentTransaction {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

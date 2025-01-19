@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other animationTimingFunction)]
+        #[method_id(@__method_family Other animationTimingFunction)]
         pub unsafe fn animationTimingFunction() -> Option<Retained<CAMediaTimingFunction>>;
 
         #[cfg(feature = "objc2-quartz-core")]
@@ -76,7 +76,7 @@ extern_methods!(
         #[method(setCompletionBlock:)]
         pub unsafe fn setCompletionBlock(completion_block: Option<&block2::Block<dyn Fn()>>);
 
-        #[method_id(@__retain_semantics Other valueForKey:)]
+        #[method_id(@__method_family Other valueForKey:)]
         pub unsafe fn valueForKey(key: &NSString) -> Option<Retained<AnyObject>>;
 
         #[method(setValue:forKey:)]
@@ -87,10 +87,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNTransaction {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

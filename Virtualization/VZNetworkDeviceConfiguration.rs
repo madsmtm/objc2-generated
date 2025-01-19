@@ -32,15 +32,15 @@ unsafe impl NSObjectProtocol for VZNetworkDeviceConfiguration {}
 
 extern_methods!(
     unsafe impl VZNetworkDeviceConfiguration {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZMACAddress")]
         /// The media access control address of the device. The default is a random, locally administered, unicast address.
-        #[method_id(@__retain_semantics Other MACAddress)]
+        #[method_id(@__method_family Other MACAddress)]
         pub unsafe fn MACAddress(&self) -> Retained<VZMACAddress>;
 
         #[cfg(feature = "VZMACAddress")]
@@ -56,7 +56,7 @@ extern_methods!(
         /// See: VZFileHandleNetworkDeviceAttachment
         ///
         /// See: VZNATNetworkDeviceAttachment
-        #[method_id(@__retain_semantics Other attachment)]
+        #[method_id(@__method_family Other attachment)]
         pub unsafe fn attachment(&self) -> Option<Retained<VZNetworkDeviceAttachment>>;
 
         #[cfg(feature = "VZNetworkDeviceAttachment")]

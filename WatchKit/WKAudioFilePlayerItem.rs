@@ -66,19 +66,19 @@ unsafe impl NSObjectProtocol for WKAudioFilePlayerItem {}
 extern_methods!(
     unsafe impl WKAudioFilePlayerItem {
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "WKAudioFileAsset")]
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method_id(@__retain_semantics Other playerItemWithAsset:)]
+        #[method_id(@__method_family Other playerItemWithAsset:)]
         pub unsafe fn playerItemWithAsset(
             asset: &WKAudioFileAsset,
         ) -> Retained<WKAudioFilePlayerItem>;
 
         #[cfg(feature = "WKAudioFileAsset")]
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method_id(@__retain_semantics Other asset)]
+        #[method_id(@__method_family Other asset)]
         pub unsafe fn asset(&self) -> Retained<WKAudioFileAsset>;
 
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
@@ -86,7 +86,7 @@ extern_methods!(
         pub unsafe fn status(&self) -> WKAudioFilePlayerItemStatus;
 
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[method_id(@__retain_semantics Other error)]
+        #[method_id(@__method_family Other error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
@@ -102,7 +102,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKAudioFilePlayerItem {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

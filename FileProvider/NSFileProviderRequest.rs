@@ -41,14 +41,14 @@ extern_methods!(
 
         /// The URL of the requesting executable. This will always be nil unless both an MDM profile key is set, and the
         /// provider's application is installed by an MDM profile.
-        #[method_id(@__retain_semantics Other requestingExecutable)]
+        #[method_id(@__method_family Other requestingExecutable)]
         pub unsafe fn requestingExecutable(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSFileProviderDomain")]
         /// The version of the domain when the event that triggered the request was observed.
         ///
         /// If the extension doesn't implement the NSFileProviderDomainState protocol, this will be nil.
-        #[method_id(@__retain_semantics Other domainVersion)]
+        #[method_id(@__method_family Other domainVersion)]
         pub unsafe fn domainVersion(&self) -> Option<Retained<NSFileProviderDomainVersion>>;
     }
 );
@@ -56,10 +56,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderRequest {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

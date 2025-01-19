@@ -25,7 +25,7 @@ extern_methods!(
         ///
         /// The identifier is the same as the one used to register the launch handler in
         /// ``BGTaskScheduler/registerForTaskWithIdentifier:usingQueue:launchHandler:``.
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "block2")]
@@ -59,10 +59,10 @@ extern_methods!(
             expiration_handler: Option<&block2::Block<dyn Fn()>>,
         );
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Informs the background task scheduler that the task is complete.
@@ -116,10 +116,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `BGTask`
     unsafe impl BGProcessingTask {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -146,10 +146,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `BGTask`
     unsafe impl BGHealthResearchTask {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -182,10 +182,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `BGTask`
     unsafe impl BGAppRefreshTask {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

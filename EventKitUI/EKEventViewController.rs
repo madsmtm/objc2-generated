@@ -65,7 +65,7 @@ unsafe impl UITraitEnvironment for EKEventViewController {}
 extern_methods!(
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl EKEventViewController {
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn EKEventViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -80,7 +80,7 @@ extern_methods!(
         /// Specifies the event to view.
         ///
         /// You must set this prior to displaying the view controller.
-        #[method_id(@__retain_semantics Other event)]
+        #[method_id(@__method_family Other event)]
         pub unsafe fn event(&self) -> Option<Retained<EKEvent>>;
 
         #[cfg(feature = "objc2-event-kit")]
@@ -120,14 +120,14 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl EKEventViewController {
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        #[method_id(@__method_family Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -139,10 +139,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl EKEventViewController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

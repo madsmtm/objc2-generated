@@ -71,76 +71,76 @@ unsafe impl NSSecureCoding for NSAppleEventDescriptor {}
 
 extern_methods!(
     unsafe impl NSAppleEventDescriptor {
-        #[method_id(@__retain_semantics Other nullDescriptor)]
+        #[method_id(@__method_family Other nullDescriptor)]
         pub unsafe fn nullDescriptor() -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__retain_semantics Other descriptorWithBoolean:)]
+        #[method_id(@__method_family Other descriptorWithBoolean:)]
         pub unsafe fn descriptorWithBoolean(boolean: Boolean) -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__retain_semantics Other descriptorWithEnumCode:)]
+        #[method_id(@__method_family Other descriptorWithEnumCode:)]
         pub unsafe fn descriptorWithEnumCode(
             enumerator: OSType,
         ) -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__retain_semantics Other descriptorWithInt32:)]
+        #[method_id(@__method_family Other descriptorWithInt32:)]
         pub unsafe fn descriptorWithInt32(signed_int: i32) -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__retain_semantics Other descriptorWithDouble:)]
+        #[method_id(@__method_family Other descriptorWithDouble:)]
         pub unsafe fn descriptorWithDouble(
             double_value: c_double,
         ) -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__retain_semantics Other descriptorWithTypeCode:)]
+        #[method_id(@__method_family Other descriptorWithTypeCode:)]
         pub unsafe fn descriptorWithTypeCode(type_code: OSType)
             -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other descriptorWithString:)]
+        #[method_id(@__method_family Other descriptorWithString:)]
         pub unsafe fn descriptorWithString(string: &NSString) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSDate")]
-        #[method_id(@__retain_semantics Other descriptorWithDate:)]
+        #[method_id(@__method_family Other descriptorWithDate:)]
         pub unsafe fn descriptorWithDate(date: &NSDate) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(@__retain_semantics Other descriptorWithFileURL:)]
+        #[method_id(@__method_family Other descriptorWithFileURL:)]
         pub unsafe fn descriptorWithFileURL(file_url: &NSURL) -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__retain_semantics Other listDescriptor)]
+        #[method_id(@__method_family Other listDescriptor)]
         pub unsafe fn listDescriptor() -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__retain_semantics Other recordDescriptor)]
+        #[method_id(@__method_family Other recordDescriptor)]
         pub unsafe fn recordDescriptor() -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__retain_semantics Other currentProcessDescriptor)]
+        #[method_id(@__method_family Other currentProcessDescriptor)]
         pub unsafe fn currentProcessDescriptor() -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "libc")]
-        #[method_id(@__retain_semantics Other descriptorWithProcessIdentifier:)]
+        #[method_id(@__method_family Other descriptorWithProcessIdentifier:)]
         pub unsafe fn descriptorWithProcessIdentifier(
             process_identifier: libc::pid_t,
         ) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other descriptorWithBundleIdentifier:)]
+        #[method_id(@__method_family Other descriptorWithBundleIdentifier:)]
         pub unsafe fn descriptorWithBundleIdentifier(
             bundle_identifier: &NSString,
         ) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(@__retain_semantics Other descriptorWithApplicationURL:)]
+        #[method_id(@__method_family Other descriptorWithApplicationURL:)]
         pub unsafe fn descriptorWithApplicationURL(
             application_url: &NSURL,
         ) -> Retained<NSAppleEventDescriptor>;
 
-        #[method_id(@__retain_semantics Init initListDescriptor)]
+        #[method_id(@__method_family Init initListDescriptor)]
         pub unsafe fn initListDescriptor(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initRecordDescriptor)]
+        #[method_id(@__method_family Init initRecordDescriptor)]
         pub unsafe fn initRecordDescriptor(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSData")]
-        #[method_id(@__retain_semantics Other data)]
+        #[method_id(@__method_family Other data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
         #[method(booleanValue)]
@@ -159,15 +159,15 @@ extern_methods!(
         pub unsafe fn typeCodeValue(&self) -> OSType;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other stringValue)]
+        #[method_id(@__method_family Other stringValue)]
         pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSDate")]
-        #[method_id(@__retain_semantics Other dateValue)]
+        #[method_id(@__method_family Other dateValue)]
         pub unsafe fn dateValue(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(@__retain_semantics Other fileURLValue)]
+        #[method_id(@__method_family Other fileURLValue)]
         pub unsafe fn fileURLValue(&self) -> Option<Retained<NSURL>>;
 
         #[method(isRecordDescriptor)]
@@ -183,7 +183,7 @@ extern_methods!(
             index: NSInteger,
         );
 
-        #[method_id(@__retain_semantics Other descriptorAtIndex:)]
+        #[method_id(@__method_family Other descriptorAtIndex:)]
         pub unsafe fn descriptorAtIndex(
             &self,
             index: NSInteger,
@@ -197,10 +197,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAppleEventDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

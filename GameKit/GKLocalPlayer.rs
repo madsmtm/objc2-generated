@@ -27,10 +27,10 @@ extern_methods!(
         /// Obtain the primary GKLocalPlayer object.
         /// The player is only available for offline play until logged in.
         /// A temporary player is created if no account is set up.
-        #[method_id(@__retain_semantics Other local)]
+        #[method_id(@__method_family Other local)]
         pub unsafe fn local() -> Retained<GKLocalPlayer>;
 
-        #[method_id(@__retain_semantics Other localPlayer)]
+        #[method_id(@__method_family Other localPlayer)]
         pub unsafe fn localPlayer() -> Retained<GKLocalPlayer>;
 
         /// Authentication state
@@ -119,7 +119,7 @@ extern_methods!(
     /// Methods declared on superclass `GKPlayer`
     #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
-        #[method_id(@__retain_semantics Other anonymousGuestPlayerWithIdentifier:)]
+        #[method_id(@__method_family Other anonymousGuestPlayerWithIdentifier:)]
         pub unsafe fn anonymousGuestPlayerWithIdentifier(
             guest_identifier: &NSString,
         ) -> Retained<Self>;
@@ -130,10 +130,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
     unsafe impl GKLocalPlayer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -262,7 +262,7 @@ extern_methods!(
 
         /// This property is obsolete. **
         #[deprecated]
-        #[method_id(@__retain_semantics Other friends)]
+        #[method_id(@__method_family Other friends)]
         pub unsafe fn friends(&self) -> Option<Retained<NSArray<NSString>>>;
     }
 );

@@ -78,17 +78,17 @@ unsafe impl NSSecureCoding for SCNPhysicsBody {}
 
 extern_methods!(
     unsafe impl SCNPhysicsBody {
-        #[method_id(@__retain_semantics Other staticBody)]
+        #[method_id(@__method_family Other staticBody)]
         pub unsafe fn staticBody() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other dynamicBody)]
+        #[method_id(@__method_family Other dynamicBody)]
         pub unsafe fn dynamicBody() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other kinematicBody)]
+        #[method_id(@__method_family Other kinematicBody)]
         pub unsafe fn kinematicBody() -> Retained<Self>;
 
         #[cfg(feature = "SCNPhysicsShape")]
-        #[method_id(@__retain_semantics Other bodyWithType:shape:)]
+        #[method_id(@__method_family Other bodyWithType:shape:)]
         pub unsafe fn bodyWithType_shape(
             r#type: SCNPhysicsBodyType,
             shape: Option<&SCNPhysicsShape>,
@@ -163,7 +163,7 @@ extern_methods!(
         pub unsafe fn setRollingFriction(&self, rolling_friction: CGFloat);
 
         #[cfg(feature = "SCNPhysicsShape")]
-        #[method_id(@__retain_semantics Other physicsShape)]
+        #[method_id(@__method_family Other physicsShape)]
         pub unsafe fn physicsShape(&self) -> Option<Retained<SCNPhysicsShape>>;
 
         #[cfg(feature = "SCNPhysicsShape")]
@@ -333,10 +333,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsBody {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -31,7 +31,7 @@ extern_methods!(
         /// Cumulative amount of data uploaded over WiFi.
         ///
         /// Dimensioned as NSUnitInformationStorage.
-        #[method_id(@__retain_semantics Other cumulativeWifiUpload)]
+        #[method_id(@__method_family Other cumulativeWifiUpload)]
         pub unsafe fn cumulativeWifiUpload(
             &self,
         ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
@@ -39,7 +39,7 @@ extern_methods!(
         /// Cumulative amount of data downloaded over WiFi.
         ///
         /// Dimensioned as NSUnitInformationStorage.
-        #[method_id(@__retain_semantics Other cumulativeWifiDownload)]
+        #[method_id(@__method_family Other cumulativeWifiDownload)]
         pub unsafe fn cumulativeWifiDownload(
             &self,
         ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
@@ -49,7 +49,7 @@ extern_methods!(
         /// This data is radio access technology agnostic.
         ///
         /// Dimensioned as NSUnitInformationStorage.
-        #[method_id(@__retain_semantics Other cumulativeCellularUpload)]
+        #[method_id(@__method_family Other cumulativeCellularUpload)]
         pub unsafe fn cumulativeCellularUpload(
             &self,
         ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
@@ -59,7 +59,7 @@ extern_methods!(
         /// This data is radio access technology agnostic.
         ///
         /// Dimensioned as NSUnitInformationStorage.
-        #[method_id(@__retain_semantics Other cumulativeCellularDownload)]
+        #[method_id(@__method_family Other cumulativeCellularDownload)]
         pub unsafe fn cumulativeCellularDownload(
             &self,
         ) -> Retained<NSMeasurement<NSUnitInformationStorage>>;
@@ -70,10 +70,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXNetworkTransferMetric {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

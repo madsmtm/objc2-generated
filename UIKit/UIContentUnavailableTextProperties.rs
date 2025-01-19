@@ -33,7 +33,7 @@ extern_methods!(
     unsafe impl UIContentUnavailableTextProperties {
         #[cfg(feature = "UIFont")]
         /// The font used for the text.
-        #[method_id(@__retain_semantics Other font)]
+        #[method_id(@__method_family Other font)]
         pub unsafe fn font(&self) -> Retained<UIFont>;
 
         #[cfg(feature = "UIFont")]
@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// The color of the text.
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         pub unsafe fn color(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
@@ -103,10 +103,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIContentUnavailableTextProperties {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

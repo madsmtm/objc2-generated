@@ -40,7 +40,7 @@ extern_methods!(
         /// If no AVSampleBufferAudioRenderer has been added, the source clock will be the host time clock (mach_absolute_time with the appropriate timescale conversion; this is the same as Core Animation's CACurrentMediaTime).
         ///
         /// The timebase is a read-only timebase.  Use the rate property and corresponding methods to adjust the timebase.
-        #[method_id(@__retain_semantics Other timebase)]
+        #[method_id(@__method_family Other timebase)]
         pub unsafe fn timebase(&self) -> Retained<CMTimebase>;
 
         /// Playback rate.
@@ -131,10 +131,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVSampleBufferRenderSynchronizer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -150,7 +150,7 @@ extern_methods!(
         /// A list of renderers added to and not removed from the synchronizer.  The list also includes renderers that have been scheduled to be removed but have not yet been removed.
         ///
         /// This property is not KVO observable.
-        #[method_id(@__retain_semantics Other renderers)]
+        #[method_id(@__method_family Other renderers)]
         pub unsafe fn renderers(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn AVQueuedSampleBufferRendering>>>;

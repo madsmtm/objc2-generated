@@ -158,7 +158,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other failureReason)]
+        #[method_id(@__method_family Other failureReason)]
         pub unsafe fn failureReason(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
@@ -179,12 +179,12 @@ extern_methods!(
 
         #[cfg(feature = "NSData")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other resourceData)]
+        #[method_id(@__method_family Other resourceData)]
         pub unsafe fn resourceData(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSData")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other availableResourceData)]
+        #[method_id(@__method_family Other availableResourceData)]
         pub unsafe fn availableResourceData(&self) -> Option<Retained<NSData>>;
 
         #[deprecated]
@@ -212,12 +212,12 @@ extern_methods!(
 
         #[cfg(feature = "NSURL")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other cachedHandleForURL:)]
+        #[method_id(@__method_family Other cachedHandleForURL:)]
         pub unsafe fn cachedHandleForURL(an_url: Option<&NSURL>) -> Option<Retained<NSURLHandle>>;
 
         #[cfg(feature = "NSURL")]
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithURL:cached:)]
+        #[method_id(@__method_family Init initWithURL:cached:)]
         pub unsafe fn initWithURL_cached(
             this: Allocated<Self>,
             an_url: Option<&NSURL>,
@@ -226,7 +226,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other propertyForKey:)]
+        #[method_id(@__method_family Other propertyForKey:)]
         pub unsafe fn propertyForKey(
             &self,
             property_key: Option<&NSString>,
@@ -234,7 +234,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other propertyForKeyIfAvailable:)]
+        #[method_id(@__method_family Other propertyForKeyIfAvailable:)]
         pub unsafe fn propertyForKeyIfAvailable(
             &self,
             property_key: Option<&NSString>,
@@ -256,7 +256,7 @@ extern_methods!(
 
         #[cfg(feature = "NSData")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other loadInForeground)]
+        #[method_id(@__method_family Other loadInForeground)]
         pub unsafe fn loadInForeground(&self) -> Option<Retained<NSData>>;
 
         #[deprecated]
@@ -272,10 +272,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLHandle {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

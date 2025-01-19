@@ -37,7 +37,7 @@ extern_methods!(
         ///
         ///
         /// `AVCaptureSystemZoomSlider` may only be initialized with `AVCaptureDevice` instances that support setting `videoZoomFactor`, otherwise an `NSInvalidArgumentException` is thrown.
-        #[method_id(@__retain_semantics Init initWithDevice:)]
+        #[method_id(@__method_family Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &AVCaptureDevice,
@@ -63,7 +63,7 @@ extern_methods!(
         /// If you need to react to other sources of `videoZoomFactor` changes like `rampToVideoZoomFactor:withRate:` you will still need to use key-value observation.
         ///
         /// `AVCaptureSystemZoomSlider` may only be initialized with `AVCaptureDevice` instances that support setting `videoZoomFactor`, otherwise an `NSInvalidArgumentException` is thrown.
-        #[method_id(@__retain_semantics Init initWithDevice:action:)]
+        #[method_id(@__method_family Init initWithDevice:action:)]
         pub unsafe fn initWithDevice_action(
             this: Allocated<Self>,
             device: &AVCaptureDevice,
@@ -76,10 +76,10 @@ extern_methods!(
     /// Methods declared on superclass `AVCaptureControl`
     #[cfg(feature = "AVCaptureControl")]
     unsafe impl AVCaptureSystemZoomSlider {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

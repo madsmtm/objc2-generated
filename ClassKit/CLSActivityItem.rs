@@ -32,7 +32,7 @@ extern_methods!(
         /// Title of what this ActivityItem represents.
         ///
         /// This will be the title associated with the activity item in the generated progress report.
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -42,13 +42,13 @@ extern_methods!(
         /// An identifier that is unique within its owning activity
         ///
         /// The identifier can be used to look up existing activityItems in a given activity.
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

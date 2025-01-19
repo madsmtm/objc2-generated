@@ -74,7 +74,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UICalendarView {
         /// The object that defines the delegate of the calendar view.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICalendarViewDelegate>>>;
@@ -89,7 +89,7 @@ extern_methods!(
 
         #[cfg(feature = "UICalendarSelection")]
         /// The object that defines the selection behavior of the calendar view.
-        #[method_id(@__retain_semantics Other selectionBehavior)]
+        #[method_id(@__method_family Other selectionBehavior)]
         pub unsafe fn selectionBehavior(&self) -> Option<Retained<UICalendarSelection>>;
 
         #[cfg(feature = "UICalendarSelection")]
@@ -99,7 +99,7 @@ extern_methods!(
 
         /// The backing locale of the calendar view. The default value is
         /// `NSLocale.currentLocale`
-        #[method_id(@__retain_semantics Other locale)]
+        #[method_id(@__method_family Other locale)]
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         /// Setter for [`locale`][Self::locale].
@@ -108,7 +108,7 @@ extern_methods!(
 
         /// The backing calendar of the calendar view. The default value is
         /// `NSCalendar.currentCalendar`
-        #[method_id(@__retain_semantics Other calendar)]
+        #[method_id(@__method_family Other calendar)]
         pub unsafe fn calendar(&self) -> Retained<NSCalendar>;
 
         /// Setter for [`calendar`][Self::calendar].
@@ -116,7 +116,7 @@ extern_methods!(
         pub unsafe fn setCalendar(&self, calendar: &NSCalendar);
 
         /// The backing time zone of the calendar view. Default is nil
-        #[method_id(@__retain_semantics Other timeZone)]
+        #[method_id(@__method_family Other timeZone)]
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         /// Setter for [`timeZone`][Self::timeZone].
@@ -126,7 +126,7 @@ extern_methods!(
         #[cfg(feature = "UIFontDescriptor")]
         /// The font design of the calendar view. The default value is
         /// `UIFontDescriptorSystemDesignDefault`
-        #[method_id(@__retain_semantics Other fontDesign)]
+        #[method_id(@__method_family Other fontDesign)]
         pub unsafe fn fontDesign(&self) -> Retained<UIFontDescriptorSystemDesign>;
 
         #[cfg(feature = "UIFontDescriptor")]
@@ -137,7 +137,7 @@ extern_methods!(
         /// The available date range of the calendar view. The default is a date interval from
         /// `NSDate.distantPast`to
         /// `NSDate.distantFuture`
-        #[method_id(@__retain_semantics Other availableDateRange)]
+        #[method_id(@__method_family Other availableDateRange)]
         pub unsafe fn availableDateRange(&self) -> Retained<NSDateInterval>;
 
         /// Setter for [`availableDateRange`][Self::availableDateRange].
@@ -159,7 +159,7 @@ extern_methods!(
         /// `visibleDateComponents.calendar`is not explicitly marked, and may result
         /// in incorrect dates if the dateComponents is not valid in
         /// `UICalendarView.calendar.`
-        #[method_id(@__retain_semantics Other visibleDateComponents)]
+        #[method_id(@__method_family Other visibleDateComponents)]
         pub unsafe fn visibleDateComponents(&self) -> Retained<NSDateComponents>;
 
         /// Setter for [`visibleDateComponents`][Self::visibleDateComponents].
@@ -215,10 +215,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UICalendarView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -230,10 +230,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UICalendarView {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -258,7 +258,7 @@ extern_protocol!(
         /// `UICalendarViewDecoration`to annotate the specific date. Return
         /// `nil`for no decoration.
         #[optional]
-        #[method_id(@__retain_semantics Other calendarView:decorationForDateComponents:)]
+        #[method_id(@__method_family Other calendarView:decorationForDateComponents:)]
         unsafe fn calendarView_decorationForDateComponents(
             &self,
             calendar_view: &UICalendarView,

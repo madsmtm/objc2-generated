@@ -22,14 +22,14 @@ unsafe impl NSObjectProtocol for CNContactsUserDefaults {}
 
 extern_methods!(
     unsafe impl CNContactsUserDefaults {
-        #[method_id(@__retain_semantics Other sharedDefaults)]
+        #[method_id(@__method_family Other sharedDefaults)]
         pub unsafe fn sharedDefaults() -> Retained<Self>;
 
         #[cfg(feature = "CNContact")]
         #[method(sortOrder)]
         pub unsafe fn sortOrder(&self) -> CNContactSortOrder;
 
-        #[method_id(@__retain_semantics Other countryCode)]
+        #[method_id(@__method_family Other countryCode)]
         pub unsafe fn countryCode(&self) -> Retained<NSString>;
     }
 );
@@ -37,10 +37,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNContactsUserDefaults {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

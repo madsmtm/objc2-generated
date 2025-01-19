@@ -96,7 +96,7 @@ extern_methods!(
     #[cfg(feature = "UIMenuElement")]
     unsafe impl UIMenu {
         /// Unique identifier.
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<UIMenuIdentifier>;
 
         /// Options.
@@ -112,17 +112,17 @@ extern_methods!(
         pub unsafe fn setPreferredElementSize(&self, preferred_element_size: UIMenuElementSize);
 
         /// The menu's sub-elements and sub-menus. On iOS 14.0, elements of your own menus are mutable, -copying a menu will produce mutable elements, and UIKit will take immutable copies of menus it receives. Prior to iOS 14.0, menus are always fully immutable.
-        #[method_id(@__retain_semantics Other children)]
+        #[method_id(@__method_family Other children)]
         pub unsafe fn children(&self) -> Retained<NSArray<UIMenuElement>>;
 
         /// The element(s) in the menu and sub-menus that have an "on" menu item state.
-        #[method_id(@__retain_semantics Other selectedElements)]
+        #[method_id(@__method_family Other selectedElements)]
         pub unsafe fn selectedElements(&self) -> Retained<NSArray<UIMenuElement>>;
 
         #[cfg(feature = "UIMenuDisplayPreferences")]
         /// Display preferences for this menu's immediate children. Preferences are not inherited by sub menus,
         /// and may be ignored or overridden by the system in certain element sizes or menu layouts.
-        #[method_id(@__retain_semantics Other displayPreferences)]
+        #[method_id(@__method_family Other displayPreferences)]
         pub unsafe fn displayPreferences(&self) -> Option<Retained<UIMenuDisplayPreferences>>;
 
         #[cfg(feature = "UIMenuDisplayPreferences")]
@@ -140,7 +140,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A new UIMenu.
-        #[method_id(@__retain_semantics Other menuWithChildren:)]
+        #[method_id(@__method_family Other menuWithChildren:)]
         pub unsafe fn menuWithChildren(
             children: &NSArray<UIMenuElement>,
             mtm: MainThreadMarker,
@@ -155,7 +155,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A new UIMenu.
-        #[method_id(@__retain_semantics Other menuWithTitle:children:)]
+        #[method_id(@__method_family Other menuWithTitle:children:)]
         pub unsafe fn menuWithTitle_children(
             title: &NSString,
             children: &NSArray<UIMenuElement>,
@@ -178,7 +178,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A new UIMenu.
-        #[method_id(@__retain_semantics Other menuWithTitle:image:identifier:options:children:)]
+        #[method_id(@__method_family Other menuWithTitle:image:identifier:options:children:)]
         pub unsafe fn menuWithTitle_image_identifier_options_children(
             title: &NSString,
             image: Option<&UIImage>,
@@ -188,16 +188,16 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<UIMenu>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Copies this menu and replaces its children.
@@ -207,7 +207,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A copy of this menu with updated children.
-        #[method_id(@__retain_semantics Other menuByReplacingChildren:)]
+        #[method_id(@__method_family Other menuByReplacingChildren:)]
         pub unsafe fn menuByReplacingChildren(
             &self,
             new_children: &NSArray<UIMenuElement>,

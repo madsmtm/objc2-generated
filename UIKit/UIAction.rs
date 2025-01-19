@@ -70,7 +70,7 @@ extern_methods!(
     #[cfg(feature = "UIMenuElement")]
     unsafe impl UIAction {
         /// Short display title.
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -79,7 +79,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         /// Image that can appear next to this action.
-        #[method_id(@__retain_semantics Other image)]
+        #[method_id(@__method_family Other image)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -88,7 +88,7 @@ extern_methods!(
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         /// Elaborated title used in keyboard shortcut overlay.
-        #[method_id(@__retain_semantics Other discoverabilityTitle)]
+        #[method_id(@__method_family Other discoverabilityTitle)]
         pub unsafe fn discoverabilityTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`discoverabilityTitle`][Self::discoverabilityTitle].
@@ -96,7 +96,7 @@ extern_methods!(
         pub unsafe fn setDiscoverabilityTitle(&self, discoverability_title: Option<&NSString>);
 
         /// This action's identifier.
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<UIActionIdentifier>;
 
         /// This action's style.
@@ -116,7 +116,7 @@ extern_methods!(
         pub unsafe fn setState(&self, state: UIMenuElementState);
 
         /// If available, the object on behalf of which the actionHandler is called.
-        #[method_id(@__retain_semantics Other sender)]
+        #[method_id(@__method_family Other sender)]
         pub unsafe fn sender(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "block2")]
@@ -127,7 +127,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A new UIAction.
-        #[method_id(@__retain_semantics Other actionWithHandler:)]
+        #[method_id(@__method_family Other actionWithHandler:)]
         pub unsafe fn actionWithHandler(
             handler: UIActionHandler,
             mtm: MainThreadMarker,
@@ -147,7 +147,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A new UIAction.
-        #[method_id(@__retain_semantics Other actionWithTitle:image:identifier:handler:)]
+        #[method_id(@__method_family Other actionWithTitle:image:identifier:handler:)]
         pub unsafe fn actionWithTitle_image_identifier_handler(
             title: &NSString,
             image: Option<&UIImage>,
@@ -156,10 +156,10 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -168,7 +168,7 @@ extern_methods!(
     /// Methods declared on superclass `UIMenuElement`
     #[cfg(feature = "UIMenuElement")]
     unsafe impl UIAction {
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -194,7 +194,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A new UIAction.
-        #[method_id(@__retain_semantics Other captureTextFromCameraActionForResponder:identifier:)]
+        #[method_id(@__method_family Other captureTextFromCameraActionForResponder:identifier:)]
         pub unsafe fn captureTextFromCameraActionForResponder_identifier(
             responder: &UIResponder,
             identifier: Option<&UIActionIdentifier>,

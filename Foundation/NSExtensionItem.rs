@@ -32,7 +32,7 @@ unsafe impl NSSecureCoding for NSExtensionItem {}
 extern_methods!(
     unsafe impl NSExtensionItem {
         #[cfg(feature = "NSAttributedString")]
-        #[method_id(@__retain_semantics Other attributedTitle)]
+        #[method_id(@__method_family Other attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "NSAttributedString")]
@@ -41,7 +41,7 @@ extern_methods!(
         pub unsafe fn setAttributedTitle(&self, attributed_title: Option<&NSAttributedString>);
 
         #[cfg(feature = "NSAttributedString")]
-        #[method_id(@__retain_semantics Other attributedContentText)]
+        #[method_id(@__method_family Other attributedContentText)]
         pub unsafe fn attributedContentText(&self) -> Option<Retained<NSAttributedString>>;
 
         #[cfg(feature = "NSAttributedString")]
@@ -53,7 +53,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSItemProvider"))]
-        #[method_id(@__retain_semantics Other attachments)]
+        #[method_id(@__method_family Other attachments)]
         pub unsafe fn attachments(&self) -> Option<Retained<NSArray<NSItemProvider>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSItemProvider"))]
@@ -62,7 +62,7 @@ extern_methods!(
         pub unsafe fn setAttachments(&self, attachments: Option<&NSArray<NSItemProvider>>);
 
         #[cfg(feature = "NSDictionary")]
-        #[method_id(@__retain_semantics Other userInfo)]
+        #[method_id(@__method_family Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         #[cfg(feature = "NSDictionary")]
@@ -75,10 +75,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSExtensionItem {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

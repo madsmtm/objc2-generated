@@ -21,11 +21,11 @@ unsafe impl NSObjectProtocol for SCNPhysicsContact {}
 extern_methods!(
     unsafe impl SCNPhysicsContact {
         #[cfg(feature = "SCNNode")]
-        #[method_id(@__retain_semantics Other nodeA)]
+        #[method_id(@__method_family Other nodeA)]
         pub unsafe fn nodeA(&self) -> Retained<SCNNode>;
 
         #[cfg(feature = "SCNNode")]
-        #[method_id(@__retain_semantics Other nodeB)]
+        #[method_id(@__method_family Other nodeB)]
         pub unsafe fn nodeB(&self) -> Retained<SCNNode>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
@@ -53,10 +53,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsContact {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

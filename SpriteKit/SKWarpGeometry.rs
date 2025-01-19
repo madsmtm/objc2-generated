@@ -10,7 +10,7 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skwarpable?language=objc)
     pub unsafe trait SKWarpable: NSObjectProtocol {
-        #[method_id(@__retain_semantics Other warpGeometry)]
+        #[method_id(@__method_family Other warpGeometry)]
         unsafe fn warpGeometry(&self) -> Option<Retained<SKWarpGeometry>>;
 
         /// Setter for [`warpGeometry`][Self::warpGeometry].
@@ -52,10 +52,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKWarpGeometry {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -81,16 +81,16 @@ unsafe impl NSSecureCoding for SKWarpGeometryGrid {}
 
 extern_methods!(
     unsafe impl SKWarpGeometryGrid {
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other grid)]
+        #[method_id(@__method_family Other grid)]
         pub unsafe fn grid() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other gridWithColumns:rows:)]
+        #[method_id(@__method_family Other gridWithColumns:rows:)]
         pub unsafe fn gridWithColumns_rows(cols: NSInteger, rows: NSInteger) -> Retained<Self>;
 
         #[method(numberOfColumns)]
@@ -107,10 +107,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKWarpGeometryGrid {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -119,19 +119,19 @@ extern_methods!(
     /// SKWarpable
     #[cfg(feature = "SKAction")]
     unsafe impl SKAction {
-        #[method_id(@__retain_semantics Other warpTo:duration:)]
+        #[method_id(@__method_family Other warpTo:duration:)]
         pub unsafe fn warpTo_duration(
             warp: &SKWarpGeometry,
             duration: NSTimeInterval,
         ) -> Option<Retained<SKAction>>;
 
-        #[method_id(@__retain_semantics Other animateWithWarps:times:)]
+        #[method_id(@__method_family Other animateWithWarps:times:)]
         pub unsafe fn animateWithWarps_times(
             warps: &NSArray<SKWarpGeometry>,
             times: &NSArray<NSNumber>,
         ) -> Option<Retained<SKAction>>;
 
-        #[method_id(@__retain_semantics Other animateWithWarps:times:restore:)]
+        #[method_id(@__method_family Other animateWithWarps:times:restore:)]
         pub unsafe fn animateWithWarps_times_restore(
             warps: &NSArray<SKWarpGeometry>,
             times: &NSArray<NSNumber>,

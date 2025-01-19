@@ -251,14 +251,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "UILayoutGuide")]
-        #[method_id(@__retain_semantics Other contentLayoutGuide)]
+        #[method_id(@__method_family Other contentLayoutGuide)]
         pub unsafe fn contentLayoutGuide(&self) -> Retained<UILayoutGuide>;
 
         #[cfg(feature = "UILayoutGuide")]
-        #[method_id(@__retain_semantics Other frameLayoutGuide)]
+        #[method_id(@__method_family Other frameLayoutGuide)]
         pub unsafe fn frameLayoutGuide(&self) -> Retained<UILayoutGuide>;
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn UIScrollViewDelegate>>>;
 
@@ -537,16 +537,16 @@ extern_methods!(
         pub unsafe fn stopScrollingAndZooming(&self);
 
         #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
-        #[method_id(@__retain_semantics Other panGestureRecognizer)]
+        #[method_id(@__method_family Other panGestureRecognizer)]
         pub unsafe fn panGestureRecognizer(&self) -> Retained<UIPanGestureRecognizer>;
 
         #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPinchGestureRecognizer"))]
-        #[method_id(@__retain_semantics Other pinchGestureRecognizer)]
+        #[method_id(@__method_family Other pinchGestureRecognizer)]
         pub unsafe fn pinchGestureRecognizer(&self) -> Option<Retained<UIPinchGestureRecognizer>>;
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[deprecated = "Configuring the panGestureRecognizer for indirect scrolling automatically supports directional presses now, so this property is no longer useful."]
-        #[method_id(@__retain_semantics Other directionalPressGestureRecognizer)]
+        #[method_id(@__method_family Other directionalPressGestureRecognizer)]
         pub unsafe fn directionalPressGestureRecognizer(&self) -> Retained<UIGestureRecognizer>;
 
         #[method(keyboardDismissMode)]
@@ -560,7 +560,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIControl", feature = "UIRefreshControl"))]
-        #[method_id(@__retain_semantics Other refreshControl)]
+        #[method_id(@__method_family Other refreshControl)]
         pub unsafe fn refreshControl(&self) -> Option<Retained<UIRefreshControl>>;
 
         #[cfg(all(feature = "UIControl", feature = "UIRefreshControl"))]
@@ -584,10 +584,10 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIScrollView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -599,10 +599,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIScrollView {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -665,7 +665,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other viewForZoomingInScrollView:)]
+        #[method_id(@__method_family Other viewForZoomingInScrollView:)]
         unsafe fn viewForZoomingInScrollView(
             &self,
             scroll_view: &UIScrollView,

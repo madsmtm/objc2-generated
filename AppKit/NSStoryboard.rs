@@ -28,33 +28,33 @@ unsafe impl NSObjectProtocol for NSStoryboard {}
 
 extern_methods!(
     unsafe impl NSStoryboard {
-        #[method_id(@__retain_semantics Other mainStoryboard)]
+        #[method_id(@__method_family Other mainStoryboard)]
         pub unsafe fn mainStoryboard() -> Option<Retained<NSStoryboard>>;
 
-        #[method_id(@__retain_semantics Other storyboardWithName:bundle:)]
+        #[method_id(@__method_family Other storyboardWithName:bundle:)]
         pub unsafe fn storyboardWithName_bundle(
             name: &NSStoryboardName,
             storyboard_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other instantiateInitialController)]
+        #[method_id(@__method_family Other instantiateInitialController)]
         pub unsafe fn instantiateInitialController(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__retain_semantics Other instantiateInitialControllerWithCreator:)]
+        #[method_id(@__method_family Other instantiateInitialControllerWithCreator:)]
         pub unsafe fn instantiateInitialControllerWithCreator(
             &self,
             block: NSStoryboardControllerCreator,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__retain_semantics Other instantiateControllerWithIdentifier:)]
+        #[method_id(@__method_family Other instantiateControllerWithIdentifier:)]
         pub unsafe fn instantiateControllerWithIdentifier(
             &self,
             identifier: &NSStoryboardSceneIdentifier,
         ) -> Retained<AnyObject>;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__retain_semantics Other instantiateControllerWithIdentifier:creator:)]
+        #[method_id(@__method_family Other instantiateControllerWithIdentifier:creator:)]
         pub unsafe fn instantiateControllerWithIdentifier_creator(
             &self,
             identifier: &NSStoryboardSceneIdentifier,
@@ -66,10 +66,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSStoryboard {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

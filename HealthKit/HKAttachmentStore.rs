@@ -26,7 +26,7 @@ extern_methods!(
         /// The designated initializer to create an HKAttachmentStore.
         ///
         /// Parameter `healthStore`: Specifies the HKHealthStore object to use.
-        #[method_id(@__retain_semantics Init initWithHealthStore:)]
+        #[method_id(@__method_family Init initWithHealthStore:)]
         pub unsafe fn initWithHealthStore(
             this: Allocated<Self>,
             health_store: &HKHealthStore,
@@ -104,7 +104,7 @@ extern_methods!(
         /// Parameter `completion`: Called with an NSData or an error.
         ///
         /// Returns: An NSProgress object to use for tracking the progress of downloading the attachment's data from iCloud.
-        #[method_id(@__retain_semantics Other getDataForAttachment:completion:)]
+        #[method_id(@__method_family Other getDataForAttachment:completion:)]
         pub unsafe fn getDataForAttachment_completion(
             &self,
             attachment: &HKAttachment,
@@ -122,7 +122,7 @@ extern_methods!(
         /// Parameter `dataHandler`: Called with an NSData chunk or an error. When done is YES, the operation has completed.
         ///
         /// Returns: An NSProgress object to use for tracking the progress of downloading the attachment's data from iCloud.
-        #[method_id(@__retain_semantics Other streamDataForAttachment:dataHandler:)]
+        #[method_id(@__method_family Other streamDataForAttachment:dataHandler:)]
         pub unsafe fn streamDataForAttachment_dataHandler(
             &self,
             attachment: &HKAttachment,
@@ -134,10 +134,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKAttachmentStore {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -25,7 +25,7 @@ unsafe impl NSObjectProtocol for MDLVertexAttributeData {}
 extern_methods!(
     unsafe impl MDLVertexAttributeData {
         #[cfg(feature = "MDLMeshBuffer")]
-        #[method_id(@__retain_semantics Other map)]
+        #[method_id(@__method_family Other map)]
         pub unsafe fn map(&self) -> Retained<MDLMeshBufferMap>;
 
         #[cfg(feature = "MDLMeshBuffer")]
@@ -68,10 +68,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLVertexAttributeData {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -102,7 +102,7 @@ extern_methods!(
         /// Initialize a mesh with an allocator
         ///
         /// Returns: An empty mesh
-        #[method_id(@__retain_semantics Init initWithBufferAllocator:)]
+        #[method_id(@__method_family Init initWithBufferAllocator:)]
         pub unsafe fn initWithBufferAllocator(
             this: Allocated<Self>,
             buffer_allocator: Option<&ProtocolObject<dyn MDLMeshBufferAllocator>>,
@@ -126,7 +126,7 @@ extern_methods!(
         ///
         /// Parameter `submeshes`: Array of submeshes with index buffers referencing vertex data
         /// and/or materials to be applied to mesh
-        #[method_id(@__retain_semantics Init initWithVertexBuffer:vertexCount:descriptor:submeshes:)]
+        #[method_id(@__method_family Init initWithVertexBuffer:vertexCount:descriptor:submeshes:)]
         pub unsafe fn initWithVertexBuffer_vertexCount_descriptor_submeshes(
             this: Allocated<Self>,
             vertex_buffer: &ProtocolObject<dyn MDLMeshBuffer>,
@@ -155,7 +155,7 @@ extern_methods!(
         ///
         /// Allows initialization with the layout of the vertexBuffers in a
         /// structure-of-arrays form, in other words, non-interleaved vertex attributes
-        #[method_id(@__retain_semantics Init initWithVertexBuffers:vertexCount:descriptor:submeshes:)]
+        #[method_id(@__method_family Init initWithVertexBuffers:vertexCount:descriptor:submeshes:)]
         pub unsafe fn initWithVertexBuffers_vertexCount_descriptor_submeshes(
             this: Allocated<Self>,
             vertex_buffers: &NSArray<ProtocolObject<dyn MDLMeshBuffer>>,
@@ -168,7 +168,7 @@ extern_methods!(
         ///
         /// the vertex buffer will remain mapped until the MDLVertexAttributeData
         /// is freed.
-        #[method_id(@__retain_semantics Other vertexAttributeDataForAttributeNamed:)]
+        #[method_id(@__method_family Other vertexAttributeDataForAttributeNamed:)]
         pub unsafe fn vertexAttributeDataForAttributeNamed(
             &self,
             name: &NSString,
@@ -184,7 +184,7 @@ extern_methods!(
         /// elements will be set to zero.
         /// The vertex buffer will remain mapped until the MDLVertexAttributeData
         /// is freed.
-        #[method_id(@__retain_semantics Other vertexAttributeDataForAttributeNamed:asFormat:)]
+        #[method_id(@__method_family Other vertexAttributeDataForAttributeNamed:asFormat:)]
         pub unsafe fn vertexAttributeDataForAttributeNamed_asFormat(
             &self,
             name: &NSString,
@@ -205,7 +205,7 @@ extern_methods!(
         ///
         /// The allocator associated with each original meshbuffer is used to
         /// reallocate the corresponding resultant meshbuffer.
-        #[method_id(@__retain_semantics Other vertexDescriptor)]
+        #[method_id(@__method_family Other vertexDescriptor)]
         pub unsafe fn vertexDescriptor(&self) -> Retained<MDLVertexDescriptor>;
 
         #[cfg(feature = "MDLVertexDescriptor")]
@@ -229,7 +229,7 @@ extern_methods!(
         /// Array of buffers containing vertex data
         ///
         /// The vertex buffers in this array are indexed by the vertex descriptor.
-        #[method_id(@__retain_semantics Other vertexBuffers)]
+        #[method_id(@__method_family Other vertexBuffers)]
         pub unsafe fn vertexBuffers(&self) -> Retained<NSArray<ProtocolObject<dyn MDLMeshBuffer>>>;
 
         #[cfg(feature = "MDLMeshBuffer")]
@@ -243,7 +243,7 @@ extern_methods!(
         #[cfg(feature = "MDLSubmesh")]
         /// Array of submeshes containing an indexbuffer referencing the vertex
         /// data and material to be applied when the mesh is rendered
-        #[method_id(@__retain_semantics Other submeshes)]
+        #[method_id(@__method_family Other submeshes)]
         pub unsafe fn submeshes(&self) -> Option<Retained<NSMutableArray<MDLSubmesh>>>;
 
         #[cfg(feature = "MDLSubmesh")]
@@ -253,7 +253,7 @@ extern_methods!(
 
         #[cfg(feature = "MDLMeshBuffer")]
         /// allocator used to allocate contained mesh buffers
-        #[method_id(@__retain_semantics Other allocator)]
+        #[method_id(@__method_family Other allocator)]
         pub unsafe fn allocator(&self) -> Retained<ProtocolObject<dyn MDLMeshBufferAllocator>>;
     }
 );
@@ -262,10 +262,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MDLObject")]
     unsafe impl MDLMesh {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -509,7 +509,7 @@ extern_methods!(
         ///
         /// Returns: Returns a mesh subdivided to index level, unless subdivision is
         /// impossible.
-        #[method_id(@__retain_semantics Init initMeshBySubdividingMesh:submeshIndex:subdivisionLevels:allocator:)]
+        #[method_id(@__method_family Init initMeshBySubdividingMesh:submeshIndex:subdivisionLevels:allocator:)]
         pub unsafe fn initMeshBySubdividingMesh_submeshIndex_subdivisionLevels_allocator(
             this: Allocated<Self>,
             mesh: &MDLMesh,
@@ -519,7 +519,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MDLMeshBuffer", feature = "MDLTypes"))]
-        #[method_id(@__retain_semantics New newIcosahedronWithRadius:inwardNormals:geometryType:allocator:)]
+        #[method_id(@__method_family New newIcosahedronWithRadius:inwardNormals:geometryType:allocator:)]
         pub unsafe fn newIcosahedronWithRadius_inwardNormals_geometryType_allocator(
             radius: c_float,
             inward_normals: bool,
@@ -528,14 +528,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MDLMeshBuffer")]
-        #[method_id(@__retain_semantics New newIcosahedronWithRadius:inwardNormals:allocator:)]
+        #[method_id(@__method_family New newIcosahedronWithRadius:inwardNormals:allocator:)]
         pub unsafe fn newIcosahedronWithRadius_inwardNormals_allocator(
             radius: c_float,
             inward_normals: bool,
             allocator: Option<&ProtocolObject<dyn MDLMeshBufferAllocator>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New newSubdividedMesh:submeshIndex:subdivisionLevels:)]
+        #[method_id(@__method_family New newSubdividedMesh:submeshIndex:subdivisionLevels:)]
         pub unsafe fn newSubdividedMesh_submeshIndex_subdivisionLevels(
             mesh: &MDLMesh,
             submesh_index: NSUInteger,

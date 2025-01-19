@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "AVCustomDeviceRoute")]
         /// A route for the event.
-        #[method_id(@__retain_semantics Other route)]
+        #[method_id(@__method_family Other route)]
         pub unsafe fn route(&self) -> Retained<AVCustomDeviceRoute>;
     }
 );
@@ -67,10 +67,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCustomRoutingEvent {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

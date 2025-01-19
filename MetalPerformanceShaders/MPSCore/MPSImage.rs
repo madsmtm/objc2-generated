@@ -115,7 +115,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Create a MPSImageDescriptor for a single read/write cnn image.
-        #[method_id(@__retain_semantics Other imageDescriptorWithChannelFormat:width:height:featureChannels:)]
+        #[method_id(@__method_family Other imageDescriptorWithChannelFormat:width:height:featureChannels:)]
         pub unsafe fn imageDescriptorWithChannelFormat_width_height_featureChannels(
             channel_format: MPSImageFeatureChannelFormat,
             width: NSUInteger,
@@ -125,7 +125,7 @@ extern_methods!(
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Create a MPSImageDescriptor for a read/write cnn image with option to set usage and batch size (numberOfImages).
-        #[method_id(@__retain_semantics Other imageDescriptorWithChannelFormat:width:height:featureChannels:numberOfImages:usage:)]
+        #[method_id(@__method_family Other imageDescriptorWithChannelFormat:width:height:featureChannels:numberOfImages:usage:)]
         pub unsafe fn imageDescriptorWithChannelFormat_width_height_featureChannels_numberOfImages_usage(
             channel_format: MPSImageFeatureChannelFormat,
             width: NSUInteger,
@@ -135,7 +135,7 @@ extern_methods!(
             usage: MTLTextureUsage,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Copy copyWithZone:)]
+        #[method_id(@__method_family Copy copyWithZone:)]
         pub unsafe fn copyWithZone(&self, zone: *mut NSZone) -> Retained<Self>;
     }
 );
@@ -143,10 +143,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSImageDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -307,7 +307,7 @@ extern_protocol!(
         ///
         ///
         /// Returns: A valid MPSImage or MPSTemporaryImage. It will be automatically released when the command buffer completes.
-        #[method_id(@__retain_semantics Other imageForCommandBuffer:imageDescriptor:kernel:)]
+        #[method_id(@__method_family Other imageForCommandBuffer:imageDescriptor:kernel:)]
         unsafe fn imageForCommandBuffer_imageDescriptor_kernel(
             &self,
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -335,7 +335,7 @@ extern_protocol!(
         ///
         /// Returns: A valid MPSImage or MPSTemporaryImage. It will be automatically released when the command buffer completes.
         #[optional]
-        #[method_id(@__retain_semantics Other imageBatchForCommandBuffer:imageDescriptor:kernel:count:)]
+        #[method_id(@__method_family Other imageBatchForCommandBuffer:imageDescriptor:kernel:count:)]
         unsafe fn imageBatchForCommandBuffer_imageDescriptor_kernel_count(
             &self,
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -501,11 +501,11 @@ unsafe impl NSObjectProtocol for MPSImage {}
 extern_methods!(
     unsafe impl MPSImage {
         /// Get a well known MPSImageAllocator that makes MPSImages
-        #[method_id(@__retain_semantics Other defaultAllocator)]
+        #[method_id(@__method_family Other defaultAllocator)]
         pub unsafe fn defaultAllocator() -> Retained<ProtocolObject<dyn MPSImageAllocator>>;
 
         /// The device on which the MPSImage will be used
-        #[method_id(@__retain_semantics Other device)]
+        #[method_id(@__method_family Other device)]
         pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// The formal width of the image in pixels.
@@ -571,11 +571,11 @@ extern_methods!(
         /// property except when strictly necessary. [MPSCNNKernel encode...] calls typically cause
         /// their arguments to become allocated. Likewise, MPSImages initialized with -initWithTexture:
         /// featureChannels: have already been allocated.
-        #[method_id(@__retain_semantics Other texture)]
+        #[method_id(@__method_family Other texture)]
         pub unsafe fn texture(&self) -> Retained<ProtocolObject<dyn MTLTexture>>;
 
         /// A string to help identify this object.
-        #[method_id(@__retain_semantics Other label)]
+        #[method_id(@__method_family Other label)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -587,7 +587,7 @@ extern_methods!(
         /// This will point to the original image if this image was created using
         /// -batchRepresentation, -batchRepresentationWithRange: or
         /// -subImageWithFeatureChannelRange:.
-        #[method_id(@__retain_semantics Other parent)]
+        #[method_id(@__method_family Other parent)]
         pub unsafe fn parent(&self) -> Option<Retained<MPSImage>>;
 
         /// Initialize an empty image object
@@ -600,7 +600,7 @@ extern_methods!(
         ///
         /// Storage to store data needed is allocated lazily on first use of MPSImage or
         /// when application calls MPSImage.texture
-        #[method_id(@__retain_semantics Init initWithDevice:imageDescriptor:)]
+        #[method_id(@__method_family Init initWithDevice:imageDescriptor:)]
         pub unsafe fn initWithDevice_imageDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -623,7 +623,7 @@ extern_methods!(
         ///
         /// Returns: A MPSImage that references a subregion of the texel storage in parent instead of
         /// using its own storage.
-        #[method_id(@__retain_semantics Init initWithParentImage:sliceRange:featureChannels:)]
+        #[method_id(@__method_family Init initWithParentImage:sliceRange:featureChannels:)]
         pub unsafe fn initWithParentImage_sliceRange_featureChannels(
             this: Allocated<Self>,
             parent: &MPSImage,
@@ -660,14 +660,14 @@ extern_methods!(
         /// other libraries such as that drawn from a JPEG or PNG, featureChannels should
         /// be set to number of valid color channel e.g. for RGB data, even thought MTLPixelFormat will be
         /// MTLPixelFormatRGBA, featureChannels should be set to 3.
-        #[method_id(@__retain_semantics Init initWithTexture:featureChannels:)]
+        #[method_id(@__method_family Init initWithTexture:featureChannels:)]
         pub unsafe fn initWithTexture_featureChannels(
             this: Allocated<Self>,
             texture: &ProtocolObject<dyn MTLTexture>,
             feature_channels: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Make a representation of a MPSImage (batch) as a MPSImageBatch
@@ -702,7 +702,7 @@ extern_methods!(
         /// Parameter `subRange`: The range of images in the original image from which the batch will be derived.
         ///
         /// Returns: A MPSImageBatch referencing a subregion of the original batch image.
-        #[method_id(@__retain_semantics Other batchRepresentationWithSubRange:)]
+        #[method_id(@__method_family Other batchRepresentationWithSubRange:)]
         pub unsafe fn batchRepresentationWithSubRange(
             &self,
             sub_range: NSRange,
@@ -715,10 +715,10 @@ extern_methods!(
         /// will decrement the appropriate counter on the parent.
         ///
         /// Returns: A MPSImageBatch aliasing the texel storage in the original batch image
-        #[method_id(@__retain_semantics Other batchRepresentation)]
+        #[method_id(@__method_family Other batchRepresentation)]
         pub unsafe fn batchRepresentation(&self) -> Retained<MPSImageBatch>;
 
-        #[method_id(@__retain_semantics Other subImageWithFeatureChannelRange:)]
+        #[method_id(@__method_family Other subImageWithFeatureChannelRange:)]
         pub unsafe fn subImageWithFeatureChannelRange(&self, range: NSRange) -> Retained<MPSImage>;
 
         /// Get the number of bytes used to allocate underyling MTLResources
@@ -1002,7 +1002,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSImage {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1118,7 +1118,7 @@ unsafe impl NSObjectProtocol for MPSTemporaryImage {}
 extern_methods!(
     unsafe impl MPSTemporaryImage {
         /// Get a well known MPSImageAllocator that makes MPSTemporaryImages
-        #[method_id(@__retain_semantics Other defaultAllocator)]
+        #[method_id(@__method_family Other defaultAllocator)]
         pub unsafe fn defaultAllocator() -> Retained<ProtocolObject<dyn MPSImageAllocator>>;
 
         /// Initialize a MPSTemporaryImage for use on a MTLCommandBuffer
@@ -1133,7 +1133,7 @@ extern_methods!(
         /// Returns: A valid MPSTemporaryImage.  The object will be released when the command buffer
         /// is committed. The underlying texture will become invalid before this time
         /// due to the action of the readCount property.
-        #[method_id(@__retain_semantics Other temporaryImageWithCommandBuffer:imageDescriptor:)]
+        #[method_id(@__method_family Other temporaryImageWithCommandBuffer:imageDescriptor:)]
         pub unsafe fn temporaryImageWithCommandBuffer_imageDescriptor(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             image_descriptor: &MPSImageDescriptor,
@@ -1159,7 +1159,7 @@ extern_methods!(
         /// Returns: A valid MPSTemporaryImage.  The object will be released when the command buffer
         /// is committed. The underlying texture will become invalid before this time
         /// due to the action of the readCount property.
-        #[method_id(@__retain_semantics Other temporaryImageWithCommandBuffer:textureDescriptor:)]
+        #[method_id(@__method_family Other temporaryImageWithCommandBuffer:textureDescriptor:)]
         pub unsafe fn temporaryImageWithCommandBuffer_textureDescriptor(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             texture_descriptor: &MTLTextureDescriptor,
@@ -1186,7 +1186,7 @@ extern_methods!(
         /// Returns: A valid MPSTemporaryImage.  The object will be released when the command buffer
         /// is committed. The underlying texture will become invalid before this time
         /// due to the action of the readCount property.
-        #[method_id(@__retain_semantics Other temporaryImageWithCommandBuffer:textureDescriptor:featureChannels:)]
+        #[method_id(@__method_family Other temporaryImageWithCommandBuffer:textureDescriptor:featureChannels:)]
         pub unsafe fn temporaryImageWithCommandBuffer_textureDescriptor_featureChannels(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             texture_descriptor: &MTLTextureDescriptor,
@@ -1219,7 +1219,7 @@ extern_methods!(
         );
 
         /// Unavailable. Use temporaryImageForCommandBuffer:textureDescriptor: or -temporaryImageForCommandBuffer:imageDescriptor: instead.
-        #[method_id(@__retain_semantics Init initWithTexture:featureChannels:)]
+        #[method_id(@__method_family Init initWithTexture:featureChannels:)]
         pub unsafe fn initWithTexture_featureChannels(
             this: Allocated<Self>,
             texture: &ProtocolObject<dyn MTLTexture>,
@@ -1227,7 +1227,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Unavailable. Use itemporaryImageForCommandBuffer:textureDescriptor: instead.
-        #[method_id(@__retain_semantics Init initWithDevice:imageDescriptor:)]
+        #[method_id(@__method_family Init initWithDevice:imageDescriptor:)]
         pub unsafe fn initWithDevice_imageDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1262,7 +1262,7 @@ extern_methods!(
         ///
         /// Returns: A MPSImage that references a subregion of the texel storage in parent instead of
         /// using its own storage.
-        #[method_id(@__retain_semantics Init initWithParentImage:sliceRange:featureChannels:)]
+        #[method_id(@__method_family Init initWithParentImage:sliceRange:featureChannels:)]
         pub unsafe fn initWithParentImage_sliceRange_featureChannels(
             this: Allocated<Self>,
             parent: &MPSImage,
@@ -1270,7 +1270,7 @@ extern_methods!(
             feature_channels: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -1278,7 +1278,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSTemporaryImage {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

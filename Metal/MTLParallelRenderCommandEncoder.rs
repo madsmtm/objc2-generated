@@ -15,7 +15,7 @@ extern_protocol!(
         /// Return a new autoreleased object that conforms to
         /// <MTLRenderCommandEncoder
         /// > that may be used to encode on a different thread.
-        #[method_id(@__retain_semantics Other renderCommandEncoder)]
+        #[method_id(@__method_family Other renderCommandEncoder)]
         fn renderCommandEncoder(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLRenderCommandEncoder>>>;

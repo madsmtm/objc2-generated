@@ -26,7 +26,7 @@ extern_methods!(
         /// The CNContact keys to display when a contact is expanded.
         ///
         /// If no keys are provided, the picker will select contacts instead of values.
-        #[method_id(@__retain_semantics Other displayedKeys)]
+        #[method_id(@__method_family Other displayedKeys)]
         pub unsafe fn displayedKeys(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`displayedKeys`][Self::displayedKeys].
@@ -35,7 +35,7 @@ extern_methods!(
 
         #[cfg(feature = "CNContactPickerDelegate")]
         /// The picker delegate to be notified when the user chooses a contact or value.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CNContactPickerDelegate>>>;
@@ -69,10 +69,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNContactPicker {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

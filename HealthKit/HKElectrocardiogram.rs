@@ -127,7 +127,7 @@ extern_methods!(
 
         #[cfg(feature = "HKQuantity")]
         /// The frequency at which the data was sampled. This is reported in [HKUnit hertzUnit].
-        #[method_id(@__retain_semantics Other samplingFrequency)]
+        #[method_id(@__method_family Other samplingFrequency)]
         pub unsafe fn samplingFrequency(&self) -> Option<Retained<HKQuantity>>;
 
         /// The classification of this electrocardiogram sample.
@@ -136,7 +136,7 @@ extern_methods!(
 
         #[cfg(feature = "HKQuantity")]
         /// The average heart rate of the user while the electrocardiogram was recorded.
-        #[method_id(@__retain_semantics Other averageHeartRate)]
+        #[method_id(@__method_family Other averageHeartRate)]
         pub unsafe fn averageHeartRate(&self) -> Option<Retained<HKQuantity>>;
 
         /// Whether the user experienced symptoms during this electrocardiogram.
@@ -149,7 +149,7 @@ extern_methods!(
     /// Methods declared on superclass `HKObject`
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKElectrocardiogram {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -158,7 +158,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKElectrocardiogram {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

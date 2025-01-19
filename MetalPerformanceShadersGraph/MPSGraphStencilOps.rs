@@ -62,7 +62,7 @@ extern_methods!(
         /// 0,
         /// @
         /// 0 ]`
-        #[method_id(@__retain_semantics Other offsets)]
+        #[method_id(@__method_family Other offsets)]
         pub unsafe fn offsets(&self) -> Retained<MPSShape>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
@@ -85,7 +85,7 @@ extern_methods!(
         /// 1,
         /// @
         /// 1 ]`
-        #[method_id(@__retain_semantics Other strides)]
+        #[method_id(@__method_family Other strides)]
         pub unsafe fn strides(&self) -> Retained<MPSShape>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
@@ -108,7 +108,7 @@ extern_methods!(
         /// 1,
         /// @
         /// 1 ]`
-        #[method_id(@__retain_semantics Other dilationRates)]
+        #[method_id(@__method_family Other dilationRates)]
         pub unsafe fn dilationRates(&self) -> Retained<MPSShape>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
@@ -143,7 +143,7 @@ extern_methods!(
         /// 0,
         /// @
         /// 0 ]`
-        #[method_id(@__retain_semantics Other explicitPadding)]
+        #[method_id(@__method_family Other explicitPadding)]
         pub unsafe fn explicitPadding(&self) -> Retained<MPSShape>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
@@ -194,7 +194,7 @@ extern_methods!(
         /// - paddingStyle: See `paddingStyle` property.
         /// - paddingConstant: See `paddingConstant` property.
         /// - Returns: A valid MPSGraphStencilOpDescriptor object
-        #[method_id(@__retain_semantics Other descriptorWithReductionMode:offsets:strides:dilationRates:explicitPadding:boundaryMode:paddingStyle:paddingConstant:)]
+        #[method_id(@__method_family Other descriptorWithReductionMode:offsets:strides:dilationRates:explicitPadding:boundaryMode:paddingStyle:paddingConstant:)]
         pub unsafe fn descriptorWithReductionMode_offsets_strides_dilationRates_explicitPadding_boundaryMode_paddingStyle_paddingConstant(
             reduction_mode: MPSGraphReductionMode,
             offsets: &MPSShape,
@@ -213,7 +213,7 @@ extern_methods!(
         /// - offsets: See `offsets` property.
         /// - explicitPadding: See `explicitPadding` property.
         /// - Returns: A valid MPSGraphStencilOpDescriptor object
-        #[method_id(@__retain_semantics Other descriptorWithOffsets:explicitPadding:)]
+        #[method_id(@__method_family Other descriptorWithOffsets:explicitPadding:)]
         pub unsafe fn descriptorWithOffsets_explicitPadding(
             offsets: &MPSShape,
             explicit_padding: &MPSShape,
@@ -225,7 +225,7 @@ extern_methods!(
         /// - Parameters:
         /// - explicitPadding: See `explicitPadding` property.
         /// - Returns: A valid MPSGraphStencilOpDescriptor object
-        #[method_id(@__retain_semantics Other descriptorWithExplicitPadding:)]
+        #[method_id(@__method_family Other descriptorWithExplicitPadding:)]
         pub unsafe fn descriptorWithExplicitPadding(
             explicit_padding: &MPSShape,
         ) -> Option<Retained<Self>>;
@@ -235,7 +235,7 @@ extern_methods!(
         /// - Parameters:
         /// - paddingStyle: See `paddingStyle` property.
         /// - Returns: A valid MPSGraphStencilOpDescriptor object
-        #[method_id(@__retain_semantics Other descriptorWithPaddingStyle:)]
+        #[method_id(@__method_family Other descriptorWithPaddingStyle:)]
         pub unsafe fn descriptorWithPaddingStyle(
             padding_style: MPSGraphPaddingStyle,
         ) -> Option<Retained<Self>>;
@@ -246,10 +246,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphStencilOpDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -274,7 +274,7 @@ extern_methods!(
         /// - descriptor: The descriptor object that specifies the parameters for the stencil operation.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other stencilWithSourceTensor:weightsTensor:descriptor:name:)]
+        #[method_id(@__method_family Other stencilWithSourceTensor:weightsTensor:descriptor:name:)]
         pub unsafe fn stencilWithSourceTensor_weightsTensor_descriptor_name(
             &self,
             source: &MPSGraphTensor,

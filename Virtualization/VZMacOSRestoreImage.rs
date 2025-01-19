@@ -32,10 +32,10 @@ unsafe impl NSObjectProtocol for VZMacOSRestoreImage {}
 
 extern_methods!(
     unsafe impl VZMacOSRestoreImage {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -82,11 +82,11 @@ extern_methods!(
         /// If the restore image was loaded using +[VZMacOSRestoreImage loadFileURL:completionHandler:], the value of this property will be a file URL.
         /// If the restore image was fetched using +[VZMacOSRestoreImage fetchLatestSupportedWithCompletionHandler:],
         /// the value of this property will be a network URL referring to an installation media file.
-        #[method_id(@__retain_semantics Other URL)]
+        #[method_id(@__method_family Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// The build version this restore image contains.
-        #[method_id(@__retain_semantics Other buildVersion)]
+        #[method_id(@__method_family Other buildVersion)]
         pub unsafe fn buildVersion(&self) -> Retained<NSString>;
 
         /// The operating system version this restore image contains.
@@ -100,7 +100,7 @@ extern_methods!(
         /// hardware models may not be supported by the current host. The mostFeaturefulSupportedConfiguration property can be used to
         /// determine the hardware model and configuration requirements that will provide the most complete feature set on the current
         /// host. If none of the hardware models are supported on the current host, this property is nil.
-        #[method_id(@__retain_semantics Other mostFeaturefulSupportedConfiguration)]
+        #[method_id(@__method_family Other mostFeaturefulSupportedConfiguration)]
         pub unsafe fn mostFeaturefulSupportedConfiguration(
             &self,
         ) -> Option<Retained<VZMacOSConfigurationRequirements>>;

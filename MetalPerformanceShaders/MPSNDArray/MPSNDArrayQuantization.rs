@@ -66,10 +66,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNDArrayQuantizationDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -124,7 +124,7 @@ extern_methods!(
         #[method(setImplicitZeroPoint:)]
         pub unsafe fn setImplicitZeroPoint(&self, implicit_zero_point: bool);
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "MPSCore", feature = "MPSCoreTypes"))]
@@ -137,7 +137,7 @@ extern_methods!(
         /// Parameter `hasMinValue`: A flag indicating that a minimum value input is expected.
         ///
         /// Returns: A new quantization descriptor.
-        #[method_id(@__retain_semantics Init initWithDataType:hasZeroPoint:hasMinValue:)]
+        #[method_id(@__method_family Init initWithDataType:hasZeroPoint:hasMinValue:)]
         pub unsafe fn initWithDataType_hasZeroPoint_hasMinValue(
             this: Allocated<Self>,
             quantization_data_type: MPSDataType,
@@ -150,7 +150,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNDArrayAffineQuantizationDescriptor {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -182,7 +182,7 @@ extern_methods!(
         /// Parameter `quantizationDataType`: Which quantized datatype is used.
         ///
         /// Returns: A new quantization descriptor.
-        #[method_id(@__retain_semantics Init initWithDataType:)]
+        #[method_id(@__method_family Init initWithDataType:)]
         pub unsafe fn initWithDataType(
             this: Allocated<Self>,
             quantization_data_type: MPSDataType,
@@ -196,7 +196,7 @@ extern_methods!(
         /// Parameter `vectorAxis`: The quantization vector axis - this axis will receive the vector component in the destination.
         ///
         /// Returns: A new quantization descriptor.
-        #[method_id(@__retain_semantics Init initWithDataType:vectorAxis:)]
+        #[method_id(@__method_family Init initWithDataType:vectorAxis:)]
         pub unsafe fn initWithDataType_vectorAxis(
             this: Allocated<Self>,
             quantization_data_type: MPSDataType,
@@ -208,10 +208,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNDArrayLUTQuantizationDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

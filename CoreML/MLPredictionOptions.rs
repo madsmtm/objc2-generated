@@ -97,7 +97,7 @@ extern_methods!(
         /// time. The exception is FP16 MLMultiArray backed by CVPixelBuffer, which may be
         /// accepted in Double or Float32 multi array output feature depending on the
         /// underlying inference engine.
-        #[method_id(@__retain_semantics Other outputBackings)]
+        #[method_id(@__method_family Other outputBackings)]
         pub unsafe fn outputBackings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`outputBackings`][Self::outputBackings].
@@ -109,10 +109,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLPredictionOptions {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

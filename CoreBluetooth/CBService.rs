@@ -25,7 +25,7 @@ extern_methods!(
     unsafe impl CBService {
         #[cfg(all(feature = "CBPeer", feature = "CBPeripheral"))]
         /// A back-pointer to the peripheral this service belongs to.
-        #[method_id(@__retain_semantics Other peripheral)]
+        #[method_id(@__method_family Other peripheral)]
         pub unsafe fn peripheral(&self) -> Option<Retained<CBPeripheral>>;
 
         /// The type of the service (primary or secondary).
@@ -33,12 +33,12 @@ extern_methods!(
         pub unsafe fn isPrimary(&self) -> bool;
 
         /// A list of included CBServices that have so far been discovered in this service.
-        #[method_id(@__retain_semantics Other includedServices)]
+        #[method_id(@__method_family Other includedServices)]
         pub unsafe fn includedServices(&self) -> Option<Retained<NSArray<CBService>>>;
 
         #[cfg(feature = "CBCharacteristic")]
         /// A list of CBCharacteristics that have so far been discovered in this service.
-        #[method_id(@__retain_semantics Other characteristics)]
+        #[method_id(@__method_family Other characteristics)]
         pub unsafe fn characteristics(&self) -> Option<Retained<NSArray<CBCharacteristic>>>;
     }
 );
@@ -47,7 +47,7 @@ extern_methods!(
     /// Methods declared on superclass `CBAttribute`
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBService {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -56,7 +56,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBService {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -88,7 +88,7 @@ unsafe impl NSObjectProtocol for CBMutableService {}
 extern_methods!(
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBMutableService {
-        #[method_id(@__retain_semantics Other includedServices)]
+        #[method_id(@__method_family Other includedServices)]
         pub unsafe fn includedServices(&self) -> Option<Retained<NSArray<CBService>>>;
 
         /// Setter for [`includedServices`][Self::includedServices].
@@ -96,7 +96,7 @@ extern_methods!(
         pub unsafe fn setIncludedServices(&self, included_services: Option<&NSArray<CBService>>);
 
         #[cfg(feature = "CBCharacteristic")]
-        #[method_id(@__retain_semantics Other characteristics)]
+        #[method_id(@__method_family Other characteristics)]
         pub unsafe fn characteristics(&self) -> Option<Retained<NSArray<CBCharacteristic>>>;
 
         #[cfg(feature = "CBCharacteristic")]
@@ -114,7 +114,7 @@ extern_methods!(
         ///
         ///
         /// Returns a service, initialized with a service type and UUID.
-        #[method_id(@__retain_semantics Init initWithType:primary:)]
+        #[method_id(@__method_family Init initWithType:primary:)]
         pub unsafe fn initWithType_primary(
             this: Allocated<Self>,
             uuid: &CBUUID,
@@ -127,7 +127,7 @@ extern_methods!(
     /// Methods declared on superclass `CBAttribute`
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBMutableService {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -136,7 +136,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CBAttribute")]
     unsafe impl CBMutableService {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

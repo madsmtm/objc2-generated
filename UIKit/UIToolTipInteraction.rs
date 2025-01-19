@@ -25,7 +25,7 @@ unsafe impl UIInteraction for UIToolTipInteraction {}
 extern_methods!(
     unsafe impl UIToolTipInteraction {
         /// The interaction's delegate.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIToolTipInteractionDelegate>>>;
@@ -47,7 +47,7 @@ extern_methods!(
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         /// The interaction's default tool tip string.
-        #[method_id(@__retain_semantics Other defaultToolTip)]
+        #[method_id(@__method_family Other defaultToolTip)]
         pub unsafe fn defaultToolTip(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`defaultToolTip`][Self::defaultToolTip].
@@ -55,10 +55,10 @@ extern_methods!(
         pub unsafe fn setDefaultToolTip(&self, default_tool_tip: Option<&NSString>);
 
         /// Creates a UIToolTipInteraction.
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithDefaultToolTip:)]
+        #[method_id(@__method_family Init initWithDefaultToolTip:)]
         pub unsafe fn initWithDefaultToolTip(
             this: Allocated<Self>,
             default_tool_tip: &NSString,
@@ -69,7 +69,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIToolTipInteraction {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -87,7 +87,7 @@ unsafe impl NSObjectProtocol for UIToolTipConfiguration {}
 extern_methods!(
     unsafe impl UIToolTipConfiguration {
         /// The string to annotate the contents at a given point.
-        #[method_id(@__retain_semantics Other toolTip)]
+        #[method_id(@__method_family Other toolTip)]
         pub unsafe fn toolTip(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -96,7 +96,7 @@ extern_methods!(
         pub unsafe fn sourceRect(&self) -> CGRect;
 
         /// Creates a UIToolTipConfiguration with the provided string, applied to the entire view.
-        #[method_id(@__retain_semantics Other configurationWithToolTip:)]
+        #[method_id(@__method_family Other configurationWithToolTip:)]
         pub unsafe fn configurationWithToolTip(
             tool_tip: &NSString,
             mtm: MainThreadMarker,
@@ -104,17 +104,17 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates a UIToolTipConfiguration with the provided string, applied to the specified region.
-        #[method_id(@__retain_semantics Other configurationWithToolTip:inRect:)]
+        #[method_id(@__method_family Other configurationWithToolTip:inRect:)]
         pub unsafe fn configurationWithToolTip_inRect(
             tool_tip: &NSString,
             source_rect: CGRect,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -133,7 +133,7 @@ extern_protocol!(
         ///
         /// Returns: The tool tip configuration containing the string and rectangle for this interaction. Return nil if the interaction is inactive or the hit test fails.
         #[optional]
-        #[method_id(@__retain_semantics Other toolTipInteraction:configurationAtPoint:)]
+        #[method_id(@__method_family Other toolTipInteraction:configurationAtPoint:)]
         unsafe fn toolTipInteraction_configurationAtPoint(
             &self,
             interaction: &UIToolTipInteraction,

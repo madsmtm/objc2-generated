@@ -62,14 +62,14 @@ extern_methods!(
     unsafe impl ARDepthData {
         #[cfg(feature = "objc2-core-video")]
         /// A pixel buffer that contains per-pixel depth data (in meters).
-        #[method_id(@__retain_semantics Other depthMap)]
+        #[method_id(@__method_family Other depthMap)]
         pub unsafe fn depthMap(&self) -> Retained<CVPixelBuffer>;
 
         #[cfg(feature = "objc2-core-video")]
         /// A pixel buffer containing the confidence level for each depth value in the `depthMap`.
         ///
         /// See: ARConfidenceLevel
-        #[method_id(@__retain_semantics Other confidenceMap)]
+        #[method_id(@__method_family Other confidenceMap)]
         pub unsafe fn confidenceMap(&self) -> Option<Retained<CVPixelBuffer>>;
     }
 );
@@ -79,10 +79,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl ARDepthData {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

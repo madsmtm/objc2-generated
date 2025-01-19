@@ -91,7 +91,7 @@ extern_methods!(
         /// Parameter `style`: The formatting style to be used for the contact name.
         ///
         /// Returns: The contact key descriptor for the formatting style.
-        #[method_id(@__retain_semantics Other descriptorForRequiredKeysForStyle:)]
+        #[method_id(@__method_family Other descriptorForRequiredKeysForStyle:)]
         pub unsafe fn descriptorForRequiredKeysForStyle(
             style: CNContactFormatterStyle,
         ) -> Retained<ProtocolObject<dyn CNKeyDescriptor>>;
@@ -104,7 +104,7 @@ extern_methods!(
         ///
         ///
         /// Returns: The contact key descriptor for the name order.
-        #[method_id(@__retain_semantics Other descriptorForRequiredKeysForNameOrder)]
+        #[method_id(@__method_family Other descriptorForRequiredKeysForNameOrder)]
         pub unsafe fn descriptorForRequiredKeysForNameOrder(
         ) -> Retained<ProtocolObject<dyn CNKeyDescriptor>>;
 
@@ -116,7 +116,7 @@ extern_methods!(
         ///
         ///
         /// Returns: The contact key descriptor for the name delimiter.
-        #[method_id(@__retain_semantics Other descriptorForRequiredKeysForDelimiter)]
+        #[method_id(@__method_family Other descriptorForRequiredKeysForDelimiter)]
         pub unsafe fn descriptorForRequiredKeysForDelimiter(
         ) -> Retained<ProtocolObject<dyn CNKeyDescriptor>>;
 
@@ -129,7 +129,7 @@ extern_methods!(
         /// Parameter `style`: The formatting style to be used for the contact name.
         ///
         /// Returns: The formatted contact name.
-        #[method_id(@__retain_semantics Other stringFromContact:style:)]
+        #[method_id(@__method_family Other stringFromContact:style:)]
         pub unsafe fn stringFromContact_style(
             contact: &CNContact,
             style: CNContactFormatterStyle,
@@ -149,7 +149,7 @@ extern_methods!(
         /// Parameter `attributes`: The default attributes to use. See NSFormatter for details.
         ///
         /// Returns: The formatted contact name as an attributed string.
-        #[method_id(@__retain_semantics Other attributedStringFromContact:style:defaultAttributes:)]
+        #[method_id(@__method_family Other attributedStringFromContact:style:defaultAttributes:)]
         pub unsafe fn attributedStringFromContact_style_defaultAttributes(
             contact: &CNContact,
             style: CNContactFormatterStyle,
@@ -163,7 +163,7 @@ extern_methods!(
 
         #[cfg(feature = "CNContact")]
         /// The recommended delimiter to use between name components for a given contact.
-        #[method_id(@__retain_semantics Other delimiterForContact:)]
+        #[method_id(@__method_family Other delimiterForContact:)]
         pub unsafe fn delimiterForContact(contact: &CNContact) -> Retained<NSString>;
 
         /// The style for a contact formatter instance.
@@ -184,7 +184,7 @@ extern_methods!(
         /// Parameter `contact`: The contact whose name is to be formatted.
         ///
         /// Returns: The formatted contact name.
-        #[method_id(@__retain_semantics Other stringFromContact:)]
+        #[method_id(@__method_family Other stringFromContact:)]
         pub unsafe fn stringFromContact(&self, contact: &CNContact) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CNContact")]
@@ -199,7 +199,7 @@ extern_methods!(
         /// Parameter `attributes`: The default attributes to use. See NSFormatter for details.
         ///
         /// Returns: The formatted contact name as an attributed string.
-        #[method_id(@__retain_semantics Other attributedStringFromContact:defaultAttributes:)]
+        #[method_id(@__method_family Other attributedStringFromContact:defaultAttributes:)]
         pub unsafe fn attributedStringFromContact_defaultAttributes(
             &self,
             contact: &CNContact,
@@ -211,10 +211,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CNContactFormatter {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

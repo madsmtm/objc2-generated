@@ -38,7 +38,7 @@ extern_methods!(
     #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
     unsafe impl AMAppleScriptAction {
         #[cfg(feature = "objc2-osa-kit")]
-        #[method_id(@__retain_semantics Other script)]
+        #[method_id(@__method_family Other script)]
         pub unsafe fn script(&self) -> Option<Retained<OSAScript>>;
 
         #[cfg(feature = "objc2-osa-kit")]
@@ -52,14 +52,14 @@ extern_methods!(
     /// Methods declared on superclass `AMAction`
     #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
     unsafe impl AMAppleScriptAction {
-        #[method_id(@__retain_semantics Init initWithDefinition:fromArchive:)]
+        #[method_id(@__method_family Init initWithDefinition:fromArchive:)]
         pub unsafe fn initWithDefinition_fromArchive(
             this: Allocated<Self>,
             dict: Option<&NSDictionary<NSString, AnyObject>>,
             archived: bool,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
+        #[method_id(@__method_family Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             file_url: &NSURL,
@@ -71,10 +71,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "AMAction", feature = "AMBundleAction"))]
     unsafe impl AMAppleScriptAction {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

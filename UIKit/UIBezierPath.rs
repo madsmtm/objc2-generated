@@ -32,26 +32,26 @@ unsafe impl NSSecureCoding for UIBezierPath {}
 
 extern_methods!(
     unsafe impl UIBezierPath {
-        #[method_id(@__retain_semantics Other bezierPath)]
+        #[method_id(@__method_family Other bezierPath)]
         pub unsafe fn bezierPath() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other bezierPathWithRect:)]
+        #[method_id(@__method_family Other bezierPathWithRect:)]
         pub unsafe fn bezierPathWithRect(rect: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other bezierPathWithOvalInRect:)]
+        #[method_id(@__method_family Other bezierPathWithOvalInRect:)]
         pub unsafe fn bezierPathWithOvalInRect(rect: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other bezierPathWithRoundedRect:cornerRadius:)]
+        #[method_id(@__method_family Other bezierPathWithRoundedRect:cornerRadius:)]
         pub unsafe fn bezierPathWithRoundedRect_cornerRadius(
             rect: CGRect,
             corner_radius: CGFloat,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-        #[method_id(@__retain_semantics Other bezierPathWithRoundedRect:byRoundingCorners:cornerRadii:)]
+        #[method_id(@__method_family Other bezierPathWithRoundedRect:byRoundingCorners:cornerRadii:)]
         pub unsafe fn bezierPathWithRoundedRect_byRoundingCorners_cornerRadii(
             rect: CGRect,
             corners: UIRectCorner,
@@ -59,7 +59,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other bezierPathWithArcCenter:radius:startAngle:endAngle:clockwise:)]
+        #[method_id(@__method_family Other bezierPathWithArcCenter:radius:startAngle:endAngle:clockwise:)]
         pub unsafe fn bezierPathWithArcCenter_radius_startAngle_endAngle_clockwise(
             center: CGPoint,
             radius: CGFloat,
@@ -69,20 +69,20 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__retain_semantics Other bezierPathWithCGPath:)]
+        #[method_id(@__method_family Other bezierPathWithCGPath:)]
         pub unsafe fn bezierPathWithCGPath(cg_path: &CGPath) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__retain_semantics Other CGPath)]
+        #[method_id(@__method_family Other CGPath)]
         pub unsafe fn CGPath(&self) -> Retained<CGPath>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -135,7 +135,7 @@ extern_methods!(
         #[method(appendPath:)]
         pub unsafe fn appendPath(&self, bezier_path: &UIBezierPath);
 
-        #[method_id(@__retain_semantics Other bezierPathByReversingPath)]
+        #[method_id(@__method_family Other bezierPathByReversingPath)]
         pub unsafe fn bezierPathByReversingPath(&self) -> Retained<UIBezierPath>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -249,7 +249,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIBezierPath {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

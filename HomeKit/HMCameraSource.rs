@@ -28,7 +28,7 @@ extern_methods!(
         pub unsafe fn aspectRatio(&self) -> c_double;
 
         #[deprecated = "HMCameraSource is a base class for other types. Directly creating them is not supported."]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -36,7 +36,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMCameraSource {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

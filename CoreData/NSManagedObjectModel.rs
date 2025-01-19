@@ -28,33 +28,33 @@ unsafe impl NSObjectProtocol for NSManagedObjectModel {}
 
 extern_methods!(
     unsafe impl NSManagedObjectModel {
-        #[method_id(@__retain_semantics Other mergedModelFromBundles:)]
+        #[method_id(@__method_family Other mergedModelFromBundles:)]
         pub unsafe fn mergedModelFromBundles(
             bundles: Option<&NSArray<NSBundle>>,
         ) -> Option<Retained<NSManagedObjectModel>>;
 
-        #[method_id(@__retain_semantics Other modelByMergingModels:)]
+        #[method_id(@__method_family Other modelByMergingModels:)]
         pub unsafe fn modelByMergingModels(
             models: Option<&NSArray<NSManagedObjectModel>>,
         ) -> Option<Retained<NSManagedObjectModel>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
+        #[method_id(@__method_family Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             url: &NSURL,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSEntityDescription")]
-        #[method_id(@__retain_semantics Other entitiesByName)]
+        #[method_id(@__method_family Other entitiesByName)]
         pub unsafe fn entitiesByName(
             &self,
         ) -> Retained<NSDictionary<NSString, NSEntityDescription>>;
 
         #[cfg(feature = "NSEntityDescription")]
-        #[method_id(@__retain_semantics Other entities)]
+        #[method_id(@__method_family Other entities)]
         pub unsafe fn entities(&self) -> Retained<NSArray<NSEntityDescription>>;
 
         #[cfg(feature = "NSEntityDescription")]
@@ -62,11 +62,11 @@ extern_methods!(
         #[method(setEntities:)]
         pub unsafe fn setEntities(&self, entities: &NSArray<NSEntityDescription>);
 
-        #[method_id(@__retain_semantics Other configurations)]
+        #[method_id(@__method_family Other configurations)]
         pub unsafe fn configurations(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSEntityDescription")]
-        #[method_id(@__retain_semantics Other entitiesForConfiguration:)]
+        #[method_id(@__method_family Other entitiesForConfiguration:)]
         pub unsafe fn entitiesForConfiguration(
             &self,
             configuration: Option<&NSString>,
@@ -89,21 +89,21 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
-        #[method_id(@__retain_semantics Other fetchRequestTemplateForName:)]
+        #[method_id(@__method_family Other fetchRequestTemplateForName:)]
         pub unsafe fn fetchRequestTemplateForName(
             &self,
             name: &NSString,
         ) -> Option<Retained<NSFetchRequest>>;
 
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
-        #[method_id(@__retain_semantics Other fetchRequestFromTemplateWithName:substitutionVariables:)]
+        #[method_id(@__method_family Other fetchRequestFromTemplateWithName:substitutionVariables:)]
         pub unsafe fn fetchRequestFromTemplateWithName_substitutionVariables(
             &self,
             name: &NSString,
             variables: &NSDictionary<NSString, AnyObject>,
         ) -> Option<Retained<NSFetchRequest>>;
 
-        #[method_id(@__retain_semantics Other localizationDictionary)]
+        #[method_id(@__method_family Other localizationDictionary)]
         pub unsafe fn localizationDictionary(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSString>>>;
@@ -115,25 +115,25 @@ extern_methods!(
             localization_dictionary: Option<&NSDictionary<NSString, NSString>>,
         );
 
-        #[method_id(@__retain_semantics Other mergedModelFromBundles:forStoreMetadata:)]
+        #[method_id(@__method_family Other mergedModelFromBundles:forStoreMetadata:)]
         pub unsafe fn mergedModelFromBundles_forStoreMetadata(
             bundles: Option<&NSArray<NSBundle>>,
             metadata: &NSDictionary<NSString, AnyObject>,
         ) -> Option<Retained<NSManagedObjectModel>>;
 
-        #[method_id(@__retain_semantics Other modelByMergingModels:forStoreMetadata:)]
+        #[method_id(@__method_family Other modelByMergingModels:forStoreMetadata:)]
         pub unsafe fn modelByMergingModels_forStoreMetadata(
             models: &NSArray<NSManagedObjectModel>,
             metadata: &NSDictionary<NSString, AnyObject>,
         ) -> Option<Retained<NSManagedObjectModel>>;
 
         #[cfg(all(feature = "NSFetchRequest", feature = "NSPersistentStoreRequest"))]
-        #[method_id(@__retain_semantics Other fetchRequestTemplatesByName)]
+        #[method_id(@__method_family Other fetchRequestTemplatesByName)]
         pub unsafe fn fetchRequestTemplatesByName(
             &self,
         ) -> Retained<NSDictionary<NSString, NSFetchRequest>>;
 
-        #[method_id(@__retain_semantics Other versionIdentifiers)]
+        #[method_id(@__method_family Other versionIdentifiers)]
         pub unsafe fn versionIdentifiers(&self) -> Retained<NSSet>;
 
         /// Setter for [`versionIdentifiers`][Self::versionIdentifiers].
@@ -147,13 +147,13 @@ extern_methods!(
             metadata: &NSDictionary<NSString, AnyObject>,
         ) -> bool;
 
-        #[method_id(@__retain_semantics Other entityVersionHashesByName)]
+        #[method_id(@__method_family Other entityVersionHashesByName)]
         pub unsafe fn entityVersionHashesByName(&self) -> Retained<NSDictionary<NSString, NSData>>;
 
-        #[method_id(@__retain_semantics Other versionChecksum)]
+        #[method_id(@__method_family Other versionChecksum)]
         pub unsafe fn versionChecksum(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other checksumsForVersionedModelAtURL:error:_)]
+        #[method_id(@__method_family Other checksumsForVersionedModelAtURL:error:_)]
         pub unsafe fn checksumsForVersionedModelAtURL_error(
             model_url: &NSURL,
         ) -> Result<Retained<NSDictionary<NSString, NSString>>, Retained<NSError>>;
@@ -163,7 +163,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSManagedObjectModel {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

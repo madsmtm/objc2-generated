@@ -63,7 +63,7 @@ unsafe impl NSObjectProtocol for AVAudioSinkNode {}
 extern_methods!(
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioSinkNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(
@@ -84,7 +84,7 @@ extern_methods!(
         /// to another node.
         ///
         /// The audio format for the data received by the block will be set to the node's input format.
-        #[method_id(@__retain_semantics Init initWithReceiverBlock:)]
+        #[method_id(@__method_family Init initWithReceiverBlock:)]
         pub unsafe fn initWithReceiverBlock(
             this: Allocated<Self>,
             block: AVAudioSinkNodeReceiverBlock,
@@ -96,7 +96,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioSinkNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

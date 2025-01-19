@@ -31,11 +31,11 @@ extern_methods!(
         pub unsafe fn length(&self) -> NSUInteger;
 
         #[deprecated]
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Creates a data object that holds a given number of bytes from a given buffer.
@@ -51,7 +51,7 @@ extern_methods!(
         /// Returns: A new
         /// `MLCTensorData`object.
         #[deprecated]
-        #[method_id(@__retain_semantics Other dataWithBytesNoCopy:length:)]
+        #[method_id(@__method_family Other dataWithBytesNoCopy:length:)]
         pub unsafe fn dataWithBytesNoCopy_length(
             bytes: NonNull<c_void>,
             length: NSUInteger,
@@ -70,7 +70,7 @@ extern_methods!(
         /// Returns: A new
         /// `MLCTensorData`object.
         #[deprecated]
-        #[method_id(@__retain_semantics Other dataWithImmutableBytesNoCopy:length:)]
+        #[method_id(@__method_family Other dataWithImmutableBytesNoCopy:length:)]
         pub unsafe fn dataWithImmutableBytesNoCopy_length(
             bytes: NonNull<c_void>,
             length: NSUInteger,
@@ -88,7 +88,7 @@ extern_methods!(
         ///
         /// Returns: A new
         /// `MLCTensorData`object.
-        #[method_id(@__retain_semantics Other dataWithBytesNoCopy:length:deallocator:)]
+        #[method_id(@__method_family Other dataWithBytesNoCopy:length:deallocator:)]
         pub unsafe fn dataWithBytesNoCopy_length_deallocator(
             bytes: NonNull<c_void>,
             length: NSUInteger,

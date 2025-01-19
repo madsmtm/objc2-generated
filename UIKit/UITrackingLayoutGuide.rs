@@ -37,7 +37,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "UIGeometry"))]
-        #[method_id(@__retain_semantics Other constraintsActiveWhenNearEdge:)]
+        #[method_id(@__method_family Other constraintsActiveWhenNearEdge:)]
         pub unsafe fn constraintsActiveWhenNearEdge(
             &self,
             edge: NSDirectionalRectEdge,
@@ -55,7 +55,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "UIGeometry"))]
-        #[method_id(@__retain_semantics Other constraintsActiveWhenAwayFromEdge:)]
+        #[method_id(@__method_family Other constraintsActiveWhenAwayFromEdge:)]
         pub unsafe fn constraintsActiveWhenAwayFromEdge(
             &self,
             edge: NSDirectionalRectEdge,
@@ -71,10 +71,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UILayoutGuide")]
     unsafe impl UITrackingLayoutGuide {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

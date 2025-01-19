@@ -37,19 +37,19 @@ unsafe impl UIInteraction for UIDragInteraction {}
 
 extern_methods!(
     unsafe impl UIDragInteraction {
-        #[method_id(@__retain_semantics Init initWithDelegate:)]
+        #[method_id(@__method_family Init initWithDelegate:)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: &ProtocolObject<dyn UIDragInteractionDelegate>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIDragInteractionDelegate>>>;
@@ -80,7 +80,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidraginteractiondelegate?language=objc)
     pub unsafe trait UIDragInteractionDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIDragItem", feature = "UIDragSession"))]
-        #[method_id(@__retain_semantics Other dragInteraction:itemsForBeginningSession:)]
+        #[method_id(@__method_family Other dragInteraction:itemsForBeginningSession:)]
         unsafe fn dragInteraction_itemsForBeginningSession(
             &self,
             interaction: &UIDragInteraction,
@@ -94,7 +94,7 @@ extern_protocol!(
             feature = "UITargetedPreview"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other dragInteraction:previewForLiftingItem:session:)]
+        #[method_id(@__method_family Other dragInteraction:previewForLiftingItem:session:)]
         unsafe fn dragInteraction_previewForLiftingItem_session(
             &self,
             interaction: &UIDragInteraction,
@@ -192,7 +192,7 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other dragInteraction:itemsForAddingToSession:withTouchAtPoint:)]
+        #[method_id(@__method_family Other dragInteraction:itemsForAddingToSession:withTouchAtPoint:)]
         unsafe fn dragInteraction_itemsForAddingToSession_withTouchAtPoint(
             &self,
             interaction: &UIDragInteraction,
@@ -202,7 +202,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIDragSession", feature = "objc2-core-foundation"))]
         #[optional]
-        #[method_id(@__retain_semantics Other dragInteraction:sessionForAddingItems:withTouchAtPoint:)]
+        #[method_id(@__method_family Other dragInteraction:sessionForAddingItems:withTouchAtPoint:)]
         unsafe fn dragInteraction_sessionForAddingItems_withTouchAtPoint(
             &self,
             interaction: &UIDragInteraction,
@@ -227,7 +227,7 @@ extern_protocol!(
             feature = "UITargetedPreview"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other dragInteraction:previewForCancellingItem:withDefault:)]
+        #[method_id(@__method_family Other dragInteraction:previewForCancellingItem:withDefault:)]
         unsafe fn dragInteraction_previewForCancellingItem_withDefault(
             &self,
             interaction: &UIDragInteraction,

@@ -41,7 +41,7 @@ extern_methods!(
         pub unsafe fn speechDuration(&self) -> NSTimeInterval;
 
         #[cfg(feature = "SFVoiceAnalytics")]
-        #[method_id(@__retain_semantics Other voiceAnalytics)]
+        #[method_id(@__method_family Other voiceAnalytics)]
         pub unsafe fn voiceAnalytics(&self) -> Option<Retained<SFVoiceAnalytics>>;
     }
 );
@@ -49,10 +49,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechRecognitionMetadata {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

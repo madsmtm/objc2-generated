@@ -286,20 +286,20 @@ extern_methods!(
         #[method(setChannelCount2:)]
         pub unsafe fn setChannelCount2(&self, channel_count2: NSUInteger);
 
-        #[method_id(@__retain_semantics Init initWithDevice:)]
+        #[method_id(@__method_family Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:device:)]
+        #[method_id(@__method_family Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Copy copyWithZone:device:)]
+        #[method_id(@__method_family Copy copyWithZone:device:)]
         pub unsafe fn copyWithZone_device(
             &self,
             zone: *mut NSZone,
@@ -779,7 +779,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -791,10 +791,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSSVGF {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -807,7 +807,7 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpssvgftextureallocator?language=objc)
     pub unsafe trait MPSSVGFTextureAllocator: NSObjectProtocol {
         /// Returns an autoreleased Metal 2D texture with a matching pixel format, width, and height.
-        #[method_id(@__retain_semantics Other textureWithPixelFormat:width:height:)]
+        #[method_id(@__method_family Other textureWithPixelFormat:width:height:)]
         unsafe fn textureWithPixelFormat_width_height(
             &self,
             pixel_format: MTLPixelFormat,
@@ -841,7 +841,7 @@ unsafe impl NSObjectProtocol for MPSSVGFDefaultTextureAllocator {}
 extern_methods!(
     unsafe impl MPSSVGFDefaultTextureAllocator {
         /// Metal device this object was allocated from
-        #[method_id(@__retain_semantics Other device)]
+        #[method_id(@__method_family Other device)]
         pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// The number of textures which have been allocated from this allocator
@@ -849,13 +849,13 @@ extern_methods!(
         pub unsafe fn allocatedTextureCount(&self) -> NSUInteger;
 
         /// Initialize the MPSSVGFDefaultTextureAllocator with a Metal device
-        #[method_id(@__retain_semantics Init initWithDevice:)]
+        #[method_id(@__method_family Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other textureWithPixelFormat:width:height:)]
+        #[method_id(@__method_family Other textureWithPixelFormat:width:height:)]
         pub unsafe fn textureWithPixelFormat_width_height(
             &self,
             pixel_format: MTLPixelFormat,
@@ -875,10 +875,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSSVGFDefaultTextureAllocator {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -938,11 +938,11 @@ extern_methods!(
         #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
         /// The underlying MPSSVGF kernels object which will be used for denoising. Use this object
         /// to customize the denoising process.
-        #[method_id(@__retain_semantics Other svgf)]
+        #[method_id(@__method_family Other svgf)]
         pub unsafe fn svgf(&self) -> Retained<MPSSVGF>;
 
         /// The object which will be used to allocate intermediate and output textures.
-        #[method_id(@__retain_semantics Other textureAllocator)]
+        #[method_id(@__method_family Other textureAllocator)]
         pub unsafe fn textureAllocator(
             &self,
         ) -> Retained<ProtocolObject<dyn MPSSVGFTextureAllocator>>;
@@ -959,7 +959,7 @@ extern_methods!(
         /// Initialize the MPSSVGFDenoiser object
         ///
         /// Parameter device The Metal device to use for denoising
-        #[method_id(@__retain_semantics Init initWithDevice:)]
+        #[method_id(@__method_family Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -974,7 +974,7 @@ extern_methods!(
         /// object will be used to allocate temporary intermediate and output
         /// textures. This can be a custom object or an instance of the
         /// MPSSVGFDefaultTextureAllocator class.
-        #[method_id(@__retain_semantics Init initWithSVGF:textureAllocator:)]
+        #[method_id(@__method_family Init initWithSVGF:textureAllocator:)]
         pub unsafe fn initWithSVGF_textureAllocator(
             this: Allocated<Self>,
             svgf: &MPSSVGF,
@@ -1015,7 +1015,7 @@ extern_methods!(
         /// details.
         /// Parameter previousDepthNormalTexture Depth/normal texture from the previous frame. See the MPSSVGF
         /// object for more details.
-        #[method_id(@__retain_semantics Other encodeToCommandBuffer:sourceTexture:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:)]
+        #[method_id(@__method_family Other encodeToCommandBuffer:sourceTexture:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_motionVectorTexture_depthNormalTexture_previousDepthNormalTexture(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -1071,10 +1071,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSSVGFDenoiser {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -33,12 +33,12 @@ unsafe impl NSObjectProtocol for VZVirtioSoundDeviceConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZAudioDeviceConfiguration")]
     unsafe impl VZVirtioSoundDeviceConfiguration {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
         /// List of audio streams exposed by this device. Empty by default.
-        #[method_id(@__retain_semantics Other streams)]
+        #[method_id(@__method_family Other streams)]
         pub unsafe fn streams(&self) -> Retained<NSArray<VZVirtioSoundDeviceStreamConfiguration>>;
 
         #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]
@@ -52,7 +52,7 @@ extern_methods!(
     /// Methods declared on superclass `VZAudioDeviceConfiguration`
     #[cfg(feature = "VZAudioDeviceConfiguration")]
     unsafe impl VZVirtioSoundDeviceConfiguration {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

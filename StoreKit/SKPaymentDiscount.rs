@@ -23,7 +23,7 @@ unsafe impl NSObjectProtocol for SKPaymentDiscount {}
 extern_methods!(
     unsafe impl SKPaymentDiscount {
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
-        #[method_id(@__retain_semantics Init initWithIdentifier:keyIdentifier:nonce:signature:timestamp:)]
+        #[method_id(@__method_family Init initWithIdentifier:keyIdentifier:nonce:signature:timestamp:)]
         pub unsafe fn initWithIdentifier_keyIdentifier_nonce_signature_timestamp(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -34,23 +34,23 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
-        #[method_id(@__retain_semantics Other keyIdentifier)]
+        #[method_id(@__method_family Other keyIdentifier)]
         pub unsafe fn keyIdentifier(&self) -> Retained<NSString>;
 
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
-        #[method_id(@__retain_semantics Other nonce)]
+        #[method_id(@__method_family Other nonce)]
         pub unsafe fn nonce(&self) -> Retained<NSUUID>;
 
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
-        #[method_id(@__retain_semantics Other signature)]
+        #[method_id(@__method_family Other signature)]
         pub unsafe fn signature(&self) -> Retained<NSString>;
 
         #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
-        #[method_id(@__retain_semantics Other timestamp)]
+        #[method_id(@__method_family Other timestamp)]
         pub unsafe fn timestamp(&self) -> Retained<NSNumber>;
     }
 );
@@ -58,10 +58,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKPaymentDiscount {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

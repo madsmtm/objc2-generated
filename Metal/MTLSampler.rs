@@ -290,7 +290,7 @@ extern_methods!(
         pub fn setSupportArgumentBuffers(&self, support_argument_buffers: bool);
 
         /// A string to help identify the created object.
-        #[method_id(@__retain_semantics Other label)]
+        #[method_id(@__method_family Other label)]
         pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -302,10 +302,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLSamplerDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -323,12 +323,12 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerstate?language=objc)
     pub unsafe trait MTLSamplerState: NSObjectProtocol {
         /// A string to help identify this object.
-        #[method_id(@__retain_semantics Other label)]
+        #[method_id(@__method_family Other label)]
         fn label(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTLDevice")]
         /// The device this resource was created against.  This resource can only be used with this device.
-        #[method_id(@__retain_semantics Other device)]
+        #[method_id(@__method_family Other device)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLTypes")]

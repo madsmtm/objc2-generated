@@ -28,17 +28,17 @@ unsafe impl NSObjectProtocol for AVCaptureMetadataOutput {}
 extern_methods!(
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCaptureMetadataOutput {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The receiver's delegate.
         ///
         ///
         /// The value of this property is an object conforming to the AVCaptureMetadataOutputObjectsDelegate protocol that will receive metadata objects after they are captured. The delegate is set using the setMetadataObjectsDelegate:queue: method.
-        #[method_id(@__retain_semantics Other metadataObjectsDelegate)]
+        #[method_id(@__method_family Other metadataObjectsDelegate)]
         pub unsafe fn metadataObjectsDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureMetadataOutputObjectsDelegate>>>;
@@ -48,7 +48,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of NSStrings corresponding to AVMetadataObjectType strings defined in AVMetadataObject.h -- one for each metadata object type supported by the receiver. Available metadata object types are dependent on the capabilities of the AVCaptureInputPort to which this receiver's AVCaptureConnection is connected. Clients may specify the types of objects they would like to process by calling setMetadataObjectTypes:. This property is key-value observable.
-        #[method_id(@__retain_semantics Other availableMetadataObjectTypes)]
+        #[method_id(@__method_family Other availableMetadataObjectTypes)]
         pub unsafe fn availableMetadataObjectTypes(
             &self,
         ) -> Retained<NSArray<AVMetadataObjectType>>;
@@ -58,7 +58,7 @@ extern_methods!(
         ///
         ///
         /// AVCaptureMetadataOutput may detect and emit multiple metadata object types. For apps linked before iOS 7.0, the receiver defaults to capturing face metadata objects if supported (see -availableMetadataObjectTypes). For apps linked on or after iOS 7.0, the receiver captures no metadata objects by default. -setMetadataObjectTypes: throws an NSInvalidArgumentException if any elements in the array are not present in the -availableMetadataObjectTypes array.
-        #[method_id(@__retain_semantics Other metadataObjectTypes)]
+        #[method_id(@__method_family Other metadataObjectTypes)]
         pub unsafe fn metadataObjectTypes(&self) -> Retained<NSArray<AVMetadataObjectType>>;
 
         #[cfg(feature = "AVMetadataObject")]

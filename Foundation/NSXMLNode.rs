@@ -69,7 +69,7 @@ unsafe impl NSObjectProtocol for NSXMLNode {}
 
 extern_methods!(
     unsafe impl NSXMLNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Invokes
@@ -79,12 +79,12 @@ extern_methods!(
         /// ```
         ///
         /// with options set to NSXMLNodeOptionsNone
-        #[method_id(@__retain_semantics Init initWithKind:)]
+        #[method_id(@__method_family Init initWithKind:)]
         pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
 
         #[cfg(feature = "NSXMLNodeOptions")]
         /// Inits a node with fidelity options as description NSXMLNodeOptions.h
-        #[method_id(@__retain_semantics Init initWithKind:options:)]
+        #[method_id(@__method_family Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Allocated<Self>,
             kind: NSXMLNodeKind,
@@ -92,14 +92,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Returns an empty document.
-        #[method_id(@__retain_semantics Other document)]
+        #[method_id(@__method_family Other document)]
         pub unsafe fn document() -> Retained<AnyObject>;
 
         #[cfg(feature = "NSXMLElement")]
         /// Returns a document
         ///
         /// Parameter `element`: The document's root node.
-        #[method_id(@__retain_semantics Other documentWithRootElement:)]
+        #[method_id(@__method_family Other documentWithRootElement:)]
         pub unsafe fn documentWithRootElement(element: &NSXMLElement) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
@@ -111,12 +111,12 @@ extern_methods!(
         /// /name>
         /// </tt>
         /// .
-        #[method_id(@__retain_semantics Other elementWithName:)]
+        #[method_id(@__method_family Other elementWithName:)]
         pub unsafe fn elementWithName(name: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
         /// Returns an element whose full QName is specified.
-        #[method_id(@__retain_semantics Other elementWithName:URI:)]
+        #[method_id(@__method_family Other elementWithName:URI:)]
         pub unsafe fn elementWithName_URI(name: &NSString, uri: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
@@ -128,7 +128,7 @@ extern_methods!(
         /// /name>
         /// </tt>
         /// .
-        #[method_id(@__retain_semantics Other elementWithName:stringValue:)]
+        #[method_id(@__method_family Other elementWithName:stringValue:)]
         pub unsafe fn elementWithName_stringValue(
             name: &NSString,
             string: &NSString,
@@ -145,7 +145,7 @@ extern_methods!(
         /// /name>
         /// </tt>
         /// .
-        #[method_id(@__retain_semantics Other elementWithName:children:attributes:)]
+        #[method_id(@__method_family Other elementWithName:children:attributes:)]
         pub unsafe fn elementWithName_children_attributes(
             name: &NSString,
             children: Option<&NSArray<NSXMLNode>>,
@@ -158,7 +158,7 @@ extern_methods!(
         /// name="stringValue"
         /// </tt>
         /// .
-        #[method_id(@__retain_semantics Other attributeWithName:stringValue:)]
+        #[method_id(@__method_family Other attributeWithName:stringValue:)]
         pub unsafe fn attributeWithName_stringValue(
             name: &NSString,
             string_value: &NSString,
@@ -166,7 +166,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Returns an attribute whose full QName is specified.
-        #[method_id(@__retain_semantics Other attributeWithName:URI:stringValue:)]
+        #[method_id(@__method_family Other attributeWithName:URI:stringValue:)]
         pub unsafe fn attributeWithName_URI_stringValue(
             name: &NSString,
             uri: &NSString,
@@ -179,7 +179,7 @@ extern_methods!(
         /// xmlns:name="stringValue"
         /// </tt>
         /// .
-        #[method_id(@__retain_semantics Other namespaceWithName:stringValue:)]
+        #[method_id(@__method_family Other namespaceWithName:stringValue:)]
         pub unsafe fn namespaceWithName_stringValue(
             name: &NSString,
             string_value: &NSString,
@@ -192,7 +192,7 @@ extern_methods!(
         /// ?name stringValue>
         /// </tt>
         /// .
-        #[method_id(@__retain_semantics Other processingInstructionWithName:stringValue:)]
+        #[method_id(@__method_family Other processingInstructionWithName:stringValue:)]
         pub unsafe fn processingInstructionWithName_stringValue(
             name: &NSString,
             string_value: &NSString,
@@ -205,17 +205,17 @@ extern_methods!(
         /// --stringValue-->
         /// </tt>
         /// .
-        #[method_id(@__retain_semantics Other commentWithStringValue:)]
+        #[method_id(@__method_family Other commentWithStringValue:)]
         pub unsafe fn commentWithStringValue(string_value: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
         /// Returns a text node.
-        #[method_id(@__retain_semantics Other textWithStringValue:)]
+        #[method_id(@__method_family Other textWithStringValue:)]
         pub unsafe fn textWithStringValue(string_value: &NSString) -> Retained<AnyObject>;
 
         #[cfg(feature = "NSString")]
         /// Returns an element, attribute, entity, or notation DTD node based on the full XML string.
-        #[method_id(@__retain_semantics Other DTDNodeWithXMLString:)]
+        #[method_id(@__method_family Other DTDNodeWithXMLString:)]
         pub unsafe fn DTDNodeWithXMLString(string: &NSString) -> Option<Retained<AnyObject>>;
 
         /// Returns an element, attribute, entity, or notation DTD node based on the full XML string.
@@ -224,7 +224,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Sets the nodes name. Applicable for element, attribute, namespace, processing-instruction, document type declaration, element declaration, attribute declaration, entity declaration, and notation declaration.
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -233,7 +233,7 @@ extern_methods!(
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         /// Sets the content of the node. Setting the objectValue removes all existing children including processing instructions and comments. Setting the object value on an element creates a single text node child.
-        #[method_id(@__retain_semantics Other objectValue)]
+        #[method_id(@__method_family Other objectValue)]
         pub unsafe fn objectValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`objectValue`][Self::objectValue].
@@ -242,7 +242,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Sets the content of the node. Setting the stringValue removes all existing children including processing instructions and comments. Setting the string value on an element creates a single text node child. The getter returns the string value of the node, which may be either its content or child text nodes, depending on the type of node. Elements are recursed and text nodes concatenated in document order with no intervening spaces.
-        #[method_id(@__retain_semantics Other stringValue)]
+        #[method_id(@__method_family Other stringValue)]
         pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -271,11 +271,11 @@ extern_methods!(
 
         #[cfg(feature = "NSXMLDocument")]
         /// The encompassing document or nil.
-        #[method_id(@__retain_semantics Other rootDocument)]
+        #[method_id(@__method_family Other rootDocument)]
         pub unsafe fn rootDocument(&self) -> Option<Retained<NSXMLDocument>>;
 
         /// The parent of this node. Documents and standalone Nodes have a nil parent; there is not a 1-to-1 relationship between parent and children, eg a namespace cannot be a child but has a parent element.
-        #[method_id(@__retain_semantics Other parent)]
+        #[method_id(@__method_family Other parent)]
         pub unsafe fn parent(&self) -> Option<Retained<NSXMLNode>>;
 
         /// The amount of children, relevant for documents, elements, and document type declarations. Use this instead of [[self children] count].
@@ -284,27 +284,27 @@ extern_methods!(
 
         #[cfg(feature = "NSArray")]
         /// An immutable array of child nodes. Relevant for documents, elements, and document type declarations.
-        #[method_id(@__retain_semantics Other children)]
+        #[method_id(@__method_family Other children)]
         pub unsafe fn children(&self) -> Option<Retained<NSArray<NSXMLNode>>>;
 
         /// Returns the child node at a particular index.
-        #[method_id(@__retain_semantics Other childAtIndex:)]
+        #[method_id(@__method_family Other childAtIndex:)]
         pub unsafe fn childAtIndex(&self, index: NSUInteger) -> Option<Retained<NSXMLNode>>;
 
         /// Returns the previous sibling, or nil if there isn't one.
-        #[method_id(@__retain_semantics Other previousSibling)]
+        #[method_id(@__method_family Other previousSibling)]
         pub unsafe fn previousSibling(&self) -> Option<Retained<NSXMLNode>>;
 
         /// Returns the next sibling, or nil if there isn't one.
-        #[method_id(@__retain_semantics Other nextSibling)]
+        #[method_id(@__method_family Other nextSibling)]
         pub unsafe fn nextSibling(&self) -> Option<Retained<NSXMLNode>>;
 
         /// Returns the previous node in document order. This can be used to walk the tree backwards.
-        #[method_id(@__retain_semantics Other previousNode)]
+        #[method_id(@__method_family Other previousNode)]
         pub unsafe fn previousNode(&self) -> Option<Retained<NSXMLNode>>;
 
         /// Returns the next node in document order. This can be used to walk the tree forwards.
-        #[method_id(@__retain_semantics Other nextNode)]
+        #[method_id(@__method_family Other nextNode)]
         pub unsafe fn nextNode(&self) -> Option<Retained<NSXMLNode>>;
 
         /// Detaches this node from its parent.
@@ -313,22 +313,22 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Returns the XPath to this node, for example foo/bar[2]/baz.
-        #[method_id(@__retain_semantics Other XPath)]
+        #[method_id(@__method_family Other XPath)]
         pub unsafe fn XPath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Returns the local name bar if this attribute or element's name is foo:bar
-        #[method_id(@__retain_semantics Other localName)]
+        #[method_id(@__method_family Other localName)]
         pub unsafe fn localName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Returns the prefix foo if this attribute or element's name if foo:bar
-        #[method_id(@__retain_semantics Other prefix)]
+        #[method_id(@__method_family Other prefix)]
         pub unsafe fn prefix(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Set the URI of this element, attribute, or document. For documents it is the URI of document origin. Getter returns the URI of this element, attribute, or document. For documents it is the URI of document origin and is automatically set when using initWithContentsOfURL.
-        #[method_id(@__retain_semantics Other URI)]
+        #[method_id(@__method_family Other URI)]
         pub unsafe fn URI(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -338,37 +338,37 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Returns the local name bar in foo:bar.
-        #[method_id(@__retain_semantics Other localNameForName:)]
+        #[method_id(@__method_family Other localNameForName:)]
         pub unsafe fn localNameForName(name: &NSString) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Returns the prefix foo in the name foo:bar.
-        #[method_id(@__retain_semantics Other prefixForName:)]
+        #[method_id(@__method_family Other prefixForName:)]
         pub unsafe fn prefixForName(name: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Returns the namespace belonging to one of the predefined namespaces xml, xs, or xsi
-        #[method_id(@__retain_semantics Other predefinedNamespaceForPrefix:)]
+        #[method_id(@__method_family Other predefinedNamespaceForPrefix:)]
         pub unsafe fn predefinedNamespaceForPrefix(name: &NSString) -> Option<Retained<NSXMLNode>>;
 
         #[cfg(feature = "NSString")]
         /// Used for debugging. May give more information than XMLString.
-        #[method_id(@__retain_semantics Other description)]
+        #[method_id(@__method_family Other description)]
         pub unsafe fn description(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// The representation of this node as it would appear in an XML document.
-        #[method_id(@__retain_semantics Other XMLString)]
+        #[method_id(@__method_family Other XMLString)]
         pub unsafe fn XMLString(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSString", feature = "NSXMLNodeOptions"))]
         /// The representation of this node as it would appear in an XML document, with various output options available.
-        #[method_id(@__retain_semantics Other XMLStringWithOptions:)]
+        #[method_id(@__method_family Other XMLStringWithOptions:)]
         pub unsafe fn XMLStringWithOptions(&self, options: NSXMLNodeOptions) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// W3 canonical form (http://www.w3.org/TR/xml-c14n). The input option NSXMLNodePreserveWhitespace should be set for true canonical form.
-        #[method_id(@__retain_semantics Other canonicalXMLStringPreservingComments:)]
+        #[method_id(@__method_family Other canonicalXMLStringPreservingComments:)]
         pub unsafe fn canonicalXMLStringPreservingComments(
             &self,
             comments: bool,
@@ -378,7 +378,7 @@ extern_methods!(
         /// Returns the nodes resulting from applying an XPath to this node using the node as the context item ("."). normalizeAdjacentTextNodesPreservingCDATA:NO should be called if there are adjacent text nodes since they are not allowed under the XPath/XQuery Data Model.
         ///
         /// Returns: An array whose elements are a kind of NSXMLNode.
-        #[method_id(@__retain_semantics Other nodesForXPath:error:_)]
+        #[method_id(@__method_family Other nodesForXPath:error:_)]
         pub unsafe fn nodesForXPath_error(
             &self,
             xpath: &NSString,
@@ -393,7 +393,7 @@ extern_methods!(
         /// Returns the objects resulting from applying an XQuery to this node using the node as the context item ("."). Constants are a name-value dictionary for constants declared "external" in the query. normalizeAdjacentTextNodesPreservingCDATA:NO should be called if there are adjacent text nodes since they are not allowed under the XPath/XQuery Data Model.
         ///
         /// Returns: An array whose elements are kinds of NSArray, NSData, NSDate, NSNumber, NSString, NSURL, or NSXMLNode.
-        #[method_id(@__retain_semantics Other objectsForXQuery:constants:error:_)]
+        #[method_id(@__method_family Other objectsForXQuery:constants:error:_)]
         pub unsafe fn objectsForXQuery_constants_error(
             &self,
             xquery: &NSString,
@@ -401,7 +401,7 @@ extern_methods!(
         ) -> Result<Retained<NSArray>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSError", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other objectsForXQuery:error:_)]
+        #[method_id(@__method_family Other objectsForXQuery:error:_)]
         pub unsafe fn objectsForXQuery_error(
             &self,
             xquery: &NSString,
@@ -412,7 +412,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSXMLNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -22,7 +22,7 @@ unsafe impl NSObjectProtocol for NSStoryboardSegue {}
 extern_methods!(
     unsafe impl NSStoryboardSegue {
         #[cfg(feature = "block2")]
-        #[method_id(@__retain_semantics Other segueWithIdentifier:source:destination:performHandler:)]
+        #[method_id(@__method_family Other segueWithIdentifier:source:destination:performHandler:)]
         pub unsafe fn segueWithIdentifier_source_destination_performHandler(
             identifier: &NSStoryboardSegueIdentifier,
             source_controller: &AnyObject,
@@ -30,7 +30,7 @@ extern_methods!(
             perform_handler: &block2::Block<dyn Fn()>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithIdentifier:source:destination:)]
+        #[method_id(@__method_family Init initWithIdentifier:source:destination:)]
         pub unsafe fn initWithIdentifier_source_destination(
             this: Allocated<Self>,
             identifier: &NSStoryboardSegueIdentifier,
@@ -38,13 +38,13 @@ extern_methods!(
             destination_controller: &AnyObject,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSStoryboardSegueIdentifier>>;
 
-        #[method_id(@__retain_semantics Other sourceController)]
+        #[method_id(@__method_family Other sourceController)]
         pub unsafe fn sourceController(&self) -> Retained<AnyObject>;
 
-        #[method_id(@__retain_semantics Other destinationController)]
+        #[method_id(@__method_family Other destinationController)]
         pub unsafe fn destinationController(&self) -> Retained<AnyObject>;
 
         #[method(perform)]
@@ -55,10 +55,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSStoryboardSegue {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

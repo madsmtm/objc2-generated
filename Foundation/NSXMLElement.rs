@@ -41,12 +41,12 @@ extern_methods!(
         /// /name>
         /// </tt>
         /// .
-        #[method_id(@__retain_semantics Init initWithName:)]
+        #[method_id(@__method_family Init initWithName:)]
         pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         /// Returns an element whose full QName is specified.
-        #[method_id(@__retain_semantics Init initWithName:URI:)]
+        #[method_id(@__method_family Init initWithName:URI:)]
         pub unsafe fn initWithName_URI(
             this: Allocated<Self>,
             name: &NSString,
@@ -62,7 +62,7 @@ extern_methods!(
         /// /name>
         /// </tt>
         /// .
-        #[method_id(@__retain_semantics Init initWithName:stringValue:)]
+        #[method_id(@__method_family Init initWithName:stringValue:)]
         pub unsafe fn initWithName_stringValue(
             this: Allocated<Self>,
             name: &NSString,
@@ -75,14 +75,14 @@ extern_methods!(
         /// error
         /// </tt>
         /// .
-        #[method_id(@__retain_semantics Init initWithXMLString:error:_)]
+        #[method_id(@__method_family Init initWithXMLString:error:_)]
         pub unsafe fn initWithXMLString_error(
             this: Allocated<Self>,
             string: &NSString,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSXMLNodeOptions")]
-        #[method_id(@__retain_semantics Init initWithKind:options:)]
+        #[method_id(@__method_family Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Allocated<Self>,
             kind: NSXMLNodeKind,
@@ -91,12 +91,12 @@ extern_methods!(
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Returns all of the child elements that match this name.
-        #[method_id(@__retain_semantics Other elementsForName:)]
+        #[method_id(@__method_family Other elementsForName:)]
         pub unsafe fn elementsForName(&self, name: &NSString) -> Retained<NSArray<NSXMLElement>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Returns all of the child elements that match this localname URI pair.
-        #[method_id(@__retain_semantics Other elementsForLocalName:URI:)]
+        #[method_id(@__method_family Other elementsForLocalName:URI:)]
         pub unsafe fn elementsForLocalName_URI(
             &self,
             local_name: &NSString,
@@ -114,7 +114,7 @@ extern_methods!(
 
         #[cfg(feature = "NSArray")]
         /// Set the attributes. In the case of duplicate names, the first attribute with the name is used.
-        #[method_id(@__retain_semantics Other attributes)]
+        #[method_id(@__method_family Other attributes)]
         pub unsafe fn attributes(&self) -> Option<Retained<NSArray<NSXMLNode>>>;
 
         #[cfg(feature = "NSArray")]
@@ -132,12 +132,12 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Returns an attribute matching this name.
-        #[method_id(@__retain_semantics Other attributeForName:)]
+        #[method_id(@__method_family Other attributeForName:)]
         pub unsafe fn attributeForName(&self, name: &NSString) -> Option<Retained<NSXMLNode>>;
 
         #[cfg(feature = "NSString")]
         /// Returns an attribute matching this localname URI pair.
-        #[method_id(@__retain_semantics Other attributeForLocalName:URI:)]
+        #[method_id(@__method_family Other attributeForLocalName:URI:)]
         pub unsafe fn attributeForLocalName_URI(
             &self,
             local_name: &NSString,
@@ -155,7 +155,7 @@ extern_methods!(
 
         #[cfg(feature = "NSArray")]
         /// Set the namespaces. In the case of duplicate names, the first namespace with the name is used.
-        #[method_id(@__retain_semantics Other namespaces)]
+        #[method_id(@__method_family Other namespaces)]
         pub unsafe fn namespaces(&self) -> Option<Retained<NSArray<NSXMLNode>>>;
 
         #[cfg(feature = "NSArray")]
@@ -165,12 +165,12 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Returns the namespace matching this prefix.
-        #[method_id(@__retain_semantics Other namespaceForPrefix:)]
+        #[method_id(@__method_family Other namespaceForPrefix:)]
         pub unsafe fn namespaceForPrefix(&self, name: &NSString) -> Option<Retained<NSXMLNode>>;
 
         #[cfg(feature = "NSString")]
         /// Returns the namespace who matches the prefix of the name given. Looks in the entire namespace chain.
-        #[method_id(@__retain_semantics Other resolveNamespaceForName:)]
+        #[method_id(@__method_family Other resolveNamespaceForName:)]
         pub unsafe fn resolveNamespaceForName(
             &self,
             name: &NSString,
@@ -178,7 +178,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Returns the URI of this prefix. Looks in the entire namespace chain.
-        #[method_id(@__retain_semantics Other resolvePrefixForNamespaceURI:)]
+        #[method_id(@__method_family Other resolvePrefixForNamespaceURI:)]
         pub unsafe fn resolvePrefixForNamespaceURI(
             &self,
             namespace_uri: &NSString,
@@ -224,7 +224,7 @@ extern_methods!(
     /// Methods declared on superclass `NSXMLNode`
     #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLElement {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Invokes
@@ -234,7 +234,7 @@ extern_methods!(
         /// ```
         ///
         /// with options set to NSXMLNodeOptionsNone
-        #[method_id(@__retain_semantics Init initWithKind:)]
+        #[method_id(@__method_family Init initWithKind:)]
         pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
     }
 );
@@ -243,7 +243,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLElement {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

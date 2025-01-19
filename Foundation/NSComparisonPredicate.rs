@@ -124,7 +124,7 @@ extern_methods!(
     #[cfg(feature = "NSPredicate")]
     unsafe impl NSComparisonPredicate {
         #[cfg(feature = "NSExpression")]
-        #[method_id(@__retain_semantics Other predicateWithLeftExpression:rightExpression:modifier:type:options:)]
+        #[method_id(@__method_family Other predicateWithLeftExpression:rightExpression:modifier:type:options:)]
         pub unsafe fn predicateWithLeftExpression_rightExpression_modifier_type_options(
             lhs: &NSExpression,
             rhs: &NSExpression,
@@ -134,7 +134,7 @@ extern_methods!(
         ) -> Retained<NSComparisonPredicate>;
 
         #[cfg(feature = "NSExpression")]
-        #[method_id(@__retain_semantics Other predicateWithLeftExpression:rightExpression:customSelector:)]
+        #[method_id(@__method_family Other predicateWithLeftExpression:rightExpression:customSelector:)]
         pub unsafe fn predicateWithLeftExpression_rightExpression_customSelector(
             lhs: &NSExpression,
             rhs: &NSExpression,
@@ -142,7 +142,7 @@ extern_methods!(
         ) -> Retained<NSComparisonPredicate>;
 
         #[cfg(feature = "NSExpression")]
-        #[method_id(@__retain_semantics Init initWithLeftExpression:rightExpression:modifier:type:options:)]
+        #[method_id(@__method_family Init initWithLeftExpression:rightExpression:modifier:type:options:)]
         pub unsafe fn initWithLeftExpression_rightExpression_modifier_type_options(
             this: Allocated<Self>,
             lhs: &NSExpression,
@@ -153,7 +153,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSExpression")]
-        #[method_id(@__retain_semantics Init initWithLeftExpression:rightExpression:customSelector:)]
+        #[method_id(@__method_family Init initWithLeftExpression:rightExpression:customSelector:)]
         pub unsafe fn initWithLeftExpression_rightExpression_customSelector(
             this: Allocated<Self>,
             lhs: &NSExpression,
@@ -162,7 +162,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -175,11 +175,11 @@ extern_methods!(
         pub unsafe fn comparisonPredicateModifier(&self) -> NSComparisonPredicateModifier;
 
         #[cfg(feature = "NSExpression")]
-        #[method_id(@__retain_semantics Other leftExpression)]
+        #[method_id(@__method_family Other leftExpression)]
         pub unsafe fn leftExpression(&self) -> Retained<NSExpression>;
 
         #[cfg(feature = "NSExpression")]
-        #[method_id(@__retain_semantics Other rightExpression)]
+        #[method_id(@__method_family Other rightExpression)]
         pub unsafe fn rightExpression(&self) -> Retained<NSExpression>;
 
         #[method(customSelector)]
@@ -194,10 +194,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPredicate")]
     unsafe impl NSComparisonPredicate {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

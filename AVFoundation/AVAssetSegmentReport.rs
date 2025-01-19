@@ -56,10 +56,10 @@ unsafe impl NSObjectProtocol for AVAssetSegmentReport {}
 
 extern_methods!(
     unsafe impl AVAssetSegmentReport {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// A segment type of the segment data.
@@ -67,7 +67,7 @@ extern_methods!(
         pub unsafe fn segmentType(&self) -> AVAssetSegmentType;
 
         /// Provides an array of AVAssetSegmentTrackReport in the segment data.
-        #[method_id(@__retain_semantics Other trackReports)]
+        #[method_id(@__method_family Other trackReports)]
         pub unsafe fn trackReports(&self) -> Retained<NSArray<AVAssetSegmentTrackReport>>;
     }
 );
@@ -91,10 +91,10 @@ unsafe impl NSObjectProtocol for AVAssetSegmentTrackReport {}
 
 extern_methods!(
     unsafe impl AVAssetSegmentTrackReport {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -104,7 +104,7 @@ extern_methods!(
 
         #[cfg(feature = "AVMediaFormat")]
         /// Indicates the media type for this track. Media types are declared in AVMediaFormat.h.
-        #[method_id(@__retain_semantics Other mediaType)]
+        #[method_id(@__method_family Other mediaType)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -118,7 +118,7 @@ extern_methods!(
         pub unsafe fn duration(&self) -> CMTime;
 
         /// Provides information on the first video sample in this track. The value is nil if this track is not video track or no information available.
-        #[method_id(@__retain_semantics Other firstVideoSampleInformation)]
+        #[method_id(@__method_family Other firstVideoSampleInformation)]
         pub unsafe fn firstVideoSampleInformation(
             &self,
         ) -> Option<Retained<AVAssetSegmentReportSampleInformation>>;
@@ -144,10 +144,10 @@ unsafe impl NSObjectProtocol for AVAssetSegmentReportSampleInformation {}
 
 extern_methods!(
     unsafe impl AVAssetSegmentReportSampleInformation {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]

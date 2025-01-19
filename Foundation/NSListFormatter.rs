@@ -32,7 +32,7 @@ extern_methods!(
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSListFormatter {
         #[cfg(feature = "NSLocale")]
-        #[method_id(@__retain_semantics Other locale)]
+        #[method_id(@__method_family Other locale)]
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
@@ -40,7 +40,7 @@ extern_methods!(
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
-        #[method_id(@__retain_semantics Other itemFormatter)]
+        #[method_id(@__method_family Other itemFormatter)]
         pub unsafe fn itemFormatter(&self) -> Option<Retained<NSFormatter>>;
 
         /// Setter for [`itemFormatter`][Self::itemFormatter].
@@ -48,17 +48,17 @@ extern_methods!(
         pub unsafe fn setItemFormatter(&self, item_formatter: Option<&NSFormatter>);
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other localizedStringByJoiningStrings:)]
+        #[method_id(@__method_family Other localizedStringByJoiningStrings:)]
         pub unsafe fn localizedStringByJoiningStrings(
             strings: &NSArray<NSString>,
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other stringFromItems:)]
+        #[method_id(@__method_family Other stringFromItems:)]
         pub unsafe fn stringFromItems(&self, items: &NSArray) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other stringForObjectValue:)]
+        #[method_id(@__method_family Other stringForObjectValue:)]
         pub unsafe fn stringForObjectValue(
             &self,
             obj: Option<&AnyObject>,
@@ -70,10 +70,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSListFormatter {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

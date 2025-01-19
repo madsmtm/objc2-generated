@@ -212,10 +212,10 @@ unsafe impl UIResponderStandardEditActions for UIApplication {}
 extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIApplication {
-        #[method_id(@__retain_semantics Other sharedApplication)]
+        #[method_id(@__method_family Other sharedApplication)]
         pub fn sharedApplication(mtm: MainThreadMarker) -> Retained<UIApplication>;
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIApplicationDelegate>>>;
@@ -268,12 +268,12 @@ extern_methods!(
 
         #[cfg(all(feature = "UIView", feature = "UIWindow"))]
         #[deprecated = "Should not be used for applications that support multiple scenes as it returns a key window across all connected scenes"]
-        #[method_id(@__retain_semantics Other keyWindow)]
+        #[method_id(@__method_family Other keyWindow)]
         pub unsafe fn keyWindow(&self) -> Option<Retained<UIWindow>>;
 
         #[cfg(all(feature = "UIView", feature = "UIWindow"))]
         #[deprecated = "Use UIWindowScene.windows on a relevant window scene instead"]
-        #[method_id(@__retain_semantics Other windows)]
+        #[method_id(@__method_family Other windows)]
         pub fn windows(&self) -> Retained<NSArray<UIWindow>>;
 
         #[cfg(feature = "UIEvent")]
@@ -389,15 +389,15 @@ extern_methods!(
         pub unsafe fn userInterfaceLayoutDirection(&self) -> UIUserInterfaceLayoutDirection;
 
         #[cfg(feature = "UIContentSizeCategory")]
-        #[method_id(@__retain_semantics Other preferredContentSizeCategory)]
+        #[method_id(@__method_family Other preferredContentSizeCategory)]
         pub unsafe fn preferredContentSizeCategory(&self) -> Retained<UIContentSizeCategory>;
 
         #[cfg(feature = "UIScene")]
-        #[method_id(@__retain_semantics Other connectedScenes)]
+        #[method_id(@__method_family Other connectedScenes)]
         pub unsafe fn connectedScenes(&self) -> Retained<NSSet<UIScene>>;
 
         #[cfg(feature = "UISceneSession")]
-        #[method_id(@__retain_semantics Other openSessions)]
+        #[method_id(@__method_family Other openSessions)]
         pub unsafe fn openSessions(&self) -> Retained<NSSet<UISceneSession>>;
 
         #[method(supportsMultipleScenes)]
@@ -453,10 +453,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIResponder")]
     unsafe impl UIApplication {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -509,7 +509,7 @@ extern_methods!(
 
         #[cfg(feature = "UILocalNotification")]
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenter getPendingNotificationRequestsWithCompletionHandler:]"]
-        #[method_id(@__retain_semantics Other scheduledLocalNotifications)]
+        #[method_id(@__method_family Other scheduledLocalNotifications)]
         pub unsafe fn scheduledLocalNotifications(
             &self,
         ) -> Option<Retained<NSArray<UILocalNotification>>>;
@@ -539,7 +539,7 @@ extern_methods!(
 
         #[cfg(feature = "UIUserNotificationSettings")]
         #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenter getNotificationSettingsWithCompletionHandler:] and -[UNUserNotificationCenter getNotificationCategoriesWithCompletionHandler:]"]
-        #[method_id(@__retain_semantics Other currentUserNotificationSettings)]
+        #[method_id(@__method_family Other currentUserNotificationSettings)]
         pub unsafe fn currentUserNotificationSettings(
             &self,
         ) -> Option<Retained<UIUserNotificationSettings>>;
@@ -574,7 +574,7 @@ extern_methods!(
     #[cfg(feature = "UIResponder")]
     unsafe impl UIApplication {
         #[cfg(feature = "UIApplicationShortcutItem")]
-        #[method_id(@__retain_semantics Other shortcutItems)]
+        #[method_id(@__method_family Other shortcutItems)]
         pub unsafe fn shortcutItems(&self) -> Option<Retained<NSArray<UIApplicationShortcutItem>>>;
 
         #[cfg(feature = "UIApplicationShortcutItem")]
@@ -602,7 +602,7 @@ extern_methods!(
             completion_handler: Option<&block2::Block<dyn Fn(*mut NSError)>>,
         );
 
-        #[method_id(@__retain_semantics Other alternateIconName)]
+        #[method_id(@__method_family Other alternateIconName)]
         pub unsafe fn alternateIconName(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -1049,7 +1049,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
         #[optional]
-        #[method_id(@__retain_semantics Other window)]
+        #[method_id(@__method_family Other window)]
         unsafe fn window(&self) -> Option<Retained<UIWindow>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
@@ -1083,7 +1083,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[method_id(@__retain_semantics Other application:viewControllerWithRestorationIdentifierPath:coder:)]
+        #[method_id(@__method_family Other application:viewControllerWithRestorationIdentifierPath:coder:)]
         unsafe fn application_viewControllerWithRestorationIdentifierPath_coder(
             &self,
             application: &UIApplication,
@@ -1206,7 +1206,7 @@ extern_protocol!(
             feature = "UISceneSession"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other application:configurationForConnectingSceneSession:options:)]
+        #[method_id(@__method_family Other application:configurationForConnectingSceneSession:options:)]
         unsafe fn application_configurationForConnectingSceneSession_options(
             &self,
             application: &UIApplication,

@@ -58,29 +58,29 @@ extern_methods!(
     ))]
     unsafe impl DOMDocumentType {
         #[deprecated]
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "DOMNamedNodeMap")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other entities)]
+        #[method_id(@__method_family Other entities)]
         pub unsafe fn entities(&self) -> Option<Retained<DOMNamedNodeMap>>;
 
         #[cfg(feature = "DOMNamedNodeMap")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other notations)]
+        #[method_id(@__method_family Other notations)]
         pub unsafe fn notations(&self) -> Option<Retained<DOMNamedNodeMap>>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other publicId)]
+        #[method_id(@__method_family Other publicId)]
         pub unsafe fn publicId(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other systemId)]
+        #[method_id(@__method_family Other systemId)]
         pub unsafe fn systemId(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other internalSubset)]
+        #[method_id(@__method_family Other internalSubset)]
         pub unsafe fn internalSubset(&self) -> Retained<NSString>;
     }
 );
@@ -94,7 +94,7 @@ extern_methods!(
     ))]
     unsafe impl DOMDocumentType {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -107,7 +107,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMDocumentType {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

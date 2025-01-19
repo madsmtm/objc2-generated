@@ -28,10 +28,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUnitConverter {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -59,13 +59,13 @@ extern_methods!(
         #[method(constant)]
         pub unsafe fn constant(&self) -> c_double;
 
-        #[method_id(@__retain_semantics Init initWithCoefficient:)]
+        #[method_id(@__method_family Init initWithCoefficient:)]
         pub unsafe fn initWithCoefficient(
             this: Allocated<Self>,
             coefficient: c_double,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoefficient:constant:)]
+        #[method_id(@__method_family Init initWithCoefficient:constant:)]
         pub unsafe fn initWithCoefficient_constant(
             this: Allocated<Self>,
             coefficient: c_double,
@@ -77,10 +77,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSUnitConverterLinear {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -111,17 +111,17 @@ unsafe impl NSSecureCoding for NSUnit {}
 extern_methods!(
     unsafe impl NSUnit {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other symbol)]
+        #[method_id(@__method_family Other symbol)]
         pub unsafe fn symbol(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -151,18 +151,18 @@ unsafe impl NSSecureCoding for NSDimension {}
 
 extern_methods!(
     unsafe impl NSDimension {
-        #[method_id(@__retain_semantics Other converter)]
+        #[method_id(@__method_family Other converter)]
         pub unsafe fn converter(&self) -> Retained<NSUnitConverter>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -170,14 +170,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSDimension {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -211,10 +211,10 @@ unsafe impl NSSecureCoding for NSUnitAcceleration {}
 
 extern_methods!(
     unsafe impl NSUnitAcceleration {
-        #[method_id(@__retain_semantics Other metersPerSecondSquared)]
+        #[method_id(@__method_family Other metersPerSecondSquared)]
         pub unsafe fn metersPerSecondSquared() -> Retained<NSUnitAcceleration>;
 
-        #[method_id(@__retain_semantics Other gravity)]
+        #[method_id(@__method_family Other gravity)]
         pub unsafe fn gravity() -> Retained<NSUnitAcceleration>;
     }
 );
@@ -223,14 +223,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitAcceleration {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -238,14 +238,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitAcceleration {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -279,22 +279,22 @@ unsafe impl NSSecureCoding for NSUnitAngle {}
 
 extern_methods!(
     unsafe impl NSUnitAngle {
-        #[method_id(@__retain_semantics Other degrees)]
+        #[method_id(@__method_family Other degrees)]
         pub unsafe fn degrees() -> Retained<NSUnitAngle>;
 
-        #[method_id(@__retain_semantics Other arcMinutes)]
+        #[method_id(@__method_family Other arcMinutes)]
         pub unsafe fn arcMinutes() -> Retained<NSUnitAngle>;
 
-        #[method_id(@__retain_semantics Other arcSeconds)]
+        #[method_id(@__method_family Other arcSeconds)]
         pub unsafe fn arcSeconds() -> Retained<NSUnitAngle>;
 
-        #[method_id(@__retain_semantics Other radians)]
+        #[method_id(@__method_family Other radians)]
         pub unsafe fn radians() -> Retained<NSUnitAngle>;
 
-        #[method_id(@__retain_semantics Other gradians)]
+        #[method_id(@__method_family Other gradians)]
         pub unsafe fn gradians() -> Retained<NSUnitAngle>;
 
-        #[method_id(@__retain_semantics Other revolutions)]
+        #[method_id(@__method_family Other revolutions)]
         pub unsafe fn revolutions() -> Retained<NSUnitAngle>;
     }
 );
@@ -303,14 +303,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitAngle {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -318,14 +318,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitAngle {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -359,46 +359,46 @@ unsafe impl NSSecureCoding for NSUnitArea {}
 
 extern_methods!(
     unsafe impl NSUnitArea {
-        #[method_id(@__retain_semantics Other squareMegameters)]
+        #[method_id(@__method_family Other squareMegameters)]
         pub unsafe fn squareMegameters() -> Retained<NSUnitArea>;
 
-        #[method_id(@__retain_semantics Other squareKilometers)]
+        #[method_id(@__method_family Other squareKilometers)]
         pub unsafe fn squareKilometers() -> Retained<NSUnitArea>;
 
-        #[method_id(@__retain_semantics Other squareMeters)]
+        #[method_id(@__method_family Other squareMeters)]
         pub unsafe fn squareMeters() -> Retained<NSUnitArea>;
 
-        #[method_id(@__retain_semantics Other squareCentimeters)]
+        #[method_id(@__method_family Other squareCentimeters)]
         pub unsafe fn squareCentimeters() -> Retained<NSUnitArea>;
 
-        #[method_id(@__retain_semantics Other squareMillimeters)]
+        #[method_id(@__method_family Other squareMillimeters)]
         pub unsafe fn squareMillimeters() -> Retained<NSUnitArea>;
 
-        #[method_id(@__retain_semantics Other squareMicrometers)]
+        #[method_id(@__method_family Other squareMicrometers)]
         pub unsafe fn squareMicrometers() -> Retained<NSUnitArea>;
 
-        #[method_id(@__retain_semantics Other squareNanometers)]
+        #[method_id(@__method_family Other squareNanometers)]
         pub unsafe fn squareNanometers() -> Retained<NSUnitArea>;
 
-        #[method_id(@__retain_semantics Other squareInches)]
+        #[method_id(@__method_family Other squareInches)]
         pub unsafe fn squareInches() -> Retained<NSUnitArea>;
 
-        #[method_id(@__retain_semantics Other squareFeet)]
+        #[method_id(@__method_family Other squareFeet)]
         pub unsafe fn squareFeet() -> Retained<NSUnitArea>;
 
-        #[method_id(@__retain_semantics Other squareYards)]
+        #[method_id(@__method_family Other squareYards)]
         pub unsafe fn squareYards() -> Retained<NSUnitArea>;
 
-        #[method_id(@__retain_semantics Other squareMiles)]
+        #[method_id(@__method_family Other squareMiles)]
         pub unsafe fn squareMiles() -> Retained<NSUnitArea>;
 
-        #[method_id(@__retain_semantics Other acres)]
+        #[method_id(@__method_family Other acres)]
         pub unsafe fn acres() -> Retained<NSUnitArea>;
 
-        #[method_id(@__retain_semantics Other ares)]
+        #[method_id(@__method_family Other ares)]
         pub unsafe fn ares() -> Retained<NSUnitArea>;
 
-        #[method_id(@__retain_semantics Other hectares)]
+        #[method_id(@__method_family Other hectares)]
         pub unsafe fn hectares() -> Retained<NSUnitArea>;
     }
 );
@@ -407,14 +407,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitArea {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -422,14 +422,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitArea {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -463,13 +463,13 @@ unsafe impl NSSecureCoding for NSUnitConcentrationMass {}
 
 extern_methods!(
     unsafe impl NSUnitConcentrationMass {
-        #[method_id(@__retain_semantics Other gramsPerLiter)]
+        #[method_id(@__method_family Other gramsPerLiter)]
         pub unsafe fn gramsPerLiter() -> Retained<NSUnitConcentrationMass>;
 
-        #[method_id(@__retain_semantics Other milligramsPerDeciliter)]
+        #[method_id(@__method_family Other milligramsPerDeciliter)]
         pub unsafe fn milligramsPerDeciliter() -> Retained<NSUnitConcentrationMass>;
 
-        #[method_id(@__retain_semantics Other millimolesPerLiterWithGramsPerMole:)]
+        #[method_id(@__method_family Other millimolesPerLiterWithGramsPerMole:)]
         pub unsafe fn millimolesPerLiterWithGramsPerMole(
             grams_per_mole: c_double,
         ) -> Retained<NSUnitConcentrationMass>;
@@ -480,14 +480,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitConcentrationMass {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -495,14 +495,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitConcentrationMass {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -536,7 +536,7 @@ unsafe impl NSSecureCoding for NSUnitDispersion {}
 
 extern_methods!(
     unsafe impl NSUnitDispersion {
-        #[method_id(@__retain_semantics Other partsPerMillion)]
+        #[method_id(@__method_family Other partsPerMillion)]
         pub unsafe fn partsPerMillion() -> Retained<NSUnitDispersion>;
     }
 );
@@ -545,14 +545,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitDispersion {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -560,14 +560,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitDispersion {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -601,25 +601,25 @@ unsafe impl NSSecureCoding for NSUnitDuration {}
 
 extern_methods!(
     unsafe impl NSUnitDuration {
-        #[method_id(@__retain_semantics Other hours)]
+        #[method_id(@__method_family Other hours)]
         pub unsafe fn hours() -> Retained<NSUnitDuration>;
 
-        #[method_id(@__retain_semantics Other minutes)]
+        #[method_id(@__method_family Other minutes)]
         pub unsafe fn minutes() -> Retained<NSUnitDuration>;
 
-        #[method_id(@__retain_semantics Other seconds)]
+        #[method_id(@__method_family Other seconds)]
         pub unsafe fn seconds() -> Retained<NSUnitDuration>;
 
-        #[method_id(@__retain_semantics Other milliseconds)]
+        #[method_id(@__method_family Other milliseconds)]
         pub unsafe fn milliseconds() -> Retained<NSUnitDuration>;
 
-        #[method_id(@__retain_semantics Other microseconds)]
+        #[method_id(@__method_family Other microseconds)]
         pub unsafe fn microseconds() -> Retained<NSUnitDuration>;
 
-        #[method_id(@__retain_semantics Other nanoseconds)]
+        #[method_id(@__method_family Other nanoseconds)]
         pub unsafe fn nanoseconds() -> Retained<NSUnitDuration>;
 
-        #[method_id(@__retain_semantics Other picoseconds)]
+        #[method_id(@__method_family Other picoseconds)]
         pub unsafe fn picoseconds() -> Retained<NSUnitDuration>;
     }
 );
@@ -628,14 +628,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitDuration {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -643,14 +643,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitDuration {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -684,22 +684,22 @@ unsafe impl NSSecureCoding for NSUnitElectricCharge {}
 
 extern_methods!(
     unsafe impl NSUnitElectricCharge {
-        #[method_id(@__retain_semantics Other coulombs)]
+        #[method_id(@__method_family Other coulombs)]
         pub unsafe fn coulombs() -> Retained<NSUnitElectricCharge>;
 
-        #[method_id(@__retain_semantics Other megaampereHours)]
+        #[method_id(@__method_family Other megaampereHours)]
         pub unsafe fn megaampereHours() -> Retained<NSUnitElectricCharge>;
 
-        #[method_id(@__retain_semantics Other kiloampereHours)]
+        #[method_id(@__method_family Other kiloampereHours)]
         pub unsafe fn kiloampereHours() -> Retained<NSUnitElectricCharge>;
 
-        #[method_id(@__retain_semantics Other ampereHours)]
+        #[method_id(@__method_family Other ampereHours)]
         pub unsafe fn ampereHours() -> Retained<NSUnitElectricCharge>;
 
-        #[method_id(@__retain_semantics Other milliampereHours)]
+        #[method_id(@__method_family Other milliampereHours)]
         pub unsafe fn milliampereHours() -> Retained<NSUnitElectricCharge>;
 
-        #[method_id(@__retain_semantics Other microampereHours)]
+        #[method_id(@__method_family Other microampereHours)]
         pub unsafe fn microampereHours() -> Retained<NSUnitElectricCharge>;
     }
 );
@@ -708,14 +708,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitElectricCharge {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -723,14 +723,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitElectricCharge {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -764,19 +764,19 @@ unsafe impl NSSecureCoding for NSUnitElectricCurrent {}
 
 extern_methods!(
     unsafe impl NSUnitElectricCurrent {
-        #[method_id(@__retain_semantics Other megaamperes)]
+        #[method_id(@__method_family Other megaamperes)]
         pub unsafe fn megaamperes() -> Retained<NSUnitElectricCurrent>;
 
-        #[method_id(@__retain_semantics Other kiloamperes)]
+        #[method_id(@__method_family Other kiloamperes)]
         pub unsafe fn kiloamperes() -> Retained<NSUnitElectricCurrent>;
 
-        #[method_id(@__retain_semantics Other amperes)]
+        #[method_id(@__method_family Other amperes)]
         pub unsafe fn amperes() -> Retained<NSUnitElectricCurrent>;
 
-        #[method_id(@__retain_semantics Other milliamperes)]
+        #[method_id(@__method_family Other milliamperes)]
         pub unsafe fn milliamperes() -> Retained<NSUnitElectricCurrent>;
 
-        #[method_id(@__retain_semantics Other microamperes)]
+        #[method_id(@__method_family Other microamperes)]
         pub unsafe fn microamperes() -> Retained<NSUnitElectricCurrent>;
     }
 );
@@ -785,14 +785,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitElectricCurrent {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -800,14 +800,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitElectricCurrent {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -841,19 +841,19 @@ unsafe impl NSSecureCoding for NSUnitElectricPotentialDifference {}
 
 extern_methods!(
     unsafe impl NSUnitElectricPotentialDifference {
-        #[method_id(@__retain_semantics Other megavolts)]
+        #[method_id(@__method_family Other megavolts)]
         pub unsafe fn megavolts() -> Retained<NSUnitElectricPotentialDifference>;
 
-        #[method_id(@__retain_semantics Other kilovolts)]
+        #[method_id(@__method_family Other kilovolts)]
         pub unsafe fn kilovolts() -> Retained<NSUnitElectricPotentialDifference>;
 
-        #[method_id(@__retain_semantics Other volts)]
+        #[method_id(@__method_family Other volts)]
         pub unsafe fn volts() -> Retained<NSUnitElectricPotentialDifference>;
 
-        #[method_id(@__retain_semantics Other millivolts)]
+        #[method_id(@__method_family Other millivolts)]
         pub unsafe fn millivolts() -> Retained<NSUnitElectricPotentialDifference>;
 
-        #[method_id(@__retain_semantics Other microvolts)]
+        #[method_id(@__method_family Other microvolts)]
         pub unsafe fn microvolts() -> Retained<NSUnitElectricPotentialDifference>;
     }
 );
@@ -862,14 +862,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitElectricPotentialDifference {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -877,14 +877,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitElectricPotentialDifference {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -918,19 +918,19 @@ unsafe impl NSSecureCoding for NSUnitElectricResistance {}
 
 extern_methods!(
     unsafe impl NSUnitElectricResistance {
-        #[method_id(@__retain_semantics Other megaohms)]
+        #[method_id(@__method_family Other megaohms)]
         pub unsafe fn megaohms() -> Retained<NSUnitElectricResistance>;
 
-        #[method_id(@__retain_semantics Other kiloohms)]
+        #[method_id(@__method_family Other kiloohms)]
         pub unsafe fn kiloohms() -> Retained<NSUnitElectricResistance>;
 
-        #[method_id(@__retain_semantics Other ohms)]
+        #[method_id(@__method_family Other ohms)]
         pub unsafe fn ohms() -> Retained<NSUnitElectricResistance>;
 
-        #[method_id(@__retain_semantics Other milliohms)]
+        #[method_id(@__method_family Other milliohms)]
         pub unsafe fn milliohms() -> Retained<NSUnitElectricResistance>;
 
-        #[method_id(@__retain_semantics Other microohms)]
+        #[method_id(@__method_family Other microohms)]
         pub unsafe fn microohms() -> Retained<NSUnitElectricResistance>;
     }
 );
@@ -939,14 +939,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitElectricResistance {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -954,14 +954,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitElectricResistance {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -995,19 +995,19 @@ unsafe impl NSSecureCoding for NSUnitEnergy {}
 
 extern_methods!(
     unsafe impl NSUnitEnergy {
-        #[method_id(@__retain_semantics Other kilojoules)]
+        #[method_id(@__method_family Other kilojoules)]
         pub unsafe fn kilojoules() -> Retained<NSUnitEnergy>;
 
-        #[method_id(@__retain_semantics Other joules)]
+        #[method_id(@__method_family Other joules)]
         pub unsafe fn joules() -> Retained<NSUnitEnergy>;
 
-        #[method_id(@__retain_semantics Other kilocalories)]
+        #[method_id(@__method_family Other kilocalories)]
         pub unsafe fn kilocalories() -> Retained<NSUnitEnergy>;
 
-        #[method_id(@__retain_semantics Other calories)]
+        #[method_id(@__method_family Other calories)]
         pub unsafe fn calories() -> Retained<NSUnitEnergy>;
 
-        #[method_id(@__retain_semantics Other kilowattHours)]
+        #[method_id(@__method_family Other kilowattHours)]
         pub unsafe fn kilowattHours() -> Retained<NSUnitEnergy>;
     }
 );
@@ -1016,14 +1016,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitEnergy {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -1031,14 +1031,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitEnergy {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -1072,31 +1072,31 @@ unsafe impl NSSecureCoding for NSUnitFrequency {}
 
 extern_methods!(
     unsafe impl NSUnitFrequency {
-        #[method_id(@__retain_semantics Other terahertz)]
+        #[method_id(@__method_family Other terahertz)]
         pub unsafe fn terahertz() -> Retained<NSUnitFrequency>;
 
-        #[method_id(@__retain_semantics Other gigahertz)]
+        #[method_id(@__method_family Other gigahertz)]
         pub unsafe fn gigahertz() -> Retained<NSUnitFrequency>;
 
-        #[method_id(@__retain_semantics Other megahertz)]
+        #[method_id(@__method_family Other megahertz)]
         pub unsafe fn megahertz() -> Retained<NSUnitFrequency>;
 
-        #[method_id(@__retain_semantics Other kilohertz)]
+        #[method_id(@__method_family Other kilohertz)]
         pub unsafe fn kilohertz() -> Retained<NSUnitFrequency>;
 
-        #[method_id(@__retain_semantics Other hertz)]
+        #[method_id(@__method_family Other hertz)]
         pub unsafe fn hertz() -> Retained<NSUnitFrequency>;
 
-        #[method_id(@__retain_semantics Other millihertz)]
+        #[method_id(@__method_family Other millihertz)]
         pub unsafe fn millihertz() -> Retained<NSUnitFrequency>;
 
-        #[method_id(@__retain_semantics Other microhertz)]
+        #[method_id(@__method_family Other microhertz)]
         pub unsafe fn microhertz() -> Retained<NSUnitFrequency>;
 
-        #[method_id(@__retain_semantics Other nanohertz)]
+        #[method_id(@__method_family Other nanohertz)]
         pub unsafe fn nanohertz() -> Retained<NSUnitFrequency>;
 
-        #[method_id(@__retain_semantics Other framesPerSecond)]
+        #[method_id(@__method_family Other framesPerSecond)]
         pub unsafe fn framesPerSecond() -> Retained<NSUnitFrequency>;
     }
 );
@@ -1105,14 +1105,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitFrequency {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -1120,14 +1120,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitFrequency {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -1161,13 +1161,13 @@ unsafe impl NSSecureCoding for NSUnitFuelEfficiency {}
 
 extern_methods!(
     unsafe impl NSUnitFuelEfficiency {
-        #[method_id(@__retain_semantics Other litersPer100Kilometers)]
+        #[method_id(@__method_family Other litersPer100Kilometers)]
         pub unsafe fn litersPer100Kilometers() -> Retained<NSUnitFuelEfficiency>;
 
-        #[method_id(@__retain_semantics Other milesPerImperialGallon)]
+        #[method_id(@__method_family Other milesPerImperialGallon)]
         pub unsafe fn milesPerImperialGallon() -> Retained<NSUnitFuelEfficiency>;
 
-        #[method_id(@__retain_semantics Other milesPerGallon)]
+        #[method_id(@__method_family Other milesPerGallon)]
         pub unsafe fn milesPerGallon() -> Retained<NSUnitFuelEfficiency>;
     }
 );
@@ -1176,14 +1176,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitFuelEfficiency {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -1191,14 +1191,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitFuelEfficiency {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -1232,109 +1232,109 @@ unsafe impl NSSecureCoding for NSUnitInformationStorage {}
 
 extern_methods!(
     unsafe impl NSUnitInformationStorage {
-        #[method_id(@__retain_semantics Other bytes)]
+        #[method_id(@__method_family Other bytes)]
         pub unsafe fn bytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other bits)]
+        #[method_id(@__method_family Other bits)]
         pub unsafe fn bits() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other nibbles)]
+        #[method_id(@__method_family Other nibbles)]
         pub unsafe fn nibbles() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other yottabytes)]
+        #[method_id(@__method_family Other yottabytes)]
         pub unsafe fn yottabytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other zettabytes)]
+        #[method_id(@__method_family Other zettabytes)]
         pub unsafe fn zettabytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other exabytes)]
+        #[method_id(@__method_family Other exabytes)]
         pub unsafe fn exabytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other petabytes)]
+        #[method_id(@__method_family Other petabytes)]
         pub unsafe fn petabytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other terabytes)]
+        #[method_id(@__method_family Other terabytes)]
         pub unsafe fn terabytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other gigabytes)]
+        #[method_id(@__method_family Other gigabytes)]
         pub unsafe fn gigabytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other megabytes)]
+        #[method_id(@__method_family Other megabytes)]
         pub unsafe fn megabytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other kilobytes)]
+        #[method_id(@__method_family Other kilobytes)]
         pub unsafe fn kilobytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other yottabits)]
+        #[method_id(@__method_family Other yottabits)]
         pub unsafe fn yottabits() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other zettabits)]
+        #[method_id(@__method_family Other zettabits)]
         pub unsafe fn zettabits() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other exabits)]
+        #[method_id(@__method_family Other exabits)]
         pub unsafe fn exabits() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other petabits)]
+        #[method_id(@__method_family Other petabits)]
         pub unsafe fn petabits() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other terabits)]
+        #[method_id(@__method_family Other terabits)]
         pub unsafe fn terabits() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other gigabits)]
+        #[method_id(@__method_family Other gigabits)]
         pub unsafe fn gigabits() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other megabits)]
+        #[method_id(@__method_family Other megabits)]
         pub unsafe fn megabits() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other kilobits)]
+        #[method_id(@__method_family Other kilobits)]
         pub unsafe fn kilobits() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other yobibytes)]
+        #[method_id(@__method_family Other yobibytes)]
         pub unsafe fn yobibytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other zebibytes)]
+        #[method_id(@__method_family Other zebibytes)]
         pub unsafe fn zebibytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other exbibytes)]
+        #[method_id(@__method_family Other exbibytes)]
         pub unsafe fn exbibytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other pebibytes)]
+        #[method_id(@__method_family Other pebibytes)]
         pub unsafe fn pebibytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other tebibytes)]
+        #[method_id(@__method_family Other tebibytes)]
         pub unsafe fn tebibytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other gibibytes)]
+        #[method_id(@__method_family Other gibibytes)]
         pub unsafe fn gibibytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other mebibytes)]
+        #[method_id(@__method_family Other mebibytes)]
         pub unsafe fn mebibytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other kibibytes)]
+        #[method_id(@__method_family Other kibibytes)]
         pub unsafe fn kibibytes() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other yobibits)]
+        #[method_id(@__method_family Other yobibits)]
         pub unsafe fn yobibits() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other zebibits)]
+        #[method_id(@__method_family Other zebibits)]
         pub unsafe fn zebibits() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other exbibits)]
+        #[method_id(@__method_family Other exbibits)]
         pub unsafe fn exbibits() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other pebibits)]
+        #[method_id(@__method_family Other pebibits)]
         pub unsafe fn pebibits() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other tebibits)]
+        #[method_id(@__method_family Other tebibits)]
         pub unsafe fn tebibits() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other gibibits)]
+        #[method_id(@__method_family Other gibibits)]
         pub unsafe fn gibibits() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other mebibits)]
+        #[method_id(@__method_family Other mebibits)]
         pub unsafe fn mebibits() -> Retained<NSUnitInformationStorage>;
 
-        #[method_id(@__retain_semantics Other kibibits)]
+        #[method_id(@__method_family Other kibibits)]
         pub unsafe fn kibibits() -> Retained<NSUnitInformationStorage>;
     }
 );
@@ -1343,14 +1343,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitInformationStorage {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -1358,14 +1358,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitInformationStorage {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -1399,70 +1399,70 @@ unsafe impl NSSecureCoding for NSUnitLength {}
 
 extern_methods!(
     unsafe impl NSUnitLength {
-        #[method_id(@__retain_semantics Other megameters)]
+        #[method_id(@__method_family Other megameters)]
         pub unsafe fn megameters() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other kilometers)]
+        #[method_id(@__method_family Other kilometers)]
         pub unsafe fn kilometers() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other hectometers)]
+        #[method_id(@__method_family Other hectometers)]
         pub unsafe fn hectometers() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other decameters)]
+        #[method_id(@__method_family Other decameters)]
         pub unsafe fn decameters() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other meters)]
+        #[method_id(@__method_family Other meters)]
         pub unsafe fn meters() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other decimeters)]
+        #[method_id(@__method_family Other decimeters)]
         pub unsafe fn decimeters() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other centimeters)]
+        #[method_id(@__method_family Other centimeters)]
         pub unsafe fn centimeters() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other millimeters)]
+        #[method_id(@__method_family Other millimeters)]
         pub unsafe fn millimeters() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other micrometers)]
+        #[method_id(@__method_family Other micrometers)]
         pub unsafe fn micrometers() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other nanometers)]
+        #[method_id(@__method_family Other nanometers)]
         pub unsafe fn nanometers() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other picometers)]
+        #[method_id(@__method_family Other picometers)]
         pub unsafe fn picometers() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other inches)]
+        #[method_id(@__method_family Other inches)]
         pub unsafe fn inches() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other feet)]
+        #[method_id(@__method_family Other feet)]
         pub unsafe fn feet() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other yards)]
+        #[method_id(@__method_family Other yards)]
         pub unsafe fn yards() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other miles)]
+        #[method_id(@__method_family Other miles)]
         pub unsafe fn miles() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other scandinavianMiles)]
+        #[method_id(@__method_family Other scandinavianMiles)]
         pub unsafe fn scandinavianMiles() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other lightyears)]
+        #[method_id(@__method_family Other lightyears)]
         pub unsafe fn lightyears() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other nauticalMiles)]
+        #[method_id(@__method_family Other nauticalMiles)]
         pub unsafe fn nauticalMiles() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other fathoms)]
+        #[method_id(@__method_family Other fathoms)]
         pub unsafe fn fathoms() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other furlongs)]
+        #[method_id(@__method_family Other furlongs)]
         pub unsafe fn furlongs() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other astronomicalUnits)]
+        #[method_id(@__method_family Other astronomicalUnits)]
         pub unsafe fn astronomicalUnits() -> Retained<NSUnitLength>;
 
-        #[method_id(@__retain_semantics Other parsecs)]
+        #[method_id(@__method_family Other parsecs)]
         pub unsafe fn parsecs() -> Retained<NSUnitLength>;
     }
 );
@@ -1471,14 +1471,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitLength {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -1486,14 +1486,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitLength {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -1527,7 +1527,7 @@ unsafe impl NSSecureCoding for NSUnitIlluminance {}
 
 extern_methods!(
     unsafe impl NSUnitIlluminance {
-        #[method_id(@__retain_semantics Other lux)]
+        #[method_id(@__method_family Other lux)]
         pub unsafe fn lux() -> Retained<NSUnitIlluminance>;
     }
 );
@@ -1536,14 +1536,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitIlluminance {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -1551,14 +1551,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitIlluminance {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -1592,52 +1592,52 @@ unsafe impl NSSecureCoding for NSUnitMass {}
 
 extern_methods!(
     unsafe impl NSUnitMass {
-        #[method_id(@__retain_semantics Other kilograms)]
+        #[method_id(@__method_family Other kilograms)]
         pub unsafe fn kilograms() -> Retained<NSUnitMass>;
 
-        #[method_id(@__retain_semantics Other grams)]
+        #[method_id(@__method_family Other grams)]
         pub unsafe fn grams() -> Retained<NSUnitMass>;
 
-        #[method_id(@__retain_semantics Other decigrams)]
+        #[method_id(@__method_family Other decigrams)]
         pub unsafe fn decigrams() -> Retained<NSUnitMass>;
 
-        #[method_id(@__retain_semantics Other centigrams)]
+        #[method_id(@__method_family Other centigrams)]
         pub unsafe fn centigrams() -> Retained<NSUnitMass>;
 
-        #[method_id(@__retain_semantics Other milligrams)]
+        #[method_id(@__method_family Other milligrams)]
         pub unsafe fn milligrams() -> Retained<NSUnitMass>;
 
-        #[method_id(@__retain_semantics Other micrograms)]
+        #[method_id(@__method_family Other micrograms)]
         pub unsafe fn micrograms() -> Retained<NSUnitMass>;
 
-        #[method_id(@__retain_semantics Other nanograms)]
+        #[method_id(@__method_family Other nanograms)]
         pub unsafe fn nanograms() -> Retained<NSUnitMass>;
 
-        #[method_id(@__retain_semantics Other picograms)]
+        #[method_id(@__method_family Other picograms)]
         pub unsafe fn picograms() -> Retained<NSUnitMass>;
 
-        #[method_id(@__retain_semantics Other ounces)]
+        #[method_id(@__method_family Other ounces)]
         pub unsafe fn ounces() -> Retained<NSUnitMass>;
 
-        #[method_id(@__retain_semantics Other poundsMass)]
+        #[method_id(@__method_family Other poundsMass)]
         pub unsafe fn poundsMass() -> Retained<NSUnitMass>;
 
-        #[method_id(@__retain_semantics Other stones)]
+        #[method_id(@__method_family Other stones)]
         pub unsafe fn stones() -> Retained<NSUnitMass>;
 
-        #[method_id(@__retain_semantics Other metricTons)]
+        #[method_id(@__method_family Other metricTons)]
         pub unsafe fn metricTons() -> Retained<NSUnitMass>;
 
-        #[method_id(@__retain_semantics Other shortTons)]
+        #[method_id(@__method_family Other shortTons)]
         pub unsafe fn shortTons() -> Retained<NSUnitMass>;
 
-        #[method_id(@__retain_semantics Other carats)]
+        #[method_id(@__method_family Other carats)]
         pub unsafe fn carats() -> Retained<NSUnitMass>;
 
-        #[method_id(@__retain_semantics Other ouncesTroy)]
+        #[method_id(@__method_family Other ouncesTroy)]
         pub unsafe fn ouncesTroy() -> Retained<NSUnitMass>;
 
-        #[method_id(@__retain_semantics Other slugs)]
+        #[method_id(@__method_family Other slugs)]
         pub unsafe fn slugs() -> Retained<NSUnitMass>;
     }
 );
@@ -1646,14 +1646,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitMass {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -1661,14 +1661,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitMass {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -1702,37 +1702,37 @@ unsafe impl NSSecureCoding for NSUnitPower {}
 
 extern_methods!(
     unsafe impl NSUnitPower {
-        #[method_id(@__retain_semantics Other terawatts)]
+        #[method_id(@__method_family Other terawatts)]
         pub unsafe fn terawatts() -> Retained<NSUnitPower>;
 
-        #[method_id(@__retain_semantics Other gigawatts)]
+        #[method_id(@__method_family Other gigawatts)]
         pub unsafe fn gigawatts() -> Retained<NSUnitPower>;
 
-        #[method_id(@__retain_semantics Other megawatts)]
+        #[method_id(@__method_family Other megawatts)]
         pub unsafe fn megawatts() -> Retained<NSUnitPower>;
 
-        #[method_id(@__retain_semantics Other kilowatts)]
+        #[method_id(@__method_family Other kilowatts)]
         pub unsafe fn kilowatts() -> Retained<NSUnitPower>;
 
-        #[method_id(@__retain_semantics Other watts)]
+        #[method_id(@__method_family Other watts)]
         pub unsafe fn watts() -> Retained<NSUnitPower>;
 
-        #[method_id(@__retain_semantics Other milliwatts)]
+        #[method_id(@__method_family Other milliwatts)]
         pub unsafe fn milliwatts() -> Retained<NSUnitPower>;
 
-        #[method_id(@__retain_semantics Other microwatts)]
+        #[method_id(@__method_family Other microwatts)]
         pub unsafe fn microwatts() -> Retained<NSUnitPower>;
 
-        #[method_id(@__retain_semantics Other nanowatts)]
+        #[method_id(@__method_family Other nanowatts)]
         pub unsafe fn nanowatts() -> Retained<NSUnitPower>;
 
-        #[method_id(@__retain_semantics Other picowatts)]
+        #[method_id(@__method_family Other picowatts)]
         pub unsafe fn picowatts() -> Retained<NSUnitPower>;
 
-        #[method_id(@__retain_semantics Other femtowatts)]
+        #[method_id(@__method_family Other femtowatts)]
         pub unsafe fn femtowatts() -> Retained<NSUnitPower>;
 
-        #[method_id(@__retain_semantics Other horsepower)]
+        #[method_id(@__method_family Other horsepower)]
         pub unsafe fn horsepower() -> Retained<NSUnitPower>;
     }
 );
@@ -1741,14 +1741,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitPower {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -1756,14 +1756,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitPower {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -1797,34 +1797,34 @@ unsafe impl NSSecureCoding for NSUnitPressure {}
 
 extern_methods!(
     unsafe impl NSUnitPressure {
-        #[method_id(@__retain_semantics Other newtonsPerMetersSquared)]
+        #[method_id(@__method_family Other newtonsPerMetersSquared)]
         pub unsafe fn newtonsPerMetersSquared() -> Retained<NSUnitPressure>;
 
-        #[method_id(@__retain_semantics Other gigapascals)]
+        #[method_id(@__method_family Other gigapascals)]
         pub unsafe fn gigapascals() -> Retained<NSUnitPressure>;
 
-        #[method_id(@__retain_semantics Other megapascals)]
+        #[method_id(@__method_family Other megapascals)]
         pub unsafe fn megapascals() -> Retained<NSUnitPressure>;
 
-        #[method_id(@__retain_semantics Other kilopascals)]
+        #[method_id(@__method_family Other kilopascals)]
         pub unsafe fn kilopascals() -> Retained<NSUnitPressure>;
 
-        #[method_id(@__retain_semantics Other hectopascals)]
+        #[method_id(@__method_family Other hectopascals)]
         pub unsafe fn hectopascals() -> Retained<NSUnitPressure>;
 
-        #[method_id(@__retain_semantics Other inchesOfMercury)]
+        #[method_id(@__method_family Other inchesOfMercury)]
         pub unsafe fn inchesOfMercury() -> Retained<NSUnitPressure>;
 
-        #[method_id(@__retain_semantics Other bars)]
+        #[method_id(@__method_family Other bars)]
         pub unsafe fn bars() -> Retained<NSUnitPressure>;
 
-        #[method_id(@__retain_semantics Other millibars)]
+        #[method_id(@__method_family Other millibars)]
         pub unsafe fn millibars() -> Retained<NSUnitPressure>;
 
-        #[method_id(@__retain_semantics Other millimetersOfMercury)]
+        #[method_id(@__method_family Other millimetersOfMercury)]
         pub unsafe fn millimetersOfMercury() -> Retained<NSUnitPressure>;
 
-        #[method_id(@__retain_semantics Other poundsForcePerSquareInch)]
+        #[method_id(@__method_family Other poundsForcePerSquareInch)]
         pub unsafe fn poundsForcePerSquareInch() -> Retained<NSUnitPressure>;
     }
 );
@@ -1833,14 +1833,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitPressure {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -1848,14 +1848,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitPressure {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -1889,16 +1889,16 @@ unsafe impl NSSecureCoding for NSUnitSpeed {}
 
 extern_methods!(
     unsafe impl NSUnitSpeed {
-        #[method_id(@__retain_semantics Other metersPerSecond)]
+        #[method_id(@__method_family Other metersPerSecond)]
         pub unsafe fn metersPerSecond() -> Retained<NSUnitSpeed>;
 
-        #[method_id(@__retain_semantics Other kilometersPerHour)]
+        #[method_id(@__method_family Other kilometersPerHour)]
         pub unsafe fn kilometersPerHour() -> Retained<NSUnitSpeed>;
 
-        #[method_id(@__retain_semantics Other milesPerHour)]
+        #[method_id(@__method_family Other milesPerHour)]
         pub unsafe fn milesPerHour() -> Retained<NSUnitSpeed>;
 
-        #[method_id(@__retain_semantics Other knots)]
+        #[method_id(@__method_family Other knots)]
         pub unsafe fn knots() -> Retained<NSUnitSpeed>;
     }
 );
@@ -1907,14 +1907,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitSpeed {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -1922,14 +1922,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitSpeed {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -1963,13 +1963,13 @@ unsafe impl NSSecureCoding for NSUnitTemperature {}
 
 extern_methods!(
     unsafe impl NSUnitTemperature {
-        #[method_id(@__retain_semantics Other kelvin)]
+        #[method_id(@__method_family Other kelvin)]
         pub unsafe fn kelvin() -> Retained<NSUnitTemperature>;
 
-        #[method_id(@__retain_semantics Other celsius)]
+        #[method_id(@__method_family Other celsius)]
         pub unsafe fn celsius() -> Retained<NSUnitTemperature>;
 
-        #[method_id(@__retain_semantics Other fahrenheit)]
+        #[method_id(@__method_family Other fahrenheit)]
         pub unsafe fn fahrenheit() -> Retained<NSUnitTemperature>;
     }
 );
@@ -1978,14 +1978,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitTemperature {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -1993,14 +1993,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitTemperature {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );
@@ -2034,97 +2034,97 @@ unsafe impl NSSecureCoding for NSUnitVolume {}
 
 extern_methods!(
     unsafe impl NSUnitVolume {
-        #[method_id(@__retain_semantics Other megaliters)]
+        #[method_id(@__method_family Other megaliters)]
         pub unsafe fn megaliters() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other kiloliters)]
+        #[method_id(@__method_family Other kiloliters)]
         pub unsafe fn kiloliters() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other liters)]
+        #[method_id(@__method_family Other liters)]
         pub unsafe fn liters() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other deciliters)]
+        #[method_id(@__method_family Other deciliters)]
         pub unsafe fn deciliters() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other centiliters)]
+        #[method_id(@__method_family Other centiliters)]
         pub unsafe fn centiliters() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other milliliters)]
+        #[method_id(@__method_family Other milliliters)]
         pub unsafe fn milliliters() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other cubicKilometers)]
+        #[method_id(@__method_family Other cubicKilometers)]
         pub unsafe fn cubicKilometers() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other cubicMeters)]
+        #[method_id(@__method_family Other cubicMeters)]
         pub unsafe fn cubicMeters() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other cubicDecimeters)]
+        #[method_id(@__method_family Other cubicDecimeters)]
         pub unsafe fn cubicDecimeters() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other cubicCentimeters)]
+        #[method_id(@__method_family Other cubicCentimeters)]
         pub unsafe fn cubicCentimeters() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other cubicMillimeters)]
+        #[method_id(@__method_family Other cubicMillimeters)]
         pub unsafe fn cubicMillimeters() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other cubicInches)]
+        #[method_id(@__method_family Other cubicInches)]
         pub unsafe fn cubicInches() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other cubicFeet)]
+        #[method_id(@__method_family Other cubicFeet)]
         pub unsafe fn cubicFeet() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other cubicYards)]
+        #[method_id(@__method_family Other cubicYards)]
         pub unsafe fn cubicYards() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other cubicMiles)]
+        #[method_id(@__method_family Other cubicMiles)]
         pub unsafe fn cubicMiles() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other acreFeet)]
+        #[method_id(@__method_family Other acreFeet)]
         pub unsafe fn acreFeet() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other bushels)]
+        #[method_id(@__method_family Other bushels)]
         pub unsafe fn bushels() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other teaspoons)]
+        #[method_id(@__method_family Other teaspoons)]
         pub unsafe fn teaspoons() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other tablespoons)]
+        #[method_id(@__method_family Other tablespoons)]
         pub unsafe fn tablespoons() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other fluidOunces)]
+        #[method_id(@__method_family Other fluidOunces)]
         pub unsafe fn fluidOunces() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other cups)]
+        #[method_id(@__method_family Other cups)]
         pub unsafe fn cups() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other pints)]
+        #[method_id(@__method_family Other pints)]
         pub unsafe fn pints() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other quarts)]
+        #[method_id(@__method_family Other quarts)]
         pub unsafe fn quarts() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other gallons)]
+        #[method_id(@__method_family Other gallons)]
         pub unsafe fn gallons() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other imperialTeaspoons)]
+        #[method_id(@__method_family Other imperialTeaspoons)]
         pub unsafe fn imperialTeaspoons() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other imperialTablespoons)]
+        #[method_id(@__method_family Other imperialTablespoons)]
         pub unsafe fn imperialTablespoons() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other imperialFluidOunces)]
+        #[method_id(@__method_family Other imperialFluidOunces)]
         pub unsafe fn imperialFluidOunces() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other imperialPints)]
+        #[method_id(@__method_family Other imperialPints)]
         pub unsafe fn imperialPints() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other imperialQuarts)]
+        #[method_id(@__method_family Other imperialQuarts)]
         pub unsafe fn imperialQuarts() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other imperialGallons)]
+        #[method_id(@__method_family Other imperialGallons)]
         pub unsafe fn imperialGallons() -> Retained<NSUnitVolume>;
 
-        #[method_id(@__retain_semantics Other metricCups)]
+        #[method_id(@__method_family Other metricCups)]
         pub unsafe fn metricCups() -> Retained<NSUnitVolume>;
     }
 );
@@ -2133,14 +2133,14 @@ extern_methods!(
     /// Methods declared on superclass `NSDimension`
     unsafe impl NSUnitVolume {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:converter:)]
+        #[method_id(@__method_family Init initWithSymbol:converter:)]
         pub unsafe fn initWithSymbol_converter(
             this: Allocated<Self>,
             symbol: &NSString,
             converter: &NSUnitConverter,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other baseUnit)]
+        #[method_id(@__method_family Other baseUnit)]
         pub unsafe fn baseUnit() -> Retained<Self>;
     }
 );
@@ -2148,14 +2148,14 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSUnit`
     unsafe impl NSUnitVolume {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithSymbol:)]
+        #[method_id(@__method_family Init initWithSymbol:)]
         pub unsafe fn initWithSymbol(this: Allocated<Self>, symbol: &NSString) -> Retained<Self>;
     }
 );

@@ -98,13 +98,13 @@ extern "C" {
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanelaccessorizing?language=objc)
     pub unsafe trait NSPrintPanelAccessorizing: MainThreadOnly {
-        #[method_id(@__retain_semantics Other localizedSummaryItems)]
+        #[method_id(@__method_family Other localizedSummaryItems)]
         unsafe fn localizedSummaryItems(
             &self,
         ) -> Retained<NSArray<NSDictionary<NSPrintPanelAccessorySummaryKey, NSString>>>;
 
         #[optional]
-        #[method_id(@__retain_semantics Other keyPathsForValuesAffectingPreview)]
+        #[method_id(@__method_family Other keyPathsForValuesAffectingPreview)]
         unsafe fn keyPathsForValuesAffectingPreview(&self) -> Retained<NSSet<NSString>>;
     }
 );
@@ -121,7 +121,7 @@ unsafe impl NSObjectProtocol for NSPrintPanel {}
 
 extern_methods!(
     unsafe impl NSPrintPanel {
-        #[method_id(@__retain_semantics Other printPanel)]
+        #[method_id(@__method_family Other printPanel)]
         pub unsafe fn printPanel(mtm: MainThreadMarker) -> Retained<NSPrintPanel>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
@@ -133,7 +133,7 @@ extern_methods!(
         pub unsafe fn removeAccessoryController(&self, accessory_controller: &NSViewController);
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-        #[method_id(@__retain_semantics Other accessoryControllers)]
+        #[method_id(@__method_family Other accessoryControllers)]
         pub unsafe fn accessoryControllers(&self) -> Retained<NSArray<NSViewController>>;
 
         #[method(options)]
@@ -146,11 +146,11 @@ extern_methods!(
         #[method(setDefaultButtonTitle:)]
         pub unsafe fn setDefaultButtonTitle(&self, default_button_title: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other defaultButtonTitle)]
+        #[method_id(@__method_family Other defaultButtonTitle)]
         pub unsafe fn defaultButtonTitle(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSHelpManager")]
-        #[method_id(@__retain_semantics Other helpAnchor)]
+        #[method_id(@__method_family Other helpAnchor)]
         pub unsafe fn helpAnchor(&self) -> Option<Retained<NSHelpAnchorName>>;
 
         #[cfg(feature = "NSHelpManager")]
@@ -158,7 +158,7 @@ extern_methods!(
         #[method(setHelpAnchor:)]
         pub unsafe fn setHelpAnchor(&self, help_anchor: Option<&NSHelpAnchorName>);
 
-        #[method_id(@__retain_semantics Other jobStyleHint)]
+        #[method_id(@__method_family Other jobStyleHint)]
         pub unsafe fn jobStyleHint(&self) -> Option<Retained<NSPrintPanelJobStyleHint>>;
 
         /// Setter for [`jobStyleHint`][Self::jobStyleHint].
@@ -199,7 +199,7 @@ extern_methods!(
         pub unsafe fn runModal(&self) -> NSInteger;
 
         #[cfg(feature = "NSPrintInfo")]
-        #[method_id(@__retain_semantics Other printInfo)]
+        #[method_id(@__method_family Other printInfo)]
         pub unsafe fn printInfo(&self) -> Retained<NSPrintInfo>;
     }
 );
@@ -207,10 +207,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPrintPanel {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -225,7 +225,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use -accessoryControllers instead. For compatibility this returns the view of the first accessory controller, or nil"]
-        #[method_id(@__retain_semantics Other accessoryView)]
+        #[method_id(@__method_family Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
 
         #[deprecated]

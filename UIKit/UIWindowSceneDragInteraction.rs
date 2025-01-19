@@ -23,7 +23,7 @@ extern_methods!(
         #[cfg(feature = "UIGestureRecognizer")]
         /// Use this to set up failure relationships with other gesture recognizers that may conflict.
         /// Note that this is only available on platforms where gesture recognizers are used for window dragging.
-        #[method_id(@__retain_semantics Other gestureForFailureRelationships)]
+        #[method_id(@__method_family Other gestureForFailureRelationships)]
         pub unsafe fn gestureForFailureRelationships(&self) -> Retained<UIGestureRecognizer>;
     }
 );
@@ -31,10 +31,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIWindowSceneDragInteraction {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

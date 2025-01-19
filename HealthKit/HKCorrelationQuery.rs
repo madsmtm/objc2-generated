@@ -34,7 +34,7 @@ extern_methods!(
     #[cfg(feature = "HKQuery")]
     unsafe impl HKCorrelationQuery {
         #[cfg(feature = "HKObjectType")]
-        #[method_id(@__retain_semantics Other correlationType)]
+        #[method_id(@__method_family Other correlationType)]
         pub unsafe fn correlationType(&self) -> Retained<HKCorrelationType>;
 
         #[cfg(feature = "HKObjectType")]
@@ -42,7 +42,7 @@ extern_methods!(
         ///
         /// samplePredicates maps HKSampleTypes to NSPredicates. The predicate value will apply
         /// to objects of the key type.
-        #[method_id(@__retain_semantics Other samplePredicates)]
+        #[method_id(@__method_family Other samplePredicates)]
         pub unsafe fn samplePredicates(
             &self,
         ) -> Option<Retained<NSDictionary<HKSampleType, NSPredicate>>>;
@@ -66,7 +66,7 @@ extern_methods!(
         /// Parameter `samplePredicates`: A dictionary mapping HKSampleTypes to NSPredicates. If no predicate for a particular type
         /// is provided, it is assumed to be a nil predicate and objects of that type will not be
         /// filtered.
-        #[method_id(@__retain_semantics Init initWithType:predicate:samplePredicates:completion:)]
+        #[method_id(@__method_family Init initWithType:predicate:samplePredicates:completion:)]
         pub unsafe fn initWithType_predicate_samplePredicates_completion(
             this: Allocated<Self>,
             correlation_type: &HKCorrelationType,
@@ -83,7 +83,7 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKCorrelationQuery {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -92,7 +92,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKCorrelationQuery {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -73,29 +73,29 @@ unsafe impl NSObjectProtocol for UIDevice {}
 
 extern_methods!(
     unsafe impl UIDevice {
-        #[method_id(@__retain_semantics Other currentDevice)]
+        #[method_id(@__method_family Other currentDevice)]
         pub fn currentDevice(mtm: MainThreadMarker) -> Retained<UIDevice>;
 
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other model)]
+        #[method_id(@__method_family Other model)]
         pub unsafe fn model(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other localizedModel)]
+        #[method_id(@__method_family Other localizedModel)]
         pub unsafe fn localizedModel(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other systemName)]
+        #[method_id(@__method_family Other systemName)]
         pub unsafe fn systemName(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other systemVersion)]
+        #[method_id(@__method_family Other systemVersion)]
         pub unsafe fn systemVersion(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UIOrientation")]
         #[method(orientation)]
         pub unsafe fn orientation(&self) -> UIDeviceOrientation;
 
-        #[method_id(@__retain_semantics Other identifierForVendor)]
+        #[method_id(@__method_family Other identifierForVendor)]
         pub unsafe fn identifierForVendor(&self) -> Option<Retained<NSUUID>>;
 
         #[method(isGeneratingDeviceOrientationNotifications)]
@@ -144,10 +144,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDevice {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

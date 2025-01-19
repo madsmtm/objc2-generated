@@ -138,27 +138,27 @@ extern_methods!(
         #[cfg(feature = "CKSyncEngineConfiguration")]
         /// Initializes a `CKSyncEngine` with the given configuration.
         /// See properties on ``CKSyncEngineConfiguration`` for more details on all the options.
-        #[method_id(@__retain_semantics Init initWithConfiguration:)]
+        #[method_id(@__method_family Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &CKSyncEngineConfiguration,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKDatabase")]
         /// The database this sync engine will sync with.
-        #[method_id(@__retain_semantics Other database)]
+        #[method_id(@__method_family Other database)]
         pub unsafe fn database(&self) -> Retained<CKDatabase>;
 
         #[cfg(feature = "CKSyncEngineState")]
         /// A collection of state properties used to efficiently manage sync engine operation.
         /// See ``CKSyncEngineState`` for more details.
-        #[method_id(@__retain_semantics Other state)]
+        #[method_id(@__method_family Other state)]
         pub unsafe fn state(&self) -> Retained<CKSyncEngineState>;
 
         #[cfg(feature = "block2")]
@@ -285,7 +285,7 @@ extern_protocol!(
         /// return batch;
         /// }
         /// ```
-        #[method_id(@__retain_semantics Other syncEngine:nextRecordZoneChangeBatchForContext:)]
+        #[method_id(@__method_family Other syncEngine:nextRecordZoneChangeBatchForContext:)]
         unsafe fn syncEngine_nextRecordZoneChangeBatchForContext(
             &self,
             sync_engine: &CKSyncEngine,
@@ -342,7 +342,7 @@ extern_protocol!(
         /// }
         /// ```
         #[optional]
-        #[method_id(@__retain_semantics Other syncEngine:nextFetchChangesOptionsForContext:)]
+        #[method_id(@__method_family Other syncEngine:nextFetchChangesOptionsForContext:)]
         unsafe fn syncEngine_nextFetchChangesOptionsForContext(
             &self,
             sync_engine: &CKSyncEngine,
@@ -375,7 +375,7 @@ unsafe impl NSObjectProtocol for CKSyncEngineFetchChangesOptions {}
 extern_methods!(
     unsafe impl CKSyncEngineFetchChangesOptions {
         /// The scope in which to fetch changes from the server.
-        #[method_id(@__retain_semantics Other scope)]
+        #[method_id(@__method_family Other scope)]
         pub unsafe fn scope(&self) -> Retained<CKSyncEngineFetchChangesScope>;
 
         /// Setter for [`scope`][Self::scope].
@@ -387,7 +387,7 @@ extern_methods!(
         ///
         /// You might set an operation group with a particular name in order to help you analyze telemetry in the CloudKit Console.
         /// If you don't provide an operation group, a default one will be created for you.
-        #[method_id(@__retain_semantics Other operationGroup)]
+        #[method_id(@__method_family Other operationGroup)]
         pub unsafe fn operationGroup(&self) -> Retained<CKOperationGroup>;
 
         #[cfg(feature = "CKOperationGroup")]
@@ -404,7 +404,7 @@ extern_methods!(
         ///
         /// Any zones not included in this list will be prioritized in a default manner.
         /// If a zone in this list has no changes to fetch, then that zone will be ignored.
-        #[method_id(@__retain_semantics Other prioritizedZoneIDs)]
+        #[method_id(@__method_family Other prioritizedZoneIDs)]
         pub unsafe fn prioritizedZoneIDs(&self) -> Retained<NSArray<CKRecordZoneID>>;
 
         #[cfg(feature = "CKRecordZoneID")]
@@ -414,7 +414,7 @@ extern_methods!(
 
         /// Initializes a set of options with the specific scope.
         /// If no scope is provided, the default scope will include everything.
-        #[method_id(@__retain_semantics Init initWithScope:)]
+        #[method_id(@__method_family Init initWithScope:)]
         pub unsafe fn initWithScope(
             this: Allocated<Self>,
             scope: Option<&CKSyncEngineFetchChangesScope>,
@@ -425,10 +425,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKSyncEngineFetchChangesOptions {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -460,18 +460,18 @@ extern_methods!(
         /// A specific set of zone IDs to include in the scope.
         /// For example, if you want to fetch changes for a specific set of zones, you can specify them here.
         /// If `nil`, this scope includes all zones except those in `excludedZoneIDs`.
-        #[method_id(@__retain_semantics Other zoneIDs)]
+        #[method_id(@__method_family Other zoneIDs)]
         pub unsafe fn zoneIDs(&self) -> Option<Retained<NSSet<CKRecordZoneID>>>;
 
         #[cfg(feature = "CKRecordZoneID")]
         /// A specific set of zone IDs to exclude from this scope.
         /// If you know that you don't want to fetch changes for a particular set of zones, you can set those zones here.
-        #[method_id(@__retain_semantics Other excludedZoneIDs)]
+        #[method_id(@__method_family Other excludedZoneIDs)]
         pub unsafe fn excludedZoneIDs(&self) -> Retained<NSSet<CKRecordZoneID>>;
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Creates a scope that includes only the specified set of zones.
-        #[method_id(@__retain_semantics Init initWithZoneIDs:)]
+        #[method_id(@__method_family Init initWithZoneIDs:)]
         pub unsafe fn initWithZoneIDs(
             this: Allocated<Self>,
             zone_i_ds: Option<&NSSet<CKRecordZoneID>>,
@@ -479,7 +479,7 @@ extern_methods!(
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Creates a scope that includes all zones except the specified excluded zones.
-        #[method_id(@__retain_semantics Init initWithExcludedZoneIDs:)]
+        #[method_id(@__method_family Init initWithExcludedZoneIDs:)]
         pub unsafe fn initWithExcludedZoneIDs(
             this: Allocated<Self>,
             zone_i_ds: &NSSet<CKRecordZoneID>,
@@ -495,10 +495,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKSyncEngineFetchChangesScope {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -527,7 +527,7 @@ unsafe impl NSObjectProtocol for CKSyncEngineSendChangesOptions {}
 extern_methods!(
     unsafe impl CKSyncEngineSendChangesOptions {
         /// The scope in which to send changes to the server.
-        #[method_id(@__retain_semantics Other scope)]
+        #[method_id(@__method_family Other scope)]
         pub unsafe fn scope(&self) -> Retained<CKSyncEngineSendChangesScope>;
 
         /// Setter for [`scope`][Self::scope].
@@ -539,7 +539,7 @@ extern_methods!(
         ///
         /// You might set an operation group with a particular name in order to help you analyze telemetry in the CloudKit Console.
         /// If you don't provide an operation group, a default one will be created for you.
-        #[method_id(@__retain_semantics Other operationGroup)]
+        #[method_id(@__method_family Other operationGroup)]
         pub unsafe fn operationGroup(&self) -> Retained<CKOperationGroup>;
 
         #[cfg(feature = "CKOperationGroup")]
@@ -549,7 +549,7 @@ extern_methods!(
 
         /// Initializes a set of options with the specific scope.
         /// If no scope is provided, the default scope will include everything.
-        #[method_id(@__retain_semantics Init initWithScope:)]
+        #[method_id(@__method_family Init initWithScope:)]
         pub unsafe fn initWithScope(
             this: Allocated<Self>,
             scope: Option<&CKSyncEngineSendChangesScope>,
@@ -560,10 +560,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKSyncEngineSendChangesOptions {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -597,7 +597,7 @@ extern_methods!(
         /// If you only want to send changes for a particular set of zones, you can initialize your scope with those zone IDs.
         /// When creating the next batch of changes to send to the server, consult this and only send changes within these zones.
         /// If this and `recordIDs` are `nil`, then you should send all changes.
-        #[method_id(@__retain_semantics Other zoneIDs)]
+        #[method_id(@__method_family Other zoneIDs)]
         pub unsafe fn zoneIDs(&self) -> Option<Retained<NSSet<CKRecordZoneID>>>;
 
         #[cfg(feature = "CKRecordZoneID")]
@@ -605,7 +605,7 @@ extern_methods!(
         /// If you know that you don't want to send changes for a particular set of zones, you can set those zones here.
         ///
         /// Note that if `zoneIDs` is set, then  `excludedZoneIDs` will always be empty.
-        #[method_id(@__retain_semantics Other excludedZoneIDs)]
+        #[method_id(@__method_family Other excludedZoneIDs)]
         pub unsafe fn excludedZoneIDs(&self) -> Retained<NSSet<CKRecordZoneID>>;
 
         #[cfg(feature = "CKRecordID")]
@@ -614,13 +614,13 @@ extern_methods!(
         /// If you only want to send changes for a particular set of records, you can initialize your scope with those records IDs.
         /// When creating the next batch of changes to send to the server, consult this property and only send changes for these record IDs.
         /// If this and `zoneIDs` are `nil`, then you should send all changes.
-        #[method_id(@__retain_semantics Other recordIDs)]
+        #[method_id(@__method_family Other recordIDs)]
         pub unsafe fn recordIDs(&self) -> Option<Retained<NSSet<CKRecordID>>>;
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Creates a scope that contains only the given zone IDs.
         /// If `zoneIDs` is nil, then this scope contains all zones.
-        #[method_id(@__retain_semantics Init initWithZoneIDs:)]
+        #[method_id(@__method_family Init initWithZoneIDs:)]
         pub unsafe fn initWithZoneIDs(
             this: Allocated<Self>,
             zone_i_ds: Option<&NSSet<CKRecordZoneID>>,
@@ -628,7 +628,7 @@ extern_methods!(
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Creates a scope that contains all zones except for the given zone IDs.
-        #[method_id(@__retain_semantics Init initWithExcludedZoneIDs:)]
+        #[method_id(@__method_family Init initWithExcludedZoneIDs:)]
         pub unsafe fn initWithExcludedZoneIDs(
             this: Allocated<Self>,
             excluded_zone_i_ds: &NSSet<CKRecordZoneID>,
@@ -637,7 +637,7 @@ extern_methods!(
         #[cfg(feature = "CKRecordID")]
         /// Creates a scope that includes only the given record IDs.
         /// If `recordIDs` is nil, this scope contains all records.
-        #[method_id(@__retain_semantics Init initWithRecordIDs:)]
+        #[method_id(@__method_family Init initWithRecordIDs:)]
         pub unsafe fn initWithRecordIDs(
             this: Allocated<Self>,
             record_i_ds: Option<&NSSet<CKRecordID>>,
@@ -661,10 +661,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKSyncEngineSendChangesScope {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -713,10 +713,10 @@ unsafe impl NSObjectProtocol for CKSyncEngineFetchChangesContext {}
 
 extern_methods!(
     unsafe impl CKSyncEngineFetchChangesContext {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The reason why the sync engine is attempting to fetch changes.
@@ -724,7 +724,7 @@ extern_methods!(
         pub unsafe fn reason(&self) -> CKSyncEngineSyncReason;
 
         /// The options being used for this attempt to fetch changes.
-        #[method_id(@__retain_semantics Other options)]
+        #[method_id(@__method_family Other options)]
         pub unsafe fn options(&self) -> Retained<CKSyncEngineFetchChangesOptions>;
     }
 );
@@ -751,10 +751,10 @@ unsafe impl NSObjectProtocol for CKSyncEngineSendChangesContext {}
 
 extern_methods!(
     unsafe impl CKSyncEngineSendChangesContext {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The reason why the sync engine is attempting to send changes.
@@ -762,7 +762,7 @@ extern_methods!(
         pub unsafe fn reason(&self) -> CKSyncEngineSyncReason;
 
         /// The options being used for this attempt to send changes.
-        #[method_id(@__retain_semantics Other options)]
+        #[method_id(@__method_family Other options)]
         pub unsafe fn options(&self) -> Retained<CKSyncEngineSendChangesOptions>;
     }
 );

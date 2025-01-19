@@ -27,12 +27,12 @@ extern_methods!(
     unsafe impl UITabSidebarItem {
         #[cfg(feature = "UITab")]
         /// The tab that the receiver represents. Only one of `tab` or `action` will be valid for an item.
-        #[method_id(@__retain_semantics Other tab)]
+        #[method_id(@__method_family Other tab)]
         pub unsafe fn tab(&self) -> Option<Retained<UITab>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// The action that the receiver represents. Only one of `tab` or `action` will be valid for an item.
-        #[method_id(@__retain_semantics Other action)]
+        #[method_id(@__method_family Other action)]
         pub unsafe fn action(&self) -> Option<Retained<UIAction>>;
 
         #[cfg(all(
@@ -40,12 +40,12 @@ extern_methods!(
             feature = "UIViewConfigurationState"
         ))]
         /// The current configuration state of the sidebar item.
-        #[method_id(@__retain_semantics Other configurationState)]
+        #[method_id(@__method_family Other configurationState)]
         pub unsafe fn configurationState(&self) -> Retained<UICellConfigurationState>;
 
         #[cfg(feature = "UIContentConfiguration")]
         /// The content coinfiguration to use when displaying this item.
-        #[method_id(@__retain_semantics Other contentConfiguration)]
+        #[method_id(@__method_family Other contentConfiguration)]
         pub unsafe fn contentConfiguration(
             &self,
         ) -> Retained<ProtocolObject<dyn UIContentConfiguration>>;
@@ -60,7 +60,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// The background configuration to use when displaying this item.
-        #[method_id(@__retain_semantics Other backgroundConfiguration)]
+        #[method_id(@__method_family Other backgroundConfiguration)]
         pub unsafe fn backgroundConfiguration(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
@@ -73,7 +73,7 @@ extern_methods!(
 
         #[cfg(feature = "UICellAccessory")]
         /// Cell accessories to use when displaying this item. Some accessories may not be shown if it conflicts with system default accessories.
-        #[method_id(@__retain_semantics Other accessories)]
+        #[method_id(@__method_family Other accessories)]
         pub unsafe fn accessories(&self) -> Retained<NSArray<UICellAccessory>>;
 
         #[cfg(feature = "UICellAccessory")]
@@ -83,22 +83,22 @@ extern_methods!(
 
         #[cfg(feature = "UIListContentConfiguration")]
         /// Returns the default content configuration for this item and the configuration state.
-        #[method_id(@__retain_semantics Other defaultContentConfiguration)]
+        #[method_id(@__method_family Other defaultContentConfiguration)]
         pub unsafe fn defaultContentConfiguration(&self) -> Retained<UIListContentConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Returns the default background configuration for this item and the configuration state.
-        #[method_id(@__retain_semantics Other defaultBackgroundConfiguration)]
+        #[method_id(@__method_family Other defaultBackgroundConfiguration)]
         pub unsafe fn defaultBackgroundConfiguration(&self) -> Retained<UIBackgroundConfiguration>;
 
         /// Creates a sidebar item from the specified request. The sidebar item will be preconfigured with the appropriate defaults for its content.
-        #[method_id(@__retain_semantics Other itemFromRequest:)]
+        #[method_id(@__method_family Other itemFromRequest:)]
         pub unsafe fn itemFromRequest(request: &UITabSidebarItemRequest) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -117,18 +117,18 @@ extern_methods!(
     unsafe impl UITabSidebarItemRequest {
         #[cfg(feature = "UITab")]
         /// The tab that the receiver represents. Only one of `tab` or `action` will be valid for an item.
-        #[method_id(@__retain_semantics Other tab)]
+        #[method_id(@__method_family Other tab)]
         pub unsafe fn tab(&self) -> Option<Retained<UITab>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// The action that the receiver represents. Only one of `tab` or `action` will be valid for an item.
-        #[method_id(@__retain_semantics Other action)]
+        #[method_id(@__method_family Other action)]
         pub unsafe fn action(&self) -> Option<Retained<UIAction>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

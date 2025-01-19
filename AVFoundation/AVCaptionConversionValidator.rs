@@ -57,10 +57,10 @@ unsafe impl NSObjectProtocol for AVCaptionConversionValidator {}
 
 extern_methods!(
     unsafe impl AVCaptionConversionValidator {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(
@@ -79,7 +79,7 @@ extern_methods!(
         /// Returns: A new instance of AVCaptionConversionValidator configured to perform the specified validation.
         ///
         /// This method throws an exception if the conversion setting's AVCaptionMediaTypeKey is not equal to AVMediaTypeClosedCaption, or if its AVCaptionMediaSubTypeKey is not equal to kCMClosedCaptionFormatType_CEA608.
-        #[method_id(@__retain_semantics Other captionConversionValidatorWithCaptions:timeRange:conversionSettings:)]
+        #[method_id(@__method_family Other captionConversionValidatorWithCaptions:timeRange:conversionSettings:)]
         pub unsafe fn captionConversionValidatorWithCaptions_timeRange_conversionSettings(
             captions: &NSArray<AVCaption>,
             time_range: CMTimeRange,
@@ -100,7 +100,7 @@ extern_methods!(
         /// Parameter `conversionSettings`: Describes the conversion operation for which the captions are to be validated.
         ///
         /// Returns: A new instance of AVCaptionConversionValidator configured to perform the specified validation.
-        #[method_id(@__retain_semantics Init initWithCaptions:timeRange:conversionSettings:)]
+        #[method_id(@__method_family Init initWithCaptions:timeRange:conversionSettings:)]
         pub unsafe fn initWithCaptions_timeRange_conversionSettings(
             this: Allocated<Self>,
             captions: &NSArray<AVCaption>,
@@ -114,7 +114,7 @@ extern_methods!(
 
         #[cfg(feature = "AVCaption")]
         /// The array of captions to be validated for the specified conversion operation.
-        #[method_id(@__retain_semantics Other captions)]
+        #[method_id(@__method_family Other captions)]
         pub unsafe fn captions(&self) -> Retained<NSArray<AVCaption>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -145,7 +145,7 @@ extern_methods!(
         pub unsafe fn stopValidating(&self);
 
         /// Provides the collection of warnings for problems that have been encountered. While the value of status is AVCaptionConversionValidatorStatusValidating, the count of warnings may increase.
-        #[method_id(@__retain_semantics Other warnings)]
+        #[method_id(@__method_family Other warnings)]
         pub unsafe fn warnings(&self) -> Retained<NSArray<AVCaptionConversionWarning>>;
     }
 );
@@ -183,14 +183,14 @@ unsafe impl NSObjectProtocol for AVCaptionConversionWarning {}
 
 extern_methods!(
     unsafe impl AVCaptionConversionWarning {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Indicates the type of warning provided by the receiver.
-        #[method_id(@__retain_semantics Other warningType)]
+        #[method_id(@__method_family Other warningType)]
         pub unsafe fn warningType(&self) -> Retained<AVCaptionConversionWarningType>;
 
         /// Indicates the range of captions in the validator's captions array for which the specified warning has been issued.
@@ -202,7 +202,7 @@ extern_methods!(
         /// Indicates an adjustment to the indicated captions that can be applied in order to correct the problem.
         ///
         /// If the value of adjustment is not nil and the conversion operation is performed without correcting the problem, the adjustment will be applied during conversion. If the value of adjustment is nil and the conversion operation is performed without correcting the problem, the indicated captions will be omitted from the output media data.
-        #[method_id(@__retain_semantics Other adjustment)]
+        #[method_id(@__method_family Other adjustment)]
         pub unsafe fn adjustment(&self) -> Option<Retained<AVCaptionConversionAdjustment>>;
     }
 );
@@ -240,14 +240,14 @@ unsafe impl NSObjectProtocol for AVCaptionConversionAdjustment {}
 
 extern_methods!(
     unsafe impl AVCaptionConversionAdjustment {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Indicates the type of adjustment described by the receiver.
-        #[method_id(@__retain_semantics Other adjustmentType)]
+        #[method_id(@__method_family Other adjustmentType)]
         pub unsafe fn adjustmentType(&self) -> Retained<AVCaptionConversionAdjustmentType>;
     }
 );
@@ -271,10 +271,10 @@ unsafe impl NSObjectProtocol for AVCaptionConversionTimeRangeAdjustment {}
 
 extern_methods!(
     unsafe impl AVCaptionConversionTimeRangeAdjustment {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]

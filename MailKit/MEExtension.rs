@@ -16,7 +16,7 @@ extern_protocol!(
         /// Parameter `session`: An instance of
         /// `MEComposeSession`that represents a mail compose window.
         #[optional]
-        #[method_id(@__retain_semantics Other handlerForComposeSession:)]
+        #[method_id(@__method_family Other handlerForComposeSession:)]
         unsafe fn handlerForComposeSession(
             &self,
             session: &MEComposeSession,
@@ -26,7 +26,7 @@ extern_protocol!(
         /// A factory method for returning an instance of
         /// `MEMessageActionHandler`
         #[optional]
-        #[method_id(@__retain_semantics Other handlerForMessageActions)]
+        #[method_id(@__method_family Other handlerForMessageActions)]
         unsafe fn handlerForMessageActions(
             &self,
         ) -> Retained<ProtocolObject<dyn MEMessageActionHandler>>;
@@ -35,7 +35,7 @@ extern_protocol!(
         /// A factory method for returning an instance of
         /// `MEContentBlocker`
         #[optional]
-        #[method_id(@__retain_semantics Other handlerForContentBlocker)]
+        #[method_id(@__method_family Other handlerForContentBlocker)]
         unsafe fn handlerForContentBlocker(&self)
             -> Retained<ProtocolObject<dyn MEContentBlocker>>;
 
@@ -47,7 +47,7 @@ extern_protocol!(
         /// A factory method for returning an instance of
         /// `MEMessageSecurityHandler`
         #[optional]
-        #[method_id(@__retain_semantics Other handlerForMessageSecurity)]
+        #[method_id(@__method_family Other handlerForMessageSecurity)]
         unsafe fn handlerForMessageSecurity(
             &self,
         ) -> Retained<ProtocolObject<dyn MEMessageSecurityHandler>>;

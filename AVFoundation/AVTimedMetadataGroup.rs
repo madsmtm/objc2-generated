@@ -23,7 +23,7 @@ unsafe impl NSObjectProtocol for AVMetadataGroup {}
 extern_methods!(
     unsafe impl AVMetadataGroup {
         #[cfg(feature = "AVMetadataItem")]
-        #[method_id(@__retain_semantics Other items)]
+        #[method_id(@__method_family Other items)]
         pub unsafe fn items(&self) -> Retained<NSArray<AVMetadataItem>>;
     }
 );
@@ -31,10 +31,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMetadataGroup {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -42,10 +42,10 @@ extern_methods!(
 extern_methods!(
     /// AVMetadataGroupIdentification
     unsafe impl AVMetadataGroup {
-        #[method_id(@__retain_semantics Other classifyingLabel)]
+        #[method_id(@__method_family Other classifyingLabel)]
         pub unsafe fn classifyingLabel(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__retain_semantics Other uniqueID)]
+        #[method_id(@__method_family Other uniqueID)]
         pub unsafe fn uniqueID(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -83,7 +83,7 @@ extern_methods!(
         /// Parameter `timeRange`: The timeRange of the collection of AVMetadataItems.
         ///
         /// Returns: An instance of AVTimedMetadataGroup.
-        #[method_id(@__retain_semantics Init initWithItems:timeRange:)]
+        #[method_id(@__method_family Init initWithItems:timeRange:)]
         pub unsafe fn initWithItems_timeRange(
             this: Allocated<Self>,
             items: &NSArray<AVMetadataItem>,
@@ -96,7 +96,7 @@ extern_methods!(
         /// Parameter `sampleBuffer`: A CMSampleBuffer with media type kCMMediaType_Metadata.
         ///
         /// Returns: An instance of AVTimedMetadataGroup.
-        #[method_id(@__retain_semantics Init initWithSampleBuffer:)]
+        #[method_id(@__method_family Init initWithSampleBuffer:)]
         pub unsafe fn initWithSampleBuffer(
             this: Allocated<Self>,
             sample_buffer: &CMSampleBuffer,
@@ -107,7 +107,7 @@ extern_methods!(
         pub unsafe fn timeRange(&self) -> CMTimeRange;
 
         #[cfg(feature = "AVMetadataItem")]
-        #[method_id(@__retain_semantics Other items)]
+        #[method_id(@__method_family Other items)]
         pub unsafe fn items(&self) -> Retained<NSArray<AVMetadataItem>>;
     }
 );
@@ -115,10 +115,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVTimedMetadataGroup {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -134,7 +134,7 @@ extern_methods!(
         /// The returned format description is suitable for use as the format hint parameter when creating an instance of AVAssetWriterInput.
         ///
         /// Each item referenced by the receiver must carry a non-nil value for its dataType property.  An exception will be thrown if any item does not have a data type.
-        #[method_id(@__retain_semantics Copy copyFormatDescription)]
+        #[method_id(@__method_family Copy copyFormatDescription)]
         pub unsafe fn copyFormatDescription(&self)
             -> Option<Retained<CMMetadataFormatDescription>>;
     }
@@ -175,7 +175,7 @@ extern_methods!(
         pub unsafe fn setTimeRange(&self, time_range: CMTimeRange);
 
         #[cfg(feature = "AVMetadataItem")]
-        #[method_id(@__retain_semantics Other items)]
+        #[method_id(@__method_family Other items)]
         pub unsafe fn items(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataItem")]
@@ -196,7 +196,7 @@ extern_methods!(
         /// Parameter `timeRange`: The timeRange of the collection of AVMetadataItems.
         ///
         /// Returns: An instance of AVTimedMetadataGroup.
-        #[method_id(@__retain_semantics Init initWithItems:timeRange:)]
+        #[method_id(@__method_family Init initWithItems:timeRange:)]
         pub unsafe fn initWithItems_timeRange(
             this: Allocated<Self>,
             items: &NSArray<AVMetadataItem>,
@@ -209,7 +209,7 @@ extern_methods!(
         /// Parameter `sampleBuffer`: A CMSampleBuffer with media type kCMMediaType_Metadata.
         ///
         /// Returns: An instance of AVTimedMetadataGroup.
-        #[method_id(@__retain_semantics Init initWithSampleBuffer:)]
+        #[method_id(@__method_family Init initWithSampleBuffer:)]
         pub unsafe fn initWithSampleBuffer(
             this: Allocated<Self>,
             sample_buffer: &CMSampleBuffer,
@@ -220,10 +220,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMutableTimedMetadataGroup {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -263,7 +263,7 @@ extern_methods!(
         /// Parameter `endDate`: The end date of the collection of AVMetadataItems. If the receiver is intended to represent information about an instantaneous event, the value of endDate should be equal to the value of startDate. A value of nil for endDate indicates that the endDate is indefinite.
         ///
         /// Returns: An instance of AVDateRangeMetadataGroup.
-        #[method_id(@__retain_semantics Init initWithItems:startDate:endDate:)]
+        #[method_id(@__method_family Init initWithItems:startDate:endDate:)]
         pub unsafe fn initWithItems_startDate_endDate(
             this: Allocated<Self>,
             items: &NSArray<AVMetadataItem>,
@@ -271,14 +271,14 @@ extern_methods!(
             end_date: Option<&NSDate>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other startDate)]
+        #[method_id(@__method_family Other startDate)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
-        #[method_id(@__retain_semantics Other endDate)]
+        #[method_id(@__method_family Other endDate)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "AVMetadataItem")]
-        #[method_id(@__retain_semantics Other items)]
+        #[method_id(@__method_family Other items)]
         pub unsafe fn items(&self) -> Retained<NSArray<AVMetadataItem>>;
     }
 );
@@ -286,10 +286,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVDateRangeMetadataGroup {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -319,14 +319,14 @@ unsafe impl NSObjectProtocol for AVMutableDateRangeMetadataGroup {}
 
 extern_methods!(
     unsafe impl AVMutableDateRangeMetadataGroup {
-        #[method_id(@__retain_semantics Other startDate)]
+        #[method_id(@__method_family Other startDate)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         /// Setter for [`startDate`][Self::startDate].
         #[method(setStartDate:)]
         pub unsafe fn setStartDate(&self, start_date: &NSDate);
 
-        #[method_id(@__retain_semantics Other endDate)]
+        #[method_id(@__method_family Other endDate)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`endDate`][Self::endDate].
@@ -334,7 +334,7 @@ extern_methods!(
         pub unsafe fn setEndDate(&self, end_date: Option<&NSDate>);
 
         #[cfg(feature = "AVMetadataItem")]
-        #[method_id(@__retain_semantics Other items)]
+        #[method_id(@__method_family Other items)]
         pub unsafe fn items(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataItem")]
@@ -357,7 +357,7 @@ extern_methods!(
         /// Parameter `endDate`: The end date of the collection of AVMetadataItems. If the receiver is intended to represent information about an instantaneous event, the value of endDate should be equal to the value of startDate. A value of nil for endDate indicates that the endDate is indefinite.
         ///
         /// Returns: An instance of AVDateRangeMetadataGroup.
-        #[method_id(@__retain_semantics Init initWithItems:startDate:endDate:)]
+        #[method_id(@__method_family Init initWithItems:startDate:endDate:)]
         pub unsafe fn initWithItems_startDate_endDate(
             this: Allocated<Self>,
             items: &NSArray<AVMetadataItem>,
@@ -370,10 +370,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMutableDateRangeMetadataGroup {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -44,7 +44,7 @@ extern_methods!(
         /// Parameter `url`: A file URL to 3D content file (e.g. usdz).
         ///
         /// Returns: The preview object to display in AR Quick Look.
-        #[method_id(@__retain_semantics Init initWithFileAtURL:)]
+        #[method_id(@__method_family Init initWithFileAtURL:)]
         pub unsafe fn initWithFileAtURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -53,7 +53,7 @@ extern_methods!(
         ///
         /// If this is supplied, the URL to the canonical web page is shared instead of the 3D content file.
         /// For example, providing https://developer.apple.com/arkit/gallery/ as the canonical web page URL string will be shared via the Share button. If the web page URL string is malformed or not provided, then AR Quick Look will default to sharing the 3D content.
-        #[method_id(@__retain_semantics Other canonicalWebPageURL)]
+        #[method_id(@__method_family Other canonicalWebPageURL)]
         pub unsafe fn canonicalWebPageURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -71,10 +71,10 @@ extern_methods!(
         pub unsafe fn setAllowsContentScaling(&self, allows_content_scaling: bool);
 
         /// Unavailable
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

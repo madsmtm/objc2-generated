@@ -23,16 +23,16 @@ unsafe impl NSSecureCoding for MEAddressAnnotation {}
 
 extern_methods!(
     unsafe impl MEAddressAnnotation {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// An annotation to denote a recipeint email address has an error when composing a mail message.
         ///
         /// Parameter `localizedDescription`: - A localized string with a brief description of the error that may be presented to the user.
-        #[method_id(@__retain_semantics Other errorWithLocalizedDescription:)]
+        #[method_id(@__method_family Other errorWithLocalizedDescription:)]
         pub unsafe fn errorWithLocalizedDescription(
             localized_description: &NSString,
         ) -> Retained<MEAddressAnnotation>;
@@ -40,7 +40,7 @@ extern_methods!(
         /// An annotation to warn about a recipeint email address when composing a mail message.
         ///
         /// Parameter `localizedDescription`: - A localized string with a brief description of the warning may be presented to the user. .
-        #[method_id(@__retain_semantics Other warningWithLocalizedDescription:)]
+        #[method_id(@__method_family Other warningWithLocalizedDescription:)]
         pub unsafe fn warningWithLocalizedDescription(
             localized_description: &NSString,
         ) -> Retained<MEAddressAnnotation>;
@@ -48,7 +48,7 @@ extern_methods!(
         /// An annotation to  denote a valid recipeint email address when composing a mail message.
         ///
         /// Parameter `localizedDescription`: - A localized string with a brief description that may be presented to the user. .
-        #[method_id(@__retain_semantics Other successWithLocalizedDescription:)]
+        #[method_id(@__method_family Other successWithLocalizedDescription:)]
         pub unsafe fn successWithLocalizedDescription(
             localized_description: &NSString,
         ) -> Retained<MEAddressAnnotation>;

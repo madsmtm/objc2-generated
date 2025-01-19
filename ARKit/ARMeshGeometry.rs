@@ -42,7 +42,7 @@ extern_methods!(
     unsafe impl ARGeometrySource {
         #[cfg(feature = "objc2-metal")]
         /// A Metal buffer containing per-vector data for the source.
-        #[method_id(@__retain_semantics Other buffer)]
+        #[method_id(@__method_family Other buffer)]
         pub unsafe fn buffer(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
 
         /// The number of vectors in the source.
@@ -67,10 +67,10 @@ extern_methods!(
         pub unsafe fn stride(&self) -> NSInteger;
 
         /// Unavailable
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -135,7 +135,7 @@ extern_methods!(
     unsafe impl ARGeometryElement {
         #[cfg(feature = "objc2-metal")]
         /// A Metal buffer containing index data that defines the geometry.
-        #[method_id(@__retain_semantics Other buffer)]
+        #[method_id(@__method_family Other buffer)]
         pub unsafe fn buffer(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
 
         /// The number of primitives in the buffer.
@@ -159,10 +159,10 @@ extern_methods!(
         pub unsafe fn primitiveType(&self) -> ARGeometryPrimitiveType;
 
         /// Unavailable
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -236,26 +236,26 @@ extern_methods!(
     #[cfg(feature = "objc2")]
     unsafe impl ARMeshGeometry {
         /// The vertices of the mesh.
-        #[method_id(@__retain_semantics Other vertices)]
+        #[method_id(@__method_family Other vertices)]
         pub unsafe fn vertices(&self) -> Retained<ARGeometrySource>;
 
         /// Normal of each vertex in the mesh.
-        #[method_id(@__retain_semantics Other normals)]
+        #[method_id(@__method_family Other normals)]
         pub unsafe fn normals(&self) -> Retained<ARGeometrySource>;
 
         /// A list of all faces in the mesh.
-        #[method_id(@__retain_semantics Other faces)]
+        #[method_id(@__method_family Other faces)]
         pub unsafe fn faces(&self) -> Retained<ARGeometryElement>;
 
         /// Classification for each face in the mesh.
-        #[method_id(@__retain_semantics Other classification)]
+        #[method_id(@__method_family Other classification)]
         pub unsafe fn classification(&self) -> Option<Retained<ARGeometrySource>>;
 
         /// Unavailable
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

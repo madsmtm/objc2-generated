@@ -77,21 +77,21 @@ extern_methods!(
         pub unsafe fn isValidJSONObject(obj: &AnyObject) -> bool;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
-        #[method_id(@__retain_semantics Other dataWithJSONObject:options:error:_)]
+        #[method_id(@__method_family Other dataWithJSONObject:options:error:_)]
         pub unsafe fn dataWithJSONObject_options_error(
             obj: &AnyObject,
             opt: NSJSONWritingOptions,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
-        #[method_id(@__retain_semantics Other JSONObjectWithData:options:error:_)]
+        #[method_id(@__method_family Other JSONObjectWithData:options:error:_)]
         pub unsafe fn JSONObjectWithData_options_error(
             data: &NSData,
             opt: NSJSONReadingOptions,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSStream"))]
-        #[method_id(@__retain_semantics Other JSONObjectWithStream:options:error:_)]
+        #[method_id(@__method_family Other JSONObjectWithStream:options:error:_)]
         pub unsafe fn JSONObjectWithStream_options_error(
             stream: &NSInputStream,
             opt: NSJSONReadingOptions,
@@ -102,10 +102,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSJSONSerialization {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -51,7 +51,7 @@ extern_methods!(
         ///
         /// Parameter `device`: The optional device represents the HKDevice from which the data is
         /// provided.
-        #[method_id(@__retain_semantics Init initWithHealthStore:quantityType:startDate:device:)]
+        #[method_id(@__method_family Init initWithHealthStore:quantityType:startDate:device:)]
         pub unsafe fn initWithHealthStore_quantityType_startDate_device(
             this: Allocated<Self>,
             health_store: &HKHealthStore,
@@ -60,18 +60,18 @@ extern_methods!(
             device: Option<&HKDevice>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
-        #[method_id(@__retain_semantics Other quantityType)]
+        #[method_id(@__method_family Other quantityType)]
         pub unsafe fn quantityType(&self) -> Retained<HKQuantityType>;
 
-        #[method_id(@__retain_semantics Other startDate)]
+        #[method_id(@__method_family Other startDate)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "HKDevice")]
-        #[method_id(@__retain_semantics Other device)]
+        #[method_id(@__method_family Other device)]
         pub unsafe fn device(&self) -> Option<Retained<HKDevice>>;
 
         #[cfg(feature = "HKQuantity")]
@@ -220,7 +220,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKQuantitySeriesSampleBuilder {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

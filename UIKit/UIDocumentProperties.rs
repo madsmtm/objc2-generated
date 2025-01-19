@@ -19,14 +19,14 @@ unsafe impl NSObjectProtocol for UIDocumentProperties {}
 
 extern_methods!(
     unsafe impl UIDocumentProperties {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// When initializing with a url, UIKit will automatically lookup metadata based on the data at that url.
-        #[method_id(@__retain_semantics Init initWithURL:)]
+        #[method_id(@__method_family Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(all(feature = "UIDragItem", feature = "UIDragSession", feature = "block2"))]

@@ -60,7 +60,7 @@ extern_methods!(
         ///
         /// This can be nil indicating
         /// `progress`property is the primary data instead of any activityItems.
-        #[method_id(@__retain_semantics Other primaryActivityItem)]
+        #[method_id(@__method_family Other primaryActivityItem)]
         pub unsafe fn primaryActivityItem(&self) -> Option<Retained<CLSActivityItem>>;
 
         #[cfg(feature = "CLSActivityItem")]
@@ -88,7 +88,7 @@ extern_methods!(
 
         #[cfg(feature = "CLSActivityItem")]
         /// Array of all additional activity items on this CLSActivity.
-        #[method_id(@__retain_semantics Other additionalActivityItems)]
+        #[method_id(@__method_family Other additionalActivityItems)]
         pub unsafe fn additionalActivityItems(&self) -> Retained<NSArray<CLSActivityItem>>;
     }
 );
@@ -97,10 +97,10 @@ extern_methods!(
     /// Methods declared on superclass `CLSObject`
     #[cfg(feature = "CLSObject")]
     unsafe impl CLSActivity {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -141,13 +141,13 @@ extern_methods!(
         ///
         /// Activity associated with a context.  If no activity was ever created this is nil. See:
         /// `-[CLSContext`createNewActivity]; for more details.
-        #[method_id(@__retain_semantics Other currentActivity)]
+        #[method_id(@__method_family Other currentActivity)]
         pub unsafe fn currentActivity(&self) -> Option<Retained<CLSActivity>>;
 
         /// Creates a new activity
         ///
         /// Creates a new activity and sets it as the current activity.
-        #[method_id(@__retain_semantics Other createNewActivity)]
+        #[method_id(@__method_family Other createNewActivity)]
         pub unsafe fn createNewActivity(&self) -> Retained<CLSActivity>;
     }
 );

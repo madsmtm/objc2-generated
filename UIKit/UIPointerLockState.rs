@@ -18,10 +18,10 @@ unsafe impl NSObjectProtocol for UIPointerLockState {}
 
 extern_methods!(
     unsafe impl UIPointerLockState {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// The status of the pointer lock for this scene as determined by the system.
@@ -36,7 +36,7 @@ extern_methods!(
     /// PointerLockState
     #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
     unsafe impl UIScene {
-        #[method_id(@__retain_semantics Other pointerLockState)]
+        #[method_id(@__method_family Other pointerLockState)]
         pub unsafe fn pointerLockState(&self) -> Option<Retained<UIPointerLockState>>;
     }
 );

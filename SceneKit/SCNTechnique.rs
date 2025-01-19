@@ -365,7 +365,7 @@ extern_methods!(
         /// <metalLibraryName
         /// >
         /// An optional metal library name to load metal programs from. The metallib file is located from the default or specified bundle using NSBundle pathForResource:ofType:.
-        #[method_id(@__retain_semantics Other techniqueWithDictionary:)]
+        #[method_id(@__method_family Other techniqueWithDictionary:)]
         pub unsafe fn techniqueWithDictionary(
             dictionary: &NSDictionary<NSString, AnyObject>,
         ) -> Option<Retained<SCNTechnique>>;
@@ -375,7 +375,7 @@ extern_methods!(
         /// Parameter `techniques`: The techniques to sequence.
         ///
         /// The passes from "techniques" are executed sequentially. The symbols and targets are merged. This allows to use the same uniform ad targets across multiple techniques.
-        #[method_id(@__retain_semantics Other techniqueBySequencingTechniques:)]
+        #[method_id(@__method_family Other techniqueBySequencingTechniques:)]
         pub unsafe fn techniqueBySequencingTechniques(
             techniques: &NSArray<SCNTechnique>,
         ) -> Option<Retained<SCNTechnique>>;
@@ -401,12 +401,12 @@ extern_methods!(
         );
 
         /// Returns the dictionary representation of the technique.
-        #[method_id(@__retain_semantics Other dictionaryRepresentation)]
+        #[method_id(@__method_family Other dictionaryRepresentation)]
         pub unsafe fn dictionaryRepresentation(
             &self,
         ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
-        #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
+        #[method_id(@__method_family Other objectForKeyedSubscript:)]
         pub unsafe fn objectForKeyedSubscript(
             &self,
             key: &AnyObject,
@@ -422,7 +422,7 @@ extern_methods!(
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
         /// The Metal library to use to load the Metal programs specified in the technique description. Defaults to nil which corresponds to the default Metal library.
-        #[method_id(@__retain_semantics Other library)]
+        #[method_id(@__method_family Other library)]
         pub unsafe fn library(&self) -> Option<Retained<ProtocolObject<dyn MTLLibrary>>>;
 
         #[cfg(feature = "objc2-metal")]
@@ -436,10 +436,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNTechnique {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -450,7 +450,7 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntechniquesupport?language=objc)
     pub unsafe trait SCNTechniqueSupport: NSObjectProtocol {
         /// Specifies the technique of the receiver. Defaults to nil.
-        #[method_id(@__retain_semantics Other technique)]
+        #[method_id(@__method_family Other technique)]
         unsafe fn technique(&self) -> Option<Retained<SCNTechnique>>;
 
         /// Setter for [`technique`][Self::technique].

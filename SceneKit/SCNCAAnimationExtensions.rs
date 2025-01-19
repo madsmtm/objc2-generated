@@ -26,7 +26,7 @@ extern_category!(
         /// Bridge with SCNAnimation
         ///
         /// Initializes a CoreAnimation animation from a SCNAnimation
-        #[method_id(@__retain_semantics Other animationWithSCNAnimation:)]
+        #[method_id(@__method_family Other animationWithSCNAnimation:)]
         unsafe fn animationWithSCNAnimation(animation: &SCNAnimation) -> Retained<CAAnimation>;
 
         /// Determines whether the receiver is evaluated using the scene time or the system time. Defaults to NO.
@@ -65,7 +65,7 @@ extern_category!(
 
         #[cfg(feature = "SCNAnimation")]
         /// Specifies the animation events attached to the receiver.
-        #[method_id(@__retain_semantics Other animationEvents)]
+        #[method_id(@__method_family Other animationEvents)]
         unsafe fn animationEvents(&self) -> Option<Retained<NSArray<SCNAnimationEvent>>>;
 
         #[cfg(feature = "SCNAnimation")]

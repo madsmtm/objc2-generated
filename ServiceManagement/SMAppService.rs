@@ -93,13 +93,13 @@ extern_methods!(
         ///
         /// The identifier must correspond to the bundle identifier for a LoginItem that lives in the calling app's
         /// Contents/Library/LoginItems directory
-        #[method_id(@__retain_semantics Other loginItemServiceWithIdentifier:)]
+        #[method_id(@__method_family Other loginItemServiceWithIdentifier:)]
         pub unsafe fn loginItemServiceWithIdentifier(identifier: &NSString) -> Retained<Self>;
 
         /// A SMAppService corresponding to the main application as a LoginItem
         ///
         /// This SMAppService can be used to configure the main app to be launched at login
-        #[method_id(@__retain_semantics Other mainAppService)]
+        #[method_id(@__method_family Other mainAppService)]
         pub unsafe fn mainAppService() -> Retained<SMAppService>;
 
         /// Initializes a SMAppService with a LaunchAgent with the specified plist name.
@@ -113,7 +113,7 @@ extern_methods!(
         /// In addition to the standard launchd.plist keys, plists registered with SMAppService may use the
         /// BundleProgram launchd plist key to specify an app bundle relative path for the executable. This key allows
         /// apps to support a user relocating the app bundle after installation.
-        #[method_id(@__retain_semantics Other agentServiceWithPlistName:)]
+        #[method_id(@__method_family Other agentServiceWithPlistName:)]
         pub unsafe fn agentServiceWithPlistName(plist_name: &NSString) -> Retained<Self>;
 
         /// Initializes a SMAppService with a LaunchDaemon with the specified plist name.
@@ -131,7 +131,7 @@ extern_methods!(
         /// For a LaunchDaemon to be bootstrapped during boot, the containing application must be accessible before
         /// a user logs in. For applications that intend to register LaunchDaemons, it is recommended that the
         /// application bundle live in /Applications
-        #[method_id(@__retain_semantics Other daemonServiceWithPlistName:)]
+        #[method_id(@__method_family Other daemonServiceWithPlistName:)]
         pub unsafe fn daemonServiceWithPlistName(plist_name: &NSString) -> Retained<Self>;
 
         /// Registers the service such that it may begin launching subject to user consent
@@ -257,10 +257,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SMAppService {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

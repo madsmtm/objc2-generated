@@ -71,7 +71,7 @@ unsafe impl NSObjectProtocol for EAAccessoryManager {}
 
 extern_methods!(
     unsafe impl EAAccessoryManager {
-        #[method_id(@__retain_semantics Other sharedAccessoryManager)]
+        #[method_id(@__method_family Other sharedAccessoryManager)]
         pub unsafe fn sharedAccessoryManager() -> Retained<EAAccessoryManager>;
 
         #[cfg(feature = "block2")]
@@ -89,7 +89,7 @@ extern_methods!(
         pub unsafe fn unregisterForLocalNotifications(&self);
 
         #[cfg(feature = "EAAccessory")]
-        #[method_id(@__retain_semantics Other connectedAccessories)]
+        #[method_id(@__method_family Other connectedAccessories)]
         pub unsafe fn connectedAccessories(&self) -> Retained<NSArray<EAAccessory>>;
     }
 );
@@ -97,10 +97,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl EAAccessoryManager {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

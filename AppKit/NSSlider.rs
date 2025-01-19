@@ -125,7 +125,7 @@ extern_methods!(
         pub unsafe fn setVertical(&self, vertical: bool);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__retain_semantics Other trackFillColor)]
+        #[method_id(@__method_family Other trackFillColor)]
         pub unsafe fn trackFillColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
@@ -139,10 +139,10 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSlider {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -154,7 +154,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSlider {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -163,7 +163,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSlider {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -226,7 +226,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized slider control.
-        #[method_id(@__retain_semantics Other sliderWithTarget:action:)]
+        #[method_id(@__method_family Other sliderWithTarget:action:)]
         pub unsafe fn sliderWithTarget_action(
             target: Option<&AnyObject>,
             action: Option<Sel>,
@@ -246,7 +246,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized slider control.
-        #[method_id(@__retain_semantics Other sliderWithValue:minValue:maxValue:target:action:)]
+        #[method_id(@__method_family Other sliderWithValue:minValue:maxValue:target:action:)]
         pub unsafe fn sliderWithValue_minValue_maxValue_target_action(
             value: c_double,
             min_value: c_double,
@@ -268,7 +268,7 @@ extern_methods!(
         pub unsafe fn setTitleCell(&self, cell: Option<&NSCell>);
 
         #[deprecated = "-titleCell has returned nil since 10.0"]
-        #[method_id(@__retain_semantics Other titleCell)]
+        #[method_id(@__method_family Other titleCell)]
         pub unsafe fn titleCell(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSColor")]
@@ -278,7 +278,7 @@ extern_methods!(
 
         #[cfg(feature = "NSColor")]
         #[deprecated = "-titleColor has returned nil since 10.0"]
-        #[method_id(@__retain_semantics Other titleColor)]
+        #[method_id(@__method_family Other titleColor)]
         pub unsafe fn titleColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSFont")]
@@ -288,11 +288,11 @@ extern_methods!(
 
         #[cfg(feature = "NSFont")]
         #[deprecated = "-titleFont has returned nil since 10.0"]
-        #[method_id(@__retain_semantics Other titleFont)]
+        #[method_id(@__method_family Other titleFont)]
         pub unsafe fn titleFont(&self) -> Option<Retained<NSFont>>;
 
         #[deprecated = "-title has returned nil since 10.0"]
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[deprecated = "-setTitle: had no effect since 10.0"]
@@ -311,7 +311,7 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         #[deprecated = "-image has returned nil since 10.0"]
-        #[method_id(@__retain_semantics Other image)]
+        #[method_id(@__method_family Other image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
     }
 );

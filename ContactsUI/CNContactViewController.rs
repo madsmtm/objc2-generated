@@ -54,7 +54,7 @@ extern_methods!(
         /// Pass this descriptor to the keysToFetch of the
         /// `CNContactFetchRequest`if you want to display the contact in a
         /// `CNContactViewController.`
-        #[method_id(@__retain_semantics Other descriptorForRequiredKeys)]
+        #[method_id(@__method_family Other descriptorForRequiredKeys)]
         pub unsafe fn descriptorForRequiredKeys(
             mtm: MainThreadMarker,
         ) -> Retained<ProtocolObject<dyn CNKeyDescriptor>>;
@@ -65,7 +65,7 @@ extern_methods!(
         ///
         /// When
         /// `contact`is nil, displays an empty selection state.
-        #[method_id(@__retain_semantics Other contact)]
+        #[method_id(@__method_family Other contact)]
         pub unsafe fn contact(&self) -> Option<Retained<CNContact>>;
 
         #[cfg(feature = "objc2-contacts")]
@@ -80,14 +80,14 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl CNContactViewController {
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        #[method_id(@__method_family Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -100,7 +100,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl CNContactViewController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -110,7 +110,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl CNContactViewController {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

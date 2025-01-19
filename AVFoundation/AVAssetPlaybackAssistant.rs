@@ -60,10 +60,10 @@ unsafe impl NSObjectProtocol for AVAssetPlaybackAssistant {}
 
 extern_methods!(
     unsafe impl AVAssetPlaybackAssistant {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
@@ -72,7 +72,7 @@ extern_methods!(
         /// Parameter `asset`: An instance of AVAsset.
         ///
         /// Returns: An instance of AVAssetPlaybackAssistant.
-        #[method_id(@__retain_semantics Other assetPlaybackAssistantWithAsset:)]
+        #[method_id(@__method_family Other assetPlaybackAssistantWithAsset:)]
         pub unsafe fn assetPlaybackAssistantWithAsset(asset: &AVAsset) -> Retained<Self>;
 
         #[cfg(feature = "block2")]

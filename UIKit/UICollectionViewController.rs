@@ -75,20 +75,20 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UICollectionViewController {
         #[cfg(feature = "UICollectionViewLayout")]
-        #[method_id(@__retain_semantics Init initWithCollectionViewLayout:)]
+        #[method_id(@__method_family Init initWithCollectionViewLayout:)]
         pub unsafe fn initWithCollectionViewLayout(
             this: Allocated<Self>,
             layout: &UICollectionViewLayout,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        #[method_id(@__method_family Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -99,7 +99,7 @@ extern_methods!(
             feature = "UIScrollView",
             feature = "UIView"
         ))]
-        #[method_id(@__retain_semantics Other collectionView)]
+        #[method_id(@__method_family Other collectionView)]
         pub unsafe fn collectionView(&self) -> Option<Retained<UICollectionView>>;
 
         #[cfg(all(
@@ -132,7 +132,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UICollectionViewLayout")]
-        #[method_id(@__retain_semantics Other collectionViewLayout)]
+        #[method_id(@__method_family Other collectionViewLayout)]
         pub unsafe fn collectionViewLayout(&self) -> Retained<UICollectionViewLayout>;
 
         #[method(installsStandardGestureForInteractiveMovement)]
@@ -151,10 +151,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UICollectionViewController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

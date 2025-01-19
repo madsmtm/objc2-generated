@@ -28,31 +28,31 @@ extern_methods!(
     unsafe impl PHAssetChangeRequest {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(@__retain_semantics Other creationRequestForAssetFromImage:)]
+        #[method_id(@__method_family Other creationRequestForAssetFromImage:)]
         pub unsafe fn creationRequestForAssetFromImage(image: &NSImage) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other creationRequestForAssetFromImageAtFileURL:)]
+        #[method_id(@__method_family Other creationRequestForAssetFromImageAtFileURL:)]
         pub unsafe fn creationRequestForAssetFromImageAtFileURL(
             file_url: &NSURL,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other creationRequestForAssetFromVideoAtFileURL:)]
+        #[method_id(@__method_family Other creationRequestForAssetFromVideoAtFileURL:)]
         pub unsafe fn creationRequestForAssetFromVideoAtFileURL(
             file_url: &NSURL,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "PHObject")]
-        #[method_id(@__retain_semantics Other placeholderForCreatedAsset)]
+        #[method_id(@__method_family Other placeholderForCreatedAsset)]
         pub unsafe fn placeholderForCreatedAsset(&self) -> Option<Retained<PHObjectPlaceholder>>;
 
         #[method(deleteAssets:)]
         pub unsafe fn deleteAssets(assets: &ProtocolObject<dyn NSFastEnumeration>);
 
         #[cfg(all(feature = "PHAsset", feature = "PHObject"))]
-        #[method_id(@__retain_semantics Other changeRequestForAsset:)]
+        #[method_id(@__method_family Other changeRequestForAsset:)]
         pub unsafe fn changeRequestForAsset(asset: &PHAsset) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other creationDate)]
+        #[method_id(@__method_family Other creationDate)]
         pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`creationDate`][Self::creationDate].
@@ -60,7 +60,7 @@ extern_methods!(
         pub unsafe fn setCreationDate(&self, creation_date: Option<&NSDate>);
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(@__retain_semantics Other location)]
+        #[method_id(@__method_family Other location)]
         pub unsafe fn location(&self) -> Option<Retained<CLLocation>>;
 
         #[cfg(feature = "objc2-core-location")]
@@ -83,7 +83,7 @@ extern_methods!(
         pub unsafe fn setHidden(&self, hidden: bool);
 
         #[cfg(feature = "PHContentEditingOutput")]
-        #[method_id(@__retain_semantics Other contentEditingOutput)]
+        #[method_id(@__method_family Other contentEditingOutput)]
         pub unsafe fn contentEditingOutput(&self) -> Option<Retained<PHContentEditingOutput>>;
 
         #[cfg(feature = "PHContentEditingOutput")]
@@ -103,10 +103,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHAssetChangeRequest {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -164,10 +164,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHContentEditingInputRequestOptions {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -214,7 +214,7 @@ extern_methods!(
     #[cfg(feature = "PHContentEditingOutput")]
     unsafe impl PHContentEditingOutput {
         #[cfg(feature = "PHObject")]
-        #[method_id(@__retain_semantics Init initWithPlaceholderForCreatedAsset:)]
+        #[method_id(@__method_family Init initWithPlaceholderForCreatedAsset:)]
         pub unsafe fn initWithPlaceholderForCreatedAsset(
             this: Allocated<Self>,
             placeholder_for_created_asset: &PHObjectPlaceholder,

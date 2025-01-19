@@ -108,7 +108,7 @@ extern_methods!(
         ///
         ///
         /// There may be multiple reactions of the same type at a given time.  Some may come from gesture detection, some may come from calls to -[AVCaptureDevice performReactionEffect:]
-        #[method_id(@__retain_semantics Other reactionType)]
+        #[method_id(@__method_family Other reactionType)]
         pub unsafe fn reactionType(&self) -> Retained<AVCaptureReactionType>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -129,10 +129,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCaptureReactionEffectState {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

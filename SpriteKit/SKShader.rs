@@ -32,7 +32,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `source`: the source code for the custom fragment shader.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(this: Allocated<Self>, source: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "SKUniform")]
@@ -42,21 +42,21 @@ extern_methods!(
         /// Parameter `source`: the source code for the custom fragment shader.
         ///
         /// Parameter `uniforms`: the array of uniforms supplied to this shader
-        #[method_id(@__retain_semantics Init initWithSource:uniforms:)]
+        #[method_id(@__method_family Init initWithSource:uniforms:)]
         pub unsafe fn initWithSource_uniforms(
             this: Allocated<Self>,
             source: &NSString,
             uniforms: &NSArray<SKUniform>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other shader)]
+        #[method_id(@__method_family Other shader)]
         pub unsafe fn shader() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other shaderWithSource:)]
+        #[method_id(@__method_family Other shaderWithSource:)]
         pub unsafe fn shaderWithSource(source: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "SKUniform")]
-        #[method_id(@__retain_semantics Other shaderWithSource:uniforms:)]
+        #[method_id(@__method_family Other shaderWithSource:uniforms:)]
         pub unsafe fn shaderWithSource_uniforms(
             source: &NSString,
             uniforms: &NSArray<SKUniform>,
@@ -71,7 +71,7 @@ extern_methods!(
         /// error:NULL]];
         ///
         /// The encoding is assumed to be NSUTF8StringEncoding.
-        #[method_id(@__retain_semantics Other shaderWithFileNamed:)]
+        #[method_id(@__method_family Other shaderWithFileNamed:)]
         pub unsafe fn shaderWithFileNamed(name: &NSString) -> Retained<Self>;
 
         /// Shader source must define the 'main' method of the fragment shader
@@ -97,7 +97,7 @@ extern_methods!(
         /// Sample shader source that produces the same result are SpriteKit's normal rendering:
         ///
         /// "void main() { gl_FragColor = SKDefaultShading(); }"
-        #[method_id(@__retain_semantics Other source)]
+        #[method_id(@__method_family Other source)]
         pub unsafe fn source(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`source`][Self::source].
@@ -109,7 +109,7 @@ extern_methods!(
         /// There is no need to declare them in you source, just use them by name.
         ///
         /// All uniforms declared must be used within the source.
-        #[method_id(@__retain_semantics Other uniforms)]
+        #[method_id(@__method_family Other uniforms)]
         pub unsafe fn uniforms(&self) -> Retained<NSArray<SKUniform>>;
 
         #[cfg(feature = "SKUniform")]
@@ -122,14 +122,14 @@ extern_methods!(
         pub unsafe fn addUniform(&self, uniform: &SKUniform);
 
         #[cfg(feature = "SKUniform")]
-        #[method_id(@__retain_semantics Other uniformNamed:)]
+        #[method_id(@__method_family Other uniformNamed:)]
         pub unsafe fn uniformNamed(&self, name: &NSString) -> Option<Retained<SKUniform>>;
 
         #[method(removeUniformNamed:)]
         pub unsafe fn removeUniformNamed(&self, name: &NSString);
 
         #[cfg(feature = "SKAttribute")]
-        #[method_id(@__retain_semantics Other attributes)]
+        #[method_id(@__method_family Other attributes)]
         pub unsafe fn attributes(&self) -> Retained<NSArray<SKAttribute>>;
 
         #[cfg(feature = "SKAttribute")]
@@ -142,10 +142,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKShader {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

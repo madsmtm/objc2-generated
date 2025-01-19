@@ -21,13 +21,13 @@ unsafe impl NSObjectProtocol for PHAssetCollectionChangeRequest {}
 extern_methods!(
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHAssetCollectionChangeRequest {
-        #[method_id(@__retain_semantics Other creationRequestForAssetCollectionWithTitle:)]
+        #[method_id(@__method_family Other creationRequestForAssetCollectionWithTitle:)]
         pub unsafe fn creationRequestForAssetCollectionWithTitle(
             title: &NSString,
         ) -> Retained<Self>;
 
         #[cfg(feature = "PHObject")]
-        #[method_id(@__retain_semantics Other placeholderForCreatedAssetCollection)]
+        #[method_id(@__method_family Other placeholderForCreatedAssetCollection)]
         pub unsafe fn placeholderForCreatedAssetCollection(&self) -> Retained<PHObjectPlaceholder>;
 
         #[method(deleteAssetCollections:)]
@@ -36,7 +36,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "PHCollection", feature = "PHObject"))]
-        #[method_id(@__retain_semantics Other changeRequestForAssetCollection:)]
+        #[method_id(@__method_family Other changeRequestForAssetCollection:)]
         pub unsafe fn changeRequestForAssetCollection(
             asset_collection: &PHAssetCollection,
         ) -> Option<Retained<Self>>;
@@ -47,13 +47,13 @@ extern_methods!(
             feature = "PHFetchResult",
             feature = "PHObject"
         ))]
-        #[method_id(@__retain_semantics Other changeRequestForAssetCollection:assets:)]
+        #[method_id(@__method_family Other changeRequestForAssetCollection:assets:)]
         pub unsafe fn changeRequestForAssetCollection_assets(
             asset_collection: &PHAssetCollection,
             assets: Option<&PHFetchResult<PHAsset>>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -96,10 +96,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "PHChangeRequest")]
     unsafe impl PHAssetCollectionChangeRequest {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

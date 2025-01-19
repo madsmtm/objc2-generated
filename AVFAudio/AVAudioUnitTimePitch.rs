@@ -99,7 +99,7 @@ extern_methods!(
         /// Parameter `audioComponentDescription`: AudioComponentDescription of the audio unit to be initialized
         ///
         /// The componentType must be kAudioUnitType_FormatConverter
-        #[method_id(@__retain_semantics Init initWithAudioComponentDescription:)]
+        #[method_id(@__method_family Init initWithAudioComponentDescription:)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
             audio_component_description: AudioComponentDescription,
@@ -115,10 +115,10 @@ extern_methods!(
         feature = "AVAudioUnitTimeEffect"
     ))]
     unsafe impl AVAudioUnitTimePitch {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

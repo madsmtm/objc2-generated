@@ -28,17 +28,17 @@ unsafe impl NSObjectProtocol for AVCaptureVideoDataOutput {}
 extern_methods!(
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCaptureVideoDataOutput {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The receiver's delegate.
         ///
         ///
         /// The value of this property is an object conforming to the AVCaptureVideoDataOutputSampleBufferDelegate protocol that will receive sample buffers after they are captured. The delegate is set using the setSampleBufferDelegate:queue: method.
-        #[method_id(@__retain_semantics Other sampleBufferDelegate)]
+        #[method_id(@__method_family Other sampleBufferDelegate)]
         pub unsafe fn sampleBufferDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureVideoDataOutputSampleBufferDelegate>>>;
@@ -49,7 +49,7 @@ extern_methods!(
         /// See AVVideoSettings.h for more information on how to construct a video settings dictionary. To receive samples in their device native format, set this property to an empty dictionary (i.e. [NSDictionary dictionary]). To receive samples in a default uncompressed format, set this property to nil. Note that after this property is set to nil, subsequent querying of this property will yield a non-nil dictionary reflecting the settings used by the AVCaptureSession's current sessionPreset.
         ///
         /// On iOS versions prior to iOS 16.0, the only supported key is kCVPixelBufferPixelFormatTypeKey. Use -availableVideoCVPixelFormatTypes for the list of supported pixel formats. For apps linked on or after iOS 16.0, kCVPixelBufferPixelFormatTypeKey, kCVPixelBufferWidthKey, and kCVPixelBufferHeightKey are supported. The width and height must match the videoOrientation specified on the output's AVCaptureConnection or an NSInvalidArgumentException is thrown. The aspect ratio of width and height must match the aspect ratio of the source's activeFormat (corrected for the connection's videoOrientation) or an NSInvalidArgumentException is thrown. If width or height exceeds the source's activeFormat's width or height, an NSInvalidArgumentException is thrown. Changing width and height when deliversPreviewSizedOutputBuffers is set to YES is not supported and throws an NSInvalidArgumentException.
-        #[method_id(@__retain_semantics Other videoSettings)]
+        #[method_id(@__method_family Other videoSettings)]
         pub unsafe fn videoSettings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// Setter for [`videoSettings`][Self::videoSettings].
@@ -75,7 +75,7 @@ extern_methods!(
         /// The dictionary returned contains all necessary keys and values needed by AVAssetWriter (see AVAssetWriterInput.h, -initWithMediaType:outputSettings: for a more in depth discussion). For QuickTime movie and ISO file types, the recommended video settings will produce output comparable to that of AVCaptureMovieFileOutput.
         ///
         /// Note that the dictionary of settings is dependent on the current configuration of the receiver's AVCaptureSession and its inputs. The settings dictionary may change if the session's configuration changes. As such, you should configure your session first, then query the recommended video settings. As of iOS 8.3, movies produced with these settings successfully import into the iOS camera roll and sync to and from like devices via iTunes.
-        #[method_id(@__retain_semantics Other recommendedVideoSettingsForAssetWriterWithOutputFileType:)]
+        #[method_id(@__method_family Other recommendedVideoSettingsForAssetWriterWithOutputFileType:)]
         pub unsafe fn recommendedVideoSettingsForAssetWriterWithOutputFileType(
             &self,
             output_file_type: &AVFileType,
@@ -91,7 +91,7 @@ extern_methods!(
         ///
         ///
         /// This method allows you to query the available video codecs that may be used when specifying an AVVideoCodecKey in -recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:. When specifying an outputFileType of AVFileTypeQuickTimeMovie, video codecs are ordered identically to -[AVCaptureMovieFileOutput availableVideoCodecTypes].
-        #[method_id(@__retain_semantics Other availableVideoCodecTypesForAssetWriterWithOutputFileType:)]
+        #[method_id(@__method_family Other availableVideoCodecTypesForAssetWriterWithOutputFileType:)]
         pub unsafe fn availableVideoCodecTypesForAssetWriterWithOutputFileType(
             &self,
             output_file_type: &AVFileType,
@@ -117,7 +117,7 @@ extern_methods!(
         /// The videoCodecType string provided must be present in the availableVideoCodecTypesForAssetWriterWithOutputFileType: array, or an NSInvalidArgumentException is thrown.
         ///
         /// Note that the dictionary of settings is dependent on the current configuration of the receiver's AVCaptureSession and its inputs. The settings dictionary may change if the session's configuration changes. As such, you should configure your session first, then query the recommended video settings. As of iOS 8.3, movies produced with these settings successfully import into the iOS camera roll and sync to and from like devices via iTunes.
-        #[method_id(@__retain_semantics Other recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:)]
+        #[method_id(@__method_family Other recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:)]
         pub unsafe fn recommendedVideoSettingsForVideoCodecType_assetWriterOutputFileType(
             &self,
             video_codec_type: &AVVideoCodecType,
@@ -154,7 +154,7 @@ extern_methods!(
         /// The videoCodecType string provided must be present in the availableVideoCodecTypesForAssetWriterWithOutputFileType: array, or an NSInvalidArgumentException is thrown.
         ///
         /// Note that the dictionary of settings is dependent on the current configuration of the receiver's AVCaptureSession and its inputs. The settings dictionary may change if the session's configuration changes. As such, you should configure your session first, then query the recommended video settings. As of iOS 8.3, movies produced with these settings successfully import into the iOS camera roll and sync to and from like devices via iTunes.
-        #[method_id(@__retain_semantics Other recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:outputFileURL:)]
+        #[method_id(@__method_family Other recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:outputFileURL:)]
         pub unsafe fn recommendedVideoSettingsForVideoCodecType_assetWriterOutputFileType_outputFileURL(
             &self,
             video_codec_type: &AVVideoCodecType,
@@ -166,7 +166,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of NSNumbers that can be used as values for the kCVPixelBufferPixelFormatTypeKey in the receiver's videoSettings property. The formats are listed in an unspecified order. This list can may change if the activeFormat of the AVCaptureDevice connected to the receiver changes.
-        #[method_id(@__retain_semantics Other availableVideoCVPixelFormatTypes)]
+        #[method_id(@__method_family Other availableVideoCVPixelFormatTypes)]
         pub unsafe fn availableVideoCVPixelFormatTypes(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "AVVideoSettings")]
@@ -174,7 +174,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of AVVideoCodecTypes that can be used as values for the AVVideoCodecKey in the receiver's videoSettings property.
-        #[method_id(@__retain_semantics Other availableVideoCodecTypes)]
+        #[method_id(@__method_family Other availableVideoCodecTypes)]
         pub unsafe fn availableVideoCodecTypes(&self) -> Retained<NSArray<AVVideoCodecType>>;
 
         #[cfg(feature = "objc2-core-media")]

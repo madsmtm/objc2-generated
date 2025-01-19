@@ -26,7 +26,7 @@ unsafe impl NSObjectProtocol for VZHostAudioInputStreamSource {}
 extern_methods!(
     #[cfg(feature = "VZAudioInputStreamSource")]
     unsafe impl VZHostAudioInputStreamSource {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -35,7 +35,7 @@ extern_methods!(
     /// Methods declared on superclass `VZAudioInputStreamSource`
     #[cfg(feature = "VZAudioInputStreamSource")]
     unsafe impl VZHostAudioInputStreamSource {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

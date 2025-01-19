@@ -50,7 +50,7 @@ unsafe impl NSObjectProtocol for MEComposeContext {}
 extern_methods!(
     unsafe impl MEComposeContext {
         /// A unique identifier for the compose context.
-        #[method_id(@__retain_semantics Other contextID)]
+        #[method_id(@__method_family Other contextID)]
         pub unsafe fn contextID(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "MEMessage")]
@@ -58,7 +58,7 @@ extern_methods!(
         /// It is
         /// `nil`for
         /// `MEComposeUserActionNewMessage`actions.
-        #[method_id(@__retain_semantics Other originalMessage)]
+        #[method_id(@__method_family Other originalMessage)]
         pub unsafe fn originalMessage(&self) -> Option<Retained<MEMessage>>;
 
         /// Indicates the action performed by the user that created this compose context.
@@ -86,10 +86,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MEComposeContext {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -208,7 +208,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an AVCaptureSessionPreset indicating the current session preset in use by the receiver. The sessionPreset property may be set while the receiver is running.
-        #[method_id(@__retain_semantics Other sessionPreset)]
+        #[method_id(@__method_family Other sessionPreset)]
         pub unsafe fn sessionPreset(&self) -> Retained<AVCaptureSessionPreset>;
 
         #[cfg(feature = "AVCaptureSessionPreset")]
@@ -221,7 +221,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of AVCaptureInputs currently added to the receiver. Clients can add AVCaptureInputs to a session by calling -addInput:.
-        #[method_id(@__retain_semantics Other inputs)]
+        #[method_id(@__method_family Other inputs)]
         pub unsafe fn inputs(&self) -> Retained<NSArray<AVCaptureInput>>;
 
         #[cfg(feature = "AVCaptureInput")]
@@ -264,7 +264,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of AVCaptureOutputs currently added to the receiver. Clients can add AVCaptureOutputs to a session by calling -addOutput:.
-        #[method_id(@__retain_semantics Other outputs)]
+        #[method_id(@__method_family Other outputs)]
         pub unsafe fn outputs(&self) -> Retained<NSArray<AVCaptureOutput>>;
 
         #[cfg(feature = "AVCaptureOutputBase")]
@@ -334,7 +334,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of AVCaptureConnections currently added to the receiver. Connections are formed implicitly by the receiver when a client calls -addInput: or -addOutput:. Connections are formed explicitly when a client calls -addConnection:.
-        #[method_id(@__retain_semantics Other connections)]
+        #[method_id(@__method_family Other connections)]
         pub unsafe fn connections(&self) -> Retained<NSArray<AVCaptureConnection>>;
 
         /// Returns whether the proposed connection can be added to the receiver.
@@ -384,7 +384,7 @@ extern_methods!(
         /// The value of this property is an object conforming to the `AVCaptureSessionControlsDelegate` protocol that receives events about the session's controls. The delegate is set using the `-setControlsDelegate:queue:` method.
         ///
         /// A controls delegate must be specified for controls to become active.
-        #[method_id(@__retain_semantics Other controlsDelegate)]
+        #[method_id(@__method_family Other controlsDelegate)]
         pub unsafe fn controlsDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureSessionControlsDelegate>>>;
@@ -394,7 +394,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an `NSArray` of `AVCaptureControl`s currently added to the session. Clients can add `AVCaptureControl`s to a session by calling `-addControl:`.
-        #[method_id(@__retain_semantics Other controls)]
+        #[method_id(@__method_family Other controls)]
         pub unsafe fn controls(&self) -> Retained<NSArray<AVCaptureControl>>;
 
         #[cfg(feature = "AVCaptureControl")]
@@ -581,7 +581,7 @@ extern_methods!(
         /// CMTime originalPTS = CMSyncConvertTime( syncedPTS, [session synchronizationClock], originalClock );
         ///
         /// This property is key-value observable.
-        #[method_id(@__retain_semantics Other synchronizationClock)]
+        #[method_id(@__method_family Other synchronizationClock)]
         pub unsafe fn synchronizationClock(&self) -> Option<Retained<CMClock>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -589,7 +589,7 @@ extern_methods!(
         ///
         /// Deprecated. Please use synchronizationClock instead.
         #[deprecated]
-        #[method_id(@__retain_semantics Other masterClock)]
+        #[method_id(@__method_family Other masterClock)]
         pub unsafe fn masterClock(&self) -> Option<Retained<CMClock>>;
 
         /// Indicates the percentage of the session's available hardware budget currently in use.
@@ -614,10 +614,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCaptureSession {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -720,10 +720,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCaptureMultiCamSession {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -783,10 +783,10 @@ unsafe impl NSObjectProtocol for AVCaptureConnection {}
 
 extern_methods!(
     unsafe impl AVCaptureConnection {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(feature = "AVCaptureInput", feature = "AVCaptureOutputBase"))]
@@ -801,7 +801,7 @@ extern_methods!(
         ///
         ///
         /// This method returns an instance of AVCaptureConnection that may be subsequently added to an AVCaptureSession instance using AVCaptureSession's -addConnection: method. When using -addInput: or -addOutput:, connections are formed between all compatible inputs and outputs automatically. You do not need to manually create and add connections to the session unless you use the primitive -addInputWithNoConnections: or -addOutputWithNoConnections: methods.
-        #[method_id(@__retain_semantics Other connectionWithInputPorts:output:)]
+        #[method_id(@__method_family Other connectionWithInputPorts:output:)]
         pub unsafe fn connectionWithInputPorts_output(
             ports: &NSArray<AVCaptureInputPort>,
             output: &AVCaptureOutput,
@@ -824,7 +824,7 @@ extern_methods!(
         ///
         ///
         /// This method returns an instance of AVCaptureConnection that may be subsequently added to an AVCaptureSession instance using AVCaptureSession's -addConnection: method. When using AVCaptureVideoPreviewLayer's -initWithSession: or -setSession:, a connection is formed between the first compatible input port and the video preview layer automatically. You do not need to manually create and add connections to the session unless you use AVCaptureVideoPreviewLayer's primitive -initWithSessionWithNoConnection: or -setSessionWithNoConnection: methods.
-        #[method_id(@__retain_semantics Other connectionWithInputPort:videoPreviewLayer:)]
+        #[method_id(@__method_family Other connectionWithInputPort:videoPreviewLayer:)]
         pub unsafe fn connectionWithInputPort_videoPreviewLayer(
             port: &AVCaptureInputPort,
             layer: &AVCaptureVideoPreviewLayer,
@@ -842,7 +842,7 @@ extern_methods!(
         ///
         ///
         /// This method returns an instance of AVCaptureConnection that may be subsequently added to an AVCaptureSession instance using AVCaptureSession's -addConnection: method. When using -addInput: or -addOutput:, connections are formed between all compatible inputs and outputs automatically. You do not need to manually create and add connections to the session unless you use the primitive -addInputWithNoConnections: or -addOutputWithNoConnections: methods.
-        #[method_id(@__retain_semantics Init initWithInputPorts:output:)]
+        #[method_id(@__method_family Init initWithInputPorts:output:)]
         pub unsafe fn initWithInputPorts_output(
             this: Allocated<Self>,
             ports: &NSArray<AVCaptureInputPort>,
@@ -867,7 +867,7 @@ extern_methods!(
         ///
         ///
         /// This method returns an instance of AVCaptureConnection that may be subsequently added to an AVCaptureSession instance using AVCaptureSession's -addConnection: method. When using AVCaptureVideoPreviewLayer's -initWithSession: or -setSession:, a connection is formed between the first compatible input port and the video preview layer automatically. You do not need to manually create and add connections to the session unless you use AVCaptureVideoPreviewLayer's primitive -initWithSessionWithNoConnection: or -setSessionWithNoConnection: methods.
-        #[method_id(@__retain_semantics Init initWithInputPort:videoPreviewLayer:)]
+        #[method_id(@__method_family Init initWithInputPort:videoPreviewLayer:)]
         pub unsafe fn initWithInputPort_videoPreviewLayer(
             this: Allocated<Self>,
             port: &AVCaptureInputPort,
@@ -879,7 +879,7 @@ extern_methods!(
         ///
         ///
         /// An AVCaptureConnection may involve one or more AVCaptureInputPorts producing data to the connection's AVCaptureOutput. This property is read-only. An AVCaptureConnection's inputPorts remain static for the life of the object.
-        #[method_id(@__retain_semantics Other inputPorts)]
+        #[method_id(@__method_family Other inputPorts)]
         pub unsafe fn inputPorts(&self) -> Retained<NSArray<AVCaptureInputPort>>;
 
         #[cfg(feature = "AVCaptureOutputBase")]
@@ -887,7 +887,7 @@ extern_methods!(
         ///
         ///
         /// An AVCaptureConnection may involve one or more AVCaptureInputPorts producing data to the connection's AVCaptureOutput. This property is read-only. An AVCaptureConnection's output remains static for the life of the object. Note that a connection can either be to an output or a video preview layer, but never to both.
-        #[method_id(@__retain_semantics Other output)]
+        #[method_id(@__method_family Other output)]
         pub unsafe fn output(&self) -> Option<Retained<AVCaptureOutput>>;
 
         #[cfg(all(feature = "AVCaptureVideoPreviewLayer", feature = "objc2-quartz-core"))]
@@ -896,7 +896,7 @@ extern_methods!(
         ///
         ///
         /// An AVCaptureConnection may involve one AVCaptureInputPort producing data to an AVCaptureVideoPreviewLayer object. This property is read-only. An AVCaptureConnection's videoPreviewLayer remains static for the life of the object. Note that a connection can either be to an output or a video preview layer, but never to both.
-        #[method_id(@__retain_semantics Other videoPreviewLayer)]
+        #[method_id(@__method_family Other videoPreviewLayer)]
         pub unsafe fn videoPreviewLayer(&self) -> Option<Retained<AVCaptureVideoPreviewLayer>>;
 
         /// Indicates whether the connection's output should consume data.
@@ -923,7 +923,7 @@ extern_methods!(
         ///
         ///
         /// This property is only applicable to AVCaptureConnection instances involving audio. In such connections, the audioChannels array contains one AVCaptureAudioChannel object for each channel of audio data flowing through this connection.
-        #[method_id(@__retain_semantics Other audioChannels)]
+        #[method_id(@__method_family Other audioChannels)]
         pub unsafe fn audioChannels(&self) -> Retained<NSArray<AVCaptureAudioChannel>>;
 
         /// Indicates whether the connection supports setting the videoMirrored property.
@@ -1202,10 +1202,10 @@ unsafe impl NSObjectProtocol for AVCaptureAudioChannel {}
 
 extern_methods!(
     unsafe impl AVCaptureAudioChannel {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// A measurement of the instantaneous average power level of the audio flowing through the receiver.

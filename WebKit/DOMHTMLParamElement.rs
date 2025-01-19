@@ -78,7 +78,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLParamElement {
         #[deprecated]
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -87,7 +87,7 @@ extern_methods!(
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other type)]
+        #[method_id(@__method_family Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
@@ -96,7 +96,7 @@ extern_methods!(
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other value)]
+        #[method_id(@__method_family Other value)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
         /// Setter for [`value`][Self::value].
@@ -105,7 +105,7 @@ extern_methods!(
         pub unsafe fn setValue(&self, value: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other valueType)]
+        #[method_id(@__method_family Other valueType)]
         pub unsafe fn valueType(&self) -> Retained<NSString>;
 
         /// Setter for [`valueType`][Self::valueType].
@@ -126,7 +126,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLParamElement {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -141,7 +141,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLParamElement {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

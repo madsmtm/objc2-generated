@@ -1574,7 +1574,7 @@ unsafe impl NSObjectProtocol for CATapDescription {}
 extern_methods!(
     #[cfg(feature = "objc2")]
     unsafe impl CATapDescription {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -1582,7 +1582,7 @@ extern_methods!(
         /// both right and left channels.
         ///
         /// Parameter `processesObjectIDsToIncludeInTap`: An NSArray of NSNumbers where each NSNumber holds an AudioObjectID of the process object to include in the tap
-        #[method_id(@__retain_semantics Init initStereoMixdownOfProcesses:)]
+        #[method_id(@__method_family Init initStereoMixdownOfProcesses:)]
         pub unsafe fn initStereoMixdownOfProcesses(
             this: Allocated<Self>,
             processes_object_i_ds_to_include_in_tap: &NSArray<NSNumber>,
@@ -1594,7 +1594,7 @@ extern_methods!(
         ///
         /// Parameter `processesObjectIDsToExcludeFromTap`: An NSArray of NSNumbers where each NSNumber holds an AudioObjectID of the process object to exclude from the tap.
         /// All other processes that output audio will be included in the tap.
-        #[method_id(@__retain_semantics Init initStereoGlobalTapButExcludeProcesses:)]
+        #[method_id(@__method_family Init initStereoGlobalTapButExcludeProcesses:)]
         pub unsafe fn initStereoGlobalTapButExcludeProcesses(
             this: Allocated<Self>,
             processes_object_i_ds_to_exclude_from_tap: &NSArray<NSNumber>,
@@ -1604,7 +1604,7 @@ extern_methods!(
         /// Mix all given process audio streams audio to mono.
         ///
         /// Parameter `processesObjectIDsToIncludeInTap`: An NSArray of NSNumbers where each NSNumber holds an AudioObjectID of the process object to include in the tap
-        #[method_id(@__retain_semantics Init initMonoMixdownOfProcesses:)]
+        #[method_id(@__method_family Init initMonoMixdownOfProcesses:)]
         pub unsafe fn initMonoMixdownOfProcesses(
             this: Allocated<Self>,
             processes_object_i_ds_to_include_in_tap: &NSArray<NSNumber>,
@@ -1615,7 +1615,7 @@ extern_methods!(
         ///
         /// Parameter `processesObjectIDsToExcludeFromTap`: An NSArray of NSNumbers where each NSNumber holds an AudioObjectID of the process object to exclude from the tap.
         /// All other processes that output audio will be included in the tap.
-        #[method_id(@__retain_semantics Init initMonoGlobalTapButExcludeProcesses:)]
+        #[method_id(@__method_family Init initMonoGlobalTapButExcludeProcesses:)]
         pub unsafe fn initMonoGlobalTapButExcludeProcesses(
             this: Allocated<Self>,
             processes_object_i_ds_to_exclude_from_tap: &NSArray<NSNumber>,
@@ -1631,7 +1631,7 @@ extern_methods!(
         ///
         /// Parameter `stream`: NSInteger that represents the index of the stream on the device whose audio will be captured. The format of the tap
         /// will match the format of this stream.
-        #[method_id(@__retain_semantics Init initWithProcesses:andDeviceUID:withStream:)]
+        #[method_id(@__method_family Init initWithProcesses:andDeviceUID:withStream:)]
         pub unsafe fn initWithProcesses_andDeviceUID_withStream(
             this: Allocated<Self>,
             processes_object_i_ds_to_include_in_tap: &NSArray<NSNumber>,
@@ -1649,7 +1649,7 @@ extern_methods!(
         ///
         /// Parameter `stream`: NSInteger that represents the index of the stream on the device whose audio will be captured. The format of the tap
         /// will match the format of this stream.
-        #[method_id(@__retain_semantics Init initExcludingProcesses:andDeviceUID:withStream:)]
+        #[method_id(@__method_family Init initExcludingProcesses:andDeviceUID:withStream:)]
         pub unsafe fn initExcludingProcesses_andDeviceUID_withStream(
             this: Allocated<Self>,
             processes_object_i_ds_to_exclude_from_tap: &NSArray<NSNumber>,
@@ -1659,7 +1659,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-foundation")]
         /// Human readable name of this tap.
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -1669,7 +1669,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-foundation")]
         /// UID of this tap.
-        #[method_id(@__retain_semantics Other UUID)]
+        #[method_id(@__method_family Other UUID)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -1679,7 +1679,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-foundation")]
         /// An NSArray of NSNumbers where each NSNumber holds the AudioObjectID of the process object to tap or exclude.
-        #[method_id(@__retain_semantics Other processes)]
+        #[method_id(@__method_family Other processes)]
         pub unsafe fn processes(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -1729,7 +1729,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-foundation")]
         /// An optional deviceUID that will have a value if this tap only taps a specific hardware device
-        #[method_id(@__retain_semantics Other deviceUID)]
+        #[method_id(@__method_family Other deviceUID)]
         pub unsafe fn deviceUID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -1740,7 +1740,7 @@ extern_methods!(
         #[cfg(feature = "objc2-foundation")]
         /// An optional NSNumber that will have a value if this tap taps a specific device stream.
         /// The value represents the index of the hardware stream.
-        #[method_id(@__retain_semantics Other stream)]
+        #[method_id(@__method_family Other stream)]
         pub unsafe fn stream(&self) -> Option<Retained<NSNumber>>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -1755,7 +1755,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl CATapDescription {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

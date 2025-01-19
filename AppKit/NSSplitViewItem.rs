@@ -95,7 +95,7 @@ extern_methods!(
         /// Parameter `viewController`: The view controller used to set the viewController property
         ///
         /// Returns: An autoreleased SplitViewItem.
-        #[method_id(@__retain_semantics Other splitViewItemWithViewController:)]
+        #[method_id(@__method_family Other splitViewItemWithViewController:)]
         pub unsafe fn splitViewItemWithViewController(
             view_controller: &NSViewController,
         ) -> Retained<Self>;
@@ -114,7 +114,7 @@ extern_methods!(
         /// Parameter `viewController`: The view controller used to set the viewController property
         ///
         /// Returns: An autoreleased SplitViewItem that acts as a sidebar.
-        #[method_id(@__retain_semantics Other sidebarWithViewController:)]
+        #[method_id(@__method_family Other sidebarWithViewController:)]
         pub unsafe fn sidebarWithViewController(
             view_controller: &NSViewController,
         ) -> Retained<Self>;
@@ -129,7 +129,7 @@ extern_methods!(
         /// Parameter `viewController`: The view controller used to set the viewController property
         ///
         /// Returns: An autoreleased SplitViewItem that acts as a content list.
-        #[method_id(@__retain_semantics Other contentListWithViewController:)]
+        #[method_id(@__method_family Other contentListWithViewController:)]
         pub unsafe fn contentListWithViewController(
             view_controller: &NSViewController,
         ) -> Retained<Self>;
@@ -143,7 +143,7 @@ extern_methods!(
         /// Parameter `viewController`: The view controller used to set the viewController property
         ///
         /// Returns: An autoreleased SplitViewItem that acts as an inspector.
-        #[method_id(@__retain_semantics Other inspectorWithViewController:)]
+        #[method_id(@__method_family Other inspectorWithViewController:)]
         pub unsafe fn inspectorWithViewController(
             view_controller: &NSViewController,
         ) -> Retained<Self>;
@@ -154,7 +154,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
         /// The view controller represented by the SplitViewItem. An exception will be thrown if a new viewController is set while the receiving SplitViewItem is added to a SplitViewController.
-        #[method_id(@__retain_semantics Other viewController)]
+        #[method_id(@__method_family Other viewController)]
         pub unsafe fn viewController(&self, mtm: MainThreadMarker) -> Retained<NSViewController>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
@@ -289,10 +289,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSplitViewItem {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

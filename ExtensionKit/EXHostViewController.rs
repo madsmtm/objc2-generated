@@ -46,7 +46,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl EXHostViewController {
         /// The connection delegate.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn EXHostViewControllerDelegate>>>;
@@ -60,7 +60,7 @@ extern_methods!(
         );
 
         /// A view that’s used when the view controller has no content to display.
-        #[method_id(@__retain_semantics Other placeholderView)]
+        #[method_id(@__method_family Other placeholderView)]
         pub unsafe fn placeholderView(&self) -> Retained<NSView>;
 
         /// Setter for [`placeholderView`][Self::placeholderView].
@@ -70,7 +70,7 @@ extern_methods!(
         /// Attempts to connect to the extension over XPC.
         ///
         /// - Returns: An object representing the connection.
-        #[method_id(@__retain_semantics Other makeXPCConnectionWithError:_)]
+        #[method_id(@__method_family Other makeXPCConnectionWithError:_)]
         pub unsafe fn makeXPCConnectionWithError(
             &self,
         ) -> Result<Retained<NSXPCConnection>, Retained<NSError>>;
@@ -82,14 +82,14 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl EXHostViewController {
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        #[method_id(@__method_family Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -102,7 +102,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl EXHostViewController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -112,7 +112,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl EXHostViewController {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

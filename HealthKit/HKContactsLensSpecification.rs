@@ -44,12 +44,12 @@ extern_methods!(
     unsafe impl HKContactsLensSpecification {
         #[cfg(feature = "HKQuantity")]
         /// The curvature of the back surface of the lens (measured in mm)
-        #[method_id(@__retain_semantics Other baseCurve)]
+        #[method_id(@__method_family Other baseCurve)]
         pub unsafe fn baseCurve(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         /// The width of the lens from edge to edge (measured in mm)
-        #[method_id(@__retain_semantics Other diameter)]
+        #[method_id(@__method_family Other diameter)]
         pub unsafe fn diameter(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
@@ -64,7 +64,7 @@ extern_methods!(
         /// Parameter `baseCurve`: The curvature of the back surface of the lens
         ///
         /// Parameter `diameter`: The width of the lens from edge to edge
-        #[method_id(@__retain_semantics Init initWithSphere:cylinder:axis:addPower:baseCurve:diameter:)]
+        #[method_id(@__method_family Init initWithSphere:cylinder:axis:addPower:baseCurve:diameter:)]
         pub unsafe fn initWithSphere_cylinder_axis_addPower_baseCurve_diameter(
             this: Allocated<Self>,
             sphere: &HKQuantity,
@@ -75,10 +75,10 @@ extern_methods!(
             diameter: Option<&HKQuantity>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

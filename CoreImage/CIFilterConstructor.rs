@@ -10,7 +10,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifilterconstructor?language=objc)
     pub unsafe trait CIFilterConstructor {
         #[cfg(feature = "CIFilter")]
-        #[method_id(@__retain_semantics Other filterWithName:)]
+        #[method_id(@__method_family Other filterWithName:)]
         unsafe fn filterWithName(&self, name: &NSString) -> Option<Retained<CIFilter>>;
     }
 );

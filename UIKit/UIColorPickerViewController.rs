@@ -103,7 +103,7 @@ unsafe impl UITraitEnvironment for UIColorPickerViewController {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIColorPickerViewController {
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIColorPickerViewControllerDelegate>>>;
@@ -119,7 +119,7 @@ extern_methods!(
         #[cfg(feature = "UIColor")]
         /// Sets the selected color on the color picker and is updated when the user changes the selection.
         /// Does support KVO.
-        #[method_id(@__retain_semantics Other selectedColor)]
+        #[method_id(@__method_family Other selectedColor)]
         pub unsafe fn selectedColor(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
@@ -137,14 +137,14 @@ extern_methods!(
         #[method(setSupportsAlpha:)]
         pub unsafe fn setSupportsAlpha(&self, supports_alpha: bool);
 
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        #[method_id(@__method_family Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -153,7 +153,7 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIColorPickerViewController {
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -165,7 +165,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIColorPickerViewController {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

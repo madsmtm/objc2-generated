@@ -38,7 +38,7 @@ extern_methods!(
         /// Creates the placement that targets the given `sceneSession`
         /// - Parameter sceneSession: The scene session of the window scene to replace.
         #[deprecated = "UIWindowSceneReplacePlacement has been replaced with UIWindowScenePushPlacement"]
-        #[method_id(@__retain_semantics Other placementToReplaceSceneSession:)]
+        #[method_id(@__method_family Other placementToReplaceSceneSession:)]
         pub unsafe fn placementToReplaceSceneSession(
             scene_session: &UISceneSession,
         ) -> Retained<Self>;
@@ -49,10 +49,10 @@ extern_methods!(
     /// Methods declared on superclass `UIWindowScenePlacement`
     #[cfg(feature = "UIWindowScenePlacement")]
     unsafe impl UIWindowSceneReplacePlacement {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

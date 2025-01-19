@@ -57,7 +57,7 @@ extern_methods!(
         /// - reductionType: The type of reduction MPSGraph uses to reduce across all other axes than `axis`. See: ``MPSGraphLossReductionType``.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other softMaxCrossEntropyWithSourceTensor:labelsTensor:axis:reductionType:name:)]
+        #[method_id(@__method_family Other softMaxCrossEntropyWithSourceTensor:labelsTensor:axis:reductionType:name:)]
         pub unsafe fn softMaxCrossEntropyWithSourceTensor_labelsTensor_axis_reductionType_name(
             &self,
             source_tensor: &MPSGraphTensor,
@@ -78,7 +78,7 @@ extern_methods!(
         /// - reductionType: The type of reduction MPSGraph uses to reduce across all other axes than `axis`. See: ``MPSGraphLossReductionType``.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other softMaxCrossEntropyGradientWithIncomingGradientTensor:sourceTensor:labelsTensor:axis:reductionType:name:)]
+        #[method_id(@__method_family Other softMaxCrossEntropyGradientWithIncomingGradientTensor:sourceTensor:labelsTensor:axis:reductionType:name:)]
         pub unsafe fn softMaxCrossEntropyGradientWithIncomingGradientTensor_sourceTensor_labelsTensor_axis_reductionType_name(
             &self,
             gradient_tensor: &MPSGraphTensor,

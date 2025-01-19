@@ -24,7 +24,7 @@ unsafe impl NSObjectProtocol for NSButtonTouchBarItem {}
 extern_methods!(
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSButtonTouchBarItem {
-        #[method_id(@__retain_semantics Other buttonTouchBarItemWithIdentifier:title:target:action:)]
+        #[method_id(@__method_family Other buttonTouchBarItemWithIdentifier:title:target:action:)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_title_target_action(
             identifier: &NSTouchBarItemIdentifier,
             title: &NSString,
@@ -34,7 +34,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__retain_semantics Other buttonTouchBarItemWithIdentifier:image:target:action:)]
+        #[method_id(@__method_family Other buttonTouchBarItemWithIdentifier:image:target:action:)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_image_target_action(
             identifier: &NSTouchBarItemIdentifier,
             image: &NSImage,
@@ -44,7 +44,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__retain_semantics Other buttonTouchBarItemWithIdentifier:title:image:target:action:)]
+        #[method_id(@__method_family Other buttonTouchBarItemWithIdentifier:title:image:target:action:)]
         pub unsafe fn buttonTouchBarItemWithIdentifier_title_image_target_action(
             identifier: &NSTouchBarItemIdentifier,
             title: &NSString,
@@ -54,7 +54,7 @@ extern_methods!(
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -62,7 +62,7 @@ extern_methods!(
         pub unsafe fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__retain_semantics Other image)]
+        #[method_id(@__method_family Other image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -71,7 +71,7 @@ extern_methods!(
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__retain_semantics Other bezelColor)]
+        #[method_id(@__method_family Other bezelColor)]
         pub unsafe fn bezelColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
@@ -79,7 +79,7 @@ extern_methods!(
         #[method(setBezelColor:)]
         pub unsafe fn setBezelColor(&self, bezel_color: Option<&NSColor>);
 
-        #[method_id(@__retain_semantics Other target)]
+        #[method_id(@__method_family Other target)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -102,7 +102,7 @@ extern_methods!(
         pub unsafe fn setEnabled(&self, enabled: bool);
 
         /// The localized string labelling this item during user customization. The default value is empty string.
-        #[method_id(@__retain_semantics Other customizationLabel)]
+        #[method_id(@__method_family Other customizationLabel)]
         pub unsafe fn customizationLabel(&self) -> Retained<NSString>;
 
         /// Setter for [`customizationLabel`][Self::customizationLabel].
@@ -115,19 +115,19 @@ extern_methods!(
     /// Methods declared on superclass `NSTouchBarItem`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSButtonTouchBarItem {
-        #[method_id(@__retain_semantics Init initWithIdentifier:)]
+        #[method_id(@__method_family Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSTouchBarItemIdentifier,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -136,7 +136,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSTouchBarItem")]
     unsafe impl NSButtonTouchBarItem {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

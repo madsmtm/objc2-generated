@@ -17,7 +17,7 @@ extern_methods!(
     unsafe impl SCNScene {
         #[cfg(feature = "objc2-model-io")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other sceneWithMDLAsset:)]
+        #[method_id(@__method_family Other sceneWithMDLAsset:)]
         pub unsafe fn sceneWithMDLAsset(mdl_asset: &MDLAsset) -> Retained<Self>;
     }
 );
@@ -27,12 +27,12 @@ extern_category!(
     #[doc(alias = "SCNModelIO")]
     pub unsafe trait MDLAssetSCNModelIO {
         #[cfg(feature = "SCNScene")]
-        #[method_id(@__retain_semantics Other assetWithSCNScene:)]
+        #[method_id(@__method_family Other assetWithSCNScene:)]
         unsafe fn assetWithSCNScene(scn_scene: &SCNScene) -> Retained<Self>;
 
         #[cfg(all(feature = "SCNScene", feature = "objc2-model-io"))]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other assetWithSCNScene:bufferAllocator:)]
+        #[method_id(@__method_family Other assetWithSCNScene:bufferAllocator:)]
         unsafe fn assetWithSCNScene_bufferAllocator(
             scn_scene: &SCNScene,
             buffer_allocator: Option<&ProtocolObject<dyn MDLMeshBufferAllocator>>,
@@ -50,7 +50,7 @@ extern_methods!(
     unsafe impl SCNNode {
         #[cfg(feature = "objc2-model-io")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other nodeWithMDLObject:)]
+        #[method_id(@__method_family Other nodeWithMDLObject:)]
         pub unsafe fn nodeWithMDLObject(mdl_object: &MDLObject) -> Retained<Self>;
     }
 );
@@ -60,12 +60,12 @@ extern_category!(
     #[doc(alias = "SCNModelIO")]
     pub unsafe trait MDLObjectSCNModelIO {
         #[cfg(feature = "SCNNode")]
-        #[method_id(@__retain_semantics Other objectWithSCNNode:)]
+        #[method_id(@__method_family Other objectWithSCNNode:)]
         unsafe fn objectWithSCNNode(scn_node: &SCNNode) -> Retained<Self>;
 
         #[cfg(all(feature = "SCNNode", feature = "objc2-model-io"))]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other objectWithSCNNode:bufferAllocator:)]
+        #[method_id(@__method_family Other objectWithSCNNode:bufferAllocator:)]
         unsafe fn objectWithSCNNode_bufferAllocator(
             scn_node: &SCNNode,
             buffer_allocator: Option<&ProtocolObject<dyn MDLMeshBufferAllocator>>,
@@ -83,7 +83,7 @@ extern_methods!(
     unsafe impl SCNGeometry {
         #[cfg(feature = "objc2-model-io")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other geometryWithMDLMesh:)]
+        #[method_id(@__method_family Other geometryWithMDLMesh:)]
         pub unsafe fn geometryWithMDLMesh(mdl_mesh: &MDLMesh) -> Retained<Self>;
     }
 );
@@ -93,12 +93,12 @@ extern_category!(
     #[doc(alias = "SCNModelIO")]
     pub unsafe trait MDLMeshSCNModelIO {
         #[cfg(feature = "SCNGeometry")]
-        #[method_id(@__retain_semantics Other meshWithSCNGeometry:)]
+        #[method_id(@__method_family Other meshWithSCNGeometry:)]
         unsafe fn meshWithSCNGeometry(scn_geometry: &SCNGeometry) -> Retained<Self>;
 
         #[cfg(all(feature = "SCNGeometry", feature = "objc2-model-io"))]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other meshWithSCNGeometry:bufferAllocator:)]
+        #[method_id(@__method_family Other meshWithSCNGeometry:bufferAllocator:)]
         unsafe fn meshWithSCNGeometry_bufferAllocator(
             scn_geometry: &SCNGeometry,
             buffer_allocator: Option<&ProtocolObject<dyn MDLMeshBufferAllocator>>,
@@ -116,7 +116,7 @@ extern_methods!(
     unsafe impl SCNGeometryElement {
         #[cfg(feature = "objc2-model-io")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other geometryElementWithMDLSubmesh:)]
+        #[method_id(@__method_family Other geometryElementWithMDLSubmesh:)]
         pub unsafe fn geometryElementWithMDLSubmesh(mdl_sub_mesh: &MDLSubmesh) -> Retained<Self>;
     }
 );
@@ -126,14 +126,14 @@ extern_category!(
     #[doc(alias = "SCNModelIO")]
     pub unsafe trait MDLSubmeshSCNModelIO {
         #[cfg(feature = "SCNGeometry")]
-        #[method_id(@__retain_semantics Other submeshWithSCNGeometryElement:)]
+        #[method_id(@__method_family Other submeshWithSCNGeometryElement:)]
         unsafe fn submeshWithSCNGeometryElement(
             scn_geometry_element: &SCNGeometryElement,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "SCNGeometry", feature = "objc2-model-io"))]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other submeshWithSCNGeometryElement:bufferAllocator:)]
+        #[method_id(@__method_family Other submeshWithSCNGeometryElement:bufferAllocator:)]
         unsafe fn submeshWithSCNGeometryElement_bufferAllocator(
             scn_geometry_element: &SCNGeometryElement,
             buffer_allocator: Option<&ProtocolObject<dyn MDLMeshBufferAllocator>>,
@@ -151,7 +151,7 @@ extern_methods!(
     unsafe impl SCNMaterial {
         #[cfg(feature = "objc2-model-io")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other materialWithMDLMaterial:)]
+        #[method_id(@__method_family Other materialWithMDLMaterial:)]
         pub unsafe fn materialWithMDLMaterial(mdl_material: &MDLMaterial) -> Retained<Self>;
     }
 );
@@ -161,7 +161,7 @@ extern_category!(
     #[doc(alias = "SCNModelIO")]
     pub unsafe trait MDLMaterialSCNModelIO {
         #[cfg(feature = "SCNMaterial")]
-        #[method_id(@__retain_semantics Other materialWithSCNMaterial:)]
+        #[method_id(@__method_family Other materialWithSCNMaterial:)]
         unsafe fn materialWithSCNMaterial(scn_material: &SCNMaterial) -> Retained<Self>;
     }
 
@@ -176,7 +176,7 @@ extern_methods!(
     unsafe impl SCNLight {
         #[cfg(feature = "objc2-model-io")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other lightWithMDLLight:)]
+        #[method_id(@__method_family Other lightWithMDLLight:)]
         pub unsafe fn lightWithMDLLight(mdl_light: &MDLLight) -> Retained<Self>;
     }
 );
@@ -186,7 +186,7 @@ extern_category!(
     #[doc(alias = "SCNModelIO")]
     pub unsafe trait MDLLightSCNModelIO {
         #[cfg(feature = "SCNLight")]
-        #[method_id(@__retain_semantics Other lightWithSCNLight:)]
+        #[method_id(@__method_family Other lightWithSCNLight:)]
         unsafe fn lightWithSCNLight(scn_light: &SCNLight) -> Retained<Self>;
     }
 
@@ -201,7 +201,7 @@ extern_methods!(
     unsafe impl SCNCamera {
         #[cfg(feature = "objc2-model-io")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other cameraWithMDLCamera:)]
+        #[method_id(@__method_family Other cameraWithMDLCamera:)]
         pub unsafe fn cameraWithMDLCamera(mdl_camera: &MDLCamera) -> Retained<Self>;
     }
 );
@@ -211,7 +211,7 @@ extern_category!(
     #[doc(alias = "SCNModelIO")]
     pub unsafe trait MDLCameraSCNModelIO {
         #[cfg(feature = "SCNCamera")]
-        #[method_id(@__retain_semantics Other cameraWithSCNCamera:)]
+        #[method_id(@__method_family Other cameraWithSCNCamera:)]
         unsafe fn cameraWithSCNCamera(scn_camera: &SCNCamera) -> Retained<Self>;
     }
 

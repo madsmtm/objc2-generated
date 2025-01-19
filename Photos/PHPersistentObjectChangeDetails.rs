@@ -25,19 +25,19 @@ extern_methods!(
         #[method(objectType)]
         pub unsafe fn objectType(&self) -> PHObjectType;
 
-        #[method_id(@__retain_semantics Other insertedLocalIdentifiers)]
+        #[method_id(@__method_family Other insertedLocalIdentifiers)]
         pub unsafe fn insertedLocalIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
-        #[method_id(@__retain_semantics Other updatedLocalIdentifiers)]
+        #[method_id(@__method_family Other updatedLocalIdentifiers)]
         pub unsafe fn updatedLocalIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
-        #[method_id(@__retain_semantics Other deletedLocalIdentifiers)]
+        #[method_id(@__method_family Other deletedLocalIdentifiers)]
         pub unsafe fn deletedLocalIdentifiers(&self) -> Retained<NSSet<NSString>>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

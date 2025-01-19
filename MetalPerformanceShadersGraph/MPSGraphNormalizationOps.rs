@@ -18,7 +18,7 @@ extern_methods!(
         /// - axes: A list of axes over which to perform the reduction. The order of dimensions goes from the slowest moving at axis=0 to the fastest moving dimension.
         /// - name: An optional name for the operation.
         /// - Returns: A valid `MPSGraphTensor` object.
-        #[method_id(@__retain_semantics Other meanOfTensor:axes:name:)]
+        #[method_id(@__method_family Other meanOfTensor:axes:name:)]
         pub unsafe fn meanOfTensor_axes_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -33,7 +33,7 @@ extern_methods!(
         /// - axes: A list of axes over which to perform the reduction such that the order of dimensions goes from the slowest moving at axis=0 to the fastest moving dimension.
         /// - name: An optional name for the operation.
         /// - Returns: A valid `MPSGraphTensor` object.
-        #[method_id(@__retain_semantics Other varianceOfTensor:meanTensor:axes:name:)]
+        #[method_id(@__method_family Other varianceOfTensor:meanTensor:axes:name:)]
         pub unsafe fn varianceOfTensor_meanTensor_axes_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -49,7 +49,7 @@ extern_methods!(
         /// - axes: A list of axes over which to perform the reduction. Tthe order of dimensions goes from the slowest moving at axis=0 to the fastest moving dimension.
         /// - name: An optional name for the operation.
         /// - Returns: A valid `MPSGraphTensor` object.
-        #[method_id(@__retain_semantics Other varianceOfTensor:axes:name:)]
+        #[method_id(@__method_family Other varianceOfTensor:axes:name:)]
         pub unsafe fn varianceOfTensor_axes_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -77,7 +77,7 @@ extern_methods!(
         /// - epsilon: A small value to add to the variance when normalizing the inputs.
         /// - name: An optional name for the operation.
         /// - Returns: A valid `MPSGraphTensor` object.
-        #[method_id(@__retain_semantics Other normalizationWithTensor:meanTensor:varianceTensor:gammaTensor:betaTensor:epsilon:name:)]
+        #[method_id(@__method_family Other normalizationWithTensor:meanTensor:varianceTensor:gammaTensor:betaTensor:epsilon:name:)]
         pub unsafe fn normalizationWithTensor_meanTensor_varianceTensor_gammaTensor_betaTensor_epsilon_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -107,7 +107,7 @@ extern_methods!(
         /// - epsilon: A small value to add to the variance when normalizing the inputs.
         /// - name: An optional name for the operation.
         /// - Returns: A valid `MPSGraphTensor` object.
-        #[method_id(@__retain_semantics Other normalizationGammaGradientWithIncomingGradientTensor:sourceTensor:meanTensor:varianceTensor:reductionAxes:epsilon:name:)]
+        #[method_id(@__method_family Other normalizationGammaGradientWithIncomingGradientTensor:sourceTensor:meanTensor:varianceTensor:reductionAxes:epsilon:name:)]
         pub unsafe fn normalizationGammaGradientWithIncomingGradientTensor_sourceTensor_meanTensor_varianceTensor_reductionAxes_epsilon_name(
             &self,
             incoming_gradient_tensor: &MPSGraphTensor,
@@ -134,7 +134,7 @@ extern_methods!(
         /// - axes: The axes of normalization.
         /// - name: An optional name for the operation.
         /// - Returns: A valid `MPSGraphTensor` object.
-        #[method_id(@__retain_semantics Other normalizationBetaGradientWithIncomingGradientTensor:sourceTensor:reductionAxes:name:)]
+        #[method_id(@__method_family Other normalizationBetaGradientWithIncomingGradientTensor:sourceTensor:reductionAxes:name:)]
         pub unsafe fn normalizationBetaGradientWithIncomingGradientTensor_sourceTensor_reductionAxes_name(
             &self,
             incoming_gradient_tensor: &MPSGraphTensor,
@@ -163,7 +163,7 @@ extern_methods!(
         /// - axes: The axes of normalization.
         /// - epsilon: A small value to add to the variance when normalizing the inputs.
         /// - name: An optional name for the operation.
-        #[method_id(@__retain_semantics Other normalizationGradientWithIncomingGradientTensor:sourceTensor:meanTensor:varianceTensor:gammaTensor:gammaGradientTensor:betaGradientTensor:reductionAxes:epsilon:name:)]
+        #[method_id(@__method_family Other normalizationGradientWithIncomingGradientTensor:sourceTensor:meanTensor:varianceTensor:gammaTensor:gammaGradientTensor:betaGradientTensor:reductionAxes:epsilon:name:)]
         pub unsafe fn normalizationGradientWithIncomingGradientTensor_sourceTensor_meanTensor_varianceTensor_gammaTensor_gammaGradientTensor_betaGradientTensor_reductionAxes_epsilon_name(
             &self,
             incoming_gradient_tensor: &MPSGraphTensor,

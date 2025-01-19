@@ -55,7 +55,7 @@ extern_methods!(
         /// Parameter `session`: The AVCaptureSession instance to be previewed.
         ///
         /// Returns: A newly initialized AVCaptureVideoPreviewLayer instance.
-        #[method_id(@__retain_semantics Other layerWithSession:)]
+        #[method_id(@__method_family Other layerWithSession:)]
         pub unsafe fn layerWithSession(session: &AVCaptureSession) -> Retained<Self>;
 
         #[cfg(feature = "AVCaptureSession")]
@@ -65,7 +65,7 @@ extern_methods!(
         /// Parameter `session`: The AVCaptureSession instance to be previewed.
         ///
         /// Returns: A newly initialized AVCaptureVideoPreviewLayer instance.
-        #[method_id(@__retain_semantics Init initWithSession:)]
+        #[method_id(@__method_family Init initWithSession:)]
         pub unsafe fn initWithSession(
             this: Allocated<Self>,
             session: &AVCaptureSession,
@@ -78,7 +78,7 @@ extern_methods!(
         /// Parameter `session`: The AVCaptureSession instance to be previewed.
         ///
         /// Returns: A newly initialized AVCaptureVideoPreviewLayer instance.
-        #[method_id(@__retain_semantics Other layerWithSessionWithNoConnection:)]
+        #[method_id(@__method_family Other layerWithSessionWithNoConnection:)]
         pub unsafe fn layerWithSessionWithNoConnection(
             session: &AVCaptureSession,
         ) -> Retained<Self>;
@@ -90,7 +90,7 @@ extern_methods!(
         /// Parameter `session`: The AVCaptureSession instance to be previewed.
         ///
         /// Returns: A newly initialized AVCaptureVideoPreviewLayer instance.
-        #[method_id(@__retain_semantics Init initWithSessionWithNoConnection:)]
+        #[method_id(@__method_family Init initWithSessionWithNoConnection:)]
         pub unsafe fn initWithSessionWithNoConnection(
             this: Allocated<Self>,
             session: &AVCaptureSession,
@@ -101,7 +101,7 @@ extern_methods!(
         ///
         ///
         /// The session is retained by the preview layer.
-        #[method_id(@__retain_semantics Other session)]
+        #[method_id(@__method_family Other session)]
         pub unsafe fn session(&self) -> Option<Retained<AVCaptureSession>>;
 
         #[cfg(feature = "AVCaptureSession")]
@@ -124,7 +124,7 @@ extern_methods!(
         ///
         ///
         /// When calling initWithSession: or setSession: with a valid AVCaptureSession instance, a connection is formed to the first eligible video AVCaptureInput. If the receiver is detached from a session, the connection property becomes nil.
-        #[method_id(@__retain_semantics Other connection)]
+        #[method_id(@__method_family Other connection)]
         pub unsafe fn connection(&self) -> Option<Retained<AVCaptureConnection>>;
 
         #[cfg(feature = "AVAnimation")]
@@ -134,7 +134,7 @@ extern_methods!(
         /// Options are AVLayerVideoGravityResize, AVLayerVideoGravityResizeAspect and AVLayerVideoGravityResizeAspectFill. AVLayerVideoGravityResizeAspect is default. See
         /// <AVFoundation
         /// /AVAnimation.h> for a description of these options.
-        #[method_id(@__retain_semantics Other videoGravity)]
+        #[method_id(@__method_family Other videoGravity)]
         pub unsafe fn videoGravity(&self) -> Retained<AVLayerVideoGravity>;
 
         #[cfg(feature = "AVAnimation")]
@@ -223,7 +223,7 @@ extern_methods!(
         ///
         ///
         /// AVMetadataObject bounds may be expressed as a rect where {0,0} represents the top left of the picture area, and {1,1} represents the bottom right on an unrotated picture. Face metadata objects likewise express yaw and roll angles with respect to an unrotated picture. -transformedMetadataObjectForMetadataObject: converts the visual properties in the coordinate space of the supplied AVMetadataObject to the coordinate space of the receiver. The conversion takes orientation, mirroring, layer bounds and videoGravity into consideration. If the provided metadata object originates from an input source other than the preview layer's, nil will be returned.
-        #[method_id(@__retain_semantics Other transformedMetadataObjectForMetadataObject:)]
+        #[method_id(@__method_family Other transformedMetadataObjectForMetadataObject:)]
         pub unsafe fn transformedMetadataObjectForMetadataObject(
             &self,
             metadata_object: &AVMetadataObject,
@@ -309,13 +309,13 @@ extern_methods!(
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVCaptureVideoPreviewLayer {
         /// Layer creation and initialization. *
-        #[method_id(@__retain_semantics Other layer)]
+        #[method_id(@__method_family Other layer)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithLayer:)]
+        #[method_id(@__method_family Init initWithLayer:)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
 );
@@ -325,7 +325,7 @@ extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVCaptureVideoPreviewLayer {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

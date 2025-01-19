@@ -69,7 +69,7 @@ extern_methods!(
     ))]
     unsafe impl DOMKeyboardEvent {
         #[deprecated]
-        #[method_id(@__retain_semantics Other keyIdentifier)]
+        #[method_id(@__method_family Other keyIdentifier)]
         pub unsafe fn keyIdentifier(&self) -> Retained<NSString>;
 
         #[method(location)]
@@ -190,7 +190,7 @@ extern_methods!(
     ))]
     unsafe impl DOMKeyboardEvent {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -204,7 +204,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMKeyboardEvent {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

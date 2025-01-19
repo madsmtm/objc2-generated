@@ -66,7 +66,7 @@ unsafe impl NSObjectProtocol for VNImageRequestHandler {}
 
 extern_methods!(
     unsafe impl VNImageRequestHandler {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
@@ -76,7 +76,7 @@ extern_methods!(
         /// Parameter `pixelBuffer`: A CVPixelBuffer containing the image to be used for performing the requests. The content of the buffer cannot be modified for the lifetime of the VNImageRequestHandler.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
-        #[method_id(@__retain_semantics Init initWithCVPixelBuffer:options:)]
+        #[method_id(@__method_family Init initWithCVPixelBuffer:options:)]
         pub unsafe fn initWithCVPixelBuffer_options(
             this: Allocated<Self>,
             pixel_buffer: &CVPixelBuffer,
@@ -90,7 +90,7 @@ extern_methods!(
         /// Parameter `image`: A CGImageRef containing the image to be used for performing the requests. The content of the image cannot be modified.
         ///
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
-        #[method_id(@__retain_semantics Init initWithCGImage:options:)]
+        #[method_id(@__method_family Init initWithCGImage:options:)]
         pub unsafe fn initWithCGImage_options(
             this: Allocated<Self>,
             image: &CGImage,
@@ -107,7 +107,7 @@ extern_methods!(
         ///
         ///
         /// Note: :  Request results may not be accurate in simulator due to CI's inability to render certain pixel formats in the simulator. The orientation of the original image should be applied for instance by using imageByApplyingOrientation or use the initWithCIImage:options:orientation API.
-        #[method_id(@__retain_semantics Init initWithCIImage:options:)]
+        #[method_id(@__method_family Init initWithCIImage:options:)]
         pub unsafe fn initWithCIImage_options(
             this: Allocated<Self>,
             image: &CIImage,
@@ -123,7 +123,7 @@ extern_methods!(
         ///
         ///
         /// Note: :  Request results may not be accurate in simulator due to CI's inability to render certain pixel formats in the simulator
-        #[method_id(@__retain_semantics Init initWithURL:options:)]
+        #[method_id(@__method_family Init initWithURL:options:)]
         pub unsafe fn initWithURL_options(
             this: Allocated<Self>,
             image_url: &NSURL,
@@ -139,7 +139,7 @@ extern_methods!(
         ///
         ///
         /// Note: :  Request results may not be accurate in simulator due to CI's inability to render certain pixel formats in the simulator
-        #[method_id(@__retain_semantics Init initWithData:options:)]
+        #[method_id(@__method_family Init initWithData:options:)]
         pub fn initWithData_options(
             this: Allocated<Self>,
             image_data: &NSData,
@@ -155,7 +155,7 @@ extern_methods!(
         /// Parameter `options`: A dictionary with options specifying auxiliary information for the buffer/image like VNImageOptionCameraIntrinsics
         ///
         /// Note: CMSampleBuffers can contain metadata like camera intrinsics that will be used by algorithms supporting it unless overwritten by the options.
-        #[method_id(@__retain_semantics Init initWithCMSampleBuffer:options:)]
+        #[method_id(@__method_family Init initWithCMSampleBuffer:options:)]
         pub unsafe fn initWithCMSampleBuffer_options(
             this: Allocated<Self>,
             sample_buffer: &CMSampleBuffer,
@@ -185,7 +185,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNImageRequestHandler {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -209,7 +209,7 @@ unsafe impl NSObjectProtocol for VNSequenceRequestHandler {}
 extern_methods!(
     unsafe impl VNSequenceRequestHandler {
         /// Creates a new object.
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequest", feature = "objc2-core-video"))]
@@ -325,7 +325,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNSequenceRequestHandler {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

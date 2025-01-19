@@ -74,7 +74,7 @@ extern_methods!(
         /// Returns the set of nodes in the same scene as the camera that are contained within its viewport.
         ///
         /// Returns: the set of nodes contained
-        #[method_id(@__retain_semantics Other containedNodeSet)]
+        #[method_id(@__method_family Other containedNodeSet)]
         pub unsafe fn containedNodeSet(&self) -> Retained<NSSet<SKNode>>;
     }
 );
@@ -84,26 +84,26 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKCameraNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other node)]
+        #[method_id(@__method_family Other node)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other nodeWithFileNamed:)]
+        #[method_id(@__method_family Other nodeWithFileNamed:)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[method_id(@__method_family Other nodeWithFileNamed:securelyWithClasses:andError:_)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
             classes: &NSSet<AnyClass>,
@@ -117,7 +117,7 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SKCameraNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

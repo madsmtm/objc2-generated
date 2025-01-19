@@ -16,11 +16,11 @@ extern_protocol!(
         unsafe fn coordinate(&self) -> CLLocationCoordinate2D;
 
         #[optional]
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         #[optional]
-        #[method_id(@__retain_semantics Other subtitle)]
+        #[method_id(@__method_family Other subtitle)]
         unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "objc2-core-location")]

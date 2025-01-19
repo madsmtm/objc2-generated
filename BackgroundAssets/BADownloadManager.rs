@@ -80,18 +80,18 @@ unsafe impl NSObjectProtocol for BADownloadManager {}
 
 extern_methods!(
     unsafe impl BADownloadManager {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Gets the singleton downloader object.
-        #[method_id(@__retain_semantics Other sharedManager)]
+        #[method_id(@__method_family Other sharedManager)]
         pub unsafe fn sharedManager() -> Retained<BADownloadManager>;
 
         /// A object confroming to BADownloadManagerDelegate to get notified when actions occur.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn BADownloadManagerDelegate>>>;
@@ -116,7 +116,7 @@ extern_methods!(
         /// Warning: This method can block and should not be called from the main thread.
         ///
         /// See also: BADownloadManager:fetchCurrentDownloadsWithCompletionHandler
-        #[method_id(@__retain_semantics Other fetchCurrentDownloads:_)]
+        #[method_id(@__method_family Other fetchCurrentDownloads:_)]
         pub unsafe fn fetchCurrentDownloads(
             &self,
         ) -> Result<Retained<NSArray<BADownload>>, Retained<NSError>>;

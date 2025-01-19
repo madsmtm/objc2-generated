@@ -31,29 +31,29 @@ unsafe impl NSSecureCoding for NSIndexPath {}
 
 extern_methods!(
     unsafe impl NSIndexPath {
-        #[method_id(@__retain_semantics Other indexPathWithIndex:)]
+        #[method_id(@__method_family Other indexPathWithIndex:)]
         pub unsafe fn indexPathWithIndex(index: NSUInteger) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other indexPathWithIndexes:length:)]
+        #[method_id(@__method_family Other indexPathWithIndexes:length:)]
         pub unsafe fn indexPathWithIndexes_length(
             indexes: *mut NSUInteger,
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithIndexes:length:)]
+        #[method_id(@__method_family Init initWithIndexes:length:)]
         pub unsafe fn initWithIndexes_length(
             this: Allocated<Self>,
             indexes: *mut NSUInteger,
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithIndex:)]
+        #[method_id(@__method_family Init initWithIndex:)]
         pub unsafe fn initWithIndex(this: Allocated<Self>, index: NSUInteger) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other indexPathByAddingIndex:)]
+        #[method_id(@__method_family Other indexPathByAddingIndex:)]
         pub unsafe fn indexPathByAddingIndex(&self, index: NSUInteger) -> Retained<NSIndexPath>;
 
-        #[method_id(@__retain_semantics Other indexPathByRemovingLastIndex)]
+        #[method_id(@__method_family Other indexPathByRemovingLastIndex)]
         pub unsafe fn indexPathByRemovingLastIndex(&self) -> Retained<NSIndexPath>;
 
         #[method(indexAtPosition:)]
@@ -86,10 +86,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSIndexPath {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

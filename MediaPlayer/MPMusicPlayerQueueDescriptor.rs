@@ -18,10 +18,10 @@ unsafe impl NSObjectProtocol for MPMusicPlayerQueueDescriptor {}
 
 extern_methods!(
     unsafe impl MPMusicPlayerQueueDescriptor {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -38,26 +38,26 @@ unsafe impl NSObjectProtocol for MPMusicPlayerMediaItemQueueDescriptor {}
 extern_methods!(
     unsafe impl MPMusicPlayerMediaItemQueueDescriptor {
         #[cfg(feature = "MPMediaQuery")]
-        #[method_id(@__retain_semantics Init initWithQuery:)]
+        #[method_id(@__method_family Init initWithQuery:)]
         pub unsafe fn initWithQuery(this: Allocated<Self>, query: &MPMediaQuery) -> Retained<Self>;
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
-        #[method_id(@__retain_semantics Init initWithItemCollection:)]
+        #[method_id(@__method_family Init initWithItemCollection:)]
         pub unsafe fn initWithItemCollection(
             this: Allocated<Self>,
             item_collection: &MPMediaItemCollection,
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPMediaQuery")]
-        #[method_id(@__retain_semantics Other query)]
+        #[method_id(@__method_family Other query)]
         pub unsafe fn query(&self) -> Retained<MPMediaQuery>;
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
-        #[method_id(@__retain_semantics Other itemCollection)]
+        #[method_id(@__method_family Other itemCollection)]
         pub unsafe fn itemCollection(&self) -> Retained<MPMediaItemCollection>;
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
-        #[method_id(@__retain_semantics Other startItem)]
+        #[method_id(@__method_family Other startItem)]
         pub unsafe fn startItem(&self) -> Option<Retained<MPMediaItem>>;
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
@@ -82,10 +82,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPMusicPlayerQueueDescriptor`
     unsafe impl MPMusicPlayerMediaItemQueueDescriptor {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -101,20 +101,20 @@ unsafe impl NSObjectProtocol for MPMusicPlayerStoreQueueDescriptor {}
 
 extern_methods!(
     unsafe impl MPMusicPlayerStoreQueueDescriptor {
-        #[method_id(@__retain_semantics Init initWithStoreIDs:)]
+        #[method_id(@__method_family Init initWithStoreIDs:)]
         pub unsafe fn initWithStoreIDs(
             this: Allocated<Self>,
             store_i_ds: &NSArray<NSString>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other storeIDs)]
+        #[method_id(@__method_family Other storeIDs)]
         pub unsafe fn storeIDs(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`storeIDs`][Self::storeIDs].
         #[method(setStoreIDs:)]
         pub unsafe fn setStoreIDs(&self, store_i_ds: Option<&NSArray<NSString>>);
 
-        #[method_id(@__retain_semantics Other startItemID)]
+        #[method_id(@__method_family Other startItemID)]
         pub unsafe fn startItemID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`startItemID`][Self::startItemID].
@@ -140,10 +140,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPMusicPlayerQueueDescriptor`
     unsafe impl MPMusicPlayerStoreQueueDescriptor {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -159,13 +159,13 @@ unsafe impl NSObjectProtocol for MPMusicPlayerPlayParameters {}
 
 extern_methods!(
     unsafe impl MPMusicPlayerPlayParameters {
-        #[method_id(@__retain_semantics Init initWithDictionary:)]
+        #[method_id(@__method_family Init initWithDictionary:)]
         pub unsafe fn initWithDictionary(
             this: Allocated<Self>,
             dictionary: &NSDictionary<NSString, AnyObject>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other dictionary)]
+        #[method_id(@__method_family Other dictionary)]
         pub unsafe fn dictionary(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
     }
 );
@@ -173,10 +173,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPMusicPlayerPlayParameters {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -192,13 +192,13 @@ unsafe impl NSObjectProtocol for MPMusicPlayerPlayParametersQueueDescriptor {}
 
 extern_methods!(
     unsafe impl MPMusicPlayerPlayParametersQueueDescriptor {
-        #[method_id(@__retain_semantics Init initWithPlayParametersQueue:)]
+        #[method_id(@__method_family Init initWithPlayParametersQueue:)]
         pub unsafe fn initWithPlayParametersQueue(
             this: Allocated<Self>,
             play_parameters_queue: &NSArray<MPMusicPlayerPlayParameters>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other playParametersQueue)]
+        #[method_id(@__method_family Other playParametersQueue)]
         pub unsafe fn playParametersQueue(&self) -> Retained<NSArray<MPMusicPlayerPlayParameters>>;
 
         /// Setter for [`playParametersQueue`][Self::playParametersQueue].
@@ -208,7 +208,7 @@ extern_methods!(
             play_parameters_queue: &NSArray<MPMusicPlayerPlayParameters>,
         );
 
-        #[method_id(@__retain_semantics Other startItemPlayParameters)]
+        #[method_id(@__method_family Other startItemPlayParameters)]
         pub unsafe fn startItemPlayParameters(
             &self,
         ) -> Option<Retained<MPMusicPlayerPlayParameters>>;
@@ -239,10 +239,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPMusicPlayerQueueDescriptor`
     unsafe impl MPMusicPlayerPlayParametersQueueDescriptor {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

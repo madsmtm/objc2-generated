@@ -94,7 +94,7 @@ extern_methods!(
     unsafe impl NSToolbar {
         /// The identifier is used to form the toolbar's autosave name.
         /// Toolbars with the same identifier are implicitly synchronized so that they maintain the same state.
-        #[method_id(@__retain_semantics Init initWithIdentifier:)]
+        #[method_id(@__method_family Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSToolbarIdentifier,
@@ -102,7 +102,7 @@ extern_methods!(
 
         /// Calls through to -initWithIdentifier: with an empty string identifier.
         /// Customizable toolbars should use `-initWithIdentifier:` with a unique identifier instead.
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Inserts an item with the specified identifier in the receiving toolbar at the specified index.
@@ -131,7 +131,7 @@ extern_methods!(
         );
 
         /// Customizable toolbars must have a delegate, and must implement the required `NSToolbarDelegate` methods.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSToolbarDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -176,7 +176,7 @@ extern_methods!(
         /// This method can be used to select identifiers of custom view items, or to force a selection change.
         /// See `-toolbarSelectableItemIdentifiers:` delegate method for more details.
         /// This property is key value observable.
-        #[method_id(@__retain_semantics Other selectedItemIdentifier)]
+        #[method_id(@__method_family Other selectedItemIdentifier)]
         pub unsafe fn selectedItemIdentifier(&self) -> Option<Retained<NSToolbarItemIdentifier>>;
 
         /// Setter for [`selectedItemIdentifier`][Self::selectedItemIdentifier].
@@ -213,24 +213,24 @@ extern_methods!(
 
         /// All toolbars with the same name will share the same display attributes, and item order.
         /// If a toolbar autosaves its configuration, the item identifier will be used as the autosave name.
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSToolbarIdentifier>;
 
         #[cfg(feature = "NSToolbarItem")]
         /// Allows you to access all current items in the toolbar.
-        #[method_id(@__retain_semantics Other items)]
+        #[method_id(@__method_family Other items)]
         pub unsafe fn items(&self) -> Retained<NSArray<NSToolbarItem>>;
 
         #[cfg(feature = "NSToolbarItem")]
         /// Allows you to access the current visible items (non clipped).
-        #[method_id(@__retain_semantics Other visibleItems)]
+        #[method_id(@__method_family Other visibleItems)]
         pub unsafe fn visibleItems(&self) -> Option<Retained<NSArray<NSToolbarItem>>>;
 
         /// An array of itemIdentifiers that represent the current items in the toolbar.
         /// Setting this property will set the current items in the toolbar by diffing against items that already exist.
         /// Use this with great caution if `allowsUserCustomization` is enabled as it will override any customizations the user has made.
         /// This property is key value observable.
-        #[method_id(@__retain_semantics Other itemIdentifiers)]
+        #[method_id(@__method_family Other itemIdentifiers)]
         pub unsafe fn itemIdentifiers(&self) -> Retained<NSArray<NSToolbarItemIdentifier>>;
 
         /// Setter for [`itemIdentifiers`][Self::itemIdentifiers].
@@ -244,7 +244,7 @@ extern_methods!(
         /// The order of items is initially defined by the default set of identifiers, but may be customized by the user.
         /// Centered items may not be moved outside of the center set of items by the user.
         /// This property is archived.
-        #[method_id(@__retain_semantics Other centeredItemIdentifiers)]
+        #[method_id(@__method_family Other centeredItemIdentifiers)]
         pub unsafe fn centeredItemIdentifiers(&self) -> Retained<NSSet<NSToolbarItemIdentifier>>;
 
         /// Setter for [`centeredItemIdentifiers`][Self::centeredItemIdentifiers].
@@ -287,7 +287,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSToolbar {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -303,7 +303,7 @@ extern_protocol!(
         /// In fact, the toolbar may ask for items here in order to construct the customization palette.
         /// If `willBeInsertedIntoToolbar` is YES, the returned item will be inserted, and you can expect `toolbarWillAddItem:` is about to be posted.
         #[optional]
-        #[method_id(@__retain_semantics Other toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:)]
+        #[method_id(@__method_family Other toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:)]
         unsafe fn toolbar_itemForItemIdentifier_willBeInsertedIntoToolbar(
             &self,
             toolbar: &NSToolbar,
@@ -314,7 +314,7 @@ extern_protocol!(
         /// Returns the ordered list of items to be shown in the toolbar by default.
         /// If during initialization, no overriding values are found in the user defaults, or if the user chooses to revert to the default items this set will be used.
         #[optional]
-        #[method_id(@__retain_semantics Other toolbarDefaultItemIdentifiers:)]
+        #[method_id(@__method_family Other toolbarDefaultItemIdentifiers:)]
         unsafe fn toolbarDefaultItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
@@ -326,7 +326,7 @@ extern_protocol!(
         /// The order of items does not necessarily guarantee the order of appearance in the palette.
         /// At minimum, you should return the default item list.
         #[optional]
-        #[method_id(@__retain_semantics Other toolbarAllowedItemIdentifiers:)]
+        #[method_id(@__method_family Other toolbarAllowedItemIdentifiers:)]
         unsafe fn toolbarAllowedItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
@@ -339,7 +339,7 @@ extern_protocol!(
         /// Clicking on an item whose identifier is selectable will automatically update the toolbar's `selectedItemIdentifier` when possible.
         /// See `selectedItemIdentifier` for more details.
         #[optional]
-        #[method_id(@__retain_semantics Other toolbarSelectableItemIdentifiers:)]
+        #[method_id(@__method_family Other toolbarSelectableItemIdentifiers:)]
         unsafe fn toolbarSelectableItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
@@ -347,7 +347,7 @@ extern_protocol!(
 
         /// Items in this set cannot be dragged or removed by the user.
         #[optional]
-        #[method_id(@__retain_semantics Other toolbarImmovableItemIdentifiers:)]
+        #[method_id(@__method_family Other toolbarImmovableItemIdentifiers:)]
         unsafe fn toolbarImmovableItemIdentifiers(
             &self,
             toolbar: &NSToolbar,
@@ -409,7 +409,7 @@ extern_methods!(
         pub unsafe fn setSizeMode(&self, size_mode: NSToolbarSizeMode);
 
         #[deprecated = "Use the centeredItemIdentifiers property instead"]
-        #[method_id(@__retain_semantics Other centeredItemIdentifier)]
+        #[method_id(@__method_family Other centeredItemIdentifier)]
         pub unsafe fn centeredItemIdentifier(&self) -> Option<Retained<NSToolbarItemIdentifier>>;
 
         /// Setter for [`centeredItemIdentifier`][Self::centeredItemIdentifier].
@@ -422,7 +422,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated = "Use NSTitlebarAccessoryViewController with NSWindow instead"]
-        #[method_id(@__retain_semantics Other fullScreenAccessoryView)]
+        #[method_id(@__method_family Other fullScreenAccessoryView)]
         pub unsafe fn fullScreenAccessoryView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -472,7 +472,7 @@ extern_methods!(
         pub unsafe fn setShowsBaselineSeparator(&self, shows_baseline_separator: bool);
 
         #[deprecated = "Use -itemIdentifiers and -displayMode instead."]
-        #[method_id(@__retain_semantics Other configurationDictionary)]
+        #[method_id(@__method_family Other configurationDictionary)]
         pub unsafe fn configurationDictionary(&self)
             -> Retained<NSDictionary<NSString, AnyObject>>;
 

@@ -12,7 +12,7 @@ extern_category!(
     #[doc(alias = "NSAppKitAdditions")]
     pub unsafe trait NSAffineTransformNSAppKitAdditions {
         #[cfg(feature = "NSBezierPath")]
-        #[method_id(@__retain_semantics Other transformBezierPath:)]
+        #[method_id(@__method_family Other transformBezierPath:)]
         unsafe fn transformBezierPath(&self, path: &NSBezierPath) -> Retained<NSBezierPath>;
 
         #[method(set)]

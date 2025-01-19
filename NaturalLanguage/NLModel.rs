@@ -39,40 +39,40 @@ unsafe impl NSObjectProtocol for NLModel {}
 
 extern_methods!(
     unsafe impl NLModel {
-        #[method_id(@__retain_semantics Other modelWithContentsOfURL:error:_)]
+        #[method_id(@__method_family Other modelWithContentsOfURL:error:_)]
         pub unsafe fn modelWithContentsOfURL_error(
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-ml")]
-        #[method_id(@__retain_semantics Other modelWithMLModel:error:_)]
+        #[method_id(@__method_family Other modelWithMLModel:error:_)]
         pub unsafe fn modelWithMLModel_error(
             ml_model: &MLModel,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(@__retain_semantics Other configuration)]
+        #[method_id(@__method_family Other configuration)]
         pub unsafe fn configuration(&self) -> Retained<NLModelConfiguration>;
 
-        #[method_id(@__retain_semantics Other predictedLabelForString:)]
+        #[method_id(@__method_family Other predictedLabelForString:)]
         pub unsafe fn predictedLabelForString(
             &self,
             string: &NSString,
         ) -> Option<Retained<NSString>>;
 
-        #[method_id(@__retain_semantics Other predictedLabelsForTokens:)]
+        #[method_id(@__method_family Other predictedLabelsForTokens:)]
         pub unsafe fn predictedLabelsForTokens(
             &self,
             tokens: &NSArray<NSString>,
         ) -> Retained<NSArray<NSString>>;
 
-        #[method_id(@__retain_semantics Other predictedLabelHypothesesForString:maximumCount:)]
+        #[method_id(@__method_family Other predictedLabelHypothesesForString:maximumCount:)]
         pub unsafe fn predictedLabelHypothesesForString_maximumCount(
             &self,
             string: &NSString,
             maximum_count: NSUInteger,
         ) -> Retained<NSDictionary<NSString, NSNumber>>;
 
-        #[method_id(@__retain_semantics Other predictedLabelHypothesesForTokens:maximumCount:)]
+        #[method_id(@__method_family Other predictedLabelHypothesesForTokens:maximumCount:)]
         pub unsafe fn predictedLabelHypothesesForTokens_maximumCount(
             &self,
             tokens: &NSArray<NSString>,
@@ -84,10 +84,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NLModel {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -117,13 +117,13 @@ extern_methods!(
         pub unsafe fn r#type(&self) -> NLModelType;
 
         #[cfg(feature = "NLLanguage")]
-        #[method_id(@__retain_semantics Other language)]
+        #[method_id(@__method_family Other language)]
         pub unsafe fn language(&self) -> Option<Retained<NLLanguage>>;
 
         #[method(revision)]
         pub unsafe fn revision(&self) -> NSUInteger;
 
-        #[method_id(@__retain_semantics Other supportedRevisionsForType:)]
+        #[method_id(@__method_family Other supportedRevisionsForType:)]
         pub unsafe fn supportedRevisionsForType(r#type: NLModelType) -> Retained<NSIndexSet>;
 
         #[method(currentRevisionForType:)]
@@ -134,10 +134,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NLModelConfiguration {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

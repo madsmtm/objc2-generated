@@ -108,7 +108,7 @@ extern_methods!(
     unsafe impl SCNHitTestResult {
         #[cfg(feature = "SCNNode")]
         /// The hit node.
-        #[method_id(@__retain_semantics Other node)]
+        #[method_id(@__method_family Other node)]
         pub unsafe fn node(&self) -> Retained<SCNNode>;
 
         /// Index of the hit geometry element.
@@ -147,7 +147,7 @@ extern_methods!(
 
         #[cfg(feature = "SCNNode")]
         /// The hit bone. Only available if the node hit has a SCNSkinner attached.
-        #[method_id(@__retain_semantics Other boneNode)]
+        #[method_id(@__method_family Other boneNode)]
         pub unsafe fn boneNode(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -162,10 +162,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNHitTestResult {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

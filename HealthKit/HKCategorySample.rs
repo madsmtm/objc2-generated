@@ -37,14 +37,14 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKCategorySample {
         #[cfg(feature = "HKObjectType")]
-        #[method_id(@__retain_semantics Other categoryType)]
+        #[method_id(@__method_family Other categoryType)]
         pub unsafe fn categoryType(&self) -> Retained<HKCategoryType>;
 
         /// The preferred enum for the value is determined by the receiver's category type.
         #[method(value)]
         pub unsafe fn value(&self) -> NSInteger;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HKObjectType")]
@@ -60,7 +60,7 @@ extern_methods!(
         /// Parameter `endDate`: The end date of the sample.
         ///
         /// Parameter `metadata`: Metadata for the sample (optional).
-        #[method_id(@__retain_semantics Other categorySampleWithType:value:startDate:endDate:metadata:)]
+        #[method_id(@__method_family Other categorySampleWithType:value:startDate:endDate:metadata:)]
         pub unsafe fn categorySampleWithType_value_startDate_endDate_metadata(
             r#type: &HKCategoryType,
             value: NSInteger,
@@ -80,7 +80,7 @@ extern_methods!(
         /// Parameter `startDate`: The start date of the sample.
         ///
         /// Parameter `endDate`: The end date of the sample.
-        #[method_id(@__retain_semantics Other categorySampleWithType:value:startDate:endDate:)]
+        #[method_id(@__method_family Other categorySampleWithType:value:startDate:endDate:)]
         pub unsafe fn categorySampleWithType_value_startDate_endDate(
             r#type: &HKCategoryType,
             value: NSInteger,
@@ -103,7 +103,7 @@ extern_methods!(
         /// Parameter `device`: The HKDevice that generated the sample (optional).
         ///
         /// Parameter `metadata`: Metadata for the sample (optional).
-        #[method_id(@__retain_semantics Other categorySampleWithType:value:startDate:endDate:device:metadata:)]
+        #[method_id(@__method_family Other categorySampleWithType:value:startDate:endDate:device:metadata:)]
         pub unsafe fn categorySampleWithType_value_startDate_endDate_device_metadata(
             r#type: &HKCategoryType,
             value: NSInteger,
@@ -119,7 +119,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKCategorySample {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

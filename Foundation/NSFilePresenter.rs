@@ -10,16 +10,16 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilepresenter?language=objc)
     pub unsafe trait NSFilePresenter: NSObjectProtocol {
         #[cfg(feature = "NSURL")]
-        #[method_id(@__retain_semantics Other presentedItemURL)]
+        #[method_id(@__method_family Other presentedItemURL)]
         unsafe fn presentedItemURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSOperation")]
-        #[method_id(@__retain_semantics Other presentedItemOperationQueue)]
+        #[method_id(@__method_family Other presentedItemOperationQueue)]
         unsafe fn presentedItemOperationQueue(&self) -> Retained<NSOperationQueue>;
 
         #[cfg(feature = "NSURL")]
         #[optional]
-        #[method_id(@__retain_semantics Other primaryPresentedItemURL)]
+        #[method_id(@__method_family Other primaryPresentedItemURL)]
         unsafe fn primaryPresentedItemURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "block2")]
@@ -81,7 +81,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSSet", feature = "NSString", feature = "NSURL"))]
         #[optional]
-        #[method_id(@__retain_semantics Other observedPresentedItemUbiquityAttributes)]
+        #[method_id(@__method_family Other observedPresentedItemUbiquityAttributes)]
         unsafe fn observedPresentedItemUbiquityAttributes(
             &self,
         ) -> Retained<NSSet<NSURLResourceKey>>;

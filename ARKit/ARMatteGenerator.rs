@@ -73,7 +73,7 @@ extern_methods!(
         /// See: ARMatteResolution
         ///
         /// Returns: Instance of ARMatteGenerator.
-        #[method_id(@__retain_semantics Init initWithDevice:matteResolution:)]
+        #[method_id(@__method_family Init initWithDevice:matteResolution:)]
         pub unsafe fn initWithDevice_matteResolution(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -89,7 +89,7 @@ extern_methods!(
         /// Parameter `commandBuffer`: Metal command buffer for encoding matting related operations. The command buffer is committed by the caller externally.
         ///
         /// Returns: Alpha matte MTLTexture for the given ARFrame at full resolution or half resolution as chosen by the  caller during initialization.
-        #[method_id(@__retain_semantics Other generateMatteFromFrame:commandBuffer:)]
+        #[method_id(@__method_family Other generateMatteFromFrame:commandBuffer:)]
         pub unsafe fn generateMatteFromFrame_commandBuffer(
             &self,
             frame: &ARFrame,
@@ -106,7 +106,7 @@ extern_methods!(
         /// Parameter `commandBuffer`: Metal command buffer for encoding depth dilation operations. The command buffer is committed by the caller externally.
         ///
         /// Returns: Dilated depth MTLTexture for the given ARFrame at the segmentation stencil resolution. The texture consists of a single channel and is of type float16.
-        #[method_id(@__retain_semantics Other generateDilatedDepthFromFrame:commandBuffer:)]
+        #[method_id(@__method_family Other generateDilatedDepthFromFrame:commandBuffer:)]
         pub unsafe fn generateDilatedDepthFromFrame_commandBuffer(
             &self,
             frame: &ARFrame,
@@ -114,10 +114,10 @@ extern_methods!(
         ) -> Retained<ProtocolObject<dyn MTLTexture>>;
 
         /// Unavailable
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -59,40 +59,40 @@ unsafe impl NSObjectProtocol for NLContextualEmbedding {}
 
 extern_methods!(
     unsafe impl NLContextualEmbedding {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other contextualEmbeddingWithModelIdentifier:)]
+        #[method_id(@__method_family Other contextualEmbeddingWithModelIdentifier:)]
         pub unsafe fn contextualEmbeddingWithModelIdentifier(
             model_identifier: &NSString,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other contextualEmbeddingsForValues:)]
+        #[method_id(@__method_family Other contextualEmbeddingsForValues:)]
         pub unsafe fn contextualEmbeddingsForValues(
             values_dictionary: &NSDictionary<NLContextualEmbeddingKey, AnyObject>,
         ) -> Retained<NSArray<NLContextualEmbedding>>;
 
         #[cfg(feature = "NLLanguage")]
-        #[method_id(@__retain_semantics Other contextualEmbeddingWithLanguage:)]
+        #[method_id(@__method_family Other contextualEmbeddingWithLanguage:)]
         pub unsafe fn contextualEmbeddingWithLanguage(
             language: &NLLanguage,
         ) -> Option<Retained<NLContextualEmbedding>>;
 
         #[cfg(feature = "NLScript")]
-        #[method_id(@__retain_semantics Other contextualEmbeddingWithScript:)]
+        #[method_id(@__method_family Other contextualEmbeddingWithScript:)]
         pub unsafe fn contextualEmbeddingWithScript(
             script: &NLScript,
         ) -> Option<Retained<NLContextualEmbedding>>;
 
-        #[method_id(@__retain_semantics Other modelIdentifier)]
+        #[method_id(@__method_family Other modelIdentifier)]
         pub unsafe fn modelIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NLLanguage")]
-        #[method_id(@__retain_semantics Other languages)]
+        #[method_id(@__method_family Other languages)]
         pub unsafe fn languages(&self) -> Retained<NSArray<NLLanguage>>;
 
         #[cfg(feature = "NLScript")]
-        #[method_id(@__retain_semantics Other scripts)]
+        #[method_id(@__method_family Other scripts)]
         pub unsafe fn scripts(&self) -> Retained<NSArray<NLScript>>;
 
         #[method(revision)]
@@ -111,7 +111,7 @@ extern_methods!(
         pub unsafe fn unload(&self);
 
         #[cfg(feature = "NLLanguage")]
-        #[method_id(@__retain_semantics Other embeddingResultForString:language:error:_)]
+        #[method_id(@__method_family Other embeddingResultForString:language:error:_)]
         pub unsafe fn embeddingResultForString_language_error(
             &self,
             string: &NSString,
@@ -135,7 +135,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NLContextualEmbedding {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -151,14 +151,14 @@ unsafe impl NSObjectProtocol for NLContextualEmbeddingResult {}
 
 extern_methods!(
     unsafe impl NLContextualEmbeddingResult {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other string)]
+        #[method_id(@__method_family Other string)]
         pub unsafe fn string(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NLLanguage")]
-        #[method_id(@__retain_semantics Other language)]
+        #[method_id(@__method_family Other language)]
         pub unsafe fn language(&self) -> Retained<NLLanguage>;
 
         #[method(sequenceLength)]
@@ -172,7 +172,7 @@ extern_methods!(
             block: &block2::Block<dyn Fn(NonNull<NSArray<NSNumber>>, NSRange, NonNull<Bool>) + '_>,
         );
 
-        #[method_id(@__retain_semantics Other tokenVectorAtIndex:tokenRange:)]
+        #[method_id(@__method_family Other tokenVectorAtIndex:tokenRange:)]
         pub unsafe fn tokenVectorAtIndex_tokenRange(
             &self,
             character_index: NSUInteger,
@@ -184,7 +184,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NLContextualEmbeddingResult {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

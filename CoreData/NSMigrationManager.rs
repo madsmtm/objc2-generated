@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for NSMigrationManager {}
 extern_methods!(
     unsafe impl NSMigrationManager {
         #[cfg(feature = "NSManagedObjectModel")]
-        #[method_id(@__retain_semantics Init initWithSourceModel:destinationModel:)]
+        #[method_id(@__method_family Init initWithSourceModel:destinationModel:)]
         pub unsafe fn initWithSourceModel_destinationModel(
             this: Allocated<Self>,
             source_model: &NSManagedObjectModel,
@@ -53,34 +53,34 @@ extern_methods!(
         pub unsafe fn reset(&self);
 
         #[cfg(feature = "NSMappingModel")]
-        #[method_id(@__retain_semantics Other mappingModel)]
+        #[method_id(@__method_family Other mappingModel)]
         pub unsafe fn mappingModel(&self) -> Retained<NSMappingModel>;
 
         #[cfg(feature = "NSManagedObjectModel")]
-        #[method_id(@__retain_semantics Other sourceModel)]
+        #[method_id(@__method_family Other sourceModel)]
         pub unsafe fn sourceModel(&self) -> Retained<NSManagedObjectModel>;
 
         #[cfg(feature = "NSManagedObjectModel")]
-        #[method_id(@__retain_semantics Other destinationModel)]
+        #[method_id(@__method_family Other destinationModel)]
         pub unsafe fn destinationModel(&self) -> Retained<NSManagedObjectModel>;
 
         #[cfg(feature = "NSManagedObjectContext")]
-        #[method_id(@__retain_semantics Other sourceContext)]
+        #[method_id(@__method_family Other sourceContext)]
         pub unsafe fn sourceContext(&self) -> Retained<NSManagedObjectContext>;
 
         #[cfg(feature = "NSManagedObjectContext")]
-        #[method_id(@__retain_semantics Other destinationContext)]
+        #[method_id(@__method_family Other destinationContext)]
         pub unsafe fn destinationContext(&self) -> Retained<NSManagedObjectContext>;
 
         #[cfg(all(feature = "NSEntityDescription", feature = "NSEntityMapping"))]
-        #[method_id(@__retain_semantics Other sourceEntityForEntityMapping:)]
+        #[method_id(@__method_family Other sourceEntityForEntityMapping:)]
         pub unsafe fn sourceEntityForEntityMapping(
             &self,
             m_entity: &NSEntityMapping,
         ) -> Option<Retained<NSEntityDescription>>;
 
         #[cfg(all(feature = "NSEntityDescription", feature = "NSEntityMapping"))]
-        #[method_id(@__retain_semantics Other destinationEntityForEntityMapping:)]
+        #[method_id(@__method_family Other destinationEntityForEntityMapping:)]
         pub unsafe fn destinationEntityForEntityMapping(
             &self,
             m_entity: &NSEntityMapping,
@@ -96,7 +96,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(@__retain_semantics Other destinationInstancesForEntityMappingNamed:sourceInstances:)]
+        #[method_id(@__method_family Other destinationInstancesForEntityMappingNamed:sourceInstances:)]
         pub unsafe fn destinationInstancesForEntityMappingNamed_sourceInstances(
             &self,
             mapping_name: &NSString,
@@ -104,7 +104,7 @@ extern_methods!(
         ) -> Retained<NSArray<NSManagedObject>>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(@__retain_semantics Other sourceInstancesForEntityMappingNamed:destinationInstances:)]
+        #[method_id(@__method_family Other sourceInstancesForEntityMappingNamed:destinationInstances:)]
         pub unsafe fn sourceInstancesForEntityMappingNamed_destinationInstances(
             &self,
             mapping_name: &NSString,
@@ -112,13 +112,13 @@ extern_methods!(
         ) -> Retained<NSArray<NSManagedObject>>;
 
         #[cfg(feature = "NSEntityMapping")]
-        #[method_id(@__retain_semantics Other currentEntityMapping)]
+        #[method_id(@__method_family Other currentEntityMapping)]
         pub unsafe fn currentEntityMapping(&self) -> Retained<NSEntityMapping>;
 
         #[method(migrationProgress)]
         pub unsafe fn migrationProgress(&self) -> c_float;
 
-        #[method_id(@__retain_semantics Other userInfo)]
+        #[method_id(@__method_family Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
@@ -133,10 +133,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMigrationManager {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

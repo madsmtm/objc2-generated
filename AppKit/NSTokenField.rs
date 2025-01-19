@@ -26,7 +26,7 @@ extern_protocol!(
         ///
         /// If the delegate does not implement this method, no completions are provided
         #[optional]
-        #[method_id(@__retain_semantics Other tokenField:completionsForSubstring:indexOfToken:indexOfSelectedItem:)]
+        #[method_id(@__method_family Other tokenField:completionsForSubstring:indexOfToken:indexOfSelectedItem:)]
         unsafe fn tokenField_completionsForSubstring_indexOfToken_indexOfSelectedItem(
             &self,
             token_field: &NSTokenField,
@@ -37,7 +37,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other tokenField:shouldAddObjects:atIndex:)]
+        #[method_id(@__method_family Other tokenField:shouldAddObjects:atIndex:)]
         unsafe fn tokenField_shouldAddObjects_atIndex(
             &self,
             token_field: &NSTokenField,
@@ -47,7 +47,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other tokenField:displayStringForRepresentedObject:)]
+        #[method_id(@__method_family Other tokenField:displayStringForRepresentedObject:)]
         unsafe fn tokenField_displayStringForRepresentedObject(
             &self,
             token_field: &NSTokenField,
@@ -56,7 +56,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other tokenField:editingStringForRepresentedObject:)]
+        #[method_id(@__method_family Other tokenField:editingStringForRepresentedObject:)]
         unsafe fn tokenField_editingStringForRepresentedObject(
             &self,
             token_field: &NSTokenField,
@@ -65,7 +65,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other tokenField:representedObjectForEditingString:)]
+        #[method_id(@__method_family Other tokenField:representedObjectForEditingString:)]
         unsafe fn tokenField_representedObjectForEditingString(
             &self,
             token_field: &NSTokenField,
@@ -84,7 +84,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSPasteboard", feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other tokenField:readFromPasteboard:)]
+        #[method_id(@__method_family Other tokenField:readFromPasteboard:)]
         unsafe fn tokenField_readFromPasteboard(
             &self,
             token_field: &NSTokenField,
@@ -93,7 +93,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSMenu", feature = "NSResponder", feature = "NSView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other tokenField:menuForRepresentedObject:)]
+        #[method_id(@__method_family Other tokenField:menuForRepresentedObject:)]
         unsafe fn tokenField_menuForRepresentedObject(
             &self,
             token_field: &NSTokenField,
@@ -251,7 +251,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSTokenField {
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(&self)
             -> Option<Retained<ProtocolObject<dyn NSTokenFieldDelegate>>>;
 
@@ -282,7 +282,7 @@ extern_methods!(
         #[method(defaultCompletionDelay)]
         pub unsafe fn defaultCompletionDelay(mtm: MainThreadMarker) -> NSTimeInterval;
 
-        #[method_id(@__retain_semantics Other tokenizingCharacterSet)]
+        #[method_id(@__method_family Other tokenizingCharacterSet)]
         pub unsafe fn tokenizingCharacterSet(&self) -> Retained<NSCharacterSet>;
 
         /// Setter for [`tokenizingCharacterSet`][Self::tokenizingCharacterSet].
@@ -292,7 +292,7 @@ extern_methods!(
             tokenizing_character_set: Option<&NSCharacterSet>,
         );
 
-        #[method_id(@__retain_semantics Other defaultTokenizingCharacterSet)]
+        #[method_id(@__method_family Other defaultTokenizingCharacterSet)]
         pub unsafe fn defaultTokenizingCharacterSet(
             mtm: MainThreadMarker,
         ) -> Retained<NSCharacterSet>;
@@ -308,10 +308,10 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSTokenField {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -328,7 +328,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSTokenField {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -342,7 +342,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSTokenField {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -22,14 +22,14 @@ unsafe impl NSObjectProtocol for MKOverlayRenderer {}
 extern_methods!(
     unsafe impl MKOverlayRenderer {
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
-        #[method_id(@__retain_semantics Init initWithOverlay:)]
+        #[method_id(@__method_family Init initWithOverlay:)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
-        #[method_id(@__retain_semantics Other overlay)]
+        #[method_id(@__method_family Other overlay)]
         pub unsafe fn overlay(&self) -> Retained<ProtocolObject<dyn MKOverlay>>;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
@@ -111,10 +111,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKOverlayRenderer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

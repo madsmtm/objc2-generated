@@ -78,7 +78,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTableSectionElement {
         #[deprecated]
-        #[method_id(@__retain_semantics Other align)]
+        #[method_id(@__method_family Other align)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
@@ -87,7 +87,7 @@ extern_methods!(
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other ch)]
+        #[method_id(@__method_family Other ch)]
         pub unsafe fn ch(&self) -> Retained<NSString>;
 
         /// Setter for [`ch`][Self::ch].
@@ -96,7 +96,7 @@ extern_methods!(
         pub unsafe fn setCh(&self, ch: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other chOff)]
+        #[method_id(@__method_family Other chOff)]
         pub unsafe fn chOff(&self) -> Retained<NSString>;
 
         /// Setter for [`chOff`][Self::chOff].
@@ -105,7 +105,7 @@ extern_methods!(
         pub unsafe fn setChOff(&self, ch_off: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other vAlign)]
+        #[method_id(@__method_family Other vAlign)]
         pub unsafe fn vAlign(&self) -> Retained<NSString>;
 
         /// Setter for [`vAlign`][Self::vAlign].
@@ -115,11 +115,11 @@ extern_methods!(
 
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other rows)]
+        #[method_id(@__method_family Other rows)]
         pub unsafe fn rows(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other insertRow:)]
+        #[method_id(@__method_family Other insertRow:)]
         pub unsafe fn insertRow(&self, index: c_int) -> Option<Retained<DOMHTMLElement>>;
 
         #[deprecated]
@@ -139,7 +139,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLTableSectionElement {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -154,7 +154,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLTableSectionElement {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

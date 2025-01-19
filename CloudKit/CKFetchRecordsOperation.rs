@@ -21,21 +21,21 @@ unsafe impl NSObjectProtocol for CKFetchRecordsOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordsOperation {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(@__retain_semantics Init initWithRecordIDs:)]
+        #[method_id(@__method_family Init initWithRecordIDs:)]
         pub unsafe fn initWithRecordIDs(
             this: Allocated<Self>,
             record_i_ds: &NSArray<CKRecordID>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other fetchCurrentUserRecordOperation)]
+        #[method_id(@__method_family Other fetchCurrentUserRecordOperation)]
         pub unsafe fn fetchCurrentUserRecordOperation() -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(@__retain_semantics Other recordIDs)]
+        #[method_id(@__method_family Other recordIDs)]
         pub unsafe fn recordIDs(&self) -> Option<Retained<NSArray<CKRecordID>>>;
 
         #[cfg(feature = "CKRecordID")]
@@ -50,7 +50,7 @@ extern_methods!(
         /// If nil, declares the entire record should be downloaded. If set to an empty array, declares that no user fields should be downloaded.
         /// Defaults to
         /// `nil.`
-        #[method_id(@__retain_semantics Other desiredKeys)]
+        #[method_id(@__method_family Other desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
@@ -147,7 +147,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKFetchRecordsOperation {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

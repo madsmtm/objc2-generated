@@ -24,16 +24,16 @@ unsafe impl NSObjectProtocol for NSTouchBar {}
 
 extern_methods!(
     unsafe impl NSTouchBar {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other customizationIdentifier)]
+        #[method_id(@__method_family Other customizationIdentifier)]
         pub unsafe fn customizationIdentifier(
             &self,
         ) -> Option<Retained<NSTouchBarCustomizationIdentifier>>;
@@ -46,7 +46,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSTouchBarItem")]
-        #[method_id(@__retain_semantics Other customizationAllowedItemIdentifiers)]
+        #[method_id(@__method_family Other customizationAllowedItemIdentifiers)]
         pub unsafe fn customizationAllowedItemIdentifiers(
             &self,
         ) -> Retained<NSArray<NSTouchBarItemIdentifier>>;
@@ -60,7 +60,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSTouchBarItem")]
-        #[method_id(@__retain_semantics Other customizationRequiredItemIdentifiers)]
+        #[method_id(@__method_family Other customizationRequiredItemIdentifiers)]
         pub unsafe fn customizationRequiredItemIdentifiers(
             &self,
         ) -> Retained<NSArray<NSTouchBarItemIdentifier>>;
@@ -74,7 +74,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSTouchBarItem")]
-        #[method_id(@__retain_semantics Other defaultItemIdentifiers)]
+        #[method_id(@__method_family Other defaultItemIdentifiers)]
         pub unsafe fn defaultItemIdentifiers(&self) -> Retained<NSArray<NSTouchBarItemIdentifier>>;
 
         #[cfg(feature = "NSTouchBarItem")]
@@ -86,11 +86,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSTouchBarItem")]
-        #[method_id(@__retain_semantics Other itemIdentifiers)]
+        #[method_id(@__method_family Other itemIdentifiers)]
         pub unsafe fn itemIdentifiers(&self) -> Retained<NSArray<NSTouchBarItemIdentifier>>;
 
         #[cfg(feature = "NSTouchBarItem")]
-        #[method_id(@__retain_semantics Other principalItemIdentifier)]
+        #[method_id(@__method_family Other principalItemIdentifier)]
         pub unsafe fn principalItemIdentifier(&self) -> Option<Retained<NSTouchBarItemIdentifier>>;
 
         #[cfg(feature = "NSTouchBarItem")]
@@ -102,7 +102,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSTouchBarItem")]
-        #[method_id(@__retain_semantics Other escapeKeyReplacementItemIdentifier)]
+        #[method_id(@__method_family Other escapeKeyReplacementItemIdentifier)]
         pub unsafe fn escapeKeyReplacementItemIdentifier(
             &self,
         ) -> Option<Retained<NSTouchBarItemIdentifier>>;
@@ -116,7 +116,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSTouchBarItem")]
-        #[method_id(@__retain_semantics Other templateItems)]
+        #[method_id(@__method_family Other templateItems)]
         pub unsafe fn templateItems(&self) -> Retained<NSSet<NSTouchBarItem>>;
 
         #[cfg(feature = "NSTouchBarItem")]
@@ -124,7 +124,7 @@ extern_methods!(
         #[method(setTemplateItems:)]
         pub unsafe fn setTemplateItems(&self, template_items: &NSSet<NSTouchBarItem>);
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSTouchBarDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -133,7 +133,7 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSTouchBarDelegate>>);
 
         #[cfg(feature = "NSTouchBarItem")]
-        #[method_id(@__retain_semantics Other itemForIdentifier:)]
+        #[method_id(@__method_family Other itemForIdentifier:)]
         pub unsafe fn itemForIdentifier(
             &self,
             identifier: &NSTouchBarItemIdentifier,
@@ -157,7 +157,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTouchBar {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -167,7 +167,7 @@ extern_protocol!(
     pub unsafe trait NSTouchBarDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSTouchBarItem")]
         #[optional]
-        #[method_id(@__retain_semantics Other touchBar:makeItemForIdentifier:)]
+        #[method_id(@__method_family Other touchBar:makeItemForIdentifier:)]
         unsafe fn touchBar_makeItemForIdentifier(
             &self,
             touch_bar: &NSTouchBar,
@@ -179,7 +179,7 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbarprovider?language=objc)
     pub unsafe trait NSTouchBarProvider: NSObjectProtocol + MainThreadOnly {
-        #[method_id(@__retain_semantics Other touchBar)]
+        #[method_id(@__method_family Other touchBar)]
         unsafe fn touchBar(&self) -> Option<Retained<NSTouchBar>>;
     }
 );
@@ -188,14 +188,14 @@ extern_methods!(
     /// NSTouchBarProvider
     #[cfg(feature = "NSResponder")]
     unsafe impl NSResponder {
-        #[method_id(@__retain_semantics Other touchBar)]
+        #[method_id(@__method_family Other touchBar)]
         pub unsafe fn touchBar(&self) -> Option<Retained<NSTouchBar>>;
 
         /// Setter for [`touchBar`][Self::touchBar].
         #[method(setTouchBar:)]
         pub unsafe fn setTouchBar(&self, touch_bar: Option<&NSTouchBar>);
 
-        #[method_id(@__retain_semantics Other makeTouchBar)]
+        #[method_id(@__method_family Other makeTouchBar)]
         pub unsafe fn makeTouchBar(&self) -> Option<Retained<NSTouchBar>>;
     }
 );

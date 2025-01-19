@@ -32,11 +32,11 @@ extern_methods!(
         pub unsafe fn deviceMemorySize(&self) -> NSUInteger;
 
         #[deprecated]
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Create an inference graph
@@ -45,7 +45,7 @@ extern_methods!(
         ///
         /// Returns: A new inference graph object
         #[deprecated]
-        #[method_id(@__retain_semantics Other graphWithGraphObjects:)]
+        #[method_id(@__method_family Other graphWithGraphObjects:)]
         pub unsafe fn graphWithGraphObjects(graph_objects: &NSArray<MLCGraph>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTensor")]
@@ -300,7 +300,7 @@ extern_methods!(
         ///
         /// Returns: A new graph.
         #[deprecated]
-        #[method_id(@__retain_semantics Other graph)]
+        #[method_id(@__method_family Other graph)]
         pub unsafe fn graph() -> Retained<Self>;
     }
 );

@@ -197,16 +197,16 @@ extern_methods!(
     unsafe impl CXProvider {
         #[cfg(feature = "CXProviderConfiguration")]
         /// Initialize a new provider instance with the supplied configuration
-        #[method_id(@__retain_semantics Init initWithConfiguration:)]
+        #[method_id(@__method_family Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &CXProviderConfiguration,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CXCallUpdate", feature = "block2"))]
@@ -263,7 +263,7 @@ extern_methods!(
 
         #[cfg(feature = "CXProviderConfiguration")]
         /// The receiver's current configuration.
-        #[method_id(@__retain_semantics Other configuration)]
+        #[method_id(@__method_family Other configuration)]
         pub unsafe fn configuration(&self) -> Retained<CXProviderConfiguration>;
 
         #[cfg(feature = "CXProviderConfiguration")]
@@ -277,12 +277,12 @@ extern_methods!(
 
         #[cfg(feature = "CXTransaction")]
         /// List of all transactions that are incomplete.
-        #[method_id(@__retain_semantics Other pendingTransactions)]
+        #[method_id(@__method_family Other pendingTransactions)]
         pub unsafe fn pendingTransactions(&self) -> Retained<NSArray<CXTransaction>>;
 
         #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
         /// Returns subset of call actions contained in any transaction in -pendingTransactions of the specified class and with the specified call UUID.
-        #[method_id(@__retain_semantics Other pendingCallActionsOfClass:withCallUUID:)]
+        #[method_id(@__method_family Other pendingCallActionsOfClass:withCallUUID:)]
         pub unsafe fn pendingCallActionsOfClass_withCallUUID(
             &self,
             call_action_class: &AnyClass,

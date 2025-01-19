@@ -28,13 +28,13 @@ extern_methods!(
         /// Creates a new analyzer
         ///
         /// - Parameter format: The format of the audio stream to be analyzed. Only PCM formats are supported.
-        #[method_id(@__retain_semantics Init initWithFormat:)]
+        #[method_id(@__method_family Init initWithFormat:)]
         pub unsafe fn initWithFormat(
             this: Allocated<Self>,
             format: &AVAudioFormat,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "SNRequest", feature = "SNResult"))]
@@ -97,7 +97,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SNAudioStreamAnalyzer {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -122,13 +122,13 @@ extern_methods!(
         /// - url: The url for the audio file to be analyzed
         ///
         /// - error: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify nil for this parameter if you do not want the error information.
-        #[method_id(@__retain_semantics Init initWithURL:error:_)]
+        #[method_id(@__method_family Init initWithURL:error:_)]
         pub unsafe fn initWithURL_error(
             this: Allocated<Self>,
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "SNRequest", feature = "SNResult"))]
@@ -192,7 +192,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SNAudioFileAnalyzer {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

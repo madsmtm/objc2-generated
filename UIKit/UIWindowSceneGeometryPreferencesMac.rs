@@ -24,11 +24,11 @@ unsafe impl NSObjectProtocol for UIWindowSceneGeometryPreferencesMac {}
 extern_methods!(
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]
     unsafe impl UIWindowSceneGeometryPreferencesMac {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithSystemFrame:)]
+        #[method_id(@__method_family Init initWithSystemFrame:)]
         pub unsafe fn initWithSystemFrame(
             this: Allocated<Self>,
             system_frame: CGRect,
@@ -51,7 +51,7 @@ extern_methods!(
     /// Methods declared on superclass `UIWindowSceneGeometryPreferences`
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]
     unsafe impl UIWindowSceneGeometryPreferencesMac {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

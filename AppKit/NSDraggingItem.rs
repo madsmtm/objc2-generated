@@ -32,28 +32,28 @@ unsafe impl NSObjectProtocol for NSDraggingImageComponent {}
 
 extern_methods!(
     unsafe impl NSDraggingImageComponent {
-        #[method_id(@__retain_semantics Other draggingImageComponentWithKey:)]
+        #[method_id(@__method_family Other draggingImageComponentWithKey:)]
         pub unsafe fn draggingImageComponentWithKey(
             key: &NSDraggingImageComponentKey,
         ) -> Retained<NSDraggingImageComponent>;
 
-        #[method_id(@__retain_semantics Init initWithKey:)]
+        #[method_id(@__method_family Init initWithKey:)]
         pub unsafe fn initWithKey(
             this: Allocated<Self>,
             key: &NSDraggingImageComponentKey,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other key)]
+        #[method_id(@__method_family Other key)]
         pub unsafe fn key(&self) -> Retained<NSDraggingImageComponentKey>;
 
         /// Setter for [`key`][Self::key].
         #[method(setKey:)]
         pub unsafe fn setKey(&self, key: &NSDraggingImageComponentKey);
 
-        #[method_id(@__retain_semantics Other contents)]
+        #[method_id(@__method_family Other contents)]
         pub unsafe fn contents(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`contents`][Self::contents].
@@ -72,7 +72,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDraggingImageComponent {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -89,16 +89,16 @@ unsafe impl NSObjectProtocol for NSDraggingItem {}
 extern_methods!(
     unsafe impl NSDraggingItem {
         #[cfg(feature = "NSPasteboard")]
-        #[method_id(@__retain_semantics Init initWithPasteboardWriter:)]
+        #[method_id(@__method_family Init initWithPasteboardWriter:)]
         pub unsafe fn initWithPasteboardWriter(
             this: Allocated<Self>,
             pasteboard_writer: &ProtocolObject<dyn NSPasteboardWriting>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other item)]
+        #[method_id(@__method_family Other item)]
         pub unsafe fn item(&self) -> Retained<AnyObject>;
 
         #[method(draggingFrame)]
@@ -127,7 +127,7 @@ extern_methods!(
         #[method(setDraggingFrame:contents:)]
         pub unsafe fn setDraggingFrame_contents(&self, frame: NSRect, contents: Option<&AnyObject>);
 
-        #[method_id(@__retain_semantics Other imageComponents)]
+        #[method_id(@__method_family Other imageComponents)]
         pub unsafe fn imageComponents(&self)
             -> Option<Retained<NSArray<NSDraggingImageComponent>>>;
     }
@@ -136,7 +136,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDraggingItem {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

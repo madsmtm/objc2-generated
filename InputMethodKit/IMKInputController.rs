@@ -78,13 +78,13 @@ extern_category!(
         /// Return the current composed string.  This may be an NSString or NSAttributedString.
         ///
         /// A composed string refers to the buffer that an input method typically maintains to mirror the text contained in the active inline area.  It is called the composed string to reflect the fact that the input method composed the string by converting the characters input by the user.  In addition, using the term composed string makes it easier to differentiate between an input method's buffer and the text in the active inline area that the user sees. The returned object should be an autoreleased object.
-        #[method_id(@__retain_semantics Other composedString:)]
+        #[method_id(@__method_family Other composedString:)]
         unsafe fn composedString(&self, sender: Option<&AnyObject>) -> Option<Retained<AnyObject>>;
 
         /// Return the a string consisting of the original pre-composition unicodes.
         ///
         /// If an input method stores the original input text it should return that text here.  The return value is an attributed string so that input method's can potentially restore changes they may have made to the font, etc.  The returned object should be an autoreleased object.
-        #[method_id(@__retain_semantics Other originalString:)]
+        #[method_id(@__method_family Other originalString:)]
         unsafe fn originalString(
             &self,
             sender: Option<&AnyObject>,
@@ -99,7 +99,7 @@ extern_category!(
         /// Called to get an array of candidates.
         ///
         /// An input method would look up its currently composed string and return a list of candidate strings that that string might map to. The returned NSArray should be an autoreleased object.
-        #[method_id(@__retain_semantics Other candidates:)]
+        #[method_id(@__method_family Other candidates:)]
         unsafe fn candidates(&self, sender: Option<&AnyObject>) -> Option<Retained<NSArray>>;
     }
 
@@ -120,7 +120,7 @@ extern_protocol!(
         unsafe fn deactivateServer(&self, sender: Option<&AnyObject>);
 
         /// Return a object value whose key is tag.  The returned object should be autoreleased.
-        #[method_id(@__retain_semantics Other valueForTag:client:)]
+        #[method_id(@__method_family Other valueForTag:client:)]
         unsafe fn valueForTag_client(
             &self,
             tag: c_long,
@@ -139,7 +139,7 @@ extern_protocol!(
         /// This is called to obtain the input method's modes dictionary.
         ///
         /// Typically this is called to to build the text input menu.  By calling the input method rather than reading the modes from the info.plist the input method can dynamically modify he modes supported. The returned NSDictionary should be an autoreleased object.
-        #[method_id(@__retain_semantics Other modes:)]
+        #[method_id(@__method_family Other modes:)]
         unsafe fn modes(&self, sender: Option<&AnyObject>) -> Option<Retained<NSDictionary>>;
 
         /// Returns an unsigned integer containing a union of event masks (see NSEvent.h)
@@ -229,7 +229,7 @@ extern_methods!(
         /// The inputClient parameter is the client side object that will be sending messages to the controller via the IMKServer.  The client object always conforms to the IMKTextInput protocol.
         ///
         /// Methods in the protocols that are implemented by the delegate object always include a client parameter.  Methods in the IMKInputController class do not take a client.  This is because the client is stored as an ivar in the IMKInputController.
-        #[method_id(@__retain_semantics Init initWithServer:delegate:client:)]
+        #[method_id(@__method_family Init initWithServer:delegate:client:)]
         pub unsafe fn initWithServer_delegate_client(
             this: Allocated<Self>,
             server: Option<&IMKServer>,
@@ -252,7 +252,7 @@ extern_methods!(
         /// Called to obtain a dictionary of text attributes.
         ///
         /// The default implementation returns an empty dictionary.  You should override this method if your input method wants to provide font or glyphInformation. The returned object should be an autoreleased object.
-        #[method_id(@__retain_semantics Other compositionAttributesAtRange:)]
+        #[method_id(@__method_family Other compositionAttributesAtRange:)]
         pub unsafe fn compositionAttributesAtRange(
             &self,
             range: NSRange,
@@ -279,7 +279,7 @@ extern_methods!(
         /// The default implementation begins by calling compositionAttributesAtRange: to obtain extra attributes that an input method wants to include such as font or  glyph information.  Then the appropriate underline and underline color information is added to the attributes dictionary for the style parameter.
         ///
         /// Finally the style value is added as dictionary value.  The key for the style value is NSMarkedClauseSegment. The returned object should be an autoreleased object.
-        #[method_id(@__retain_semantics Other markForStyle:atRange:)]
+        #[method_id(@__method_family Other markForStyle:atRange:)]
         pub unsafe fn markForStyle_atRange(
             &self,
             style: NSInteger,
@@ -315,11 +315,11 @@ extern_methods!(
         /// Returns a menu of input method specific commands.
         ///
         /// This method is called whenever the menu needs to be drawn so that input methods can update the menu to reflect their current state. The returned NSMenu is an autoreleased object.
-        #[method_id(@__retain_semantics Other menu)]
+        #[method_id(@__method_family Other menu)]
         pub unsafe fn menu(&self, mtm: MainThreadMarker) -> Option<Retained<NSMenu>>;
 
         /// Returns the input controller's delegate object. The returned id is an autoreleased object.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
 
         /// Set the input controller's delegate object.
@@ -328,7 +328,7 @@ extern_methods!(
 
         #[cfg(feature = "IMKServer")]
         /// Return the server object which is managing this input controller. The returned IMKServer is an autoreleased object.
-        #[method_id(@__retain_semantics Other server)]
+        #[method_id(@__method_family Other server)]
         pub unsafe fn server(&self) -> Option<Retained<IMKServer>>;
 
         /// Called to notify an input controller that it is about to be closed.
@@ -365,10 +365,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl IMKInputController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

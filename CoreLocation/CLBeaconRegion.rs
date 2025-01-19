@@ -36,7 +36,7 @@ unsafe impl NSSecureCoding for CLBeaconRegion {}
 extern_methods!(
     #[cfg(feature = "CLRegion")]
     unsafe impl CLBeaconRegion {
-        #[method_id(@__retain_semantics Init initWithUUID:identifier:)]
+        #[method_id(@__method_family Init initWithUUID:identifier:)]
         pub unsafe fn initWithUUID_identifier(
             this: Allocated<Self>,
             uuid: &NSUUID,
@@ -44,7 +44,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithProximityUUID:identifier:)]
+        #[method_id(@__method_family Init initWithProximityUUID:identifier:)]
         pub unsafe fn initWithProximityUUID_identifier(
             this: Allocated<Self>,
             proximity_uuid: &NSUUID,
@@ -52,7 +52,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CLBeaconIdentityCondition")]
-        #[method_id(@__retain_semantics Init initWithUUID:major:identifier:)]
+        #[method_id(@__method_family Init initWithUUID:major:identifier:)]
         pub unsafe fn initWithUUID_major_identifier(
             this: Allocated<Self>,
             uuid: &NSUUID,
@@ -62,7 +62,7 @@ extern_methods!(
 
         #[cfg(feature = "CLBeaconIdentityCondition")]
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithProximityUUID:major:identifier:)]
+        #[method_id(@__method_family Init initWithProximityUUID:major:identifier:)]
         pub unsafe fn initWithProximityUUID_major_identifier(
             this: Allocated<Self>,
             proximity_uuid: &NSUUID,
@@ -71,7 +71,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CLBeaconIdentityCondition")]
-        #[method_id(@__retain_semantics Init initWithUUID:major:minor:identifier:)]
+        #[method_id(@__method_family Init initWithUUID:major:minor:identifier:)]
         pub unsafe fn initWithUUID_major_minor_identifier(
             this: Allocated<Self>,
             uuid: &NSUUID,
@@ -82,7 +82,7 @@ extern_methods!(
 
         #[cfg(feature = "CLBeaconIdentityCondition")]
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithProximityUUID:major:minor:identifier:)]
+        #[method_id(@__method_family Init initWithProximityUUID:major:minor:identifier:)]
         pub unsafe fn initWithProximityUUID_major_minor_identifier(
             this: Allocated<Self>,
             proximity_uuid: &NSUUID,
@@ -96,7 +96,7 @@ extern_methods!(
             feature = "CLBeaconIdentityConstraint",
             feature = "CLCondition"
         ))]
-        #[method_id(@__retain_semantics Init initWithBeaconIdentityConstraint:identifier:)]
+        #[method_id(@__method_family Init initWithBeaconIdentityConstraint:identifier:)]
         pub unsafe fn initWithBeaconIdentityConstraint_identifier(
             this: Allocated<Self>,
             beacon_identity_constraint: &CLBeaconIdentityConstraint,
@@ -104,7 +104,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other peripheralDataWithMeasuredPower:)]
+        #[method_id(@__method_family Other peripheralDataWithMeasuredPower:)]
         pub unsafe fn peripheralDataWithMeasuredPower(
             &self,
             measured_power: Option<&NSNumber>,
@@ -115,22 +115,22 @@ extern_methods!(
             feature = "CLBeaconIdentityConstraint",
             feature = "CLCondition"
         ))]
-        #[method_id(@__retain_semantics Other beaconIdentityConstraint)]
+        #[method_id(@__method_family Other beaconIdentityConstraint)]
         pub unsafe fn beaconIdentityConstraint(&self) -> Retained<CLBeaconIdentityConstraint>;
 
-        #[method_id(@__retain_semantics Other UUID)]
+        #[method_id(@__method_family Other UUID)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other proximityUUID)]
+        #[method_id(@__method_family Other proximityUUID)]
         pub unsafe fn proximityUUID(&self) -> Retained<NSUUID>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other major)]
+        #[method_id(@__method_family Other major)]
         pub unsafe fn major(&self) -> Option<Retained<NSNumber>>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other minor)]
+        #[method_id(@__method_family Other minor)]
         pub unsafe fn minor(&self) -> Option<Retained<NSNumber>>;
 
         #[deprecated]
@@ -150,7 +150,7 @@ extern_methods!(
     unsafe impl CLBeaconRegion {
         #[cfg(feature = "CLLocation")]
         #[deprecated = "Please see CLCircularRegion"]
-        #[method_id(@__retain_semantics Init initCircularRegionWithCenter:radius:identifier:)]
+        #[method_id(@__method_family Init initCircularRegionWithCenter:radius:identifier:)]
         pub unsafe fn initCircularRegionWithCenter_radius_identifier(
             this: Allocated<Self>,
             center: CLLocationCoordinate2D,
@@ -164,10 +164,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CLRegion")]
     unsafe impl CLBeaconRegion {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -193,20 +193,20 @@ unsafe impl NSSecureCoding for CLBeacon {}
 
 extern_methods!(
     unsafe impl CLBeacon {
-        #[method_id(@__retain_semantics Other timestamp)]
+        #[method_id(@__method_family Other timestamp)]
         pub unsafe fn timestamp(&self) -> Retained<NSDate>;
 
-        #[method_id(@__retain_semantics Other UUID)]
+        #[method_id(@__method_family Other UUID)]
         pub unsafe fn UUID(&self) -> Retained<NSUUID>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other proximityUUID)]
+        #[method_id(@__method_family Other proximityUUID)]
         pub unsafe fn proximityUUID(&self) -> Retained<NSUUID>;
 
-        #[method_id(@__retain_semantics Other major)]
+        #[method_id(@__method_family Other major)]
         pub unsafe fn major(&self) -> Retained<NSNumber>;
 
-        #[method_id(@__retain_semantics Other minor)]
+        #[method_id(@__method_family Other minor)]
         pub unsafe fn minor(&self) -> Retained<NSNumber>;
 
         #[cfg(feature = "CLRegion")]
@@ -225,10 +225,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLBeacon {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

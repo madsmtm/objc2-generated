@@ -30,7 +30,7 @@ extern_methods!(
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSMenuToolbarItem {
         #[cfg(feature = "NSMenu")]
-        #[method_id(@__retain_semantics Other menu)]
+        #[method_id(@__method_family Other menu)]
         pub unsafe fn menu(&self) -> Retained<NSMenu>;
 
         #[cfg(feature = "NSMenu")]
@@ -53,7 +53,7 @@ extern_methods!(
     unsafe impl NSMenuToolbarItem {
         #[cfg(feature = "NSToolbar")]
         /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
-        #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
+        #[method_id(@__method_family Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
@@ -65,10 +65,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSMenuToolbarItem {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

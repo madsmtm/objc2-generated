@@ -45,7 +45,7 @@ extern_protocol!(
 
         #[cfg(feature = "ASCredentialIdentity")]
         /// The credential identity selected by the user to authenticate.
-        #[method_id(@__retain_semantics Other credentialIdentity)]
+        #[method_id(@__method_family Other credentialIdentity)]
         unsafe fn credentialIdentity(&self) -> Retained<ProtocolObject<dyn ASCredentialIdentity>>;
     }
 );

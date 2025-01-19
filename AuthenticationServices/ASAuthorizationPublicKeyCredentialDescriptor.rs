@@ -13,7 +13,7 @@ extern_protocol!(
         NSObjectProtocol + NSSecureCoding + NSCopying
     {
         /// An identifier that uniquely identifies a specific credential.
-        #[method_id(@__retain_semantics Other credentialID)]
+        #[method_id(@__method_family Other credentialID)]
         unsafe fn credentialID(&self) -> Retained<NSData>;
 
         /// Setter for [`credentialID`][Self::credentialID].

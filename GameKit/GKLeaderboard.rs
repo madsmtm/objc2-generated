@@ -89,15 +89,15 @@ unsafe impl NSObjectProtocol for GKLeaderboard {}
 extern_methods!(
     unsafe impl GKLeaderboard {
         /// Localized title
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// set when leaderboards have been designated a game group; set when loadLeaderboardsWithCompletionHandler has been called for leaderboards that support game groups
-        #[method_id(@__retain_semantics Other groupIdentifier)]
+        #[method_id(@__method_family Other groupIdentifier)]
         pub unsafe fn groupIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Leaderboard ID defined in App Store Connect that this instance is associated with
-        #[method_id(@__retain_semantics Other baseLeaderboardID)]
+        #[method_id(@__method_family Other baseLeaderboardID)]
         pub unsafe fn baseLeaderboardID(&self) -> Retained<NSString>;
 
         /// Type of leaderboard
@@ -105,11 +105,11 @@ extern_methods!(
         pub unsafe fn r#type(&self) -> GKLeaderboardType;
 
         /// Date and time this instance started accepting score submissions (only applicable to recurring leaderboards)
-        #[method_id(@__retain_semantics Other startDate)]
+        #[method_id(@__method_family Other startDate)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
         /// Date and time the next instance will start accepting score submissions (only applicable to recurring leaderboards)
-        #[method_id(@__retain_semantics Other nextStartDate)]
+        #[method_id(@__method_family Other nextStartDate)]
         pub unsafe fn nextStartDate(&self) -> Option<Retained<NSDate>>;
 
         /// Duration from startDate during which this leaderboard instance accepts score submissions (only applicable to recurring leaderboards)
@@ -215,7 +215,7 @@ extern_methods!(
     /// Deprecated
     unsafe impl GKLeaderboard {
         #[deprecated]
-        #[method_id(@__retain_semantics Other category)]
+        #[method_id(@__method_family Other category)]
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`category`][Self::category].
@@ -224,7 +224,7 @@ extern_methods!(
         pub unsafe fn setCategory(&self, category: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithPlayerIDs:)]
+        #[method_id(@__method_family Init initWithPlayerIDs:)]
         pub unsafe fn initWithPlayerIDs(
             this: Allocated<Self>,
             player_i_ds: Option<&NSArray<NSString>>,
@@ -270,7 +270,7 @@ extern_methods!(
 
         /// leaderboardID. If nil, fetch the aggregate leaderboard.
         #[deprecated]
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`identifier`][Self::identifier].
@@ -291,7 +291,7 @@ extern_methods!(
         #[cfg(feature = "GKScore")]
         /// Scores are not valid until loadScores: has completed.
         #[deprecated]
-        #[method_id(@__retain_semantics Other scores)]
+        #[method_id(@__method_family Other scores)]
         pub unsafe fn scores(&self) -> Option<Retained<NSArray<GKScore>>>;
 
         /// The maxRange which represents the size of the leaderboard is not valid until loadScores: has completed.
@@ -302,7 +302,7 @@ extern_methods!(
         #[cfg(feature = "GKScore")]
         /// The local player's score
         #[deprecated]
-        #[method_id(@__retain_semantics Other localPlayerScore)]
+        #[method_id(@__method_family Other localPlayerScore)]
         pub unsafe fn localPlayerScore(&self) -> Option<Retained<GKScore>>;
 
         /// This property is true if the leaderboard is currently loading
@@ -314,7 +314,7 @@ extern_methods!(
         /// Specify an array of GKPlayers. For example, the players who are in a match together
         /// Defaults to AllTime score, if you want to change the timeScope, set the property before loading the scores. Range and playerScope are not applicable. players may not be nil.
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithPlayers:)]
+        #[method_id(@__method_family Init initWithPlayers:)]
         pub unsafe fn initWithPlayers(
             this: Allocated<Self>,
             players: &NSArray<GKPlayer>,

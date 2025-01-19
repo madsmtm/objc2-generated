@@ -27,17 +27,17 @@ unsafe impl NSSecureCoding for CLSObject {}
 extern_methods!(
     unsafe impl CLSObject {
         /// The date this object was created.
-        #[method_id(@__retain_semantics Other dateCreated)]
+        #[method_id(@__method_family Other dateCreated)]
         pub unsafe fn dateCreated(&self) -> Retained<NSDate>;
 
         /// The date this object was last modified.
-        #[method_id(@__retain_semantics Other dateLastModified)]
+        #[method_id(@__method_family Other dateLastModified)]
         pub unsafe fn dateLastModified(&self) -> Retained<NSDate>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

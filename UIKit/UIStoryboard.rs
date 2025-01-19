@@ -29,7 +29,7 @@ unsafe impl NSObjectProtocol for UIStoryboard {}
 extern_methods!(
     unsafe impl UIStoryboard {
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[method_id(@__retain_semantics Other storyboardWithName:bundle:)]
+        #[method_id(@__method_family Other storyboardWithName:bundle:)]
         pub unsafe fn storyboardWithName_bundle(
             name: &NSString,
             storyboard_bundle_or_nil: Option<&NSBundle>,
@@ -38,7 +38,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[method_id(@__retain_semantics Other instantiateInitialViewController)]
+        #[method_id(@__method_family Other instantiateInitialViewController)]
         pub unsafe fn instantiateInitialViewController(&self)
             -> Option<Retained<UIViewController>>;
 
@@ -47,7 +47,7 @@ extern_methods!(
             feature = "UIViewController",
             feature = "block2"
         ))]
-        #[method_id(@__retain_semantics Other instantiateInitialViewControllerWithCreator:)]
+        #[method_id(@__method_family Other instantiateInitialViewControllerWithCreator:)]
         pub unsafe fn instantiateInitialViewControllerWithCreator(
             &self,
             block: UIStoryboardViewControllerCreator,
@@ -55,7 +55,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[method_id(@__retain_semantics Other instantiateViewControllerWithIdentifier:)]
+        #[method_id(@__method_family Other instantiateViewControllerWithIdentifier:)]
         pub unsafe fn instantiateViewControllerWithIdentifier(
             &self,
             identifier: &NSString,
@@ -66,7 +66,7 @@ extern_methods!(
             feature = "UIViewController",
             feature = "block2"
         ))]
-        #[method_id(@__retain_semantics Other instantiateViewControllerWithIdentifier:creator:)]
+        #[method_id(@__method_family Other instantiateViewControllerWithIdentifier:creator:)]
         pub unsafe fn instantiateViewControllerWithIdentifier_creator(
             &self,
             identifier: &NSString,
@@ -78,10 +78,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIStoryboard {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

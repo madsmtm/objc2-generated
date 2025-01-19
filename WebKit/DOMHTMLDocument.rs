@@ -65,15 +65,15 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLDocument {
         #[cfg(feature = "DOMHTMLCollection")]
-        #[method_id(@__retain_semantics Other embeds)]
+        #[method_id(@__method_family Other embeds)]
         pub unsafe fn embeds(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[cfg(feature = "DOMHTMLCollection")]
-        #[method_id(@__retain_semantics Other plugins)]
+        #[method_id(@__method_family Other plugins)]
         pub unsafe fn plugins(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[cfg(feature = "DOMHTMLCollection")]
-        #[method_id(@__retain_semantics Other scripts)]
+        #[method_id(@__method_family Other scripts)]
         pub unsafe fn scripts(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[method(width)]
@@ -82,52 +82,52 @@ extern_methods!(
         #[method(height)]
         pub unsafe fn height(&self) -> c_int;
 
-        #[method_id(@__retain_semantics Other dir)]
+        #[method_id(@__method_family Other dir)]
         pub unsafe fn dir(&self) -> Retained<NSString>;
 
         /// Setter for [`dir`][Self::dir].
         #[method(setDir:)]
         pub unsafe fn setDir(&self, dir: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other designMode)]
+        #[method_id(@__method_family Other designMode)]
         pub unsafe fn designMode(&self) -> Retained<NSString>;
 
         /// Setter for [`designMode`][Self::designMode].
         #[method(setDesignMode:)]
         pub unsafe fn setDesignMode(&self, design_mode: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other compatMode)]
+        #[method_id(@__method_family Other compatMode)]
         pub unsafe fn compatMode(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other bgColor)]
+        #[method_id(@__method_family Other bgColor)]
         pub unsafe fn bgColor(&self) -> Retained<NSString>;
 
         /// Setter for [`bgColor`][Self::bgColor].
         #[method(setBgColor:)]
         pub unsafe fn setBgColor(&self, bg_color: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other fgColor)]
+        #[method_id(@__method_family Other fgColor)]
         pub unsafe fn fgColor(&self) -> Retained<NSString>;
 
         /// Setter for [`fgColor`][Self::fgColor].
         #[method(setFgColor:)]
         pub unsafe fn setFgColor(&self, fg_color: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other alinkColor)]
+        #[method_id(@__method_family Other alinkColor)]
         pub unsafe fn alinkColor(&self) -> Retained<NSString>;
 
         /// Setter for [`alinkColor`][Self::alinkColor].
         #[method(setAlinkColor:)]
         pub unsafe fn setAlinkColor(&self, alink_color: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other linkColor)]
+        #[method_id(@__method_family Other linkColor)]
         pub unsafe fn linkColor(&self) -> Retained<NSString>;
 
         /// Setter for [`linkColor`][Self::linkColor].
         #[method(setLinkColor:)]
         pub unsafe fn setLinkColor(&self, link_color: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other vlinkColor)]
+        #[method_id(@__method_family Other vlinkColor)]
         pub unsafe fn vlinkColor(&self) -> Retained<NSString>;
 
         /// Setter for [`vlinkColor`][Self::vlinkColor].
@@ -171,7 +171,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLDocument {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -185,7 +185,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLDocument {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

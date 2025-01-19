@@ -24,13 +24,13 @@ unsafe impl UIActionSheetDelegate for UIDocumentInteractionController {}
 
 extern_methods!(
     unsafe impl UIDocumentInteractionController {
-        #[method_id(@__retain_semantics Other interactionControllerWithURL:)]
+        #[method_id(@__method_family Other interactionControllerWithURL:)]
         pub unsafe fn interactionControllerWithURL(
             url: &NSURL,
             mtm: MainThreadMarker,
         ) -> Retained<UIDocumentInteractionController>;
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIDocumentInteractionControllerDelegate>>>;
@@ -43,21 +43,21 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn UIDocumentInteractionControllerDelegate>>,
         );
 
-        #[method_id(@__retain_semantics Other URL)]
+        #[method_id(@__method_family Other URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
-        #[method_id(@__retain_semantics Other UTI)]
+        #[method_id(@__method_family Other UTI)]
         pub unsafe fn UTI(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`UTI`][Self::UTI].
         #[method(setUTI:)]
         pub unsafe fn setUTI(&self, uti: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
@@ -65,10 +65,10 @@ extern_methods!(
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__retain_semantics Other icons)]
+        #[method_id(@__method_family Other icons)]
         pub unsafe fn icons(&self) -> Retained<NSArray<UIImage>>;
 
-        #[method_id(@__retain_semantics Other annotation)]
+        #[method_id(@__method_family Other annotation)]
         pub unsafe fn annotation(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`annotation`][Self::annotation].
@@ -127,7 +127,7 @@ extern_methods!(
         pub unsafe fn dismissMenuAnimated(&self, animated: bool);
 
         #[cfg(feature = "UIGestureRecognizer")]
-        #[method_id(@__retain_semantics Other gestureRecognizers)]
+        #[method_id(@__method_family Other gestureRecognizers)]
         pub unsafe fn gestureRecognizers(&self) -> Retained<NSArray<UIGestureRecognizer>>;
     }
 );
@@ -135,10 +135,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDocumentInteractionController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -148,7 +148,7 @@ extern_protocol!(
     pub unsafe trait UIDocumentInteractionControllerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
-        #[method_id(@__retain_semantics Other documentInteractionControllerViewControllerForPreview:)]
+        #[method_id(@__method_family Other documentInteractionControllerViewControllerForPreview:)]
         unsafe fn documentInteractionControllerViewControllerForPreview(
             &self,
             controller: &UIDocumentInteractionController,
@@ -164,7 +164,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other documentInteractionControllerViewForPreview:)]
+        #[method_id(@__method_family Other documentInteractionControllerViewForPreview:)]
         unsafe fn documentInteractionControllerViewForPreview(
             &self,
             controller: &UIDocumentInteractionController,

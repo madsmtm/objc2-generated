@@ -20,14 +20,14 @@ unsafe impl NSObjectProtocol for MKDirectionsResponse {}
 extern_methods!(
     unsafe impl MKDirectionsResponse {
         #[cfg(feature = "MKMapItem")]
-        #[method_id(@__retain_semantics Other source)]
+        #[method_id(@__method_family Other source)]
         pub unsafe fn source(&self) -> Retained<MKMapItem>;
 
         #[cfg(feature = "MKMapItem")]
-        #[method_id(@__retain_semantics Other destination)]
+        #[method_id(@__method_family Other destination)]
         pub unsafe fn destination(&self) -> Retained<MKMapItem>;
 
-        #[method_id(@__retain_semantics Other routes)]
+        #[method_id(@__method_family Other routes)]
         pub unsafe fn routes(&self) -> Retained<NSArray<MKRoute>>;
     }
 );
@@ -35,10 +35,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKDirectionsResponse {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -54,10 +54,10 @@ unsafe impl NSObjectProtocol for MKRoute {}
 
 extern_methods!(
     unsafe impl MKRoute {
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other advisoryNotices)]
+        #[method_id(@__method_family Other advisoryNotices)]
         pub unsafe fn advisoryNotices(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "objc2-core-location")]
@@ -72,10 +72,10 @@ extern_methods!(
         pub unsafe fn transportType(&self) -> MKDirectionsTransportType;
 
         #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
-        #[method_id(@__retain_semantics Other polyline)]
+        #[method_id(@__method_family Other polyline)]
         pub unsafe fn polyline(&self) -> Retained<MKPolyline>;
 
-        #[method_id(@__retain_semantics Other steps)]
+        #[method_id(@__method_family Other steps)]
         pub unsafe fn steps(&self) -> Retained<NSArray<MKRouteStep>>;
 
         #[method(hasTolls)]
@@ -89,10 +89,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKRoute {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -108,14 +108,14 @@ unsafe impl NSObjectProtocol for MKRouteStep {}
 
 extern_methods!(
     unsafe impl MKRouteStep {
-        #[method_id(@__retain_semantics Other instructions)]
+        #[method_id(@__method_family Other instructions)]
         pub unsafe fn instructions(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other notice)]
+        #[method_id(@__method_family Other notice)]
         pub unsafe fn notice(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
-        #[method_id(@__retain_semantics Other polyline)]
+        #[method_id(@__method_family Other polyline)]
         pub unsafe fn polyline(&self) -> Retained<MKPolyline>;
 
         #[cfg(feature = "objc2-core-location")]
@@ -131,10 +131,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKRouteStep {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -151,11 +151,11 @@ unsafe impl NSObjectProtocol for MKETAResponse {}
 extern_methods!(
     unsafe impl MKETAResponse {
         #[cfg(feature = "MKMapItem")]
-        #[method_id(@__retain_semantics Other source)]
+        #[method_id(@__method_family Other source)]
         pub unsafe fn source(&self) -> Retained<MKMapItem>;
 
         #[cfg(feature = "MKMapItem")]
-        #[method_id(@__retain_semantics Other destination)]
+        #[method_id(@__method_family Other destination)]
         pub unsafe fn destination(&self) -> Retained<MKMapItem>;
 
         #[method(expectedTravelTime)]
@@ -165,10 +165,10 @@ extern_methods!(
         #[method(distance)]
         pub unsafe fn distance(&self) -> CLLocationDistance;
 
-        #[method_id(@__retain_semantics Other expectedArrivalDate)]
+        #[method_id(@__method_family Other expectedArrivalDate)]
         pub unsafe fn expectedArrivalDate(&self) -> Retained<NSDate>;
 
-        #[method_id(@__retain_semantics Other expectedDepartureDate)]
+        #[method_id(@__method_family Other expectedDepartureDate)]
         pub unsafe fn expectedDepartureDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "MKDirectionsTypes")]
@@ -180,10 +180,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKETAResponse {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

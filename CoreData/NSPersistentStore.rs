@@ -18,7 +18,7 @@ unsafe impl NSObjectProtocol for NSPersistentStore {}
 
 extern_methods!(
     unsafe impl NSPersistentStore {
-        #[method_id(@__retain_semantics Other metadataForPersistentStoreWithURL:error:_)]
+        #[method_id(@__method_family Other metadataForPersistentStoreWithURL:error:_)]
         pub unsafe fn metadataForPersistentStoreWithURL_error(
             url: &NSURL,
         ) -> Result<Retained<NSDictionary<NSString, AnyObject>>, Retained<NSError>>;
@@ -33,7 +33,7 @@ extern_methods!(
         pub unsafe fn migrationManagerClass() -> &'static AnyClass;
 
         #[cfg(feature = "NSPersistentStoreCoordinator")]
-        #[method_id(@__retain_semantics Init initWithPersistentStoreCoordinator:configurationName:URL:options:)]
+        #[method_id(@__method_family Init initWithPersistentStoreCoordinator:configurationName:URL:options:)]
         pub unsafe fn initWithPersistentStoreCoordinator_configurationName_URL_options(
             this: Allocated<Self>,
             root: Option<&NSPersistentStoreCoordinator>,
@@ -42,39 +42,39 @@ extern_methods!(
             options: Option<&NSDictionary>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(loadMetadata:_)]
         pub unsafe fn loadMetadata(&self) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSPersistentStoreCoordinator")]
-        #[method_id(@__retain_semantics Other persistentStoreCoordinator)]
+        #[method_id(@__method_family Other persistentStoreCoordinator)]
         pub unsafe fn persistentStoreCoordinator(
             &self,
         ) -> Option<Retained<NSPersistentStoreCoordinator>>;
 
-        #[method_id(@__retain_semantics Other configurationName)]
+        #[method_id(@__method_family Other configurationName)]
         pub unsafe fn configurationName(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other options)]
+        #[method_id(@__method_family Other options)]
         pub unsafe fn options(&self) -> Option<Retained<NSDictionary>>;
 
-        #[method_id(@__retain_semantics Other URL)]
+        #[method_id(@__method_family Other URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// Setter for [`identifier`][Self::identifier].
         #[method(setIdentifier:)]
         pub unsafe fn setIdentifier(&self, identifier: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other type)]
+        #[method_id(@__method_family Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[method(isReadOnly)]
@@ -84,7 +84,7 @@ extern_methods!(
         #[method(setReadOnly:)]
         pub unsafe fn setReadOnly(&self, read_only: bool);
 
-        #[method_id(@__retain_semantics Other metadata)]
+        #[method_id(@__method_family Other metadata)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`metadata`][Self::metadata].
@@ -106,7 +106,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSCoreDataCoreSpotlightDelegate")]
-        #[method_id(@__retain_semantics Other coreSpotlightExporter)]
+        #[method_id(@__method_family Other coreSpotlightExporter)]
         pub unsafe fn coreSpotlightExporter(&self) -> Retained<NSCoreDataCoreSpotlightDelegate>;
     }
 );
@@ -114,7 +114,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPersistentStore {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -38,7 +38,7 @@ extern_methods!(
         /// `NSData`should have 2 floating-point values per anchor box which represent the width
         /// and height of the anchor box.
         #[deprecated]
-        #[method_id(@__retain_semantics Other anchorBoxes)]
+        #[method_id(@__method_family Other anchorBoxes)]
         pub unsafe fn anchorBoxes(&self) -> Retained<NSData>;
 
         /// Rescore pertains to multiplying the confidence groundTruth with IOU (intersection over union)
@@ -131,11 +131,11 @@ extern_methods!(
         pub unsafe fn setMaximumIOUForObjectAbsence(&self, maximum_iou_for_object_absence: c_float);
 
         #[deprecated]
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Create a YOLO loss descriptor object
@@ -146,7 +146,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCYOLOLossDescriptor object.
         #[deprecated]
-        #[method_id(@__retain_semantics Other descriptorWithAnchorBoxes:anchorBoxCount:)]
+        #[method_id(@__method_family Other descriptorWithAnchorBoxes:anchorBoxCount:)]
         pub unsafe fn descriptorWithAnchorBoxes_anchorBoxCount(
             anchor_boxes: &NSData,
             anchor_box_count: NSUInteger,

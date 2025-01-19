@@ -29,7 +29,7 @@ extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSSaveChangesRequest {
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(@__retain_semantics Init initWithInsertedObjects:updatedObjects:deletedObjects:lockedObjects:)]
+        #[method_id(@__method_family Init initWithInsertedObjects:updatedObjects:deletedObjects:lockedObjects:)]
         pub unsafe fn initWithInsertedObjects_updatedObjects_deletedObjects_lockedObjects(
             this: Allocated<Self>,
             inserted_objects: Option<&NSSet<NSManagedObject>>,
@@ -39,19 +39,19 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(@__retain_semantics Other insertedObjects)]
+        #[method_id(@__method_family Other insertedObjects)]
         pub unsafe fn insertedObjects(&self) -> Option<Retained<NSSet<NSManagedObject>>>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(@__retain_semantics Other updatedObjects)]
+        #[method_id(@__method_family Other updatedObjects)]
         pub unsafe fn updatedObjects(&self) -> Option<Retained<NSSet<NSManagedObject>>>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(@__retain_semantics Other deletedObjects)]
+        #[method_id(@__method_family Other deletedObjects)]
         pub unsafe fn deletedObjects(&self) -> Option<Retained<NSSet<NSManagedObject>>>;
 
         #[cfg(feature = "NSManagedObject")]
-        #[method_id(@__retain_semantics Other lockedObjects)]
+        #[method_id(@__method_family Other lockedObjects)]
         pub unsafe fn lockedObjects(&self) -> Option<Retained<NSSet<NSManagedObject>>>;
     }
 );
@@ -60,10 +60,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSSaveChangesRequest {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -30,10 +30,10 @@ unsafe impl NSObjectProtocol for VZMACAddress {}
 
 extern_methods!(
     unsafe impl VZMACAddress {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize the VZMACAddress from a string representation of a MAC address.
@@ -44,7 +44,7 @@ extern_methods!(
         /// The alphabetical characters can appear lowercase or uppercase.
         ///
         /// Returns: A VZMACAddress or nil if the string is not formatted correctly.
-        #[method_id(@__retain_semantics Init initWithString:)]
+        #[method_id(@__method_family Init initWithString:)]
         pub unsafe fn initWithString(
             this: Allocated<Self>,
             string: &NSString,
@@ -53,7 +53,7 @@ extern_methods!(
         /// Create a valid, random, unicast, locally administered address.
         ///
         /// The generated address is not guaranteed to be unique.
-        #[method_id(@__retain_semantics Other randomLocallyAdministeredAddress)]
+        #[method_id(@__method_family Other randomLocallyAdministeredAddress)]
         pub unsafe fn randomLocallyAdministeredAddress() -> Retained<Self>;
 
         /// The address represented as a string.
@@ -62,7 +62,7 @@ extern_methods!(
         /// Alphabetical characters are lowercase.
         ///
         /// The address is compatible with the parameter of -[VZMACAddress initWithString:].
-        #[method_id(@__retain_semantics Other string)]
+        #[method_id(@__method_family Other string)]
         pub unsafe fn string(&self) -> Retained<NSString>;
 
         /// True if the address is the broadcast address, false otherwise.

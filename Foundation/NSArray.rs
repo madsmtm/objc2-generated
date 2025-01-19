@@ -47,13 +47,13 @@ extern_methods!(
         #[method(count)]
         pub fn count(&self) -> NSUInteger;
 
-        #[method_id(@__retain_semantics Other objectAtIndex:)]
+        #[method_id(@__method_family Other objectAtIndex:)]
         pub fn objectAtIndex(&self, index: NSUInteger) -> Retained<ObjectType>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithObjects:count:)]
+        #[method_id(@__method_family Init initWithObjects:count:)]
         pub unsafe fn initWithObjects_count(
             this: Allocated<Self>,
             objects: *mut NonNull<ObjectType>,
@@ -61,7 +61,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -72,7 +72,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -111,45 +111,45 @@ unsafe impl RefEncode for NSBinarySearchingOptions {
 extern_methods!(
     /// NSExtendedArray
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
-        #[method_id(@__retain_semantics Other arrayByAddingObject:)]
+        #[method_id(@__method_family Other arrayByAddingObject:)]
         pub unsafe fn arrayByAddingObject(
             &self,
             an_object: &ObjectType,
         ) -> Retained<NSArray<ObjectType>>;
 
-        #[method_id(@__retain_semantics Other arrayByAddingObjectsFromArray:)]
+        #[method_id(@__method_family Other arrayByAddingObjectsFromArray:)]
         pub unsafe fn arrayByAddingObjectsFromArray(
             &self,
             other_array: &NSArray<ObjectType>,
         ) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other componentsJoinedByString:)]
+        #[method_id(@__method_family Other componentsJoinedByString:)]
         pub unsafe fn componentsJoinedByString(&self, separator: &NSString) -> Retained<NSString>;
 
         #[method(containsObject:)]
         pub unsafe fn containsObject(&self, an_object: &ObjectType) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other description)]
+        #[method_id(@__method_family Other description)]
         pub unsafe fn description(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other descriptionWithLocale:)]
+        #[method_id(@__method_family Other descriptionWithLocale:)]
         pub unsafe fn descriptionWithLocale(
             &self,
             locale: Option<&AnyObject>,
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other descriptionWithLocale:indent:)]
+        #[method_id(@__method_family Other descriptionWithLocale:indent:)]
         pub unsafe fn descriptionWithLocale_indent(
             &self,
             locale: Option<&AnyObject>,
             level: NSUInteger,
         ) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other firstObjectCommonWithArray:)]
+        #[method_id(@__method_family Other firstObjectCommonWithArray:)]
         pub unsafe fn firstObjectCommonWithArray(
             &self,
             other_array: &NSArray<ObjectType>,
@@ -188,25 +188,25 @@ extern_methods!(
         #[method(isEqualToArray:)]
         pub unsafe fn isEqualToArray(&self, other_array: &NSArray<ObjectType>) -> bool;
 
-        #[method_id(@__retain_semantics Other firstObject)]
+        #[method_id(@__method_family Other firstObject)]
         pub fn firstObject(&self) -> Option<Retained<ObjectType>>;
 
-        #[method_id(@__retain_semantics Other lastObject)]
+        #[method_id(@__method_family Other lastObject)]
         pub fn lastObject(&self) -> Option<Retained<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
-        #[method_id(@__retain_semantics Other objectEnumerator)]
+        #[method_id(@__method_family Other objectEnumerator)]
         pub unsafe fn objectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
-        #[method_id(@__retain_semantics Other reverseObjectEnumerator)]
+        #[method_id(@__method_family Other reverseObjectEnumerator)]
         pub unsafe fn reverseObjectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
 
         #[cfg(feature = "NSData")]
-        #[method_id(@__retain_semantics Other sortedArrayHint)]
+        #[method_id(@__method_family Other sortedArrayHint)]
         pub unsafe fn sortedArrayHint(&self) -> Retained<NSData>;
 
-        #[method_id(@__retain_semantics Other sortedArrayUsingFunction:context:)]
+        #[method_id(@__method_family Other sortedArrayUsingFunction:context:)]
         pub unsafe fn sortedArrayUsingFunction_context(
             &self,
             comparator: unsafe extern "C-unwind" fn(
@@ -218,7 +218,7 @@ extern_methods!(
         ) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(feature = "NSData")]
-        #[method_id(@__retain_semantics Other sortedArrayUsingFunction:context:hint:)]
+        #[method_id(@__method_family Other sortedArrayUsingFunction:context:hint:)]
         pub unsafe fn sortedArrayUsingFunction_context_hint(
             &self,
             comparator: unsafe extern "C-unwind" fn(
@@ -230,14 +230,14 @@ extern_methods!(
             hint: Option<&NSData>,
         ) -> Retained<NSArray<ObjectType>>;
 
-        #[method_id(@__retain_semantics Other sortedArrayUsingSelector:)]
+        #[method_id(@__method_family Other sortedArrayUsingSelector:)]
         pub unsafe fn sortedArrayUsingSelector(
             &self,
             comparator: Sel,
         ) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(feature = "NSRange")]
-        #[method_id(@__retain_semantics Other subarrayWithRange:)]
+        #[method_id(@__method_family Other subarrayWithRange:)]
         pub unsafe fn subarrayWithRange(&self, range: NSRange) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
@@ -255,13 +255,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSIndexSet")]
-        #[method_id(@__retain_semantics Other objectsAtIndexes:)]
+        #[method_id(@__method_family Other objectsAtIndexes:)]
         pub unsafe fn objectsAtIndexes(
             &self,
             indexes: &NSIndexSet,
         ) -> Retained<NSArray<ObjectType>>;
 
-        #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
+        #[method_id(@__method_family Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(&self, idx: NSUInteger) -> Retained<ObjectType>;
 
         #[cfg(feature = "block2")]
@@ -319,7 +319,7 @@ extern_methods!(
         ) -> NSUInteger;
 
         #[cfg(all(feature = "NSIndexSet", feature = "block2"))]
-        #[method_id(@__retain_semantics Other indexesOfObjectsPassingTest:)]
+        #[method_id(@__method_family Other indexesOfObjectsPassingTest:)]
         pub unsafe fn indexesOfObjectsPassingTest(
             &self,
             predicate: &block2::Block<
@@ -328,7 +328,7 @@ extern_methods!(
         ) -> Retained<NSIndexSet>;
 
         #[cfg(all(feature = "NSIndexSet", feature = "NSObjCRuntime", feature = "block2"))]
-        #[method_id(@__retain_semantics Other indexesOfObjectsWithOptions:passingTest:)]
+        #[method_id(@__method_family Other indexesOfObjectsWithOptions:passingTest:)]
         pub unsafe fn indexesOfObjectsWithOptions_passingTest(
             &self,
             opts: NSEnumerationOptions,
@@ -338,7 +338,7 @@ extern_methods!(
         ) -> Retained<NSIndexSet>;
 
         #[cfg(all(feature = "NSIndexSet", feature = "NSObjCRuntime", feature = "block2"))]
-        #[method_id(@__retain_semantics Other indexesOfObjectsAtIndexes:options:passingTest:)]
+        #[method_id(@__method_family Other indexesOfObjectsAtIndexes:options:passingTest:)]
         pub unsafe fn indexesOfObjectsAtIndexes_options_passingTest(
             &self,
             s: &NSIndexSet,
@@ -349,14 +349,14 @@ extern_methods!(
         ) -> Retained<NSIndexSet>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
-        #[method_id(@__retain_semantics Other sortedArrayUsingComparator:)]
+        #[method_id(@__method_family Other sortedArrayUsingComparator:)]
         pub unsafe fn sortedArrayUsingComparator(
             &self,
             cmptr: NSComparator,
         ) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
-        #[method_id(@__retain_semantics Other sortedArrayWithOptions:usingComparator:)]
+        #[method_id(@__method_family Other sortedArrayWithOptions:usingComparator:)]
         pub unsafe fn sortedArrayWithOptions_usingComparator(
             &self,
             opts: NSSortOptions,
@@ -378,28 +378,28 @@ extern_methods!(
 extern_methods!(
     /// NSArrayCreation
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
-        #[method_id(@__retain_semantics Other array)]
+        #[method_id(@__method_family Other array)]
         pub unsafe fn array() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other arrayWithObject:)]
+        #[method_id(@__method_family Other arrayWithObject:)]
         pub unsafe fn arrayWithObject(an_object: &ObjectType) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other arrayWithObjects:count:)]
+        #[method_id(@__method_family Other arrayWithObjects:count:)]
         pub unsafe fn arrayWithObjects_count(
             objects: NonNull<NonNull<ObjectType>>,
             cnt: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other arrayWithArray:)]
+        #[method_id(@__method_family Other arrayWithArray:)]
         pub unsafe fn arrayWithArray(array: &NSArray<ObjectType>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithArray:)]
+        #[method_id(@__method_family Init initWithArray:)]
         pub unsafe fn initWithArray(
             this: Allocated<Self>,
             array: &NSArray<ObjectType>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithArray:copyItems:)]
+        #[method_id(@__method_family Init initWithArray:copyItems:)]
         pub unsafe fn initWithArray_copyItems(
             this: Allocated<Self>,
             array: &NSArray<ObjectType>,
@@ -407,14 +407,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
+        #[method_id(@__method_family Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             url: &NSURL,
         ) -> Result<Retained<NSArray<ObjectType>>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(@__retain_semantics Other arrayWithContentsOfURL:error:_)]
+        #[method_id(@__method_family Other arrayWithContentsOfURL:error:_)]
         pub unsafe fn arrayWithContentsOfURL_error(
             url: &NSURL,
         ) -> Result<Retained<NSArray<ObjectType>>, Retained<NSError>>;
@@ -426,28 +426,28 @@ extern_methods!(
     ///
     /// NSArrayCreation
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
-        #[method_id(@__retain_semantics Other array)]
+        #[method_id(@__method_family Other array)]
         pub unsafe fn array() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other arrayWithObject:)]
+        #[method_id(@__method_family Other arrayWithObject:)]
         pub unsafe fn arrayWithObject(an_object: &ObjectType) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other arrayWithObjects:count:)]
+        #[method_id(@__method_family Other arrayWithObjects:count:)]
         pub unsafe fn arrayWithObjects_count(
             objects: NonNull<NonNull<ObjectType>>,
             cnt: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other arrayWithArray:)]
+        #[method_id(@__method_family Other arrayWithArray:)]
         pub unsafe fn arrayWithArray(array: &NSArray<ObjectType>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithArray:)]
+        #[method_id(@__method_family Init initWithArray:)]
         pub unsafe fn initWithArray(
             this: Allocated<Self>,
             array: &NSArray<ObjectType>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithArray:copyItems:)]
+        #[method_id(@__method_family Init initWithArray:copyItems:)]
         pub unsafe fn initWithArray_copyItems(
             this: Allocated<Self>,
             array: &NSArray<ObjectType>,
@@ -460,7 +460,7 @@ extern_methods!(
     /// NSArrayDiffing
     unsafe impl<ObjectType: Message> NSArray<ObjectType> {
         #[cfg(all(feature = "NSOrderedCollectionDifference", feature = "block2"))]
-        #[method_id(@__retain_semantics Other differenceFromArray:withOptions:usingEquivalenceTest:)]
+        #[method_id(@__method_family Other differenceFromArray:withOptions:usingEquivalenceTest:)]
         pub unsafe fn differenceFromArray_withOptions_usingEquivalenceTest(
             &self,
             other: &NSArray<ObjectType>,
@@ -469,7 +469,7 @@ extern_methods!(
         ) -> Retained<NSOrderedCollectionDifference<ObjectType>>;
 
         #[cfg(feature = "NSOrderedCollectionDifference")]
-        #[method_id(@__retain_semantics Other differenceFromArray:withOptions:)]
+        #[method_id(@__method_family Other differenceFromArray:withOptions:)]
         pub unsafe fn differenceFromArray_withOptions(
             &self,
             other: &NSArray<ObjectType>,
@@ -477,14 +477,14 @@ extern_methods!(
         ) -> Retained<NSOrderedCollectionDifference<ObjectType>>;
 
         #[cfg(feature = "NSOrderedCollectionDifference")]
-        #[method_id(@__retain_semantics Other differenceFromArray:)]
+        #[method_id(@__method_family Other differenceFromArray:)]
         pub unsafe fn differenceFromArray(
             &self,
             other: &NSArray<ObjectType>,
         ) -> Retained<NSOrderedCollectionDifference<ObjectType>>;
 
         #[cfg(feature = "NSOrderedCollectionDifference")]
-        #[method_id(@__retain_semantics Other arrayByApplyingDifference:)]
+        #[method_id(@__method_family Other arrayByApplyingDifference:)]
         pub unsafe fn arrayByApplyingDifference(
             &self,
             difference: &NSOrderedCollectionDifference<ObjectType>,
@@ -501,19 +501,19 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other arrayWithContentsOfFile:)]
+        #[method_id(@__method_family Other arrayWithContentsOfFile:)]
         pub unsafe fn arrayWithContentsOfFile(
             path: &NSString,
         ) -> Option<Retained<NSArray<ObjectType>>>;
 
         #[cfg(feature = "NSURL")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other arrayWithContentsOfURL:)]
+        #[method_id(@__method_family Other arrayWithContentsOfURL:)]
         pub unsafe fn arrayWithContentsOfURL(url: &NSURL) -> Option<Retained<NSArray<ObjectType>>>;
 
         #[cfg(feature = "NSString")]
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
+        #[method_id(@__method_family Init initWithContentsOfFile:)]
         pub unsafe fn initWithContentsOfFile(
             this: Allocated<Self>,
             path: &NSString,
@@ -521,7 +521,7 @@ extern_methods!(
 
         #[cfg(feature = "NSURL")]
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
+        #[method_id(@__method_family Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             url: &NSURL,
@@ -596,14 +596,14 @@ extern_methods!(
         #[method(replaceObjectAtIndex:withObject:)]
         pub fn replaceObjectAtIndex_withObject(&self, index: NSUInteger, an_object: &ObjectType);
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCapacity:)]
+        #[method_id(@__method_family Init initWithCapacity:)]
         pub fn initWithCapacity(this: Allocated<Self>, num_items: NSUInteger) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -614,7 +614,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSArray`
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
-        #[method_id(@__retain_semantics Init initWithObjects:count:)]
+        #[method_id(@__method_family Init initWithObjects:count:)]
         pub unsafe fn initWithObjects_count(
             this: Allocated<Self>,
             objects: *mut NonNull<ObjectType>,
@@ -626,7 +626,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -761,30 +761,30 @@ extern_methods!(
 extern_methods!(
     /// NSMutableArrayCreation
     unsafe impl<ObjectType: Message> NSMutableArray<ObjectType> {
-        #[method_id(@__retain_semantics Other arrayWithCapacity:)]
+        #[method_id(@__method_family Other arrayWithCapacity:)]
         pub unsafe fn arrayWithCapacity(num_items: NSUInteger) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other arrayWithContentsOfFile:)]
+        #[method_id(@__method_family Other arrayWithContentsOfFile:)]
         pub unsafe fn arrayWithContentsOfFile(
             path: &NSString,
         ) -> Option<Retained<NSMutableArray<ObjectType>>>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(@__retain_semantics Other arrayWithContentsOfURL:)]
+        #[method_id(@__method_family Other arrayWithContentsOfURL:)]
         pub unsafe fn arrayWithContentsOfURL(
             url: &NSURL,
         ) -> Option<Retained<NSMutableArray<ObjectType>>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithContentsOfFile:)]
+        #[method_id(@__method_family Init initWithContentsOfFile:)]
         pub unsafe fn initWithContentsOfFile(
             this: Allocated<Self>,
             path: &NSString,
         ) -> Option<Retained<NSMutableArray<ObjectType>>>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
+        #[method_id(@__method_family Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             url: &NSURL,

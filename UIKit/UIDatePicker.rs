@@ -169,42 +169,42 @@ extern_methods!(
         #[method(setDatePickerMode:)]
         pub unsafe fn setDatePickerMode(&self, date_picker_mode: UIDatePickerMode);
 
-        #[method_id(@__retain_semantics Other locale)]
+        #[method_id(@__method_family Other locale)]
         pub unsafe fn locale(&self) -> Option<Retained<NSLocale>>;
 
         /// Setter for [`locale`][Self::locale].
         #[method(setLocale:)]
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
-        #[method_id(@__retain_semantics Other calendar)]
+        #[method_id(@__method_family Other calendar)]
         pub unsafe fn calendar(&self) -> Retained<NSCalendar>;
 
         /// Setter for [`calendar`][Self::calendar].
         #[method(setCalendar:)]
         pub unsafe fn setCalendar(&self, calendar: Option<&NSCalendar>);
 
-        #[method_id(@__retain_semantics Other timeZone)]
+        #[method_id(@__method_family Other timeZone)]
         pub unsafe fn timeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         /// Setter for [`timeZone`][Self::timeZone].
         #[method(setTimeZone:)]
         pub unsafe fn setTimeZone(&self, time_zone: Option<&NSTimeZone>);
 
-        #[method_id(@__retain_semantics Other date)]
+        #[method_id(@__method_family Other date)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
         /// Setter for [`date`][Self::date].
         #[method(setDate:)]
         pub unsafe fn setDate(&self, date: &NSDate);
 
-        #[method_id(@__retain_semantics Other minimumDate)]
+        #[method_id(@__method_family Other minimumDate)]
         pub unsafe fn minimumDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`minimumDate`][Self::minimumDate].
         #[method(setMinimumDate:)]
         pub unsafe fn setMinimumDate(&self, minimum_date: Option<&NSDate>);
 
-        #[method_id(@__retain_semantics Other maximumDate)]
+        #[method_id(@__method_family Other maximumDate)]
         pub unsafe fn maximumDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`maximumDate`][Self::maximumDate].
@@ -266,10 +266,10 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIDatePicker {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -281,7 +281,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
-        #[method_id(@__retain_semantics Init initWithFrame:primaryAction:)]
+        #[method_id(@__method_family Init initWithFrame:primaryAction:)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,
             frame: CGRect,
@@ -294,10 +294,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIDatePicker {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

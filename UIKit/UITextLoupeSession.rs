@@ -34,7 +34,7 @@ extern_methods!(
         /// Parameter `widgetView`: Optionally, a system-provided selection view that the animation can start from.
         ///
         /// Parameter `view`: The coordinate space that all subsequent movement updates are provided in.
-        #[method_id(@__retain_semantics Other beginLoupeSessionAtPoint:fromSelectionWidgetView:inView:)]
+        #[method_id(@__method_family Other beginLoupeSessionAtPoint:fromSelectionWidgetView:inView:)]
         pub unsafe fn beginLoupeSessionAtPoint_fromSelectionWidgetView_inView(
             point: CGPoint,
             selection_widget: Option<&UIView>,
@@ -67,10 +67,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITextLoupeSession {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

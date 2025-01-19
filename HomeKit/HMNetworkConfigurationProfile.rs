@@ -27,7 +27,7 @@ extern_methods!(
     #[cfg(feature = "HMAccessoryProfile")]
     unsafe impl HMNetworkConfigurationProfile {
         /// The delegate of the receiver.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn HMNetworkConfigurationProfileDelegate>>>;
@@ -44,7 +44,7 @@ extern_methods!(
         #[method(isNetworkAccessRestricted)]
         pub unsafe fn isNetworkAccessRestricted(&self) -> bool;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -53,7 +53,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HMAccessoryProfile")]
     unsafe impl HMNetworkConfigurationProfile {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

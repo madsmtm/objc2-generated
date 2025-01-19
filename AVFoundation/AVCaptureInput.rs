@@ -29,17 +29,17 @@ unsafe impl NSObjectProtocol for AVCaptureInput {}
 
 extern_methods!(
     unsafe impl AVCaptureInput {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The ports owned by the receiver.
         ///
         ///
         /// The value of this property is an array of AVCaptureInputPort objects, each exposing an interface to a single stream of media data provided by an input.
-        #[method_id(@__retain_semantics Other ports)]
+        #[method_id(@__method_family Other ports)]
         pub unsafe fn ports(&self) -> Retained<NSArray<AVCaptureInputPort>>;
     }
 );
@@ -71,17 +71,17 @@ unsafe impl NSObjectProtocol for AVCaptureInputPort {}
 
 extern_methods!(
     unsafe impl AVCaptureInputPort {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The input that owns the receiver.
         ///
         ///
         /// The value of this property is an AVCaptureInput instance that owns the receiver.
-        #[method_id(@__retain_semantics Other input)]
+        #[method_id(@__method_family Other input)]
         pub unsafe fn input(&self) -> Retained<AVCaptureInput>;
 
         #[cfg(feature = "AVMediaFormat")]
@@ -89,7 +89,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is a constant describing the type of media, such as AVMediaTypeVideo or AVMediaTypeAudio, provided by the receiver. Media type constants are defined in AVMediaFormat.h.
-        #[method_id(@__retain_semantics Other mediaType)]
+        #[method_id(@__method_family Other mediaType)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -97,7 +97,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is a CMFormatDescription that describes the format of the media data currently provided by the receiver. Clients can be notified of changes to the format by observing the AVCaptureInputPortFormatDescriptionDidChangeNotification.
-        #[method_id(@__retain_semantics Other formatDescription)]
+        #[method_id(@__method_family Other formatDescription)]
         pub unsafe fn formatDescription(&self) -> Option<Retained<CMFormatDescription>>;
 
         /// Whether the receiver should provide data.
@@ -116,7 +116,7 @@ extern_methods!(
         ///
         ///
         /// The clock is read-only.
-        #[method_id(@__retain_semantics Other clock)]
+        #[method_id(@__method_family Other clock)]
         pub unsafe fn clock(&self) -> Option<Retained<CMClock>>;
 
         #[cfg(feature = "AVCaptureDevice")]
@@ -124,7 +124,7 @@ extern_methods!(
         ///
         ///
         /// All AVCaptureInputPorts contained in an AVCaptureDeviceInput's ports array have the same sourceDeviceType, which is equal to deviceInput.device.deviceType. All of these ports are legal for use in an AVCaptureSession. When working with virtual devices such as the DualCamera in an AVCaptureMultiCamSession, it is possible to stream media from the virtual device's constituent device streams by discovering and connecting hidden ports. In the case of the DualCamera, its constituent devices are the WideAngle camera and the Telephoto camera. By calling -[AVCaptureDeviceInput portsWithMediaType:sourceDeviceType:sourceDevicePosition:], you may discover ports originating from one or more of the virtual device's constituent devices and then make connections using those ports. Constituent device ports are never present in their owning virtual device input's ports array. As an example, to find the video port originating from the DualCamera's Telephoto camera constituent device, you call [dualCameraDeviceInput portsWithMediaType:AVMediaTypeVideo sourceDeviceType:AVCaptureDeviceTypeBuiltInTelephotoCamera sourceDevicePosition:dualCamera.position] and use the first port in the resulting array.
-        #[method_id(@__retain_semantics Other sourceDeviceType)]
+        #[method_id(@__method_family Other sourceDeviceType)]
         pub unsafe fn sourceDeviceType(&self) -> Option<Retained<AVCaptureDeviceType>>;
 
         #[cfg(feature = "AVCaptureDevice")]
@@ -200,7 +200,7 @@ extern_methods!(
         ///
         ///
         /// This method returns an instance of AVCaptureDeviceInput that can be used to capture data from an AVCaptureDevice in an AVCaptureSession. This method attempts to open the device for capture, taking exclusive control of it if necessary. If the device cannot be opened because it is no longer available or because it is in use, for example, this method returns nil, and the optional outError parameter points to an NSError describing the problem.
-        #[method_id(@__retain_semantics Other deviceInputWithDevice:error:_)]
+        #[method_id(@__method_family Other deviceInputWithDevice:error:_)]
         pub unsafe fn deviceInputWithDevice_error(
             device: &AVCaptureDevice,
         ) -> Result<Retained<Self>, Retained<NSError>>;
@@ -217,7 +217,7 @@ extern_methods!(
         ///
         ///
         /// This method creates an instance of AVCaptureDeviceInput that can be used to capture data from an AVCaptureDevice in an AVCaptureSession. This method attempts to open the device for capture, taking exclusive control of it if necessary. If the device cannot be opened because it is no longer available or because it is in use, for example, this method returns nil, and the optional outError parameter points to an NSError describing the problem.
-        #[method_id(@__retain_semantics Init initWithDevice:error:_)]
+        #[method_id(@__method_family Init initWithDevice:error:_)]
         pub unsafe fn initWithDevice_error(
             this: Allocated<Self>,
             device: &AVCaptureDevice,
@@ -228,7 +228,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is the AVCaptureDevice instance that was used to create the receiver.
-        #[method_id(@__retain_semantics Other device)]
+        #[method_id(@__method_family Other device)]
         pub unsafe fn device(&self) -> Retained<AVCaptureDevice>;
 
         /// Specifies whether the source device should use the same default auto exposure behaviors for -[AVCaptureSession setSessionPreset:] and -[AVCaptureDevice setActiveFormat:].
@@ -271,7 +271,7 @@ extern_methods!(
         /// As of iOS 13, constituent device ports may not be connected to AVCapturePhotoOutput instances. Clients who wish to capture multiple photos from a virtual device should use AVCapturePhotoOutput's virtualDeviceConstituentPhotoDeliveryEnabled feature.
         ///
         /// When used in conjunction with an audio device, this method allows you to discover microphones in different AVCaptureDevicePositions. When you intend to work with an AVCaptureMultiCamSession, you may use these ports to make connections and simultaneously capture both front facing and back facing audio simultaneously to two different outputs. When used with an AVCaptureMultiCamSession, the audio device port whose sourceDevicePosition is AVCaptureDevicePositionUnspecified produces omnidirectional sound.
-        #[method_id(@__retain_semantics Other portsWithMediaType:sourceDeviceType:sourceDevicePosition:)]
+        #[method_id(@__method_family Other portsWithMediaType:sourceDeviceType:sourceDevicePosition:)]
         pub unsafe fn portsWithMediaType_sourceDeviceType_sourceDevicePosition(
             &self,
             media_type: Option<&AVMediaType>,
@@ -353,10 +353,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVCaptureInput`
     unsafe impl AVCaptureDeviceInput {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -381,10 +381,10 @@ extern_methods!(
         ///
         ///
         /// This method creates an instance of AVCaptureScreenInput using the main display whose id is returned from CGMainDisplayID().
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -399,7 +399,7 @@ extern_methods!(
         ///
         ///
         /// This method creates an instance of AVCaptureScreenInput that can be used to capture data from a display in an AVCaptureSession. This method validates the displayID. If the display cannot be used because it is not available on the system, for example, this method returns nil.
-        #[method_id(@__retain_semantics Init initWithDisplayID:)]
+        #[method_id(@__method_family Init initWithDisplayID:)]
         pub unsafe fn initWithDisplayID(
             this: Allocated<Self>,
             display_id: CGDirectDisplayID,
@@ -513,7 +513,7 @@ extern_methods!(
         ///
         ///
         /// This method returns an instance of AVCaptureMetadataInput that can be used to capture AVTimedMetadataGroups supplied by the client to an AVCaptureSession.
-        #[method_id(@__retain_semantics Other metadataInputWithFormatDescription:clock:)]
+        #[method_id(@__method_family Other metadataInputWithFormatDescription:clock:)]
         pub unsafe fn metadataInputWithFormatDescription_clock(
             desc: &CMMetadataFormatDescription,
             clock: &CMClock,
@@ -531,7 +531,7 @@ extern_methods!(
         ///
         ///
         /// This method creates an instance of AVCaptureMetadataInput that can be used to capture AVTimedMetadataGroups supplied by the client to an AVCaptureSession.
-        #[method_id(@__retain_semantics Init initWithFormatDescription:clock:)]
+        #[method_id(@__method_family Init initWithFormatDescription:clock:)]
         pub unsafe fn initWithFormatDescription_clock(
             this: Allocated<Self>,
             desc: &CMMetadataFormatDescription,
@@ -557,10 +557,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVCaptureInput`
     unsafe impl AVCaptureMetadataInput {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -33,44 +33,44 @@ unsafe impl NSSecureCoding for SKRegion {}
 extern_methods!(
     unsafe impl SKRegion {
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__retain_semantics Other path)]
+        #[method_id(@__method_family Other path)]
         pub unsafe fn path(&self) -> Option<Retained<CGPath>>;
 
         /// A shared infinite region
-        #[method_id(@__retain_semantics Other infiniteRegion)]
+        #[method_id(@__method_family Other infiniteRegion)]
         pub unsafe fn infiniteRegion() -> Retained<Self>;
 
         /// Create a circular region with radius
-        #[method_id(@__retain_semantics Init initWithRadius:)]
+        #[method_id(@__method_family Init initWithRadius:)]
         pub unsafe fn initWithRadius(this: Allocated<Self>, radius: c_float) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Create a rectangular region of size
-        #[method_id(@__retain_semantics Init initWithSize:)]
+        #[method_id(@__method_family Init initWithSize:)]
         pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Create a region bounded by a CGPath. Note that this option can be
         /// costly to evaluate.
-        #[method_id(@__retain_semantics Init initWithPath:)]
+        #[method_id(@__method_family Init initWithPath:)]
         pub unsafe fn initWithPath(this: Allocated<Self>, path: &CGPath) -> Retained<Self>;
 
         /// Create a new region that is the inverse of the current region.
         /// The inverse of the infiniteRegion is an empty region.
         /// Subclasses of SKRegion need to provide an implementation of inverseRegion.
-        #[method_id(@__retain_semantics Other inverseRegion)]
+        #[method_id(@__method_family Other inverseRegion)]
         pub unsafe fn inverseRegion(&self) -> Retained<Self>;
 
         /// Create a new region that is the original region plus the supplied region
-        #[method_id(@__retain_semantics Other regionByUnionWithRegion:)]
+        #[method_id(@__method_family Other regionByUnionWithRegion:)]
         pub unsafe fn regionByUnionWithRegion(&self, region: &SKRegion) -> Retained<Self>;
 
         /// Create a new region that is the original region minus the supplied region
-        #[method_id(@__retain_semantics Other regionByDifferenceFromRegion:)]
+        #[method_id(@__method_family Other regionByDifferenceFromRegion:)]
         pub unsafe fn regionByDifferenceFromRegion(&self, region: &SKRegion) -> Retained<Self>;
 
         /// Create a new region that is the region covered by the original region and the supplied region
-        #[method_id(@__retain_semantics Other regionByIntersectionWithRegion:)]
+        #[method_id(@__method_family Other regionByIntersectionWithRegion:)]
         pub unsafe fn regionByIntersectionWithRegion(&self, region: &SKRegion) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -83,10 +83,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKRegion {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

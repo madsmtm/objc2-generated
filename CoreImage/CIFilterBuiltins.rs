@@ -27,7 +27,7 @@ extern_protocol!(
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color0)]
+        #[method_id(@__method_family Other color0)]
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -36,7 +36,7 @@ extern_protocol!(
         unsafe fn setColor0(&self, color0: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color1)]
+        #[method_id(@__method_family Other color1)]
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -86,7 +86,7 @@ extern_protocol!(
         unsafe fn setDither(&self, dither: c_float);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__retain_semantics Other colorSpace)]
+        #[method_id(@__method_family Other colorSpace)]
         unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -119,7 +119,7 @@ extern_protocol!(
         unsafe fn setPoint1(&self, point1: CGPoint);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color0)]
+        #[method_id(@__method_family Other color0)]
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -128,7 +128,7 @@ extern_protocol!(
         unsafe fn setColor0(&self, color0: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color1)]
+        #[method_id(@__method_family Other color1)]
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -166,7 +166,7 @@ extern_protocol!(
         unsafe fn setRadius1(&self, radius1: c_float);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color0)]
+        #[method_id(@__method_family Other color0)]
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -175,7 +175,7 @@ extern_protocol!(
         unsafe fn setColor0(&self, color0: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color1)]
+        #[method_id(@__method_family Other color1)]
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -208,7 +208,7 @@ extern_protocol!(
         unsafe fn setPoint1(&self, point1: CGPoint);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color0)]
+        #[method_id(@__method_family Other color0)]
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -217,7 +217,7 @@ extern_protocol!(
         unsafe fn setColor0(&self, color0: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color1)]
+        #[method_id(@__method_family Other color1)]
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -232,7 +232,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISharpenLuminance: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -261,7 +261,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIUnsharpMask: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -290,7 +290,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICircularScreen: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -328,7 +328,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICMYKHalftone: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -387,7 +387,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDotScreen: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -432,7 +432,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHatchedScreen: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -477,7 +477,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILineScreen: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -522,7 +522,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIFourCoordinateGeometryFilter: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -573,7 +573,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBicubicScaleTransform: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -616,7 +616,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIEdgePreserveUpsample: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -625,7 +625,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other smallImage)]
+        #[method_id(@__method_family Other smallImage)]
         unsafe fn smallImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -693,7 +693,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILanczosScaleTransform: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -722,7 +722,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMaximumScaleTransform: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -764,7 +764,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPerspectiveRotate: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -830,7 +830,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIStraighten: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -852,7 +852,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITransitionFilter: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -861,7 +861,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other targetImage)]
+        #[method_id(@__method_family Other targetImage)]
         unsafe fn targetImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -946,7 +946,7 @@ extern_protocol!(
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -982,7 +982,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDisintegrateWithMaskTransition: CITransitionFilter {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other maskImage)]
+        #[method_id(@__method_family Other maskImage)]
         unsafe fn maskImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1044,7 +1044,7 @@ extern_protocol!(
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -1123,7 +1123,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPageCurlTransition: CITransitionFilter {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other backsideImage)]
+        #[method_id(@__method_family Other backsideImage)]
         unsafe fn backsideImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1132,7 +1132,7 @@ extern_protocol!(
         unsafe fn setBacksideImage(&self, backside_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other shadingImage)]
+        #[method_id(@__method_family Other shadingImage)]
         unsafe fn shadingImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1170,7 +1170,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPageCurlWithShadowTransition: CITransitionFilter {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other backsideImage)]
+        #[method_id(@__method_family Other backsideImage)]
         unsafe fn backsideImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1231,7 +1231,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIRippleTransition: CITransitionFilter {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other shadingImage)]
+        #[method_id(@__method_family Other shadingImage)]
         unsafe fn shadingImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1287,7 +1287,7 @@ extern_protocol!(
         unsafe fn setExtent(&self, extent: CGRect);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -1323,7 +1323,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICompositeOperation: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1332,7 +1332,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other backgroundImage)]
+        #[method_id(@__method_family Other backgroundImage)]
         unsafe fn backgroundImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1347,7 +1347,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorAbsoluteDifference: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1356,7 +1356,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage2)]
+        #[method_id(@__method_family Other inputImage2)]
         unsafe fn inputImage2(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1371,7 +1371,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorClamp: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1380,7 +1380,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other minComponents)]
+        #[method_id(@__method_family Other minComponents)]
         unsafe fn minComponents(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -1389,7 +1389,7 @@ extern_protocol!(
         unsafe fn setMinComponents(&self, min_components: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other maxComponents)]
+        #[method_id(@__method_family Other maxComponents)]
         unsafe fn maxComponents(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -1404,7 +1404,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorControls: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1440,7 +1440,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorMatrix: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1449,7 +1449,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other RVector)]
+        #[method_id(@__method_family Other RVector)]
         unsafe fn RVector(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -1458,7 +1458,7 @@ extern_protocol!(
         unsafe fn setRVector(&self, r_vector: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other GVector)]
+        #[method_id(@__method_family Other GVector)]
         unsafe fn GVector(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -1467,7 +1467,7 @@ extern_protocol!(
         unsafe fn setGVector(&self, g_vector: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other BVector)]
+        #[method_id(@__method_family Other BVector)]
         unsafe fn BVector(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -1476,7 +1476,7 @@ extern_protocol!(
         unsafe fn setBVector(&self, b_vector: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other AVector)]
+        #[method_id(@__method_family Other AVector)]
         unsafe fn AVector(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -1485,7 +1485,7 @@ extern_protocol!(
         unsafe fn setAVector(&self, a_vector: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other biasVector)]
+        #[method_id(@__method_family Other biasVector)]
         unsafe fn biasVector(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -1500,7 +1500,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorPolynomial: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1509,7 +1509,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other redCoefficients)]
+        #[method_id(@__method_family Other redCoefficients)]
         unsafe fn redCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -1518,7 +1518,7 @@ extern_protocol!(
         unsafe fn setRedCoefficients(&self, red_coefficients: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other greenCoefficients)]
+        #[method_id(@__method_family Other greenCoefficients)]
         unsafe fn greenCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -1527,7 +1527,7 @@ extern_protocol!(
         unsafe fn setGreenCoefficients(&self, green_coefficients: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other blueCoefficients)]
+        #[method_id(@__method_family Other blueCoefficients)]
         unsafe fn blueCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -1536,7 +1536,7 @@ extern_protocol!(
         unsafe fn setBlueCoefficients(&self, blue_coefficients: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other alphaCoefficients)]
+        #[method_id(@__method_family Other alphaCoefficients)]
         unsafe fn alphaCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -1551,7 +1551,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorThreshold: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1573,7 +1573,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorThresholdOtsu: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1588,7 +1588,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDepthToDisparity: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1603,7 +1603,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDisparityToDepth: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1618,7 +1618,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIExposureAdjust: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1640,7 +1640,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGammaAdjust: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1662,7 +1662,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHueAdjust: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1684,7 +1684,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILinearToSRGBToneCurve: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1699,7 +1699,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISRGBToneCurveToLinear: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1714,7 +1714,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITemperatureAndTint: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1723,7 +1723,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other neutral)]
+        #[method_id(@__method_family Other neutral)]
         unsafe fn neutral(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -1732,7 +1732,7 @@ extern_protocol!(
         unsafe fn setNeutral(&self, neutral: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other targetNeutral)]
+        #[method_id(@__method_family Other targetNeutral)]
         unsafe fn targetNeutral(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -1747,7 +1747,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIToneCurve: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1807,7 +1807,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIToneMapHeadroom: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1836,7 +1836,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIVibrance: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1858,7 +1858,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIWhitePointAdjust: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1867,7 +1867,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -1882,7 +1882,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorCrossPolynomial: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1891,7 +1891,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other redCoefficients)]
+        #[method_id(@__method_family Other redCoefficients)]
         unsafe fn redCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -1900,7 +1900,7 @@ extern_protocol!(
         unsafe fn setRedCoefficients(&self, red_coefficients: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other greenCoefficients)]
+        #[method_id(@__method_family Other greenCoefficients)]
         unsafe fn greenCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -1909,7 +1909,7 @@ extern_protocol!(
         unsafe fn setGreenCoefficients(&self, green_coefficients: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other blueCoefficients)]
+        #[method_id(@__method_family Other blueCoefficients)]
         unsafe fn blueCoefficients(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -1924,7 +1924,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorCube: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1939,7 +1939,7 @@ extern_protocol!(
         #[method(setCubeDimension:)]
         unsafe fn setCubeDimension(&self, cube_dimension: c_float);
 
-        #[method_id(@__retain_semantics Other cubeData)]
+        #[method_id(@__method_family Other cubeData)]
         unsafe fn cubeData(&self) -> Retained<NSData>;
 
         /// Setter for [`cubeData`][Self::cubeData].
@@ -1960,7 +1960,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorCubesMixedWithMask: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1969,7 +1969,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other maskImage)]
+        #[method_id(@__method_family Other maskImage)]
         unsafe fn maskImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -1984,14 +1984,14 @@ extern_protocol!(
         #[method(setCubeDimension:)]
         unsafe fn setCubeDimension(&self, cube_dimension: c_float);
 
-        #[method_id(@__retain_semantics Other cube0Data)]
+        #[method_id(@__method_family Other cube0Data)]
         unsafe fn cube0Data(&self) -> Retained<NSData>;
 
         /// Setter for [`cube0Data`][Self::cube0Data].
         #[method(setCube0Data:)]
         unsafe fn setCube0Data(&self, cube0_data: &NSData);
 
-        #[method_id(@__retain_semantics Other cube1Data)]
+        #[method_id(@__method_family Other cube1Data)]
         unsafe fn cube1Data(&self) -> Retained<NSData>;
 
         /// Setter for [`cube1Data`][Self::cube1Data].
@@ -1999,7 +1999,7 @@ extern_protocol!(
         unsafe fn setCube1Data(&self, cube1_data: &NSData);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__retain_semantics Other colorSpace)]
+        #[method_id(@__method_family Other colorSpace)]
         unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -2021,7 +2021,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorCubeWithColorSpace: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2036,7 +2036,7 @@ extern_protocol!(
         #[method(setCubeDimension:)]
         unsafe fn setCubeDimension(&self, cube_dimension: c_float);
 
-        #[method_id(@__retain_semantics Other cubeData)]
+        #[method_id(@__method_family Other cubeData)]
         unsafe fn cubeData(&self) -> Retained<NSData>;
 
         /// Setter for [`cubeData`][Self::cubeData].
@@ -2044,7 +2044,7 @@ extern_protocol!(
         unsafe fn setCubeData(&self, cube_data: &NSData);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__retain_semantics Other colorSpace)]
+        #[method_id(@__method_family Other colorSpace)]
         unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -2066,7 +2066,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorCurves: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2074,7 +2074,7 @@ extern_protocol!(
         #[method(setInputImage:)]
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
-        #[method_id(@__retain_semantics Other curvesData)]
+        #[method_id(@__method_family Other curvesData)]
         unsafe fn curvesData(&self) -> Retained<NSData>;
 
         /// Setter for [`curvesData`][Self::curvesData].
@@ -2082,7 +2082,7 @@ extern_protocol!(
         unsafe fn setCurvesData(&self, curves_data: &NSData);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other curvesDomain)]
+        #[method_id(@__method_family Other curvesDomain)]
         unsafe fn curvesDomain(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -2091,7 +2091,7 @@ extern_protocol!(
         unsafe fn setCurvesDomain(&self, curves_domain: &CIVector);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__retain_semantics Other colorSpace)]
+        #[method_id(@__method_family Other colorSpace)]
         unsafe fn colorSpace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -2106,7 +2106,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorInvert: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2121,7 +2121,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorMap: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2130,7 +2130,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other gradientImage)]
+        #[method_id(@__method_family Other gradientImage)]
         unsafe fn gradientImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2145,7 +2145,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorMonochrome: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2154,7 +2154,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -2176,7 +2176,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIColorPosterize: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2198,7 +2198,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIConvertLab: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2220,7 +2220,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDither: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2242,7 +2242,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDocumentEnhancer: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2264,7 +2264,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIFalseColor: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2273,7 +2273,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color0)]
+        #[method_id(@__method_family Other color0)]
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -2282,7 +2282,7 @@ extern_protocol!(
         unsafe fn setColor0(&self, color0: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color1)]
+        #[method_id(@__method_family Other color1)]
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -2297,7 +2297,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILabDeltaE: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2306,7 +2306,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other image2)]
+        #[method_id(@__method_family Other image2)]
         unsafe fn image2(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2321,7 +2321,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMaskToAlpha: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2336,7 +2336,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMaximumComponent: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2351,7 +2351,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMinimumComponent: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2366,7 +2366,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPaletteCentroid: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2375,7 +2375,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other paletteImage)]
+        #[method_id(@__method_family Other paletteImage)]
         unsafe fn paletteImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2397,7 +2397,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPalettize: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2406,7 +2406,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other paletteImage)]
+        #[method_id(@__method_family Other paletteImage)]
         unsafe fn paletteImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2428,7 +2428,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPhotoEffect: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2450,7 +2450,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISepiaTone: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2472,7 +2472,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIThermal: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2487,7 +2487,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIVignette: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2516,7 +2516,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIVignetteEffect: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2561,7 +2561,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIXRay: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2576,7 +2576,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBumpDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2614,7 +2614,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBumpDistortionLinear: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2659,7 +2659,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICircleSplashDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2690,7 +2690,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICircularWrap: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2728,7 +2728,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDisplacementDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2737,7 +2737,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other displacementImage)]
+        #[method_id(@__method_family Other displacementImage)]
         unsafe fn displacementImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2759,7 +2759,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDroste: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2820,7 +2820,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGlassDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2829,7 +2829,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other textureImage)]
+        #[method_id(@__method_family Other textureImage)]
         unsafe fn textureImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2860,7 +2860,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGlassLozenge: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2907,7 +2907,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHoleDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2938,7 +2938,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILightTunnel: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -2976,7 +2976,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CINinePartStretched: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3018,7 +3018,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CINinePartTiled: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3067,7 +3067,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPinchDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3105,7 +3105,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIStretchCrop: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3143,7 +3143,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITorusLensDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3188,7 +3188,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITwirlDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3226,7 +3226,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIVortexDistortion: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3264,7 +3264,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAffineClamp: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3288,7 +3288,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAffineTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3312,7 +3312,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIEightfoldReflectedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3350,7 +3350,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIFourfoldReflectedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3395,7 +3395,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIFourfoldRotatedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3433,7 +3433,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIFourfoldTranslatedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3478,7 +3478,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGlideReflectedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3516,7 +3516,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIKaleidoscope: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3554,7 +3554,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIOpTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3599,7 +3599,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIParallelogramTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3644,7 +3644,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPerspectiveTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3695,7 +3695,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISixfoldReflectedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3733,7 +3733,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISixfoldRotatedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3771,7 +3771,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITriangleKaleidoscope: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3816,7 +3816,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITriangleTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3854,7 +3854,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITwelvefoldReflectedTile: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -3891,7 +3891,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciattributedtextimagegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAttributedTextImageGenerator: CIFilterProtocol {
-        #[method_id(@__retain_semantics Other text)]
+        #[method_id(@__method_family Other text)]
         unsafe fn text(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`text`][Self::text].
@@ -3918,7 +3918,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciazteccodegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAztecCodeGenerator: CIFilterProtocol {
-        #[method_id(@__retain_semantics Other message)]
+        #[method_id(@__method_family Other message)]
         unsafe fn message(&self) -> Retained<NSData>;
 
         /// Setter for [`message`][Self::message].
@@ -3953,7 +3953,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBarcodeGenerator: CIFilterProtocol {
         #[cfg(feature = "CIBarcodeDescriptor")]
-        #[method_id(@__retain_semantics Other barcodeDescriptor)]
+        #[method_id(@__method_family Other barcodeDescriptor)]
         unsafe fn barcodeDescriptor(&self) -> Retained<CIBarcodeDescriptor>;
 
         #[cfg(feature = "CIBarcodeDescriptor")]
@@ -3984,7 +3984,7 @@ extern_protocol!(
         unsafe fn setSigma(&self, sigma: c_float);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -4008,7 +4008,7 @@ extern_protocol!(
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color0)]
+        #[method_id(@__method_family Other color0)]
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -4017,7 +4017,7 @@ extern_protocol!(
         unsafe fn setColor0(&self, color0: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color1)]
+        #[method_id(@__method_family Other color1)]
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -4045,7 +4045,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicode128barcodegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICode128BarcodeGenerator: CIFilterProtocol {
-        #[method_id(@__retain_semantics Other message)]
+        #[method_id(@__method_family Other message)]
         unsafe fn message(&self) -> Retained<NSData>;
 
         /// Setter for [`message`][Self::message].
@@ -4082,7 +4082,7 @@ extern_protocol!(
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -4146,7 +4146,7 @@ extern_protocol!(
         unsafe fn setWidth(&self, width: c_float);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -4154,7 +4154,7 @@ extern_protocol!(
         #[method(setColor:)]
         unsafe fn setColor(&self, color: &CIColor);
 
-        #[method_id(@__retain_semantics Other mesh)]
+        #[method_id(@__method_family Other mesh)]
         unsafe fn mesh(&self) -> Retained<NSArray>;
 
         /// Setter for [`mesh`][Self::mesh].
@@ -4167,7 +4167,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cipdf417barcodegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPDF417BarcodeGenerator: CIFilterProtocol {
-        #[method_id(@__retain_semantics Other message)]
+        #[method_id(@__method_family Other message)]
         unsafe fn message(&self) -> Retained<NSData>;
 
         /// Setter for [`message`][Self::message].
@@ -4257,14 +4257,14 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIQRCodeGenerator: CIFilterProtocol {
-        #[method_id(@__retain_semantics Other message)]
+        #[method_id(@__method_family Other message)]
         unsafe fn message(&self) -> Retained<NSData>;
 
         /// Setter for [`message`][Self::message].
         #[method(setMessage:)]
         unsafe fn setMessage(&self, message: &NSData);
 
-        #[method_id(@__retain_semantics Other correctionLevel)]
+        #[method_id(@__method_family Other correctionLevel)]
         unsafe fn correctionLevel(&self) -> Retained<NSString>;
 
         /// Setter for [`correctionLevel`][Self::correctionLevel].
@@ -4300,7 +4300,7 @@ extern_protocol!(
         unsafe fn setRadius(&self, radius: c_float);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -4338,7 +4338,7 @@ extern_protocol!(
         unsafe fn setWidth(&self, width: c_float);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -4362,7 +4362,7 @@ extern_protocol!(
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -4428,7 +4428,7 @@ extern_protocol!(
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color0)]
+        #[method_id(@__method_family Other color0)]
         unsafe fn color0(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -4437,7 +4437,7 @@ extern_protocol!(
         unsafe fn setColor0(&self, color0: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color1)]
+        #[method_id(@__method_family Other color1)]
         unsafe fn color1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -4475,7 +4475,7 @@ extern_protocol!(
         unsafe fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -4524,14 +4524,14 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/citextimagegenerator?language=objc)
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CITextImageGenerator: CIFilterProtocol {
-        #[method_id(@__retain_semantics Other text)]
+        #[method_id(@__method_family Other text)]
         unsafe fn text(&self) -> Retained<NSString>;
 
         /// Setter for [`text`][Self::text].
         #[method(setText:)]
         unsafe fn setText(&self, text: &NSString);
 
-        #[method_id(@__retain_semantics Other fontName)]
+        #[method_id(@__method_family Other fontName)]
         unsafe fn fontName(&self) -> Retained<NSString>;
 
         /// Setter for [`fontName`][Self::fontName].
@@ -4566,7 +4566,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBlendWithMask: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -4575,7 +4575,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other backgroundImage)]
+        #[method_id(@__method_family Other backgroundImage)]
         unsafe fn backgroundImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -4584,7 +4584,7 @@ extern_protocol!(
         unsafe fn setBackgroundImage(&self, background_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other maskImage)]
+        #[method_id(@__method_family Other maskImage)]
         unsafe fn maskImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -4599,7 +4599,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBloom: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -4628,7 +4628,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICannyEdgeDetector: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -4678,7 +4678,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIComicEffect: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -4693,7 +4693,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIConvolution: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -4702,7 +4702,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other weights)]
+        #[method_id(@__method_family Other weights)]
         unsafe fn weights(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -4724,7 +4724,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICoreMLModel: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -4733,7 +4733,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "objc2-core-ml")]
-        #[method_id(@__retain_semantics Other model)]
+        #[method_id(@__method_family Other model)]
         unsafe fn model(&self) -> Retained<MLModel>;
 
         #[cfg(feature = "objc2-core-ml")]
@@ -4762,7 +4762,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CICrystallize: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -4793,7 +4793,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDepthOfField: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -4854,7 +4854,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIEdges: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -4876,7 +4876,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIEdgeWork: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -4898,7 +4898,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGaborGradients: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -4913,7 +4913,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGloom: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -4942,7 +4942,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHeightFieldFromMask: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -4964,7 +4964,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHexagonalPixellate: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -4995,7 +4995,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHighlightShadowAdjust: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5031,7 +5031,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CILineOverlay: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5081,7 +5081,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMix: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5090,7 +5090,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other backgroundImage)]
+        #[method_id(@__method_family Other backgroundImage)]
         unsafe fn backgroundImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5112,7 +5112,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPersonSegmentation: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5134,7 +5134,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPixellate: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5165,7 +5165,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIPointillize: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5196,7 +5196,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISaliencyMap: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5211,7 +5211,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIShadedMaterial: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5220,7 +5220,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other shadingImage)]
+        #[method_id(@__method_family Other shadingImage)]
         unsafe fn shadingImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5242,7 +5242,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISobelGradients: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5257,7 +5257,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISpotColor: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5266,7 +5266,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other centerColor1)]
+        #[method_id(@__method_family Other centerColor1)]
         unsafe fn centerColor1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -5275,7 +5275,7 @@ extern_protocol!(
         unsafe fn setCenterColor1(&self, center_color1: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other replacementColor1)]
+        #[method_id(@__method_family Other replacementColor1)]
         unsafe fn replacementColor1(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -5298,7 +5298,7 @@ extern_protocol!(
         unsafe fn setContrast1(&self, contrast1: c_float);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other centerColor2)]
+        #[method_id(@__method_family Other centerColor2)]
         unsafe fn centerColor2(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -5307,7 +5307,7 @@ extern_protocol!(
         unsafe fn setCenterColor2(&self, center_color2: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other replacementColor2)]
+        #[method_id(@__method_family Other replacementColor2)]
         unsafe fn replacementColor2(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -5330,7 +5330,7 @@ extern_protocol!(
         unsafe fn setContrast2(&self, contrast2: c_float);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other centerColor3)]
+        #[method_id(@__method_family Other centerColor3)]
         unsafe fn centerColor3(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -5339,7 +5339,7 @@ extern_protocol!(
         unsafe fn setCenterColor3(&self, center_color3: &CIColor);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other replacementColor3)]
+        #[method_id(@__method_family Other replacementColor3)]
         unsafe fn replacementColor3(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -5368,7 +5368,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CISpotLight: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5377,7 +5377,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other lightPosition)]
+        #[method_id(@__method_family Other lightPosition)]
         unsafe fn lightPosition(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -5386,7 +5386,7 @@ extern_protocol!(
         unsafe fn setLightPosition(&self, light_position: &CIVector);
 
         #[cfg(feature = "CIVector")]
-        #[method_id(@__retain_semantics Other lightPointsAt)]
+        #[method_id(@__method_family Other lightPointsAt)]
         unsafe fn lightPointsAt(&self) -> Retained<CIVector>;
 
         #[cfg(feature = "CIVector")]
@@ -5409,7 +5409,7 @@ extern_protocol!(
         unsafe fn setConcentration(&self, concentration: c_float);
 
         #[cfg(feature = "CIColor")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         unsafe fn color(&self) -> Retained<CIColor>;
 
         #[cfg(feature = "CIColor")]
@@ -5424,7 +5424,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBokehBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5467,7 +5467,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIBoxBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5489,7 +5489,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIDiscBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5511,7 +5511,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIGaussianBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5533,7 +5533,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMaskedVariableBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5542,7 +5542,7 @@ extern_protocol!(
         unsafe fn setInputImage(&self, input_image: Option<&CIImage>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other mask)]
+        #[method_id(@__method_family Other mask)]
         unsafe fn mask(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5564,7 +5564,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMedian: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5579,7 +5579,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMorphologyGradient: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5601,7 +5601,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMorphologyMaximum: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5623,7 +5623,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMorphologyMinimum: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5645,7 +5645,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMorphologyRectangleMaximum: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5674,7 +5674,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMorphologyRectangleMinimum: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5703,7 +5703,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIMotionBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5732,7 +5732,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CINoiseReduction: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5761,7 +5761,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIZoomBlur: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5792,7 +5792,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIAreaReductionFilter: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5924,7 +5924,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIHistogramDisplay: CIFilterProtocol {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputImage)]
+        #[method_id(@__method_family Other inputImage)]
         unsafe fn inputImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -5960,7 +5960,7 @@ extern_protocol!(
     #[cfg(feature = "CIFilter")]
     pub unsafe trait CIKMeans: CIAreaReductionFilter {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other inputMeans)]
+        #[method_id(@__method_family Other inputMeans)]
         unsafe fn inputMeans(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
@@ -6001,703 +6001,703 @@ extern_methods!(
     /// Builtins
     #[cfg(feature = "CIFilter")]
     unsafe impl CIFilter {
-        #[method_id(@__retain_semantics Other gaussianGradientFilter)]
+        #[method_id(@__method_family Other gaussianGradientFilter)]
         pub unsafe fn gaussianGradientFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other hueSaturationValueGradientFilter)]
+        #[method_id(@__method_family Other hueSaturationValueGradientFilter)]
         pub unsafe fn hueSaturationValueGradientFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other linearGradientFilter)]
+        #[method_id(@__method_family Other linearGradientFilter)]
         pub unsafe fn linearGradientFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other radialGradientFilter)]
+        #[method_id(@__method_family Other radialGradientFilter)]
         pub unsafe fn radialGradientFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other smoothLinearGradientFilter)]
+        #[method_id(@__method_family Other smoothLinearGradientFilter)]
         pub unsafe fn smoothLinearGradientFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other sharpenLuminanceFilter)]
+        #[method_id(@__method_family Other sharpenLuminanceFilter)]
         pub unsafe fn sharpenLuminanceFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other unsharpMaskFilter)]
+        #[method_id(@__method_family Other unsharpMaskFilter)]
         pub unsafe fn unsharpMaskFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other circularScreenFilter)]
+        #[method_id(@__method_family Other circularScreenFilter)]
         pub unsafe fn circularScreenFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other CMYKHalftone)]
+        #[method_id(@__method_family Other CMYKHalftone)]
         pub unsafe fn CMYKHalftone() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other dotScreenFilter)]
+        #[method_id(@__method_family Other dotScreenFilter)]
         pub unsafe fn dotScreenFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other hatchedScreenFilter)]
+        #[method_id(@__method_family Other hatchedScreenFilter)]
         pub unsafe fn hatchedScreenFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other lineScreenFilter)]
+        #[method_id(@__method_family Other lineScreenFilter)]
         pub unsafe fn lineScreenFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other bicubicScaleTransformFilter)]
+        #[method_id(@__method_family Other bicubicScaleTransformFilter)]
         pub unsafe fn bicubicScaleTransformFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other edgePreserveUpsampleFilter)]
+        #[method_id(@__method_family Other edgePreserveUpsampleFilter)]
         pub unsafe fn edgePreserveUpsampleFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other keystoneCorrectionCombinedFilter)]
+        #[method_id(@__method_family Other keystoneCorrectionCombinedFilter)]
         pub unsafe fn keystoneCorrectionCombinedFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other keystoneCorrectionHorizontalFilter)]
+        #[method_id(@__method_family Other keystoneCorrectionHorizontalFilter)]
         pub unsafe fn keystoneCorrectionHorizontalFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other keystoneCorrectionVerticalFilter)]
+        #[method_id(@__method_family Other keystoneCorrectionVerticalFilter)]
         pub unsafe fn keystoneCorrectionVerticalFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other lanczosScaleTransformFilter)]
+        #[method_id(@__method_family Other lanczosScaleTransformFilter)]
         pub unsafe fn lanczosScaleTransformFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other maximumScaleTransformFilter)]
+        #[method_id(@__method_family Other maximumScaleTransformFilter)]
         pub unsafe fn maximumScaleTransformFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other perspectiveCorrectionFilter)]
+        #[method_id(@__method_family Other perspectiveCorrectionFilter)]
         pub unsafe fn perspectiveCorrectionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other perspectiveRotateFilter)]
+        #[method_id(@__method_family Other perspectiveRotateFilter)]
         pub unsafe fn perspectiveRotateFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other perspectiveTransformFilter)]
+        #[method_id(@__method_family Other perspectiveTransformFilter)]
         pub unsafe fn perspectiveTransformFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other perspectiveTransformWithExtentFilter)]
+        #[method_id(@__method_family Other perspectiveTransformWithExtentFilter)]
         pub unsafe fn perspectiveTransformWithExtentFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other straightenFilter)]
+        #[method_id(@__method_family Other straightenFilter)]
         pub unsafe fn straightenFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other accordionFoldTransitionFilter)]
+        #[method_id(@__method_family Other accordionFoldTransitionFilter)]
         pub unsafe fn accordionFoldTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other barsSwipeTransitionFilter)]
+        #[method_id(@__method_family Other barsSwipeTransitionFilter)]
         pub unsafe fn barsSwipeTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other copyMachineTransitionFilter)]
+        #[method_id(@__method_family Other copyMachineTransitionFilter)]
         pub unsafe fn copyMachineTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other disintegrateWithMaskTransitionFilter)]
+        #[method_id(@__method_family Other disintegrateWithMaskTransitionFilter)]
         pub unsafe fn disintegrateWithMaskTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other dissolveTransitionFilter)]
+        #[method_id(@__method_family Other dissolveTransitionFilter)]
         pub unsafe fn dissolveTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other flashTransitionFilter)]
+        #[method_id(@__method_family Other flashTransitionFilter)]
         pub unsafe fn flashTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other modTransitionFilter)]
+        #[method_id(@__method_family Other modTransitionFilter)]
         pub unsafe fn modTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other pageCurlTransitionFilter)]
+        #[method_id(@__method_family Other pageCurlTransitionFilter)]
         pub unsafe fn pageCurlTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other pageCurlWithShadowTransitionFilter)]
+        #[method_id(@__method_family Other pageCurlWithShadowTransitionFilter)]
         pub unsafe fn pageCurlWithShadowTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other rippleTransitionFilter)]
+        #[method_id(@__method_family Other rippleTransitionFilter)]
         pub unsafe fn rippleTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other swipeTransitionFilter)]
+        #[method_id(@__method_family Other swipeTransitionFilter)]
         pub unsafe fn swipeTransitionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other additionCompositingFilter)]
+        #[method_id(@__method_family Other additionCompositingFilter)]
         pub unsafe fn additionCompositingFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorBlendModeFilter)]
+        #[method_id(@__method_family Other colorBlendModeFilter)]
         pub unsafe fn colorBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorBurnBlendModeFilter)]
+        #[method_id(@__method_family Other colorBurnBlendModeFilter)]
         pub unsafe fn colorBurnBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorDodgeBlendModeFilter)]
+        #[method_id(@__method_family Other colorDodgeBlendModeFilter)]
         pub unsafe fn colorDodgeBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other darkenBlendModeFilter)]
+        #[method_id(@__method_family Other darkenBlendModeFilter)]
         pub unsafe fn darkenBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other differenceBlendModeFilter)]
+        #[method_id(@__method_family Other differenceBlendModeFilter)]
         pub unsafe fn differenceBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other divideBlendModeFilter)]
+        #[method_id(@__method_family Other divideBlendModeFilter)]
         pub unsafe fn divideBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other exclusionBlendModeFilter)]
+        #[method_id(@__method_family Other exclusionBlendModeFilter)]
         pub unsafe fn exclusionBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other hardLightBlendModeFilter)]
+        #[method_id(@__method_family Other hardLightBlendModeFilter)]
         pub unsafe fn hardLightBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other hueBlendModeFilter)]
+        #[method_id(@__method_family Other hueBlendModeFilter)]
         pub unsafe fn hueBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other lightenBlendModeFilter)]
+        #[method_id(@__method_family Other lightenBlendModeFilter)]
         pub unsafe fn lightenBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other linearBurnBlendModeFilter)]
+        #[method_id(@__method_family Other linearBurnBlendModeFilter)]
         pub unsafe fn linearBurnBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other linearDodgeBlendModeFilter)]
+        #[method_id(@__method_family Other linearDodgeBlendModeFilter)]
         pub unsafe fn linearDodgeBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other linearLightBlendModeFilter)]
+        #[method_id(@__method_family Other linearLightBlendModeFilter)]
         pub unsafe fn linearLightBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other luminosityBlendModeFilter)]
+        #[method_id(@__method_family Other luminosityBlendModeFilter)]
         pub unsafe fn luminosityBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other maximumCompositingFilter)]
+        #[method_id(@__method_family Other maximumCompositingFilter)]
         pub unsafe fn maximumCompositingFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other minimumCompositingFilter)]
+        #[method_id(@__method_family Other minimumCompositingFilter)]
         pub unsafe fn minimumCompositingFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other multiplyBlendModeFilter)]
+        #[method_id(@__method_family Other multiplyBlendModeFilter)]
         pub unsafe fn multiplyBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other multiplyCompositingFilter)]
+        #[method_id(@__method_family Other multiplyCompositingFilter)]
         pub unsafe fn multiplyCompositingFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other overlayBlendModeFilter)]
+        #[method_id(@__method_family Other overlayBlendModeFilter)]
         pub unsafe fn overlayBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other pinLightBlendModeFilter)]
+        #[method_id(@__method_family Other pinLightBlendModeFilter)]
         pub unsafe fn pinLightBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other saturationBlendModeFilter)]
+        #[method_id(@__method_family Other saturationBlendModeFilter)]
         pub unsafe fn saturationBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other screenBlendModeFilter)]
+        #[method_id(@__method_family Other screenBlendModeFilter)]
         pub unsafe fn screenBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other softLightBlendModeFilter)]
+        #[method_id(@__method_family Other softLightBlendModeFilter)]
         pub unsafe fn softLightBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other sourceAtopCompositingFilter)]
+        #[method_id(@__method_family Other sourceAtopCompositingFilter)]
         pub unsafe fn sourceAtopCompositingFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other sourceInCompositingFilter)]
+        #[method_id(@__method_family Other sourceInCompositingFilter)]
         pub unsafe fn sourceInCompositingFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other sourceOutCompositingFilter)]
+        #[method_id(@__method_family Other sourceOutCompositingFilter)]
         pub unsafe fn sourceOutCompositingFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other sourceOverCompositingFilter)]
+        #[method_id(@__method_family Other sourceOverCompositingFilter)]
         pub unsafe fn sourceOverCompositingFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other subtractBlendModeFilter)]
+        #[method_id(@__method_family Other subtractBlendModeFilter)]
         pub unsafe fn subtractBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other vividLightBlendModeFilter)]
+        #[method_id(@__method_family Other vividLightBlendModeFilter)]
         pub unsafe fn vividLightBlendModeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorAbsoluteDifferenceFilter)]
+        #[method_id(@__method_family Other colorAbsoluteDifferenceFilter)]
         pub unsafe fn colorAbsoluteDifferenceFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorClampFilter)]
+        #[method_id(@__method_family Other colorClampFilter)]
         pub unsafe fn colorClampFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorControlsFilter)]
+        #[method_id(@__method_family Other colorControlsFilter)]
         pub unsafe fn colorControlsFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorMatrixFilter)]
+        #[method_id(@__method_family Other colorMatrixFilter)]
         pub unsafe fn colorMatrixFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorPolynomialFilter)]
+        #[method_id(@__method_family Other colorPolynomialFilter)]
         pub unsafe fn colorPolynomialFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorThresholdFilter)]
+        #[method_id(@__method_family Other colorThresholdFilter)]
         pub unsafe fn colorThresholdFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorThresholdOtsuFilter)]
+        #[method_id(@__method_family Other colorThresholdOtsuFilter)]
         pub unsafe fn colorThresholdOtsuFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other depthToDisparityFilter)]
+        #[method_id(@__method_family Other depthToDisparityFilter)]
         pub unsafe fn depthToDisparityFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other disparityToDepthFilter)]
+        #[method_id(@__method_family Other disparityToDepthFilter)]
         pub unsafe fn disparityToDepthFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other exposureAdjustFilter)]
+        #[method_id(@__method_family Other exposureAdjustFilter)]
         pub unsafe fn exposureAdjustFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other gammaAdjustFilter)]
+        #[method_id(@__method_family Other gammaAdjustFilter)]
         pub unsafe fn gammaAdjustFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other hueAdjustFilter)]
+        #[method_id(@__method_family Other hueAdjustFilter)]
         pub unsafe fn hueAdjustFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other linearToSRGBToneCurveFilter)]
+        #[method_id(@__method_family Other linearToSRGBToneCurveFilter)]
         pub unsafe fn linearToSRGBToneCurveFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other sRGBToneCurveToLinearFilter)]
+        #[method_id(@__method_family Other sRGBToneCurveToLinearFilter)]
         pub unsafe fn sRGBToneCurveToLinearFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other temperatureAndTintFilter)]
+        #[method_id(@__method_family Other temperatureAndTintFilter)]
         pub unsafe fn temperatureAndTintFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other toneCurveFilter)]
+        #[method_id(@__method_family Other toneCurveFilter)]
         pub unsafe fn toneCurveFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other toneMapHeadroomFilter)]
+        #[method_id(@__method_family Other toneMapHeadroomFilter)]
         pub unsafe fn toneMapHeadroomFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other vibranceFilter)]
+        #[method_id(@__method_family Other vibranceFilter)]
         pub unsafe fn vibranceFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other whitePointAdjustFilter)]
+        #[method_id(@__method_family Other whitePointAdjustFilter)]
         pub unsafe fn whitePointAdjustFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorCrossPolynomialFilter)]
+        #[method_id(@__method_family Other colorCrossPolynomialFilter)]
         pub unsafe fn colorCrossPolynomialFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorCubeFilter)]
+        #[method_id(@__method_family Other colorCubeFilter)]
         pub unsafe fn colorCubeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorCubesMixedWithMaskFilter)]
+        #[method_id(@__method_family Other colorCubesMixedWithMaskFilter)]
         pub unsafe fn colorCubesMixedWithMaskFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorCubeWithColorSpaceFilter)]
+        #[method_id(@__method_family Other colorCubeWithColorSpaceFilter)]
         pub unsafe fn colorCubeWithColorSpaceFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorCurvesFilter)]
+        #[method_id(@__method_family Other colorCurvesFilter)]
         pub unsafe fn colorCurvesFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorInvertFilter)]
+        #[method_id(@__method_family Other colorInvertFilter)]
         pub unsafe fn colorInvertFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorMapFilter)]
+        #[method_id(@__method_family Other colorMapFilter)]
         pub unsafe fn colorMapFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorMonochromeFilter)]
+        #[method_id(@__method_family Other colorMonochromeFilter)]
         pub unsafe fn colorMonochromeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other colorPosterizeFilter)]
+        #[method_id(@__method_family Other colorPosterizeFilter)]
         pub unsafe fn colorPosterizeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other convertLabToRGBFilter)]
+        #[method_id(@__method_family Other convertLabToRGBFilter)]
         pub unsafe fn convertLabToRGBFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other convertRGBtoLabFilter)]
+        #[method_id(@__method_family Other convertRGBtoLabFilter)]
         pub unsafe fn convertRGBtoLabFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other ditherFilter)]
+        #[method_id(@__method_family Other ditherFilter)]
         pub unsafe fn ditherFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other documentEnhancerFilter)]
+        #[method_id(@__method_family Other documentEnhancerFilter)]
         pub unsafe fn documentEnhancerFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other falseColorFilter)]
+        #[method_id(@__method_family Other falseColorFilter)]
         pub unsafe fn falseColorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other LabDeltaE)]
+        #[method_id(@__method_family Other LabDeltaE)]
         pub unsafe fn LabDeltaE() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other maskToAlphaFilter)]
+        #[method_id(@__method_family Other maskToAlphaFilter)]
         pub unsafe fn maskToAlphaFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other maximumComponentFilter)]
+        #[method_id(@__method_family Other maximumComponentFilter)]
         pub unsafe fn maximumComponentFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other minimumComponentFilter)]
+        #[method_id(@__method_family Other minimumComponentFilter)]
         pub unsafe fn minimumComponentFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other paletteCentroidFilter)]
+        #[method_id(@__method_family Other paletteCentroidFilter)]
         pub unsafe fn paletteCentroidFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other palettizeFilter)]
+        #[method_id(@__method_family Other palettizeFilter)]
         pub unsafe fn palettizeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other photoEffectChromeFilter)]
+        #[method_id(@__method_family Other photoEffectChromeFilter)]
         pub unsafe fn photoEffectChromeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other photoEffectFadeFilter)]
+        #[method_id(@__method_family Other photoEffectFadeFilter)]
         pub unsafe fn photoEffectFadeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other photoEffectInstantFilter)]
+        #[method_id(@__method_family Other photoEffectInstantFilter)]
         pub unsafe fn photoEffectInstantFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other photoEffectMonoFilter)]
+        #[method_id(@__method_family Other photoEffectMonoFilter)]
         pub unsafe fn photoEffectMonoFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other photoEffectNoirFilter)]
+        #[method_id(@__method_family Other photoEffectNoirFilter)]
         pub unsafe fn photoEffectNoirFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other photoEffectProcessFilter)]
+        #[method_id(@__method_family Other photoEffectProcessFilter)]
         pub unsafe fn photoEffectProcessFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other photoEffectTonalFilter)]
+        #[method_id(@__method_family Other photoEffectTonalFilter)]
         pub unsafe fn photoEffectTonalFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other photoEffectTransferFilter)]
+        #[method_id(@__method_family Other photoEffectTransferFilter)]
         pub unsafe fn photoEffectTransferFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other sepiaToneFilter)]
+        #[method_id(@__method_family Other sepiaToneFilter)]
         pub unsafe fn sepiaToneFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other thermalFilter)]
+        #[method_id(@__method_family Other thermalFilter)]
         pub unsafe fn thermalFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other vignetteFilter)]
+        #[method_id(@__method_family Other vignetteFilter)]
         pub unsafe fn vignetteFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other vignetteEffectFilter)]
+        #[method_id(@__method_family Other vignetteEffectFilter)]
         pub unsafe fn vignetteEffectFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other xRayFilter)]
+        #[method_id(@__method_family Other xRayFilter)]
         pub unsafe fn xRayFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other bumpDistortionFilter)]
+        #[method_id(@__method_family Other bumpDistortionFilter)]
         pub unsafe fn bumpDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other bumpDistortionLinearFilter)]
+        #[method_id(@__method_family Other bumpDistortionLinearFilter)]
         pub unsafe fn bumpDistortionLinearFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other circleSplashDistortionFilter)]
+        #[method_id(@__method_family Other circleSplashDistortionFilter)]
         pub unsafe fn circleSplashDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other circularWrapFilter)]
+        #[method_id(@__method_family Other circularWrapFilter)]
         pub unsafe fn circularWrapFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other displacementDistortionFilter)]
+        #[method_id(@__method_family Other displacementDistortionFilter)]
         pub unsafe fn displacementDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other drosteFilter)]
+        #[method_id(@__method_family Other drosteFilter)]
         pub unsafe fn drosteFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other glassDistortionFilter)]
+        #[method_id(@__method_family Other glassDistortionFilter)]
         pub unsafe fn glassDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other glassLozengeFilter)]
+        #[method_id(@__method_family Other glassLozengeFilter)]
         pub unsafe fn glassLozengeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other holeDistortionFilter)]
+        #[method_id(@__method_family Other holeDistortionFilter)]
         pub unsafe fn holeDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other lightTunnelFilter)]
+        #[method_id(@__method_family Other lightTunnelFilter)]
         pub unsafe fn lightTunnelFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other ninePartStretchedFilter)]
+        #[method_id(@__method_family Other ninePartStretchedFilter)]
         pub unsafe fn ninePartStretchedFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other ninePartTiledFilter)]
+        #[method_id(@__method_family Other ninePartTiledFilter)]
         pub unsafe fn ninePartTiledFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other pinchDistortionFilter)]
+        #[method_id(@__method_family Other pinchDistortionFilter)]
         pub unsafe fn pinchDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other stretchCropFilter)]
+        #[method_id(@__method_family Other stretchCropFilter)]
         pub unsafe fn stretchCropFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other torusLensDistortionFilter)]
+        #[method_id(@__method_family Other torusLensDistortionFilter)]
         pub unsafe fn torusLensDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other twirlDistortionFilter)]
+        #[method_id(@__method_family Other twirlDistortionFilter)]
         pub unsafe fn twirlDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other vortexDistortionFilter)]
+        #[method_id(@__method_family Other vortexDistortionFilter)]
         pub unsafe fn vortexDistortionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other affineClampFilter)]
+        #[method_id(@__method_family Other affineClampFilter)]
         pub unsafe fn affineClampFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other affineTileFilter)]
+        #[method_id(@__method_family Other affineTileFilter)]
         pub unsafe fn affineTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other eightfoldReflectedTileFilter)]
+        #[method_id(@__method_family Other eightfoldReflectedTileFilter)]
         pub unsafe fn eightfoldReflectedTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other fourfoldReflectedTileFilter)]
+        #[method_id(@__method_family Other fourfoldReflectedTileFilter)]
         pub unsafe fn fourfoldReflectedTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other fourfoldRotatedTileFilter)]
+        #[method_id(@__method_family Other fourfoldRotatedTileFilter)]
         pub unsafe fn fourfoldRotatedTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other fourfoldTranslatedTileFilter)]
+        #[method_id(@__method_family Other fourfoldTranslatedTileFilter)]
         pub unsafe fn fourfoldTranslatedTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other glideReflectedTileFilter)]
+        #[method_id(@__method_family Other glideReflectedTileFilter)]
         pub unsafe fn glideReflectedTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other kaleidoscopeFilter)]
+        #[method_id(@__method_family Other kaleidoscopeFilter)]
         pub unsafe fn kaleidoscopeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other opTileFilter)]
+        #[method_id(@__method_family Other opTileFilter)]
         pub unsafe fn opTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other parallelogramTileFilter)]
+        #[method_id(@__method_family Other parallelogramTileFilter)]
         pub unsafe fn parallelogramTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other perspectiveTileFilter)]
+        #[method_id(@__method_family Other perspectiveTileFilter)]
         pub unsafe fn perspectiveTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other sixfoldReflectedTileFilter)]
+        #[method_id(@__method_family Other sixfoldReflectedTileFilter)]
         pub unsafe fn sixfoldReflectedTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other sixfoldRotatedTileFilter)]
+        #[method_id(@__method_family Other sixfoldRotatedTileFilter)]
         pub unsafe fn sixfoldRotatedTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other triangleKaleidoscopeFilter)]
+        #[method_id(@__method_family Other triangleKaleidoscopeFilter)]
         pub unsafe fn triangleKaleidoscopeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other triangleTileFilter)]
+        #[method_id(@__method_family Other triangleTileFilter)]
         pub unsafe fn triangleTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other twelvefoldReflectedTileFilter)]
+        #[method_id(@__method_family Other twelvefoldReflectedTileFilter)]
         pub unsafe fn twelvefoldReflectedTileFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other attributedTextImageGeneratorFilter)]
+        #[method_id(@__method_family Other attributedTextImageGeneratorFilter)]
         pub unsafe fn attributedTextImageGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other aztecCodeGeneratorFilter)]
+        #[method_id(@__method_family Other aztecCodeGeneratorFilter)]
         pub unsafe fn aztecCodeGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other barcodeGeneratorFilter)]
+        #[method_id(@__method_family Other barcodeGeneratorFilter)]
         pub unsafe fn barcodeGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other blurredRectangleGeneratorFilter)]
+        #[method_id(@__method_family Other blurredRectangleGeneratorFilter)]
         pub unsafe fn blurredRectangleGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other checkerboardGeneratorFilter)]
+        #[method_id(@__method_family Other checkerboardGeneratorFilter)]
         pub unsafe fn checkerboardGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other code128BarcodeGeneratorFilter)]
+        #[method_id(@__method_family Other code128BarcodeGeneratorFilter)]
         pub unsafe fn code128BarcodeGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other lenticularHaloGeneratorFilter)]
+        #[method_id(@__method_family Other lenticularHaloGeneratorFilter)]
         pub unsafe fn lenticularHaloGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other meshGeneratorFilter)]
+        #[method_id(@__method_family Other meshGeneratorFilter)]
         pub unsafe fn meshGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other PDF417BarcodeGenerator)]
+        #[method_id(@__method_family Other PDF417BarcodeGenerator)]
         pub unsafe fn PDF417BarcodeGenerator() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other QRCodeGenerator)]
+        #[method_id(@__method_family Other QRCodeGenerator)]
         pub unsafe fn QRCodeGenerator() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other randomGeneratorFilter)]
+        #[method_id(@__method_family Other randomGeneratorFilter)]
         pub unsafe fn randomGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other roundedRectangleGeneratorFilter)]
+        #[method_id(@__method_family Other roundedRectangleGeneratorFilter)]
         pub unsafe fn roundedRectangleGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other roundedRectangleStrokeGeneratorFilter)]
+        #[method_id(@__method_family Other roundedRectangleStrokeGeneratorFilter)]
         pub unsafe fn roundedRectangleStrokeGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other starShineGeneratorFilter)]
+        #[method_id(@__method_family Other starShineGeneratorFilter)]
         pub unsafe fn starShineGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other stripesGeneratorFilter)]
+        #[method_id(@__method_family Other stripesGeneratorFilter)]
         pub unsafe fn stripesGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other sunbeamsGeneratorFilter)]
+        #[method_id(@__method_family Other sunbeamsGeneratorFilter)]
         pub unsafe fn sunbeamsGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other textImageGeneratorFilter)]
+        #[method_id(@__method_family Other textImageGeneratorFilter)]
         pub unsafe fn textImageGeneratorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other blendWithAlphaMaskFilter)]
+        #[method_id(@__method_family Other blendWithAlphaMaskFilter)]
         pub unsafe fn blendWithAlphaMaskFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other blendWithBlueMaskFilter)]
+        #[method_id(@__method_family Other blendWithBlueMaskFilter)]
         pub unsafe fn blendWithBlueMaskFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other blendWithMaskFilter)]
+        #[method_id(@__method_family Other blendWithMaskFilter)]
         pub unsafe fn blendWithMaskFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other blendWithRedMaskFilter)]
+        #[method_id(@__method_family Other blendWithRedMaskFilter)]
         pub unsafe fn blendWithRedMaskFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other bloomFilter)]
+        #[method_id(@__method_family Other bloomFilter)]
         pub unsafe fn bloomFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other cannyEdgeDetectorFilter)]
+        #[method_id(@__method_family Other cannyEdgeDetectorFilter)]
         pub unsafe fn cannyEdgeDetectorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other comicEffectFilter)]
+        #[method_id(@__method_family Other comicEffectFilter)]
         pub unsafe fn comicEffectFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other convolution3X3Filter)]
+        #[method_id(@__method_family Other convolution3X3Filter)]
         pub unsafe fn convolution3X3Filter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other convolution5X5Filter)]
+        #[method_id(@__method_family Other convolution5X5Filter)]
         pub unsafe fn convolution5X5Filter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other convolution7X7Filter)]
+        #[method_id(@__method_family Other convolution7X7Filter)]
         pub unsafe fn convolution7X7Filter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other convolution9HorizontalFilter)]
+        #[method_id(@__method_family Other convolution9HorizontalFilter)]
         pub unsafe fn convolution9HorizontalFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other convolution9VerticalFilter)]
+        #[method_id(@__method_family Other convolution9VerticalFilter)]
         pub unsafe fn convolution9VerticalFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other convolutionRGB3X3Filter)]
+        #[method_id(@__method_family Other convolutionRGB3X3Filter)]
         pub unsafe fn convolutionRGB3X3Filter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other convolutionRGB5X5Filter)]
+        #[method_id(@__method_family Other convolutionRGB5X5Filter)]
         pub unsafe fn convolutionRGB5X5Filter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other convolutionRGB7X7Filter)]
+        #[method_id(@__method_family Other convolutionRGB7X7Filter)]
         pub unsafe fn convolutionRGB7X7Filter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other convolutionRGB9HorizontalFilter)]
+        #[method_id(@__method_family Other convolutionRGB9HorizontalFilter)]
         pub unsafe fn convolutionRGB9HorizontalFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other convolutionRGB9VerticalFilter)]
+        #[method_id(@__method_family Other convolutionRGB9VerticalFilter)]
         pub unsafe fn convolutionRGB9VerticalFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other coreMLModelFilter)]
+        #[method_id(@__method_family Other coreMLModelFilter)]
         pub unsafe fn coreMLModelFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other crystallizeFilter)]
+        #[method_id(@__method_family Other crystallizeFilter)]
         pub unsafe fn crystallizeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other depthOfFieldFilter)]
+        #[method_id(@__method_family Other depthOfFieldFilter)]
         pub unsafe fn depthOfFieldFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other edgesFilter)]
+        #[method_id(@__method_family Other edgesFilter)]
         pub unsafe fn edgesFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other edgeWorkFilter)]
+        #[method_id(@__method_family Other edgeWorkFilter)]
         pub unsafe fn edgeWorkFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other gaborGradientsFilter)]
+        #[method_id(@__method_family Other gaborGradientsFilter)]
         pub unsafe fn gaborGradientsFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other gloomFilter)]
+        #[method_id(@__method_family Other gloomFilter)]
         pub unsafe fn gloomFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other heightFieldFromMaskFilter)]
+        #[method_id(@__method_family Other heightFieldFromMaskFilter)]
         pub unsafe fn heightFieldFromMaskFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other hexagonalPixellateFilter)]
+        #[method_id(@__method_family Other hexagonalPixellateFilter)]
         pub unsafe fn hexagonalPixellateFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other highlightShadowAdjustFilter)]
+        #[method_id(@__method_family Other highlightShadowAdjustFilter)]
         pub unsafe fn highlightShadowAdjustFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other lineOverlayFilter)]
+        #[method_id(@__method_family Other lineOverlayFilter)]
         pub unsafe fn lineOverlayFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other mixFilter)]
+        #[method_id(@__method_family Other mixFilter)]
         pub unsafe fn mixFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other personSegmentationFilter)]
+        #[method_id(@__method_family Other personSegmentationFilter)]
         pub unsafe fn personSegmentationFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other pixellateFilter)]
+        #[method_id(@__method_family Other pixellateFilter)]
         pub unsafe fn pixellateFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other pointillizeFilter)]
+        #[method_id(@__method_family Other pointillizeFilter)]
         pub unsafe fn pointillizeFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other saliencyMapFilter)]
+        #[method_id(@__method_family Other saliencyMapFilter)]
         pub unsafe fn saliencyMapFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other shadedMaterialFilter)]
+        #[method_id(@__method_family Other shadedMaterialFilter)]
         pub unsafe fn shadedMaterialFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other sobelGradientsFilter)]
+        #[method_id(@__method_family Other sobelGradientsFilter)]
         pub unsafe fn sobelGradientsFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other spotColorFilter)]
+        #[method_id(@__method_family Other spotColorFilter)]
         pub unsafe fn spotColorFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other spotLightFilter)]
+        #[method_id(@__method_family Other spotLightFilter)]
         pub unsafe fn spotLightFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other bokehBlurFilter)]
+        #[method_id(@__method_family Other bokehBlurFilter)]
         pub unsafe fn bokehBlurFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other boxBlurFilter)]
+        #[method_id(@__method_family Other boxBlurFilter)]
         pub unsafe fn boxBlurFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other discBlurFilter)]
+        #[method_id(@__method_family Other discBlurFilter)]
         pub unsafe fn discBlurFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other gaussianBlurFilter)]
+        #[method_id(@__method_family Other gaussianBlurFilter)]
         pub unsafe fn gaussianBlurFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other maskedVariableBlurFilter)]
+        #[method_id(@__method_family Other maskedVariableBlurFilter)]
         pub unsafe fn maskedVariableBlurFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other medianFilter)]
+        #[method_id(@__method_family Other medianFilter)]
         pub unsafe fn medianFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other morphologyGradientFilter)]
+        #[method_id(@__method_family Other morphologyGradientFilter)]
         pub unsafe fn morphologyGradientFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other morphologyMaximumFilter)]
+        #[method_id(@__method_family Other morphologyMaximumFilter)]
         pub unsafe fn morphologyMaximumFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other morphologyMinimumFilter)]
+        #[method_id(@__method_family Other morphologyMinimumFilter)]
         pub unsafe fn morphologyMinimumFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other morphologyRectangleMaximumFilter)]
+        #[method_id(@__method_family Other morphologyRectangleMaximumFilter)]
         pub unsafe fn morphologyRectangleMaximumFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other morphologyRectangleMinimumFilter)]
+        #[method_id(@__method_family Other morphologyRectangleMinimumFilter)]
         pub unsafe fn morphologyRectangleMinimumFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other motionBlurFilter)]
+        #[method_id(@__method_family Other motionBlurFilter)]
         pub unsafe fn motionBlurFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other noiseReductionFilter)]
+        #[method_id(@__method_family Other noiseReductionFilter)]
         pub unsafe fn noiseReductionFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other zoomBlurFilter)]
+        #[method_id(@__method_family Other zoomBlurFilter)]
         pub unsafe fn zoomBlurFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other areaAlphaWeightedHistogramFilter)]
+        #[method_id(@__method_family Other areaAlphaWeightedHistogramFilter)]
         pub unsafe fn areaAlphaWeightedHistogramFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other areaAverageFilter)]
+        #[method_id(@__method_family Other areaAverageFilter)]
         pub unsafe fn areaAverageFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other areaBoundsRedFilter)]
+        #[method_id(@__method_family Other areaBoundsRedFilter)]
         pub unsafe fn areaBoundsRedFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other areaHistogramFilter)]
+        #[method_id(@__method_family Other areaHistogramFilter)]
         pub unsafe fn areaHistogramFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other areaLogarithmicHistogramFilter)]
+        #[method_id(@__method_family Other areaLogarithmicHistogramFilter)]
         pub unsafe fn areaLogarithmicHistogramFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other areaMaximumFilter)]
+        #[method_id(@__method_family Other areaMaximumFilter)]
         pub unsafe fn areaMaximumFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other areaMaximumAlphaFilter)]
+        #[method_id(@__method_family Other areaMaximumAlphaFilter)]
         pub unsafe fn areaMaximumAlphaFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other areaMinimumFilter)]
+        #[method_id(@__method_family Other areaMinimumFilter)]
         pub unsafe fn areaMinimumFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other areaMinimumAlphaFilter)]
+        #[method_id(@__method_family Other areaMinimumAlphaFilter)]
         pub unsafe fn areaMinimumAlphaFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other areaMinMaxFilter)]
+        #[method_id(@__method_family Other areaMinMaxFilter)]
         pub unsafe fn areaMinMaxFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other areaMinMaxRedFilter)]
+        #[method_id(@__method_family Other areaMinMaxRedFilter)]
         pub unsafe fn areaMinMaxRedFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other columnAverageFilter)]
+        #[method_id(@__method_family Other columnAverageFilter)]
         pub unsafe fn columnAverageFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other histogramDisplayFilter)]
+        #[method_id(@__method_family Other histogramDisplayFilter)]
         pub unsafe fn histogramDisplayFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other KMeansFilter)]
+        #[method_id(@__method_family Other KMeansFilter)]
         pub unsafe fn KMeansFilter() -> Retained<CIFilter>;
 
-        #[method_id(@__retain_semantics Other rowAverageFilter)]
+        #[method_id(@__method_family Other rowAverageFilter)]
         pub unsafe fn rowAverageFilter() -> Retained<CIFilter>;
     }
 );

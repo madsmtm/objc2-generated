@@ -17,7 +17,7 @@ extern_protocol!(
         /// selection views that draw _below_ text. Includes selection highlight view, etc. The default is assumed
         /// that all views are to be installed onto the interaction's view.
         #[optional]
-        #[method_id(@__retain_semantics Other selectionContainerViewBelowTextForSelectionDisplayInteraction:)]
+        #[method_id(@__method_family Other selectionContainerViewBelowTextForSelectionDisplayInteraction:)]
         unsafe fn selectionContainerViewBelowTextForSelectionDisplayInteraction(
             &self,
             interaction: &UITextSelectionDisplayInteraction,
@@ -57,12 +57,12 @@ extern_methods!(
 
         #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
         /// The object the selection is being managed for.
-        #[method_id(@__retain_semantics Other textInput)]
+        #[method_id(@__method_family Other textInput)]
         pub unsafe fn textInput(&self) -> Option<Retained<ProtocolObject<dyn UITextInput>>>;
 
         /// See
         /// `UITextSelectionDisplayInteractionDelegate.`
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITextSelectionDisplayInteractionDelegate>>>;
@@ -73,7 +73,7 @@ extern_methods!(
             feature = "UIView"
         ))]
         /// The cursor view (also known as "caret" view). Shown when the selection is not ranged.
-        #[method_id(@__retain_semantics Other cursorView)]
+        #[method_id(@__method_family Other cursorView)]
         pub unsafe fn cursorView(&self) -> Retained<UIView>;
 
         #[cfg(all(
@@ -91,7 +91,7 @@ extern_methods!(
             feature = "UIView"
         ))]
         /// The highlight view. This is the blue/tinted highlight drawn behind the rendered text.
-        #[method_id(@__retain_semantics Other highlightView)]
+        #[method_id(@__method_family Other highlightView)]
         pub unsafe fn highlightView(&self) -> Retained<UIView>;
 
         #[cfg(all(
@@ -113,7 +113,7 @@ extern_methods!(
         ///
         /// If you are replacing these system-provided handle views with your own, you must provide exactly two handle views, one to be used as the leading handle,
         /// and another to be used as the trailing handle.
-        #[method_id(@__retain_semantics Other handleViews)]
+        #[method_id(@__method_family Other handleViews)]
         pub unsafe fn handleViews(&self) -> Retained<NSArray<UIView>>;
 
         #[cfg(all(
@@ -128,7 +128,7 @@ extern_methods!(
         #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
         /// Creates a UITextSelectionDisplayInteractionDelegate for a given object that implements the UITextInput protocol.
         /// `textInput` may be the same as the view this interaction is installed onto.
-        #[method_id(@__retain_semantics Init initWithTextInput:delegate:)]
+        #[method_id(@__method_family Init initWithTextInput:delegate:)]
         pub unsafe fn initWithTextInput_delegate(
             this: Allocated<Self>,
             text_input: &ProtocolObject<dyn UITextInput>,
@@ -143,10 +143,10 @@ extern_methods!(
         #[method(setNeedsSelectionUpdate)]
         pub unsafe fn setNeedsSelectionUpdate(&self);
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

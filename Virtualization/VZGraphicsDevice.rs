@@ -30,10 +30,10 @@ unsafe impl NSObjectProtocol for VZGraphicsDevice {}
 
 extern_methods!(
     unsafe impl VZGraphicsDevice {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZGraphicsDisplay")]
@@ -44,7 +44,7 @@ extern_methods!(
         /// See: VZMacGraphicsDisplayConfiguration
         ///
         /// See: VZVirtioGraphicsScanoutConfiguration
-        #[method_id(@__retain_semantics Other displays)]
+        #[method_id(@__method_family Other displays)]
         pub unsafe fn displays(&self) -> Retained<NSArray<VZGraphicsDisplay>>;
     }
 );

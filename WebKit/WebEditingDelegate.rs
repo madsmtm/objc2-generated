@@ -226,7 +226,7 @@ extern_protocol!(
         #[cfg(target_os = "macos")]
         #[deprecated]
         #[optional]
-        #[method_id(@__retain_semantics Other undoManagerForWebView:)]
+        #[method_id(@__method_family Other undoManagerForWebView:)]
         unsafe fn undoManagerForWebView(
             &self,
             web_view: Option<&WebView>,

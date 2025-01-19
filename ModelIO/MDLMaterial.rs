@@ -341,10 +341,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLTextureFilter {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -361,7 +361,7 @@ unsafe impl NSObjectProtocol for MDLTextureSampler {}
 extern_methods!(
     unsafe impl MDLTextureSampler {
         #[cfg(feature = "MDLTexture")]
-        #[method_id(@__retain_semantics Other texture)]
+        #[method_id(@__method_family Other texture)]
         pub unsafe fn texture(&self) -> Option<Retained<MDLTexture>>;
 
         #[cfg(feature = "MDLTexture")]
@@ -369,7 +369,7 @@ extern_methods!(
         #[method(setTexture:)]
         pub unsafe fn setTexture(&self, texture: Option<&MDLTexture>);
 
-        #[method_id(@__retain_semantics Other hardwareFilter)]
+        #[method_id(@__method_family Other hardwareFilter)]
         pub unsafe fn hardwareFilter(&self) -> Option<Retained<MDLTextureFilter>>;
 
         /// Setter for [`hardwareFilter`][Self::hardwareFilter].
@@ -377,7 +377,7 @@ extern_methods!(
         pub unsafe fn setHardwareFilter(&self, hardware_filter: Option<&MDLTextureFilter>);
 
         #[cfg(feature = "MDLTransform")]
-        #[method_id(@__retain_semantics Other transform)]
+        #[method_id(@__method_family Other transform)]
         pub unsafe fn transform(&self) -> Option<Retained<MDLTransform>>;
 
         #[cfg(feature = "MDLTransform")]
@@ -390,10 +390,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLTextureSampler {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -421,17 +421,17 @@ unsafe impl NSObjectProtocol for MDLMaterialProperty {}
 
 extern_methods!(
     unsafe impl MDLMaterialProperty {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithName:semantic:)]
+        #[method_id(@__method_family Init initWithName:semantic:)]
         pub unsafe fn initWithName_semantic(
             this: Allocated<Self>,
             name: &NSString,
             semantic: MDLMaterialSemantic,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithName:semantic:float:)]
+        #[method_id(@__method_family Init initWithName:semantic:float:)]
         pub unsafe fn initWithName_semantic_float(
             this: Allocated<Self>,
             name: &NSString,
@@ -439,7 +439,7 @@ extern_methods!(
             value: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithName:semantic:URL:)]
+        #[method_id(@__method_family Init initWithName:semantic:URL:)]
         pub unsafe fn initWithName_semantic_URL(
             this: Allocated<Self>,
             name: &NSString,
@@ -447,7 +447,7 @@ extern_methods!(
             url: Option<&NSURL>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithName:semantic:string:)]
+        #[method_id(@__method_family Init initWithName:semantic:string:)]
         pub unsafe fn initWithName_semantic_string(
             this: Allocated<Self>,
             name: &NSString,
@@ -455,7 +455,7 @@ extern_methods!(
             string: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithName:semantic:textureSampler:)]
+        #[method_id(@__method_family Init initWithName:semantic:textureSampler:)]
         pub unsafe fn initWithName_semantic_textureSampler(
             this: Allocated<Self>,
             name: &NSString,
@@ -464,7 +464,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__retain_semantics Init initWithName:semantic:color:)]
+        #[method_id(@__method_family Init initWithName:semantic:color:)]
         pub unsafe fn initWithName_semantic_color(
             this: Allocated<Self>,
             name: &NSString,
@@ -490,28 +490,28 @@ extern_methods!(
         pub unsafe fn setType(&self, r#type: MDLMaterialPropertyType);
 
         /// See: MDLNamed
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
-        #[method_id(@__retain_semantics Other stringValue)]
+        #[method_id(@__method_family Other stringValue)]
         pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`stringValue`][Self::stringValue].
         #[method(setStringValue:)]
         pub unsafe fn setStringValue(&self, string_value: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other URLValue)]
+        #[method_id(@__method_family Other URLValue)]
         pub unsafe fn URLValue(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URLValue`][Self::URLValue].
         #[method(setURLValue:)]
         pub unsafe fn setURLValue(&self, url_value: Option<&NSURL>);
 
-        #[method_id(@__retain_semantics Other textureSamplerValue)]
+        #[method_id(@__method_family Other textureSamplerValue)]
         pub unsafe fn textureSamplerValue(&self) -> Option<Retained<MDLTextureSampler>>;
 
         /// Setter for [`textureSamplerValue`][Self::textureSamplerValue].
@@ -522,7 +522,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         pub unsafe fn color(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -549,7 +549,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLMaterialProperty {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -568,21 +568,21 @@ unsafe impl NSObjectProtocol for MDLMaterialPropertyConnection {}
 
 extern_methods!(
     unsafe impl MDLMaterialPropertyConnection {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Connects the output to the input
-        #[method_id(@__retain_semantics Init initWithOutput:input:)]
+        #[method_id(@__method_family Init initWithOutput:input:)]
         pub unsafe fn initWithOutput_input(
             this: Allocated<Self>,
             output: &MDLMaterialProperty,
             input: &MDLMaterialProperty,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other output)]
+        #[method_id(@__method_family Other output)]
         pub unsafe fn output(&self) -> Option<Retained<MDLMaterialProperty>>;
 
-        #[method_id(@__retain_semantics Other input)]
+        #[method_id(@__method_family Other input)]
         pub unsafe fn input(&self) -> Option<Retained<MDLMaterialProperty>>;
     }
 );
@@ -590,7 +590,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLMaterialPropertyConnection {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -609,11 +609,11 @@ unsafe impl NSObjectProtocol for MDLMaterialPropertyNode {}
 
 extern_methods!(
     unsafe impl MDLMaterialPropertyNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__retain_semantics Init initWithInputs:outputs:evaluationFunction:)]
+        #[method_id(@__method_family Init initWithInputs:outputs:evaluationFunction:)]
         pub unsafe fn initWithInputs_outputs_evaluationFunction(
             this: Allocated<Self>,
             inputs: &NSArray<MDLMaterialProperty>,
@@ -635,10 +635,10 @@ extern_methods!(
             evaluation_function: &block2::Block<dyn Fn(NonNull<MDLMaterialPropertyNode>)>,
         );
 
-        #[method_id(@__retain_semantics Other inputs)]
+        #[method_id(@__method_family Other inputs)]
         pub unsafe fn inputs(&self) -> Retained<NSArray<MDLMaterialProperty>>;
 
-        #[method_id(@__retain_semantics Other outputs)]
+        #[method_id(@__method_family Other outputs)]
         pub unsafe fn outputs(&self) -> Retained<NSArray<MDLMaterialProperty>>;
     }
 );
@@ -646,7 +646,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLMaterialPropertyNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -669,10 +669,10 @@ unsafe impl NSObjectProtocol for MDLMaterialPropertyGraph {}
 
 extern_methods!(
     unsafe impl MDLMaterialPropertyGraph {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithNodes:connections:)]
+        #[method_id(@__method_family Init initWithNodes:connections:)]
         pub unsafe fn initWithNodes_connections(
             this: Allocated<Self>,
             nodes: &NSArray<MDLMaterialPropertyNode>,
@@ -682,10 +682,10 @@ extern_methods!(
         #[method(evaluate)]
         pub unsafe fn evaluate(&self);
 
-        #[method_id(@__retain_semantics Other nodes)]
+        #[method_id(@__method_family Other nodes)]
         pub unsafe fn nodes(&self) -> Retained<NSArray<MDLMaterialPropertyNode>>;
 
-        #[method_id(@__retain_semantics Other connections)]
+        #[method_id(@__method_family Other connections)]
         pub unsafe fn connections(&self) -> Retained<NSArray<MDLMaterialPropertyConnection>>;
     }
 );
@@ -694,7 +694,7 @@ extern_methods!(
     /// Methods declared on superclass `MDLMaterialPropertyNode`
     unsafe impl MDLMaterialPropertyGraph {
         #[cfg(feature = "block2")]
-        #[method_id(@__retain_semantics Init initWithInputs:outputs:evaluationFunction:)]
+        #[method_id(@__method_family Init initWithInputs:outputs:evaluationFunction:)]
         pub unsafe fn initWithInputs_outputs_evaluationFunction(
             this: Allocated<Self>,
             inputs: &NSArray<MDLMaterialProperty>,
@@ -707,7 +707,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLMaterialPropertyGraph {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -731,35 +731,35 @@ unsafe impl NSObjectProtocol for MDLScatteringFunction {}
 extern_methods!(
     unsafe impl MDLScatteringFunction {
         /// See: MDLNamed
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
-        #[method_id(@__retain_semantics Other baseColor)]
+        #[method_id(@__method_family Other baseColor)]
         pub unsafe fn baseColor(&self) -> Retained<MDLMaterialProperty>;
 
-        #[method_id(@__retain_semantics Other emission)]
+        #[method_id(@__method_family Other emission)]
         pub unsafe fn emission(&self) -> Retained<MDLMaterialProperty>;
 
-        #[method_id(@__retain_semantics Other specular)]
+        #[method_id(@__method_family Other specular)]
         pub unsafe fn specular(&self) -> Retained<MDLMaterialProperty>;
 
-        #[method_id(@__retain_semantics Other materialIndexOfRefraction)]
+        #[method_id(@__method_family Other materialIndexOfRefraction)]
         pub unsafe fn materialIndexOfRefraction(&self) -> Retained<MDLMaterialProperty>;
 
-        #[method_id(@__retain_semantics Other interfaceIndexOfRefraction)]
+        #[method_id(@__method_family Other interfaceIndexOfRefraction)]
         pub unsafe fn interfaceIndexOfRefraction(&self) -> Retained<MDLMaterialProperty>;
 
-        #[method_id(@__retain_semantics Other normal)]
+        #[method_id(@__method_family Other normal)]
         pub unsafe fn normal(&self) -> Retained<MDLMaterialProperty>;
 
-        #[method_id(@__retain_semantics Other ambientOcclusion)]
+        #[method_id(@__method_family Other ambientOcclusion)]
         pub unsafe fn ambientOcclusion(&self) -> Retained<MDLMaterialProperty>;
 
-        #[method_id(@__retain_semantics Other ambientOcclusionScale)]
+        #[method_id(@__method_family Other ambientOcclusionScale)]
         pub unsafe fn ambientOcclusionScale(&self) -> Retained<MDLMaterialProperty>;
     }
 );
@@ -767,10 +767,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLScatteringFunction {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -792,37 +792,37 @@ extern_methods!(
         #[method(version)]
         pub unsafe fn version(&self) -> NSInteger;
 
-        #[method_id(@__retain_semantics Other subsurface)]
+        #[method_id(@__method_family Other subsurface)]
         pub unsafe fn subsurface(&self) -> Retained<MDLMaterialProperty>;
 
-        #[method_id(@__retain_semantics Other metallic)]
+        #[method_id(@__method_family Other metallic)]
         pub unsafe fn metallic(&self) -> Retained<MDLMaterialProperty>;
 
-        #[method_id(@__retain_semantics Other specularAmount)]
+        #[method_id(@__method_family Other specularAmount)]
         pub unsafe fn specularAmount(&self) -> Retained<MDLMaterialProperty>;
 
-        #[method_id(@__retain_semantics Other specularTint)]
+        #[method_id(@__method_family Other specularTint)]
         pub unsafe fn specularTint(&self) -> Retained<MDLMaterialProperty>;
 
-        #[method_id(@__retain_semantics Other roughness)]
+        #[method_id(@__method_family Other roughness)]
         pub unsafe fn roughness(&self) -> Retained<MDLMaterialProperty>;
 
-        #[method_id(@__retain_semantics Other anisotropic)]
+        #[method_id(@__method_family Other anisotropic)]
         pub unsafe fn anisotropic(&self) -> Retained<MDLMaterialProperty>;
 
-        #[method_id(@__retain_semantics Other anisotropicRotation)]
+        #[method_id(@__method_family Other anisotropicRotation)]
         pub unsafe fn anisotropicRotation(&self) -> Retained<MDLMaterialProperty>;
 
-        #[method_id(@__retain_semantics Other sheen)]
+        #[method_id(@__method_family Other sheen)]
         pub unsafe fn sheen(&self) -> Retained<MDLMaterialProperty>;
 
-        #[method_id(@__retain_semantics Other sheenTint)]
+        #[method_id(@__method_family Other sheenTint)]
         pub unsafe fn sheenTint(&self) -> Retained<MDLMaterialProperty>;
 
-        #[method_id(@__retain_semantics Other clearcoat)]
+        #[method_id(@__method_family Other clearcoat)]
         pub unsafe fn clearcoat(&self) -> Retained<MDLMaterialProperty>;
 
-        #[method_id(@__retain_semantics Other clearcoatGloss)]
+        #[method_id(@__method_family Other clearcoatGloss)]
         pub unsafe fn clearcoatGloss(&self) -> Retained<MDLMaterialProperty>;
     }
 );
@@ -830,10 +830,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLPhysicallyPlausibleScatteringFunction {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -876,7 +876,7 @@ unsafe impl NSObjectProtocol for MDLMaterial {}
 
 extern_methods!(
     unsafe impl MDLMaterial {
-        #[method_id(@__retain_semantics Init initWithName:scatteringFunction:)]
+        #[method_id(@__method_family Init initWithName:scatteringFunction:)]
         pub unsafe fn initWithName_scatteringFunction(
             this: Allocated<Self>,
             name: &NSString,
@@ -889,19 +889,19 @@ extern_methods!(
         #[method(removeProperty:)]
         pub unsafe fn removeProperty(&self, property: &MDLMaterialProperty);
 
-        #[method_id(@__retain_semantics Other propertyNamed:)]
+        #[method_id(@__method_family Other propertyNamed:)]
         pub unsafe fn propertyNamed(
             &self,
             name: &NSString,
         ) -> Option<Retained<MDLMaterialProperty>>;
 
-        #[method_id(@__retain_semantics Other propertyWithSemantic:)]
+        #[method_id(@__method_family Other propertyWithSemantic:)]
         pub unsafe fn propertyWithSemantic(
             &self,
             semantic: MDLMaterialSemantic,
         ) -> Option<Retained<MDLMaterialProperty>>;
 
-        #[method_id(@__retain_semantics Other propertiesWithSemantic:)]
+        #[method_id(@__method_family Other propertiesWithSemantic:)]
         pub unsafe fn propertiesWithSemantic(
             &self,
             semantic: MDLMaterialSemantic,
@@ -924,31 +924,31 @@ extern_methods!(
             resolver: &ProtocolObject<dyn MDLAssetResolver>,
         );
 
-        #[method_id(@__retain_semantics Other scatteringFunction)]
+        #[method_id(@__method_family Other scatteringFunction)]
         pub unsafe fn scatteringFunction(&self) -> Retained<MDLScatteringFunction>;
 
         /// See: MDLNamed
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
-        #[method_id(@__retain_semantics Other baseMaterial)]
+        #[method_id(@__method_family Other baseMaterial)]
         pub unsafe fn baseMaterial(&self) -> Option<Retained<MDLMaterial>>;
 
         /// Setter for [`baseMaterial`][Self::baseMaterial].
         #[method(setBaseMaterial:)]
         pub unsafe fn setBaseMaterial(&self, base_material: Option<&MDLMaterial>);
 
-        #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
+        #[method_id(@__method_family Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             idx: NSUInteger,
         ) -> Option<Retained<MDLMaterialProperty>>;
 
-        #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
+        #[method_id(@__method_family Other objectForKeyedSubscript:)]
         pub unsafe fn objectForKeyedSubscript(
             &self,
             name: &NSString,
@@ -969,10 +969,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLMaterial {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

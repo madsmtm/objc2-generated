@@ -73,7 +73,7 @@ extern_protocol!(
         #[method(setAutoreverses:)]
         unsafe fn setAutoreverses(&self, autoreverses: bool);
 
-        #[method_id(@__retain_semantics Other fillMode)]
+        #[method_id(@__method_family Other fillMode)]
         unsafe fn fillMode(&self) -> Retained<CAMediaTimingFillMode>;
 
         /// Setter for [`fillMode`][Self::fillMode].

@@ -23,7 +23,7 @@ extern_methods!(
         ///
         /// - Returns: Returns the shared instance of the AdSupport identifier manager
         /// class.
-        #[method_id(@__retain_semantics Other sharedManager)]
+        #[method_id(@__method_family Other sharedManager)]
         pub unsafe fn sharedManager() -> Retained<ASIdentifierManager>;
 
         /// The UUID that is specific to a device.
@@ -96,7 +96,7 @@ extern_methods!(
         /// For more information about asking users for permission to track, see [User
         /// Privacy and Data
         /// Use](https://developer.apple.com/app-store/user-privacy-and-data-use/).
-        #[method_id(@__retain_semantics Other advertisingIdentifier)]
+        #[method_id(@__method_family Other advertisingIdentifier)]
         pub unsafe fn advertisingIdentifier(&self) -> Retained<NSUUID>;
 
         /// A Boolean value that indicates whether the user has limited ad tracking
@@ -116,10 +116,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASIdentifierManager {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -85,14 +85,14 @@ extern_methods!(
     #[cfg(feature = "CKRecord")]
     unsafe impl CKShare {
         /// When saving a newly created CKShare, you must save the share and its rootRecord in the same CKModifyRecordsOperation batch.
-        #[method_id(@__retain_semantics Init initWithRootRecord:)]
+        #[method_id(@__method_family Init initWithRootRecord:)]
         pub unsafe fn initWithRootRecord(
             this: Allocated<Self>,
             root_record: &CKRecord,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(@__retain_semantics Init initWithRootRecord:shareID:)]
+        #[method_id(@__method_family Init initWithRootRecord:shareID:)]
         pub unsafe fn initWithRootRecord_shareID(
             this: Allocated<Self>,
             root_record: &CKRecord,
@@ -117,13 +117,13 @@ extern_methods!(
         /// `rootRecordID`on the resulting
         /// `CKShareMetadata`is
         /// always absent.
-        #[method_id(@__retain_semantics Init initWithRecordZoneID:)]
+        #[method_id(@__method_family Init initWithRecordZoneID:)]
         pub unsafe fn initWithRecordZoneID(
             this: Allocated<Self>,
             record_zone_id: &CKRecordZoneID,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "CKShareParticipant")]
@@ -152,7 +152,7 @@ extern_methods!(
         ///
         ///
         /// Only available after share record has been saved to the server.  This url is stable, and is tied to the rootRecord.  That is, if you share a rootRecord, delete the share, and re-share the same rootRecord via a newly created share, that newly created share's url will be identical to the prior share's url
-        #[method_id(@__retain_semantics Other URL)]
+        #[method_id(@__method_family Other URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "CKShareParticipant")]
@@ -160,16 +160,16 @@ extern_methods!(
         ///
         ///
         /// At the minimum that will include the owner and the current user.
-        #[method_id(@__retain_semantics Other participants)]
+        #[method_id(@__method_family Other participants)]
         pub unsafe fn participants(&self) -> Retained<NSArray<CKShareParticipant>>;
 
         #[cfg(feature = "CKShareParticipant")]
         /// Convenience methods for fetching special users from the participant array
-        #[method_id(@__retain_semantics Other owner)]
+        #[method_id(@__method_family Other owner)]
         pub unsafe fn owner(&self) -> Retained<CKShareParticipant>;
 
         #[cfg(feature = "CKShareParticipant")]
-        #[method_id(@__retain_semantics Other currentUserParticipant)]
+        #[method_id(@__method_family Other currentUserParticipant)]
         pub unsafe fn currentUserParticipant(&self) -> Option<Retained<CKShareParticipant>>;
 
         #[cfg(feature = "CKShareParticipant")]
@@ -188,20 +188,20 @@ extern_methods!(
         pub unsafe fn removeParticipant(&self, participant: &CKShareParticipant);
 
         /// These superclass-provided initializers are not allowed for CKShare
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithRecordType:)]
+        #[method_id(@__method_family Init initWithRecordType:)]
         pub unsafe fn initWithRecordType(
             this: Allocated<Self>,
             record_type: &CKRecordType,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(@__retain_semantics Init initWithRecordType:recordID:)]
+        #[method_id(@__method_family Init initWithRecordType:recordID:)]
         pub unsafe fn initWithRecordType_recordID(
             this: Allocated<Self>,
             record_type: &CKRecordType,
@@ -209,7 +209,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(@__retain_semantics Init initWithRecordType:zoneID:)]
+        #[method_id(@__method_family Init initWithRecordType:zoneID:)]
         pub unsafe fn initWithRecordType_zoneID(
             this: Allocated<Self>,
             record_type: &CKRecordType,

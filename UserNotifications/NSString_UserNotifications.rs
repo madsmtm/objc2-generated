@@ -10,7 +10,7 @@ extern_category!(
     /// Category "UNUserNotificationCenterSupport" on [`NSString`].
     #[doc(alias = "UNUserNotificationCenterSupport")]
     pub unsafe trait NSStringUNUserNotificationCenterSupport {
-        #[method_id(@__retain_semantics Other localizedUserNotificationStringForKey:arguments:)]
+        #[method_id(@__method_family Other localizedUserNotificationStringForKey:arguments:)]
         unsafe fn localizedUserNotificationStringForKey_arguments(
             key: &NSString,
             arguments: Option<&NSArray>,

@@ -201,7 +201,7 @@ extern_methods!(
         pub unsafe fn isSupportedAttachmentUTI(uti: &NSString, mtm: MainThreadMarker) -> bool;
 
         /// This property is the delegate for the MFMessageComposeViewController method callbacks.
-        #[method_id(@__retain_semantics Other messageComposeDelegate)]
+        #[method_id(@__method_family Other messageComposeDelegate)]
         pub unsafe fn messageComposeDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MFMessageComposeViewControllerDelegate>>>;
@@ -229,7 +229,7 @@ extern_methods!(
         /// <p>
         /// After the view has been presented to the user, this property will no longer change the value.
         /// </p>
-        #[method_id(@__retain_semantics Other recipients)]
+        #[method_id(@__method_family Other recipients)]
         pub unsafe fn recipients(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`recipients`][Self::recipients].
@@ -243,7 +243,7 @@ extern_methods!(
         /// <p>
         /// After the view has been presented to the user, this property will no longer change the value.
         /// </p>
-        #[method_id(@__retain_semantics Other body)]
+        #[method_id(@__method_family Other body)]
         pub unsafe fn body(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`body`][Self::body].
@@ -257,7 +257,7 @@ extern_methods!(
         /// <p>
         /// After the view has been presented to the user, this property will no longer change the value.
         /// </p>
-        #[method_id(@__retain_semantics Other subject)]
+        #[method_id(@__method_family Other subject)]
         pub unsafe fn subject(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subject`][Self::subject].
@@ -268,13 +268,13 @@ extern_methods!(
         ///
         /// This property returns an NSArray of NSDictionaries describing the properties of the current attachments.
         /// See MFMessageComposeViewControllerAttachmentURL, MFMessageComposeViewControllerAttachmentAlternateFilename.
-        #[method_id(@__retain_semantics Other attachments)]
+        #[method_id(@__method_family Other attachments)]
         pub unsafe fn attachments(&self) -> Option<Retained<NSArray<NSDictionary>>>;
 
         #[cfg(feature = "objc2-messages")]
         #[cfg(not(target_os = "visionos"))]
         /// This property sets the initial interactive message.
-        #[method_id(@__retain_semantics Other message)]
+        #[method_id(@__method_family Other message)]
         pub unsafe fn message(&self) -> Option<Retained<MSMessage>>;
 
         #[cfg(feature = "objc2-messages")]
@@ -338,27 +338,27 @@ extern_methods!(
     /// Methods declared on superclass `UINavigationController`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MFMessageComposeViewController {
-        #[method_id(@__retain_semantics Init initWithNavigationBarClass:toolbarClass:)]
+        #[method_id(@__method_family Init initWithNavigationBarClass:toolbarClass:)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
             this: Allocated<Self>,
             navigation_bar_class: Option<&AnyClass>,
             toolbar_class: Option<&AnyClass>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithRootViewController:)]
+        #[method_id(@__method_family Init initWithRootViewController:)]
         pub unsafe fn initWithRootViewController(
             this: Allocated<Self>,
             root_view_controller: &UIViewController,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        #[method_id(@__method_family Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -370,10 +370,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MFMessageComposeViewController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

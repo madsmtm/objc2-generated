@@ -13,7 +13,7 @@ extern_protocol!(
         #[method(canResolveAssetNamed:)]
         unsafe fn canResolveAssetNamed(&self, name: &NSString) -> bool;
 
-        #[method_id(@__retain_semantics Other resolveAssetNamed:)]
+        #[method_id(@__method_family Other resolveAssetNamed:)]
         unsafe fn resolveAssetNamed(&self, name: &NSString) -> Retained<NSURL>;
     }
 );
@@ -36,11 +36,11 @@ unsafe impl NSObjectProtocol for MDLRelativeAssetResolver {}
 extern_methods!(
     unsafe impl MDLRelativeAssetResolver {
         #[cfg(feature = "MDLAsset")]
-        #[method_id(@__retain_semantics Init initWithAsset:)]
+        #[method_id(@__method_family Init initWithAsset:)]
         pub unsafe fn initWithAsset(this: Allocated<Self>, asset: &MDLAsset) -> Retained<Self>;
 
         #[cfg(feature = "MDLAsset")]
-        #[method_id(@__retain_semantics Other asset)]
+        #[method_id(@__method_family Other asset)]
         pub unsafe fn asset(&self) -> Option<Retained<MDLAsset>>;
 
         #[cfg(feature = "MDLAsset")]
@@ -54,10 +54,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLRelativeAssetResolver {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -87,10 +87,10 @@ unsafe impl NSObjectProtocol for MDLPathAssetResolver {}
 
 extern_methods!(
     unsafe impl MDLPathAssetResolver {
-        #[method_id(@__retain_semantics Init initWithPath:)]
+        #[method_id(@__method_family Init initWithPath:)]
         pub unsafe fn initWithPath(this: Allocated<Self>, path: &NSString) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other path)]
+        #[method_id(@__method_family Other path)]
         pub unsafe fn path(&self) -> Retained<NSString>;
 
         /// Setter for [`path`][Self::path].
@@ -102,10 +102,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLPathAssetResolver {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -123,10 +123,10 @@ unsafe impl NSObjectProtocol for MDLBundleAssetResolver {}
 
 extern_methods!(
     unsafe impl MDLBundleAssetResolver {
-        #[method_id(@__retain_semantics Init initWithBundle:)]
+        #[method_id(@__method_family Init initWithBundle:)]
         pub unsafe fn initWithBundle(this: Allocated<Self>, path: &NSString) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other path)]
+        #[method_id(@__method_family Other path)]
         pub unsafe fn path(&self) -> Retained<NSString>;
 
         /// Setter for [`path`][Self::path].
@@ -138,10 +138,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MDLBundleAssetResolver {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

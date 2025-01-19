@@ -29,7 +29,7 @@ extern_methods!(
         /// - dataType: Integer data type of the result tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor array of datatype dataType
-        #[method_id(@__retain_semantics Other quantizeTensor:scale:zeroPoint:dataType:name:)]
+        #[method_id(@__method_family Other quantizeTensor:scale:zeroPoint:dataType:name:)]
         pub unsafe fn quantizeTensor_scale_zeroPoint_dataType_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -55,7 +55,7 @@ extern_methods!(
         /// - dataType: Float data type of the result tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor array of datatype dataType
-        #[method_id(@__retain_semantics Other dequantizeTensor:scale:zeroPoint:dataType:name:)]
+        #[method_id(@__method_family Other dequantizeTensor:scale:zeroPoint:dataType:name:)]
         pub unsafe fn dequantizeTensor_scale_zeroPoint_dataType_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -82,7 +82,7 @@ extern_methods!(
         /// - axis: Axis on which the scale 1D value is being broadcasted
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor array of datatype dataType
-        #[method_id(@__retain_semantics Other quantizeTensor:scaleTensor:zeroPoint:dataType:axis:name:)]
+        #[method_id(@__method_family Other quantizeTensor:scaleTensor:zeroPoint:dataType:axis:name:)]
         pub unsafe fn quantizeTensor_scaleTensor_zeroPoint_dataType_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -110,7 +110,7 @@ extern_methods!(
         /// - axis: Axis on which the scale 1D value is being broadcasted
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor array of datatype dataType
-        #[method_id(@__retain_semantics Other dequantizeTensor:scaleTensor:zeroPoint:dataType:axis:name:)]
+        #[method_id(@__method_family Other dequantizeTensor:scaleTensor:zeroPoint:dataType:axis:name:)]
         pub unsafe fn dequantizeTensor_scaleTensor_zeroPoint_dataType_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -138,7 +138,7 @@ extern_methods!(
         /// - axis: Axis on which the scale 1D value is being broadcasted
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor array of datatype dataType
-        #[method_id(@__retain_semantics Other quantizeTensor:scaleTensor:zeroPointTensor:dataType:axis:name:)]
+        #[method_id(@__method_family Other quantizeTensor:scaleTensor:zeroPointTensor:dataType:axis:name:)]
         pub unsafe fn quantizeTensor_scaleTensor_zeroPointTensor_dataType_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -166,7 +166,7 @@ extern_methods!(
         /// - axis: Axis on which the scale 1D value is being broadcasted
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor array of datatype dataType
-        #[method_id(@__retain_semantics Other dequantizeTensor:scaleTensor:zeroPointTensor:dataType:axis:name:)]
+        #[method_id(@__method_family Other dequantizeTensor:scaleTensor:zeroPointTensor:dataType:axis:name:)]
         pub unsafe fn dequantizeTensor_scaleTensor_zeroPointTensor_dataType_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -195,7 +195,7 @@ extern_methods!(
         /// - dataType: Float data type of the result tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` array of datatype `dataType`.
-        #[method_id(@__retain_semantics Other dequantizeTensor:scaleTensor:zeroPointTensor:dataType:name:)]
+        #[method_id(@__method_family Other dequantizeTensor:scaleTensor:zeroPointTensor:dataType:name:)]
         pub unsafe fn dequantizeTensor_scaleTensor_zeroPointTensor_dataType_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -222,7 +222,7 @@ extern_methods!(
         /// - dataType: Float data type of the result tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` array of datatype `dataType`.
-        #[method_id(@__retain_semantics Other dequantizeTensor:scaleTensor:dataType:name:)]
+        #[method_id(@__method_family Other dequantizeTensor:scaleTensor:dataType:name:)]
         pub unsafe fn dequantizeTensor_scaleTensor_dataType_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -245,7 +245,7 @@ extern_methods!(
         /// - LUTTensor: The lookup table to use - for u4 the last dimension should have 16 elements, and for u8 256 elements.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object.
-        #[method_id(@__retain_semantics Other dequantizeTensor:LUTTensor:name:)]
+        #[method_id(@__method_family Other dequantizeTensor:LUTTensor:name:)]
         pub unsafe fn dequantizeTensor_LUTTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -270,7 +270,7 @@ extern_methods!(
         /// - axis: Axis on which the scale 1D value is being broadcasted.
         /// - name: The name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object.
-        #[method_id(@__retain_semantics Other dequantizeTensor:LUTTensor:axis:name:)]
+        #[method_id(@__method_family Other dequantizeTensor:LUTTensor:axis:name:)]
         pub unsafe fn dequantizeTensor_LUTTensor_axis_name(
             &self,
             tensor: &MPSGraphTensor,

@@ -92,7 +92,7 @@ extern_protocol!(
         /// A label to be attached to associated MTLResources for this node
         ///
         /// Returns: A human readable string for debugging purposes
-        #[method_id(@__retain_semantics Other label)]
+        #[method_id(@__method_family Other label)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -135,28 +135,28 @@ unsafe impl NSObjectProtocol for MPSNNImageNode {}
 
 extern_methods!(
     unsafe impl MPSNNImageNode {
-        #[method_id(@__retain_semantics Init initWithHandle:)]
+        #[method_id(@__method_family Init initWithHandle:)]
         pub unsafe fn initWithHandle(
             this: Allocated<Self>,
             handle: Option<&NSObject>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other nodeWithHandle:)]
+        #[method_id(@__method_family Other nodeWithHandle:)]
         pub unsafe fn nodeWithHandle(handle: Option<&NSObject>) -> Retained<Self>;
 
         /// Create a autoreleased MPSNNImageNode with exportFromGraph = YES.
         ///
         /// Note: image is still temporary. See MPSNNImageNode.imageAllocator parameter.
-        #[method_id(@__retain_semantics Other exportedNodeWithHandle:)]
+        #[method_id(@__method_family Other exportedNodeWithHandle:)]
         pub unsafe fn exportedNodeWithHandle(handle: Option<&NSObject>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// MPS resource identifier
         ///
         /// See MPSHandle protocol description.  Default: nil
-        #[method_id(@__retain_semantics Other handle)]
+        #[method_id(@__method_family Other handle)]
         pub unsafe fn handle(&self) -> Option<Retained<ProtocolObject<dyn MPSHandle>>>;
 
         /// Setter for [`handle`][Self::handle].
@@ -181,7 +181,7 @@ extern_methods!(
         ///
         /// Allows you to influence how the image is allocated
         /// Default: MPSTemporaryImage.defaultAllocator
-        #[method_id(@__retain_semantics Other imageAllocator)]
+        #[method_id(@__method_family Other imageAllocator)]
         pub unsafe fn imageAllocator(&self) -> Retained<ProtocolObject<dyn MPSImageAllocator>>;
 
         #[cfg(all(feature = "MPSCore", feature = "MPSImage"))]
@@ -248,7 +248,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNImageNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -272,13 +272,13 @@ unsafe impl NSObjectProtocol for MPSNNStateNode {}
 
 extern_methods!(
     unsafe impl MPSNNStateNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// MPS resource identification
         ///
         /// See MPSHandle protocol reference.  Default: nil
-        #[method_id(@__retain_semantics Other handle)]
+        #[method_id(@__method_family Other handle)]
         pub unsafe fn handle(&self) -> Option<Retained<ProtocolObject<dyn MPSHandle>>>;
 
         /// Setter for [`handle`][Self::handle].
@@ -323,7 +323,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNStateNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -356,7 +356,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNStateNode`
     unsafe impl MPSNNGradientStateNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -364,7 +364,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNGradientStateNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -385,7 +385,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNStateNode`
     unsafe impl MPSCNNConvolutionGradientStateNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -393,7 +393,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNConvolutionGradientStateNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -419,7 +419,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNStateNode`
     unsafe impl MPSCNNConvolutionTransposeGradientStateNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -427,7 +427,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNConvolutionTransposeGradientStateNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -448,7 +448,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNStateNode`
     unsafe impl MPSNNBinaryGradientStateNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -456,7 +456,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNBinaryGradientStateNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -477,7 +477,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNStateNode`
     unsafe impl MPSNNMultiaryGradientStateNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -485,7 +485,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNMultiaryGradientStateNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -506,7 +506,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNStateNode`
     unsafe impl MPSNNArithmeticGradientStateNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -514,7 +514,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNArithmeticGradientStateNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -573,7 +573,7 @@ unsafe impl NSObjectProtocol for MPSNNFilterNode {}
 
 extern_methods!(
     unsafe impl MPSNNFilterNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Get the node representing the image result of the filter
@@ -581,19 +581,19 @@ extern_methods!(
         /// Except where otherwise noted, the precision used for the
         /// result image (see format property) is copied from the precision
         /// from the first input image node.
-        #[method_id(@__retain_semantics Other resultImage)]
+        #[method_id(@__method_family Other resultImage)]
         pub unsafe fn resultImage(&self) -> Retained<MPSNNImageNode>;
 
         /// convenience method for resultStates[0]
         ///
         /// If resultStates is nil, returns nil
-        #[method_id(@__retain_semantics Other resultState)]
+        #[method_id(@__method_family Other resultState)]
         pub unsafe fn resultState(&self) -> Option<Retained<MPSNNStateNode>>;
 
         /// Get the node representing the state result of the filter
         ///
         /// If more than one, see description of subclass for ordering.
-        #[method_id(@__retain_semantics Other resultStates)]
+        #[method_id(@__method_family Other resultStates)]
         pub unsafe fn resultStates(&self) -> Option<Retained<NSArray<MPSNNStateNode>>>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
@@ -628,7 +628,7 @@ extern_methods!(
         /// in the case of the .offset. However, that computation usually doesn't reset
         /// other properties. In such cases, the custom padding policy may need to keep
         /// a record of the original value to enable consistent behavior.
-        #[method_id(@__retain_semantics Other paddingPolicy)]
+        #[method_id(@__method_family Other paddingPolicy)]
         pub unsafe fn paddingPolicy(&self) -> Retained<ProtocolObject<dyn MPSNNPadding>>;
 
         #[cfg(feature = "MPSNeuralNetworkTypes")]
@@ -637,7 +637,7 @@ extern_methods!(
         pub unsafe fn setPaddingPolicy(&self, padding_policy: &ProtocolObject<dyn MPSNNPadding>);
 
         /// A string to help identify this object.
-        #[method_id(@__retain_semantics Other label)]
+        #[method_id(@__method_family Other label)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -652,7 +652,7 @@ extern_methods!(
         ///
         /// Parameter `gradientImage`: The gradient images corresponding with the resultImage
         /// of the target
-        #[method_id(@__retain_semantics Other gradientFilterWithSource:)]
+        #[method_id(@__method_family Other gradientFilterWithSource:)]
         pub unsafe fn gradientFilterWithSource(
             &self,
             gradient_image: &MPSNNImageNode,
@@ -666,7 +666,7 @@ extern_methods!(
         ///
         /// Parameter `gradientImages`: The gradient images corresponding with the resultImage
         /// of the target
-        #[method_id(@__retain_semantics Other gradientFilterWithSources:)]
+        #[method_id(@__method_family Other gradientFilterWithSources:)]
         pub unsafe fn gradientFilterWithSources(
             &self,
             gradient_images: &NSArray<MPSNNImageNode>,
@@ -679,7 +679,7 @@ extern_methods!(
         /// the end of training. For example, a single concatenation operation
         /// that concatenates multple images will result in an array of slice
         /// operators that carve out subsections of the input gradient image.
-        #[method_id(@__retain_semantics Other gradientFiltersWithSources:)]
+        #[method_id(@__method_family Other gradientFiltersWithSources:)]
         pub unsafe fn gradientFiltersWithSources(
             &self,
             gradient_images: &NSArray<MPSNNImageNode>,
@@ -692,7 +692,7 @@ extern_methods!(
         /// the end of training. For example, a single concatenation operation
         /// that concatenates multple images will result in an array of slice
         /// operators that carve out subsections of the input gradient image.
-        #[method_id(@__retain_semantics Other gradientFiltersWithSource:)]
+        #[method_id(@__method_family Other gradientFiltersWithSource:)]
         pub unsafe fn gradientFiltersWithSource(
             &self,
             gradient_image: &MPSNNImageNode,
@@ -737,7 +737,7 @@ extern_methods!(
         /// Returns: The list of new MPSNNFilterNode training graph termini. These MPSNNFilterNodes
         /// are not necessarily all MPSNNGradientFilterNodes. To build a full list of nodes
         /// created, use a custom nodeHandler. If no nodes are created nil is returned.
-        #[method_id(@__retain_semantics Other trainingGraphWithSourceGradient:nodeHandler:)]
+        #[method_id(@__method_family Other trainingGraphWithSourceGradient:nodeHandler:)]
         pub unsafe fn trainingGraphWithSourceGradient_nodeHandler(
             &self,
             gradient_image: Option<&MPSNNImageNode>,
@@ -749,7 +749,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNFilterNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -778,25 +778,25 @@ unsafe impl NSObjectProtocol for MPSNNGradientFilterNode {}
 
 extern_methods!(
     unsafe impl MPSNNGradientFilterNode {
-        #[method_id(@__retain_semantics Other gradientFilterWithSources:)]
+        #[method_id(@__method_family Other gradientFilterWithSources:)]
         pub unsafe fn gradientFilterWithSources(
             &self,
             source_gradient: &NSArray<MPSNNImageNode>,
         ) -> Retained<MPSNNGradientFilterNode>;
 
-        #[method_id(@__retain_semantics Other gradientFiltersWithSources:)]
+        #[method_id(@__method_family Other gradientFiltersWithSources:)]
         pub unsafe fn gradientFiltersWithSources(
             &self,
             source_gradient: &NSArray<MPSNNImageNode>,
         ) -> Retained<NSArray<MPSNNGradientFilterNode>>;
 
-        #[method_id(@__retain_semantics Other gradientFilterWithSource:)]
+        #[method_id(@__method_family Other gradientFilterWithSource:)]
         pub unsafe fn gradientFilterWithSource(
             &self,
             source_gradient: &MPSNNImageNode,
         ) -> Retained<MPSNNGradientFilterNode>;
 
-        #[method_id(@__retain_semantics Other gradientFiltersWithSource:)]
+        #[method_id(@__method_family Other gradientFiltersWithSource:)]
         pub unsafe fn gradientFiltersWithSource(
             &self,
             source_gradient: &MPSNNImageNode,
@@ -807,7 +807,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNGradientFilterNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -815,7 +815,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNGradientFilterNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -871,7 +871,7 @@ extern_methods!(
         /// have a neuron embedded in the convolution descriptor.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:weights:)]
+        #[method_id(@__method_family Other nodeWithSource:weights:)]
         pub unsafe fn nodeWithSource_weights(
             source_node: &MPSNNImageNode,
             weights: &ProtocolObject<dyn MPSCNNConvolutionDataSource>,
@@ -888,7 +888,7 @@ extern_methods!(
         /// have a neuron embedded in the convolution descriptor.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
-        #[method_id(@__retain_semantics Init initWithSource:weights:)]
+        #[method_id(@__method_family Init initWithSource:weights:)]
         pub unsafe fn initWithSource_weights(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -901,7 +901,7 @@ extern_methods!(
         /// later on in the graph to make sure that the size of the image returned
         /// from the convolution transpose matches the size of the image passed in
         /// to this node.
-        #[method_id(@__retain_semantics Other convolutionGradientState)]
+        #[method_id(@__method_family Other convolutionGradientState)]
         pub unsafe fn convolutionGradientState(
             &self,
         ) -> Option<Retained<MPSCNNConvolutionGradientStateNode>>;
@@ -911,7 +911,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNConvolutionNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -919,7 +919,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNConvolutionNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -949,7 +949,7 @@ extern_methods!(
         /// convolution weights and biases.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:weights:)]
+        #[method_id(@__method_family Other nodeWithSource:weights:)]
         pub unsafe fn nodeWithSource_weights(
             source_node: &MPSNNImageNode,
             weights: &ProtocolObject<dyn MPSCNNConvolutionDataSource>,
@@ -965,7 +965,7 @@ extern_methods!(
         /// convolution weights and biases.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNFullyConnected kernel.
-        #[method_id(@__retain_semantics Init initWithSource:weights:)]
+        #[method_id(@__method_family Init initWithSource:weights:)]
         pub unsafe fn initWithSource_weights(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -977,7 +977,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNFullyConnectedNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -985,7 +985,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNFullyConnectedNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1021,7 +1021,7 @@ extern_methods!(
         /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNBinaryConvolution kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:weights:scaleValue:type:flags:)]
+        #[method_id(@__method_family Other nodeWithSource:weights:scaleValue:type:flags:)]
         pub unsafe fn nodeWithSource_weights_scaleValue_type_flags(
             source_node: &MPSNNImageNode,
             weights: &ProtocolObject<dyn MPSCNNConvolutionDataSource>,
@@ -1046,7 +1046,7 @@ extern_methods!(
         /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNBinaryConvolution kernel.
-        #[method_id(@__retain_semantics Init initWithSource:weights:scaleValue:type:flags:)]
+        #[method_id(@__method_family Init initWithSource:weights:scaleValue:type:flags:)]
         pub unsafe fn initWithSource_weights_scaleValue_type_flags(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -1082,7 +1082,7 @@ extern_methods!(
         /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNBinaryConvolution kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:)]
+        #[method_id(@__method_family Other nodeWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:)]
         pub unsafe fn nodeWithSource_weights_outputBiasTerms_outputScaleTerms_inputBiasTerms_inputScaleTerms_type_flags(
             source_node: &MPSNNImageNode,
             weights: &ProtocolObject<dyn MPSCNNConvolutionDataSource>,
@@ -1120,7 +1120,7 @@ extern_methods!(
         /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNBinaryConvolution kernel.
-        #[method_id(@__retain_semantics Init initWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:)]
+        #[method_id(@__method_family Init initWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:)]
         pub unsafe fn initWithSource_weights_outputBiasTerms_outputScaleTerms_inputBiasTerms_inputScaleTerms_type_flags(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -1134,7 +1134,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// unavailable
-        #[method_id(@__retain_semantics Other convolutionGradientState)]
+        #[method_id(@__method_family Other convolutionGradientState)]
         pub unsafe fn convolutionGradientState(
             &self,
         ) -> Option<Retained<MPSCNNConvolutionGradientStateNode>>;
@@ -1155,7 +1155,7 @@ extern_methods!(
         /// have a neuron embedded in the convolution descriptor.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:weights:)]
+        #[method_id(@__method_family Other nodeWithSource:weights:)]
         pub unsafe fn nodeWithSource_weights(
             source_node: &MPSNNImageNode,
             weights: &ProtocolObject<dyn MPSCNNConvolutionDataSource>,
@@ -1172,7 +1172,7 @@ extern_methods!(
         /// have a neuron embedded in the convolution descriptor.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
-        #[method_id(@__retain_semantics Init initWithSource:weights:)]
+        #[method_id(@__method_family Init initWithSource:weights:)]
         pub unsafe fn initWithSource_weights(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -1184,7 +1184,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNBinaryConvolutionNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -1192,7 +1192,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNBinaryConvolutionNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1233,7 +1233,7 @@ extern_methods!(
         /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNBinaryFullyConnected kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:weights:scaleValue:type:flags:)]
+        #[method_id(@__method_family Other nodeWithSource:weights:scaleValue:type:flags:)]
         pub unsafe fn nodeWithSource_weights_scaleValue_type_flags(
             source_node: &MPSNNImageNode,
             weights: &ProtocolObject<dyn MPSCNNConvolutionDataSource>,
@@ -1258,7 +1258,7 @@ extern_methods!(
         /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNBinaryFullyConnected kernel.
-        #[method_id(@__retain_semantics Init initWithSource:weights:scaleValue:type:flags:)]
+        #[method_id(@__method_family Init initWithSource:weights:scaleValue:type:flags:)]
         pub unsafe fn initWithSource_weights_scaleValue_type_flags(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -1294,7 +1294,7 @@ extern_methods!(
         /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNBinaryFullyConnected kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:)]
+        #[method_id(@__method_family Other nodeWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:)]
         pub unsafe fn nodeWithSource_weights_outputBiasTerms_outputScaleTerms_inputBiasTerms_inputScaleTerms_type_flags(
             source_node: &MPSNNImageNode,
             weights: &ProtocolObject<dyn MPSCNNConvolutionDataSource>,
@@ -1332,7 +1332,7 @@ extern_methods!(
         /// Parameter `flags`: See documentation of MPSCNNBinaryConvolutionFlags.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNBinaryFullyConnected kernel.
-        #[method_id(@__retain_semantics Init initWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:)]
+        #[method_id(@__method_family Init initWithSource:weights:outputBiasTerms:outputScaleTerms:inputBiasTerms:inputScaleTerms:type:flags:)]
         pub unsafe fn initWithSource_weights_outputBiasTerms_outputScaleTerms_inputBiasTerms_inputScaleTerms_type_flags(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -1361,7 +1361,7 @@ extern_methods!(
         /// have a neuron embedded in the convolution descriptor.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:weights:)]
+        #[method_id(@__method_family Other nodeWithSource:weights:)]
         pub unsafe fn nodeWithSource_weights(
             source_node: &MPSNNImageNode,
             weights: &ProtocolObject<dyn MPSCNNConvolutionDataSource>,
@@ -1378,7 +1378,7 @@ extern_methods!(
         /// have a neuron embedded in the convolution descriptor.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
-        #[method_id(@__retain_semantics Init initWithSource:weights:)]
+        #[method_id(@__method_family Init initWithSource:weights:)]
         pub unsafe fn initWithSource_weights(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -1390,7 +1390,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNBinaryFullyConnectedNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -1398,7 +1398,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNBinaryFullyConnectedNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1434,7 +1434,7 @@ extern_methods!(
         /// convolution weights and biases.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNConvolutionTransposeNode kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:convolutionGradientState:weights:)]
+        #[method_id(@__method_family Other nodeWithSource:convolutionGradientState:weights:)]
         pub unsafe fn nodeWithSource_convolutionGradientState_weights(
             source_node: &MPSNNImageNode,
             convolution_gradient_state: Option<&MPSCNNConvolutionGradientStateNode>,
@@ -1457,7 +1457,7 @@ extern_methods!(
         /// convolution weights and biases.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNConvolutionTransposeNode kernel.
-        #[method_id(@__retain_semantics Init initWithSource:convolutionGradientState:weights:)]
+        #[method_id(@__method_family Init initWithSource:convolutionGradientState:weights:)]
         pub unsafe fn initWithSource_convolutionGradientState_weights(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -1466,7 +1466,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// unavailable
-        #[method_id(@__retain_semantics Other convolutionGradientState)]
+        #[method_id(@__method_family Other convolutionGradientState)]
         pub unsafe fn convolutionGradientState(
             &self,
         ) -> Option<Retained<MPSCNNConvolutionGradientStateNode>>;
@@ -1487,7 +1487,7 @@ extern_methods!(
         /// have a neuron embedded in the convolution descriptor.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:weights:)]
+        #[method_id(@__method_family Other nodeWithSource:weights:)]
         pub unsafe fn nodeWithSource_weights(
             source_node: &MPSNNImageNode,
             weights: &ProtocolObject<dyn MPSCNNConvolutionDataSource>,
@@ -1504,7 +1504,7 @@ extern_methods!(
         /// have a neuron embedded in the convolution descriptor.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNConvolution kernel.
-        #[method_id(@__retain_semantics Init initWithSource:weights:)]
+        #[method_id(@__method_family Init initWithSource:weights:)]
         pub unsafe fn initWithSource_weights(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -1516,7 +1516,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNConvolutionTransposeNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -1524,7 +1524,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNConvolutionTransposeNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1558,7 +1558,7 @@ extern_methods!(
         /// from the forward convolution pass.
         ///
         /// Returns: A MPSCNNConvolutionGradientNode
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_convolutionGradientState_weights(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -1582,7 +1582,7 @@ extern_methods!(
         /// from the forward convolution pass.
         ///
         /// Returns: A MPSCNNConvolutionGradientNode
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
         pub unsafe fn initWithSourceGradient_sourceImage_convolutionGradientState_weights(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -1596,7 +1596,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNConvolutionGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -1604,7 +1604,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNConvolutionGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1643,7 +1643,7 @@ extern_methods!(
         /// from the forward fully connected pass.
         ///
         /// Returns: A MPSCNNFullyConnectedGradientNode
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_convolutionGradientState_weights(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -1667,7 +1667,7 @@ extern_methods!(
         /// from the forward convolution pass.
         ///
         /// Returns: A MPSCNNFullyConnectedGradientNode
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
         pub unsafe fn initWithSourceGradient_sourceImage_convolutionGradientState_weights(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -1681,7 +1681,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNFullyConnectedGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -1689,7 +1689,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNFullyConnectedGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1728,7 +1728,7 @@ extern_methods!(
         /// from the forward convolution transpose pass.
         ///
         /// Returns: A MPSCNNConvolutionTransposeGradientNode
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:convolutionTransposeGradientState:weights:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:convolutionTransposeGradientState:weights:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_convolutionTransposeGradientState_weights(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -1752,7 +1752,7 @@ extern_methods!(
         /// from the forward convolution transpose pass.
         ///
         /// Returns: A MPSCNNConvolutionTransposeGradientNode
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:convolutionTransposeGradientState:weights:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:convolutionTransposeGradientState:weights:)]
         pub unsafe fn initWithSourceGradient_sourceImage_convolutionTransposeGradientState_weights(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -1782,7 +1782,7 @@ extern_methods!(
         /// from the forward convolution pass.
         ///
         /// Returns: A MPSCNNConvolutionGradientNode
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_convolutionGradientState_weights(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -1806,7 +1806,7 @@ extern_methods!(
         /// from the forward convolution pass.
         ///
         /// Returns: A MPSCNNConvolutionGradientNode
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:convolutionGradientState:weights:)]
         pub unsafe fn initWithSourceGradient_sourceImage_convolutionGradientState_weights(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -1820,7 +1820,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNConvolutionTransposeGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -1828,7 +1828,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNConvolutionTransposeGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1863,7 +1863,7 @@ extern_methods!(
     unsafe impl MPSCNNNeuronNode {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
-        #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
@@ -1881,7 +1881,7 @@ extern_methods!(
         #[method(c)]
         pub unsafe fn c(&self) -> c_float;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -1889,7 +1889,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNeuronNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1916,13 +1916,13 @@ extern_methods!(
         /// Create an autoreleased node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -1935,13 +1935,13 @@ extern_methods!(
     unsafe impl MPSCNNNeuronAbsoluteNode {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
-        #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -1949,7 +1949,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNeuronAbsoluteNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1974,25 +1974,25 @@ unsafe impl NSObjectProtocol for MPSCNNNeuronELUNode {}
 
 extern_methods!(
     unsafe impl MPSCNNNeuronELUNode {
-        #[method_id(@__retain_semantics Other nodeWithSource:a:)]
+        #[method_id(@__method_family Other nodeWithSource:a:)]
         pub unsafe fn nodeWithSource_a(source_node: &MPSNNImageNode, a: c_float) -> Retained<Self>;
 
         /// Create an autoreleased node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSource:a:)]
+        #[method_id(@__method_family Init initWithSource:a:)]
         pub unsafe fn initWithSource_a(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2006,13 +2006,13 @@ extern_methods!(
     unsafe impl MPSCNNNeuronELUNode {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
-        #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -2020,7 +2020,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNeuronELUNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -2044,14 +2044,14 @@ unsafe impl NSObjectProtocol for MPSCNNNeuronReLUNNode {}
 
 extern_methods!(
     unsafe impl MPSCNNNeuronReLUNNode {
-        #[method_id(@__retain_semantics Other nodeWithSource:a:b:)]
+        #[method_id(@__method_family Other nodeWithSource:a:b:)]
         pub unsafe fn nodeWithSource_a_b(
             source_node: &MPSNNImageNode,
             a: c_float,
             b: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSource:a:b:)]
+        #[method_id(@__method_family Init initWithSource:a:b:)]
         pub unsafe fn initWithSource_a_b(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2062,13 +2062,13 @@ extern_methods!(
         /// Create an autoreleased node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Create an autoreleased node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2081,13 +2081,13 @@ extern_methods!(
     unsafe impl MPSCNNNeuronReLUNNode {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
-        #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -2095,7 +2095,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNeuronReLUNNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -2119,7 +2119,7 @@ unsafe impl NSObjectProtocol for MPSCNNNeuronLinearNode {}
 
 extern_methods!(
     unsafe impl MPSCNNNeuronLinearNode {
-        #[method_id(@__retain_semantics Other nodeWithSource:a:b:)]
+        #[method_id(@__method_family Other nodeWithSource:a:b:)]
         pub unsafe fn nodeWithSource_a_b(
             source_node: &MPSNNImageNode,
             a: c_float,
@@ -2135,7 +2135,7 @@ extern_methods!(
         /// Parameter `b`: See discussion above.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNNeuronLinear kernel.
-        #[method_id(@__retain_semantics Init initWithSource:a:b:)]
+        #[method_id(@__method_family Init initWithSource:a:b:)]
         pub unsafe fn initWithSource_a_b(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2146,13 +2146,13 @@ extern_methods!(
         /// Create an autoreleased node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2165,13 +2165,13 @@ extern_methods!(
     unsafe impl MPSCNNNeuronLinearNode {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
-        #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -2179,7 +2179,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNeuronLinearNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -2204,19 +2204,19 @@ unsafe impl NSObjectProtocol for MPSCNNNeuronReLUNode {}
 
 extern_methods!(
     unsafe impl MPSCNNNeuronReLUNode {
-        #[method_id(@__retain_semantics Other nodeWithSource:a:)]
+        #[method_id(@__method_family Other nodeWithSource:a:)]
         pub unsafe fn nodeWithSource_a(source_node: &MPSNNImageNode, a: c_float) -> Retained<Self>;
 
         /// Create an autoreleased node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2225,7 +2225,7 @@ extern_methods!(
         /// Init a node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Init initWithSource:a:)]
+        #[method_id(@__method_family Init initWithSource:a:)]
         pub unsafe fn initWithSource_a(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2239,13 +2239,13 @@ extern_methods!(
     unsafe impl MPSCNNNeuronReLUNode {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
-        #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -2253,7 +2253,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNeuronReLUNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -2280,13 +2280,13 @@ extern_methods!(
         /// Create an autoreleased node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2299,13 +2299,13 @@ extern_methods!(
     unsafe impl MPSCNNNeuronSigmoidNode {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
-        #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -2313,7 +2313,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNeuronSigmoidNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -2337,7 +2337,7 @@ unsafe impl NSObjectProtocol for MPSCNNNeuronHardSigmoidNode {}
 
 extern_methods!(
     unsafe impl MPSCNNNeuronHardSigmoidNode {
-        #[method_id(@__retain_semantics Other nodeWithSource:a:b:)]
+        #[method_id(@__method_family Other nodeWithSource:a:b:)]
         pub unsafe fn nodeWithSource_a_b(
             source_node: &MPSNNImageNode,
             a: c_float,
@@ -2353,7 +2353,7 @@ extern_methods!(
         /// Parameter `b`: See discussion above.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNNeuronHardSigmoid kernel.
-        #[method_id(@__retain_semantics Init initWithSource:a:b:)]
+        #[method_id(@__method_family Init initWithSource:a:b:)]
         pub unsafe fn initWithSource_a_b(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2364,13 +2364,13 @@ extern_methods!(
         /// Create an autoreleased node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2383,13 +2383,13 @@ extern_methods!(
     unsafe impl MPSCNNNeuronHardSigmoidNode {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
-        #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -2397,7 +2397,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNeuronHardSigmoidNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -2421,7 +2421,7 @@ unsafe impl NSObjectProtocol for MPSCNNNeuronSoftPlusNode {}
 
 extern_methods!(
     unsafe impl MPSCNNNeuronSoftPlusNode {
-        #[method_id(@__retain_semantics Other nodeWithSource:a:b:)]
+        #[method_id(@__method_family Other nodeWithSource:a:b:)]
         pub unsafe fn nodeWithSource_a_b(
             source_node: &MPSNNImageNode,
             a: c_float,
@@ -2437,7 +2437,7 @@ extern_methods!(
         /// Parameter `b`: See discussion above.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNNeuronSoftPlus kernel.
-        #[method_id(@__retain_semantics Init initWithSource:a:b:)]
+        #[method_id(@__method_family Init initWithSource:a:b:)]
         pub unsafe fn initWithSource_a_b(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2448,13 +2448,13 @@ extern_methods!(
         /// Create an autoreleased node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2467,13 +2467,13 @@ extern_methods!(
     unsafe impl MPSCNNNeuronSoftPlusNode {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
-        #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -2481,7 +2481,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNeuronSoftPlusNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -2508,13 +2508,13 @@ extern_methods!(
         /// Create an autoreleased node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2527,13 +2527,13 @@ extern_methods!(
     unsafe impl MPSCNNNeuronSoftSignNode {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
-        #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -2541,7 +2541,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNeuronSoftSignNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -2565,7 +2565,7 @@ unsafe impl NSObjectProtocol for MPSCNNNeuronTanHNode {}
 
 extern_methods!(
     unsafe impl MPSCNNNeuronTanHNode {
-        #[method_id(@__retain_semantics Other nodeWithSource:a:b:)]
+        #[method_id(@__method_family Other nodeWithSource:a:b:)]
         pub unsafe fn nodeWithSource_a_b(
             source_node: &MPSNNImageNode,
             a: c_float,
@@ -2588,7 +2588,7 @@ extern_methods!(
         /// Parameter `b`: See discussion above.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNNeuronTanH kernel.
-        #[method_id(@__retain_semantics Init initWithSource:a:b:)]
+        #[method_id(@__method_family Init initWithSource:a:b:)]
         pub unsafe fn initWithSource_a_b(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2599,13 +2599,13 @@ extern_methods!(
         /// Create an autoreleased node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node with default values for parameters a
         /// &
         /// b
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2618,13 +2618,13 @@ extern_methods!(
     unsafe impl MPSCNNNeuronTanHNode {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
-        #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -2632,7 +2632,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNeuronTanHNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -2659,7 +2659,7 @@ unsafe impl NSObjectProtocol for MPSCNNNeuronPReLUNode {}
 
 extern_methods!(
     unsafe impl MPSCNNNeuronPReLUNode {
-        #[method_id(@__retain_semantics Other nodeWithSource:aData:)]
+        #[method_id(@__method_family Other nodeWithSource:aData:)]
         pub unsafe fn nodeWithSource_aData(
             source_node: &MPSNNImageNode,
             a_data: &NSData,
@@ -2680,17 +2680,17 @@ extern_methods!(
         /// Parameter `aData`: An array of single precision floating-point alpha values to use
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNNeuronTanH kernel.
-        #[method_id(@__retain_semantics Init initWithSource:aData:)]
+        #[method_id(@__method_family Init initWithSource:aData:)]
         pub unsafe fn initWithSource_aData(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
             a_data: &NSData,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2703,13 +2703,13 @@ extern_methods!(
     unsafe impl MPSCNNNeuronPReLUNode {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
-        #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -2717,7 +2717,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNeuronPReLUNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -2741,7 +2741,7 @@ unsafe impl NSObjectProtocol for MPSCNNNeuronPowerNode {}
 
 extern_methods!(
     unsafe impl MPSCNNNeuronPowerNode {
-        #[method_id(@__retain_semantics Other nodeWithSource:a:b:c:)]
+        #[method_id(@__method_family Other nodeWithSource:a:b:c:)]
         pub unsafe fn nodeWithSource_a_b_c(
             source_node: &MPSNNImageNode,
             a: c_float,
@@ -2767,7 +2767,7 @@ extern_methods!(
         /// Parameter `c`: See discussion above.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNNeuronPower kernel.
-        #[method_id(@__retain_semantics Init initWithSource:a:b:c:)]
+        #[method_id(@__method_family Init initWithSource:a:b:c:)]
         pub unsafe fn initWithSource_a_b_c(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2777,11 +2777,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Create an autoreleased node with default values for parameters a, b, and c
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node with default values for parameters a, b, and c
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2794,13 +2794,13 @@ extern_methods!(
     unsafe impl MPSCNNNeuronPowerNode {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
-        #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -2808,7 +2808,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNeuronPowerNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -2832,7 +2832,7 @@ unsafe impl NSObjectProtocol for MPSCNNNeuronExponentialNode {}
 
 extern_methods!(
     unsafe impl MPSCNNNeuronExponentialNode {
-        #[method_id(@__retain_semantics Other nodeWithSource:a:b:c:)]
+        #[method_id(@__method_family Other nodeWithSource:a:b:c:)]
         pub unsafe fn nodeWithSource_a_b_c(
             source_node: &MPSNNImageNode,
             a: c_float,
@@ -2858,7 +2858,7 @@ extern_methods!(
         /// Parameter `c`: See discussion above.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNNeuronExponential kernel.
-        #[method_id(@__retain_semantics Init initWithSource:a:b:c:)]
+        #[method_id(@__method_family Init initWithSource:a:b:c:)]
         pub unsafe fn initWithSource_a_b_c(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2868,11 +2868,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Create an autoreleased node with default values for parameters a, b, and c
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node with default values for parameters a, b, and c
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2885,13 +2885,13 @@ extern_methods!(
     unsafe impl MPSCNNNeuronExponentialNode {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
-        #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -2899,7 +2899,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNeuronExponentialNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -2923,7 +2923,7 @@ unsafe impl NSObjectProtocol for MPSCNNNeuronLogarithmNode {}
 
 extern_methods!(
     unsafe impl MPSCNNNeuronLogarithmNode {
-        #[method_id(@__retain_semantics Other nodeWithSource:a:b:c:)]
+        #[method_id(@__method_family Other nodeWithSource:a:b:c:)]
         pub unsafe fn nodeWithSource_a_b_c(
             source_node: &MPSNNImageNode,
             a: c_float,
@@ -2949,7 +2949,7 @@ extern_methods!(
         /// Parameter `c`: See discussion above.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNNeuronLogarithm kernel.
-        #[method_id(@__retain_semantics Init initWithSource:a:b:c:)]
+        #[method_id(@__method_family Init initWithSource:a:b:c:)]
         pub unsafe fn initWithSource_a_b_c(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2959,11 +2959,11 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Create an autoreleased node with default values for parameters a, b, and c
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node with default values for parameters a, b, and c
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -2976,13 +2976,13 @@ extern_methods!(
     unsafe impl MPSCNNNeuronLogarithmNode {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
-        #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -2990,7 +2990,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNeuronLogarithmNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3017,14 +3017,14 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNNeuronLogarithm kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
         ) -> Retained<Self>;
 
         /// Create an autoreleased node
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
     }
 );
@@ -3034,13 +3034,13 @@ extern_methods!(
     unsafe impl MPSCNNNeuronGeLUNode {
         #[cfg(feature = "MPSCNNNeuron")]
         /// Create a neuron node of the appropriate type with a MPSNNNeuronDescriptor
-        #[method_id(@__retain_semantics Other nodeWithSource:descriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:descriptor:)]
         pub unsafe fn nodeWithSource_descriptor(
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3048,7 +3048,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNeuronGeLUNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3074,7 +3074,7 @@ extern_methods!(
         ///
         /// See also -[MPSCNNNeuronNode gradientFilterNodeWithSources:]
         /// for an easier way to do this
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:descriptor:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:descriptor:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_descriptor(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -3087,7 +3087,7 @@ extern_methods!(
         ///
         /// See also -[MPSCNNNeuronNode gradientFilterNodeWithSources:]
         /// for an easier way to do this
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:descriptor:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:descriptor:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_descriptor(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -3098,10 +3098,10 @@ extern_methods!(
 
         #[cfg(feature = "MPSCNNNeuron")]
         /// The neuron descriptor
-        #[method_id(@__retain_semantics Other descriptor)]
+        #[method_id(@__method_family Other descriptor)]
         pub unsafe fn descriptor(&self) -> Retained<MPSNNNeuronDescriptor>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3109,7 +3109,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNeuronGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3144,7 +3144,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing an MPS reduction kernel.
@@ -3152,7 +3152,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -3163,7 +3163,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNUnaryReductionNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3171,7 +3171,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNUnaryReductionNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3197,7 +3197,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing an MPS reduction kernel.
@@ -3205,7 +3205,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -3216,7 +3216,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReductionRowMinNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3224,7 +3224,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReductionRowMinNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3250,7 +3250,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing an MPS reduction kernel.
@@ -3258,7 +3258,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -3269,7 +3269,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReductionColumnMinNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3277,7 +3277,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReductionColumnMinNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3303,7 +3303,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing an MPS reduction kernel.
@@ -3311,7 +3311,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -3322,7 +3322,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReductionFeatureChannelsMinNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3330,7 +3330,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReductionFeatureChannelsMinNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3356,7 +3356,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing an MPS reduction kernel.
@@ -3364,7 +3364,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -3375,7 +3375,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReductionFeatureChannelsArgumentMinNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3383,7 +3383,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReductionFeatureChannelsArgumentMinNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3409,7 +3409,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing an MPS reduction kernel.
@@ -3417,7 +3417,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -3428,7 +3428,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReductionRowMaxNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3436,7 +3436,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReductionRowMaxNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3462,7 +3462,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing an MPS reduction kernel.
@@ -3470,7 +3470,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -3481,7 +3481,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReductionColumnMaxNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3489,7 +3489,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReductionColumnMaxNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3515,7 +3515,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing an MPS reduction kernel.
@@ -3523,7 +3523,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -3534,7 +3534,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReductionFeatureChannelsMaxNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3542,7 +3542,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReductionFeatureChannelsMaxNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3568,7 +3568,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing an MPS reduction kernel.
@@ -3576,7 +3576,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -3587,7 +3587,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReductionFeatureChannelsArgumentMaxNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3595,7 +3595,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReductionFeatureChannelsArgumentMaxNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3621,7 +3621,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing an MPS reduction kernel.
@@ -3629,7 +3629,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -3640,7 +3640,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReductionRowMeanNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3648,7 +3648,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReductionRowMeanNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3674,7 +3674,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing an MPS reduction kernel.
@@ -3682,7 +3682,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -3693,7 +3693,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReductionColumnMeanNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3701,7 +3701,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReductionColumnMeanNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3727,7 +3727,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing an MPS reduction kernel.
@@ -3735,7 +3735,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -3746,7 +3746,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReductionFeatureChannelsMeanNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3754,7 +3754,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReductionFeatureChannelsMeanNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3780,7 +3780,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing an MPS reduction kernel.
@@ -3788,7 +3788,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -3799,7 +3799,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReductionSpatialMeanNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3807,7 +3807,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReductionSpatialMeanNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3833,7 +3833,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing an MPS reduction kernel.
@@ -3841,7 +3841,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -3852,7 +3852,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReductionRowSumNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3860,7 +3860,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReductionRowSumNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3886,7 +3886,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing an MPS reduction kernel.
@@ -3894,7 +3894,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -3905,7 +3905,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReductionColumnSumNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3913,7 +3913,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReductionColumnSumNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -3947,7 +3947,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing an MPS reduction kernel.
@@ -3955,7 +3955,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for an MPS reduction kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -3966,7 +3966,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReductionFeatureChannelsSumNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -3974,7 +3974,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReductionFeatureChannelsSumNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -4015,7 +4015,7 @@ extern_methods!(
         /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = size
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:filterSize:)]
+        #[method_id(@__method_family Other nodeWithSource:filterSize:)]
         pub unsafe fn nodeWithSource_filterSize(
             source_node: &MPSNNImageNode,
             size: NSUInteger,
@@ -4030,7 +4030,7 @@ extern_methods!(
         /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:filterSize:stride:)]
+        #[method_id(@__method_family Other nodeWithSource:filterSize:stride:)]
         pub unsafe fn nodeWithSource_filterSize_stride(
             source_node: &MPSNNImageNode,
             size: NSUInteger,
@@ -4050,7 +4050,7 @@ extern_methods!(
         /// Parameter `strideInPixelsY`: The output stride (downsampling factor) in the y dimension.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Init initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
+        #[method_id(@__method_family Init initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
         pub unsafe fn initWithSource_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -4069,7 +4069,7 @@ extern_methods!(
         /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Init initWithSource:filterSize:stride:)]
+        #[method_id(@__method_family Init initWithSource:filterSize:stride:)]
         pub unsafe fn initWithSource_filterSize_stride(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -4084,7 +4084,7 @@ extern_methods!(
         /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = size
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Init initWithSource:filterSize:)]
+        #[method_id(@__method_family Init initWithSource:filterSize:)]
         pub unsafe fn initWithSource_filterSize(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -4096,7 +4096,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNPoolingNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -4104,7 +4104,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNPoolingNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -4136,7 +4136,7 @@ extern_methods!(
         /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = size
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:filterSize:)]
+        #[method_id(@__method_family Other nodeWithSource:filterSize:)]
         pub unsafe fn nodeWithSource_filterSize(
             source_node: &MPSNNImageNode,
             size: NSUInteger,
@@ -4151,7 +4151,7 @@ extern_methods!(
         /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:filterSize:stride:)]
+        #[method_id(@__method_family Other nodeWithSource:filterSize:stride:)]
         pub unsafe fn nodeWithSource_filterSize_stride(
             source_node: &MPSNNImageNode,
             size: NSUInteger,
@@ -4171,7 +4171,7 @@ extern_methods!(
         /// Parameter `strideInPixelsY`: The output stride (downsampling factor) in the y dimension.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Init initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
+        #[method_id(@__method_family Init initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
         pub unsafe fn initWithSource_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -4190,7 +4190,7 @@ extern_methods!(
         /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Init initWithSource:filterSize:stride:)]
+        #[method_id(@__method_family Init initWithSource:filterSize:stride:)]
         pub unsafe fn initWithSource_filterSize_stride(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -4205,7 +4205,7 @@ extern_methods!(
         /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = size
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Init initWithSource:filterSize:)]
+        #[method_id(@__method_family Init initWithSource:filterSize:)]
         pub unsafe fn initWithSource_filterSize(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -4217,7 +4217,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNPoolingAverageNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -4225,7 +4225,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNPoolingAverageNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -4257,7 +4257,7 @@ extern_methods!(
         /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = size
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:filterSize:)]
+        #[method_id(@__method_family Other nodeWithSource:filterSize:)]
         pub unsafe fn nodeWithSource_filterSize(
             source_node: &MPSNNImageNode,
             size: NSUInteger,
@@ -4272,7 +4272,7 @@ extern_methods!(
         /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:filterSize:stride:)]
+        #[method_id(@__method_family Other nodeWithSource:filterSize:stride:)]
         pub unsafe fn nodeWithSource_filterSize_stride(
             source_node: &MPSNNImageNode,
             size: NSUInteger,
@@ -4292,7 +4292,7 @@ extern_methods!(
         /// Parameter `strideInPixelsY`: The output stride (downsampling factor) in the y dimension.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Init initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
+        #[method_id(@__method_family Init initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
         pub unsafe fn initWithSource_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -4311,7 +4311,7 @@ extern_methods!(
         /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Init initWithSource:filterSize:stride:)]
+        #[method_id(@__method_family Init initWithSource:filterSize:stride:)]
         pub unsafe fn initWithSource_filterSize_stride(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -4326,7 +4326,7 @@ extern_methods!(
         /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = size
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Init initWithSource:filterSize:)]
+        #[method_id(@__method_family Init initWithSource:filterSize:)]
         pub unsafe fn initWithSource_filterSize(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -4338,7 +4338,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNPoolingL2NormNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -4346,7 +4346,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNPoolingL2NormNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -4378,7 +4378,7 @@ extern_methods!(
         /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = size
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:filterSize:)]
+        #[method_id(@__method_family Other nodeWithSource:filterSize:)]
         pub unsafe fn nodeWithSource_filterSize(
             source_node: &MPSNNImageNode,
             size: NSUInteger,
@@ -4393,7 +4393,7 @@ extern_methods!(
         /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:filterSize:stride:)]
+        #[method_id(@__method_family Other nodeWithSource:filterSize:stride:)]
         pub unsafe fn nodeWithSource_filterSize_stride(
             source_node: &MPSNNImageNode,
             size: NSUInteger,
@@ -4413,7 +4413,7 @@ extern_methods!(
         /// Parameter `strideInPixelsY`: The output stride (downsampling factor) in the y dimension.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Init initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
+        #[method_id(@__method_family Init initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:)]
         pub unsafe fn initWithSource_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -4432,7 +4432,7 @@ extern_methods!(
         /// Parameter `stride`: strideInPixelsX = strideInPixelsY = stride
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Init initWithSource:filterSize:stride:)]
+        #[method_id(@__method_family Init initWithSource:filterSize:stride:)]
         pub unsafe fn initWithSource_filterSize_stride(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -4447,7 +4447,7 @@ extern_methods!(
         /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = size
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Init initWithSource:filterSize:)]
+        #[method_id(@__method_family Init initWithSource:filterSize:)]
         pub unsafe fn initWithSource_filterSize(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -4459,7 +4459,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNPoolingMaxNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -4467,7 +4467,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNPoolingMaxNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -4500,7 +4500,7 @@ extern_methods!(
         /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = dilationRateX = dilationRateY = size
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNDilatedPooling kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:filterSize:)]
+        #[method_id(@__method_family Other nodeWithSource:filterSize:)]
         pub unsafe fn nodeWithSource_filterSize(
             source_node: &MPSNNImageNode,
             size: NSUInteger,
@@ -4517,7 +4517,7 @@ extern_methods!(
         /// Parameter `dilationRate`: dilationRateX = dilationRateY = stride
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNDilatedPooling kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:filterSize:stride:dilationRate:)]
+        #[method_id(@__method_family Other nodeWithSource:filterSize:stride:dilationRate:)]
         pub unsafe fn nodeWithSource_filterSize_stride_dilationRate(
             source_node: &MPSNNImageNode,
             size: NSUInteger,
@@ -4542,7 +4542,7 @@ extern_methods!(
         /// Parameter `dilationRateY`: The dilation factor in the y dimension.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNPooling kernel.
-        #[method_id(@__retain_semantics Init initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:dilationRateX:dilationRateY:)]
+        #[method_id(@__method_family Init initWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:dilationRateX:dilationRateY:)]
         pub unsafe fn initWithSource_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_dilationRateX_dilationRateY(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -4565,7 +4565,7 @@ extern_methods!(
         /// Parameter `dilationRate`: dilationRateX = dilationRateY = stride
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNDilatedPooling kernel.
-        #[method_id(@__retain_semantics Init initWithSource:filterSize:stride:dilationRate:)]
+        #[method_id(@__method_family Init initWithSource:filterSize:stride:dilationRate:)]
         pub unsafe fn initWithSource_filterSize_stride_dilationRate(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -4581,7 +4581,7 @@ extern_methods!(
         /// Parameter `size`: kernelWidth = kernelHeight = strideInPixelsX = strideInPixelsY = dilationRateX = dilationRateY = size
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNDilatedPooling kernel.
-        #[method_id(@__retain_semantics Init initWithSource:filterSize:)]
+        #[method_id(@__method_family Init initWithSource:filterSize:)]
         pub unsafe fn initWithSource_filterSize(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -4593,7 +4593,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNDilatedPoolingMaxNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -4601,7 +4601,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNDilatedPoolingMaxNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -4635,7 +4635,7 @@ extern_methods!(
         /// Parameter `strideInPixelsX`: The X stride from the inference filter
         ///
         /// Parameter `strideInPixelsY`: The Y stride from the inference filter
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -4665,7 +4665,7 @@ extern_methods!(
         /// Parameter `strideInPixelsX`: The X stride from the inference filter
         ///
         /// Parameter `strideInPixelsY`: The Y stride from the inference filter
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -4695,7 +4695,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNPoolingGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -4703,7 +4703,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNPoolingGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -4747,7 +4747,7 @@ extern_methods!(
         /// Parameter `strideInPixelsX`: The X stride from the inference filter
         ///
         /// Parameter `strideInPixelsY`: The Y stride from the inference filter
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -4777,7 +4777,7 @@ extern_methods!(
         /// Parameter `strideInPixelsX`: The X stride from the inference filter
         ///
         /// Parameter `strideInPixelsY`: The Y stride from the inference filter
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -4795,7 +4795,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNPoolingMaxGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -4803,7 +4803,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNPoolingMaxGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -4847,7 +4847,7 @@ extern_methods!(
         /// Parameter `strideInPixelsX`: The X stride from the inference filter
         ///
         /// Parameter `strideInPixelsY`: The Y stride from the inference filter
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -4877,7 +4877,7 @@ extern_methods!(
         /// Parameter `strideInPixelsX`: The X stride from the inference filter
         ///
         /// Parameter `strideInPixelsY`: The Y stride from the inference filter
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -4895,7 +4895,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNPoolingAverageGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -4903,7 +4903,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNPoolingAverageGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -4947,7 +4947,7 @@ extern_methods!(
         /// Parameter `strideInPixelsX`: The X stride from the inference filter
         ///
         /// Parameter `strideInPixelsY`: The Y stride from the inference filter
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -4977,7 +4977,7 @@ extern_methods!(
         /// Parameter `strideInPixelsX`: The X stride from the inference filter
         ///
         /// Parameter `strideInPixelsY`: The Y stride from the inference filter
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -4995,7 +4995,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNPoolingL2NormGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -5003,7 +5003,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNPoolingL2NormGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -5041,7 +5041,7 @@ extern_methods!(
         /// Parameter `strideInPixelsX`: The X stride from the inference filter
         ///
         /// Parameter `strideInPixelsY`: The Y stride from the inference filter
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:dilationRateX:dilationRateY:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:dilationRateX:dilationRateY:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_dilationRateX_dilationRateY(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -5071,7 +5071,7 @@ extern_methods!(
         /// Parameter `strideInPixelsX`: The X stride from the inference filter
         ///
         /// Parameter `strideInPixelsY`: The Y stride from the inference filter
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:dilationRateX:dilationRateY:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:dilationRateX:dilationRateY:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_dilationRateX_dilationRateY(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -5114,7 +5114,7 @@ extern_methods!(
         /// Parameter `strideInPixelsX`: The X stride from the inference filter
         ///
         /// Parameter `strideInPixelsY`: The Y stride from the inference filter
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -5144,7 +5144,7 @@ extern_methods!(
         /// Parameter `strideInPixelsX`: The X stride from the inference filter
         ///
         /// Parameter `strideInPixelsY`: The Y stride from the inference filter
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY_paddingPolicy(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -5162,7 +5162,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNDilatedPoolingMaxGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -5170,7 +5170,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNDilatedPoolingMaxGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -5212,10 +5212,10 @@ extern_methods!(
         #[method(setDelta:)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -5226,7 +5226,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNNormalizationNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -5234,7 +5234,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNNormalizationNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -5280,20 +5280,20 @@ extern_methods!(
         #[method(setKernelHeight:)]
         pub unsafe fn setKernelHeight(&self, kernel_height: NSUInteger);
 
-        #[method_id(@__retain_semantics Other nodeWithSource:kernelSize:)]
+        #[method_id(@__method_family Other nodeWithSource:kernelSize:)]
         pub unsafe fn nodeWithSource_kernelSize(
             source_node: &MPSNNImageNode,
             kernel_size: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSource:kernelSize:)]
+        #[method_id(@__method_family Init initWithSource:kernelSize:)]
         pub unsafe fn initWithSource_kernelSize(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
             kernel_size: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -5304,7 +5304,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSCNNNormalizationNode`
     unsafe impl MPSCNNSpatialNormalizationNode {
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
     }
 );
@@ -5312,7 +5312,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNSpatialNormalizationNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -5320,7 +5320,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNSpatialNormalizationNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -5350,7 +5350,7 @@ extern_methods!(
         #[method(setKernelHeight:)]
         pub unsafe fn setKernelHeight(&self, kernel_height: NSUInteger);
 
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:kernelSize:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:kernelSize:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_kernelSize(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -5358,7 +5358,7 @@ extern_methods!(
             kernel_size: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:kernelSize:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:kernelSize:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_kernelSize(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -5396,7 +5396,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNSpatialNormalizationGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -5404,7 +5404,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNSpatialNormalizationGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -5475,20 +5475,20 @@ extern_methods!(
         #[method(setKernelHeight:)]
         pub unsafe fn setKernelHeight(&self, kernel_height: NSUInteger);
 
-        #[method_id(@__retain_semantics Other nodeWithSource:kernelSize:)]
+        #[method_id(@__method_family Other nodeWithSource:kernelSize:)]
         pub unsafe fn nodeWithSource_kernelSize(
             source_node: &MPSNNImageNode,
             kernel_size: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSource:kernelSize:)]
+        #[method_id(@__method_family Init initWithSource:kernelSize:)]
         pub unsafe fn initWithSource_kernelSize(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
             kernel_size: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -5499,7 +5499,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSCNNNormalizationNode`
     unsafe impl MPSCNNLocalContrastNormalizationNode {
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
     }
 );
@@ -5507,7 +5507,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNLocalContrastNormalizationNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -5515,7 +5515,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNLocalContrastNormalizationNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -5531,7 +5531,7 @@ unsafe impl NSObjectProtocol for MPSCNNLocalContrastNormalizationGradientNode {}
 
 extern_methods!(
     unsafe impl MPSCNNLocalContrastNormalizationGradientNode {
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -5540,7 +5540,7 @@ extern_methods!(
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_kernelWidth_kernelHeight(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -5615,7 +5615,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNLocalContrastNormalizationGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -5623,7 +5623,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNLocalContrastNormalizationGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -5669,20 +5669,20 @@ extern_methods!(
             kernel_size_in_feature_channels: NSUInteger,
         );
 
-        #[method_id(@__retain_semantics Other nodeWithSource:kernelSize:)]
+        #[method_id(@__method_family Other nodeWithSource:kernelSize:)]
         pub unsafe fn nodeWithSource_kernelSize(
             source_node: &MPSNNImageNode,
             kernel_size: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSource:kernelSize:)]
+        #[method_id(@__method_family Init initWithSource:kernelSize:)]
         pub unsafe fn initWithSource_kernelSize(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
             kernel_size: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -5693,7 +5693,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSCNNNormalizationNode`
     unsafe impl MPSCNNCrossChannelNormalizationNode {
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
     }
 );
@@ -5701,7 +5701,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNCrossChannelNormalizationNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -5709,7 +5709,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNCrossChannelNormalizationNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -5725,7 +5725,7 @@ unsafe impl NSObjectProtocol for MPSCNNCrossChannelNormalizationGradientNode {}
 
 extern_methods!(
     unsafe impl MPSCNNCrossChannelNormalizationGradientNode {
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:kernelSize:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:kernelSize:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_kernelSize(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -5733,7 +5733,7 @@ extern_methods!(
             kernel_size: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:kernelSize:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:kernelSize:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_kernelSize(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -5750,7 +5750,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNCrossChannelNormalizationGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -5758,7 +5758,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNCrossChannelNormalizationGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -5787,14 +5787,14 @@ extern_methods!(
         pub unsafe fn setTrainingStyle(&self, training_style: MPSNNTrainingStyle);
 
         #[cfg(feature = "MPSCNNInstanceNormalization")]
-        #[method_id(@__retain_semantics Other nodeWithSource:dataSource:)]
+        #[method_id(@__method_family Other nodeWithSource:dataSource:)]
         pub unsafe fn nodeWithSource_dataSource(
             source: &MPSNNImageNode,
             data_source: &ProtocolObject<dyn MPSCNNInstanceNormalizationDataSource>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNInstanceNormalization")]
-        #[method_id(@__retain_semantics Init initWithSource:dataSource:)]
+        #[method_id(@__method_family Init initWithSource:dataSource:)]
         pub unsafe fn initWithSource_dataSource(
             this: Allocated<Self>,
             source: &MPSNNImageNode,
@@ -5806,7 +5806,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNInstanceNormalizationNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -5814,7 +5814,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNInstanceNormalizationNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -5832,14 +5832,14 @@ unsafe impl NSObjectProtocol for MPSCNNInstanceNormalizationGradientNode {}
 
 extern_methods!(
     unsafe impl MPSCNNInstanceNormalizationGradientNode {
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
             gradient_state: &MPSNNGradientStateNode,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -5852,7 +5852,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNInstanceNormalizationGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -5860,7 +5860,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNInstanceNormalizationGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -5889,14 +5889,14 @@ extern_methods!(
         pub unsafe fn setTrainingStyle(&self, training_style: MPSNNTrainingStyle);
 
         #[cfg(feature = "MPSCNNGroupNormalization")]
-        #[method_id(@__retain_semantics Other nodeWithSource:dataSource:)]
+        #[method_id(@__method_family Other nodeWithSource:dataSource:)]
         pub unsafe fn nodeWithSource_dataSource(
             source: &MPSNNImageNode,
             data_source: &ProtocolObject<dyn MPSCNNGroupNormalizationDataSource>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNGroupNormalization")]
-        #[method_id(@__retain_semantics Init initWithSource:dataSource:)]
+        #[method_id(@__method_family Init initWithSource:dataSource:)]
         pub unsafe fn initWithSource_dataSource(
             this: Allocated<Self>,
             source: &MPSNNImageNode,
@@ -5908,7 +5908,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNGroupNormalizationNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -5916,7 +5916,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNGroupNormalizationNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -5934,14 +5934,14 @@ unsafe impl NSObjectProtocol for MPSCNNGroupNormalizationGradientNode {}
 
 extern_methods!(
     unsafe impl MPSCNNGroupNormalizationGradientNode {
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
             gradient_state: &MPSNNGradientStateNode,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -5954,7 +5954,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNGroupNormalizationGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -5962,7 +5962,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNGroupNormalizationGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -6026,14 +6026,14 @@ extern_methods!(
         pub unsafe fn setTrainingStyle(&self, training_style: MPSNNTrainingStyle);
 
         #[cfg(feature = "MPSCNNBatchNormalization")]
-        #[method_id(@__retain_semantics Other nodeWithSource:dataSource:)]
+        #[method_id(@__method_family Other nodeWithSource:dataSource:)]
         pub unsafe fn nodeWithSource_dataSource(
             source: &MPSNNImageNode,
             data_source: &ProtocolObject<dyn MPSCNNBatchNormalizationDataSource>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNBatchNormalization")]
-        #[method_id(@__retain_semantics Init initWithSource:dataSource:)]
+        #[method_id(@__method_family Init initWithSource:dataSource:)]
         pub unsafe fn initWithSource_dataSource(
             this: Allocated<Self>,
             source: &MPSNNImageNode,
@@ -6045,7 +6045,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNBatchNormalizationNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -6053,7 +6053,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNBatchNormalizationNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -6078,14 +6078,14 @@ unsafe impl NSObjectProtocol for MPSCNNBatchNormalizationGradientNode {}
 
 extern_methods!(
     unsafe impl MPSCNNBatchNormalizationGradientNode {
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
             gradient_state: &MPSNNGradientStateNode,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -6098,7 +6098,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNBatchNormalizationGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -6106,7 +6106,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNBatchNormalizationGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -6144,7 +6144,7 @@ extern_methods!(
         /// Parameter `sourceNode`: A valid MPSNNImageNode
         ///
         /// Parameter `size`: The size of the output image {width, height, depth}
-        #[method_id(@__retain_semantics Other nodeWithSource:outputSize:)]
+        #[method_id(@__method_family Other nodeWithSource:outputSize:)]
         pub unsafe fn nodeWithSource_outputSize(
             source_node: &MPSNNImageNode,
             size: MTLSize,
@@ -6157,7 +6157,7 @@ extern_methods!(
         /// Parameter `transformProvider`: If non-nil, a valid MPSImageTransformProvider that provides the region of interest
         ///
         /// Parameter `size`: The size of the output image {width, height, depth}
-        #[method_id(@__retain_semantics Other nodeWithSource:transformProvider:outputSize:)]
+        #[method_id(@__method_family Other nodeWithSource:transformProvider:outputSize:)]
         pub unsafe fn nodeWithSource_transformProvider_outputSize(
             source_node: &MPSNNImageNode,
             transform_provider: Option<&ProtocolObject<dyn MPSImageTransformProvider>>,
@@ -6169,7 +6169,7 @@ extern_methods!(
         /// Parameter `sourceNode`: A valid MPSNNImageNode
         ///
         /// Parameter `size`: The size of the output image {width, height, depth}
-        #[method_id(@__retain_semantics Init initWithSource:outputSize:)]
+        #[method_id(@__method_family Init initWithSource:outputSize:)]
         pub unsafe fn initWithSource_outputSize(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -6183,7 +6183,7 @@ extern_methods!(
         /// Parameter `transformProvider`: If non-nil, a valid MPSImageTransformProvider that provides the region of interest
         ///
         /// Parameter `size`: The size of the output image {width, height, depth}
-        #[method_id(@__retain_semantics Init initWithSource:transformProvider:outputSize:)]
+        #[method_id(@__method_family Init initWithSource:transformProvider:outputSize:)]
         pub unsafe fn initWithSource_transformProvider_outputSize(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -6196,7 +6196,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNScaleNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -6204,7 +6204,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNScaleNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -6237,7 +6237,7 @@ extern_methods!(
         /// Parameter `sourceNode`: A valid MPSNNImageNode
         ///
         /// Parameter `size`: The size of the output image {width, height, depth}
-        #[method_id(@__retain_semantics Other nodeWithSource:outputSize:)]
+        #[method_id(@__method_family Other nodeWithSource:outputSize:)]
         pub unsafe fn nodeWithSource_outputSize(
             source_node: &MPSNNImageNode,
             size: MTLSize,
@@ -6250,7 +6250,7 @@ extern_methods!(
         /// Parameter `transformProvider`: If non-nil, a valid MPSImageTransformProvider that provides the region of interest
         ///
         /// Parameter `size`: The size of the output image {width, height, depth}
-        #[method_id(@__retain_semantics Other nodeWithSource:transformProvider:outputSize:)]
+        #[method_id(@__method_family Other nodeWithSource:transformProvider:outputSize:)]
         pub unsafe fn nodeWithSource_transformProvider_outputSize(
             source_node: &MPSNNImageNode,
             transform_provider: Option<&ProtocolObject<dyn MPSImageTransformProvider>>,
@@ -6262,7 +6262,7 @@ extern_methods!(
         /// Parameter `sourceNode`: A valid MPSNNImageNode
         ///
         /// Parameter `size`: The size of the output image {width, height, depth}
-        #[method_id(@__retain_semantics Init initWithSource:outputSize:)]
+        #[method_id(@__method_family Init initWithSource:outputSize:)]
         pub unsafe fn initWithSource_outputSize(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -6276,7 +6276,7 @@ extern_methods!(
         /// Parameter `transformProvider`: If non-nil, a valid MPSImageTransformProvider that provides the region of interest
         ///
         /// Parameter `size`: The size of the output image {width, height, depth}
-        #[method_id(@__retain_semantics Init initWithSource:transformProvider:outputSize:)]
+        #[method_id(@__method_family Init initWithSource:transformProvider:outputSize:)]
         pub unsafe fn initWithSource_transformProvider_outputSize(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -6289,7 +6289,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNBilinearScaleNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -6297,7 +6297,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNBilinearScaleNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -6331,7 +6331,7 @@ extern_methods!(
         /// Parameter `sourceNode`: A valid MPSNNImageNode
         ///
         /// Parameter `size`: The size of the output image {width, height, depth}
-        #[method_id(@__retain_semantics Other nodeWithSource:outputSize:)]
+        #[method_id(@__method_family Other nodeWithSource:outputSize:)]
         pub unsafe fn nodeWithSource_outputSize(
             source_node: &MPSNNImageNode,
             size: MTLSize,
@@ -6344,7 +6344,7 @@ extern_methods!(
         /// Parameter `transformProvider`: If non-nil, a valid MPSImageTransformProvider that provides the region of interest
         ///
         /// Parameter `size`: The size of the output image {width, height, depth}
-        #[method_id(@__retain_semantics Other nodeWithSource:transformProvider:outputSize:)]
+        #[method_id(@__method_family Other nodeWithSource:transformProvider:outputSize:)]
         pub unsafe fn nodeWithSource_transformProvider_outputSize(
             source_node: &MPSNNImageNode,
             transform_provider: Option<&ProtocolObject<dyn MPSImageTransformProvider>>,
@@ -6356,7 +6356,7 @@ extern_methods!(
         /// Parameter `sourceNode`: A valid MPSNNImageNode
         ///
         /// Parameter `size`: The size of the output image {width, height, depth}
-        #[method_id(@__retain_semantics Init initWithSource:outputSize:)]
+        #[method_id(@__method_family Init initWithSource:outputSize:)]
         pub unsafe fn initWithSource_outputSize(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -6370,7 +6370,7 @@ extern_methods!(
         /// Parameter `transformProvider`: If non-nil, a valid MPSImageTransformProvider that provides the region of interest
         ///
         /// Parameter `size`: The size of the output image {width, height, depth}
-        #[method_id(@__retain_semantics Init initWithSource:transformProvider:outputSize:)]
+        #[method_id(@__method_family Init initWithSource:transformProvider:outputSize:)]
         pub unsafe fn initWithSource_transformProvider_outputSize(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -6383,7 +6383,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNLanczosScaleNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -6391,7 +6391,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNLanczosScaleNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -6412,7 +6412,7 @@ extern_methods!(
         /// create an autoreleased arithemtic node with an array of sources
         ///
         /// Parameter `sourceNodes`: A valid NSArray containing two sources
-        #[method_id(@__retain_semantics Other nodeWithSources:)]
+        #[method_id(@__method_family Other nodeWithSources:)]
         pub unsafe fn nodeWithSources(source_nodes: &NSArray<MPSNNImageNode>) -> Retained<Self>;
 
         /// create an autoreleased arithemtic node with two sources
@@ -6420,7 +6420,7 @@ extern_methods!(
         /// Parameter `left`: the left operand
         ///
         /// Parameter `right`: the right operand
-        #[method_id(@__retain_semantics Other nodeWithLeftSource:rightSource:)]
+        #[method_id(@__method_family Other nodeWithLeftSource:rightSource:)]
         pub unsafe fn nodeWithLeftSource_rightSource(
             left: &MPSNNImageNode,
             right: &MPSNNImageNode,
@@ -6429,7 +6429,7 @@ extern_methods!(
         /// init an arithemtic node with an array of sources
         ///
         /// Parameter `sourceNodes`: A valid NSArray containing two sources
-        #[method_id(@__retain_semantics Init initWithSources:)]
+        #[method_id(@__method_family Init initWithSources:)]
         pub unsafe fn initWithSources(
             this: Allocated<Self>,
             source_nodes: &NSArray<MPSNNImageNode>,
@@ -6440,7 +6440,7 @@ extern_methods!(
         /// Parameter `left`: the left operand
         ///
         /// Parameter `right`: the right operand
-        #[method_id(@__retain_semantics Init initWithLeftSource:rightSource:)]
+        #[method_id(@__method_family Init initWithLeftSource:rightSource:)]
         pub unsafe fn initWithLeftSource_rightSource(
             this: Allocated<Self>,
             left: &MPSNNImageNode,
@@ -6450,7 +6450,7 @@ extern_methods!(
         #[method(gradientClass)]
         pub unsafe fn gradientClass(&self) -> &'static AnyClass;
 
-        #[method_id(@__retain_semantics Other gradientFilterWithSources:)]
+        #[method_id(@__method_family Other gradientFilterWithSources:)]
         pub unsafe fn gradientFilterWithSources(
             &self,
             gradient_images: &NSArray<MPSNNImageNode>,
@@ -6460,7 +6460,7 @@ extern_methods!(
         ///
         /// Create two new arithmetic gradient nodes - one that computes the gradient for the primary
         /// source image and one that computes the gradient for the secondary sourcefrom the inference pass.
-        #[method_id(@__retain_semantics Other gradientFiltersWithSources:)]
+        #[method_id(@__method_family Other gradientFiltersWithSources:)]
         pub unsafe fn gradientFiltersWithSources(
             &self,
             gradient_images: &NSArray<MPSNNImageNode>,
@@ -6554,7 +6554,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNBinaryArithmeticNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -6562,7 +6562,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNBinaryArithmeticNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -6588,7 +6588,7 @@ extern_methods!(
         /// create an autoreleased arithemtic node with an array of sources
         ///
         /// Parameter `sourceNodes`: A valid NSArray containing two sources
-        #[method_id(@__retain_semantics Other nodeWithSources:)]
+        #[method_id(@__method_family Other nodeWithSources:)]
         pub unsafe fn nodeWithSources(source_nodes: &NSArray<MPSNNImageNode>) -> Retained<Self>;
 
         /// create an autoreleased arithemtic node with two sources
@@ -6596,7 +6596,7 @@ extern_methods!(
         /// Parameter `left`: the left operand
         ///
         /// Parameter `right`: the right operand
-        #[method_id(@__retain_semantics Other nodeWithLeftSource:rightSource:)]
+        #[method_id(@__method_family Other nodeWithLeftSource:rightSource:)]
         pub unsafe fn nodeWithLeftSource_rightSource(
             left: &MPSNNImageNode,
             right: &MPSNNImageNode,
@@ -6605,7 +6605,7 @@ extern_methods!(
         /// init an arithemtic node with an array of sources
         ///
         /// Parameter `sourceNodes`: A valid NSArray containing two sources
-        #[method_id(@__retain_semantics Init initWithSources:)]
+        #[method_id(@__method_family Init initWithSources:)]
         pub unsafe fn initWithSources(
             this: Allocated<Self>,
             source_nodes: &NSArray<MPSNNImageNode>,
@@ -6616,7 +6616,7 @@ extern_methods!(
         /// Parameter `left`: the left operand
         ///
         /// Parameter `right`: the right operand
-        #[method_id(@__retain_semantics Init initWithLeftSource:rightSource:)]
+        #[method_id(@__method_family Init initWithLeftSource:rightSource:)]
         pub unsafe fn initWithLeftSource_rightSource(
             this: Allocated<Self>,
             left: &MPSNNImageNode,
@@ -6628,7 +6628,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNAdditionNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -6636,7 +6636,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNAdditionNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -6662,7 +6662,7 @@ extern_methods!(
         /// create an autoreleased arithemtic node with an array of sources
         ///
         /// Parameter `sourceNodes`: A valid NSArray containing two sources
-        #[method_id(@__retain_semantics Other nodeWithSources:)]
+        #[method_id(@__method_family Other nodeWithSources:)]
         pub unsafe fn nodeWithSources(source_nodes: &NSArray<MPSNNImageNode>) -> Retained<Self>;
 
         /// create an autoreleased arithemtic node with two sources
@@ -6670,7 +6670,7 @@ extern_methods!(
         /// Parameter `left`: the left operand
         ///
         /// Parameter `right`: the right operand
-        #[method_id(@__retain_semantics Other nodeWithLeftSource:rightSource:)]
+        #[method_id(@__method_family Other nodeWithLeftSource:rightSource:)]
         pub unsafe fn nodeWithLeftSource_rightSource(
             left: &MPSNNImageNode,
             right: &MPSNNImageNode,
@@ -6679,7 +6679,7 @@ extern_methods!(
         /// init an arithemtic node with an array of sources
         ///
         /// Parameter `sourceNodes`: A valid NSArray containing two sources
-        #[method_id(@__retain_semantics Init initWithSources:)]
+        #[method_id(@__method_family Init initWithSources:)]
         pub unsafe fn initWithSources(
             this: Allocated<Self>,
             source_nodes: &NSArray<MPSNNImageNode>,
@@ -6690,7 +6690,7 @@ extern_methods!(
         /// Parameter `left`: the left operand
         ///
         /// Parameter `right`: the right operand
-        #[method_id(@__retain_semantics Init initWithLeftSource:rightSource:)]
+        #[method_id(@__method_family Init initWithLeftSource:rightSource:)]
         pub unsafe fn initWithLeftSource_rightSource(
             this: Allocated<Self>,
             left: &MPSNNImageNode,
@@ -6702,7 +6702,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNSubtractionNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -6710,7 +6710,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNSubtractionNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -6736,7 +6736,7 @@ extern_methods!(
         /// create an autoreleased arithemtic node with an array of sources
         ///
         /// Parameter `sourceNodes`: A valid NSArray containing two sources
-        #[method_id(@__retain_semantics Other nodeWithSources:)]
+        #[method_id(@__method_family Other nodeWithSources:)]
         pub unsafe fn nodeWithSources(source_nodes: &NSArray<MPSNNImageNode>) -> Retained<Self>;
 
         /// create an autoreleased arithemtic node with two sources
@@ -6744,7 +6744,7 @@ extern_methods!(
         /// Parameter `left`: the left operand
         ///
         /// Parameter `right`: the right operand
-        #[method_id(@__retain_semantics Other nodeWithLeftSource:rightSource:)]
+        #[method_id(@__method_family Other nodeWithLeftSource:rightSource:)]
         pub unsafe fn nodeWithLeftSource_rightSource(
             left: &MPSNNImageNode,
             right: &MPSNNImageNode,
@@ -6753,7 +6753,7 @@ extern_methods!(
         /// init an arithemtic node with an array of sources
         ///
         /// Parameter `sourceNodes`: A valid NSArray containing two sources
-        #[method_id(@__retain_semantics Init initWithSources:)]
+        #[method_id(@__method_family Init initWithSources:)]
         pub unsafe fn initWithSources(
             this: Allocated<Self>,
             source_nodes: &NSArray<MPSNNImageNode>,
@@ -6764,7 +6764,7 @@ extern_methods!(
         /// Parameter `left`: the left operand
         ///
         /// Parameter `right`: the right operand
-        #[method_id(@__retain_semantics Init initWithLeftSource:rightSource:)]
+        #[method_id(@__method_family Init initWithLeftSource:rightSource:)]
         pub unsafe fn initWithLeftSource_rightSource(
             this: Allocated<Self>,
             left: &MPSNNImageNode,
@@ -6776,7 +6776,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNMultiplicationNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -6784,7 +6784,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNMultiplicationNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -6810,7 +6810,7 @@ extern_methods!(
         /// create an autoreleased arithemtic node with an array of sources
         ///
         /// Parameter `sourceNodes`: A valid NSArray containing two sources
-        #[method_id(@__retain_semantics Other nodeWithSources:)]
+        #[method_id(@__method_family Other nodeWithSources:)]
         pub unsafe fn nodeWithSources(source_nodes: &NSArray<MPSNNImageNode>) -> Retained<Self>;
 
         /// create an autoreleased arithemtic node with two sources
@@ -6818,7 +6818,7 @@ extern_methods!(
         /// Parameter `left`: the left operand
         ///
         /// Parameter `right`: the right operand
-        #[method_id(@__retain_semantics Other nodeWithLeftSource:rightSource:)]
+        #[method_id(@__method_family Other nodeWithLeftSource:rightSource:)]
         pub unsafe fn nodeWithLeftSource_rightSource(
             left: &MPSNNImageNode,
             right: &MPSNNImageNode,
@@ -6827,7 +6827,7 @@ extern_methods!(
         /// init an arithemtic node with an array of sources
         ///
         /// Parameter `sourceNodes`: A valid NSArray containing two sources
-        #[method_id(@__retain_semantics Init initWithSources:)]
+        #[method_id(@__method_family Init initWithSources:)]
         pub unsafe fn initWithSources(
             this: Allocated<Self>,
             source_nodes: &NSArray<MPSNNImageNode>,
@@ -6838,7 +6838,7 @@ extern_methods!(
         /// Parameter `left`: the left operand
         ///
         /// Parameter `right`: the right operand
-        #[method_id(@__retain_semantics Init initWithLeftSource:rightSource:)]
+        #[method_id(@__method_family Init initWithLeftSource:rightSource:)]
         pub unsafe fn initWithLeftSource_rightSource(
             this: Allocated<Self>,
             left: &MPSNNImageNode,
@@ -6850,7 +6850,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNDivisionNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -6858,7 +6858,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNDivisionNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -6895,7 +6895,7 @@ extern_methods!(
         /// create an autoreleased arithemtic node with an array of sources
         ///
         /// Parameter `sourceNodes`: A valid NSArray containing two sources
-        #[method_id(@__retain_semantics Other nodeWithSources:)]
+        #[method_id(@__method_family Other nodeWithSources:)]
         pub unsafe fn nodeWithSources(source_nodes: &NSArray<MPSNNImageNode>) -> Retained<Self>;
 
         /// create an autoreleased arithemtic node with two sources
@@ -6903,7 +6903,7 @@ extern_methods!(
         /// Parameter `left`: the left operand
         ///
         /// Parameter `right`: the right operand
-        #[method_id(@__retain_semantics Other nodeWithLeftSource:rightSource:)]
+        #[method_id(@__method_family Other nodeWithLeftSource:rightSource:)]
         pub unsafe fn nodeWithLeftSource_rightSource(
             left: &MPSNNImageNode,
             right: &MPSNNImageNode,
@@ -6912,7 +6912,7 @@ extern_methods!(
         /// init an arithemtic node with an array of sources
         ///
         /// Parameter `sourceNodes`: A valid NSArray containing two sources
-        #[method_id(@__retain_semantics Init initWithSources:)]
+        #[method_id(@__method_family Init initWithSources:)]
         pub unsafe fn initWithSources(
             this: Allocated<Self>,
             source_nodes: &NSArray<MPSNNImageNode>,
@@ -6923,7 +6923,7 @@ extern_methods!(
         /// Parameter `left`: the left operand
         ///
         /// Parameter `right`: the right operand
-        #[method_id(@__retain_semantics Init initWithLeftSource:rightSource:)]
+        #[method_id(@__method_family Init initWithLeftSource:rightSource:)]
         pub unsafe fn initWithLeftSource_rightSource(
             this: Allocated<Self>,
             left: &MPSNNImageNode,
@@ -6935,7 +6935,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNComparisonNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -6943,7 +6943,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNComparisonNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -6969,7 +6969,7 @@ extern_methods!(
         /// Parameter `sourceImage`: The source input image from the forward pass (primary or secondary).
         ///
         /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter.
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_isSecondarySourceFilter(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -6987,7 +6987,7 @@ extern_methods!(
         /// Parameter `sourceImage`: The source input image from the forward pass (primary or secondary).
         ///
         /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter.
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_isSecondarySourceFilter(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -7009,7 +7009,7 @@ extern_methods!(
         /// Parameter `isSecondarySourceFilter`: The isSecondarySourceFilter property is used to indicate whether the arithmetic
         /// gradient filter is operating on the primary or secondary source image from the
         /// forward pass.
-        #[method_id(@__retain_semantics Init initWithGradientImages:forwardFilter:isSecondarySourceFilter:)]
+        #[method_id(@__method_family Init initWithGradientImages:forwardFilter:isSecondarySourceFilter:)]
         pub unsafe fn initWithGradientImages_forwardFilter_isSecondarySourceFilter(
             this: Allocated<Self>,
             gradient_images: &NSArray<MPSNNImageNode>,
@@ -7084,7 +7084,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNArithmeticGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -7092,7 +7092,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNArithmeticGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -7132,7 +7132,7 @@ extern_methods!(
         /// Parameter `sourceImage`: The source input image from the forward pass (primary or secondary).
         ///
         /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter.
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_isSecondarySourceFilter(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -7150,7 +7150,7 @@ extern_methods!(
         /// Parameter `sourceImage`: The source input image from the forward pass (primary or secondary).
         ///
         /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter.
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_isSecondarySourceFilter(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -7172,7 +7172,7 @@ extern_methods!(
         /// Parameter `isSecondarySourceFilter`: The isSecondarySourceFilter property is used to indicate whether the arithmetic
         /// gradient filter is operating on the primary or secondary source image from the
         /// forward pass.
-        #[method_id(@__retain_semantics Init initWithGradientImages:forwardFilter:isSecondarySourceFilter:)]
+        #[method_id(@__method_family Init initWithGradientImages:forwardFilter:isSecondarySourceFilter:)]
         pub unsafe fn initWithGradientImages_forwardFilter_isSecondarySourceFilter(
             this: Allocated<Self>,
             gradient_images: &NSArray<MPSNNImageNode>,
@@ -7185,7 +7185,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNAdditionGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -7193,7 +7193,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNAdditionGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -7233,7 +7233,7 @@ extern_methods!(
         /// Parameter `sourceImage`: The source input image from the forward pass (primary or secondary).
         ///
         /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter.
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_isSecondarySourceFilter(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -7251,7 +7251,7 @@ extern_methods!(
         /// Parameter `sourceImage`: The source input image from the forward pass (primary or secondary).
         ///
         /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter.
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_isSecondarySourceFilter(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -7273,7 +7273,7 @@ extern_methods!(
         /// Parameter `isSecondarySourceFilter`: The isSecondarySourceFilter property is used to indicate whether the arithmetic
         /// gradient filter is operating on the primary or secondary source image from the
         /// forward pass.
-        #[method_id(@__retain_semantics Init initWithGradientImages:forwardFilter:isSecondarySourceFilter:)]
+        #[method_id(@__method_family Init initWithGradientImages:forwardFilter:isSecondarySourceFilter:)]
         pub unsafe fn initWithGradientImages_forwardFilter_isSecondarySourceFilter(
             this: Allocated<Self>,
             gradient_images: &NSArray<MPSNNImageNode>,
@@ -7286,7 +7286,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNSubtractionGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -7294,7 +7294,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNSubtractionGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -7334,7 +7334,7 @@ extern_methods!(
         /// Parameter `sourceImage`: The source input image from the forward pass (primary or secondary).
         ///
         /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter.
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_isSecondarySourceFilter(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -7352,7 +7352,7 @@ extern_methods!(
         /// Parameter `sourceImage`: The source input image from the forward pass (primary or secondary).
         ///
         /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter.
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_isSecondarySourceFilter(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -7374,7 +7374,7 @@ extern_methods!(
         /// Parameter `isSecondarySourceFilter`: The isSecondarySourceFilter property is used to indicate whether the arithmetic
         /// gradient filter is operating on the primary or secondary source image from the
         /// forward pass.
-        #[method_id(@__retain_semantics Init initWithGradientImages:forwardFilter:isSecondarySourceFilter:)]
+        #[method_id(@__method_family Init initWithGradientImages:forwardFilter:isSecondarySourceFilter:)]
         pub unsafe fn initWithGradientImages_forwardFilter_isSecondarySourceFilter(
             this: Allocated<Self>,
             gradient_images: &NSArray<MPSNNImageNode>,
@@ -7387,7 +7387,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNMultiplicationGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -7395,7 +7395,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNMultiplicationGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -7411,29 +7411,29 @@ unsafe impl NSObjectProtocol for MPSCNNDropoutNode {}
 
 extern_methods!(
     unsafe impl MPSCNNDropoutNode {
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source: &MPSNNImageNode) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source: &MPSNNImageNode,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other nodeWithSource:keepProbability:)]
+        #[method_id(@__method_family Other nodeWithSource:keepProbability:)]
         pub unsafe fn nodeWithSource_keepProbability(
             source: &MPSNNImageNode,
             keep_probability: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSource:keepProbability:)]
+        #[method_id(@__method_family Init initWithSource:keepProbability:)]
         pub unsafe fn initWithSource_keepProbability(
             this: Allocated<Self>,
             source: &MPSNNImageNode,
             keep_probability: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other nodeWithSource:keepProbability:seed:maskStrideInPixels:)]
+        #[method_id(@__method_family Other nodeWithSource:keepProbability:seed:maskStrideInPixels:)]
         pub unsafe fn nodeWithSource_keepProbability_seed_maskStrideInPixels(
             source: &MPSNNImageNode,
             keep_probability: c_float,
@@ -7441,7 +7441,7 @@ extern_methods!(
             mask_stride_in_pixels: MTLSize,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSource:keepProbability:seed:maskStrideInPixels:)]
+        #[method_id(@__method_family Init initWithSource:keepProbability:seed:maskStrideInPixels:)]
         pub unsafe fn initWithSource_keepProbability_seed_maskStrideInPixels(
             this: Allocated<Self>,
             source: &MPSNNImageNode,
@@ -7464,7 +7464,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNDropoutNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -7472,7 +7472,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNDropoutNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -7492,7 +7492,7 @@ extern_methods!(
         ///
         /// See also -[MPSCNNNeuronNode gradientFilterNodeWithSources:]
         /// for an easier way to do this
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:keepProbability:seed:maskStrideInPixels:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:keepProbability:seed:maskStrideInPixels:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_keepProbability_seed_maskStrideInPixels(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -7506,7 +7506,7 @@ extern_methods!(
         ///
         /// See also -[MPSCNNNeuronNode gradientFilterNodeWithSources:]
         /// for an easier way to do this
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:keepProbability:seed:maskStrideInPixels:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:keepProbability:seed:maskStrideInPixels:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_keepProbability_seed_maskStrideInPixels(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -7531,7 +7531,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNDropoutGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -7539,7 +7539,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNDropoutGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -7568,7 +7568,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNStateNode`
     unsafe impl MPSNNLabelsNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -7576,7 +7576,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNLabelsNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -7602,14 +7602,14 @@ unsafe impl NSObjectProtocol for MPSCNNLossNode {}
 extern_methods!(
     unsafe impl MPSCNNLossNode {
         #[cfg(feature = "MPSCNNLoss")]
-        #[method_id(@__retain_semantics Other nodeWithSource:lossDescriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:lossDescriptor:)]
         pub unsafe fn nodeWithSource_lossDescriptor(
             source: &MPSNNImageNode,
             descriptor: &MPSCNNLossDescriptor,
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNLoss")]
-        #[method_id(@__retain_semantics Init initWithSource:lossDescriptor:)]
+        #[method_id(@__method_family Init initWithSource:lossDescriptor:)]
         pub unsafe fn initWithSource_lossDescriptor(
             this: Allocated<Self>,
             source: &MPSNNImageNode,
@@ -7617,14 +7617,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Get the input node for labes and weights, for example to set the handle
-        #[method_id(@__retain_semantics Other inputLabels)]
+        #[method_id(@__method_family Other inputLabels)]
         pub unsafe fn inputLabels(&self) -> Retained<MPSNNLabelsNode>;
 
         /// The loss filter is its own gradient filter and doesn't provide a corresponding gradient node.
         ///
         /// The image returned by the loss filter is the gradient image to be consumed by
         /// the gradient filters corresponding to preceeding inference nodes.
-        #[method_id(@__retain_semantics Other gradientFilterWithSources:)]
+        #[method_id(@__method_family Other gradientFilterWithSources:)]
         pub unsafe fn gradientFilterWithSources(
             &self,
             gradient_images: &NSArray<MPSNNImageNode>,
@@ -7635,7 +7635,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNLossNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -7643,7 +7643,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNLossNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -7669,14 +7669,14 @@ unsafe impl NSObjectProtocol for MPSCNNYOLOLossNode {}
 extern_methods!(
     unsafe impl MPSCNNYOLOLossNode {
         #[cfg(feature = "MPSCNNLoss")]
-        #[method_id(@__retain_semantics Other nodeWithSource:lossDescriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:lossDescriptor:)]
         pub unsafe fn nodeWithSource_lossDescriptor(
             source: &MPSNNImageNode,
             descriptor: &MPSCNNYOLOLossDescriptor,
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNLoss")]
-        #[method_id(@__retain_semantics Init initWithSource:lossDescriptor:)]
+        #[method_id(@__method_family Init initWithSource:lossDescriptor:)]
         pub unsafe fn initWithSource_lossDescriptor(
             this: Allocated<Self>,
             source: &MPSNNImageNode,
@@ -7684,14 +7684,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Get the input node for labes and weights, for example to set the handle
-        #[method_id(@__retain_semantics Other inputLabels)]
+        #[method_id(@__method_family Other inputLabels)]
         pub unsafe fn inputLabels(&self) -> Retained<MPSNNLabelsNode>;
 
         /// The loss filter is its own gradient filter and doesn't provide a corresponding gradient node.
         ///
         /// The image returned by the loss filter is the gradient image to be consumed by
         /// the gradient filters corresponding to preceeding inference nodes.
-        #[method_id(@__retain_semantics Other gradientFilterWithSources:)]
+        #[method_id(@__method_family Other gradientFilterWithSources:)]
         pub unsafe fn gradientFilterWithSources(
             &self,
             gradient_images: &NSArray<MPSNNImageNode>,
@@ -7702,7 +7702,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNYOLOLossNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -7710,7 +7710,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNYOLOLossNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -7761,7 +7761,7 @@ extern_methods!(
         /// Parameter `sourceNodes`: The MPSNNImageNode representing the source MPSImages for the filter
         ///
         /// Returns: A new MPSNNFilter node that concatenates its inputs.
-        #[method_id(@__retain_semantics Other nodeWithSources:)]
+        #[method_id(@__method_family Other nodeWithSources:)]
         pub unsafe fn nodeWithSources(source_nodes: &NSArray<MPSNNImageNode>) -> Retained<Self>;
 
         /// Init a node that concatenates feature channels from multiple images
@@ -7797,14 +7797,14 @@ extern_methods!(
         /// Parameter `sourceNodes`: The MPSNNImageNode representing the source MPSImages for the filter
         ///
         /// Returns: A new MPSNNFilter node that concatenates its inputs.
-        #[method_id(@__retain_semantics Init initWithSources:)]
+        #[method_id(@__method_family Init initWithSources:)]
         pub unsafe fn initWithSources(
             this: Allocated<Self>,
             source_nodes: &NSArray<MPSNNImageNode>,
         ) -> Retained<Self>;
 
         /// Concatenation returns multiple gradient filters. Use -gradientFiltersWithSources: instead.
-        #[method_id(@__retain_semantics Other gradientFilterWithSources:)]
+        #[method_id(@__method_family Other gradientFilterWithSources:)]
         pub unsafe fn gradientFilterWithSources(
             &self,
             gradient_images: &NSArray<MPSNNImageNode>,
@@ -7815,7 +7815,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNConcatenationNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -7823,7 +7823,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNConcatenationNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -7855,7 +7855,7 @@ extern_methods!(
         /// Parameter `sourceImage`: The particular input image to the concatentation, if any, that the slice corresponds with
         ///
         /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState(
             gradient_source_node: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -7871,7 +7871,7 @@ extern_methods!(
         /// Parameter `sourceImage`: The particular input image to the concatentation, if any, that the slice corresponds with
         ///
         /// Parameter `gradientState`: The gradient state produced by the concatenation filter, consumed by this filter
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState(
             this: Allocated<Self>,
             gradient_source_node: &MPSNNImageNode,
@@ -7884,7 +7884,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNConcatenationGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -7892,7 +7892,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNConcatenationGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -7921,7 +7921,7 @@ extern_methods!(
         /// Parameter `resultFeatureChannels`: The number of feature channels in the reshaped image.
         ///
         /// Returns: A new MPSNNFilter node for a MPSNNReshape kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:resultWidth:resultHeight:resultFeatureChannels:)]
+        #[method_id(@__method_family Other nodeWithSource:resultWidth:resultHeight:resultFeatureChannels:)]
         pub unsafe fn nodeWithSource_resultWidth_resultHeight_resultFeatureChannels(
             source: &MPSNNImageNode,
             result_width: NSUInteger,
@@ -7940,7 +7940,7 @@ extern_methods!(
         /// Parameter `resultFeatureChannels`: The number of feature channels in the reshaped image.
         ///
         /// Returns: A new MPSNNFilter node for a MPSNNReshape kernel.
-        #[method_id(@__retain_semantics Init initWithSource:resultWidth:resultHeight:resultFeatureChannels:)]
+        #[method_id(@__method_family Init initWithSource:resultWidth:resultHeight:resultFeatureChannels:)]
         pub unsafe fn initWithSource_resultWidth_resultHeight_resultFeatureChannels(
             this: Allocated<Self>,
             source: &MPSNNImageNode,
@@ -7954,7 +7954,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReshapeNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -7962,7 +7962,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReshapeNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -7985,7 +7985,7 @@ extern_methods!(
         /// Parameter `sourceImage`: The input image from the forward reshape node.
         ///
         /// Returns: A MPSNNReshapeGradientNode
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -7999,7 +7999,7 @@ extern_methods!(
         /// Parameter `sourceImage`: The input image from the forward reshape node.
         ///
         /// Returns: A MPSCNNConvolutionGradientNode
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -8012,7 +8012,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReshapeGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -8020,7 +8020,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReshapeGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -8043,7 +8043,7 @@ extern_methods!(
         /// Parameter `sourceImage`: The input image from the forward spatial mean reduction node.
         ///
         /// Returns: A MPSNNReductionSpatialMeanGradientNode
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -8057,7 +8057,7 @@ extern_methods!(
         /// Parameter `sourceImage`: The input image from the forward spatial mean reduction node.
         ///
         /// Returns: A MPSNNReductionSpatialMeanGradientNode
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -8070,7 +8070,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNReductionSpatialMeanGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -8078,7 +8078,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNReductionSpatialMeanGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -8131,7 +8131,7 @@ extern_methods!(
         /// the extended edge-modes, ie. the ones beyond MPSImageEdgeModeClamp.
         ///
         /// Returns: A new MPSNNFilter node for a MPSNNPad kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:paddingSizeBefore:paddingSizeAfter:edgeMode:)]
+        #[method_id(@__method_family Other nodeWithSource:paddingSizeBefore:paddingSizeAfter:edgeMode:)]
         pub unsafe fn nodeWithSource_paddingSizeBefore_paddingSizeAfter_edgeMode(
             source: &MPSNNImageNode,
             padding_size_before: MPSImageCoordinate,
@@ -8154,7 +8154,7 @@ extern_methods!(
         /// the extended edge-modes, ie. the ones beyond MPSImageEdgeModeClamp.
         ///
         /// Returns: A new MPSNNFilter node for a MPSNNPad kernel.
-        #[method_id(@__retain_semantics Init initWithSource:paddingSizeBefore:paddingSizeAfter:edgeMode:)]
+        #[method_id(@__method_family Init initWithSource:paddingSizeBefore:paddingSizeAfter:edgeMode:)]
         pub unsafe fn initWithSource_paddingSizeBefore_paddingSizeAfter_edgeMode(
             this: Allocated<Self>,
             source: &MPSNNImageNode,
@@ -8168,7 +8168,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNPadNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -8176,7 +8176,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNPadNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -8199,7 +8199,7 @@ extern_methods!(
         /// Parameter `sourceImage`: The input image from the forward padding node.
         ///
         /// Returns: A MPSNNPadGradientNode
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -8213,7 +8213,7 @@ extern_methods!(
         /// Parameter `sourceImage`: The input image from the forward reshape node.
         ///
         /// Returns: A MPSNNPadGradientNode
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -8226,7 +8226,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNPadGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -8234,7 +8234,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNPadGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -8257,7 +8257,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNSoftMax kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing a MPSCNNSoftMax kernel
@@ -8265,7 +8265,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNSoftMax kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -8276,7 +8276,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNSoftMaxNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -8284,7 +8284,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNSoftMaxNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -8302,14 +8302,14 @@ unsafe impl NSObjectProtocol for MPSCNNSoftMaxGradientNode {}
 
 extern_methods!(
     unsafe impl MPSCNNSoftMaxGradientNode {
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
             gradient_state: &MPSNNGradientStateNode,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -8322,7 +8322,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNSoftMaxGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -8330,7 +8330,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNSoftMaxGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -8353,7 +8353,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNLogSoftMax kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing a MPSCNNLogSoftMax kernel
@@ -8361,7 +8361,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNLogSoftMax kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -8372,7 +8372,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNLogSoftMaxNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -8380,7 +8380,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNLogSoftMaxNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -8398,14 +8398,14 @@ unsafe impl NSObjectProtocol for MPSCNNLogSoftMaxGradientNode {}
 
 extern_methods!(
     unsafe impl MPSCNNLogSoftMaxGradientNode {
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
             gradient_state: &MPSNNGradientStateNode,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -8418,7 +8418,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNLogSoftMaxGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -8426,7 +8426,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNLogSoftMaxGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -8453,7 +8453,7 @@ extern_methods!(
         /// Parameter `integerScaleFactorY`: The upsampling factor for the y dimension.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNUpsamplingNearest kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:integerScaleFactorX:integerScaleFactorY:)]
+        #[method_id(@__method_family Other nodeWithSource:integerScaleFactorX:integerScaleFactorY:)]
         pub unsafe fn nodeWithSource_integerScaleFactorX_integerScaleFactorY(
             source_node: &MPSNNImageNode,
             integer_scale_factor_x: NSUInteger,
@@ -8469,7 +8469,7 @@ extern_methods!(
         /// Parameter `integerScaleFactorY`: The upsampling factor for the y dimension.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNUpsamplingNearest kernel.
-        #[method_id(@__retain_semantics Init initWithSource:integerScaleFactorX:integerScaleFactorY:)]
+        #[method_id(@__method_family Init initWithSource:integerScaleFactorX:integerScaleFactorY:)]
         pub unsafe fn initWithSource_integerScaleFactorX_integerScaleFactorY(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -8488,7 +8488,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNUpsamplingNearestNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -8496,7 +8496,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNUpsamplingNearestNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -8523,7 +8523,7 @@ extern_methods!(
         /// Parameter `integerScaleFactorY`: The upsampling factor for the y dimension.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNUpsamplingBilinear kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:integerScaleFactorX:integerScaleFactorY:)]
+        #[method_id(@__method_family Other nodeWithSource:integerScaleFactorX:integerScaleFactorY:)]
         pub unsafe fn nodeWithSource_integerScaleFactorX_integerScaleFactorY(
             source_node: &MPSNNImageNode,
             integer_scale_factor_x: NSUInteger,
@@ -8541,7 +8541,7 @@ extern_methods!(
         /// Parameter `alignCorners`: Specifier whether the centers of the 4 corner pixels of the input and output regions are aligned,
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNUpsamplingBilinear kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:integerScaleFactorX:integerScaleFactorY:alignCorners:)]
+        #[method_id(@__method_family Other nodeWithSource:integerScaleFactorX:integerScaleFactorY:alignCorners:)]
         pub unsafe fn nodeWithSource_integerScaleFactorX_integerScaleFactorY_alignCorners(
             source_node: &MPSNNImageNode,
             integer_scale_factor_x: NSUInteger,
@@ -8558,7 +8558,7 @@ extern_methods!(
         /// Parameter `integerScaleFactorY`: The upsampling factor for the y dimension.
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNUpsamplingBilinear kernel.
-        #[method_id(@__retain_semantics Init initWithSource:integerScaleFactorX:integerScaleFactorY:)]
+        #[method_id(@__method_family Init initWithSource:integerScaleFactorX:integerScaleFactorY:)]
         pub unsafe fn initWithSource_integerScaleFactorX_integerScaleFactorY(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -8577,7 +8577,7 @@ extern_methods!(
         /// Parameter `alignCorners`: Specifier whether the centers of the 4 corner pixels of the input and output regions are aligned,
         ///
         /// Returns: A new MPSNNFilter node for a MPSCNNUpsamplingBilinear kernel.
-        #[method_id(@__retain_semantics Init initWithSource:integerScaleFactorX:integerScaleFactorY:alignCorners:)]
+        #[method_id(@__method_family Init initWithSource:integerScaleFactorX:integerScaleFactorY:alignCorners:)]
         pub unsafe fn initWithSource_integerScaleFactorX_integerScaleFactorY_alignCorners(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -8600,7 +8600,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNUpsamplingBilinearNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -8608,7 +8608,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNUpsamplingBilinearNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -8641,7 +8641,7 @@ extern_methods!(
         /// Parameter `scaleFactorY`: The Y scale factor from the forward pass
         ///
         /// Returns: A MPSCNNUpsamplingNearestGradientNode
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:scaleFactorX:scaleFactorY:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:scaleFactorX:scaleFactorY:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_scaleFactorX_scaleFactorY(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -8665,7 +8665,7 @@ extern_methods!(
         /// Parameter `scaleFactorY`: The Y scale factor from the forward pass
         ///
         /// Returns: A MPSCNNUpsamplingNearestGradientNode
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:scaleFactorX:scaleFactorY:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:scaleFactorX:scaleFactorY:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_scaleFactorX_scaleFactorY(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -8686,7 +8686,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNUpsamplingNearestGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -8694,7 +8694,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNUpsamplingNearestGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -8727,7 +8727,7 @@ extern_methods!(
         /// Parameter `scaleFactorY`: The Y scale factor from the forward pass
         ///
         /// Returns: A MPSCNNUpsamplingBilinearGradientNode
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:scaleFactorX:scaleFactorY:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:scaleFactorX:scaleFactorY:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_scaleFactorX_scaleFactorY(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -8751,7 +8751,7 @@ extern_methods!(
         /// Parameter `scaleFactorY`: The Y scale factor from the forward pass
         ///
         /// Returns: A MPSCNNUpsamplingBilinearGradientNode
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:scaleFactorX:scaleFactorY:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:scaleFactorX:scaleFactorY:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_scaleFactorX_scaleFactorY(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -8772,7 +8772,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSCNNUpsamplingBilinearGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -8780,7 +8780,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSCNNUpsamplingBilinearGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -8831,7 +8831,7 @@ extern_methods!(
 
         /// Optional callback option - setting this allows the alpha value to be changed dynamically at encode time.
         /// Default value: nil.
-        #[method_id(@__retain_semantics Other propertyCallBack)]
+        #[method_id(@__method_family Other propertyCallBack)]
         pub unsafe fn propertyCallBack(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSNNGramMatrixCallback>>>;
@@ -8848,7 +8848,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter.
         ///
         /// Returns: A new MPSNNFilter node for a MPSNNGramMatrixCalculationNode kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing a MPSNNGramMatrixCalculationNode kernel.
@@ -8856,7 +8856,7 @@ extern_methods!(
         /// Parameter `sourceNode`: The MPSNNImageNode representing the source MPSImage for the filter.
         ///
         /// Returns: A new MPSNNFilter node for a MPSNNGramMatrixCalculationNode kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -8869,7 +8869,7 @@ extern_methods!(
         /// Parameter `alpha`: Scaling factor for the output.
         ///
         /// Returns: A new MPSNNFilter node for a MPSNNGramMatrixCalculationNode kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:alpha:)]
+        #[method_id(@__method_family Other nodeWithSource:alpha:)]
         pub unsafe fn nodeWithSource_alpha(
             source_node: &MPSNNImageNode,
             alpha: c_float,
@@ -8882,7 +8882,7 @@ extern_methods!(
         /// Parameter `alpha`: Scaling factor for the output.
         ///
         /// Returns: A new MPSNNFilter node for a MPSNNGramMatrixCalculationNode kernel.
-        #[method_id(@__retain_semantics Init initWithSource:alpha:)]
+        #[method_id(@__method_family Init initWithSource:alpha:)]
         pub unsafe fn initWithSource_alpha(
             this: Allocated<Self>,
             source_node: &MPSNNImageNode,
@@ -8894,7 +8894,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNGramMatrixCalculationNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -8902,7 +8902,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNGramMatrixCalculationNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -8925,14 +8925,14 @@ extern_methods!(
         #[method(alpha)]
         pub unsafe fn alpha(&self) -> c_float;
 
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
             gradient_state: &MPSNNGradientStateNode,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -8940,7 +8940,7 @@ extern_methods!(
             gradient_state: &MPSNNGradientStateNode,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:gradientState:alpha:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:gradientState:alpha:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_gradientState_alpha(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -8948,7 +8948,7 @@ extern_methods!(
             alpha: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:gradientState:alpha:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:gradientState:alpha:)]
         pub unsafe fn initWithSourceGradient_sourceImage_gradientState_alpha(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -8962,7 +8962,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNGramMatrixCalculationGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -8970,7 +8970,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNGramMatrixCalculationGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -9043,7 +9043,7 @@ extern_methods!(
 
         /// Optional callback option - setting this allows the scalar weight value to be changed dynamically at encode time.
         /// Default value: nil.
-        #[method_id(@__retain_semantics Other propertyCallBack)]
+        #[method_id(@__method_family Other propertyCallBack)]
         pub unsafe fn propertyCallBack(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSNNLossCallback>>>;
@@ -9056,7 +9056,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNLoss")]
-        #[method_id(@__retain_semantics Other nodeWithSource:labels:weights:lossDescriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:labels:weights:lossDescriptor:)]
         pub unsafe fn nodeWithSource_labels_weights_lossDescriptor(
             source: &MPSNNImageNode,
             labels: &MPSNNImageNode,
@@ -9065,7 +9065,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNLoss")]
-        #[method_id(@__retain_semantics Other nodeWithSource:labels:lossDescriptor:)]
+        #[method_id(@__method_family Other nodeWithSource:labels:lossDescriptor:)]
         pub unsafe fn nodeWithSource_labels_lossDescriptor(
             source: &MPSNNImageNode,
             labels: &MPSNNImageNode,
@@ -9079,14 +9079,14 @@ extern_methods!(
         /// Node0: logits, Node1: labels, Node2: weights
         ///
         /// Returns: A new MPSNNFilter node.
-        #[method_id(@__retain_semantics Other nodeWithSources:lossDescriptor:)]
+        #[method_id(@__method_family Other nodeWithSources:lossDescriptor:)]
         pub unsafe fn nodeWithSources_lossDescriptor(
             source_nodes: &NSArray<MPSNNImageNode>,
             descriptor: &MPSCNNLossDescriptor,
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNLoss")]
-        #[method_id(@__retain_semantics Init initWithSource:labels:weights:lossDescriptor:)]
+        #[method_id(@__method_family Init initWithSource:labels:weights:lossDescriptor:)]
         pub unsafe fn initWithSource_labels_weights_lossDescriptor(
             this: Allocated<Self>,
             source: &MPSNNImageNode,
@@ -9096,7 +9096,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNLoss")]
-        #[method_id(@__retain_semantics Init initWithSource:labels:lossDescriptor:)]
+        #[method_id(@__method_family Init initWithSource:labels:lossDescriptor:)]
         pub unsafe fn initWithSource_labels_lossDescriptor(
             this: Allocated<Self>,
             source: &MPSNNImageNode,
@@ -9111,7 +9111,7 @@ extern_methods!(
         /// Node0: logits, Node1: labels, Node2: weights
         ///
         /// Returns: A new MPSNNFilter node.
-        #[method_id(@__retain_semantics Init initWithSources:lossDescriptor:)]
+        #[method_id(@__method_family Init initWithSources:lossDescriptor:)]
         pub unsafe fn initWithSources_lossDescriptor(
             this: Allocated<Self>,
             source_nodes: &NSArray<MPSNNImageNode>,
@@ -9119,25 +9119,25 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Returns the gradient filter for predictions, if you want also gradients for labels then use -gradientFiltersWithSource(s):
-        #[method_id(@__retain_semantics Other gradientFilterWithSources:)]
+        #[method_id(@__method_family Other gradientFilterWithSources:)]
         pub unsafe fn gradientFilterWithSources(
             &self,
             source_gradient: &NSArray<MPSNNImageNode>,
         ) -> Retained<MPSNNLossGradientNode>;
 
-        #[method_id(@__retain_semantics Other gradientFiltersWithSources:)]
+        #[method_id(@__method_family Other gradientFiltersWithSources:)]
         pub unsafe fn gradientFiltersWithSources(
             &self,
             source_gradient: &NSArray<MPSNNImageNode>,
         ) -> Retained<NSArray<MPSNNLossGradientNode>>;
 
-        #[method_id(@__retain_semantics Other gradientFilterWithSource:)]
+        #[method_id(@__method_family Other gradientFilterWithSource:)]
         pub unsafe fn gradientFilterWithSource(
             &self,
             source_gradient: &MPSNNImageNode,
         ) -> Retained<MPSNNLossGradientNode>;
 
-        #[method_id(@__retain_semantics Other gradientFiltersWithSource:)]
+        #[method_id(@__method_family Other gradientFiltersWithSource:)]
         pub unsafe fn gradientFiltersWithSource(
             &self,
             source_gradient: &MPSNNImageNode,
@@ -9148,7 +9148,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNForwardLossNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -9156,7 +9156,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNForwardLossNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -9206,7 +9206,7 @@ extern_methods!(
 
         /// Optional callback option - setting this allows the scalar weight value to be changed dynamically at encode time.
         /// Default value: nil.
-        #[method_id(@__retain_semantics Other propertyCallBack)]
+        #[method_id(@__method_family Other propertyCallBack)]
         pub unsafe fn propertyCallBack(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MPSNNLossCallback>>>;
@@ -9219,7 +9219,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "MPSCNNLoss")]
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:labels:weights:gradientState:lossDescriptor:isLabelsGradientFilter:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:labels:weights:gradientState:lossDescriptor:isLabelsGradientFilter:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_labels_weights_gradientState_lossDescriptor_isLabelsGradientFilter(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -9231,7 +9231,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNLoss")]
-        #[method_id(@__retain_semantics Other nodeWithSourceGradient:sourceImage:labels:gradientState:lossDescriptor:isLabelsGradientFilter:)]
+        #[method_id(@__method_family Other nodeWithSourceGradient:sourceImage:labels:gradientState:lossDescriptor:isLabelsGradientFilter:)]
         pub unsafe fn nodeWithSourceGradient_sourceImage_labels_gradientState_lossDescriptor_isLabelsGradientFilter(
             source_gradient: &MPSNNImageNode,
             source_image: &MPSNNImageNode,
@@ -9248,7 +9248,7 @@ extern_methods!(
         /// Node0: logits, Node1: labels, Node2: weights
         ///
         /// Returns: A new MPSNNFilter node.
-        #[method_id(@__retain_semantics Other nodeWithSources:gradientState:lossDescriptor:isLabelsGradientFilter:)]
+        #[method_id(@__method_family Other nodeWithSources:gradientState:lossDescriptor:isLabelsGradientFilter:)]
         pub unsafe fn nodeWithSources_gradientState_lossDescriptor_isLabelsGradientFilter(
             source_nodes: &NSArray<MPSNNImageNode>,
             gradient_state: Option<&MPSNNGradientStateNode>,
@@ -9257,7 +9257,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNLoss")]
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:labels:weights:gradientState:lossDescriptor:isLabelsGradientFilter:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:labels:weights:gradientState:lossDescriptor:isLabelsGradientFilter:)]
         pub unsafe fn initWithSourceGradient_sourceImage_labels_weights_gradientState_lossDescriptor_isLabelsGradientFilter(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -9270,7 +9270,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "MPSCNNLoss")]
-        #[method_id(@__retain_semantics Init initWithSourceGradient:sourceImage:labels:gradientState:lossDescriptor:isLabelsGradientFilter:)]
+        #[method_id(@__method_family Init initWithSourceGradient:sourceImage:labels:gradientState:lossDescriptor:isLabelsGradientFilter:)]
         pub unsafe fn initWithSourceGradient_sourceImage_labels_gradientState_lossDescriptor_isLabelsGradientFilter(
             this: Allocated<Self>,
             source_gradient: &MPSNNImageNode,
@@ -9288,7 +9288,7 @@ extern_methods!(
         /// Node0: input gradients, Node1: logits, Node2: labels, Node3: weights
         ///
         /// Returns: A new MPSNNFilter node.
-        #[method_id(@__retain_semantics Init initWithSources:gradientState:lossDescriptor:isLabelsGradientFilter:)]
+        #[method_id(@__method_family Init initWithSources:gradientState:lossDescriptor:isLabelsGradientFilter:)]
         pub unsafe fn initWithSources_gradientState_lossDescriptor_isLabelsGradientFilter(
             this: Allocated<Self>,
             source_nodes: &NSArray<MPSNNImageNode>,
@@ -9298,7 +9298,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// This is a gradient filter - there is no support gradients of gradients currently.
-        #[method_id(@__retain_semantics Other gradientFilterWithSources:)]
+        #[method_id(@__method_family Other gradientFilterWithSources:)]
         pub unsafe fn gradientFilterWithSources(
             &self,
             gradient_images: &NSArray<MPSNNImageNode>,
@@ -9309,7 +9309,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNLossGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -9317,7 +9317,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNLossGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -9347,7 +9347,7 @@ extern_methods!(
         /// Parameter `source`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for a MPSNNInitialGradient kernel.
-        #[method_id(@__retain_semantics Other nodeWithSource:)]
+        #[method_id(@__method_family Other nodeWithSource:)]
         pub unsafe fn nodeWithSource(source: &MPSNNImageNode) -> Retained<Self>;
 
         /// Init a node representing a MPSNNInitialGradient MPSNNPad kernel
@@ -9355,14 +9355,14 @@ extern_methods!(
         /// Parameter `source`: The MPSNNImageNode representing the source MPSImage for the filter
         ///
         /// Returns: A new MPSNNFilter node for a MPSNNInitialGradient kernel.
-        #[method_id(@__retain_semantics Init initWithSource:)]
+        #[method_id(@__method_family Init initWithSource:)]
         pub unsafe fn initWithSource(
             this: Allocated<Self>,
             source: &MPSNNImageNode,
         ) -> Retained<Self>;
 
         /// The initial gradient filter is a gradient filter and we don't provide support for gradients of gradients currently.
-        #[method_id(@__retain_semantics Other gradientFilterWithSources:)]
+        #[method_id(@__method_family Other gradientFilterWithSources:)]
         pub unsafe fn gradientFilterWithSources(
             &self,
             gradient_images: &NSArray<MPSNNImageNode>,
@@ -9373,7 +9373,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNNFilterNode`
     unsafe impl MPSNNInitialGradientNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -9381,7 +9381,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNInitialGradientNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

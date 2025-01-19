@@ -55,22 +55,22 @@ extern_methods!(
 
         #[cfg(all(feature = "AVAudioFormat", feature = "AVAudioTypes"))]
         /// Obtain an input bus's format.
-        #[method_id(@__retain_semantics Other inputFormatForBus:)]
+        #[method_id(@__method_family Other inputFormatForBus:)]
         pub unsafe fn inputFormatForBus(&self, bus: AVAudioNodeBus) -> Retained<AVAudioFormat>;
 
         #[cfg(all(feature = "AVAudioFormat", feature = "AVAudioTypes"))]
         /// Obtain an output bus's format.
-        #[method_id(@__retain_semantics Other outputFormatForBus:)]
+        #[method_id(@__method_family Other outputFormatForBus:)]
         pub unsafe fn outputFormatForBus(&self, bus: AVAudioNodeBus) -> Retained<AVAudioFormat>;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Return the name of an input bus.
-        #[method_id(@__retain_semantics Other nameForInputBus:)]
+        #[method_id(@__method_family Other nameForInputBus:)]
         pub unsafe fn nameForInputBus(&self, bus: AVAudioNodeBus) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Return the name of an output bus.
-        #[method_id(@__retain_semantics Other nameForOutputBus:)]
+        #[method_id(@__method_family Other nameForOutputBus:)]
         pub unsafe fn nameForOutputBus(&self, bus: AVAudioNodeBus) -> Option<Retained<NSString>>;
 
         #[cfg(all(
@@ -132,7 +132,7 @@ extern_methods!(
 
         #[cfg(feature = "AVAudioEngine")]
         /// The engine to which the node is attached (or nil).
-        #[method_id(@__retain_semantics Other engine)]
+        #[method_id(@__method_family Other engine)]
         pub unsafe fn engine(&self) -> Option<Retained<AVAudioEngine>>;
 
         /// The node's number of input busses.
@@ -148,7 +148,7 @@ extern_methods!(
         ///
         /// Will return nil if the engine is not running or if the node is not connected to an input or
         /// output node.
-        #[method_id(@__retain_semantics Other lastRenderTime)]
+        #[method_id(@__method_family Other lastRenderTime)]
         pub unsafe fn lastRenderTime(&self) -> Option<Retained<AVAudioTime>>;
 
         #[cfg(feature = "objc2-audio-toolbox")]
@@ -162,7 +162,7 @@ extern_methods!(
         /// No operations that may conflict with state maintained by the engine should be performed
         /// directly on the audio unit. These include changing initialization state, stream formats,
         /// channel layouts or connections to other audio units.
-        #[method_id(@__retain_semantics Other AUAudioUnit)]
+        #[method_id(@__method_family Other AUAudioUnit)]
         pub unsafe fn AUAudioUnit(&self) -> Retained<AUAudioUnit>;
 
         /// The processing latency of the node, in seconds.
@@ -202,10 +202,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

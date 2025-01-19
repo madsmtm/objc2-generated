@@ -13,7 +13,7 @@ extern_category!(
     /// Category on [`NSValue`].
     pub unsafe trait NSValueAVFoundationExtensions {
         #[cfg(feature = "objc2-core-media")]
-        #[method_id(@__retain_semantics Other valueWithCMTime:)]
+        #[method_id(@__method_family Other valueWithCMTime:)]
         unsafe fn valueWithCMTime(time: CMTime) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -21,7 +21,7 @@ extern_category!(
         unsafe fn CMTimeValue(&self) -> CMTime;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method_id(@__retain_semantics Other valueWithCMTimeRange:)]
+        #[method_id(@__method_family Other valueWithCMTimeRange:)]
         unsafe fn valueWithCMTimeRange(time_range: CMTimeRange) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -29,7 +29,7 @@ extern_category!(
         unsafe fn CMTimeRangeValue(&self) -> CMTimeRange;
 
         #[cfg(feature = "objc2-core-media")]
-        #[method_id(@__retain_semantics Other valueWithCMTimeMapping:)]
+        #[method_id(@__method_family Other valueWithCMTimeMapping:)]
         unsafe fn valueWithCMTimeMapping(time_mapping: CMTimeMapping) -> Retained<NSValue>;
 
         #[cfg(feature = "objc2-core-media")]

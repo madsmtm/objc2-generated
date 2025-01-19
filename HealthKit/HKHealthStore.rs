@@ -130,7 +130,7 @@ extern_methods!(
         ///
         /// On some platforms, only samples with end dates newer than the value returned by earliestPermittedSampleDate
         /// may be saved or retrieved.
-        #[method_id(@__retain_semantics Other earliestPermittedSampleDate)]
+        #[method_id(@__method_family Other earliestPermittedSampleDate)]
         pub unsafe fn earliestPermittedSampleDate(&self) -> Retained<NSDate>;
 
         #[cfg(all(feature = "HKObject", feature = "block2"))]
@@ -244,14 +244,14 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other dateOfBirthWithError:_)]
+        #[method_id(@__method_family Other dateOfBirthWithError:_)]
         pub unsafe fn dateOfBirthWithError(&self) -> Result<Retained<NSDate>, Retained<NSError>>;
 
         /// Returns the user's date of birth in the Gregorian calendar.
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierDateOfBirth.
-        #[method_id(@__retain_semantics Other dateOfBirthComponentsWithError:_)]
+        #[method_id(@__method_family Other dateOfBirthComponentsWithError:_)]
         pub unsafe fn dateOfBirthComponentsWithError(
             &self,
         ) -> Result<Retained<NSDateComponents>, Retained<NSError>>;
@@ -261,7 +261,7 @@ extern_methods!(
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierBiologicalSex.
-        #[method_id(@__retain_semantics Other biologicalSexWithError:_)]
+        #[method_id(@__method_family Other biologicalSexWithError:_)]
         pub unsafe fn biologicalSexWithError(
             &self,
         ) -> Result<Retained<HKBiologicalSexObject>, Retained<NSError>>;
@@ -271,7 +271,7 @@ extern_methods!(
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierBloodType.
-        #[method_id(@__retain_semantics Other bloodTypeWithError:_)]
+        #[method_id(@__method_family Other bloodTypeWithError:_)]
         pub unsafe fn bloodTypeWithError(
             &self,
         ) -> Result<Retained<HKBloodTypeObject>, Retained<NSError>>;
@@ -281,7 +281,7 @@ extern_methods!(
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierFitzpatrickSkinType.
-        #[method_id(@__retain_semantics Other fitzpatrickSkinTypeWithError:_)]
+        #[method_id(@__method_family Other fitzpatrickSkinTypeWithError:_)]
         pub unsafe fn fitzpatrickSkinTypeWithError(
             &self,
         ) -> Result<Retained<HKFitzpatrickSkinTypeObject>, Retained<NSError>>;
@@ -291,7 +291,7 @@ extern_methods!(
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierWheelchairUse.
-        #[method_id(@__retain_semantics Other wheelchairUseWithError:_)]
+        #[method_id(@__method_family Other wheelchairUseWithError:_)]
         pub unsafe fn wheelchairUseWithError(
             &self,
         ) -> Result<Retained<HKWheelchairUseObject>, Retained<NSError>>;
@@ -301,7 +301,7 @@ extern_methods!(
         ///
         /// Before calling this method, the application should request authorization to access objects with the
         /// HKCharacteristicType identified by HKCharacteristicTypeIdentifierActivityMoveMode.
-        #[method_id(@__retain_semantics Other activityMoveModeWithError:_)]
+        #[method_id(@__method_family Other activityMoveModeWithError:_)]
         pub unsafe fn activityMoveModeWithError(
             &self,
         ) -> Result<Retained<HKActivityMoveModeObject>, Retained<NSError>>;
@@ -311,10 +311,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKHealthStore {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

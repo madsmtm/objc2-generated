@@ -65,7 +65,7 @@ extern_methods!(
         /// This method creates a new printer object from the printer's URL.
         /// A UIPrinter object is returned even if the printer is not available
         /// on the network.
-        #[method_id(@__retain_semantics Other printerWithURL:)]
+        #[method_id(@__method_family Other printerWithURL:)]
         pub unsafe fn printerWithURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<UIPrinter>;
 
         /// Return the URL of the printer.
@@ -73,13 +73,13 @@ extern_methods!(
         /// This method returns the full URL of the printer which can be
         /// used in future calls to printerWithURL to access the same
         /// printer.
-        #[method_id(@__retain_semantics Other URL)]
+        #[method_id(@__method_family Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// Return a human-readable printer name.
         ///
         /// This method returns the printer name suitable for displaying in the UI.
-        #[method_id(@__retain_semantics Other displayName)]
+        #[method_id(@__method_family Other displayName)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;
 
         /// Return a human-readable location.
@@ -89,7 +89,7 @@ extern_methods!(
         /// Returns nil if the printer doesn't have a location string.
         /// This property's value is undefined until contactPrinter: has been called and
         /// completed successfully.
-        #[method_id(@__retain_semantics Other displayLocation)]
+        #[method_id(@__method_family Other displayLocation)]
         pub unsafe fn displayLocation(&self) -> Option<Retained<NSString>>;
 
         /// Returns the supported job types of this printer.
@@ -107,7 +107,7 @@ extern_methods!(
         /// is usually the manufacturer, model, and model number.
         /// This property's value is undefined until contactPrinter: has been called and
         /// completed successfully.
-        #[method_id(@__retain_semantics Other makeAndModel)]
+        #[method_id(@__method_family Other makeAndModel)]
         pub unsafe fn makeAndModel(&self) -> Option<Retained<NSString>>;
 
         /// Return whether this printer supports color printing.
@@ -146,10 +146,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrinter {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

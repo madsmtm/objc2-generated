@@ -22,11 +22,11 @@ extern_methods!(
     #[cfg(feature = "NSMigrationStage")]
     unsafe impl NSCustomMigrationStage {
         #[cfg(feature = "NSManagedObjectModelReference")]
-        #[method_id(@__retain_semantics Other currentModel)]
+        #[method_id(@__method_family Other currentModel)]
         pub unsafe fn currentModel(&self) -> Retained<NSManagedObjectModelReference>;
 
         #[cfg(feature = "NSManagedObjectModelReference")]
-        #[method_id(@__retain_semantics Other nextModel)]
+        #[method_id(@__method_family Other nextModel)]
         pub unsafe fn nextModel(&self) -> Retained<NSManagedObjectModelReference>;
 
         #[cfg(all(feature = "NSStagedMigrationManager", feature = "block2"))]
@@ -85,11 +85,11 @@ extern_methods!(
             >,
         );
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSManagedObjectModelReference")]
-        #[method_id(@__retain_semantics Init initWithCurrentModelReference:nextModelReference:)]
+        #[method_id(@__method_family Init initWithCurrentModelReference:nextModelReference:)]
         pub unsafe fn initWithCurrentModelReference_nextModelReference(
             this: Allocated<Self>,
             current_model: &NSManagedObjectModelReference,
@@ -102,7 +102,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSMigrationStage")]
     unsafe impl NSCustomMigrationStage {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

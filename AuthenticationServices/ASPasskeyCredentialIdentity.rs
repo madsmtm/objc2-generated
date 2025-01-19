@@ -34,7 +34,7 @@ unsafe impl NSSecureCoding for ASPasskeyCredentialIdentity {}
 
 extern_methods!(
     unsafe impl ASPasskeyCredentialIdentity {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize an instance of ASPasskeyCredentialIdentity.
@@ -48,7 +48,7 @@ extern_methods!(
         /// Parameter `userHandle`: user handle data of this passkey credential.
         ///
         /// Parameter `recordIdentifier`: identifier used by credential provider extension to identify this credential.
-        #[method_id(@__retain_semantics Init initWithRelyingPartyIdentifier:userName:credentialID:userHandle:recordIdentifier:)]
+        #[method_id(@__method_family Init initWithRelyingPartyIdentifier:userName:credentialID:userHandle:recordIdentifier:)]
         pub unsafe fn initWithRelyingPartyIdentifier_userName_credentialID_userHandle_recordIdentifier(
             this: Allocated<Self>,
             relying_party_identifier: &NSString,
@@ -69,7 +69,7 @@ extern_methods!(
         /// Parameter `userHandle`: user handle data of this passkey credential.
         ///
         /// Parameter `recordIdentifier`: identifier used by credential provider extension to identify this credential.
-        #[method_id(@__retain_semantics Other identityWithRelyingPartyIdentifier:userName:credentialID:userHandle:recordIdentifier:)]
+        #[method_id(@__method_family Other identityWithRelyingPartyIdentifier:userName:credentialID:userHandle:recordIdentifier:)]
         pub unsafe fn identityWithRelyingPartyIdentifier_userName_credentialID_userHandle_recordIdentifier(
             relying_party_identifier: &NSString,
             user_name: &NSString,
@@ -81,25 +81,25 @@ extern_methods!(
         /// The relying party identifier of this passkey credential.
         ///
         /// This field is reported as the serviceIdentifier property of ASCredentialIdentity.
-        #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
+        #[method_id(@__method_family Other relyingPartyIdentifier)]
         pub unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 
         /// The user name of this passkey credential.
         ///
         /// This field is reported as the user property of ASCredentialIdentity.
-        #[method_id(@__retain_semantics Other userName)]
+        #[method_id(@__method_family Other userName)]
         pub unsafe fn userName(&self) -> Retained<NSString>;
 
         /// The credential ID of this passkey credential.
         ///
         /// This field is used to identify the correct credential to use based on relying party request parameters.
-        #[method_id(@__retain_semantics Other credentialID)]
+        #[method_id(@__method_family Other credentialID)]
         pub unsafe fn credentialID(&self) -> Retained<NSData>;
 
         /// The user handle of this passkey credential.
         ///
         /// This field is used to identify the correct credential to use based on relying party request parameters.
-        #[method_id(@__retain_semantics Other userHandle)]
+        #[method_id(@__method_family Other userHandle)]
         pub unsafe fn userHandle(&self) -> Retained<NSData>;
 
         /// Get the record identifier.
@@ -107,7 +107,7 @@ extern_methods!(
         /// Returns: The record identifier.
         ///
         /// You can utilize the record identifier to uniquely identify the credential identity in your local database.
-        #[method_id(@__retain_semantics Other recordIdentifier)]
+        #[method_id(@__method_family Other recordIdentifier)]
         pub unsafe fn recordIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Get or set the rank of the credential identity object.
@@ -128,7 +128,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasskeyCredentialIdentity {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

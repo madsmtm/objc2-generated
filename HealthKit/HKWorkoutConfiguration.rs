@@ -92,7 +92,7 @@ extern_methods!(
         ///
         /// This metric represents the length of the pool where the workout takes place. It should be a quantity with
         /// a unit representing length.
-        #[method_id(@__retain_semantics Other lapLength)]
+        #[method_id(@__method_family Other lapLength)]
         pub unsafe fn lapLength(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
@@ -105,10 +105,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKWorkoutConfiguration {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

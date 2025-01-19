@@ -105,7 +105,7 @@ extern_methods!(
         /// Returns: A newly initialized VZDiskImageStorageDeviceAttachment. If an error was encountered returns
         /// `nil,`and
         /// `error`contains the error.
-        #[method_id(@__retain_semantics Init initWithURL:readOnly:error:_)]
+        #[method_id(@__method_family Init initWithURL:readOnly:error:_)]
         pub unsafe fn initWithURL_readOnly_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -127,7 +127,7 @@ extern_methods!(
         /// Returns: A newly initialized VZDiskImageStorageDeviceAttachment. If an error was encountered returns
         /// `nil,`and
         /// `error`contains the error.
-        #[method_id(@__retain_semantics Init initWithURL:readOnly:cachingMode:synchronizationMode:error:_)]
+        #[method_id(@__method_family Init initWithURL:readOnly:cachingMode:synchronizationMode:error:_)]
         pub unsafe fn initWithURL_readOnly_cachingMode_synchronizationMode_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -137,7 +137,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// URL of the underlying disk image.
-        #[method_id(@__retain_semantics Other URL)]
+        #[method_id(@__method_family Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// Whether the underlying disk image is read-only.
@@ -158,10 +158,10 @@ extern_methods!(
     /// Methods declared on superclass `VZStorageDeviceAttachment`
     #[cfg(feature = "VZStorageDeviceAttachment")]
     unsafe impl VZDiskImageStorageDeviceAttachment {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

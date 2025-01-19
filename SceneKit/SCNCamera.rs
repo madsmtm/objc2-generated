@@ -61,11 +61,11 @@ unsafe impl SCNTechniqueSupport for SCNCamera {}
 extern_methods!(
     unsafe impl SCNCamera {
         /// Creates and returns a camera instance.
-        #[method_id(@__retain_semantics Other camera)]
+        #[method_id(@__method_family Other camera)]
         pub unsafe fn camera() -> Retained<Self>;
 
         /// Determines the name of the receiver.
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
@@ -580,7 +580,7 @@ extern_methods!(
 
         #[cfg(feature = "SCNMaterialProperty")]
         /// Specifies a lookup texture to apply color grading. The contents must a 2D image representing `n` slices of a unit color cube texture, arranged in an horizontal row of `n` images. For instance, a color cube of dimension 16x16x16 should be provided as an image of size 256x16.
-        #[method_id(@__retain_semantics Other colorGrading)]
+        #[method_id(@__method_family Other colorGrading)]
         pub unsafe fn colorGrading(&self) -> Retained<SCNMaterialProperty>;
 
         /// Determines the node categories that are visible from the receiver. Defaults to all bits set.
@@ -596,10 +596,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNCamera {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

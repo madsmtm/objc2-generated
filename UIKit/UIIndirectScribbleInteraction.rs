@@ -29,20 +29,20 @@ unsafe impl UIInteraction for UIIndirectScribbleInteraction {}
 
 extern_methods!(
     unsafe impl UIIndirectScribbleInteraction {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithDelegate:)]
+        #[method_id(@__method_family Init initWithDelegate:)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: &ProtocolObject<dyn UIIndirectScribbleInteractionDelegate>,
         ) -> Retained<Self>;
 
         /// The delegate for the interaction, to supply and customize writable elements in the interaction's view.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIIndirectScribbleInteractionDelegate>>>;

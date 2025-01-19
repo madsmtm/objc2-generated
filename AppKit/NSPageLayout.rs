@@ -39,7 +39,7 @@ unsafe impl NSObjectProtocol for NSPageLayout {}
 
 extern_methods!(
     unsafe impl NSPageLayout {
-        #[method_id(@__retain_semantics Other pageLayout)]
+        #[method_id(@__method_family Other pageLayout)]
         pub unsafe fn pageLayout(mtm: MainThreadMarker) -> Retained<NSPageLayout>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
@@ -51,7 +51,7 @@ extern_methods!(
         pub unsafe fn removeAccessoryController(&self, accessory_controller: &NSViewController);
 
         #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]
-        #[method_id(@__retain_semantics Other accessoryControllers)]
+        #[method_id(@__method_family Other accessoryControllers)]
         pub unsafe fn accessoryControllers(&self) -> Retained<NSArray<NSViewController>>;
 
         #[cfg(all(
@@ -88,7 +88,7 @@ extern_methods!(
         pub unsafe fn runModal(&self) -> NSInteger;
 
         #[cfg(feature = "NSPrintInfo")]
-        #[method_id(@__retain_semantics Other printInfo)]
+        #[method_id(@__method_family Other printInfo)]
         pub unsafe fn printInfo(&self) -> Option<Retained<NSPrintInfo>>;
     }
 );
@@ -96,10 +96,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPageLayout {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -114,7 +114,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[deprecated]
-        #[method_id(@__retain_semantics Other accessoryView)]
+        #[method_id(@__method_family Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
 
         #[deprecated]

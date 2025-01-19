@@ -30,7 +30,7 @@ extern_methods!(
         /// the sample buffer.  If no sample buffer is provided, no samples will be taken.
         /// If any of the sample indices are specified as MTLCounterDontSample, no sample
         /// will be taken for that action.
-        #[method_id(@__retain_semantics Other sampleBuffer)]
+        #[method_id(@__method_family Other sampleBuffer)]
         pub unsafe fn sampleBuffer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
@@ -77,10 +77,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLResourceStatePassSampleBufferAttachmentDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -96,7 +96,7 @@ unsafe impl NSObjectProtocol for MTLResourceStatePassSampleBufferAttachmentDescr
 
 extern_methods!(
     unsafe impl MTLResourceStatePassSampleBufferAttachmentDescriptorArray {
-        #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
+        #[method_id(@__method_family Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
@@ -114,10 +114,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLResourceStatePassSampleBufferAttachmentDescriptorArray {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -142,11 +142,11 @@ unsafe impl NSObjectProtocol for MTLResourceStatePassDescriptor {}
 extern_methods!(
     unsafe impl MTLResourceStatePassDescriptor {
         /// Create an autoreleased default frame buffer descriptor
-        #[method_id(@__retain_semantics Other resourceStatePassDescriptor)]
+        #[method_id(@__method_family Other resourceStatePassDescriptor)]
         pub unsafe fn resourceStatePassDescriptor() -> Retained<MTLResourceStatePassDescriptor>;
 
         /// An array of sample buffers and associated sample indices.
-        #[method_id(@__retain_semantics Other sampleBufferAttachments)]
+        #[method_id(@__method_family Other sampleBufferAttachments)]
         pub unsafe fn sampleBufferAttachments(
             &self,
         ) -> Retained<MTLResourceStatePassSampleBufferAttachmentDescriptorArray>;
@@ -156,10 +156,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLResourceStatePassDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

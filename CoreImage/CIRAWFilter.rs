@@ -78,17 +78,17 @@ unsafe impl NSSecureCoding for CIRAWFilter {}
 extern_methods!(
     #[cfg(feature = "CIFilter")]
     unsafe impl CIRAWFilter {
-        #[method_id(@__retain_semantics Other supportedCameraModels)]
+        #[method_id(@__method_family Other supportedCameraModels)]
         pub unsafe fn supportedCameraModels() -> Retained<NSArray<NSString>>;
 
-        #[method_id(@__retain_semantics Other supportedDecoderVersions)]
+        #[method_id(@__method_family Other supportedDecoderVersions)]
         pub unsafe fn supportedDecoderVersions(&self) -> Retained<NSArray<CIRAWDecoderVersion>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(nativeSize)]
         pub unsafe fn nativeSize(&self) -> CGSize;
 
-        #[method_id(@__retain_semantics Other properties)]
+        #[method_id(@__method_family Other properties)]
         pub unsafe fn properties(&self) -> Retained<NSDictionary>;
 
         #[method(isDraftModeEnabled)]
@@ -98,7 +98,7 @@ extern_methods!(
         #[method(setDraftModeEnabled:)]
         pub unsafe fn setDraftModeEnabled(&self, draft_mode_enabled: bool);
 
-        #[method_id(@__retain_semantics Other decoderVersion)]
+        #[method_id(@__method_family Other decoderVersion)]
         pub unsafe fn decoderVersion(&self) -> Retained<CIRAWDecoderVersion>;
 
         /// Setter for [`decoderVersion`][Self::decoderVersion].
@@ -276,7 +276,7 @@ extern_methods!(
         #[method(setNeutralTint:)]
         pub unsafe fn setNeutralTint(&self, neutral_tint: c_float);
 
-        #[method_id(@__retain_semantics Other linearSpaceFilter)]
+        #[method_id(@__method_family Other linearSpaceFilter)]
         pub unsafe fn linearSpaceFilter(&self) -> Option<Retained<CIFilter>>;
 
         /// Setter for [`linearSpaceFilter`][Self::linearSpaceFilter].
@@ -284,44 +284,44 @@ extern_methods!(
         pub unsafe fn setLinearSpaceFilter(&self, linear_space_filter: Option<&CIFilter>);
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other previewImage)]
+        #[method_id(@__method_family Other previewImage)]
         pub unsafe fn previewImage(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other portraitEffectsMatte)]
+        #[method_id(@__method_family Other portraitEffectsMatte)]
         pub unsafe fn portraitEffectsMatte(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other semanticSegmentationSkinMatte)]
+        #[method_id(@__method_family Other semanticSegmentationSkinMatte)]
         pub unsafe fn semanticSegmentationSkinMatte(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other semanticSegmentationHairMatte)]
+        #[method_id(@__method_family Other semanticSegmentationHairMatte)]
         pub unsafe fn semanticSegmentationHairMatte(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other semanticSegmentationGlassesMatte)]
+        #[method_id(@__method_family Other semanticSegmentationGlassesMatte)]
         pub unsafe fn semanticSegmentationGlassesMatte(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other semanticSegmentationSkyMatte)]
+        #[method_id(@__method_family Other semanticSegmentationSkyMatte)]
         pub unsafe fn semanticSegmentationSkyMatte(&self) -> Option<Retained<CIImage>>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other semanticSegmentationTeethMatte)]
+        #[method_id(@__method_family Other semanticSegmentationTeethMatte)]
         pub unsafe fn semanticSegmentationTeethMatte(&self) -> Option<Retained<CIImage>>;
 
-        #[method_id(@__retain_semantics Other filterWithImageURL:)]
+        #[method_id(@__method_family Other filterWithImageURL:)]
         pub unsafe fn filterWithImageURL(url: &NSURL) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other filterWithImageData:identifierHint:)]
+        #[method_id(@__method_family Other filterWithImageData:identifierHint:)]
         pub unsafe fn filterWithImageData_identifierHint(
             data: &NSData,
             identifier_hint: Option<&NSString>,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-video")]
-        #[method_id(@__retain_semantics Other filterWithCVPixelBuffer:properties:)]
+        #[method_id(@__method_family Other filterWithCVPixelBuffer:properties:)]
         pub unsafe fn filterWithCVPixelBuffer_properties(
             buffer: &CVPixelBuffer,
             properties: &NSDictionary,
@@ -333,10 +333,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CIFilter")]
     unsafe impl CIRAWFilter {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

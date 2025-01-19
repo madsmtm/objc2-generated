@@ -81,19 +81,19 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl LPLinkView {
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[method(encodeWithCoder:)]
         pub unsafe fn encodeWithCoder(&self, coder: &NSCoder);
 
         /// Initializes a placeholder link view without metadata for a given URL.
-        #[method_id(@__retain_semantics Init initWithURL:)]
+        #[method_id(@__method_family Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "LPLinkMetadata")]
         /// Initializes a link view with specified metadata.
-        #[method_id(@__retain_semantics Init initWithMetadata:)]
+        #[method_id(@__method_family Init initWithMetadata:)]
         pub unsafe fn initWithMetadata(
             this: Allocated<Self>,
             metadata: &LPLinkMetadata,
@@ -104,7 +104,7 @@ extern_methods!(
         ///
         /// This can either be generated automatically from a URL by LPMetadataProvider,
         /// or manually constructed with the desired data.
-        #[method_id(@__retain_semantics Other metadata)]
+        #[method_id(@__method_family Other metadata)]
         pub unsafe fn metadata(&self) -> Retained<LPLinkMetadata>;
 
         #[cfg(feature = "LPLinkMetadata")]
@@ -119,7 +119,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl LPLinkView {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
     }
 );
@@ -129,7 +129,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl LPLinkView {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -139,7 +139,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl LPLinkView {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

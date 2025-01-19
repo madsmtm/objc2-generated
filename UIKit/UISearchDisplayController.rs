@@ -27,7 +27,7 @@ extern_methods!(
             feature = "UIViewController"
         ))]
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
-        #[method_id(@__retain_semantics Init initWithSearchBar:contentsController:)]
+        #[method_id(@__method_family Init initWithSearchBar:contentsController:)]
         pub unsafe fn initWithSearchBar_contentsController(
             this: Allocated<Self>,
             search_bar: &UISearchBar,
@@ -35,7 +35,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UISearchDisplayDelegate>>>;
@@ -63,12 +63,12 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UISearchBar", feature = "UIView"))]
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
-        #[method_id(@__retain_semantics Other searchBar)]
+        #[method_id(@__method_family Other searchBar)]
         pub unsafe fn searchBar(&self) -> Retained<UISearchBar>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
-        #[method_id(@__retain_semantics Other searchContentsController)]
+        #[method_id(@__method_family Other searchContentsController)]
         pub unsafe fn searchContentsController(&self) -> Retained<UIViewController>;
 
         #[cfg(all(
@@ -78,12 +78,12 @@ extern_methods!(
             feature = "UIView"
         ))]
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
-        #[method_id(@__retain_semantics Other searchResultsTableView)]
+        #[method_id(@__method_family Other searchResultsTableView)]
         pub unsafe fn searchResultsTableView(&self) -> Retained<UITableView>;
 
         #[cfg(feature = "UITableView")]
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
-        #[method_id(@__retain_semantics Other searchResultsDataSource)]
+        #[method_id(@__method_family Other searchResultsDataSource)]
         pub unsafe fn searchResultsDataSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDataSource>>>;
@@ -100,7 +100,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIScrollView", feature = "UITableView"))]
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
-        #[method_id(@__retain_semantics Other searchResultsDelegate)]
+        #[method_id(@__method_family Other searchResultsDelegate)]
         pub unsafe fn searchResultsDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDelegate>>>;
@@ -115,7 +115,7 @@ extern_methods!(
             search_results_delegate: Option<&ProtocolObject<dyn UITableViewDelegate>>,
         );
 
-        #[method_id(@__retain_semantics Other searchResultsTitle)]
+        #[method_id(@__method_family Other searchResultsTitle)]
         pub unsafe fn searchResultsTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`searchResultsTitle`][Self::searchResultsTitle].
@@ -133,7 +133,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UINavigationItem")]
-        #[method_id(@__retain_semantics Other navigationItem)]
+        #[method_id(@__method_family Other navigationItem)]
         pub unsafe fn navigationItem(&self) -> Option<Retained<UINavigationItem>>;
     }
 );
@@ -141,10 +141,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISearchDisplayController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -58,13 +58,13 @@ unsafe impl NSSecureCoding for CIFilterGenerator {}
 extern_methods!(
     unsafe impl CIFilterGenerator {
         /// This creates an empty CIFilterGenerator in which you connect filters and images.
-        #[method_id(@__retain_semantics Other filterGenerator)]
+        #[method_id(@__method_family Other filterGenerator)]
         pub unsafe fn filterGenerator() -> Retained<CIFilterGenerator>;
 
         /// Create a CIFilterGenerator with the contents of the file.
         ///
         /// Returns: CIFilterGenerator object. If the file could not be read it returns nil.
-        #[method_id(@__retain_semantics Other filterGeneratorWithContentsOfURL:)]
+        #[method_id(@__method_family Other filterGeneratorWithContentsOfURL:)]
         pub unsafe fn filterGeneratorWithContentsOfURL(
             a_url: &NSURL,
         ) -> Option<Retained<CIFilterGenerator>>;
@@ -73,7 +73,7 @@ extern_methods!(
         ///
         ///
         /// Returns: CIFilterGenerator object. If the file could not be read it returns nil.
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
+        #[method_id(@__method_family Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(
             this: Allocated<Self>,
             a_url: &NSURL,
@@ -149,7 +149,7 @@ extern_methods!(
         /// Use this method to get an NSArray of all the keys that you have exported using exportKey:fromObject:withName: or that were exported before written to a file from which you read the filter chain.
         ///
         /// Returns: An array of dictionaries that describe the exported key and target object. See CIExportedKey, CIExportedKeyTargetObject and CIExportedKeyName for keys used in the dictionary.
-        #[method_id(@__retain_semantics Other exportedKeys)]
+        #[method_id(@__method_family Other exportedKeys)]
         pub unsafe fn exportedKeys(&self) -> Retained<NSDictionary>;
 
         /// Set a new dictionary of attributes for an exported key.
@@ -165,7 +165,7 @@ extern_methods!(
         /// Retrieve or Set the class attributes that will be used to register the filter using the registerFilterName method.
         /// Make sure you set the class attributes before using the registerFilterName method.
         /// See CIFilter for a description of the classAttributes that are needed to register a filter.
-        #[method_id(@__retain_semantics Other classAttributes)]
+        #[method_id(@__method_family Other classAttributes)]
         pub unsafe fn classAttributes(&self) -> Retained<NSDictionary>;
 
         /// Setter for [`classAttributes`][Self::classAttributes].
@@ -176,7 +176,7 @@ extern_methods!(
         /// Create a CIFilter object based on this filter chain.
         ///
         /// This method creates a CIFilter from the filter chain where the topology of the chain is immutable, meaning that changes to the filter chain will not be reflected in the filter. The filter will have the input and output keys that were exported as described above.
-        #[method_id(@__retain_semantics Other filter)]
+        #[method_id(@__method_family Other filter)]
         pub unsafe fn filter(&self) -> Retained<CIFilter>;
 
         /// Register the resulting filter of the chain in the CIFilter repository.
@@ -200,10 +200,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CIFilterGenerator {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

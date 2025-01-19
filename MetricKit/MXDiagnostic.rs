@@ -26,28 +26,28 @@ unsafe impl NSSecureCoding for MXDiagnostic {}
 extern_methods!(
     unsafe impl MXDiagnostic {
         #[cfg(feature = "MXMetaData")]
-        #[method_id(@__retain_semantics Other metaData)]
+        #[method_id(@__method_family Other metaData)]
         pub unsafe fn metaData(&self) -> Retained<MXMetaData>;
 
         /// An NSString representation of the application version from which this diagnostic was generated.
-        #[method_id(@__retain_semantics Other applicationVersion)]
+        #[method_id(@__method_family Other applicationVersion)]
         pub unsafe fn applicationVersion(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MXSignpostRecord")]
         /// An NSArray representing the list of signpost records.
-        #[method_id(@__retain_semantics Other signpostData)]
+        #[method_id(@__method_family Other signpostData)]
         pub unsafe fn signpostData(&self) -> Option<Retained<NSArray<MXSignpostRecord>>>;
 
         /// Convenience method to return a JSON representation of this diagnostic.
         ///
         /// Returns: An NSData object containing the JSON representation
-        #[method_id(@__retain_semantics Other JSONRepresentation)]
+        #[method_id(@__method_family Other JSONRepresentation)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
         /// Convenience method to return a NSDictionary representation of this diagnostic.
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
-        #[method_id(@__retain_semantics Other dictionaryRepresentation)]
+        #[method_id(@__method_family Other dictionaryRepresentation)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
 );
@@ -55,10 +55,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXDiagnostic {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

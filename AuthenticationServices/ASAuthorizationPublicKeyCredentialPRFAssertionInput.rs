@@ -17,17 +17,17 @@ unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialPRFAssertionI
 
 extern_methods!(
     unsafe impl ASAuthorizationPublicKeyCredentialPRFAssertionInputValues {
-        #[method_id(@__retain_semantics Init initWithSaltInput1:saltInput2:)]
+        #[method_id(@__method_family Init initWithSaltInput1:saltInput2:)]
         pub unsafe fn initWithSaltInput1_saltInput2(
             this: Allocated<Self>,
             salt_input1: &NSData,
             salt_input2: Option<&NSData>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other saltInput1)]
+        #[method_id(@__method_family Other saltInput1)]
         pub unsafe fn saltInput1(&self) -> Retained<NSData>;
 
-        #[method_id(@__retain_semantics Other saltInput2)]
+        #[method_id(@__method_family Other saltInput2)]
         pub unsafe fn saltInput2(&self) -> Option<Retained<NSData>>;
     }
 );
@@ -35,10 +35,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAuthorizationPublicKeyCredentialPRFAssertionInputValues {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -54,7 +54,7 @@ unsafe impl NSObjectProtocol for ASAuthorizationPublicKeyCredentialPRFAssertionI
 
 extern_methods!(
     unsafe impl ASAuthorizationPublicKeyCredentialPRFAssertionInput {
-        #[method_id(@__retain_semantics Init initWithInputValues:perCredentialInputValues:)]
+        #[method_id(@__method_family Init initWithInputValues:perCredentialInputValues:)]
         pub unsafe fn initWithInputValues_perCredentialInputValues(
             this: Allocated<Self>,
             input_values: Option<&ASAuthorizationPublicKeyCredentialPRFAssertionInputValues>,
@@ -63,12 +63,12 @@ extern_methods!(
             >,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other inputValues)]
+        #[method_id(@__method_family Other inputValues)]
         pub unsafe fn inputValues(
             &self,
         ) -> Option<Retained<ASAuthorizationPublicKeyCredentialPRFAssertionInputValues>>;
 
-        #[method_id(@__retain_semantics Other perCredentialInputValues)]
+        #[method_id(@__method_family Other perCredentialInputValues)]
         pub unsafe fn perCredentialInputValues(
             &self,
         ) -> Option<
@@ -82,10 +82,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASAuthorizationPublicKeyCredentialPRFAssertionInput {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

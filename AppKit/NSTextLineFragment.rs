@@ -27,20 +27,20 @@ unsafe impl NSSecureCoding for NSTextLineFragment {}
 
 extern_methods!(
     unsafe impl NSTextLineFragment {
-        #[method_id(@__retain_semantics Init initWithAttributedString:range:)]
+        #[method_id(@__method_family Init initWithAttributedString:range:)]
         pub unsafe fn initWithAttributedString_range(
             this: Allocated<Self>,
             attributed_string: &NSAttributedString,
             range: NSRange,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Init initWithString:attributes:range:)]
+        #[method_id(@__method_family Init initWithString:attributes:range:)]
         pub unsafe fn initWithString_attributes_range(
             this: Allocated<Self>,
             string: &NSString,
@@ -48,10 +48,10 @@ extern_methods!(
             range: NSRange,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other attributedString)]
+        #[method_id(@__method_family Other attributedString)]
         pub unsafe fn attributedString(&self) -> Retained<NSAttributedString>;
 
         #[method(characterRange)]
@@ -87,7 +87,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextLineFragment {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -22,7 +22,7 @@ unsafe impl NSObjectProtocol for CADisplayLink {}
 
 extern_methods!(
     unsafe impl CADisplayLink {
-        #[method_id(@__retain_semantics Other displayLinkWithTarget:selector:)]
+        #[method_id(@__method_family Other displayLinkWithTarget:selector:)]
         pub unsafe fn displayLinkWithTarget_selector(
             target: &AnyObject,
             sel: Sel,
@@ -91,10 +91,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CADisplayLink {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

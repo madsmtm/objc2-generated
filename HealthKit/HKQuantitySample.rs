@@ -35,11 +35,11 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKQuantitySample {
         #[cfg(feature = "HKObjectType")]
-        #[method_id(@__retain_semantics Other quantityType)]
+        #[method_id(@__method_family Other quantityType)]
         pub unsafe fn quantityType(&self) -> Retained<HKQuantityType>;
 
         #[cfg(feature = "HKQuantity")]
-        #[method_id(@__retain_semantics Other quantity)]
+        #[method_id(@__method_family Other quantity)]
         pub unsafe fn quantity(&self) -> Retained<HKQuantity>;
 
         /// The number of individual values making up the receiver's quantity.
@@ -53,7 +53,7 @@ extern_methods!(
         ///
         /// The quantity must have a unit that is compatible with the given quantity type.
         /// See -[HKQuantityType isCompatibleWithUnit:].
-        #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:)]
+        #[method_id(@__method_family Other quantitySampleWithType:quantity:startDate:endDate:)]
         pub unsafe fn quantitySampleWithType_quantity_startDate_endDate(
             quantity_type: &HKQuantityType,
             quantity: &HKQuantity,
@@ -66,7 +66,7 @@ extern_methods!(
         ///
         /// The quantity must have a unit that is compatible with the given quantity type.
         /// See -[HKQuantityType isCompatibleWithUnit:].
-        #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:metadata:)]
+        #[method_id(@__method_family Other quantitySampleWithType:quantity:startDate:endDate:metadata:)]
         pub unsafe fn quantitySampleWithType_quantity_startDate_endDate_metadata(
             quantity_type: &HKQuantityType,
             quantity: &HKQuantity,
@@ -90,7 +90,7 @@ extern_methods!(
         ///
         /// The quantity must have a unit that is compatible with the given quantity type.
         /// See -[HKQuantityType isCompatibleWithUnit:].
-        #[method_id(@__retain_semantics Other quantitySampleWithType:quantity:startDate:endDate:device:metadata:)]
+        #[method_id(@__method_family Other quantitySampleWithType:quantity:startDate:endDate:device:metadata:)]
         pub unsafe fn quantitySampleWithType_quantity_startDate_endDate_device_metadata(
             quantity_type: &HKQuantityType,
             quantity: &HKQuantity,
@@ -106,7 +106,7 @@ extern_methods!(
     /// Methods declared on superclass `HKObject`
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKQuantitySample {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -115,7 +115,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKQuantitySample {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

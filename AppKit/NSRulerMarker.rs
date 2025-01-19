@@ -36,7 +36,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// ************************** Initialization ***************************
-        #[method_id(@__retain_semantics Init initWithRulerView:markerLocation:image:imageOrigin:)]
+        #[method_id(@__method_family Init initWithRulerView:markerLocation:image:imageOrigin:)]
         pub unsafe fn initWithRulerView_markerLocation_image_imageOrigin(
             this: Allocated<Self>,
             ruler: &NSRulerView,
@@ -45,15 +45,15 @@ extern_methods!(
             image_origin: NSPoint,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSRulerView", feature = "NSView"))]
         /// ********************* Query/Set basic attributes **********************
-        #[method_id(@__retain_semantics Other ruler)]
+        #[method_id(@__method_family Other ruler)]
         pub unsafe fn ruler(&self, mtm: MainThreadMarker) -> Option<Retained<NSRulerView>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -66,7 +66,7 @@ extern_methods!(
         pub unsafe fn setMarkerLocation(&self, marker_location: CGFloat);
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__retain_semantics Other image)]
+        #[method_id(@__method_family Other image)]
         pub unsafe fn image(&self) -> Retained<NSImage>;
 
         #[cfg(feature = "NSImage")]
@@ -98,7 +98,7 @@ extern_methods!(
         #[method(isDragging)]
         pub unsafe fn isDragging(&self) -> bool;
 
-        #[method_id(@__retain_semantics Other representedObject)]
+        #[method_id(@__method_family Other representedObject)]
         pub unsafe fn representedObject(&self) -> Option<Retained<ProtocolObject<dyn NSCopying>>>;
 
         /// Setter for [`representedObject`][Self::representedObject].
@@ -129,7 +129,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSRulerMarker {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

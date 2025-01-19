@@ -29,7 +29,7 @@ extern_methods!(
     #[cfg(feature = "VZDirectoryShare")]
     unsafe impl VZMultipleDirectoryShare {
         /// Initialize the directory share with an empty set of directories.
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZSharedDirectory")]
@@ -40,7 +40,7 @@ extern_methods!(
         /// The dictionary string keys will be the name for the directory. The keys must be valid names or an exception will be raised.
         ///
         /// See: +[VZMultipleDirectoryShare validateName:error:]
-        #[method_id(@__retain_semantics Init initWithDirectories:)]
+        #[method_id(@__method_family Init initWithDirectories:)]
         pub unsafe fn initWithDirectories(
             this: Allocated<Self>,
             directories: &NSDictionary<NSString, VZSharedDirectory>,
@@ -52,7 +52,7 @@ extern_methods!(
         /// The dictionary string keys will be the name for the directory. The keys must be valid names or an exception will be raised.
         ///
         /// See: +[VZMultipleDirectoryShare validateName:error:]
-        #[method_id(@__retain_semantics Other directories)]
+        #[method_id(@__method_family Other directories)]
         pub unsafe fn directories(&self) -> Retained<NSDictionary<NSString, VZSharedDirectory>>;
 
         /// Check if a name is a valid directory name.
@@ -74,7 +74,7 @@ extern_methods!(
         /// This returns nil when it cannot produce a valid name. When not nil, the result is a valid directory name.
         ///
         /// See: +[VZMultipleDirectoryShare validateName:error:]
-        #[method_id(@__retain_semantics Other canonicalizedNameFromName:)]
+        #[method_id(@__method_family Other canonicalizedNameFromName:)]
         pub unsafe fn canonicalizedNameFromName(name: &NSString) -> Option<Retained<NSString>>;
     }
 );
@@ -83,7 +83,7 @@ extern_methods!(
     /// Methods declared on superclass `VZDirectoryShare`
     #[cfg(feature = "VZDirectoryShare")]
     unsafe impl VZMultipleDirectoryShare {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

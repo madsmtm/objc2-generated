@@ -16,7 +16,7 @@ unsafe impl NSObjectProtocol for AMWorkspace {}
 
 extern_methods!(
     unsafe impl AMWorkspace {
-        #[method_id(@__retain_semantics Other sharedWorkspace)]
+        #[method_id(@__method_family Other sharedWorkspace)]
         pub unsafe fn sharedWorkspace() -> Option<Retained<AMWorkspace>>;
     }
 );
@@ -24,10 +24,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AMWorkspace {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

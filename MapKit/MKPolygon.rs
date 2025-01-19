@@ -38,14 +38,14 @@ extern_methods!(
     #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
     unsafe impl MKPolygon {
         #[cfg(feature = "MKGeometry")]
-        #[method_id(@__retain_semantics Other polygonWithPoints:count:)]
+        #[method_id(@__method_family Other polygonWithPoints:count:)]
         pub unsafe fn polygonWithPoints_count(
             points: NonNull<MKMapPoint>,
             count: NSUInteger,
         ) -> Retained<Self>;
 
         #[cfg(feature = "MKGeometry")]
-        #[method_id(@__retain_semantics Other polygonWithPoints:count:interiorPolygons:)]
+        #[method_id(@__method_family Other polygonWithPoints:count:interiorPolygons:)]
         pub unsafe fn polygonWithPoints_count_interiorPolygons(
             points: NonNull<MKMapPoint>,
             count: NSUInteger,
@@ -53,21 +53,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(@__retain_semantics Other polygonWithCoordinates:count:)]
+        #[method_id(@__method_family Other polygonWithCoordinates:count:)]
         pub unsafe fn polygonWithCoordinates_count(
             coords: NonNull<CLLocationCoordinate2D>,
             count: NSUInteger,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(@__retain_semantics Other polygonWithCoordinates:count:interiorPolygons:)]
+        #[method_id(@__method_family Other polygonWithCoordinates:count:interiorPolygons:)]
         pub unsafe fn polygonWithCoordinates_count_interiorPolygons(
             coords: NonNull<CLLocationCoordinate2D>,
             count: NSUInteger,
             interior_polygons: Option<&NSArray<MKPolygon>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other interiorPolygons)]
+        #[method_id(@__method_family Other interiorPolygons)]
         pub unsafe fn interiorPolygons(&self) -> Option<Retained<NSArray<MKPolygon>>>;
     }
 );
@@ -76,10 +76,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]
     unsafe impl MKPolygon {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

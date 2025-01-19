@@ -36,7 +36,7 @@ unsafe impl NSObjectProtocol for VZGenericPlatformConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZPlatformConfiguration")]
     unsafe impl VZGenericPlatformConfiguration {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZGenericMachineIdentifier")]
@@ -45,7 +45,7 @@ extern_methods!(
         /// Running two virtual machines concurrently with the same identifier results in undefined behavior
         /// in the guest operating system. When restoring a virtual machine from saved state, this
         /// `machineIdentifier` must match the `machineIdentifier` of the saved virtual machine.
-        #[method_id(@__retain_semantics Other machineIdentifier)]
+        #[method_id(@__method_family Other machineIdentifier)]
         pub unsafe fn machineIdentifier(&self) -> Retained<VZGenericMachineIdentifier>;
 
         #[cfg(feature = "VZGenericMachineIdentifier")]
@@ -86,7 +86,7 @@ extern_methods!(
     /// Methods declared on superclass `VZPlatformConfiguration`
     #[cfg(feature = "VZPlatformConfiguration")]
     unsafe impl VZGenericPlatformConfiguration {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

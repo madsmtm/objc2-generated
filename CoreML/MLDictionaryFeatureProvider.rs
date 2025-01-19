@@ -30,14 +30,14 @@ extern_methods!(
     unsafe impl MLDictionaryFeatureProvider {
         #[cfg(feature = "MLFeatureValue")]
         /// Dictionary holding the feature values
-        #[method_id(@__retain_semantics Other dictionary)]
+        #[method_id(@__method_family Other dictionary)]
         pub unsafe fn dictionary(&self) -> Retained<NSDictionary<NSString, MLFeatureValue>>;
 
         /// Create from a generic dictionary by converting all values to MLFeatureValues
         /// or from a dictionary with values already stored as MLFeatureValues.
         ///
         /// An error results if the values are not or cannot be represented as MLFeatureValues.
-        #[method_id(@__retain_semantics Init initWithDictionary:error:_)]
+        #[method_id(@__method_family Init initWithDictionary:error:_)]
         pub unsafe fn initWithDictionary_error(
             this: Allocated<Self>,
             dictionary: &NSDictionary<NSString, AnyObject>,
@@ -45,7 +45,7 @@ extern_methods!(
 
         #[cfg(feature = "MLFeatureValue")]
         /// Get the value for specified feature
-        #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
+        #[method_id(@__method_family Other objectForKeyedSubscript:)]
         pub unsafe fn objectForKeyedSubscript(
             &self,
             feature_name: &NSString,
@@ -56,10 +56,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLDictionaryFeatureProvider {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

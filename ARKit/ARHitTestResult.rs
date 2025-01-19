@@ -86,16 +86,16 @@ extern_methods!(
         ///
         /// An anchor will only be provided for existing plane result types.
         #[deprecated = "Use raycasting"]
-        #[method_id(@__retain_semantics Other anchor)]
+        #[method_id(@__method_family Other anchor)]
         pub unsafe fn anchor(&self) -> Option<Retained<ARAnchor>>;
 
         /// Unavailable
         #[deprecated = "Use raycasting"]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Use raycasting"]
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -44,7 +44,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[deprecated = "OpenGL is deprecated"]
-        #[method_id(@__retain_semantics Other colorspace)]
+        #[method_id(@__method_family Other colorspace)]
         pub unsafe fn colorspace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -72,13 +72,13 @@ extern_methods!(
     #[cfg(feature = "CALayer")]
     unsafe impl CAOpenGLLayer {
         /// Layer creation and initialization. *
-        #[method_id(@__retain_semantics Other layer)]
+        #[method_id(@__method_family Other layer)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithLayer:)]
+        #[method_id(@__method_family Init initWithLayer:)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
 );
@@ -87,7 +87,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CALayer")]
     unsafe impl CAOpenGLLayer {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

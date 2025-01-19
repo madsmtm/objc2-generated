@@ -104,7 +104,7 @@ extern_methods!(
         /// Parameter `target`: The target object that receives primary action messages from the control.
         ///
         /// Parameter `action`: The action message sent by the primary action portion of the control.
-        #[method_id(@__retain_semantics Other comboButtonWithTitle:menu:target:action:)]
+        #[method_id(@__method_family Other comboButtonWithTitle:menu:target:action:)]
         pub unsafe fn comboButtonWithTitle_menu_target_action(
             title: &NSString,
             menu: Option<&NSMenu>,
@@ -123,7 +123,7 @@ extern_methods!(
         /// Parameter `target`: The target object that receives primary action messages from the control.
         ///
         /// Parameter `action`: The action message sent by the primary action portion of the control.
-        #[method_id(@__retain_semantics Other comboButtonWithImage:menu:target:action:)]
+        #[method_id(@__method_family Other comboButtonWithImage:menu:target:action:)]
         pub unsafe fn comboButtonWithImage_menu_target_action(
             image: &NSImage,
             menu: Option<&NSMenu>,
@@ -144,7 +144,7 @@ extern_methods!(
         /// Parameter `target`: The target object that receives primary action messages from the control.
         ///
         /// Parameter `action`: The action message sent by the primary action portion of the control.
-        #[method_id(@__retain_semantics Other comboButtonWithTitle:image:menu:target:action:)]
+        #[method_id(@__method_family Other comboButtonWithTitle:image:menu:target:action:)]
         pub unsafe fn comboButtonWithTitle_image_menu_target_action(
             title: &NSString,
             image: &NSImage,
@@ -155,7 +155,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The title displayed on the control. The default value is an empty string.
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -164,7 +164,7 @@ extern_methods!(
 
         #[cfg(feature = "NSImage")]
         /// The image displayed on the control. The default value is `nil`.
-        #[method_id(@__retain_semantics Other image)]
+        #[method_id(@__method_family Other image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -184,7 +184,7 @@ extern_methods!(
 
         #[cfg(feature = "NSMenu")]
         /// Overrides behavior of NSResponder menu. This menu is shown when interacting with the button (see NSComboButtonStyle). NSComboButton does not have a context menu. Items in this menu specify their own target and action independent of the primary action that is configured on the control.
-        #[method_id(@__retain_semantics Other menu)]
+        #[method_id(@__method_family Other menu)]
         pub unsafe fn menu(&self) -> Retained<NSMenu>;
 
         #[cfg(feature = "NSMenu")]
@@ -206,10 +206,10 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSComboButton {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -221,7 +221,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSComboButton {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -230,7 +230,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSComboButton {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

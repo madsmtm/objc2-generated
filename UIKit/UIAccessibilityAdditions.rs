@@ -15,7 +15,7 @@ extern_protocol!(
     {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other pickerView:accessibilityLabelForComponent:)]
+        #[method_id(@__method_family Other pickerView:accessibilityLabelForComponent:)]
         unsafe fn pickerView_accessibilityLabelForComponent(
             &self,
             picker_view: &UIPickerView,
@@ -24,7 +24,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other pickerView:accessibilityHintForComponent:)]
+        #[method_id(@__method_family Other pickerView:accessibilityHintForComponent:)]
         unsafe fn pickerView_accessibilityHintForComponent(
             &self,
             picker_view: &UIPickerView,
@@ -33,7 +33,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other pickerView:accessibilityUserInputLabelsForComponent:)]
+        #[method_id(@__method_family Other pickerView:accessibilityUserInputLabelsForComponent:)]
         unsafe fn pickerView_accessibilityUserInputLabelsForComponent(
             &self,
             picker_view: &UIPickerView,
@@ -42,7 +42,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other pickerView:accessibilityAttributedLabelForComponent:)]
+        #[method_id(@__method_family Other pickerView:accessibilityAttributedLabelForComponent:)]
         unsafe fn pickerView_accessibilityAttributedLabelForComponent(
             &self,
             picker_view: &UIPickerView,
@@ -51,7 +51,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other pickerView:accessibilityAttributedHintForComponent:)]
+        #[method_id(@__method_family Other pickerView:accessibilityAttributedHintForComponent:)]
         unsafe fn pickerView_accessibilityAttributedHintForComponent(
             &self,
             picker_view: &UIPickerView,
@@ -60,7 +60,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other pickerView:accessibilityAttributedUserInputLabelsForComponent:)]
+        #[method_id(@__method_family Other pickerView:accessibilityAttributedUserInputLabelsForComponent:)]
         unsafe fn pickerView_accessibilityAttributedUserInputLabelsForComponent(
             &self,
             picker_view: &UIPickerView,
@@ -77,7 +77,7 @@ extern_protocol!(
     {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other accessibilityScrollStatusForScrollView:)]
+        #[method_id(@__method_family Other accessibilityScrollStatusForScrollView:)]
         unsafe fn accessibilityScrollStatusForScrollView(
             &self,
             scroll_view: &UIScrollView,
@@ -85,7 +85,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other accessibilityAttributedScrollStatusForScrollView:)]
+        #[method_id(@__method_family Other accessibilityAttributedScrollStatusForScrollView:)]
         unsafe fn accessibilityAttributedScrollStatusForScrollView(
             &self,
             scroll_view: &UIScrollView,
@@ -113,7 +113,7 @@ extern_methods!(
     /// UIAccessibility
     #[cfg(feature = "UIColor")]
     unsafe impl UIColor {
-        #[method_id(@__retain_semantics Other accessibilityName)]
+        #[method_id(@__method_family Other accessibilityName)]
         pub unsafe fn accessibilityName(&self) -> Retained<NSString>;
     }
 );

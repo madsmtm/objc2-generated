@@ -56,7 +56,7 @@ extern_methods!(
     unsafe impl ARImageAnchor {
         #[cfg(feature = "ARReferenceImage")]
         /// Reference to the detected image.
-        #[method_id(@__retain_semantics Other referenceImage)]
+        #[method_id(@__method_family Other referenceImage)]
         pub unsafe fn referenceImage(&self) -> Retained<ARReferenceImage>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -76,10 +76,10 @@ extern_methods!(
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
     unsafe impl ARImageAnchor {
         /// Unavailable
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

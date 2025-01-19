@@ -198,7 +198,7 @@ unsafe impl NSObjectProtocol for AVAudioPlayerNode {}
 extern_methods!(
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioPlayerNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(
@@ -474,7 +474,7 @@ extern_methods!(
         /// introduction to this class.
         ///
         /// If the player is not playing when this method is called, nil is returned.
-        #[method_id(@__retain_semantics Other nodeTimeForPlayerTime:)]
+        #[method_id(@__method_family Other nodeTimeForPlayerTime:)]
         pub unsafe fn nodeTimeForPlayerTime(
             &self,
             player_time: &AVAudioTime,
@@ -491,7 +491,7 @@ extern_methods!(
         /// introduction to this class.
         ///
         /// If the player is not playing when this method is called, nil is returned.
-        #[method_id(@__retain_semantics Other playerTimeForNodeTime:)]
+        #[method_id(@__method_family Other playerTimeForNodeTime:)]
         pub unsafe fn playerTimeForNodeTime(
             &self,
             node_time: &AVAudioTime,
@@ -507,7 +507,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AVAudioNode")]
     unsafe impl AVAudioPlayerNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

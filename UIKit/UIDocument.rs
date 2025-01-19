@@ -111,19 +111,19 @@ unsafe impl NSProgressReporting for UIDocument {}
 
 extern_methods!(
     unsafe impl UIDocument {
-        #[method_id(@__retain_semantics Init initWithFileURL:)]
+        #[method_id(@__method_family Init initWithFileURL:)]
         pub unsafe fn initWithFileURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other fileURL)]
+        #[method_id(@__method_family Other fileURL)]
         pub unsafe fn fileURL(&self) -> Retained<NSURL>;
 
-        #[method_id(@__retain_semantics Other localizedName)]
+        #[method_id(@__method_family Other localizedName)]
         pub unsafe fn localizedName(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other fileType)]
+        #[method_id(@__method_family Other fileType)]
         pub unsafe fn fileType(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__retain_semantics Other fileModificationDate)]
+        #[method_id(@__method_family Other fileModificationDate)]
         pub unsafe fn fileModificationDate(&self) -> Option<Retained<NSDate>>;
 
         /// Setter for [`fileModificationDate`][Self::fileModificationDate].
@@ -133,7 +133,7 @@ extern_methods!(
         #[method(documentState)]
         pub unsafe fn documentState(&self) -> UIDocumentState;
 
-        #[method_id(@__retain_semantics Other progress)]
+        #[method_id(@__method_family Other progress)]
         pub unsafe fn progress(&self) -> Option<Retained<NSProgress>>;
 
         #[cfg(feature = "block2")]
@@ -157,7 +157,7 @@ extern_methods!(
             type_name: Option<&NSString>,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method_id(@__retain_semantics Other contentsForType:error:_)]
+        #[method_id(@__method_family Other contentsForType:error:_)]
         pub unsafe fn contentsForType_error(
             &self,
             type_name: &NSString,
@@ -169,7 +169,7 @@ extern_methods!(
         #[method(enableEditing)]
         pub unsafe fn enableEditing(&self);
 
-        #[method_id(@__retain_semantics Other undoManager)]
+        #[method_id(@__method_family Other undoManager)]
         pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
 
         /// Setter for [`undoManager`][Self::undoManager].
@@ -182,7 +182,7 @@ extern_methods!(
         #[method(updateChangeCount:)]
         pub unsafe fn updateChangeCount(&self, change: UIDocumentChangeKind);
 
-        #[method_id(@__retain_semantics Other changeCountTokenForSaveOperation:)]
+        #[method_id(@__method_family Other changeCountTokenForSaveOperation:)]
         pub unsafe fn changeCountTokenForSaveOperation(
             &self,
             save_operation: UIDocumentSaveOperation,
@@ -211,10 +211,10 @@ extern_methods!(
             completion_handler: Option<&block2::Block<dyn Fn(Bool)>>,
         );
 
-        #[method_id(@__retain_semantics Other savingFileType)]
+        #[method_id(@__method_family Other savingFileType)]
         pub unsafe fn savingFileType(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__retain_semantics Other fileNameExtensionForType:saveOperation:)]
+        #[method_id(@__method_family Other fileNameExtensionForType:saveOperation:)]
         pub unsafe fn fileNameExtensionForType_saveOperation(
             &self,
             type_name: Option<&NSString>,
@@ -239,7 +239,7 @@ extern_methods!(
             original_contents_url: Option<&NSURL>,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method_id(@__retain_semantics Other fileAttributesToWriteToURL:forSaveOperation:error:_)]
+        #[method_id(@__method_family Other fileAttributesToWriteToURL:forSaveOperation:error:_)]
         pub unsafe fn fileAttributesToWriteToURL_forSaveOperation_error(
             &self,
             url: &NSURL,
@@ -282,10 +282,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIDocument {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -305,7 +305,7 @@ extern "C" {
 extern_methods!(
     /// ActivityContinuation
     unsafe impl UIDocument {
-        #[method_id(@__retain_semantics Other userActivity)]
+        #[method_id(@__method_family Other userActivity)]
         pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
 
         /// Setter for [`userActivity`][Self::userActivity].

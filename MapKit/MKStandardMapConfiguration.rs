@@ -55,23 +55,23 @@ unsafe impl NSSecureCoding for MKStandardMapConfiguration {}
 extern_methods!(
     #[cfg(feature = "MKMapConfiguration")]
     unsafe impl MKStandardMapConfiguration {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithElevationStyle:)]
+        #[method_id(@__method_family Init initWithElevationStyle:)]
         pub unsafe fn initWithElevationStyle(
             this: Allocated<Self>,
             elevation_style: MKMapElevationStyle,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithElevationStyle:emphasisStyle:)]
+        #[method_id(@__method_family Init initWithElevationStyle:emphasisStyle:)]
         pub unsafe fn initWithElevationStyle_emphasisStyle(
             this: Allocated<Self>,
             elevation_style: MKMapElevationStyle,
             emphasis_style: MKStandardMapEmphasisStyle,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithEmphasisStyle:)]
+        #[method_id(@__method_family Init initWithEmphasisStyle:)]
         pub unsafe fn initWithEmphasisStyle(
             this: Allocated<Self>,
             emphasis_style: MKStandardMapEmphasisStyle,
@@ -85,7 +85,7 @@ extern_methods!(
         pub unsafe fn setEmphasisStyle(&self, emphasis_style: MKStandardMapEmphasisStyle);
 
         #[cfg(feature = "MKPointOfInterestFilter")]
-        #[method_id(@__retain_semantics Other pointOfInterestFilter)]
+        #[method_id(@__method_family Other pointOfInterestFilter)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
@@ -109,7 +109,7 @@ extern_methods!(
     /// Methods declared on superclass `MKMapConfiguration`
     #[cfg(feature = "MKMapConfiguration")]
     unsafe impl MKStandardMapConfiguration {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

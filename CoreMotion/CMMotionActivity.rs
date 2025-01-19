@@ -59,7 +59,7 @@ extern_methods!(
         #[method(confidence)]
         pub unsafe fn confidence(&self) -> CMMotionActivityConfidence;
 
-        #[method_id(@__retain_semantics Other startDate)]
+        #[method_id(@__method_family Other startDate)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         #[method(unknown)]
@@ -86,10 +86,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CMLogItem")]
     unsafe impl CMMotionActivity {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

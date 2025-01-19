@@ -26,7 +26,7 @@ extern_methods!(
         pub unsafe fn size(&self) -> NSSize;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(@__retain_semantics Other contentView)]
+        #[method_id(@__method_family Other contentView)]
         pub unsafe fn contentView(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -44,14 +44,14 @@ extern_methods!(
         #[method(setShowsApplicationBadge:)]
         pub unsafe fn setShowsApplicationBadge(&self, shows_application_badge: bool);
 
-        #[method_id(@__retain_semantics Other badgeLabel)]
+        #[method_id(@__method_family Other badgeLabel)]
         pub unsafe fn badgeLabel(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`badgeLabel`][Self::badgeLabel].
         #[method(setBadgeLabel:)]
         pub unsafe fn setBadgeLabel(&self, badge_label: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other owner)]
+        #[method_id(@__method_family Other owner)]
         pub unsafe fn owner(&self) -> Option<Retained<AnyObject>>;
     }
 );
@@ -59,10 +59,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSDockTile {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -75,7 +75,7 @@ extern_protocol!(
 
         #[cfg(feature = "NSMenu")]
         #[optional]
-        #[method_id(@__retain_semantics Other dockMenu)]
+        #[method_id(@__method_family Other dockMenu)]
         unsafe fn dockMenu(&self, mtm: MainThreadMarker) -> Option<Retained<NSMenu>>;
     }
 );

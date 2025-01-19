@@ -27,13 +27,13 @@ unsafe impl NSSecureCoding for UNNotificationActionIcon {}
 
 extern_methods!(
     unsafe impl UNNotificationActionIcon {
-        #[method_id(@__retain_semantics Other iconWithTemplateImageName:)]
+        #[method_id(@__method_family Other iconWithTemplateImageName:)]
         pub unsafe fn iconWithTemplateImageName(template_image_name: &NSString) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other iconWithSystemImageName:)]
+        #[method_id(@__method_family Other iconWithSystemImageName:)]
         pub unsafe fn iconWithSystemImageName(system_image_name: &NSString) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -41,7 +41,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNNotificationActionIcon {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

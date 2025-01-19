@@ -24,10 +24,10 @@ unsafe impl NSObjectProtocol for AVSampleBufferGenerator {}
 
 extern_methods!(
     unsafe impl AVSampleBufferGenerator {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(feature = "AVAsset", feature = "objc2-core-media"))]
@@ -40,7 +40,7 @@ extern_methods!(
         /// Returns: An instance of AVSampleBufferGenerator.
         ///
         /// If the specified asset is an HTTP Live Streaming asset, the generator cannot create sample buffers.
-        #[method_id(@__retain_semantics Init initWithAsset:timebase:)]
+        #[method_id(@__method_family Init initWithAsset:timebase:)]
         pub unsafe fn initWithAsset_timebase(
             this: Allocated<Self>,
             asset: &AVAsset,
@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-media")]
         #[deprecated = "Use -createSampleBufferForRequest: error:, passing NULL for the error if not required"]
-        #[method_id(@__retain_semantics Other createSampleBufferForRequest:)]
+        #[method_id(@__method_family Other createSampleBufferForRequest:)]
         pub unsafe fn createSampleBufferForRequest(
             &self,
             request: &AVSampleBufferRequest,
@@ -58,7 +58,7 @@ extern_methods!(
         /// Creates a batch to handle multiple sample buffers, allowing to asynchronously load sample data and optimize I/O when possible.
         ///
         /// Returns: An instance of an AVSampleBufferGeneratorBatch that can be used in calls to createSampleBufferForRequest:addingToBatch:error: of the same AVSampleBufferGenerator instance.
-        #[method_id(@__retain_semantics Other makeBatch)]
+        #[method_id(@__method_family Other makeBatch)]
         pub unsafe fn makeBatch(&self) -> Retained<AVSampleBufferGeneratorBatch>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
@@ -148,21 +148,21 @@ unsafe impl NSObjectProtocol for AVSampleBufferRequest {}
 
 extern_methods!(
     unsafe impl AVSampleBufferRequest {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVSampleCursor")]
-        #[method_id(@__retain_semantics Init initWithStartCursor:)]
+        #[method_id(@__method_family Init initWithStartCursor:)]
         pub unsafe fn initWithStartCursor(
             this: Allocated<Self>,
             start_cursor: &AVSampleCursor,
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVSampleCursor")]
-        #[method_id(@__retain_semantics Other startCursor)]
+        #[method_id(@__method_family Other startCursor)]
         pub unsafe fn startCursor(&self) -> Retained<AVSampleCursor>;
 
         #[method(direction)]
@@ -173,7 +173,7 @@ extern_methods!(
         pub unsafe fn setDirection(&self, direction: AVSampleBufferRequestDirection);
 
         #[cfg(feature = "AVSampleCursor")]
-        #[method_id(@__retain_semantics Other limitCursor)]
+        #[method_id(@__method_family Other limitCursor)]
         pub unsafe fn limitCursor(&self) -> Option<Retained<AVSampleCursor>>;
 
         #[cfg(feature = "AVSampleCursor")]
@@ -235,10 +235,10 @@ unsafe impl NSObjectProtocol for AVSampleBufferGeneratorBatch {}
 
 extern_methods!(
     unsafe impl AVSampleBufferGeneratorBatch {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "block2")]

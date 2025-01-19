@@ -84,14 +84,14 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKGameCenterViewController {
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        #[method_id(@__method_family Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -104,7 +104,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKGameCenterViewController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -114,7 +114,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKGameCenterViewController {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -123,7 +123,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl GKGameCenterViewController {
-        #[method_id(@__retain_semantics Other gameCenterDelegate)]
+        #[method_id(@__method_family Other gameCenterDelegate)]
         pub unsafe fn gameCenterDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKGameCenterControllerDelegate>>>;
@@ -137,7 +137,7 @@ extern_methods!(
         );
 
         /// Use this to display content associated with the specified state. For example setting the state to GKGameCenterViewControllerStateLeaderboards will display a list of leaderboard sets or leaderboards (if no sets). Setting state to GKGameCenterViewControllerStateAchievements will display a list of achievements.
-        #[method_id(@__retain_semantics Init initWithState:)]
+        #[method_id(@__method_family Init initWithState:)]
         pub unsafe fn initWithState(
             this: Allocated<Self>,
             state: GKGameCenterViewControllerState,
@@ -145,7 +145,7 @@ extern_methods!(
 
         #[cfg(feature = "GKLeaderboard")]
         /// Use this to display the scores for the specified leaderboardID, player scope and time scope. The time scope is only applicable to classic leaderboards. Recurring leaderboards will always be displayed initially with the results (scores) associated with the current instance of the leaderboard.
-        #[method_id(@__retain_semantics Init initWithLeaderboardID:playerScope:timeScope:)]
+        #[method_id(@__method_family Init initWithLeaderboardID:playerScope:timeScope:)]
         pub unsafe fn initWithLeaderboardID_playerScope_timeScope(
             this: Allocated<Self>,
             leaderboard_id: &NSString,
@@ -155,7 +155,7 @@ extern_methods!(
 
         #[cfg(feature = "GKLeaderboard")]
         /// Use this to display the scores for the specified leaderboard and player scope. Both classic and recurring leaderboards can use this method to initialize the view with their scores.
-        #[method_id(@__retain_semantics Init initWithLeaderboard:playerScope:)]
+        #[method_id(@__method_family Init initWithLeaderboard:playerScope:)]
         pub unsafe fn initWithLeaderboard_playerScope(
             this: Allocated<Self>,
             leaderboard: &GKLeaderboard,
@@ -163,14 +163,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Use this to display the leaderboard sets for the specified leaderboardSetID.
-        #[method_id(@__retain_semantics Init initWithLeaderboardSetID:)]
+        #[method_id(@__method_family Init initWithLeaderboardSetID:)]
         pub unsafe fn initWithLeaderboardSetID(
             this: Allocated<Self>,
             leaderboard_set_id: &NSString,
         ) -> Retained<Self>;
 
         /// Use this to display the details associated with the specified achievementID
-        #[method_id(@__retain_semantics Init initWithAchievementID:)]
+        #[method_id(@__method_family Init initWithAchievementID:)]
         pub unsafe fn initWithAchievementID(
             this: Allocated<Self>,
             achievement_id: &NSString,
@@ -178,7 +178,7 @@ extern_methods!(
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// Use this to display the profile page associated with the specified player.
-        #[method_id(@__retain_semantics Init initWithPlayer:)]
+        #[method_id(@__method_family Init initWithPlayer:)]
         pub unsafe fn initWithPlayer(this: Allocated<Self>, player: &GKPlayer) -> Retained<Self>;
     }
 );
@@ -212,7 +212,7 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other leaderboardIdentifier)]
+        #[method_id(@__method_family Other leaderboardIdentifier)]
         pub unsafe fn leaderboardIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`leaderboardIdentifier`][Self::leaderboardIdentifier].
@@ -221,7 +221,7 @@ extern_methods!(
         pub unsafe fn setLeaderboardIdentifier(&self, leaderboard_identifier: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other leaderboardCategory)]
+        #[method_id(@__method_family Other leaderboardCategory)]
         pub unsafe fn leaderboardCategory(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`leaderboardCategory`][Self::leaderboardCategory].

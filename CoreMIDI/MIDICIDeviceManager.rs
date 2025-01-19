@@ -110,12 +110,12 @@ extern_methods!(
         /// creation is not allowed, callbacks are only invoked when the process is not suspended.
         /// However, any suspended process will receive an updated copy of the cache when it
         /// resumes its running state.
-        #[method_id(@__retain_semantics Other sharedInstance)]
+        #[method_id(@__method_family Other sharedInstance)]
         pub unsafe fn sharedInstance() -> Retained<MIDICIDeviceManager>;
 
         #[cfg(all(feature = "MIDICIDevice", feature = "objc2-foundation"))]
         /// A list of MIDICIDevices that responded to the last MIDI-CI discovery request.
-        #[method_id(@__retain_semantics Other discoveredCIDevices)]
+        #[method_id(@__method_family Other discoveredCIDevices)]
         pub unsafe fn discoveredCIDevices(&self) -> Retained<NSArray<MIDICIDevice>>;
     }
 );
@@ -125,10 +125,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDICIDeviceManager {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

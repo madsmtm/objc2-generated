@@ -64,7 +64,7 @@ extern_methods!(
         );
 
         #[deprecated = "HMCameraStream objects are created by their parent container objects. Directly creating them is not supported."]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -73,7 +73,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HMCameraSource")]
     unsafe impl HMCameraStream {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -49,11 +49,11 @@ extern_methods!(
         pub unsafe fn c(&self) -> c_float;
 
         #[deprecated]
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
@@ -63,7 +63,7 @@ extern_methods!(
         ///
         /// Returns: A new neuron descriptor or nil if failure
         #[deprecated]
-        #[method_id(@__retain_semantics Other descriptorWithType:)]
+        #[method_id(@__method_family Other descriptorWithType:)]
         pub unsafe fn descriptorWithType(
             activation_type: MLCActivationType,
         ) -> Option<Retained<Self>>;
@@ -77,7 +77,7 @@ extern_methods!(
         ///
         /// Returns: A new neuron descriptor or nil if failure
         #[deprecated]
-        #[method_id(@__retain_semantics Other descriptorWithType:a:)]
+        #[method_id(@__method_family Other descriptorWithType:a:)]
         pub unsafe fn descriptorWithType_a(
             activation_type: MLCActivationType,
             a: c_float,
@@ -94,7 +94,7 @@ extern_methods!(
         ///
         /// Returns: A new neuron descriptor or nil if failure
         #[deprecated]
-        #[method_id(@__retain_semantics Other descriptorWithType:a:b:)]
+        #[method_id(@__method_family Other descriptorWithType:a:b:)]
         pub unsafe fn descriptorWithType_a_b(
             activation_type: MLCActivationType,
             a: c_float,
@@ -114,7 +114,7 @@ extern_methods!(
         ///
         /// Returns: A new neuron descriptor or nil if failure
         #[deprecated]
-        #[method_id(@__retain_semantics Other descriptorWithType:a:b:c:)]
+        #[method_id(@__method_family Other descriptorWithType:a:b:c:)]
         pub unsafe fn descriptorWithType_a_b_c(
             activation_type: MLCActivationType,
             a: c_float,

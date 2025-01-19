@@ -72,29 +72,29 @@ extern_methods!(
         pub unsafe fn disabledMode(&self) -> UIActivityCollaborationMode;
 
         /// The title of the alert if a reason for disabling is provided
-        #[method_id(@__retain_semantics Other alertTitle)]
+        #[method_id(@__method_family Other alertTitle)]
         pub unsafe fn alertTitle(&self) -> Option<Retained<NSString>>;
 
         /// The message of the alert if a reason for disabling is provided
-        #[method_id(@__retain_semantics Other alertMessage)]
+        #[method_id(@__method_family Other alertMessage)]
         pub unsafe fn alertMessage(&self) -> Option<Retained<NSString>>;
 
         /// The label on the alert button which will simply confirm that the alert was viewed and dismiss it
         /// Defaults to "OK"
-        #[method_id(@__retain_semantics Other alertDismissButtonTitle)]
+        #[method_id(@__method_family Other alertDismissButtonTitle)]
         pub unsafe fn alertDismissButtonTitle(&self) -> Option<Retained<NSString>>;
 
         /// The label on the recovery suggestion button if it is provided
-        #[method_id(@__retain_semantics Other alertRecoverySuggestionButtonTitle)]
+        #[method_id(@__method_family Other alertRecoverySuggestionButtonTitle)]
         pub unsafe fn alertRecoverySuggestionButtonTitle(&self) -> Option<Retained<NSString>>;
 
         /// On tapping the recovery suggestion button (if it is provided), the user will be launched to this URL
-        #[method_id(@__retain_semantics Other alertRecoverySuggestionButtonLaunchURL)]
+        #[method_id(@__method_family Other alertRecoverySuggestionButtonLaunchURL)]
         pub unsafe fn alertRecoverySuggestionButtonLaunchURL(&self) -> Option<Retained<NSURL>>;
 
         /// - Parameters:
         /// - disabledMode: The disabled type of sharing
-        #[method_id(@__retain_semantics Init initWithDisabledMode:)]
+        #[method_id(@__method_family Init initWithDisabledMode:)]
         pub unsafe fn initWithDisabledMode(
             this: Allocated<Self>,
             disabled_mode: UIActivityCollaborationMode,
@@ -104,7 +104,7 @@ extern_methods!(
         /// - disabledMode: The disabled type of sharing
         /// - alertTitle: The alert title
         /// - alertMessage: The alert message
-        #[method_id(@__retain_semantics Init initWithDisabledMode:alertTitle:alertMessage:)]
+        #[method_id(@__method_family Init initWithDisabledMode:alertTitle:alertMessage:)]
         pub unsafe fn initWithDisabledMode_alertTitle_alertMessage(
             this: Allocated<Self>,
             disabled_mode: UIActivityCollaborationMode,
@@ -117,7 +117,7 @@ extern_methods!(
         /// - alertTitle: The alert title
         /// - alertMessage: The alert message
         /// - alertDismissButtonTitle: The label on the default alert button
-        #[method_id(@__retain_semantics Init initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:)]
+        #[method_id(@__method_family Init initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:)]
         pub unsafe fn initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle(
             this: Allocated<Self>,
             disabled_mode: UIActivityCollaborationMode,
@@ -133,7 +133,7 @@ extern_methods!(
         /// - alertDismissButtonTitle: The label on the default alert button
         /// - alertRecoverySuggestionButtonTitle: The label on the optional recovery suggestion button on the alert
         /// - alertRecoverySuggestionButtonLaunchURL: The URL which launches when the optional recovery suggestion button is tapped
-        #[method_id(@__retain_semantics Init initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:alertRecoverySuggestionButtonTitle:alertRecoverySuggestionButtonLaunchURL:)]
+        #[method_id(@__method_family Init initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:alertRecoverySuggestionButtonTitle:alertRecoverySuggestionButtonLaunchURL:)]
         pub unsafe fn initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL(
             this: Allocated<Self>,
             disabled_mode: UIActivityCollaborationMode,
@@ -144,13 +144,13 @@ extern_methods!(
             alert_recovery_suggestion_button_launch_url: &NSURL,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other description)]
+        #[method_id(@__method_family Other description)]
         pub unsafe fn description(&self) -> Retained<NSString>;
     }
 );

@@ -32,23 +32,23 @@ extern_methods!(
         /// provides. This is chosen by your extension and is passed back to your
         /// extension if the user chooses to create a virtual conference of the
         /// associated room type.
-        #[method_id(@__retain_semantics Init initWithTitle:identifier:)]
+        #[method_id(@__method_family Init initWithTitle:identifier:)]
         pub unsafe fn initWithTitle_identifier(
             this: Allocated<Self>,
             title: &NSString,
             identifier: &EKVirtualConferenceRoomTypeIdentifier,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<EKVirtualConferenceRoomTypeIdentifier>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -76,23 +76,23 @@ extern_methods!(
         /// what each URL represents.
         ///
         /// Parameter `URL`: A URL that, when opened, will join the virtual conference.
-        #[method_id(@__retain_semantics Init initWithTitle:URL:)]
+        #[method_id(@__method_family Init initWithTitle:URL:)]
         pub unsafe fn initWithTitle_URL(
             this: Allocated<Self>,
             title: Option<&NSString>,
             url: &NSURL,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__retain_semantics Other URL)]
+        #[method_id(@__method_family Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -124,7 +124,7 @@ extern_methods!(
         /// Parameter `conferenceDetails`: A user-readable string containing any other information you wish to
         /// communicate to the user about this virtual conference. This string will
         /// be displayed in the UI. This argument is optional and may be left nil.
-        #[method_id(@__retain_semantics Init initWithTitle:URLDescriptors:conferenceDetails:)]
+        #[method_id(@__method_family Init initWithTitle:URLDescriptors:conferenceDetails:)]
         pub unsafe fn initWithTitle_URLDescriptors_conferenceDetails(
             this: Allocated<Self>,
             title: Option<&NSString>,
@@ -132,19 +132,19 @@ extern_methods!(
             conference_details: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__retain_semantics Other URLDescriptors)]
+        #[method_id(@__method_family Other URLDescriptors)]
         pub unsafe fn URLDescriptors(&self) -> Retained<NSArray<EKVirtualConferenceURLDescriptor>>;
 
-        #[method_id(@__retain_semantics Other conferenceDetails)]
+        #[method_id(@__method_family Other conferenceDetails)]
         pub unsafe fn conferenceDetails(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

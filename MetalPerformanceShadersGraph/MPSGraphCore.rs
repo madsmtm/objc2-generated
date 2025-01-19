@@ -29,10 +29,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSGraphObject {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -61,10 +61,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSGraphType {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -90,7 +90,7 @@ extern_methods!(
     unsafe impl MPSGraphShapedType {
         #[cfg(feature = "objc2-metal-performance-shaders")]
         /// The Shape of the shaped type.
-        #[method_id(@__retain_semantics Other shape)]
+        #[method_id(@__method_family Other shape)]
         pub unsafe fn shape(&self) -> Option<Retained<MPSShape>>;
 
         #[cfg(feature = "objc2-metal-performance-shaders")]
@@ -115,7 +115,7 @@ extern_methods!(
         /// - shape: The shape of the shaped type.
         /// - dataType: The dataType of the shaped type.
         /// - Returns: A valid MPSGraphShapedType, or nil if allocation failure.
-        #[method_id(@__retain_semantics Init initWithShape:dataType:)]
+        #[method_id(@__method_family Init initWithShape:dataType:)]
         pub unsafe fn initWithShape_dataType(
             this: Allocated<Self>,
             shape: Option<&MPSShape>,
@@ -135,10 +135,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSGraphShapedType {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

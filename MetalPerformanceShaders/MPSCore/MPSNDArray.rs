@@ -133,7 +133,7 @@ extern_methods!(
         /// Returns the shape of the NDArray as MPSShape
         ///
         /// The length of the array is the number of dimensions and the size of the fastest running dimension is the last element in the array.
-        #[method_id(@__retain_semantics Other getShape)]
+        #[method_id(@__method_family Other getShape)]
         pub unsafe fn getShape(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "MPSCoreTypes")]
@@ -160,7 +160,7 @@ extern_methods!(
         /// Additional system memory limits may apply
         ///
         /// Returns: A valid MPSNDArrayDescriptor object or nil, if failure.
-        #[method_id(@__retain_semantics Other descriptorWithDataType:dimensionCount:dimensionSizes:)]
+        #[method_id(@__method_family Other descriptorWithDataType:dimensionCount:dimensionSizes:)]
         pub unsafe fn descriptorWithDataType_dimensionCount_dimensionSizes(
             data_type: MPSDataType,
             number_of_dimensions: NSUInteger,
@@ -188,7 +188,7 @@ extern_methods!(
         /// Additional system memory limits may apply
         ///
         /// Returns: A valid MPSNDArrayDescriptor object or nil, if failure.
-        #[method_id(@__retain_semantics Other descriptorWithDataType:shape:)]
+        #[method_id(@__method_family Other descriptorWithDataType:shape:)]
         pub unsafe fn descriptorWithDataType_shape(
             data_type: MPSDataType,
             shape: &NSArray<NSNumber>,
@@ -219,7 +219,7 @@ extern_methods!(
         pub unsafe fn reshapeWithShape(&self, shape: &NSArray<NSNumber>);
 
         /// Use -descriptorWithDataType:... instead
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -227,7 +227,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNDArrayDescriptor {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -254,7 +254,7 @@ extern_protocol!(
         ///
         ///
         /// Returns: A valid MPSNDArray or MPSTemporaryNDArray. It will be automatically released when the command buffer completes.
-        #[method_id(@__retain_semantics Other arrayForCommandBuffer:arrayDescriptor:kernel:)]
+        #[method_id(@__method_family Other arrayForCommandBuffer:arrayDescriptor:kernel:)]
         unsafe fn arrayForCommandBuffer_arrayDescriptor_kernel(
             &self,
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -313,13 +313,13 @@ extern_methods!(
         /// Get a well known
         /// <MPSNDArrayAllocator
         /// > that makes standard MTLBuffers
-        #[method_id(@__retain_semantics Other defaultAllocator)]
+        #[method_id(@__method_family Other defaultAllocator)]
         pub unsafe fn defaultAllocator() -> Retained<ProtocolObject<dyn MPSNDArrayAllocator>>;
 
         /// A used specified string to help identify the array during debugging.
         ///
         /// May be externally visible to tools like Instruments
-        #[method_id(@__retain_semantics Other label)]
+        #[method_id(@__method_family Other label)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -348,7 +348,7 @@ extern_methods!(
         pub unsafe fn lengthOfDimension(&self, dimension_index: NSUInteger) -> NSUInteger;
 
         /// The device on which the MSPNDArray may be used
-        #[method_id(@__retain_semantics Other device)]
+        #[method_id(@__method_family Other device)]
         pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// Create a MPSNDArrayDescriptor that describes this MPSNDArray
@@ -361,10 +361,10 @@ extern_methods!(
         /// Returns: A new autoreleased MPSNDArrayDescriptor that matches the
         /// shape of the MPSNDArray, suitable for introduction of slice,
         /// cast and transpose operations.
-        #[method_id(@__retain_semantics Other descriptor)]
+        #[method_id(@__method_family Other descriptor)]
         pub unsafe fn descriptor(&self) -> Retained<MPSNDArrayDescriptor>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize an MPSNDArrayDescriptor object on a device
@@ -378,7 +378,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSNDArray object or nil, if failure.
-        #[method_id(@__retain_semantics Init initWithDevice:descriptor:)]
+        #[method_id(@__method_family Init initWithDevice:descriptor:)]
         pub unsafe fn initWithDevice_descriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -386,7 +386,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Create a 1-Dimensional length=1 NDArray to hold a scalar
-        #[method_id(@__retain_semantics Init initWithDevice:scalar:)]
+        #[method_id(@__method_family Init initWithDevice:scalar:)]
         pub unsafe fn initWithDevice_scalar(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -404,7 +404,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSNDArray object or nil, if failure.
-        #[method_id(@__retain_semantics Init initWithBuffer:offset:descriptor:)]
+        #[method_id(@__method_family Init initWithBuffer:offset:descriptor:)]
         pub unsafe fn initWithBuffer_offset_descriptor(
             this: Allocated<Self>,
             buffer: &ProtocolObject<dyn MTLBuffer>,
@@ -415,7 +415,7 @@ extern_methods!(
         /// Returns the user buffer in case the NDArray was initialized with an MTLBuffer.
         ///
         /// Returns: The user-provided MTLBuffer that was used to initialize this MPSNDArray or nil, in case it was not..
-        #[method_id(@__retain_semantics Other userBuffer)]
+        #[method_id(@__method_family Other userBuffer)]
         pub unsafe fn userBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Get the number of bytes used to allocate underyling MTLResources
@@ -455,7 +455,7 @@ extern_methods!(
         /// be performed.
         ///
         /// Returns: A new MPSNDArray, if it is possible to make one. Otherwise nil is returned. The MPSNDArray is autoreleased.
-        #[method_id(@__retain_semantics Other arrayViewWithCommandBuffer:descriptor:aliasing:)]
+        #[method_id(@__method_family Other arrayViewWithCommandBuffer:descriptor:aliasing:)]
         pub unsafe fn arrayViewWithCommandBuffer_descriptor_aliasing(
             &self,
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
@@ -473,7 +473,7 @@ extern_methods!(
         /// Parameter `descriptor`: A MPSNDArrayDescriptor describing the shape of the new view of the data
         ///
         /// Returns: A new MPSNDArray, if it is possible to make one. Otherwise nil is returned. The MPSNDArray is autoreleased.
-        #[method_id(@__retain_semantics Other arrayViewWithDescriptor:)]
+        #[method_id(@__method_family Other arrayViewWithDescriptor:)]
         pub unsafe fn arrayViewWithDescriptor(
             &self,
             descriptor: &MPSNDArrayDescriptor,
@@ -491,7 +491,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A new MPSNDArray, if it is possible to make one. Otherwise nil is returned. The MPSNDArray is autoreleased.
-        #[method_id(@__retain_semantics Other arrayViewWithShape:strides:)]
+        #[method_id(@__method_family Other arrayViewWithShape:strides:)]
         pub unsafe fn arrayViewWithShape_strides(
             &self,
             shape: Option<&MPSShape>,
@@ -511,7 +511,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A new MPSNDArray, if it is possible to make one. Otherwise nil is returned. The MPSNDArray is autoreleased.
-        #[method_id(@__retain_semantics Other arrayViewWithDimensionCount:dimensionSizes:strides:)]
+        #[method_id(@__method_family Other arrayViewWithDimensionCount:dimensionSizes:strides:)]
         pub unsafe fn arrayViewWithDimensionCount_dimensionSizes_strides(
             &self,
             number_of_dimensions: NSUInteger,
@@ -524,7 +524,7 @@ extern_methods!(
         /// If the MPSNDArray was createrd as a array view of another MPSNDArray object, and aliases content
         /// in the same MTLBuffer, the original MPSNDArray will be retained as the parent here. Two MPSNDArrays
         /// alias if they share a common ancestor. Note that the parent may itself have a parent, and so forth.
-        #[method_id(@__retain_semantics Other parent)]
+        #[method_id(@__method_family Other parent)]
         pub unsafe fn parent(&self) -> Option<Retained<MPSNDArray>>;
 
         #[cfg(feature = "MPSCoreTypes")]
@@ -673,7 +673,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNDArray {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -700,7 +700,7 @@ extern_methods!(
         /// Get a well known
         /// <MPSNDArrayAllocator
         /// > that makes temporary MTLBuffers
-        #[method_id(@__retain_semantics Other defaultAllocator)]
+        #[method_id(@__method_family Other defaultAllocator)]
         pub unsafe fn defaultAllocator() -> Retained<ProtocolObject<dyn MPSNDArrayAllocator>>;
 
         /// Initialize a MPSTemporaryNDArray for use on a MTLCommandBuffer
@@ -713,14 +713,14 @@ extern_methods!(
         /// released when the command buffer is committed. The underlying buffer will become invalid before
         /// this time due to the action of the readCount property.  Please read and understand the use of
         /// the readCount property before using this object.
-        #[method_id(@__retain_semantics Other temporaryNDArrayWithCommandBuffer:descriptor:)]
+        #[method_id(@__method_family Other temporaryNDArrayWithCommandBuffer:descriptor:)]
         pub unsafe fn temporaryNDArrayWithCommandBuffer_descriptor(
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             descriptor: &MPSNDArrayDescriptor,
         ) -> Retained<Self>;
 
         /// Please use temporaryNDArrayWithCommandBuffer:descriptor: instead
-        #[method_id(@__retain_semantics Init initWithDevice:descriptor:)]
+        #[method_id(@__method_family Init initWithDevice:descriptor:)]
         pub unsafe fn initWithDevice_descriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -765,11 +765,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `MPSNDArray`
     unsafe impl MPSTemporaryNDArray {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Create a 1-Dimensional length=1 NDArray to hold a scalar
-        #[method_id(@__retain_semantics Init initWithDevice:scalar:)]
+        #[method_id(@__method_family Init initWithDevice:scalar:)]
         pub unsafe fn initWithDevice_scalar(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -787,7 +787,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSNDArray object or nil, if failure.
-        #[method_id(@__retain_semantics Init initWithBuffer:offset:descriptor:)]
+        #[method_id(@__method_family Init initWithBuffer:offset:descriptor:)]
         pub unsafe fn initWithBuffer_offset_descriptor(
             this: Allocated<Self>,
             buffer: &ProtocolObject<dyn MTLBuffer>,
@@ -800,7 +800,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSTemporaryNDArray {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

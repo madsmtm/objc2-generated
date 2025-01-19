@@ -93,7 +93,7 @@ extern_methods!(
     unsafe impl MSStickerBrowserView {
         #[cfg(feature = "objc2-core-foundation")]
         /// Initializes a MSStickerBrowserView with a frame using the regular size class.
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -105,7 +105,7 @@ extern_methods!(
         /// vary based on the device. Sticker images will be scaled down to fit in the grid cell. If the
         /// sticker image is smaller than the cell size measured in pixels then it will be  centered
         /// in the grid cell.
-        #[method_id(@__retain_semantics Init initWithFrame:stickerSize:)]
+        #[method_id(@__method_family Init initWithFrame:stickerSize:)]
         pub unsafe fn initWithFrame_stickerSize(
             this: Allocated<Self>,
             frame: CGRect,
@@ -118,7 +118,7 @@ extern_methods!(
 
         #[cfg(feature = "MSStickerBrowserViewDataSource")]
         /// The Sticker Browser View data source.
-        #[method_id(@__retain_semantics Other dataSource)]
+        #[method_id(@__method_family Other dataSource)]
         pub unsafe fn dataSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MSStickerBrowserViewDataSource>>>;
@@ -165,7 +165,7 @@ extern_methods!(
     /// Methods declared on superclass `UIView`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MSStickerBrowserView {
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -177,10 +177,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MSStickerBrowserView {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

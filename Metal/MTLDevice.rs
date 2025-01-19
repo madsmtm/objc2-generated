@@ -570,7 +570,7 @@ unsafe impl NSObjectProtocol for MTLArgumentDescriptor {}
 extern_methods!(
     unsafe impl MTLArgumentDescriptor {
         /// Create an autoreleased default argument descriptor
-        #[method_id(@__retain_semantics Other argumentDescriptor)]
+        #[method_id(@__method_family Other argumentDescriptor)]
         pub fn argumentDescriptor() -> Retained<MTLArgumentDescriptor>;
 
         #[cfg(feature = "MTLArgument")]
@@ -636,10 +636,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLArgumentDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -664,7 +664,7 @@ unsafe impl NSObjectProtocol for MTLArchitecture {}
 extern_methods!(
     unsafe impl MTLArchitecture {
         /// The device's architecture name.
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
     }
 );
@@ -672,10 +672,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLArchitecture {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -689,7 +689,7 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevice?language=objc)
     pub unsafe trait MTLDevice: NSObjectProtocol {
         /// The full name of the vendor device.
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         fn name(&self) -> Retained<NSString>;
 
         /// Returns the IORegistry ID for the Metal device
@@ -700,7 +700,7 @@ extern_protocol!(
         fn registryID(&self) -> u64;
 
         /// Returns the device's architecture information.
-        #[method_id(@__retain_semantics Other architecture)]
+        #[method_id(@__method_family Other architecture)]
         unsafe fn architecture(&self) -> Retained<MTLArchitecture>;
 
         #[cfg(feature = "MTLTypes")]
@@ -835,7 +835,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLLogState")]
         /// This method will create a new MTLLogState.
-        #[method_id(@__retain_semantics New newLogStateWithDescriptor:error:_)]
+        #[method_id(@__method_family New newLogStateWithDescriptor:error:_)]
         unsafe fn newLogStateWithDescriptor_error(
             &self,
             descriptor: &MTLLogStateDescriptor,
@@ -845,14 +845,14 @@ extern_protocol!(
         /// Create and return a new command queue.   Command Queues created via this method will only allow up to 64 non-completed command buffers.
         ///
         /// Returns: The new command queue object
-        #[method_id(@__retain_semantics New newCommandQueue)]
+        #[method_id(@__method_family New newCommandQueue)]
         fn newCommandQueue(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
 
         #[cfg(feature = "MTLCommandQueue")]
         /// Create and return a new command queue with a given upper bound on non-completed command buffers.
         ///
         /// Returns: The new command queue object
-        #[method_id(@__retain_semantics New newCommandQueueWithMaxCommandBufferCount:)]
+        #[method_id(@__method_family New newCommandQueueWithMaxCommandBufferCount:)]
         fn newCommandQueueWithMaxCommandBufferCount(
             &self,
             max_command_buffer_count: NSUInteger,
@@ -860,7 +860,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLCommandQueue")]
         /// Create a MTLCommandQueue according to MTLCommandQueueDescriptor.
-        #[method_id(@__retain_semantics New newCommandQueueWithDescriptor:)]
+        #[method_id(@__method_family New newCommandQueueWithDescriptor:)]
         unsafe fn newCommandQueueWithDescriptor(
             &self,
             descriptor: &MTLCommandQueueDescriptor,
@@ -889,7 +889,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLAllocation", feature = "MTLHeap"))]
         /// Create a new heap with the given descriptor.
-        #[method_id(@__retain_semantics New newHeapWithDescriptor:)]
+        #[method_id(@__method_family New newHeapWithDescriptor:)]
         fn newHeapWithDescriptor(
             &self,
             descriptor: &MTLHeapDescriptor,
@@ -901,7 +901,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Create a buffer by allocating new memory.
-        #[method_id(@__retain_semantics New newBufferWithLength:options:)]
+        #[method_id(@__method_family New newBufferWithLength:options:)]
         fn newBufferWithLength_options(
             &self,
             length: NSUInteger,
@@ -914,7 +914,7 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Create a buffer by allocating new memory and specifing the initial contents to be copied into it.
-        #[method_id(@__retain_semantics New newBufferWithBytes:length:options:)]
+        #[method_id(@__method_family New newBufferWithBytes:length:options:)]
         unsafe fn newBufferWithBytes_length_options(
             &self,
             pointer: NonNull<c_void>,
@@ -929,7 +929,7 @@ extern_protocol!(
             feature = "block2"
         ))]
         /// Create a buffer by wrapping an existing part of the address space.
-        #[method_id(@__retain_semantics New newBufferWithBytesNoCopy:length:options:deallocator:)]
+        #[method_id(@__method_family New newBufferWithBytesNoCopy:length:options:deallocator:)]
         unsafe fn newBufferWithBytesNoCopy_length_options_deallocator(
             &self,
             pointer: NonNull<c_void>,
@@ -940,7 +940,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLDepthStencil")]
         /// Create a depth/stencil test state object.
-        #[method_id(@__retain_semantics New newDepthStencilStateWithDescriptor:)]
+        #[method_id(@__method_family New newDepthStencilStateWithDescriptor:)]
         fn newDepthStencilStateWithDescriptor(
             &self,
             descriptor: &MTLDepthStencilDescriptor,
@@ -952,7 +952,7 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Allocate a new texture with privately owned storage.
-        #[method_id(@__retain_semantics New newTextureWithDescriptor:)]
+        #[method_id(@__method_family New newTextureWithDescriptor:)]
         fn newTextureWithDescriptor(
             &self,
             descriptor: &MTLTextureDescriptor,
@@ -973,7 +973,7 @@ extern_protocol!(
         /// Parameter `plane`: The plane within the IOSurface to use.
         ///
         /// Returns: A new texture object.
-        #[method_id(@__retain_semantics New newTextureWithDescriptor:iosurface:plane:)]
+        #[method_id(@__method_family New newTextureWithDescriptor:iosurface:plane:)]
         unsafe fn newTextureWithDescriptor_iosurface_plane(
             &self,
             descriptor: &MTLTextureDescriptor,
@@ -994,7 +994,7 @@ extern_protocol!(
         /// Parameter `descriptor`: A description of the properties for the new texture.
         ///
         /// Returns: A new texture object.
-        #[method_id(@__retain_semantics New newSharedTextureWithDescriptor:)]
+        #[method_id(@__method_family New newSharedTextureWithDescriptor:)]
         unsafe fn newSharedTextureWithDescriptor(
             &self,
             descriptor: &MTLTextureDescriptor,
@@ -1015,7 +1015,7 @@ extern_protocol!(
         /// Parameter `sharedHandle`: Handle to shared texture in this process space.
         ///
         /// Returns: A new texture object.
-        #[method_id(@__retain_semantics New newSharedTextureWithHandle:)]
+        #[method_id(@__method_family New newSharedTextureWithHandle:)]
         unsafe fn newSharedTextureWithHandle(
             &self,
             shared_handle: &MTLSharedTextureHandle,
@@ -1023,7 +1023,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Create a new sampler.
-        #[method_id(@__retain_semantics New newSamplerStateWithDescriptor:)]
+        #[method_id(@__method_family New newSamplerStateWithDescriptor:)]
         fn newSamplerStateWithDescriptor(
             &self,
             descriptor: &MTLSamplerDescriptor,
@@ -1033,11 +1033,11 @@ extern_protocol!(
         /// Returns the default library for the main bundle.
         ///
         /// use newDefaultLibraryWithBundle:error: to get an NSError in case of failure.
-        #[method_id(@__retain_semantics New newDefaultLibrary)]
+        #[method_id(@__method_family New newDefaultLibrary)]
         fn newDefaultLibrary(&self) -> Option<Retained<ProtocolObject<dyn MTLLibrary>>>;
 
         #[cfg(feature = "MTLLibrary")]
-        #[method_id(@__retain_semantics New newDefaultLibraryWithBundle:error:_)]
+        #[method_id(@__method_family New newDefaultLibraryWithBundle:error:_)]
         unsafe fn newDefaultLibraryWithBundle_error(
             &self,
             bundle: &NSBundle,
@@ -1046,7 +1046,7 @@ extern_protocol!(
         #[cfg(feature = "MTLLibrary")]
         /// Load a MTLLibrary from a metallib file.
         #[deprecated = "Use -newLibraryWithURL:error: instead"]
-        #[method_id(@__retain_semantics New newLibraryWithFile:error:_)]
+        #[method_id(@__method_family New newLibraryWithFile:error:_)]
         fn newLibraryWithFile_error(
             &self,
             filepath: &NSString,
@@ -1054,7 +1054,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLLibrary")]
         /// Load a MTLLibrary from a metallib file.
-        #[method_id(@__retain_semantics New newLibraryWithURL:error:_)]
+        #[method_id(@__method_family New newLibraryWithURL:error:_)]
         unsafe fn newLibraryWithURL_error(
             &self,
             url: &NSURL,
@@ -1062,7 +1062,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLLibrary")]
         /// Load a MTLLibrary from source.
-        #[method_id(@__retain_semantics New newLibraryWithSource:options:error:_)]
+        #[method_id(@__method_family New newLibraryWithSource:options:error:_)]
         fn newLibraryWithSource_options_error(
             &self,
             source: &NSString,
@@ -1081,7 +1081,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLFunctionStitching", feature = "MTLLibrary"))]
         /// Returns a library generated using the graphs in the descriptor.
-        #[method_id(@__retain_semantics New newLibraryWithStitchedDescriptor:error:_)]
+        #[method_id(@__method_family New newLibraryWithStitchedDescriptor:error:_)]
         unsafe fn newLibraryWithStitchedDescriptor_error(
             &self,
             descriptor: &MTLStitchedLibraryDescriptor,
@@ -1102,7 +1102,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLRenderPipeline")]
         /// Create and compile a new MTLRenderPipelineState object synchronously.
-        #[method_id(@__retain_semantics New newRenderPipelineStateWithDescriptor:error:_)]
+        #[method_id(@__method_family New newRenderPipelineStateWithDescriptor:error:_)]
         fn newRenderPipelineStateWithDescriptor_error(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
@@ -1110,7 +1110,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLRenderPipeline")]
         /// Create and compile a new MTLRenderPipelineState object synchronously and returns additional reflection information.
-        #[method_id(@__retain_semantics New newRenderPipelineStateWithDescriptor:options:reflection:error:_)]
+        #[method_id(@__method_family New newRenderPipelineStateWithDescriptor:options:reflection:error:_)]
         unsafe fn newRenderPipelineStateWithDescriptor_options_reflection_error(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
@@ -1139,7 +1139,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLComputePipeline", feature = "MTLLibrary"))]
         /// Create and compile a new MTLComputePipelineState object synchronously.
-        #[method_id(@__retain_semantics New newComputePipelineStateWithFunction:error:_)]
+        #[method_id(@__method_family New newComputePipelineStateWithFunction:error:_)]
         fn newComputePipelineStateWithFunction_error(
             &self,
             compute_function: &ProtocolObject<dyn MTLFunction>,
@@ -1147,7 +1147,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLComputePipeline", feature = "MTLLibrary"))]
         /// Create and compile a new MTLComputePipelineState object synchronously.
-        #[method_id(@__retain_semantics New newComputePipelineStateWithFunction:options:reflection:error:_)]
+        #[method_id(@__method_family New newComputePipelineStateWithFunction:options:reflection:error:_)]
         unsafe fn newComputePipelineStateWithFunction_options_reflection_error(
             &self,
             compute_function: &ProtocolObject<dyn MTLFunction>,
@@ -1184,7 +1184,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLComputePipeline")]
         /// Create and compile a new MTLComputePipelineState object synchronously.
-        #[method_id(@__retain_semantics New newComputePipelineStateWithDescriptor:options:reflection:error:_)]
+        #[method_id(@__method_family New newComputePipelineStateWithDescriptor:options:reflection:error:_)]
         unsafe fn newComputePipelineStateWithDescriptor_options_reflection_error(
             &self,
             descriptor: &MTLComputePipelineDescriptor,
@@ -1204,7 +1204,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLFence")]
         /// Create a new MTLFence object
-        #[method_id(@__retain_semantics New newFence)]
+        #[method_id(@__method_family New newFence)]
         fn newFence(&self) -> Option<Retained<ProtocolObject<dyn MTLFence>>>;
 
         /// Returns TRUE if the feature set is supported by this MTLDevice.
@@ -1236,7 +1236,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLRenderPipeline")]
         /// Create and compile a new MTLRenderPipelineState object synchronously given a MTLTileRenderPipelineDescriptor.
-        #[method_id(@__retain_semantics New newRenderPipelineStateWithTileDescriptor:options:reflection:error:_)]
+        #[method_id(@__method_family New newRenderPipelineStateWithTileDescriptor:options:reflection:error:_)]
         unsafe fn newRenderPipelineStateWithTileDescriptor_options_reflection_error(
             &self,
             descriptor: &MTLTileRenderPipelineDescriptor,
@@ -1256,7 +1256,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLRenderPipeline")]
         /// Create and compile a new MTLRenderPipelineState object synchronously given a MTLMeshRenderPipelineDescriptor.
-        #[method_id(@__retain_semantics New newRenderPipelineStateWithMeshDescriptor:options:reflection:error:_)]
+        #[method_id(@__method_family New newRenderPipelineStateWithMeshDescriptor:options:reflection:error:_)]
         unsafe fn newRenderPipelineStateWithMeshDescriptor_options_reflection_error(
             &self,
             descriptor: &MTLMeshRenderPipelineDescriptor,
@@ -1305,7 +1305,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLArgumentEncoder")]
         /// Creates an argument encoder for an array of argument descriptors which will be encoded sequentially.
-        #[method_id(@__retain_semantics New newArgumentEncoderWithArguments:)]
+        #[method_id(@__method_family New newArgumentEncoderWithArguments:)]
         fn newArgumentEncoderWithArguments(
             &self,
             arguments: &NSArray<MTLArgumentDescriptor>,
@@ -1328,7 +1328,7 @@ extern_protocol!(
         /// If '[self supportsRasterizationRateMapWithLayerCount:descriptor.layerCount]' returns NO, or descriptor.screenSize describes an empty region, the result will always be nil.
         ///
         /// Returns: A MTLRasterizationRateMap instance that can be used for rendering on this MTLDevice, or nil if the device does not support the combination of parameters stored in the descriptor.
-        #[method_id(@__retain_semantics New newRasterizationRateMapWithDescriptor:)]
+        #[method_id(@__method_family New newRasterizationRateMapWithDescriptor:)]
         unsafe fn newRasterizationRateMapWithDescriptor(
             &self,
             descriptor: &MTLRasterizationRateMapDescriptor,
@@ -1348,7 +1348,7 @@ extern_protocol!(
         /// Parameter `options`: The options for the indirect command buffer.
         ///
         /// The returned buffer can be safely executed without first encoding into (but is wasteful).
-        #[method_id(@__retain_semantics New newIndirectCommandBufferWithDescriptor:maxCommandCount:options:)]
+        #[method_id(@__method_family New newIndirectCommandBufferWithDescriptor:maxCommandCount:options:)]
         unsafe fn newIndirectCommandBufferWithDescriptor_maxCommandCount_options(
             &self,
             descriptor: &MTLIndirectCommandBufferDescriptor,
@@ -1358,17 +1358,17 @@ extern_protocol!(
 
         #[cfg(feature = "MTLEvent")]
         /// Returns a new single-device non-shareable Metal event object
-        #[method_id(@__retain_semantics New newEvent)]
+        #[method_id(@__method_family New newEvent)]
         fn newEvent(&self) -> Option<Retained<ProtocolObject<dyn MTLEvent>>>;
 
         #[cfg(feature = "MTLEvent")]
         /// Returns a shareable multi-device event.
-        #[method_id(@__retain_semantics New newSharedEvent)]
+        #[method_id(@__method_family New newSharedEvent)]
         fn newSharedEvent(&self) -> Option<Retained<ProtocolObject<dyn MTLSharedEvent>>>;
 
         #[cfg(feature = "MTLEvent")]
         /// Creates a shareable multi-device event from an existing shared event handle.
-        #[method_id(@__retain_semantics New newSharedEventWithHandle:)]
+        #[method_id(@__method_family New newSharedEventWithHandle:)]
         unsafe fn newSharedEventWithHandle(
             &self,
             shared_event_handle: &MTLSharedEventHandle,
@@ -1394,7 +1394,7 @@ extern_protocol!(
         /// of the handle fails the return value will be nil and the optional error if passed in will be non-nil
         /// with details of the error.
         #[deprecated]
-        #[method_id(@__retain_semantics New newIOHandleWithURL:error:_)]
+        #[method_id(@__method_family New newIOHandleWithURL:error:_)]
         unsafe fn newIOHandleWithURL_error(
             &self,
             url: &NSURL,
@@ -1404,7 +1404,7 @@ extern_protocol!(
         /// Create and return an IO queue. If the creation
         /// of the queue fails the return value will be nil and the optional error if passed in will be non-nil
         /// with details of the error.
-        #[method_id(@__retain_semantics New newIOCommandQueueWithDescriptor:error:_)]
+        #[method_id(@__method_family New newIOCommandQueueWithDescriptor:error:_)]
         unsafe fn newIOCommandQueueWithDescriptor_error(
             &self,
             descriptor: &MTLIOCommandQueueDescriptor,
@@ -1417,7 +1417,7 @@ extern_protocol!(
         /// of the handle fails the return value will be nil and the optional error if passed in will be non-nil
         /// with details of the error.
         #[deprecated]
-        #[method_id(@__retain_semantics New newIOHandleWithURL:compressionMethod:error:_)]
+        #[method_id(@__method_family New newIOHandleWithURL:compressionMethod:error:_)]
         unsafe fn newIOHandleWithURL_compressionMethod_error(
             &self,
             url: &NSURL,
@@ -1429,7 +1429,7 @@ extern_protocol!(
         /// MTLIOCommandBuffer load commands to source data for MTLResources. If the creation
         /// of the handle fails the return value will be nil and the optional error if passed in will be non-nil
         /// with details of the error.
-        #[method_id(@__retain_semantics New newIOFileHandleWithURL:error:_)]
+        #[method_id(@__method_family New newIOFileHandleWithURL:error:_)]
         unsafe fn newIOFileHandleWithURL_error(
             &self,
             url: &NSURL,
@@ -1441,7 +1441,7 @@ extern_protocol!(
         /// MTLIOCommandBuffer load commands to source data for MTLResources. If the creation
         /// of the handle fails the return value will be nil and the optional error if passed in will be non-nil
         /// with details of the error.
-        #[method_id(@__retain_semantics New newIOFileHandleWithURL:compressionMethod:error:_)]
+        #[method_id(@__method_family New newIOFileHandleWithURL:compressionMethod:error:_)]
         unsafe fn newIOFileHandleWithURL_compressionMethod_error(
             &self,
             url: &NSURL,
@@ -1520,7 +1520,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLCounters")]
         /// Returns the set of Counter Sets exposed by the device.
-        #[method_id(@__retain_semantics Other counterSets)]
+        #[method_id(@__method_family Other counterSets)]
         unsafe fn counterSets(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLCounterSet>>>>;
@@ -1533,7 +1533,7 @@ extern_protocol!(
         /// Parameter `descriptor`: The descriptor to create a sample buffer for
         ///
         /// Parameter `error`: An error return on failure.
-        #[method_id(@__retain_semantics New newCounterSampleBufferWithDescriptor:error:_)]
+        #[method_id(@__method_family New newCounterSampleBufferWithDescriptor:error:_)]
         unsafe fn newCounterSampleBufferWithDescriptor_error(
             &self,
             descriptor: &MTLCounterSampleBufferDescriptor,
@@ -1552,7 +1552,7 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "MTLArgument", feature = "MTLArgumentEncoder"))]
-        #[method_id(@__retain_semantics New newArgumentEncoderWithBufferBinding:)]
+        #[method_id(@__method_family New newArgumentEncoderWithBufferBinding:)]
         unsafe fn newArgumentEncoderWithBufferBinding(
             &self,
             buffer_binding: &ProtocolObject<dyn MTLBufferBinding>,
@@ -1596,7 +1596,7 @@ extern_protocol!(
         /// Parameter `error`: If an error occurs during creation, this parameter is updated to describe the failure.
         ///
         /// Returns: On success, the MTLDynamicLibrary containing compiled code. On failure, nil.
-        #[method_id(@__retain_semantics New newDynamicLibrary:error:_)]
+        #[method_id(@__method_family New newDynamicLibrary:error:_)]
         fn newDynamicLibrary_error(
             &self,
             library: &ProtocolObject<dyn MTLLibrary>,
@@ -1612,7 +1612,7 @@ extern_protocol!(
         /// Parameter `error`: If an error occurs during creation, this parameter is updated to describe the failure.
         ///
         /// Returns: On success, the MTLDynamicLibrary containing compiled code (either loaded or compiled). On failure, nil.
-        #[method_id(@__retain_semantics New newDynamicLibraryWithURL:error:_)]
+        #[method_id(@__method_family New newDynamicLibraryWithURL:error:_)]
         fn newDynamicLibraryWithURL_error(
             &self,
             url: &NSURL,
@@ -1628,7 +1628,7 @@ extern_protocol!(
         /// Parameter `error`: If an error occurs during creation, this parameter is updated to describe the failure.
         ///
         /// Returns: On success, the created MTLBinaryArchive. On failure, nil.
-        #[method_id(@__retain_semantics New newBinaryArchiveWithDescriptor:error:_)]
+        #[method_id(@__method_family New newBinaryArchiveWithDescriptor:error:_)]
         fn newBinaryArchiveWithDescriptor_error(
             &self,
             descriptor: &MTLBinaryArchiveDescriptor,
@@ -1652,7 +1652,7 @@ extern_protocol!(
             feature = "MTLAllocation",
             feature = "MTLResource"
         ))]
-        #[method_id(@__retain_semantics New newAccelerationStructureWithSize:)]
+        #[method_id(@__method_family New newAccelerationStructureWithSize:)]
         fn newAccelerationStructureWithSize(
             &self,
             size: NSUInteger,
@@ -1663,7 +1663,7 @@ extern_protocol!(
             feature = "MTLAllocation",
             feature = "MTLResource"
         ))]
-        #[method_id(@__retain_semantics New newAccelerationStructureWithDescriptor:)]
+        #[method_id(@__method_family New newAccelerationStructureWithDescriptor:)]
         unsafe fn newAccelerationStructureWithDescriptor(
             &self,
             descriptor: &MTLAccelerationStructureDescriptor,
@@ -1733,7 +1733,7 @@ extern_protocol!(
 
         #[cfg(feature = "MTLResidencySet")]
         /// Creates a new residency set with a descriptor.
-        #[method_id(@__retain_semantics New newResidencySetWithDescriptor:error:_)]
+        #[method_id(@__method_family New newResidencySetWithDescriptor:error:_)]
         unsafe fn newResidencySetWithDescriptor_error(
             &self,
             desc: &MTLResidencySetDescriptor,

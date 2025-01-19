@@ -46,7 +46,7 @@ unsafe impl NSObjectProtocol for UIContextualAction {}
 extern_methods!(
     unsafe impl UIContextualAction {
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "block2"))]
-        #[method_id(@__retain_semantics Other contextualActionWithStyle:title:handler:)]
+        #[method_id(@__method_family Other contextualActionWithStyle:title:handler:)]
         pub unsafe fn contextualActionWithStyle_title_handler(
             style: UIContextualActionStyle,
             title: Option<&NSString>,
@@ -61,7 +61,7 @@ extern_methods!(
         #[method(handler)]
         pub unsafe fn handler(&self) -> UIContextualActionHandler;
 
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
@@ -69,7 +69,7 @@ extern_methods!(
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "UIColor")]
-        #[method_id(@__retain_semantics Other backgroundColor)]
+        #[method_id(@__method_family Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
@@ -78,7 +78,7 @@ extern_methods!(
         pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__retain_semantics Other image)]
+        #[method_id(@__method_family Other image)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -91,10 +91,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIContextualAction {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -71,14 +71,14 @@ unsafe impl NSObjectProtocol for VZVirtioConsoleDevice {}
 extern_methods!(
     #[cfg(feature = "VZConsoleDevice")]
     unsafe impl VZVirtioConsoleDevice {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Pointer to a delegate object for the console device.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn VZVirtioConsoleDeviceDelegate>>>;
@@ -93,7 +93,7 @@ extern_methods!(
 
         #[cfg(feature = "VZVirtioConsolePortArray")]
         /// The console ports currently being used by this console device.
-        #[method_id(@__retain_semantics Other ports)]
+        #[method_id(@__method_family Other ports)]
         pub unsafe fn ports(&self) -> Retained<VZVirtioConsolePortArray>;
     }
 );

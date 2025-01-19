@@ -70,7 +70,7 @@ extern_methods!(
     #[cfg(feature = "objc2")]
     unsafe impl MIDINetworkHost {
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(@__retain_semantics Other hostWithName:address:port:)]
+        #[method_id(@__method_family Other hostWithName:address:port:)]
         pub unsafe fn hostWithName_address_port(
             name: &NSString,
             address: &NSString,
@@ -78,14 +78,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(@__retain_semantics Other hostWithName:netService:)]
+        #[method_id(@__method_family Other hostWithName:netService:)]
         pub unsafe fn hostWithName_netService(
             name: &NSString,
             net_service: &NSNetService,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(@__retain_semantics Other hostWithName:netServiceName:netServiceDomain:)]
+        #[method_id(@__method_family Other hostWithName:netServiceName:netServiceDomain:)]
         pub unsafe fn hostWithName_netServiceName_netServiceDomain(
             name: &NSString,
             net_service_name: &NSString,
@@ -96,22 +96,22 @@ extern_methods!(
         pub unsafe fn hasSameAddressAs(&self, other: &MIDINetworkHost) -> bool;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(@__retain_semantics Other address)]
+        #[method_id(@__method_family Other address)]
         pub unsafe fn address(&self) -> Retained<NSString>;
 
         #[method(port)]
         pub unsafe fn port(&self) -> NSUInteger;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(@__retain_semantics Other netServiceName)]
+        #[method_id(@__method_family Other netServiceName)]
         pub unsafe fn netServiceName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(@__retain_semantics Other netServiceDomain)]
+        #[method_id(@__method_family Other netServiceDomain)]
         pub unsafe fn netServiceDomain(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -121,10 +121,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDINetworkHost {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -145,10 +145,10 @@ unsafe impl NSObjectProtocol for MIDINetworkConnection {}
 extern_methods!(
     #[cfg(feature = "objc2")]
     unsafe impl MIDINetworkConnection {
-        #[method_id(@__retain_semantics Other connectionWithHost:)]
+        #[method_id(@__method_family Other connectionWithHost:)]
         pub unsafe fn connectionWithHost(host: &MIDINetworkHost) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other host)]
+        #[method_id(@__method_family Other host)]
         pub unsafe fn host(&self) -> Retained<MIDINetworkHost>;
     }
 );
@@ -158,10 +158,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDINetworkConnection {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -182,7 +182,7 @@ unsafe impl NSObjectProtocol for MIDINetworkSession {}
 extern_methods!(
     #[cfg(feature = "objc2")]
     unsafe impl MIDINetworkSession {
-        #[method_id(@__retain_semantics Other defaultSession)]
+        #[method_id(@__method_family Other defaultSession)]
         pub unsafe fn defaultSession() -> Retained<MIDINetworkSession>;
 
         #[method(isEnabled)]
@@ -196,11 +196,11 @@ extern_methods!(
         pub unsafe fn networkPort(&self) -> NSUInteger;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(@__retain_semantics Other networkName)]
+        #[method_id(@__method_family Other networkName)]
         pub unsafe fn networkName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(@__retain_semantics Other localName)]
+        #[method_id(@__method_family Other localName)]
         pub unsafe fn localName(&self) -> Retained<NSString>;
 
         #[method(connectionPolicy)]
@@ -211,7 +211,7 @@ extern_methods!(
         pub unsafe fn setConnectionPolicy(&self, connection_policy: MIDINetworkConnectionPolicy);
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(@__retain_semantics Other contacts)]
+        #[method_id(@__method_family Other contacts)]
         pub unsafe fn contacts(&self) -> Retained<NSSet<MIDINetworkHost>>;
 
         #[method(addContact:)]
@@ -221,7 +221,7 @@ extern_methods!(
         pub unsafe fn removeContact(&self, contact: &MIDINetworkHost) -> bool;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(@__retain_semantics Other connections)]
+        #[method_id(@__method_family Other connections)]
         pub unsafe fn connections(&self) -> Retained<NSSet<MIDINetworkConnection>>;
 
         #[method(addConnection:)]
@@ -245,10 +245,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDINetworkSession {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

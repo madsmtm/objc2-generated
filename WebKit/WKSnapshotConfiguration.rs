@@ -45,7 +45,7 @@ extern_methods!(
         ///
         /// snapshotWidth represents the width in points. If the snapshotWidth is nil, rect's
         /// width will be used.
-        #[method_id(@__retain_semantics Other snapshotWidth)]
+        #[method_id(@__method_family Other snapshotWidth)]
         pub unsafe fn snapshotWidth(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`snapshotWidth`][Self::snapshotWidth].
@@ -69,10 +69,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKSnapshotConfiguration {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

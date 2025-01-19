@@ -60,7 +60,7 @@ extern_methods!(
         /// can either be NSString or NSData or an NSArray of either NSString or NSData.  Passing nil for
         /// returnAttributes is equivalent to passing kODAttributeTypeStandardOnly.  outError is optional parameter,
         /// nil can be passed if error details are not needed.
-        #[method_id(@__retain_semantics Other queryWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:)]
+        #[method_id(@__method_family Other queryWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:)]
         pub unsafe fn queryWithNode_forRecordTypes_attribute_matchType_queryValues_returnAttributes_maximumResults_error(
             in_node: Option<&ODNode>,
             in_record_type_or_list: Option<&AnyObject>,
@@ -83,7 +83,7 @@ extern_methods!(
         /// can either be NSString or NSData or an NSArray of either NSString or NSData.  Passing nil for
         /// returnAttributes is equivalent to passing kODAttributeTypeStandardOnly. outError is optional parameter,
         /// nil can be passed if error details are not needed.
-        #[method_id(@__retain_semantics Init initWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:)]
+        #[method_id(@__method_family Init initWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:)]
         pub unsafe fn initWithNode_forRecordTypes_attribute_matchType_queryValues_returnAttributes_maximumResults_error(
             this: Allocated<Self>,
             in_node: Option<&ODNode>,
@@ -102,7 +102,7 @@ extern_methods!(
         /// will block the call until all results are returned or an error occurs.  YES can be passed at any time
         /// even if previous calls were made with NO.  outError is optional parameter, nil can be passed if error
         /// details are not needed.
-        #[method_id(@__retain_semantics Other resultsAllowingPartial:error:)]
+        #[method_id(@__method_family Other resultsAllowingPartial:error:)]
         pub unsafe fn resultsAllowingPartial_error(
             &self,
             in_allow_partial_results: bool,
@@ -112,7 +112,7 @@ extern_methods!(
         /// The currently set delegate
         ///
         /// The query delegate which will receive asynchronous query results.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn ODQueryDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
@@ -152,7 +152,7 @@ extern_methods!(
         /// The NSOperationQueue on which asynchronous results are delivered to the delegate.
         ///
         /// The NSOperationQueue on which asynchronous results are delivered to the delegate.
-        #[method_id(@__retain_semantics Other operationQueue)]
+        #[method_id(@__method_family Other operationQueue)]
         pub unsafe fn operationQueue(&self) -> Option<Retained<NSOperationQueue>>;
 
         /// Setter for [`operationQueue`][Self::operationQueue].
@@ -164,10 +164,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ODQuery {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -32,7 +32,7 @@ unsafe impl NSObjectProtocol for NSDerivedAttributeDescription {}
 extern_methods!(
     #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
     unsafe impl NSDerivedAttributeDescription {
-        #[method_id(@__retain_semantics Other derivationExpression)]
+        #[method_id(@__method_family Other derivationExpression)]
         pub unsafe fn derivationExpression(&self) -> Option<Retained<NSExpression>>;
 
         /// Setter for [`derivationExpression`][Self::derivationExpression].
@@ -45,10 +45,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSAttributeDescription", feature = "NSPropertyDescription"))]
     unsafe impl NSDerivedAttributeDescription {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

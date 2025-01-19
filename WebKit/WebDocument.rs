@@ -103,22 +103,22 @@ extern_protocol!(
 
         /// Returns: String that represents the entire document.
         #[deprecated]
-        #[method_id(@__retain_semantics Other string)]
+        #[method_id(@__method_family Other string)]
         unsafe fn string(&self) -> Option<Retained<NSString>>;
 
         /// Returns: Attributed string that represents the entire document.
         #[deprecated]
-        #[method_id(@__retain_semantics Other attributedString)]
+        #[method_id(@__method_family Other attributedString)]
         unsafe fn attributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Returns: String that represents the current selection.
         #[deprecated]
-        #[method_id(@__retain_semantics Other selectedString)]
+        #[method_id(@__method_family Other selectedString)]
         unsafe fn selectedString(&self) -> Option<Retained<NSString>>;
 
         /// Returns: Attributed string that represents the current selection.
         #[deprecated]
-        #[method_id(@__retain_semantics Other selectedAttributedString)]
+        #[method_id(@__method_family Other selectedAttributedString)]
         unsafe fn selectedAttributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Selects all the text in the document.
@@ -191,12 +191,12 @@ extern_protocol!(
         /// Returns: Returns the textual source representation of the document.  For HTML documents
         /// this is the original HTML source.
         #[deprecated]
-        #[method_id(@__retain_semantics Other documentSource)]
+        #[method_id(@__method_family Other documentSource)]
         unsafe fn documentSource(&self) -> Option<Retained<NSString>>;
 
         /// Returns: Return the title for the document.
         #[deprecated]
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         unsafe fn title(&self) -> Option<Retained<NSString>>;
     }
 );

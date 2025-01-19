@@ -32,10 +32,10 @@ unsafe impl NSSecureCoding for CNContactFetchRequest {}
 extern_methods!(
     #[cfg(feature = "CNFetchRequest")]
     unsafe impl CNContactFetchRequest {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CNContact")]
@@ -43,7 +43,7 @@ extern_methods!(
         ///
         ///
         /// Only fetch the properties that will be used.
-        #[method_id(@__retain_semantics Init initWithKeysToFetch:)]
+        #[method_id(@__method_family Init initWithKeysToFetch:)]
         pub unsafe fn initWithKeysToFetch(
             this: Allocated<Self>,
             keys_to_fetch: &NSArray<ProtocolObject<dyn CNKeyDescriptor>>,
@@ -53,7 +53,7 @@ extern_methods!(
         ///
         ///
         /// Use only predicates from CNContact+Predicates.h. Compound predicates are not supported. Set to nil to match all contacts.
-        #[method_id(@__retain_semantics Other predicate)]
+        #[method_id(@__method_family Other predicate)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`predicate`][Self::predicate].
@@ -65,7 +65,7 @@ extern_methods!(
         ///
         ///
         /// Should only fetch the properties that will be used. Can combine contact keys and contact key descriptors.
-        #[method_id(@__retain_semantics Other keysToFetch)]
+        #[method_id(@__method_family Other keysToFetch)]
         pub unsafe fn keysToFetch(&self) -> Retained<NSArray<ProtocolObject<dyn CNKeyDescriptor>>>;
 
         #[cfg(feature = "CNContact")]

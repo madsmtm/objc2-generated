@@ -19,10 +19,10 @@ unsafe impl NSObjectProtocol for SKOverlayTransitionContext {}
 
 extern_methods!(
     unsafe impl SKOverlayTransitionContext {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "block2")]

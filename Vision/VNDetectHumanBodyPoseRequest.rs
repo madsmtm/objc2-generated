@@ -381,14 +381,14 @@ extern_methods!(
     unsafe impl VNHumanBodyPoseObservation {
         #[cfg(feature = "VNTypes")]
         /// All of the joint names available in the observation.
-        #[method_id(@__retain_semantics Other availableJointNames)]
+        #[method_id(@__method_family Other availableJointNames)]
         pub unsafe fn availableJointNames(
             &self,
         ) -> Retained<NSArray<VNHumanBodyPoseObservationJointName>>;
 
         #[cfg(feature = "VNTypes")]
         /// All of the joints group names available in the observation.
-        #[method_id(@__retain_semantics Other availableJointsGroupNames)]
+        #[method_id(@__method_family Other availableJointsGroupNames)]
         pub unsafe fn availableJointsGroupNames(
             &self,
         ) -> Retained<NSArray<VNHumanBodyPoseObservationJointsGroupName>>;
@@ -406,7 +406,7 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
         ///
         /// Returns: the recognized point, or nil if the point could not be obtained.
-        #[method_id(@__retain_semantics Other recognizedPointForJointName:error:_)]
+        #[method_id(@__method_family Other recognizedPointForJointName:error:_)]
         pub unsafe fn recognizedPointForJointName_error(
             &self,
             joint_name: &VNHumanBodyPoseObservationJointName,
@@ -428,7 +428,7 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with the error that describes the failure.  If the caller does not require this information, NULL can be passed.
         ///
         /// Returns: a dictionary of recognized points in the group, or nil if an error was encountered.
-        #[method_id(@__retain_semantics Other recognizedPointsForJointsGroupName:error:_)]
+        #[method_id(@__method_family Other recognizedPointsForJointsGroupName:error:_)]
         pub unsafe fn recognizedPointsForJointsGroupName_error(
             &self,
             joints_group_name: &VNHumanBodyPoseObservationJointsGroupName,
@@ -443,10 +443,10 @@ extern_methods!(
     /// Methods declared on superclass `VNRecognizedPointsObservation`
     #[cfg(feature = "VNObservation")]
     unsafe impl VNHumanBodyPoseObservation {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -486,7 +486,7 @@ extern_methods!(
         ///
         /// Returns: An array of VNHumanBodyPoseObservationJointName symbols that are supported by the request revision, or nil if a failure occurs.
         #[deprecated]
-        #[method_id(@__retain_semantics Other supportedJointNamesForRevision:error:_)]
+        #[method_id(@__method_family Other supportedJointNamesForRevision:error:_)]
         pub unsafe fn supportedJointNamesForRevision_error(
             revision: NSUInteger,
         ) -> Result<Retained<NSArray<VNHumanBodyPoseObservationJointName>>, Retained<NSError>>;
@@ -497,7 +497,7 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with an error upon failure.  If the caller does not need this information, NULL can be passed.
         ///
         /// Returns: An array of VNHumanBodyPoseObservationJointName symbols that are supported by the request revision, or nil if a failure occurs.
-        #[method_id(@__retain_semantics Other supportedJointNamesAndReturnError:_)]
+        #[method_id(@__method_family Other supportedJointNamesAndReturnError:_)]
         pub unsafe fn supportedJointNamesAndReturnError(
             &self,
         ) -> Result<Retained<NSArray<VNHumanBodyPoseObservationJointName>>, Retained<NSError>>;
@@ -511,7 +511,7 @@ extern_methods!(
         ///
         /// Returns: An array of VNHumanBodyPoseObservationJointsGroupName symbols that are supported by the request revision, or nil if a failure occurs.
         #[deprecated]
-        #[method_id(@__retain_semantics Other supportedJointsGroupNamesForRevision:error:_)]
+        #[method_id(@__method_family Other supportedJointsGroupNamesForRevision:error:_)]
         pub unsafe fn supportedJointsGroupNamesForRevision_error(
             revision: NSUInteger,
         ) -> Result<Retained<NSArray<VNHumanBodyPoseObservationJointsGroupName>>, Retained<NSError>>;
@@ -522,14 +522,14 @@ extern_methods!(
         /// Parameter `error`: The address of a variable that will be populated with an error upon failure.  If the caller does not need this information, NULL can be passed.
         ///
         /// Returns: An array of VNHumanBodyPoseObservationJointsGroupName symbols that are supported by the request revision, or nil if a failure occurs.
-        #[method_id(@__retain_semantics Other supportedJointsGroupNamesAndReturnError:_)]
+        #[method_id(@__method_family Other supportedJointsGroupNamesAndReturnError:_)]
         pub unsafe fn supportedJointsGroupNamesAndReturnError(
             &self,
         ) -> Result<Retained<NSArray<VNHumanBodyPoseObservationJointsGroupName>>, Retained<NSError>>;
 
         #[cfg(feature = "VNObservation")]
         /// VNHumanBodyPoseObservation results.
-        #[method_id(@__retain_semantics Other results)]
+        #[method_id(@__method_family Other results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNHumanBodyPoseObservation>>>;
     }
 );
@@ -539,7 +539,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectHumanBodyPoseRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -547,7 +547,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
+        #[method_id(@__method_family Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
@@ -559,7 +559,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectHumanBodyPoseRequest {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

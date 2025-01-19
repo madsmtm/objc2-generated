@@ -33,16 +33,16 @@ unsafe impl NSSecureCoding for HKUnit {}
 extern_methods!(
     unsafe impl HKUnit {
         /// Returns a unique string representation for the unit that could be used with +unitFromString:
-        #[method_id(@__retain_semantics Other unitString)]
+        #[method_id(@__method_family Other unitString)]
         pub unsafe fn unitString(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other unitFromString:)]
+        #[method_id(@__method_family Other unitFromString:)]
         pub unsafe fn unitFromString(string: &NSString) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other unitFromMassFormatterUnit:)]
+        #[method_id(@__method_family Other unitFromMassFormatterUnit:)]
         pub unsafe fn unitFromMassFormatterUnit(
             mass_formatter_unit: NSMassFormatterUnit,
         ) -> Retained<Self>;
@@ -50,7 +50,7 @@ extern_methods!(
         #[method(massFormatterUnitFromUnit:)]
         pub unsafe fn massFormatterUnitFromUnit(unit: &HKUnit) -> NSMassFormatterUnit;
 
-        #[method_id(@__retain_semantics Other unitFromLengthFormatterUnit:)]
+        #[method_id(@__method_family Other unitFromLengthFormatterUnit:)]
         pub unsafe fn unitFromLengthFormatterUnit(
             length_formatter_unit: NSLengthFormatterUnit,
         ) -> Retained<Self>;
@@ -58,7 +58,7 @@ extern_methods!(
         #[method(lengthFormatterUnitFromUnit:)]
         pub unsafe fn lengthFormatterUnitFromUnit(unit: &HKUnit) -> NSLengthFormatterUnit;
 
-        #[method_id(@__retain_semantics Other unitFromEnergyFormatterUnit:)]
+        #[method_id(@__method_family Other unitFromEnergyFormatterUnit:)]
         pub unsafe fn unitFromEnergyFormatterUnit(
             energy_formatter_unit: NSEnergyFormatterUnit,
         ) -> Retained<Self>;
@@ -74,7 +74,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -126,28 +126,28 @@ unsafe impl RefEncode for HKMetricPrefix {
 extern_methods!(
     /// Mass
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other gramUnitWithMetricPrefix:)]
+        #[method_id(@__method_family Other gramUnitWithMetricPrefix:)]
         pub unsafe fn gramUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other gramUnit)]
+        #[method_id(@__method_family Other gramUnit)]
         pub unsafe fn gramUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other ounceUnit)]
+        #[method_id(@__method_family Other ounceUnit)]
         pub unsafe fn ounceUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other poundUnit)]
+        #[method_id(@__method_family Other poundUnit)]
         pub unsafe fn poundUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other stoneUnit)]
+        #[method_id(@__method_family Other stoneUnit)]
         pub unsafe fn stoneUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other moleUnitWithMetricPrefix:molarMass:)]
+        #[method_id(@__method_family Other moleUnitWithMetricPrefix:molarMass:)]
         pub unsafe fn moleUnitWithMetricPrefix_molarMass(
             prefix: HKMetricPrefix,
             grams_per_mole: c_double,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other moleUnitWithMolarMass:)]
+        #[method_id(@__method_family Other moleUnitWithMolarMass:)]
         pub unsafe fn moleUnitWithMolarMass(grams_per_mole: c_double) -> Retained<Self>;
     }
 );
@@ -155,22 +155,22 @@ extern_methods!(
 extern_methods!(
     /// Length
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other meterUnitWithMetricPrefix:)]
+        #[method_id(@__method_family Other meterUnitWithMetricPrefix:)]
         pub unsafe fn meterUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other meterUnit)]
+        #[method_id(@__method_family Other meterUnit)]
         pub unsafe fn meterUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other inchUnit)]
+        #[method_id(@__method_family Other inchUnit)]
         pub unsafe fn inchUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other footUnit)]
+        #[method_id(@__method_family Other footUnit)]
         pub unsafe fn footUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other yardUnit)]
+        #[method_id(@__method_family Other yardUnit)]
         pub unsafe fn yardUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other mileUnit)]
+        #[method_id(@__method_family Other mileUnit)]
         pub unsafe fn mileUnit() -> Retained<Self>;
     }
 );
@@ -178,28 +178,28 @@ extern_methods!(
 extern_methods!(
     /// Volume
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other literUnitWithMetricPrefix:)]
+        #[method_id(@__method_family Other literUnitWithMetricPrefix:)]
         pub unsafe fn literUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other literUnit)]
+        #[method_id(@__method_family Other literUnit)]
         pub unsafe fn literUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other fluidOunceUSUnit)]
+        #[method_id(@__method_family Other fluidOunceUSUnit)]
         pub unsafe fn fluidOunceUSUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other fluidOunceImperialUnit)]
+        #[method_id(@__method_family Other fluidOunceImperialUnit)]
         pub unsafe fn fluidOunceImperialUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other pintUSUnit)]
+        #[method_id(@__method_family Other pintUSUnit)]
         pub unsafe fn pintUSUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other pintImperialUnit)]
+        #[method_id(@__method_family Other pintImperialUnit)]
         pub unsafe fn pintImperialUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other cupUSUnit)]
+        #[method_id(@__method_family Other cupUSUnit)]
         pub unsafe fn cupUSUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other cupImperialUnit)]
+        #[method_id(@__method_family Other cupImperialUnit)]
         pub unsafe fn cupImperialUnit() -> Retained<Self>;
     }
 );
@@ -207,25 +207,25 @@ extern_methods!(
 extern_methods!(
     /// Pressure
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other pascalUnitWithMetricPrefix:)]
+        #[method_id(@__method_family Other pascalUnitWithMetricPrefix:)]
         pub unsafe fn pascalUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other pascalUnit)]
+        #[method_id(@__method_family Other pascalUnit)]
         pub unsafe fn pascalUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other millimeterOfMercuryUnit)]
+        #[method_id(@__method_family Other millimeterOfMercuryUnit)]
         pub unsafe fn millimeterOfMercuryUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other centimeterOfWaterUnit)]
+        #[method_id(@__method_family Other centimeterOfWaterUnit)]
         pub unsafe fn centimeterOfWaterUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other atmosphereUnit)]
+        #[method_id(@__method_family Other atmosphereUnit)]
         pub unsafe fn atmosphereUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other decibelAWeightedSoundPressureLevelUnit)]
+        #[method_id(@__method_family Other decibelAWeightedSoundPressureLevelUnit)]
         pub unsafe fn decibelAWeightedSoundPressureLevelUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other inchesOfMercuryUnit)]
+        #[method_id(@__method_family Other inchesOfMercuryUnit)]
         pub unsafe fn inchesOfMercuryUnit() -> Retained<Self>;
     }
 );
@@ -233,19 +233,19 @@ extern_methods!(
 extern_methods!(
     /// Time
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other secondUnitWithMetricPrefix:)]
+        #[method_id(@__method_family Other secondUnitWithMetricPrefix:)]
         pub unsafe fn secondUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other secondUnit)]
+        #[method_id(@__method_family Other secondUnit)]
         pub unsafe fn secondUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other minuteUnit)]
+        #[method_id(@__method_family Other minuteUnit)]
         pub unsafe fn minuteUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other hourUnit)]
+        #[method_id(@__method_family Other hourUnit)]
         pub unsafe fn hourUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other dayUnit)]
+        #[method_id(@__method_family Other dayUnit)]
         pub unsafe fn dayUnit() -> Retained<Self>;
     }
 );
@@ -253,23 +253,23 @@ extern_methods!(
 extern_methods!(
     /// Energy
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other jouleUnitWithMetricPrefix:)]
+        #[method_id(@__method_family Other jouleUnitWithMetricPrefix:)]
         pub unsafe fn jouleUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other jouleUnit)]
+        #[method_id(@__method_family Other jouleUnit)]
         pub unsafe fn jouleUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other kilocalorieUnit)]
+        #[method_id(@__method_family Other kilocalorieUnit)]
         pub unsafe fn kilocalorieUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other smallCalorieUnit)]
+        #[method_id(@__method_family Other smallCalorieUnit)]
         pub unsafe fn smallCalorieUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other largeCalorieUnit)]
+        #[method_id(@__method_family Other largeCalorieUnit)]
         pub unsafe fn largeCalorieUnit() -> Retained<Self>;
 
         #[deprecated = "Use smallCalorieUnit or largeCalorieUnit, depending on which you mean"]
-        #[method_id(@__retain_semantics Other calorieUnit)]
+        #[method_id(@__method_family Other calorieUnit)]
         pub unsafe fn calorieUnit() -> Retained<Self>;
     }
 );
@@ -277,13 +277,13 @@ extern_methods!(
 extern_methods!(
     /// Temperature
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other degreeCelsiusUnit)]
+        #[method_id(@__method_family Other degreeCelsiusUnit)]
         pub unsafe fn degreeCelsiusUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other degreeFahrenheitUnit)]
+        #[method_id(@__method_family Other degreeFahrenheitUnit)]
         pub unsafe fn degreeFahrenheitUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other kelvinUnit)]
+        #[method_id(@__method_family Other kelvinUnit)]
         pub unsafe fn kelvinUnit() -> Retained<Self>;
     }
 );
@@ -291,10 +291,10 @@ extern_methods!(
 extern_methods!(
     /// Conductance
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other siemenUnitWithMetricPrefix:)]
+        #[method_id(@__method_family Other siemenUnitWithMetricPrefix:)]
         pub unsafe fn siemenUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other siemenUnit)]
+        #[method_id(@__method_family Other siemenUnit)]
         pub unsafe fn siemenUnit() -> Retained<Self>;
     }
 );
@@ -302,7 +302,7 @@ extern_methods!(
 extern_methods!(
     /// Pharmacology
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other internationalUnit)]
+        #[method_id(@__method_family Other internationalUnit)]
         pub unsafe fn internationalUnit() -> Retained<Self>;
     }
 );
@@ -310,10 +310,10 @@ extern_methods!(
 extern_methods!(
     /// Scalar
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other countUnit)]
+        #[method_id(@__method_family Other countUnit)]
         pub unsafe fn countUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other percentUnit)]
+        #[method_id(@__method_family Other percentUnit)]
         pub unsafe fn percentUnit() -> Retained<Self>;
     }
 );
@@ -321,7 +321,7 @@ extern_methods!(
 extern_methods!(
     /// HearingSensitivity
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other decibelHearingLevelUnit)]
+        #[method_id(@__method_family Other decibelHearingLevelUnit)]
         pub unsafe fn decibelHearingLevelUnit() -> Retained<Self>;
     }
 );
@@ -329,16 +329,16 @@ extern_methods!(
 extern_methods!(
     /// Math
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other unitMultipliedByUnit:)]
+        #[method_id(@__method_family Other unitMultipliedByUnit:)]
         pub unsafe fn unitMultipliedByUnit(&self, unit: &HKUnit) -> Retained<HKUnit>;
 
-        #[method_id(@__retain_semantics Other unitDividedByUnit:)]
+        #[method_id(@__method_family Other unitDividedByUnit:)]
         pub unsafe fn unitDividedByUnit(&self, unit: &HKUnit) -> Retained<HKUnit>;
 
-        #[method_id(@__retain_semantics Other unitRaisedToPower:)]
+        #[method_id(@__method_family Other unitRaisedToPower:)]
         pub unsafe fn unitRaisedToPower(&self, power: NSInteger) -> Retained<HKUnit>;
 
-        #[method_id(@__retain_semantics Other reciprocalUnit)]
+        #[method_id(@__method_family Other reciprocalUnit)]
         pub unsafe fn reciprocalUnit(&self) -> Retained<HKUnit>;
     }
 );
@@ -346,10 +346,10 @@ extern_methods!(
 extern_methods!(
     /// Frequency
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other hertzUnitWithMetricPrefix:)]
+        #[method_id(@__method_family Other hertzUnitWithMetricPrefix:)]
         pub unsafe fn hertzUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other hertzUnit)]
+        #[method_id(@__method_family Other hertzUnit)]
         pub unsafe fn hertzUnit() -> Retained<Self>;
     }
 );
@@ -357,10 +357,10 @@ extern_methods!(
 extern_methods!(
     /// ElectricPotentialDifference
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other voltUnitWithMetricPrefix:)]
+        #[method_id(@__method_family Other voltUnitWithMetricPrefix:)]
         pub unsafe fn voltUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other voltUnit)]
+        #[method_id(@__method_family Other voltUnit)]
         pub unsafe fn voltUnit() -> Retained<Self>;
     }
 );
@@ -368,10 +368,10 @@ extern_methods!(
 extern_methods!(
     /// Power
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other wattUnitWithMetricPrefix:)]
+        #[method_id(@__method_family Other wattUnitWithMetricPrefix:)]
         pub unsafe fn wattUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other wattUnit)]
+        #[method_id(@__method_family Other wattUnit)]
         pub unsafe fn wattUnit() -> Retained<Self>;
     }
 );
@@ -379,10 +379,10 @@ extern_methods!(
 extern_methods!(
     /// OpticalPower
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other diopterUnit)]
+        #[method_id(@__method_family Other diopterUnit)]
         pub unsafe fn diopterUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other prismDiopterUnit)]
+        #[method_id(@__method_family Other prismDiopterUnit)]
         pub unsafe fn prismDiopterUnit() -> Retained<Self>;
     }
 );
@@ -390,13 +390,13 @@ extern_methods!(
 extern_methods!(
     /// Angle
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other radianAngleUnitWithMetricPrefix:)]
+        #[method_id(@__method_family Other radianAngleUnitWithMetricPrefix:)]
         pub unsafe fn radianAngleUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other radianAngleUnit)]
+        #[method_id(@__method_family Other radianAngleUnit)]
         pub unsafe fn radianAngleUnit() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other degreeAngleUnit)]
+        #[method_id(@__method_family Other degreeAngleUnit)]
         pub unsafe fn degreeAngleUnit() -> Retained<Self>;
     }
 );
@@ -404,10 +404,10 @@ extern_methods!(
 extern_methods!(
     /// Illuminance
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other luxUnitWithMetricPrefix:)]
+        #[method_id(@__method_family Other luxUnitWithMetricPrefix:)]
         pub unsafe fn luxUnitWithMetricPrefix(prefix: HKMetricPrefix) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other luxUnit)]
+        #[method_id(@__method_family Other luxUnit)]
         pub unsafe fn luxUnit() -> Retained<Self>;
     }
 );
@@ -415,7 +415,7 @@ extern_methods!(
 extern_methods!(
     /// UnitLess
     unsafe impl HKUnit {
-        #[method_id(@__retain_semantics Other appleEffortScoreUnit)]
+        #[method_id(@__method_family Other appleEffortScoreUnit)]
         pub unsafe fn appleEffortScoreUnit() -> Retained<Self>;
     }
 );

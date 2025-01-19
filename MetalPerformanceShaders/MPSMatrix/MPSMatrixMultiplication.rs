@@ -154,7 +154,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixMultiplication object or nil, if failure.
-        #[method_id(@__retain_semantics Init initWithDevice:transposeLeft:transposeRight:resultRows:resultColumns:interiorColumns:alpha:beta:)]
+        #[method_id(@__method_family Init initWithDevice:transposeLeft:transposeRight:resultRows:resultColumns:interiorColumns:alpha:beta:)]
         pub unsafe fn initWithDevice_transposeLeft_transposeRight_resultRows_resultColumns_interiorColumns_alpha_beta(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -187,7 +187,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixMultiplication object or nil, if failure.
-        #[method_id(@__retain_semantics Init initWithDevice:resultRows:resultColumns:interiorColumns:)]
+        #[method_id(@__method_family Init initWithDevice:resultRows:resultColumns:interiorColumns:)]
         pub unsafe fn initWithDevice_resultRows_resultColumns_interiorColumns(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -197,7 +197,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Use the above initialization method instead.
-        #[method_id(@__retain_semantics Init initWithDevice:)]
+        #[method_id(@__method_family Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -258,7 +258,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -277,7 +277,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(@__retain_semantics Init initWithCoder:device:)]
+        #[method_id(@__method_family Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -290,10 +290,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSMatrixMultiplication {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -376,7 +376,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixVectorMultiplication object or nil, if failure.
-        #[method_id(@__retain_semantics Init initWithDevice:transpose:rows:columns:alpha:beta:)]
+        #[method_id(@__method_family Init initWithDevice:transpose:rows:columns:alpha:beta:)]
         pub unsafe fn initWithDevice_transpose_rows_columns_alpha_beta(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -405,7 +405,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSMatrixVectorMultiplication object or nil, if failure.
-        #[method_id(@__retain_semantics Init initWithDevice:rows:columns:)]
+        #[method_id(@__method_family Init initWithDevice:rows:columns:)]
         pub unsafe fn initWithDevice_rows_columns(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -414,7 +414,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Use the above initialization method instead.
-        #[method_id(@__retain_semantics Init initWithDevice:)]
+        #[method_id(@__method_family Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -469,7 +469,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -488,7 +488,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(@__retain_semantics Init initWithCoder:device:)]
+        #[method_id(@__method_family Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -501,10 +501,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
     unsafe impl MPSMatrixVectorMultiplication {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

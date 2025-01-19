@@ -14,24 +14,24 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiappearance?language=objc)
     pub unsafe trait UIAppearance: NSObjectProtocol + MainThreadOnly {
-        #[method_id(@__retain_semantics Other appearance)]
+        #[method_id(@__method_family Other appearance)]
         unsafe fn appearance(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other appearanceWhenContainedInInstancesOfClasses:)]
+        #[method_id(@__method_family Other appearanceWhenContainedInInstancesOfClasses:)]
         unsafe fn appearanceWhenContainedInInstancesOfClasses(
             container_types: &NSArray<AnyClass>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
-        #[method_id(@__retain_semantics Other appearanceForTraitCollection:)]
+        #[method_id(@__method_family Other appearanceForTraitCollection:)]
         unsafe fn appearanceForTraitCollection(
             r#trait: &UITraitCollection,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
-        #[method_id(@__retain_semantics Other appearanceForTraitCollection:whenContainedInInstancesOfClasses:)]
+        #[method_id(@__method_family Other appearanceForTraitCollection:whenContainedInInstancesOfClasses:)]
         unsafe fn appearanceForTraitCollection_whenContainedInInstancesOfClasses(
             r#trait: &UITraitCollection,
             container_types: &NSArray<AnyClass>,

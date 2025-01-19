@@ -58,7 +58,7 @@ extern_methods!(
         /// The tracked skeleton in 3D.
         ///
         /// Note: The default height of this skeleton, measured from lowest to highest joint in standing position, is defined to be 1.71 meters.
-        #[method_id(@__retain_semantics Other skeleton)]
+        #[method_id(@__method_family Other skeleton)]
         pub unsafe fn skeleton(&self) -> Retained<ARSkeleton3D>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -80,10 +80,10 @@ extern_methods!(
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
     unsafe impl ARBodyAnchor {
         /// Unavailable
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -60,12 +60,12 @@ unsafe impl NSObjectProtocol for ACAccountStore {}
 extern_methods!(
     unsafe impl ACAccountStore {
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__retain_semantics Other accounts)]
+        #[method_id(@__method_family Other accounts)]
         pub unsafe fn accounts(&self) -> Option<Retained<NSArray>>;
 
         #[cfg(feature = "ACAccount")]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__retain_semantics Other accountWithIdentifier:)]
+        #[method_id(@__method_family Other accountWithIdentifier:)]
         pub unsafe fn accountWithIdentifier(
             &self,
             identifier: Option<&NSString>,
@@ -73,7 +73,7 @@ extern_methods!(
 
         #[cfg(feature = "ACAccountType")]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__retain_semantics Other accountTypeWithAccountTypeIdentifier:)]
+        #[method_id(@__method_family Other accountTypeWithAccountTypeIdentifier:)]
         pub unsafe fn accountTypeWithAccountTypeIdentifier(
             &self,
             type_identifier: Option<&NSString>,
@@ -81,7 +81,7 @@ extern_methods!(
 
         #[cfg(feature = "ACAccountType")]
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__retain_semantics Other accountsWithAccountType:)]
+        #[method_id(@__method_family Other accountsWithAccountType:)]
         pub unsafe fn accountsWithAccountType(
             &self,
             account_type: Option<&ACAccountType>,
@@ -138,10 +138,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ACAccountStore {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

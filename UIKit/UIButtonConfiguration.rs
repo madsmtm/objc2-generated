@@ -186,35 +186,35 @@ unsafe impl NSSecureCoding for UIButtonConfiguration {}
 
 extern_methods!(
     unsafe impl UIButtonConfiguration {
-        #[method_id(@__retain_semantics Other plainButtonConfiguration)]
+        #[method_id(@__method_family Other plainButtonConfiguration)]
         pub unsafe fn plainButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other tintedButtonConfiguration)]
+        #[method_id(@__method_family Other tintedButtonConfiguration)]
         pub unsafe fn tintedButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other grayButtonConfiguration)]
+        #[method_id(@__method_family Other grayButtonConfiguration)]
         pub unsafe fn grayButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other filledButtonConfiguration)]
+        #[method_id(@__method_family Other filledButtonConfiguration)]
         pub unsafe fn filledButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other borderlessButtonConfiguration)]
+        #[method_id(@__method_family Other borderlessButtonConfiguration)]
         pub unsafe fn borderlessButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other borderedButtonConfiguration)]
+        #[method_id(@__method_family Other borderedButtonConfiguration)]
         pub unsafe fn borderedButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other borderedTintedButtonConfiguration)]
+        #[method_id(@__method_family Other borderedTintedButtonConfiguration)]
         pub unsafe fn borderedTintedButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other borderedProminentButtonConfiguration)]
+        #[method_id(@__method_family Other borderedProminentButtonConfiguration)]
         pub unsafe fn borderedProminentButtonConfiguration(mtm: MainThreadMarker)
             -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(
@@ -224,12 +224,12 @@ extern_methods!(
             feature = "UIView"
         ))]
         /// Returns a copy of the configuration updated based on the given button, by applying the configuration's default values for that button's state to any properties that have not been customized.
-        #[method_id(@__retain_semantics Other updatedConfigurationForButton:)]
+        #[method_id(@__method_family Other updatedConfigurationForButton:)]
         pub unsafe fn updatedConfigurationForButton(&self, button: &UIButton) -> Retained<Self>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// A UIBackgroundConfiguration describing the button's background. UIKit provides a value by default with values appropriate for a UIButton.
-        #[method_id(@__retain_semantics Other background)]
+        #[method_id(@__method_family Other background)]
         pub unsafe fn background(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
@@ -262,7 +262,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// The base color to use for foreground elements. This color may be modified before being passed to a transformer, and finally applied to specific elements. Setting nil will cede full control to the configuration to select a color appropriate to the style.
-        #[method_id(@__retain_semantics Other baseForegroundColor)]
+        #[method_id(@__method_family Other baseForegroundColor)]
         pub unsafe fn baseForegroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -272,7 +272,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// The base color to use for background elements. This color may be modified before being passed to a transformer, and finally applied to specific elements. Setting nil will cede full control to the configuration to select a color appropriate to the style.
-        #[method_id(@__retain_semantics Other baseBackgroundColor)]
+        #[method_id(@__method_family Other baseBackgroundColor)]
         pub unsafe fn baseBackgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -281,7 +281,7 @@ extern_methods!(
         pub unsafe fn setBaseBackgroundColor(&self, base_background_color: Option<&UIColor>);
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__retain_semantics Other image)]
+        #[method_id(@__method_family Other image)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -313,7 +313,7 @@ extern_methods!(
             feature = "UIImageConfiguration",
             feature = "UIImageSymbolConfiguration"
         ))]
-        #[method_id(@__retain_semantics Other preferredSymbolConfigurationForImage)]
+        #[method_id(@__method_family Other preferredSymbolConfigurationForImage)]
         pub unsafe fn preferredSymbolConfigurationForImage(
             &self,
         ) -> Option<Retained<UIImageSymbolConfiguration>>;
@@ -357,14 +357,14 @@ extern_methods!(
             activity_indicator_color_transformer: UIConfigurationColorTransformer,
         );
 
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other attributedTitle)]
+        #[method_id(@__method_family Other attributedTitle)]
         pub unsafe fn attributedTitle(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedTitle`][Self::attributedTitle].
@@ -395,14 +395,14 @@ extern_methods!(
         #[method(setTitleLineBreakMode:)]
         pub unsafe fn setTitleLineBreakMode(&self, title_line_break_mode: NSLineBreakMode);
 
-        #[method_id(@__retain_semantics Other subtitle)]
+        #[method_id(@__method_family Other subtitle)]
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitle`][Self::subtitle].
         #[method(setSubtitle:)]
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other attributedSubtitle)]
+        #[method_id(@__method_family Other attributedSubtitle)]
         pub unsafe fn attributedSubtitle(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedSubtitle`][Self::attributedSubtitle].

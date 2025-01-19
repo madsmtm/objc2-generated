@@ -26,23 +26,23 @@ extern_methods!(
     unsafe impl MLModel {
         #[cfg(feature = "MLModelDescription")]
         /// A model holds a description of its required inputs and expected outputs.
-        #[method_id(@__retain_semantics Other modelDescription)]
+        #[method_id(@__method_family Other modelDescription)]
         pub unsafe fn modelDescription(&self) -> Retained<MLModelDescription>;
 
         #[cfg(feature = "MLModelConfiguration")]
         /// The load-time parameters used to instantiate this MLModel object.
-        #[method_id(@__retain_semantics Other configuration)]
+        #[method_id(@__method_family Other configuration)]
         pub unsafe fn configuration(&self) -> Retained<MLModelConfiguration>;
 
         /// Construct a model with a default MLModelConfiguration object
-        #[method_id(@__retain_semantics Other modelWithContentsOfURL:error:_)]
+        #[method_id(@__method_family Other modelWithContentsOfURL:error:_)]
         pub unsafe fn modelWithContentsOfURL_error(
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "MLModelConfiguration")]
         /// Construct a model given the location of its on-disk representation. Returns nil on error.
-        #[method_id(@__retain_semantics Other modelWithContentsOfURL:configuration:error:_)]
+        #[method_id(@__method_family Other modelWithContentsOfURL:configuration:error:_)]
         pub unsafe fn modelWithContentsOfURL_configuration_error(
             url: &NSURL,
             configuration: &MLModelConfiguration,
@@ -75,7 +75,7 @@ extern_methods!(
         /// - input: The input features to make a prediction from.
         /// - error: The output parameter to be filled with error information on failure.
         /// - Returns: The output features from the prediction.
-        #[method_id(@__retain_semantics Other predictionFromFeatures:error:_)]
+        #[method_id(@__method_family Other predictionFromFeatures:error:_)]
         pub unsafe fn predictionFromFeatures_error(
             &self,
             input: &ProtocolObject<dyn MLFeatureProvider>,
@@ -89,7 +89,7 @@ extern_methods!(
         /// - options: Prediction options to modify how the prediction is run.
         /// - error: The output parameter to be filled with error information on failure.
         /// - Returns: The output features from the prediction.
-        #[method_id(@__retain_semantics Other predictionFromFeatures:options:error:_)]
+        #[method_id(@__method_family Other predictionFromFeatures:options:error:_)]
         pub unsafe fn predictionFromFeatures_options_error(
             &self,
             input: &ProtocolObject<dyn MLFeatureProvider>,
@@ -136,7 +136,7 @@ extern_methods!(
 
         #[cfg(feature = "MLBatchProvider")]
         /// Batch prediction without explicit options
-        #[method_id(@__retain_semantics Other predictionsFromBatch:error:_)]
+        #[method_id(@__method_family Other predictionsFromBatch:error:_)]
         pub unsafe fn predictionsFromBatch_error(
             &self,
             input_batch: &ProtocolObject<dyn MLBatchProvider>,
@@ -144,7 +144,7 @@ extern_methods!(
 
         #[cfg(all(feature = "MLBatchProvider", feature = "MLPredictionOptions"))]
         /// Batch prediction with explicit options
-        #[method_id(@__retain_semantics Other predictionsFromBatch:options:error:_)]
+        #[method_id(@__method_family Other predictionsFromBatch:options:error:_)]
         pub unsafe fn predictionsFromBatch_options_error(
             &self,
             input_batch: &ProtocolObject<dyn MLBatchProvider>,
@@ -153,7 +153,7 @@ extern_methods!(
 
         #[cfg(all(feature = "MLKey", feature = "MLParameterKey"))]
         /// Provides value for the given parameter. Returns nil on error.
-        #[method_id(@__retain_semantics Other parameterValueForKey:error:_)]
+        #[method_id(@__method_family Other parameterValueForKey:error:_)]
         pub unsafe fn parameterValueForKey_error(
             &self,
             key: &MLParameterKey,
@@ -184,10 +184,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLModel {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

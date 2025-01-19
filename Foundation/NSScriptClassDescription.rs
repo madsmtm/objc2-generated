@@ -19,13 +19,13 @@ unsafe impl NSObjectProtocol for NSScriptClassDescription {}
 extern_methods!(
     #[cfg(feature = "NSClassDescription")]
     unsafe impl NSScriptClassDescription {
-        #[method_id(@__retain_semantics Other classDescriptionForClass:)]
+        #[method_id(@__method_family Other classDescriptionForClass:)]
         pub unsafe fn classDescriptionForClass(
             a_class: &AnyClass,
         ) -> Option<Retained<NSScriptClassDescription>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__retain_semantics Init initWithSuiteName:className:dictionary:)]
+        #[method_id(@__method_family Init initWithSuiteName:className:dictionary:)]
         pub unsafe fn initWithSuiteName_className_dictionary(
             this: Allocated<Self>,
             suite_name: &NSString,
@@ -34,18 +34,18 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other suiteName)]
+        #[method_id(@__method_family Other suiteName)]
         pub unsafe fn suiteName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other className)]
+        #[method_id(@__method_family Other className)]
         pub unsafe fn className(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other implementationClassName)]
+        #[method_id(@__method_family Other implementationClassName)]
         pub unsafe fn implementationClassName(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__retain_semantics Other superclassDescription)]
+        #[method_id(@__method_family Other superclassDescription)]
         pub unsafe fn superclassDescription(&self) -> Option<Retained<NSScriptClassDescription>>;
 
         #[method(appleEventCode)]
@@ -69,11 +69,11 @@ extern_methods!(
         ) -> Option<Sel>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other typeForKey:)]
+        #[method_id(@__method_family Other typeForKey:)]
         pub unsafe fn typeForKey(&self, key: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other classDescriptionForKey:)]
+        #[method_id(@__method_family Other classDescriptionForKey:)]
         pub unsafe fn classDescriptionForKey(
             &self,
             key: &NSString,
@@ -84,14 +84,14 @@ extern_methods!(
         pub unsafe fn appleEventCodeForKey(&self, key: &NSString) -> FourCharCode;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other keyWithAppleEventCode:)]
+        #[method_id(@__method_family Other keyWithAppleEventCode:)]
         pub unsafe fn keyWithAppleEventCode(
             &self,
             apple_event_code: FourCharCode,
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other defaultSubcontainerAttributeKey)]
+        #[method_id(@__method_family Other defaultSubcontainerAttributeKey)]
         pub unsafe fn defaultSubcontainerAttributeKey(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -123,10 +123,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSClassDescription")]
     unsafe impl NSScriptClassDescription {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -150,7 +150,7 @@ extern_category!(
         unsafe fn classCode(&self) -> FourCharCode;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other className)]
+        #[method_id(@__method_family Other className)]
         unsafe fn className(&self) -> Retained<NSString>;
     }
 

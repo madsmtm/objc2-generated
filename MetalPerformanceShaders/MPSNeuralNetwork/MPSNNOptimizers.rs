@@ -119,7 +119,7 @@ extern_methods!(
         #[method(setRegularizationType:)]
         pub unsafe fn setRegularizationType(&self, regularization_type: MPSNNRegularizationType);
 
-        #[method_id(@__retain_semantics Init initWithLearningRate:gradientRescale:regularizationType:regularizationScale:)]
+        #[method_id(@__method_family Init initWithLearningRate:gradientRescale:regularizationType:regularizationScale:)]
         pub unsafe fn initWithLearningRate_gradientRescale_regularizationType_regularizationScale(
             this: Allocated<Self>,
             learning_rate: c_float,
@@ -128,7 +128,7 @@ extern_methods!(
             regularization_scale: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithLearningRate:gradientRescale:applyGradientClipping:gradientClipMax:gradientClipMin:regularizationType:regularizationScale:)]
+        #[method_id(@__method_family Init initWithLearningRate:gradientRescale:applyGradientClipping:gradientClipMax:gradientClipMin:regularizationType:regularizationScale:)]
         pub unsafe fn initWithLearningRate_gradientRescale_applyGradientClipping_gradientClipMax_gradientClipMin_regularizationType_regularizationScale(
             this: Allocated<Self>,
             learning_rate: c_float,
@@ -140,7 +140,7 @@ extern_methods!(
             regularization_scale: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other optimizerDescriptorWithLearningRate:gradientRescale:regularizationType:regularizationScale:)]
+        #[method_id(@__method_family Other optimizerDescriptorWithLearningRate:gradientRescale:regularizationType:regularizationScale:)]
         pub unsafe fn optimizerDescriptorWithLearningRate_gradientRescale_regularizationType_regularizationScale(
             learning_rate: c_float,
             gradient_rescale: c_float,
@@ -148,7 +148,7 @@ extern_methods!(
             regularization_scale: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other optimizerDescriptorWithLearningRate:gradientRescale:applyGradientClipping:gradientClipMax:gradientClipMin:regularizationType:regularizationScale:)]
+        #[method_id(@__method_family Other optimizerDescriptorWithLearningRate:gradientRescale:applyGradientClipping:gradientClipMax:gradientClipMin:regularizationType:regularizationScale:)]
         pub unsafe fn optimizerDescriptorWithLearningRate_gradientRescale_applyGradientClipping_gradientClipMax_gradientClipMin_regularizationType_regularizationScale(
             learning_rate: c_float,
             gradient_rescale: c_float,
@@ -164,10 +164,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNOptimizerDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -248,7 +248,7 @@ extern_methods!(
         #[method(regularizationType)]
         pub unsafe fn regularizationType(&self) -> MPSNNRegularizationType;
 
-        #[method_id(@__retain_semantics Init initWithDevice:)]
+        #[method_id(@__method_family Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -271,7 +271,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -290,7 +290,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(@__retain_semantics Init initWithCoder:device:)]
+        #[method_id(@__method_family Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -303,10 +303,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -371,7 +371,7 @@ extern_methods!(
         #[method(useNestrovMomentum)]
         pub unsafe fn useNestrovMomentum(&self) -> bool;
 
-        #[method_id(@__retain_semantics Init initWithDevice:)]
+        #[method_id(@__method_family Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -386,7 +386,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSNNOptimizerStochasticGradientDescent object or nil, if failure.
-        #[method_id(@__retain_semantics Init initWithDevice:learningRate:)]
+        #[method_id(@__method_family Init initWithDevice:learningRate:)]
         pub unsafe fn initWithDevice_learningRate(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -406,7 +406,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSNNOptimizerMomentum object or nil, if failure.
-        #[method_id(@__retain_semantics Init initWithDevice:momentumScale:useNesterovMomentum:optimizerDescriptor:)]
+        #[method_id(@__method_family Init initWithDevice:momentumScale:useNesterovMomentum:optimizerDescriptor:)]
         pub unsafe fn initWithDevice_momentumScale_useNesterovMomentum_optimizerDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -415,7 +415,7 @@ extern_methods!(
             optimizer_descriptor: &MPSNNOptimizerDescriptor,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithDevice:momentumScale:useNestrovMomentum:optimizerDescriptor:)]
+        #[method_id(@__method_family Init initWithDevice:momentumScale:useNestrovMomentum:optimizerDescriptor:)]
         pub unsafe fn initWithDevice_momentumScale_useNestrovMomentum_optimizerDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -638,7 +638,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -657,7 +657,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(@__retain_semantics Init initWithCoder:device:)]
+        #[method_id(@__method_family Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -670,10 +670,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizerStochasticGradientDescent {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -728,7 +728,7 @@ extern_methods!(
         #[method(epsilon)]
         pub unsafe fn epsilon(&self) -> c_float;
 
-        #[method_id(@__retain_semantics Init initWithDevice:)]
+        #[method_id(@__method_family Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -743,7 +743,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSNNOptimizerRMSProp object or nil, if failure.
-        #[method_id(@__retain_semantics Init initWithDevice:learningRate:)]
+        #[method_id(@__method_family Init initWithDevice:learningRate:)]
         pub unsafe fn initWithDevice_learningRate(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -763,7 +763,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSNNOptimizerRMSProp object or nil, if failure.
-        #[method_id(@__retain_semantics Init initWithDevice:decay:epsilon:optimizerDescriptor:)]
+        #[method_id(@__method_family Init initWithDevice:decay:epsilon:optimizerDescriptor:)]
         pub unsafe fn initWithDevice_decay_epsilon_optimizerDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -954,7 +954,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -973,7 +973,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(@__retain_semantics Init initWithCoder:device:)]
+        #[method_id(@__method_family Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -986,10 +986,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizerRMSProp {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1070,7 +1070,7 @@ extern_methods!(
         #[method(setTimeStep:)]
         pub unsafe fn setTimeStep(&self, time_step: NSUInteger);
 
-        #[method_id(@__retain_semantics Init initWithDevice:)]
+        #[method_id(@__method_family Init initWithDevice:)]
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1085,7 +1085,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSNNOptimizerAdam object or nil, if failure.
-        #[method_id(@__retain_semantics Init initWithDevice:learningRate:)]
+        #[method_id(@__method_family Init initWithDevice:learningRate:)]
         pub unsafe fn initWithDevice_learningRate(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1109,7 +1109,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A valid MPSNNOptimizerAdam object or nil, if failure.
-        #[method_id(@__retain_semantics Init initWithDevice:beta1:beta2:epsilon:timeStep:optimizerDescriptor:)]
+        #[method_id(@__method_family Init initWithDevice:beta1:beta2:epsilon:timeStep:optimizerDescriptor:)]
         pub unsafe fn initWithDevice_beta1_beta2_epsilon_timeStep_optimizerDescriptor(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -1533,7 +1533,7 @@ extern_methods!(
         /// extend the object to adopt the MPSDeviceProvider
         /// protocol. Otherwise, the Metal system default device
         /// will be used.
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1552,7 +1552,7 @@ extern_methods!(
         /// Parameter `device`: The MTLDevice on which to make the MPSKernel
         ///
         /// Returns: A new MPSKernel object, or nil if failure.
-        #[method_id(@__retain_semantics Init initWithCoder:device:)]
+        #[method_id(@__method_family Init initWithCoder:device:)]
         pub unsafe fn initWithCoder_device(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -1565,10 +1565,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
     unsafe impl MPSNNOptimizerAdam {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

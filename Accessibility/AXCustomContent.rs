@@ -48,28 +48,28 @@ unsafe impl NSSecureCoding for AXCustomContent {}
 
 extern_methods!(
     unsafe impl AXCustomContent {
-        #[method_id(@__retain_semantics Other customContentWithLabel:value:)]
+        #[method_id(@__method_family Other customContentWithLabel:value:)]
         pub unsafe fn customContentWithLabel_value(
             label: &NSString,
             value: &NSString,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other customContentWithAttributedLabel:attributedValue:)]
+        #[method_id(@__method_family Other customContentWithAttributedLabel:attributedValue:)]
         pub unsafe fn customContentWithAttributedLabel_attributedValue(
             label: &NSAttributedString,
             value: &NSAttributedString,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other label)]
+        #[method_id(@__method_family Other label)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other attributedLabel)]
+        #[method_id(@__method_family Other attributedLabel)]
         pub unsafe fn attributedLabel(&self) -> Retained<NSAttributedString>;
 
-        #[method_id(@__retain_semantics Other value)]
+        #[method_id(@__method_family Other value)]
         pub unsafe fn value(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other attributedValue)]
+        #[method_id(@__method_family Other attributedValue)]
         pub unsafe fn attributedValue(&self) -> Retained<NSAttributedString>;
 
         #[method(importance)]
@@ -79,10 +79,10 @@ extern_methods!(
         #[method(setImportance:)]
         pub unsafe fn setImportance(&self, importance: AXCustomContentImportance);
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -94,7 +94,7 @@ pub type AXCustomContentReturnBlock = *mut block2::Block<dyn Fn() -> *mut NSArra
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontentprovider?language=objc)
     pub unsafe trait AXCustomContentProvider: NSObjectProtocol {
-        #[method_id(@__retain_semantics Other accessibilityCustomContent)]
+        #[method_id(@__method_family Other accessibilityCustomContent)]
         unsafe fn accessibilityCustomContent(&self) -> Retained<NSArray<AXCustomContent>>;
 
         /// Setter for [`accessibilityCustomContent`][Self::accessibilityCustomContent].

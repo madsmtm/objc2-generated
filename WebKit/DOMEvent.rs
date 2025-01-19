@@ -44,17 +44,17 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMEvent {
         #[deprecated]
-        #[method_id(@__retain_semantics Other type)]
+        #[method_id(@__method_family Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[cfg(feature = "DOMEventTarget")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other target)]
+        #[method_id(@__method_family Other target)]
         pub unsafe fn target(&self) -> Option<Retained<ProtocolObject<dyn DOMEventTarget>>>;
 
         #[cfg(feature = "DOMEventTarget")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other currentTarget)]
+        #[method_id(@__method_family Other currentTarget)]
         pub unsafe fn currentTarget(&self) -> Option<Retained<ProtocolObject<dyn DOMEventTarget>>>;
 
         #[deprecated]
@@ -74,7 +74,7 @@ extern_methods!(
         pub unsafe fn timeStamp(&self) -> DOMTimeStamp;
 
         #[cfg(feature = "DOMEventTarget")]
-        #[method_id(@__retain_semantics Other srcElement)]
+        #[method_id(@__method_family Other srcElement)]
         pub unsafe fn srcElement(&self) -> Option<Retained<ProtocolObject<dyn DOMEventTarget>>>;
 
         #[method(returnValue)]
@@ -114,7 +114,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMEvent {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -123,7 +123,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMEvent {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

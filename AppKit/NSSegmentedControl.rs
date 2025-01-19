@@ -196,7 +196,7 @@ extern_methods!(
         pub unsafe fn setImage_forSegment(&self, image: Option<&NSImage>, segment: NSInteger);
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__retain_semantics Other imageForSegment:)]
+        #[method_id(@__method_family Other imageForSegment:)]
         pub unsafe fn imageForSegment(&self, segment: NSInteger) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSCell")]
@@ -214,7 +214,7 @@ extern_methods!(
         #[method(setLabel:forSegment:)]
         pub unsafe fn setLabel_forSegment(&self, label: &NSString, segment: NSInteger);
 
-        #[method_id(@__retain_semantics Other labelForSegment:)]
+        #[method_id(@__method_family Other labelForSegment:)]
         pub unsafe fn labelForSegment(&self, segment: NSInteger) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSMenu")]
@@ -222,7 +222,7 @@ extern_methods!(
         pub unsafe fn setMenu_forSegment(&self, menu: Option<&NSMenu>, segment: NSInteger);
 
         #[cfg(feature = "NSMenu")]
-        #[method_id(@__retain_semantics Other menuForSegment:)]
+        #[method_id(@__method_family Other menuForSegment:)]
         pub unsafe fn menuForSegment(&self, segment: NSInteger) -> Option<Retained<NSMenu>>;
 
         #[method(setSelected:forSegment:)]
@@ -240,7 +240,7 @@ extern_methods!(
         #[method(setToolTip:forSegment:)]
         pub unsafe fn setToolTip_forSegment(&self, tool_tip: Option<&NSString>, segment: NSInteger);
 
-        #[method_id(@__retain_semantics Other toolTipForSegment:)]
+        #[method_id(@__method_family Other toolTipForSegment:)]
         pub unsafe fn toolTipForSegment(&self, segment: NSInteger) -> Option<Retained<NSString>>;
 
         #[method(setTag:forSegment:)]
@@ -284,7 +284,7 @@ extern_methods!(
         pub unsafe fn doubleValueForSelectedSegment(&self) -> c_double;
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__retain_semantics Other selectedSegmentBezelColor)]
+        #[method_id(@__method_family Other selectedSegmentBezelColor)]
         pub unsafe fn selectedSegmentBezelColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
@@ -332,7 +332,7 @@ extern_methods!(
         ) -> NSSize;
 
         #[cfg(feature = "NSUserInterfaceCompression")]
-        #[method_id(@__retain_semantics Other activeCompressionOptions)]
+        #[method_id(@__method_family Other activeCompressionOptions)]
         pub unsafe fn activeCompressionOptions(
             &self,
         ) -> Retained<NSUserInterfaceCompressionOptions>;
@@ -343,10 +343,10 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSegmentedControl {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -358,7 +358,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSegmentedControl {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -367,7 +367,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSSegmentedControl {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -387,7 +387,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized segmented control.
-        #[method_id(@__retain_semantics Other segmentedControlWithLabels:trackingMode:target:action:)]
+        #[method_id(@__method_family Other segmentedControlWithLabels:trackingMode:target:action:)]
         pub unsafe fn segmentedControlWithLabels_trackingMode_target_action(
             labels: &NSArray<NSString>,
             tracking_mode: NSSegmentSwitchTracking,
@@ -408,7 +408,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized segmented control.
-        #[method_id(@__retain_semantics Other segmentedControlWithImages:trackingMode:target:action:)]
+        #[method_id(@__method_family Other segmentedControlWithImages:trackingMode:target:action:)]
         pub unsafe fn segmentedControlWithImages_trackingMode_target_action(
             images: &NSArray<NSImage>,
             tracking_mode: NSSegmentSwitchTracking,

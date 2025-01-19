@@ -30,13 +30,13 @@ extern_methods!(
     unsafe impl MXAppLaunchDiagnostic {
         #[cfg(feature = "MXCallStackTree")]
         /// The application call stack tree associated with the app launch.
-        #[method_id(@__retain_semantics Other callStackTree)]
+        #[method_id(@__method_family Other callStackTree)]
         pub unsafe fn callStackTree(&self) -> Retained<MXCallStackTree>;
 
         /// Total app launch duration.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[method_id(@__retain_semantics Other launchDuration)]
+        #[method_id(@__method_family Other launchDuration)]
         pub unsafe fn launchDuration(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
     }
 );
@@ -45,10 +45,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXDiagnostic")]
     unsafe impl MXAppLaunchDiagnostic {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -55,13 +55,13 @@ extern_methods!(
         /// The constraints governing permitted analysis window durations.
         ///
         /// The analysis window duration is controlled using the `windowDuration` property. If an analysis window duration is selected which does not meet the necessary constraints, it will automatically be adjusted to meet these constraints (see `windowDuration` for more information regarding how this adjustment will be applied).
-        #[method_id(@__retain_semantics Other windowDurationConstraint)]
+        #[method_id(@__method_family Other windowDurationConstraint)]
         pub unsafe fn windowDurationConstraint(&self) -> Retained<SNTimeDurationConstraint>;
 
         /// Lists all labels that can be produced by this request.
         ///
         /// - Returns: An array of strings containing all sound identifiers which can be produced by this request.
-        #[method_id(@__retain_semantics Other knownClassifications)]
+        #[method_id(@__method_family Other knownClassifications)]
         pub unsafe fn knownClassifications(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "objc2-core-ml")]
@@ -70,7 +70,7 @@ extern_methods!(
         /// - Parameter mlModel: The CoreML audio classification model to be used with this request
         ///
         /// The provided model must accept audio data as input, and output a classification dictionary containing the probability of each category.
-        #[method_id(@__retain_semantics Init initWithMLModel:error:_)]
+        #[method_id(@__method_family Init initWithMLModel:error:_)]
         pub unsafe fn initWithMLModel_error(
             this: Allocated<Self>,
             ml_model: &MLModel,
@@ -88,16 +88,16 @@ extern_methods!(
         /// - Returns Upon failure, `nil`; upon success, an `SNClassifySoundRequest` instance which can be added to an analyzer to classify sounds using a recognized classifier.
         ///
         /// This initializer may be used to classify sounds using Apple-provided sound classifiers. Note that Apple may add new classifiers in the future, but it commits to ensuring the consistent performance of existing classifiers.
-        #[method_id(@__retain_semantics Init initWithClassifierIdentifier:error:_)]
+        #[method_id(@__method_family Init initWithClassifierIdentifier:error:_)]
         pub unsafe fn initWithClassifierIdentifier_error(
             this: Allocated<Self>,
             classifier_identifier: &SNClassifierIdentifier,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

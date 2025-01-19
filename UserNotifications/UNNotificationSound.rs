@@ -32,34 +32,34 @@ unsafe impl NSSecureCoding for UNNotificationSound {}
 
 extern_methods!(
     unsafe impl UNNotificationSound {
-        #[method_id(@__retain_semantics Other defaultSound)]
+        #[method_id(@__method_family Other defaultSound)]
         pub unsafe fn defaultSound() -> Retained<UNNotificationSound>;
 
-        #[method_id(@__retain_semantics Other defaultRingtoneSound)]
+        #[method_id(@__method_family Other defaultRingtoneSound)]
         pub unsafe fn defaultRingtoneSound() -> Retained<UNNotificationSound>;
 
-        #[method_id(@__retain_semantics Other defaultCriticalSound)]
+        #[method_id(@__method_family Other defaultCriticalSound)]
         pub unsafe fn defaultCriticalSound() -> Retained<UNNotificationSound>;
 
-        #[method_id(@__retain_semantics Other defaultCriticalSoundWithAudioVolume:)]
+        #[method_id(@__method_family Other defaultCriticalSoundWithAudioVolume:)]
         pub unsafe fn defaultCriticalSoundWithAudioVolume(volume: c_float) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other soundNamed:)]
+        #[method_id(@__method_family Other soundNamed:)]
         pub unsafe fn soundNamed(name: &UNNotificationSoundName) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other ringtoneSoundNamed:)]
+        #[method_id(@__method_family Other ringtoneSoundNamed:)]
         pub unsafe fn ringtoneSoundNamed(name: &UNNotificationSoundName) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other criticalSoundNamed:)]
+        #[method_id(@__method_family Other criticalSoundNamed:)]
         pub unsafe fn criticalSoundNamed(name: &UNNotificationSoundName) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other criticalSoundNamed:withAudioVolume:)]
+        #[method_id(@__method_family Other criticalSoundNamed:withAudioVolume:)]
         pub unsafe fn criticalSoundNamed_withAudioVolume(
             name: &UNNotificationSoundName,
             volume: c_float,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -67,7 +67,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UNNotificationSound {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

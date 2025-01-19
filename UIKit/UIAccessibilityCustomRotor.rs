@@ -98,7 +98,7 @@ extern_category!(
     /// Category "UIAccessibilityCustomRotor" on [`NSObject`].
     #[doc(alias = "UIAccessibilityCustomRotor")]
     pub unsafe trait NSObjectUIAccessibilityCustomRotor {
-        #[method_id(@__retain_semantics Other accessibilityCustomRotors)]
+        #[method_id(@__method_family Other accessibilityCustomRotors)]
         unsafe fn accessibilityCustomRotors(
             &self,
             mtm: MainThreadMarker,
@@ -144,7 +144,7 @@ unsafe impl NSObjectProtocol for UIAccessibilityCustomRotorSearchPredicate {}
 
 extern_methods!(
     unsafe impl UIAccessibilityCustomRotorSearchPredicate {
-        #[method_id(@__retain_semantics Other currentItem)]
+        #[method_id(@__method_family Other currentItem)]
         pub unsafe fn currentItem(&self) -> Retained<UIAccessibilityCustomRotorItemResult>;
 
         /// Setter for [`currentItem`][Self::currentItem].
@@ -166,10 +166,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIAccessibilityCustomRotorSearchPredicate {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -187,7 +187,7 @@ unsafe impl NSObjectProtocol for UIAccessibilityCustomRotor {}
 extern_methods!(
     unsafe impl UIAccessibilityCustomRotor {
         #[cfg(feature = "block2")]
-        #[method_id(@__retain_semantics Init initWithName:itemSearchBlock:)]
+        #[method_id(@__method_family Init initWithName:itemSearchBlock:)]
         pub unsafe fn initWithName_itemSearchBlock(
             this: Allocated<Self>,
             name: &NSString,
@@ -195,7 +195,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__retain_semantics Init initWithAttributedName:itemSearchBlock:)]
+        #[method_id(@__method_family Init initWithAttributedName:itemSearchBlock:)]
         pub unsafe fn initWithAttributedName_itemSearchBlock(
             this: Allocated<Self>,
             attributed_name: &NSAttributedString,
@@ -203,21 +203,21 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__retain_semantics Init initWithSystemType:itemSearchBlock:)]
+        #[method_id(@__method_family Init initWithSystemType:itemSearchBlock:)]
         pub unsafe fn initWithSystemType_itemSearchBlock(
             this: Allocated<Self>,
             r#type: UIAccessibilityCustomSystemRotorType,
             item_search_block: UIAccessibilityCustomRotorSearch,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
-        #[method_id(@__retain_semantics Other attributedName)]
+        #[method_id(@__method_family Other attributedName)]
         pub unsafe fn attributedName(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedName`][Self::attributedName].
@@ -244,10 +244,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIAccessibilityCustomRotor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -265,14 +265,14 @@ unsafe impl NSObjectProtocol for UIAccessibilityCustomRotorItemResult {}
 extern_methods!(
     unsafe impl UIAccessibilityCustomRotorItemResult {
         #[cfg(feature = "UITextInput")]
-        #[method_id(@__retain_semantics Init initWithTargetElement:targetRange:)]
+        #[method_id(@__method_family Init initWithTargetElement:targetRange:)]
         pub unsafe fn initWithTargetElement_targetRange(
             this: Allocated<Self>,
             target_element: &ProtocolObject<dyn NSObjectProtocol>,
             target_range: Option<&UITextRange>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other targetElement)]
+        #[method_id(@__method_family Other targetElement)]
         pub unsafe fn targetElement(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
@@ -286,7 +286,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UITextInput")]
-        #[method_id(@__retain_semantics Other targetRange)]
+        #[method_id(@__method_family Other targetRange)]
         pub unsafe fn targetRange(&self) -> Option<Retained<UITextRange>>;
 
         #[cfg(feature = "UITextInput")]
@@ -299,10 +299,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIAccessibilityCustomRotorItemResult {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

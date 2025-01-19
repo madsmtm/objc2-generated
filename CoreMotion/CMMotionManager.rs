@@ -52,7 +52,7 @@ extern_methods!(
         pub unsafe fn isAccelerometerActive(&self) -> bool;
 
         #[cfg(all(feature = "CMAccelerometer", feature = "CMLogItem"))]
-        #[method_id(@__retain_semantics Other accelerometerData)]
+        #[method_id(@__method_family Other accelerometerData)]
         pub unsafe fn accelerometerData(&self) -> Option<Retained<CMAccelerometerData>>;
 
         #[method(startAccelerometerUpdates)]
@@ -83,7 +83,7 @@ extern_methods!(
         pub unsafe fn isGyroActive(&self) -> bool;
 
         #[cfg(all(feature = "CMGyro", feature = "CMLogItem"))]
-        #[method_id(@__retain_semantics Other gyroData)]
+        #[method_id(@__method_family Other gyroData)]
         pub unsafe fn gyroData(&self) -> Option<Retained<CMGyroData>>;
 
         #[method(startGyroUpdates)]
@@ -117,7 +117,7 @@ extern_methods!(
         pub unsafe fn isMagnetometerActive(&self) -> bool;
 
         #[cfg(all(feature = "CMLogItem", feature = "CMMagnetometer"))]
-        #[method_id(@__retain_semantics Other magnetometerData)]
+        #[method_id(@__method_family Other magnetometerData)]
         pub unsafe fn magnetometerData(&self) -> Option<Retained<CMMagnetometerData>>;
 
         #[method(startMagnetometerUpdates)]
@@ -159,7 +159,7 @@ extern_methods!(
         pub unsafe fn isDeviceMotionActive(&self) -> bool;
 
         #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem"))]
-        #[method_id(@__retain_semantics Other deviceMotion)]
+        #[method_id(@__method_family Other deviceMotion)]
         pub unsafe fn deviceMotion(&self) -> Option<Retained<CMDeviceMotion>>;
 
         #[method(startDeviceMotionUpdates)]
@@ -209,10 +209,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMMotionManager {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

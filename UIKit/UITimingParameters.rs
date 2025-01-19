@@ -43,24 +43,24 @@ extern_methods!(
         #[method(controlPoint2)]
         pub unsafe fn controlPoint2(&self) -> CGPoint;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UIView")]
-        #[method_id(@__retain_semantics Init initWithAnimationCurve:)]
+        #[method_id(@__method_family Init initWithAnimationCurve:)]
         pub unsafe fn initWithAnimationCurve(
             this: Allocated<Self>,
             curve: UIViewAnimationCurve,
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithControlPoint1:controlPoint2:)]
+        #[method_id(@__method_family Init initWithControlPoint1:controlPoint2:)]
         pub unsafe fn initWithControlPoint1_controlPoint2(
             this: Allocated<Self>,
             point1: CGPoint,
@@ -72,7 +72,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UICubicTimingParameters {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -104,17 +104,17 @@ extern_methods!(
         #[method(initialVelocity)]
         pub unsafe fn initialVelocity(&self) -> CGVector;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithDampingRatio:initialVelocity:)]
+        #[method_id(@__method_family Init initWithDampingRatio:initialVelocity:)]
         pub unsafe fn initWithDampingRatio_initialVelocity(
             this: Allocated<Self>,
             ratio: CGFloat,
@@ -122,7 +122,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithMass:stiffness:damping:initialVelocity:)]
+        #[method_id(@__method_family Init initWithMass:stiffness:damping:initialVelocity:)]
         pub unsafe fn initWithMass_stiffness_damping_initialVelocity(
             this: Allocated<Self>,
             mass: CGFloat,
@@ -132,12 +132,12 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithDampingRatio:)]
+        #[method_id(@__method_family Init initWithDampingRatio:)]
         pub unsafe fn initWithDampingRatio(this: Allocated<Self>, ratio: CGFloat)
             -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithDuration:bounce:initialVelocity:)]
+        #[method_id(@__method_family Init initWithDuration:bounce:initialVelocity:)]
         pub unsafe fn initWithDuration_bounce_initialVelocity(
             this: Allocated<Self>,
             duration: NSTimeInterval,
@@ -146,7 +146,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithDuration:bounce:)]
+        #[method_id(@__method_family Init initWithDuration:bounce:)]
         pub unsafe fn initWithDuration_bounce(
             this: Allocated<Self>,
             duration: NSTimeInterval,
@@ -158,7 +158,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISpringTimingParameters {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

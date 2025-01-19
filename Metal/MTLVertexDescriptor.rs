@@ -209,10 +209,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexBufferLayoutDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -235,7 +235,7 @@ unsafe impl NSObjectProtocol for MTLVertexBufferLayoutDescriptorArray {}
 
 extern_methods!(
     unsafe impl MTLVertexBufferLayoutDescriptorArray {
-        #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
+        #[method_id(@__method_family Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
@@ -253,10 +253,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexBufferLayoutDescriptorArray {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -304,10 +304,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexAttributeDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -330,7 +330,7 @@ unsafe impl NSObjectProtocol for MTLVertexAttributeDescriptorArray {}
 
 extern_methods!(
     unsafe impl MTLVertexAttributeDescriptorArray {
-        #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
+        #[method_id(@__method_family Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             index: NSUInteger,
@@ -348,10 +348,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexAttributeDescriptorArray {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -373,13 +373,13 @@ unsafe impl NSObjectProtocol for MTLVertexDescriptor {}
 
 extern_methods!(
     unsafe impl MTLVertexDescriptor {
-        #[method_id(@__retain_semantics Other vertexDescriptor)]
+        #[method_id(@__method_family Other vertexDescriptor)]
         pub fn vertexDescriptor() -> Retained<MTLVertexDescriptor>;
 
-        #[method_id(@__retain_semantics Other layouts)]
+        #[method_id(@__method_family Other layouts)]
         pub fn layouts(&self) -> Retained<MTLVertexBufferLayoutDescriptorArray>;
 
-        #[method_id(@__retain_semantics Other attributes)]
+        #[method_id(@__method_family Other attributes)]
         pub fn attributes(&self) -> Retained<MTLVertexAttributeDescriptorArray>;
 
         #[method(reset)]
@@ -390,10 +390,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLVertexDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

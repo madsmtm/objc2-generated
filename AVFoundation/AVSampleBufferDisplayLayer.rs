@@ -85,7 +85,7 @@ extern_methods!(
         /// is a CMAudioDeviceClock for the appropriate audio device to prevent drift.
         ///
         /// Note that prior to OSX 10.10 and iOS 8.0, the control timebase could not be changed after enqueueSampleBuffer: was called.  As of OSX 10.10 and iOS 8.0, the control timebase may be changed at any time.
-        #[method_id(@__retain_semantics Other controlTimebase)]
+        #[method_id(@__method_family Other controlTimebase)]
         pub unsafe fn controlTimebase(&self) -> Option<Retained<CMTimebase>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -101,7 +101,7 @@ extern_methods!(
         /// See
         /// <AVFoundation
         /// /AVAnimation.h> for a description of these options.
-        #[method_id(@__retain_semantics Other videoGravity)]
+        #[method_id(@__method_family Other videoGravity)]
         pub unsafe fn videoGravity(&self) -> Retained<AVLayerVideoGravity>;
 
         #[cfg(feature = "AVAnimation")]
@@ -126,13 +126,13 @@ extern_methods!(
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVSampleBufferDisplayLayer {
         /// Layer creation and initialization. *
-        #[method_id(@__retain_semantics Other layer)]
+        #[method_id(@__method_family Other layer)]
         pub unsafe fn layer() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithLayer:)]
+        #[method_id(@__method_family Init initWithLayer:)]
         pub unsafe fn initWithLayer(this: Allocated<Self>, layer: &AnyObject) -> Retained<Self>;
     }
 );
@@ -142,7 +142,7 @@ extern_methods!(
     #[cfg(feature = "objc2-quartz-core")]
     #[cfg(not(target_os = "watchos"))]
     unsafe impl AVSampleBufferDisplayLayer {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -159,7 +159,7 @@ extern_methods!(
         ///
         /// The timebase is read-only.  Use the AVSampleBufferRenderSynchronizer to set the rate or time.
         #[deprecated = "Use sampleBufferRenderer's timebase instead"]
-        #[method_id(@__retain_semantics Other timebase)]
+        #[method_id(@__method_family Other timebase)]
         pub unsafe fn timebase(&self) -> Retained<CMTimebase>;
 
         #[cfg(feature = "AVQueuedSampleBufferRendering")]
@@ -176,7 +176,7 @@ extern_methods!(
         ///
         /// The value of this property is an NSError that describes what caused the display layer to no longer be able to enqueue sample buffers. If the status is not AVQueuedSampleBufferRenderingStatusFailed, the value of this property is nil.
         #[deprecated = "Use sampleBufferRenderer's error instead"]
-        #[method_id(@__retain_semantics Other error)]
+        #[method_id(@__method_family Other error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -381,7 +381,7 @@ extern_methods!(
         /// An AVSampleBufferVideoRenderer instance that allows enqueuing sample buffers for rendering.
         ///
         /// Although AVSampleBufferDisplayLayer conforms to the AVQueuedSampleBufferRendering protocol, the sampleBufferRenderer should be used to enqueue sample buffers. sampleBufferRenderer allows the client to safely enqueue sample buffers from a background thread. NOTE: Do not use AVSampleBufferDisplayLayer's AVQueuedSampleBufferRendering functions when using sampleBufferRenderer.
-        #[method_id(@__retain_semantics Other sampleBufferRenderer)]
+        #[method_id(@__method_family Other sampleBufferRenderer)]
         pub unsafe fn sampleBufferRenderer(&self) -> Retained<AVSampleBufferVideoRenderer>;
     }
 );

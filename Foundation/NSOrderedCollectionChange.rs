@@ -36,14 +36,14 @@ unsafe impl<ObjectType: ?Sized> NSObjectProtocol for NSOrderedCollectionChange<O
 
 extern_methods!(
     unsafe impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
-        #[method_id(@__retain_semantics Other changeWithObject:type:index:)]
+        #[method_id(@__method_family Other changeWithObject:type:index:)]
         pub unsafe fn changeWithObject_type_index(
             an_object: Option<&ObjectType>,
             r#type: NSCollectionChangeType,
             index: NSUInteger,
         ) -> Retained<NSOrderedCollectionChange<ObjectType>>;
 
-        #[method_id(@__retain_semantics Other changeWithObject:type:index:associatedIndex:)]
+        #[method_id(@__method_family Other changeWithObject:type:index:associatedIndex:)]
         pub unsafe fn changeWithObject_type_index_associatedIndex(
             an_object: Option<&ObjectType>,
             r#type: NSCollectionChangeType,
@@ -51,7 +51,7 @@ extern_methods!(
             associated_index: NSUInteger,
         ) -> Retained<NSOrderedCollectionChange<ObjectType>>;
 
-        #[method_id(@__retain_semantics Other object)]
+        #[method_id(@__method_family Other object)]
         pub unsafe fn object(&self) -> Option<Retained<ObjectType>>;
 
         #[method(changeType)]
@@ -63,10 +63,10 @@ extern_methods!(
         #[method(associatedIndex)]
         pub unsafe fn associatedIndex(&self) -> NSUInteger;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithObject:type:index:)]
+        #[method_id(@__method_family Init initWithObject:type:index:)]
         pub unsafe fn initWithObject_type_index(
             this: Allocated<Self>,
             an_object: Option<&ObjectType>,
@@ -74,7 +74,7 @@ extern_methods!(
             index: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithObject:type:index:associatedIndex:)]
+        #[method_id(@__method_family Init initWithObject:type:index:associatedIndex:)]
         pub unsafe fn initWithObject_type_index_associatedIndex(
             this: Allocated<Self>,
             an_object: Option<&ObjectType>,
@@ -88,7 +88,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

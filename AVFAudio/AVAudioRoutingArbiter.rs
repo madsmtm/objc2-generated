@@ -57,14 +57,14 @@ unsafe impl NSObjectProtocol for AVAudioRoutingArbiter {}
 
 extern_methods!(
     unsafe impl AVAudioRoutingArbiter {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns the singleton AVAudioRoutingArbiter instance.
-        #[method_id(@__retain_semantics Other sharedRoutingArbiter)]
+        #[method_id(@__method_family Other sharedRoutingArbiter)]
         pub unsafe fn sharedRoutingArbiter() -> Retained<AVAudioRoutingArbiter>;
 
         #[cfg(feature = "block2")]

@@ -53,7 +53,7 @@ unsafe impl NSObjectProtocol for HMEventTrigger {}
 extern_methods!(
     #[cfg(feature = "HMTrigger")]
     unsafe impl HMEventTrigger {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "HMEvent")]
@@ -72,7 +72,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the event trigger.
-        #[method_id(@__retain_semantics Init initWithName:events:predicate:)]
+        #[method_id(@__method_family Init initWithName:events:predicate:)]
         pub unsafe fn initWithName_events_predicate(
             this: Allocated<Self>,
             name: &NSString,
@@ -103,7 +103,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the event trigger.
-        #[method_id(@__retain_semantics Init initWithName:events:endEvents:recurrences:predicate:)]
+        #[method_id(@__method_family Init initWithName:events:endEvents:recurrences:predicate:)]
         pub unsafe fn initWithName_events_endEvents_recurrences_predicate(
             this: Allocated<Self>,
             name: &NSString,
@@ -115,22 +115,22 @@ extern_methods!(
 
         #[cfg(feature = "HMEvent")]
         /// The events associated with the trigger.
-        #[method_id(@__retain_semantics Other events)]
+        #[method_id(@__method_family Other events)]
         pub unsafe fn events(&self) -> Retained<NSArray<HMEvent>>;
 
         #[cfg(feature = "HMEvent")]
         /// The events that correspond to executing the restore of the scene before the trigger was executed.
         /// E.g. Execute the scene for 10 mins and restore original state is achieved by specifying a corresponding
         /// HMDurationEvent in the list of endEvents.
-        #[method_id(@__retain_semantics Other endEvents)]
+        #[method_id(@__method_family Other endEvents)]
         pub unsafe fn endEvents(&self) -> Retained<NSArray<HMEvent>>;
 
         /// The predicate to evaluate before executing the action sets associated with the trigger.
-        #[method_id(@__retain_semantics Other predicate)]
+        #[method_id(@__method_family Other predicate)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// recurrences Specifies the recurrences for when the trigger is evaluated. This only supports days of the week.
-        #[method_id(@__retain_semantics Other recurrences)]
+        #[method_id(@__method_family Other recurrences)]
         pub unsafe fn recurrences(&self) -> Option<Retained<NSArray<NSDateComponents>>>;
 
         /// Specifies whether this trigger is executed only once after which the trigger is disabled.
@@ -269,7 +269,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HMTrigger")]
     unsafe impl HMEventTrigger {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -292,7 +292,7 @@ extern_methods!(
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
         #[deprecated = "Use predicateForEvaluatingTriggerOccurringBeforeSignificantEvent: instead"]
-        #[method_id(@__retain_semantics Other predicateForEvaluatingTriggerOccurringBeforeSignificantEvent:applyingOffset:)]
+        #[method_id(@__method_family Other predicateForEvaluatingTriggerOccurringBeforeSignificantEvent:applyingOffset:)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringBeforeSignificantEvent_applyingOffset(
             significant_event: &NSString,
             offset: Option<&NSDateComponents>,
@@ -310,7 +310,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(@__retain_semantics Other predicateForEvaluatingTriggerOccurringBeforeSignificantEvent:)]
+        #[method_id(@__method_family Other predicateForEvaluatingTriggerOccurringBeforeSignificantEvent:)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringBeforeSignificantEvent(
             significant_event: &HMSignificantTimeEvent,
         ) -> Retained<NSPredicate>;
@@ -329,7 +329,7 @@ extern_methods!(
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
         #[deprecated = "Use predicateForEvaluatingTriggerOccurringAfterSignificantEvent: instead"]
-        #[method_id(@__retain_semantics Other predicateForEvaluatingTriggerOccurringAfterSignificantEvent:applyingOffset:)]
+        #[method_id(@__method_family Other predicateForEvaluatingTriggerOccurringAfterSignificantEvent:applyingOffset:)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringAfterSignificantEvent_applyingOffset(
             significant_event: &NSString,
             offset: Option<&NSDateComponents>,
@@ -347,7 +347,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(@__retain_semantics Other predicateForEvaluatingTriggerOccurringAfterSignificantEvent:)]
+        #[method_id(@__method_family Other predicateForEvaluatingTriggerOccurringAfterSignificantEvent:)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringAfterSignificantEvent(
             significant_event: &HMSignificantTimeEvent,
         ) -> Retained<NSPredicate>;
@@ -367,7 +367,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(@__retain_semantics Other predicateForEvaluatingTriggerOccurringBetweenSignificantEvent:secondSignificantEvent:)]
+        #[method_id(@__method_family Other predicateForEvaluatingTriggerOccurringBetweenSignificantEvent:secondSignificantEvent:)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringBetweenSignificantEvent_secondSignificantEvent(
             first_significant_event: &HMSignificantTimeEvent,
             second_significant_event: &HMSignificantTimeEvent,
@@ -380,7 +380,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(@__retain_semantics Other predicateForEvaluatingTriggerOccurringBeforeDateWithComponents:)]
+        #[method_id(@__method_family Other predicateForEvaluatingTriggerOccurringBeforeDateWithComponents:)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringBeforeDateWithComponents(
             date_components: &NSDateComponents,
         ) -> Retained<NSPredicate>;
@@ -392,7 +392,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(@__retain_semantics Other predicateForEvaluatingTriggerOccurringOnDateWithComponents:)]
+        #[method_id(@__method_family Other predicateForEvaluatingTriggerOccurringOnDateWithComponents:)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringOnDateWithComponents(
             date_components: &NSDateComponents,
         ) -> Retained<NSPredicate>;
@@ -404,7 +404,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(@__retain_semantics Other predicateForEvaluatingTriggerOccurringAfterDateWithComponents:)]
+        #[method_id(@__method_family Other predicateForEvaluatingTriggerOccurringAfterDateWithComponents:)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringAfterDateWithComponents(
             date_components: &NSDateComponents,
         ) -> Retained<NSPredicate>;
@@ -419,7 +419,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(@__retain_semantics Other predicateForEvaluatingTriggerOccurringBetweenDateWithComponents:secondDateWithComponents:)]
+        #[method_id(@__method_family Other predicateForEvaluatingTriggerOccurringBetweenDateWithComponents:secondDateWithComponents:)]
         pub unsafe fn predicateForEvaluatingTriggerOccurringBetweenDateWithComponents_secondDateWithComponents(
             first_date_components: &NSDateComponents,
             second_date_with_components: &NSDateComponents,
@@ -441,7 +441,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(@__retain_semantics Other predicateForEvaluatingTriggerWithCharacteristic:relatedBy:toValue:)]
+        #[method_id(@__method_family Other predicateForEvaluatingTriggerWithCharacteristic:relatedBy:toValue:)]
         pub unsafe fn predicateForEvaluatingTriggerWithCharacteristic_relatedBy_toValue(
             characteristic: &HMCharacteristic,
             operator_type: NSPredicateOperatorType,
@@ -456,7 +456,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Predicate object representing a condition to evaluate before executing the action set.
-        #[method_id(@__retain_semantics Other predicateForEvaluatingTriggerWithPresence:)]
+        #[method_id(@__method_family Other predicateForEvaluatingTriggerWithPresence:)]
         pub unsafe fn predicateForEvaluatingTriggerWithPresence(
             presence_event: &HMPresenceEvent,
         ) -> Retained<NSPredicate>;

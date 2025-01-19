@@ -29,10 +29,10 @@ extern_methods!(
         #[method(count)]
         pub unsafe fn count(&self) -> NSUInteger;
 
-        #[method_id(@__retain_semantics Other objectAtIndex:)]
+        #[method_id(@__method_family Other objectAtIndex:)]
         pub unsafe fn objectAtIndex(&self, index: NSUInteger) -> Retained<ObjectType>;
 
-        #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
+        #[method_id(@__method_family Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(&self, idx: NSUInteger) -> Retained<ObjectType>;
 
         #[method(containsObject:)]
@@ -48,13 +48,13 @@ extern_methods!(
             range: NSRange,
         ) -> NSUInteger;
 
-        #[method_id(@__retain_semantics Other firstObject)]
+        #[method_id(@__method_family Other firstObject)]
         pub unsafe fn firstObject(&self) -> Option<Retained<ObjectType>>;
 
-        #[method_id(@__retain_semantics Other lastObject)]
+        #[method_id(@__method_family Other lastObject)]
         pub unsafe fn lastObject(&self) -> Option<Retained<ObjectType>>;
 
-        #[method_id(@__retain_semantics Other objectsAtIndexes:)]
+        #[method_id(@__method_family Other objectsAtIndexes:)]
         pub unsafe fn objectsAtIndexes(
             &self,
             indexes: &NSIndexSet,
@@ -94,10 +94,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<ObjectType: Message> PHFetchResult<ObjectType> {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

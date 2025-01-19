@@ -23,16 +23,16 @@ unsafe impl NSSecureCoding for UISceneActivationConditions {}
 
 extern_methods!(
     unsafe impl UISceneActivationConditions {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other canActivateForTargetContentIdentifierPredicate)]
+        #[method_id(@__method_family Other canActivateForTargetContentIdentifierPredicate)]
         pub unsafe fn canActivateForTargetContentIdentifierPredicate(
             &self,
         ) -> Retained<NSPredicate>;
@@ -44,7 +44,7 @@ extern_methods!(
             can_activate_for_target_content_identifier_predicate: &NSPredicate,
         );
 
-        #[method_id(@__retain_semantics Other prefersToActivateForTargetContentIdentifierPredicate)]
+        #[method_id(@__method_family Other prefersToActivateForTargetContentIdentifierPredicate)]
         pub unsafe fn prefersToActivateForTargetContentIdentifierPredicate(
             &self,
         ) -> Retained<NSPredicate>;
@@ -61,7 +61,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISceneActivationConditions {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -70,7 +70,7 @@ extern_category!(
     /// Category "UISceneActivationConditions" on [`NSUserActivity`].
     #[doc(alias = "UISceneActivationConditions")]
     pub unsafe trait NSUserActivityUISceneActivationConditions {
-        #[method_id(@__retain_semantics Other targetContentIdentifier)]
+        #[method_id(@__method_family Other targetContentIdentifier)]
         unsafe fn targetContentIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`targetContentIdentifier`][Self::targetContentIdentifier].

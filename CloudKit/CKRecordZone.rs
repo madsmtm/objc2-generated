@@ -62,30 +62,30 @@ unsafe impl NSSecureCoding for CKRecordZone {}
 
 extern_methods!(
     unsafe impl CKRecordZone {
-        #[method_id(@__retain_semantics Other defaultRecordZone)]
+        #[method_id(@__method_family Other defaultRecordZone)]
         pub unsafe fn defaultRecordZone() -> Retained<CKRecordZone>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithZoneName:)]
+        #[method_id(@__method_family Init initWithZoneName:)]
         pub unsafe fn initWithZoneName(
             this: Allocated<Self>,
             zone_name: &NSString,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(@__retain_semantics Init initWithZoneID:)]
+        #[method_id(@__method_family Init initWithZoneID:)]
         pub unsafe fn initWithZoneID(
             this: Allocated<Self>,
             zone_id: &CKRecordZoneID,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(@__retain_semantics Other zoneID)]
+        #[method_id(@__method_family Other zoneID)]
         pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
 
         /// Capabilities on locally-created record zones are not valid until the record zone is saved. Capabilities on record zones fetched from the server are valid.
@@ -107,7 +107,7 @@ extern_methods!(
         /// Zone-wide sharing is only supported in zones with the
         /// `CKRecordZoneCapabilityZoneWideSharing`sharing capability.
         /// You cannot share a zone if it already contains shared records.
-        #[method_id(@__retain_semantics Other share)]
+        #[method_id(@__method_family Other share)]
         pub unsafe fn share(&self) -> Option<Retained<CKReference>>;
     }
 );

@@ -24,7 +24,7 @@ unsafe impl UIActivityItemsConfigurationReading for UIActivityItemsConfiguration
 
 extern_methods!(
     unsafe impl UIActivityItemsConfiguration {
-        #[method_id(@__retain_semantics Other localObject)]
+        #[method_id(@__method_family Other localObject)]
         pub unsafe fn localObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`localObject`][Self::localObject].
@@ -32,7 +32,7 @@ extern_methods!(
         pub unsafe fn setLocalObject(&self, local_object: Option<&AnyObject>);
 
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
-        #[method_id(@__retain_semantics Other supportedInteractions)]
+        #[method_id(@__method_family Other supportedInteractions)]
         pub unsafe fn supportedInteractions(
             &self,
         ) -> Retained<NSArray<UIActivityItemsConfigurationInteraction>>;
@@ -140,34 +140,34 @@ extern_methods!(
             >,
         );
 
-        #[method_id(@__retain_semantics Other activityItemsConfigurationWithObjects:)]
+        #[method_id(@__method_family Other activityItemsConfigurationWithObjects:)]
         pub unsafe fn activityItemsConfigurationWithObjects(
             objects: &NSArray<ProtocolObject<dyn NSItemProviderWriting>>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other activityItemsConfigurationWithItemProviders:)]
+        #[method_id(@__method_family Other activityItemsConfigurationWithItemProviders:)]
         pub unsafe fn activityItemsConfigurationWithItemProviders(
             item_providers: &NSArray<NSItemProvider>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithObjects:)]
+        #[method_id(@__method_family Init initWithObjects:)]
         pub unsafe fn initWithObjects(
             this: Allocated<Self>,
             objects: &NSArray<ProtocolObject<dyn NSItemProviderWriting>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithItemProviders:)]
+        #[method_id(@__method_family Init initWithItemProviders:)]
         pub unsafe fn initWithItemProviders(
             this: Allocated<Self>,
             item_providers: &NSArray<NSItemProvider>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -140,7 +140,7 @@ unsafe impl NSObjectProtocol for NSInputServer {}
 extern_methods!(
     unsafe impl NSInputServer {
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithDelegate:name:)]
+        #[method_id(@__method_family Init initWithDelegate:name:)]
         pub unsafe fn initWithDelegate_name(
             this: Allocated<Self>,
             delegate: Option<&AnyObject>,
@@ -152,10 +152,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInputServer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

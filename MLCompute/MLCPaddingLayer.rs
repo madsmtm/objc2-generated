@@ -69,7 +69,7 @@ extern_methods!(
         ///
         /// Returns: A new padding layer
         #[deprecated]
-        #[method_id(@__retain_semantics Other layerWithReflectionPadding:)]
+        #[method_id(@__method_family Other layerWithReflectionPadding:)]
         pub unsafe fn layerWithReflectionPadding(padding: &NSArray<NSNumber>) -> Retained<Self>;
 
         /// Create a padding layer with symmetric padding
@@ -78,7 +78,7 @@ extern_methods!(
         ///
         /// Returns: A new padding layer
         #[deprecated]
-        #[method_id(@__retain_semantics Other layerWithSymmetricPadding:)]
+        #[method_id(@__method_family Other layerWithSymmetricPadding:)]
         pub unsafe fn layerWithSymmetricPadding(padding: &NSArray<NSNumber>) -> Retained<Self>;
 
         /// Create a padding layer with zero padding
@@ -87,7 +87,7 @@ extern_methods!(
         ///
         /// Returns: A new padding layer
         #[deprecated]
-        #[method_id(@__retain_semantics Other layerWithZeroPadding:)]
+        #[method_id(@__method_family Other layerWithZeroPadding:)]
         pub unsafe fn layerWithZeroPadding(padding: &NSArray<NSNumber>) -> Retained<Self>;
 
         /// Create a padding layer with constant padding
@@ -98,7 +98,7 @@ extern_methods!(
         ///
         /// Returns: A new padding layer
         #[deprecated]
-        #[method_id(@__retain_semantics Other layerWithConstantPadding:constantValue:)]
+        #[method_id(@__method_family Other layerWithConstantPadding:constantValue:)]
         pub unsafe fn layerWithConstantPadding_constantValue(
             padding: &NSArray<NSNumber>,
             constant_value: c_float,
@@ -111,11 +111,11 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCPaddingLayer {
         #[deprecated]
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

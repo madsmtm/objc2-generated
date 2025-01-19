@@ -50,14 +50,14 @@ extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
         /// Designated initializer.
         /// Initialize a 3D Node with the viewport size the 3D content will be rendered with.
-        #[method_id(@__retain_semantics Init initWithViewportSize:)]
+        #[method_id(@__method_family Init initWithViewportSize:)]
         pub unsafe fn initWithViewportSize(
             this: Allocated<Self>,
             viewport_size: CGSize,
         ) -> Retained<Self>;
 
         /// Support coding and decoding via NSKeyedArchiver.
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -65,7 +65,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Create a 3D Node with the viewport size the 3D content will be rendered with.
-        #[method_id(@__retain_semantics Other nodeWithViewportSize:)]
+        #[method_id(@__method_family Other nodeWithViewportSize:)]
         pub unsafe fn nodeWithViewportSize(
             viewport_size: CGSize,
             mtm: MainThreadMarker,
@@ -124,19 +124,19 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SK3DNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other node)]
+        #[method_id(@__method_family Other node)]
         pub unsafe fn node(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other nodeWithFileNamed:)]
+        #[method_id(@__method_family Other nodeWithFileNamed:)]
         pub unsafe fn nodeWithFileNamed(
             filename: &NSString,
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other nodeWithFileNamed:securelyWithClasses:andError:_)]
+        #[method_id(@__method_family Other nodeWithFileNamed:securelyWithClasses:andError:_)]
         pub unsafe fn nodeWithFileNamed_securelyWithClasses_andError(
             filename: &NSString,
             classes: &NSSet<AnyClass>,
@@ -150,7 +150,7 @@ extern_methods!(
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl SK3DNode {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -24,10 +24,10 @@ unsafe impl NSObjectProtocol for VZMacOSConfigurationRequirements {}
 
 extern_methods!(
     unsafe impl VZMacOSConfigurationRequirements {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZMacHardwareModel")]
@@ -39,7 +39,7 @@ extern_methods!(
         /// See also: VZMacPlatformConfiguration
         ///
         /// See also: VZMacAuxiliaryStorage
-        #[method_id(@__retain_semantics Other hardwareModel)]
+        #[method_id(@__method_family Other hardwareModel)]
         pub unsafe fn hardwareModel(&self) -> Retained<VZMacHardwareModel>;
 
         /// The minimum supported number of CPUs for this configuration.

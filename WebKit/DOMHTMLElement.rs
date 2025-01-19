@@ -65,7 +65,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLElement {
         #[deprecated]
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -74,7 +74,7 @@ extern_methods!(
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other lang)]
+        #[method_id(@__method_family Other lang)]
         pub unsafe fn lang(&self) -> Retained<NSString>;
 
         /// Setter for [`lang`][Self::lang].
@@ -83,7 +83,7 @@ extern_methods!(
         pub unsafe fn setLang(&self, lang: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other dir)]
+        #[method_id(@__method_family Other dir)]
         pub unsafe fn dir(&self) -> Retained<NSString>;
 
         /// Setter for [`dir`][Self::dir].
@@ -100,7 +100,7 @@ extern_methods!(
         #[method(setTabIndex:)]
         pub unsafe fn setTabIndex(&self, tab_index: c_int);
 
-        #[method_id(@__retain_semantics Other accessKey)]
+        #[method_id(@__method_family Other accessKey)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
         /// Setter for [`accessKey`][Self::accessKey].
@@ -108,7 +108,7 @@ extern_methods!(
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other innerText)]
+        #[method_id(@__method_family Other innerText)]
         pub unsafe fn innerText(&self) -> Retained<NSString>;
 
         /// Setter for [`innerText`][Self::innerText].
@@ -117,7 +117,7 @@ extern_methods!(
         pub unsafe fn setInnerText(&self, inner_text: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other outerText)]
+        #[method_id(@__method_family Other outerText)]
         pub unsafe fn outerText(&self) -> Retained<NSString>;
 
         /// Setter for [`outerText`][Self::outerText].
@@ -126,7 +126,7 @@ extern_methods!(
         pub unsafe fn setOuterText(&self, outer_text: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other contentEditable)]
+        #[method_id(@__method_family Other contentEditable)]
         pub unsafe fn contentEditable(&self) -> Retained<NSString>;
 
         /// Setter for [`contentEditable`][Self::contentEditable].
@@ -139,7 +139,7 @@ extern_methods!(
         pub unsafe fn isContentEditable(&self) -> bool;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other idName)]
+        #[method_id(@__method_family Other idName)]
         pub unsafe fn idName(&self) -> Retained<NSString>;
 
         /// Setter for [`idName`][Self::idName].
@@ -149,10 +149,10 @@ extern_methods!(
 
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other children)]
+        #[method_id(@__method_family Other children)]
         pub unsafe fn children(&self) -> Option<Retained<DOMHTMLCollection>>;
 
-        #[method_id(@__retain_semantics Other titleDisplayString)]
+        #[method_id(@__method_family Other titleDisplayString)]
         pub unsafe fn titleDisplayString(&self) -> Retained<NSString>;
 
         #[method(click)]
@@ -170,7 +170,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLElement {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -184,7 +184,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLElement {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

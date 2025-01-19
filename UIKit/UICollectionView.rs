@@ -112,10 +112,10 @@ unsafe impl NSObjectProtocol for UICollectionViewFocusUpdateContext {}
 extern_methods!(
     #[cfg(feature = "UIFocus")]
     unsafe impl UICollectionViewFocusUpdateContext {
-        #[method_id(@__retain_semantics Other previouslyFocusedIndexPath)]
+        #[method_id(@__method_family Other previouslyFocusedIndexPath)]
         pub unsafe fn previouslyFocusedIndexPath(&self) -> Option<Retained<NSIndexPath>>;
 
-        #[method_id(@__retain_semantics Other nextFocusedIndexPath)]
+        #[method_id(@__method_family Other nextFocusedIndexPath)]
         pub unsafe fn nextFocusedIndexPath(&self) -> Option<Retained<NSIndexPath>>;
     }
 );
@@ -124,10 +124,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIFocus")]
     unsafe impl UICollectionViewFocusUpdateContext {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -149,7 +149,7 @@ extern_protocol!(
             feature = "UIScrollView",
             feature = "UIView"
         ))]
-        #[method_id(@__retain_semantics Other collectionView:cellForItemAtIndexPath:)]
+        #[method_id(@__method_family Other collectionView:cellForItemAtIndexPath:)]
         unsafe fn collectionView_cellForItemAtIndexPath(
             &self,
             collection_view: &UICollectionView,
@@ -171,7 +171,7 @@ extern_protocol!(
             feature = "UIView"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other collectionView:viewForSupplementaryElementOfKind:atIndexPath:)]
+        #[method_id(@__method_family Other collectionView:viewForSupplementaryElementOfKind:atIndexPath:)]
         unsafe fn collectionView_viewForSupplementaryElementOfKind_atIndexPath(
             &self,
             collection_view: &UICollectionView,
@@ -201,7 +201,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         /// Returns a list of index titles to display in the index view (e.g. ["A", "B", "C" ... "Z", "#"])
         #[optional]
-        #[method_id(@__retain_semantics Other indexTitlesForCollectionView:)]
+        #[method_id(@__method_family Other indexTitlesForCollectionView:)]
         unsafe fn indexTitlesForCollectionView(
             &self,
             collection_view: &UICollectionView,
@@ -211,7 +211,7 @@ extern_protocol!(
         /// Returns the index path that corresponds to the given title / index. (e.g. "B",1)
         /// Return an index path with a single index to indicate an entire section, instead of a specific item.
         #[optional]
-        #[method_id(@__retain_semantics Other collectionView:indexPathForIndexTitle:atIndex:)]
+        #[method_id(@__method_family Other collectionView:indexPathForIndexTitle:atIndex:)]
         unsafe fn collectionView_indexPathForIndexTitle_atIndex(
             &self,
             collection_view: &UICollectionView,
@@ -461,7 +461,7 @@ extern_protocol!(
             feature = "UIView"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other collectionView:transitionLayoutForOldLayout:newLayout:)]
+        #[method_id(@__method_family Other collectionView:transitionLayoutForOldLayout:newLayout:)]
         unsafe fn collectionView_transitionLayoutForOldLayout_newLayout(
             &self,
             collection_view: &UICollectionView,
@@ -504,7 +504,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other indexPathForPreferredFocusedViewInCollectionView:)]
+        #[method_id(@__method_family Other indexPathForPreferredFocusedViewInCollectionView:)]
         unsafe fn indexPathForPreferredFocusedViewInCollectionView(
             &self,
             collection_view: &UICollectionView,
@@ -523,7 +523,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other collectionView:targetIndexPathForMoveOfItemFromOriginalIndexPath:atCurrentIndexPath:toProposedIndexPath:)]
+        #[method_id(@__method_family Other collectionView:targetIndexPathForMoveOfItemFromOriginalIndexPath:atCurrentIndexPath:toProposedIndexPath:)]
         unsafe fn collectionView_targetIndexPathForMoveOfItemFromOriginalIndexPath_atCurrentIndexPath_toProposedIndexPath(
             &self,
             collection_view: &UICollectionView,
@@ -535,7 +535,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated]
         #[optional]
-        #[method_id(@__retain_semantics Other collectionView:targetIndexPathForMoveFromItemAtIndexPath:toProposedIndexPath:)]
+        #[method_id(@__method_family Other collectionView:targetIndexPathForMoveFromItemAtIndexPath:toProposedIndexPath:)]
         unsafe fn collectionView_targetIndexPathForMoveFromItemAtIndexPath_toProposedIndexPath(
             &self,
             collection_view: &UICollectionView,
@@ -633,7 +633,7 @@ extern_protocol!(
         /// - An empty array indicates that the menu was invoked in the space between cells (or any location that does not map to an item index path).
         /// - An array with multiple index paths indicates that the menu was invoked on an item within a multiple selection.
         #[optional]
-        #[method_id(@__retain_semantics Other collectionView:contextMenuConfigurationForItemsAtIndexPaths:point:)]
+        #[method_id(@__method_family Other collectionView:contextMenuConfigurationForItemsAtIndexPaths:point:)]
         unsafe fn collectionView_contextMenuConfigurationForItemsAtIndexPaths_point(
             &self,
             collection_view: &UICollectionView,
@@ -658,7 +658,7 @@ extern_protocol!(
         ///
         /// Parameter `indexPath`: Index path of the item at which the interaction is occurring.
         #[optional]
-        #[method_id(@__retain_semantics Other collectionView:contextMenuConfiguration:highlightPreviewForItemAtIndexPath:)]
+        #[method_id(@__method_family Other collectionView:contextMenuConfiguration:highlightPreviewForItemAtIndexPath:)]
         unsafe fn collectionView_contextMenuConfiguration_highlightPreviewForItemAtIndexPath(
             &self,
             collection_view: &UICollectionView,
@@ -682,7 +682,7 @@ extern_protocol!(
         ///
         /// Parameter `indexPath`: Index path of the item to which the menu is being dismissed.
         #[optional]
-        #[method_id(@__retain_semantics Other collectionView:contextMenuConfiguration:dismissalPreviewForItemAtIndexPath:)]
+        #[method_id(@__method_family Other collectionView:contextMenuConfiguration:dismissalPreviewForItemAtIndexPath:)]
         unsafe fn collectionView_contextMenuConfiguration_dismissalPreviewForItemAtIndexPath(
             &self,
             collection_view: &UICollectionView,
@@ -775,7 +775,7 @@ extern_protocol!(
         ///
         /// Parameter `point`: The centroid of the interaction in the collection view's coordinate space.
         #[optional]
-        #[method_id(@__retain_semantics Other collectionView:sceneActivationConfigurationForItemAtIndexPath:point:)]
+        #[method_id(@__method_family Other collectionView:sceneActivationConfigurationForItemAtIndexPath:point:)]
         unsafe fn collectionView_sceneActivationConfigurationForItemAtIndexPath_point(
             &self,
             collection_view: &UICollectionView,
@@ -805,7 +805,7 @@ extern_protocol!(
         /// present at this particular time. If the non-deprecated replacement for the configuration, highlight preview, or dismissal preview methods is implemented this method is not called.
         #[deprecated]
         #[optional]
-        #[method_id(@__retain_semantics Other collectionView:contextMenuConfigurationForItemAtIndexPath:point:)]
+        #[method_id(@__method_family Other collectionView:contextMenuConfigurationForItemAtIndexPath:point:)]
         unsafe fn collectionView_contextMenuConfigurationForItemAtIndexPath_point(
             &self,
             collection_view: &UICollectionView,
@@ -828,7 +828,7 @@ extern_protocol!(
         /// Parameter `configuration`: The configuration of the menu about to be displayed by this interaction.
         #[deprecated]
         #[optional]
-        #[method_id(@__retain_semantics Other collectionView:previewForHighlightingContextMenuWithConfiguration:)]
+        #[method_id(@__method_family Other collectionView:previewForHighlightingContextMenuWithConfiguration:)]
         unsafe fn collectionView_previewForHighlightingContextMenuWithConfiguration(
             &self,
             collection_view: &UICollectionView,
@@ -851,7 +851,7 @@ extern_protocol!(
         /// Parameter `configuration`: The configuration of the menu displayed by this interaction.
         #[deprecated]
         #[optional]
-        #[method_id(@__retain_semantics Other collectionView:previewForDismissingContextMenuWithConfiguration:)]
+        #[method_id(@__method_family Other collectionView:previewForDismissingContextMenuWithConfiguration:)]
         unsafe fn collectionView_previewForDismissingContextMenuWithConfiguration(
             &self,
             collection_view: &UICollectionView,
@@ -966,21 +966,21 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
     unsafe impl UICollectionView {
         #[cfg(all(feature = "UICollectionViewLayout", feature = "objc2-core-foundation"))]
-        #[method_id(@__retain_semantics Init initWithFrame:collectionViewLayout:)]
+        #[method_id(@__method_family Init initWithFrame:collectionViewLayout:)]
         pub unsafe fn initWithFrame_collectionViewLayout(
             this: Allocated<Self>,
             frame: CGRect,
             layout: &UICollectionViewLayout,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UICollectionViewLayout")]
-        #[method_id(@__retain_semantics Other collectionViewLayout)]
+        #[method_id(@__method_family Other collectionViewLayout)]
         pub unsafe fn collectionViewLayout(&self) -> Retained<UICollectionViewLayout>;
 
         #[cfg(feature = "UICollectionViewLayout")]
@@ -991,7 +991,7 @@ extern_methods!(
             collection_view_layout: &UICollectionViewLayout,
         );
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICollectionViewDelegate>>>;
@@ -1004,7 +1004,7 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn UICollectionViewDelegate>>,
         );
 
-        #[method_id(@__retain_semantics Other dataSource)]
+        #[method_id(@__method_family Other dataSource)]
         pub unsafe fn dataSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICollectionViewDataSource>>>;
@@ -1017,7 +1017,7 @@ extern_methods!(
             data_source: Option<&ProtocolObject<dyn UICollectionViewDataSource>>,
         );
 
-        #[method_id(@__retain_semantics Other prefetchDataSource)]
+        #[method_id(@__method_family Other prefetchDataSource)]
         pub unsafe fn prefetchDataSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICollectionViewDataSourcePrefetching>>>;
@@ -1039,7 +1039,7 @@ extern_methods!(
         #[method(setPrefetchingEnabled:)]
         pub unsafe fn setPrefetchingEnabled(&self, prefetching_enabled: bool);
 
-        #[method_id(@__retain_semantics Other dragDelegate)]
+        #[method_id(@__method_family Other dragDelegate)]
         pub unsafe fn dragDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICollectionViewDragDelegate>>>;
@@ -1052,7 +1052,7 @@ extern_methods!(
             drag_delegate: Option<&ProtocolObject<dyn UICollectionViewDragDelegate>>,
         );
 
-        #[method_id(@__retain_semantics Other dropDelegate)]
+        #[method_id(@__method_family Other dropDelegate)]
         pub unsafe fn dropDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICollectionViewDropDelegate>>>;
@@ -1073,7 +1073,7 @@ extern_methods!(
         pub unsafe fn setDragInteractionEnabled(&self, drag_interaction_enabled: bool);
 
         #[cfg(feature = "UIContextMenuInteraction")]
-        #[method_id(@__retain_semantics Other contextMenuInteraction)]
+        #[method_id(@__method_family Other contextMenuInteraction)]
         pub unsafe fn contextMenuInteraction(&self) -> Option<Retained<UIContextMenuInteraction>>;
 
         #[method(reorderingCadence)]
@@ -1096,7 +1096,7 @@ extern_methods!(
             self_sizing_invalidation: UICollectionViewSelfSizingInvalidation,
         );
 
-        #[method_id(@__retain_semantics Other backgroundView)]
+        #[method_id(@__method_family Other backgroundView)]
         pub unsafe fn backgroundView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`backgroundView`][Self::backgroundView].
@@ -1138,7 +1138,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UICollectionViewCell")]
-        #[method_id(@__retain_semantics Other dequeueReusableCellWithReuseIdentifier:forIndexPath:)]
+        #[method_id(@__method_family Other dequeueReusableCellWithReuseIdentifier:forIndexPath:)]
         pub unsafe fn dequeueReusableCellWithReuseIdentifier_forIndexPath(
             &self,
             identifier: &NSString,
@@ -1146,7 +1146,7 @@ extern_methods!(
         ) -> Retained<UICollectionViewCell>;
 
         #[cfg(feature = "UICollectionViewCell")]
-        #[method_id(@__retain_semantics Other dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:)]
+        #[method_id(@__method_family Other dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:)]
         pub unsafe fn dequeueReusableSupplementaryViewOfKind_withReuseIdentifier_forIndexPath(
             &self,
             element_kind: &NSString,
@@ -1158,7 +1158,7 @@ extern_methods!(
             feature = "UICollectionViewCell",
             feature = "UICollectionViewItemRegistration"
         ))]
-        #[method_id(@__retain_semantics Other dequeueConfiguredReusableCellWithRegistration:forIndexPath:item:)]
+        #[method_id(@__method_family Other dequeueConfiguredReusableCellWithRegistration:forIndexPath:item:)]
         pub unsafe fn dequeueConfiguredReusableCellWithRegistration_forIndexPath_item(
             &self,
             registration: &UICollectionViewCellRegistration,
@@ -1170,7 +1170,7 @@ extern_methods!(
             feature = "UICollectionViewCell",
             feature = "UICollectionViewItemRegistration"
         ))]
-        #[method_id(@__retain_semantics Other dequeueConfiguredReusableSupplementaryViewWithRegistration:forIndexPath:)]
+        #[method_id(@__method_family Other dequeueConfiguredReusableSupplementaryViewWithRegistration:forIndexPath:)]
         pub unsafe fn dequeueConfiguredReusableSupplementaryViewWithRegistration_forIndexPath(
             &self,
             registration: &UICollectionViewSupplementaryRegistration,
@@ -1191,7 +1191,7 @@ extern_methods!(
         #[method(setAllowsMultipleSelection:)]
         pub unsafe fn setAllowsMultipleSelection(&self, allows_multiple_selection: bool);
 
-        #[method_id(@__retain_semantics Other indexPathsForSelectedItems)]
+        #[method_id(@__method_family Other indexPathsForSelectedItems)]
         pub unsafe fn indexPathsForSelectedItems(&self) -> Option<Retained<NSArray<NSIndexPath>>>;
 
         #[method(selectItemAtIndexPath:animated:scrollPosition:)]
@@ -1237,7 +1237,7 @@ extern_methods!(
             feature = "UICollectionViewTransitionLayout",
             feature = "block2"
         ))]
-        #[method_id(@__retain_semantics Other startInteractiveTransitionToCollectionViewLayout:completion:)]
+        #[method_id(@__method_family Other startInteractiveTransitionToCollectionViewLayout:completion:)]
         pub unsafe fn startInteractiveTransitionToCollectionViewLayout_completion(
             &self,
             layout: &UICollectionViewLayout,
@@ -1257,14 +1257,14 @@ extern_methods!(
         pub unsafe fn numberOfItemsInSection(&self, section: NSInteger) -> NSInteger;
 
         #[cfg(feature = "UICollectionViewLayout")]
-        #[method_id(@__retain_semantics Other layoutAttributesForItemAtIndexPath:)]
+        #[method_id(@__method_family Other layoutAttributesForItemAtIndexPath:)]
         pub unsafe fn layoutAttributesForItemAtIndexPath(
             &self,
             index_path: &NSIndexPath,
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
 
         #[cfg(feature = "UICollectionViewLayout")]
-        #[method_id(@__retain_semantics Other layoutAttributesForSupplementaryElementOfKind:atIndexPath:)]
+        #[method_id(@__method_family Other layoutAttributesForSupplementaryElementOfKind:atIndexPath:)]
         pub unsafe fn layoutAttributesForSupplementaryElementOfKind_atIndexPath(
             &self,
             kind: &NSString,
@@ -1272,14 +1272,14 @@ extern_methods!(
         ) -> Option<Retained<UICollectionViewLayoutAttributes>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other indexPathForItemAtPoint:)]
+        #[method_id(@__method_family Other indexPathForItemAtPoint:)]
         pub unsafe fn indexPathForItemAtPoint(
             &self,
             point: CGPoint,
         ) -> Option<Retained<NSIndexPath>>;
 
         #[cfg(feature = "UICollectionViewCell")]
-        #[method_id(@__retain_semantics Other indexPathForCell:)]
+        #[method_id(@__method_family Other indexPathForCell:)]
         pub unsafe fn indexPathForCell(
             &self,
             cell: &UICollectionViewCell,
@@ -1291,28 +1291,28 @@ extern_methods!(
         /// Parameter `supplementaryView`: The supplementary or decoration view whose index path you want.
         ///
         /// Returns: The index path of the specified view if it is in the collection view, else `nil`.
-        #[method_id(@__retain_semantics Other indexPathForSupplementaryView:)]
+        #[method_id(@__method_family Other indexPathForSupplementaryView:)]
         pub unsafe fn indexPathForSupplementaryView(
             &self,
             supplementary_view: &UICollectionReusableView,
         ) -> Option<Retained<NSIndexPath>>;
 
         #[cfg(feature = "UICollectionViewCell")]
-        #[method_id(@__retain_semantics Other cellForItemAtIndexPath:)]
+        #[method_id(@__method_family Other cellForItemAtIndexPath:)]
         pub unsafe fn cellForItemAtIndexPath(
             &self,
             index_path: &NSIndexPath,
         ) -> Option<Retained<UICollectionViewCell>>;
 
         #[cfg(feature = "UICollectionViewCell")]
-        #[method_id(@__retain_semantics Other visibleCells)]
+        #[method_id(@__method_family Other visibleCells)]
         pub unsafe fn visibleCells(&self) -> Retained<NSArray<UICollectionViewCell>>;
 
-        #[method_id(@__retain_semantics Other indexPathsForVisibleItems)]
+        #[method_id(@__method_family Other indexPathsForVisibleItems)]
         pub unsafe fn indexPathsForVisibleItems(&self) -> Retained<NSArray<NSIndexPath>>;
 
         #[cfg(feature = "UICollectionViewCell")]
-        #[method_id(@__retain_semantics Other supplementaryViewForElementKind:atIndexPath:)]
+        #[method_id(@__method_family Other supplementaryViewForElementKind:atIndexPath:)]
         pub unsafe fn supplementaryViewForElementKind_atIndexPath(
             &self,
             element_kind: &NSString,
@@ -1320,13 +1320,13 @@ extern_methods!(
         ) -> Option<Retained<UICollectionReusableView>>;
 
         #[cfg(feature = "UICollectionViewCell")]
-        #[method_id(@__retain_semantics Other visibleSupplementaryViewsOfKind:)]
+        #[method_id(@__method_family Other visibleSupplementaryViewsOfKind:)]
         pub unsafe fn visibleSupplementaryViewsOfKind(
             &self,
             element_kind: &NSString,
         ) -> Retained<NSArray<UICollectionReusableView>>;
 
-        #[method_id(@__retain_semantics Other indexPathsForVisibleSupplementaryElementsOfKind:)]
+        #[method_id(@__method_family Other indexPathsForVisibleSupplementaryElementsOfKind:)]
         pub unsafe fn indexPathsForVisibleSupplementaryElementsOfKind(
             &self,
             element_kind: &NSString,
@@ -1471,7 +1471,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
     unsafe impl UICollectionView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
     }
 );
@@ -1480,10 +1480,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
     unsafe impl UICollectionView {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -1514,7 +1514,7 @@ extern_protocol!(
             feature = "UIScrollView",
             feature = "UIView"
         ))]
-        #[method_id(@__retain_semantics Other collectionView:itemsForBeginningDragSession:atIndexPath:)]
+        #[method_id(@__method_family Other collectionView:itemsForBeginningDragSession:atIndexPath:)]
         unsafe fn collectionView_itemsForBeginningDragSession_atIndexPath(
             &self,
             collection_view: &UICollectionView,
@@ -1531,7 +1531,7 @@ extern_protocol!(
             feature = "objc2-core-foundation"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other collectionView:itemsForAddingToDragSession:atIndexPath:point:)]
+        #[method_id(@__method_family Other collectionView:itemsForAddingToDragSession:atIndexPath:point:)]
         unsafe fn collectionView_itemsForAddingToDragSession_atIndexPath_point(
             &self,
             collection_view: &UICollectionView,
@@ -1548,7 +1548,7 @@ extern_protocol!(
             feature = "UIView"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other collectionView:dragPreviewParametersForItemAtIndexPath:)]
+        #[method_id(@__method_family Other collectionView:dragPreviewParametersForItemAtIndexPath:)]
         unsafe fn collectionView_dragPreviewParametersForItemAtIndexPath(
             &self,
             collection_view: &UICollectionView,
@@ -1662,7 +1662,7 @@ extern_protocol!(
             feature = "UIView"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other collectionView:dropSessionDidUpdate:withDestinationIndexPath:)]
+        #[method_id(@__method_family Other collectionView:dropSessionDidUpdate:withDestinationIndexPath:)]
         unsafe fn collectionView_dropSessionDidUpdate_withDestinationIndexPath(
             &self,
             collection_view: &UICollectionView,
@@ -1706,7 +1706,7 @@ extern_protocol!(
             feature = "UIView"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other collectionView:dropPreviewParametersForItemAtIndexPath:)]
+        #[method_id(@__method_family Other collectionView:dropPreviewParametersForItemAtIndexPath:)]
         unsafe fn collectionView_dropPreviewParametersForItemAtIndexPath(
             &self,
             collection_view: &UICollectionView,
@@ -1760,7 +1760,7 @@ unsafe impl NSObjectProtocol for UICollectionViewDropProposal {}
 extern_methods!(
     #[cfg(feature = "UIDropInteraction")]
     unsafe impl UICollectionViewDropProposal {
-        #[method_id(@__retain_semantics Init initWithDropOperation:intent:)]
+        #[method_id(@__method_family Init initWithDropOperation:intent:)]
         pub unsafe fn initWithDropOperation_intent(
             this: Allocated<Self>,
             operation: UIDropOperation,
@@ -1776,16 +1776,16 @@ extern_methods!(
     /// Methods declared on superclass `UIDropProposal`
     #[cfg(feature = "UIDropInteraction")]
     unsafe impl UICollectionViewDropProposal {
-        #[method_id(@__retain_semantics Init initWithDropOperation:)]
+        #[method_id(@__method_family Init initWithDropOperation:)]
         pub unsafe fn initWithDropOperation(
             this: Allocated<Self>,
             operation: UIDropOperation,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -1795,22 +1795,22 @@ extern_protocol!(
     pub unsafe trait UICollectionViewDropCoordinator:
         NSObjectProtocol + MainThreadOnly
     {
-        #[method_id(@__retain_semantics Other items)]
+        #[method_id(@__method_family Other items)]
         unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UICollectionViewDropItem>>>;
 
-        #[method_id(@__retain_semantics Other destinationIndexPath)]
+        #[method_id(@__method_family Other destinationIndexPath)]
         unsafe fn destinationIndexPath(&self) -> Option<Retained<NSIndexPath>>;
 
         #[cfg(feature = "UIDropInteraction")]
-        #[method_id(@__retain_semantics Other proposal)]
+        #[method_id(@__method_family Other proposal)]
         unsafe fn proposal(&self) -> Retained<UICollectionViewDropProposal>;
 
         #[cfg(feature = "UIDragSession")]
-        #[method_id(@__retain_semantics Other session)]
+        #[method_id(@__method_family Other session)]
         unsafe fn session(&self) -> Retained<ProtocolObject<dyn UIDropSession>>;
 
         #[cfg(all(feature = "UIDragInteraction", feature = "UIDragItem"))]
-        #[method_id(@__retain_semantics Other dropItem:toPlaceholder:)]
+        #[method_id(@__method_family Other dropItem:toPlaceholder:)]
         unsafe fn dropItem_toPlaceholder(
             &self,
             drag_item: &UIDragItem,
@@ -1818,7 +1818,7 @@ extern_protocol!(
         ) -> Retained<ProtocolObject<dyn UICollectionViewDropPlaceholderContext>>;
 
         #[cfg(all(feature = "UIDragInteraction", feature = "UIDragItem"))]
-        #[method_id(@__retain_semantics Other dropItem:toItemAtIndexPath:)]
+        #[method_id(@__method_family Other dropItem:toItemAtIndexPath:)]
         unsafe fn dropItem_toItemAtIndexPath(
             &self,
             drag_item: &UIDragItem,
@@ -1830,7 +1830,7 @@ extern_protocol!(
             feature = "UIDragItem",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__retain_semantics Other dropItem:intoItemAtIndexPath:rect:)]
+        #[method_id(@__method_family Other dropItem:intoItemAtIndexPath:rect:)]
         unsafe fn dropItem_intoItemAtIndexPath_rect(
             &self,
             drag_item: &UIDragItem,
@@ -1844,7 +1844,7 @@ extern_protocol!(
             feature = "UITargetedDragPreview",
             feature = "UITargetedPreview"
         ))]
-        #[method_id(@__retain_semantics Other dropItem:toTarget:)]
+        #[method_id(@__method_family Other dropItem:toTarget:)]
         unsafe fn dropItem_toTarget(
             &self,
             drag_item: &UIDragItem,
@@ -1865,17 +1865,17 @@ unsafe impl NSObjectProtocol for UICollectionViewPlaceholder {}
 
 extern_methods!(
     unsafe impl UICollectionViewPlaceholder {
-        #[method_id(@__retain_semantics Init initWithInsertionIndexPath:reuseIdentifier:)]
+        #[method_id(@__method_family Init initWithInsertionIndexPath:reuseIdentifier:)]
         pub unsafe fn initWithInsertionIndexPath_reuseIdentifier(
             this: Allocated<Self>,
             insertion_index_path: &NSIndexPath,
             reuse_identifier: &NSString,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(
@@ -1953,17 +1953,17 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `UICollectionViewPlaceholder`
     unsafe impl UICollectionViewDropPlaceholder {
-        #[method_id(@__retain_semantics Init initWithInsertionIndexPath:reuseIdentifier:)]
+        #[method_id(@__method_family Init initWithInsertionIndexPath:reuseIdentifier:)]
         pub unsafe fn initWithInsertionIndexPath_reuseIdentifier(
             this: Allocated<Self>,
             insertion_index_path: &NSIndexPath,
             reuse_identifier: &NSString,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -1972,10 +1972,10 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropitem?language=objc)
     pub unsafe trait UICollectionViewDropItem: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIDragItem")]
-        #[method_id(@__retain_semantics Other dragItem)]
+        #[method_id(@__method_family Other dragItem)]
         unsafe fn dragItem(&self) -> Retained<UIDragItem>;
 
-        #[method_id(@__retain_semantics Other sourceIndexPath)]
+        #[method_id(@__method_family Other sourceIndexPath)]
         unsafe fn sourceIndexPath(&self) -> Option<Retained<NSIndexPath>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -1991,7 +1991,7 @@ extern_protocol!(
         UIDragAnimating + MainThreadOnly
     {
         #[cfg(feature = "UIDragItem")]
-        #[method_id(@__retain_semantics Other dragItem)]
+        #[method_id(@__method_family Other dragItem)]
         unsafe fn dragItem(&self) -> Retained<UIDragItem>;
 
         #[cfg(feature = "block2")]

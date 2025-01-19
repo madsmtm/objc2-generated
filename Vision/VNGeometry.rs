@@ -37,7 +37,7 @@ unsafe impl NSSecureCoding for VNPoint {}
 extern_methods!(
     unsafe impl VNPoint {
         /// Returns a VNPoint object that represents the location of (0.0, 0.0).
-        #[method_id(@__retain_semantics Other zeroPoint)]
+        #[method_id(@__method_family Other zeroPoint)]
         pub unsafe fn zeroPoint() -> Retained<VNPoint>;
 
         /// Returns a new VNPoint object that is shifted by X and Y offsets of the vector.
@@ -47,7 +47,7 @@ extern_methods!(
         /// Parameter `point`: The source point.
         ///
         /// Returns: the translated point.
-        #[method_id(@__retain_semantics Other pointByApplyingVector:toPoint:)]
+        #[method_id(@__method_family Other pointByApplyingVector:toPoint:)]
         pub unsafe fn pointByApplyingVector_toPoint(
             vector: &VNVector,
             point: &VNPoint,
@@ -67,7 +67,7 @@ extern_methods!(
         pub unsafe fn distanceToPoint(&self, point: &VNPoint) -> c_double;
 
         /// Initializes a VNPoint object from X and Y coordinates.
-        #[method_id(@__retain_semantics Init initWithX:y:)]
+        #[method_id(@__method_family Init initWithX:y:)]
         pub unsafe fn initWithX_y(
             this: Allocated<Self>,
             x: c_double,
@@ -76,7 +76,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Initializes a VNPoint object from a CGPoint.
-        #[method_id(@__retain_semantics Init initWithLocation:)]
+        #[method_id(@__method_family Init initWithLocation:)]
         pub unsafe fn initWithLocation(this: Allocated<Self>, location: CGPoint) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -97,10 +97,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNPoint {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -130,7 +130,7 @@ unsafe impl NSSecureCoding for VNPoint3D {}
 
 extern_methods!(
     unsafe impl VNPoint3D {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -138,7 +138,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNPoint3D {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -167,29 +167,29 @@ unsafe impl NSSecureCoding for VNVector {}
 extern_methods!(
     unsafe impl VNVector {
         /// Returns a VNVector object with zero length. The theta for zeroVector is not defined (NaN).
-        #[method_id(@__retain_semantics Other zeroVector)]
+        #[method_id(@__method_family Other zeroVector)]
         pub unsafe fn zeroVector() -> Retained<VNVector>;
 
         /// Returns a vector that is normalized by preserving direction, such as |v|, or vector length = 1.0.
-        #[method_id(@__retain_semantics Other unitVectorForVector:)]
+        #[method_id(@__method_family Other unitVectorForVector:)]
         pub unsafe fn unitVectorForVector(vector: &VNVector) -> Retained<VNVector>;
 
         /// Returns a vector that whose X and Y projections multiplied by a scalar value.
-        #[method_id(@__retain_semantics Other vectorByMultiplyingVector:byScalar:)]
+        #[method_id(@__method_family Other vectorByMultiplyingVector:byScalar:)]
         pub unsafe fn vectorByMultiplyingVector_byScalar(
             vector: &VNVector,
             scalar: c_double,
         ) -> Retained<VNVector>;
 
         /// Adds two vectors v1 and v2 and returns a resulting vector v, such as v = v1 + v2.
-        #[method_id(@__retain_semantics Other vectorByAddingVector:toVector:)]
+        #[method_id(@__method_family Other vectorByAddingVector:toVector:)]
         pub unsafe fn vectorByAddingVector_toVector(
             v1: &VNVector,
             v2: &VNVector,
         ) -> Retained<VNVector>;
 
         /// Substructs vector v1 from v2 and returns a resulting vector v, such as v = v2 - v1.
-        #[method_id(@__retain_semantics Other vectorBySubtractingVector:fromVector:)]
+        #[method_id(@__method_family Other vectorBySubtractingVector:fromVector:)]
         pub unsafe fn vectorBySubtractingVector_fromVector(
             v1: &VNVector,
             v2: &VNVector,
@@ -200,7 +200,7 @@ extern_methods!(
         pub unsafe fn dotProductOfVector_vector(v1: &VNVector, v2: &VNVector) -> c_double;
 
         /// Initializes a vector in Cartesian Coordinate space, using its X and Y axis projections.
-        #[method_id(@__retain_semantics Init initWithXComponent:yComponent:)]
+        #[method_id(@__method_family Init initWithXComponent:yComponent:)]
         pub unsafe fn initWithXComponent_yComponent(
             this: Allocated<Self>,
             x: c_double,
@@ -209,7 +209,7 @@ extern_methods!(
 
         /// Initializes a vector in polar coordinate space, using R and Theta (radians), where R is the length of the vector and
         /// Theta is the ange that the vector forms with the positive direction of X axis.
-        #[method_id(@__retain_semantics Init initWithR:theta:)]
+        #[method_id(@__method_family Init initWithR:theta:)]
         pub unsafe fn initWithR_theta(
             this: Allocated<Self>,
             r: c_double,
@@ -217,7 +217,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Initializes a vector in Cartesian Coordinate space, using two VNPoints - the head and the tail of the vector.
-        #[method_id(@__retain_semantics Init initWithVectorHead:tail:)]
+        #[method_id(@__method_family Init initWithVectorHead:tail:)]
         pub unsafe fn initWithVectorHead_tail(
             this: Allocated<Self>,
             head: &VNPoint,
@@ -253,10 +253,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNVector {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -285,11 +285,11 @@ unsafe impl NSSecureCoding for VNCircle {}
 extern_methods!(
     unsafe impl VNCircle {
         /// Returns a VNCircle object with center at the Origin [0.0; 0.0] and zero radius.
-        #[method_id(@__retain_semantics Other zeroCircle)]
+        #[method_id(@__method_family Other zeroCircle)]
         pub unsafe fn zeroCircle() -> Retained<VNCircle>;
 
         /// Initializes VNCircle object with given circle center and circle radius.
-        #[method_id(@__retain_semantics Init initWithCenter:radius:)]
+        #[method_id(@__method_family Init initWithCenter:radius:)]
         pub unsafe fn initWithCenter_radius(
             this: Allocated<Self>,
             center: &VNPoint,
@@ -297,7 +297,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Initializes VNCircle object with given circle center and circle diameter.
-        #[method_id(@__retain_semantics Init initWithCenter:diameter:)]
+        #[method_id(@__method_family Init initWithCenter:diameter:)]
         pub unsafe fn initWithCenter_diameter(
             this: Allocated<Self>,
             center: &VNPoint,
@@ -317,7 +317,7 @@ extern_methods!(
         ) -> bool;
 
         /// Returns circle center.
-        #[method_id(@__retain_semantics Other center)]
+        #[method_id(@__method_family Other center)]
         pub unsafe fn center(&self) -> Retained<VNPoint>;
 
         /// Returns circle radius.
@@ -333,10 +333,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNCircle {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -368,14 +368,14 @@ unsafe impl VNRequestRevisionProviding for VNContour {}
 
 extern_methods!(
     unsafe impl VNContour {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The path to the target VNContour as it is stored in the owning VNContoursObservation's hierarchy of contours.
-        #[method_id(@__retain_semantics Other indexPath)]
+        #[method_id(@__method_family Other indexPath)]
         pub unsafe fn indexPath(&self) -> Retained<NSIndexPath>;
 
         /// The total number of child contours in the target contour.
@@ -387,7 +387,7 @@ extern_methods!(
         /// The array of the contours enclosed by the target contour.
         ///
         /// This property may come with the cost of instantiating new VNContour objects; therefore, clients are strongly encouraged to hold the results in a local variable instead of repeatedly invoking it.
-        #[method_id(@__retain_semantics Other childContours)]
+        #[method_id(@__method_family Other childContours)]
         pub unsafe fn childContours(&self) -> Retained<NSArray<VNContour>>;
 
         /// Returns a VNContour object that is a child of this VNContour at the specified index.
@@ -397,7 +397,7 @@ extern_methods!(
         /// Parameter `error`: The error returned if the child contour cannot be provided.
         ///
         /// Returns: The VNContour object at the specified index path, or nil of a failure occurs.
-        #[method_id(@__retain_semantics Other childContourAtIndex:error:_)]
+        #[method_id(@__method_family Other childContourAtIndex:error:_)]
         pub unsafe fn childContourAtIndex_error(
             &self,
             child_contour_index: NSUInteger,
@@ -411,7 +411,7 @@ extern_methods!(
         /// The contour represented as a CGPath in normalized coordinates.
         ///
         /// The path is owned by this object and therefore will be alive as long as the the observation is alive.
-        #[method_id(@__retain_semantics Other normalizedPath)]
+        #[method_id(@__method_family Other normalizedPath)]
         pub unsafe fn normalizedPath(&self) -> Retained<CGPath>;
 
         /// The aspect ratio of the contour from the original image aspect ratio expressed as width/height
@@ -429,7 +429,7 @@ extern_methods!(
         /// Parameter `error`: The error returned if a simplified contour cannot be created.
         ///
         /// Returns: A new VNContour object with a simplified polygon consisting of a subset of the points that defined the original VNContour.
-        #[method_id(@__retain_semantics Other polygonApproximationWithEpsilon:error:_)]
+        #[method_id(@__method_family Other polygonApproximationWithEpsilon:error:_)]
         pub unsafe fn polygonApproximationWithEpsilon_error(
             &self,
             epsilon: c_float,

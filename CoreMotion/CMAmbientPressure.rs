@@ -37,13 +37,13 @@ extern_methods!(
         /// Discussion:
         /// The pressure as measured by the pressure sensor.
         /// Pressure is in kPa (kilopascals).
-        #[method_id(@__retain_semantics Other pressure)]
+        #[method_id(@__method_family Other pressure)]
         pub unsafe fn pressure(&self) -> Retained<NSMeasurement<NSUnitPressure>>;
 
         /// Discussion:
         /// The temperature as measured by the pressure sensor.
         /// Temperature is in C (degrees centrigrade).
-        #[method_id(@__retain_semantics Other temperature)]
+        #[method_id(@__method_family Other temperature)]
         pub unsafe fn temperature(&self) -> Retained<NSMeasurement<NSUnitTemperature>>;
     }
 );
@@ -52,10 +52,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CMLogItem")]
     unsafe impl CMAmbientPressureData {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

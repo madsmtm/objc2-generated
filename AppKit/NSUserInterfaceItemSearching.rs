@@ -19,7 +19,7 @@ extern_protocol!(
             handle_matched_items: &block2::Block<dyn Fn(NonNull<NSArray>)>,
         );
 
-        #[method_id(@__retain_semantics Other localizedTitlesForItem:)]
+        #[method_id(@__method_family Other localizedTitlesForItem:)]
         unsafe fn localizedTitlesForItem(&self, item: &AnyObject) -> Retained<NSArray<NSString>>;
 
         #[optional]

@@ -96,7 +96,7 @@ unsafe impl NSUserInterfaceItemIdentification for NSColorWell {}
 extern_methods!(
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSColorWell {
-        #[method_id(@__retain_semantics Other colorWellWithStyle:)]
+        #[method_id(@__method_family Other colorWellWithStyle:)]
         pub unsafe fn colorWellWithStyle(
             style: NSColorWellStyle,
             mtm: MainThreadMarker,
@@ -128,7 +128,7 @@ extern_methods!(
         pub unsafe fn takeColorFrom(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         pub unsafe fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -144,7 +144,7 @@ extern_methods!(
         pub unsafe fn setColorWellStyle(&self, color_well_style: NSColorWellStyle);
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__retain_semantics Other image)]
+        #[method_id(@__method_family Other image)]
         pub unsafe fn image(&self) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "NSImage")]
@@ -153,7 +153,7 @@ extern_methods!(
         pub unsafe fn setImage(&self, image: Option<&NSImage>);
 
         /// The image that appears on the button portion of the expanded control. This property only applicable when `colorWellStyle` is `NSColorWellStyleExpanded`.
-        #[method_id(@__retain_semantics Other pulldownTarget)]
+        #[method_id(@__method_family Other pulldownTarget)]
         pub unsafe fn pulldownTarget(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -184,10 +184,10 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSColorWell {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -199,7 +199,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSColorWell {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -208,7 +208,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSColorWell {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

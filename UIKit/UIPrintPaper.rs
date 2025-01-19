@@ -21,7 +21,7 @@ unsafe impl NSObjectProtocol for UIPrintPaper {}
 extern_methods!(
     unsafe impl UIPrintPaper {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other bestPaperForPageSize:withPapersFromArray:)]
+        #[method_id(@__method_family Other bestPaperForPageSize:withPapersFromArray:)]
         pub unsafe fn bestPaperForPageSize_withPapersFromArray(
             content_size: CGSize,
             paper_list: &NSArray<UIPrintPaper>,
@@ -41,10 +41,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPrintPaper {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

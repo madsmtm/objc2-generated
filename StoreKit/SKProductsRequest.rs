@@ -38,14 +38,14 @@ extern_methods!(
     #[cfg(feature = "SKRequest")]
     unsafe impl SKProductsRequest {
         #[deprecated = "Use Product.products(for:)"]
-        #[method_id(@__retain_semantics Init initWithProductIdentifiers:)]
+        #[method_id(@__method_family Init initWithProductIdentifiers:)]
         pub unsafe fn initWithProductIdentifiers(
             this: Allocated<Self>,
             product_identifiers: &NSSet<NSString>,
         ) -> Retained<Self>;
 
         #[deprecated = "Use Product.products(for:)"]
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn SKProductsRequestDelegate>>>;
@@ -65,10 +65,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SKRequest")]
     unsafe impl SKProductsRequest {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -91,11 +91,11 @@ extern_methods!(
     unsafe impl SKProductsResponse {
         #[cfg(feature = "SKProduct")]
         #[deprecated = "Get products using Product.products(for:)"]
-        #[method_id(@__retain_semantics Other products)]
+        #[method_id(@__method_family Other products)]
         pub unsafe fn products(&self) -> Retained<NSArray<SKProduct>>;
 
         #[deprecated = "Get products using Product.products(for:)"]
-        #[method_id(@__retain_semantics Other invalidProductIdentifiers)]
+        #[method_id(@__method_family Other invalidProductIdentifiers)]
         pub unsafe fn invalidProductIdentifiers(&self) -> Retained<NSArray<NSString>>;
     }
 );
@@ -103,10 +103,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKProductsResponse {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

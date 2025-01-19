@@ -38,12 +38,12 @@ unsafe impl NSObjectProtocol for VZVirtioConsoleDeviceConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZConsoleDeviceConfiguration")]
     unsafe impl VZVirtioConsoleDeviceConfiguration {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtioConsolePortConfigurationArray")]
         /// The console ports to be configured for this console device.
-        #[method_id(@__retain_semantics Other ports)]
+        #[method_id(@__method_family Other ports)]
         pub unsafe fn ports(&self) -> Retained<VZVirtioConsolePortConfigurationArray>;
     }
 );
@@ -52,7 +52,7 @@ extern_methods!(
     /// Methods declared on superclass `VZConsoleDeviceConfiguration`
     #[cfg(feature = "VZConsoleDeviceConfiguration")]
     unsafe impl VZVirtioConsoleDeviceConfiguration {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

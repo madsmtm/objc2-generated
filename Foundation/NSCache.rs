@@ -18,7 +18,7 @@ unsafe impl<KeyType: ?Sized, ObjectType: ?Sized> NSObjectProtocol for NSCache<Ke
 extern_methods!(
     unsafe impl<KeyType: Message, ObjectType: Message> NSCache<KeyType, ObjectType> {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
@@ -26,14 +26,14 @@ extern_methods!(
         #[method(setName:)]
         pub unsafe fn setName(&self, name: &NSString);
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSCacheDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         #[method(setDelegate:)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSCacheDelegate>>);
 
-        #[method_id(@__retain_semantics Other objectForKey:)]
+        #[method_id(@__method_family Other objectForKey:)]
         pub unsafe fn objectForKey(&self, key: &KeyType) -> Option<Retained<ObjectType>>;
 
         #[method(setObject:forKey:)]
@@ -77,10 +77,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl<KeyType: Message, ObjectType: Message> NSCache<KeyType, ObjectType> {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

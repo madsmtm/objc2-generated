@@ -281,7 +281,7 @@ unsafe impl NSObjectProtocol for WKInterfaceController {}
 
 extern_methods!(
     unsafe impl WKInterfaceController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(awakeWithContext:)]
@@ -292,7 +292,7 @@ extern_methods!(
         pub unsafe fn contentFrame(&self) -> CGRect;
 
         #[cfg(feature = "WKCrownSequencer")]
-        #[method_id(@__retain_semantics Other crownSequencer)]
+        #[method_id(@__method_family Other crownSequencer)]
         pub unsafe fn crownSequencer(&self) -> Retained<WKCrownSequencer>;
 
         #[cfg(feature = "objc2-ui-kit")]
@@ -454,20 +454,20 @@ extern_methods!(
         #[method(dismissAudioRecorderController)]
         pub unsafe fn dismissAudioRecorderController(&self);
 
-        #[method_id(@__retain_semantics Other contextForSegueWithIdentifier:)]
+        #[method_id(@__method_family Other contextForSegueWithIdentifier:)]
         pub unsafe fn contextForSegueWithIdentifier(
             &self,
             segue_identifier: &NSString,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__retain_semantics Other contextsForSegueWithIdentifier:)]
+        #[method_id(@__method_family Other contextsForSegueWithIdentifier:)]
         pub unsafe fn contextsForSegueWithIdentifier(
             &self,
             segue_identifier: &NSString,
         ) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "WKInterfaceObject", feature = "WKInterfaceTable"))]
-        #[method_id(@__retain_semantics Other contextForSegueWithIdentifier:inTable:rowIndex:)]
+        #[method_id(@__method_family Other contextForSegueWithIdentifier:inTable:rowIndex:)]
         pub unsafe fn contextForSegueWithIdentifier_inTable_rowIndex(
             &self,
             segue_identifier: &NSString,
@@ -476,7 +476,7 @@ extern_methods!(
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(all(feature = "WKInterfaceObject", feature = "WKInterfaceTable"))]
-        #[method_id(@__retain_semantics Other contextsForSegueWithIdentifier:inTable:rowIndex:)]
+        #[method_id(@__method_family Other contextsForSegueWithIdentifier:inTable:rowIndex:)]
         pub unsafe fn contextsForSegueWithIdentifier_inTable_rowIndex(
             &self,
             segue_identifier: &NSString,
@@ -577,7 +577,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKInterfaceController {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -594,11 +594,11 @@ unsafe impl NSObjectProtocol for WKUserNotificationInterfaceController {}
 
 extern_methods!(
     unsafe impl WKUserNotificationInterfaceController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "objc2-user-notifications")]
-        #[method_id(@__retain_semantics Other notificationActions)]
+        #[method_id(@__method_family Other notificationActions)]
         pub unsafe fn notificationActions(&self) -> Retained<NSArray<UNNotificationAction>>;
 
         #[cfg(feature = "objc2-user-notifications")]
@@ -614,7 +614,7 @@ extern_methods!(
         pub unsafe fn didReceiveNotification(&self, notification: &UNNotification);
 
         #[cfg(feature = "objc2-user-notifications")]
-        #[method_id(@__retain_semantics Other suggestionsForResponseToActionWithIdentifier:forNotification:inputLanguage:)]
+        #[method_id(@__method_family Other suggestionsForResponseToActionWithIdentifier:forNotification:inputLanguage:)]
         pub unsafe fn suggestionsForResponseToActionWithIdentifier_forNotification_inputLanguage(
             &self,
             identifier: &NSString,
@@ -646,7 +646,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKUserNotificationInterfaceController {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -98,13 +98,13 @@ unsafe impl NSObjectProtocol for UIApplicationShortcutIcon {}
 
 extern_methods!(
     unsafe impl UIApplicationShortcutIcon {
-        #[method_id(@__retain_semantics Other iconWithType:)]
+        #[method_id(@__method_family Other iconWithType:)]
         pub unsafe fn iconWithType(r#type: UIApplicationShortcutIconType) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other iconWithTemplateImageName:)]
+        #[method_id(@__method_family Other iconWithTemplateImageName:)]
         pub unsafe fn iconWithTemplateImageName(template_image_name: &NSString) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other iconWithSystemImageName:)]
+        #[method_id(@__method_family Other iconWithSystemImageName:)]
         pub unsafe fn iconWithSystemImageName(system_image_name: &NSString) -> Retained<Self>;
     }
 );
@@ -112,10 +112,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIApplicationShortcutIcon {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -143,10 +143,10 @@ unsafe impl NSObjectProtocol for UIApplicationShortcutItem {}
 
 extern_methods!(
     unsafe impl UIApplicationShortcutItem {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithType:localizedTitle:localizedSubtitle:icon:userInfo:)]
+        #[method_id(@__method_family Init initWithType:localizedTitle:localizedSubtitle:icon:userInfo:)]
         pub unsafe fn initWithType_localizedTitle_localizedSubtitle_icon_userInfo(
             this: Allocated<Self>,
             r#type: &NSString,
@@ -156,31 +156,31 @@ extern_methods!(
             user_info: Option<&NSDictionary<NSString, ProtocolObject<dyn NSSecureCoding>>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithType:localizedTitle:)]
+        #[method_id(@__method_family Init initWithType:localizedTitle:)]
         pub unsafe fn initWithType_localizedTitle(
             this: Allocated<Self>,
             r#type: &NSString,
             localized_title: &NSString,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other type)]
+        #[method_id(@__method_family Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other localizedTitle)]
+        #[method_id(@__method_family Other localizedTitle)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other localizedSubtitle)]
+        #[method_id(@__method_family Other localizedSubtitle)]
         pub unsafe fn localizedSubtitle(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__retain_semantics Other icon)]
+        #[method_id(@__method_family Other icon)]
         pub unsafe fn icon(&self) -> Option<Retained<UIApplicationShortcutIcon>>;
 
-        #[method_id(@__retain_semantics Other userInfo)]
+        #[method_id(@__method_family Other userInfo)]
         pub unsafe fn userInfo(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, ProtocolObject<dyn NSSecureCoding>>>>;
 
-        #[method_id(@__retain_semantics Other targetContentIdentifier)]
+        #[method_id(@__method_family Other targetContentIdentifier)]
         pub unsafe fn targetContentIdentifier(&self) -> Option<Retained<AnyObject>>;
     }
 );
@@ -188,7 +188,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIApplicationShortcutItem {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -216,35 +216,35 @@ unsafe impl NSObjectProtocol for UIMutableApplicationShortcutItem {}
 
 extern_methods!(
     unsafe impl UIMutableApplicationShortcutItem {
-        #[method_id(@__retain_semantics Other type)]
+        #[method_id(@__method_family Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: &NSString);
 
-        #[method_id(@__retain_semantics Other localizedTitle)]
+        #[method_id(@__method_family Other localizedTitle)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`localizedTitle`][Self::localizedTitle].
         #[method(setLocalizedTitle:)]
         pub unsafe fn setLocalizedTitle(&self, localized_title: &NSString);
 
-        #[method_id(@__retain_semantics Other localizedSubtitle)]
+        #[method_id(@__method_family Other localizedSubtitle)]
         pub unsafe fn localizedSubtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedSubtitle`][Self::localizedSubtitle].
         #[method(setLocalizedSubtitle:)]
         pub unsafe fn setLocalizedSubtitle(&self, localized_subtitle: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other icon)]
+        #[method_id(@__method_family Other icon)]
         pub unsafe fn icon(&self) -> Option<Retained<UIApplicationShortcutIcon>>;
 
         /// Setter for [`icon`][Self::icon].
         #[method(setIcon:)]
         pub unsafe fn setIcon(&self, icon: Option<&UIApplicationShortcutIcon>);
 
-        #[method_id(@__retain_semantics Other userInfo)]
+        #[method_id(@__method_family Other userInfo)]
         pub unsafe fn userInfo(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, ProtocolObject<dyn NSSecureCoding>>>>;
@@ -256,7 +256,7 @@ extern_methods!(
             user_info: Option<&NSDictionary<NSString, ProtocolObject<dyn NSSecureCoding>>>,
         );
 
-        #[method_id(@__retain_semantics Other targetContentIdentifier)]
+        #[method_id(@__method_family Other targetContentIdentifier)]
         pub unsafe fn targetContentIdentifier(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`targetContentIdentifier`][Self::targetContentIdentifier].
@@ -271,10 +271,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `UIApplicationShortcutItem`
     unsafe impl UIMutableApplicationShortcutItem {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithType:localizedTitle:localizedSubtitle:icon:userInfo:)]
+        #[method_id(@__method_family Init initWithType:localizedTitle:localizedSubtitle:icon:userInfo:)]
         pub unsafe fn initWithType_localizedTitle_localizedSubtitle_icon_userInfo(
             this: Allocated<Self>,
             r#type: &NSString,
@@ -284,7 +284,7 @@ extern_methods!(
             user_info: Option<&NSDictionary<NSString, ProtocolObject<dyn NSSecureCoding>>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithType:localizedTitle:)]
+        #[method_id(@__method_family Init initWithType:localizedTitle:)]
         pub unsafe fn initWithType_localizedTitle(
             this: Allocated<Self>,
             r#type: &NSString,
@@ -296,7 +296,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIMutableApplicationShortcutItem {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

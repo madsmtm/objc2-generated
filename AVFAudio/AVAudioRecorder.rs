@@ -27,7 +27,7 @@ extern_methods!(
         /// Init the AudioRecorder with a specified url and settings.
         ///
         /// The file type to create can be set through the corresponding settings key. If not set, it will be inferred from the file extension. Will overwrite a file at the specified url if a file exists.
-        #[method_id(@__retain_semantics Init initWithURL:settings:error:_)]
+        #[method_id(@__method_family Init initWithURL:settings:error:_)]
         pub unsafe fn initWithURL_settings_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -38,7 +38,7 @@ extern_methods!(
         /// Init the AudioRecorder with a specified url and format.
         ///
         /// The file type to create can be set through the corresponding settings key. If not set, it will be inferred from the file extension. Will overwrite a file at the specified url if a file exists.
-        #[method_id(@__retain_semantics Init initWithURL:format:error:_)]
+        #[method_id(@__method_family Init initWithURL:format:error:_)]
         pub unsafe fn initWithURL_format_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -100,24 +100,24 @@ extern_methods!(
         pub unsafe fn isRecording(&self) -> bool;
 
         /// URL of the recorded file.
-        #[method_id(@__retain_semantics Other url)]
+        #[method_id(@__method_family Other url)]
         pub unsafe fn url(&self) -> Retained<NSURL>;
 
         /// A dictionary of settings for the AudioRecorder.
         ///
         /// These settings are fully valid only when prepareToRecord has been called. For supported key-value pairs, see https://developer.apple.com/documentation/avfaudio/avaudiorecorder/1388386-initwithurl?language=objc
-        #[method_id(@__retain_semantics Other settings)]
+        #[method_id(@__method_family Other settings)]
         pub unsafe fn settings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "AVAudioFormat")]
         /// The audio format of the AudioRecorder.
         ///
         /// This property is fully valid only when prepareToRecord has been called.
-        #[method_id(@__retain_semantics Other format)]
+        #[method_id(@__method_family Other format)]
         pub unsafe fn format(&self) -> Retained<AVAudioFormat>;
 
         /// A delegate object to the AudioRecorder that conforms to the AVAudioRecorderDelegate protocol.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVAudioRecorderDelegate>>>;
@@ -168,7 +168,7 @@ extern_methods!(
         /// Array of AVAudioSessionChannelDescription objects
         ///
         /// The channels property lets you assign the output to record specific channels as described by AVAudioSessionPortDescription's channels property. This property is nil valued until set. The array must have the same number of channels as returned by the numberOfChannels property.
-        #[method_id(@__retain_semantics Other channelAssignments)]
+        #[method_id(@__method_family Other channelAssignments)]
         pub unsafe fn channelAssignments(
             &self,
         ) -> Option<Retained<NSArray<AVAudioSessionChannelDescription>>>;
@@ -186,10 +186,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioRecorder {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

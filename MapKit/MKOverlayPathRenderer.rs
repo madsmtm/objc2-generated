@@ -30,7 +30,7 @@ extern_methods!(
     unsafe impl MKOverlayPathRenderer {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(@__retain_semantics Other fillColor)]
+        #[method_id(@__method_family Other fillColor)]
         pub unsafe fn fillColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "objc2-app-kit")]
@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(@__retain_semantics Other strokeColor)]
+        #[method_id(@__method_family Other strokeColor)]
         pub unsafe fn strokeColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "objc2-app-kit")]
@@ -95,7 +95,7 @@ extern_methods!(
         #[method(setLineDashPhase:)]
         pub unsafe fn setLineDashPhase(&self, line_dash_phase: CGFloat);
 
-        #[method_id(@__retain_semantics Other lineDashPattern)]
+        #[method_id(@__method_family Other lineDashPattern)]
         pub unsafe fn lineDashPattern(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`lineDashPattern`][Self::lineDashPattern].
@@ -113,7 +113,7 @@ extern_methods!(
         pub unsafe fn createPath(&self);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[method_id(@__retain_semantics Other path)]
+        #[method_id(@__method_family Other path)]
         pub unsafe fn path(&self) -> Option<Retained<CGPath>>;
 
         #[cfg(feature = "objc2-core-graphics")]
@@ -163,7 +163,7 @@ extern_methods!(
     #[cfg(feature = "MKOverlayRenderer")]
     unsafe impl MKOverlayPathRenderer {
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
-        #[method_id(@__retain_semantics Init initWithOverlay:)]
+        #[method_id(@__method_family Init initWithOverlay:)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
@@ -175,10 +175,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MKOverlayRenderer")]
     unsafe impl MKOverlayPathRenderer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

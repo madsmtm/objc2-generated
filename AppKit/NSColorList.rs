@@ -28,24 +28,24 @@ unsafe impl NSSecureCoding for NSColorList {}
 
 extern_methods!(
     unsafe impl NSColorList {
-        #[method_id(@__retain_semantics Other availableColorLists)]
+        #[method_id(@__method_family Other availableColorLists)]
         pub unsafe fn availableColorLists() -> Retained<NSArray<NSColorList>>;
 
-        #[method_id(@__retain_semantics Other colorListNamed:)]
+        #[method_id(@__method_family Other colorListNamed:)]
         pub unsafe fn colorListNamed(name: &NSColorListName) -> Option<Retained<NSColorList>>;
 
-        #[method_id(@__retain_semantics Init initWithName:)]
+        #[method_id(@__method_family Init initWithName:)]
         pub unsafe fn initWithName(this: Allocated<Self>, name: &NSColorListName)
             -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithName:fromFile:)]
+        #[method_id(@__method_family Init initWithName:fromFile:)]
         pub unsafe fn initWithName_fromFile(
             this: Allocated<Self>,
             name: &NSColorListName,
             path: Option<&NSString>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSColorListName>>;
 
         #[cfg(feature = "NSColor")]
@@ -65,10 +65,10 @@ extern_methods!(
         pub unsafe fn removeColorWithKey(&self, key: &NSColorName);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__retain_semantics Other colorWithKey:)]
+        #[method_id(@__method_family Other colorWithKey:)]
         pub unsafe fn colorWithKey(&self, key: &NSColorName) -> Option<Retained<NSColor>>;
 
-        #[method_id(@__retain_semantics Other allKeys)]
+        #[method_id(@__method_family Other allKeys)]
         pub unsafe fn allKeys(&self) -> Retained<NSArray<NSColorName>>;
 
         #[method(isEditable)]
@@ -90,10 +90,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSColorList {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -21,7 +21,7 @@ unsafe impl NSObjectProtocol for ASAuthorizationSingleSignOnProvider {}
 extern_methods!(
     unsafe impl ASAuthorizationSingleSignOnProvider {
         /// To get the right extension the identity provider main URL has to be provided. The URL is even part of the extension using assosiated domains mechanism or can be configured by MDM profile.
-        #[method_id(@__retain_semantics Other authorizationProviderWithIdentityProviderURL:)]
+        #[method_id(@__method_family Other authorizationProviderWithIdentityProviderURL:)]
         pub unsafe fn authorizationProviderWithIdentityProviderURL(url: &NSURL) -> Retained<Self>;
 
         #[cfg(all(
@@ -29,16 +29,16 @@ extern_methods!(
             feature = "ASAuthorizationRequest",
             feature = "ASAuthorizationSingleSignOnRequest"
         ))]
-        #[method_id(@__retain_semantics Other createRequest)]
+        #[method_id(@__method_family Other createRequest)]
         pub unsafe fn createRequest(&self) -> Retained<ASAuthorizationSingleSignOnRequest>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other url)]
+        #[method_id(@__method_family Other url)]
         pub unsafe fn url(&self) -> Retained<NSURL>;
 
         /// Returns YES if the configured provider is capable of performing authorization within a given configuration.

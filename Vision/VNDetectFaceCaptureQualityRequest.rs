@@ -41,7 +41,7 @@ extern_methods!(
     unsafe impl VNDetectFaceCaptureQualityRequest {
         #[cfg(feature = "VNObservation")]
         /// VNFaceObservation with populated faceCaptureQuality property results.
-        #[method_id(@__retain_semantics Other results)]
+        #[method_id(@__method_family Other results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNFaceObservation>>>;
     }
 );
@@ -51,7 +51,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectFaceCaptureQualityRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -59,7 +59,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
+        #[method_id(@__method_family Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
@@ -71,7 +71,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectFaceCaptureQualityRequest {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

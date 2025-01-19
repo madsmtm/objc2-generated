@@ -94,11 +94,11 @@ extern_methods!(
         #[cfg(feature = "PhotosUITypes")]
         /// Selected projectType value from the extensions options as defined in -[PHProjectExtensionController supportedProjectTypes].
         /// See PHProjectExtensionController.h for more information on configuring the options.
-        #[method_id(@__retain_semantics Other projectType)]
+        #[method_id(@__method_family Other projectType)]
         pub unsafe fn projectType(&self) -> Retained<PHProjectType>;
 
         /// Array of project sections each containing one or more PHProjectSectionContent objects.
-        #[method_id(@__retain_semantics Other sections)]
+        #[method_id(@__method_family Other sections)]
         pub unsafe fn sections(&self) -> Retained<NSArray<PHProjectSection>>;
 
         /// The following properties are only used when the user creates a new project from an existing Apple Print Product.
@@ -112,17 +112,17 @@ extern_methods!(
         pub unsafe fn pageNumbersEnabled(&self) -> bool;
 
         /// The product identifier of the originating Apple Print Product.
-        #[method_id(@__retain_semantics Other productIdentifier)]
+        #[method_id(@__method_family Other productIdentifier)]
         pub unsafe fn productIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// The product theme identifier of the originating Apple Print Product.
-        #[method_id(@__retain_semantics Other themeIdentifier)]
+        #[method_id(@__method_family Other themeIdentifier)]
         pub unsafe fn themeIdentifier(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -192,7 +192,7 @@ extern_methods!(
         /// Array containing one or more PHProjectSectionContent objects. Ordered by number of elements from least to most.
         /// Projects should only present one level of content to the user at a time as assets will be reused within
         /// individual content objects.
-        #[method_id(@__retain_semantics Other sectionContents)]
+        #[method_id(@__method_family Other sectionContents)]
         pub unsafe fn sectionContents(&self) -> Retained<NSArray<PHProjectSectionContent>>;
 
         /// The intended usage of the section (e.g., cover, content, auxiliary)
@@ -200,13 +200,13 @@ extern_methods!(
         pub unsafe fn sectionType(&self) -> PHProjectSectionType;
 
         /// Title for the section (e.g., a Moment name or a general geographical location), might be an empty string.
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -235,7 +235,7 @@ unsafe impl NSSecureCoding for PHProjectSectionContent {}
 extern_methods!(
     unsafe impl PHProjectSectionContent {
         /// Array of asset, text, or journal entry elements contained in the content.
-        #[method_id(@__retain_semantics Other elements)]
+        #[method_id(@__method_family Other elements)]
         pub unsafe fn elements(&self) -> Retained<NSArray<PHProjectElement>>;
 
         /// The suggested layout of the content is provided in resolution-independent "grid space" units
@@ -252,20 +252,20 @@ extern_methods!(
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]
         /// Convenience for getting a single array of all cloud asset identifiers referenced in the content without needing to enumerate elements.
-        #[method_id(@__retain_semantics Other cloudAssetIdentifiers)]
+        #[method_id(@__method_family Other cloudAssetIdentifiers)]
         pub unsafe fn cloudAssetIdentifiers(&self) -> Retained<NSArray<PHCloudIdentifier>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Background color of the section content.
         /// This property is only used when the user creates a new project from an existing Apple Print Product
-        #[method_id(@__retain_semantics Other backgroundColor)]
+        #[method_id(@__method_family Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Option<Retained<NSColor>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -309,10 +309,10 @@ extern_methods!(
         #[method(placement)]
         pub unsafe fn placement(&self) -> CGRect;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -366,13 +366,13 @@ extern_methods!(
 
         /// Identifier of the region of interest. Regions representing the same person or object will have
         /// the same identifier across multiple assets.
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<PHProjectRegionOfInterestIdentifier>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -404,11 +404,11 @@ extern_methods!(
         #[cfg(not(target_os = "watchos"))]
         /// Cloud identifier for the underlying PHAsset. This identifier must be converted to a localIdentifier
         /// before fetching, but if archiving the identifier in project data the provided PHCloudIdentifier should always be used.
-        #[method_id(@__retain_semantics Other cloudAssetIdentifier)]
+        #[method_id(@__method_family Other cloudAssetIdentifier)]
         pub unsafe fn cloudAssetIdentifier(&self) -> Retained<PHCloudIdentifier>;
 
         /// If a user has explicitly annotated an asset (e.g., caption) that value will be provided in this property.
-        #[method_id(@__retain_semantics Other annotation)]
+        #[method_id(@__method_family Other annotation)]
         pub unsafe fn annotation(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -425,7 +425,7 @@ extern_methods!(
         /// Array of regions of interest (faces, objects, etc.) in the assets.
         /// Note: Photos will filter out features of an asset that it doesn't believe to be meaningful in the context
         /// of the user's full library. For example, random faces in a crowd.
-        #[method_id(@__retain_semantics Other regionsOfInterest)]
+        #[method_id(@__method_family Other regionsOfInterest)]
         pub unsafe fn regionsOfInterest(&self) -> Retained<NSArray<PHProjectRegionOfInterest>>;
 
         /// The following properties are only used when the user creates a new project from an existing Apple Print Product.
@@ -443,10 +443,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `PHProjectElement`
     unsafe impl PHProjectAssetElement {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -503,12 +503,12 @@ unsafe impl NSSecureCoding for PHProjectTextElement {}
 extern_methods!(
     unsafe impl PHProjectTextElement {
         /// Unformatted, raw string for the text element
-        #[method_id(@__retain_semantics Other text)]
+        #[method_id(@__method_family Other text)]
         pub unsafe fn text(&self) -> Retained<NSString>;
 
         /// If the text was presented to the user in a stylized manner in Photos,
         /// attributedText will provide access to those same attributes.
-        #[method_id(@__retain_semantics Other attributedText)]
+        #[method_id(@__method_family Other attributedText)]
         pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         #[method(textElementType)]
@@ -519,10 +519,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `PHProjectElement`
     unsafe impl PHProjectTextElement {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -551,15 +551,15 @@ unsafe impl NSSecureCoding for PHProjectJournalEntryElement {}
 extern_methods!(
     unsafe impl PHProjectJournalEntryElement {
         /// Date to which the provided asset and/or text pertain
-        #[method_id(@__retain_semantics Other date)]
+        #[method_id(@__method_family Other date)]
         pub unsafe fn date(&self) -> Retained<NSDate>;
 
         /// Representative asset, if any, for that date.
-        #[method_id(@__retain_semantics Other assetElement)]
+        #[method_id(@__method_family Other assetElement)]
         pub unsafe fn assetElement(&self) -> Option<Retained<PHProjectAssetElement>>;
 
         /// Descriptive text (e.g., "Mom's Birthday") for that date.
-        #[method_id(@__retain_semantics Other textElement)]
+        #[method_id(@__method_family Other textElement)]
         pub unsafe fn textElement(&self) -> Option<Retained<PHProjectTextElement>>;
     }
 );
@@ -567,10 +567,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `PHProjectElement`
     unsafe impl PHProjectJournalEntryElement {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -619,7 +619,7 @@ extern_methods!(
         pub unsafe fn altitude(&self) -> CLLocationDistance;
 
         #[cfg(feature = "objc2-map-kit")]
-        #[method_id(@__retain_semantics Other annotations)]
+        #[method_id(@__method_family Other annotations)]
         pub unsafe fn annotations(&self) -> Retained<NSArray<ProtocolObject<dyn MKAnnotation>>>;
     }
 );
@@ -627,10 +627,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `PHProjectElement`
     unsafe impl PHProjectMapElement {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

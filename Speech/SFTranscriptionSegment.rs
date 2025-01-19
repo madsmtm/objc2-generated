@@ -28,7 +28,7 @@ unsafe impl NSSecureCoding for SFTranscriptionSegment {}
 
 extern_methods!(
     unsafe impl SFTranscriptionSegment {
-        #[method_id(@__retain_semantics Other substring)]
+        #[method_id(@__method_family Other substring)]
         pub unsafe fn substring(&self) -> Retained<NSString>;
 
         #[method(substringRange)]
@@ -43,12 +43,12 @@ extern_methods!(
         #[method(confidence)]
         pub unsafe fn confidence(&self) -> c_float;
 
-        #[method_id(@__retain_semantics Other alternativeSubstrings)]
+        #[method_id(@__method_family Other alternativeSubstrings)]
         pub unsafe fn alternativeSubstrings(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "SFVoiceAnalytics")]
         #[deprecated = "voiceAnalytics is moved to SFSpeechRecognitionMetadata"]
-        #[method_id(@__retain_semantics Other voiceAnalytics)]
+        #[method_id(@__method_family Other voiceAnalytics)]
         pub unsafe fn voiceAnalytics(&self) -> Option<Retained<SFVoiceAnalytics>>;
     }
 );
@@ -56,10 +56,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFTranscriptionSegment {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

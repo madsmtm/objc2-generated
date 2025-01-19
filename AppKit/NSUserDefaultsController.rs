@@ -31,28 +31,28 @@ unsafe impl NSObjectProtocol for NSUserDefaultsController {}
 extern_methods!(
     #[cfg(feature = "NSController")]
     unsafe impl NSUserDefaultsController {
-        #[method_id(@__retain_semantics Other sharedUserDefaultsController)]
+        #[method_id(@__method_family Other sharedUserDefaultsController)]
         pub unsafe fn sharedUserDefaultsController(
             mtm: MainThreadMarker,
         ) -> Retained<NSUserDefaultsController>;
 
-        #[method_id(@__retain_semantics Init initWithDefaults:initialValues:)]
+        #[method_id(@__method_family Init initWithDefaults:initialValues:)]
         pub unsafe fn initWithDefaults_initialValues(
             this: Allocated<Self>,
             defaults: Option<&NSUserDefaults>,
             initial_values: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other defaults)]
+        #[method_id(@__method_family Other defaults)]
         pub unsafe fn defaults(&self) -> Retained<NSUserDefaults>;
 
-        #[method_id(@__retain_semantics Other initialValues)]
+        #[method_id(@__method_family Other initialValues)]
         pub unsafe fn initialValues(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`initialValues`][Self::initialValues].
@@ -72,7 +72,7 @@ extern_methods!(
         #[method(hasUnappliedChanges)]
         pub unsafe fn hasUnappliedChanges(&self) -> bool;
 
-        #[method_id(@__retain_semantics Other values)]
+        #[method_id(@__method_family Other values)]
         pub unsafe fn values(&self) -> Retained<AnyObject>;
 
         #[method(revert:)]
@@ -90,7 +90,7 @@ extern_methods!(
     /// Methods declared on superclass `NSController`
     #[cfg(feature = "NSController")]
     unsafe impl NSUserDefaultsController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -99,7 +99,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSController")]
     unsafe impl NSUserDefaultsController {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

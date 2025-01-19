@@ -184,7 +184,7 @@ extern_methods!(
         ///
         /// Parameter `description`: audio component description structure that describes the audio component of type kAudioUnitType_MusicDevice
         /// or kAudioUnitType_RemoteInstrument.
-        #[method_id(@__retain_semantics Init initWithAudioComponentDescription:)]
+        #[method_id(@__method_family Init initWithAudioComponentDescription:)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
             description: AudioComponentDescription,
@@ -200,10 +200,10 @@ extern_methods!(
         feature = "AVAudioUnitMIDIInstrument"
     ))]
     unsafe impl AVAudioUnitSampler {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

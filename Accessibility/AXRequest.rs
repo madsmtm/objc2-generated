@@ -27,17 +27,17 @@ unsafe impl NSSecureCoding for AXRequest {}
 
 extern_methods!(
     unsafe impl AXRequest {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other currentRequest)]
+        #[method_id(@__method_family Other currentRequest)]
         pub unsafe fn currentRequest() -> Option<Retained<AXRequest>>;
 
         #[cfg(feature = "AXTechnology")]
-        #[method_id(@__retain_semantics Other technology)]
+        #[method_id(@__method_family Other technology)]
         pub unsafe fn technology(&self) -> Retained<AXTechnology>;
     }
 );

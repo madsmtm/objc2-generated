@@ -13,11 +13,11 @@ extern_protocol!(
         NSObjectProtocol + NSSecureCoding + NSCopying
     {
         /// The Relying Party identifier used to scope this request.
-        #[method_id(@__retain_semantics Other relyingPartyIdentifier)]
+        #[method_id(@__method_family Other relyingPartyIdentifier)]
         unsafe fn relyingPartyIdentifier(&self) -> Retained<NSString>;
 
         /// An arbitrary byte sequence which will be stored alongside the credential and will be returned with the credential when authenticating with it in the future. May be used by a relying party to identify the user account this credential is associated with.
-        #[method_id(@__retain_semantics Other userID)]
+        #[method_id(@__method_family Other userID)]
         unsafe fn userID(&self) -> Retained<NSData>;
 
         /// Setter for [`userID`][Self::userID].
@@ -25,7 +25,7 @@ extern_protocol!(
         unsafe fn setUserID(&self, user_id: &NSData);
 
         /// A human readable name to associate with a credential, which a user should be able to use to identify the credential.
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -33,7 +33,7 @@ extern_protocol!(
         unsafe fn setName(&self, name: &NSString);
 
         /// A high level human readable name to associate with a credential, which should only be used for display.
-        #[method_id(@__retain_semantics Other displayName)]
+        #[method_id(@__method_family Other displayName)]
         unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`displayName`][Self::displayName].
@@ -41,7 +41,7 @@ extern_protocol!(
         unsafe fn setDisplayName(&self, display_name: Option<&NSString>);
 
         /// The challenge which can be used to verify the authenticator's attestation, if attestation is requested.
-        #[method_id(@__retain_semantics Other challenge)]
+        #[method_id(@__method_family Other challenge)]
         unsafe fn challenge(&self) -> Retained<NSData>;
 
         /// Setter for [`challenge`][Self::challenge].
@@ -50,7 +50,7 @@ extern_protocol!(
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         /// A preference for whether the authenticator should attempt to verify that it is being used by its owner, such as through a PIN or biometrics.
-        #[method_id(@__retain_semantics Other userVerificationPreference)]
+        #[method_id(@__method_family Other userVerificationPreference)]
         unsafe fn userVerificationPreference(
             &self,
         ) -> Retained<ASAuthorizationPublicKeyCredentialUserVerificationPreference>;
@@ -65,7 +65,7 @@ extern_protocol!(
 
         #[cfg(feature = "ASAuthorizationPublicKeyCredentialConstants")]
         /// A preference for the type of attestation that the authenticator should attempt to perform.
-        #[method_id(@__retain_semantics Other attestationPreference)]
+        #[method_id(@__method_family Other attestationPreference)]
         unsafe fn attestationPreference(
             &self,
         ) -> Retained<ASAuthorizationPublicKeyCredentialAttestationKind>;

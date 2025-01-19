@@ -51,17 +51,17 @@ unsafe impl NSSecureCoding for CKReference {}
 
 extern_methods!(
     unsafe impl CKReference {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKRecordID")]
         /// It is acceptable to relate two records that have not yet been uploaded to the server. Those records must be uploaded to the server in the same operation if using an action other than `CKReferenceActionNone`.
         ///
         /// If a record references a record that does not exist on the server and is not in the current save operation it will result in an error if using an action other than `CKReferenceActionNone`.
-        #[method_id(@__retain_semantics Init initWithRecordID:action:)]
+        #[method_id(@__method_family Init initWithRecordID:action:)]
         pub unsafe fn initWithRecordID_action(
             this: Allocated<Self>,
             record_id: &CKRecordID,
@@ -69,7 +69,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
-        #[method_id(@__retain_semantics Init initWithRecord:action:)]
+        #[method_id(@__method_family Init initWithRecord:action:)]
         pub unsafe fn initWithRecord_action(
             this: Allocated<Self>,
             record: &CKRecord,
@@ -80,7 +80,7 @@ extern_methods!(
         pub unsafe fn referenceAction(&self) -> CKReferenceAction;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(@__retain_semantics Other recordID)]
+        #[method_id(@__method_family Other recordID)]
         pub unsafe fn recordID(&self) -> Retained<CKRecordID>;
     }
 );

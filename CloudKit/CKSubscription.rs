@@ -53,13 +53,13 @@ unsafe impl NSSecureCoding for CKSubscription {}
 
 extern_methods!(
     unsafe impl CKSubscription {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other subscriptionID)]
+        #[method_id(@__method_family Other subscriptionID)]
         pub unsafe fn subscriptionID(&self) -> Retained<CKSubscriptionID>;
 
         #[method(subscriptionType)]
@@ -70,7 +70,7 @@ extern_methods!(
         ///
         /// This property must be set to a non-nil value before saving the
         /// `CKSubscription.`
-        #[method_id(@__retain_semantics Other notificationInfo)]
+        #[method_id(@__method_family Other notificationInfo)]
         pub unsafe fn notificationInfo(&self) -> Option<Retained<CKNotificationInfo>>;
 
         /// Setter for [`notificationInfo`][Self::notificationInfo].
@@ -134,7 +134,7 @@ extern_methods!(
     unsafe impl CKQuerySubscription {
         #[cfg(feature = "CKRecord")]
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithRecordType:predicate:options:)]
+        #[method_id(@__method_family Init initWithRecordType:predicate:options:)]
         pub unsafe fn initWithRecordType_predicate_options(
             this: Allocated<Self>,
             record_type: &CKRecordType,
@@ -143,7 +143,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
-        #[method_id(@__retain_semantics Init initWithRecordType:predicate:subscriptionID:options:)]
+        #[method_id(@__method_family Init initWithRecordType:predicate:subscriptionID:options:)]
         pub unsafe fn initWithRecordType_predicate_subscriptionID_options(
             this: Allocated<Self>,
             record_type: &CKRecordType,
@@ -152,23 +152,23 @@ extern_methods!(
             query_subscription_options: CKQuerySubscriptionOptions,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
         /// The record type that this subscription watches
-        #[method_id(@__retain_semantics Other recordType)]
+        #[method_id(@__method_family Other recordType)]
         pub unsafe fn recordType(&self) -> Retained<CKRecordType>;
 
         /// A predicate that determines when the subscription fires.
-        #[method_id(@__retain_semantics Other predicate)]
+        #[method_id(@__method_family Other predicate)]
         pub unsafe fn predicate(&self) -> Retained<NSPredicate>;
 
         #[cfg(feature = "CKRecordZoneID")]
         /// Optional property.  If set, a query subscription is scoped to only record changes in the indicated zone.
         /// Query Subscriptions that do not specify a
         /// `zoneID`are scoped to record changes across all zones in the database.
-        #[method_id(@__retain_semantics Other zoneID)]
+        #[method_id(@__method_family Other zoneID)]
         pub unsafe fn zoneID(&self) -> Option<Retained<CKRecordZoneID>>;
 
         #[cfg(feature = "CKRecordZoneID")]
@@ -191,10 +191,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKSubscription`
     unsafe impl CKQuerySubscription {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -229,30 +229,30 @@ extern_methods!(
     unsafe impl CKRecordZoneSubscription {
         #[cfg(feature = "CKRecordZoneID")]
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithZoneID:)]
+        #[method_id(@__method_family Init initWithZoneID:)]
         pub unsafe fn initWithZoneID(
             this: Allocated<Self>,
             zone_id: &CKRecordZoneID,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(@__retain_semantics Init initWithZoneID:subscriptionID:)]
+        #[method_id(@__method_family Init initWithZoneID:subscriptionID:)]
         pub unsafe fn initWithZoneID_subscriptionID(
             this: Allocated<Self>,
             zone_id: &CKRecordZoneID,
             subscription_id: &CKSubscriptionID,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "CKRecordZoneID")]
-        #[method_id(@__retain_semantics Other zoneID)]
+        #[method_id(@__method_family Other zoneID)]
         pub unsafe fn zoneID(&self) -> Retained<CKRecordZoneID>;
 
         #[cfg(feature = "CKRecord")]
         /// Optional property. If set, a zone subscription is scoped to record changes for this record type
-        #[method_id(@__retain_semantics Other recordType)]
+        #[method_id(@__method_family Other recordType)]
         pub unsafe fn recordType(&self) -> Option<Retained<CKRecordType>>;
 
         #[cfg(feature = "CKRecord")]
@@ -265,10 +265,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `CKSubscription`
     unsafe impl CKRecordZoneSubscription {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -300,24 +300,24 @@ unsafe impl NSSecureCoding for CKDatabaseSubscription {}
 extern_methods!(
     unsafe impl CKDatabaseSubscription {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithSubscriptionID:)]
+        #[method_id(@__method_family Init initWithSubscriptionID:)]
         pub unsafe fn initWithSubscriptionID(
             this: Allocated<Self>,
             subscription_id: &CKSubscriptionID,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, a_decoder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
         /// Optional property. If set, a database subscription is scoped to record changes for this record type
-        #[method_id(@__retain_semantics Other recordType)]
+        #[method_id(@__method_family Other recordType)]
         pub unsafe fn recordType(&self) -> Option<Retained<CKRecordType>>;
 
         #[cfg(feature = "CKRecord")]
@@ -361,7 +361,7 @@ unsafe impl NSSecureCoding for CKNotificationInfo {}
 extern_methods!(
     unsafe impl CKNotificationInfo {
         /// Optional alert string to display in a push notification.
-        #[method_id(@__retain_semantics Other alertBody)]
+        #[method_id(@__method_family Other alertBody)]
         pub unsafe fn alertBody(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`alertBody`][Self::alertBody].
@@ -369,7 +369,7 @@ extern_methods!(
         pub unsafe fn setAlertBody(&self, alert_body: Option<&NSString>);
 
         /// Instead of a raw alert string, you may optionally specify a key for a localized string in your app's Localizable.strings file.
-        #[method_id(@__retain_semantics Other alertLocalizationKey)]
+        #[method_id(@__method_family Other alertLocalizationKey)]
         pub unsafe fn alertLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`alertLocalizationKey`][Self::alertLocalizationKey].
@@ -378,7 +378,7 @@ extern_methods!(
 
         #[cfg(feature = "CKRecord")]
         /// A list of field names to take from the matching record that is used as substitution variables in a formatted alert string.
-        #[method_id(@__retain_semantics Other alertLocalizationArgs)]
+        #[method_id(@__method_family Other alertLocalizationArgs)]
         pub unsafe fn alertLocalizationArgs(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
@@ -390,7 +390,7 @@ extern_methods!(
         );
 
         /// Optional title of the alert to display in a push notification.
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
@@ -398,7 +398,7 @@ extern_methods!(
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         /// Instead of a raw title string, you may optionally specify a key for a localized string in your app's Localizable.strings file.
-        #[method_id(@__retain_semantics Other titleLocalizationKey)]
+        #[method_id(@__method_family Other titleLocalizationKey)]
         pub unsafe fn titleLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`titleLocalizationKey`][Self::titleLocalizationKey].
@@ -407,7 +407,7 @@ extern_methods!(
 
         #[cfg(feature = "CKRecord")]
         /// A list of field names to take from the matching record that is used as substitution variables in a formatted title string.
-        #[method_id(@__retain_semantics Other titleLocalizationArgs)]
+        #[method_id(@__method_family Other titleLocalizationArgs)]
         pub unsafe fn titleLocalizationArgs(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
@@ -419,7 +419,7 @@ extern_methods!(
         );
 
         /// Optional subtitle of the alert to display in a push notification.
-        #[method_id(@__retain_semantics Other subtitle)]
+        #[method_id(@__method_family Other subtitle)]
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitle`][Self::subtitle].
@@ -427,7 +427,7 @@ extern_methods!(
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
 
         /// Instead of a raw subtitle string, you may optionally specify a key for a localized string in your app's Localizable.strings file.
-        #[method_id(@__retain_semantics Other subtitleLocalizationKey)]
+        #[method_id(@__method_family Other subtitleLocalizationKey)]
         pub unsafe fn subtitleLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitleLocalizationKey`][Self::subtitleLocalizationKey].
@@ -439,7 +439,7 @@ extern_methods!(
 
         #[cfg(feature = "CKRecord")]
         /// A list of field names to take from the matching record that is used as substitution variables in a formatted subtitle string.
-        #[method_id(@__retain_semantics Other subtitleLocalizationArgs)]
+        #[method_id(@__method_family Other subtitleLocalizationArgs)]
         pub unsafe fn subtitleLocalizationArgs(
             &self,
         ) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
@@ -453,7 +453,7 @@ extern_methods!(
         );
 
         /// A key for a localized string to be used as the alert action in a modal style notification.
-        #[method_id(@__retain_semantics Other alertActionLocalizationKey)]
+        #[method_id(@__method_family Other alertActionLocalizationKey)]
         pub unsafe fn alertActionLocalizationKey(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`alertActionLocalizationKey`][Self::alertActionLocalizationKey].
@@ -464,7 +464,7 @@ extern_methods!(
         );
 
         /// The name of an image in your app bundle to be used as the launch image when launching in response to the notification.
-        #[method_id(@__retain_semantics Other alertLaunchImage)]
+        #[method_id(@__method_family Other alertLaunchImage)]
         pub unsafe fn alertLaunchImage(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`alertLaunchImage`][Self::alertLaunchImage].
@@ -472,7 +472,7 @@ extern_methods!(
         pub unsafe fn setAlertLaunchImage(&self, alert_launch_image: Option<&NSString>);
 
         /// The name of a sound file in your app bundle to play upon receiving the notification.
-        #[method_id(@__retain_semantics Other soundName)]
+        #[method_id(@__method_family Other soundName)]
         pub unsafe fn soundName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`soundName`][Self::soundName].
@@ -489,7 +489,7 @@ extern_methods!(
         /// - NSDate
         /// - NSNumber
         /// - NSString
-        #[method_id(@__retain_semantics Other desiredKeys)]
+        #[method_id(@__method_family Other desiredKeys)]
         pub unsafe fn desiredKeys(&self) -> Option<Retained<NSArray<CKRecordFieldKey>>>;
 
         #[cfg(feature = "CKRecord")]
@@ -537,7 +537,7 @@ extern_methods!(
         ///
         ///
         /// See: UIMutableUserNotificationCategory
-        #[method_id(@__retain_semantics Other category)]
+        #[method_id(@__method_family Other category)]
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`category`][Self::category].
@@ -548,7 +548,7 @@ extern_methods!(
         ///
         ///
         /// See: APNs Notification API documentation
-        #[method_id(@__retain_semantics Other collapseIDKey)]
+        #[method_id(@__method_family Other collapseIDKey)]
         pub unsafe fn collapseIDKey(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`collapseIDKey`][Self::collapseIDKey].
@@ -560,10 +560,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CKNotificationInfo {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

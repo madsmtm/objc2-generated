@@ -145,7 +145,7 @@ extern_methods!(
     ))]
     unsafe impl HKPHQ9Assessment {
         /// Answers on the PHQ-9 assessment. There are exactly 9 answers, one for each multiple choice question. Each answer is of type `HKPHQ9AssessmentAnswer`. If the 9th question was unanswered,  the answer is `HKPHQ9AssessmentAnswerPreferNotToAnswer`.
-        #[method_id(@__retain_semantics Other answers)]
+        #[method_id(@__method_family Other answers)]
         pub unsafe fn answers(&self) -> Retained<NSArray<NSNumber>>;
 
         /// The risk determined by the score on a PHQ-9 assessment.
@@ -154,7 +154,7 @@ extern_methods!(
 
         /// Creates a new PHQ-9 sample. There must be exactly 9 elements in answers, each answer must be of type `HKPHQ9AssessmentAnswer`.
         /// Question #9 is considered optional. If the user does not answer #9, use `HKPHQ9AssessmentAnswerPreferNotToAnswer`
-        #[method_id(@__retain_semantics Other assessmentWithDate:answers:)]
+        #[method_id(@__method_family Other assessmentWithDate:answers:)]
         pub unsafe fn assessmentWithDate_answers(
             date: &NSDate,
             answers: &NSArray<NSNumber>,
@@ -162,17 +162,17 @@ extern_methods!(
 
         /// Creates a new PHQ-9 sample. There must be exactly 9 elements in answers, each answer must be of type `HKPHQ9AssessmentAnswer`.
         /// Question #9 is considered optional. If the user does not answer #9, use `HKPHQ9AssessmentAnswerPreferNotToAnswer`
-        #[method_id(@__retain_semantics Other assessmentWithDate:answers:metadata:)]
+        #[method_id(@__method_family Other assessmentWithDate:answers:metadata:)]
         pub unsafe fn assessmentWithDate_answers_metadata(
             date: &NSDate,
             answers: &NSArray<NSNumber>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -34,7 +34,7 @@ extern_methods!(
         #[method(numberOfRows)]
         pub unsafe fn numberOfRows(&self) -> NSInteger;
 
-        #[method_id(@__retain_semantics Other rowControllerAtIndex:)]
+        #[method_id(@__method_family Other rowControllerAtIndex:)]
         pub unsafe fn rowControllerAtIndex(&self, index: NSInteger) -> Option<Retained<AnyObject>>;
 
         #[method(insertRowsAtIndexes:withRowType:)]
@@ -73,7 +73,7 @@ extern_methods!(
     /// Methods declared on superclass `WKInterfaceObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceTable {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -82,7 +82,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "WKInterfaceObject")]
     unsafe impl WKInterfaceTable {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

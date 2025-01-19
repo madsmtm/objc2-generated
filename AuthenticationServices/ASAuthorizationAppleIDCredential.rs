@@ -79,34 +79,34 @@ extern_methods!(
         /// See: ASAuthorizationRequest to request user contact information.
         ///
         /// The identifier will remain stable as long as the user is connected with the requesting client.  The value may change upon user disconnecting from the identity provider.
-        #[method_id(@__retain_semantics Other user)]
+        #[method_id(@__method_family Other user)]
         pub unsafe fn user(&self) -> Retained<NSString>;
 
         /// A copy of the state value that was passed to ASAuthorizationRequest.
-        #[method_id(@__retain_semantics Other state)]
+        #[method_id(@__method_family Other state)]
         pub unsafe fn state(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "ASAuthorization")]
         /// This value will contain a list of scopes for which the user provided authorization.  These may contain a subset of the requested scopes on
         ///
         /// See: ASAuthorizationAppleIDRequest.  The application should query this value to identify which scopes were returned as it maybe different from ones requested.
-        #[method_id(@__retain_semantics Other authorizedScopes)]
+        #[method_id(@__method_family Other authorizedScopes)]
         pub unsafe fn authorizedScopes(&self) -> Retained<NSArray<ASAuthorizationScope>>;
 
         /// A short-lived, one-time valid token that provides proof of authorization to the server component of the app. The authorization code is bound to the specific transaction using the state attribute passed in the authorization request. The server component of the app can validate the code using Apple’s identity service endpoint provided for this purpose.
-        #[method_id(@__retain_semantics Other authorizationCode)]
+        #[method_id(@__method_family Other authorizationCode)]
         pub unsafe fn authorizationCode(&self) -> Option<Retained<NSData>>;
 
         /// A JSON Web Token (JWT) used to communicate information about the identity of the user in a secure way to the app. The ID token will contain the following information: Issuer Identifier, Subject Identifier, Audience, Expiry Time and Issuance Time signed by Apple's identity service.
-        #[method_id(@__retain_semantics Other identityToken)]
+        #[method_id(@__method_family Other identityToken)]
         pub unsafe fn identityToken(&self) -> Option<Retained<NSData>>;
 
         /// An optional email shared by the user.  This field is populated with a value that the user authorized.
-        #[method_id(@__retain_semantics Other email)]
+        #[method_id(@__method_family Other email)]
         pub unsafe fn email(&self) -> Option<Retained<NSString>>;
 
         /// An optional full name shared by the user.  This field is populated with a value that the user authorized.
-        #[method_id(@__retain_semantics Other fullName)]
+        #[method_id(@__method_family Other fullName)]
         pub unsafe fn fullName(&self) -> Option<Retained<NSPersonNameComponents>>;
 
         /// Check this property for a hint as to whether the current user is a "real user".
@@ -121,10 +121,10 @@ extern_methods!(
         #[method(userAgeRange)]
         pub unsafe fn userAgeRange(&self) -> ASUserAgeRange;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

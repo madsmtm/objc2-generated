@@ -127,7 +127,7 @@ extern_category!(
             mtm: MainThreadMarker,
         );
 
-        #[method_id(@__retain_semantics Other accessibilityLabel)]
+        #[method_id(@__method_family Other accessibilityLabel)]
         unsafe fn accessibilityLabel(&self, mtm: MainThreadMarker) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityLabel`][Self::accessibilityLabel].
@@ -138,7 +138,7 @@ extern_category!(
             mtm: MainThreadMarker,
         );
 
-        #[method_id(@__retain_semantics Other accessibilityAttributedLabel)]
+        #[method_id(@__method_family Other accessibilityAttributedLabel)]
         unsafe fn accessibilityAttributedLabel(
             &self,
             mtm: MainThreadMarker,
@@ -152,7 +152,7 @@ extern_category!(
             mtm: MainThreadMarker,
         );
 
-        #[method_id(@__retain_semantics Other accessibilityHint)]
+        #[method_id(@__method_family Other accessibilityHint)]
         unsafe fn accessibilityHint(&self, mtm: MainThreadMarker) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityHint`][Self::accessibilityHint].
@@ -163,7 +163,7 @@ extern_category!(
             mtm: MainThreadMarker,
         );
 
-        #[method_id(@__retain_semantics Other accessibilityAttributedHint)]
+        #[method_id(@__method_family Other accessibilityAttributedHint)]
         unsafe fn accessibilityAttributedHint(
             &self,
             mtm: MainThreadMarker,
@@ -177,7 +177,7 @@ extern_category!(
             mtm: MainThreadMarker,
         );
 
-        #[method_id(@__retain_semantics Other accessibilityValue)]
+        #[method_id(@__method_family Other accessibilityValue)]
         unsafe fn accessibilityValue(&self, mtm: MainThreadMarker) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityValue`][Self::accessibilityValue].
@@ -188,7 +188,7 @@ extern_category!(
             mtm: MainThreadMarker,
         );
 
-        #[method_id(@__retain_semantics Other accessibilityAttributedValue)]
+        #[method_id(@__method_family Other accessibilityAttributedValue)]
         unsafe fn accessibilityAttributedValue(
             &self,
             mtm: MainThreadMarker,
@@ -225,7 +225,7 @@ extern_category!(
         unsafe fn setAccessibilityFrame(&self, accessibility_frame: CGRect, mtm: MainThreadMarker);
 
         #[cfg(feature = "UIBezierPath")]
-        #[method_id(@__retain_semantics Other accessibilityPath)]
+        #[method_id(@__method_family Other accessibilityPath)]
         unsafe fn accessibilityPath(&self, mtm: MainThreadMarker)
             -> Option<Retained<UIBezierPath>>;
 
@@ -251,7 +251,7 @@ extern_category!(
             mtm: MainThreadMarker,
         );
 
-        #[method_id(@__retain_semantics Other accessibilityLanguage)]
+        #[method_id(@__method_family Other accessibilityLanguage)]
         unsafe fn accessibilityLanguage(&self, mtm: MainThreadMarker)
             -> Option<Retained<NSString>>;
 
@@ -323,7 +323,7 @@ extern_category!(
             mtm: MainThreadMarker,
         );
 
-        #[method_id(@__retain_semantics Other accessibilityUserInputLabels)]
+        #[method_id(@__method_family Other accessibilityUserInputLabels)]
         unsafe fn accessibilityUserInputLabels(
             &self,
             mtm: MainThreadMarker,
@@ -337,7 +337,7 @@ extern_category!(
             mtm: MainThreadMarker,
         );
 
-        #[method_id(@__retain_semantics Other accessibilityAttributedUserInputLabels)]
+        #[method_id(@__method_family Other accessibilityAttributedUserInputLabels)]
         unsafe fn accessibilityAttributedUserInputLabels(
             &self,
             mtm: MainThreadMarker,
@@ -351,7 +351,7 @@ extern_category!(
             mtm: MainThreadMarker,
         );
 
-        #[method_id(@__retain_semantics Other accessibilityHeaderElements)]
+        #[method_id(@__method_family Other accessibilityHeaderElements)]
         unsafe fn accessibilityHeaderElements(
             &self,
             mtm: MainThreadMarker,
@@ -366,7 +366,7 @@ extern_category!(
         );
 
         #[cfg(feature = "UIAccessibilityConstants")]
-        #[method_id(@__retain_semantics Other accessibilityTextualContext)]
+        #[method_id(@__method_family Other accessibilityTextualContext)]
         unsafe fn accessibilityTextualContext(
             &self,
             mtm: MainThreadMarker,
@@ -912,7 +912,7 @@ extern_category!(
         unsafe fn accessibilityElementIsFocused(&self, mtm: MainThreadMarker) -> bool;
 
         #[cfg(feature = "UIAccessibilityConstants")]
-        #[method_id(@__retain_semantics Other accessibilityAssistiveTechnologyFocusedIdentifiers)]
+        #[method_id(@__method_family Other accessibilityAssistiveTechnologyFocusedIdentifiers)]
         unsafe fn accessibilityAssistiveTechnologyFocusedIdentifiers(
             &self,
             mtm: MainThreadMarker,
@@ -986,7 +986,7 @@ extern_category!(
         unsafe fn accessibilityPerformMagicTap(&self, mtm: MainThreadMarker) -> bool;
 
         #[cfg(feature = "UIAccessibilityCustomAction")]
-        #[method_id(@__retain_semantics Other accessibilityCustomActions)]
+        #[method_id(@__method_family Other accessibilityCustomActions)]
         unsafe fn accessibilityCustomActions(
             &self,
             mtm: MainThreadMarker,
@@ -1012,7 +1012,7 @@ extern_protocol!(
         #[method(accessibilityLineNumberForPoint:)]
         unsafe fn accessibilityLineNumberForPoint(&self, point: CGPoint) -> NSInteger;
 
-        #[method_id(@__retain_semantics Other accessibilityContentForLineNumber:)]
+        #[method_id(@__method_family Other accessibilityContentForLineNumber:)]
         unsafe fn accessibilityContentForLineNumber(
             &self,
             line_number: NSInteger,
@@ -1022,18 +1022,18 @@ extern_protocol!(
         #[method(accessibilityFrameForLineNumber:)]
         unsafe fn accessibilityFrameForLineNumber(&self, line_number: NSInteger) -> CGRect;
 
-        #[method_id(@__retain_semantics Other accessibilityPageContent)]
+        #[method_id(@__method_family Other accessibilityPageContent)]
         unsafe fn accessibilityPageContent(&self) -> Option<Retained<NSString>>;
 
         #[optional]
-        #[method_id(@__retain_semantics Other accessibilityAttributedContentForLineNumber:)]
+        #[method_id(@__method_family Other accessibilityAttributedContentForLineNumber:)]
         unsafe fn accessibilityAttributedContentForLineNumber(
             &self,
             line_number: NSInteger,
         ) -> Option<Retained<NSAttributedString>>;
 
         #[optional]
-        #[method_id(@__retain_semantics Other accessibilityAttributedPageContent)]
+        #[method_id(@__method_family Other accessibilityAttributedPageContent)]
         unsafe fn accessibilityAttributedPageContent(&self)
             -> Option<Retained<NSAttributedString>>;
     }
@@ -1044,7 +1044,7 @@ extern_category!(
     #[doc(alias = "UIAccessibilityDragging")]
     pub unsafe trait NSObjectUIAccessibilityDragging {
         #[cfg(feature = "UIAccessibilityLocationDescriptor")]
-        #[method_id(@__retain_semantics Other accessibilityDragSourceDescriptors)]
+        #[method_id(@__method_family Other accessibilityDragSourceDescriptors)]
         unsafe fn accessibilityDragSourceDescriptors(
             &self,
             mtm: MainThreadMarker,
@@ -1062,7 +1062,7 @@ extern_category!(
         );
 
         #[cfg(feature = "UIAccessibilityLocationDescriptor")]
-        #[method_id(@__retain_semantics Other accessibilityDropPointDescriptors)]
+        #[method_id(@__method_family Other accessibilityDropPointDescriptors)]
         unsafe fn accessibilityDropPointDescriptors(
             &self,
             mtm: MainThreadMarker,
@@ -1088,7 +1088,7 @@ extern_category!(
     #[doc(alias = "UIAccessibilityHitTest")]
     pub unsafe trait NSObjectUIAccessibilityHitTest {
         #[cfg(all(feature = "UIEvent", feature = "objc2-core-foundation"))]
-        #[method_id(@__retain_semantics Other accessibilityHitTest:withEvent:)]
+        #[method_id(@__method_family Other accessibilityHitTest:withEvent:)]
         unsafe fn accessibilityHitTest_withEvent(
             &self,
             point: CGPoint,
@@ -1104,7 +1104,7 @@ extern_category!(
     /// Category "UIAccessibilityTextNavigation" on [`NSObject`].
     #[doc(alias = "UIAccessibilityTextNavigation")]
     pub unsafe trait NSObjectUIAccessibilityTextNavigation {
-        #[method_id(@__retain_semantics Other accessibilityPreviousTextNavigationElement)]
+        #[method_id(@__method_family Other accessibilityPreviousTextNavigationElement)]
         unsafe fn accessibilityPreviousTextNavigationElement(
             &self,
             mtm: MainThreadMarker,
@@ -1118,7 +1118,7 @@ extern_category!(
             mtm: MainThreadMarker,
         );
 
-        #[method_id(@__retain_semantics Other accessibilityNextTextNavigationElement)]
+        #[method_id(@__method_family Other accessibilityNextTextNavigationElement)]
         unsafe fn accessibilityNextTextNavigationElement(
             &self,
             mtm: MainThreadMarker,
@@ -1173,7 +1173,7 @@ extern_category!(
     #[doc(alias = "UIAccessibilityTextOperations")]
     pub unsafe trait NSObjectUIAccessibilityTextOperations {
         #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
-        #[method_id(@__retain_semantics Other accessibilityTextInputResponder)]
+        #[method_id(@__method_family Other accessibilityTextInputResponder)]
         unsafe fn accessibilityTextInputResponder(
             &self,
             mtm: MainThreadMarker,

@@ -36,7 +36,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an object conforming to the AVCaptureFileOutputDelegate protocol that will be able to monitor and control recording along exact sample boundaries.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVCaptureFileOutputDelegate>>>;
@@ -52,7 +52,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSURL object containing the file URL of the file currently being written by the receiver. Returns nil if the receiver is not recording to any file.
-        #[method_id(@__retain_semantics Other outputFileURL)]
+        #[method_id(@__method_family Other outputFileURL)]
         pub unsafe fn outputFileURL(&self) -> Option<Retained<NSURL>>;
 
         /// Tells the receiver to start recording to a new file, and specifies a delegate that will be notified when recording is finished.
@@ -182,10 +182,10 @@ extern_methods!(
     /// Methods declared on superclass `AVCaptureOutput`
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCaptureFileOutput {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -424,10 +424,10 @@ unsafe impl NSObjectProtocol for AVCaptureMovieFileOutput {}
 extern_methods!(
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCaptureMovieFileOutput {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -452,7 +452,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an array of AVMetadataItem objects representing the collection of top-level metadata to be written in each output file.
-        #[method_id(@__retain_semantics Other metadata)]
+        #[method_id(@__method_family Other metadata)]
         pub unsafe fn metadata(&self) -> Option<Retained<NSArray<AVMetadataItem>>>;
 
         #[cfg(feature = "AVMetadataItem")]
@@ -465,7 +465,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of AVVideoCodecTypes that can be used as values for the AVVideoCodecKey in the receiver's setOutputSettingsForConnection: dictionary. The array of available video codecs may change depending on the current session preset. The first codec in the array is used by default when recording a file.
-        #[method_id(@__retain_semantics Other availableVideoCodecTypes)]
+        #[method_id(@__method_family Other availableVideoCodecTypes)]
         pub unsafe fn availableVideoCodecTypes(&self) -> Retained<NSArray<AVVideoCodecType>>;
 
         #[cfg(feature = "AVCaptureSession")]
@@ -476,7 +476,7 @@ extern_methods!(
         ///
         ///
         /// Returns an NSArray of NSStrings listing the allowable keys in the receiver's setOutputSettings:forConnection: dictionary.
-        #[method_id(@__retain_semantics Other supportedOutputSettingsKeysForConnection:)]
+        #[method_id(@__method_family Other supportedOutputSettingsKeysForConnection:)]
         pub unsafe fn supportedOutputSettingsKeysForConnection(
             &self,
             connection: &AVCaptureConnection,
@@ -492,7 +492,7 @@ extern_methods!(
         ///
         ///
         /// See AVAudioSettings.h for audio connections or AVVideoSettings.h for video connections for more information on the structure of an output settings dictionary. If the returned value is an empty dictionary (i.e. [NSDictionary dictionary], the format of the media from the connection will not be changed before being written to the file. If -setOutputSettings:forConnection: was called with a nil dictionary, this method returns a non-nil dictionary reflecting the settings used by the AVCaptureSession's current sessionPreset.
-        #[method_id(@__retain_semantics Other outputSettingsForConnection:)]
+        #[method_id(@__method_family Other outputSettingsForConnection:)]
         pub unsafe fn outputSettingsForConnection(
             &self,
             connection: &AVCaptureConnection,
@@ -645,10 +645,10 @@ unsafe impl NSObjectProtocol for AVCaptureAudioFileOutput {}
 extern_methods!(
     #[cfg(feature = "AVCaptureOutputBase")]
     unsafe impl AVCaptureAudioFileOutput {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVMediaFormat")]
@@ -656,7 +656,7 @@ extern_methods!(
         ///
         ///
         /// Returns: An NSArray of UTIs identifying the file types the AVCaptureAudioFileOutput class can write.
-        #[method_id(@__retain_semantics Other availableOutputFileTypes)]
+        #[method_id(@__method_family Other availableOutputFileTypes)]
         pub unsafe fn availableOutputFileTypes() -> Retained<NSArray<AVFileType>>;
 
         #[cfg(feature = "AVMediaFormat")]
@@ -692,7 +692,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an array of AVMetadataItem objects representing the collection of top-level metadata to be written in each output file. Only ID3 v2.2, v2.3, or v2.4 style metadata items are supported.
-        #[method_id(@__retain_semantics Other metadata)]
+        #[method_id(@__method_family Other metadata)]
         pub unsafe fn metadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataItem")]
@@ -704,7 +704,7 @@ extern_methods!(
         ///
         ///
         /// The output settings dictionary can contain values for keys from AVAudioSettings.h. A value of nil indicates that the format of the audio should not be changed before being written to the file.
-        #[method_id(@__retain_semantics Other audioSettings)]
+        #[method_id(@__method_family Other audioSettings)]
         pub unsafe fn audioSettings(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`audioSettings`][Self::audioSettings].

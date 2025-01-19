@@ -220,12 +220,12 @@ extern_methods!(
         /// Initialize a new sequencer, which will not be connected to an audio engine.
         ///
         /// This is used to create a sequencer whose tracks will only send events to external MIDI endpoints.
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "AVAudioEngine")]
         /// Initialize a new sequencer, handing it the audio engine.
-        #[method_id(@__retain_semantics Init initWithAudioEngine:)]
+        #[method_id(@__method_family Init initWithAudioEngine:)]
         pub unsafe fn initWithAudioEngine(
             this: Allocated<Self>,
             engine: &AVAudioEngine,
@@ -301,7 +301,7 @@ extern_methods!(
         pub unsafe fn reverseEvents(&self);
 
         /// Create a new AVMusicTrack and append it to the AVMusicSequencer's list
-        #[method_id(@__retain_semantics Other createAndAppendTrack)]
+        #[method_id(@__method_family Other createAndAppendTrack)]
         pub unsafe fn createAndAppendTrack(&self) -> Retained<AVMusicTrack>;
 
         /// Remove the given AVMusicTrack from the AVMusicSequencer.
@@ -322,7 +322,7 @@ extern_methods!(
         /// An NSArray containing all the AVMusicTracks in the sequence
         ///
         /// This list will not include the tempo track.
-        #[method_id(@__retain_semantics Other tracks)]
+        #[method_id(@__method_family Other tracks)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVMusicTrack>>;
 
         /// The tempo track
@@ -335,13 +335,13 @@ extern_methods!(
         /// The tempo track can be edited and iterated upon as any other track.
         ///
         /// Non-tempo-related events will generate exceptions if added.
-        #[method_id(@__retain_semantics Other tempoTrack)]
+        #[method_id(@__method_family Other tempoTrack)]
         pub unsafe fn tempoTrack(&self) -> Retained<AVMusicTrack>;
 
         /// A dictionary containing meta-data derived from a sequence
         ///
         /// The dictionary can contain one or more of the values accessible via the AVAudioSequencerInfoDictionaryKeys.
-        #[method_id(@__retain_semantics Other userInfo)]
+        #[method_id(@__method_family Other userInfo)]
         pub unsafe fn userInfo(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
     }
 );
@@ -349,7 +349,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioSequencer {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -468,7 +468,7 @@ extern_methods!(
         /// attached to an audio engine, and the track must be part of the AVAudioSequencer associated
         /// with that engine. When playing, the track will send its events to that AVAudioUnit. The
         /// destination AU cannot be changed while the track's sequence is playing.
-        #[method_id(@__retain_semantics Other destinationAudioUnit)]
+        #[method_id(@__method_family Other destinationAudioUnit)]
         pub unsafe fn destinationAudioUnit(&self) -> Option<Retained<AVAudioUnit>>;
 
         #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
@@ -597,10 +597,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMusicTrack {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -35,7 +35,7 @@ extern_methods!(
         /// Parameter `user`: the user.
         ///
         /// Parameter `password`: the password.
-        #[method_id(@__retain_semantics Init initWithUser:password:)]
+        #[method_id(@__method_family Init initWithUser:password:)]
         pub unsafe fn initWithUser_password(
             this: Allocated<Self>,
             user: &NSString,
@@ -47,7 +47,7 @@ extern_methods!(
         /// Parameter `user`: the user.
         ///
         /// Parameter `password`: the password.
-        #[method_id(@__retain_semantics Other credentialWithUser:password:)]
+        #[method_id(@__method_family Other credentialWithUser:password:)]
         pub unsafe fn credentialWithUser_password(
             user: &NSString,
             password: &NSString,
@@ -56,13 +56,13 @@ extern_methods!(
         /// The user name of this credential.
         ///
         /// Returns: The user string.
-        #[method_id(@__retain_semantics Other user)]
+        #[method_id(@__method_family Other user)]
         pub unsafe fn user(&self) -> Retained<NSString>;
 
         /// The password of this credential.
         ///
         /// Returns: The password string.
-        #[method_id(@__retain_semantics Other password)]
+        #[method_id(@__method_family Other password)]
         pub unsafe fn password(&self) -> Retained<NSString>;
     }
 );
@@ -70,10 +70,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasswordCredential {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

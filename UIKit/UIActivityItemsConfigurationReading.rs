@@ -67,7 +67,7 @@ extern_protocol!(
     pub unsafe trait UIActivityItemsConfigurationReading:
         NSObjectProtocol + MainThreadOnly
     {
-        #[method_id(@__retain_semantics Other itemProvidersForActivityItemsConfiguration)]
+        #[method_id(@__method_family Other itemProvidersForActivityItemsConfiguration)]
         unsafe fn itemProvidersForActivityItemsConfiguration(
             &self,
         ) -> Retained<NSArray<NSItemProvider>>;
@@ -80,14 +80,14 @@ extern_protocol!(
         ) -> bool;
 
         #[optional]
-        #[method_id(@__retain_semantics Other activityItemsConfigurationMetadataForKey:)]
+        #[method_id(@__method_family Other activityItemsConfigurationMetadataForKey:)]
         unsafe fn activityItemsConfigurationMetadataForKey(
             &self,
             key: &UIActivityItemsConfigurationMetadataKey,
         ) -> Option<Retained<AnyObject>>;
 
         #[optional]
-        #[method_id(@__retain_semantics Other activityItemsConfigurationMetadataForItemAtIndex:key:)]
+        #[method_id(@__method_family Other activityItemsConfigurationMetadataForItemAtIndex:key:)]
         unsafe fn activityItemsConfigurationMetadataForItemAtIndex_key(
             &self,
             index: NSInteger,
@@ -96,7 +96,7 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-core-foundation")]
         #[optional]
-        #[method_id(@__retain_semantics Other activityItemsConfigurationPreviewForItemAtIndex:intent:suggestedSize:)]
+        #[method_id(@__method_family Other activityItemsConfigurationPreviewForItemAtIndex:intent:suggestedSize:)]
         unsafe fn activityItemsConfigurationPreviewForItemAtIndex_intent_suggestedSize(
             &self,
             index: NSInteger,
@@ -106,7 +106,7 @@ extern_protocol!(
 
         #[cfg(feature = "UIActivity")]
         #[optional]
-        #[method_id(@__retain_semantics Other applicationActivitiesForActivityItemsConfiguration)]
+        #[method_id(@__method_family Other applicationActivitiesForActivityItemsConfiguration)]
         unsafe fn applicationActivitiesForActivityItemsConfiguration(
             &self,
         ) -> Option<Retained<NSArray<UIActivity>>>;
@@ -118,7 +118,7 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationproviding?language=objc)
     pub unsafe trait UIActivityItemsConfigurationProviding: NSObjectProtocol {
-        #[method_id(@__retain_semantics Other activityItemsConfiguration)]
+        #[method_id(@__method_family Other activityItemsConfiguration)]
         unsafe fn activityItemsConfiguration(
             &self,
             mtm: MainThreadMarker,

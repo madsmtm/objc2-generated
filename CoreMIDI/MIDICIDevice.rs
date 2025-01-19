@@ -32,7 +32,7 @@ extern_methods!(
     unsafe impl MIDICIDevice {
         #[cfg(feature = "MIDIUMPEndpoint")]
         /// The basic information describing the CI device.
-        #[method_id(@__retain_semantics Other deviceInfo)]
+        #[method_id(@__method_family Other deviceInfo)]
         pub unsafe fn deviceInfo(&self) -> Retained<MIDI2DeviceInfo>;
 
         #[cfg(feature = "MIDIMessages")]
@@ -71,10 +71,10 @@ extern_methods!(
 
         #[cfg(all(feature = "MIDIUMPCIProfile", feature = "objc2-foundation"))]
         /// The MIDI-CI Profiles that are registered to the  Function Block.
-        #[method_id(@__retain_semantics Other profiles)]
+        #[method_id(@__method_family Other profiles)]
         pub unsafe fn profiles(&self) -> Retained<NSArray<MIDIUMPCIProfile>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -84,7 +84,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2")]
     unsafe impl MIDICIDevice {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

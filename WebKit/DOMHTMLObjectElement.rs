@@ -79,11 +79,11 @@ extern_methods!(
     unsafe impl DOMHTMLObjectElement {
         #[cfg(feature = "DOMHTMLFormElement")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other form)]
+        #[method_id(@__method_family Other form)]
         pub unsafe fn form(&self) -> Option<Retained<DOMHTMLFormElement>>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other code)]
+        #[method_id(@__method_family Other code)]
         pub unsafe fn code(&self) -> Retained<NSString>;
 
         /// Setter for [`code`][Self::code].
@@ -92,7 +92,7 @@ extern_methods!(
         pub unsafe fn setCode(&self, code: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other align)]
+        #[method_id(@__method_family Other align)]
         pub unsafe fn align(&self) -> Retained<NSString>;
 
         /// Setter for [`align`][Self::align].
@@ -101,7 +101,7 @@ extern_methods!(
         pub unsafe fn setAlign(&self, align: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other archive)]
+        #[method_id(@__method_family Other archive)]
         pub unsafe fn archive(&self) -> Retained<NSString>;
 
         /// Setter for [`archive`][Self::archive].
@@ -110,7 +110,7 @@ extern_methods!(
         pub unsafe fn setArchive(&self, archive: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other border)]
+        #[method_id(@__method_family Other border)]
         pub unsafe fn border(&self) -> Retained<NSString>;
 
         /// Setter for [`border`][Self::border].
@@ -119,7 +119,7 @@ extern_methods!(
         pub unsafe fn setBorder(&self, border: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other codeBase)]
+        #[method_id(@__method_family Other codeBase)]
         pub unsafe fn codeBase(&self) -> Retained<NSString>;
 
         /// Setter for [`codeBase`][Self::codeBase].
@@ -128,7 +128,7 @@ extern_methods!(
         pub unsafe fn setCodeBase(&self, code_base: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other codeType)]
+        #[method_id(@__method_family Other codeType)]
         pub unsafe fn codeType(&self) -> Retained<NSString>;
 
         /// Setter for [`codeType`][Self::codeType].
@@ -137,7 +137,7 @@ extern_methods!(
         pub unsafe fn setCodeType(&self, code_type: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other data)]
+        #[method_id(@__method_family Other data)]
         pub unsafe fn data(&self) -> Retained<NSString>;
 
         /// Setter for [`data`][Self::data].
@@ -155,7 +155,7 @@ extern_methods!(
         pub unsafe fn setDeclare(&self, declare: bool);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other height)]
+        #[method_id(@__method_family Other height)]
         pub unsafe fn height(&self) -> Retained<NSString>;
 
         /// Setter for [`height`][Self::height].
@@ -173,7 +173,7 @@ extern_methods!(
         pub unsafe fn setHspace(&self, hspace: c_int);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -182,7 +182,7 @@ extern_methods!(
         pub unsafe fn setName(&self, name: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other standby)]
+        #[method_id(@__method_family Other standby)]
         pub unsafe fn standby(&self) -> Retained<NSString>;
 
         /// Setter for [`standby`][Self::standby].
@@ -191,7 +191,7 @@ extern_methods!(
         pub unsafe fn setStandby(&self, standby: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other type)]
+        #[method_id(@__method_family Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
@@ -200,7 +200,7 @@ extern_methods!(
         pub unsafe fn setType(&self, r#type: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other useMap)]
+        #[method_id(@__method_family Other useMap)]
         pub unsafe fn useMap(&self) -> Retained<NSString>;
 
         /// Setter for [`useMap`][Self::useMap].
@@ -218,7 +218,7 @@ extern_methods!(
         pub unsafe fn setVspace(&self, vspace: c_int);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other width)]
+        #[method_id(@__method_family Other width)]
         pub unsafe fn width(&self) -> Retained<NSString>;
 
         /// Setter for [`width`][Self::width].
@@ -228,10 +228,10 @@ extern_methods!(
 
         #[cfg(feature = "DOMDocument")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other contentDocument)]
+        #[method_id(@__method_family Other contentDocument)]
         pub unsafe fn contentDocument(&self) -> Option<Retained<DOMDocument>>;
 
-        #[method_id(@__retain_semantics Other absoluteImageURL)]
+        #[method_id(@__method_family Other absoluteImageURL)]
         pub unsafe fn absoluteImageURL(&self) -> Retained<NSURL>;
     }
 );
@@ -247,7 +247,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLObjectElement {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -262,7 +262,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLObjectElement {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

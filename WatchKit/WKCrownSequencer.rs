@@ -17,7 +17,7 @@ unsafe impl NSObjectProtocol for WKCrownSequencer {}
 
 extern_methods!(
     unsafe impl WKCrownSequencer {
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn WKCrownDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -38,7 +38,7 @@ extern_methods!(
         #[method(setHapticFeedbackEnabled:)]
         pub unsafe fn setHapticFeedbackEnabled(&self, haptic_feedback_enabled: bool);
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(focus)]
@@ -52,7 +52,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKCrownSequencer {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -38,7 +38,7 @@ extern_methods!(
         /// This property is not observable.
         /// Clients must serialize their access to the resulting AVAssetTrack and related objects on the associated AVPlayer's
         /// notification queue.  By default, this queue is the main queue.
-        #[method_id(@__retain_semantics Other assetTrack)]
+        #[method_id(@__method_family Other assetTrack)]
         pub unsafe fn assetTrack(&self) -> Option<Retained<AVAssetTrack>>;
 
         /// Indicates whether the track is enabled for presentation during playback.
@@ -65,7 +65,7 @@ extern_methods!(
         /// You can test whether video being played has multiple fields by examining the underlying AVAssetTrack's format descriptions. See -[AVAssetTrack formatDescriptions] and, for video format descriptions, kCMFormatDescriptionExtension_FieldCount.
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
-        #[method_id(@__retain_semantics Other videoFieldMode)]
+        #[method_id(@__method_family Other videoFieldMode)]
         pub unsafe fn videoFieldMode(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`videoFieldMode`][Self::videoFieldMode].
@@ -77,10 +77,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerItemTrack {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

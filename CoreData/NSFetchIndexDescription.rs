@@ -27,14 +27,14 @@ unsafe impl NSObjectProtocol for NSFetchIndexDescription {}
 extern_methods!(
     unsafe impl NSFetchIndexDescription {
         #[cfg(feature = "NSFetchIndexElementDescription")]
-        #[method_id(@__retain_semantics Init initWithName:elements:)]
+        #[method_id(@__method_family Init initWithName:elements:)]
         pub unsafe fn initWithName_elements(
             this: Allocated<Self>,
             name: &NSString,
             elements: Option<&NSArray<NSFetchIndexElementDescription>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -42,7 +42,7 @@ extern_methods!(
         pub unsafe fn setName(&self, name: &NSString);
 
         #[cfg(feature = "NSFetchIndexElementDescription")]
-        #[method_id(@__retain_semantics Other elements)]
+        #[method_id(@__method_family Other elements)]
         pub unsafe fn elements(&self) -> Retained<NSArray<NSFetchIndexElementDescription>>;
 
         #[cfg(feature = "NSFetchIndexElementDescription")]
@@ -51,10 +51,10 @@ extern_methods!(
         pub unsafe fn setElements(&self, elements: &NSArray<NSFetchIndexElementDescription>);
 
         #[cfg(feature = "NSEntityDescription")]
-        #[method_id(@__retain_semantics Other entity)]
+        #[method_id(@__method_family Other entity)]
         pub unsafe fn entity(&self) -> Option<Retained<NSEntityDescription>>;
 
-        #[method_id(@__retain_semantics Other partialIndexPredicate)]
+        #[method_id(@__method_family Other partialIndexPredicate)]
         pub unsafe fn partialIndexPredicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`partialIndexPredicate`][Self::partialIndexPredicate].
@@ -69,10 +69,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFetchIndexDescription {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

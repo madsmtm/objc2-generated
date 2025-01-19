@@ -41,7 +41,7 @@ extern_protocol!(
         #[cfg(feature = "UITextInput")]
         /// Returns all currently reported found ranges via
         /// `foundRange:forSearchString:.`
-        #[method_id(@__retain_semantics Other allFoundRanges)]
+        #[method_id(@__method_family Other allFoundRanges)]
         unsafe fn allFoundRanges(&self) -> Retained<NSOrderedSet<UITextRange>>;
 
         #[cfg(feature = "UITextInput")]
@@ -96,7 +96,7 @@ extern_protocol!(
     pub unsafe trait UITextSearching: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
         /// Overlap from UITextInput: Returns the currently selected text range, if applicable. Nil otherwise.
-        #[method_id(@__retain_semantics Other selectedTextRange)]
+        #[method_id(@__method_family Other selectedTextRange)]
         unsafe fn selectedTextRange(&self) -> Option<Retained<UITextRange>>;
 
         #[cfg(feature = "UITextInput")]
@@ -262,7 +262,7 @@ extern_protocol!(
 
         /// Returns the current search document, if applicable. Nil otherwise.
         #[optional]
-        #[method_id(@__retain_semantics Other selectedTextSearchDocument)]
+        #[method_id(@__method_family Other selectedTextSearchDocument)]
         unsafe fn selectedTextSearchDocument(
             &self,
         ) -> Option<Retained<UITextSearchDocumentIdentifier>>;

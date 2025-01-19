@@ -16,7 +16,7 @@ extern_protocol!(
             feature = "NSResponder",
             feature = "NSWindow"
         ))]
-        #[method_id(@__retain_semantics Init initWithPickerMask:colorPanel:)]
+        #[method_id(@__method_family Init initWithPickerMask:colorPanel:)]
         unsafe fn initWithPickerMask_colorPanel(
             this: Allocated<Self>,
             mask: NSUInteger,
@@ -24,7 +24,7 @@ extern_protocol!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__retain_semantics Other provideNewButtonImage)]
+        #[method_id(@__method_family Other provideNewButtonImage)]
         unsafe fn provideNewButtonImage(&self) -> Retained<NSImage>;
 
         #[cfg(all(
@@ -58,7 +58,7 @@ extern_protocol!(
         #[method(setMode:)]
         unsafe fn setMode(&self, mode: NSColorPanelMode);
 
-        #[method_id(@__retain_semantics Other buttonToolTip)]
+        #[method_id(@__method_family Other buttonToolTip)]
         unsafe fn buttonToolTip(&self) -> Retained<NSString>;
 
         #[method(minContentSize)]
@@ -78,7 +78,7 @@ extern_protocol!(
         unsafe fn currentMode(&self) -> NSColorPanelMode;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        #[method_id(@__retain_semantics Other provideNewView:)]
+        #[method_id(@__method_family Other provideNewView:)]
         unsafe fn provideNewView(&self, initial_request: bool) -> Retained<NSView>;
 
         #[cfg(feature = "NSColor")]

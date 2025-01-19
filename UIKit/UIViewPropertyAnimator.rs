@@ -34,7 +34,7 @@ unsafe impl UIViewImplicitlyAnimating for UIViewPropertyAnimator {}
 extern_methods!(
     unsafe impl UIViewPropertyAnimator {
         #[cfg(feature = "UITimingCurveProvider")]
-        #[method_id(@__retain_semantics Other timingParameters)]
+        #[method_id(@__method_family Other timingParameters)]
         pub unsafe fn timingParameters(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITimingCurveProvider>>>;
@@ -87,7 +87,7 @@ extern_methods!(
         pub unsafe fn setPausesOnCompletion(&self, pauses_on_completion: bool);
 
         #[cfg(feature = "UITimingCurveProvider")]
-        #[method_id(@__retain_semantics Init initWithDuration:timingParameters:)]
+        #[method_id(@__method_family Init initWithDuration:timingParameters:)]
         pub unsafe fn initWithDuration_timingParameters(
             this: Allocated<Self>,
             duration: NSTimeInterval,
@@ -96,7 +96,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIView", feature = "block2"))]
         /// All convenience initializers return an animator which is not running.
-        #[method_id(@__retain_semantics Init initWithDuration:curve:animations:)]
+        #[method_id(@__method_family Init initWithDuration:curve:animations:)]
         pub unsafe fn initWithDuration_curve_animations(
             this: Allocated<Self>,
             duration: NSTimeInterval,
@@ -105,7 +105,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-        #[method_id(@__retain_semantics Init initWithDuration:controlPoint1:controlPoint2:animations:)]
+        #[method_id(@__method_family Init initWithDuration:controlPoint1:controlPoint2:animations:)]
         pub unsafe fn initWithDuration_controlPoint1_controlPoint2_animations(
             this: Allocated<Self>,
             duration: NSTimeInterval,
@@ -115,7 +115,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-        #[method_id(@__retain_semantics Init initWithDuration:dampingRatio:animations:)]
+        #[method_id(@__method_family Init initWithDuration:dampingRatio:animations:)]
         pub unsafe fn initWithDuration_dampingRatio_animations(
             this: Allocated<Self>,
             duration: NSTimeInterval,
@@ -138,7 +138,7 @@ extern_methods!(
         /// block of another propertyAnimator that is interruptible, the implicit
         /// animations defined by this call will be tracked by the outer
         /// propertyAnimator.
-        #[method_id(@__retain_semantics Other runningPropertyAnimatorWithDuration:delay:options:animations:completion:)]
+        #[method_id(@__method_family Other runningPropertyAnimatorWithDuration:delay:options:animations:completion:)]
         pub unsafe fn runningPropertyAnimatorWithDuration_delay_options_animations_completion(
             duration: NSTimeInterval,
             delay: NSTimeInterval,
@@ -197,10 +197,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIViewPropertyAnimator {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

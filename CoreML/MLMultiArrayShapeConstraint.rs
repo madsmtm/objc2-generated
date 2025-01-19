@@ -25,10 +25,10 @@ extern_methods!(
         #[method(type)]
         pub unsafe fn r#type(&self) -> MLMultiArrayShapeConstraintType;
 
-        #[method_id(@__retain_semantics Other sizeRangeForDimension)]
+        #[method_id(@__method_family Other sizeRangeForDimension)]
         pub unsafe fn sizeRangeForDimension(&self) -> Retained<NSArray<NSValue>>;
 
-        #[method_id(@__retain_semantics Other enumeratedShapes)]
+        #[method_id(@__method_family Other enumeratedShapes)]
         pub unsafe fn enumeratedShapes(&self) -> Retained<NSArray<NSArray<NSNumber>>>;
     }
 );
@@ -36,10 +36,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLMultiArrayShapeConstraint {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

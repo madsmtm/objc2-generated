@@ -78,7 +78,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLAreaElement {
         #[deprecated]
-        #[method_id(@__retain_semantics Other alt)]
+        #[method_id(@__method_family Other alt)]
         pub unsafe fn alt(&self) -> Retained<NSString>;
 
         /// Setter for [`alt`][Self::alt].
@@ -87,7 +87,7 @@ extern_methods!(
         pub unsafe fn setAlt(&self, alt: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other coords)]
+        #[method_id(@__method_family Other coords)]
         pub unsafe fn coords(&self) -> Retained<NSString>;
 
         /// Setter for [`coords`][Self::coords].
@@ -105,7 +105,7 @@ extern_methods!(
         pub unsafe fn setNoHref(&self, no_href: bool);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other shape)]
+        #[method_id(@__method_family Other shape)]
         pub unsafe fn shape(&self) -> Retained<NSString>;
 
         /// Setter for [`shape`][Self::shape].
@@ -114,7 +114,7 @@ extern_methods!(
         pub unsafe fn setShape(&self, shape: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other target)]
+        #[method_id(@__method_family Other target)]
         pub unsafe fn target(&self) -> Retained<NSString>;
 
         /// Setter for [`target`][Self::target].
@@ -123,7 +123,7 @@ extern_methods!(
         pub unsafe fn setTarget(&self, target: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other accessKey)]
+        #[method_id(@__method_family Other accessKey)]
         pub unsafe fn accessKey(&self) -> Retained<NSString>;
 
         /// Setter for [`accessKey`][Self::accessKey].
@@ -131,11 +131,11 @@ extern_methods!(
         #[method(setAccessKey:)]
         pub unsafe fn setAccessKey(&self, access_key: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other absoluteLinkURL)]
+        #[method_id(@__method_family Other absoluteLinkURL)]
         pub unsafe fn absoluteLinkURL(&self) -> Retained<NSURL>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other href)]
+        #[method_id(@__method_family Other href)]
         pub unsafe fn href(&self) -> Retained<NSString>;
 
         /// Setter for [`href`][Self::href].
@@ -143,25 +143,25 @@ extern_methods!(
         #[method(setHref:)]
         pub unsafe fn setHref(&self, href: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other protocol)]
+        #[method_id(@__method_family Other protocol)]
         pub unsafe fn protocol(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other host)]
+        #[method_id(@__method_family Other host)]
         pub unsafe fn host(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other hostname)]
+        #[method_id(@__method_family Other hostname)]
         pub unsafe fn hostname(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other port)]
+        #[method_id(@__method_family Other port)]
         pub unsafe fn port(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other pathname)]
+        #[method_id(@__method_family Other pathname)]
         pub unsafe fn pathname(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other search)]
+        #[method_id(@__method_family Other search)]
         pub unsafe fn search(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other hashName)]
+        #[method_id(@__method_family Other hashName)]
         pub unsafe fn hashName(&self) -> Retained<NSString>;
     }
 );
@@ -177,7 +177,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLAreaElement {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -192,7 +192,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLAreaElement {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

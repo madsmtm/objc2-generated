@@ -42,7 +42,7 @@ extern_methods!(
         pub unsafe fn lockBeforeDate(&self, limit: &NSDate) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -55,10 +55,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSLock {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -87,7 +87,7 @@ unsafe impl NSObjectProtocol for NSConditionLock {}
 
 extern_methods!(
     unsafe impl NSConditionLock {
-        #[method_id(@__retain_semantics Init initWithCondition:)]
+        #[method_id(@__method_family Init initWithCondition:)]
         pub unsafe fn initWithCondition(
             this: Allocated<Self>,
             condition: NSInteger,
@@ -121,7 +121,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -134,10 +134,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSConditionLock {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -167,7 +167,7 @@ extern_methods!(
         pub unsafe fn lockBeforeDate(&self, limit: &NSDate) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -180,10 +180,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSRecursiveLock {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -219,7 +219,7 @@ extern_methods!(
         pub unsafe fn broadcast(&self);
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -232,10 +232,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSCondition {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

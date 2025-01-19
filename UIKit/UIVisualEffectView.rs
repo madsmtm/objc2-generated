@@ -76,11 +76,11 @@ unsafe impl UITraitEnvironment for UIVisualEffectView {}
 extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIVisualEffectView {
-        #[method_id(@__retain_semantics Other contentView)]
+        #[method_id(@__method_family Other contentView)]
         pub unsafe fn contentView(&self) -> Retained<UIView>;
 
         #[cfg(feature = "UIVisualEffect")]
-        #[method_id(@__retain_semantics Other effect)]
+        #[method_id(@__method_family Other effect)]
         pub unsafe fn effect(&self) -> Option<Retained<UIVisualEffect>>;
 
         #[cfg(feature = "UIVisualEffect")]
@@ -89,13 +89,13 @@ extern_methods!(
         pub unsafe fn setEffect(&self, effect: Option<&UIVisualEffect>);
 
         #[cfg(feature = "UIVisualEffect")]
-        #[method_id(@__retain_semantics Init initWithEffect:)]
+        #[method_id(@__method_family Init initWithEffect:)]
         pub unsafe fn initWithEffect(
             this: Allocated<Self>,
             effect: Option<&UIVisualEffect>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -108,7 +108,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIVisualEffectView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
     }
 );
@@ -117,10 +117,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIView"))]
     unsafe impl UIVisualEffectView {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

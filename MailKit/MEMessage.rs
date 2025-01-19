@@ -76,60 +76,60 @@ extern_methods!(
         pub unsafe fn encryptionState(&self) -> MEMessageEncryptionState;
 
         /// The subject of the mail message.
-        #[method_id(@__retain_semantics Other subject)]
+        #[method_id(@__method_family Other subject)]
         pub unsafe fn subject(&self) -> Retained<NSString>;
 
         #[cfg(feature = "MEEmailAddress")]
         /// Message sender's email address.
-        #[method_id(@__retain_semantics Other fromAddress)]
+        #[method_id(@__method_family Other fromAddress)]
         pub unsafe fn fromAddress(&self) -> Retained<MEEmailAddress>;
 
         #[cfg(feature = "MEEmailAddress")]
         /// Recipient email addresses in the "To" address field of the message.
-        #[method_id(@__retain_semantics Other toAddresses)]
+        #[method_id(@__method_family Other toAddresses)]
         pub unsafe fn toAddresses(&self) -> Retained<NSArray<MEEmailAddress>>;
 
         #[cfg(feature = "MEEmailAddress")]
         /// Recipient email addresses in the "Cc" address field of the message.
-        #[method_id(@__retain_semantics Other ccAddresses)]
+        #[method_id(@__method_family Other ccAddresses)]
         pub unsafe fn ccAddresses(&self) -> Retained<NSArray<MEEmailAddress>>;
 
         #[cfg(feature = "MEEmailAddress")]
         /// Recipient email addresses in the "Bcc" address field of the message.
-        #[method_id(@__retain_semantics Other bccAddresses)]
+        #[method_id(@__method_family Other bccAddresses)]
         pub unsafe fn bccAddresses(&self) -> Retained<NSArray<MEEmailAddress>>;
 
         #[cfg(feature = "MEEmailAddress")]
         /// Recipient email addresses in the "Reply-To" field of the message.
-        #[method_id(@__retain_semantics Other replyToAddresses)]
+        #[method_id(@__method_family Other replyToAddresses)]
         pub unsafe fn replyToAddresses(&self) -> Retained<NSArray<MEEmailAddress>>;
 
         #[cfg(feature = "MEEmailAddress")]
         /// An array containing all recipients of the message.
-        #[method_id(@__retain_semantics Other allRecipientAddresses)]
+        #[method_id(@__method_family Other allRecipientAddresses)]
         pub unsafe fn allRecipientAddresses(&self) -> Retained<NSArray<MEEmailAddress>>;
 
         /// The date the mail message was sent. Optionally set by the by the sender.
-        #[method_id(@__retain_semantics Other dateSent)]
+        #[method_id(@__method_family Other dateSent)]
         pub unsafe fn dateSent(&self) -> Option<Retained<NSDate>>;
 
         /// The date the mail message was received. Only present if the message has been received.
-        #[method_id(@__retain_semantics Other dateReceived)]
+        #[method_id(@__method_family Other dateReceived)]
         pub unsafe fn dateReceived(&self) -> Option<Retained<NSDate>>;
 
         /// The headers for the message. Might only be a subset if the full body has not been downloaded.
-        #[method_id(@__retain_semantics Other headers)]
+        #[method_id(@__method_family Other headers)]
         pub unsafe fn headers(&self)
             -> Option<Retained<NSDictionary<NSString, NSArray<NSString>>>>;
 
         /// The full raw RFC822 message data if it has been downloaded and the extension has permissions to access.
-        #[method_id(@__retain_semantics Other rawData)]
+        #[method_id(@__method_family Other rawData)]
         pub unsafe fn rawData(&self) -> Option<Retained<NSData>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

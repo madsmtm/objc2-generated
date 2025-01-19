@@ -35,7 +35,7 @@ extern_methods!(
         pub unsafe fn limit(&self) -> NSUInteger;
 
         /// An array of NSSortDescriptors.
-        #[method_id(@__retain_semantics Other sortDescriptors)]
+        #[method_id(@__method_family Other sortDescriptors)]
         pub unsafe fn sortDescriptors(&self) -> Option<Retained<NSArray<NSSortDescriptor>>>;
 
         #[cfg(all(
@@ -56,7 +56,7 @@ extern_methods!(
         /// Parameter `sortDescriptors`: The sort descriptors to use to order the resulting samples.
         ///
         /// Parameter `resultsHandler`: The block to invoke with results when the query has finished executing.
-        #[method_id(@__retain_semantics Init initWithSampleType:predicate:limit:sortDescriptors:resultsHandler:)]
+        #[method_id(@__method_family Init initWithSampleType:predicate:limit:sortDescriptors:resultsHandler:)]
         pub unsafe fn initWithSampleType_predicate_limit_sortDescriptors_resultsHandler(
             this: Allocated<Self>,
             sample_type: &HKSampleType,
@@ -86,7 +86,7 @@ extern_methods!(
         /// Parameter `resultsHandler`: The block to invoke with results when the query has finished executing. This
         /// block is invoked once with results, an array of HKSamples matching the
         /// queryDescriptors passed in, or nil if an error occurred.
-        #[method_id(@__retain_semantics Init initWithQueryDescriptors:limit:resultsHandler:)]
+        #[method_id(@__method_family Init initWithQueryDescriptors:limit:resultsHandler:)]
         pub unsafe fn initWithQueryDescriptors_limit_resultsHandler(
             this: Allocated<Self>,
             query_descriptors: &NSArray<HKQueryDescriptor>,
@@ -117,7 +117,7 @@ extern_methods!(
         /// block is invoked once with results, an array of HKSamples matching the
         /// queryDescriptors passed in, or nil if an error occurred. The HKSamples in the
         /// array are sorted by the specified sortDescriptors.
-        #[method_id(@__retain_semantics Init initWithQueryDescriptors:limit:sortDescriptors:resultsHandler:)]
+        #[method_id(@__method_family Init initWithQueryDescriptors:limit:sortDescriptors:resultsHandler:)]
         pub unsafe fn initWithQueryDescriptors_limit_sortDescriptors_resultsHandler(
             this: Allocated<Self>,
             query_descriptors: &NSArray<HKQueryDescriptor>,
@@ -134,7 +134,7 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKSampleQuery {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -143,7 +143,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKSampleQuery {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

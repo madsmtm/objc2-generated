@@ -29,11 +29,11 @@ unsafe impl NSSecureCoding for CMDyskineticSymptomResult {}
 extern_methods!(
     unsafe impl CMDyskineticSymptomResult {
         /// The date and time representing the start of the result.
-        #[method_id(@__retain_semantics Other startDate)]
+        #[method_id(@__method_family Other startDate)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         /// The date and time representing the end of the result.
-        #[method_id(@__retain_semantics Other endDate)]
+        #[method_id(@__method_family Other endDate)]
         pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         /// The percentage of time dyskinetic symptoms were unlikely for the result.
@@ -49,10 +49,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMDyskineticSymptomResult {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -82,11 +82,11 @@ unsafe impl NSSecureCoding for CMTremorResult {}
 extern_methods!(
     unsafe impl CMTremorResult {
         /// The date and time representing the start of the result.
-        #[method_id(@__retain_semantics Other startDate)]
+        #[method_id(@__method_family Other startDate)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
         /// The date and time representing the end of the result.
-        #[method_id(@__retain_semantics Other endDate)]
+        #[method_id(@__method_family Other endDate)]
         pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         /// The percentage of time tremor was unknown for the result.
@@ -121,10 +121,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMTremorResult {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -166,7 +166,7 @@ extern_methods!(
         ///
         /// Returns: Returns the version number of the movement disorder software available on this platform, nil if not.
         /// Format follows Major.Minor.Fix format (e.g. 1.0.0)
-        #[method_id(@__retain_semantics Other version)]
+        #[method_id(@__method_family Other version)]
         pub unsafe fn version() -> Option<Retained<NSString>>;
 
         #[cfg(feature = "CMAuthorization")]
@@ -223,13 +223,13 @@ extern_methods!(
         /// The last time that data has been processed; queries for periods before this point will return their final results. Data after this point may become available later if monitoring is continuing.
         ///
         /// Warning: Returns nil if no data has been processed or monitoring was not enabled.
-        #[method_id(@__retain_semantics Other lastProcessedDate)]
+        #[method_id(@__method_family Other lastProcessedDate)]
         pub unsafe fn lastProcessedDate(&self) -> Option<Retained<NSDate>>;
 
         /// The expiration date for the most recent monitoring period.
         ///
         /// Warning: Returns nil if no previous monitoring period is available.
-        #[method_id(@__retain_semantics Other monitorKinesiasExpirationDate)]
+        #[method_id(@__method_family Other monitorKinesiasExpirationDate)]
         pub unsafe fn monitorKinesiasExpirationDate(&self) -> Option<Retained<NSDate>>;
     }
 );
@@ -237,10 +237,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMMovementDisorderManager {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

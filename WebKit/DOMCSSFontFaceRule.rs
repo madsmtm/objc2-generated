@@ -51,7 +51,7 @@ extern_methods!(
     unsafe impl DOMCSSFontFaceRule {
         #[cfg(feature = "DOMCSSStyleDeclaration")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other style)]
+        #[method_id(@__method_family Other style)]
         pub unsafe fn style(&self) -> Option<Retained<DOMCSSStyleDeclaration>>;
     }
 );
@@ -65,7 +65,7 @@ extern_methods!(
     ))]
     unsafe impl DOMCSSFontFaceRule {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -78,7 +78,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSFontFaceRule {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

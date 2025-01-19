@@ -48,24 +48,24 @@ unsafe impl NSObjectProtocol for MKLocalSearchRequest {}
 
 extern_methods!(
     unsafe impl MKLocalSearchRequest {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithNaturalLanguageQuery:)]
+        #[method_id(@__method_family Init initWithNaturalLanguageQuery:)]
         pub unsafe fn initWithNaturalLanguageQuery(
             this: Allocated<Self>,
             natural_language_query: &NSString,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
-        #[method_id(@__retain_semantics Init initWithNaturalLanguageQuery:region:)]
+        #[method_id(@__method_family Init initWithNaturalLanguageQuery:region:)]
         pub unsafe fn initWithNaturalLanguageQuery_region(
             this: Allocated<Self>,
             natural_language_query: &NSString,
             region: MKCoordinateRegion,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other naturalLanguageQuery)]
+        #[method_id(@__method_family Other naturalLanguageQuery)]
         pub unsafe fn naturalLanguageQuery(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`naturalLanguageQuery`][Self::naturalLanguageQuery].
@@ -98,7 +98,7 @@ extern_methods!(
         pub unsafe fn setResultTypes(&self, result_types: MKLocalSearchResultType);
 
         #[cfg(feature = "MKPointOfInterestFilter")]
-        #[method_id(@__retain_semantics Other pointOfInterestFilter)]
+        #[method_id(@__method_family Other pointOfInterestFilter)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
@@ -110,7 +110,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "MKAddressFilter")]
-        #[method_id(@__retain_semantics Other addressFilter)]
+        #[method_id(@__method_family Other addressFilter)]
         pub unsafe fn addressFilter(&self) -> Option<Retained<MKAddressFilter>>;
 
         #[cfg(feature = "MKAddressFilter")]
@@ -123,7 +123,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKLocalSearchRequest {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

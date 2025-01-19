@@ -24,10 +24,10 @@ unsafe impl UIAppearance for UIBarItem {}
 
 extern_methods!(
     unsafe impl UIBarItem {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -40,7 +40,7 @@ extern_methods!(
         #[method(setEnabled:)]
         pub unsafe fn setEnabled(&self, enabled: bool);
 
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
@@ -48,7 +48,7 @@ extern_methods!(
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__retain_semantics Other image)]
+        #[method_id(@__method_family Other image)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -57,7 +57,7 @@ extern_methods!(
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__retain_semantics Other landscapeImagePhone)]
+        #[method_id(@__method_family Other landscapeImagePhone)]
         pub unsafe fn landscapeImagePhone(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -66,7 +66,7 @@ extern_methods!(
         pub unsafe fn setLandscapeImagePhone(&self, landscape_image_phone: Option<&UIImage>);
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__retain_semantics Other largeContentSizeImage)]
+        #[method_id(@__method_family Other largeContentSizeImage)]
         pub unsafe fn largeContentSizeImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -123,7 +123,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "UIControl")]
-        #[method_id(@__retain_semantics Other titleTextAttributesForState:)]
+        #[method_id(@__method_family Other titleTextAttributesForState:)]
         pub unsafe fn titleTextAttributesForState(
             &self,
             state: UIControlState,
@@ -134,7 +134,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIBarItem {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

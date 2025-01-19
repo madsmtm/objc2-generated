@@ -167,7 +167,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSOutlineView {
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSOutlineViewDelegate>>>;
@@ -180,7 +180,7 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn NSOutlineViewDelegate>>,
         );
 
-        #[method_id(@__retain_semantics Other dataSource)]
+        #[method_id(@__method_family Other dataSource)]
         pub unsafe fn dataSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSOutlineViewDataSource>>>;
@@ -194,7 +194,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSTableColumn")]
-        #[method_id(@__retain_semantics Other outlineTableColumn)]
+        #[method_id(@__method_family Other outlineTableColumn)]
         pub unsafe fn outlineTableColumn(&self) -> Option<Retained<NSTableColumn>>;
 
         #[cfg(feature = "NSTableColumn")]
@@ -208,7 +208,7 @@ extern_methods!(
         #[method(numberOfChildrenOfItem:)]
         pub unsafe fn numberOfChildrenOfItem(&self, item: Option<&AnyObject>) -> NSInteger;
 
-        #[method_id(@__retain_semantics Other child:ofItem:)]
+        #[method_id(@__method_family Other child:ofItem:)]
         pub unsafe fn child_ofItem(
             &self,
             index: NSInteger,
@@ -245,14 +245,14 @@ extern_methods!(
         #[method(reloadItem:)]
         pub unsafe fn reloadItem(&self, item: Option<&AnyObject>);
 
-        #[method_id(@__retain_semantics Other parentForItem:)]
+        #[method_id(@__method_family Other parentForItem:)]
         pub unsafe fn parentForItem(&self, item: Option<&AnyObject>)
             -> Option<Retained<AnyObject>>;
 
         #[method(childIndexForItem:)]
         pub unsafe fn childIndexForItem(&self, item: &AnyObject) -> NSInteger;
 
-        #[method_id(@__retain_semantics Other itemAtRow:)]
+        #[method_id(@__method_family Other itemAtRow:)]
         pub unsafe fn itemAtRow(&self, row: NSInteger) -> Option<Retained<AnyObject>>;
 
         #[method(rowForItem:)]
@@ -378,10 +378,10 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSOutlineView {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -398,7 +398,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSOutlineView {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -412,7 +412,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSOutlineView {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -441,7 +441,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other outlineView:child:ofItem:)]
+        #[method_id(@__method_family Other outlineView:child:ofItem:)]
         unsafe fn outlineView_child_ofItem(
             &self,
             outline_view: &NSOutlineView,
@@ -471,7 +471,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other outlineView:objectValueForTableColumn:byItem:)]
+        #[method_id(@__method_family Other outlineView:objectValueForTableColumn:byItem:)]
         unsafe fn outlineView_objectValueForTableColumn_byItem(
             &self,
             outline_view: &NSOutlineView,
@@ -503,7 +503,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other outlineView:itemForPersistentObject:)]
+        #[method_id(@__method_family Other outlineView:itemForPersistentObject:)]
         unsafe fn outlineView_itemForPersistentObject(
             &self,
             outline_view: &NSOutlineView,
@@ -517,7 +517,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other outlineView:persistentObjectForItem:)]
+        #[method_id(@__method_family Other outlineView:persistentObjectForItem:)]
         unsafe fn outlineView_persistentObjectForItem(
             &self,
             outline_view: &NSOutlineView,
@@ -546,7 +546,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other outlineView:pasteboardWriterForItem:)]
+        #[method_id(@__method_family Other outlineView:pasteboardWriterForItem:)]
         unsafe fn outlineView_pasteboardWriterForItem(
             &self,
             outline_view: &NSOutlineView,
@@ -662,7 +662,7 @@ extern_protocol!(
         ))]
         #[deprecated = "Use NSFilePromiseReceiver objects instead"]
         #[optional]
-        #[method_id(@__retain_semantics Other outlineView:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:)]
+        #[method_id(@__method_family Other outlineView:namesOfPromisedFilesDroppedAtDestination:forDraggedItems:)]
         unsafe fn outlineView_namesOfPromisedFilesDroppedAtDestination_forDraggedItems(
             &self,
             outline_view: &NSOutlineView,
@@ -685,7 +685,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other outlineView:viewForTableColumn:item:)]
+        #[method_id(@__method_family Other outlineView:viewForTableColumn:item:)]
         unsafe fn outlineView_viewForTableColumn_item(
             &self,
             outline_view: &NSOutlineView,
@@ -700,7 +700,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other outlineView:rowViewForItem:)]
+        #[method_id(@__method_family Other outlineView:rowViewForItem:)]
         unsafe fn outlineView_rowViewForItem(
             &self,
             outline_view: &NSOutlineView,
@@ -784,7 +784,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSTableView", feature = "NSView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other outlineView:selectionIndexesForProposedSelection:)]
+        #[method_id(@__method_family Other outlineView:selectionIndexesForProposedSelection:)]
         unsafe fn outlineView_selectionIndexesForProposedSelection(
             &self,
             outline_view: &NSOutlineView,
@@ -855,7 +855,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other outlineView:toolTipForCell:rect:tableColumn:item:mouseLocation:)]
+        #[method_id(@__method_family Other outlineView:toolTipForCell:rect:tableColumn:item:mouseLocation:)]
         unsafe fn outlineView_toolTipForCell_rect_tableColumn_item_mouseLocation(
             &self,
             outline_view: &NSOutlineView,
@@ -887,7 +887,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other outlineView:tintConfigurationForItem:)]
+        #[method_id(@__method_family Other outlineView:tintConfigurationForItem:)]
         unsafe fn outlineView_tintConfigurationForItem(
             &self,
             outline_view: &NSOutlineView,
@@ -901,7 +901,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other outlineView:typeSelectStringForTableColumn:item:)]
+        #[method_id(@__method_family Other outlineView:typeSelectStringForTableColumn:item:)]
         unsafe fn outlineView_typeSelectStringForTableColumn_item(
             &self,
             outline_view: &NSOutlineView,
@@ -911,7 +911,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSTableView", feature = "NSView"))]
         #[optional]
-        #[method_id(@__retain_semantics Other outlineView:nextTypeSelectMatchFromItem:toItem:forString:)]
+        #[method_id(@__method_family Other outlineView:nextTypeSelectMatchFromItem:toItem:forString:)]
         unsafe fn outlineView_nextTypeSelectMatchFromItem_toItem_forString(
             &self,
             outline_view: &NSOutlineView,
@@ -975,7 +975,7 @@ extern_protocol!(
             feature = "NSView"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other outlineView:dataCellForTableColumn:item:)]
+        #[method_id(@__method_family Other outlineView:dataCellForTableColumn:item:)]
         unsafe fn outlineView_dataCellForTableColumn_item(
             &self,
             outline_view: &NSOutlineView,

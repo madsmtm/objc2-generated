@@ -18,26 +18,26 @@ unsafe impl NSObjectProtocol for AVAudioPlayer {}
 
 extern_methods!(
     unsafe impl AVAudioPlayer {
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
+        #[method_id(@__method_family Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(@__retain_semantics Init initWithData:error:_)]
+        #[method_id(@__method_family Init initWithData:error:_)]
         pub unsafe fn initWithData_error(
             this: Allocated<Self>,
             data: &NSData,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:fileTypeHint:error:_)]
+        #[method_id(@__method_family Init initWithContentsOfURL:fileTypeHint:error:_)]
         pub unsafe fn initWithContentsOfURL_fileTypeHint_error(
             this: Allocated<Self>,
             url: &NSURL,
             uti_string: Option<&NSString>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(@__retain_semantics Init initWithData:fileTypeHint:error:_)]
+        #[method_id(@__method_family Init initWithData:fileTypeHint:error:_)]
         pub unsafe fn initWithData_fileTypeHint_error(
             this: Allocated<Self>,
             data: &NSData,
@@ -68,14 +68,14 @@ extern_methods!(
         #[method(duration)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
-        #[method_id(@__retain_semantics Other currentDevice)]
+        #[method_id(@__method_family Other currentDevice)]
         pub unsafe fn currentDevice(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`currentDevice`][Self::currentDevice].
         #[method(setCurrentDevice:)]
         pub unsafe fn setCurrentDevice(&self, current_device: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVAudioPlayerDelegate>>>;
@@ -88,10 +88,10 @@ extern_methods!(
             delegate: Option<&ProtocolObject<dyn AVAudioPlayerDelegate>>,
         );
 
-        #[method_id(@__retain_semantics Other url)]
+        #[method_id(@__method_family Other url)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
-        #[method_id(@__retain_semantics Other data)]
+        #[method_id(@__method_family Other data)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
         #[method(pan)]
@@ -142,11 +142,11 @@ extern_methods!(
         #[method(setNumberOfLoops:)]
         pub unsafe fn setNumberOfLoops(&self, number_of_loops: NSInteger);
 
-        #[method_id(@__retain_semantics Other settings)]
+        #[method_id(@__method_family Other settings)]
         pub unsafe fn settings(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "AVAudioFormat")]
-        #[method_id(@__retain_semantics Other format)]
+        #[method_id(@__method_family Other format)]
         pub unsafe fn format(&self) -> Retained<AVAudioFormat>;
 
         #[method(isMeteringEnabled)]
@@ -166,7 +166,7 @@ extern_methods!(
         pub unsafe fn averagePowerForChannel(&self, channel_number: NSUInteger) -> c_float;
 
         #[cfg(feature = "AVAudioSessionRoute")]
-        #[method_id(@__retain_semantics Other channelAssignments)]
+        #[method_id(@__method_family Other channelAssignments)]
         pub unsafe fn channelAssignments(
             &self,
         ) -> Option<Retained<NSArray<AVAudioSessionChannelDescription>>>;
@@ -184,10 +184,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAudioPlayer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

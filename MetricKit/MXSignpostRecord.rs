@@ -26,27 +26,27 @@ unsafe impl NSSecureCoding for MXSignpostRecord {}
 extern_methods!(
     unsafe impl MXSignpostRecord {
         /// An NSString representation of the subsystem of the signpost instance.
-        #[method_id(@__retain_semantics Other subsystem)]
+        #[method_id(@__method_family Other subsystem)]
         pub unsafe fn subsystem(&self) -> Retained<NSString>;
 
         /// An NSString representation of the category of the signpost instance.
-        #[method_id(@__retain_semantics Other category)]
+        #[method_id(@__method_family Other category)]
         pub unsafe fn category(&self) -> Retained<NSString>;
 
         /// An NSString representation of the name of the signpost instance.
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// An NSDate representation of the begin time stamp of the signpost instance.
-        #[method_id(@__retain_semantics Other beginTimeStamp)]
+        #[method_id(@__method_family Other beginTimeStamp)]
         pub unsafe fn beginTimeStamp(&self) -> Retained<NSDate>;
 
         /// An NSDate representation of the end time stamp of the signpost instances which are intervals and will be nil for signpost events.
-        #[method_id(@__retain_semantics Other endTimeStamp)]
+        #[method_id(@__method_family Other endTimeStamp)]
         pub unsafe fn endTimeStamp(&self) -> Option<Retained<NSDate>>;
 
         /// An NSMeasurement representing the duration in milliseconds of signpost instances which are intervals and will be nil for signpost events.
-        #[method_id(@__retain_semantics Other duration)]
+        #[method_id(@__method_family Other duration)]
         pub unsafe fn duration(&self) -> Option<Retained<NSMeasurement<NSUnitDuration>>>;
 
         /// A BOOL denoting whether the signpost instance is an interval or not..
@@ -56,13 +56,13 @@ extern_methods!(
         /// Convenience method to return a JSON representation of this SignpostRecord.
         ///
         /// Returns: An NSData object containing the JSON representation
-        #[method_id(@__retain_semantics Other JSONRepresentation)]
+        #[method_id(@__method_family Other JSONRepresentation)]
         pub unsafe fn JSONRepresentation(&self) -> Retained<NSData>;
 
         /// Convenience method to return a NSDictionary representation of this SignpostRecord.
         ///
         /// Returns: An NSDictionary object containing the dictionary representation
-        #[method_id(@__retain_semantics Other dictionaryRepresentation)]
+        #[method_id(@__method_family Other dictionaryRepresentation)]
         pub unsafe fn dictionaryRepresentation(&self) -> Retained<NSDictionary>;
     }
 );
@@ -70,10 +70,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MXSignpostRecord {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

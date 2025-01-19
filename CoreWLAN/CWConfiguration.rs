@@ -48,7 +48,7 @@ extern_methods!(
         ///
         ///
         /// The order of the ordered set corresponds to the order the preferred networks list.
-        #[method_id(@__retain_semantics Other networkProfiles)]
+        #[method_id(@__method_family Other networkProfiles)]
         pub unsafe fn networkProfiles(&self) -> Retained<NSOrderedSet<CWNetworkProfile>>;
 
         /// Returns: YES if the preference is enabled, NO otherwise.
@@ -92,11 +92,11 @@ extern_methods!(
         pub unsafe fn rememberJoinedNetworks(&self) -> bool;
 
         /// Convenience method for getting a CWConfiguration object.
-        #[method_id(@__retain_semantics Other configuration)]
+        #[method_id(@__method_family Other configuration)]
         pub unsafe fn configuration() -> Retained<Self>;
 
         /// Initializes a CWConfiguration object.
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Parameter `configuration`: A CWConfiguration object.
@@ -106,7 +106,7 @@ extern_methods!(
         ///
         ///
         /// Initializes a CWConfiguration object with the properties of an existing CWConfiguration object.
-        #[method_id(@__retain_semantics Init initWithConfiguration:)]
+        #[method_id(@__method_family Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &CWConfiguration,
@@ -119,7 +119,7 @@ extern_methods!(
         ///
         ///
         /// Convenience method for getting a CWConfiguration object initialized with the properties of an existing CWConfiguration object.
-        #[method_id(@__retain_semantics Other configurationWithConfiguration:)]
+        #[method_id(@__method_family Other configurationWithConfiguration:)]
         pub unsafe fn configurationWithConfiguration(
             configuration: &CWConfiguration,
         ) -> Retained<Self>;
@@ -142,7 +142,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWConfiguration {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -181,7 +181,7 @@ extern_methods!(
     unsafe impl CWMutableConfiguration {
         #[cfg(feature = "CWNetworkProfile")]
         /// Add, remove, or update the preferred networks list.
-        #[method_id(@__retain_semantics Other networkProfiles)]
+        #[method_id(@__method_family Other networkProfiles)]
         pub unsafe fn networkProfiles(&self) -> Retained<NSOrderedSet<CWNetworkProfile>>;
 
         #[cfg(feature = "CWNetworkProfile")]
@@ -235,11 +235,11 @@ extern_methods!(
     /// Methods declared on superclass `CWConfiguration`
     unsafe impl CWMutableConfiguration {
         /// Convenience method for getting a CWConfiguration object.
-        #[method_id(@__retain_semantics Other configuration)]
+        #[method_id(@__method_family Other configuration)]
         pub unsafe fn configuration() -> Retained<Self>;
 
         /// Initializes a CWConfiguration object.
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Parameter `configuration`: A CWConfiguration object.
@@ -249,7 +249,7 @@ extern_methods!(
         ///
         ///
         /// Initializes a CWConfiguration object with the properties of an existing CWConfiguration object.
-        #[method_id(@__retain_semantics Init initWithConfiguration:)]
+        #[method_id(@__method_family Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &CWConfiguration,
@@ -262,7 +262,7 @@ extern_methods!(
         ///
         ///
         /// Convenience method for getting a CWConfiguration object initialized with the properties of an existing CWConfiguration object.
-        #[method_id(@__retain_semantics Other configurationWithConfiguration:)]
+        #[method_id(@__method_family Other configurationWithConfiguration:)]
         pub unsafe fn configurationWithConfiguration(
             configuration: &CWConfiguration,
         ) -> Retained<Self>;
@@ -272,7 +272,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CWMutableConfiguration {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

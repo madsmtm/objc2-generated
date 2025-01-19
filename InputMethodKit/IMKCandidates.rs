@@ -62,7 +62,7 @@ extern_methods!(
         /// Default initializer for the class.
         ///
         /// When an input method allocates an IMKCandidate object it should initialize that object by calling this method passing the IMKServer that will manage the candidates and the initial panel type.
-        #[method_id(@__retain_semantics Init initWithServer:panelType:)]
+        #[method_id(@__method_family Init initWithServer:panelType:)]
         pub unsafe fn initWithServer_panelType(
             this: Allocated<Self>,
             server: Option<&IMKServer>,
@@ -70,7 +70,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "IMKServer")]
-        #[method_id(@__retain_semantics Init initWithServer:panelType:styleType:)]
+        #[method_id(@__method_family Init initWithServer:panelType:styleType:)]
         pub unsafe fn initWithServer_panelType_styleType(
             this: Allocated<Self>,
             server: Option<&IMKServer>,
@@ -139,7 +139,7 @@ extern_methods!(
         /// Returns an NSArray of NSNumbers where each NSNumber is a virtual key code.
         ///
         /// The NSArray is an autoreleased object. Do not release unless it is first retained.
-        #[method_id(@__retain_semantics Other selectionKeys)]
+        #[method_id(@__method_family Other selectionKeys)]
         pub unsafe fn selectionKeys(&self) -> Option<Retained<NSArray>>;
 
         /// Sets the "style" attributes for the candidates window.  The keys for the attributes dictionary and the values are:
@@ -157,7 +157,7 @@ extern_methods!(
         pub unsafe fn setAttributes(&self, attributes: Option<&NSDictionary>);
 
         /// Returns the attributes dictionary.
-        #[method_id(@__retain_semantics Other attributes)]
+        #[method_id(@__method_family Other attributes)]
         pub unsafe fn attributes(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setting the dismissesAutomatically flag determines what happens to displayed candidates when the return key or enter key is typed.
@@ -247,7 +247,7 @@ extern_methods!(
         /// Returns the currently selected candidate string.
         ///
         /// Attempts to determine the string for the selected candidate.  If there is no selection the return value can be nil.  The attributed string is an autoreleased object.
-        #[method_id(@__retain_semantics Other selectedCandidateString)]
+        #[method_id(@__method_family Other selectedCandidateString)]
         pub unsafe fn selectedCandidateString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Returns the candidate identifier for a given line in the candidate window display.
@@ -281,10 +281,10 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl IMKCandidates {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -296,7 +296,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl IMKCandidates {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -90,7 +90,7 @@ extern_methods!(
         #[method(close)]
         pub unsafe fn close(&self);
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSStreamDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
@@ -98,7 +98,7 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSStreamDelegate>>);
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other propertyForKey:)]
+        #[method_id(@__method_family Other propertyForKey:)]
         pub unsafe fn propertyForKey(
             &self,
             key: &NSStreamPropertyKey,
@@ -132,7 +132,7 @@ extern_methods!(
         pub unsafe fn streamStatus(&self) -> NSStreamStatus;
 
         #[cfg(feature = "NSError")]
-        #[method_id(@__retain_semantics Other streamError)]
+        #[method_id(@__method_family Other streamError)]
         pub unsafe fn streamError(&self) -> Option<Retained<NSError>>;
     }
 );
@@ -140,10 +140,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSStream {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -173,11 +173,11 @@ extern_methods!(
         pub unsafe fn hasBytesAvailable(&self) -> bool;
 
         #[cfg(feature = "NSData")]
-        #[method_id(@__retain_semantics Init initWithData:)]
+        #[method_id(@__method_family Init initWithData:)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(@__retain_semantics Init initWithURL:)]
+        #[method_id(@__method_family Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Option<Retained<Self>>;
     }
 );
@@ -185,10 +185,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSInputStream {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -210,10 +210,10 @@ extern_methods!(
         #[method(hasSpaceAvailable)]
         pub unsafe fn hasSpaceAvailable(&self) -> bool;
 
-        #[method_id(@__retain_semantics Init initToMemory)]
+        #[method_id(@__method_family Init initToMemory)]
         pub unsafe fn initToMemory(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initToBuffer:capacity:)]
+        #[method_id(@__method_family Init initToBuffer:capacity:)]
         pub unsafe fn initToBuffer_capacity(
             this: Allocated<Self>,
             buffer: NonNull<u8>,
@@ -221,7 +221,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(@__retain_semantics Init initWithURL:append:)]
+        #[method_id(@__method_family Init initWithURL:append:)]
         pub unsafe fn initWithURL_append(
             this: Allocated<Self>,
             url: &NSURL,
@@ -233,10 +233,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSOutputStream {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -282,22 +282,22 @@ extern_methods!(
     /// NSInputStreamExtensions
     unsafe impl NSInputStream {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithFileAtPath:)]
+        #[method_id(@__method_family Init initWithFileAtPath:)]
         pub unsafe fn initWithFileAtPath(
             this: Allocated<Self>,
             path: &NSString,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSData")]
-        #[method_id(@__retain_semantics Other inputStreamWithData:)]
+        #[method_id(@__method_family Other inputStreamWithData:)]
         pub unsafe fn inputStreamWithData(data: &NSData) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other inputStreamWithFileAtPath:)]
+        #[method_id(@__method_family Other inputStreamWithFileAtPath:)]
         pub unsafe fn inputStreamWithFileAtPath(path: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(@__retain_semantics Other inputStreamWithURL:)]
+        #[method_id(@__method_family Other inputStreamWithURL:)]
         pub unsafe fn inputStreamWithURL(url: &NSURL) -> Option<Retained<Self>>;
     }
 );
@@ -306,31 +306,31 @@ extern_methods!(
     /// NSOutputStreamExtensions
     unsafe impl NSOutputStream {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initToFileAtPath:append:)]
+        #[method_id(@__method_family Init initToFileAtPath:append:)]
         pub unsafe fn initToFileAtPath_append(
             this: Allocated<Self>,
             path: &NSString,
             should_append: bool,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other outputStreamToMemory)]
+        #[method_id(@__method_family Other outputStreamToMemory)]
         pub unsafe fn outputStreamToMemory() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other outputStreamToBuffer:capacity:)]
+        #[method_id(@__method_family Other outputStreamToBuffer:capacity:)]
         pub unsafe fn outputStreamToBuffer_capacity(
             buffer: NonNull<u8>,
             capacity: NSUInteger,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other outputStreamToFileAtPath:append:)]
+        #[method_id(@__method_family Other outputStreamToFileAtPath:append:)]
         pub unsafe fn outputStreamToFileAtPath_append(
             path: &NSString,
             should_append: bool,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSURL")]
-        #[method_id(@__retain_semantics Other outputStreamWithURL:append:)]
+        #[method_id(@__method_family Other outputStreamWithURL:append:)]
         pub unsafe fn outputStreamWithURL_append(
             url: &NSURL,
             should_append: bool,

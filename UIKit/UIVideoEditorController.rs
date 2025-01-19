@@ -82,7 +82,7 @@ extern_methods!(
         #[method(canEditVideoAtPath:)]
         pub unsafe fn canEditVideoAtPath(video_path: &NSString, mtm: MainThreadMarker) -> bool;
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<
@@ -100,7 +100,7 @@ extern_methods!(
             >,
         );
 
-        #[method_id(@__retain_semantics Other videoPath)]
+        #[method_id(@__method_family Other videoPath)]
         pub unsafe fn videoPath(&self) -> Retained<NSString>;
 
         /// Setter for [`videoPath`][Self::videoPath].
@@ -133,27 +133,27 @@ extern_methods!(
         feature = "UIViewController"
     ))]
     unsafe impl UIVideoEditorController {
-        #[method_id(@__retain_semantics Init initWithNavigationBarClass:toolbarClass:)]
+        #[method_id(@__method_family Init initWithNavigationBarClass:toolbarClass:)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
             this: Allocated<Self>,
             navigation_bar_class: Option<&AnyClass>,
             toolbar_class: Option<&AnyClass>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithRootViewController:)]
+        #[method_id(@__method_family Init initWithRootViewController:)]
         pub unsafe fn initWithRootViewController(
             this: Allocated<Self>,
             root_view_controller: &UIViewController,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        #[method_id(@__method_family Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -169,10 +169,10 @@ extern_methods!(
         feature = "UIViewController"
     ))]
     unsafe impl UIVideoEditorController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

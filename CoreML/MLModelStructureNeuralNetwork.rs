@@ -23,15 +23,15 @@ unsafe impl NSObjectProtocol for MLModelStructureNeuralNetwork {}
 
 extern_methods!(
     unsafe impl MLModelStructureNeuralNetwork {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "MLModelStructureNeuralNetworkLayer")]
         /// The topologically sorted layers in the NeuralNetwork.
-        #[method_id(@__retain_semantics Other layers)]
+        #[method_id(@__method_family Other layers)]
         pub unsafe fn layers(&self) -> Retained<NSArray<MLModelStructureNeuralNetworkLayer>>;
     }
 );

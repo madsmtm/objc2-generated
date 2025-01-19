@@ -36,7 +36,7 @@ extern_protocol!(
         /// `-[MEComposeSessionHandler``additionalHeadersForSession:]`
         /// Returns: An array of header keys. Mail will normalize the headers to lower case before fetching them from the mail server.
         #[optional]
-        #[method_id(@__retain_semantics Other requiredHeaders)]
+        #[method_id(@__method_family Other requiredHeaders)]
         unsafe fn requiredHeaders(&self) -> Retained<NSArray<NSString>>;
     }
 );

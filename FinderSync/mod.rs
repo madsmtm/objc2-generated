@@ -50,7 +50,7 @@ extern_methods!(
         /// Returns the shared Finder Sync controller object.
         ///
         /// - Returns: The default Finder Sync controller object for this extension.
-        #[method_id(@__retain_semantics Other defaultController)]
+        #[method_id(@__method_family Other defaultController)]
         pub unsafe fn defaultController() -> Retained<Self>;
 
         /// The directories managed by this extension.
@@ -62,7 +62,7 @@ extern_methods!(
         ///
         /// Always set `directoryURLs` when the extension starts. If there are no
         /// directories to watch, set `directoryURLs` to an empty set.
-        #[method_id(@__retain_semantics Other directoryURLs)]
+        #[method_id(@__method_family Other directoryURLs)]
         pub unsafe fn directoryURLs(&self) -> Retained<NSSet<NSURL>>;
 
         /// Setter for [`directoryURLs`][Self::directoryURLs].
@@ -130,7 +130,7 @@ extern_methods!(
         /// toolbar button), this method returns `nil`.
         ///
         /// - Returns: The URL of the Finder’s current target.
-        #[method_id(@__retain_semantics Other targetedURL)]
+        #[method_id(@__method_family Other targetedURL)]
         pub unsafe fn targetedURL(&self) -> Option<Retained<NSURL>>;
 
         /// Returns an array of selected items.
@@ -146,10 +146,10 @@ extern_methods!(
         /// toolbar button), this method returns `nil`.
         ///
         /// - Returns: An array of items currently selected in the Finder window.
-        #[method_id(@__retain_semantics Other selectedItemURLs)]
+        #[method_id(@__method_family Other selectedItemURLs)]
         pub unsafe fn selectedItemURLs(&self) -> Option<Retained<NSArray<NSURL>>>;
 
-        #[method_id(@__retain_semantics Other lastUsedDateForItemWithURL:)]
+        #[method_id(@__method_family Other lastUsedDateForItemWithURL:)]
         pub unsafe fn lastUsedDateForItemWithURL(
             &self,
             item_url: &NSURL,
@@ -164,7 +164,7 @@ extern_methods!(
             completion: &block2::Block<dyn Fn(NonNull<NSError>)>,
         );
 
-        #[method_id(@__retain_semantics Other tagDataForItemWithURL:)]
+        #[method_id(@__method_family Other tagDataForItemWithURL:)]
         pub unsafe fn tagDataForItemWithURL(&self, item_url: &NSURL) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "block2")]
@@ -187,10 +187,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl FIFinderSyncController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -258,7 +258,7 @@ extern_protocol!(
         /// - ``FinderSync/FIFinderSyncController/targetedURL``
         /// - ``FinderSync/FIFinderSyncController/selectedItemURLs``
         #[optional]
-        #[method_id(@__retain_semantics Other menuForMenuKind:)]
+        #[method_id(@__method_family Other menuForMenuKind:)]
         unsafe fn menuForMenuKind(
             &self,
             menu: FIMenuKind,
@@ -321,7 +321,7 @@ extern_protocol!(
         /// To add a toolbar item to the Finder, override the getter method for the
         /// toolbar image, name, and tooltip properties.
         #[optional]
-        #[method_id(@__retain_semantics Other toolbarItemName)]
+        #[method_id(@__method_family Other toolbarItemName)]
         unsafe fn toolbarItemName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-app-kit")]
@@ -330,7 +330,7 @@ extern_protocol!(
         /// To add a toolbar item to the Finder, override the getter method for the
         /// toolbar image, name, and tooltip properties.
         #[optional]
-        #[method_id(@__retain_semantics Other toolbarItemImage)]
+        #[method_id(@__method_family Other toolbarItemImage)]
         unsafe fn toolbarItemImage(&self) -> Retained<NSImage>;
 
         /// The tooltip text for the extension’s toolbar button.
@@ -338,18 +338,18 @@ extern_protocol!(
         /// To add a toolbar item to the Finder, override the getter method for the
         /// toolbar image, name, and tooltip properties.
         #[optional]
-        #[method_id(@__retain_semantics Other toolbarItemToolTip)]
+        #[method_id(@__method_family Other toolbarItemToolTip)]
         unsafe fn toolbarItemToolTip(&self) -> Retained<NSString>;
 
         #[optional]
-        #[method_id(@__retain_semantics Other supportedServiceNamesForItemWithURL:)]
+        #[method_id(@__method_family Other supportedServiceNamesForItemWithURL:)]
         unsafe fn supportedServiceNamesForItemWithURL(
             &self,
             item_url: &NSURL,
         ) -> Retained<NSArray<NSFileProviderServiceName>>;
 
         #[optional]
-        #[method_id(@__retain_semantics Other makeListenerEndpointForServiceName:itemURL:andReturnError:_)]
+        #[method_id(@__method_family Other makeListenerEndpointForServiceName:itemURL:andReturnError:_)]
         unsafe fn makeListenerEndpointForServiceName_itemURL_andReturnError(
             &self,
             service_name: &NSFileProviderServiceName,
@@ -406,10 +406,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl FIFinderSync {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

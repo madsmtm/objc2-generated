@@ -46,7 +46,7 @@ unsafe impl NSObjectProtocol for AVAssetDownloadStorageManager {}
 extern_methods!(
     unsafe impl AVAssetDownloadStorageManager {
         /// returns singleton instance.
-        #[method_id(@__retain_semantics Other sharedDownloadStorageManager)]
+        #[method_id(@__method_family Other sharedDownloadStorageManager)]
         pub unsafe fn sharedDownloadStorageManager() -> Retained<AVAssetDownloadStorageManager>;
 
         /// Sets the policy for asset with disk backing at downloadStorageURL.
@@ -63,7 +63,7 @@ extern_methods!(
         /// This may be nil if a storageManagementPolicy was never set on the downloaded asset.
         ///
         /// Parameter `downloadStorageURL`: The location of downloaded asset.
-        #[method_id(@__retain_semantics Other storageManagementPolicyForURL:)]
+        #[method_id(@__method_family Other storageManagementPolicyForURL:)]
         pub unsafe fn storageManagementPolicyForURL(
             &self,
             download_storage_url: &NSURL,
@@ -74,10 +74,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAssetDownloadStorageManager {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -105,10 +105,10 @@ unsafe impl NSObjectProtocol for AVAssetDownloadStorageManagementPolicy {}
 
 extern_methods!(
     unsafe impl AVAssetDownloadStorageManagementPolicy {
-        #[method_id(@__retain_semantics Other priority)]
+        #[method_id(@__method_family Other priority)]
         pub unsafe fn priority(&self) -> Retained<AVAssetDownloadedAssetEvictionPriority>;
 
-        #[method_id(@__retain_semantics Other expirationDate)]
+        #[method_id(@__method_family Other expirationDate)]
         pub unsafe fn expirationDate(&self) -> Retained<NSDate>;
     }
 );
@@ -116,10 +116,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAssetDownloadStorageManagementPolicy {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -152,14 +152,14 @@ unsafe impl NSObjectProtocol for AVMutableAssetDownloadStorageManagementPolicy {
 
 extern_methods!(
     unsafe impl AVMutableAssetDownloadStorageManagementPolicy {
-        #[method_id(@__retain_semantics Other priority)]
+        #[method_id(@__method_family Other priority)]
         pub unsafe fn priority(&self) -> Retained<AVAssetDownloadedAssetEvictionPriority>;
 
         /// Setter for [`priority`][Self::priority].
         #[method(setPriority:)]
         pub unsafe fn setPriority(&self, priority: &AVAssetDownloadedAssetEvictionPriority);
 
-        #[method_id(@__retain_semantics Other expirationDate)]
+        #[method_id(@__method_family Other expirationDate)]
         pub unsafe fn expirationDate(&self) -> Retained<NSDate>;
 
         /// Setter for [`expirationDate`][Self::expirationDate].
@@ -171,10 +171,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMutableAssetDownloadStorageManagementPolicy {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

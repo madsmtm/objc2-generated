@@ -54,11 +54,11 @@ extern_methods!(
         #[method(isTrue)]
         pub unsafe fn isTrue(&self) -> bool;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
@@ -69,7 +69,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScriptWhoseTest {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -89,20 +89,20 @@ unsafe impl NSObjectProtocol for NSLogicalTest {}
 extern_methods!(
     unsafe impl NSLogicalTest {
         #[cfg(feature = "NSArray")]
-        #[method_id(@__retain_semantics Init initAndTestWithTests:)]
+        #[method_id(@__method_family Init initAndTestWithTests:)]
         pub unsafe fn initAndTestWithTests(
             this: Allocated<Self>,
             sub_tests: &NSArray<NSSpecifierTest>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSArray")]
-        #[method_id(@__retain_semantics Init initOrTestWithTests:)]
+        #[method_id(@__method_family Init initOrTestWithTests:)]
         pub unsafe fn initOrTestWithTests(
             this: Allocated<Self>,
             sub_tests: &NSArray<NSSpecifierTest>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initNotTestWithTest:)]
+        #[method_id(@__method_family Init initNotTestWithTest:)]
         pub unsafe fn initNotTestWithTest(
             this: Allocated<Self>,
             sub_test: &NSScriptWhoseTest,
@@ -113,11 +113,11 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSScriptWhoseTest`
     unsafe impl NSLogicalTest {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
@@ -128,7 +128,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSLogicalTest {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -147,18 +147,18 @@ unsafe impl NSObjectProtocol for NSSpecifierTest {}
 
 extern_methods!(
     unsafe impl NSSpecifierTest {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             in_coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "NSScriptObjectSpecifiers")]
-        #[method_id(@__retain_semantics Init initWithObjectSpecifier:comparisonOperator:testObject:)]
+        #[method_id(@__method_family Init initWithObjectSpecifier:comparisonOperator:testObject:)]
         pub unsafe fn initWithObjectSpecifier_comparisonOperator_testObject(
             this: Allocated<Self>,
             obj1: Option<&NSScriptObjectSpecifier>,
@@ -171,7 +171,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSpecifierTest {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

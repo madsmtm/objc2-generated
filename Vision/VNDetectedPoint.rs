@@ -41,13 +41,13 @@ unsafe impl NSSecureCoding for VNDetectedPoint {}
 extern_methods!(
     #[cfg(feature = "VNGeometry")]
     unsafe impl VNDetectedPoint {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithX:y:)]
+        #[method_id(@__method_family Init initWithX:y:)]
         pub unsafe fn initWithX_y(
             this: Allocated<Self>,
             x: c_double,
@@ -55,7 +55,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithLocation:)]
+        #[method_id(@__method_family Init initWithLocation:)]
         pub unsafe fn initWithLocation(this: Allocated<Self>, location: CGPoint) -> Retained<Self>;
 
         #[cfg(feature = "VNTypes")]
@@ -101,7 +101,7 @@ extern_methods!(
         /// The is the identifier that provides context as to the kind of point that was recognized.
         ///
         /// The string is defined by the model that recognized the point. Usually these are technical labels that are not localized and not meant to be used directly to be presented to an end user in the UI.
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<VNRecognizedPointKey>;
     }
 );
@@ -110,13 +110,13 @@ extern_methods!(
     /// Methods declared on superclass `VNDetectedPoint`
     #[cfg(feature = "VNGeometry")]
     unsafe impl VNRecognizedPoint {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithX:y:)]
+        #[method_id(@__method_family Init initWithX:y:)]
         pub unsafe fn initWithX_y(
             this: Allocated<Self>,
             x: c_double,
@@ -124,7 +124,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithLocation:)]
+        #[method_id(@__method_family Init initWithLocation:)]
         pub unsafe fn initWithLocation(this: Allocated<Self>, location: CGPoint) -> Retained<Self>;
     }
 );

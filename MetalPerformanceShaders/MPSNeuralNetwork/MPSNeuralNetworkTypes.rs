@@ -246,7 +246,7 @@ extern_protocol!(
 
         /// A human readable string that describes the padding policy. Useful for verbose debugging support.
         #[optional]
-        #[method_id(@__retain_semantics Other label)]
+        #[method_id(@__method_family Other label)]
         unsafe fn label(&self) -> Retained<NSString>;
 
         #[cfg(all(
@@ -330,7 +330,7 @@ extern_protocol!(
         /// The MPSImageDescriptor is assumed to be on an autoreleasepool. Your method must also set the
         /// kernel.offset property.
         #[optional]
-        #[method_id(@__retain_semantics Other destinationImageDescriptorForSourceImages:sourceStates:forKernel:suggestedDescriptor:)]
+        #[method_id(@__method_family Other destinationImageDescriptorForSourceImages:sourceStates:forKernel:suggestedDescriptor:)]
         unsafe fn destinationImageDescriptorForSourceImages_sourceStates_forKernel_suggestedDescriptor(
             &self,
             source_images: &NSArray<MPSImage>,
@@ -341,7 +341,7 @@ extern_protocol!(
 
         /// Make a "inverted" padding policy suitable for a training gradient pass.
         #[optional]
-        #[method_id(@__retain_semantics Other inverse)]
+        #[method_id(@__method_family Other inverse)]
         unsafe fn inverse(&self) -> Option<Retained<Self>>;
     }
 );
@@ -378,7 +378,7 @@ extern_methods!(
         /// Returns: An object that implements
         /// <MPSNNPadding
         /// > for use with MPSNNGraphNodes.
-        #[method_id(@__retain_semantics Other paddingWithMethod:)]
+        #[method_id(@__method_family Other paddingWithMethod:)]
         pub unsafe fn paddingWithMethod(method: MPSNNPaddingMethod) -> Retained<Self>;
 
         /// A padding policy that attempts to reproduce TensorFlow behavior for average pooling
@@ -410,15 +410,15 @@ extern_methods!(
         ///                           return inDescriptor;
         ///                        }
         /// ```
-        #[method_id(@__retain_semantics Other paddingForTensorflowAveragePooling)]
+        #[method_id(@__method_family Other paddingForTensorflowAveragePooling)]
         pub unsafe fn paddingForTensorflowAveragePooling() -> Retained<Self>;
 
         /// Typical pooling padding policy for valid only mode
-        #[method_id(@__retain_semantics Other paddingForTensorflowAveragePoolingValidOnly)]
+        #[method_id(@__method_family Other paddingForTensorflowAveragePoolingValidOnly)]
         pub unsafe fn paddingForTensorflowAveragePoolingValidOnly() -> Retained<Self>;
 
         /// Human readable description of what the padding policy does
-        #[method_id(@__retain_semantics Other label)]
+        #[method_id(@__method_family Other label)]
         pub unsafe fn label(&self) -> Retained<NSString>;
     }
 );
@@ -426,10 +426,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MPSNNDefaultPadding {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

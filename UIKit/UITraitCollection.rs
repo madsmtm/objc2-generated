@@ -36,10 +36,10 @@ unsafe impl NSSecureCoding for UITraitCollection {}
 
 extern_methods!(
     unsafe impl UITraitCollection {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -53,13 +53,13 @@ extern_methods!(
         ) -> bool;
 
         #[deprecated = "Use +[UITraitCollection traitCollectionWithTraits:] and -[UITraitCollection traitCollectionByModifyingTraits:] to create and modify trait collections"]
-        #[method_id(@__retain_semantics Other traitCollectionWithTraitsFromCollections:)]
+        #[method_id(@__method_family Other traitCollectionWithTraitsFromCollections:)]
         pub unsafe fn traitCollectionWithTraitsFromCollections(
             trait_collections: &NSArray<UITraitCollection>,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIDevice")]
-        #[method_id(@__retain_semantics Other traitCollectionWithUserInterfaceIdiom:)]
+        #[method_id(@__method_family Other traitCollectionWithUserInterfaceIdiom:)]
         pub unsafe fn traitCollectionWithUserInterfaceIdiom(
             idiom: UIUserInterfaceIdiom,
         ) -> Retained<UITraitCollection>;
@@ -69,7 +69,7 @@ extern_methods!(
         pub unsafe fn userInterfaceIdiom(&self) -> UIUserInterfaceIdiom;
 
         #[cfg(feature = "UIInterface")]
-        #[method_id(@__retain_semantics Other traitCollectionWithUserInterfaceStyle:)]
+        #[method_id(@__method_family Other traitCollectionWithUserInterfaceStyle:)]
         pub unsafe fn traitCollectionWithUserInterfaceStyle(
             user_interface_style: UIUserInterfaceStyle,
         ) -> Retained<UITraitCollection>;
@@ -79,7 +79,7 @@ extern_methods!(
         pub unsafe fn userInterfaceStyle(&self) -> UIUserInterfaceStyle;
 
         #[cfg(feature = "UIInterface")]
-        #[method_id(@__retain_semantics Other traitCollectionWithLayoutDirection:)]
+        #[method_id(@__method_family Other traitCollectionWithLayoutDirection:)]
         pub unsafe fn traitCollectionWithLayoutDirection(
             layout_direction: UITraitEnvironmentLayoutDirection,
         ) -> Retained<UITraitCollection>;
@@ -89,7 +89,7 @@ extern_methods!(
         pub unsafe fn layoutDirection(&self) -> UITraitEnvironmentLayoutDirection;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other traitCollectionWithDisplayScale:)]
+        #[method_id(@__method_family Other traitCollectionWithDisplayScale:)]
         pub unsafe fn traitCollectionWithDisplayScale(
             scale: CGFloat,
         ) -> Retained<UITraitCollection>;
@@ -99,7 +99,7 @@ extern_methods!(
         pub unsafe fn displayScale(&self) -> CGFloat;
 
         #[cfg(feature = "UIInterface")]
-        #[method_id(@__retain_semantics Other traitCollectionWithHorizontalSizeClass:)]
+        #[method_id(@__method_family Other traitCollectionWithHorizontalSizeClass:)]
         pub unsafe fn traitCollectionWithHorizontalSizeClass(
             horizontal_size_class: UIUserInterfaceSizeClass,
         ) -> Retained<UITraitCollection>;
@@ -109,7 +109,7 @@ extern_methods!(
         pub unsafe fn horizontalSizeClass(&self) -> UIUserInterfaceSizeClass;
 
         #[cfg(feature = "UIInterface")]
-        #[method_id(@__retain_semantics Other traitCollectionWithVerticalSizeClass:)]
+        #[method_id(@__method_family Other traitCollectionWithVerticalSizeClass:)]
         pub unsafe fn traitCollectionWithVerticalSizeClass(
             vertical_size_class: UIUserInterfaceSizeClass,
         ) -> Retained<UITraitCollection>;
@@ -119,7 +119,7 @@ extern_methods!(
         pub unsafe fn verticalSizeClass(&self) -> UIUserInterfaceSizeClass;
 
         #[cfg(feature = "UITouch")]
-        #[method_id(@__retain_semantics Other traitCollectionWithForceTouchCapability:)]
+        #[method_id(@__method_family Other traitCollectionWithForceTouchCapability:)]
         pub unsafe fn traitCollectionWithForceTouchCapability(
             capability: UIForceTouchCapability,
         ) -> Retained<UITraitCollection>;
@@ -129,17 +129,17 @@ extern_methods!(
         pub fn forceTouchCapability(&self) -> UIForceTouchCapability;
 
         #[cfg(feature = "UIContentSizeCategory")]
-        #[method_id(@__retain_semantics Other traitCollectionWithPreferredContentSizeCategory:)]
+        #[method_id(@__method_family Other traitCollectionWithPreferredContentSizeCategory:)]
         pub unsafe fn traitCollectionWithPreferredContentSizeCategory(
             preferred_content_size_category: &UIContentSizeCategory,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UIContentSizeCategory")]
-        #[method_id(@__retain_semantics Other preferredContentSizeCategory)]
+        #[method_id(@__method_family Other preferredContentSizeCategory)]
         pub unsafe fn preferredContentSizeCategory(&self) -> Retained<UIContentSizeCategory>;
 
         #[cfg(feature = "UIInterface")]
-        #[method_id(@__retain_semantics Other traitCollectionWithDisplayGamut:)]
+        #[method_id(@__method_family Other traitCollectionWithDisplayGamut:)]
         pub unsafe fn traitCollectionWithDisplayGamut(
             display_gamut: UIDisplayGamut,
         ) -> Retained<UITraitCollection>;
@@ -149,7 +149,7 @@ extern_methods!(
         pub unsafe fn displayGamut(&self) -> UIDisplayGamut;
 
         #[cfg(feature = "UIInterface")]
-        #[method_id(@__retain_semantics Other traitCollectionWithAccessibilityContrast:)]
+        #[method_id(@__method_family Other traitCollectionWithAccessibilityContrast:)]
         pub unsafe fn traitCollectionWithAccessibilityContrast(
             accessibility_contrast: UIAccessibilityContrast,
         ) -> Retained<UITraitCollection>;
@@ -159,7 +159,7 @@ extern_methods!(
         pub unsafe fn accessibilityContrast(&self) -> UIAccessibilityContrast;
 
         #[cfg(feature = "UIInterface")]
-        #[method_id(@__retain_semantics Other traitCollectionWithUserInterfaceLevel:)]
+        #[method_id(@__method_family Other traitCollectionWithUserInterfaceLevel:)]
         pub unsafe fn traitCollectionWithUserInterfaceLevel(
             user_interface_level: UIUserInterfaceLevel,
         ) -> Retained<UITraitCollection>;
@@ -169,7 +169,7 @@ extern_methods!(
         pub unsafe fn userInterfaceLevel(&self) -> UIUserInterfaceLevel;
 
         #[cfg(feature = "UIInterface")]
-        #[method_id(@__retain_semantics Other traitCollectionWithLegibilityWeight:)]
+        #[method_id(@__method_family Other traitCollectionWithLegibilityWeight:)]
         pub unsafe fn traitCollectionWithLegibilityWeight(
             legibility_weight: UILegibilityWeight,
         ) -> Retained<UITraitCollection>;
@@ -179,7 +179,7 @@ extern_methods!(
         pub unsafe fn legibilityWeight(&self) -> UILegibilityWeight;
 
         #[cfg(feature = "UIInterface")]
-        #[method_id(@__retain_semantics Other traitCollectionWithActiveAppearance:)]
+        #[method_id(@__method_family Other traitCollectionWithActiveAppearance:)]
         pub unsafe fn traitCollectionWithActiveAppearance(
             user_interface_active_appearance: UIUserInterfaceActiveAppearance,
         ) -> Retained<UITraitCollection>;
@@ -189,7 +189,7 @@ extern_methods!(
         pub unsafe fn activeAppearance(&self) -> UIUserInterfaceActiveAppearance;
 
         #[cfg(feature = "UIInterface")]
-        #[method_id(@__retain_semantics Other traitCollectionWithToolbarItemPresentationSize:)]
+        #[method_id(@__method_family Other traitCollectionWithToolbarItemPresentationSize:)]
         pub unsafe fn traitCollectionWithToolbarItemPresentationSize(
             toolbar_item_presentation_size: UINSToolbarItemPresentationSize,
         ) -> Retained<UITraitCollection>;
@@ -200,7 +200,7 @@ extern_methods!(
 
         #[cfg(feature = "UIInterface")]
         /// Construct a new trait collection with the given image content dynamic range.
-        #[method_id(@__retain_semantics Other traitCollectionWithImageDynamicRange:)]
+        #[method_id(@__method_family Other traitCollectionWithImageDynamicRange:)]
         pub unsafe fn traitCollectionWithImageDynamicRange(
             image_dynamic_range: UIImageDynamicRange,
         ) -> Retained<UITraitCollection>;
@@ -210,17 +210,17 @@ extern_methods!(
         #[method(imageDynamicRange)]
         pub unsafe fn imageDynamicRange(&self) -> UIImageDynamicRange;
 
-        #[method_id(@__retain_semantics Other traitCollectionWithTypesettingLanguage:)]
+        #[method_id(@__method_family Other traitCollectionWithTypesettingLanguage:)]
         pub unsafe fn traitCollectionWithTypesettingLanguage(
             language: &NSString,
         ) -> Retained<UITraitCollection>;
 
-        #[method_id(@__retain_semantics Other typesettingLanguage)]
+        #[method_id(@__method_family Other typesettingLanguage)]
         pub unsafe fn typesettingLanguage(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UISceneDefinitions")]
         /// Construct a new trait collection with the given scene capture state.
-        #[method_id(@__retain_semantics Other traitCollectionWithSceneCaptureState:)]
+        #[method_id(@__method_family Other traitCollectionWithSceneCaptureState:)]
         pub unsafe fn traitCollectionWithSceneCaptureState(
             scene_capture_state: UISceneCaptureState,
         ) -> Retained<UITraitCollection>;
@@ -232,7 +232,7 @@ extern_methods!(
 
         #[cfg(feature = "UITraitListEnvironment")]
         /// Construct a new trait collection with the given `listEnvironment`.
-        #[method_id(@__retain_semantics Other traitCollectionWithListEnvironment:)]
+        #[method_id(@__method_family Other traitCollectionWithListEnvironment:)]
         pub unsafe fn traitCollectionWithListEnvironment(
             list_environment: UIListEnvironment,
         ) -> Retained<UITraitCollection>;
@@ -247,7 +247,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UITraitCollection {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -280,7 +280,7 @@ extern_protocol!(
         );
 
         #[cfg(feature = "UITrait")]
-        #[method_id(@__retain_semantics Other objectForTrait:)]
+        #[method_id(@__method_family Other objectForTrait:)]
         unsafe fn objectForTrait(
             &self,
             r#trait: &UIObjectTrait,
@@ -350,7 +350,7 @@ extern_protocol!(
         unsafe fn setForceTouchCapability(&self, force_touch_capability: UIForceTouchCapability);
 
         #[cfg(feature = "UIContentSizeCategory")]
-        #[method_id(@__retain_semantics Other preferredContentSizeCategory)]
+        #[method_id(@__method_family Other preferredContentSizeCategory)]
         unsafe fn preferredContentSizeCategory(&self) -> Retained<UIContentSizeCategory>;
 
         #[cfg(feature = "UIContentSizeCategory")]
@@ -436,7 +436,7 @@ extern_protocol!(
         #[method(setSceneCaptureState:)]
         unsafe fn setSceneCaptureState(&self, scene_capture_state: UISceneCaptureState);
 
-        #[method_id(@__retain_semantics Other typesettingLanguage)]
+        #[method_id(@__method_family Other typesettingLanguage)]
         unsafe fn typesettingLanguage(&self) -> Retained<NSString>;
 
         /// Setter for [`typesettingLanguage`][Self::typesettingLanguage].
@@ -462,27 +462,27 @@ pub type UITraitMutations =
 extern_methods!(
     unsafe impl UITraitCollection {
         #[cfg(feature = "block2")]
-        #[method_id(@__retain_semantics Other traitCollectionWithTraits:)]
+        #[method_id(@__method_family Other traitCollectionWithTraits:)]
         pub unsafe fn traitCollectionWithTraits(
             mutations: UITraitMutations,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__retain_semantics Other traitCollectionByModifyingTraits:)]
+        #[method_id(@__method_family Other traitCollectionByModifyingTraits:)]
         pub unsafe fn traitCollectionByModifyingTraits(
             &self,
             mutations: UITraitMutations,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(all(feature = "UITrait", feature = "objc2-core-foundation"))]
-        #[method_id(@__retain_semantics Other traitCollectionWithCGFloatValue:forTrait:)]
+        #[method_id(@__method_family Other traitCollectionWithCGFloatValue:forTrait:)]
         pub unsafe fn traitCollectionWithCGFloatValue_forTrait(
             value: CGFloat,
             r#trait: &UICGFloatTrait,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(all(feature = "UITrait", feature = "objc2-core-foundation"))]
-        #[method_id(@__retain_semantics Other traitCollectionByReplacingCGFloatValue:forTrait:)]
+        #[method_id(@__method_family Other traitCollectionByReplacingCGFloatValue:forTrait:)]
         pub unsafe fn traitCollectionByReplacingCGFloatValue_forTrait(
             &self,
             value: CGFloat,
@@ -494,14 +494,14 @@ extern_methods!(
         pub unsafe fn valueForCGFloatTrait(&self, r#trait: &UICGFloatTrait) -> CGFloat;
 
         #[cfg(feature = "UITrait")]
-        #[method_id(@__retain_semantics Other traitCollectionWithNSIntegerValue:forTrait:)]
+        #[method_id(@__method_family Other traitCollectionWithNSIntegerValue:forTrait:)]
         pub unsafe fn traitCollectionWithNSIntegerValue_forTrait(
             value: NSInteger,
             r#trait: &UINSIntegerTrait,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITrait")]
-        #[method_id(@__retain_semantics Other traitCollectionByReplacingNSIntegerValue:forTrait:)]
+        #[method_id(@__method_family Other traitCollectionByReplacingNSIntegerValue:forTrait:)]
         pub unsafe fn traitCollectionByReplacingNSIntegerValue_forTrait(
             &self,
             value: NSInteger,
@@ -513,14 +513,14 @@ extern_methods!(
         pub unsafe fn valueForNSIntegerTrait(&self, r#trait: &UINSIntegerTrait) -> NSInteger;
 
         #[cfg(feature = "UITrait")]
-        #[method_id(@__retain_semantics Other traitCollectionWithObject:forTrait:)]
+        #[method_id(@__method_family Other traitCollectionWithObject:forTrait:)]
         pub unsafe fn traitCollectionWithObject_forTrait(
             object: Option<&ProtocolObject<dyn NSObjectProtocol>>,
             r#trait: &UIObjectTrait,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITrait")]
-        #[method_id(@__retain_semantics Other traitCollectionByReplacingObject:forTrait:)]
+        #[method_id(@__method_family Other traitCollectionByReplacingObject:forTrait:)]
         pub unsafe fn traitCollectionByReplacingObject_forTrait(
             &self,
             object: Option<&ProtocolObject<dyn NSObjectProtocol>>,
@@ -528,7 +528,7 @@ extern_methods!(
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITrait")]
-        #[method_id(@__retain_semantics Other objectForTrait:)]
+        #[method_id(@__method_family Other objectForTrait:)]
         pub unsafe fn objectForTrait(
             &self,
             r#trait: &UIObjectTrait,
@@ -541,7 +541,7 @@ extern_protocol!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitenvironment?language=objc)
     pub unsafe trait UITraitEnvironment: NSObjectProtocol + MainThreadOnly {
-        #[method_id(@__retain_semantics Other traitCollection)]
+        #[method_id(@__method_family Other traitCollection)]
         fn traitCollection(&self) -> Retained<UITraitCollection>;
 
         /// To be overridden as needed to provide custom behavior when the environment's traits change.
@@ -595,7 +595,7 @@ extern_protocol!(
 extern_methods!(
     /// CurrentTraitCollection
     unsafe impl UITraitCollection {
-        #[method_id(@__retain_semantics Other currentTraitCollection)]
+        #[method_id(@__method_family Other currentTraitCollection)]
         pub unsafe fn currentTraitCollection() -> Retained<UITraitCollection>;
 
         /// Setter for [`currentTraitCollection`][Self::currentTraitCollection].
@@ -626,7 +626,7 @@ extern_methods!(
     /// ImageConfiguration
     unsafe impl UITraitCollection {
         #[cfg(feature = "UIImageConfiguration")]
-        #[method_id(@__retain_semantics Other imageConfiguration)]
+        #[method_id(@__method_family Other imageConfiguration)]
         pub unsafe fn imageConfiguration(&self) -> Retained<UIImageConfiguration>;
     }
 );

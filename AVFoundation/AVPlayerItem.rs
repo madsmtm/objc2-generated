@@ -117,10 +117,10 @@ unsafe impl NSObjectProtocol for AVPlayerItem {}
 
 extern_methods!(
     unsafe impl AVPlayerItem {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns an instance of AVPlayerItem for playing a resource at the specified location.
@@ -129,7 +129,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayerItem.
         ///
         /// Equivalent to +playerItemWithAsset:, passing [AVAsset assetWithURL:URL] as the value of asset.
-        #[method_id(@__retain_semantics Other playerItemWithURL:)]
+        #[method_id(@__method_family Other playerItemWithURL:)]
         pub unsafe fn playerItemWithURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
@@ -145,7 +145,7 @@ extern_methods!(
         /// duration" ] as the value of automaticallyLoadedAssetKeys.
         ///
         /// This method, along with the companion `asset` property, is MainActor-isolated for Swift clients because AVAsset is not Sendable.  If you are using a Sendable subclass of AVAsset, such as AVURLAsset, an overload of this initializer will be chosen automatically to allow you to initialize an AVPlayerItem while not running on the main actor.
-        #[method_id(@__retain_semantics Other playerItemWithAsset:)]
+        #[method_id(@__method_family Other playerItemWithAsset:)]
         pub unsafe fn playerItemWithAsset(asset: &AVAsset, mtm: MainThreadMarker)
             -> Retained<Self>;
 
@@ -160,7 +160,7 @@ extern_methods!(
         /// The value of each key in automaticallyLoadedAssetKeys will be automatically be loaded by the underlying AVAsset before the receiver achieves the status AVPlayerItemStatusReadyToPlay; i.e. when the item is ready to play, the value of -[[AVPlayerItem asset] statusOfValueForKey:error:] will be one of the terminal status values greater than AVKeyValueStatusLoading.
         ///
         /// This method, along with the companion `asset` property, is MainActor-isolated for Swift clients because AVAsset is not Sendable.  If you are using a Sendable subclass of AVAsset, such as AVURLAsset, you can use `init(asset:automaticallyLoadedAssetKeys:)` to initialize an AVPlayerItem while not running on the main actor.
-        #[method_id(@__retain_semantics Other playerItemWithAsset:automaticallyLoadedAssetKeys:)]
+        #[method_id(@__method_family Other playerItemWithAsset:automaticallyLoadedAssetKeys:)]
         pub unsafe fn playerItemWithAsset_automaticallyLoadedAssetKeys(
             asset: &AVAsset,
             automatically_loaded_asset_keys: Option<&NSArray<NSString>>,
@@ -173,7 +173,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayerItem
         ///
         /// Equivalent to -initWithAsset:, passing [AVAsset assetWithURL:URL] as the value of asset.
-        #[method_id(@__retain_semantics Init initWithURL:)]
+        #[method_id(@__method_family Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
@@ -189,7 +189,7 @@ extern_methods!(
         /// duration" ] as the value of automaticallyLoadedAssetKeys.
         ///
         /// This method, along with the companion `asset` property, is MainActor-isolated for Swift clients because AVAsset is not Sendable.  If you are using a Sendable subclass of AVAsset, such as AVURLAsset, an overload of this initializer will be chosen automatically to allow you to initialize an AVPlayerItem while not running on the main actor.
-        #[method_id(@__retain_semantics Init initWithAsset:)]
+        #[method_id(@__method_family Init initWithAsset:)]
         pub unsafe fn initWithAsset(this: Allocated<Self>, asset: &AVAsset) -> Retained<Self>;
 
         #[cfg(feature = "AVAsset")]
@@ -204,17 +204,17 @@ extern_methods!(
         /// The value of each key in automaticallyLoadedAssetKeys will be automatically be loaded by the underlying AVAsset before the receiver achieves the status AVPlayerItemStatusReadyToPlay; i.e. when the item is ready to play, the value of -[[AVPlayerItem asset] statusOfValueForKey:error:] will be one of the terminal status values greater than AVKeyValueStatusLoading.
         ///
         /// This method, along with the companion `asset` property, is MainActor-isolated for Swift clients because AVAsset is not Sendable.  If you are using a Sendable subclass of AVAsset, such as AVURLAsset, you can use `init(asset:automaticallyLoadedAssetKeys:)` to initialize an AVPlayerItem while not running on the main actor.
-        #[method_id(@__retain_semantics Init initWithAsset:automaticallyLoadedAssetKeys:)]
+        #[method_id(@__method_family Init initWithAsset:automaticallyLoadedAssetKeys:)]
         pub unsafe fn initWithAsset_automaticallyLoadedAssetKeys(
             this: Allocated<Self>,
             asset: &AVAsset,
             automatically_loaded_asset_keys: Option<&NSArray<NSString>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Copy copyWithZone:)]
+        #[method_id(@__method_family Copy copyWithZone:)]
         pub unsafe fn copyWithZone(&self, zone: *mut NSZone) -> Retained<AnyObject>;
 
-        #[method_id(@__retain_semantics Copy copy)]
+        #[method_id(@__method_family Copy copy)]
         pub unsafe fn copy(&self) -> Retained<AnyObject>;
 
         /// The ability of the receiver to be used for playback.
@@ -233,7 +233,7 @@ extern_methods!(
         ///
         /// The value of this property is an NSError that describes what caused the receiver to no longer be able to be played.
         /// If the receiver's status is not AVPlayerItemStatusFailed, the value of this property is nil.
-        #[method_id(@__retain_semantics Other error)]
+        #[method_id(@__method_family Other error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
 );
@@ -243,7 +243,7 @@ extern_methods!(
     unsafe impl AVPlayerItem {
         #[cfg(feature = "AVAsset")]
         /// Accessor for underlying AVAsset.
-        #[method_id(@__retain_semantics Other asset)]
+        #[method_id(@__method_family Other asset)]
         pub unsafe fn asset(&self) -> Retained<AVAsset>;
 
         #[cfg(feature = "AVPlayerItemTrack")]
@@ -253,7 +253,7 @@ extern_methods!(
         /// The value of this property will accord with the properties of the underlying media resource when the receiver becomes ready to play.
         /// Before the underlying media resource has been sufficiently loaded, its value is an empty NSArray. Use key-value observation to obtain
         /// a valid array of tracks as soon as it becomes available.
-        #[method_id(@__retain_semantics Other tracks)]
+        #[method_id(@__method_family Other tracks)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVPlayerItemTrack>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -296,13 +296,13 @@ extern_methods!(
         ///
         /// This property must be accessed on the main thread/queue.
         #[deprecated = "Use AVPlayerItemMetadataOutput to obtain timed metadata"]
-        #[method_id(@__retain_semantics Other timedMetadata)]
+        #[method_id(@__method_family Other timedMetadata)]
         pub unsafe fn timedMetadata(&self) -> Option<Retained<NSArray<AVMetadataItem>>>;
 
         /// An array of property keys defined on AVAsset. The value of each key in the array is automatically loaded while the receiver is being made ready to play.
         ///
         /// The value of each key in automaticallyLoadedAssetKeys will be automatically be loaded by the underlying AVAsset before the receiver achieves the status AVPlayerItemStatusReadyToPlay; i.e. when the item is ready to play, the value of -[[AVPlayerItem asset] statusOfValueForKey:error:] will be AVKeyValueStatusLoaded. If loading of any of the values fails, the status of the AVPlayerItem will change instead to AVPlayerItemStatusFailed..
-        #[method_id(@__retain_semantics Other automaticallyLoadedAssetKeys)]
+        #[method_id(@__method_family Other automaticallyLoadedAssetKeys)]
         pub unsafe fn automaticallyLoadedAssetKeys(&self) -> Retained<NSArray<NSString>>;
     }
 );
@@ -429,7 +429,7 @@ extern_methods!(
         /// This property provides a collection of time ranges that the player item can seek to. The ranges provided might be discontinous.
         ///
         /// Returns an NSArray of NSValues containing CMTimeRanges.
-        #[method_id(@__retain_semantics Other seekableTimeRanges)]
+        #[method_id(@__method_family Other seekableTimeRanges)]
         pub unsafe fn seekableTimeRanges(&self) -> Retained<NSArray<NSValue>>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
@@ -487,7 +487,7 @@ extern_methods!(
         /// If currentTime is mapped to a particular (real-time) date, return that date.
         ///
         /// Returns: Returns the date of current playback, or nil if playback is not mapped to any date.
-        #[method_id(@__retain_semantics Other currentDate)]
+        #[method_id(@__method_family Other currentDate)]
         pub unsafe fn currentDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "block2")]
@@ -527,7 +527,7 @@ extern_methods!(
         ///
         /// You can examine the timebase to discover the relationship between the item's time and the source clock used for drift synchronization.
         /// This timebase is read-only; you cannot set its time or rate to affect playback.
-        #[method_id(@__retain_semantics Other timebase)]
+        #[method_id(@__method_family Other timebase)]
         pub unsafe fn timebase(&self) -> Option<Retained<CMTimebase>>;
     }
 );
@@ -544,7 +544,7 @@ extern_methods!(
         /// - renderSize, renderScale, or frameDuration is less than or equal to zero
         /// - sourceTrackIDForFrameTiming is less than or equal to zero
         /// - uses AVVideoCompositionCoreAnimationTool (works for offline rendering only)
-        #[method_id(@__retain_semantics Other videoComposition)]
+        #[method_id(@__method_family Other videoComposition)]
         pub unsafe fn videoComposition(&self) -> Option<Retained<AVVideoComposition>>;
 
         #[cfg(feature = "AVVideoComposition")]
@@ -558,7 +558,7 @@ extern_methods!(
         /// This property is nil if there is no video compositor, or if the internal video compositor is in use. This reference can be used to provide extra context to the custom video compositor instance if required.  The value of this property can change as a result of setting the `videoComposition` property.
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this property must be accessed on the main thread/queue.
-        #[method_id(@__retain_semantics Other customVideoCompositor)]
+        #[method_id(@__method_family Other customVideoCompositor)]
         pub unsafe fn customVideoCompositor(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVVideoCompositing>>>;
@@ -590,7 +590,7 @@ extern_methods!(
         /// The styling information contained in each AVTextStyleRule object in the array is used only when no equivalent styling information is provided by the media resource being played.  For example, if the text style rules specify Courier font but the media resource specifies Helvetica font, the text will be drawn using Helvetica font.
         ///
         /// This property has an effect only for tracks with media subtype kCMSubtitleFormatType_WebVTT.
-        #[method_id(@__retain_semantics Other textStyleRules)]
+        #[method_id(@__method_family Other textStyleRules)]
         pub unsafe fn textStyleRules(&self) -> Option<Retained<NSArray<AVTextStyleRule>>>;
 
         #[cfg(feature = "AVTextStyleRule")]
@@ -602,7 +602,7 @@ extern_methods!(
         /// Specifies the video aperture mode to apply during playback.
         ///
         /// See AVVideoApertureMode constants defined in AVVideoSettings.h. Default is AVVideoApertureModeCleanAperture.
-        #[method_id(@__retain_semantics Other videoApertureMode)]
+        #[method_id(@__method_family Other videoApertureMode)]
         pub unsafe fn videoApertureMode(&self) -> Retained<AVVideoApertureMode>;
 
         #[cfg(feature = "AVVideoSettings")]
@@ -632,7 +632,7 @@ extern_methods!(
         /// Constants for various time pitch algorithms, e.g. AVAudioTimePitchSpectral, are defined in AVAudioProcessingSettings.h.
         /// The default value for applications linked on or after iOS 15.0 or macOS 12.0 is AVAudioTimePitchAlgorithmTimeDomain. For iOS versions prior to 15.0 the default value is AVAudioTimePitchAlgorithmLowQualityZeroLatency.
         /// For macOS versions prior to 12.0 the default value is AVAudioTimePitchAlgorithmSpectral.
-        #[method_id(@__retain_semantics Other audioTimePitchAlgorithm)]
+        #[method_id(@__method_family Other audioTimePitchAlgorithm)]
         pub unsafe fn audioTimePitchAlgorithm(&self) -> Retained<AVAudioTimePitchAlgorithm>;
 
         #[cfg(feature = "AVAudioProcessingSettings")]
@@ -674,7 +674,7 @@ extern_methods!(
         /// Indicates the audio mix parameters to be applied during playback
         ///
         /// The inputParameters of the AVAudioMix must have trackIDs that correspond to a track of the receiver's asset. Otherwise they will be ignored. (See AVAudioMix.h for the declaration of AVAudioMixInputParameters and AVPlayerItem's asset property.)
-        #[method_id(@__retain_semantics Other audioMix)]
+        #[method_id(@__method_family Other audioMix)]
         pub unsafe fn audioMix(&self) -> Option<Retained<AVAudioMix>>;
 
         #[cfg(feature = "AVAudioMix")]
@@ -690,7 +690,7 @@ extern_methods!(
         /// This property provides a collection of time ranges for which the player has the media data readily available. The ranges provided might be discontinuous.
         ///
         /// Returns an NSArray of NSValues containing CMTimeRanges.
-        #[method_id(@__retain_semantics Other loadedTimeRanges)]
+        #[method_id(@__method_family Other loadedTimeRanges)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
 
         /// Indicates whether the item will likely play through without stalling.
@@ -919,7 +919,7 @@ extern_methods!(
 
         #[cfg(feature = "AVMediaSelection")]
         /// Provides an instance of AVMediaSelection carrying current selections for each of the receiver's media selection groups.
-        #[method_id(@__retain_semantics Other currentMediaSelection)]
+        #[method_id(@__method_family Other currentMediaSelection)]
         pub unsafe fn currentMediaSelection(&self) -> Retained<AVMediaSelection>;
     }
 );
@@ -934,7 +934,7 @@ extern_methods!(
         /// An AVPlayerItemNewAccessLogEntryNotification will be posted when new logging information becomes available. However, accessLog might already return a non-nil value even before the first notification is posted.
         ///
         /// Returns: An autoreleased AVPlayerItemAccessLog instance.
-        #[method_id(@__retain_semantics Other accessLog)]
+        #[method_id(@__method_family Other accessLog)]
         pub unsafe fn accessLog(&self) -> Option<Retained<AVPlayerItemAccessLog>>;
 
         /// Returns an object that represents a snapshot of the error log. Can be nil.
@@ -943,7 +943,7 @@ extern_methods!(
         /// If nil is returned then there is no logging information currently available for this AVPlayerItem.
         ///
         /// Returns: An autoreleased AVPlayerItemErrorLog instance.
-        #[method_id(@__retain_semantics Other errorLog)]
+        #[method_id(@__method_family Other errorLog)]
         pub unsafe fn errorLog(&self) -> Option<Retained<AVPlayerItemErrorLog>>;
     }
 );
@@ -971,7 +971,7 @@ extern_methods!(
 
         #[cfg(feature = "AVPlayerItemOutput")]
         /// The collection of associated outputs.
-        #[method_id(@__retain_semantics Other outputs)]
+        #[method_id(@__method_family Other outputs)]
         pub unsafe fn outputs(&self) -> Retained<NSArray<AVPlayerItemOutput>>;
     }
 );
@@ -997,7 +997,7 @@ extern_methods!(
 
         #[cfg(feature = "AVPlayerItemMediaDataCollector")]
         /// The collection of associated mediaDataCollectors.
-        #[method_id(@__retain_semantics Other mediaDataCollectors)]
+        #[method_id(@__method_family Other mediaDataCollectors)]
         pub unsafe fn mediaDataCollectors(
             &self,
         ) -> Retained<NSArray<AVPlayerItemMediaDataCollector>>;
@@ -1062,7 +1062,7 @@ extern_methods!(
         ///
         /// If the value of the property allowsEmptySelection of the AVMediaSelectionGroup is YES, the currently selected option in the group may be nil.
         #[deprecated = "Use currentMediaSelection to obtain an instance of AVMediaSelection, which encompasses the currently selected AVMediaSelectionOption in each of the available AVMediaSelectionGroups"]
-        #[method_id(@__retain_semantics Other selectedMediaOptionInMediaSelectionGroup:)]
+        #[method_id(@__method_family Other selectedMediaOptionInMediaSelectionGroup:)]
         pub unsafe fn selectedMediaOptionInMediaSelectionGroup(
             &self,
             media_selection_group: &AVMediaSelectionGroup,
@@ -1099,10 +1099,10 @@ unsafe impl NSObjectProtocol for AVPlayerItemAccessLog {}
 
 extern_methods!(
     unsafe impl AVPlayerItemAccessLog {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Serializes an AVPlayerItemAccessLog in the Extended Log File Format.
@@ -1112,7 +1112,7 @@ extern_methods!(
         /// For more information see: http://www.w3.org/pub/WWW/TR/WD-logfile.html
         ///
         /// Returns: An autoreleased NSData instance.
-        #[method_id(@__retain_semantics Other extendedLogData)]
+        #[method_id(@__method_family Other extendedLogData)]
         pub unsafe fn extendedLogData(&self) -> Option<Retained<NSData>>;
 
         /// Returns the NSStringEncoding for extendedLogData, see above.
@@ -1127,7 +1127,7 @@ extern_methods!(
         /// An ordered collection of AVPlayerItemAccessLogEvent instances that represent the chronological
         /// sequence of events contained in the access log.
         /// This property is not observable.
-        #[method_id(@__retain_semantics Other events)]
+        #[method_id(@__method_family Other events)]
         pub unsafe fn events(&self) -> Retained<NSArray<AVPlayerItemAccessLogEvent>>;
     }
 );
@@ -1159,10 +1159,10 @@ unsafe impl NSObjectProtocol for AVPlayerItemErrorLog {}
 
 extern_methods!(
     unsafe impl AVPlayerItemErrorLog {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Serializes an AVPlayerItemErrorLog in the Extended Log File Format.
@@ -1172,7 +1172,7 @@ extern_methods!(
         /// For more information see: http://www.w3.org/pub/WWW/TR/WD-logfile.html
         ///
         /// Returns: An autoreleased NSData instance.
-        #[method_id(@__retain_semantics Other extendedLogData)]
+        #[method_id(@__method_family Other extendedLogData)]
         pub unsafe fn extendedLogData(&self) -> Option<Retained<NSData>>;
 
         /// Returns the NSStringEncoding for extendedLogData, see above.
@@ -1187,7 +1187,7 @@ extern_methods!(
         /// An ordered collection of AVPlayerItemErrorLogEvent instances that represent the chronological
         /// sequence of events contained in the error log.
         /// This property is not observable.
-        #[method_id(@__retain_semantics Other events)]
+        #[method_id(@__method_family Other events)]
         pub unsafe fn events(&self) -> Retained<NSArray<AVPlayerItemErrorLogEvent>>;
     }
 );
@@ -1220,10 +1220,10 @@ unsafe impl NSObjectProtocol for AVPlayerItemAccessLogEvent {}
 
 extern_methods!(
     unsafe impl AVPlayerItemAccessLogEvent {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// A count of media segments downloaded.
@@ -1248,21 +1248,21 @@ extern_methods!(
         ///
         /// If nil is returned the date is unknown. Corresponds to "date".
         /// This property is not observable.
-        #[method_id(@__retain_semantics Other playbackStartDate)]
+        #[method_id(@__method_family Other playbackStartDate)]
         pub unsafe fn playbackStartDate(&self) -> Option<Retained<NSDate>>;
 
         /// The URI of the playback item. Can be nil.
         ///
         /// If nil is returned the URI is unknown. Corresponds to "uri".
         /// This property is not observable.
-        #[method_id(@__retain_semantics Other URI)]
+        #[method_id(@__method_family Other URI)]
         pub unsafe fn URI(&self) -> Option<Retained<NSString>>;
 
         /// The IP address of the server that was the source of the last delivered media segment. Can be nil.
         ///
         /// If nil is returned the address is unknown. Can be either an IPv4 or IPv6 address. Corresponds to "s-ip".
         /// This property is not observable.
-        #[method_id(@__retain_semantics Other serverAddress)]
+        #[method_id(@__method_family Other serverAddress)]
         pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
 
         /// A count of changes to the property serverAddress, see above, over the last uninterrupted period of playback.
@@ -1276,7 +1276,7 @@ extern_methods!(
         ///
         /// If nil is returned the GUID is unknown. Corresponds to "cs-guid".
         /// This property is not observable.
-        #[method_id(@__retain_semantics Other playbackSessionID)]
+        #[method_id(@__method_family Other playbackSessionID)]
         pub unsafe fn playbackSessionID(&self) -> Option<Retained<NSString>>;
 
         /// An offset into the playlist where the last uninterrupted period of playback began. Measured in seconds.
@@ -1404,7 +1404,7 @@ extern_methods!(
         ///
         /// If nil is returned the playback type is unknown. Corresponds to "s-playback-type".
         /// This property is not observable.
-        #[method_id(@__retain_semantics Other playbackType)]
+        #[method_id(@__method_family Other playbackType)]
         pub unsafe fn playbackType(&self) -> Option<Retained<NSString>>;
 
         /// Number of network read requests over WWAN.
@@ -1451,38 +1451,38 @@ unsafe impl NSObjectProtocol for AVPlayerItemErrorLogEvent {}
 
 extern_methods!(
     unsafe impl AVPlayerItemErrorLogEvent {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The date and time when the error occured. Can be nil.
         ///
         /// If nil is returned the date is unknown. Corresponds to "date".
         /// This property is not observable.
-        #[method_id(@__retain_semantics Other date)]
+        #[method_id(@__method_family Other date)]
         pub unsafe fn date(&self) -> Option<Retained<NSDate>>;
 
         /// The URI of the playback item. Can be nil.
         ///
         /// If nil is returned the URI is unknown. Corresponds to "uri".
         /// This property is not observable.
-        #[method_id(@__retain_semantics Other URI)]
+        #[method_id(@__method_family Other URI)]
         pub unsafe fn URI(&self) -> Option<Retained<NSString>>;
 
         /// The IP address of the server that was the source of the error. Can be nil.
         ///
         /// If nil is returned the address is unknown. Can be either an IPv4 or IPv6 address. Corresponds to "s-ip".
         /// This property is not observable.
-        #[method_id(@__retain_semantics Other serverAddress)]
+        #[method_id(@__method_family Other serverAddress)]
         pub unsafe fn serverAddress(&self) -> Option<Retained<NSString>>;
 
         /// A GUID that identifies the playback session. This value is used in HTTP requests. Can be nil.
         ///
         /// If nil is returned the GUID is unknown. Corresponds to "cs-guid".
         /// This property is not observable.
-        #[method_id(@__retain_semantics Other playbackSessionID)]
+        #[method_id(@__method_family Other playbackSessionID)]
         pub unsafe fn playbackSessionID(&self) -> Option<Retained<NSString>>;
 
         /// A unique error code identifier.
@@ -1496,17 +1496,17 @@ extern_methods!(
         ///
         /// Corresponds to "domain".
         /// This property is not observable.
-        #[method_id(@__retain_semantics Other errorDomain)]
+        #[method_id(@__method_family Other errorDomain)]
         pub unsafe fn errorDomain(&self) -> Retained<NSString>;
 
         /// A description of the error encountered. Can be nil.
         ///
         /// If nil is returned further information is not available. Corresponds to "comment".
         /// This property is not observable.
-        #[method_id(@__retain_semantics Other errorComment)]
+        #[method_id(@__method_family Other errorComment)]
         pub unsafe fn errorComment(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__retain_semantics Other allHTTPResponseHeaderFields)]
+        #[method_id(@__method_family Other allHTTPResponseHeaderFields)]
         pub unsafe fn allHTTPResponseHeaderFields(
             &self,
         ) -> Option<Retained<NSDictionary<NSString, NSString>>>;

@@ -24,7 +24,7 @@ unsafe impl NSObjectProtocol for MKMapSnapshotter {}
 extern_methods!(
     unsafe impl MKMapSnapshotter {
         #[cfg(feature = "MKMapSnapshotOptions")]
-        #[method_id(@__retain_semantics Init initWithOptions:)]
+        #[method_id(@__method_family Init initWithOptions:)]
         pub unsafe fn initWithOptions(
             this: Allocated<Self>,
             options: &MKMapSnapshotOptions,
@@ -48,10 +48,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKMapSnapshotter {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

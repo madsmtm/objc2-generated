@@ -21,10 +21,10 @@ unsafe impl NSObjectProtocol for HMAccessoryOwnershipToken {}
 
 extern_methods!(
     unsafe impl HMAccessoryOwnershipToken {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Creates a new accessory ownership token to add an accessory to the home.
@@ -38,7 +38,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Returns an ownership token object.
-        #[method_id(@__retain_semantics Init initWithData:)]
+        #[method_id(@__method_family Init initWithData:)]
         pub unsafe fn initWithData(this: Allocated<Self>, data: &NSData) -> Option<Retained<Self>>;
     }
 );
@@ -58,10 +58,10 @@ unsafe impl NSObjectProtocol for HMAccessorySetupPayload {}
 
 extern_methods!(
     unsafe impl HMAccessorySetupPayload {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Creates a new accessory setup payload to add an accessory to the home.
@@ -71,7 +71,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Returns an accessory setup payload object if successful or nil on error.
-        #[method_id(@__retain_semantics Init initWithURL:)]
+        #[method_id(@__method_family Init initWithURL:)]
         pub unsafe fn initWithURL(
             this: Allocated<Self>,
             setup_payload_url: Option<&NSURL>,
@@ -87,7 +87,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Returns an accessory setup payload object if successful or nil on error.
-        #[method_id(@__retain_semantics Init initWithURL:ownershipToken:)]
+        #[method_id(@__method_family Init initWithURL:ownershipToken:)]
         pub unsafe fn initWithURL_ownershipToken(
             this: Allocated<Self>,
             setup_payload_url: &NSURL,

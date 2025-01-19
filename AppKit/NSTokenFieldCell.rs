@@ -123,7 +123,7 @@ extern_methods!(
         #[method(defaultCompletionDelay)]
         pub unsafe fn defaultCompletionDelay(mtm: MainThreadMarker) -> NSTimeInterval;
 
-        #[method_id(@__retain_semantics Other tokenizingCharacterSet)]
+        #[method_id(@__method_family Other tokenizingCharacterSet)]
         pub unsafe fn tokenizingCharacterSet(&self) -> Retained<NSCharacterSet>;
 
         /// Setter for [`tokenizingCharacterSet`][Self::tokenizingCharacterSet].
@@ -133,12 +133,12 @@ extern_methods!(
             tokenizing_character_set: Option<&NSCharacterSet>,
         );
 
-        #[method_id(@__retain_semantics Other defaultTokenizingCharacterSet)]
+        #[method_id(@__method_family Other defaultTokenizingCharacterSet)]
         pub unsafe fn defaultTokenizingCharacterSet(
             mtm: MainThreadMarker,
         ) -> Retained<NSCharacterSet>;
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSTokenFieldCellDelegate>>>;
@@ -161,14 +161,14 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSTokenFieldCell {
-        #[method_id(@__retain_semantics Init initTextCell:)]
+        #[method_id(@__method_family Init initTextCell:)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__retain_semantics Init initImageCell:)]
+        #[method_id(@__method_family Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
@@ -184,7 +184,7 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSTokenFieldCell {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -197,7 +197,7 @@ extern_methods!(
         feature = "NSTextFieldCell"
     ))]
     unsafe impl NSTokenFieldCell {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -224,7 +224,7 @@ extern_protocol!(
         ///
         /// If the delegate does not implement this method, no completions are provided
         #[optional]
-        #[method_id(@__retain_semantics Other tokenFieldCell:completionsForSubstring:indexOfToken:indexOfSelectedItem:)]
+        #[method_id(@__method_family Other tokenFieldCell:completionsForSubstring:indexOfToken:indexOfSelectedItem:)]
         unsafe fn tokenFieldCell_completionsForSubstring_indexOfToken_indexOfSelectedItem(
             &self,
             token_field_cell: &NSTokenFieldCell,
@@ -239,7 +239,7 @@ extern_protocol!(
             feature = "NSTextFieldCell"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other tokenFieldCell:shouldAddObjects:atIndex:)]
+        #[method_id(@__method_family Other tokenFieldCell:shouldAddObjects:atIndex:)]
         unsafe fn tokenFieldCell_shouldAddObjects_atIndex(
             &self,
             token_field_cell: &NSTokenFieldCell,
@@ -253,7 +253,7 @@ extern_protocol!(
             feature = "NSTextFieldCell"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other tokenFieldCell:displayStringForRepresentedObject:)]
+        #[method_id(@__method_family Other tokenFieldCell:displayStringForRepresentedObject:)]
         unsafe fn tokenFieldCell_displayStringForRepresentedObject(
             &self,
             token_field_cell: &NSTokenFieldCell,
@@ -266,7 +266,7 @@ extern_protocol!(
             feature = "NSTextFieldCell"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other tokenFieldCell:editingStringForRepresentedObject:)]
+        #[method_id(@__method_family Other tokenFieldCell:editingStringForRepresentedObject:)]
         unsafe fn tokenFieldCell_editingStringForRepresentedObject(
             &self,
             token_field_cell: &NSTokenFieldCell,
@@ -279,7 +279,7 @@ extern_protocol!(
             feature = "NSTextFieldCell"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other tokenFieldCell:representedObjectForEditingString:)]
+        #[method_id(@__method_family Other tokenFieldCell:representedObjectForEditingString:)]
         unsafe fn tokenFieldCell_representedObjectForEditingString(
             &self,
             token_field_cell: &NSTokenFieldCell,
@@ -308,7 +308,7 @@ extern_protocol!(
             feature = "NSTextFieldCell"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other tokenFieldCell:readFromPasteboard:)]
+        #[method_id(@__method_family Other tokenFieldCell:readFromPasteboard:)]
         unsafe fn tokenFieldCell_readFromPasteboard(
             &self,
             token_field_cell: &NSTokenFieldCell,
@@ -322,7 +322,7 @@ extern_protocol!(
             feature = "NSTextFieldCell"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other tokenFieldCell:menuForRepresentedObject:)]
+        #[method_id(@__method_family Other tokenFieldCell:menuForRepresentedObject:)]
         unsafe fn tokenFieldCell_menuForRepresentedObject(
             &self,
             token_field_cell: &NSTokenFieldCell,

@@ -141,14 +141,14 @@ extern_methods!(
         /// Use
         /// `CKFetchShareParticipantsOperation`to create a
         /// `CKShareParticipant`object
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "CKUserIdentity")]
-        #[method_id(@__retain_semantics Other userIdentity)]
+        #[method_id(@__method_family Other userIdentity)]
         pub unsafe fn userIdentity(&self) -> Retained<CKUserIdentity>;
 
         /// The default participant role is
@@ -184,7 +184,7 @@ extern_methods!(
         pub unsafe fn setPermission(&self, permission: CKShareParticipantPermission);
 
         /// A unique identifier for this participant.
-        #[method_id(@__retain_semantics Other participantID)]
+        #[method_id(@__method_family Other participantID)]
         pub unsafe fn participantID(&self) -> Retained<NSString>;
     }
 );

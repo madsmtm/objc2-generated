@@ -40,11 +40,11 @@ unsafe impl NSProgressReporting for NSFontAssetRequest {}
 
 extern_methods!(
     unsafe impl NSFontAssetRequest {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSFontDescriptor")]
-        #[method_id(@__retain_semantics Init initWithFontDescriptors:options:)]
+        #[method_id(@__method_family Init initWithFontDescriptors:options:)]
         pub unsafe fn initWithFontDescriptors_options(
             this: Allocated<Self>,
             font_descriptors: &NSArray<NSFontDescriptor>,
@@ -52,10 +52,10 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSFontDescriptor")]
-        #[method_id(@__retain_semantics Other downloadedFontDescriptors)]
+        #[method_id(@__method_family Other downloadedFontDescriptors)]
         pub unsafe fn downloadedFontDescriptors(&self) -> Retained<NSArray<NSFontDescriptor>>;
 
-        #[method_id(@__retain_semantics Other progress)]
+        #[method_id(@__method_family Other progress)]
         pub unsafe fn progress(&self) -> Retained<NSProgress>;
 
         #[cfg(feature = "block2")]
@@ -70,7 +70,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFontAssetRequest {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

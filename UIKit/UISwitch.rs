@@ -124,7 +124,7 @@ extern_methods!(
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISwitch {
         #[cfg(feature = "UIColor")]
-        #[method_id(@__retain_semantics Other onTintColor)]
+        #[method_id(@__method_family Other onTintColor)]
         pub unsafe fn onTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -133,7 +133,7 @@ extern_methods!(
         pub unsafe fn setOnTintColor(&self, on_tint_color: Option<&UIColor>);
 
         #[cfg(feature = "UIColor")]
-        #[method_id(@__retain_semantics Other thumbTintColor)]
+        #[method_id(@__method_family Other thumbTintColor)]
         pub unsafe fn thumbTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -142,7 +142,7 @@ extern_methods!(
         pub unsafe fn setThumbTintColor(&self, thumb_tint_color: Option<&UIColor>);
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__retain_semantics Other onImage)]
+        #[method_id(@__method_family Other onImage)]
         pub unsafe fn onImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -151,7 +151,7 @@ extern_methods!(
         pub unsafe fn setOnImage(&self, on_image: Option<&UIImage>);
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__retain_semantics Other offImage)]
+        #[method_id(@__method_family Other offImage)]
         pub unsafe fn offImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -162,7 +162,7 @@ extern_methods!(
         /// The title displayed alongside the switch, positioned appropriately for the
         /// `UIUserInterfaceIdiom.`
         /// Note: This property is only supported for Catalyst in the Mac idiom.
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
@@ -189,10 +189,10 @@ extern_methods!(
         pub unsafe fn setOn(&self, on: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -213,7 +213,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
-        #[method_id(@__retain_semantics Init initWithFrame:primaryAction:)]
+        #[method_id(@__method_family Init initWithFrame:primaryAction:)]
         pub unsafe fn initWithFrame_primaryAction(
             this: Allocated<Self>,
             frame: CGRect,
@@ -226,10 +226,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIControl", feature = "UIResponder", feature = "UIView"))]
     unsafe impl UISwitch {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

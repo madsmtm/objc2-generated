@@ -160,7 +160,7 @@ extern_methods!(
         pub unsafe fn isAuthorizedForWidgetUpdates(&self) -> bool;
 
         #[cfg(feature = "CLLocationManagerDelegate")]
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CLLocationManagerDelegate>>>;
@@ -179,7 +179,7 @@ extern_methods!(
         pub unsafe fn locationServicesEnabled(&self) -> bool;
 
         #[deprecated = "Set the purpose string in Info.plist using key NSLocationUsageDescription"]
-        #[method_id(@__retain_semantics Other purpose)]
+        #[method_id(@__method_family Other purpose)]
         pub unsafe fn purpose(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`purpose`][Self::purpose].
@@ -243,7 +243,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "CLLocation")]
-        #[method_id(@__retain_semantics Other location)]
+        #[method_id(@__method_family Other location)]
         pub unsafe fn location(&self) -> Option<Retained<CLLocation>>;
 
         #[deprecated]
@@ -267,7 +267,7 @@ extern_methods!(
         pub unsafe fn setHeadingOrientation(&self, heading_orientation: CLDeviceOrientation);
 
         #[cfg(feature = "CLHeading")]
-        #[method_id(@__retain_semantics Other heading)]
+        #[method_id(@__method_family Other heading)]
         pub unsafe fn heading(&self) -> Option<Retained<CLHeading>>;
 
         #[cfg(feature = "CLLocation")]
@@ -275,12 +275,12 @@ extern_methods!(
         pub unsafe fn maximumRegionMonitoringDistance(&self) -> CLLocationDistance;
 
         #[cfg(feature = "CLRegion")]
-        #[method_id(@__retain_semantics Other monitoredRegions)]
+        #[method_id(@__method_family Other monitoredRegions)]
         pub unsafe fn monitoredRegions(&self) -> Retained<NSSet<CLRegion>>;
 
         #[cfg(feature = "CLRegion")]
         #[deprecated = "Use -rangedBeaconConstraints"]
-        #[method_id(@__retain_semantics Other rangedRegions)]
+        #[method_id(@__method_family Other rangedRegions)]
         pub unsafe fn rangedRegions(&self) -> Retained<NSSet<CLRegion>>;
 
         #[cfg(all(
@@ -288,7 +288,7 @@ extern_methods!(
             feature = "CLBeaconIdentityConstraint",
             feature = "CLCondition"
         ))]
-        #[method_id(@__retain_semantics Other rangedBeaconConstraints)]
+        #[method_id(@__method_family Other rangedBeaconConstraints)]
         pub unsafe fn rangedBeaconConstraints(&self)
             -> Retained<NSSet<CLBeaconIdentityConstraint>>;
 
@@ -433,10 +433,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLLocationManager {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

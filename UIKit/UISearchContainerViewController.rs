@@ -52,11 +52,11 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UISearchContainerViewController {
         #[cfg(feature = "UISearchController")]
-        #[method_id(@__retain_semantics Other searchController)]
+        #[method_id(@__method_family Other searchController)]
         pub unsafe fn searchController(&self) -> Retained<UISearchController>;
 
         #[cfg(feature = "UISearchController")]
-        #[method_id(@__retain_semantics Init initWithSearchController:)]
+        #[method_id(@__method_family Init initWithSearchController:)]
         pub unsafe fn initWithSearchController(
             this: Allocated<Self>,
             search_controller: &UISearchController,
@@ -68,14 +68,14 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UISearchContainerViewController {
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        #[method_id(@__method_family Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -87,10 +87,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UISearchContainerViewController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -19,10 +19,10 @@ unsafe impl NSObjectProtocol for WKContentRuleListStore {}
 
 extern_methods!(
     unsafe impl WKContentRuleListStore {
-        #[method_id(@__retain_semantics Other defaultStore)]
+        #[method_id(@__method_family Other defaultStore)]
         pub unsafe fn defaultStore(mtm: MainThreadMarker) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other storeWithURL:)]
+        #[method_id(@__method_family Other storeWithURL:)]
         pub unsafe fn storeWithURL(
             url: Option<&NSURL>,
             mtm: MainThreadMarker,
@@ -69,10 +69,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKContentRuleListStore {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -11,7 +11,7 @@ extern_protocol!(
     pub unsafe trait UIAccessibilityIdentification:
         NSObjectProtocol + MainThreadOnly
     {
-        #[method_id(@__retain_semantics Other accessibilityIdentifier)]
+        #[method_id(@__method_family Other accessibilityIdentifier)]
         unsafe fn accessibilityIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityIdentifier`][Self::accessibilityIdentifier].

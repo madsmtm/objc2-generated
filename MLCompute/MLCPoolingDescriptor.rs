@@ -84,11 +84,11 @@ extern_methods!(
         pub unsafe fn countIncludesPadding(&self) -> bool;
 
         #[deprecated]
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MLCTypes")]
@@ -102,7 +102,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
-        #[method_id(@__retain_semantics Other poolingDescriptorWithType:kernelSize:stride:)]
+        #[method_id(@__method_family Other poolingDescriptorWithType:kernelSize:stride:)]
         pub unsafe fn poolingDescriptorWithType_kernelSize_stride(
             pooling_type: MLCPoolingType,
             kernel_size: NSUInteger,
@@ -122,7 +122,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
-        #[method_id(@__retain_semantics Other maxPoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:)]
+        #[method_id(@__method_family Other maxPoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:)]
         pub unsafe fn maxPoolingDescriptorWithKernelSizes_strides_paddingPolicy_paddingSizes(
             kernel_sizes: &NSArray<NSNumber>,
             strides: &NSArray<NSNumber>,
@@ -145,7 +145,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
-        #[method_id(@__retain_semantics Other maxPoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:)]
+        #[method_id(@__method_family Other maxPoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:)]
         pub unsafe fn maxPoolingDescriptorWithKernelSizes_strides_dilationRates_paddingPolicy_paddingSizes(
             kernel_sizes: &NSArray<NSNumber>,
             strides: &NSArray<NSNumber>,
@@ -169,7 +169,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
-        #[method_id(@__retain_semantics Other averagePoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:countIncludesPadding:)]
+        #[method_id(@__method_family Other averagePoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:countIncludesPadding:)]
         pub unsafe fn averagePoolingDescriptorWithKernelSizes_strides_paddingPolicy_paddingSizes_countIncludesPadding(
             kernel_sizes: &NSArray<NSNumber>,
             strides: &NSArray<NSNumber>,
@@ -195,7 +195,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
-        #[method_id(@__retain_semantics Other averagePoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:countIncludesPadding:)]
+        #[method_id(@__method_family Other averagePoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:countIncludesPadding:)]
         pub unsafe fn averagePoolingDescriptorWithKernelSizes_strides_dilationRates_paddingPolicy_paddingSizes_countIncludesPadding(
             kernel_sizes: &NSArray<NSNumber>,
             strides: &NSArray<NSNumber>,
@@ -218,7 +218,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
-        #[method_id(@__retain_semantics Other l2NormPoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:)]
+        #[method_id(@__method_family Other l2NormPoolingDescriptorWithKernelSizes:strides:paddingPolicy:paddingSizes:)]
         pub unsafe fn l2NormPoolingDescriptorWithKernelSizes_strides_paddingPolicy_paddingSizes(
             kernel_sizes: &NSArray<NSNumber>,
             strides: &NSArray<NSNumber>,
@@ -241,7 +241,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCPoolingDescriptor object.
         #[deprecated]
-        #[method_id(@__retain_semantics Other l2NormPoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:)]
+        #[method_id(@__method_family Other l2NormPoolingDescriptorWithKernelSizes:strides:dilationRates:paddingPolicy:paddingSizes:)]
         pub unsafe fn l2NormPoolingDescriptorWithKernelSizes_strides_dilationRates_paddingPolicy_paddingSizes(
             kernel_sizes: &NSArray<NSNumber>,
             strides: &NSArray<NSNumber>,

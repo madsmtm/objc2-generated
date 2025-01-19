@@ -32,7 +32,7 @@ extern_methods!(
         /// A NSArray holding captions to consider for rendering.
         ///
         /// This is the array of AVCaptions to consider when drawing. The array can contain no captions.
-        #[method_id(@__retain_semantics Other captions)]
+        #[method_id(@__method_family Other captions)]
         pub unsafe fn captions(&self) -> Retained<NSArray<AVCaption>>;
 
         #[cfg(feature = "AVCaption")]
@@ -64,7 +64,7 @@ extern_methods!(
         /// The returned NSArray contains AVCaptionRendererScenes, each holding the CMTimeRange of that scene but potentially other information that may be useful to the client during renderering.
         ///
         /// The consideredTimeRange parameter is a CMTimeRange expressing the limits for consideration. The extent of this range does not need to correspond to the timing of captions. It might be the range from 0 to some duration. For efficiency, the range can be limited to a window of time. It is also possible to use the range anchored at a time and extending in the direction of playback.
-        #[method_id(@__retain_semantics Other captionSceneChangesInRange:)]
+        #[method_id(@__method_family Other captionSceneChangesInRange:)]
         pub unsafe fn captionSceneChangesInRange(
             &self,
             considered_time_range: CMTimeRange,
@@ -82,10 +82,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCaptionRenderer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -119,10 +119,10 @@ unsafe impl NSObjectProtocol for AVCaptionRendererScene {}
 
 extern_methods!(
     unsafe impl AVCaptionRendererScene {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]

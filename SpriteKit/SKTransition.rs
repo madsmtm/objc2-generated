@@ -56,67 +56,67 @@ unsafe impl NSObjectProtocol for SKTransition {}
 
 extern_methods!(
     unsafe impl SKTransition {
-        #[method_id(@__retain_semantics Other crossFadeWithDuration:)]
+        #[method_id(@__method_family Other crossFadeWithDuration:)]
         pub unsafe fn crossFadeWithDuration(sec: NSTimeInterval) -> Retained<SKTransition>;
 
-        #[method_id(@__retain_semantics Other fadeWithDuration:)]
+        #[method_id(@__method_family Other fadeWithDuration:)]
         pub unsafe fn fadeWithDuration(sec: NSTimeInterval) -> Retained<SKTransition>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(@__retain_semantics Other fadeWithColor:duration:)]
+        #[method_id(@__method_family Other fadeWithColor:duration:)]
         pub unsafe fn fadeWithColor_duration(
             color: &NSColor,
             sec: NSTimeInterval,
         ) -> Retained<SKTransition>;
 
-        #[method_id(@__retain_semantics Other flipHorizontalWithDuration:)]
+        #[method_id(@__method_family Other flipHorizontalWithDuration:)]
         pub unsafe fn flipHorizontalWithDuration(sec: NSTimeInterval) -> Retained<SKTransition>;
 
-        #[method_id(@__retain_semantics Other flipVerticalWithDuration:)]
+        #[method_id(@__method_family Other flipVerticalWithDuration:)]
         pub unsafe fn flipVerticalWithDuration(sec: NSTimeInterval) -> Retained<SKTransition>;
 
-        #[method_id(@__retain_semantics Other revealWithDirection:duration:)]
+        #[method_id(@__method_family Other revealWithDirection:duration:)]
         pub unsafe fn revealWithDirection_duration(
             direction: SKTransitionDirection,
             sec: NSTimeInterval,
         ) -> Retained<SKTransition>;
 
-        #[method_id(@__retain_semantics Other moveInWithDirection:duration:)]
+        #[method_id(@__method_family Other moveInWithDirection:duration:)]
         pub unsafe fn moveInWithDirection_duration(
             direction: SKTransitionDirection,
             sec: NSTimeInterval,
         ) -> Retained<SKTransition>;
 
-        #[method_id(@__retain_semantics Other pushWithDirection:duration:)]
+        #[method_id(@__method_family Other pushWithDirection:duration:)]
         pub unsafe fn pushWithDirection_duration(
             direction: SKTransitionDirection,
             sec: NSTimeInterval,
         ) -> Retained<SKTransition>;
 
-        #[method_id(@__retain_semantics Other doorsOpenHorizontalWithDuration:)]
+        #[method_id(@__method_family Other doorsOpenHorizontalWithDuration:)]
         pub unsafe fn doorsOpenHorizontalWithDuration(
             sec: NSTimeInterval,
         ) -> Retained<SKTransition>;
 
-        #[method_id(@__retain_semantics Other doorsOpenVerticalWithDuration:)]
+        #[method_id(@__method_family Other doorsOpenVerticalWithDuration:)]
         pub unsafe fn doorsOpenVerticalWithDuration(sec: NSTimeInterval) -> Retained<SKTransition>;
 
-        #[method_id(@__retain_semantics Other doorsCloseHorizontalWithDuration:)]
+        #[method_id(@__method_family Other doorsCloseHorizontalWithDuration:)]
         pub unsafe fn doorsCloseHorizontalWithDuration(
             sec: NSTimeInterval,
         ) -> Retained<SKTransition>;
 
-        #[method_id(@__retain_semantics Other doorsCloseVerticalWithDuration:)]
+        #[method_id(@__method_family Other doorsCloseVerticalWithDuration:)]
         pub unsafe fn doorsCloseVerticalWithDuration(sec: NSTimeInterval)
             -> Retained<SKTransition>;
 
-        #[method_id(@__retain_semantics Other doorwayWithDuration:)]
+        #[method_id(@__method_family Other doorwayWithDuration:)]
         pub unsafe fn doorwayWithDuration(sec: NSTimeInterval) -> Retained<SKTransition>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other transitionWithCIFilter:duration:)]
+        #[method_id(@__method_family Other transitionWithCIFilter:duration:)]
         pub unsafe fn transitionWithCIFilter_duration(
             filter: &CIFilter,
             sec: NSTimeInterval,
@@ -143,10 +143,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKTransition {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

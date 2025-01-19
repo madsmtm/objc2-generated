@@ -52,11 +52,11 @@ unsafe impl NSObjectProtocol for HMHome {}
 
 extern_methods!(
     unsafe impl HMHome {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Delegate that receives updates on the state of the home.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn HMHomeDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -65,7 +65,7 @@ extern_methods!(
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn HMHomeDelegate>>);
 
         /// The name of the home.
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Specifies whether this home is the primary home.
@@ -77,7 +77,7 @@ extern_methods!(
         pub unsafe fn homeHubState(&self) -> HMHomeHubState;
 
         /// A unique identifier for the home.
-        #[method_id(@__retain_semantics Other uniqueIdentifier)]
+        #[method_id(@__method_family Other uniqueIdentifier)]
         pub unsafe fn uniqueIdentifier(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "block2")]
@@ -102,7 +102,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMHome {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -112,7 +112,7 @@ extern_methods!(
     unsafe impl HMHome {
         #[cfg(feature = "HMAccessory")]
         /// Array of HMAccessory objects that represents all accessories added to the home.
-        #[method_id(@__retain_semantics Other accessories)]
+        #[method_id(@__method_family Other accessories)]
         pub unsafe fn accessories(&self) -> Retained<NSArray<HMAccessory>>;
 
         #[cfg(all(feature = "HMAccessory", feature = "block2"))]
@@ -183,7 +183,7 @@ extern_methods!(
         ///
         /// Returns: Array of HMService objects that match the specified service types,
         /// nil if no matching services were found.
-        #[method_id(@__retain_semantics Other servicesWithTypes:)]
+        #[method_id(@__method_family Other servicesWithTypes:)]
         pub unsafe fn servicesWithTypes(
             &self,
             service_types: &NSArray<NSString>,
@@ -258,13 +258,13 @@ extern_methods!(
     unsafe impl HMHome {
         #[cfg(feature = "HMUser")]
         /// HMUser object representing the current user of the home.
-        #[method_id(@__retain_semantics Other currentUser)]
+        #[method_id(@__method_family Other currentUser)]
         pub unsafe fn currentUser(&self) -> Retained<HMUser>;
 
         #[cfg(feature = "HMUser")]
         /// Array of HMUser objects that represent all users associated with the home.
         #[deprecated = "No longer supported."]
-        #[method_id(@__retain_semantics Other users)]
+        #[method_id(@__method_family Other users)]
         pub unsafe fn users(&self) -> Retained<NSArray<HMUser>>;
 
         #[cfg(feature = "block2")]
@@ -326,7 +326,7 @@ extern_methods!(
             feature = "HMUser"
         ))]
         /// Retrieve the access level of the user associated with the home.
-        #[method_id(@__retain_semantics Other homeAccessControlForUser:)]
+        #[method_id(@__method_family Other homeAccessControlForUser:)]
         pub unsafe fn homeAccessControlForUser(
             &self,
             user: &HMUser,
@@ -339,7 +339,7 @@ extern_methods!(
     unsafe impl HMHome {
         #[cfg(feature = "HMRoom")]
         /// Array of HMRoom objects that represents all rooms in the home.
-        #[method_id(@__retain_semantics Other rooms)]
+        #[method_id(@__method_family Other rooms)]
         pub unsafe fn rooms(&self) -> Retained<NSArray<HMRoom>>;
 
         #[cfg(all(feature = "HMRoom", feature = "block2"))]
@@ -388,7 +388,7 @@ extern_methods!(
         ///
         ///
         /// Returns: HMRoom that represents the home.
-        #[method_id(@__retain_semantics Other roomForEntireHome)]
+        #[method_id(@__method_family Other roomForEntireHome)]
         pub unsafe fn roomForEntireHome(&self) -> Retained<HMRoom>;
     }
 );
@@ -398,7 +398,7 @@ extern_methods!(
     unsafe impl HMHome {
         #[cfg(feature = "HMZone")]
         /// Array of HMZone objects that represents all the zones in the home.
-        #[method_id(@__retain_semantics Other zones)]
+        #[method_id(@__method_family Other zones)]
         pub unsafe fn zones(&self) -> Retained<NSArray<HMZone>>;
 
         #[cfg(all(feature = "HMZone", feature = "block2"))]
@@ -443,7 +443,7 @@ extern_methods!(
     unsafe impl HMHome {
         #[cfg(feature = "HMServiceGroup")]
         /// Array of HMServiceGroup objects that represents all service groups in the home.
-        #[method_id(@__retain_semantics Other serviceGroups)]
+        #[method_id(@__method_family Other serviceGroups)]
         pub unsafe fn serviceGroups(&self) -> Retained<NSArray<HMServiceGroup>>;
 
         #[cfg(all(feature = "HMServiceGroup", feature = "block2"))]
@@ -488,7 +488,7 @@ extern_methods!(
     unsafe impl HMHome {
         #[cfg(feature = "HMActionSet")]
         /// Array of HMActionSet objects that represents all the action sets in the home.
-        #[method_id(@__retain_semantics Other actionSets)]
+        #[method_id(@__method_family Other actionSets)]
         pub unsafe fn actionSets(&self) -> Retained<NSArray<HMActionSet>>;
 
         #[cfg(all(feature = "HMActionSet", feature = "block2"))]
@@ -553,7 +553,7 @@ extern_methods!(
         ///
         /// Returns: Reference to the built-in action set corresponding to type argument,
         /// nil if no matching action set is found.
-        #[method_id(@__retain_semantics Other builtinActionSetOfType:)]
+        #[method_id(@__method_family Other builtinActionSetOfType:)]
         pub unsafe fn builtinActionSetOfType(
             &self,
             action_set_type: &NSString,
@@ -566,7 +566,7 @@ extern_methods!(
     unsafe impl HMHome {
         #[cfg(feature = "HMTrigger")]
         /// Array of HMTrigger objects that represents all the triggers in the home.
-        #[method_id(@__retain_semantics Other triggers)]
+        #[method_id(@__method_family Other triggers)]
         pub unsafe fn triggers(&self) -> Retained<NSArray<HMTrigger>>;
 
         #[cfg(all(feature = "HMTrigger", feature = "block2"))]
@@ -618,7 +618,7 @@ extern_methods!(
         /// Identifier of the Matter controller associated with this home.
         /// This property can be passed as the first argument to +[MTRDeviceController sharedControllerWithId:xpcConnectBlock:] method
         /// to get a MTRDeviceController object.
-        #[method_id(@__retain_semantics Other matterControllerID)]
+        #[method_id(@__method_family Other matterControllerID)]
         pub unsafe fn matterControllerID(&self) -> Retained<NSString>;
 
         #[cfg(feature = "block2")]

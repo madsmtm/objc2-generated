@@ -401,12 +401,12 @@ extern_methods!(
     unsafe impl SCNParticlePropertyController {
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other controllerWithAnimation:)]
+        #[method_id(@__method_family Other controllerWithAnimation:)]
         pub unsafe fn controllerWithAnimation(animation: &CAAnimation) -> Retained<Self>;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other animation)]
+        #[method_id(@__method_family Other animation)]
         pub unsafe fn animation(&self) -> Retained<CAAnimation>;
 
         #[cfg(feature = "objc2-quartz-core")]
@@ -441,7 +441,7 @@ extern_methods!(
         pub unsafe fn setInputBias(&self, input_bias: CGFloat);
 
         #[cfg(feature = "SCNNode")]
-        #[method_id(@__retain_semantics Other inputOrigin)]
+        #[method_id(@__method_family Other inputOrigin)]
         pub unsafe fn inputOrigin(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
@@ -450,7 +450,7 @@ extern_methods!(
         #[method(setInputOrigin:)]
         pub unsafe fn setInputOrigin(&self, input_origin: Option<&SCNNode>);
 
-        #[method_id(@__retain_semantics Other inputProperty)]
+        #[method_id(@__method_family Other inputProperty)]
         pub unsafe fn inputProperty(&self) -> Option<Retained<SCNParticleProperty>>;
 
         /// Setter for [`inputProperty`][Self::inputProperty].
@@ -462,10 +462,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNParticlePropertyController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -496,10 +496,10 @@ unsafe impl SCNAnimatable for SCNParticleSystem {}
 
 extern_methods!(
     unsafe impl SCNParticleSystem {
-        #[method_id(@__retain_semantics Other particleSystem)]
+        #[method_id(@__method_family Other particleSystem)]
         pub unsafe fn particleSystem() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other particleSystemNamed:inDirectory:)]
+        #[method_id(@__method_family Other particleSystemNamed:inDirectory:)]
         pub unsafe fn particleSystemNamed_inDirectory(
             name: &NSString,
             directory: Option<&NSString>,
@@ -576,7 +576,7 @@ extern_methods!(
         pub unsafe fn setWarmupDuration(&self, warmup_duration: CGFloat);
 
         #[cfg(feature = "SCNGeometry")]
-        #[method_id(@__retain_semantics Other emitterShape)]
+        #[method_id(@__method_family Other emitterShape)]
         pub unsafe fn emitterShape(&self) -> Option<Retained<SCNGeometry>>;
 
         #[cfg(feature = "SCNGeometry")]
@@ -716,7 +716,7 @@ extern_methods!(
         #[method(setParticleLifeSpanVariation:)]
         pub unsafe fn setParticleLifeSpanVariation(&self, particle_life_span_variation: CGFloat);
 
-        #[method_id(@__retain_semantics Other systemSpawnedOnDying)]
+        #[method_id(@__method_family Other systemSpawnedOnDying)]
         pub unsafe fn systemSpawnedOnDying(&self) -> Option<Retained<SCNParticleSystem>>;
 
         /// Setter for [`systemSpawnedOnDying`][Self::systemSpawnedOnDying].
@@ -726,7 +726,7 @@ extern_methods!(
             system_spawned_on_dying: Option<&SCNParticleSystem>,
         );
 
-        #[method_id(@__retain_semantics Other systemSpawnedOnCollision)]
+        #[method_id(@__method_family Other systemSpawnedOnCollision)]
         pub unsafe fn systemSpawnedOnCollision(&self) -> Option<Retained<SCNParticleSystem>>;
 
         /// Setter for [`systemSpawnedOnCollision`][Self::systemSpawnedOnCollision].
@@ -736,7 +736,7 @@ extern_methods!(
             system_spawned_on_collision: Option<&SCNParticleSystem>,
         );
 
-        #[method_id(@__retain_semantics Other systemSpawnedOnLiving)]
+        #[method_id(@__method_family Other systemSpawnedOnLiving)]
         pub unsafe fn systemSpawnedOnLiving(&self) -> Option<Retained<SCNParticleSystem>>;
 
         /// Setter for [`systemSpawnedOnLiving`][Self::systemSpawnedOnLiving].
@@ -746,7 +746,7 @@ extern_methods!(
             system_spawned_on_living: Option<&SCNParticleSystem>,
         );
 
-        #[method_id(@__retain_semantics Other particleImage)]
+        #[method_id(@__method_family Other particleImage)]
         pub unsafe fn particleImage(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`particleImage`][Self::particleImage].
@@ -821,7 +821,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(@__retain_semantics Other particleColor)]
+        #[method_id(@__method_family Other particleColor)]
         pub unsafe fn particleColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "objc2-app-kit")]
@@ -932,7 +932,7 @@ extern_methods!(
         pub unsafe fn setParticleDiesOnCollision(&self, particle_dies_on_collision: bool);
 
         #[cfg(feature = "SCNNode")]
-        #[method_id(@__retain_semantics Other colliderNodes)]
+        #[method_id(@__method_family Other colliderNodes)]
         pub unsafe fn colliderNodes(&self) -> Option<Retained<NSArray<SCNNode>>>;
 
         #[cfg(feature = "SCNNode")]
@@ -1056,7 +1056,7 @@ extern_methods!(
         #[method(setWritesToDepthBuffer:)]
         pub unsafe fn setWritesToDepthBuffer(&self, writes_to_depth_buffer: bool);
 
-        #[method_id(@__retain_semantics Other propertyControllers)]
+        #[method_id(@__method_family Other propertyControllers)]
         pub unsafe fn propertyControllers(
             &self,
         ) -> Option<Retained<NSDictionary<SCNParticleProperty, SCNParticlePropertyController>>>;
@@ -1102,10 +1102,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNParticleSystem {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -1123,7 +1123,7 @@ extern_methods!(
         #[method(removeParticleSystem:)]
         pub unsafe fn removeParticleSystem(&self, system: &SCNParticleSystem);
 
-        #[method_id(@__retain_semantics Other particleSystems)]
+        #[method_id(@__method_family Other particleSystems)]
         pub unsafe fn particleSystems(&self) -> Option<Retained<NSArray<SCNParticleSystem>>>;
     }
 );
@@ -1147,7 +1147,7 @@ extern_methods!(
         #[method(removeParticleSystem:)]
         pub unsafe fn removeParticleSystem(&self, system: &SCNParticleSystem);
 
-        #[method_id(@__retain_semantics Other particleSystems)]
+        #[method_id(@__method_family Other particleSystems)]
         pub unsafe fn particleSystems(&self) -> Option<Retained<NSArray<SCNParticleSystem>>>;
     }
 );

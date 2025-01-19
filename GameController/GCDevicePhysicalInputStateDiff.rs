@@ -65,7 +65,7 @@ extern_protocol!(
         /// `nil`if the changed elements could not be determined -
         /// typically because the input state queue filled up and older input state
         /// snapshots were dropped.
-        #[method_id(@__retain_semantics Other changedElements)]
+        #[method_id(@__method_family Other changedElements)]
         unsafe fn changedElements(
             &self,
         ) -> Option<Retained<NSEnumerator<ProtocolObject<dyn GCPhysicalInputElement>>>>;

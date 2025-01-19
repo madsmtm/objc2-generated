@@ -78,10 +78,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerItemOutput {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -104,7 +104,7 @@ extern_methods!(
         /// /CVPixelBuffer.h>.
         ///
         /// Returns: An instance of AVPlayerItemVideoOutput.
-        #[method_id(@__retain_semantics Init initWithPixelBufferAttributes:)]
+        #[method_id(@__method_family Init initWithPixelBufferAttributes:)]
         pub unsafe fn initWithPixelBufferAttributes(
             this: Allocated<Self>,
             pixel_buffer_attributes: Option<&NSDictionary<NSString, AnyObject>>,
@@ -129,7 +129,7 @@ extern_methods!(
         /// - the output settings dictionary is empty
         /// - the settings will yield compressed output
         /// - the settings do not honor the requirements listed above for outputSettings
-        #[method_id(@__retain_semantics Init initWithOutputSettings:)]
+        #[method_id(@__method_family Init initWithOutputSettings:)]
         pub unsafe fn initWithOutputSettings(
             this: Allocated<Self>,
             output_settings: Option<&NSDictionary<NSString, AnyObject>>,
@@ -158,7 +158,7 @@ extern_methods!(
         /// Parameter `itemTime`: A CMTime that expresses a desired item time.
         ///
         /// Parameter `itemTimeForDisplay`: A CMTime pointer whose value will contain the true display deadline for the copied pixel buffer. Can be NULL.
-        #[method_id(@__retain_semantics Copy copyPixelBufferForItemTime:itemTimeForDisplay:)]
+        #[method_id(@__method_family Copy copyPixelBufferForItemTime:itemTimeForDisplay:)]
         pub unsafe fn copyPixelBufferForItemTime_itemTimeForDisplay(
             &self,
             item_time: CMTime,
@@ -177,7 +177,7 @@ extern_methods!(
         );
 
         /// The receiver's delegate.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerItemOutputPullDelegate>>>;
@@ -187,10 +187,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerItemVideoOutput {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -234,7 +234,7 @@ extern_methods!(
         /// The receiver's delegate.
         ///
         /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerItemLegibleOutputPushDelegate>>>;
@@ -257,10 +257,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerItemLegibleOutput {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -281,7 +281,7 @@ extern_methods!(
         /// If a media subtype for which there is no legible data in the current player item is included in the media subtypes array, no error will occur.  AVPlayerItemLegibleOutput will not vend closed caption data as CMSampleBuffers, so it is an error to include 'c608' in the media subtypes array.
         ///
         /// This method throws an exception if any media subtype is kCMClosedCaptionFormatType_CEA608 (native representation is not available for media subtype).
-        #[method_id(@__retain_semantics Init initWithMediaSubtypesForNativeRepresentation:)]
+        #[method_id(@__method_family Init initWithMediaSubtypesForNativeRepresentation:)]
         pub unsafe fn initWithMediaSubtypesForNativeRepresentation(
             this: Allocated<Self>,
             subtypes: &NSArray<NSNumber>,
@@ -319,7 +319,7 @@ extern_methods!(
         /// A string identifier indicating the degree of text styling to be applied to attributed strings vended by the receiver
         ///
         /// Valid values are AVPlayerItemLegibleOutputTextStylingResolutionDefault and AVPlayerItemLegibleOutputTextStylingResolutionSourceAndRulesOnly.  An NSInvalidArgumentException is raised if this property is set to any other value.  The default value is AVPlayerItemLegibleOutputTextStylingResolutionDefault, which indicates that attributed strings vended by the receiver will include the same level of styling information that would be used if AVFoundation were rendering the text via AVPlayerLayer.
-        #[method_id(@__retain_semantics Other textStylingResolution)]
+        #[method_id(@__method_family Other textStylingResolution)]
         pub unsafe fn textStylingResolution(
             &self,
         ) -> Retained<AVPlayerItemLegibleOutputTextStylingResolution>;
@@ -401,7 +401,7 @@ extern_methods!(
         /// Parameter `identifiers`: A array of metadata identifiers indicating the metadata items that the output should provide.
         ///
         /// See AVMetadataIdentifiers.h for publicly defined metadata identifiers. Pass nil to receive all of the timed metadata from all enabled AVPlayerItemTracks that carry timed metadata.
-        #[method_id(@__retain_semantics Init initWithIdentifiers:)]
+        #[method_id(@__method_family Init initWithIdentifiers:)]
         pub unsafe fn initWithIdentifiers(
             this: Allocated<Self>,
             identifiers: Option<&NSArray<NSString>>,
@@ -410,7 +410,7 @@ extern_methods!(
         /// The receiver's delegate.
         ///
         /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerItemMetadataOutputPushDelegate>>>;
@@ -433,10 +433,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerItemMetadataOutput {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -488,10 +488,10 @@ unsafe impl NSObjectProtocol for AVPlayerItemRenderedLegibleOutput {}
 
 extern_methods!(
     unsafe impl AVPlayerItemRenderedLegibleOutput {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -500,7 +500,7 @@ extern_methods!(
         /// Parameter `videoDisplaySize`: CGSize for the video display area
         ///
         /// This is the only available initializer for AVPlayerItemRenderedLegibleOutput. The client can also choose to reset videoDisplaySize after initialization or during playback. Initializing and resetting videoDisplaySize with a zero height or width will result in an exception being thrown.
-        #[method_id(@__retain_semantics Init initWithVideoDisplaySize:)]
+        #[method_id(@__method_family Init initWithVideoDisplaySize:)]
         pub unsafe fn initWithVideoDisplaySize(
             this: Allocated<Self>,
             video_display_size: CGSize,
@@ -509,7 +509,7 @@ extern_methods!(
         /// The receiver's delegate.
         ///
         /// The delegate is held using a zeroing-weak reference, so this property will have a value of nil after a delegate that was previously set has been deallocated.  This property is not key-value observable.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVPlayerItemRenderedLegibleOutputPushDelegate>>>;

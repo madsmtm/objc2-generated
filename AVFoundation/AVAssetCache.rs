@@ -32,16 +32,16 @@ extern_methods!(
         pub unsafe fn isPlayableOffline(&self) -> bool;
 
         #[cfg(feature = "AVMediaSelectionGroup")]
-        #[method_id(@__retain_semantics Other mediaSelectionOptionsInMediaSelectionGroup:)]
+        #[method_id(@__method_family Other mediaSelectionOptionsInMediaSelectionGroup:)]
         pub unsafe fn mediaSelectionOptionsInMediaSelectionGroup(
             &self,
             media_selection_group: &AVMediaSelectionGroup,
         ) -> Retained<NSArray<AVMediaSelectionOption>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

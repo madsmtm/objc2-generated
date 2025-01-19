@@ -160,22 +160,22 @@ extern_methods!(
         );
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other getStringValue)]
+        #[method_id(@__method_family Other getStringValue)]
         pub unsafe fn getStringValue(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "DOMCounter")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other getCounterValue)]
+        #[method_id(@__method_family Other getCounterValue)]
         pub unsafe fn getCounterValue(&self) -> Option<Retained<DOMCounter>>;
 
         #[cfg(feature = "DOMRect")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other getRectValue)]
+        #[method_id(@__method_family Other getRectValue)]
         pub unsafe fn getRectValue(&self) -> Option<Retained<DOMRect>>;
 
         #[cfg(feature = "DOMRGBColor")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other getRGBColorValue)]
+        #[method_id(@__method_family Other getRGBColorValue)]
         pub unsafe fn getRGBColorValue(&self) -> Option<Retained<DOMRGBColor>>;
     }
 );
@@ -189,7 +189,7 @@ extern_methods!(
     ))]
     unsafe impl DOMCSSPrimitiveValue {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -202,7 +202,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMCSSPrimitiveValue {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

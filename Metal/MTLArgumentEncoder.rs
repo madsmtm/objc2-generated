@@ -17,11 +17,11 @@ extern_protocol!(
     pub unsafe trait MTLArgumentEncoder: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         /// The device this argument encoder was created against.
-        #[method_id(@__retain_semantics Other device)]
+        #[method_id(@__method_family Other device)]
         unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// A string to help identify this object.
-        #[method_id(@__retain_semantics Other label)]
+        #[method_id(@__method_family Other label)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -217,7 +217,7 @@ extern_protocol!(
         /// Returns a pointer to a new MTLArgumentEncoder that can be used to encode the an argument buffer
         /// in the buffer associated with a given index.
         /// Returns nil if the resource at the given index is not an argument buffer.
-        #[method_id(@__retain_semantics New newArgumentEncoderForBufferAtIndex:)]
+        #[method_id(@__method_family New newArgumentEncoderForBufferAtIndex:)]
         unsafe fn newArgumentEncoderForBufferAtIndex(
             &self,
             index: NSUInteger,

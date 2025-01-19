@@ -127,7 +127,7 @@ extern_methods!(
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// Array of GKPlayers to invite, or nil if none. This array can also include local guest players.
-        #[method_id(@__retain_semantics Other recipients)]
+        #[method_id(@__method_family Other recipients)]
         pub unsafe fn recipients(&self) -> Option<Retained<NSArray<GKPlayer>>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
@@ -137,7 +137,7 @@ extern_methods!(
 
         /// Message sent to invited players, may be modified if using GKMatchmakerViewController
         /// Will return nil if the player is underage or restricted.
-        #[method_id(@__retain_semantics Other inviteMessage)]
+        #[method_id(@__method_family Other inviteMessage)]
         pub unsafe fn inviteMessage(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`inviteMessage`][Self::inviteMessage].
@@ -204,7 +204,7 @@ extern_methods!(
         pub unsafe fn maxPlayersAllowedForMatchOfType(match_type: GKMatchType) -> NSUInteger;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other playersToInvite)]
+        #[method_id(@__method_family Other playersToInvite)]
         pub unsafe fn playersToInvite(&self) -> Option<Retained<NSArray<NSString>>>;
 
         /// Setter for [`playersToInvite`][Self::playersToInvite].
@@ -213,7 +213,7 @@ extern_methods!(
         pub unsafe fn setPlayersToInvite(&self, players_to_invite: Option<&NSArray<NSString>>);
 
         /// The name of the queue, if rule-based matchmaking is used.
-        #[method_id(@__retain_semantics Other queueName)]
+        #[method_id(@__method_family Other queueName)]
         pub unsafe fn queueName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`queueName`][Self::queueName].
@@ -222,7 +222,7 @@ extern_methods!(
 
         #[cfg(feature = "GKDefines")]
         /// The match properties, if rule-based matchmaking is used.
-        #[method_id(@__retain_semantics Other properties)]
+        #[method_id(@__method_family Other properties)]
         pub unsafe fn properties(&self) -> Option<Retained<GKMatchProperties>>;
 
         #[cfg(feature = "GKDefines")]
@@ -232,7 +232,7 @@ extern_methods!(
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKDefines", feature = "GKPlayer"))]
         /// The recipient specific match properties, if rule-based matchmaking is used when inviting players.
-        #[method_id(@__retain_semantics Other recipientProperties)]
+        #[method_id(@__method_family Other recipientProperties)]
         pub unsafe fn recipientProperties(
             &self,
         ) -> Option<Retained<NSDictionary<GKPlayer, GKMatchProperties>>>;
@@ -250,10 +250,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKMatchRequest {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -272,7 +272,7 @@ unsafe impl NSObjectProtocol for GKInvite {}
 extern_methods!(
     unsafe impl GKInvite {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-        #[method_id(@__retain_semantics Other sender)]
+        #[method_id(@__method_family Other sender)]
         pub unsafe fn sender(&self) -> Retained<GKPlayer>;
 
         #[method(isHosted)]
@@ -288,7 +288,7 @@ extern_methods!(
 
         /// * This property is obsolete. **
         #[deprecated]
-        #[method_id(@__retain_semantics Other inviter)]
+        #[method_id(@__method_family Other inviter)]
         pub unsafe fn inviter(&self) -> Retained<NSString>;
     }
 );
@@ -296,10 +296,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKInvite {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -350,15 +350,15 @@ unsafe impl NSObjectProtocol for GKMatchedPlayers {}
 extern_methods!(
     unsafe impl GKMatchedPlayers {
         #[cfg(feature = "GKDefines")]
-        #[method_id(@__retain_semantics Other properties)]
+        #[method_id(@__method_family Other properties)]
         pub unsafe fn properties(&self) -> Option<Retained<GKMatchProperties>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-        #[method_id(@__retain_semantics Other players)]
+        #[method_id(@__method_family Other players)]
         pub unsafe fn players(&self) -> Retained<NSArray<GKPlayer>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKDefines", feature = "GKPlayer"))]
-        #[method_id(@__retain_semantics Other playerProperties)]
+        #[method_id(@__method_family Other playerProperties)]
         pub unsafe fn playerProperties(
             &self,
         ) -> Option<Retained<NSDictionary<GKPlayer, GKMatchProperties>>>;
@@ -368,10 +368,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKMatchedPlayers {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -390,7 +390,7 @@ unsafe impl NSObjectProtocol for GKMatchmaker {}
 extern_methods!(
     unsafe impl GKMatchmaker {
         /// The shared matchmaker
-        #[method_id(@__retain_semantics Other sharedMatchmaker)]
+        #[method_id(@__method_family Other sharedMatchmaker)]
         pub unsafe fn sharedMatchmaker() -> Retained<GKMatchmaker>;
 
         #[cfg(all(feature = "GKMatch", feature = "block2"))]
@@ -530,10 +530,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKMatchmaker {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

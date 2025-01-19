@@ -90,39 +90,39 @@ unsafe impl NSSecureCoding for MEMessageAction {}
 extern_methods!(
     unsafe impl MEMessageAction {
         /// Moves the mail message to the user's trash mailbox for the account.
-        #[method_id(@__retain_semantics Other moveToTrashAction)]
+        #[method_id(@__method_family Other moveToTrashAction)]
         pub unsafe fn moveToTrashAction() -> Retained<MEMessageAction>;
 
         /// Moves the mail message to the user's archive mailbox for the account.
-        #[method_id(@__retain_semantics Other moveToArchiveAction)]
+        #[method_id(@__method_family Other moveToArchiveAction)]
         pub unsafe fn moveToArchiveAction() -> Retained<MEMessageAction>;
 
         /// Moves the mail message to the user's junk mailbox for the account.
-        #[method_id(@__retain_semantics Other moveToJunkAction)]
+        #[method_id(@__method_family Other moveToJunkAction)]
         pub unsafe fn moveToJunkAction() -> Retained<MEMessageAction>;
 
         /// Marks the mail message as read.
-        #[method_id(@__retain_semantics Other markAsReadAction)]
+        #[method_id(@__method_family Other markAsReadAction)]
         pub unsafe fn markAsReadAction() -> Retained<MEMessageAction>;
 
         /// Marks the mail  message as unread.
-        #[method_id(@__retain_semantics Other markAsUnreadAction)]
+        #[method_id(@__method_family Other markAsUnreadAction)]
         pub unsafe fn markAsUnreadAction() -> Retained<MEMessageAction>;
 
         /// Marks the message as flagged with the provided color.
-        #[method_id(@__retain_semantics Other flagActionWithFlag:)]
+        #[method_id(@__method_family Other flagActionWithFlag:)]
         pub unsafe fn flagActionWithFlag(flag: MEMessageActionFlag) -> Retained<Self>;
 
         /// Adds a color to the message when shown in the message list.
-        #[method_id(@__retain_semantics Other setBackgroundColorActionWithColor:)]
+        #[method_id(@__method_family Other setBackgroundColorActionWithColor:)]
         pub unsafe fn setBackgroundColorActionWithColor(
             color: MEMessageActionMessageColor,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

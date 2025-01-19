@@ -24,15 +24,15 @@ extern_methods!(
     unsafe impl CBL2CAPChannel {
         #[cfg(feature = "CBPeer")]
         /// The peer connected to the channel
-        #[method_id(@__retain_semantics Other peer)]
+        #[method_id(@__method_family Other peer)]
         pub unsafe fn peer(&self) -> Option<Retained<CBPeer>>;
 
         /// An NSStream used for reading data from the remote peer
-        #[method_id(@__retain_semantics Other inputStream)]
+        #[method_id(@__method_family Other inputStream)]
         pub unsafe fn inputStream(&self) -> Option<Retained<NSInputStream>>;
 
         /// An NSStream used for writing data to the peer
-        #[method_id(@__retain_semantics Other outputStream)]
+        #[method_id(@__method_family Other outputStream)]
         pub unsafe fn outputStream(&self) -> Option<Retained<NSOutputStream>>;
 
         /// The PSM (Protocol/Service Multiplexer) of the channel
@@ -44,10 +44,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CBL2CAPChannel {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

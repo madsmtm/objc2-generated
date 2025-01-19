@@ -41,7 +41,7 @@ extern_methods!(
         /// Parameter `frameName`: The frame name of the resource if the resource represents the contents of an entire HTML frame (can be nil).
         ///
         /// Returns: An initialized WebResource.
-        #[method_id(@__retain_semantics Init initWithData:URL:MIMEType:textEncodingName:frameName:)]
+        #[method_id(@__method_family Init initWithData:URL:MIMEType:textEncodingName:frameName:)]
         pub unsafe fn initWithData_URL_MIMEType_textEncodingName_frameName(
             this: Allocated<Self>,
             data: Option<&NSData>,
@@ -52,23 +52,23 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         /// The data of the resource.
-        #[method_id(@__retain_semantics Other data)]
+        #[method_id(@__method_family Other data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
         /// The URL of the resource.
-        #[method_id(@__retain_semantics Other URL)]
+        #[method_id(@__method_family Other URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// The MIME type of the resource.
-        #[method_id(@__retain_semantics Other MIMEType)]
+        #[method_id(@__method_family Other MIMEType)]
         pub unsafe fn MIMEType(&self) -> Retained<NSString>;
 
         /// The text encoding name of the resource (can be nil).
-        #[method_id(@__retain_semantics Other textEncodingName)]
+        #[method_id(@__method_family Other textEncodingName)]
         pub unsafe fn textEncodingName(&self) -> Retained<NSString>;
 
         /// The frame name of the resource if the resource represents the contents of an entire HTML frame (can be nil).
-        #[method_id(@__retain_semantics Other frameName)]
+        #[method_id(@__method_family Other frameName)]
         pub unsafe fn frameName(&self) -> Retained<NSString>;
     }
 );
@@ -76,10 +76,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebResource {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

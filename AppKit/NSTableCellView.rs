@@ -54,7 +54,7 @@ unsafe impl NSUserInterfaceItemIdentification for NSTableCellView {}
 extern_methods!(
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableCellView {
-        #[method_id(@__retain_semantics Other objectValue)]
+        #[method_id(@__method_family Other objectValue)]
         pub unsafe fn objectValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`objectValue`][Self::objectValue].
@@ -62,7 +62,7 @@ extern_methods!(
         pub unsafe fn setObjectValue(&self, object_value: Option<&AnyObject>);
 
         #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
-        #[method_id(@__retain_semantics Other textField)]
+        #[method_id(@__method_family Other textField)]
         pub unsafe fn textField(&self) -> Option<Retained<NSTextField>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
@@ -71,7 +71,7 @@ extern_methods!(
         pub unsafe fn setTextField(&self, text_field: Option<&NSTextField>);
 
         #[cfg(all(feature = "NSControl", feature = "NSImageView"))]
-        #[method_id(@__retain_semantics Other imageView)]
+        #[method_id(@__method_family Other imageView)]
         pub unsafe fn imageView(&self) -> Option<Retained<NSImageView>>;
 
         #[cfg(all(feature = "NSControl", feature = "NSImageView"))]
@@ -98,7 +98,7 @@ extern_methods!(
         pub unsafe fn setRowSizeStyle(&self, row_size_style: NSTableViewRowSizeStyle);
 
         #[cfg(feature = "NSDraggingItem")]
-        #[method_id(@__retain_semantics Other draggingImageComponents)]
+        #[method_id(@__method_family Other draggingImageComponents)]
         pub unsafe fn draggingImageComponents(&self)
             -> Retained<NSArray<NSDraggingImageComponent>>;
     }
@@ -108,10 +108,10 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableCellView {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -123,7 +123,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableCellView {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -132,7 +132,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSTableCellView {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

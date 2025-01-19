@@ -40,7 +40,7 @@ extern_methods!(
         /// }
         /// present(cityViewController, animated: true)
         /// ```
-        #[method_id(@__retain_semantics Other zoomWithOptions:sourceViewProvider:)]
+        #[method_id(@__method_family Other zoomWithOptions:sourceViewProvider:)]
         pub unsafe fn zoomWithOptions_sourceViewProvider(
             options: Option<&UIZoomTransitionOptions>,
             source_view_provider: &block2::Block<
@@ -49,25 +49,25 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// View slides up from the bottom of the screen. Same as `UIModalTransitionStyle.coverVertical`.
-        #[method_id(@__retain_semantics Other coverVerticalTransition)]
+        #[method_id(@__method_family Other coverVerticalTransition)]
         pub unsafe fn coverVerticalTransition() -> Retained<Self>;
 
         /// View flips horizontally in 3D. Same as `UIModalTransitionStyle.flipHorizontal`.
-        #[method_id(@__retain_semantics Other flipHorizontalTransition)]
+        #[method_id(@__method_family Other flipHorizontalTransition)]
         pub unsafe fn flipHorizontalTransition() -> Retained<Self>;
 
         /// Fades out the current view while fading in the new view. Same as `UIModalTransitionStyle.crossDissolve`.
-        #[method_id(@__retain_semantics Other crossDissolveTransition)]
+        #[method_id(@__method_family Other crossDissolveTransition)]
         pub unsafe fn crossDissolveTransition() -> Retained<Self>;
 
         /// One corner of the current view curls up to reveal the presented view underneath. Same as `UIModalTransitionStyle.partialCurl`.
-        #[method_id(@__retain_semantics Other partialCurlTransition)]
+        #[method_id(@__method_family Other partialCurlTransition)]
         pub unsafe fn partialCurlTransition() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -85,7 +85,7 @@ extern_methods!(
     unsafe impl UIZoomTransitionSourceViewProviderContext {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         /// View controller that is the source of the zoom transition.
-        #[method_id(@__retain_semantics Other sourceViewController)]
+        #[method_id(@__method_family Other sourceViewController)]
         pub unsafe fn sourceViewController(
             &self,
             mtm: MainThreadMarker,
@@ -93,16 +93,16 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         /// The view controller being zoomed into by the transition.
-        #[method_id(@__retain_semantics Other zoomedViewController)]
+        #[method_id(@__method_family Other zoomedViewController)]
         pub unsafe fn zoomedViewController(
             &self,
             mtm: MainThreadMarker,
         ) -> Retained<UIViewController>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

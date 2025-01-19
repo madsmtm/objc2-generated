@@ -31,7 +31,7 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl ASAccountAuthenticationModificationViewController {
         #[cfg(feature = "ASAccountAuthenticationModificationExtensionContext")]
-        #[method_id(@__retain_semantics Other extensionContext)]
+        #[method_id(@__method_family Other extensionContext)]
         pub unsafe fn extensionContext(
             &self,
         ) -> Retained<ASAccountAuthenticationModificationExtensionContext>;
@@ -168,14 +168,14 @@ extern_methods!(
     /// Methods declared on superclass `NSViewController`
     #[cfg(target_os = "macos")]
     unsafe impl ASAccountAuthenticationModificationViewController {
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        #[method_id(@__method_family Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -187,7 +187,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(target_os = "macos")]
     unsafe impl ASAccountAuthenticationModificationViewController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -196,7 +196,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(target_os = "macos")]
     unsafe impl ASAccountAuthenticationModificationViewController {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

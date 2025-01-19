@@ -91,10 +91,10 @@ unsafe impl NSObjectProtocol for VZMacOSInstaller {}
 
 extern_methods!(
     unsafe impl VZMacOSInstaller {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtualMachine")]
@@ -106,7 +106,7 @@ extern_methods!(
         ///
         /// The virtual machine platform must be macOS and the restore image URL must be a file URL referring to a file on disk or an exception will be raised.
         /// This method must be called on the virtual machine's queue.
-        #[method_id(@__retain_semantics Init initWithVirtualMachine:restoreImageURL:)]
+        #[method_id(@__method_family Init initWithVirtualMachine:restoreImageURL:)]
         pub unsafe fn initWithVirtualMachine_restoreImageURL(
             this: Allocated<Self>,
             virtual_machine: &VZVirtualMachine,
@@ -132,16 +132,16 @@ extern_methods!(
         /// An NSProgress object that can be used to observe or cancel installation.
         ///
         /// If the progress object is cancelled before installation is started, an exception will be raised.
-        #[method_id(@__retain_semantics Other progress)]
+        #[method_id(@__method_family Other progress)]
         pub unsafe fn progress(&self) -> Retained<NSProgress>;
 
         #[cfg(feature = "VZVirtualMachine")]
         /// The virtual machine that this installer was initialized with.
-        #[method_id(@__retain_semantics Other virtualMachine)]
+        #[method_id(@__method_family Other virtualMachine)]
         pub unsafe fn virtualMachine(&self) -> Retained<VZVirtualMachine>;
 
         /// The restore image URL that this installer was initialized with.
-        #[method_id(@__retain_semantics Other restoreImageURL)]
+        #[method_id(@__method_family Other restoreImageURL)]
         pub unsafe fn restoreImageURL(&self) -> Retained<NSURL>;
     }
 );

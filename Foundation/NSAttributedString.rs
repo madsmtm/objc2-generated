@@ -56,11 +56,11 @@ unsafe impl NSSecureCoding for NSAttributedString {}
 extern_methods!(
     unsafe impl NSAttributedString {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other string)]
+        #[method_id(@__method_family Other string)]
         pub fn string(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSRange", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other attributesAtIndex:effectiveRange:)]
+        #[method_id(@__method_family Other attributesAtIndex:effectiveRange:)]
         pub unsafe fn attributesAtIndex_effectiveRange(
             &self,
             location: NSUInteger,
@@ -72,10 +72,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAttributedString {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -116,7 +116,7 @@ extern_methods!(
         pub fn length(&self) -> NSUInteger;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other attribute:atIndex:effectiveRange:)]
+        #[method_id(@__method_family Other attribute:atIndex:effectiveRange:)]
         pub unsafe fn attribute_atIndex_effectiveRange(
             &self,
             attr_name: &NSAttributedStringKey,
@@ -125,14 +125,14 @@ extern_methods!(
         ) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "NSRange")]
-        #[method_id(@__retain_semantics Other attributedSubstringFromRange:)]
+        #[method_id(@__method_family Other attributedSubstringFromRange:)]
         pub unsafe fn attributedSubstringFromRange(
             &self,
             range: NSRange,
         ) -> Retained<NSAttributedString>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSRange", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other attributesAtIndex:longestEffectiveRange:inRange:)]
+        #[method_id(@__method_family Other attributesAtIndex:longestEffectiveRange:inRange:)]
         pub unsafe fn attributesAtIndex_longestEffectiveRange_inRange(
             &self,
             location: NSUInteger,
@@ -141,7 +141,7 @@ extern_methods!(
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other attribute:atIndex:longestEffectiveRange:inRange:)]
+        #[method_id(@__method_family Other attribute:atIndex:longestEffectiveRange:inRange:)]
         pub unsafe fn attribute_atIndex_longestEffectiveRange_inRange(
             &self,
             attr_name: &NSAttributedStringKey,
@@ -154,18 +154,18 @@ extern_methods!(
         pub unsafe fn isEqualToAttributedString(&self, other: &NSAttributedString) -> bool;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithString:)]
+        #[method_id(@__method_family Init initWithString:)]
         pub fn initWithString(this: Allocated<Self>, str: &NSString) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__retain_semantics Init initWithString:attributes:)]
+        #[method_id(@__method_family Init initWithString:attributes:)]
         pub unsafe fn initWithString_attributes(
             this: Allocated<Self>,
             str: &NSString,
             attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithAttributedString:)]
+        #[method_id(@__method_family Init initWithAttributedString:)]
         pub fn initWithAttributedString(
             this: Allocated<Self>,
             attr_str: &NSAttributedString,
@@ -209,18 +209,18 @@ extern_methods!(
     /// NSExtendedAttributedString
     unsafe impl NSMutableAttributedString {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Init initWithString:)]
+        #[method_id(@__method_family Init initWithString:)]
         pub fn initWithString(this: Allocated<Self>, str: &NSString) -> Retained<Self>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__retain_semantics Init initWithString:attributes:)]
+        #[method_id(@__method_family Init initWithString:attributes:)]
         pub unsafe fn initWithString_attributes(
             this: Allocated<Self>,
             str: &NSString,
             attrs: Option<&NSDictionary<NSAttributedStringKey, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithAttributedString:)]
+        #[method_id(@__method_family Init initWithAttributedString:)]
         pub fn initWithAttributedString(
             this: Allocated<Self>,
             attr_str: &NSAttributedString,
@@ -278,10 +278,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSMutableAttributedString {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub fn new() -> Retained<Self>;
     }
 );
@@ -297,7 +297,7 @@ extern_methods!(
     /// NSExtendedMutableAttributedString
     unsafe impl NSMutableAttributedString {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other mutableString)]
+        #[method_id(@__method_family Other mutableString)]
         pub unsafe fn mutableString(&self) -> Retained<NSMutableString>;
 
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
@@ -497,7 +497,7 @@ extern_methods!(
         #[method(endColumn)]
         pub unsafe fn endColumn(&self) -> NSInteger;
 
-        #[method_id(@__retain_semantics Init initWithStartLine:startColumn:endLine:endColumn:)]
+        #[method_id(@__method_family Init initWithStartLine:startColumn:endLine:endColumn:)]
         pub unsafe fn initWithStartLine_startColumn_endLine_endColumn(
             this: Allocated<Self>,
             start_line: NSInteger,
@@ -515,10 +515,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAttributedStringMarkdownSourcePosition {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -542,7 +542,7 @@ unsafe impl NSObjectProtocol for NSAttributedStringMarkdownParsingOptions {}
 
 extern_methods!(
     unsafe impl NSAttributedStringMarkdownParsingOptions {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(allowsExtendedAttributes)]
@@ -573,7 +573,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other languageCode)]
+        #[method_id(@__method_family Other languageCode)]
         pub unsafe fn languageCode(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -596,7 +596,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAttributedStringMarkdownParsingOptions {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -605,7 +605,7 @@ extern_methods!(
     /// NSAttributedStringCreateFromMarkdown
     unsafe impl NSAttributedString {
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(@__retain_semantics Init initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_)]
+        #[method_id(@__method_family Init initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_)]
         pub unsafe fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
             this: Allocated<Self>,
             markdown_file: &NSURL,
@@ -614,7 +614,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSURL"))]
-        #[method_id(@__retain_semantics Init initWithMarkdown:options:baseURL:error:_)]
+        #[method_id(@__method_family Init initWithMarkdown:options:baseURL:error:_)]
         pub unsafe fn initWithMarkdown_options_baseURL_error(
             this: Allocated<Self>,
             markdown: &NSData,
@@ -623,7 +623,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString", feature = "NSURL"))]
-        #[method_id(@__retain_semantics Init initWithMarkdownString:options:baseURL:error:_)]
+        #[method_id(@__method_family Init initWithMarkdownString:options:baseURL:error:_)]
         pub unsafe fn initWithMarkdownString_options_baseURL_error(
             this: Allocated<Self>,
             markdown_string: &NSString,
@@ -639,7 +639,7 @@ extern_methods!(
     /// NSAttributedStringCreateFromMarkdown
     unsafe impl NSMutableAttributedString {
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        #[method_id(@__retain_semantics Init initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_)]
+        #[method_id(@__method_family Init initWithContentsOfMarkdownFileAtURL:options:baseURL:error:_)]
         pub unsafe fn initWithContentsOfMarkdownFileAtURL_options_baseURL_error(
             this: Allocated<Self>,
             markdown_file: &NSURL,
@@ -648,7 +648,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSURL"))]
-        #[method_id(@__retain_semantics Init initWithMarkdown:options:baseURL:error:_)]
+        #[method_id(@__method_family Init initWithMarkdown:options:baseURL:error:_)]
         pub unsafe fn initWithMarkdown_options_baseURL_error(
             this: Allocated<Self>,
             markdown: &NSData,
@@ -657,7 +657,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSString", feature = "NSURL"))]
-        #[method_id(@__retain_semantics Init initWithMarkdownString:options:baseURL:error:_)]
+        #[method_id(@__method_family Init initWithMarkdownString:options:baseURL:error:_)]
         pub unsafe fn initWithMarkdownString_options_baseURL_error(
             this: Allocated<Self>,
             markdown_string: &NSString,
@@ -711,7 +711,7 @@ extern_methods!(
         /// If the string has portions tagged with NSInflectionRuleAttributeName
         /// that have no format specifiers, create a new string with those portions inflected
         /// by following the rule in the attribute.
-        #[method_id(@__retain_semantics Other attributedStringByInflectingString)]
+        #[method_id(@__method_family Other attributedStringByInflectingString)]
         pub unsafe fn attributedStringByInflectingString(&self) -> Retained<NSAttributedString>;
     }
 );
@@ -854,19 +854,19 @@ extern_methods!(
         #[method(intentKind)]
         pub unsafe fn intentKind(&self) -> NSPresentationIntentKind;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other parentIntent)]
+        #[method_id(@__method_family Other parentIntent)]
         pub unsafe fn parentIntent(&self) -> Option<Retained<NSPresentationIntent>>;
 
-        #[method_id(@__retain_semantics Other paragraphIntentWithIdentity:nestedInsideIntent:)]
+        #[method_id(@__method_family Other paragraphIntentWithIdentity:nestedInsideIntent:)]
         pub unsafe fn paragraphIntentWithIdentity_nestedInsideIntent(
             identity: NSInteger,
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
-        #[method_id(@__retain_semantics Other headerIntentWithIdentity:level:nestedInsideIntent:)]
+        #[method_id(@__method_family Other headerIntentWithIdentity:level:nestedInsideIntent:)]
         pub unsafe fn headerIntentWithIdentity_level_nestedInsideIntent(
             identity: NSInteger,
             level: NSInteger,
@@ -874,46 +874,46 @@ extern_methods!(
         ) -> Retained<NSPresentationIntent>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other codeBlockIntentWithIdentity:languageHint:nestedInsideIntent:)]
+        #[method_id(@__method_family Other codeBlockIntentWithIdentity:languageHint:nestedInsideIntent:)]
         pub unsafe fn codeBlockIntentWithIdentity_languageHint_nestedInsideIntent(
             identity: NSInteger,
             language_hint: Option<&NSString>,
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
-        #[method_id(@__retain_semantics Other thematicBreakIntentWithIdentity:nestedInsideIntent:)]
+        #[method_id(@__method_family Other thematicBreakIntentWithIdentity:nestedInsideIntent:)]
         pub unsafe fn thematicBreakIntentWithIdentity_nestedInsideIntent(
             identity: NSInteger,
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
-        #[method_id(@__retain_semantics Other orderedListIntentWithIdentity:nestedInsideIntent:)]
+        #[method_id(@__method_family Other orderedListIntentWithIdentity:nestedInsideIntent:)]
         pub unsafe fn orderedListIntentWithIdentity_nestedInsideIntent(
             identity: NSInteger,
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
-        #[method_id(@__retain_semantics Other unorderedListIntentWithIdentity:nestedInsideIntent:)]
+        #[method_id(@__method_family Other unorderedListIntentWithIdentity:nestedInsideIntent:)]
         pub unsafe fn unorderedListIntentWithIdentity_nestedInsideIntent(
             identity: NSInteger,
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
-        #[method_id(@__retain_semantics Other listItemIntentWithIdentity:ordinal:nestedInsideIntent:)]
+        #[method_id(@__method_family Other listItemIntentWithIdentity:ordinal:nestedInsideIntent:)]
         pub unsafe fn listItemIntentWithIdentity_ordinal_nestedInsideIntent(
             identity: NSInteger,
             ordinal: NSInteger,
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
-        #[method_id(@__retain_semantics Other blockQuoteIntentWithIdentity:nestedInsideIntent:)]
+        #[method_id(@__method_family Other blockQuoteIntentWithIdentity:nestedInsideIntent:)]
         pub unsafe fn blockQuoteIntentWithIdentity_nestedInsideIntent(
             identity: NSInteger,
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
-        #[method_id(@__retain_semantics Other tableIntentWithIdentity:columnCount:alignments:nestedInsideIntent:)]
+        #[method_id(@__method_family Other tableIntentWithIdentity:columnCount:alignments:nestedInsideIntent:)]
         pub unsafe fn tableIntentWithIdentity_columnCount_alignments_nestedInsideIntent(
             identity: NSInteger,
             column_count: NSInteger,
@@ -921,20 +921,20 @@ extern_methods!(
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
-        #[method_id(@__retain_semantics Other tableHeaderRowIntentWithIdentity:nestedInsideIntent:)]
+        #[method_id(@__method_family Other tableHeaderRowIntentWithIdentity:nestedInsideIntent:)]
         pub unsafe fn tableHeaderRowIntentWithIdentity_nestedInsideIntent(
             identity: NSInteger,
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
-        #[method_id(@__retain_semantics Other tableRowIntentWithIdentity:row:nestedInsideIntent:)]
+        #[method_id(@__method_family Other tableRowIntentWithIdentity:row:nestedInsideIntent:)]
         pub unsafe fn tableRowIntentWithIdentity_row_nestedInsideIntent(
             identity: NSInteger,
             row: NSInteger,
             parent: Option<&NSPresentationIntent>,
         ) -> Retained<NSPresentationIntent>;
 
-        #[method_id(@__retain_semantics Other tableCellIntentWithIdentity:column:nestedInsideIntent:)]
+        #[method_id(@__method_family Other tableCellIntentWithIdentity:column:nestedInsideIntent:)]
         pub unsafe fn tableCellIntentWithIdentity_column_nestedInsideIntent(
             identity: NSInteger,
             column: NSInteger,
@@ -951,7 +951,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
         /// If the intent is not a table, this value is `nil`.
-        #[method_id(@__retain_semantics Other columnAlignments)]
+        #[method_id(@__method_family Other columnAlignments)]
         pub unsafe fn columnAlignments(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// If the intent is not a table, this value is 0.
@@ -964,7 +964,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// If the intent is not a code block, this value is `nil`.
-        #[method_id(@__retain_semantics Other languageHint)]
+        #[method_id(@__method_family Other languageHint)]
         pub unsafe fn languageHint(&self) -> Option<Retained<NSString>>;
 
         /// The column to which this cell belongs (0-based). If the intent is not a cell, this value is 0.
@@ -990,7 +990,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPresentationIntent {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

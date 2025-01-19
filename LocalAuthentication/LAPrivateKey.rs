@@ -25,7 +25,7 @@ extern_methods!(
         #[cfg(feature = "LAPublicKey")]
         /// Offers the public key counterpart of a
         /// `LAPrivateKey`instance
-        #[method_id(@__retain_semantics Other publicKey)]
+        #[method_id(@__method_family Other publicKey)]
         pub unsafe fn publicKey(&self) -> Retained<LAPublicKey>;
 
         #[cfg(all(feature = "block2", feature = "objc2-security"))]
@@ -117,13 +117,13 @@ extern_methods!(
         /// Clients cannot create
         /// `LAPrivateKey`instances directly. They typically obtain them from a
         /// `LAPersistedRight`instance.
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Clients cannot create
         /// `LAPrivateKey`instances directly. They typically obtain them from a
         /// `LAPersistedRight`instance.
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

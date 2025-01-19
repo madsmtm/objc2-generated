@@ -109,7 +109,7 @@ extern_methods!(
         /// When a web view is initialized, a new web content process
         /// will be created for it from the specified pool, or an existing process in
         /// that pool will be used.
-        #[method_id(@__retain_semantics Other processPool)]
+        #[method_id(@__method_family Other processPool)]
         pub unsafe fn processPool(&self) -> Retained<WKProcessPool>;
 
         #[cfg(feature = "WKProcessPool")]
@@ -119,7 +119,7 @@ extern_methods!(
 
         #[cfg(feature = "WKPreferences")]
         /// The preference settings to be used by the web view.
-        #[method_id(@__retain_semantics Other preferences)]
+        #[method_id(@__method_family Other preferences)]
         pub unsafe fn preferences(&self) -> Retained<WKPreferences>;
 
         #[cfg(feature = "WKPreferences")]
@@ -129,7 +129,7 @@ extern_methods!(
 
         #[cfg(feature = "WKUserContentController")]
         /// The user content controller to associate with the web view.
-        #[method_id(@__retain_semantics Other userContentController)]
+        #[method_id(@__method_family Other userContentController)]
         pub unsafe fn userContentController(&self) -> Retained<WKUserContentController>;
 
         #[cfg(feature = "WKUserContentController")]
@@ -142,7 +142,7 @@ extern_methods!(
 
         #[cfg(feature = "WKWebsiteDataStore")]
         /// The website data store to be used by the web view.
-        #[method_id(@__retain_semantics Other websiteDataStore)]
+        #[method_id(@__method_family Other websiteDataStore)]
         pub unsafe fn websiteDataStore(&self) -> Retained<WKWebsiteDataStore>;
 
         #[cfg(feature = "WKWebsiteDataStore")]
@@ -165,7 +165,7 @@ extern_methods!(
         );
 
         /// The name of the application as used in the user agent string.
-        #[method_id(@__retain_semantics Other applicationNameForUserAgent)]
+        #[method_id(@__method_family Other applicationNameForUserAgent)]
         pub unsafe fn applicationNameForUserAgent(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`applicationNameForUserAgent`][Self::applicationNameForUserAgent].
@@ -213,7 +213,7 @@ extern_methods!(
         ///
         /// These default webpage preferences are additionally passed to the navigation delegate
         /// in -webView:decidePolicyForNavigationAction:preferences:decisionHandler:.
-        #[method_id(@__retain_semantics Other defaultWebpagePreferences)]
+        #[method_id(@__method_family Other defaultWebpagePreferences)]
         pub unsafe fn defaultWebpagePreferences(&self) -> Retained<WKWebpagePreferences>;
 
         #[cfg(feature = "WKWebpagePreferences")]
@@ -269,7 +269,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "WKURLSchemeHandler")]
-        #[method_id(@__retain_semantics Other urlSchemeHandlerForURLScheme:)]
+        #[method_id(@__method_family Other urlSchemeHandlerForURLScheme:)]
         pub unsafe fn urlSchemeHandlerForURLScheme(
             &self,
             url_scheme: &NSString,
@@ -308,10 +308,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKWebViewConfiguration {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

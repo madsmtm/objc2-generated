@@ -137,7 +137,7 @@ unsafe impl NSSecureCoding for NSTextList {}
 
 extern_methods!(
     unsafe impl NSTextList {
-        #[method_id(@__retain_semantics Init initWithMarkerFormat:options:startingItemNumber:)]
+        #[method_id(@__method_family Init initWithMarkerFormat:options:startingItemNumber:)]
         pub unsafe fn initWithMarkerFormat_options_startingItemNumber(
             this: Allocated<Self>,
             marker_format: &NSTextListMarkerFormat,
@@ -145,20 +145,20 @@ extern_methods!(
             starting_item_number: NSInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithMarkerFormat:options:)]
+        #[method_id(@__method_family Init initWithMarkerFormat:options:)]
         pub unsafe fn initWithMarkerFormat_options(
             this: Allocated<Self>,
             marker_format: &NSTextListMarkerFormat,
             options: NSUInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other markerFormat)]
+        #[method_id(@__method_family Other markerFormat)]
         pub unsafe fn markerFormat(&self) -> Retained<NSTextListMarkerFormat>;
 
         #[method(listOptions)]
@@ -174,7 +174,7 @@ extern_methods!(
         #[method(isOrdered)]
         pub unsafe fn isOrdered(&self) -> bool;
 
-        #[method_id(@__retain_semantics Other markerForItemNumber:)]
+        #[method_id(@__method_family Other markerForItemNumber:)]
         pub unsafe fn markerForItemNumber(&self, item_number: NSInteger) -> Retained<NSString>;
     }
 );
@@ -182,10 +182,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTextList {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

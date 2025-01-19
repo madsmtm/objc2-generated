@@ -30,7 +30,7 @@ extern_protocol!(
             feature = "UITextPasteConfigurationSupporting"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other textPasteConfigurationSupporting:combineItemAttributedStrings:forRange:)]
+        #[method_id(@__method_family Other textPasteConfigurationSupporting:combineItemAttributedStrings:forRange:)]
         unsafe fn textPasteConfigurationSupporting_combineItemAttributedStrings_forRange(
             &self,
             text_paste_configuration_supporting: &ProtocolObject<
@@ -46,7 +46,7 @@ extern_protocol!(
             feature = "UITextPasteConfigurationSupporting"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other textPasteConfigurationSupporting:performPasteOfAttributedString:toRange:)]
+        #[method_id(@__method_family Other textPasteConfigurationSupporting:performPasteOfAttributedString:toRange:)]
         unsafe fn textPasteConfigurationSupporting_performPasteOfAttributedString_toRange(
             &self,
             text_paste_configuration_supporting: &ProtocolObject<
@@ -77,13 +77,13 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextpasteitem?language=objc)
     pub unsafe trait UITextPasteItem: NSObjectProtocol + MainThreadOnly {
-        #[method_id(@__retain_semantics Other itemProvider)]
+        #[method_id(@__method_family Other itemProvider)]
         unsafe fn itemProvider(&self) -> Retained<NSItemProvider>;
 
-        #[method_id(@__retain_semantics Other localObject)]
+        #[method_id(@__method_family Other localObject)]
         unsafe fn localObject(&self) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__retain_semantics Other defaultAttributes)]
+        #[method_id(@__method_family Other defaultAttributes)]
         unsafe fn defaultAttributes(
             &self,
         ) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;

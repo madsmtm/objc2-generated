@@ -17,7 +17,7 @@ unsafe impl NSObjectProtocol for NSScriptSuiteRegistry {}
 
 extern_methods!(
     unsafe impl NSScriptSuiteRegistry {
-        #[method_id(@__retain_semantics Other sharedScriptSuiteRegistry)]
+        #[method_id(@__method_family Other sharedScriptSuiteRegistry)]
         pub unsafe fn sharedScriptSuiteRegistry() -> Retained<NSScriptSuiteRegistry>;
 
         #[method(setSharedScriptSuiteRegistry:)]
@@ -47,7 +47,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other suiteNames)]
+        #[method_id(@__method_family Other suiteNames)]
         pub unsafe fn suiteNames(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -55,7 +55,7 @@ extern_methods!(
         pub unsafe fn appleEventCodeForSuite(&self, suite_name: &NSString) -> FourCharCode;
 
         #[cfg(all(feature = "NSBundle", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other bundleForSuite:)]
+        #[method_id(@__method_family Other bundleForSuite:)]
         pub unsafe fn bundleForSuite(&self, suite_name: &NSString) -> Option<Retained<NSBundle>>;
 
         #[cfg(all(
@@ -64,7 +64,7 @@ extern_methods!(
             feature = "NSScriptClassDescription",
             feature = "NSString"
         ))]
-        #[method_id(@__retain_semantics Other classDescriptionsInSuite:)]
+        #[method_id(@__method_family Other classDescriptionsInSuite:)]
         pub unsafe fn classDescriptionsInSuite(
             &self,
             suite_name: &NSString,
@@ -75,28 +75,28 @@ extern_methods!(
             feature = "NSScriptCommandDescription",
             feature = "NSString"
         ))]
-        #[method_id(@__retain_semantics Other commandDescriptionsInSuite:)]
+        #[method_id(@__method_family Other commandDescriptionsInSuite:)]
         pub unsafe fn commandDescriptionsInSuite(
             &self,
             suite_name: &NSString,
         ) -> Option<Retained<NSDictionary<NSString, NSScriptCommandDescription>>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other suiteForAppleEventCode:)]
+        #[method_id(@__method_family Other suiteForAppleEventCode:)]
         pub unsafe fn suiteForAppleEventCode(
             &self,
             apple_event_code: FourCharCode,
         ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSClassDescription", feature = "NSScriptClassDescription"))]
-        #[method_id(@__retain_semantics Other classDescriptionWithAppleEventCode:)]
+        #[method_id(@__method_family Other classDescriptionWithAppleEventCode:)]
         pub unsafe fn classDescriptionWithAppleEventCode(
             &self,
             apple_event_code: FourCharCode,
         ) -> Option<Retained<NSScriptClassDescription>>;
 
         #[cfg(feature = "NSScriptCommandDescription")]
-        #[method_id(@__retain_semantics Other commandDescriptionWithAppleEventClass:andAppleEventCode:)]
+        #[method_id(@__method_family Other commandDescriptionWithAppleEventClass:andAppleEventCode:)]
         pub unsafe fn commandDescriptionWithAppleEventClass_andAppleEventCode(
             &self,
             apple_event_class_code: FourCharCode,
@@ -104,7 +104,7 @@ extern_methods!(
         ) -> Option<Retained<NSScriptCommandDescription>>;
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other aeteResource:)]
+        #[method_id(@__method_family Other aeteResource:)]
         pub unsafe fn aeteResource(&self, language_name: &NSString) -> Option<Retained<NSData>>;
     }
 );
@@ -112,10 +112,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScriptSuiteRegistry {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

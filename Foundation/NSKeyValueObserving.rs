@@ -338,7 +338,7 @@ extern_category!(
     #[doc(alias = "NSKeyValueObservingCustomization")]
     pub unsafe trait NSObjectNSKeyValueObservingCustomization {
         #[cfg(all(feature = "NSSet", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other keyPathsForValuesAffectingValueForKey:)]
+        #[method_id(@__method_family Other keyPathsForValuesAffectingValueForKey:)]
         unsafe fn keyPathsForValuesAffectingValueForKey(
             key: &NSString,
         ) -> Retained<NSSet<NSString>>;

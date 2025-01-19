@@ -75,7 +75,7 @@ extern_methods!(
         ) -> bool;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
-        #[method_id(@__retain_semantics Other dataWithPropertyList:format:options:error:_)]
+        #[method_id(@__method_family Other dataWithPropertyList:format:options:error:_)]
         pub unsafe fn dataWithPropertyList_format_options_error(
             plist: &AnyObject,
             format: NSPropertyListFormat,
@@ -83,7 +83,7 @@ extern_methods!(
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
-        #[method_id(@__retain_semantics Other propertyListWithData:options:format:error:_)]
+        #[method_id(@__method_family Other propertyListWithData:options:format:error:_)]
         pub unsafe fn propertyListWithData_options_format_error(
             data: &NSData,
             opt: NSPropertyListReadOptions,
@@ -91,7 +91,7 @@ extern_methods!(
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSStream"))]
-        #[method_id(@__retain_semantics Other propertyListWithStream:options:format:error:_)]
+        #[method_id(@__method_family Other propertyListWithStream:options:format:error:_)]
         pub unsafe fn propertyListWithStream_options_format_error(
             stream: &NSInputStream,
             opt: NSPropertyListReadOptions,
@@ -100,7 +100,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
         #[deprecated = "Use dataWithPropertyList:format:options:error: instead."]
-        #[method_id(@__retain_semantics Other dataFromPropertyList:format:errorDescription:)]
+        #[method_id(@__method_family Other dataFromPropertyList:format:errorDescription:)]
         pub unsafe fn dataFromPropertyList_format_errorDescription(
             plist: &AnyObject,
             format: NSPropertyListFormat,
@@ -109,7 +109,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
         #[deprecated = "Use propertyListWithData:options:format:error: instead."]
-        #[method_id(@__retain_semantics Other propertyListFromData:mutabilityOption:format:errorDescription:)]
+        #[method_id(@__method_family Other propertyListFromData:mutabilityOption:format:errorDescription:)]
         pub unsafe fn propertyListFromData_mutabilityOption_format_errorDescription(
             data: &NSData,
             opt: NSPropertyListMutabilityOptions,
@@ -122,10 +122,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPropertyListSerialization {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

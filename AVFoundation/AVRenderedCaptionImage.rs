@@ -25,10 +25,10 @@ unsafe impl NSObjectProtocol for AVRenderedCaptionImage {}
 
 extern_methods!(
     unsafe impl AVRenderedCaptionImage {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-video")]
@@ -37,7 +37,7 @@ extern_methods!(
         /// If the client reads a pixelBuffer and wants to use it longer than AVRenderedCaptionImage, it must retain the pixelBuffer. The pixel buffer can be converted to MTLTexture using CVMetalTextureCache. The pixel format is fixed to kCVPixelFormatType_32BGRA defined in
         /// <CoreVideo
         /// /CVPixelBuffer.h>.
-        #[method_id(@__retain_semantics Other pixelBuffer)]
+        #[method_id(@__method_family Other pixelBuffer)]
         pub unsafe fn pixelBuffer(&self) -> Retained<CVPixelBuffer>;
 
         #[cfg(feature = "objc2-core-foundation")]

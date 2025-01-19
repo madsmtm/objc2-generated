@@ -24,17 +24,17 @@ unsafe impl NSObjectProtocol for AVContinuityDevice {}
 
 extern_methods!(
     unsafe impl AVContinuityDevice {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// A connection ID of the continuity device.
         ///
         ///
         /// This property can be used to uniquely identify a continuity device. Every available continuity device has a unique ID that regenerates across device connections and disconnections.
-        #[method_id(@__retain_semantics Other connectionID)]
+        #[method_id(@__method_family Other connectionID)]
         pub unsafe fn connectionID(&self) -> Retained<NSUUID>;
 
         /// Indicates whether the continuity device is connected and available to the system.
@@ -46,12 +46,12 @@ extern_methods!(
 
         #[cfg(feature = "AVCaptureDevice")]
         /// The video capture devices available from the continuity device.
-        #[method_id(@__retain_semantics Other videoDevices)]
+        #[method_id(@__method_family Other videoDevices)]
         pub unsafe fn videoDevices(&self) -> Retained<NSArray<AVCaptureDevice>>;
 
         #[cfg(feature = "objc2-avf-audio")]
         /// The audio session inputs available from the continuity device.
-        #[method_id(@__retain_semantics Other audioSessionInputs)]
+        #[method_id(@__method_family Other audioSessionInputs)]
         pub unsafe fn audioSessionInputs(&self)
             -> Retained<NSArray<AVAudioSessionPortDescription>>;
     }

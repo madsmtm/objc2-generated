@@ -22,7 +22,7 @@ unsafe impl NSObjectProtocol for MKGeoJSONDecoder {}
 
 extern_methods!(
     unsafe impl MKGeoJSONDecoder {
-        #[method_id(@__retain_semantics Other geoJSONObjectsWithData:error:_)]
+        #[method_id(@__method_family Other geoJSONObjectsWithData:error:_)]
         pub unsafe fn geoJSONObjectsWithData_error(
             &self,
             data: &NSData,
@@ -33,10 +33,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKGeoJSONDecoder {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -54,14 +54,14 @@ unsafe impl NSObjectProtocol for MKGeoJSONFeature {}
 
 extern_methods!(
     unsafe impl MKGeoJSONFeature {
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__retain_semantics Other properties)]
+        #[method_id(@__method_family Other properties)]
         pub unsafe fn properties(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "MKShape")]
-        #[method_id(@__retain_semantics Other geometry)]
+        #[method_id(@__method_family Other geometry)]
         pub unsafe fn geometry(&self) -> Retained<NSArray<MKShape>>;
     }
 );
@@ -69,10 +69,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKGeoJSONFeature {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

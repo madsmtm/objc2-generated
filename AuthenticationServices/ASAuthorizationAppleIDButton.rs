@@ -87,14 +87,14 @@ unsafe impl NSUserInterfaceItemIdentification for ASAuthorizationAppleIDButton {
 extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl ASAuthorizationAppleIDButton {
-        #[method_id(@__retain_semantics Other buttonWithType:style:)]
+        #[method_id(@__method_family Other buttonWithType:style:)]
         pub unsafe fn buttonWithType_style(
             r#type: ASAuthorizationAppleIDButtonType,
             style: ASAuthorizationAppleIDButtonStyle,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithAuthorizationButtonType:authorizationButtonStyle:)]
+        #[method_id(@__method_family Init initWithAuthorizationButtonType:authorizationButtonStyle:)]
         pub unsafe fn initWithAuthorizationButtonType_authorizationButtonStyle(
             this: Allocated<Self>,
             r#type: ASAuthorizationAppleIDButtonType,
@@ -117,10 +117,10 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(target_os = "macos")]
     unsafe impl ASAuthorizationAppleIDButton {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -132,7 +132,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(target_os = "macos")]
     unsafe impl ASAuthorizationAppleIDButton {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -141,7 +141,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(target_os = "macos")]
     unsafe impl ASAuthorizationAppleIDButton {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -137,7 +137,7 @@ extern_methods!(
         /// If `menu` is non-empty, the pop-up button uses the first item for its initial selection.
         ///
         /// Returns: An initialized pop-up button object.
-        #[method_id(@__retain_semantics Other popUpButtonWithMenu:target:action:)]
+        #[method_id(@__method_family Other popUpButtonWithMenu:target:action:)]
         pub unsafe fn popUpButtonWithMenu_target_action(
             menu: &NSMenu,
             target: Option<&AnyObject>,
@@ -154,7 +154,7 @@ extern_methods!(
         /// Pull-down buttons created using this method have the `usesItemFromMenu` property set to `NO`.
         ///
         /// Returns: An initialized pull-down button object.
-        #[method_id(@__retain_semantics Other pullDownButtonWithTitle:menu:)]
+        #[method_id(@__method_family Other pullDownButtonWithTitle:menu:)]
         pub unsafe fn pullDownButtonWithTitle_menu(
             title: &NSString,
             menu: &NSMenu,
@@ -170,7 +170,7 @@ extern_methods!(
         /// Pull-down buttons created using this method have the `usesItemFromMenu` property set to `NO`.
         ///
         /// Returns: An initialized pull-down button object.
-        #[method_id(@__retain_semantics Other pullDownButtonWithImage:menu:)]
+        #[method_id(@__method_family Other pullDownButtonWithImage:menu:)]
         pub unsafe fn pullDownButtonWithImage_menu(
             image: &NSImage,
             menu: &NSMenu,
@@ -188,14 +188,14 @@ extern_methods!(
         /// Pull-down buttons created using this method have the `usesItemFromMenu` property set to `NO`.
         ///
         /// Returns: An initialized pull-down button object.
-        #[method_id(@__retain_semantics Other pullDownButtonWithTitle:image:menu:)]
+        #[method_id(@__method_family Other pullDownButtonWithTitle:image:menu:)]
         pub unsafe fn pullDownButtonWithTitle_image_menu(
             title: &NSString,
             image: &NSImage,
             menu: &NSMenu,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithFrame:pullsDown:)]
+        #[method_id(@__method_family Init initWithFrame:pullsDown:)]
         pub unsafe fn initWithFrame_pullsDown(
             this: Allocated<Self>,
             button_frame: NSRect,
@@ -204,7 +204,7 @@ extern_methods!(
 
         #[cfg(feature = "NSMenu")]
         /// The menu that is presented by the popup button. This overrides the inherited NSView property and replaces NSView's standard context menu behavior.
-        #[method_id(@__retain_semantics Other menu)]
+        #[method_id(@__method_family Other menu)]
         pub unsafe fn menu(&self) -> Option<Retained<NSMenu>>;
 
         #[cfg(feature = "NSMenu")]
@@ -271,7 +271,7 @@ extern_methods!(
         pub unsafe fn removeAllItems(&self);
 
         #[cfg(feature = "NSMenuItem")]
-        #[method_id(@__retain_semantics Other itemArray)]
+        #[method_id(@__method_family Other itemArray)]
         pub unsafe fn itemArray(&self) -> Retained<NSArray<NSMenuItem>>;
 
         #[method(numberOfItems)]
@@ -299,15 +299,15 @@ extern_methods!(
         ) -> NSInteger;
 
         #[cfg(feature = "NSMenuItem")]
-        #[method_id(@__retain_semantics Other itemAtIndex:)]
+        #[method_id(@__method_family Other itemAtIndex:)]
         pub unsafe fn itemAtIndex(&self, index: NSInteger) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
-        #[method_id(@__retain_semantics Other itemWithTitle:)]
+        #[method_id(@__method_family Other itemWithTitle:)]
         pub unsafe fn itemWithTitle(&self, title: &NSString) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
-        #[method_id(@__retain_semantics Other lastItem)]
+        #[method_id(@__method_family Other lastItem)]
         pub unsafe fn lastItem(&self) -> Option<Retained<NSMenuItem>>;
 
         #[cfg(feature = "NSMenuItem")]
@@ -327,7 +327,7 @@ extern_methods!(
         pub unsafe fn setTitle(&self, string: &NSString);
 
         #[cfg(feature = "NSMenuItem")]
-        #[method_id(@__retain_semantics Other selectedItem)]
+        #[method_id(@__method_family Other selectedItem)]
         pub unsafe fn selectedItem(&self) -> Option<Retained<NSMenuItem>>;
 
         #[method(indexOfSelectedItem)]
@@ -339,13 +339,13 @@ extern_methods!(
         #[method(synchronizeTitleAndSelectedItem)]
         pub unsafe fn synchronizeTitleAndSelectedItem(&self);
 
-        #[method_id(@__retain_semantics Other itemTitleAtIndex:)]
+        #[method_id(@__method_family Other itemTitleAtIndex:)]
         pub unsafe fn itemTitleAtIndex(&self, index: NSInteger) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other itemTitles)]
+        #[method_id(@__method_family Other itemTitles)]
         pub unsafe fn itemTitles(&self) -> Retained<NSArray<NSString>>;
 
-        #[method_id(@__retain_semantics Other titleOfSelectedItem)]
+        #[method_id(@__method_family Other titleOfSelectedItem)]
         pub unsafe fn titleOfSelectedItem(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -371,7 +371,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(@__retain_semantics Other buttonWithTitle:image:target:action:)]
+        #[method_id(@__method_family Other buttonWithTitle:image:target:action:)]
         pub unsafe fn buttonWithTitle_image_target_action(
             title: &NSString,
             image: &NSImage,
@@ -389,7 +389,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(@__retain_semantics Other buttonWithTitle:target:action:)]
+        #[method_id(@__method_family Other buttonWithTitle:target:action:)]
         pub unsafe fn buttonWithTitle_target_action(
             title: &NSString,
             target: Option<&AnyObject>,
@@ -407,7 +407,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(@__retain_semantics Other buttonWithImage:target:action:)]
+        #[method_id(@__method_family Other buttonWithImage:target:action:)]
         pub unsafe fn buttonWithImage_target_action(
             image: &NSImage,
             target: Option<&AnyObject>,
@@ -424,7 +424,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(@__retain_semantics Other checkboxWithTitle:target:action:)]
+        #[method_id(@__method_family Other checkboxWithTitle:target:action:)]
         pub unsafe fn checkboxWithTitle_target_action(
             title: &NSString,
             target: Option<&AnyObject>,
@@ -441,7 +441,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(@__retain_semantics Other radioButtonWithTitle:target:action:)]
+        #[method_id(@__method_family Other radioButtonWithTitle:target:action:)]
         pub unsafe fn radioButtonWithTitle_target_action(
             title: &NSString,
             target: Option<&AnyObject>,
@@ -460,10 +460,10 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSPopUpButton {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -480,7 +480,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSPopUpButton {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -494,7 +494,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSPopUpButton {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

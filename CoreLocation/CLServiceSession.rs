@@ -69,10 +69,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CLServiceSessionDiagnostic {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -88,18 +88,18 @@ unsafe impl NSObjectProtocol for CLServiceSession {}
 
 extern_methods!(
     unsafe impl CLServiceSession {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other sessionRequiringAuthorization:)]
+        #[method_id(@__method_family Other sessionRequiringAuthorization:)]
         pub unsafe fn sessionRequiringAuthorization(
             authorization_requirement: CLServiceSessionAuthorizationRequirement,
         ) -> Retained<CLServiceSession>;
 
-        #[method_id(@__retain_semantics Other sessionRequiringAuthorization:fullAccuracyPurposeKey:)]
+        #[method_id(@__method_family Other sessionRequiringAuthorization:fullAccuracyPurposeKey:)]
         pub unsafe fn sessionRequiringAuthorization_fullAccuracyPurposeKey(
             authorization_requirement: CLServiceSessionAuthorizationRequirement,
             purpose_key: &NSString,

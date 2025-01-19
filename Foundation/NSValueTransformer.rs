@@ -66,13 +66,13 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other valueTransformerForName:)]
+        #[method_id(@__method_family Other valueTransformerForName:)]
         pub unsafe fn valueTransformerForName(
             name: &NSValueTransformerName,
         ) -> Option<Retained<NSValueTransformer>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other valueTransformerNames)]
+        #[method_id(@__method_family Other valueTransformerNames)]
         pub unsafe fn valueTransformerNames() -> Retained<NSArray<NSValueTransformerName>>;
 
         #[method(transformedValueClass)]
@@ -81,13 +81,13 @@ extern_methods!(
         #[method(allowsReverseTransformation)]
         pub unsafe fn allowsReverseTransformation() -> bool;
 
-        #[method_id(@__retain_semantics Other transformedValue:)]
+        #[method_id(@__method_family Other transformedValue:)]
         pub unsafe fn transformedValue(
             &self,
             value: Option<&AnyObject>,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__retain_semantics Other reverseTransformedValue:)]
+        #[method_id(@__method_family Other reverseTransformedValue:)]
         pub unsafe fn reverseTransformedValue(
             &self,
             value: Option<&AnyObject>,
@@ -98,10 +98,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSValueTransformer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -129,7 +129,7 @@ extern_methods!(
         /// `NSArray,``NSDictionary,``NSSet,``NSString,``NSNumber,``NSDate,``NSData,``NSURL,``NSUUID,`and
         /// `NSNull.`
         /// Can be overridden by subclasses to provide an expanded or different set of allowed transformation classes.
-        #[method_id(@__retain_semantics Other allowedTopLevelClasses)]
+        #[method_id(@__method_family Other allowedTopLevelClasses)]
         pub unsafe fn allowedTopLevelClasses() -> Retained<NSArray<AnyClass>>;
     }
 );
@@ -137,10 +137,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSecureUnarchiveFromDataTransformer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

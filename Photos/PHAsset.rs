@@ -54,14 +54,14 @@ extern_methods!(
         #[method(pixelHeight)]
         pub unsafe fn pixelHeight(&self) -> NSUInteger;
 
-        #[method_id(@__retain_semantics Other creationDate)]
+        #[method_id(@__method_family Other creationDate)]
         pub unsafe fn creationDate(&self) -> Option<Retained<NSDate>>;
 
-        #[method_id(@__retain_semantics Other modificationDate)]
+        #[method_id(@__method_family Other modificationDate)]
         pub unsafe fn modificationDate(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(@__retain_semantics Other location)]
+        #[method_id(@__method_family Other location)]
         pub unsafe fn location(&self) -> Option<Retained<CLLocation>>;
 
         #[method(duration)]
@@ -77,7 +77,7 @@ extern_methods!(
         #[method(isSyncFailureHidden)]
         pub unsafe fn isSyncFailureHidden(&self) -> bool;
 
-        #[method_id(@__retain_semantics Other burstIdentifier)]
+        #[method_id(@__method_family Other burstIdentifier)]
         pub unsafe fn burstIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "PhotosTypes")]
@@ -94,7 +94,7 @@ extern_methods!(
         #[method(hasAdjustments)]
         pub unsafe fn hasAdjustments(&self) -> bool;
 
-        #[method_id(@__retain_semantics Other adjustmentFormatIdentifier)]
+        #[method_id(@__method_family Other adjustmentFormatIdentifier)]
         pub unsafe fn adjustmentFormatIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "PhotosTypes")]
@@ -106,14 +106,14 @@ extern_methods!(
             feature = "PHFetchOptions",
             feature = "PHFetchResult"
         ))]
-        #[method_id(@__retain_semantics Other fetchAssetsInAssetCollection:options:)]
+        #[method_id(@__method_family Other fetchAssetsInAssetCollection:options:)]
         pub unsafe fn fetchAssetsInAssetCollection_options(
             asset_collection: &PHAssetCollection,
             options: Option<&PHFetchOptions>,
         ) -> Retained<PHFetchResult<PHAsset>>;
 
         #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
-        #[method_id(@__retain_semantics Other fetchAssetsWithLocalIdentifiers:options:)]
+        #[method_id(@__method_family Other fetchAssetsWithLocalIdentifiers:options:)]
         pub unsafe fn fetchAssetsWithLocalIdentifiers_options(
             identifiers: &NSArray<NSString>,
             options: Option<&PHFetchOptions>,
@@ -124,21 +124,21 @@ extern_methods!(
             feature = "PHFetchOptions",
             feature = "PHFetchResult"
         ))]
-        #[method_id(@__retain_semantics Other fetchKeyAssetsInAssetCollection:options:)]
+        #[method_id(@__method_family Other fetchKeyAssetsInAssetCollection:options:)]
         pub unsafe fn fetchKeyAssetsInAssetCollection_options(
             asset_collection: &PHAssetCollection,
             options: Option<&PHFetchOptions>,
         ) -> Option<Retained<PHFetchResult<PHAsset>>>;
 
         #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
-        #[method_id(@__retain_semantics Other fetchAssetsWithBurstIdentifier:options:)]
+        #[method_id(@__method_family Other fetchAssetsWithBurstIdentifier:options:)]
         pub unsafe fn fetchAssetsWithBurstIdentifier_options(
             burst_identifier: &NSString,
             options: Option<&PHFetchOptions>,
         ) -> Retained<PHFetchResult<PHAsset>>;
 
         #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
-        #[method_id(@__retain_semantics Other fetchAssetsWithOptions:)]
+        #[method_id(@__method_family Other fetchAssetsWithOptions:)]
         pub unsafe fn fetchAssetsWithOptions(
             options: Option<&PHFetchOptions>,
         ) -> Retained<PHFetchResult<PHAsset>>;
@@ -148,7 +148,7 @@ extern_methods!(
             feature = "PHFetchResult",
             feature = "PhotosTypes"
         ))]
-        #[method_id(@__retain_semantics Other fetchAssetsWithMediaType:options:)]
+        #[method_id(@__method_family Other fetchAssetsWithMediaType:options:)]
         pub unsafe fn fetchAssetsWithMediaType_options(
             media_type: PHAssetMediaType,
             options: Option<&PHFetchOptions>,
@@ -156,7 +156,7 @@ extern_methods!(
 
         #[cfg(all(feature = "PHFetchOptions", feature = "PHFetchResult"))]
         #[deprecated = "Will be removed in a future release"]
-        #[method_id(@__retain_semantics Other fetchAssetsWithALAssetURLs:options:)]
+        #[method_id(@__method_family Other fetchAssetsWithALAssetURLs:options:)]
         pub unsafe fn fetchAssetsWithALAssetURLs_options(
             asset_ur_ls: &NSArray<NSURL>,
             options: Option<&PHFetchOptions>,
@@ -168,10 +168,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "PHObject")]
     unsafe impl PHAsset {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

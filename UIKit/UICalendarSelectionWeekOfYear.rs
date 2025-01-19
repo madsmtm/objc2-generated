@@ -23,7 +23,7 @@ extern_methods!(
     #[cfg(feature = "UICalendarSelection")]
     unsafe impl UICalendarSelectionWeekOfYear {
         /// The currently selected week of year in the Calendar view. The components must include `[.yearForWeekOfYear, .weekOfYear]`.
-        #[method_id(@__retain_semantics Other selectedWeekOfYear)]
+        #[method_id(@__method_family Other selectedWeekOfYear)]
         pub unsafe fn selectedWeekOfYear(&self) -> Option<Retained<NSDateComponents>>;
 
         /// Setter for [`selectedWeekOfYear`][Self::selectedWeekOfYear].
@@ -42,13 +42,13 @@ extern_methods!(
         );
 
         /// The object that acts as the delegate of the calendar view selection
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICalendarSelectionWeekOfYearDelegate>>>;
 
         /// Creates a new multi-date selection with the specified delegate.
-        #[method_id(@__retain_semantics Init initWithDelegate:)]
+        #[method_id(@__method_family Init initWithDelegate:)]
         pub unsafe fn initWithDelegate(
             this: Allocated<Self>,
             delegate: Option<&ProtocolObject<dyn UICalendarSelectionWeekOfYearDelegate>>,
@@ -60,10 +60,10 @@ extern_methods!(
     /// Methods declared on superclass `UICalendarSelection`
     #[cfg(feature = "UICalendarSelection")]
     unsafe impl UICalendarSelectionWeekOfYear {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

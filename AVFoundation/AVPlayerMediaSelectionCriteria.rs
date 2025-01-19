@@ -25,17 +25,17 @@ unsafe impl NSObjectProtocol for AVPlayerMediaSelectionCriteria {}
 
 extern_methods!(
     unsafe impl AVPlayerMediaSelectionCriteria {
-        #[method_id(@__retain_semantics Other preferredLanguages)]
+        #[method_id(@__method_family Other preferredLanguages)]
         pub unsafe fn preferredLanguages(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(feature = "AVMediaFormat")]
-        #[method_id(@__retain_semantics Other preferredMediaCharacteristics)]
+        #[method_id(@__method_family Other preferredMediaCharacteristics)]
         pub unsafe fn preferredMediaCharacteristics(
             &self,
         ) -> Option<Retained<NSArray<AVMediaCharacteristic>>>;
 
         #[cfg(feature = "AVMediaFormat")]
-        #[method_id(@__retain_semantics Other principalMediaCharacteristics)]
+        #[method_id(@__method_family Other principalMediaCharacteristics)]
         pub unsafe fn principalMediaCharacteristics(
             &self,
         ) -> Option<Retained<NSArray<AVMediaCharacteristic>>>;
@@ -48,7 +48,7 @@ extern_methods!(
         /// Parameter `preferredMediaCharacteristics`: An NSArray of AVMediaCharacteristics indicating additional media characteristics, in order of desirability, that are preferred when selecting media with the characteristic for which the receiver is set on the AVPlayer as the selection criteria. Can be nil.
         ///
         /// Returns: An instance of AVPlayerMediaSelectionCriteria.
-        #[method_id(@__retain_semantics Init initWithPreferredLanguages:preferredMediaCharacteristics:)]
+        #[method_id(@__method_family Init initWithPreferredLanguages:preferredMediaCharacteristics:)]
         pub unsafe fn initWithPreferredLanguages_preferredMediaCharacteristics(
             this: Allocated<Self>,
             preferred_languages: Option<&NSArray<NSString>>,
@@ -67,7 +67,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayerMediaSelectionCriteria.
         ///
         /// Note that even though principal media characteristics, when present, will override language preferences when making a selection within a specific media selection group, language preferences may still pertain to selections in other groups. For example, language preferences for the group that corresponds to the audible characteristic may be considered when choosing whether or not to select non-forced subtitles for translation purposes.
-        #[method_id(@__retain_semantics Init initWithPrincipalMediaCharacteristics:preferredLanguages:preferredMediaCharacteristics:)]
+        #[method_id(@__method_family Init initWithPrincipalMediaCharacteristics:preferredLanguages:preferredMediaCharacteristics:)]
         pub unsafe fn initWithPrincipalMediaCharacteristics_preferredLanguages_preferredMediaCharacteristics(
             this: Allocated<Self>,
             principal_media_characteristics: Option<&NSArray<AVMediaCharacteristic>>,
@@ -80,10 +80,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayerMediaSelectionCriteria {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

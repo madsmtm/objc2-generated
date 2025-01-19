@@ -124,17 +124,17 @@ unsafe impl UIAppearance for UIBarButtonItem {}
 extern_methods!(
     #[cfg(feature = "UIBarItem")]
     unsafe impl UIBarButtonItem {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__retain_semantics Init initWithImage:style:target:action:)]
+        #[method_id(@__method_family Init initWithImage:style:target:action:)]
         pub unsafe fn initWithImage_style_target_action(
             this: Allocated<Self>,
             image: Option<&UIImage>,
@@ -144,7 +144,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__retain_semantics Init initWithImage:landscapeImagePhone:style:target:action:)]
+        #[method_id(@__method_family Init initWithImage:landscapeImagePhone:style:target:action:)]
         pub unsafe fn initWithImage_landscapeImagePhone_style_target_action(
             this: Allocated<Self>,
             image: Option<&UIImage>,
@@ -154,7 +154,7 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithTitle:style:target:action:)]
+        #[method_id(@__method_family Init initWithTitle:style:target:action:)]
         pub unsafe fn initWithTitle_style_target_action(
             this: Allocated<Self>,
             title: Option<&NSString>,
@@ -163,7 +163,7 @@ extern_methods!(
             action: Option<Sel>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithBarButtonSystemItem:target:action:)]
+        #[method_id(@__method_family Init initWithBarButtonSystemItem:target:action:)]
         pub unsafe fn initWithBarButtonSystemItem_target_action(
             this: Allocated<Self>,
             system_item: UIBarButtonSystemItem,
@@ -172,7 +172,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__retain_semantics Init initWithCustomView:)]
+        #[method_id(@__method_family Init initWithCustomView:)]
         pub unsafe fn initWithCustomView(
             this: Allocated<Self>,
             custom_view: &UIView,
@@ -182,7 +182,7 @@ extern_methods!(
         /// Creates a bar button item for the given systemItem. The primaryAction is copied, and its title
         /// &
         /// image are ignored.
-        #[method_id(@__retain_semantics Init initWithBarButtonSystemItem:primaryAction:)]
+        #[method_id(@__method_family Init initWithBarButtonSystemItem:primaryAction:)]
         pub unsafe fn initWithBarButtonSystemItem_primaryAction(
             this: Allocated<Self>,
             system_item: UIBarButtonSystemItem,
@@ -191,7 +191,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Creates a plain-style bar button item from the properties of primaryAction. primaryAction is copied.
-        #[method_id(@__retain_semantics Init initWithPrimaryAction:)]
+        #[method_id(@__method_family Init initWithPrimaryAction:)]
         pub unsafe fn initWithPrimaryAction(
             this: Allocated<Self>,
             primary_action: Option<&UIAction>,
@@ -199,7 +199,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// Creates a bar button item for the given systemItem. The constructed item will present the menu immediately when touched.
-        #[method_id(@__retain_semantics Init initWithBarButtonSystemItem:menu:)]
+        #[method_id(@__method_family Init initWithBarButtonSystemItem:menu:)]
         pub unsafe fn initWithBarButtonSystemItem_menu(
             this: Allocated<Self>,
             system_item: UIBarButtonSystemItem,
@@ -208,7 +208,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// Creates a plain-style bar button item with the given title. The constructed item will present the menu immediately when touched.
-        #[method_id(@__retain_semantics Init initWithTitle:menu:)]
+        #[method_id(@__method_family Init initWithTitle:menu:)]
         pub unsafe fn initWithTitle_menu(
             this: Allocated<Self>,
             title: Option<&NSString>,
@@ -217,7 +217,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIImage", feature = "UIMenu", feature = "UIMenuElement"))]
         /// Creates a plain-style bar button item with the given image. The constructed item will present the menu immediately when touched.
-        #[method_id(@__retain_semantics Init initWithImage:menu:)]
+        #[method_id(@__method_family Init initWithImage:menu:)]
         pub unsafe fn initWithImage_menu(
             this: Allocated<Self>,
             image: Option<&UIImage>,
@@ -226,7 +226,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIAction", feature = "UIMenu", feature = "UIMenuElement"))]
         /// Creates a plain-style bar button item from the properties of primaryAction. primaryAction is copied.
-        #[method_id(@__retain_semantics Init initWithPrimaryAction:menu:)]
+        #[method_id(@__method_family Init initWithPrimaryAction:menu:)]
         pub unsafe fn initWithPrimaryAction_menu(
             this: Allocated<Self>,
             primary_action: Option<&UIAction>,
@@ -237,7 +237,7 @@ extern_methods!(
         /// Creates a bar button item for the given systemItem. The primaryAction is copied, and its title
         /// &
         /// image are ignored.
-        #[method_id(@__retain_semantics Init initWithBarButtonSystemItem:primaryAction:menu:)]
+        #[method_id(@__method_family Init initWithBarButtonSystemItem:primaryAction:menu:)]
         pub unsafe fn initWithBarButtonSystemItem_primaryAction_menu(
             this: Allocated<Self>,
             system_item: UIBarButtonSystemItem,
@@ -247,7 +247,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIImage", feature = "UIMenu", feature = "UIMenuElement"))]
         /// Creates a plain-style bar button item with the given title and image.
-        #[method_id(@__retain_semantics Init initWithTitle:image:target:action:menu:)]
+        #[method_id(@__method_family Init initWithTitle:image:target:action:menu:)]
         pub unsafe fn initWithTitle_image_target_action_menu(
             this: Allocated<Self>,
             title: Option<&NSString>,
@@ -259,14 +259,14 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Construct a new fixed space item with the given width.
-        #[method_id(@__retain_semantics Other fixedSpaceItemOfWidth:)]
+        #[method_id(@__method_family Other fixedSpaceItemOfWidth:)]
         pub unsafe fn fixedSpaceItemOfWidth(
             width: CGFloat,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         /// Construct a new flexible space item.
-        #[method_id(@__retain_semantics Other flexibleSpaceItem)]
+        #[method_id(@__method_family Other flexibleSpaceItem)]
         pub unsafe fn flexibleSpaceItem(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[method(style)]
@@ -285,7 +285,7 @@ extern_methods!(
         #[method(setWidth:)]
         pub unsafe fn setWidth(&self, width: CGFloat);
 
-        #[method_id(@__retain_semantics Other possibleTitles)]
+        #[method_id(@__method_family Other possibleTitles)]
         pub unsafe fn possibleTitles(&self) -> Option<Retained<NSSet<NSString>>>;
 
         /// Setter for [`possibleTitles`][Self::possibleTitles].
@@ -293,7 +293,7 @@ extern_methods!(
         pub unsafe fn setPossibleTitles(&self, possible_titles: Option<&NSSet<NSString>>);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__retain_semantics Other customView)]
+        #[method_id(@__method_family Other customView)]
         pub unsafe fn customView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
@@ -308,7 +308,7 @@ extern_methods!(
         #[method(setAction:)]
         pub unsafe fn setAction(&self, action: Option<Sel>);
 
-        #[method_id(@__retain_semantics Other target)]
+        #[method_id(@__method_family Other target)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -324,7 +324,7 @@ extern_methods!(
         /// action properties are ignored. If primaryAction is set to nil, the title
         /// &
         /// image properties are left unchanged.
-        #[method_id(@__retain_semantics Other primaryAction)]
+        #[method_id(@__method_family Other primaryAction)]
         pub unsafe fn primaryAction(&self) -> Option<Retained<UIAction>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
@@ -334,7 +334,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// When non-nil the menu is presented, the gesture used to trigger the menu is based on if the bar button item would normally trigger an action when tapped.
-        #[method_id(@__retain_semantics Other menu)]
+        #[method_id(@__method_family Other menu)]
         pub unsafe fn menu(&self) -> Option<Retained<UIMenu>>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
@@ -393,7 +393,7 @@ extern_methods!(
 
         #[cfg(feature = "UIMenuElement")]
         /// A UIMenuElement that should substitute for the UIBarButtonItem when displayed in a menu.
-        #[method_id(@__retain_semantics Other menuRepresentation)]
+        #[method_id(@__method_family Other menuRepresentation)]
         pub unsafe fn menuRepresentation(&self) -> Option<Retained<UIMenuElement>>;
 
         #[cfg(feature = "UIMenuElement")]
@@ -403,12 +403,12 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// Create a fixed group containing this bar button item. UIBarButtonItems may only be in a single UIBarButtonItemGroup at a time, adding a bar button item to a group removes it from any previous group.
-        #[method_id(@__retain_semantics Other creatingFixedGroup)]
+        #[method_id(@__method_family Other creatingFixedGroup)]
         pub unsafe fn creatingFixedGroup(&self) -> Retained<UIBarButtonItemGroup>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// Create a movable group containing this bar button item. UIBarButtonItems may only be in a single UIBarButtonItemGroup at a time, adding a bar button item to a group removes it from any previous group.
-        #[method_id(@__retain_semantics Other creatingMovableGroupWithCustomizationIdentifier:)]
+        #[method_id(@__method_family Other creatingMovableGroupWithCustomizationIdentifier:)]
         pub unsafe fn creatingMovableGroupWithCustomizationIdentifier(
             &self,
             customization_identifier: &NSString,
@@ -416,7 +416,7 @@ extern_methods!(
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// Create an optional group containing this bar button item. UIBarButtonItems may only be in a single UIBarButtonItemGroup at a time, adding a bar button item to a group removes it from any previous group.
-        #[method_id(@__retain_semantics Other creatingOptionalGroupWithCustomizationIdentifier:inDefaultCustomization:)]
+        #[method_id(@__method_family Other creatingOptionalGroupWithCustomizationIdentifier:inDefaultCustomization:)]
         pub unsafe fn creatingOptionalGroupWithCustomizationIdentifier_inDefaultCustomization(
             &self,
             customization_identifier: &NSString,
@@ -433,7 +433,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIControl", feature = "UIImage"))]
-        #[method_id(@__retain_semantics Other backgroundImageForState:barMetrics:)]
+        #[method_id(@__method_family Other backgroundImageForState:barMetrics:)]
         pub unsafe fn backgroundImageForState_barMetrics(
             &self,
             state: UIControlState,
@@ -451,7 +451,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIControl", feature = "UIImage"))]
-        #[method_id(@__retain_semantics Other backgroundImageForState:style:barMetrics:)]
+        #[method_id(@__method_family Other backgroundImageForState:style:barMetrics:)]
         pub unsafe fn backgroundImageForState_style_barMetrics(
             &self,
             state: UIControlState,
@@ -460,7 +460,7 @@ extern_methods!(
         ) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIColor")]
-        #[method_id(@__retain_semantics Other tintColor)]
+        #[method_id(@__method_family Other tintColor)]
         pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -516,7 +516,7 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "UIBarCommon", feature = "UIControl", feature = "UIImage"))]
-        #[method_id(@__retain_semantics Other backButtonBackgroundImageForState:barMetrics:)]
+        #[method_id(@__method_family Other backButtonBackgroundImageForState:barMetrics:)]
         pub unsafe fn backButtonBackgroundImageForState_barMetrics(
             &self,
             state: UIControlState,
@@ -567,7 +567,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIBarItem")]
     unsafe impl UIBarButtonItem {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

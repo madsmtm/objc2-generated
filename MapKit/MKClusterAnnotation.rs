@@ -21,14 +21,14 @@ unsafe impl NSObjectProtocol for MKClusterAnnotation {}
 
 extern_methods!(
     unsafe impl MKClusterAnnotation {
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
         #[method(setTitle:)]
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other subtitle)]
+        #[method_id(@__method_family Other subtitle)]
         pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitle`][Self::subtitle].
@@ -36,16 +36,16 @@ extern_methods!(
         pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
 
         #[cfg(feature = "MKAnnotation")]
-        #[method_id(@__retain_semantics Other memberAnnotations)]
+        #[method_id(@__method_family Other memberAnnotations)]
         pub unsafe fn memberAnnotations(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn MKAnnotation>>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MKAnnotation")]
-        #[method_id(@__retain_semantics Init initWithMemberAnnotations:)]
+        #[method_id(@__method_family Init initWithMemberAnnotations:)]
         pub unsafe fn initWithMemberAnnotations(
             this: Allocated<Self>,
             member_annotations: &NSArray<ProtocolObject<dyn MKAnnotation>>,
@@ -56,7 +56,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKClusterAnnotation {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

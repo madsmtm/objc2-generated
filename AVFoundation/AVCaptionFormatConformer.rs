@@ -20,10 +20,10 @@ unsafe impl NSObjectProtocol for AVCaptionFormatConformer {}
 
 extern_methods!(
     unsafe impl AVCaptionFormatConformer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVCaptionSettings")]
@@ -32,7 +32,7 @@ extern_methods!(
         /// Parameter `conversionSettings`: Describes the conversion operation for which the caption is to be conformed.
         ///
         /// Returns: A new instance of AVCaptionFormatConformer configured to perform the specified conversion.
-        #[method_id(@__retain_semantics Other captionFormatConformerWithConversionSettings:)]
+        #[method_id(@__method_family Other captionFormatConformerWithConversionSettings:)]
         pub unsafe fn captionFormatConformerWithConversionSettings(
             conversion_settings: &NSDictionary<AVCaptionSettingsKey, AnyObject>,
         ) -> Retained<Self>;
@@ -45,7 +45,7 @@ extern_methods!(
         /// Returns: A new instance of AVCaptionFormatConformer configured to perform the specified conversion.
         ///
         /// This method throws an exception if the conversion setting's AVCaptionMediaTypeKey is not equal to AVMediaTypeClosedCaption, or if its AVCaptionMediaSubTypeKey is not equal to kCMClosedCaptionFormatType_CEA608.
-        #[method_id(@__retain_semantics Init initWithConversionSettings:)]
+        #[method_id(@__method_family Init initWithConversionSettings:)]
         pub unsafe fn initWithConversionSettings(
             this: Allocated<Self>,
             conversion_settings: &NSDictionary<AVCaptionSettingsKey, AnyObject>,
@@ -73,7 +73,7 @@ extern_methods!(
         /// Parameter `outError`: A pointer where a NSError object may be returned.
         ///
         /// Returns: A format-compliant caption that conforms to a specific format.
-        #[method_id(@__retain_semantics Other conformedCaptionForCaption:error:_)]
+        #[method_id(@__method_family Other conformedCaptionForCaption:error:_)]
         pub unsafe fn conformedCaptionForCaption_error(
             &self,
             caption: &AVCaption,

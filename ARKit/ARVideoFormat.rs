@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Indicates the type of AVCaptureDevice.
-        #[method_id(@__retain_semantics Other captureDeviceType)]
+        #[method_id(@__method_family Other captureDeviceType)]
         pub unsafe fn captureDeviceType(&self) -> Retained<AVCaptureDeviceType>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -64,10 +64,10 @@ extern_methods!(
         pub unsafe fn isVideoHDRSupported(&self) -> bool;
 
         /// Unavailable
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -80,7 +80,7 @@ extern_methods!(
         pub unsafe fn setMaximumItemSize(&self, maximum_item_size: NSSize);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__retain_semantics Other backgroundColors)]
+        #[method_id(@__method_family Other backgroundColors)]
         pub unsafe fn backgroundColors(&self) -> Retained<NSArray<NSColor>>;
 
         #[cfg(feature = "NSColor")]
@@ -94,10 +94,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSCollectionViewLayout")]
     unsafe impl NSCollectionViewGridLayout {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

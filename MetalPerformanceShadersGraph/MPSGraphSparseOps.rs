@@ -85,7 +85,7 @@ extern_methods!(
         /// - sparseStorageType: A sparseStorageType.
         /// - dataType: A dataType of the sparse tensor.
         /// - Returns: The descriptor.
-        #[method_id(@__retain_semantics Other descriptorWithStorageType:dataType:)]
+        #[method_id(@__method_family Other descriptorWithStorageType:dataType:)]
         pub unsafe fn descriptorWithStorageType_dataType(
             sparse_storage_type: MPSGraphSparseStorageType,
             data_type: MPSDataType,
@@ -97,10 +97,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPSGraphCore")]
     unsafe impl MPSGraphCreateSparseOpDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -129,7 +129,7 @@ extern_methods!(
         /// - dataType: The dataType of the sparse tensor.
         /// - name: A name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object.
-        #[method_id(@__retain_semantics Other sparseTensorWithType:tensors:shape:dataType:name:)]
+        #[method_id(@__method_family Other sparseTensorWithType:tensors:shape:dataType:name:)]
         pub unsafe fn sparseTensorWithType_tensors_shape_dataType_name(
             &self,
             sparse_storage_type: MPSGraphSparseStorageType,
@@ -158,7 +158,7 @@ extern_methods!(
         /// - shape: The shape of the sparse tensor.
         /// - name: A name for the operation.
         /// - Returns: A valid ``MPSGraphTensor`` object
-        #[method_id(@__retain_semantics Other sparseTensorWithDescriptor:tensors:shape:name:)]
+        #[method_id(@__method_family Other sparseTensorWithDescriptor:tensors:shape:name:)]
         pub unsafe fn sparseTensorWithDescriptor_tensors_shape_name(
             &self,
             sparse_descriptor: &MPSGraphCreateSparseOpDescriptor,

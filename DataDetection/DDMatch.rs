@@ -30,10 +30,10 @@ extern_methods!(
         ///
         /// Use `DDMatch` subclasses that the data detection system provides for a
         /// semantic interpretation of this string.
-        #[method_id(@__retain_semantics Other matchedString)]
+        #[method_id(@__method_family Other matchedString)]
         pub unsafe fn matchedString(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -41,7 +41,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl DDMatch {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -66,7 +66,7 @@ unsafe impl NSObjectProtocol for DDMatchLink {}
 extern_methods!(
     unsafe impl DDMatchLink {
         /// An address for a web resource, such as a webpage or image.
-        #[method_id(@__retain_semantics Other URL)]
+        #[method_id(@__method_family Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
     }
 );
@@ -74,7 +74,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DDMatch`
     unsafe impl DDMatchLink {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -82,7 +82,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl DDMatchLink {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -106,11 +106,11 @@ unsafe impl NSObjectProtocol for DDMatchPhoneNumber {}
 extern_methods!(
     unsafe impl DDMatchPhoneNumber {
         /// A string that represents a phone number.
-        #[method_id(@__retain_semantics Other phoneNumber)]
+        #[method_id(@__method_family Other phoneNumber)]
         pub unsafe fn phoneNumber(&self) -> Retained<NSString>;
 
         /// A string that categorizes a phone number, such as Home or Work.
-        #[method_id(@__retain_semantics Other label)]
+        #[method_id(@__method_family Other label)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -118,7 +118,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DDMatch`
     unsafe impl DDMatchPhoneNumber {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -126,7 +126,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl DDMatchPhoneNumber {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -150,11 +150,11 @@ unsafe impl NSObjectProtocol for DDMatchEmailAddress {}
 extern_methods!(
     unsafe impl DDMatchEmailAddress {
         /// A string that represents an email address.
-        #[method_id(@__retain_semantics Other emailAddress)]
+        #[method_id(@__method_family Other emailAddress)]
         pub unsafe fn emailAddress(&self) -> Retained<NSString>;
 
         /// A string that categorizes an email address, such as Home or Work.
-        #[method_id(@__retain_semantics Other label)]
+        #[method_id(@__method_family Other label)]
         pub unsafe fn label(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -162,7 +162,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DDMatch`
     unsafe impl DDMatchEmailAddress {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -170,7 +170,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl DDMatchEmailAddress {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -194,23 +194,23 @@ unsafe impl NSObjectProtocol for DDMatchPostalAddress {}
 extern_methods!(
     unsafe impl DDMatchPostalAddress {
         /// The street name in a postal address.
-        #[method_id(@__retain_semantics Other street)]
+        #[method_id(@__method_family Other street)]
         pub unsafe fn street(&self) -> Option<Retained<NSString>>;
 
         /// The city name in a postal address.
-        #[method_id(@__retain_semantics Other city)]
+        #[method_id(@__method_family Other city)]
         pub unsafe fn city(&self) -> Option<Retained<NSString>>;
 
         /// The state name in a postal address.
-        #[method_id(@__retain_semantics Other state)]
+        #[method_id(@__method_family Other state)]
         pub unsafe fn state(&self) -> Option<Retained<NSString>>;
 
         /// The postal code in a postal address.
-        #[method_id(@__retain_semantics Other postalCode)]
+        #[method_id(@__method_family Other postalCode)]
         pub unsafe fn postalCode(&self) -> Option<Retained<NSString>>;
 
         /// The country or region name in a postal address.
-        #[method_id(@__retain_semantics Other country)]
+        #[method_id(@__method_family Other country)]
         pub unsafe fn country(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -218,7 +218,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DDMatch`
     unsafe impl DDMatchPostalAddress {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -226,7 +226,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl DDMatchPostalAddress {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -254,19 +254,19 @@ extern_methods!(
         pub unsafe fn isAllDay(&self) -> bool;
 
         /// A date that represents the start of the event.
-        #[method_id(@__retain_semantics Other startDate)]
+        #[method_id(@__method_family Other startDate)]
         pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
 
         /// The time zone for the event’s start date.
-        #[method_id(@__retain_semantics Other startTimeZone)]
+        #[method_id(@__method_family Other startTimeZone)]
         pub unsafe fn startTimeZone(&self) -> Option<Retained<NSTimeZone>>;
 
         /// A date that represents the end of the event.
-        #[method_id(@__retain_semantics Other endDate)]
+        #[method_id(@__method_family Other endDate)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
         /// The time zone for the event’s end date.
-        #[method_id(@__retain_semantics Other endTimeZone)]
+        #[method_id(@__method_family Other endTimeZone)]
         pub unsafe fn endTimeZone(&self) -> Option<Retained<NSTimeZone>>;
     }
 );
@@ -274,7 +274,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DDMatch`
     unsafe impl DDMatchCalendarEvent {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -282,7 +282,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl DDMatchCalendarEvent {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -306,11 +306,11 @@ unsafe impl NSObjectProtocol for DDMatchShipmentTrackingNumber {}
 extern_methods!(
     unsafe impl DDMatchShipmentTrackingNumber {
         /// The name of a parcel carrier.
-        #[method_id(@__retain_semantics Other carrier)]
+        #[method_id(@__method_family Other carrier)]
         pub unsafe fn carrier(&self) -> Retained<NSString>;
 
         /// A string that represents a carrier’s tracking identifier for a parcel.
-        #[method_id(@__retain_semantics Other trackingNumber)]
+        #[method_id(@__method_family Other trackingNumber)]
         pub unsafe fn trackingNumber(&self) -> Retained<NSString>;
     }
 );
@@ -318,7 +318,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DDMatch`
     unsafe impl DDMatchShipmentTrackingNumber {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -326,7 +326,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl DDMatchShipmentTrackingNumber {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -350,11 +350,11 @@ unsafe impl NSObjectProtocol for DDMatchFlightNumber {}
 extern_methods!(
     unsafe impl DDMatchFlightNumber {
         /// The name of an airline.
-        #[method_id(@__retain_semantics Other airline)]
+        #[method_id(@__method_family Other airline)]
         pub unsafe fn airline(&self) -> Retained<NSString>;
 
         /// A string that represents a flight number.
-        #[method_id(@__retain_semantics Other flightNumber)]
+        #[method_id(@__method_family Other flightNumber)]
         pub unsafe fn flightNumber(&self) -> Retained<NSString>;
     }
 );
@@ -362,7 +362,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DDMatch`
     unsafe impl DDMatchFlightNumber {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -370,7 +370,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl DDMatchFlightNumber {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -395,7 +395,7 @@ extern_methods!(
     unsafe impl DDMatchMoneyAmount {
         /// A string that contains an ISO currency code, which the data detection system
         /// identifies from the matched string and user preferences.
-        #[method_id(@__retain_semantics Other currency)]
+        #[method_id(@__method_family Other currency)]
         pub unsafe fn currency(&self) -> Retained<NSString>;
 
         /// A number that represents an amount of money.
@@ -407,7 +407,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `DDMatch`
     unsafe impl DDMatchMoneyAmount {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -415,7 +415,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl DDMatchMoneyAmount {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -17,24 +17,24 @@ unsafe impl NSObjectProtocol for NSScriptExecutionContext {}
 
 extern_methods!(
     unsafe impl NSScriptExecutionContext {
-        #[method_id(@__retain_semantics Other sharedScriptExecutionContext)]
+        #[method_id(@__method_family Other sharedScriptExecutionContext)]
         pub unsafe fn sharedScriptExecutionContext() -> Retained<NSScriptExecutionContext>;
 
-        #[method_id(@__retain_semantics Other topLevelObject)]
+        #[method_id(@__method_family Other topLevelObject)]
         pub unsafe fn topLevelObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`topLevelObject`][Self::topLevelObject].
         #[method(setTopLevelObject:)]
         pub unsafe fn setTopLevelObject(&self, top_level_object: Option<&AnyObject>);
 
-        #[method_id(@__retain_semantics Other objectBeingTested)]
+        #[method_id(@__method_family Other objectBeingTested)]
         pub unsafe fn objectBeingTested(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`objectBeingTested`][Self::objectBeingTested].
         #[method(setObjectBeingTested:)]
         pub unsafe fn setObjectBeingTested(&self, object_being_tested: Option<&AnyObject>);
 
-        #[method_id(@__retain_semantics Other rangeContainerObject)]
+        #[method_id(@__method_family Other rangeContainerObject)]
         pub unsafe fn rangeContainerObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`rangeContainerObject`][Self::rangeContainerObject].
@@ -46,10 +46,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSScriptExecutionContext {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

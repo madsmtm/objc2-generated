@@ -25,27 +25,27 @@ unsafe impl NSSecureCoding for MEComposeSession {}
 
 extern_methods!(
     unsafe impl MEComposeSession {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// A unique identifier for the session.
-        #[method_id(@__retain_semantics Other sessionID)]
+        #[method_id(@__method_family Other sessionID)]
         pub unsafe fn sessionID(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "MEMessage")]
         /// An instance of
         /// `MEMessage`that represents properties of the mail message that author is composing in this
         /// `MEComposeSession`
-        #[method_id(@__retain_semantics Other mailMessage)]
+        #[method_id(@__method_family Other mailMessage)]
         pub unsafe fn mailMessage(&self) -> Retained<MEMessage>;
 
         #[cfg(feature = "MEComposeContext")]
         /// An instance of
         /// `MEComposeContext`that provides additional information about the compose session.
-        #[method_id(@__retain_semantics Other composeContext)]
+        #[method_id(@__method_family Other composeContext)]
         pub unsafe fn composeContext(&self) -> Retained<MEComposeContext>;
 
         /// Requests Mail to refresh compose session with new information that the extension has.
@@ -110,7 +110,7 @@ extern_protocol!(
         /// A view controller to be presented in Mail compose window.
         ///
         /// Mail will call this method when user clicks on the extension's button.
-        #[method_id(@__retain_semantics Other viewControllerForSession:)]
+        #[method_id(@__method_family Other viewControllerForSession:)]
         unsafe fn viewControllerForSession(
             &self,
             session: &MEComposeSession,
@@ -153,7 +153,7 @@ extern_protocol!(
         /// `MEMessage`that user is composing as part of this
         /// `MEComposeSession.`Keys in this dictionary will be normalized to lowercase before they are set on the message.
         #[optional]
-        #[method_id(@__retain_semantics Other additionalHeadersForSession:)]
+        #[method_id(@__method_family Other additionalHeadersForSession:)]
         unsafe fn additionalHeadersForSession(
             &self,
             session: &MEComposeSession,

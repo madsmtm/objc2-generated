@@ -102,7 +102,7 @@ extern_methods!(
         /// for no limit.
         ///
         /// Parameter `handler`: The block to invoke with results when the query has finished finding.
-        #[method_id(@__retain_semantics Init initWithType:predicate:anchor:limit:resultsHandler:)]
+        #[method_id(@__method_family Init initWithType:predicate:anchor:limit:resultsHandler:)]
         pub unsafe fn initWithType_predicate_anchor_limit_resultsHandler(
             this: Allocated<Self>,
             r#type: &HKSampleType,
@@ -127,7 +127,7 @@ extern_methods!(
             feature = "block2"
         ))]
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithType:predicate:anchor:limit:completionHandler:)]
+        #[method_id(@__method_family Init initWithType:predicate:anchor:limit:completionHandler:)]
         pub unsafe fn initWithType_predicate_anchor_limit_completionHandler(
             this: Allocated<Self>,
             r#type: &HKSampleType,
@@ -170,7 +170,7 @@ extern_methods!(
         /// HKObjectQueryNoLimit for no limit.
         ///
         /// Parameter `handler`: The block to invoke with results when the query has finished finding.
-        #[method_id(@__retain_semantics Init initWithQueryDescriptors:anchor:limit:resultsHandler:)]
+        #[method_id(@__method_family Init initWithQueryDescriptors:anchor:limit:resultsHandler:)]
         pub unsafe fn initWithQueryDescriptors_anchor_limit_resultsHandler(
             this: Allocated<Self>,
             query_descriptors: &NSArray<HKQueryDescriptor>,
@@ -193,7 +193,7 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKAnchoredObjectQuery {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -202,7 +202,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKAnchoredObjectQuery {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

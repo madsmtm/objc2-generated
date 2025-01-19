@@ -46,7 +46,7 @@ extern_methods!(
         ///
         /// The system will cache the thumbnail for the item, and the cache will be
         /// invalidated when itemVersion.contentVersion changes.
-        #[method_id(@__retain_semantics Other fetchThumbnailsForItemIdentifiers:requestedSize:perThumbnailCompletionHandler:completionHandler:)]
+        #[method_id(@__method_family Other fetchThumbnailsForItemIdentifiers:requestedSize:perThumbnailCompletionHandler:completionHandler:)]
         pub unsafe fn fetchThumbnailsForItemIdentifiers_requestedSize_perThumbnailCompletionHandler_completionHandler(
             &self,
             item_identifiers: &NSArray<NSFileProviderItemIdentifier>,

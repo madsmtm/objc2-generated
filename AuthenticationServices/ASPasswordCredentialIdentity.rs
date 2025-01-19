@@ -34,7 +34,7 @@ unsafe impl NSSecureCoding for ASPasswordCredentialIdentity {}
 
 extern_methods!(
     unsafe impl ASPasswordCredentialIdentity {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "ASCredentialServiceIdentifier")]
@@ -45,7 +45,7 @@ extern_methods!(
         /// Parameter `user`: the user that can authenticate into the service indicated by the serviceIdentifier.
         ///
         /// Parameter `recordIdentifier`: an optional string to uniquely identify this record in your local database.
-        #[method_id(@__retain_semantics Init initWithServiceIdentifier:user:recordIdentifier:)]
+        #[method_id(@__method_family Init initWithServiceIdentifier:user:recordIdentifier:)]
         pub unsafe fn initWithServiceIdentifier_user_recordIdentifier(
             this: Allocated<Self>,
             service_identifier: &ASCredentialServiceIdentifier,
@@ -61,7 +61,7 @@ extern_methods!(
         /// Parameter `user`: the user that can authenticate into the service indicated by the serviceIdentifier.
         ///
         /// Parameter `recordIdentifier`: an optional string to uniquely identify this record in your local database.
-        #[method_id(@__retain_semantics Other identityWithServiceIdentifier:user:recordIdentifier:)]
+        #[method_id(@__method_family Other identityWithServiceIdentifier:user:recordIdentifier:)]
         pub unsafe fn identityWithServiceIdentifier_user_recordIdentifier(
             service_identifier: &ASCredentialServiceIdentifier,
             user: &NSString,
@@ -72,13 +72,13 @@ extern_methods!(
         /// Get the service identifier.
         ///
         /// Returns: The service identifier for this credential identity.
-        #[method_id(@__retain_semantics Other serviceIdentifier)]
+        #[method_id(@__method_family Other serviceIdentifier)]
         pub unsafe fn serviceIdentifier(&self) -> Retained<ASCredentialServiceIdentifier>;
 
         /// Get the user.
         ///
         /// Returns: The user string.
-        #[method_id(@__retain_semantics Other user)]
+        #[method_id(@__method_family Other user)]
         pub unsafe fn user(&self) -> Retained<NSString>;
 
         /// Get the record identifier.
@@ -86,7 +86,7 @@ extern_methods!(
         /// Returns: The record identifier.
         ///
         /// You can utilize the record identifier to uniquely identify the credential identity in your local database.
-        #[method_id(@__retain_semantics Other recordIdentifier)]
+        #[method_id(@__method_family Other recordIdentifier)]
         pub unsafe fn recordIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Get or set the rank of the credential identity object.
@@ -107,7 +107,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ASPasswordCredentialIdentity {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

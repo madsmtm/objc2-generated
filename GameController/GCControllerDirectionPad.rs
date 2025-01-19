@@ -50,27 +50,27 @@ extern_methods!(
         );
 
         #[cfg(feature = "GCControllerAxisInput")]
-        #[method_id(@__retain_semantics Other xAxis)]
+        #[method_id(@__method_family Other xAxis)]
         pub unsafe fn xAxis(&self) -> Retained<GCControllerAxisInput>;
 
         #[cfg(feature = "GCControllerAxisInput")]
-        #[method_id(@__retain_semantics Other yAxis)]
+        #[method_id(@__method_family Other yAxis)]
         pub unsafe fn yAxis(&self) -> Retained<GCControllerAxisInput>;
 
         #[cfg(feature = "GCControllerButtonInput")]
-        #[method_id(@__retain_semantics Other up)]
+        #[method_id(@__method_family Other up)]
         pub unsafe fn up(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(feature = "GCControllerButtonInput")]
-        #[method_id(@__retain_semantics Other down)]
+        #[method_id(@__method_family Other down)]
         pub unsafe fn down(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(feature = "GCControllerButtonInput")]
-        #[method_id(@__retain_semantics Other left)]
+        #[method_id(@__method_family Other left)]
         pub unsafe fn left(&self) -> Retained<GCControllerButtonInput>;
 
         #[cfg(feature = "GCControllerButtonInput")]
-        #[method_id(@__retain_semantics Other right)]
+        #[method_id(@__method_family Other right)]
         pub unsafe fn right(&self) -> Retained<GCControllerButtonInput>;
 
         /// Sets the normalized value for the direction pad's axis inputs. Will update the states of the direction pad's button inputs as well.
@@ -94,10 +94,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "GCControllerElement")]
     unsafe impl GCControllerDirectionPad {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

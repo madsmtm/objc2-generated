@@ -244,7 +244,7 @@ extern_methods!(
     unsafe impl CIFilter {
         /// Returns a CIFilter that will in turn return a properly processed CIImage as "outputImage".
         #[deprecated = "Use new CIRAWFilter class instead."]
-        #[method_id(@__retain_semantics Other filterWithImageURL:options:)]
+        #[method_id(@__method_family Other filterWithImageURL:options:)]
         pub unsafe fn filterWithImageURL_options(
             url: Option<&NSURL>,
             options: Option<&NSDictionary<CIRAWFilterOption, AnyObject>>,
@@ -254,7 +254,7 @@ extern_methods!(
         ///
         /// Note that when using this initializer, you should pass in a source type identifier hint (kCGImageSourceTypeIdentifierHint) key/value pair in order to help the decoder determine the file type, as otherwise confusion and incorrect results are possible.
         #[deprecated = "Use new CIRAWFilter class instead."]
-        #[method_id(@__retain_semantics Other filterWithImageData:options:)]
+        #[method_id(@__method_family Other filterWithImageData:options:)]
         pub unsafe fn filterWithImageData_options(
             data: Option<&NSData>,
             options: Option<&NSDictionary<CIRAWFilterOption, AnyObject>>,
@@ -267,7 +267,7 @@ extern_methods!(
         /// kCVPixelFormatType_14Bayer_GRBG, kCVPixelFormatType_14Bayer_RGGB, kCVPixelFormatType_14Bayer_BGGR, kCVPixelFormatType_14Bayer_GBRG
         /// as well as the root properties attachment from the CMSampleBufferRef.
         #[deprecated = "Use new CIRAWFilter class instead."]
-        #[method_id(@__retain_semantics Other filterWithCVPixelBuffer:properties:options:)]
+        #[method_id(@__method_family Other filterWithCVPixelBuffer:properties:options:)]
         pub unsafe fn filterWithCVPixelBuffer_properties_options(
             pixel_buffer: Option<&CVPixelBuffer>,
             properties: Option<&NSDictionary>,
@@ -276,7 +276,7 @@ extern_methods!(
 
         /// Returns a NSArray containing the names of all supported RAW cameras.
         #[deprecated = "Use new CIRAWFilter class instead."]
-        #[method_id(@__retain_semantics Other supportedRawCameraModels)]
+        #[method_id(@__method_family Other supportedRawCameraModels)]
         pub unsafe fn supportedRawCameraModels() -> Option<Retained<NSArray<NSString>>>;
     }
 );

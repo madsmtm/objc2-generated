@@ -35,7 +35,7 @@ extern_protocol!(
         #[cfg(feature = "UIBezierPath")]
         /// If applicable, a custom shape for the lollipop stem. Default is
         /// `nil,`which results in a rounded rect style based on bounds.
-        #[method_id(@__retain_semantics Other customShape)]
+        #[method_id(@__method_family Other customShape)]
         unsafe fn customShape(&self) -> Option<Retained<UIBezierPath>>;
 
         #[cfg(feature = "UIBezierPath")]

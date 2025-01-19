@@ -34,58 +34,58 @@ unsafe impl NSSecureCoding for UIFont {}
 extern_methods!(
     unsafe impl UIFont {
         #[cfg(feature = "UIFontDescriptor")]
-        #[method_id(@__retain_semantics Other preferredFontForTextStyle:)]
+        #[method_id(@__method_family Other preferredFontForTextStyle:)]
         pub unsafe fn preferredFontForTextStyle(style: &UIFontTextStyle) -> Retained<UIFont>;
 
         #[cfg(all(feature = "UIFontDescriptor", feature = "UITraitCollection"))]
-        #[method_id(@__retain_semantics Other preferredFontForTextStyle:compatibleWithTraitCollection:)]
+        #[method_id(@__method_family Other preferredFontForTextStyle:compatibleWithTraitCollection:)]
         pub unsafe fn preferredFontForTextStyle_compatibleWithTraitCollection(
             style: &UIFontTextStyle,
             trait_collection: Option<&UITraitCollection>,
         ) -> Retained<UIFont>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other fontWithName:size:)]
+        #[method_id(@__method_family Other fontWithName:size:)]
         pub unsafe fn fontWithName_size(
             font_name: &NSString,
             font_size: CGFloat,
         ) -> Option<Retained<UIFont>>;
 
-        #[method_id(@__retain_semantics Other familyNames)]
+        #[method_id(@__method_family Other familyNames)]
         pub unsafe fn familyNames() -> Retained<NSArray<NSString>>;
 
-        #[method_id(@__retain_semantics Other fontNamesForFamilyName:)]
+        #[method_id(@__method_family Other fontNamesForFamilyName:)]
         pub unsafe fn fontNamesForFamilyName(family_name: &NSString)
             -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other systemFontOfSize:)]
+        #[method_id(@__method_family Other systemFontOfSize:)]
         pub unsafe fn systemFontOfSize(font_size: CGFloat) -> Retained<UIFont>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other boldSystemFontOfSize:)]
+        #[method_id(@__method_family Other boldSystemFontOfSize:)]
         pub unsafe fn boldSystemFontOfSize(font_size: CGFloat) -> Retained<UIFont>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other italicSystemFontOfSize:)]
+        #[method_id(@__method_family Other italicSystemFontOfSize:)]
         pub unsafe fn italicSystemFontOfSize(font_size: CGFloat) -> Retained<UIFont>;
 
         #[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
-        #[method_id(@__retain_semantics Other systemFontOfSize:weight:)]
+        #[method_id(@__method_family Other systemFontOfSize:weight:)]
         pub unsafe fn systemFontOfSize_weight(
             font_size: CGFloat,
             weight: UIFontWeight,
         ) -> Retained<UIFont>;
 
         #[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
-        #[method_id(@__retain_semantics Other monospacedDigitSystemFontOfSize:weight:)]
+        #[method_id(@__method_family Other monospacedDigitSystemFontOfSize:weight:)]
         pub unsafe fn monospacedDigitSystemFontOfSize_weight(
             font_size: CGFloat,
             weight: UIFontWeight,
         ) -> Retained<UIFont>;
 
         #[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
-        #[method_id(@__retain_semantics Other systemFontOfSize:weight:width:)]
+        #[method_id(@__method_family Other systemFontOfSize:weight:width:)]
         pub unsafe fn systemFontOfSize_weight_width(
             font_size: CGFloat,
             weight: UIFontWeight,
@@ -93,16 +93,16 @@ extern_methods!(
         ) -> Retained<UIFont>;
 
         #[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
-        #[method_id(@__retain_semantics Other monospacedSystemFontOfSize:weight:)]
+        #[method_id(@__method_family Other monospacedSystemFontOfSize:weight:)]
         pub unsafe fn monospacedSystemFontOfSize_weight(
             font_size: CGFloat,
             weight: UIFontWeight,
         ) -> Retained<UIFont>;
 
-        #[method_id(@__retain_semantics Other familyName)]
+        #[method_id(@__method_family Other familyName)]
         pub unsafe fn familyName(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other fontName)]
+        #[method_id(@__method_family Other fontName)]
         pub unsafe fn fontName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -134,18 +134,18 @@ extern_methods!(
         pub unsafe fn leading(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other fontWithSize:)]
+        #[method_id(@__method_family Other fontWithSize:)]
         pub unsafe fn fontWithSize(&self, font_size: CGFloat) -> Retained<UIFont>;
 
         #[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
-        #[method_id(@__retain_semantics Other fontWithDescriptor:size:)]
+        #[method_id(@__method_family Other fontWithDescriptor:size:)]
         pub unsafe fn fontWithDescriptor_size(
             descriptor: &UIFontDescriptor,
             point_size: CGFloat,
         ) -> Retained<UIFont>;
 
         #[cfg(feature = "UIFontDescriptor")]
-        #[method_id(@__retain_semantics Other fontDescriptor)]
+        #[method_id(@__method_family Other fontDescriptor)]
         pub unsafe fn fontDescriptor(&self) -> Retained<UIFontDescriptor>;
     }
 );
@@ -153,10 +153,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIFont {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

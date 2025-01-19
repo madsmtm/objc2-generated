@@ -35,7 +35,7 @@ extern_category!(
     /// Category "UIKitAdditions" on [`NSItemProvider`].
     #[doc(alias = "UIKitAdditions")]
     pub unsafe trait NSItemProviderUIKitAdditions {
-        #[method_id(@__retain_semantics Other teamData)]
+        #[method_id(@__method_family Other teamData)]
         unsafe fn teamData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`teamData`][Self::teamData].
@@ -79,18 +79,18 @@ extern_protocol!(
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiitemproviderreadingaugmentationproviding?language=objc)
     pub unsafe trait UIItemProviderReadingAugmentationProviding {
-        #[method_id(@__retain_semantics Other objectWithItemProviderData:typeIdentifier:requestedClass:error:_)]
+        #[method_id(@__method_family Other objectWithItemProviderData:typeIdentifier:requestedClass:error:_)]
         unsafe fn objectWithItemProviderData_typeIdentifier_requestedClass_error(
             data: &NSData,
             type_identifier: &NSString,
             requested_class: &AnyClass,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
-        #[method_id(@__retain_semantics Other additionalLeadingReadableTypeIdentifiersForItemProvider)]
+        #[method_id(@__method_family Other additionalLeadingReadableTypeIdentifiersForItemProvider)]
         unsafe fn additionalLeadingReadableTypeIdentifiersForItemProvider(
         ) -> Retained<NSArray<NSString>>;
 
-        #[method_id(@__retain_semantics Other additionalTrailingReadableTypeIdentifiersForItemProvider)]
+        #[method_id(@__method_family Other additionalTrailingReadableTypeIdentifiersForItemProvider)]
         unsafe fn additionalTrailingReadableTypeIdentifiersForItemProvider(
         ) -> Retained<NSArray<NSString>>;
     }

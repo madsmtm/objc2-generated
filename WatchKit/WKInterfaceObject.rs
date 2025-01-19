@@ -66,7 +66,7 @@ unsafe impl NSObjectProtocol for WKInterfaceObject {}
 
 extern_methods!(
     unsafe impl WKInterfaceObject {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(setHidden:)]
@@ -117,7 +117,7 @@ extern_methods!(
         #[method(sizeToFitHeight)]
         pub unsafe fn sizeToFitHeight(&self);
 
-        #[method_id(@__retain_semantics Other interfaceProperty)]
+        #[method_id(@__method_family Other interfaceProperty)]
         pub unsafe fn interfaceProperty(&self) -> Retained<NSString>;
     }
 );
@@ -125,7 +125,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKInterfaceObject {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -183,7 +183,7 @@ extern_methods!(
         #[method(setFrame:)]
         pub unsafe fn setFrame(&self, frame: CGRect);
 
-        #[method_id(@__retain_semantics Other label)]
+        #[method_id(@__method_family Other label)]
         pub unsafe fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
@@ -195,10 +195,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WKAccessibilityImageRegion {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -14,17 +14,17 @@ extern_methods!(
     /// Can only use these predicates with CNContactStore.
     #[cfg(feature = "CNGroup")]
     unsafe impl CNGroup {
-        #[method_id(@__retain_semantics Other predicateForGroupsWithIdentifiers:)]
+        #[method_id(@__method_family Other predicateForGroupsWithIdentifiers:)]
         pub unsafe fn predicateForGroupsWithIdentifiers(
             identifiers: &NSArray<NSString>,
         ) -> Retained<NSPredicate>;
 
-        #[method_id(@__retain_semantics Other predicateForSubgroupsInGroupWithIdentifier:)]
+        #[method_id(@__method_family Other predicateForSubgroupsInGroupWithIdentifier:)]
         pub unsafe fn predicateForSubgroupsInGroupWithIdentifier(
             parent_group_identifier: &NSString,
         ) -> Retained<NSPredicate>;
 
-        #[method_id(@__retain_semantics Other predicateForGroupsInContainerWithIdentifier:)]
+        #[method_id(@__method_family Other predicateForGroupsInContainerWithIdentifier:)]
         pub unsafe fn predicateForGroupsInContainerWithIdentifier(
             container_identifier: &NSString,
         ) -> Retained<NSPredicate>;

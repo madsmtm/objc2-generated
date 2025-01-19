@@ -41,7 +41,7 @@ extern_methods!(
         ///
         /// Note that timeMapping.target.start of the first AVCompositionTrackSegment must be kCMTimeZero, and the timeMapping.target.start of each subsequent AVCompositionTrackSegment must equal CMTimeRangeGetEnd(the previous AVCompositionTrackSegment's timeMapping.target).
         /// Use -validateTrackSegments:error: to perform a test to ensure that an array of AVCompositionTrackSegments conforms to this rule.
-        #[method_id(@__retain_semantics Other segments)]
+        #[method_id(@__method_family Other segments)]
         pub unsafe fn segments(&self) -> Retained<NSArray<AVCompositionTrackSegment>>;
 
         #[cfg(all(
@@ -56,7 +56,7 @@ extern_methods!(
         /// Returns: An AVCompositionTrackSegment.
         ///
         /// If the trackTime does not map to a sample presentation time (e.g. it's outside the track's timeRange), the segment closest in time to the specified trackTime is returned.
-        #[method_id(@__retain_semantics Other segmentForTrackTime:)]
+        #[method_id(@__method_family Other segmentForTrackTime:)]
         pub unsafe fn segmentForTrackTime(
             &self,
             track_time: CMTime,
@@ -65,7 +65,7 @@ extern_methods!(
         /// An array of AVCompositionTrackFormatDescriptionReplacement objects indicating original format descriptions and their replacements.
         ///
         /// The value of this property is an array of AVCompositionTrackFormatDescriptionReplacement objects, each of which specifies an original format description together with its replacement format description (as specified by a previous call to -replaceFormatDescription:withFormatDescription:). Only format descriptions that are to be replaced will occur as the originalFormatDescription elements in the AVCompositionTrackFormatDescriptionReplacement objects in this array.
-        #[method_id(@__retain_semantics Other formatDescriptionReplacements)]
+        #[method_id(@__method_family Other formatDescriptionReplacements)]
         pub unsafe fn formatDescriptionReplacements(
             &self,
         ) -> Retained<NSArray<AVCompositionTrackFormatDescriptionReplacement>>;
@@ -76,10 +76,10 @@ extern_methods!(
     /// Methods declared on superclass `AVAssetTrack`
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVCompositionTrack {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -133,7 +133,7 @@ extern_methods!(
         /// Indicates the language associated with the track, as an ISO 639-2/T language code.
         ///
         /// The default value is nil.
-        #[method_id(@__retain_semantics Other languageCode)]
+        #[method_id(@__method_family Other languageCode)]
         pub unsafe fn languageCode(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`languageCode`][Self::languageCode].
@@ -143,7 +143,7 @@ extern_methods!(
         /// Indicates the language tag associated with the track, as an IETF BCP 47 (RFC 4646) language identifier.
         ///
         /// The default value is nil.
-        #[method_id(@__retain_semantics Other extendedLanguageTag)]
+        #[method_id(@__method_family Other extendedLanguageTag)]
         pub unsafe fn extendedLanguageTag(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`extendedLanguageTag`][Self::extendedLanguageTag].
@@ -177,7 +177,7 @@ extern_methods!(
         ///
         /// Note that timeMapping.target.start of the first AVCompositionTrackSegment must be kCMTimeZero, and the timeMapping.target.start of each subsequent AVCompositionTrackSegment must equal CMTimeRangeGetEnd(the previous AVCompositionTrackSegment's timeMapping.target).
         /// Use -validateTrackSegments:error: to perform a test to ensure that an array of AVCompositionTrackSegments conforms to this rule.
-        #[method_id(@__retain_semantics Other segments)]
+        #[method_id(@__method_family Other segments)]
         pub unsafe fn segments(&self) -> Retained<NSArray<AVCompositionTrackSegment>>;
 
         #[cfg(all(feature = "AVAssetTrackSegment", feature = "AVCompositionTrackSegment"))]
@@ -311,10 +311,10 @@ extern_methods!(
     /// Methods declared on superclass `AVAssetTrack`
     #[cfg(feature = "AVAssetTrack")]
     unsafe impl AVMutableCompositionTrack {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -344,12 +344,12 @@ extern_methods!(
     unsafe impl AVCompositionTrackFormatDescriptionReplacement {
         #[cfg(feature = "objc2-core-media")]
         /// The original format description.
-        #[method_id(@__retain_semantics Other originalFormatDescription)]
+        #[method_id(@__method_family Other originalFormatDescription)]
         pub unsafe fn originalFormatDescription(&self) -> Retained<CMFormatDescription>;
 
         #[cfg(feature = "objc2-core-media")]
         /// The replacement format description.
-        #[method_id(@__retain_semantics Other replacementFormatDescription)]
+        #[method_id(@__method_family Other replacementFormatDescription)]
         pub unsafe fn replacementFormatDescription(&self) -> Retained<CMFormatDescription>;
     }
 );
@@ -357,10 +357,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVCompositionTrackFormatDescriptionReplacement {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -406,13 +406,13 @@ extern_methods!(
         pub unsafe fn samplePresentationTimeForTrackTime(&self, track_time: CMTime) -> CMTime;
 
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVMetadataItem"))]
-        #[method_id(@__retain_semantics Other metadataForFormat:)]
+        #[method_id(@__method_family Other metadataForFormat:)]
         pub unsafe fn metadataForFormat(
             &self,
             format: &AVMetadataFormat,
         ) -> Retained<NSArray<AVMetadataItem>>;
 
-        #[method_id(@__retain_semantics Other associatedTracksOfType:)]
+        #[method_id(@__method_family Other associatedTracksOfType:)]
         pub unsafe fn associatedTracksOfType(
             &self,
             track_association_type: &AVTrackAssociationType,

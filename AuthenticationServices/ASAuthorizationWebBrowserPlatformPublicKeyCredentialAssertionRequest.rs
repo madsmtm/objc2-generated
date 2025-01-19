@@ -9,7 +9,7 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationwebbrowserplatformpublickeycredentialassertionrequest?language=objc)
     pub unsafe trait ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest {
         #[cfg(feature = "ASPublicKeyCredentialClientData")]
-        #[method_id(@__retain_semantics Other clientData)]
+        #[method_id(@__method_family Other clientData)]
         unsafe fn clientData(&self) -> Option<Retained<ASPublicKeyCredentialClientData>>;
 
         #[method(shouldShowHybridTransport)]

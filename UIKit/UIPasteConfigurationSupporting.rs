@@ -13,7 +13,7 @@ extern_protocol!(
         NSObjectProtocol + MainThreadOnly
     {
         #[cfg(feature = "UIPasteConfiguration")]
-        #[method_id(@__retain_semantics Other pasteConfiguration)]
+        #[method_id(@__method_family Other pasteConfiguration)]
         unsafe fn pasteConfiguration(&self) -> Option<Retained<UIPasteConfiguration>>;
 
         #[cfg(feature = "UIPasteConfiguration")]

@@ -48,13 +48,13 @@ unsafe impl NSObjectProtocol for MLTask {}
 
 extern_methods!(
     unsafe impl MLTask {
-        #[method_id(@__retain_semantics Other taskIdentifier)]
+        #[method_id(@__method_family Other taskIdentifier)]
         pub unsafe fn taskIdentifier(&self) -> Retained<NSString>;
 
         #[method(state)]
         pub unsafe fn state(&self) -> MLTaskState;
 
-        #[method_id(@__retain_semantics Other error)]
+        #[method_id(@__method_family Other error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[method(resume)]
@@ -63,10 +63,10 @@ extern_methods!(
         #[method(cancel)]
         pub unsafe fn cancel(&self);
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

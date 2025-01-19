@@ -12,7 +12,7 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcustomlayer?language=objc)
     pub unsafe trait MLCustomLayer {
-        #[method_id(@__retain_semantics Init initWithParameterDictionary:error:_)]
+        #[method_id(@__method_family Init initWithParameterDictionary:error:_)]
         unsafe fn initWithParameterDictionary_error(
             this: Allocated<Self>,
             parameters: &NSDictionary<NSString, AnyObject>,
@@ -24,7 +24,7 @@ extern_protocol!(
             weights: &NSArray<NSData>,
         ) -> Result<(), Retained<NSError>>;
 
-        #[method_id(@__retain_semantics Other outputShapesForInputShapes:error:_)]
+        #[method_id(@__method_family Other outputShapesForInputShapes:error:_)]
         unsafe fn outputShapesForInputShapes_error(
             &self,
             input_shapes: &NSArray<NSArray<NSNumber>>,

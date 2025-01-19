@@ -61,14 +61,14 @@ extern_methods!(
     #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl GKLeaderboardViewController {
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        #[method_id(@__method_family Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSNibName>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -81,7 +81,7 @@ extern_methods!(
     #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl GKLeaderboardViewController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -91,7 +91,7 @@ extern_methods!(
     #[cfg(all(feature = "GKGameCenterViewController", feature = "objc2-app-kit"))]
     #[cfg(target_os = "macos")]
     unsafe impl GKLeaderboardViewController {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -112,7 +112,7 @@ extern_methods!(
         pub unsafe fn setTimeScope(&self, time_scope: GKLeaderboardTimeScope);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other category)]
+        #[method_id(@__method_family Other category)]
         pub unsafe fn category(&self) -> Retained<NSString>;
 
         /// Setter for [`category`][Self::category].
@@ -121,7 +121,7 @@ extern_methods!(
         pub unsafe fn setCategory(&self, category: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other leaderboardDelegate)]
+        #[method_id(@__method_family Other leaderboardDelegate)]
         pub unsafe fn leaderboardDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GKLeaderboardViewControllerDelegate>>>;

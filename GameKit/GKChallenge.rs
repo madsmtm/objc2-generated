@@ -64,12 +64,12 @@ extern_methods!(
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// The GKPlayer who issued the challenge
-        #[method_id(@__retain_semantics Other issuingPlayer)]
+        #[method_id(@__method_family Other issuingPlayer)]
         pub unsafe fn issuingPlayer(&self) -> Option<Retained<GKPlayer>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// The GKPlayer who has received the challenge
-        #[method_id(@__retain_semantics Other receivingPlayer)]
+        #[method_id(@__method_family Other receivingPlayer)]
         pub unsafe fn receivingPlayer(&self) -> Option<Retained<GKPlayer>>;
 
         /// Current state of the challenge
@@ -77,15 +77,15 @@ extern_methods!(
         pub unsafe fn state(&self) -> GKChallengeState;
 
         /// Date the challenge was issued
-        #[method_id(@__retain_semantics Other issueDate)]
+        #[method_id(@__method_family Other issueDate)]
         pub unsafe fn issueDate(&self) -> Retained<NSDate>;
 
         /// Date the challenge was completed or aborted
-        #[method_id(@__retain_semantics Other completionDate)]
+        #[method_id(@__method_family Other completionDate)]
         pub unsafe fn completionDate(&self) -> Option<Retained<NSDate>>;
 
         /// The message sent to receivers of this challenge
-        #[method_id(@__retain_semantics Other message)]
+        #[method_id(@__method_family Other message)]
         pub unsafe fn message(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -93,10 +93,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKChallenge {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -106,12 +106,12 @@ extern_methods!(
     unsafe impl GKChallenge {
         /// * This property is obsolete. **
         #[deprecated]
-        #[method_id(@__retain_semantics Other issuingPlayerID)]
+        #[method_id(@__method_family Other issuingPlayerID)]
         pub unsafe fn issuingPlayerID(&self) -> Option<Retained<NSString>>;
 
         /// * This property is obsolete. **
         #[deprecated]
-        #[method_id(@__retain_semantics Other receivingPlayerID)]
+        #[method_id(@__method_family Other receivingPlayerID)]
         pub unsafe fn receivingPlayerID(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -134,12 +134,12 @@ extern_methods!(
         #[cfg(feature = "GKScore")]
         /// The score to meet to satisfy this challenge
         #[deprecated]
-        #[method_id(@__retain_semantics Other score)]
+        #[method_id(@__method_family Other score)]
         pub unsafe fn score(&self) -> Option<Retained<GKScore>>;
 
         #[cfg(feature = "GKLeaderboardEntry")]
         /// The leaderboard entry to meet to satisfy this challenge
-        #[method_id(@__retain_semantics Other leaderboardEntry)]
+        #[method_id(@__method_family Other leaderboardEntry)]
         pub unsafe fn leaderboardEntry(&self) -> Option<Retained<GKLeaderboardEntry>>;
     }
 );
@@ -147,10 +147,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKScoreChallenge {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -172,7 +172,7 @@ extern_methods!(
     unsafe impl GKAchievementChallenge {
         #[cfg(feature = "GKAchievement")]
         /// The achievement to achieve to satisfy this challenge
-        #[method_id(@__retain_semantics Other achievement)]
+        #[method_id(@__method_family Other achievement)]
         pub unsafe fn achievement(&self) -> Option<Retained<GKAchievement>>;
     }
 );
@@ -180,10 +180,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKAchievementChallenge {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -310,7 +310,7 @@ extern_methods!(
         ))]
         #[cfg(target_os = "macos")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completionHandler:)]
+        #[method_id(@__method_family Other challengeComposeControllerWithMessage:players:completionHandler:)]
         pub unsafe fn challengeComposeControllerWithMessage_players_completionHandler(
             &self,
             message: Option<&NSString>,
@@ -326,7 +326,7 @@ extern_methods!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
-        #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completion:)]
+        #[method_id(@__method_family Other challengeComposeControllerWithMessage:players:completion:)]
         pub unsafe fn challengeComposeControllerWithMessage_players_completion(
             &self,
             message: Option<&NSString>,
@@ -349,7 +349,7 @@ extern_methods!(
         ))]
         #[cfg(target_os = "macos")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completionHandler:)]
+        #[method_id(@__method_family Other challengeComposeControllerWithMessage:players:completionHandler:)]
         pub unsafe fn challengeComposeControllerWithMessage_players_completionHandler(
             &self,
             message: Option<&NSString>,
@@ -365,7 +365,7 @@ extern_methods!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
-        #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completion:)]
+        #[method_id(@__method_family Other challengeComposeControllerWithMessage:players:completion:)]
         pub unsafe fn challengeComposeControllerWithMessage_players_completion(
             &self,
             message: Option<&NSString>,
@@ -388,7 +388,7 @@ extern_methods!(
         ))]
         #[cfg(target_os = "macos")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completionHandler:)]
+        #[method_id(@__method_family Other challengeComposeControllerWithMessage:players:completionHandler:)]
         pub unsafe fn challengeComposeControllerWithMessage_players_completionHandler(
             &self,
             message: Option<&NSString>,
@@ -404,7 +404,7 @@ extern_methods!(
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
-        #[method_id(@__retain_semantics Other challengeComposeControllerWithMessage:players:completion:)]
+        #[method_id(@__method_family Other challengeComposeControllerWithMessage:players:completion:)]
         pub unsafe fn challengeComposeControllerWithMessage_players_completion(
             &self,
             message: Option<&NSString>,

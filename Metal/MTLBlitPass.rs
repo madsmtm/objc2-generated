@@ -30,7 +30,7 @@ extern_methods!(
         /// the sample buffer.  If no sample buffer is provided, no samples will be taken.
         /// If any of the sample indices are specified as MTLCounterDontSample, no sample
         /// will be taken for that action.
-        #[method_id(@__retain_semantics Other sampleBuffer)]
+        #[method_id(@__method_family Other sampleBuffer)]
         pub unsafe fn sampleBuffer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>>;
@@ -77,10 +77,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLBlitPassSampleBufferAttachmentDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -96,7 +96,7 @@ unsafe impl NSObjectProtocol for MTLBlitPassSampleBufferAttachmentDescriptorArra
 
 extern_methods!(
     unsafe impl MTLBlitPassSampleBufferAttachmentDescriptorArray {
-        #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
+        #[method_id(@__method_family Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             attachment_index: NSUInteger,
@@ -114,10 +114,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLBlitPassSampleBufferAttachmentDescriptorArray {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -142,11 +142,11 @@ unsafe impl NSObjectProtocol for MTLBlitPassDescriptor {}
 extern_methods!(
     unsafe impl MTLBlitPassDescriptor {
         /// Create an autoreleased default frame buffer descriptor
-        #[method_id(@__retain_semantics Other blitPassDescriptor)]
+        #[method_id(@__method_family Other blitPassDescriptor)]
         pub unsafe fn blitPassDescriptor() -> Retained<MTLBlitPassDescriptor>;
 
         /// An array of sample buffers and associated sample indices.
-        #[method_id(@__retain_semantics Other sampleBufferAttachments)]
+        #[method_id(@__method_family Other sampleBufferAttachments)]
         pub unsafe fn sampleBufferAttachments(
             &self,
         ) -> Retained<MTLBlitPassSampleBufferAttachmentDescriptorArray>;
@@ -156,10 +156,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLBlitPassDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

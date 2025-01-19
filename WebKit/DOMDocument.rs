@@ -60,26 +60,26 @@ extern_methods!(
     unsafe impl DOMDocument {
         #[cfg(feature = "DOMDocumentType")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other doctype)]
+        #[method_id(@__method_family Other doctype)]
         pub unsafe fn doctype(&self) -> Option<Retained<DOMDocumentType>>;
 
         #[cfg(feature = "DOMImplementation")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other implementation)]
+        #[method_id(@__method_family Other implementation)]
         pub unsafe fn implementation(&self) -> Option<Retained<DOMImplementation>>;
 
         #[cfg(feature = "DOMElement")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other documentElement)]
+        #[method_id(@__method_family Other documentElement)]
         pub unsafe fn documentElement(&self) -> Option<Retained<DOMElement>>;
 
-        #[method_id(@__retain_semantics Other inputEncoding)]
+        #[method_id(@__method_family Other inputEncoding)]
         pub unsafe fn inputEncoding(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other xmlEncoding)]
+        #[method_id(@__method_family Other xmlEncoding)]
         pub unsafe fn xmlEncoding(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other xmlVersion)]
+        #[method_id(@__method_family Other xmlVersion)]
         pub unsafe fn xmlVersion(&self) -> Retained<NSString>;
 
         /// Setter for [`xmlVersion`][Self::xmlVersion].
@@ -93,7 +93,7 @@ extern_methods!(
         #[method(setXmlStandalone:)]
         pub unsafe fn setXmlStandalone(&self, xml_standalone: bool);
 
-        #[method_id(@__retain_semantics Other documentURI)]
+        #[method_id(@__method_family Other documentURI)]
         pub unsafe fn documentURI(&self) -> Retained<NSString>;
 
         /// Setter for [`documentURI`][Self::documentURI].
@@ -102,16 +102,16 @@ extern_methods!(
 
         #[cfg(feature = "DOMAbstractView")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other defaultView)]
+        #[method_id(@__method_family Other defaultView)]
         pub unsafe fn defaultView(&self) -> Option<Retained<DOMAbstractView>>;
 
         #[cfg(feature = "DOMStyleSheetList")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other styleSheets)]
+        #[method_id(@__method_family Other styleSheets)]
         pub unsafe fn styleSheets(&self) -> Option<Retained<DOMStyleSheetList>>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -120,19 +120,19 @@ extern_methods!(
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other referrer)]
+        #[method_id(@__method_family Other referrer)]
         pub unsafe fn referrer(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other domain)]
+        #[method_id(@__method_family Other domain)]
         pub unsafe fn domain(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other URL)]
+        #[method_id(@__method_family Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other cookie)]
+        #[method_id(@__method_family Other cookie)]
         pub unsafe fn cookie(&self) -> Retained<NSString>;
 
         /// Setter for [`cookie`][Self::cookie].
@@ -142,7 +142,7 @@ extern_methods!(
 
         #[cfg(all(feature = "DOMElement", feature = "DOMHTMLElement"))]
         #[deprecated]
-        #[method_id(@__retain_semantics Other body)]
+        #[method_id(@__method_family Other body)]
         pub unsafe fn body(&self) -> Option<Retained<DOMHTMLElement>>;
 
         #[cfg(all(feature = "DOMElement", feature = "DOMHTMLElement"))]
@@ -153,52 +153,52 @@ extern_methods!(
 
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other images)]
+        #[method_id(@__method_family Other images)]
         pub unsafe fn images(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other applets)]
+        #[method_id(@__method_family Other applets)]
         pub unsafe fn applets(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other links)]
+        #[method_id(@__method_family Other links)]
         pub unsafe fn links(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other forms)]
+        #[method_id(@__method_family Other forms)]
         pub unsafe fn forms(&self) -> Option<Retained<DOMHTMLCollection>>;
 
         #[cfg(feature = "DOMHTMLCollection")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other anchors)]
+        #[method_id(@__method_family Other anchors)]
         pub unsafe fn anchors(&self) -> Option<Retained<DOMHTMLCollection>>;
 
-        #[method_id(@__retain_semantics Other lastModified)]
+        #[method_id(@__method_family Other lastModified)]
         pub unsafe fn lastModified(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other charset)]
+        #[method_id(@__method_family Other charset)]
         pub unsafe fn charset(&self) -> Retained<NSString>;
 
         /// Setter for [`charset`][Self::charset].
         #[method(setCharset:)]
         pub unsafe fn setCharset(&self, charset: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other defaultCharset)]
+        #[method_id(@__method_family Other defaultCharset)]
         pub unsafe fn defaultCharset(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other readyState)]
+        #[method_id(@__method_family Other readyState)]
         pub unsafe fn readyState(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other characterSet)]
+        #[method_id(@__method_family Other characterSet)]
         pub unsafe fn characterSet(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other preferredStylesheetSet)]
+        #[method_id(@__method_family Other preferredStylesheetSet)]
         pub unsafe fn preferredStylesheetSet(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other selectedStylesheetSet)]
+        #[method_id(@__method_family Other selectedStylesheetSet)]
         pub unsafe fn selectedStylesheetSet(&self) -> Retained<NSString>;
 
         /// Setter for [`selectedStylesheetSet`][Self::selectedStylesheetSet].
@@ -206,12 +206,12 @@ extern_methods!(
         pub unsafe fn setSelectedStylesheetSet(&self, selected_stylesheet_set: Option<&NSString>);
 
         #[cfg(feature = "DOMElement")]
-        #[method_id(@__retain_semantics Other activeElement)]
+        #[method_id(@__method_family Other activeElement)]
         pub unsafe fn activeElement(&self) -> Option<Retained<DOMElement>>;
 
         #[cfg(feature = "DOMElement")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other createElement:)]
+        #[method_id(@__method_family Other createElement:)]
         pub unsafe fn createElement(
             &self,
             tag_name: Option<&NSString>,
@@ -219,17 +219,17 @@ extern_methods!(
 
         #[cfg(feature = "DOMDocumentFragment")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other createDocumentFragment)]
+        #[method_id(@__method_family Other createDocumentFragment)]
         pub unsafe fn createDocumentFragment(&self) -> Option<Retained<DOMDocumentFragment>>;
 
         #[cfg(all(feature = "DOMCharacterData", feature = "DOMText"))]
         #[deprecated]
-        #[method_id(@__retain_semantics Other createTextNode:)]
+        #[method_id(@__method_family Other createTextNode:)]
         pub unsafe fn createTextNode(&self, data: Option<&NSString>) -> Option<Retained<DOMText>>;
 
         #[cfg(all(feature = "DOMCharacterData", feature = "DOMComment"))]
         #[deprecated]
-        #[method_id(@__retain_semantics Other createComment:)]
+        #[method_id(@__method_family Other createComment:)]
         pub unsafe fn createComment(&self, data: Option<&NSString>)
             -> Option<Retained<DOMComment>>;
 
@@ -239,14 +239,14 @@ extern_methods!(
             feature = "DOMText"
         ))]
         #[deprecated]
-        #[method_id(@__retain_semantics Other createCDATASection:)]
+        #[method_id(@__method_family Other createCDATASection:)]
         pub unsafe fn createCDATASection(
             &self,
             data: Option<&NSString>,
         ) -> Option<Retained<DOMCDATASection>>;
 
         #[cfg(all(feature = "DOMCharacterData", feature = "DOMProcessingInstruction"))]
-        #[method_id(@__retain_semantics Other createProcessingInstruction:data:)]
+        #[method_id(@__method_family Other createProcessingInstruction:data:)]
         pub unsafe fn createProcessingInstruction_data(
             &self,
             target: Option<&NSString>,
@@ -255,12 +255,12 @@ extern_methods!(
 
         #[cfg(feature = "DOMAttr")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other createAttribute:)]
+        #[method_id(@__method_family Other createAttribute:)]
         pub unsafe fn createAttribute(&self, name: Option<&NSString>) -> Option<Retained<DOMAttr>>;
 
         #[cfg(feature = "DOMEntityReference")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other createEntityReference:)]
+        #[method_id(@__method_family Other createEntityReference:)]
         pub unsafe fn createEntityReference(
             &self,
             name: Option<&NSString>,
@@ -268,13 +268,13 @@ extern_methods!(
 
         #[cfg(feature = "DOMNodeList")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other getElementsByTagName:)]
+        #[method_id(@__method_family Other getElementsByTagName:)]
         pub unsafe fn getElementsByTagName(
             &self,
             tagname: Option<&NSString>,
         ) -> Option<Retained<DOMNodeList>>;
 
-        #[method_id(@__retain_semantics Other importNode:deep:)]
+        #[method_id(@__method_family Other importNode:deep:)]
         pub unsafe fn importNode_deep(
             &self,
             imported_node: Option<&DOMNode>,
@@ -282,7 +282,7 @@ extern_methods!(
         ) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMElement")]
-        #[method_id(@__retain_semantics Other createElementNS:qualifiedName:)]
+        #[method_id(@__method_family Other createElementNS:qualifiedName:)]
         pub unsafe fn createElementNS_qualifiedName(
             &self,
             namespace_uri: Option<&NSString>,
@@ -290,7 +290,7 @@ extern_methods!(
         ) -> Option<Retained<DOMElement>>;
 
         #[cfg(feature = "DOMAttr")]
-        #[method_id(@__retain_semantics Other createAttributeNS:qualifiedName:)]
+        #[method_id(@__method_family Other createAttributeNS:qualifiedName:)]
         pub unsafe fn createAttributeNS_qualifiedName(
             &self,
             namespace_uri: Option<&NSString>,
@@ -298,19 +298,19 @@ extern_methods!(
         ) -> Option<Retained<DOMAttr>>;
 
         #[cfg(feature = "DOMNodeList")]
-        #[method_id(@__retain_semantics Other getElementsByTagNameNS:localName:)]
+        #[method_id(@__method_family Other getElementsByTagNameNS:localName:)]
         pub unsafe fn getElementsByTagNameNS_localName(
             &self,
             namespace_uri: Option<&NSString>,
             local_name: Option<&NSString>,
         ) -> Option<Retained<DOMNodeList>>;
 
-        #[method_id(@__retain_semantics Other adoptNode:)]
+        #[method_id(@__method_family Other adoptNode:)]
         pub unsafe fn adoptNode(&self, source: Option<&DOMNode>) -> Option<Retained<DOMNode>>;
 
         #[cfg(feature = "DOMEvent")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other createEvent:)]
+        #[method_id(@__method_family Other createEvent:)]
         pub unsafe fn createEvent(
             &self,
             event_type: Option<&NSString>,
@@ -318,11 +318,11 @@ extern_methods!(
 
         #[cfg(feature = "DOMRange")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other createRange)]
+        #[method_id(@__method_family Other createRange)]
         pub unsafe fn createRange(&self) -> Option<Retained<DOMRange>>;
 
         #[cfg(all(feature = "DOMNodeFilter", feature = "DOMNodeIterator"))]
-        #[method_id(@__retain_semantics Other createNodeIterator:whatToShow:filter:expandEntityReferences:)]
+        #[method_id(@__method_family Other createNodeIterator:whatToShow:filter:expandEntityReferences:)]
         pub unsafe fn createNodeIterator_whatToShow_filter_expandEntityReferences(
             &self,
             root: Option<&DOMNode>,
@@ -332,7 +332,7 @@ extern_methods!(
         ) -> Option<Retained<DOMNodeIterator>>;
 
         #[cfg(all(feature = "DOMNodeFilter", feature = "DOMTreeWalker"))]
-        #[method_id(@__retain_semantics Other createTreeWalker:whatToShow:filter:expandEntityReferences:)]
+        #[method_id(@__method_family Other createTreeWalker:whatToShow:filter:expandEntityReferences:)]
         pub unsafe fn createTreeWalker_whatToShow_filter_expandEntityReferences(
             &self,
             root: Option<&DOMNode>,
@@ -342,7 +342,7 @@ extern_methods!(
         ) -> Option<Retained<DOMTreeWalker>>;
 
         #[cfg(all(feature = "DOMCSSStyleDeclaration", feature = "DOMElement"))]
-        #[method_id(@__retain_semantics Other getOverrideStyle:pseudoElement:)]
+        #[method_id(@__method_family Other getOverrideStyle:pseudoElement:)]
         pub unsafe fn getOverrideStyle_pseudoElement(
             &self,
             element: Option<&DOMElement>,
@@ -350,7 +350,7 @@ extern_methods!(
         ) -> Option<Retained<DOMCSSStyleDeclaration>>;
 
         #[cfg(all(feature = "DOMXPathExpression", feature = "DOMXPathNSResolver"))]
-        #[method_id(@__retain_semantics Other createExpression:resolver:)]
+        #[method_id(@__method_family Other createExpression:resolver:)]
         pub unsafe fn createExpression_resolver(
             &self,
             expression: Option<&NSString>,
@@ -358,14 +358,14 @@ extern_methods!(
         ) -> Option<Retained<DOMXPathExpression>>;
 
         #[cfg(feature = "DOMXPathNSResolver")]
-        #[method_id(@__retain_semantics Other createNSResolver:)]
+        #[method_id(@__method_family Other createNSResolver:)]
         pub unsafe fn createNSResolver(
             &self,
             node_resolver: Option<&DOMNode>,
         ) -> Option<Retained<ProtocolObject<dyn DOMXPathNSResolver>>>;
 
         #[cfg(all(feature = "DOMXPathNSResolver", feature = "DOMXPathResult"))]
-        #[method_id(@__retain_semantics Other evaluate:contextNode:resolver:type:inResult:)]
+        #[method_id(@__method_family Other evaluate:contextNode:resolver:type:inResult:)]
         pub unsafe fn evaluate_contextNode_resolver_type_inResult(
             &self,
             expression: Option<&NSString>,
@@ -405,7 +405,7 @@ extern_methods!(
         #[method(queryCommandSupported:)]
         pub unsafe fn queryCommandSupported(&self, command: Option<&NSString>) -> bool;
 
-        #[method_id(@__retain_semantics Other queryCommandValue:)]
+        #[method_id(@__method_family Other queryCommandValue:)]
         pub unsafe fn queryCommandValue(
             &self,
             command: Option<&NSString>,
@@ -413,23 +413,23 @@ extern_methods!(
 
         #[cfg(feature = "DOMNodeList")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other getElementsByName:)]
+        #[method_id(@__method_family Other getElementsByName:)]
         pub unsafe fn getElementsByName(
             &self,
             element_name: Option<&NSString>,
         ) -> Option<Retained<DOMNodeList>>;
 
         #[cfg(feature = "DOMElement")]
-        #[method_id(@__retain_semantics Other elementFromPoint:y:)]
+        #[method_id(@__method_family Other elementFromPoint:y:)]
         pub unsafe fn elementFromPoint_y(&self, x: c_int, y: c_int)
             -> Option<Retained<DOMElement>>;
 
         #[cfg(feature = "DOMCSSStyleDeclaration")]
-        #[method_id(@__retain_semantics Other createCSSStyleDeclaration)]
+        #[method_id(@__method_family Other createCSSStyleDeclaration)]
         pub unsafe fn createCSSStyleDeclaration(&self) -> Option<Retained<DOMCSSStyleDeclaration>>;
 
         #[cfg(all(feature = "DOMCSSStyleDeclaration", feature = "DOMElement"))]
-        #[method_id(@__retain_semantics Other getComputedStyle:pseudoElement:)]
+        #[method_id(@__method_family Other getComputedStyle:pseudoElement:)]
         pub unsafe fn getComputedStyle_pseudoElement(
             &self,
             element: Option<&DOMElement>,
@@ -437,7 +437,7 @@ extern_methods!(
         ) -> Option<Retained<DOMCSSStyleDeclaration>>;
 
         #[cfg(all(feature = "DOMCSSRuleList", feature = "DOMElement"))]
-        #[method_id(@__retain_semantics Other getMatchedCSSRules:pseudoElement:)]
+        #[method_id(@__method_family Other getMatchedCSSRules:pseudoElement:)]
         pub unsafe fn getMatchedCSSRules_pseudoElement(
             &self,
             element: Option<&DOMElement>,
@@ -445,7 +445,7 @@ extern_methods!(
         ) -> Option<Retained<DOMCSSRuleList>>;
 
         #[cfg(all(feature = "DOMCSSRuleList", feature = "DOMElement"))]
-        #[method_id(@__retain_semantics Other getMatchedCSSRules:pseudoElement:authorOnly:)]
+        #[method_id(@__method_family Other getMatchedCSSRules:pseudoElement:authorOnly:)]
         pub unsafe fn getMatchedCSSRules_pseudoElement_authorOnly(
             &self,
             element: Option<&DOMElement>,
@@ -454,7 +454,7 @@ extern_methods!(
         ) -> Option<Retained<DOMCSSRuleList>>;
 
         #[cfg(feature = "DOMNodeList")]
-        #[method_id(@__retain_semantics Other getElementsByClassName:)]
+        #[method_id(@__method_family Other getElementsByClassName:)]
         pub unsafe fn getElementsByClassName(
             &self,
             class_names: Option<&NSString>,
@@ -468,21 +468,21 @@ extern_methods!(
 
         #[cfg(feature = "DOMElement")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other getElementById:)]
+        #[method_id(@__method_family Other getElementById:)]
         pub unsafe fn getElementById(
             &self,
             element_id: Option<&NSString>,
         ) -> Option<Retained<DOMElement>>;
 
         #[cfg(feature = "DOMElement")]
-        #[method_id(@__retain_semantics Other querySelector:)]
+        #[method_id(@__method_family Other querySelector:)]
         pub unsafe fn querySelector(
             &self,
             selectors: Option<&NSString>,
         ) -> Option<Retained<DOMElement>>;
 
         #[cfg(feature = "DOMNodeList")]
-        #[method_id(@__retain_semantics Other querySelectorAll:)]
+        #[method_id(@__method_family Other querySelectorAll:)]
         pub unsafe fn querySelectorAll(
             &self,
             selectors: Option<&NSString>,
@@ -499,7 +499,7 @@ extern_methods!(
     ))]
     unsafe impl DOMDocument {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -512,7 +512,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMDocument {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -527,7 +527,7 @@ extern_methods!(
     unsafe impl DOMDocument {
         #[cfg(all(feature = "DOMCharacterData", feature = "DOMProcessingInstruction"))]
         #[deprecated]
-        #[method_id(@__retain_semantics Other createProcessingInstruction::)]
+        #[method_id(@__method_family Other createProcessingInstruction::)]
         pub unsafe fn createProcessingInstruction(
             &self,
             target: Option<&NSString>,
@@ -535,7 +535,7 @@ extern_methods!(
         ) -> Option<Retained<DOMProcessingInstruction>>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other importNode::)]
+        #[method_id(@__method_family Other importNode::)]
         pub unsafe fn importNode(
             &self,
             imported_node: Option<&DOMNode>,
@@ -544,7 +544,7 @@ extern_methods!(
 
         #[cfg(feature = "DOMElement")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other createElementNS::)]
+        #[method_id(@__method_family Other createElementNS::)]
         pub unsafe fn createElementNS(
             &self,
             namespace_uri: Option<&NSString>,
@@ -553,7 +553,7 @@ extern_methods!(
 
         #[cfg(feature = "DOMAttr")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other createAttributeNS::)]
+        #[method_id(@__method_family Other createAttributeNS::)]
         pub unsafe fn createAttributeNS(
             &self,
             namespace_uri: Option<&NSString>,
@@ -562,7 +562,7 @@ extern_methods!(
 
         #[cfg(feature = "DOMNodeList")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other getElementsByTagNameNS::)]
+        #[method_id(@__method_family Other getElementsByTagNameNS::)]
         pub unsafe fn getElementsByTagNameNS(
             &self,
             namespace_uri: Option<&NSString>,
@@ -571,7 +571,7 @@ extern_methods!(
 
         #[cfg(all(feature = "DOMNodeFilter", feature = "DOMNodeIterator"))]
         #[deprecated]
-        #[method_id(@__retain_semantics Other createNodeIterator::::)]
+        #[method_id(@__method_family Other createNodeIterator::::)]
         pub unsafe fn createNodeIterator(
             &self,
             root: Option<&DOMNode>,
@@ -582,7 +582,7 @@ extern_methods!(
 
         #[cfg(all(feature = "DOMNodeFilter", feature = "DOMTreeWalker"))]
         #[deprecated]
-        #[method_id(@__retain_semantics Other createTreeWalker::::)]
+        #[method_id(@__method_family Other createTreeWalker::::)]
         pub unsafe fn createTreeWalker(
             &self,
             root: Option<&DOMNode>,
@@ -593,7 +593,7 @@ extern_methods!(
 
         #[cfg(all(feature = "DOMCSSStyleDeclaration", feature = "DOMElement"))]
         #[deprecated]
-        #[method_id(@__retain_semantics Other getOverrideStyle::)]
+        #[method_id(@__method_family Other getOverrideStyle::)]
         pub unsafe fn getOverrideStyle(
             &self,
             element: Option<&DOMElement>,
@@ -602,7 +602,7 @@ extern_methods!(
 
         #[cfg(all(feature = "DOMXPathExpression", feature = "DOMXPathNSResolver"))]
         #[deprecated]
-        #[method_id(@__retain_semantics Other createExpression::)]
+        #[method_id(@__method_family Other createExpression::)]
         pub unsafe fn createExpression(
             &self,
             expression: Option<&NSString>,
@@ -611,7 +611,7 @@ extern_methods!(
 
         #[cfg(all(feature = "DOMXPathNSResolver", feature = "DOMXPathResult"))]
         #[deprecated]
-        #[method_id(@__retain_semantics Other evaluate:::::)]
+        #[method_id(@__method_family Other evaluate:::::)]
         pub unsafe fn evaluate(
             &self,
             expression: Option<&NSString>,
@@ -623,7 +623,7 @@ extern_methods!(
 
         #[cfg(all(feature = "DOMCSSStyleDeclaration", feature = "DOMElement"))]
         #[deprecated]
-        #[method_id(@__retain_semantics Other getComputedStyle::)]
+        #[method_id(@__method_family Other getComputedStyle::)]
         pub unsafe fn getComputedStyle(
             &self,
             element: Option<&DOMElement>,

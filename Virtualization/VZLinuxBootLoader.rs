@@ -41,14 +41,14 @@ extern_methods!(
         /// Create a VZLinuxBootLoader with the Linux kernel passed as URL.
         ///
         /// Parameter `kernelURL`: The URL of Linux kernel on the local file system.
-        #[method_id(@__retain_semantics Init initWithKernelURL:)]
+        #[method_id(@__method_family Init initWithKernelURL:)]
         pub unsafe fn initWithKernelURL(
             this: Allocated<Self>,
             kernel_url: &NSURL,
         ) -> Retained<Self>;
 
         /// URL of the Linux kernel.
-        #[method_id(@__retain_semantics Other kernelURL)]
+        #[method_id(@__method_family Other kernelURL)]
         pub unsafe fn kernelURL(&self) -> Retained<NSURL>;
 
         /// Setter for [`kernelURL`][Self::kernelURL].
@@ -61,7 +61,7 @@ extern_methods!(
         ///  https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html
         ///
         /// ```
-        #[method_id(@__retain_semantics Other commandLine)]
+        #[method_id(@__method_family Other commandLine)]
         pub unsafe fn commandLine(&self) -> Retained<NSString>;
 
         /// Setter for [`commandLine`][Self::commandLine].
@@ -69,7 +69,7 @@ extern_methods!(
         pub unsafe fn setCommandLine(&self, command_line: &NSString);
 
         /// Set the optional initial RAM disk. The RAM disk is mapped into memory before booting the kernel.
-        #[method_id(@__retain_semantics Other initialRamdiskURL)]
+        #[method_id(@__method_family Other initialRamdiskURL)]
         pub unsafe fn initialRamdiskURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`initialRamdiskURL`][Self::initialRamdiskURL].
@@ -82,10 +82,10 @@ extern_methods!(
     /// Methods declared on superclass `VZBootLoader`
     #[cfg(feature = "VZBootLoader")]
     unsafe impl VZLinuxBootLoader {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

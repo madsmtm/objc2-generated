@@ -20,14 +20,14 @@ unsafe impl NSObjectProtocol for GKVoiceChatService {}
 
 extern_methods!(
     unsafe impl GKVoiceChatService {
-        #[method_id(@__retain_semantics Other defaultVoiceChatService)]
+        #[method_id(@__method_family Other defaultVoiceChatService)]
         pub unsafe fn defaultVoiceChatService() -> Option<Retained<GKVoiceChatService>>;
 
         #[method(isVoIPAllowed)]
         pub unsafe fn isVoIPAllowed() -> bool;
 
         #[cfg(feature = "GKPublicProtocols")]
-        #[method_id(@__retain_semantics Other client)]
+        #[method_id(@__method_family Other client)]
         pub unsafe fn client(&self) -> Option<Retained<ProtocolObject<dyn GKVoiceChatClient>>>;
 
         #[cfg(feature = "GKPublicProtocols")]
@@ -94,10 +94,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKVoiceChatService {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

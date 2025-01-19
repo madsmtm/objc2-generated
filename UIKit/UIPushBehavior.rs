@@ -44,7 +44,7 @@ unsafe impl NSObjectProtocol for UIPushBehavior {}
 extern_methods!(
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UIPushBehavior {
-        #[method_id(@__retain_semantics Init initWithItems:mode:)]
+        #[method_id(@__method_family Init initWithItems:mode:)]
         pub unsafe fn initWithItems_mode(
             this: Allocated<Self>,
             items: &NSArray<ProtocolObject<dyn UIDynamicItem>>,
@@ -57,7 +57,7 @@ extern_methods!(
         #[method(removeItem:)]
         pub unsafe fn removeItem(&self, item: &ProtocolObject<dyn UIDynamicItem>);
 
-        #[method_id(@__retain_semantics Other items)]
+        #[method_id(@__method_family Other items)]
         pub unsafe fn items(&self) -> Retained<NSArray<ProtocolObject<dyn UIDynamicItem>>>;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
@@ -122,10 +122,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIDynamicBehavior")]
     unsafe impl UIPushBehavior {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

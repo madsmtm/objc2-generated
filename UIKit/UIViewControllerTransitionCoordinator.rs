@@ -61,18 +61,18 @@ extern_protocol!(
         unsafe fn completionCurve(&self) -> UIViewAnimationCurve;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
-        #[method_id(@__retain_semantics Other viewControllerForKey:)]
+        #[method_id(@__method_family Other viewControllerForKey:)]
         unsafe fn viewControllerForKey(
             &self,
             key: &UITransitionContextViewControllerKey,
         ) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__retain_semantics Other viewForKey:)]
+        #[method_id(@__method_family Other viewForKey:)]
         unsafe fn viewForKey(&self, key: &UITransitionContextViewKey) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__retain_semantics Other containerView)]
+        #[method_id(@__method_family Other containerView)]
         unsafe fn containerView(&self) -> Retained<UIView>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -152,7 +152,7 @@ extern_methods!(
     /// UIViewControllerTransitionCoordinator
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIViewController {
-        #[method_id(@__retain_semantics Other transitionCoordinator)]
+        #[method_id(@__method_family Other transitionCoordinator)]
         pub unsafe fn transitionCoordinator(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIViewControllerTransitionCoordinator>>>;

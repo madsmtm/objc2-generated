@@ -119,30 +119,30 @@ unsafe impl NSObjectProtocol for CBUUID {}
 extern_methods!(
     unsafe impl CBUUID {
         /// The UUID as NSData.
-        #[method_id(@__retain_semantics Other data)]
+        #[method_id(@__method_family Other data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
         /// The UUID as NSString.
-        #[method_id(@__retain_semantics Other UUIDString)]
+        #[method_id(@__method_family Other UUIDString)]
         pub unsafe fn UUIDString(&self) -> Retained<NSString>;
 
         /// Creates a CBUUID with a 16-bit, 32-bit, or 128-bit UUID string representation.
         /// The expected format for 128-bit UUIDs is a string punctuated by hyphens, for example 68753A44-4D6F-1226-9C60-0050E4C00067.
-        #[method_id(@__retain_semantics Other UUIDWithString:)]
+        #[method_id(@__method_family Other UUIDWithString:)]
         pub unsafe fn UUIDWithString(the_string: &NSString) -> Retained<CBUUID>;
 
         /// Creates a CBUUID with a 16-bit, 32-bit, or 128-bit UUID data container.
-        #[method_id(@__retain_semantics Other UUIDWithData:)]
+        #[method_id(@__method_family Other UUIDWithData:)]
         pub unsafe fn UUIDWithData(the_data: &NSData) -> Retained<CBUUID>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates a CBUUID with a CFUUIDRef.
         #[deprecated]
-        #[method_id(@__retain_semantics Other UUIDWithCFUUID:)]
+        #[method_id(@__method_family Other UUIDWithCFUUID:)]
         pub unsafe fn UUIDWithCFUUID(the_uuid: &CFUUID) -> Retained<CBUUID>;
 
         /// Creates a CBUUID with an NSUUID.
-        #[method_id(@__retain_semantics Other UUIDWithNSUUID:)]
+        #[method_id(@__method_family Other UUIDWithNSUUID:)]
         pub unsafe fn UUIDWithNSUUID(the_uuid: &NSUUID) -> Retained<CBUUID>;
     }
 );
@@ -150,10 +150,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CBUUID {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

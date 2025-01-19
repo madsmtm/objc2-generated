@@ -49,7 +49,7 @@ extern_methods!(
         ///
         /// Returns: An initialized WebArchive.
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithMainResource:subresources:subframeArchives:)]
+        #[method_id(@__method_family Init initWithMainResource:subresources:subframeArchives:)]
         pub unsafe fn initWithMainResource_subresources_subframeArchives(
             this: Allocated<Self>,
             main_resource: Option<&WebResource>,
@@ -63,7 +63,7 @@ extern_methods!(
         ///
         /// Returns: An initialized WebArchive.
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithData:)]
+        #[method_id(@__method_family Init initWithData:)]
         pub unsafe fn initWithData(
             this: Allocated<Self>,
             data: Option<&NSData>,
@@ -72,17 +72,17 @@ extern_methods!(
         #[cfg(feature = "WebResource")]
         /// The main resource of the archive.
         #[deprecated]
-        #[method_id(@__retain_semantics Other mainResource)]
+        #[method_id(@__method_family Other mainResource)]
         pub unsafe fn mainResource(&self) -> Option<Retained<WebResource>>;
 
         /// The subresource of the archive (can be nil).
         #[deprecated]
-        #[method_id(@__retain_semantics Other subresources)]
+        #[method_id(@__method_family Other subresources)]
         pub unsafe fn subresources(&self) -> Retained<NSArray>;
 
         /// The archives representing the subframes of the archive (can be nil).
         #[deprecated]
-        #[method_id(@__retain_semantics Other subframeArchives)]
+        #[method_id(@__method_family Other subframeArchives)]
         pub unsafe fn subframeArchives(&self) -> Retained<NSArray>;
 
         /// The data representation of the archive.
@@ -90,7 +90,7 @@ extern_methods!(
         /// The data returned by this method can be used to save a web archive to a file or to place a web archive on the pasteboard
         /// using WebArchivePboardType. To create a WebArchive using the returned data, call initWithData:.
         #[deprecated]
-        #[method_id(@__retain_semantics Other data)]
+        #[method_id(@__method_family Other data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
     }
 );
@@ -98,10 +98,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebArchive {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -28,19 +28,19 @@ unsafe impl NSObjectProtocol for SFSpeechLanguageModelConfiguration {}
 
 extern_methods!(
     unsafe impl SFSpeechLanguageModelConfiguration {
-        #[method_id(@__retain_semantics Other languageModel)]
+        #[method_id(@__method_family Other languageModel)]
         pub unsafe fn languageModel(&self) -> Retained<NSURL>;
 
-        #[method_id(@__retain_semantics Other vocabulary)]
+        #[method_id(@__method_family Other vocabulary)]
         pub unsafe fn vocabulary(&self) -> Option<Retained<NSURL>>;
 
-        #[method_id(@__retain_semantics Init initWithLanguageModel:)]
+        #[method_id(@__method_family Init initWithLanguageModel:)]
         pub unsafe fn initWithLanguageModel(
             this: Allocated<Self>,
             language_model: &NSURL,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithLanguageModel:vocabulary:)]
+        #[method_id(@__method_family Init initWithLanguageModel:vocabulary:)]
         pub unsafe fn initWithLanguageModel_vocabulary(
             this: Allocated<Self>,
             language_model: &NSURL,
@@ -52,10 +52,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechLanguageModelConfiguration {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -95,10 +95,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SFSpeechLanguageModel {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -20,14 +20,14 @@ unsafe impl NSObjectProtocol for UIAccessibilityLocationDescriptor {}
 
 extern_methods!(
     unsafe impl UIAccessibilityLocationDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__retain_semantics Init initWithName:view:)]
+        #[method_id(@__method_family Init initWithName:view:)]
         pub unsafe fn initWithName_view(
             this: Allocated<Self>,
             name: &NSString,
@@ -39,7 +39,7 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__retain_semantics Init initWithName:point:inView:)]
+        #[method_id(@__method_family Init initWithName:point:inView:)]
         pub unsafe fn initWithName_point_inView(
             this: Allocated<Self>,
             name: &NSString,
@@ -52,7 +52,7 @@ extern_methods!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__retain_semantics Init initWithAttributedName:point:inView:)]
+        #[method_id(@__method_family Init initWithAttributedName:point:inView:)]
         pub unsafe fn initWithAttributedName_point_inView(
             this: Allocated<Self>,
             attributed_name: &NSAttributedString,
@@ -61,17 +61,17 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__retain_semantics Other view)]
+        #[method_id(@__method_family Other view)]
         pub unsafe fn view(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[method(point)]
         pub unsafe fn point(&self) -> CGPoint;
 
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other attributedName)]
+        #[method_id(@__method_family Other attributedName)]
         pub unsafe fn attributedName(&self) -> Retained<NSAttributedString>;
     }
 );

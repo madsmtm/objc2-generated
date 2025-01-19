@@ -53,7 +53,7 @@ extern_methods!(
         /// 'artificial' items to add to a WebBackForwardList.  When first initialized
         /// the URLString and originalURLString will be the same.
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithURLString:title:lastVisitedTimeInterval:)]
+        #[method_id(@__method_family Init initWithURLString:title:lastVisitedTimeInterval:)]
         pub unsafe fn initWithURLString_title_lastVisitedTimeInterval(
             this: Allocated<Self>,
             url_string: Option<&NSString>,
@@ -64,7 +64,7 @@ extern_methods!(
         /// The string representation of the initial URL of this item.
         /// This value is normally set by the WebKit.
         #[deprecated]
-        #[method_id(@__retain_semantics Other originalURLString)]
+        #[method_id(@__method_family Other originalURLString)]
         pub unsafe fn originalURLString(&self) -> Retained<NSString>;
 
         /// The string representation of the URL represented by this item.
@@ -72,7 +72,7 @@ extern_methods!(
         /// The URLString may be different than the originalURLString if the page
         /// redirected to a new location.  This value is normally set by the WebKit.
         #[deprecated]
-        #[method_id(@__retain_semantics Other URLString)]
+        #[method_id(@__method_family Other URLString)]
         pub unsafe fn URLString(&self) -> Retained<NSString>;
 
         /// The title of the page represented by this item.
@@ -80,7 +80,7 @@ extern_methods!(
         /// This title cannot be changed by the client.  This value
         /// is normally set by the WebKit when a page title for the item is received.
         #[deprecated]
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// The last time the page represented by this item was visited. The interval
@@ -91,7 +91,7 @@ extern_methods!(
         pub unsafe fn lastVisitedTimeInterval(&self) -> NSTimeInterval;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other alternateTitle)]
+        #[method_id(@__method_family Other alternateTitle)]
         pub unsafe fn alternateTitle(&self) -> Retained<NSString>;
 
         /// Setter for [`alternateTitle`][Self::alternateTitle].
@@ -105,7 +105,7 @@ extern_methods!(
         ///
         /// This icon returned will be determined by the WebKit.
         #[deprecated]
-        #[method_id(@__retain_semantics Other icon)]
+        #[method_id(@__method_family Other icon)]
         pub unsafe fn icon(&self) -> Option<Retained<NSImage>>;
     }
 );
@@ -113,10 +113,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebHistoryItem {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

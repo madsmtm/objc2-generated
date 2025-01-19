@@ -276,34 +276,34 @@ extern_methods!(
         #[method(mediaType)]
         pub unsafe fn mediaType(&self) -> MPMediaType;
 
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__retain_semantics Other albumTitle)]
+        #[method_id(@__method_family Other albumTitle)]
         pub unsafe fn albumTitle(&self) -> Option<Retained<NSString>>;
 
         #[method(albumPersistentID)]
         pub unsafe fn albumPersistentID(&self) -> MPMediaEntityPersistentID;
 
-        #[method_id(@__retain_semantics Other artist)]
+        #[method_id(@__method_family Other artist)]
         pub unsafe fn artist(&self) -> Option<Retained<NSString>>;
 
         #[method(artistPersistentID)]
         pub unsafe fn artistPersistentID(&self) -> MPMediaEntityPersistentID;
 
-        #[method_id(@__retain_semantics Other albumArtist)]
+        #[method_id(@__method_family Other albumArtist)]
         pub unsafe fn albumArtist(&self) -> Option<Retained<NSString>>;
 
         #[method(albumArtistPersistentID)]
         pub unsafe fn albumArtistPersistentID(&self) -> MPMediaEntityPersistentID;
 
-        #[method_id(@__retain_semantics Other genre)]
+        #[method_id(@__method_family Other genre)]
         pub unsafe fn genre(&self) -> Option<Retained<NSString>>;
 
         #[method(genrePersistentID)]
         pub unsafe fn genrePersistentID(&self) -> MPMediaEntityPersistentID;
 
-        #[method_id(@__retain_semantics Other composer)]
+        #[method_id(@__method_family Other composer)]
         pub unsafe fn composer(&self) -> Option<Retained<NSString>>;
 
         #[method(composerPersistentID)]
@@ -324,28 +324,28 @@ extern_methods!(
         #[method(discCount)]
         pub unsafe fn discCount(&self) -> NSUInteger;
 
-        #[method_id(@__retain_semantics Other artwork)]
+        #[method_id(@__method_family Other artwork)]
         pub unsafe fn artwork(&self) -> Option<Retained<MPMediaItemArtwork>>;
 
         #[method(isExplicitItem)]
         pub unsafe fn isExplicitItem(&self) -> bool;
 
-        #[method_id(@__retain_semantics Other lyrics)]
+        #[method_id(@__method_family Other lyrics)]
         pub unsafe fn lyrics(&self) -> Option<Retained<NSString>>;
 
         #[method(isCompilation)]
         pub unsafe fn isCompilation(&self) -> bool;
 
-        #[method_id(@__retain_semantics Other releaseDate)]
+        #[method_id(@__method_family Other releaseDate)]
         pub unsafe fn releaseDate(&self) -> Option<Retained<NSDate>>;
 
         #[method(beatsPerMinute)]
         pub unsafe fn beatsPerMinute(&self) -> NSUInteger;
 
-        #[method_id(@__retain_semantics Other comments)]
+        #[method_id(@__method_family Other comments)]
         pub unsafe fn comments(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__retain_semantics Other assetURL)]
+        #[method_id(@__method_family Other assetURL)]
         pub unsafe fn assetURL(&self) -> Option<Retained<NSURL>>;
 
         #[method(isCloudItem)]
@@ -354,7 +354,7 @@ extern_methods!(
         #[method(hasProtectedAsset)]
         pub unsafe fn hasProtectedAsset(&self) -> bool;
 
-        #[method_id(@__retain_semantics Other podcastTitle)]
+        #[method_id(@__method_family Other podcastTitle)]
         pub unsafe fn podcastTitle(&self) -> Option<Retained<NSString>>;
 
         #[method(podcastPersistentID)]
@@ -369,19 +369,19 @@ extern_methods!(
         #[method(rating)]
         pub unsafe fn rating(&self) -> NSUInteger;
 
-        #[method_id(@__retain_semantics Other lastPlayedDate)]
+        #[method_id(@__method_family Other lastPlayedDate)]
         pub unsafe fn lastPlayedDate(&self) -> Option<Retained<NSDate>>;
 
-        #[method_id(@__retain_semantics Other userGrouping)]
+        #[method_id(@__method_family Other userGrouping)]
         pub unsafe fn userGrouping(&self) -> Option<Retained<NSString>>;
 
         #[method(bookmarkTime)]
         pub unsafe fn bookmarkTime(&self) -> NSTimeInterval;
 
-        #[method_id(@__retain_semantics Other dateAdded)]
+        #[method_id(@__method_family Other dateAdded)]
         pub unsafe fn dateAdded(&self) -> Retained<NSDate>;
 
-        #[method_id(@__retain_semantics Other playbackStoreID)]
+        #[method_id(@__method_family Other playbackStoreID)]
         pub unsafe fn playbackStoreID(&self) -> Retained<NSString>;
 
         #[method(isPreorder)]
@@ -393,10 +393,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MPMediaEntity")]
     unsafe impl MPMediaItem {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -412,10 +412,10 @@ unsafe impl NSObjectProtocol for MPMediaItemArtwork {}
 
 extern_methods!(
     unsafe impl MPMediaItemArtwork {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(
@@ -424,7 +424,7 @@ extern_methods!(
             feature = "objc2-core-foundation"
         ))]
         #[cfg(target_os = "macos")]
-        #[method_id(@__retain_semantics Init initWithBoundsSize:requestHandler:)]
+        #[method_id(@__method_family Init initWithBoundsSize:requestHandler:)]
         pub unsafe fn initWithBoundsSize_requestHandler(
             this: Allocated<Self>,
             bounds_size: CGSize,
@@ -433,7 +433,7 @@ extern_methods!(
 
         #[cfg(all(feature = "objc2-app-kit", feature = "objc2-core-foundation"))]
         #[cfg(target_os = "macos")]
-        #[method_id(@__retain_semantics Other imageWithSize:)]
+        #[method_id(@__method_family Other imageWithSize:)]
         pub unsafe fn imageWithSize(&self, size: CGSize) -> Option<Retained<NSImage>>;
 
         #[cfg(feature = "objc2-core-foundation")]

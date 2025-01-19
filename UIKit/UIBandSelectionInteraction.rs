@@ -92,16 +92,16 @@ extern_methods!(
         ///
         ///
         /// Parameter `selectionHandler`: Called when the interaction's state and/or selection rect change.
-        #[method_id(@__retain_semantics Init initWithSelectionHandler:)]
+        #[method_id(@__method_family Init initWithSelectionHandler:)]
         pub unsafe fn initWithSelectionHandler(
             this: Allocated<Self>,
             selection_handler: &block2::Block<dyn Fn(NonNull<UIBandSelectionInteraction>)>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

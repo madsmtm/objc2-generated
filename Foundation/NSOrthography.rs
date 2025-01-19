@@ -31,15 +31,15 @@ unsafe impl NSSecureCoding for NSOrthography {}
 extern_methods!(
     unsafe impl NSOrthography {
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other dominantScript)]
+        #[method_id(@__method_family Other dominantScript)]
         pub unsafe fn dominantScript(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other languageMap)]
+        #[method_id(@__method_family Other languageMap)]
         pub unsafe fn languageMap(&self) -> Retained<NSDictionary<NSString, NSArray<NSString>>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__retain_semantics Init initWithDominantScript:languageMap:)]
+        #[method_id(@__method_family Init initWithDominantScript:languageMap:)]
         pub unsafe fn initWithDominantScript_languageMap(
             this: Allocated<Self>,
             script: &NSString,
@@ -47,7 +47,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -58,10 +58,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSOrthography {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -70,33 +70,33 @@ extern_methods!(
     /// NSOrthographyExtended
     unsafe impl NSOrthography {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other languagesForScript:)]
+        #[method_id(@__method_family Other languagesForScript:)]
         pub unsafe fn languagesForScript(
             &self,
             script: &NSString,
         ) -> Option<Retained<NSArray<NSString>>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other dominantLanguageForScript:)]
+        #[method_id(@__method_family Other dominantLanguageForScript:)]
         pub unsafe fn dominantLanguageForScript(
             &self,
             script: &NSString,
         ) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other dominantLanguage)]
+        #[method_id(@__method_family Other dominantLanguage)]
         pub unsafe fn dominantLanguage(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other allScripts)]
+        #[method_id(@__method_family Other allScripts)]
         pub unsafe fn allScripts(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other allLanguages)]
+        #[method_id(@__method_family Other allLanguages)]
         pub unsafe fn allLanguages(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
-        #[method_id(@__retain_semantics Other defaultOrthographyForLanguage:)]
+        #[method_id(@__method_family Other defaultOrthographyForLanguage:)]
         pub unsafe fn defaultOrthographyForLanguage(language: &NSString) -> Retained<Self>;
     }
 );
@@ -105,7 +105,7 @@ extern_methods!(
     /// NSOrthographyCreation
     unsafe impl NSOrthography {
         #[cfg(all(feature = "NSArray", feature = "NSDictionary", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other orthographyWithDominantScript:languageMap:)]
+        #[method_id(@__method_family Other orthographyWithDominantScript:languageMap:)]
         pub unsafe fn orthographyWithDominantScript_languageMap(
             script: &NSString,
             map: &NSDictionary<NSString, NSArray<NSString>>,

@@ -34,10 +34,10 @@ unsafe impl NSSecureCoding for BAURLDownload {}
 extern_methods!(
     #[cfg(feature = "BADownload")]
     unsafe impl BAURLDownload {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Constructs a download object to represent the download of a asset located inside of the provided
@@ -50,7 +50,7 @@ extern_methods!(
         /// If the size does not match the file being downloaded, then the download will fail.
         ///
         /// Parameter `applicationGroupIdentifier`: The identifier of the application group that should used to store the finished download.
-        #[method_id(@__retain_semantics Init initWithIdentifier:request:fileSize:applicationGroupIdentifier:)]
+        #[method_id(@__method_family Init initWithIdentifier:request:fileSize:applicationGroupIdentifier:)]
         pub unsafe fn initWithIdentifier_request_fileSize_applicationGroupIdentifier(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -78,7 +78,7 @@ extern_methods!(
         /// `BADownloaderPriorityMax`which is used to order the downloads for this process.
         /// It is recommended to use
         /// `BADownloaderPriorityDefault`if download priority does not matter.
-        #[method_id(@__retain_semantics Init initWithIdentifier:request:essential:fileSize:applicationGroupIdentifier:priority:)]
+        #[method_id(@__method_family Init initWithIdentifier:request:essential:fileSize:applicationGroupIdentifier:priority:)]
         pub unsafe fn initWithIdentifier_request_essential_fileSize_applicationGroupIdentifier_priority(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -97,7 +97,7 @@ extern_methods!(
         ///
         /// Parameter `applicationGroupIdentifier`: The identifier of the application group that should used to store the finished download.
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithIdentifier:request:applicationGroupIdentifier:)]
+        #[method_id(@__method_family Init initWithIdentifier:request:applicationGroupIdentifier:)]
         pub unsafe fn initWithIdentifier_request_applicationGroupIdentifier(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -119,7 +119,7 @@ extern_methods!(
         /// It is recommended to use
         /// `BADownloaderPriorityDefault`if download priority does not matter.
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithIdentifier:request:applicationGroupIdentifier:priority:)]
+        #[method_id(@__method_family Init initWithIdentifier:request:applicationGroupIdentifier:priority:)]
         pub unsafe fn initWithIdentifier_request_applicationGroupIdentifier_priority(
             this: Allocated<Self>,
             identifier: &NSString,

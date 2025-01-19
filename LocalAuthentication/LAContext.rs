@@ -405,7 +405,7 @@ extern_methods!(
         ///
         /// Allows fallback button title customization. If set to empty string, the button will be hidden.
         /// A default title "Use Password…" is used when this property is left nil.
-        #[method_id(@__retain_semantics Other localizedFallbackTitle)]
+        #[method_id(@__method_family Other localizedFallbackTitle)]
         pub unsafe fn localizedFallbackTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedFallbackTitle`][Self::localizedFallbackTitle].
@@ -414,7 +414,7 @@ extern_methods!(
 
         /// This property is deprecated and setting it has no effect.
         #[deprecated = "No longer supported"]
-        #[method_id(@__retain_semantics Other maxBiometryFailures)]
+        #[method_id(@__method_family Other maxBiometryFailures)]
         pub unsafe fn maxBiometryFailures(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`maxBiometryFailures`][Self::maxBiometryFailures].
@@ -426,7 +426,7 @@ extern_methods!(
         ///
         /// Allows cancel button title customization. A default title "Cancel" is used when
         /// this property is left nil or is set to empty string.
-        #[method_id(@__retain_semantics Other localizedCancelTitle)]
+        #[method_id(@__method_family Other localizedCancelTitle)]
         pub unsafe fn localizedCancelTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedCancelTitle`][Self::localizedCancelTitle].
@@ -466,7 +466,7 @@ extern_methods!(
         /// A localized string from this property is displayed in the authentication UI if the caller didn't specify
         /// its own authentication reason (e.g. a keychain operation with kSecUseAuthenticationContext). This property
         /// is ignored if the authentication reason was provided by caller.
-        #[method_id(@__retain_semantics Other localizedReason)]
+        #[method_id(@__method_family Other localizedReason)]
         pub unsafe fn localizedReason(&self) -> Retained<NSString>;
 
         /// Setter for [`localizedReason`][Self::localizedReason].
@@ -510,12 +510,12 @@ extern_methods!(
         /// Warning: Please note that the value returned by this property can change exceptionally between major OS versions even if
         /// the state of biometry has not changed.
         #[deprecated]
-        #[method_id(@__retain_semantics Other evaluatedPolicyDomainState)]
+        #[method_id(@__method_family Other evaluatedPolicyDomainState)]
         pub unsafe fn evaluatedPolicyDomainState(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "LADomainState")]
         /// Contains authentication domain state.
-        #[method_id(@__retain_semantics Other domainState)]
+        #[method_id(@__method_family Other domainState)]
         pub unsafe fn domainState(&self) -> Retained<LADomainState>;
     }
 );
@@ -523,10 +523,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl LAContext {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -73,34 +73,34 @@ unsafe impl NSSecureCoding for SCNPhysicsShape {}
 extern_methods!(
     unsafe impl SCNPhysicsShape {
         #[cfg(feature = "SCNGeometry")]
-        #[method_id(@__retain_semantics Other shapeWithGeometry:options:)]
+        #[method_id(@__method_family Other shapeWithGeometry:options:)]
         pub unsafe fn shapeWithGeometry_options(
             geometry: &SCNGeometry,
             options: Option<&NSDictionary<SCNPhysicsShapeOption, AnyObject>>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "SCNNode")]
-        #[method_id(@__retain_semantics Other shapeWithNode:options:)]
+        #[method_id(@__method_family Other shapeWithNode:options:)]
         pub unsafe fn shapeWithNode_options(
             node: &SCNNode,
             options: Option<&NSDictionary<SCNPhysicsShapeOption, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other shapeWithShapes:transforms:)]
+        #[method_id(@__method_family Other shapeWithShapes:transforms:)]
         pub unsafe fn shapeWithShapes_transforms(
             shapes: &NSArray<SCNPhysicsShape>,
             transforms: Option<&NSArray<NSValue>>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other options)]
+        #[method_id(@__method_family Other options)]
         pub unsafe fn options(
             &self,
         ) -> Option<Retained<NSDictionary<SCNPhysicsShapeOption, AnyObject>>>;
 
-        #[method_id(@__retain_semantics Other sourceObject)]
+        #[method_id(@__method_family Other sourceObject)]
         pub unsafe fn sourceObject(&self) -> Retained<AnyObject>;
 
-        #[method_id(@__retain_semantics Other transforms)]
+        #[method_id(@__method_family Other transforms)]
         pub unsafe fn transforms(&self) -> Option<Retained<NSArray<NSValue>>>;
     }
 );
@@ -108,10 +108,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNPhysicsShape {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

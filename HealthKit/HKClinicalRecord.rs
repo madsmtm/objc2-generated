@@ -58,24 +58,24 @@ extern_methods!(
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKClinicalRecord {
         #[cfg(all(feature = "HKClinicalType", feature = "HKObjectType"))]
-        #[method_id(@__retain_semantics Other clinicalType)]
+        #[method_id(@__method_family Other clinicalType)]
         pub unsafe fn clinicalType(&self) -> Retained<HKClinicalType>;
 
         /// The primary display name used in Health.
         ///
         /// The display name is not localized, and is generally expected to be US English.
-        #[method_id(@__retain_semantics Other displayName)]
+        #[method_id(@__method_family Other displayName)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HKFHIRResource")]
         /// The FHIR resource (where applicable) backing this sample.
-        #[method_id(@__retain_semantics Other FHIRResource)]
+        #[method_id(@__method_family Other FHIRResource)]
         pub unsafe fn FHIRResource(&self) -> Option<Retained<HKFHIRResource>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

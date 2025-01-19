@@ -44,24 +44,24 @@ extern_methods!(
     unsafe impl HKGlassesLensSpecification {
         #[cfg(feature = "HKQuantity")]
         /// The distance between the back of the eyeglass lens and the eye (measured in mm)
-        #[method_id(@__retain_semantics Other vertexDistance)]
+        #[method_id(@__method_family Other vertexDistance)]
         pub unsafe fn vertexDistance(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKVisionPrism")]
         /// The object encapsulating the prism fields
-        #[method_id(@__retain_semantics Other prism)]
+        #[method_id(@__method_family Other prism)]
         pub unsafe fn prism(&self) -> Option<Retained<HKVisionPrism>>;
 
         #[cfg(feature = "HKQuantity")]
         /// The distance from each pupil to the center of the nose (measured in mm) when looking at a far target.
         /// Can be described as combined or individual value. For distance prescriptions, the pupillary distance will be a far value.
-        #[method_id(@__retain_semantics Other farPupillaryDistance)]
+        #[method_id(@__method_family Other farPupillaryDistance)]
         pub unsafe fn farPupillaryDistance(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
         /// The distance from each pupil to the center of the nose (measured in mm) when looking at a near target.
         /// Can be described as combined or individual value. For near prescriptions, the pupillary distance will be a near value.
-        #[method_id(@__retain_semantics Other nearPupillaryDistance)]
+        #[method_id(@__method_family Other nearPupillaryDistance)]
         pub unsafe fn nearPupillaryDistance(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(all(feature = "HKQuantity", feature = "HKVisionPrism"))]
@@ -82,7 +82,7 @@ extern_methods!(
         ///
         /// Parameter `nearPupillaryDistance`: The distance from each pupil to the center of the nose (measured in mm) when looking at a near target.
         /// Can be described as combined or individual value. For near prescriptions, the pupillary distance will be a near value.
-        #[method_id(@__retain_semantics Init initWithSphere:cylinder:axis:addPower:vertexDistance:prism:farPupillaryDistance:nearPupillaryDistance:)]
+        #[method_id(@__method_family Init initWithSphere:cylinder:axis:addPower:vertexDistance:prism:farPupillaryDistance:nearPupillaryDistance:)]
         pub unsafe fn initWithSphere_cylinder_axis_addPower_vertexDistance_prism_farPupillaryDistance_nearPupillaryDistance(
             this: Allocated<Self>,
             sphere: &HKQuantity,
@@ -95,10 +95,10 @@ extern_methods!(
             near_pupillary_distance: Option<&HKQuantity>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

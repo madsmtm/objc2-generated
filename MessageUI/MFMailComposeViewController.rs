@@ -174,7 +174,7 @@ extern_methods!(
         pub unsafe fn canSendMail(mtm: MainThreadMarker) -> bool;
 
         /// This property is the delegate for the MFMailComposeViewControllerDelegate method callbacks.
-        #[method_id(@__retain_semantics Other mailComposeDelegate)]
+        #[method_id(@__method_family Other mailComposeDelegate)]
         pub unsafe fn mailComposeDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MFMailComposeViewControllerDelegate>>>;
@@ -300,27 +300,27 @@ extern_methods!(
     /// Methods declared on superclass `UINavigationController`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MFMailComposeViewController {
-        #[method_id(@__retain_semantics Init initWithNavigationBarClass:toolbarClass:)]
+        #[method_id(@__method_family Init initWithNavigationBarClass:toolbarClass:)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
             this: Allocated<Self>,
             navigation_bar_class: Option<&AnyClass>,
             toolbar_class: Option<&AnyClass>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithRootViewController:)]
+        #[method_id(@__method_family Init initWithRootViewController:)]
         pub unsafe fn initWithRootViewController(
             this: Allocated<Self>,
             root_view_controller: &UIViewController,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        #[method_id(@__method_family Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -332,10 +332,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl MFMailComposeViewController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

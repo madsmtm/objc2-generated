@@ -27,21 +27,21 @@ unsafe impl NSSecureCoding for CKShareMetadata {}
 
 extern_methods!(
     unsafe impl CKShareMetadata {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other containerIdentifier)]
+        #[method_id(@__method_family Other containerIdentifier)]
         pub unsafe fn containerIdentifier(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKShare"))]
-        #[method_id(@__retain_semantics Other share)]
+        #[method_id(@__method_family Other share)]
         pub unsafe fn share(&self) -> Retained<CKShare>;
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(@__retain_semantics Other hierarchicalRootRecordID)]
+        #[method_id(@__method_family Other hierarchicalRootRecordID)]
         pub unsafe fn hierarchicalRootRecordID(&self) -> Option<Retained<CKRecordID>>;
 
         #[cfg(feature = "CKShareParticipant")]
@@ -58,12 +58,12 @@ extern_methods!(
         pub unsafe fn participantPermission(&self) -> CKShareParticipantPermission;
 
         #[cfg(feature = "CKUserIdentity")]
-        #[method_id(@__retain_semantics Other ownerIdentity)]
+        #[method_id(@__method_family Other ownerIdentity)]
         pub unsafe fn ownerIdentity(&self) -> Retained<CKUserIdentity>;
 
         #[cfg(feature = "CKRecord")]
         /// This is only present if the share metadata was returned from a CKFetchShareMetadataOperation with shouldFetchRootRecord set to YES
-        #[method_id(@__retain_semantics Other rootRecord)]
+        #[method_id(@__method_family Other rootRecord)]
         pub unsafe fn rootRecord(&self) -> Option<Retained<CKRecord>>;
 
         #[cfg(feature = "CKShareParticipant")]
@@ -73,7 +73,7 @@ extern_methods!(
 
         #[cfg(feature = "CKRecordID")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other rootRecordID)]
+        #[method_id(@__method_family Other rootRecordID)]
         pub unsafe fn rootRecordID(&self) -> Retained<CKRecordID>;
     }
 );

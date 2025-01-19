@@ -34,7 +34,7 @@ extern_methods!(
     #[cfg(feature = "WebScriptObject")]
     unsafe impl DOMObject {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -43,7 +43,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "WebScriptObject")]
     unsafe impl DOMObject {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -53,7 +53,7 @@ extern_methods!(
     #[cfg(feature = "WebScriptObject")]
     unsafe impl DOMObject {
         #[cfg(feature = "DOMStyleSheet")]
-        #[method_id(@__retain_semantics Other sheet)]
+        #[method_id(@__method_family Other sheet)]
         pub unsafe fn sheet(&self) -> Option<Retained<DOMStyleSheet>>;
     }
 );

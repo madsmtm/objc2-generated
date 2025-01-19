@@ -38,7 +38,7 @@ extern_methods!(
         /// Returns: An instance of AVAsset.
         ///
         /// Returns a newly allocated instance of a subclass of AVAsset initialized with the specified URL.
-        #[method_id(@__retain_semantics Other assetWithURL:)]
+        #[method_id(@__method_family Other assetWithURL:)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -72,10 +72,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAsset {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -157,7 +157,7 @@ extern_methods!(
     unsafe impl AVAsset {
         #[cfg(feature = "AVAssetTrack")]
         /// Provides the array of AVAssetTracks contained by the asset
-        #[method_id(@__retain_semantics Other tracks)]
+        #[method_id(@__method_family Other tracks)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVAssetTrack>>;
 
         #[cfg(all(feature = "AVAssetTrack", feature = "objc2-core-media"))]
@@ -171,7 +171,7 @@ extern_methods!(
         /// "
         /// tracks" has been loaded
         #[deprecated = "Use loadTrackWithTrackID:completionHandler: instead"]
-        #[method_id(@__retain_semantics Other trackWithTrackID:)]
+        #[method_id(@__method_family Other trackWithTrackID:)]
         pub unsafe fn trackWithTrackID(
             &self,
             track_id: CMPersistentTrackID,
@@ -205,7 +205,7 @@ extern_methods!(
         /// "
         /// tracks" has been loaded
         #[deprecated = "Use loadTracksWithMediaType:completionHandler: instead"]
-        #[method_id(@__retain_semantics Other tracksWithMediaType:)]
+        #[method_id(@__method_family Other tracksWithMediaType:)]
         pub unsafe fn tracksWithMediaType(
             &self,
             media_type: &AVMediaType,
@@ -239,7 +239,7 @@ extern_methods!(
         /// "
         /// tracks" has been loaded
         #[deprecated = "Use loadTracksWithMediaCharacteristic:completionHandler: instead"]
-        #[method_id(@__retain_semantics Other tracksWithMediaCharacteristic:)]
+        #[method_id(@__method_family Other tracksWithMediaCharacteristic:)]
         pub unsafe fn tracksWithMediaCharacteristic(
             &self,
             media_characteristic: &AVMediaCharacteristic,
@@ -267,7 +267,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray of AVAssetTrackGroups, each representing a different grouping of tracks in the receiver.
-        #[method_id(@__retain_semantics Other trackGroups)]
+        #[method_id(@__method_family Other trackGroups)]
         pub unsafe fn trackGroups(&self) -> Retained<NSArray<AVAssetTrackGroup>>;
     }
 );
@@ -276,22 +276,22 @@ extern_methods!(
     /// AVAssetMetadataReading
     unsafe impl AVAsset {
         #[cfg(feature = "AVMetadataItem")]
-        #[method_id(@__retain_semantics Other creationDate)]
+        #[method_id(@__method_family Other creationDate)]
         pub unsafe fn creationDate(&self) -> Option<Retained<AVMetadataItem>>;
 
-        #[method_id(@__retain_semantics Other lyrics)]
+        #[method_id(@__method_family Other lyrics)]
         pub unsafe fn lyrics(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "AVMetadataItem")]
-        #[method_id(@__retain_semantics Other commonMetadata)]
+        #[method_id(@__method_family Other commonMetadata)]
         pub unsafe fn commonMetadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataItem")]
-        #[method_id(@__retain_semantics Other metadata)]
+        #[method_id(@__method_family Other metadata)]
         pub unsafe fn metadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataFormat")]
-        #[method_id(@__retain_semantics Other availableMetadataFormats)]
+        #[method_id(@__method_family Other availableMetadataFormats)]
         pub unsafe fn availableMetadataFormats(&self) -> Retained<NSArray<AVMetadataFormat>>;
 
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVMetadataItem"))]
@@ -305,7 +305,7 @@ extern_methods!(
         /// "
         /// availableMetadataFormats" has been loaded
         #[deprecated = "Use loadMetadataForFormat:completionHandler: instead"]
-        #[method_id(@__retain_semantics Other metadataForFormat:)]
+        #[method_id(@__method_family Other metadataForFormat:)]
         pub unsafe fn metadataForFormat(
             &self,
             format: &AVMetadataFormat,
@@ -333,7 +333,7 @@ extern_methods!(
 extern_methods!(
     /// AVAssetChapterInspection
     unsafe impl AVAsset {
-        #[method_id(@__retain_semantics Other availableChapterLocales)]
+        #[method_id(@__method_family Other availableChapterLocales)]
         pub unsafe fn availableChapterLocales(&self) -> Retained<NSArray<NSLocale>>;
 
         #[cfg(all(feature = "AVMetadataFormat", feature = "AVTimedMetadataGroup"))]
@@ -352,7 +352,7 @@ extern_methods!(
         ///
         /// Further filtering of the metadata items in AVTimedMetadataGroups according to language can be accomplished using +[AVMetadataItem metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:]; filtering of the metadata items according to locale can be accomplished using +[AVMetadataItem metadataItemsFromArray:withLocale:].
         #[deprecated = "Use loadChapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:completionHandler: instead"]
-        #[method_id(@__retain_semantics Other chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:)]
+        #[method_id(@__method_family Other chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:)]
         pub unsafe fn chapterMetadataGroupsWithTitleLocale_containingItemsWithCommonKeys(
             &self,
             locale: &NSLocale,
@@ -404,7 +404,7 @@ extern_methods!(
         /// Further filtering of the metadata items in AVTimedMetadataGroups according to language can be accomplished using +[AVMetadataItem metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:]; filtering of the metadata items according to locale can be accomplished using +[AVMetadataItem metadataItemsFromArray:withLocale:].
         /// .
         #[deprecated = "Use loadChapterMetadataGroupsBestMatchingPreferredLanguages:completionHandler: instead"]
-        #[method_id(@__retain_semantics Other chapterMetadataGroupsBestMatchingPreferredLanguages:)]
+        #[method_id(@__method_family Other chapterMetadataGroupsBestMatchingPreferredLanguages:)]
         pub unsafe fn chapterMetadataGroupsBestMatchingPreferredLanguages(
             &self,
             preferred_languages: &NSArray<NSString>,
@@ -437,7 +437,7 @@ extern_methods!(
     /// AVAssetMediaSelection
     unsafe impl AVAsset {
         #[cfg(feature = "AVMediaFormat")]
-        #[method_id(@__retain_semantics Other availableMediaCharacteristicsWithMediaSelectionOptions)]
+        #[method_id(@__method_family Other availableMediaCharacteristicsWithMediaSelectionOptions)]
         pub unsafe fn availableMediaCharacteristicsWithMediaSelectionOptions(
             &self,
         ) -> Retained<NSArray<AVMediaCharacteristic>>;
@@ -461,7 +461,7 @@ extern_methods!(
         ///
         /// Filtering of the options in the returned AVMediaSelectionGroup according to playability, locale, and additional media characteristics can be accomplished using the category AVMediaSelectionOptionFiltering defined on AVMediaSelectionGroup.
         #[deprecated = "Use loadMediaSelectionGroupForMediaCharacteristic:completionHandler: instead"]
-        #[method_id(@__retain_semantics Other mediaSelectionGroupForMediaCharacteristic:)]
+        #[method_id(@__method_family Other mediaSelectionGroupForMediaCharacteristic:)]
         pub unsafe fn mediaSelectionGroupForMediaCharacteristic(
             &self,
             media_characteristic: &AVMediaCharacteristic,
@@ -494,12 +494,12 @@ extern_methods!(
 
         #[cfg(feature = "AVMediaSelection")]
         /// Provides an instance of AVMediaSelection with default selections for each of the receiver's media selection groups.
-        #[method_id(@__retain_semantics Other preferredMediaSelection)]
+        #[method_id(@__method_family Other preferredMediaSelection)]
         pub unsafe fn preferredMediaSelection(&self) -> Retained<AVMediaSelection>;
 
         #[cfg(feature = "AVMediaSelection")]
         /// Provides an array of all permutations of AVMediaSelection for this asset.
-        #[method_id(@__retain_semantics Other allMediaSelections)]
+        #[method_id(@__method_family Other allMediaSelections)]
         pub unsafe fn allMediaSelections(&self) -> Retained<NSArray<AVMediaSelection>>;
     }
 );
@@ -714,23 +714,23 @@ unsafe impl NSObjectProtocol for AVURLAsset {}
 
 extern_methods!(
     unsafe impl AVURLAsset {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVMediaFormat")]
         /// Provides the file types the AVURLAsset class understands.
         ///
         /// Returns: An NSArray of UTIs identifying the file types the AVURLAsset class understands.
-        #[method_id(@__retain_semantics Other audiovisualTypes)]
+        #[method_id(@__method_family Other audiovisualTypes)]
         pub unsafe fn audiovisualTypes() -> Retained<NSArray<AVFileType>>;
 
         /// Provides the MIME types the AVURLAsset class understands.
         ///
         /// Returns: An NSArray of NSStrings containing MIME types the AVURLAsset class understands.
-        #[method_id(@__retain_semantics Other audiovisualMIMETypes)]
+        #[method_id(@__method_family Other audiovisualMIMETypes)]
         pub unsafe fn audiovisualMIMETypes() -> Retained<NSArray<NSString>>;
 
         /// Returns YES if asset is playable with the codec(s) and container type specified in extendedMIMEType. Returns NO otherwise.
@@ -750,7 +750,7 @@ extern_methods!(
         /// Parameter `options`: An instance of NSDictionary that contains keys for specifying options for the initialization of the AVURLAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
         ///
         /// Returns: An instance of AVURLAsset.
-        #[method_id(@__retain_semantics Other URLAssetWithURL:options:)]
+        #[method_id(@__method_family Other URLAssetWithURL:options:)]
         pub unsafe fn URLAssetWithURL_options(
             url: &NSURL,
             options: Option<&NSDictionary<NSString, AnyObject>>,
@@ -763,7 +763,7 @@ extern_methods!(
         /// Parameter `options`: An instance of NSDictionary that contains keys for specifying options for the initialization of the AVURLAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
         ///
         /// Returns: An instance of AVURLAsset.
-        #[method_id(@__retain_semantics Init initWithURL:options:)]
+        #[method_id(@__method_family Init initWithURL:options:)]
         pub unsafe fn initWithURL_options(
             this: Allocated<Self>,
             url: &NSURL,
@@ -771,14 +771,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Indicates the URL with which the instance of AVURLAsset was initialized.
-        #[method_id(@__retain_semantics Other URL)]
+        #[method_id(@__method_family Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// Provides the identifier that's automatically included in any HTTP request issued on behalf of this asset in the HTTP header field "X-Playback-Session-Id".
         ///
         /// The value is an NSUUID from which the UUID string can be obtained.
         /// Note that copies of an AVURLAsset vend an equivalent httpSessionIdentifier.
-        #[method_id(@__retain_semantics Other httpSessionIdentifier)]
+        #[method_id(@__method_family Other httpSessionIdentifier)]
         pub unsafe fn httpSessionIdentifier(&self) -> Retained<NSUUID>;
     }
 );
@@ -793,7 +793,7 @@ extern_methods!(
         /// Returns: An instance of AVAsset.
         ///
         /// Returns a newly allocated instance of a subclass of AVAsset initialized with the specified URL.
-        #[method_id(@__retain_semantics Other assetWithURL:)]
+        #[method_id(@__method_family Other assetWithURL:)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
     }
 );
@@ -805,7 +805,7 @@ extern_methods!(
         /// Provides access to an instance of AVAssetResourceLoader, which offers limited control over the handling of URLs that may be loaded in the course of performing operations on the asset, such as playback.
         /// The loading of file URLs cannot be mediated via use of AVAssetResourceLoader.
         /// Note that copies of an AVAsset will vend the same instance of AVAssetResourceLoader.
-        #[method_id(@__retain_semantics Other resourceLoader)]
+        #[method_id(@__method_family Other resourceLoader)]
         pub unsafe fn resourceLoader(&self) -> Retained<AVAssetResourceLoader>;
     }
 );
@@ -815,7 +815,7 @@ extern_methods!(
     unsafe impl AVURLAsset {
         #[cfg(feature = "AVAssetCache")]
         /// Provides access to an instance of AVAssetCache to use for inspection of locally cached media data. Will be nil if an asset has not been configured to store or access media data from disk.
-        #[method_id(@__retain_semantics Other assetCache)]
+        #[method_id(@__method_family Other assetCache)]
         pub unsafe fn assetCache(&self) -> Option<Retained<AVAssetCache>>;
     }
 );
@@ -834,7 +834,7 @@ extern_methods!(
         /// Finds a track of the target with content that can be accommodated by the specified composition track.
         /// The logical complement of -[AVMutableComposition mutableTrackCompatibleWithTrack:].
         #[deprecated = "Use findCompatibleTrackForCompositionTrack:completionHandler: instead"]
-        #[method_id(@__retain_semantics Other compatibleTrackForCompositionTrack:)]
+        #[method_id(@__method_family Other compatibleTrackForCompositionTrack:)]
         pub unsafe fn compatibleTrackForCompositionTrack(
             &self,
             composition_track: &AVCompositionTrack,
@@ -870,7 +870,7 @@ extern_methods!(
         /// Provides an array of AVAssetVariants contained in the asset
         ///
         /// Some variants may not be playable according to the current device configuration.
-        #[method_id(@__retain_semantics Other variants)]
+        #[method_id(@__method_family Other variants)]
         pub unsafe fn variants(&self) -> Retained<NSArray<AVAssetVariant>>;
     }
 );
@@ -913,36 +913,36 @@ unsafe impl NSObjectProtocol for AVMediaExtensionProperties {}
 
 extern_methods!(
     unsafe impl AVMediaExtensionProperties {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// The identifier of the Media Extension.
         ///
         /// The extension identifier string, corresponding to the ClassImplementationID value from the EXAppExtensionAttributes dictionary in the Info.plist file.
-        #[method_id(@__retain_semantics Other extensionIdentifier)]
+        #[method_id(@__method_family Other extensionIdentifier)]
         pub unsafe fn extensionIdentifier(&self) -> Retained<NSString>;
 
         /// The name of the MediaExtension.
         ///
         /// The localized name of the MediaExtension format reader or video decoder, corresponding to the CFBundleDisplayName.
-        #[method_id(@__retain_semantics Other extensionName)]
+        #[method_id(@__method_family Other extensionName)]
         pub unsafe fn extensionName(&self) -> Retained<NSString>;
 
         /// The name of the containing application bundle.
         ///
         /// The localized name of the application that hosts the MediaExtension.
-        #[method_id(@__retain_semantics Other containingBundleName)]
+        #[method_id(@__method_family Other containingBundleName)]
         pub unsafe fn containingBundleName(&self) -> Retained<NSString>;
 
         /// The file URL of the MediaExtension bundle.
-        #[method_id(@__retain_semantics Other extensionURL)]
+        #[method_id(@__method_family Other extensionURL)]
         pub unsafe fn extensionURL(&self) -> Retained<NSURL>;
 
         /// The file URL of the host application for the MediaExtension.
-        #[method_id(@__retain_semantics Other containingBundleURL)]
+        #[method_id(@__method_family Other containingBundleURL)]
         pub unsafe fn containingBundleURL(&self) -> Retained<NSURL>;
     }
 );
@@ -953,7 +953,7 @@ extern_methods!(
         /// The properties of the MediaExtension format reader for the asset.
         ///
         /// If the asset is being decoded using a MediaExtension format reader, this property will return a AVMediaExtensionProperties object describing the extension. If the asset is not being decoded with a MediaExtension format reader, this property will return nil.
-        #[method_id(@__retain_semantics Other mediaExtensionProperties)]
+        #[method_id(@__method_family Other mediaExtensionProperties)]
         pub unsafe fn mediaExtensionProperties(
             &self,
         ) -> Option<Retained<AVMediaExtensionProperties>>;
@@ -1058,7 +1058,7 @@ extern_methods!(
         /// Parameter `options`: An instance of NSDictionary that contains keys for specifying options for the initialization of the AVFragmentedAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
         ///
         /// Returns: An instance of AVFragmentedAsset.
-        #[method_id(@__retain_semantics Other fragmentedAssetWithURL:options:)]
+        #[method_id(@__method_family Other fragmentedAssetWithURL:options:)]
         pub unsafe fn fragmentedAssetWithURL_options(
             url: &NSURL,
             options: Option<&NSDictionary<NSString, AnyObject>>,
@@ -1068,7 +1068,7 @@ extern_methods!(
         /// The tracks in an asset.
         ///
         /// The value of this property is an array of tracks the asset contains; the tracks are of type AVFragmentedAssetTrack.
-        #[method_id(@__retain_semantics Other tracks)]
+        #[method_id(@__method_family Other tracks)]
         pub unsafe fn tracks(&self) -> Retained<NSArray<AVFragmentedAssetTrack>>;
     }
 );
@@ -1076,10 +1076,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `AVURLAsset`
     unsafe impl AVFragmentedAsset {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns an instance of AVURLAsset for inspection of a media resource.
@@ -1089,7 +1089,7 @@ extern_methods!(
         /// Parameter `options`: An instance of NSDictionary that contains keys for specifying options for the initialization of the AVURLAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
         ///
         /// Returns: An instance of AVURLAsset.
-        #[method_id(@__retain_semantics Other URLAssetWithURL:options:)]
+        #[method_id(@__method_family Other URLAssetWithURL:options:)]
         pub unsafe fn URLAssetWithURL_options(
             url: &NSURL,
             options: Option<&NSDictionary<NSString, AnyObject>>,
@@ -1102,7 +1102,7 @@ extern_methods!(
         /// Parameter `options`: An instance of NSDictionary that contains keys for specifying options for the initialization of the AVURLAsset. See AVURLAssetPreferPreciseDurationAndTimingKey and AVURLAssetReferenceRestrictionsKey above.
         ///
         /// Returns: An instance of AVURLAsset.
-        #[method_id(@__retain_semantics Init initWithURL:options:)]
+        #[method_id(@__method_family Init initWithURL:options:)]
         pub unsafe fn initWithURL_options(
             this: Allocated<Self>,
             url: &NSURL,
@@ -1121,7 +1121,7 @@ extern_methods!(
         /// Returns: An instance of AVAsset.
         ///
         /// Returns a newly allocated instance of a subclass of AVAsset initialized with the specified URL.
-        #[method_id(@__retain_semantics Other assetWithURL:)]
+        #[method_id(@__method_family Other assetWithURL:)]
         pub unsafe fn assetWithURL(url: &NSURL) -> Retained<Self>;
     }
 );
@@ -1140,7 +1140,7 @@ extern_methods!(
         /// "
         /// tracks" has been loaded
         #[deprecated = "Use loadTrackWithTrackID:completionHandler: instead"]
-        #[method_id(@__retain_semantics Other trackWithTrackID:)]
+        #[method_id(@__method_family Other trackWithTrackID:)]
         pub unsafe fn trackWithTrackID(
             &self,
             track_id: CMPersistentTrackID,
@@ -1174,7 +1174,7 @@ extern_methods!(
         /// "
         /// tracks" has been loaded
         #[deprecated = "Use loadTracksWithMediaType:completionHandler: instead"]
-        #[method_id(@__retain_semantics Other tracksWithMediaType:)]
+        #[method_id(@__method_family Other tracksWithMediaType:)]
         pub unsafe fn tracksWithMediaType(
             &self,
             media_type: &AVMediaType,
@@ -1210,7 +1210,7 @@ extern_methods!(
         /// "
         /// tracks" has been loaded
         #[deprecated = "Use loadTracksWithMediaCharacteristic:completionHandler: instead"]
-        #[method_id(@__retain_semantics Other tracksWithMediaCharacteristic:)]
+        #[method_id(@__method_family Other tracksWithMediaCharacteristic:)]
         pub unsafe fn tracksWithMediaCharacteristic(
             &self,
             media_characteristic: &AVMediaCharacteristic,
@@ -1255,7 +1255,7 @@ extern_methods!(
         /// Parameter `mindingInterval`: The initial minding interval of the AVFragmentedAssetMinder.
         ///
         /// Returns: A new instance of AVFragmentedAssetMinder.
-        #[method_id(@__retain_semantics Other fragmentedAssetMinderWithAsset:mindingInterval:)]
+        #[method_id(@__method_family Other fragmentedAssetMinderWithAsset:mindingInterval:)]
         pub unsafe fn fragmentedAssetMinderWithAsset_mindingInterval(
             asset: &AVAsset,
             minding_interval: NSTimeInterval,
@@ -1268,7 +1268,7 @@ extern_methods!(
         /// Parameter `mindingInterval`: The initial minding interval of the AVFragmentedAssetMinder.
         ///
         /// Returns: A new instance of AVFragmentedAssetMinder.
-        #[method_id(@__retain_semantics Init initWithAsset:mindingInterval:)]
+        #[method_id(@__method_family Init initWithAsset:mindingInterval:)]
         pub unsafe fn initWithAsset_mindingInterval(
             this: Allocated<Self>,
             asset: &AVAsset,
@@ -1286,7 +1286,7 @@ extern_methods!(
         pub unsafe fn setMindingInterval(&self, minding_interval: NSTimeInterval);
 
         /// An NSArray of the AVFragmentedAsset objects being minded.
-        #[method_id(@__retain_semantics Other assets)]
+        #[method_id(@__method_family Other assets)]
         pub unsafe fn assets(&self) -> Retained<NSArray<AVAsset>>;
 
         /// Adds a fragmented asset to the array of assets being minded.
@@ -1310,10 +1310,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVFragmentedAssetMinder {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -47,7 +47,7 @@ extern_protocol!(
         /// The timebase is used to interpret time stamps.
         ///
         /// The timebase is read-only.  Use the AVSampleBufferRenderSynchronizer to set the rate or time.
-        #[method_id(@__retain_semantics Other timebase)]
+        #[method_id(@__method_family Other timebase)]
         unsafe fn timebase(&self) -> Retained<CMTimebase>;
 
         #[cfg(feature = "objc2-core-media")]

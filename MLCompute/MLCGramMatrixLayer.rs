@@ -47,7 +47,7 @@ extern_methods!(
         ///
         /// Returns: A new GramMatrix layer
         #[deprecated]
-        #[method_id(@__retain_semantics Other layerWithScale:)]
+        #[method_id(@__method_family Other layerWithScale:)]
         pub unsafe fn layerWithScale(scale: c_float) -> Retained<Self>;
     }
 );
@@ -57,11 +57,11 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCGramMatrixLayer {
         #[deprecated]
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

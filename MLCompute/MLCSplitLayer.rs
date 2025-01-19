@@ -40,7 +40,7 @@ extern_methods!(
         /// The tensor will be split into chunks along dimensions with sizes given in
         /// `splitSectionLengths`.
         #[deprecated]
-        #[method_id(@__retain_semantics Other splitSectionLengths)]
+        #[method_id(@__method_family Other splitSectionLengths)]
         pub unsafe fn splitSectionLengths(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Create a split layer
@@ -51,7 +51,7 @@ extern_methods!(
         ///
         /// Returns: A new split layer
         #[deprecated]
-        #[method_id(@__retain_semantics Other layerWithSplitCount:dimension:)]
+        #[method_id(@__method_family Other layerWithSplitCount:dimension:)]
         pub unsafe fn layerWithSplitCount_dimension(
             split_count: NSUInteger,
             dimension: NSUInteger,
@@ -65,7 +65,7 @@ extern_methods!(
         ///
         /// Returns: A new split layer
         #[deprecated]
-        #[method_id(@__retain_semantics Other layerWithSplitSectionLengths:dimension:)]
+        #[method_id(@__method_family Other layerWithSplitSectionLengths:dimension:)]
         pub unsafe fn layerWithSplitSectionLengths_dimension(
             split_section_lengths: &NSArray<NSNumber>,
             dimension: NSUInteger,
@@ -78,11 +78,11 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCSplitLayer {
         #[deprecated]
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

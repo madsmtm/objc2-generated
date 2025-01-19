@@ -77,7 +77,7 @@ extern_methods!(
         /// Parameter `device`: A Metal device.
         ///
         /// Returns: A new face geometry.
-        #[method_id(@__retain_semantics Other faceGeometryWithDevice:)]
+        #[method_id(@__method_family Other faceGeometryWithDevice:)]
         pub unsafe fn faceGeometryWithDevice(
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
@@ -98,7 +98,7 @@ extern_methods!(
         ///
         ///
         /// Returns: A new face geometry.
-        #[method_id(@__retain_semantics Other faceGeometryWithDevice:fillMesh:)]
+        #[method_id(@__method_family Other faceGeometryWithDevice:fillMesh:)]
         pub unsafe fn faceGeometryWithDevice_fillMesh(
             device: &ProtocolObject<dyn MTLDevice>,
             fill_mesh: bool,
@@ -113,10 +113,10 @@ extern_methods!(
         pub unsafe fn updateFromFaceGeometry(&self, face_geometry: &ARFaceGeometry);
 
         /// Unavailable
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -129,7 +129,7 @@ extern_methods!(
         /// Creates and returns an empty geometry object.
         ///
         /// An empty geometry may be used as the lowest level of detail of a geometry.
-        #[method_id(@__retain_semantics Other geometry)]
+        #[method_id(@__method_family Other geometry)]
         pub unsafe fn geometry() -> Retained<Self>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -140,7 +140,7 @@ extern_methods!(
         /// Parameter `elements`: An array of geometry elements. The sort order in the array determines the mapping between materials and geometry elements.
         ///
         /// A geometry is made of geometry sources (at least `SCNGeometrySourceSemanticVertex`) and at least one geometry element. Multiple sources for texture coordinates are accepted. In that case the `mappingChannel` is implicitly set based on the order of the texture sources, starting at index 0.
-        #[method_id(@__retain_semantics Other geometryWithSources:elements:)]
+        #[method_id(@__method_family Other geometryWithSources:elements:)]
         pub unsafe fn geometryWithSources_elements(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,
@@ -214,7 +214,7 @@ extern_methods!(
         /// @
         /// [0, 0]];                                                                                                                                               ┆
         /// ```
-        #[method_id(@__retain_semantics Other geometryWithSources:elements:sourceChannels:)]
+        #[method_id(@__method_family Other geometryWithSources:elements:sourceChannels:)]
         pub unsafe fn geometryWithSources_elements_sourceChannels(
             sources: &NSArray<SCNGeometrySource>,
             elements: Option<&NSArray<SCNGeometryElement>>,

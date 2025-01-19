@@ -86,7 +86,7 @@ extern_methods!(
     unsafe impl ARAppClipCodeAnchor {
         #[cfg(feature = "objc2-foundation")]
         /// The URL encoded in this app clip code. Not nil only if urlDecodingState is .decoded.
-        #[method_id(@__retain_semantics Other url)]
+        #[method_id(@__method_family Other url)]
         pub unsafe fn url(&self) -> Option<Retained<NSURL>>;
 
         /// The URL decoding state of the app clip code.
@@ -105,10 +105,10 @@ extern_methods!(
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
     unsafe impl ARAppClipCodeAnchor {
         /// Unavailable
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

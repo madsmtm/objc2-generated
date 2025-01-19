@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for NSIncrementalStoreNode {}
 extern_methods!(
     unsafe impl NSIncrementalStoreNode {
         #[cfg(feature = "NSManagedObjectID")]
-        #[method_id(@__retain_semantics Init initWithObjectID:withValues:version:)]
+        #[method_id(@__method_family Init initWithObjectID:withValues:version:)]
         pub unsafe fn initWithObjectID_withValues_version(
             this: Allocated<Self>,
             object_id: &NSManagedObjectID,
@@ -35,14 +35,14 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSManagedObjectID")]
-        #[method_id(@__retain_semantics Other objectID)]
+        #[method_id(@__method_family Other objectID)]
         pub unsafe fn objectID(&self) -> Retained<NSManagedObjectID>;
 
         #[method(version)]
         pub unsafe fn version(&self) -> u64;
 
         #[cfg(feature = "NSPropertyDescription")]
-        #[method_id(@__retain_semantics Other valueForPropertyDescription:)]
+        #[method_id(@__method_family Other valueForPropertyDescription:)]
         pub unsafe fn valueForPropertyDescription(
             &self,
             prop: &NSPropertyDescription,
@@ -53,10 +53,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSIncrementalStoreNode {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

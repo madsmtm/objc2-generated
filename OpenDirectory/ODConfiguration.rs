@@ -49,14 +49,14 @@ unsafe impl NSObjectProtocol for ODConfiguration {}
 
 extern_methods!(
     unsafe impl ODConfiguration {
-        #[method_id(@__retain_semantics Other nodeName)]
+        #[method_id(@__method_family Other nodeName)]
         pub unsafe fn nodeName(&self) -> Retained<NSString>;
 
         /// Setter for [`nodeName`][Self::nodeName].
         #[method(setNodeName:)]
         pub unsafe fn setNodeName(&self, node_name: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other comment)]
+        #[method_id(@__method_family Other comment)]
         pub unsafe fn comment(&self) -> Retained<NSString>;
 
         /// Setter for [`comment`][Self::comment].
@@ -64,7 +64,7 @@ extern_methods!(
         pub unsafe fn setComment(&self, comment: Option<&NSString>);
 
         #[cfg(feature = "ODMappings")]
-        #[method_id(@__retain_semantics Other defaultMappings)]
+        #[method_id(@__method_family Other defaultMappings)]
         pub unsafe fn defaultMappings(&self) -> Option<Retained<ODMappings>>;
 
         #[cfg(feature = "ODMappings")]
@@ -72,14 +72,14 @@ extern_methods!(
         #[method(setDefaultMappings:)]
         pub unsafe fn setDefaultMappings(&self, default_mappings: Option<&ODMappings>);
 
-        #[method_id(@__retain_semantics Other templateName)]
+        #[method_id(@__method_family Other templateName)]
         pub unsafe fn templateName(&self) -> Retained<NSString>;
 
         /// Setter for [`templateName`][Self::templateName].
         #[method(setTemplateName:)]
         pub unsafe fn setTemplateName(&self, template_name: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other virtualSubnodes)]
+        #[method_id(@__method_family Other virtualSubnodes)]
         pub unsafe fn virtualSubnodes(&self) -> Retained<NSArray>;
 
         /// Setter for [`virtualSubnodes`][Self::virtualSubnodes].
@@ -93,7 +93,7 @@ extern_methods!(
         #[method(setHideRegistration:)]
         pub unsafe fn setHideRegistration(&self, hide_registration: bool);
 
-        #[method_id(@__retain_semantics Other preferredDestinationHostName)]
+        #[method_id(@__method_family Other preferredDestinationHostName)]
         pub unsafe fn preferredDestinationHostName(&self) -> Retained<NSString>;
 
         /// Setter for [`preferredDestinationHostName`][Self::preferredDestinationHostName].
@@ -110,16 +110,16 @@ extern_methods!(
         #[method(setPreferredDestinationHostPort:)]
         pub unsafe fn setPreferredDestinationHostPort(&self, preferred_destination_host_port: u16);
 
-        #[method_id(@__retain_semantics Other trustAccount)]
+        #[method_id(@__method_family Other trustAccount)]
         pub unsafe fn trustAccount(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other trustMetaAccount)]
+        #[method_id(@__method_family Other trustMetaAccount)]
         pub unsafe fn trustMetaAccount(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other trustKerberosPrincipal)]
+        #[method_id(@__method_family Other trustKerberosPrincipal)]
         pub unsafe fn trustKerberosPrincipal(&self) -> Retained<NSString>;
 
-        #[method_id(@__retain_semantics Other trustType)]
+        #[method_id(@__method_family Other trustType)]
         pub unsafe fn trustType(&self) -> Retained<NSString>;
 
         #[method(trustUsesMutualAuthentication)]
@@ -179,14 +179,14 @@ extern_methods!(
             connection_idle_timeout_in_seconds: NSInteger,
         );
 
-        #[method_id(@__retain_semantics Other defaultModuleEntries)]
+        #[method_id(@__method_family Other defaultModuleEntries)]
         pub unsafe fn defaultModuleEntries(&self) -> Retained<NSArray>;
 
         /// Setter for [`defaultModuleEntries`][Self::defaultModuleEntries].
         #[method(setDefaultModuleEntries:)]
         pub unsafe fn setDefaultModuleEntries(&self, default_module_entries: Option<&NSArray>);
 
-        #[method_id(@__retain_semantics Other authenticationModuleEntries)]
+        #[method_id(@__method_family Other authenticationModuleEntries)]
         pub unsafe fn authenticationModuleEntries(&self) -> Retained<NSArray>;
 
         /// Setter for [`authenticationModuleEntries`][Self::authenticationModuleEntries].
@@ -196,14 +196,14 @@ extern_methods!(
             authentication_module_entries: Option<&NSArray>,
         );
 
-        #[method_id(@__retain_semantics Other discoveryModuleEntries)]
+        #[method_id(@__method_family Other discoveryModuleEntries)]
         pub unsafe fn discoveryModuleEntries(&self) -> Retained<NSArray>;
 
         /// Setter for [`discoveryModuleEntries`][Self::discoveryModuleEntries].
         #[method(setDiscoveryModuleEntries:)]
         pub unsafe fn setDiscoveryModuleEntries(&self, discovery_module_entries: Option<&NSArray>);
 
-        #[method_id(@__retain_semantics Other generalModuleEntries)]
+        #[method_id(@__method_family Other generalModuleEntries)]
         pub unsafe fn generalModuleEntries(&self) -> Retained<NSArray>;
 
         /// Setter for [`generalModuleEntries`][Self::generalModuleEntries].
@@ -214,7 +214,7 @@ extern_methods!(
         ///
         ///
         /// Returns an initialized and autoreleased ODConfiguration object.
-        #[method_id(@__retain_semantics Other configuration)]
+        #[method_id(@__method_family Other configuration)]
         pub unsafe fn configuration() -> Option<Retained<Self>>;
 
         /// Returns a suggested name to use for the trust account.
@@ -223,7 +223,7 @@ extern_methods!(
         /// Returns a suggested name to use for a trust account.  This name will be derived from the hostname
         /// (if provided), otherwise it will be derived from the local hostname removing special characters
         /// that may not be allowed by many systems.
-        #[method_id(@__retain_semantics Other suggestedTrustAccount:)]
+        #[method_id(@__method_family Other suggestedTrustAccount:)]
         pub unsafe fn suggestedTrustAccount(
             hostname: Option<&NSString>,
         ) -> Option<Retained<NSString>>;
@@ -232,7 +232,7 @@ extern_methods!(
         ///
         ///
         /// Returns a suggested password to be used for trust account with the requested length.
-        #[method_id(@__retain_semantics Other suggestedTrustPassword:)]
+        #[method_id(@__method_family Other suggestedTrustPassword:)]
         pub unsafe fn suggestedTrustPassword(length: usize) -> Option<Retained<NSString>>;
 
         /// Adds a trust account with the provided name and password using the credentials provided by the user.
@@ -272,10 +272,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ODConfiguration {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

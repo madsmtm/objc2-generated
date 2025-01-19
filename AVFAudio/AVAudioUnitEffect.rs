@@ -46,7 +46,7 @@ extern_methods!(
         /// kAudioUnitType_Panner
         /// kAudioUnitType_RemoteEffect
         /// kAudioUnitType_RemoteMusicEffect
-        #[method_id(@__retain_semantics Init initWithAudioComponentDescription:)]
+        #[method_id(@__method_family Init initWithAudioComponentDescription:)]
         pub unsafe fn initWithAudioComponentDescription(
             this: Allocated<Self>,
             audio_component_description: AudioComponentDescription,
@@ -66,10 +66,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]
     unsafe impl AVAudioUnitEffect {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

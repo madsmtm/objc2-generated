@@ -78,7 +78,7 @@ extern_methods!(
     unsafe impl DOMHTMLFieldSetElement {
         #[cfg(feature = "DOMHTMLFormElement")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other form)]
+        #[method_id(@__method_family Other form)]
         pub unsafe fn form(&self) -> Option<Retained<DOMHTMLFormElement>>;
     }
 );
@@ -94,7 +94,7 @@ extern_methods!(
     ))]
     unsafe impl DOMHTMLFieldSetElement {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -109,7 +109,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMHTMLFieldSetElement {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

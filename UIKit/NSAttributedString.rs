@@ -439,7 +439,7 @@ extern "C" {
 extern_category!(
     /// Category on [`NSAttributedString`].
     pub unsafe trait NSAttributedStringDocumentFormats {
-        #[method_id(@__retain_semantics Init initWithURL:options:documentAttributes:error:_)]
+        #[method_id(@__method_family Init initWithURL:options:documentAttributes:error:_)]
         unsafe fn initWithURL_options_documentAttributes_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -451,7 +451,7 @@ extern_category!(
             >,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(@__retain_semantics Init initWithData:options:documentAttributes:error:_)]
+        #[method_id(@__method_family Init initWithData:options:documentAttributes:error:_)]
         unsafe fn initWithData_options_documentAttributes_error(
             this: Allocated<Self>,
             data: &NSData,
@@ -463,14 +463,14 @@ extern_category!(
             >,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(@__retain_semantics Other dataFromRange:documentAttributes:error:_)]
+        #[method_id(@__method_family Other dataFromRange:documentAttributes:error:_)]
         unsafe fn dataFromRange_documentAttributes_error(
             &self,
             range: NSRange,
             dict: &NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
-        #[method_id(@__retain_semantics Other fileWrapperFromRange:documentAttributes:error:_)]
+        #[method_id(@__method_family Other fileWrapperFromRange:documentAttributes:error:_)]
         unsafe fn fileWrapperFromRange_documentAttributes_error(
             &self,
             range: NSRange,

@@ -126,16 +126,16 @@ extern_methods!(
     /// Methods declared on superclass `UIDropProposal`
     #[cfg(feature = "UIDropInteraction")]
     unsafe impl UITextDropProposal {
-        #[method_id(@__retain_semantics Init initWithDropOperation:)]
+        #[method_id(@__method_family Init initWithDropOperation:)]
         pub unsafe fn initWithDropOperation(
             this: Allocated<Self>,
             operation: UIDropOperation,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

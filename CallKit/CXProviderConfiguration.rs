@@ -26,18 +26,18 @@ extern_methods!(
     unsafe impl CXProviderConfiguration {
         /// Localized name of the provider
         #[deprecated = "No longer supported"]
-        #[method_id(@__retain_semantics Other localizedName)]
+        #[method_id(@__method_family Other localizedName)]
         pub unsafe fn localizedName(&self) -> Option<Retained<NSString>>;
 
         /// Name of resource in app's bundle to play as ringtone for incoming call
-        #[method_id(@__retain_semantics Other ringtoneSound)]
+        #[method_id(@__method_family Other ringtoneSound)]
         pub unsafe fn ringtoneSound(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`ringtoneSound`][Self::ringtoneSound].
         #[method(setRingtoneSound:)]
         pub unsafe fn setRingtoneSound(&self, ringtone_sound: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other iconTemplateImageData)]
+        #[method_id(@__method_family Other iconTemplateImageData)]
         pub unsafe fn iconTemplateImageData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`iconTemplateImageData`][Self::iconTemplateImageData].
@@ -74,18 +74,18 @@ extern_methods!(
         #[method(setSupportsVideo:)]
         pub unsafe fn setSupportsVideo(&self, supports_video: bool);
 
-        #[method_id(@__retain_semantics Other supportedHandleTypes)]
+        #[method_id(@__method_family Other supportedHandleTypes)]
         pub unsafe fn supportedHandleTypes(&self) -> Retained<NSSet<NSNumber>>;
 
         /// Setter for [`supportedHandleTypes`][Self::supportedHandleTypes].
         #[method(setSupportedHandleTypes:)]
         pub unsafe fn setSupportedHandleTypes(&self, supported_handle_types: &NSSet<NSNumber>);
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithLocalizedName:)]
+        #[method_id(@__method_family Init initWithLocalizedName:)]
         pub unsafe fn initWithLocalizedName(
             this: Allocated<Self>,
             localized_name: &NSString,
@@ -96,7 +96,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CXProviderConfiguration {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

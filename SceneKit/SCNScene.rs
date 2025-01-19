@@ -79,7 +79,7 @@ unsafe impl NSSecureCoding for SCNScene {}
 
 extern_methods!(
     unsafe impl SCNScene {
-        #[method_id(@__retain_semantics Other scene)]
+        #[method_id(@__method_family Other scene)]
         pub unsafe fn scene() -> Retained<Self>;
 
         #[cfg(feature = "SCNNode")]
@@ -88,14 +88,14 @@ extern_methods!(
         /// Note that we have only one root node, whereas some file formats might have many nodes
         /// at the root of their hierarchies. The root node(s) of the imported files will therefore be children
         /// of the SCNScene's root node.
-        #[method_id(@__retain_semantics Other rootNode)]
+        #[method_id(@__method_family Other rootNode)]
         pub unsafe fn rootNode(&self) -> Retained<SCNNode>;
 
         #[cfg(feature = "SCNPhysicsWorld")]
         /// Specifies the physics world of the receiver.
         ///
         /// Every scene automatically creates a physics world object to simulate physics on nodes in the scene. You use this property to access the scene’s global physics properties, such as gravity. To add physics to a particular node, see physicsBody.
-        #[method_id(@__retain_semantics Other physicsWorld)]
+        #[method_id(@__method_family Other physicsWorld)]
         pub unsafe fn physicsWorld(&self) -> Retained<SCNPhysicsWorld>;
 
         /// Retrieves a scene attribute.
@@ -103,7 +103,7 @@ extern_methods!(
         /// The available keys are listed in the "Scene attributes" group.
         ///
         /// Parameter `key`: An NSString object that specifies the attribute to be read
-        #[method_id(@__retain_semantics Other attributeForKey:)]
+        #[method_id(@__method_family Other attributeForKey:)]
         pub unsafe fn attributeForKey(&self, key: &NSString) -> Option<Retained<AnyObject>>;
 
         /// Sets a scene attribute
@@ -123,7 +123,7 @@ extern_methods!(
         /// The background can be rendered as a skybox by setting a cube map as described in SCNMaterialProperty.h
         /// Colors are supported starting in macOS 10.12 and iOS 10. Prior to that you can use SCNView.backgroundColor.
         /// MDLSkyCubeTexture is supported starting in macOS 10.13 and iOS 11.
-        #[method_id(@__retain_semantics Other background)]
+        #[method_id(@__method_family Other background)]
         pub unsafe fn background(&self) -> Retained<SCNMaterialProperty>;
 
         #[cfg(feature = "SCNMaterialProperty")]
@@ -133,7 +133,7 @@ extern_methods!(
         /// - a cube map (as described in SCNMaterialProperty.h)
         /// - an instance of `MDLSkyCubeTexture` (supported since macOS 10.13 and iOS 11)
         /// - an object returned by `+[SCNMaterialProperty precomputedLightingEnvironmentContentsWithURL:error:]` or `+[SCNMaterialProperty precomputedLightingEnvironmentContentsWithData:error:]`
-        #[method_id(@__retain_semantics Other lightingEnvironment)]
+        #[method_id(@__method_family Other lightingEnvironment)]
         pub unsafe fn lightingEnvironment(&self) -> Retained<SCNMaterialProperty>;
 
         /// Creates and returns a scene associated with the specified filename.
@@ -141,7 +141,7 @@ extern_methods!(
         /// Parameter `name`: The name of the file. The method looks for a file with the specified name in the application’s main bundle.
         ///
         /// This method initializes with no options and does not check for errors. The resulting object is not cached.
-        #[method_id(@__retain_semantics Other sceneNamed:)]
+        #[method_id(@__method_family Other sceneNamed:)]
         pub unsafe fn sceneNamed(name: &NSString) -> Option<Retained<Self>>;
 
         #[cfg(feature = "SCNSceneSource")]
@@ -154,7 +154,7 @@ extern_methods!(
         /// Parameter `options`: An options dictionary. The relevant keys are documented in the SCNSceneSource class.
         ///
         /// This method initializes with no options and does not check for errors. The resulting object is not cached.
-        #[method_id(@__retain_semantics Other sceneNamed:inDirectory:options:)]
+        #[method_id(@__method_family Other sceneNamed:inDirectory:options:)]
         pub unsafe fn sceneNamed_inDirectory_options(
             name: &NSString,
             directory: Option<&NSString>,
@@ -172,7 +172,7 @@ extern_methods!(
         ///
         /// This method is here for convenience. It is equivalent to initializing a SCNSceneSource with the specified
         /// url and options, and asking it for its scene with the same options.
-        #[method_id(@__retain_semantics Other sceneWithURL:options:error:_)]
+        #[method_id(@__method_family Other sceneWithURL:options:error:_)]
         pub unsafe fn sceneWithURL_options_error(
             url: &NSURL,
             options: Option<&NSDictionary<SCNSceneSourceLoadingOption, AnyObject>>,
@@ -239,7 +239,7 @@ extern_methods!(
         /// Specifies the receiver's fog color (NSColor or CGColorRef). Animatable. Defaults to white.
         ///
         /// The initial value is a NSColor.
-        #[method_id(@__retain_semantics Other fogColor)]
+        #[method_id(@__method_family Other fogColor)]
         pub unsafe fn fogColor(&self) -> Retained<AnyObject>;
 
         /// Setter for [`fogColor`][Self::fogColor].
@@ -314,10 +314,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNScene {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -337,7 +337,7 @@ extern_protocol!(
         ///
         /// Returns: The delegate must returns the url of the image that was exported or nil if it didn't export any image. If the returned value is nil, the image will be exported to a default destination in a default format.
         #[optional]
-        #[method_id(@__retain_semantics Other writeImage:withSceneDocumentURL:originalImageURL:)]
+        #[method_id(@__method_family Other writeImage:withSceneDocumentURL:originalImageURL:)]
         unsafe fn writeImage_withSceneDocumentURL_originalImageURL(
             &self,
             image: &NSImage,

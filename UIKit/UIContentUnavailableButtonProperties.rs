@@ -31,7 +31,7 @@ extern_methods!(
     unsafe impl UIContentUnavailableButtonProperties {
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// The primary action of the button.
-        #[method_id(@__retain_semantics Other primaryAction)]
+        #[method_id(@__method_family Other primaryAction)]
         pub unsafe fn primaryAction(&self) -> Option<Retained<UIAction>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
@@ -41,7 +41,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// An optional menu for the button to display.
-        #[method_id(@__retain_semantics Other menu)]
+        #[method_id(@__method_family Other menu)]
         pub unsafe fn menu(&self) -> Option<Retained<UIMenu>>;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
@@ -72,10 +72,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIContentUnavailableButtonProperties {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

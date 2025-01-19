@@ -56,20 +56,20 @@ unsafe impl NSSecureCoding for SKAttribute {}
 
 extern_methods!(
     unsafe impl SKAttribute {
-        #[method_id(@__retain_semantics Other attributeWithName:type:)]
+        #[method_id(@__method_family Other attributeWithName:type:)]
         pub unsafe fn attributeWithName_type(
             name: &NSString,
             r#type: SKAttributeType,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithName:type:)]
+        #[method_id(@__method_family Init initWithName:type:)]
         pub unsafe fn initWithName_type(
             this: Allocated<Self>,
             name: &NSString,
             r#type: SKAttributeType,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         #[method(type)]
@@ -80,10 +80,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKAttribute {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -103,10 +103,10 @@ unsafe impl NSSecureCoding for SKAttributeValue {}
 
 extern_methods!(
     unsafe impl SKAttributeValue {
-        #[method_id(@__retain_semantics Other valueWithFloat:)]
+        #[method_id(@__method_family Other valueWithFloat:)]
         pub unsafe fn valueWithFloat(value: c_float) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(floatValue)]
@@ -121,7 +121,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SKAttributeValue {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

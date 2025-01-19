@@ -200,10 +200,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLIndirectCommandBufferDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -224,14 +224,14 @@ extern_protocol!(
         unsafe fn resetWithRange(&self, range: NSRange);
 
         #[cfg(feature = "MTLIndirectCommandEncoder")]
-        #[method_id(@__retain_semantics Other indirectRenderCommandAtIndex:)]
+        #[method_id(@__method_family Other indirectRenderCommandAtIndex:)]
         unsafe fn indirectRenderCommandAtIndex(
             &self,
             command_index: NSUInteger,
         ) -> Retained<ProtocolObject<dyn MTLIndirectRenderCommand>>;
 
         #[cfg(feature = "MTLIndirectCommandEncoder")]
-        #[method_id(@__retain_semantics Other indirectComputeCommandAtIndex:)]
+        #[method_id(@__method_family Other indirectComputeCommandAtIndex:)]
         unsafe fn indirectComputeCommandAtIndex(
             &self,
             command_index: NSUInteger,

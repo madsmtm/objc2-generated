@@ -43,7 +43,7 @@ extern_methods!(
         ///
         /// Parameter `title`: Title of the quantity. Ex
         /// _Hints_
-        #[method_id(@__retain_semantics Init initWithIdentifier:title:)]
+        #[method_id(@__method_family Init initWithIdentifier:title:)]
         pub unsafe fn initWithIdentifier_title(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -56,10 +56,10 @@ extern_methods!(
     /// Methods declared on superclass `CLSActivityItem`
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
     unsafe impl CLSQuantityItem {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

@@ -27,11 +27,11 @@ unsafe impl NSObjectProtocol for NSStatusBar {}
 
 extern_methods!(
     unsafe impl NSStatusBar {
-        #[method_id(@__retain_semantics Other systemStatusBar)]
+        #[method_id(@__method_family Other systemStatusBar)]
         pub unsafe fn systemStatusBar() -> Retained<NSStatusBar>;
 
         #[cfg(all(feature = "NSStatusItem", feature = "objc2-core-foundation"))]
-        #[method_id(@__retain_semantics Other statusItemWithLength:)]
+        #[method_id(@__method_family Other statusItemWithLength:)]
         pub unsafe fn statusItemWithLength(&self, length: CGFloat) -> Retained<NSStatusItem>;
 
         #[cfg(feature = "NSStatusItem")]
@@ -50,10 +50,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSStatusBar {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

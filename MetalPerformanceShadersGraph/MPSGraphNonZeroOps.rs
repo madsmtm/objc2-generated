@@ -27,7 +27,7 @@ extern_methods!(
         /// - Parameters:
         /// - tensor: An MPSGraphTensor of which to compute the non-zero indices.
         /// - Returns: A valid MPSGraphTensor containing indices in signed int32 data type.
-        #[method_id(@__retain_semantics Other nonZeroIndicesOfTensor:name:)]
+        #[method_id(@__method_family Other nonZeroIndicesOfTensor:name:)]
         pub unsafe fn nonZeroIndicesOfTensor_name(
             &self,
             tensor: &MPSGraphTensor,

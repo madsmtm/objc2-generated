@@ -26,22 +26,22 @@ unsafe impl NSObjectProtocol for CISampler {}
 extern_methods!(
     unsafe impl CISampler {
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other samplerWithImage:)]
+        #[method_id(@__method_family Other samplerWithImage:)]
         pub unsafe fn samplerWithImage(im: &CIImage) -> Retained<Self>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Other samplerWithImage:options:)]
+        #[method_id(@__method_family Other samplerWithImage:options:)]
         pub unsafe fn samplerWithImage_options(
             im: &CIImage,
             dict: Option<&NSDictionary>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Init initWithImage:)]
+        #[method_id(@__method_family Init initWithImage:)]
         pub unsafe fn initWithImage(this: Allocated<Self>, im: &CIImage) -> Retained<Self>;
 
         #[cfg(feature = "CIImage")]
-        #[method_id(@__retain_semantics Init initWithImage:options:)]
+        #[method_id(@__method_family Init initWithImage:options:)]
         pub unsafe fn initWithImage_options(
             this: Allocated<Self>,
             im: &CIImage,
@@ -49,7 +49,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CIFilterShape")]
-        #[method_id(@__retain_semantics Other definition)]
+        #[method_id(@__method_family Other definition)]
         pub unsafe fn definition(&self) -> Retained<CIFilterShape>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -61,10 +61,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CISampler {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

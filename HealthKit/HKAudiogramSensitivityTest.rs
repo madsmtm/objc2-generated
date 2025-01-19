@@ -76,7 +76,7 @@ extern_methods!(
         #[cfg(feature = "HKQuantity")]
         /// Ear sensitivity measured in dB from a baseline of 0 dB. Reduced hearing sensitivity corresponds to an increase from 0 dB.
         /// The unit of measurement is `HKUnit.decibelHearingLevelUnit` or "dBHL".
-        #[method_id(@__retain_semantics Other sensitivity)]
+        #[method_id(@__method_family Other sensitivity)]
         pub unsafe fn sensitivity(&self) -> Retained<HKQuantity>;
 
         /// The conduction type
@@ -93,7 +93,7 @@ extern_methods!(
 
         #[cfg(feature = "HKAudiogramSensitivityPointClampingRange")]
         /// If present, indicates that the range within which the sensitivity point should be clamped.
-        #[method_id(@__retain_semantics Other clampingRange)]
+        #[method_id(@__method_family Other clampingRange)]
         pub unsafe fn clampingRange(
             &self,
         ) -> Option<Retained<HKAudiogramSensitivityPointClampingRange>>;
@@ -118,7 +118,7 @@ extern_methods!(
         ///
         /// Returns: New instance of a Sensitivity Test or nil if there were problems
         /// creating the instance.  Errors may include incorrect quantity units or sensitivity out of range
-        #[method_id(@__retain_semantics Init initWithSensitivity:type:masked:side:clampingRange:error:_)]
+        #[method_id(@__method_family Init initWithSensitivity:type:masked:side:clampingRange:error:_)]
         pub unsafe fn initWithSensitivity_type_masked_side_clampingRange_error(
             this: Allocated<Self>,
             sensitivity: &HKQuantity,
@@ -128,10 +128,10 @@ extern_methods!(
             clamping_range: Option<&HKAudiogramSensitivityPointClampingRange>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

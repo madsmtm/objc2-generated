@@ -31,7 +31,7 @@ extern_methods!(
         /// 'bankURL' should contain the path to a SoundFont2 or DLS bank to be used
         /// by the MIDI synthesizer.  For OSX it can be set to nil for the default,
         /// but for iOS it must always refer to a valid bank file.
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:soundBankURL:error:_)]
+        #[method_id(@__method_family Init initWithContentsOfURL:soundBankURL:error:_)]
         pub unsafe fn initWithContentsOfURL_soundBankURL_error(
             this: Allocated<Self>,
             in_url: &NSURL,
@@ -43,7 +43,7 @@ extern_methods!(
         /// 'bankURL' should contain the path to a SoundFont2 or DLS bank to be used
         /// by the MIDI synthesizer.  For OSX it can be set to nil for the default,
         /// but for iOS it must always refer to a valid bank file.
-        #[method_id(@__retain_semantics Init initWithData:soundBankURL:error:_)]
+        #[method_id(@__method_family Init initWithData:soundBankURL:error:_)]
         pub unsafe fn initWithData_soundBankURL_error(
             this: Allocated<Self>,
             data: &NSData,
@@ -99,10 +99,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVMIDIPlayer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

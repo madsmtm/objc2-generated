@@ -28,11 +28,11 @@ unsafe impl NSObjectProtocol for MLCMultiheadAttentionDescriptor {}
 extern_methods!(
     unsafe impl MLCMultiheadAttentionDescriptor {
         #[deprecated]
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// model or embedding dimension
@@ -95,7 +95,7 @@ extern_methods!(
         ///
         /// Returns: A new MultiheadAttention layer descriptor
         #[deprecated]
-        #[method_id(@__retain_semantics Other descriptorWithModelDimension:keyDimension:valueDimension:headCount:dropout:hasBiases:hasAttentionBiases:addsZeroAttention:)]
+        #[method_id(@__method_family Other descriptorWithModelDimension:keyDimension:valueDimension:headCount:dropout:hasBiases:hasAttentionBiases:addsZeroAttention:)]
         pub unsafe fn descriptorWithModelDimension_keyDimension_valueDimension_headCount_dropout_hasBiases_hasAttentionBiases_addsZeroAttention(
             model_dimension: NSUInteger,
             key_dimension: NSUInteger,
@@ -115,7 +115,7 @@ extern_methods!(
         ///
         /// Returns: A valid MultiheadAttention layer descriptor
         #[deprecated]
-        #[method_id(@__retain_semantics Other descriptorWithModelDimension:headCount:)]
+        #[method_id(@__method_family Other descriptorWithModelDimension:headCount:)]
         pub unsafe fn descriptorWithModelDimension_headCount(
             model_dimension: NSUInteger,
             head_count: NSUInteger,

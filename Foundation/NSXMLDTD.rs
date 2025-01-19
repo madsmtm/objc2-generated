@@ -30,11 +30,11 @@ unsafe impl NSObjectProtocol for NSXMLDTD {}
 extern_methods!(
     #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLDTD {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSXMLNodeOptions")]
-        #[method_id(@__retain_semantics Init initWithKind:options:)]
+        #[method_id(@__method_family Init initWithKind:options:)]
         pub unsafe fn initWithKind_options(
             this: Allocated<Self>,
             kind: NSXMLNodeKind,
@@ -42,7 +42,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL", feature = "NSXMLNodeOptions"))]
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:options:error:_)]
+        #[method_id(@__method_family Init initWithContentsOfURL:options:error:_)]
         pub unsafe fn initWithContentsOfURL_options_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -50,7 +50,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSXMLNodeOptions"))]
-        #[method_id(@__retain_semantics Init initWithData:options:error:_)]
+        #[method_id(@__method_family Init initWithData:options:error:_)]
         pub unsafe fn initWithData_options_error(
             this: Allocated<Self>,
             data: &NSData,
@@ -59,7 +59,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Sets the public id. This identifier should be in the default catalog in /etc/xml/catalog or in a path specified by the environment variable XML_CATALOG_FILES. When the public id is set the system id must also be set.
-        #[method_id(@__retain_semantics Other publicID)]
+        #[method_id(@__method_family Other publicID)]
         pub unsafe fn publicID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -69,7 +69,7 @@ extern_methods!(
 
         #[cfg(feature = "NSString")]
         /// Sets the system id. This should be a URL that points to a valid DTD.
-        #[method_id(@__retain_semantics Other systemID)]
+        #[method_id(@__method_family Other systemID)]
         pub unsafe fn systemID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
@@ -109,7 +109,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSString", feature = "NSXMLDTDNode"))]
         /// Returns the entity declaration matching this name.
-        #[method_id(@__retain_semantics Other entityDeclarationForName:)]
+        #[method_id(@__method_family Other entityDeclarationForName:)]
         pub unsafe fn entityDeclarationForName(
             &self,
             name: &NSString,
@@ -117,7 +117,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSString", feature = "NSXMLDTDNode"))]
         /// Returns the notation declaration matching this name.
-        #[method_id(@__retain_semantics Other notationDeclarationForName:)]
+        #[method_id(@__method_family Other notationDeclarationForName:)]
         pub unsafe fn notationDeclarationForName(
             &self,
             name: &NSString,
@@ -125,7 +125,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSString", feature = "NSXMLDTDNode"))]
         /// Returns the element declaration matching this name.
-        #[method_id(@__retain_semantics Other elementDeclarationForName:)]
+        #[method_id(@__method_family Other elementDeclarationForName:)]
         pub unsafe fn elementDeclarationForName(
             &self,
             name: &NSString,
@@ -133,7 +133,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSString", feature = "NSXMLDTDNode"))]
         /// Returns the attribute declaration matching this name.
-        #[method_id(@__retain_semantics Other attributeDeclarationForName:elementName:)]
+        #[method_id(@__method_family Other attributeDeclarationForName:elementName:)]
         pub unsafe fn attributeDeclarationForName_elementName(
             &self,
             name: &NSString,
@@ -171,7 +171,7 @@ extern_methods!(
         /// &
         /// </li>
         /// </ul>
-        #[method_id(@__retain_semantics Other predefinedEntityDeclarationForName:)]
+        #[method_id(@__method_family Other predefinedEntityDeclarationForName:)]
         pub unsafe fn predefinedEntityDeclarationForName(
             name: &NSString,
         ) -> Option<Retained<NSXMLDTDNode>>;
@@ -189,7 +189,7 @@ extern_methods!(
         /// ```
         ///
         /// with options set to NSXMLNodeOptionsNone
-        #[method_id(@__retain_semantics Init initWithKind:)]
+        #[method_id(@__method_family Init initWithKind:)]
         pub unsafe fn initWithKind(this: Allocated<Self>, kind: NSXMLNodeKind) -> Retained<Self>;
     }
 );
@@ -198,7 +198,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSXMLNode")]
     unsafe impl NSXMLDTD {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

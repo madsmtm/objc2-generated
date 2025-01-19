@@ -36,12 +36,12 @@ extern_methods!(
         feature = "MKPolylineRenderer"
     ))]
     unsafe impl MKGradientPolylineRenderer {
-        #[method_id(@__retain_semantics Other locations)]
+        #[method_id(@__method_family Other locations)]
         pub unsafe fn locations(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(@__retain_semantics Other colors)]
+        #[method_id(@__method_family Other colors)]
         pub unsafe fn colors(&self) -> Retained<NSArray<NSColor>>;
 
         #[cfg(feature = "objc2-app-kit")]
@@ -64,7 +64,7 @@ extern_methods!(
     ))]
     unsafe impl MKGradientPolylineRenderer {
         #[cfg(all(feature = "MKMultiPoint", feature = "MKPolyline", feature = "MKShape"))]
-        #[method_id(@__retain_semantics Init initWithPolyline:)]
+        #[method_id(@__method_family Init initWithPolyline:)]
         pub unsafe fn initWithPolyline(
             this: Allocated<Self>,
             polyline: &MKPolyline,
@@ -81,7 +81,7 @@ extern_methods!(
     ))]
     unsafe impl MKGradientPolylineRenderer {
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
-        #[method_id(@__retain_semantics Init initWithOverlay:)]
+        #[method_id(@__method_family Init initWithOverlay:)]
         pub unsafe fn initWithOverlay(
             this: Allocated<Self>,
             overlay: &ProtocolObject<dyn MKOverlay>,
@@ -97,10 +97,10 @@ extern_methods!(
         feature = "MKPolylineRenderer"
     ))]
     unsafe impl MKGradientPolylineRenderer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

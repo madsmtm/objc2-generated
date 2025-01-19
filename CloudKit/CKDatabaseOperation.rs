@@ -33,7 +33,7 @@ extern_methods!(
         ///
         /// is used.
         /// This will also set the container property of the operation's configuration to match the container of the passed-in database.
-        #[method_id(@__retain_semantics Other database)]
+        #[method_id(@__method_family Other database)]
         pub unsafe fn database(&self) -> Option<Retained<CKDatabase>>;
 
         #[cfg(feature = "CKDatabase")]
@@ -47,7 +47,7 @@ extern_methods!(
     /// Methods declared on superclass `CKOperation`
     #[cfg(feature = "CKOperation")]
     unsafe impl CKDatabaseOperation {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -56,7 +56,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CKOperation")]
     unsafe impl CKDatabaseOperation {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

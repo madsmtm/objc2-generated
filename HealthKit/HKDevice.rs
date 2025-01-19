@@ -106,27 +106,27 @@ extern_methods!(
         /// The name of the receiver.
         ///
         /// The user-facing name, such as the one displayed in the Bluetooth Settings for a BLE device.
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// The manufacturer of the receiver.
-        #[method_id(@__retain_semantics Other manufacturer)]
+        #[method_id(@__method_family Other manufacturer)]
         pub unsafe fn manufacturer(&self) -> Option<Retained<NSString>>;
 
         /// The model of the receiver.
-        #[method_id(@__retain_semantics Other model)]
+        #[method_id(@__method_family Other model)]
         pub unsafe fn model(&self) -> Option<Retained<NSString>>;
 
         /// The hardware revision of the receiver.
-        #[method_id(@__retain_semantics Other hardwareVersion)]
+        #[method_id(@__method_family Other hardwareVersion)]
         pub unsafe fn hardwareVersion(&self) -> Option<Retained<NSString>>;
 
         /// The firmware revision of the receiver.
-        #[method_id(@__retain_semantics Other firmwareVersion)]
+        #[method_id(@__method_family Other firmwareVersion)]
         pub unsafe fn firmwareVersion(&self) -> Option<Retained<NSString>>;
 
         /// The software revision of the receiver.
-        #[method_id(@__retain_semantics Other softwareVersion)]
+        #[method_id(@__method_family Other softwareVersion)]
         pub unsafe fn softwareVersion(&self) -> Option<Retained<NSString>>;
 
         /// A unique identifier for the receiver.
@@ -136,7 +136,7 @@ extern_methods!(
         /// for the CoreBluetooth UUID which is valid only on the local
         /// device and thus distinguish the same Bluetooth peripheral used
         /// between multiple devices.
-        #[method_id(@__retain_semantics Other localIdentifier)]
+        #[method_id(@__method_family Other localIdentifier)]
         pub unsafe fn localIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Represents the device identifier portion of a device's FDA UDI (Unique Device Identifier).
@@ -146,14 +146,14 @@ extern_methods!(
         /// persist the production identifier portion of the device UDI. HealthKit clients should manage
         /// the production identifier independently, if needed.
         /// See http://www.fda.gov/MedicalDevices/DeviceRegulationandGuidance/UniqueDeviceIdentification/ for more information.
-        #[method_id(@__retain_semantics Other UDIDeviceIdentifier)]
+        #[method_id(@__method_family Other UDIDeviceIdentifier)]
         pub unsafe fn UDIDeviceIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Initialize a new HKDevice with the specified values.
         ///
         /// This allows initialization of an HKDevice object based on the
         /// information provided.
-        #[method_id(@__retain_semantics Init initWithName:manufacturer:model:hardwareVersion:firmwareVersion:softwareVersion:localIdentifier:UDIDeviceIdentifier:)]
+        #[method_id(@__method_family Init initWithName:manufacturer:model:hardwareVersion:firmwareVersion:softwareVersion:localIdentifier:UDIDeviceIdentifier:)]
         pub unsafe fn initWithName_manufacturer_model_hardwareVersion_firmwareVersion_softwareVersion_localIdentifier_UDIDeviceIdentifier(
             this: Allocated<Self>,
             name: Option<&NSString>,
@@ -166,7 +166,7 @@ extern_methods!(
             udi_device_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Returns a device representing the host.
@@ -174,7 +174,7 @@ extern_methods!(
         /// If an app chooses to save samples that were retrieved from the local device, e.g. an HKWorkout with a
         /// totalDistance HKQuantity gathered from CoreLocation GPS distances, then this would be an appropriate
         /// HKDevice to use.
-        #[method_id(@__retain_semantics Other localDevice)]
+        #[method_id(@__method_family Other localDevice)]
         pub unsafe fn localDevice() -> Retained<HKDevice>;
     }
 );
@@ -182,7 +182,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKDevice {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

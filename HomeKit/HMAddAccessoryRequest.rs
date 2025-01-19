@@ -19,16 +19,16 @@ extern_methods!(
     unsafe impl HMAddAccessoryRequest {
         #[cfg(feature = "HMHome")]
         /// Home that the accessory is to be added to.
-        #[method_id(@__retain_semantics Other home)]
+        #[method_id(@__method_family Other home)]
         pub unsafe fn home(&self) -> Retained<HMHome>;
 
         /// Name of the accessory to be added.
-        #[method_id(@__retain_semantics Other accessoryName)]
+        #[method_id(@__method_family Other accessoryName)]
         pub unsafe fn accessoryName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "HMAccessoryCategory")]
         /// The category of the accessory to be added.
-        #[method_id(@__retain_semantics Other accessoryCategory)]
+        #[method_id(@__method_family Other accessoryCategory)]
         pub unsafe fn accessoryCategory(&self) -> Retained<HMAccessoryCategory>;
 
         /// Indication if the setup URL needs to be updated for this request. If this is true,
@@ -52,7 +52,7 @@ extern_methods!(
         ///
         ///
         /// This method may fail if this request requires a setup payload URL.
-        #[method_id(@__retain_semantics Other payloadWithOwnershipToken:)]
+        #[method_id(@__method_family Other payloadWithOwnershipToken:)]
         pub unsafe fn payloadWithOwnershipToken(
             &self,
             ownership_token: &HMAccessoryOwnershipToken,
@@ -72,7 +72,7 @@ extern_methods!(
         ///
         ///
         /// This method may fail if the setup payload URL is not a valid payload URL.
-        #[method_id(@__retain_semantics Other payloadWithURL:ownershipToken:)]
+        #[method_id(@__method_family Other payloadWithURL:ownershipToken:)]
         pub unsafe fn payloadWithURL_ownershipToken(
             &self,
             setup_payload_url: &NSURL,
@@ -80,7 +80,7 @@ extern_methods!(
         ) -> Option<Retained<HMAccessorySetupPayload>>;
 
         #[deprecated = "HMAddAccessoryRequest objects are created by their associated objects. Directly creating them is not supported."]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -88,7 +88,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HMAddAccessoryRequest {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

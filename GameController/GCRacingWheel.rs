@@ -52,7 +52,7 @@ unsafe impl NSObjectProtocol for GCRacingWheel {}
 
 extern_methods!(
     unsafe impl GCRacingWheel {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Get the collection of racing wheels currently attached to the system.
@@ -61,7 +61,7 @@ extern_methods!(
         /// See: GCRacingWheelDidConnectNotification
         ///
         /// See: GCRacingWheelDidDisconnectNotification
-        #[method_id(@__retain_semantics Other connectedRacingWheels)]
+        #[method_id(@__method_family Other connectedRacingWheels)]
         pub unsafe fn connectedRacingWheels() -> Retained<NSSet<GCRacingWheel>>;
 
         /// A GCRacingWheel must be acquired before your application can begin receiving
@@ -82,7 +82,7 @@ extern_methods!(
 
         #[cfg(feature = "GCRacingWheelInput")]
         /// Get the physical input profile for the racing wheel.
-        #[method_id(@__retain_semantics Other wheelInput)]
+        #[method_id(@__method_family Other wheelInput)]
         pub unsafe fn wheelInput(&self) -> Retained<GCRacingWheelInput>;
 
         /// A GCRacingWheel may represent a real device managed by the operating system,
@@ -104,7 +104,7 @@ extern_methods!(
         /// See: snapshot
         ///
         /// Returns: A new racing wheel with the duplicated state vector of the receiver.
-        #[method_id(@__retain_semantics Other capture)]
+        #[method_id(@__method_family Other capture)]
         pub unsafe fn capture(&self) -> Retained<GCRacingWheel>;
     }
 );
@@ -112,7 +112,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCRacingWheel {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

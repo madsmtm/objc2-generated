@@ -51,29 +51,29 @@ unsafe impl NSObjectProtocol for NSAppleEventManager {}
 
 extern_methods!(
     unsafe impl NSAppleEventManager {
-        #[method_id(@__retain_semantics Other sharedAppleEventManager)]
+        #[method_id(@__method_family Other sharedAppleEventManager)]
         pub unsafe fn sharedAppleEventManager() -> Retained<NSAppleEventManager>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
-        #[method_id(@__retain_semantics Other currentAppleEvent)]
+        #[method_id(@__method_family Other currentAppleEvent)]
         pub unsafe fn currentAppleEvent(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
-        #[method_id(@__retain_semantics Other currentReplyAppleEvent)]
+        #[method_id(@__method_family Other currentReplyAppleEvent)]
         pub unsafe fn currentReplyAppleEvent(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
         #[method(suspendCurrentAppleEvent)]
         pub unsafe fn suspendCurrentAppleEvent(&self) -> NSAppleEventManagerSuspensionID;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
-        #[method_id(@__retain_semantics Other appleEventForSuspensionID:)]
+        #[method_id(@__method_family Other appleEventForSuspensionID:)]
         pub unsafe fn appleEventForSuspensionID(
             &self,
             suspension_id: NSAppleEventManagerSuspensionID,
         ) -> Retained<NSAppleEventDescriptor>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
-        #[method_id(@__retain_semantics Other replyAppleEventForSuspensionID:)]
+        #[method_id(@__method_family Other replyAppleEventForSuspensionID:)]
         pub unsafe fn replyAppleEventForSuspensionID(
             &self,
             suspension_id: NSAppleEventManagerSuspensionID,
@@ -93,10 +93,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSAppleEventManager {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

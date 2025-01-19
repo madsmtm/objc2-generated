@@ -22,10 +22,10 @@ unsafe impl NSObjectProtocol for UIUpdateInfo {}
 
 extern_methods!(
     unsafe impl UIUpdateInfo {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(
@@ -33,13 +33,13 @@ extern_methods!(
             feature = "UIScene",
             feature = "UIWindowScene"
         ))]
-        #[method_id(@__retain_semantics Other currentUpdateInfoForWindowScene:)]
+        #[method_id(@__method_family Other currentUpdateInfoForWindowScene:)]
         pub unsafe fn currentUpdateInfoForWindowScene(
             window_scene: &UIWindowScene,
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
-        #[method_id(@__retain_semantics Other currentUpdateInfoForView:)]
+        #[method_id(@__method_family Other currentUpdateInfoForView:)]
         pub unsafe fn currentUpdateInfoForView(view: &UIView) -> Option<Retained<Self>>;
 
         /// Reference time that is suitable for driving time based model changes, like animations or physics. Use it as "now"

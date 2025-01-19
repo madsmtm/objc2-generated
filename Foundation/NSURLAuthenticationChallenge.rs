@@ -93,7 +93,7 @@ extern_methods!(
         /// Parameter `error`: The NSError for the authentication failure, if applicable, else nil
         ///
         /// Returns: An authentication challenge initialized with the specified parameters
-        #[method_id(@__retain_semantics Init initWithProtectionSpace:proposedCredential:previousFailureCount:failureResponse:error:sender:)]
+        #[method_id(@__method_family Init initWithProtectionSpace:proposedCredential:previousFailureCount:failureResponse:error:sender:)]
         pub unsafe fn initWithProtectionSpace_proposedCredential_previousFailureCount_failureResponse_error_sender(
             this: Allocated<Self>,
             space: &NSURLProtectionSpace,
@@ -110,7 +110,7 @@ extern_methods!(
         ///
         /// This initializer may be useful to subclassers that want to proxy
         /// one type of authentication challenge to look like another type.
-        #[method_id(@__retain_semantics Init initWithAuthenticationChallenge:sender:)]
+        #[method_id(@__method_family Init initWithAuthenticationChallenge:sender:)]
         pub unsafe fn initWithAuthenticationChallenge_sender(
             this: Allocated<Self>,
             challenge: &NSURLAuthenticationChallenge,
@@ -121,7 +121,7 @@ extern_methods!(
         /// Get a description of the protection space that requires authentication
         ///
         /// Returns: The protection space that needs authentication
-        #[method_id(@__retain_semantics Other protectionSpace)]
+        #[method_id(@__method_family Other protectionSpace)]
         pub unsafe fn protectionSpace(&self) -> Retained<NSURLProtectionSpace>;
 
         #[cfg(feature = "NSURLCredential")]
@@ -136,7 +136,7 @@ extern_methods!(
         /// is ready to use as-is. If it returns NO for hasPassword, then the
         /// credential is not ready to use as-is, but provides a default
         /// username the client could use when prompting.
-        #[method_id(@__retain_semantics Other proposedCredential)]
+        #[method_id(@__method_family Other proposedCredential)]
         pub unsafe fn proposedCredential(&self) -> Option<Retained<NSURLCredential>>;
 
         /// Get count of previous failed authentication attempts
@@ -154,7 +154,7 @@ extern_methods!(
         /// this protocol uses responses to indicate authentication failure,
         /// then this method will return the response. Otherwise it will
         /// return nil.
-        #[method_id(@__retain_semantics Other failureResponse)]
+        #[method_id(@__method_family Other failureResponse)]
         pub unsafe fn failureResponse(&self) -> Option<Retained<NSURLResponse>>;
 
         #[cfg(feature = "NSError")]
@@ -164,7 +164,7 @@ extern_methods!(
         /// this protocol uses errors to indicate authentication failure,
         /// then this method will return the error. Otherwise it will
         /// return nil.
-        #[method_id(@__retain_semantics Other error)]
+        #[method_id(@__method_family Other error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         /// Get the sender of this challenge
@@ -172,7 +172,7 @@ extern_methods!(
         /// Returns: The sender of the challenge
         ///
         /// The sender is the object you should reply to when done processing the challenge.
-        #[method_id(@__retain_semantics Other sender)]
+        #[method_id(@__method_family Other sender)]
         pub unsafe fn sender(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSURLAuthenticationChallengeSender>>>;
@@ -182,10 +182,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSURLAuthenticationChallenge {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

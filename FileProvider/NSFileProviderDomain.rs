@@ -33,7 +33,7 @@ unsafe impl NSSecureCoding for NSFileProviderDomainVersion {}
 extern_methods!(
     unsafe impl NSFileProviderDomainVersion {
         /// Build a version that is strictly greater than the receiver.
-        #[method_id(@__retain_semantics Other next)]
+        #[method_id(@__method_family Other next)]
         pub unsafe fn next(&self) -> Retained<NSFileProviderDomainVersion>;
 
         /// Compare two domain versions.
@@ -56,10 +56,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderDomainVersion {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -171,7 +171,7 @@ extern_methods!(
         ///
         /// Parameter `pathRelativeToDocumentStorage`: a path relative to
         /// `NSFileProviderExtension.documentStorageURL.`
-        #[method_id(@__retain_semantics Init initWithIdentifier:displayName:pathRelativeToDocumentStorage:)]
+        #[method_id(@__method_family Init initWithIdentifier:displayName:pathRelativeToDocumentStorage:)]
         pub unsafe fn initWithIdentifier_displayName_pathRelativeToDocumentStorage(
             this: Allocated<Self>,
             identifier: &NSFileProviderDomainIdentifier,
@@ -202,7 +202,7 @@ extern_methods!(
         ///
         /// Parameter `displayName`: a user visible string representing the group of items the
         /// file provider extension is using.
-        #[method_id(@__retain_semantics Init initWithIdentifier:displayName:)]
+        #[method_id(@__method_family Init initWithIdentifier:displayName:)]
         pub unsafe fn initWithIdentifier_displayName(
             this: Allocated<Self>,
             identifier: &NSFileProviderDomainIdentifier,
@@ -218,7 +218,7 @@ extern_methods!(
         /// The provider should therefore use the userInfo to associate all necessary information to map the created object to the corresponding account.
         /// The userInfo will be persisted on the volume where the domain was created. If that is an external volume, the userInfo can be used on other devices
         /// to assist in setting up the domain on those devices. See the`NSFileProviderExternalVolumeHandling` protocol for more details.
-        #[method_id(@__retain_semantics Init initWithDisplayName:userInfo:volumeURL:)]
+        #[method_id(@__method_family Init initWithDisplayName:userInfo:volumeURL:)]
         pub unsafe fn initWithDisplayName_userInfo_volumeURL(
             this: Allocated<Self>,
             display_name: &NSString,
@@ -227,16 +227,16 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// The identifier - as provided by the file provider extension.
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSFileProviderDomainIdentifier>;
 
         /// The display name shown by the system to represent this domain.
-        #[method_id(@__retain_semantics Other displayName)]
+        #[method_id(@__method_family Other displayName)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;
 
         /// The path relative to the document storage of the file provider extension.
         /// Files belonging to this domains should be stored under this path.
-        #[method_id(@__retain_semantics Other pathRelativeToDocumentStorage)]
+        #[method_id(@__method_family Other pathRelativeToDocumentStorage)]
         pub unsafe fn pathRelativeToDocumentStorage(&self) -> Retained<NSString>;
 
         /// If set, the domain is present, but disconnected from its extension.
@@ -309,7 +309,7 @@ extern_methods!(
         /// When rebuilding the backing store, the system will invalidate any extension instance associated
         /// to that domain. As a consequence, the identity of the backing store associated with that domain
         /// is guaranteed to be stable for the lifetime of the NSFileProviderReplicatedExtension instance.
-        #[method_id(@__retain_semantics Other backingStoreIdentity)]
+        #[method_id(@__method_family Other backingStoreIdentity)]
         pub unsafe fn backingStoreIdentity(&self) -> Option<Retained<NSData>>;
 
         /// Whether the domain supports syncing the trash.
@@ -333,11 +333,11 @@ extern_methods!(
         #[method(setSupportsSyncingTrash:)]
         pub unsafe fn setSupportsSyncingTrash(&self, supports_syncing_trash: bool);
 
-        #[method_id(@__retain_semantics Other volumeUUID)]
+        #[method_id(@__method_family Other volumeUUID)]
         pub unsafe fn volumeUUID(&self) -> Option<Retained<NSUUID>>;
 
         /// A dictionary set by the client app. Keys must be strings, values must be [String, Number, Date, Data]
-        #[method_id(@__retain_semantics Other userInfo)]
+        #[method_id(@__method_family Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
@@ -364,10 +364,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSFileProviderDomain {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -376,7 +376,7 @@ extern_methods!(
     /// NSFileProviderDomain
     #[cfg(feature = "Extension")]
     unsafe impl NSFileProviderExtension {
-        #[method_id(@__retain_semantics Other domain)]
+        #[method_id(@__method_family Other domain)]
         pub unsafe fn domain(&self) -> Option<Retained<NSFileProviderDomain>>;
     }
 );

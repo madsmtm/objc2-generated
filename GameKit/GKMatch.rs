@@ -66,11 +66,11 @@ unsafe impl NSObjectProtocol for GKMatch {}
 extern_methods!(
     unsafe impl GKMatch {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
-        #[method_id(@__retain_semantics Other players)]
+        #[method_id(@__method_family Other players)]
         pub unsafe fn players(&self) -> Retained<NSArray<GKPlayer>>;
 
         /// all the GKPlayers in the match
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn GKMatchDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -82,11 +82,11 @@ extern_methods!(
         pub unsafe fn expectedPlayerCount(&self) -> NSUInteger;
 
         #[cfg(feature = "GKDefines")]
-        #[method_id(@__retain_semantics Other properties)]
+        #[method_id(@__method_family Other properties)]
         pub unsafe fn properties(&self) -> Option<Retained<GKMatchProperties>>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKDefines", feature = "GKPlayer"))]
-        #[method_id(@__retain_semantics Other playerProperties)]
+        #[method_id(@__method_family Other playerProperties)]
         pub unsafe fn playerProperties(
             &self,
         ) -> Option<Retained<NSDictionary<GKPlayer, GKMatchProperties>>>;
@@ -135,7 +135,7 @@ extern_methods!(
         #[cfg(feature = "GKVoiceChat")]
         /// * This method is deprecated. GKVoiceChat is no longer supported. **
         #[deprecated = "No longer supported"]
-        #[method_id(@__retain_semantics Other voiceChatWithName:)]
+        #[method_id(@__method_family Other voiceChatWithName:)]
         pub unsafe fn voiceChatWithName(&self, name: &NSString) -> Option<Retained<GKVoiceChat>>;
     }
 );
@@ -143,10 +143,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKMatch {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -258,7 +258,7 @@ extern_methods!(
 
         /// * This property is obsolete.  **
         #[deprecated]
-        #[method_id(@__retain_semantics Other playerIDs)]
+        #[method_id(@__method_family Other playerIDs)]
         pub unsafe fn playerIDs(&self) -> Option<Retained<NSArray<NSString>>>;
     }
 );

@@ -43,7 +43,7 @@ extern_methods!(
         ///
         /// Returns: An array of VNBarcodeSymbology objects describing the symbologies currently supported by the Vision framework.
         #[deprecated]
-        #[method_id(@__retain_semantics Other supportedSymbologies)]
+        #[method_id(@__method_family Other supportedSymbologies)]
         pub unsafe fn supportedSymbologies() -> Retained<NSArray<VNBarcodeSymbology>>;
 
         #[cfg(feature = "VNTypes")]
@@ -54,14 +54,14 @@ extern_methods!(
         ///
         ///
         /// Returns: An array of VNBarcodeSymbology objects describing the symbologies recognized by the request in its current configuration.
-        #[method_id(@__retain_semantics Other supportedSymbologiesAndReturnError:_)]
+        #[method_id(@__method_family Other supportedSymbologiesAndReturnError:_)]
         pub unsafe fn supportedSymbologiesAndReturnError(
             &self,
         ) -> Result<Retained<NSArray<VNBarcodeSymbology>>, Retained<NSError>>;
 
         #[cfg(feature = "VNTypes")]
         /// The collection of barcode symbologies that are to be detected in the image.  The default is to scan for all possible symbologies. Setting a revision on the request will reset the symbologies to all symbologies for the specified revision.
-        #[method_id(@__retain_semantics Other symbologies)]
+        #[method_id(@__method_family Other symbologies)]
         pub unsafe fn symbologies(&self) -> Retained<NSArray<VNBarcodeSymbology>>;
 
         #[cfg(feature = "VNTypes")]
@@ -79,7 +79,7 @@ extern_methods!(
 
         #[cfg(feature = "VNObservation")]
         /// VNBarcodeObservation results.
-        #[method_id(@__retain_semantics Other results)]
+        #[method_id(@__method_family Other results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNBarcodeObservation>>>;
     }
 );
@@ -89,7 +89,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectBarcodesRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -97,7 +97,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
+        #[method_id(@__method_family Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
@@ -109,7 +109,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectBarcodesRequest {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

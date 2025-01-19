@@ -64,11 +64,11 @@ extern_methods!(
     ))]
     unsafe impl DOMProcessingInstruction {
         #[deprecated]
-        #[method_id(@__retain_semantics Other target)]
+        #[method_id(@__method_family Other target)]
         pub unsafe fn target(&self) -> Retained<NSString>;
 
         #[cfg(feature = "DOMStyleSheet")]
-        #[method_id(@__retain_semantics Other sheet)]
+        #[method_id(@__method_family Other sheet)]
         pub unsafe fn sheet(&self) -> Option<Retained<DOMStyleSheet>>;
     }
 );
@@ -83,7 +83,7 @@ extern_methods!(
     ))]
     unsafe impl DOMProcessingInstruction {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -97,7 +97,7 @@ extern_methods!(
         feature = "WebScriptObject"
     ))]
     unsafe impl DOMProcessingInstruction {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

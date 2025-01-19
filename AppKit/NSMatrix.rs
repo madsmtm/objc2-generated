@@ -107,11 +107,11 @@ unsafe impl NSViewToolTipOwner for NSMatrix {}
 extern_methods!(
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSMatrix {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
         #[cfg(feature = "NSCell")]
-        #[method_id(@__retain_semantics Init initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
+        #[method_id(@__method_family Init initWithFrame:mode:prototype:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_prototype_numberOfRows_numberOfColumns(
             this: Allocated<Self>,
             frame_rect: NSRect,
@@ -121,7 +121,7 @@ extern_methods!(
             cols_wide: NSInteger,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:)]
+        #[method_id(@__method_family Init initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:)]
         pub unsafe fn initWithFrame_mode_cellClass_numberOfRows_numberOfColumns(
             this: Allocated<Self>,
             frame_rect: NSRect,
@@ -139,7 +139,7 @@ extern_methods!(
         pub unsafe fn setCellClass(&self, cell_class: &AnyClass);
 
         #[cfg(feature = "NSCell")]
-        #[method_id(@__retain_semantics Other prototype)]
+        #[method_id(@__method_family Other prototype)]
         pub unsafe fn prototype(&self) -> Option<Retained<NSCell>>;
 
         #[cfg(feature = "NSCell")]
@@ -148,7 +148,7 @@ extern_methods!(
         pub unsafe fn setPrototype(&self, prototype: Option<&NSCell>);
 
         #[cfg(feature = "NSCell")]
-        #[method_id(@__retain_semantics Other makeCellAtRow:column:)]
+        #[method_id(@__method_family Other makeCellAtRow:column:)]
         pub unsafe fn makeCellAtRow_column(
             &self,
             row: NSInteger,
@@ -178,7 +178,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSCell")]
-        #[method_id(@__retain_semantics Other cells)]
+        #[method_id(@__method_family Other cells)]
         pub unsafe fn cells(&self) -> Retained<NSArray<NSCell>>;
 
         #[method(sortUsingSelector:)]
@@ -196,11 +196,11 @@ extern_methods!(
         );
 
         #[cfg(feature = "NSCell")]
-        #[method_id(@__retain_semantics Other selectedCell)]
+        #[method_id(@__method_family Other selectedCell)]
         pub unsafe fn selectedCell(&self) -> Option<Retained<NSCell>>;
 
         #[cfg(feature = "NSCell")]
-        #[method_id(@__retain_semantics Other selectedCells)]
+        #[method_id(@__method_family Other selectedCells)]
         pub unsafe fn selectedCells(&self) -> Retained<NSArray<NSCell>>;
 
         #[method(selectedRow)]
@@ -258,7 +258,7 @@ extern_methods!(
         pub unsafe fn setScrollable(&self, flag: bool);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__retain_semantics Other backgroundColor)]
+        #[method_id(@__method_family Other backgroundColor)]
         pub unsafe fn backgroundColor(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -267,7 +267,7 @@ extern_methods!(
         pub unsafe fn setBackgroundColor(&self, background_color: &NSColor);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__retain_semantics Other cellBackgroundColor)]
+        #[method_id(@__method_family Other cellBackgroundColor)]
         pub unsafe fn cellBackgroundColor(&self) -> Option<Retained<NSColor>>;
 
         #[cfg(feature = "NSColor")]
@@ -311,7 +311,7 @@ extern_methods!(
         pub unsafe fn numberOfColumns(&self) -> NSInteger;
 
         #[cfg(feature = "NSCell")]
-        #[method_id(@__retain_semantics Other cellAtRow:column:)]
+        #[method_id(@__method_family Other cellAtRow:column:)]
         pub unsafe fn cellAtRow_column(
             &self,
             row: NSInteger,
@@ -393,7 +393,7 @@ extern_methods!(
         pub unsafe fn removeColumn(&self, col: NSInteger);
 
         #[cfg(feature = "NSCell")]
-        #[method_id(@__retain_semantics Other cellWithTag:)]
+        #[method_id(@__method_family Other cellWithTag:)]
         pub unsafe fn cellWithTag(&self, tag: NSInteger) -> Option<Retained<NSCell>>;
 
         #[method(doubleAction)]
@@ -449,7 +449,7 @@ extern_methods!(
         #[method(sendDoubleAction)]
         pub unsafe fn sendDoubleAction(&self);
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSMatrixDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -478,7 +478,7 @@ extern_methods!(
         pub unsafe fn selectText(&self, sender: Option<&AnyObject>);
 
         #[cfg(feature = "NSCell")]
-        #[method_id(@__retain_semantics Other selectTextAtRow:column:)]
+        #[method_id(@__method_family Other selectTextAtRow:column:)]
         pub unsafe fn selectTextAtRow_column(
             &self,
             row: NSInteger,
@@ -497,7 +497,7 @@ extern_methods!(
         pub unsafe fn setToolTip_forCell(&self, tool_tip_string: Option<&NSString>, cell: &NSCell);
 
         #[cfg(feature = "NSCell")]
-        #[method_id(@__retain_semantics Other toolTipForCell:)]
+        #[method_id(@__method_family Other toolTipForCell:)]
         pub unsafe fn toolTipForCell(&self, cell: &NSCell) -> Option<Retained<NSString>>;
 
         #[method(autorecalculatesCellSize)]
@@ -513,7 +513,7 @@ extern_methods!(
     /// Methods declared on superclass `NSControl`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSMatrix {
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -525,7 +525,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSMatrix {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -534,7 +534,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
     unsafe impl NSMatrix {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -551,7 +551,7 @@ extern_methods!(
         pub unsafe fn setTabKeyTraversesCells(&self, tab_key_traverses_cells: bool);
 
         #[cfg(feature = "NSCell")]
-        #[method_id(@__retain_semantics Other keyCell)]
+        #[method_id(@__method_family Other keyCell)]
         pub unsafe fn keyCell(&self) -> Option<Retained<NSCell>>;
 
         #[cfg(feature = "NSCell")]

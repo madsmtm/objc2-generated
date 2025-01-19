@@ -62,10 +62,10 @@ unsafe impl NSObjectProtocol for AVCaptureDevice {}
 
 extern_methods!(
     unsafe impl AVCaptureDevice {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns an array of devices currently available for use as media input sources.
@@ -76,7 +76,7 @@ extern_methods!(
         ///
         /// This method returns an array of AVCaptureDevice instances for input devices currently connected and available for capture. The returned array contains all devices that are available at the time the method is called. Applications should observe AVCaptureDeviceWasConnectedNotification and AVCaptureDeviceWasDisconnectedNotification to be notified when the list of available devices has changed.
         #[deprecated = "Use AVCaptureDeviceDiscoverySession instead."]
-        #[method_id(@__retain_semantics Other devices)]
+        #[method_id(@__method_family Other devices)]
         pub unsafe fn devices() -> Retained<NSArray<AVCaptureDevice>>;
 
         #[cfg(feature = "AVMediaFormat")]
@@ -90,7 +90,7 @@ extern_methods!(
         ///
         /// This method returns an array of AVCaptureDevice instances for input devices currently connected and available for capture that provide media of the given type. Media type constants are defined in AVMediaFormat.h. The returned array contains all devices that are available at the time the method is called. Applications should observe AVCaptureDeviceWasConnectedNotification and AVCaptureDeviceWasDisconnectedNotification to be notified when the list of available devices has changed.
         #[deprecated = "Use AVCaptureDeviceDiscoverySession instead."]
-        #[method_id(@__retain_semantics Other devicesWithMediaType:)]
+        #[method_id(@__method_family Other devicesWithMediaType:)]
         pub unsafe fn devicesWithMediaType(
             media_type: &AVMediaType,
         ) -> Retained<NSArray<AVCaptureDevice>>;
@@ -105,7 +105,7 @@ extern_methods!(
         ///
         ///
         /// This method returns the default device of the given media type currently available on the system. For example, for AVMediaTypeVideo, this method will return the built in camera that is primarily used for capture and recording. Media type constants are defined in AVMediaFormat.h.
-        #[method_id(@__retain_semantics Other defaultDeviceWithMediaType:)]
+        #[method_id(@__method_family Other defaultDeviceWithMediaType:)]
         pub unsafe fn defaultDeviceWithMediaType(
             media_type: &AVMediaType,
         ) -> Option<Retained<AVCaptureDevice>>;
@@ -119,7 +119,7 @@ extern_methods!(
         ///
         ///
         /// Every available capture device has a unique ID that persists on one system across device connections and disconnections, application restarts, and reboots of the system itself. This method can be used to recall or track the status of a specific device whose unique ID has previously been saved.
-        #[method_id(@__retain_semantics Other deviceWithUniqueID:)]
+        #[method_id(@__method_family Other deviceWithUniqueID:)]
         pub unsafe fn deviceWithUniqueID(
             device_unique_id: &NSString,
         ) -> Option<Retained<AVCaptureDevice>>;
@@ -128,28 +128,28 @@ extern_methods!(
         ///
         ///
         /// Every available capture device has a unique ID that persists on one system across device connections and disconnections, application restarts, and reboots of the system itself. Applications can store the value returned by this property to recall or track the status of a specific device in the future.
-        #[method_id(@__retain_semantics Other uniqueID)]
+        #[method_id(@__method_family Other uniqueID)]
         pub unsafe fn uniqueID(&self) -> Retained<NSString>;
 
         /// The model ID of the receiver.
         ///
         ///
         /// The value of this property is an identifier unique to all devices of the same model. The value is persistent across device connections and disconnections, and across different systems. For example, the model ID of the camera built in to two identical iPhone models will be the same even though they are different physical devices.
-        #[method_id(@__retain_semantics Other modelID)]
+        #[method_id(@__method_family Other modelID)]
         pub unsafe fn modelID(&self) -> Retained<NSString>;
 
         /// A localized human-readable name for the receiver.
         ///
         ///
         /// This property can be used for displaying the name of a capture device in a user interface.
-        #[method_id(@__retain_semantics Other localizedName)]
+        #[method_id(@__method_family Other localizedName)]
         pub unsafe fn localizedName(&self) -> Retained<NSString>;
 
         /// The human-readable manufacturer name for the receiver.
         ///
         ///
         /// This property can be used to identify capture devices from a particular manufacturer. All Apple devices return "Apple Inc.". Devices from third party manufacturers may return an empty string.
-        #[method_id(@__retain_semantics Other manufacturer)]
+        #[method_id(@__method_family Other manufacturer)]
         pub unsafe fn manufacturer(&self) -> Retained<NSString>;
 
         /// The transport type of the receiver (e.g. USB, PCI, etc).
@@ -234,14 +234,14 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an array of AVCaptureDevice objects that are a part of the same physical device as the receiver. For example, for the external iSight camera, linkedDevices returns an array containing an AVCaptureDevice for the external iSight microphone.
-        #[method_id(@__retain_semantics Other linkedDevices)]
+        #[method_id(@__method_family Other linkedDevices)]
         pub unsafe fn linkedDevices(&self) -> Retained<NSArray<AVCaptureDevice>>;
 
         /// An array of AVCaptureDeviceFormat objects supported by the receiver.
         ///
         ///
         /// This property can be used to enumerate the formats natively supported by the receiver. The capture device's activeFormat property may be set to one of the formats in this array. Clients can observe automatic changes to the receiver's formats by key value observing this property.
-        #[method_id(@__retain_semantics Other formats)]
+        #[method_id(@__method_family Other formats)]
         pub unsafe fn formats(&self) -> Retained<NSArray<AVCaptureDeviceFormat>>;
 
         /// The currently active format of the receiver.
@@ -271,7 +271,7 @@ extern_methods!(
         /// [session commitConfiguration]; // The new format and frame rates are applied together in commitConfiguration
         ///
         /// Note that when configuring a session to use an active format intended for high resolution still photography and applying one or more of the following operations to an AVCaptureVideoDataOutput, the system may not meet the target framerate: zoom, orientation changes, format conversion.
-        #[method_id(@__retain_semantics Other activeFormat)]
+        #[method_id(@__method_family Other activeFormat)]
         pub unsafe fn activeFormat(&self) -> Retained<AVCaptureDeviceFormat>;
 
         /// Setter for [`activeFormat`][Self::activeFormat].
@@ -358,14 +358,14 @@ extern_methods!(
         ///
         ///
         /// Some devices can capture data from one of multiple data sources (different input jacks on the same audio device, for example). For devices with multiple possible data sources, inputSources can be used to enumerate the possible choices. Clients can observe automatic changes to the receiver's inputSources by key value observing this property.
-        #[method_id(@__retain_semantics Other inputSources)]
+        #[method_id(@__method_family Other inputSources)]
         pub unsafe fn inputSources(&self) -> Retained<NSArray<AVCaptureDeviceInputSource>>;
 
         /// The currently active input source of the receiver.
         ///
         ///
         /// This property can be used to get or set the currently active device input source. -setActiveInputSource: throws an NSInvalidArgumentException if set to a value not present in the inputSources array. -setActiveInputSource: throws an NSGenericException if called without first obtaining exclusive access to the receiver using lockForConfiguration:. Clients can observe automatic changes to the receiver's activeInputSource by key value observing this property.
-        #[method_id(@__retain_semantics Other activeInputSource)]
+        #[method_id(@__method_family Other activeInputSource)]
         pub unsafe fn activeInputSource(&self) -> Option<Retained<AVCaptureDeviceInputSource>>;
 
         /// Setter for [`activeInputSource`][Self::activeInputSource].
@@ -600,7 +600,7 @@ extern_methods!(
         ///
         ///
         /// A capture device's type never changes.
-        #[method_id(@__retain_semantics Other deviceType)]
+        #[method_id(@__method_family Other deviceType)]
         pub unsafe fn deviceType(&self) -> Retained<AVCaptureDeviceType>;
     }
 );
@@ -622,7 +622,7 @@ extern_methods!(
         ///
         ///
         /// This method returns the default device of the given combination of device type, media type, and position currently available on the system.
-        #[method_id(@__retain_semantics Other defaultDeviceWithDeviceType:mediaType:position:)]
+        #[method_id(@__method_family Other defaultDeviceWithDeviceType:mediaType:position:)]
         pub unsafe fn defaultDeviceWithDeviceType_mediaType_position(
             device_type: &AVCaptureDeviceType,
             media_type: Option<&AVMediaType>,
@@ -638,7 +638,7 @@ extern_methods!(
         ///
         ///
         /// Setting this property allows an application to persist its user’s preferred camera across app launches and reboots. The property internally maintains a short history, so if your user’s most recent preferred camera is not currently connected, it still reports the next best choice. This property always returns a device that is present. If no camera is available nil is returned. Setting the property to nil has no effect.
-        #[method_id(@__retain_semantics Other userPreferredCamera)]
+        #[method_id(@__method_family Other userPreferredCamera)]
         pub unsafe fn userPreferredCamera() -> Option<Retained<AVCaptureDevice>>;
 
         /// Setter for [`userPreferredCamera`][Self::userPreferredCamera].
@@ -653,7 +653,7 @@ extern_methods!(
         /// Applications that adopt this API should always key-value observe this property and update their AVCaptureSession’s input device to reflect changes to the systemPreferredCamera. The application can still offer users the ability to pick a camera by setting userPreferredCamera, which will cause the systemPreferredCamera API to put the user’s choice first until either another Apple-preferred device becomes available or the machine is rebooted (after which it reverts to its original behavior of returning the internally determined best camera to use).
         ///
         /// If the application wishes to offer users a fully manual camera selection mode in addition to automatic camera selection, it is recommended to call setUserPreferredCamera: each time the user makes a camera selection, but ignore key-value observer updates to systemPreferredCamera while in manual selection mode.
-        #[method_id(@__retain_semantics Other systemPreferredCamera)]
+        #[method_id(@__method_family Other systemPreferredCamera)]
         pub unsafe fn systemPreferredCamera() -> Option<Retained<AVCaptureDevice>>;
     }
 );
@@ -666,7 +666,7 @@ extern_methods!(
         ///
         ///
         /// This property indicates whether the capture device is currently subject to an elevated system pressure condition. When system pressure reaches AVCaptureSystemPressureLevelShutdown, the capture device cannot continue to provide input, so the AVCaptureSession becomes interrupted until the pressured state abates. System pressure can be effectively mitigated by lowering the device's activeVideoMinFrameDuration in response to changes in the systemPressureState. Clients are encouraged to implement frame rate throttling to bring system pressure down if their capture use case can tolerate a reduced frame rate.
-        #[method_id(@__retain_semantics Other systemPressureState)]
+        #[method_id(@__method_family Other systemPressureState)]
         pub unsafe fn systemPressureState(&self) -> Retained<AVCaptureSystemPressureState>;
     }
 );
@@ -769,14 +769,14 @@ extern_methods!(
         ///
         ///
         /// When called on a device for which virtualDevice == NO, an empty array is returned.
-        #[method_id(@__retain_semantics Other constituentDevices)]
+        #[method_id(@__method_family Other constituentDevices)]
         pub unsafe fn constituentDevices(&self) -> Retained<NSArray<AVCaptureDevice>>;
 
         /// An array of video zoom factors at or above which a virtual device (such as the Dual Camera) may switch to its next constituent device.
         ///
         ///
         /// This array contains zoom factors at which one of the constituent device's field of view matches the next constituent device's full field of view. The number of switch over video zoom factors is always one less than the count of the constituentDevices property, and the factors progress in the same order as the devices listed in that property. On non-virtual devices this property returns an empty array.
-        #[method_id(@__retain_semantics Other virtualDeviceSwitchOverVideoZoomFactors)]
+        #[method_id(@__method_family Other virtualDeviceSwitchOverVideoZoomFactors)]
         pub unsafe fn virtualDeviceSwitchOverVideoZoomFactors(&self)
             -> Retained<NSArray<NSNumber>>;
 
@@ -835,14 +835,14 @@ extern_methods!(
         ///
         ///
         /// This property returns nil for non-virtual devices. On virtual devices this property returns nil until the device is used in a running AVCaptureSession. This property is key-value observable.
-        #[method_id(@__retain_semantics Other activePrimaryConstituentDevice)]
+        #[method_id(@__method_family Other activePrimaryConstituentDevice)]
         pub unsafe fn activePrimaryConstituentDevice(&self) -> Option<Retained<AVCaptureDevice>>;
 
         /// The constituent devices that may be selected as a fallback for a longer focal length primary constituent device.
         ///
         ///
         /// This property returns an empty array for non-virtual devices. This property never changes for a given virtual device.
-        #[method_id(@__retain_semantics Other supportedFallbackPrimaryConstituentDevices)]
+        #[method_id(@__method_family Other supportedFallbackPrimaryConstituentDevices)]
         pub unsafe fn supportedFallbackPrimaryConstituentDevices(
             &self,
         ) -> Retained<NSArray<AVCaptureDevice>>;
@@ -851,7 +851,7 @@ extern_methods!(
         ///
         ///
         /// This may only be set to the supportedFallbackPrimaryConstituentDevices or a subset thereof. By default this is set to all supportedFallbackPrimaryConstituentDevices. This property will throw an NSInvalidArgumentException if the array includes any device not reported in supportedFallbackPrimaryConstituentDevices. This property is key-value observable.
-        #[method_id(@__retain_semantics Other fallbackPrimaryConstituentDevices)]
+        #[method_id(@__method_family Other fallbackPrimaryConstituentDevices)]
         pub unsafe fn fallbackPrimaryConstituentDevices(
             &self,
         ) -> Retained<NSArray<AVCaptureDevice>>;
@@ -2177,7 +2177,7 @@ extern_methods!(
         /// The frame rate of depth data may not be set directly. Depth data frame rate is synchronized to the device's activeMin/MaxFrameDurations. It may match the device's current frame rate, or lower, if depth data cannot be produced fast enough for the active video frame rate.
         ///
         /// Delivery of depth data to a AVCaptureDepthDataOutput may increase the system load, resulting in a reduced video frame rate for thermal sustainability.
-        #[method_id(@__retain_semantics Other activeDepthDataFormat)]
+        #[method_id(@__method_family Other activeDepthDataFormat)]
         pub unsafe fn activeDepthDataFormat(&self) -> Option<Retained<AVCaptureDeviceFormat>>;
 
         /// Setter for [`activeDepthDataFormat`][Self::activeDepthDataFormat].
@@ -2281,7 +2281,7 @@ extern_methods!(
         /// /
         ///
         /// Note that if you enable video stabilization (see AVCaptureConnection.preferredVideoStabilizationMode), the pixels in stabilized video frames no longer match the relative extrinsicMatrix from one device to another due to warping. The extrinsicMatrix and camera intrinsics should only be used when video stabilization is disabled.
-        #[method_id(@__retain_semantics Other extrinsicMatrixFromDevice:toDevice:)]
+        #[method_id(@__method_family Other extrinsicMatrixFromDevice:toDevice:)]
         pub unsafe fn extrinsicMatrixFromDevice_toDevice(
             from_device: &AVCaptureDevice,
             to_device: &AVCaptureDevice,
@@ -2459,7 +2459,7 @@ extern_methods!(
         ///
         ///
         /// The list may differ between devices, or be affected by changes to active format, and can be key-value observed.
-        #[method_id(@__retain_semantics Other availableReactionTypes)]
+        #[method_id(@__method_family Other availableReactionTypes)]
         pub unsafe fn availableReactionTypes(&self) -> Retained<NSSet<AVCaptureReactionType>>;
 
         #[cfg(feature = "AVCaptureReactions")]
@@ -2480,7 +2480,7 @@ extern_methods!(
         ///
         ///
         /// Reaction effects which are triggered by either a call to performEffectForReaction: or by the automatic gesture detection will be reflected in this array. It is key-value observable to be notified when reaction effects begin or end.
-        #[method_id(@__retain_semantics Other reactionEffectsInProgress)]
+        #[method_id(@__method_family Other reactionEffectsInProgress)]
         pub unsafe fn reactionEffectsInProgress(
             &self,
         ) -> Retained<NSArray<AVCaptureReactionEffectState>>;
@@ -2522,7 +2522,7 @@ extern_methods!(
         ///
         ///
         /// The companionDeskViewCamera property allows you to discover if the receiver has a paired Desk View Camera which derives its desk framing from the receiver's ultra wide frame. In the presence of multiple Continuity Cameras, this property allows you to pair a particular Continuity Camera with its associated Desk View Camera.
-        #[method_id(@__retain_semantics Other companionDeskViewCamera)]
+        #[method_id(@__method_family Other companionDeskViewCamera)]
         pub unsafe fn companionDeskViewCamera(&self) -> Option<Retained<AVCaptureDevice>>;
     }
 );
@@ -2651,7 +2651,7 @@ extern_methods!(
         ///
         ///
         /// This property can be monitored in order to determine the presentation of U/I elements to inform the user that they should reframe their scene for a more pleasing spatial capture ("subject is too close", "scene is too dark").
-        #[method_id(@__retain_semantics Other spatialCaptureDiscomfortReasons)]
+        #[method_id(@__method_family Other spatialCaptureDiscomfortReasons)]
         pub unsafe fn spatialCaptureDiscomfortReasons(
             &self,
         ) -> Retained<NSSet<AVSpatialCaptureDiscomfortReason>>;
@@ -2674,10 +2674,10 @@ unsafe impl NSObjectProtocol for AVCaptureDeviceDiscoverySession {}
 
 extern_methods!(
     unsafe impl AVCaptureDeviceDiscoverySession {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVMediaFormat")]
@@ -2694,7 +2694,7 @@ extern_methods!(
         ///
         ///
         /// The list of device types is mandatory. This is used to make sure that clients only get access to devices of types they expect. This prevents new device types from automatically being included in the list of devices.
-        #[method_id(@__retain_semantics Other discoverySessionWithDeviceTypes:mediaType:position:)]
+        #[method_id(@__method_family Other discoverySessionWithDeviceTypes:mediaType:position:)]
         pub unsafe fn discoverySessionWithDeviceTypes_mediaType_position(
             device_types: &NSArray<AVCaptureDeviceType>,
             media_type: Option<&AVMediaType>,
@@ -2705,14 +2705,14 @@ extern_methods!(
         ///
         ///
         /// The returned array contains only devices that are available at the time the method is called. Applications can key-value observe this property to be notified when the list of available devices has changed. For apps linked against iOS 10, the devices returned are unsorted. For apps linked against iOS 11 or later, the devices are sorted by AVCaptureDeviceType, matching the order specified in the deviceTypes parameter of +[AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:mediaType:position:]. If a position of AVCaptureDevicePositionUnspecified is specified, the results are further ordered by position in the AVCaptureDevicePosition enum. Starting in Mac Catalyst 14.0, clients can key value observe the value of this property to be notified when the devices change.
-        #[method_id(@__retain_semantics Other devices)]
+        #[method_id(@__method_family Other devices)]
         pub unsafe fn devices(&self) -> Retained<NSArray<AVCaptureDevice>>;
 
         /// An array of sets of AVCaptureDevices that are allowed to be used simultaneously in an AVCaptureMultiCamSession.
         ///
         ///
         /// When using an AVCaptureMultiCamSession, multiple cameras may be used as device inputs to the session, so long as they are included in one of the supportedMultiCamDeviceSets. Starting in Mac Catalyst 14.0, clients can key value observe the value of this property to be notified when the device sets change.
-        #[method_id(@__retain_semantics Other supportedMultiCamDeviceSets)]
+        #[method_id(@__method_family Other supportedMultiCamDeviceSets)]
         pub unsafe fn supportedMultiCamDeviceSets(
             &self,
         ) -> Retained<NSArray<NSSet<AVCaptureDevice>>>;
@@ -2735,10 +2735,10 @@ unsafe impl NSObjectProtocol for AVCaptureDeviceRotationCoordinator {}
 
 extern_methods!(
     unsafe impl AVCaptureDeviceRotationCoordinator {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-quartz-core")]
@@ -2754,7 +2754,7 @@ extern_methods!(
         ///
         ///
         /// An AVCaptureDeviceRotationCoordinator is only applicable to video devices. The given device and layer determine the amount of rotation that should be applied for horizon-level preview and capture.
-        #[method_id(@__retain_semantics Init initWithDevice:previewLayer:)]
+        #[method_id(@__method_family Init initWithDevice:previewLayer:)]
         pub unsafe fn initWithDevice_previewLayer(
             this: Allocated<Self>,
             device: &AVCaptureDevice,
@@ -2765,7 +2765,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is the AVCaptureDevice instance that was used to create the coordinator. The coordinator holds a weak reference to the device.
-        #[method_id(@__retain_semantics Other device)]
+        #[method_id(@__method_family Other device)]
         pub unsafe fn device(&self) -> Option<Retained<AVCaptureDevice>>;
 
         #[cfg(feature = "objc2-quartz-core")]
@@ -2774,7 +2774,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is the CALayer instance that was used to create the coordinator. Clients may specify an AVCaptureVideoPreviewLayer or other CALayer instance that displays a camera's video preview. The coordinator holds a weak reference to the layer. The coordinator will return 0 degrees of rotation from -videoRotationAngleForHorizonLevelPreview if a layer was not specified at initialization, the layer is not in a view hierarchy, or the layer has been deallocated.
-        #[method_id(@__retain_semantics Other previewLayer)]
+        #[method_id(@__method_family Other previewLayer)]
         pub unsafe fn previewLayer(&self) -> Option<Retained<CALayer>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -2811,10 +2811,10 @@ unsafe impl NSObjectProtocol for AVExposureBiasRange {}
 
 extern_methods!(
     unsafe impl AVExposureBiasRange {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// A float indicating the minimum exposure bias in EV units supported by this range.
@@ -2855,10 +2855,10 @@ unsafe impl NSObjectProtocol for AVFrameRateRange {}
 
 extern_methods!(
     unsafe impl AVFrameRateRange {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// A Float64 indicating the minimum frame rate supported by this range.
@@ -2909,10 +2909,10 @@ unsafe impl NSObjectProtocol for AVZoomRange {}
 
 extern_methods!(
     unsafe impl AVZoomRange {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -3032,10 +3032,10 @@ unsafe impl NSObjectProtocol for AVCaptureDeviceFormat {}
 
 extern_methods!(
     unsafe impl AVCaptureDeviceFormat {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVMediaFormat")]
@@ -3043,7 +3043,7 @@ extern_methods!(
         ///
         ///
         /// Supported mediaTypes are listed in AVMediaFormat.h. This is a read-only property. The caller assumes no ownership of the returned value and should not CFRelease it.
-        #[method_id(@__retain_semantics Other mediaType)]
+        #[method_id(@__method_family Other mediaType)]
         pub unsafe fn mediaType(&self) -> Retained<AVMediaType>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -3051,14 +3051,14 @@ extern_methods!(
         ///
         ///
         /// A CMFormatDescription describing an AVCaptureDevice active or supported format. This is a read-only property. The caller assumes no ownership of the returned value and should not CFRelease it.
-        #[method_id(@__retain_semantics Other formatDescription)]
+        #[method_id(@__method_family Other formatDescription)]
         pub unsafe fn formatDescription(&self) -> Retained<CMFormatDescription>;
 
         /// A property indicating the format's supported frame rate ranges.
         ///
         ///
         /// videoSupportedFrameRateRanges is an array of AVFrameRateRange objects, one for each of the format's supported video frame rate ranges.
-        #[method_id(@__retain_semantics Other videoSupportedFrameRateRanges)]
+        #[method_id(@__method_family Other videoSupportedFrameRateRanges)]
         pub unsafe fn videoSupportedFrameRateRanges(&self) -> Retained<NSArray<AVFrameRateRange>>;
 
         /// A property indicating the format's horizontal field of view.
@@ -3118,7 +3118,7 @@ extern_methods!(
         /// This property can be used to create a slider in your app's user interface to control the device's zoom with a system-recommended video zoom range. When a recommendation is not available, this property returns nil. Clients can key value observe AVCaptureDevice's minAvailableVideoZoomFactor and maxAvailableVideoZoomFactor properties to know when a device's supported zoom is restricted within the recommended zoom range.
         ///
         /// The value of this property is also used for the AVCaptureSystemZoomSlider's range.
-        #[method_id(@__retain_semantics Other systemRecommendedVideoZoomRange)]
+        #[method_id(@__method_family Other systemRecommendedVideoZoomRange)]
         pub unsafe fn systemRecommendedVideoZoomRange(&self) -> Option<Retained<AVZoomRange>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -3143,7 +3143,7 @@ extern_methods!(
         /// This property can be used to create a slider in your app's user interface to control the device's exposure bias with a system-recommended exposure bias range. When a recommendation is not available, this property returns nil.
         ///
         /// The value of this property is also used for the AVCaptureSystemExposureBiasSlider's range.
-        #[method_id(@__retain_semantics Other systemRecommendedExposureBiasRange)]
+        #[method_id(@__method_family Other systemRecommendedExposureBiasRange)]
         pub unsafe fn systemRecommendedExposureBiasRange(
             &self,
         ) -> Option<Retained<AVExposureBiasRange>>;
@@ -3218,7 +3218,7 @@ extern_methods!(
         ///
         ///
         /// This read-only property indicates the receiver's supported color spaces as an array of AVCaptureColorSpace constants sorted from narrow to wide color.
-        #[method_id(@__retain_semantics Other supportedColorSpaces)]
+        #[method_id(@__method_family Other supportedColorSpaces)]
         pub unsafe fn supportedColorSpaces(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -3235,7 +3235,7 @@ extern_methods!(
 
         /// A deprecated property. Please use supportedVideoZoomRangesForDepthDataDelivery
         #[deprecated]
-        #[method_id(@__retain_semantics Other supportedVideoZoomFactorsForDepthDataDelivery)]
+        #[method_id(@__method_family Other supportedVideoZoomFactorsForDepthDataDelivery)]
         pub unsafe fn supportedVideoZoomFactorsForDepthDataDelivery(
             &self,
         ) -> Retained<NSArray<NSNumber>>;
@@ -3255,7 +3255,7 @@ extern_methods!(
         /// depthDataDelivery is supported with zoom factors [2..5]. Zoom factors outside of this range may be set, but will result in loss of depthDataDeliery. Whenever zoom is set back to a value within the range of [2..5], depthDataDelivery will resume.
         ///
         /// When depth data delivery is enabled, the effective videoZoomFactorUpscaleThreshold will be 1.0, meaning that all zoom factors that are not native zoom factors (see AVCaptureDevice.virtualDeviceSwitchOverVideoZoomFactors and AVCaptureDevice.secondaryNativeResolutionZoomFactors) result in digital upscaling.
-        #[method_id(@__retain_semantics Other supportedVideoZoomRangesForDepthDataDelivery)]
+        #[method_id(@__method_family Other supportedVideoZoomRangesForDepthDataDelivery)]
         pub unsafe fn supportedVideoZoomRangesForDepthDataDelivery(
             &self,
         ) -> Retained<NSArray<AVZoomRange>>;
@@ -3270,26 +3270,26 @@ extern_methods!(
         ///
         ///
         /// If no depth data formats are supported by the receiver, an empty array is returned. On virtual devices, the supportedDepthDataFormats list items always match the aspect ratio of their paired video format. When the receiver is set as the device's activeFormat, you may set the device's activeDepthDataFormat to one of these supported depth data formats.
-        #[method_id(@__retain_semantics Other supportedDepthDataFormats)]
+        #[method_id(@__method_family Other supportedDepthDataFormats)]
         pub unsafe fn supportedDepthDataFormats(&self) -> Retained<NSArray<AVCaptureDeviceFormat>>;
 
         /// A property indicating AVCaptureOutput subclasses the receiver does not support.
         ///
         ///
         /// As a rule, AVCaptureDeviceFormats of a given mediaType are available for use with all AVCaptureOutputs that accept that media type, but there are exceptions. For instance, on apps linked against iOS versions earlier than 12.0, the photo resolution video formats may not be used as sources for AVCaptureMovieFileOutput due to bandwidth limitations. On DualCamera devices, AVCaptureDepthDataOutput is not supported when outputting full resolution (i.e. 12 MP) video due to bandwidth limitations. In order to stream depth data plus video data from a photo format, ensure that your AVCaptureVideoDataOutput's deliversPreviewSizedOutputBuffers property is set to YES. Likewise, to stream depth data while capturing video to a movie file using AVCaptureMovieFileOutput, call -[AVCaptureSession setSessionPreset:AVCaptureSessionPresetPhoto]. When using the photo preset, video is captured at preview resolution rather than the full sensor resolution.
-        #[method_id(@__retain_semantics Other unsupportedCaptureOutputClasses)]
+        #[method_id(@__method_family Other unsupportedCaptureOutputClasses)]
         pub unsafe fn unsupportedCaptureOutputClasses(&self) -> Retained<NSArray<AnyClass>>;
 
         /// This property lists all of the supported maximum photo dimensions for this format. The array contains CMVideoDimensions structs encoded as NSValues.
         ///
         /// Enumerate all supported resolution settings for which this format may be configured to capture photos. Use these values to set AVCapturePhotoOutput.maxPhotoDimensions and AVCapturePhotoSettings.maxPhotoDimensions.
-        #[method_id(@__retain_semantics Other supportedMaxPhotoDimensions)]
+        #[method_id(@__method_family Other supportedMaxPhotoDimensions)]
         pub unsafe fn supportedMaxPhotoDimensions(&self) -> Retained<NSArray<NSValue>>;
 
         /// Indicates zoom factors at which this device transitions to secondary native resolution modes.
         ///
         /// Devices with this property have the means to switch their pixel sampling mode on the fly to produce a high-fidelity, non-upsampled images at a fixed zoom factor beyond 1.0x.
-        #[method_id(@__retain_semantics Other secondaryNativeResolutionZoomFactors)]
+        #[method_id(@__method_family Other secondaryNativeResolutionZoomFactors)]
         pub unsafe fn secondaryNativeResolutionZoomFactors(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Indicates whether the device format supports auto video frame rate.
@@ -3368,7 +3368,7 @@ extern_methods!(
         ///
         ///
         /// Devices may support a limited frame rate range when Center Stage is active. If this device format does not support Center Stage, this property returns nil.
-        #[method_id(@__retain_semantics Other videoFrameRateRangeForCenterStage)]
+        #[method_id(@__method_family Other videoFrameRateRangeForCenterStage)]
         pub unsafe fn videoFrameRateRangeForCenterStage(
             &self,
         ) -> Option<Retained<AVFrameRateRange>>;
@@ -3389,7 +3389,7 @@ extern_methods!(
         ///
         ///
         /// Devices may support a limited frame rate range when Portrait Effect is active. If this device format does not support Portrait Effect, this property returns nil.
-        #[method_id(@__retain_semantics Other videoFrameRateRangeForPortraitEffect)]
+        #[method_id(@__method_family Other videoFrameRateRangeForPortraitEffect)]
         pub unsafe fn videoFrameRateRangeForPortraitEffect(
             &self,
         ) -> Option<Retained<AVFrameRateRange>>;
@@ -3435,7 +3435,7 @@ extern_methods!(
         ///
         ///
         /// Devices may support a limited frame rate range when Studio Light is active. If this device format does not support Studio Light, this property returns nil.
-        #[method_id(@__retain_semantics Other videoFrameRateRangeForStudioLight)]
+        #[method_id(@__method_family Other videoFrameRateRangeForStudioLight)]
         pub unsafe fn videoFrameRateRangeForStudioLight(
             &self,
         ) -> Option<Retained<AVFrameRateRange>>;
@@ -3456,7 +3456,7 @@ extern_methods!(
         ///
         ///
         /// Unlike the other video effects, enabling reaction effects does not limit the stream's frame rate because most of the time no rendering is being performed. The frame rate will only ramp down when a reaction is actually being rendered on the stream (see AVCaptureDevice.reactionEffectsInProgress)
-        #[method_id(@__retain_semantics Other videoFrameRateRangeForReactionEffectsInProgress)]
+        #[method_id(@__method_family Other videoFrameRateRangeForReactionEffectsInProgress)]
         pub unsafe fn videoFrameRateRangeForReactionEffectsInProgress(
             &self,
         ) -> Option<Retained<AVFrameRateRange>>;
@@ -3477,7 +3477,7 @@ extern_methods!(
         ///
         ///
         /// Devices may support a limited frame rate range when Background Replacement is active. If this device format does not support Background Replacement, this property returns nil.
-        #[method_id(@__retain_semantics Other videoFrameRateRangeForBackgroundReplacement)]
+        #[method_id(@__method_family Other videoFrameRateRangeForBackgroundReplacement)]
         pub unsafe fn videoFrameRateRangeForBackgroundReplacement(
             &self,
         ) -> Option<Retained<AVFrameRateRange>>;
@@ -3500,24 +3500,24 @@ unsafe impl NSObjectProtocol for AVCaptureDeviceInputSource {}
 
 extern_methods!(
     unsafe impl AVCaptureDeviceInputSource {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// An ID unique among the inputSources exposed by a given AVCaptureDevice.
         ///
         ///
         /// An AVCaptureDevice's inputSources array must contain AVCaptureInputSource objects with unique inputSourceIDs.
-        #[method_id(@__retain_semantics Other inputSourceID)]
+        #[method_id(@__method_family Other inputSourceID)]
         pub unsafe fn inputSourceID(&self) -> Retained<NSString>;
 
         /// A localized human-readable name for the receiver.
         ///
         ///
         /// This property can be used for displaying the name of the capture device input source in a user interface.
-        #[method_id(@__retain_semantics Other localizedName)]
+        #[method_id(@__method_family Other localizedName)]
         pub unsafe fn localizedName(&self) -> Retained<NSString>;
     }
 );

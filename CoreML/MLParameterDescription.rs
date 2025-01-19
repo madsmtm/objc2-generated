@@ -24,14 +24,14 @@ unsafe impl NSSecureCoding for MLParameterDescription {}
 extern_methods!(
     unsafe impl MLParameterDescription {
         #[cfg(all(feature = "MLKey", feature = "MLParameterKey"))]
-        #[method_id(@__retain_semantics Other key)]
+        #[method_id(@__method_family Other key)]
         pub unsafe fn key(&self) -> Retained<MLParameterKey>;
 
-        #[method_id(@__retain_semantics Other defaultValue)]
+        #[method_id(@__method_family Other defaultValue)]
         pub unsafe fn defaultValue(&self) -> Retained<AnyObject>;
 
         #[cfg(feature = "MLNumericConstraint")]
-        #[method_id(@__retain_semantics Other numericConstraint)]
+        #[method_id(@__method_family Other numericConstraint)]
         pub unsafe fn numericConstraint(&self) -> Option<Retained<MLNumericConstraint>>;
     }
 );
@@ -39,10 +39,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLParameterDescription {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

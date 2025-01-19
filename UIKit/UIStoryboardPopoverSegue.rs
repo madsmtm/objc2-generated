@@ -25,7 +25,7 @@ extern_methods!(
     unsafe impl UIStoryboardPopoverSegue {
         #[cfg(feature = "UIPopoverController")]
         #[deprecated = "Access destinationViewController.popoverPresentationController from your segue's performHandler or override of -perform"]
-        #[method_id(@__retain_semantics Other popoverController)]
+        #[method_id(@__method_family Other popoverController)]
         pub unsafe fn popoverController(&self) -> Retained<UIPopoverController>;
     }
 );
@@ -39,7 +39,7 @@ extern_methods!(
             feature = "UIViewController",
             feature = "block2"
         ))]
-        #[method_id(@__retain_semantics Other segueWithIdentifier:source:destination:performHandler:)]
+        #[method_id(@__method_family Other segueWithIdentifier:source:destination:performHandler:)]
         pub unsafe fn segueWithIdentifier_source_destination_performHandler(
             identifier: Option<&NSString>,
             source: &UIViewController,
@@ -49,7 +49,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[method_id(@__retain_semantics Init initWithIdentifier:source:destination:)]
+        #[method_id(@__method_family Init initWithIdentifier:source:destination:)]
         pub unsafe fn initWithIdentifier_source_destination(
             this: Allocated<Self>,
             identifier: Option<&NSString>,
@@ -58,7 +58,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -67,7 +67,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "UIStoryboardSegue")]
     unsafe impl UIStoryboardPopoverSegue {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

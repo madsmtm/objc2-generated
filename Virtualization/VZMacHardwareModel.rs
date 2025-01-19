@@ -47,16 +47,16 @@ unsafe impl NSObjectProtocol for VZMacHardwareModel {}
 
 extern_methods!(
     unsafe impl VZMacHardwareModel {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Get the hardware model described by the specified data representation.
         ///
         /// Parameter `dataRepresentation`: The opaque data representation of the hardware model to be obtained.
-        #[method_id(@__retain_semantics Init initWithDataRepresentation:)]
+        #[method_id(@__method_family Init initWithDataRepresentation:)]
         pub unsafe fn initWithDataRepresentation(
             this: Allocated<Self>,
             data_representation: &NSData,
@@ -65,7 +65,7 @@ extern_methods!(
         /// Opaque data representation of the hardware model.
         ///
         /// This can be used to recreate the same hardware model with -[VZMacHardwareModel initWithDataRepresentation:].
-        #[method_id(@__retain_semantics Other dataRepresentation)]
+        #[method_id(@__method_family Other dataRepresentation)]
         pub unsafe fn dataRepresentation(&self) -> Retained<NSData>;
 
         /// Indicate whether this hardware model is supported by the host.

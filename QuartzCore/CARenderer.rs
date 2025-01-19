@@ -25,21 +25,21 @@ unsafe impl NSObjectProtocol for CARenderer {}
 extern_methods!(
     unsafe impl CARenderer {
         #[deprecated = "+rendererWithMTLTexture"]
-        #[method_id(@__retain_semantics Other rendererWithCGLContext:options:)]
+        #[method_id(@__method_family Other rendererWithCGLContext:options:)]
         pub unsafe fn rendererWithCGLContext_options(
             ctx: NonNull<c_void>,
             dict: Option<&NSDictionary>,
         ) -> Retained<CARenderer>;
 
         #[cfg(feature = "objc2-metal")]
-        #[method_id(@__retain_semantics Other rendererWithMTLTexture:options:)]
+        #[method_id(@__method_family Other rendererWithMTLTexture:options:)]
         pub unsafe fn rendererWithMTLTexture_options(
             tex: &ProtocolObject<dyn MTLTexture>,
             dict: Option<&NSDictionary>,
         ) -> Retained<CARenderer>;
 
         #[cfg(feature = "CALayer")]
-        #[method_id(@__retain_semantics Other layer)]
+        #[method_id(@__method_family Other layer)]
         pub fn layer(&self) -> Option<Retained<CALayer>>;
 
         #[cfg(feature = "CALayer")]
@@ -87,10 +87,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CARenderer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

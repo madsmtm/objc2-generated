@@ -36,7 +36,7 @@ unsafe impl NSObjectProtocol for VZVirtioGraphicsDeviceConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZGraphicsDeviceConfiguration")]
     unsafe impl VZVirtioGraphicsDeviceConfiguration {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(
@@ -46,7 +46,7 @@ extern_methods!(
         /// The scanouts to be attached to this graphics device.
         ///
         /// Maximum of one scanout is supported.
-        #[method_id(@__retain_semantics Other scanouts)]
+        #[method_id(@__method_family Other scanouts)]
         pub unsafe fn scanouts(&self) -> Retained<NSArray<VZVirtioGraphicsScanoutConfiguration>>;
 
         #[cfg(all(
@@ -63,7 +63,7 @@ extern_methods!(
     /// Methods declared on superclass `VZGraphicsDeviceConfiguration`
     #[cfg(feature = "VZGraphicsDeviceConfiguration")]
     unsafe impl VZVirtioGraphicsDeviceConfiguration {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

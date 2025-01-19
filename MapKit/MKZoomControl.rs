@@ -56,14 +56,14 @@ extern_methods!(
     #[cfg(target_os = "macos")]
     unsafe impl MKZoomControl {
         #[cfg(feature = "MKMapView")]
-        #[method_id(@__retain_semantics Other zoomControlWithMapView:)]
+        #[method_id(@__method_family Other zoomControlWithMapView:)]
         pub unsafe fn zoomControlWithMapView(
             map_view: Option<&MKMapView>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[cfg(feature = "MKMapView")]
-        #[method_id(@__retain_semantics Other mapView)]
+        #[method_id(@__method_family Other mapView)]
         pub unsafe fn mapView(&self) -> Option<Retained<MKMapView>>;
 
         #[cfg(feature = "MKMapView")]
@@ -79,10 +79,10 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKZoomControl {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -95,7 +95,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKZoomControl {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -105,7 +105,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKZoomControl {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

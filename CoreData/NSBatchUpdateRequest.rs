@@ -29,30 +29,30 @@ unsafe impl NSObjectProtocol for NSBatchUpdateRequest {}
 extern_methods!(
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchUpdateRequest {
-        #[method_id(@__retain_semantics Other batchUpdateRequestWithEntityName:)]
+        #[method_id(@__method_family Other batchUpdateRequestWithEntityName:)]
         pub unsafe fn batchUpdateRequestWithEntityName(entity_name: &NSString) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithEntityName:)]
+        #[method_id(@__method_family Init initWithEntityName:)]
         pub unsafe fn initWithEntityName(
             this: Allocated<Self>,
             entity_name: &NSString,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSEntityDescription")]
-        #[method_id(@__retain_semantics Init initWithEntity:)]
+        #[method_id(@__method_family Init initWithEntity:)]
         pub unsafe fn initWithEntity(
             this: Allocated<Self>,
             entity: &NSEntityDescription,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other entityName)]
+        #[method_id(@__method_family Other entityName)]
         pub unsafe fn entityName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSEntityDescription")]
-        #[method_id(@__retain_semantics Other entity)]
+        #[method_id(@__method_family Other entity)]
         pub unsafe fn entity(&self) -> Retained<NSEntityDescription>;
 
-        #[method_id(@__retain_semantics Other predicate)]
+        #[method_id(@__method_family Other predicate)]
         pub unsafe fn predicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`predicate`][Self::predicate].
@@ -75,7 +75,7 @@ extern_methods!(
         #[method(setResultType:)]
         pub unsafe fn setResultType(&self, result_type: NSBatchUpdateRequestResultType);
 
-        #[method_id(@__retain_semantics Other propertiesToUpdate)]
+        #[method_id(@__method_family Other propertiesToUpdate)]
         pub unsafe fn propertiesToUpdate(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`propertiesToUpdate`][Self::propertiesToUpdate].
@@ -88,10 +88,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPersistentStoreRequest")]
     unsafe impl NSBatchUpdateRequest {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

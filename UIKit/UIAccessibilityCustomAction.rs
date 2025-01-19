@@ -24,7 +24,7 @@ unsafe impl NSObjectProtocol for UIAccessibilityCustomAction {}
 
 extern_methods!(
     unsafe impl UIAccessibilityCustomAction {
-        #[method_id(@__retain_semantics Init initWithName:target:selector:)]
+        #[method_id(@__method_family Init initWithName:target:selector:)]
         pub unsafe fn initWithName_target_selector(
             this: Allocated<Self>,
             name: &NSString,
@@ -32,7 +32,7 @@ extern_methods!(
             selector: Sel,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithAttributedName:target:selector:)]
+        #[method_id(@__method_family Init initWithAttributedName:target:selector:)]
         pub unsafe fn initWithAttributedName_target_selector(
             this: Allocated<Self>,
             attributed_name: &NSAttributedString,
@@ -41,7 +41,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__retain_semantics Init initWithName:image:target:selector:)]
+        #[method_id(@__method_family Init initWithName:image:target:selector:)]
         pub unsafe fn initWithName_image_target_selector(
             this: Allocated<Self>,
             name: &NSString,
@@ -51,7 +51,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__retain_semantics Init initWithAttributedName:image:target:selector:)]
+        #[method_id(@__method_family Init initWithAttributedName:image:target:selector:)]
         pub unsafe fn initWithAttributedName_image_target_selector(
             this: Allocated<Self>,
             attributed_name: &NSAttributedString,
@@ -61,7 +61,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__retain_semantics Init initWithName:actionHandler:)]
+        #[method_id(@__method_family Init initWithName:actionHandler:)]
         pub unsafe fn initWithName_actionHandler(
             this: Allocated<Self>,
             name: &NSString,
@@ -69,7 +69,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__retain_semantics Init initWithAttributedName:actionHandler:)]
+        #[method_id(@__method_family Init initWithAttributedName:actionHandler:)]
         pub unsafe fn initWithAttributedName_actionHandler(
             this: Allocated<Self>,
             attributed_name: &NSAttributedString,
@@ -77,7 +77,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
-        #[method_id(@__retain_semantics Init initWithName:image:actionHandler:)]
+        #[method_id(@__method_family Init initWithName:image:actionHandler:)]
         pub unsafe fn initWithName_image_actionHandler(
             this: Allocated<Self>,
             name: &NSString,
@@ -86,7 +86,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
-        #[method_id(@__retain_semantics Init initWithAttributedName:image:actionHandler:)]
+        #[method_id(@__method_family Init initWithAttributedName:image:actionHandler:)]
         pub unsafe fn initWithAttributedName_image_actionHandler(
             this: Allocated<Self>,
             attributed_name: &NSAttributedString,
@@ -94,7 +94,7 @@ extern_methods!(
             action_handler: UIAccessibilityCustomActionHandler,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -102,7 +102,7 @@ extern_methods!(
         pub unsafe fn setName(&self, name: &NSString);
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__retain_semantics Other image)]
+        #[method_id(@__method_family Other image)]
         pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
@@ -110,14 +110,14 @@ extern_methods!(
         #[method(setImage:)]
         pub unsafe fn setImage(&self, image: Option<&UIImage>);
 
-        #[method_id(@__retain_semantics Other attributedName)]
+        #[method_id(@__method_family Other attributedName)]
         pub unsafe fn attributedName(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedName`][Self::attributedName].
         #[method(setAttributedName:)]
         pub unsafe fn setAttributedName(&self, attributed_name: &NSAttributedString);
 
-        #[method_id(@__retain_semantics Other target)]
+        #[method_id(@__method_family Other target)]
         pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -141,7 +141,7 @@ extern_methods!(
         #[method(setActionHandler:)]
         pub unsafe fn setActionHandler(&self, action_handler: UIAccessibilityCustomActionHandler);
 
-        #[method_id(@__retain_semantics Other category)]
+        #[method_id(@__method_family Other category)]
         pub unsafe fn category(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`category`][Self::category].
@@ -153,10 +153,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIAccessibilityCustomAction {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

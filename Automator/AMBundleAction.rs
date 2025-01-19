@@ -44,13 +44,13 @@ extern_methods!(
         pub unsafe fn hasView(&self) -> bool;
 
         #[cfg(feature = "objc2-app-kit")]
-        #[method_id(@__retain_semantics Other view)]
+        #[method_id(@__method_family Other view)]
         pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Retained<NSView>>;
 
-        #[method_id(@__retain_semantics Other bundle)]
+        #[method_id(@__method_family Other bundle)]
         pub unsafe fn bundle(&self) -> Retained<NSBundle>;
 
-        #[method_id(@__retain_semantics Other parameters)]
+        #[method_id(@__method_family Other parameters)]
         pub unsafe fn parameters(
             &self,
         ) -> Option<Retained<NSMutableDictionary<NSString, AnyObject>>>;
@@ -68,14 +68,14 @@ extern_methods!(
     /// Methods declared on superclass `AMAction`
     #[cfg(feature = "AMAction")]
     unsafe impl AMBundleAction {
-        #[method_id(@__retain_semantics Init initWithDefinition:fromArchive:)]
+        #[method_id(@__method_family Init initWithDefinition:fromArchive:)]
         pub unsafe fn initWithDefinition_fromArchive(
             this: Allocated<Self>,
             dict: Option<&NSDictionary<NSString, AnyObject>>,
             archived: bool,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
+        #[method_id(@__method_family Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             file_url: &NSURL,
@@ -87,10 +87,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "AMAction")]
     unsafe impl AMBundleAction {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

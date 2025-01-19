@@ -380,14 +380,14 @@ extern_methods!(
     unsafe impl ARFaceAnchor {
         #[cfg(feature = "ARFaceGeometry")]
         /// The face geometry updated based on the computed blend shapes.
-        #[method_id(@__retain_semantics Other geometry)]
+        #[method_id(@__method_family Other geometry)]
         pub unsafe fn geometry(&self) -> Retained<ARFaceGeometry>;
 
         #[cfg(feature = "objc2-foundation")]
         /// A dictionary of blend shape coefficients for each blend shape location.
         ///
         /// Blend shapes coefficients define the amount of displacement of a neutral shape at a specific location on the face.
-        #[method_id(@__retain_semantics Other blendShapes)]
+        #[method_id(@__method_family Other blendShapes)]
         pub unsafe fn blendShapes(&self) -> Retained<NSDictionary<ARBlendShapeLocation, NSNumber>>;
     }
 );
@@ -398,10 +398,10 @@ extern_methods!(
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]
     unsafe impl ARFaceAnchor {
         /// Unavailable
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

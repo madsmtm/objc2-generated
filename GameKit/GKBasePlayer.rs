@@ -18,11 +18,11 @@ unsafe impl NSObjectProtocol for GKBasePlayer {}
 extern_methods!(
     unsafe impl GKBasePlayer {
         #[deprecated = "Use either the gamePlayerID or teamPlayerID property to identify a player."]
-        #[method_id(@__retain_semantics Other playerID)]
+        #[method_id(@__method_family Other playerID)]
         pub unsafe fn playerID(&self) -> Option<Retained<NSString>>;
 
         /// This player's name representation as displayed in the Game Center in-game UI. Use this when you need to display the player's name. The display name may be very long, so be sure to use appropriate string truncation API when drawing.
-        #[method_id(@__retain_semantics Other displayName)]
+        #[method_id(@__method_family Other displayName)]
         pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
     }
 );
@@ -30,10 +30,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKBasePlayer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

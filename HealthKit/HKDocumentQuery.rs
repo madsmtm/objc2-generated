@@ -34,7 +34,7 @@ extern_methods!(
         pub unsafe fn limit(&self) -> NSUInteger;
 
         /// An array of NSSortDescriptors.
-        #[method_id(@__retain_semantics Other sortDescriptors)]
+        #[method_id(@__method_family Other sortDescriptors)]
         pub unsafe fn sortDescriptors(&self) -> Option<Retained<NSArray<NSSortDescriptor>>>;
 
         /// The XML content for documents may be large.  This property can be used to control whether the query
@@ -77,7 +77,7 @@ extern_methods!(
         /// query will prompt the user to authorize your app to read individual documents.  The query will then
         /// return the documents that your app is authorized to read. The user will only be asked to authorize your
         /// app to read documents that are new since the last time an HKDocumentQuery was executed.
-        #[method_id(@__retain_semantics Init initWithDocumentType:predicate:limit:sortDescriptors:includeDocumentData:resultsHandler:)]
+        #[method_id(@__method_family Init initWithDocumentType:predicate:limit:sortDescriptors:includeDocumentData:resultsHandler:)]
         pub unsafe fn initWithDocumentType_predicate_limit_sortDescriptors_includeDocumentData_resultsHandler(
             this: Allocated<Self>,
             document_type: &HKDocumentType,
@@ -101,7 +101,7 @@ extern_methods!(
     /// Methods declared on superclass `HKQuery`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKDocumentQuery {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -110,7 +110,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "HKQuery")]
     unsafe impl HKDocumentQuery {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -37,7 +37,7 @@ extern_methods!(
     unsafe impl CLCircularRegion {
         #[cfg(feature = "CLLocation")]
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithCenter:radius:identifier:)]
+        #[method_id(@__method_family Init initWithCenter:radius:identifier:)]
         pub unsafe fn initWithCenter_radius_identifier(
             this: Allocated<Self>,
             center: CLLocationCoordinate2D,
@@ -68,7 +68,7 @@ extern_methods!(
     unsafe impl CLCircularRegion {
         #[cfg(feature = "CLLocation")]
         #[deprecated = "Please see CLCircularRegion"]
-        #[method_id(@__retain_semantics Init initCircularRegionWithCenter:radius:identifier:)]
+        #[method_id(@__method_family Init initCircularRegionWithCenter:radius:identifier:)]
         pub unsafe fn initCircularRegionWithCenter_radius_identifier(
             this: Allocated<Self>,
             center: CLLocationCoordinate2D,
@@ -82,10 +82,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "CLRegion")]
     unsafe impl CLCircularRegion {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

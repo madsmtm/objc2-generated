@@ -47,7 +47,7 @@ extern_methods!(
 
         /// The pixel value to use as a pivot for the contrast. Valid values are from [0.0 ... +1.0], or nil to auto-detect based on image intensity.
         /// The default value is +0.5 (i.e. pixel center).
-        #[method_id(@__retain_semantics Other contrastPivot)]
+        #[method_id(@__method_family Other contrastPivot)]
         pub unsafe fn contrastPivot(&self) -> Option<Retained<NSNumber>>;
 
         /// Setter for [`contrastPivot`][Self::contrastPivot].
@@ -83,7 +83,7 @@ extern_methods!(
 
         #[cfg(feature = "VNObservation")]
         /// VNContoursObservation results.
-        #[method_id(@__retain_semantics Other results)]
+        #[method_id(@__method_family Other results)]
         pub unsafe fn results(&self) -> Option<Retained<NSArray<VNContoursObservation>>>;
     }
 );
@@ -93,7 +93,7 @@ extern_methods!(
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectContoursRequest {
         /// Creates a new VNRequest with no completion handler.
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
@@ -101,7 +101,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
+        #[method_id(@__method_family Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
@@ -113,7 +113,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNDetectContoursRequest {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -31,7 +31,7 @@ extern_methods!(
     #[cfg(feature = "UIWindowScenePlacement")]
     unsafe impl UIWindowSceneStandardPlacement {
         /// Creates a standard placement.
-        #[method_id(@__retain_semantics Other standardPlacement)]
+        #[method_id(@__method_family Other standardPlacement)]
         pub unsafe fn standardPlacement() -> Retained<Self>;
     }
 );
@@ -40,10 +40,10 @@ extern_methods!(
     /// Methods declared on superclass `UIWindowScenePlacement`
     #[cfg(feature = "UIWindowScenePlacement")]
     unsafe impl UIWindowSceneStandardPlacement {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

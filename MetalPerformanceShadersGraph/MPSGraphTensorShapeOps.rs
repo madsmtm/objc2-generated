@@ -28,7 +28,7 @@ extern_methods!(
         /// - shape: The result tensor shape.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other reshapeTensor:withShape:name:)]
+        #[method_id(@__method_family Other reshapeTensor:withShape:name:)]
         pub unsafe fn reshapeTensor_withShape_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -48,7 +48,7 @@ extern_methods!(
         /// - shapeTensor: A 1D tensor of type `MPSDataTypeInt32` or `MPSDataTypeInt64`, that contains the target shape values.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other reshapeTensor:withShapeTensor:name:)]
+        #[method_id(@__method_family Other reshapeTensor:withShapeTensor:name:)]
         pub unsafe fn reshapeTensor_withShapeTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -67,7 +67,7 @@ extern_methods!(
         /// - dimensionIndex2: The second dimension index to be transposed.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other transposeTensor:dimension:withDimension:name:)]
+        #[method_id(@__method_family Other transposeTensor:dimension:withDimension:name:)]
         pub unsafe fn transposeTensor_dimension_withDimension_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -86,7 +86,7 @@ extern_methods!(
         /// - permutation: An array of numbers defining the permutation, must be of length `rank(tensor)` and define a valid permutation.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other transposeTensor:permutation:name:)]
+        #[method_id(@__method_family Other transposeTensor:permutation:name:)]
         pub unsafe fn transposeTensor_permutation_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -104,7 +104,7 @@ extern_methods!(
         /// - length: The length of the slice.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other sliceTensor:dimension:start:length:name:)]
+        #[method_id(@__method_family Other sliceTensor:dimension:start:length:name:)]
         pub unsafe fn sliceTensor_dimension_start_length_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -128,7 +128,7 @@ extern_methods!(
         /// - strides: An array of numbers that specify the strides for each dimension.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other sliceTensor:starts:ends:strides:name:)]
+        #[method_id(@__method_family Other sliceTensor:starts:ends:strides:name:)]
         pub unsafe fn sliceTensor_starts_ends_strides_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -155,7 +155,7 @@ extern_methods!(
         /// - squeezeMask: A bitmask that indicates dimensions the operation will squeeze out from the result.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other sliceTensor:starts:ends:strides:startMask:endMask:squeezeMask:name:)]
+        #[method_id(@__method_family Other sliceTensor:starts:ends:strides:startMask:endMask:squeezeMask:name:)]
         pub unsafe fn sliceTensor_starts_ends_strides_startMask_endMask_squeezeMask_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -185,7 +185,7 @@ extern_methods!(
         /// - squeezeMask: A bitmask that indicates dimensions the operation will squeeze out from the result.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other sliceTensor:startTensor:endTensor:strideTensor:startMask:endMask:squeezeMask:name:)]
+        #[method_id(@__method_family Other sliceTensor:startTensor:endTensor:strideTensor:startMask:endMask:squeezeMask:name:)]
         pub unsafe fn sliceTensor_startTensor_endTensor_strideTensor_startMask_endMask_squeezeMask_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -212,7 +212,7 @@ extern_methods!(
         /// - squeezeMask: A bitmask that indicates dimensions the operation will squeeze out from the result.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other sliceTensor:startTensor:sizeTensor:squeezeMask:name:)]
+        #[method_id(@__method_family Other sliceTensor:startTensor:sizeTensor:squeezeMask:name:)]
         pub unsafe fn sliceTensor_startTensor_sizeTensor_squeezeMask_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -233,7 +233,7 @@ extern_methods!(
         /// - strides: An array of numbers that specify the strides for each dimension.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other sliceGradientTensor:fwdInShapeTensor:starts:ends:strides:name:)]
+        #[method_id(@__method_family Other sliceGradientTensor:fwdInShapeTensor:starts:ends:strides:name:)]
         pub unsafe fn sliceGradientTensor_fwdInShapeTensor_starts_ends_strides_name(
             &self,
             input_gradient_tensor: &MPSGraphTensor,
@@ -258,7 +258,7 @@ extern_methods!(
         /// - squeezeMask: A bitmask that indicates dimensions the operation will squeeze out from the result.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other sliceGradientTensor:fwdInShapeTensor:startTensor:endTensor:strideTensor:startMask:endMask:squeezeMask:name:)]
+        #[method_id(@__method_family Other sliceGradientTensor:fwdInShapeTensor:startTensor:endTensor:strideTensor:startMask:endMask:squeezeMask:name:)]
         pub unsafe fn sliceGradientTensor_fwdInShapeTensor_startTensor_endTensor_strideTensor_startMask_endMask_squeezeMask_name(
             &self,
             input_gradient_tensor: &MPSGraphTensor,
@@ -283,7 +283,7 @@ extern_methods!(
         /// - squeezeMask: A bitmask that indicates dimensions the operation will squeeze out from the result.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other sliceGradientTensor:fwdInShapeTensor:startTensor:sizeTensor:squeezeMask:name:)]
+        #[method_id(@__method_family Other sliceGradientTensor:fwdInShapeTensor:startTensor:sizeTensor:squeezeMask:name:)]
         pub unsafe fn sliceGradientTensor_fwdInShapeTensor_startTensor_sizeTensor_squeezeMask_name(
             &self,
             input_gradient_tensor: &MPSGraphTensor,
@@ -308,7 +308,7 @@ extern_methods!(
         /// - squeezeMask: A bitmask that indicates dimensions the operation will squeeze out from the result.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other sliceGradientTensor:fwdInShapeTensor:starts:ends:strides:startMask:endMask:squeezeMask:name:)]
+        #[method_id(@__method_family Other sliceGradientTensor:fwdInShapeTensor:starts:ends:strides:startMask:endMask:squeezeMask:name:)]
         pub unsafe fn sliceGradientTensor_fwdInShapeTensor_starts_ends_strides_startMask_endMask_squeezeMask_name(
             &self,
             input_gradient_tensor: &MPSGraphTensor,
@@ -336,7 +336,7 @@ extern_methods!(
         /// - squeezeMask: A bitmask that indicates dimensions the operation will squeeze out from the result.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other sliceUpdateDataTensor:updateTensor:startsTensor:endsTensor:stridesTensor:startMask:endMask:squeezeMask:name:)]
+        #[method_id(@__method_family Other sliceUpdateDataTensor:updateTensor:startsTensor:endsTensor:stridesTensor:startMask:endMask:squeezeMask:name:)]
         pub unsafe fn sliceUpdateDataTensor_updateTensor_startsTensor_endsTensor_stridesTensor_startMask_endMask_squeezeMask_name(
             &self,
             data_tensor: &MPSGraphTensor,
@@ -364,7 +364,7 @@ extern_methods!(
         /// - squeezeMask: A bitmask that indicates dimensions the operation will squeeze out from the result.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other sliceUpdateDataTensor:updateTensor:starts:ends:strides:startMask:endMask:squeezeMask:name:)]
+        #[method_id(@__method_family Other sliceUpdateDataTensor:updateTensor:starts:ends:strides:startMask:endMask:squeezeMask:name:)]
         pub unsafe fn sliceUpdateDataTensor_updateTensor_starts_ends_strides_startMask_endMask_squeezeMask_name(
             &self,
             data_tensor: &MPSGraphTensor,
@@ -389,7 +389,7 @@ extern_methods!(
         /// - stridesTensor: A Tensor that contains an array of numbers that specify the strides for each dimension.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other sliceUpdateDataTensor:updateTensor:startsTensor:endsTensor:stridesTensor:name:)]
+        #[method_id(@__method_family Other sliceUpdateDataTensor:updateTensor:startsTensor:endsTensor:stridesTensor:name:)]
         pub unsafe fn sliceUpdateDataTensor_updateTensor_startsTensor_endsTensor_stridesTensor_name(
             &self,
             data_tensor: &MPSGraphTensor,
@@ -411,7 +411,7 @@ extern_methods!(
         /// - strides: An array of numbers that specify the strides for each dimension.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other sliceUpdateDataTensor:updateTensor:starts:ends:strides:name:)]
+        #[method_id(@__method_family Other sliceUpdateDataTensor:updateTensor:starts:ends:strides:name:)]
         pub unsafe fn sliceUpdateDataTensor_updateTensor_starts_ends_strides_name(
             &self,
             data_tensor: &MPSGraphTensor,
@@ -438,7 +438,7 @@ extern_methods!(
         /// rank`.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other concatTensor:withTensor:dimension:name:)]
+        #[method_id(@__method_family Other concatTensor:withTensor:dimension:name:)]
         pub unsafe fn concatTensor_withTensor_dimension_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -462,7 +462,7 @@ extern_methods!(
         /// rank`.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other concatTensors:dimension:name:)]
+        #[method_id(@__method_family Other concatTensors:dimension:name:)]
         pub unsafe fn concatTensors_dimension_name(
             &self,
             tensors: &NSArray<MPSGraphTensor>,
@@ -494,7 +494,7 @@ extern_methods!(
         /// - interleave: A boolean value that specifies whether the operation interleaves input tensors.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other concatTensors:dimension:interleave:name:)]
+        #[method_id(@__method_family Other concatTensors:dimension:interleave:name:)]
         pub unsafe fn concatTensors_dimension_interleave_name(
             &self,
             tensors: &NSArray<MPSGraphTensor>,
@@ -516,7 +516,7 @@ extern_methods!(
         /// - multiplier: An array of numbers that specifies how many copies per dimension MPSGraph produces.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other tileTensor:withMultiplier:name:)]
+        #[method_id(@__method_family Other tileTensor:withMultiplier:name:)]
         pub unsafe fn tileTensor_withMultiplier_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -536,7 +536,7 @@ extern_methods!(
         /// - multiplier: An array of numbers that specifies how many copies per dimension MPSGraph produced in the forward pass.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other tileGradientWithIncomingGradientTensor:sourceTensor:withMultiplier:name:)]
+        #[method_id(@__method_family Other tileGradientWithIncomingGradientTensor:sourceTensor:withMultiplier:name:)]
         pub unsafe fn tileGradientWithIncomingGradientTensor_sourceTensor_withMultiplier_name(
             &self,
             incoming_gradient_tensor: &MPSGraphTensor,
@@ -559,7 +559,7 @@ extern_methods!(
         /// - constantValue: The constant value the operation uses when `paddingMode = MPSGraphPaddingModeConstant`.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other padTensor:withPaddingMode:leftPadding:rightPadding:constantValue:name:)]
+        #[method_id(@__method_family Other padTensor:withPaddingMode:leftPadding:rightPadding:constantValue:name:)]
         pub unsafe fn padTensor_withPaddingMode_leftPadding_rightPadding_constantValue_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -584,7 +584,7 @@ extern_methods!(
         /// - rightPadding: The parameter that defines how much padding the operation applies to the input tensor after each dimension - must be of size `rank(tensor)`.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other padGradientWithIncomingGradientTensor:sourceTensor:paddingMode:leftPadding:rightPadding:name:)]
+        #[method_id(@__method_family Other padGradientWithIncomingGradientTensor:sourceTensor:paddingMode:leftPadding:rightPadding:name:)]
         pub unsafe fn padGradientWithIncomingGradientTensor_sourceTensor_paddingMode_leftPadding_rightPadding_name(
             &self,
             incoming_gradient_tensor: &MPSGraphTensor,
@@ -615,7 +615,7 @@ extern_methods!(
         /// - usePixelShuffleOrder: A parameter that controls the layout of the sub-blocks within the depth dimension.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other spaceToDepth2DTensor:widthAxis:heightAxis:depthAxis:blockSize:usePixelShuffleOrder:name:)]
+        #[method_id(@__method_family Other spaceToDepth2DTensor:widthAxis:heightAxis:depthAxis:blockSize:usePixelShuffleOrder:name:)]
         pub unsafe fn spaceToDepth2DTensor_widthAxis_heightAxis_depthAxis_blockSize_usePixelShuffleOrder_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -648,7 +648,7 @@ extern_methods!(
         /// - usePixelShuffleOrder: A parameter that controls the layout of the sub-blocks within the depth dimension.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other spaceToDepth2DTensor:widthAxisTensor:heightAxisTensor:depthAxisTensor:blockSize:usePixelShuffleOrder:name:)]
+        #[method_id(@__method_family Other spaceToDepth2DTensor:widthAxisTensor:heightAxisTensor:depthAxisTensor:blockSize:usePixelShuffleOrder:name:)]
         pub unsafe fn spaceToDepth2DTensor_widthAxisTensor_heightAxisTensor_depthAxisTensor_blockSize_usePixelShuffleOrder_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -682,7 +682,7 @@ extern_methods!(
         /// - usePixelShuffleOrder: A parameter that controls the layout of the sub-blocks within the depth dimension.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other depthToSpace2DTensor:widthAxis:heightAxis:depthAxis:blockSize:usePixelShuffleOrder:name:)]
+        #[method_id(@__method_family Other depthToSpace2DTensor:widthAxis:heightAxis:depthAxis:blockSize:usePixelShuffleOrder:name:)]
         pub unsafe fn depthToSpace2DTensor_widthAxis_heightAxis_depthAxis_blockSize_usePixelShuffleOrder_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -715,7 +715,7 @@ extern_methods!(
         /// - usePixelShuffleOrder: A parameter that controls the layout of the sub-blocks within the depth dimension.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other depthToSpace2DTensor:widthAxisTensor:heightAxisTensor:depthAxisTensor:blockSize:usePixelShuffleOrder:name:)]
+        #[method_id(@__method_family Other depthToSpace2DTensor:widthAxisTensor:heightAxisTensor:depthAxisTensor:blockSize:usePixelShuffleOrder:name:)]
         pub unsafe fn depthToSpace2DTensor_widthAxisTensor_heightAxisTensor_depthAxisTensor_blockSize_usePixelShuffleOrder_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -751,7 +751,7 @@ extern_methods!(
         /// - usePixelShuffleOrder: A parameter that controls layout of the sub-blocks within the batch dimension.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other spaceToBatchTensor:spatialAxes:batchAxis:blockDimensions:usePixelShuffleOrder:name:)]
+        #[method_id(@__method_family Other spaceToBatchTensor:spatialAxes:batchAxis:blockDimensions:usePixelShuffleOrder:name:)]
         pub unsafe fn spaceToBatchTensor_spatialAxes_batchAxis_blockDimensions_usePixelShuffleOrder_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -786,7 +786,7 @@ extern_methods!(
         /// - usePixelShuffleOrder: A parameter that controls layout of the sub-blocks within the batch dimension.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other spaceToBatchTensor:spatialAxesTensor:batchAxisTensor:blockDimensionsTensor:usePixelShuffleOrder:name:)]
+        #[method_id(@__method_family Other spaceToBatchTensor:spatialAxesTensor:batchAxisTensor:blockDimensionsTensor:usePixelShuffleOrder:name:)]
         pub unsafe fn spaceToBatchTensor_spatialAxesTensor_batchAxisTensor_blockDimensionsTensor_usePixelShuffleOrder_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -821,7 +821,7 @@ extern_methods!(
         /// - usePixelShuffleOrder: A parameter that controls layout of the sub-blocks within the batch dimension.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other batchToSpaceTensor:spatialAxes:batchAxis:blockDimensions:usePixelShuffleOrder:name:)]
+        #[method_id(@__method_family Other batchToSpaceTensor:spatialAxes:batchAxis:blockDimensions:usePixelShuffleOrder:name:)]
         pub unsafe fn batchToSpaceTensor_spatialAxes_batchAxis_blockDimensions_usePixelShuffleOrder_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -856,7 +856,7 @@ extern_methods!(
         /// - usePixelShuffleOrder: A parameter that controls layout of the sub-blocks within the batch dimension.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other batchToSpaceTensor:spatialAxesTensor:batchAxisTensor:blockDimensionsTensor:usePixelShuffleOrder:name:)]
+        #[method_id(@__method_family Other batchToSpaceTensor:spatialAxesTensor:batchAxisTensor:blockDimensionsTensor:usePixelShuffleOrder:name:)]
         pub unsafe fn batchToSpaceTensor_spatialAxesTensor_batchAxisTensor_blockDimensionsTensor_usePixelShuffleOrder_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -878,7 +878,7 @@ extern_methods!(
         /// - axesTensor: A tensor that specifies axes to be reversed (Axes must be unique and within normal axis range).
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other reverseTensor:axesTensor:name:)]
+        #[method_id(@__method_family Other reverseTensor:axesTensor:name:)]
         pub unsafe fn reverseTensor_axesTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -897,7 +897,7 @@ extern_methods!(
         /// - axes: A tensor that specifies axes to be reversed (Axes must be unique and within normal axis range).
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other reverseTensor:axes:name:)]
+        #[method_id(@__method_family Other reverseTensor:axes:name:)]
         pub unsafe fn reverseTensor_axes_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -915,7 +915,7 @@ extern_methods!(
         /// - tensor: The tensor to be reversed.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other reverseTensor:name:)]
+        #[method_id(@__method_family Other reverseTensor:name:)]
         pub unsafe fn reverseTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -933,7 +933,7 @@ extern_methods!(
         /// - axis: The axis around which to flatten.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other flatten2DTensor:axis:name:)]
+        #[method_id(@__method_family Other flatten2DTensor:axis:name:)]
         pub unsafe fn flatten2DTensor_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -952,7 +952,7 @@ extern_methods!(
         /// - axisTensor: A scalar tensor that contains the axis around which to flatten.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other flatten2DTensor:axisTensor:name:)]
+        #[method_id(@__method_family Other flatten2DTensor:axisTensor:name:)]
         pub unsafe fn flatten2DTensor_axisTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -974,7 +974,7 @@ extern_methods!(
         /// - shape: The shape of the result tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other broadcastTensor:toShape:name:)]
+        #[method_id(@__method_family Other broadcastTensor:toShape:name:)]
         pub unsafe fn broadcastTensor_toShape_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -993,7 +993,7 @@ extern_methods!(
         /// - shapeTensor: A rank-1 tensor of type `MPSDataTypeInt32` or `MPSDataTypeInt64` that defines the shape of the result tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other broadcastTensor:toShapeTensor:name:)]
+        #[method_id(@__method_family Other broadcastTensor:toShapeTensor:name:)]
         pub unsafe fn broadcastTensor_toShapeTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -1010,7 +1010,7 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other shapeOfTensor:name:)]
+        #[method_id(@__method_family Other shapeOfTensor:name:)]
         pub unsafe fn shapeOfTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -1030,7 +1030,7 @@ extern_methods!(
         /// - type: The datatype to which MPSGraph casts the input.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other castTensor:toType:name:)]
+        #[method_id(@__method_family Other castTensor:toType:name:)]
         pub unsafe fn castTensor_toType_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -1054,7 +1054,7 @@ extern_methods!(
         /// - type: The element type of the returned tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other reinterpretCastTensor:toType:name:)]
+        #[method_id(@__method_family Other reinterpretCastTensor:toType:name:)]
         pub unsafe fn reinterpretCastTensor_toType_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -1077,7 +1077,7 @@ extern_methods!(
         /// rank + 1`.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other stackTensors:axis:name:)]
+        #[method_id(@__method_family Other stackTensors:axis:name:)]
         pub unsafe fn stackTensors_axis_name(
             &self,
             input_tensors: &NSArray<MPSGraphTensor>,
@@ -1097,7 +1097,7 @@ extern_methods!(
         /// - axis: The dimension along which MPSGraph splits the input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other splitTensor:splitSizes:axis:name:)]
+        #[method_id(@__method_family Other splitTensor:splitSizes:axis:name:)]
         pub unsafe fn splitTensor_splitSizes_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -1118,7 +1118,7 @@ extern_methods!(
         /// - axis: The dimension along which MPSGraph splits the input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other splitTensor:splitSizesTensor:axis:name:)]
+        #[method_id(@__method_family Other splitTensor:splitSizesTensor:axis:name:)]
         pub unsafe fn splitTensor_splitSizesTensor_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -1139,7 +1139,7 @@ extern_methods!(
         /// - axis: The dimension along which MPSGraph splits the input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other splitTensor:numSplits:axis:name:)]
+        #[method_id(@__method_family Other splitTensor:numSplits:axis:name:)]
         pub unsafe fn splitTensor_numSplits_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -1157,7 +1157,7 @@ extern_methods!(
         /// - tensor: The input tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other squeezeTensor:name:)]
+        #[method_id(@__method_family Other squeezeTensor:name:)]
         pub unsafe fn squeezeTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -1175,7 +1175,7 @@ extern_methods!(
         /// - axis: The axis to squeeze.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other squeezeTensor:axis:name:)]
+        #[method_id(@__method_family Other squeezeTensor:axis:name:)]
         pub unsafe fn squeezeTensor_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -1194,7 +1194,7 @@ extern_methods!(
         /// - axes: The axes to squeeze.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other squeezeTensor:axes:name:)]
+        #[method_id(@__method_family Other squeezeTensor:axes:name:)]
         pub unsafe fn squeezeTensor_axes_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -1213,7 +1213,7 @@ extern_methods!(
         /// - axesTensor: The tensor containing the axes to squeeze.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object
-        #[method_id(@__retain_semantics Other squeezeTensor:axesTensor:name:)]
+        #[method_id(@__method_family Other squeezeTensor:axesTensor:name:)]
         pub unsafe fn squeezeTensor_axesTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -1231,7 +1231,7 @@ extern_methods!(
         /// - axis: The axis to expand.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other expandDimsOfTensor:axis:name:)]
+        #[method_id(@__method_family Other expandDimsOfTensor:axis:name:)]
         pub unsafe fn expandDimsOfTensor_axis_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -1249,7 +1249,7 @@ extern_methods!(
         /// - axes: The axes to expand.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other expandDimsOfTensor:axes:name:)]
+        #[method_id(@__method_family Other expandDimsOfTensor:axes:name:)]
         pub unsafe fn expandDimsOfTensor_axes_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -1267,7 +1267,7 @@ extern_methods!(
         /// - axesTensor: The tensor containing the axes to expand.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other expandDimsOfTensor:axesTensor:name:)]
+        #[method_id(@__method_family Other expandDimsOfTensor:axesTensor:name:)]
         pub unsafe fn expandDimsOfTensor_axesTensor_name(
             &self,
             tensor: &MPSGraphTensor,
@@ -1295,7 +1295,7 @@ extern_methods!(
         /// - shape: The shape of the result tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other coordinateAlongAxis:withShape:name:)]
+        #[method_id(@__method_family Other coordinateAlongAxis:withShape:name:)]
         pub unsafe fn coordinateAlongAxis_withShape_name(
             &self,
             axis: NSInteger,
@@ -1316,7 +1316,7 @@ extern_methods!(
         /// - shape: The shape of the result tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other coordinateAlongAxisTensor:withShape:name:)]
+        #[method_id(@__method_family Other coordinateAlongAxisTensor:withShape:name:)]
         pub unsafe fn coordinateAlongAxisTensor_withShape_name(
             &self,
             axis_tensor: &MPSGraphTensor,
@@ -1334,7 +1334,7 @@ extern_methods!(
         /// - shapeTensor: A rank-1 tensor of type `MPSDataTypeInt32` or `MPSDataTypeInt64` that defines the shape of the result tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other coordinateAlongAxis:withShapeTensor:name:)]
+        #[method_id(@__method_family Other coordinateAlongAxis:withShapeTensor:name:)]
         pub unsafe fn coordinateAlongAxis_withShapeTensor_name(
             &self,
             axis: NSInteger,
@@ -1352,7 +1352,7 @@ extern_methods!(
         /// - shapeTensor: A rank-1 tensor of type `MPSDataTypeInt32` or `MPSDataTypeInt64` that defines the shape of the result tensor.
         /// - name: The name for the operation.
         /// - Returns: A valid MPSGraphTensor object.
-        #[method_id(@__retain_semantics Other coordinateAlongAxisTensor:withShapeTensor:name:)]
+        #[method_id(@__method_family Other coordinateAlongAxisTensor:withShapeTensor:name:)]
         pub unsafe fn coordinateAlongAxisTensor_withShapeTensor_name(
             &self,
             axis_tensor: &MPSGraphTensor,

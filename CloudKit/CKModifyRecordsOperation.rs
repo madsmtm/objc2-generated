@@ -79,11 +79,11 @@ unsafe impl NSObjectProtocol for CKModifyRecordsOperation {}
 extern_methods!(
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifyRecordsOperation {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "CKRecord", feature = "CKRecordID"))]
-        #[method_id(@__retain_semantics Init initWithRecordsToSave:recordIDsToDelete:)]
+        #[method_id(@__method_family Init initWithRecordsToSave:recordIDsToDelete:)]
         pub unsafe fn initWithRecordsToSave_recordIDsToDelete(
             this: Allocated<Self>,
             records: Option<&NSArray<CKRecord>>,
@@ -91,7 +91,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "CKRecord")]
-        #[method_id(@__retain_semantics Other recordsToSave)]
+        #[method_id(@__method_family Other recordsToSave)]
         pub unsafe fn recordsToSave(&self) -> Option<Retained<NSArray<CKRecord>>>;
 
         #[cfg(feature = "CKRecord")]
@@ -100,7 +100,7 @@ extern_methods!(
         pub unsafe fn setRecordsToSave(&self, records_to_save: Option<&NSArray<CKRecord>>);
 
         #[cfg(feature = "CKRecordID")]
-        #[method_id(@__retain_semantics Other recordIDsToDelete)]
+        #[method_id(@__method_family Other recordIDsToDelete)]
         pub unsafe fn recordIDsToDelete(&self) -> Option<Retained<NSArray<CKRecordID>>>;
 
         #[cfg(feature = "CKRecordID")]
@@ -129,7 +129,7 @@ extern_methods!(
 
         /// This property is kept by the server to identify the last known request from this client.
         /// Multiple requests from the client with the same change token will be ignored by the server.
-        #[method_id(@__retain_semantics Other clientChangeTokenData)]
+        #[method_id(@__method_family Other clientChangeTokenData)]
         pub unsafe fn clientChangeTokenData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`clientChangeTokenData`][Self::clientChangeTokenData].
@@ -297,7 +297,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]
     unsafe impl CKModifyRecordsOperation {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

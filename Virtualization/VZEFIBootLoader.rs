@@ -38,12 +38,12 @@ unsafe impl NSObjectProtocol for VZEFIBootLoader {}
 extern_methods!(
     #[cfg(feature = "VZBootLoader")]
     unsafe impl VZEFIBootLoader {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZEFIVariableStore")]
         /// The EFI variable store.
-        #[method_id(@__retain_semantics Other variableStore)]
+        #[method_id(@__method_family Other variableStore)]
         pub unsafe fn variableStore(&self) -> Option<Retained<VZEFIVariableStore>>;
 
         #[cfg(feature = "VZEFIVariableStore")]
@@ -57,7 +57,7 @@ extern_methods!(
     /// Methods declared on superclass `VZBootLoader`
     #[cfg(feature = "VZBootLoader")]
     unsafe impl VZEFIBootLoader {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

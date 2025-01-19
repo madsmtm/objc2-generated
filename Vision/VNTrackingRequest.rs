@@ -57,7 +57,7 @@ extern_methods!(
     unsafe impl VNTrackingRequest {
         #[cfg(feature = "VNObservation")]
         /// The observation object that defines a region to track. Providing an observation not returned from a tracker (e.g. user-defined, or from a detector) begins a new tracker for the sequence. Providing an observation that was returned from a tracker continues the use of that tracker, to track the region to the next frame. In general, unless documented in the request's documentation, the rectangle must be defined in normalized coordinates (both dimensions normalized to [0,1] with the origin at the lower-left corner).
-        #[method_id(@__retain_semantics Other inputObservation)]
+        #[method_id(@__method_family Other inputObservation)]
         pub unsafe fn inputObservation(&self) -> Retained<VNDetectedObjectObservation>;
 
         #[cfg(feature = "VNObservation")]
@@ -81,11 +81,11 @@ extern_methods!(
         #[method(setLastFrame:)]
         pub unsafe fn setLastFrame(&self, last_frame: bool);
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        #[method_id(@__retain_semantics Init initWithCompletionHandler:)]
+        #[method_id(@__method_family Init initWithCompletionHandler:)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
             completion_handler: VNRequestCompletionHandler,
@@ -97,7 +97,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "VNRequest")]
     unsafe impl VNTrackingRequest {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

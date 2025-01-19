@@ -80,27 +80,27 @@ unsafe impl NSSecureCoding for HKStatistics {}
 extern_methods!(
     unsafe impl HKStatistics {
         #[cfg(feature = "HKObjectType")]
-        #[method_id(@__retain_semantics Other quantityType)]
+        #[method_id(@__method_family Other quantityType)]
         pub unsafe fn quantityType(&self) -> Retained<HKQuantityType>;
 
-        #[method_id(@__retain_semantics Other startDate)]
+        #[method_id(@__method_family Other startDate)]
         pub unsafe fn startDate(&self) -> Retained<NSDate>;
 
-        #[method_id(@__retain_semantics Other endDate)]
+        #[method_id(@__method_family Other endDate)]
         pub unsafe fn endDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "HKSource")]
-        #[method_id(@__retain_semantics Other sources)]
+        #[method_id(@__method_family Other sources)]
         pub unsafe fn sources(&self) -> Option<Retained<NSArray<HKSource>>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         /// Returns the average quantity for the given source in the time period represented by the receiver.
         ///
         /// If HKStatisticsOptionSeparateBySource is not specified, then this will always be nil.
-        #[method_id(@__retain_semantics Other averageQuantityForSource:)]
+        #[method_id(@__method_family Other averageQuantityForSource:)]
         pub unsafe fn averageQuantityForSource(
             &self,
             source: &HKSource,
@@ -108,14 +108,14 @@ extern_methods!(
 
         #[cfg(feature = "HKQuantity")]
         /// Returns the average quantity in the time period represented by the receiver.
-        #[method_id(@__retain_semantics Other averageQuantity)]
+        #[method_id(@__method_family Other averageQuantity)]
         pub unsafe fn averageQuantity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         /// Returns the minimum quantity for the given source in the time period represented by the receiver.
         ///
         /// If HKStatisticsOptionSeparateBySource is not specified, then this will always be nil.
-        #[method_id(@__retain_semantics Other minimumQuantityForSource:)]
+        #[method_id(@__method_family Other minimumQuantityForSource:)]
         pub unsafe fn minimumQuantityForSource(
             &self,
             source: &HKSource,
@@ -123,14 +123,14 @@ extern_methods!(
 
         #[cfg(feature = "HKQuantity")]
         /// Returns the minimum quantity in the time period represented by the receiver.
-        #[method_id(@__retain_semantics Other minimumQuantity)]
+        #[method_id(@__method_family Other minimumQuantity)]
         pub unsafe fn minimumQuantity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         /// Returns the maximum quantity for the given source in the time period represented by the receiver.
         ///
         /// If HKStatisticsOptionSeparateBySource is not specified, then this will always be nil.
-        #[method_id(@__retain_semantics Other maximumQuantityForSource:)]
+        #[method_id(@__method_family Other maximumQuantityForSource:)]
         pub unsafe fn maximumQuantityForSource(
             &self,
             source: &HKSource,
@@ -138,14 +138,14 @@ extern_methods!(
 
         #[cfg(feature = "HKQuantity")]
         /// Returns the maximum quantity in the time period represented by the receiver.
-        #[method_id(@__retain_semantics Other maximumQuantity)]
+        #[method_id(@__method_family Other maximumQuantity)]
         pub unsafe fn maximumQuantity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         /// Returns the most recent quantity for the given source in the time period represented by the receiver.
         ///
         /// If HKStatisticsOptionSeparateBySource is not specified, then this will always be nil.
-        #[method_id(@__retain_semantics Other mostRecentQuantityForSource:)]
+        #[method_id(@__method_family Other mostRecentQuantityForSource:)]
         pub unsafe fn mostRecentQuantityForSource(
             &self,
             source: &HKSource,
@@ -153,7 +153,7 @@ extern_methods!(
 
         #[cfg(feature = "HKQuantity")]
         /// Returns the most recent quantity in the time period represented by the receiver.
-        #[method_id(@__retain_semantics Other mostRecentQuantity)]
+        #[method_id(@__method_family Other mostRecentQuantity)]
         pub unsafe fn mostRecentQuantity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKSource")]
@@ -161,21 +161,21 @@ extern_methods!(
         /// represented by the receiver.
         ///
         /// If HKStatisticsOptionSeparateBySource is not specified, then this will always be nil.
-        #[method_id(@__retain_semantics Other mostRecentQuantityDateIntervalForSource:)]
+        #[method_id(@__method_family Other mostRecentQuantityDateIntervalForSource:)]
         pub unsafe fn mostRecentQuantityDateIntervalForSource(
             &self,
             source: &HKSource,
         ) -> Option<Retained<NSDateInterval>>;
 
         /// Returns the date interval of the most recent quantity in the time period represented by the receiver.
-        #[method_id(@__retain_semantics Other mostRecentQuantityDateInterval)]
+        #[method_id(@__method_family Other mostRecentQuantityDateInterval)]
         pub unsafe fn mostRecentQuantityDateInterval(&self) -> Option<Retained<NSDateInterval>>;
 
         #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         /// Returns the sum quantity for the given source in the time period represented by the receiver.
         ///
         /// If HKStatisticsOptionSeparateBySource is not specified, then this will always be nil.
-        #[method_id(@__retain_semantics Other sumQuantityForSource:)]
+        #[method_id(@__method_family Other sumQuantityForSource:)]
         pub unsafe fn sumQuantityForSource(
             &self,
             source: &HKSource,
@@ -183,7 +183,7 @@ extern_methods!(
 
         #[cfg(feature = "HKQuantity")]
         /// Returns the sum of quantities in the time period represented by the receiver.
-        #[method_id(@__retain_semantics Other sumQuantity)]
+        #[method_id(@__method_family Other sumQuantity)]
         pub unsafe fn sumQuantity(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(feature = "HKQuantity")]
@@ -195,14 +195,14 @@ extern_methods!(
         /// Total duration, as a time-unit compatible quantity, covered by the samples represented by these statistics.
         ///
         /// Only present if HKStatisticsOptionDuration is is specified.
-        #[method_id(@__retain_semantics Other duration)]
+        #[method_id(@__method_family Other duration)]
         pub unsafe fn duration(&self) -> Option<Retained<HKQuantity>>;
 
         #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         /// Returns the duration, as a time-unit compatible quantity, for the given source in the time period represented by the receiver.
         ///
         /// If HKStatisticsOptionSeparateBySource is not specified, then this will always be nil.
-        #[method_id(@__retain_semantics Other durationForSource:)]
+        #[method_id(@__method_family Other durationForSource:)]
         pub unsafe fn durationForSource(&self, source: &HKSource) -> Option<Retained<HKQuantity>>;
     }
 );
@@ -210,7 +210,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl HKStatistics {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

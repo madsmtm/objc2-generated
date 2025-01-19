@@ -38,7 +38,7 @@ extern_methods!(
         ///
         /// Returns: A new compare layer.
         #[deprecated]
-        #[method_id(@__retain_semantics Other layerWithOperation:)]
+        #[method_id(@__method_family Other layerWithOperation:)]
         pub unsafe fn layerWithOperation(operation: MLCComparisonOperation) -> Retained<Self>;
     }
 );
@@ -48,11 +48,11 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCComparisonLayer {
         #[deprecated]
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

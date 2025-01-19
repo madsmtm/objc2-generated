@@ -30,7 +30,7 @@ extern_methods!(
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSharingServicePickerToolbarItem {
         #[cfg(feature = "NSSharingService")]
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSSharingServicePickerToolbarItemDelegate>>>;
@@ -52,7 +52,7 @@ extern_methods!(
     unsafe impl NSSharingServicePickerToolbarItem {
         #[cfg(feature = "NSToolbar")]
         /// Initialize the toolbar item with an identifier which is a development language string used by the toolbar and its delegate for identification purposes.
-        #[method_id(@__retain_semantics Init initWithItemIdentifier:)]
+        #[method_id(@__method_family Init initWithItemIdentifier:)]
         pub unsafe fn initWithItemIdentifier(
             this: Allocated<Self>,
             item_identifier: &NSToolbarItemIdentifier,
@@ -64,10 +64,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSToolbarItem")]
     unsafe impl NSSharingServicePickerToolbarItem {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -83,7 +83,7 @@ extern_protocol!(
         /// They must conform to the
         /// <NSPasteboardWriting
         /// > protocol or be an NSItemProvider. (e.g. NSString, NSImage, NSURL, etc.).
-        #[method_id(@__retain_semantics Other itemsForSharingServicePickerToolbarItem:)]
+        #[method_id(@__method_family Other itemsForSharingServicePickerToolbarItem:)]
         unsafe fn itemsForSharingServicePickerToolbarItem(
             &self,
             picker_toolbar_item: &NSSharingServicePickerToolbarItem,

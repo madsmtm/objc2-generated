@@ -43,7 +43,7 @@ extern_methods!(
         ///
         /// The value of this property is an NSArray of NSNumbers interpreted as CMPersistentTrackIDs, one for each track in the
         /// group.
-        #[method_id(@__retain_semantics Other trackIDs)]
+        #[method_id(@__method_family Other trackIDs)]
         pub unsafe fn trackIDs(&self) -> Retained<NSArray<NSNumber>>;
     }
 );
@@ -51,10 +51,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAssetTrackGroup {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

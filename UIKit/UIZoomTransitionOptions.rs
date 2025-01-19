@@ -64,7 +64,7 @@ extern_methods!(
 
         #[cfg(feature = "UIColor")]
         /// Dimming color to apply to the content behind the zoomed in view. Set to nil to use the default.
-        #[method_id(@__retain_semantics Other dimmingColor)]
+        #[method_id(@__method_family Other dimmingColor)]
         pub unsafe fn dimmingColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
@@ -74,7 +74,7 @@ extern_methods!(
 
         #[cfg(all(feature = "UIBlurEffect", feature = "UIVisualEffect"))]
         /// Visual effect to apply to the content behind the zoomed in view. Defaults to nil.
-        #[method_id(@__retain_semantics Other dimmingVisualEffect)]
+        #[method_id(@__method_family Other dimmingVisualEffect)]
         pub unsafe fn dimmingVisualEffect(
             &self,
             mtm: MainThreadMarker,
@@ -90,10 +90,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIZoomTransitionOptions {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -128,10 +128,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIZoomTransitionInteractionContext {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -149,12 +149,12 @@ extern_methods!(
     unsafe impl UIZoomTransitionAlignmentRectContext {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// The transition's source view.
-        #[method_id(@__retain_semantics Other sourceView)]
+        #[method_id(@__method_family Other sourceView)]
         pub unsafe fn sourceView(&self, mtm: MainThreadMarker) -> Retained<UIView>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         /// The zoomed view controller.
-        #[method_id(@__retain_semantics Other zoomedViewController)]
+        #[method_id(@__method_family Other zoomedViewController)]
         pub unsafe fn zoomedViewController(
             &self,
             mtm: MainThreadMarker,
@@ -165,10 +165,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIZoomTransitionAlignmentRectContext {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

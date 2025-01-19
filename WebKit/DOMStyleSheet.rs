@@ -31,7 +31,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMStyleSheet {
         #[deprecated]
-        #[method_id(@__retain_semantics Other type)]
+        #[method_id(@__method_family Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         #[deprecated]
@@ -45,24 +45,24 @@ extern_methods!(
 
         #[cfg(feature = "DOMNode")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other ownerNode)]
+        #[method_id(@__method_family Other ownerNode)]
         pub unsafe fn ownerNode(&self) -> Option<Retained<DOMNode>>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other parentStyleSheet)]
+        #[method_id(@__method_family Other parentStyleSheet)]
         pub unsafe fn parentStyleSheet(&self) -> Option<Retained<DOMStyleSheet>>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other href)]
+        #[method_id(@__method_family Other href)]
         pub unsafe fn href(&self) -> Retained<NSString>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[cfg(feature = "DOMMediaList")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other media)]
+        #[method_id(@__method_family Other media)]
         pub unsafe fn media(&self) -> Option<Retained<DOMMediaList>>;
     }
 );
@@ -72,7 +72,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMStyleSheet {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -81,7 +81,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMStyleSheet {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

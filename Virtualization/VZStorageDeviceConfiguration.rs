@@ -35,17 +35,17 @@ unsafe impl NSObjectProtocol for VZStorageDeviceConfiguration {}
 
 extern_methods!(
     unsafe impl VZStorageDeviceConfiguration {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZStorageDeviceAttachment")]
         /// Storage device attachment. Defines what local resource is exposed to the virtual machine as a disk.
         ///
         /// See: VZDiskImageStorageDeviceAttachment
-        #[method_id(@__retain_semantics Other attachment)]
+        #[method_id(@__method_family Other attachment)]
         pub unsafe fn attachment(&self) -> Retained<VZStorageDeviceAttachment>;
     }
 );

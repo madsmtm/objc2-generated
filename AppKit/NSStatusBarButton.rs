@@ -159,7 +159,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(@__retain_semantics Other buttonWithTitle:image:target:action:)]
+        #[method_id(@__method_family Other buttonWithTitle:image:target:action:)]
         pub unsafe fn buttonWithTitle_image_target_action(
             title: &NSString,
             image: &NSImage,
@@ -177,7 +177,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(@__retain_semantics Other buttonWithTitle:target:action:)]
+        #[method_id(@__method_family Other buttonWithTitle:target:action:)]
         pub unsafe fn buttonWithTitle_target_action(
             title: &NSString,
             target: Option<&AnyObject>,
@@ -195,7 +195,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(@__retain_semantics Other buttonWithImage:target:action:)]
+        #[method_id(@__method_family Other buttonWithImage:target:action:)]
         pub unsafe fn buttonWithImage_target_action(
             image: &NSImage,
             target: Option<&AnyObject>,
@@ -212,7 +212,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(@__retain_semantics Other checkboxWithTitle:target:action:)]
+        #[method_id(@__method_family Other checkboxWithTitle:target:action:)]
         pub unsafe fn checkboxWithTitle_target_action(
             title: &NSString,
             target: Option<&AnyObject>,
@@ -229,7 +229,7 @@ extern_methods!(
         /// Parameter `action`: The action message sent by the control.
         ///
         /// Returns: An initialized button object.
-        #[method_id(@__retain_semantics Other radioButtonWithTitle:target:action:)]
+        #[method_id(@__method_family Other radioButtonWithTitle:target:action:)]
         pub unsafe fn radioButtonWithTitle_target_action(
             title: &NSString,
             target: Option<&AnyObject>,
@@ -248,10 +248,10 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSStatusBarButton {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -268,7 +268,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSStatusBarButton {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -282,7 +282,7 @@ extern_methods!(
         feature = "NSView"
     ))]
     unsafe impl NSStatusBarButton {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

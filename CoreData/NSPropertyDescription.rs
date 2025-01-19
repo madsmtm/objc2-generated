@@ -27,10 +27,10 @@ unsafe impl NSObjectProtocol for NSPropertyDescription {}
 extern_methods!(
     unsafe impl NSPropertyDescription {
         #[cfg(feature = "NSEntityDescription")]
-        #[method_id(@__retain_semantics Other entity)]
+        #[method_id(@__method_family Other entity)]
         pub unsafe fn entity(&self) -> Retained<NSEntityDescription>;
 
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
@@ -51,10 +51,10 @@ extern_methods!(
         #[method(setTransient:)]
         pub unsafe fn setTransient(&self, transient: bool);
 
-        #[method_id(@__retain_semantics Other validationPredicates)]
+        #[method_id(@__method_family Other validationPredicates)]
         pub unsafe fn validationPredicates(&self) -> Retained<NSArray<NSPredicate>>;
 
-        #[method_id(@__retain_semantics Other validationWarnings)]
+        #[method_id(@__method_family Other validationWarnings)]
         pub unsafe fn validationWarnings(&self) -> Retained<NSArray>;
 
         #[method(setValidationPredicates:withValidationWarnings:)]
@@ -64,7 +64,7 @@ extern_methods!(
             validation_warnings: Option<&NSArray<NSString>>,
         );
 
-        #[method_id(@__retain_semantics Other userInfo)]
+        #[method_id(@__method_family Other userInfo)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
@@ -80,10 +80,10 @@ extern_methods!(
         #[method(setIndexed:)]
         pub unsafe fn setIndexed(&self, indexed: bool);
 
-        #[method_id(@__retain_semantics Other versionHash)]
+        #[method_id(@__method_family Other versionHash)]
         pub unsafe fn versionHash(&self) -> Retained<NSData>;
 
-        #[method_id(@__retain_semantics Other versionHashModifier)]
+        #[method_id(@__method_family Other versionHashModifier)]
         pub unsafe fn versionHashModifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`versionHashModifier`][Self::versionHashModifier].
@@ -106,7 +106,7 @@ extern_methods!(
         #[method(setStoredInExternalRecord:)]
         pub unsafe fn setStoredInExternalRecord(&self, stored_in_external_record: bool);
 
-        #[method_id(@__retain_semantics Other renamingIdentifier)]
+        #[method_id(@__method_family Other renamingIdentifier)]
         pub unsafe fn renamingIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`renamingIdentifier`][Self::renamingIdentifier].
@@ -118,10 +118,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPropertyDescription {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

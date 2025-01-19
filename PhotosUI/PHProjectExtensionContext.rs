@@ -26,12 +26,12 @@ extern_methods!(
     unsafe impl PHProjectExtensionContext {
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other photoLibrary)]
+        #[method_id(@__method_family Other photoLibrary)]
         pub unsafe fn photoLibrary(&self) -> Retained<PHPhotoLibrary>;
 
         #[cfg(feature = "objc2-photos")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other project)]
+        #[method_id(@__method_family Other project)]
         pub unsafe fn project(&self) -> Retained<PHProject>;
 
         #[cfg(feature = "objc2-photos")]
@@ -58,7 +58,7 @@ extern_methods!(
         /// updatedProjectInfo is the updated project info, if the update was cancelled it might be nil.
         ///
         /// Returns: NSProgress which can be observed, if it's canceled the original project info is returned.
-        #[method_id(@__retain_semantics Other updatedProjectInfoFromProjectInfo:completion:)]
+        #[method_id(@__method_family Other updatedProjectInfoFromProjectInfo:completion:)]
         pub unsafe fn updatedProjectInfoFromProjectInfo_completion(
             &self,
             existing_project_info: Option<&PHProjectInfo>,
@@ -70,10 +70,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl PHProjectExtensionContext {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

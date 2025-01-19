@@ -56,7 +56,7 @@ extern_methods!(
         ///
         /// Returns: A WebHistory object.
         #[deprecated]
-        #[method_id(@__retain_semantics Other optionalSharedHistory)]
+        #[method_id(@__method_family Other optionalSharedHistory)]
         pub unsafe fn optionalSharedHistory() -> Option<Retained<WebHistory>>;
 
         /// Parameter `history`: The history to use for the global WebHistory.
@@ -83,11 +83,11 @@ extern_methods!(
         /// An array of NSCalendarDates, each one representing a unique day that contains one
         /// or more history items, ordered from most recent to oldest.
         #[deprecated]
-        #[method_id(@__retain_semantics Other orderedLastVisitedDays)]
+        #[method_id(@__method_family Other orderedLastVisitedDays)]
         pub unsafe fn orderedLastVisitedDays(&self) -> Retained<NSArray>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other orderedItemsLastVisitedOnDay:)]
+        #[method_id(@__method_family Other orderedItemsLastVisitedOnDay:)]
         pub unsafe fn orderedItemsLastVisitedOnDay(
             &self,
             calendar_date: Option<&NSCalendarDate>,
@@ -100,7 +100,7 @@ extern_methods!(
         ///
         /// Returns: Returns an item matching the URL
         #[deprecated]
-        #[method_id(@__retain_semantics Other itemForURL:)]
+        #[method_id(@__method_family Other itemForURL:)]
         pub unsafe fn itemForURL(&self, url: Option<&NSURL>) -> Option<Retained<WebHistoryItem>>;
 
         /// The maximum number of items that will be stored by the WebHistory.
@@ -128,10 +128,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WebHistory {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

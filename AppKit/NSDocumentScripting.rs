@@ -11,32 +11,32 @@ extern_methods!(
     /// NSScripting
     #[cfg(feature = "NSDocument")]
     unsafe impl NSDocument {
-        #[method_id(@__retain_semantics Other lastComponentOfFileName)]
+        #[method_id(@__method_family Other lastComponentOfFileName)]
         pub unsafe fn lastComponentOfFileName(&self) -> Retained<NSString>;
 
         /// Setter for [`lastComponentOfFileName`][Self::lastComponentOfFileName].
         #[method(setLastComponentOfFileName:)]
         pub unsafe fn setLastComponentOfFileName(&self, last_component_of_file_name: &NSString);
 
-        #[method_id(@__retain_semantics Other handleSaveScriptCommand:)]
+        #[method_id(@__method_family Other handleSaveScriptCommand:)]
         pub unsafe fn handleSaveScriptCommand(
             &self,
             command: &NSScriptCommand,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__retain_semantics Other handleCloseScriptCommand:)]
+        #[method_id(@__method_family Other handleCloseScriptCommand:)]
         pub unsafe fn handleCloseScriptCommand(
             &self,
             command: &NSCloseCommand,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__retain_semantics Other handlePrintScriptCommand:)]
+        #[method_id(@__method_family Other handlePrintScriptCommand:)]
         pub unsafe fn handlePrintScriptCommand(
             &self,
             command: &NSScriptCommand,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__retain_semantics Other objectSpecifier)]
+        #[method_id(@__method_family Other objectSpecifier)]
         pub unsafe fn objectSpecifier(&self) -> Retained<NSScriptObjectSpecifier>;
     }
 );

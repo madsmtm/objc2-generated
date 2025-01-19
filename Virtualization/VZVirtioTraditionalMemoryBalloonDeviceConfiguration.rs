@@ -35,7 +35,7 @@ unsafe impl NSObjectProtocol for VZVirtioTraditionalMemoryBalloonDeviceConfigura
 extern_methods!(
     #[cfg(feature = "VZMemoryBalloonDeviceConfiguration")]
     unsafe impl VZVirtioTraditionalMemoryBalloonDeviceConfiguration {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -44,7 +44,7 @@ extern_methods!(
     /// Methods declared on superclass `VZMemoryBalloonDeviceConfiguration`
     #[cfg(feature = "VZMemoryBalloonDeviceConfiguration")]
     unsafe impl VZVirtioTraditionalMemoryBalloonDeviceConfiguration {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

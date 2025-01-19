@@ -32,7 +32,7 @@ extern_methods!(
         /// before the application is launched. Once the application is launched, this restriction is removed.
         ///
         /// Returns: The result is `nil` if downloads are not restricted. It returns a valid number with the remaining available download size otherwise.
-        #[method_id(@__retain_semantics Other restrictedDownloadSizeRemaining)]
+        #[method_id(@__method_family Other restrictedDownloadSizeRemaining)]
         pub unsafe fn restrictedDownloadSizeRemaining(&self) -> Option<Retained<NSNumber>>;
 
         /// The number of bytes remaining that can be scheduled if the total download size of optional assets is restricted.
@@ -42,14 +42,14 @@ extern_methods!(
         /// before the application is launched. Once the application is launched, this restriction is removed.
         ///
         /// Returns: The result is `nil` if downloads are not restricted. It returns a valid number with the remaining available download size otherwise.
-        #[method_id(@__retain_semantics Other restrictedEssentialDownloadSizeRemaining)]
+        #[method_id(@__method_family Other restrictedEssentialDownloadSizeRemaining)]
         pub unsafe fn restrictedEssentialDownloadSizeRemaining(&self)
             -> Option<Retained<NSNumber>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

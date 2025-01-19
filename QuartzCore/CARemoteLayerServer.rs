@@ -16,7 +16,7 @@ unsafe impl NSObjectProtocol for CARemoteLayerServer {}
 
 extern_methods!(
     unsafe impl CARemoteLayerServer {
-        #[method_id(@__retain_semantics Other sharedServer)]
+        #[method_id(@__method_family Other sharedServer)]
         pub unsafe fn sharedServer() -> Retained<CARemoteLayerServer>;
 
         #[cfg(feature = "libc")]
@@ -28,10 +28,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CARemoteLayerServer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -40,7 +40,7 @@ extern_methods!(
     /// CARemoteLayerServer
     #[cfg(feature = "CALayer")]
     unsafe impl CALayer {
-        #[method_id(@__retain_semantics Other layerWithRemoteClientId:)]
+        #[method_id(@__method_family Other layerWithRemoteClientId:)]
         pub unsafe fn layerWithRemoteClientId(client_id: u32) -> Retained<CALayer>;
     }
 );

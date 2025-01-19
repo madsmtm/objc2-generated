@@ -51,17 +51,17 @@ unsafe impl NSUserInterfaceItemIdentification for NSTableColumn {}
 extern_methods!(
     unsafe impl NSTableColumn {
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
-        #[method_id(@__retain_semantics Init initWithIdentifier:)]
+        #[method_id(@__method_family Init initWithIdentifier:)]
         pub unsafe fn initWithIdentifier(
             this: Allocated<Self>,
             identifier: &NSUserInterfaceItemIdentifier,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSUserInterfaceItemIdentifier>;
 
         #[cfg(feature = "NSUserInterfaceItemIdentification")]
@@ -75,7 +75,7 @@ extern_methods!(
             feature = "NSTableView",
             feature = "NSView"
         ))]
-        #[method_id(@__retain_semantics Other tableView)]
+        #[method_id(@__method_family Other tableView)]
         pub unsafe fn tableView(&self) -> Option<Retained<NSTableView>>;
 
         #[cfg(all(
@@ -116,7 +116,7 @@ extern_methods!(
         #[method(setMaxWidth:)]
         pub unsafe fn setMaxWidth(&self, max_width: CGFloat);
 
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
@@ -129,7 +129,7 @@ extern_methods!(
             feature = "NSTableHeaderCell",
             feature = "NSTextFieldCell"
         ))]
-        #[method_id(@__retain_semantics Other headerCell)]
+        #[method_id(@__method_family Other headerCell)]
         pub unsafe fn headerCell(&self) -> Retained<NSTableHeaderCell>;
 
         #[cfg(all(
@@ -152,7 +152,7 @@ extern_methods!(
         #[method(sizeToFit)]
         pub unsafe fn sizeToFit(&self);
 
-        #[method_id(@__retain_semantics Other sortDescriptorPrototype)]
+        #[method_id(@__method_family Other sortDescriptorPrototype)]
         pub unsafe fn sortDescriptorPrototype(&self) -> Option<Retained<NSSortDescriptor>>;
 
         /// Setter for [`sortDescriptorPrototype`][Self::sortDescriptorPrototype].
@@ -169,7 +169,7 @@ extern_methods!(
         #[method(setResizingMask:)]
         pub unsafe fn setResizingMask(&self, resizing_mask: NSTableColumnResizingOptions);
 
-        #[method_id(@__retain_semantics Other headerToolTip)]
+        #[method_id(@__method_family Other headerToolTip)]
         pub unsafe fn headerToolTip(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`headerToolTip`][Self::headerToolTip].
@@ -188,10 +188,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSTableColumn {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -207,14 +207,14 @@ extern_methods!(
         #[method(isResizable)]
         pub unsafe fn isResizable(&self) -> bool;
 
-        #[method_id(@__retain_semantics Other dataCell)]
+        #[method_id(@__method_family Other dataCell)]
         pub unsafe fn dataCell(&self) -> Retained<AnyObject>;
 
         /// Setter for [`dataCell`][Self::dataCell].
         #[method(setDataCell:)]
         pub unsafe fn setDataCell(&self, data_cell: &AnyObject);
 
-        #[method_id(@__retain_semantics Other dataCellForRow:)]
+        #[method_id(@__method_family Other dataCellForRow:)]
         pub unsafe fn dataCellForRow(&self, row: NSInteger) -> Retained<AnyObject>;
     }
 );

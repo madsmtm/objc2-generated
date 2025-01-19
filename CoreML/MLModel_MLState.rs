@@ -31,7 +31,7 @@ extern_methods!(
         /// stateMultiArray[0] = 2.0
         /// }
         /// ```
-        #[method_id(@__retain_semantics New newState)]
+        #[method_id(@__method_family New newState)]
         pub unsafe fn newState(&self) -> Retained<MLState>;
 
         #[cfg(all(feature = "MLFeatureProvider", feature = "MLState"))]
@@ -48,7 +48,7 @@ extern_methods!(
         /// - inputFeatures: The input features as declared in the model description.
         /// - state: The state object created by `newState()` method.
         /// - error: The output parameter to receive an error information on failure.
-        #[method_id(@__retain_semantics Other predictionFromFeatures:usingState:error:_)]
+        #[method_id(@__method_family Other predictionFromFeatures:usingState:error:_)]
         pub unsafe fn predictionFromFeatures_usingState_error(
             &self,
             input_features: &ProtocolObject<dyn MLFeatureProvider>,
@@ -74,7 +74,7 @@ extern_methods!(
         /// - state: The state object created by `newState()` method.
         /// - options: The prediction options.
         /// - error: The output parameter to receive an error information on failure.
-        #[method_id(@__retain_semantics Other predictionFromFeatures:usingState:options:error:_)]
+        #[method_id(@__method_family Other predictionFromFeatures:usingState:options:error:_)]
         pub unsafe fn predictionFromFeatures_usingState_options_error(
             &self,
             input_features: &ProtocolObject<dyn MLFeatureProvider>,

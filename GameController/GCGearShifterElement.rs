@@ -32,7 +32,7 @@ extern_methods!(
         /// `-1`corresponds to the "reverse gear".
         /// A position of
         /// `0`corresponds to the neutral gear.
-        #[method_id(@__retain_semantics Other patternInput)]
+        #[method_id(@__method_family Other patternInput)]
         pub unsafe fn patternInput(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GCSwitchPositionInput>>>;
@@ -41,7 +41,7 @@ extern_methods!(
         /// Get the input reporting changes to the sequential gear shifter.  If this
         /// property is
         /// `nil,`the gear shifter is not a sequential gear shifter.
-        #[method_id(@__retain_semantics Other sequentialInput)]
+        #[method_id(@__method_family Other sequentialInput)]
         pub unsafe fn sequentialInput(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn GCRelativeInput>>>;
@@ -51,10 +51,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GCGearShifterElement {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -115,7 +115,7 @@ extern_methods!(
     #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
     unsafe impl ARCoachingOverlayView {
         /// Specifies the delegate used for callbacks
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn ARCoachingOverlayViewDelegate>>>;
@@ -134,7 +134,7 @@ extern_methods!(
         ///
         /// This property can be used to set the `session` when loading from a storyboard. Setting this property at runtime will also
         /// set the `session` property.
-        #[method_id(@__retain_semantics Other sessionProvider)]
+        #[method_id(@__method_family Other sessionProvider)]
         pub unsafe fn sessionProvider(&self) -> Option<Retained<NSObject>>;
 
         #[cfg(feature = "ARSession")]
@@ -145,7 +145,7 @@ extern_methods!(
 
         #[cfg(feature = "ARSession")]
         /// The session that the view uses to update coaching
-        #[method_id(@__retain_semantics Other session)]
+        #[method_id(@__method_family Other session)]
         pub unsafe fn session(&self) -> Option<Retained<ARSession>>;
 
         #[cfg(feature = "ARSession")]
@@ -208,11 +208,11 @@ extern_methods!(
     #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
     unsafe impl ARCoachingOverlayView {
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-foundation")]
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -225,10 +225,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "objc2", feature = "objc2-ui-kit"))]
     unsafe impl ARCoachingOverlayView {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

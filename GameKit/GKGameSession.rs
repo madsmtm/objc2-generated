@@ -60,30 +60,30 @@ unsafe impl NSObjectProtocol for GKGameSession {}
 extern_methods!(
     unsafe impl GKGameSession {
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKCloudPlayer"))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method_id(@__retain_semantics Other owner)]
+        #[method_id(@__method_family Other owner)]
         pub unsafe fn owner(&self) -> Retained<GKCloudPlayer>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKCloudPlayer"))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method_id(@__retain_semantics Other players)]
+        #[method_id(@__method_family Other players)]
         pub unsafe fn players(&self) -> Retained<NSArray<GKCloudPlayer>>;
 
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method_id(@__retain_semantics Other lastModifiedDate)]
+        #[method_id(@__method_family Other lastModifiedDate)]
         pub unsafe fn lastModifiedDate(&self) -> Retained<NSDate>;
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKCloudPlayer"))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method_id(@__retain_semantics Other lastModifiedPlayer)]
+        #[method_id(@__method_family Other lastModifiedPlayer)]
         pub unsafe fn lastModifiedPlayer(&self) -> Retained<GKCloudPlayer>;
 
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
@@ -92,7 +92,7 @@ extern_methods!(
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKCloudPlayer"))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method_id(@__retain_semantics Other badgedPlayers)]
+        #[method_id(@__method_family Other badgedPlayers)]
         pub unsafe fn badgedPlayers(&self) -> Retained<NSArray<GKCloudPlayer>>;
 
         #[cfg(feature = "block2")]
@@ -165,7 +165,7 @@ extern_methods!(
 
         #[cfg(all(feature = "GKBasePlayer", feature = "GKCloudPlayer"))]
         #[deprecated = "For real-time matches, use GKMatchmakerViewController. For turn-based matches, use GKTurnBasedMatchmakerViewController."]
-        #[method_id(@__retain_semantics Other playersWithConnectionState:)]
+        #[method_id(@__method_family Other playersWithConnectionState:)]
         pub unsafe fn playersWithConnectionState(
             &self,
             state: GKConnectionState,
@@ -216,10 +216,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl GKGameSession {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

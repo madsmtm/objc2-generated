@@ -45,14 +45,14 @@ unsafe impl NSSecureCoding for SCNTimingFunction {}
 extern_methods!(
     unsafe impl SCNTimingFunction {
         #[cfg(feature = "SceneKitTypes")]
-        #[method_id(@__retain_semantics Other functionWithTimingMode:)]
+        #[method_id(@__method_family Other functionWithTimingMode:)]
         pub unsafe fn functionWithTimingMode(
             timing_mode: SCNActionTimingMode,
         ) -> Retained<SCNTimingFunction>;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
-        #[method_id(@__retain_semantics Other functionWithCAMediaTimingFunction:)]
+        #[method_id(@__method_family Other functionWithCAMediaTimingFunction:)]
         pub unsafe fn functionWithCAMediaTimingFunction(
             ca_timing_function: &CAMediaTimingFunction,
         ) -> Retained<SCNTimingFunction>;
@@ -62,10 +62,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNTimingFunction {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -138,7 +138,7 @@ extern_protocol!(
         unsafe fn removeAnimationForKey_blendOutDuration(&self, key: &NSString, duration: CGFloat);
 
         /// Returns an array containing the keys of all animations currently attached to the receiver.
-        #[method_id(@__retain_semantics Other animationKeys)]
+        #[method_id(@__method_family Other animationKeys)]
         unsafe fn animationKeys(&self) -> Retained<NSArray<NSString>>;
 
         /// Returns the animation player with the given identifier
@@ -146,7 +146,7 @@ extern_protocol!(
         /// Parameter `key`: The identifier for the animation player to retrieve.
         ///
         /// This will return nil if no such animation player exists.
-        #[method_id(@__retain_semantics Other animationPlayerForKey:)]
+        #[method_id(@__method_family Other animationPlayerForKey:)]
         unsafe fn animationPlayerForKey(
             &self,
             key: &NSString,
@@ -171,7 +171,7 @@ extern_protocol!(
         /// This will return nil if no such animation exists.
         /// Attempting to modify any properties of the returned object will result in undefined behavior.
         #[deprecated]
-        #[method_id(@__retain_semantics Other animationForKey:)]
+        #[method_id(@__method_family Other animationForKey:)]
         unsafe fn animationForKey(&self, key: &NSString) -> Option<Retained<CAAnimation>>;
 
         /// Pause the animation with the given identifier.
@@ -236,14 +236,14 @@ extern_methods!(
         ///
         ///
         /// Parameter `animationUrl`: The url to load.
-        #[method_id(@__retain_semantics Other animationWithContentsOfURL:)]
+        #[method_id(@__method_family Other animationWithContentsOfURL:)]
         pub unsafe fn animationWithContentsOfURL(animation_url: &NSURL) -> Retained<SCNAnimation>;
 
         /// Loads and returns the animation with the specified name in the current application bundle.
         ///
         ///
         /// Parameter `animationName`: The name of the animation to load.
-        #[method_id(@__retain_semantics Other animationNamed:)]
+        #[method_id(@__method_family Other animationNamed:)]
         pub unsafe fn animationNamed(animation_name: &NSString) -> Retained<SCNAnimation>;
 
         #[cfg(feature = "objc2-quartz-core")]
@@ -254,7 +254,7 @@ extern_methods!(
         /// Parameter `caAnimation`: The CAAnimation to initialize from.
         ///
         /// Only CABasicAnimation, CAKeyframeAnimation and CAAnimationGroup are currently supported.
-        #[method_id(@__retain_semantics Other animationWithCAAnimation:)]
+        #[method_id(@__method_family Other animationWithCAAnimation:)]
         pub unsafe fn animationWithCAAnimation(
             ca_animation: &CAAnimation,
         ) -> Retained<SCNAnimation>;
@@ -274,7 +274,7 @@ extern_methods!(
         /// -name>.property1.property2.field    (field is optional,
         /// <node
         /// -name> is the name of the targeted node).
-        #[method_id(@__retain_semantics Other keyPath)]
+        #[method_id(@__method_family Other keyPath)]
         pub unsafe fn keyPath(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`keyPath`][Self::keyPath].
@@ -282,7 +282,7 @@ extern_methods!(
         pub unsafe fn setKeyPath(&self, key_path: Option<&NSString>);
 
         /// A timing function defining the pacing of the animation. Defaults to nil indicating linear pacing.
-        #[method_id(@__retain_semantics Other timingFunction)]
+        #[method_id(@__method_family Other timingFunction)]
         pub unsafe fn timingFunction(&self) -> Retained<SCNTimingFunction>;
 
         /// Setter for [`timingFunction`][Self::timingFunction].
@@ -417,7 +417,7 @@ extern_methods!(
         /// Specifies the animation events attached to the receiver.
         ///
         /// See: SCNAnimationEvent
-        #[method_id(@__retain_semantics Other animationEvents)]
+        #[method_id(@__method_family Other animationEvents)]
         pub unsafe fn animationEvents(&self) -> Option<Retained<NSArray<SCNAnimationEvent>>>;
 
         /// Setter for [`animationEvents`][Self::animationEvents].
@@ -456,10 +456,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNAnimation {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -492,13 +492,13 @@ extern_methods!(
         /// Initialize an animation player with an animation
         ///
         /// Parameter `animation`: The animation to play
-        #[method_id(@__retain_semantics Other animationPlayerWithAnimation:)]
+        #[method_id(@__method_family Other animationPlayerWithAnimation:)]
         pub unsafe fn animationPlayerWithAnimation(
             animation: &SCNAnimation,
         ) -> Retained<SCNAnimationPlayer>;
 
         /// The played animation
-        #[method_id(@__retain_semantics Other animation)]
+        #[method_id(@__method_family Other animation)]
         pub unsafe fn animation(&self) -> Retained<SCNAnimation>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -546,10 +546,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNAnimationPlayer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -583,7 +583,7 @@ extern_methods!(
         /// Parameter `eventBlock`: The block to call when the event is triggered.
         ///
         /// "time" is relative to animation duration and therefor it has to be a value in the range [0,1].
-        #[method_id(@__retain_semantics Other animationEventWithKeyTime:block:)]
+        #[method_id(@__method_family Other animationEventWithKeyTime:block:)]
         pub unsafe fn animationEventWithKeyTime_block(
             time: CGFloat,
             event_block: SCNAnimationEventBlock,
@@ -594,10 +594,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNAnimationEvent {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

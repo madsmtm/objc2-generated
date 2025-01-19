@@ -111,7 +111,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKMapView {
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn MKMapViewDelegate>>>;
 
         /// This is a [weak property][objc2::topics::weak_property].
@@ -131,7 +131,7 @@ extern_methods!(
         pub unsafe fn setMapType(&self, map_type: MKMapType);
 
         #[cfg(feature = "MKMapConfiguration")]
-        #[method_id(@__retain_semantics Other preferredConfiguration)]
+        #[method_id(@__method_family Other preferredConfiguration)]
         pub unsafe fn preferredConfiguration(&self) -> Retained<MKMapConfiguration>;
 
         #[cfg(feature = "MKMapConfiguration")]
@@ -211,7 +211,7 @@ extern_methods!(
         ) -> MKMapRect;
 
         #[cfg(feature = "MKMapCamera")]
-        #[method_id(@__retain_semantics Other camera)]
+        #[method_id(@__method_family Other camera)]
         pub unsafe fn camera(&self) -> Retained<MKMapCamera>;
 
         #[cfg(feature = "MKMapCamera")]
@@ -224,7 +224,7 @@ extern_methods!(
         pub unsafe fn setCamera_animated(&self, camera: &MKMapCamera, animated: bool);
 
         #[cfg(feature = "MKMapCameraZoomRange")]
-        #[method_id(@__retain_semantics Other cameraZoomRange)]
+        #[method_id(@__method_family Other cameraZoomRange)]
         pub unsafe fn cameraZoomRange(&self) -> Retained<MKMapCameraZoomRange>;
 
         #[cfg(feature = "MKMapCameraZoomRange")]
@@ -241,7 +241,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "MKMapCameraBoundary")]
-        #[method_id(@__retain_semantics Other cameraBoundary)]
+        #[method_id(@__method_family Other cameraBoundary)]
         pub unsafe fn cameraBoundary(&self) -> Option<Retained<MKMapCameraBoundary>>;
 
         #[cfg(feature = "MKMapCameraBoundary")]
@@ -371,7 +371,7 @@ extern_methods!(
 
         #[cfg(feature = "MKPointOfInterestFilter")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other pointOfInterestFilter)]
+        #[method_id(@__method_family Other pointOfInterestFilter)]
         pub unsafe fn pointOfInterestFilter(&self) -> Option<Retained<MKPointOfInterestFilter>>;
 
         #[cfg(feature = "MKPointOfInterestFilter")]
@@ -418,7 +418,7 @@ extern_methods!(
         pub unsafe fn setShowsUserLocation(&self, shows_user_location: bool);
 
         #[cfg(feature = "MKUserLocation")]
-        #[method_id(@__retain_semantics Other userLocation)]
+        #[method_id(@__method_family Other userLocation)]
         pub unsafe fn userLocation(&self) -> Retained<MKUserLocation>;
 
         #[method(userTrackingMode)]
@@ -457,32 +457,32 @@ extern_methods!(
         );
 
         #[cfg(feature = "MKAnnotation")]
-        #[method_id(@__retain_semantics Other annotations)]
+        #[method_id(@__method_family Other annotations)]
         pub unsafe fn annotations(&self) -> Retained<NSArray<ProtocolObject<dyn MKAnnotation>>>;
 
         #[cfg(all(feature = "MKAnnotation", feature = "MKGeometry"))]
-        #[method_id(@__retain_semantics Other annotationsInMapRect:)]
+        #[method_id(@__method_family Other annotationsInMapRect:)]
         pub unsafe fn annotationsInMapRect(
             &self,
             map_rect: MKMapRect,
         ) -> Retained<NSSet<ProtocolObject<dyn MKAnnotation>>>;
 
         #[cfg(all(feature = "MKAnnotation", feature = "MKAnnotationView"))]
-        #[method_id(@__retain_semantics Other viewForAnnotation:)]
+        #[method_id(@__method_family Other viewForAnnotation:)]
         pub unsafe fn viewForAnnotation(
             &self,
             annotation: &ProtocolObject<dyn MKAnnotation>,
         ) -> Option<Retained<MKAnnotationView>>;
 
         #[cfg(feature = "MKAnnotationView")]
-        #[method_id(@__retain_semantics Other dequeueReusableAnnotationViewWithIdentifier:)]
+        #[method_id(@__method_family Other dequeueReusableAnnotationViewWithIdentifier:)]
         pub unsafe fn dequeueReusableAnnotationViewWithIdentifier(
             &self,
             identifier: &NSString,
         ) -> Option<Retained<MKAnnotationView>>;
 
         #[cfg(all(feature = "MKAnnotation", feature = "MKAnnotationView"))]
-        #[method_id(@__retain_semantics Other dequeueReusableAnnotationViewWithIdentifier:forAnnotation:)]
+        #[method_id(@__method_family Other dequeueReusableAnnotationViewWithIdentifier:forAnnotation:)]
         pub unsafe fn dequeueReusableAnnotationViewWithIdentifier_forAnnotation(
             &self,
             identifier: &NSString,
@@ -513,7 +513,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "MKAnnotation")]
-        #[method_id(@__retain_semantics Other selectedAnnotations)]
+        #[method_id(@__method_family Other selectedAnnotations)]
         pub unsafe fn selectedAnnotations(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn MKAnnotation>>>;
@@ -545,10 +545,10 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKMapView {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -561,7 +561,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKMapView {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -571,7 +571,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl MKMapView {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -639,11 +639,11 @@ extern_methods!(
         );
 
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
-        #[method_id(@__retain_semantics Other overlays)]
+        #[method_id(@__method_family Other overlays)]
         pub unsafe fn overlays(&self) -> Retained<NSArray<ProtocolObject<dyn MKOverlay>>>;
 
         #[cfg(all(feature = "MKAnnotation", feature = "MKOverlay"))]
-        #[method_id(@__retain_semantics Other overlaysInLevel:)]
+        #[method_id(@__method_family Other overlaysInLevel:)]
         pub unsafe fn overlaysInLevel(
             &self,
             level: MKOverlayLevel,
@@ -654,7 +654,7 @@ extern_methods!(
             feature = "MKOverlay",
             feature = "MKOverlayRenderer"
         ))]
-        #[method_id(@__retain_semantics Other rendererForOverlay:)]
+        #[method_id(@__method_family Other rendererForOverlay:)]
         pub unsafe fn rendererForOverlay(
             &self,
             overlay: &ProtocolObject<dyn MKOverlay>,
@@ -747,7 +747,7 @@ extern_protocol!(
         ))]
         #[cfg(target_os = "macos")]
         #[optional]
-        #[method_id(@__retain_semantics Other mapView:viewForAnnotation:)]
+        #[method_id(@__method_family Other mapView:viewForAnnotation:)]
         unsafe fn mapView_viewForAnnotation(
             &self,
             map_view: &MKMapView,
@@ -811,7 +811,7 @@ extern_protocol!(
         ))]
         #[cfg(target_os = "macos")]
         #[optional]
-        #[method_id(@__retain_semantics Other mapView:selectionAccessoryForAnnotation:)]
+        #[method_id(@__method_family Other mapView:selectionAccessoryForAnnotation:)]
         unsafe fn mapView_selectionAccessoryForAnnotation(
             &self,
             map_view: &MKMapView,
@@ -881,7 +881,7 @@ extern_protocol!(
         ))]
         #[cfg(target_os = "macos")]
         #[optional]
-        #[method_id(@__retain_semantics Other mapView:rendererForOverlay:)]
+        #[method_id(@__method_family Other mapView:rendererForOverlay:)]
         unsafe fn mapView_rendererForOverlay(
             &self,
             map_view: &MKMapView,
@@ -905,7 +905,7 @@ extern_protocol!(
         ))]
         #[cfg(target_os = "macos")]
         #[optional]
-        #[method_id(@__retain_semantics Other mapView:clusterAnnotationForMemberAnnotations:)]
+        #[method_id(@__method_family Other mapView:clusterAnnotationForMemberAnnotations:)]
         unsafe fn mapView_clusterAnnotationForMemberAnnotations(
             &self,
             map_view: &MKMapView,

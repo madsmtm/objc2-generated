@@ -10,10 +10,10 @@ extern_methods!(
     /// URLPreviews
     #[cfg(feature = "UIDragPreview")]
     unsafe impl UIDragPreview {
-        #[method_id(@__retain_semantics Other previewForURL:)]
+        #[method_id(@__method_family Other previewForURL:)]
         pub unsafe fn previewForURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other previewForURL:title:)]
+        #[method_id(@__method_family Other previewForURL:title:)]
         pub unsafe fn previewForURL_title(
             url: &NSURL,
             title: Option<&NSString>,
@@ -26,13 +26,13 @@ extern_methods!(
     /// URLPreviews
     #[cfg(all(feature = "UITargetedDragPreview", feature = "UITargetedPreview"))]
     unsafe impl UITargetedDragPreview {
-        #[method_id(@__retain_semantics Other previewForURL:target:)]
+        #[method_id(@__method_family Other previewForURL:target:)]
         pub unsafe fn previewForURL_target(
             url: &NSURL,
             target: &UIDragPreviewTarget,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other previewForURL:title:target:)]
+        #[method_id(@__method_family Other previewForURL:title:target:)]
         pub unsafe fn previewForURL_title_target(
             url: &NSURL,
             title: Option<&NSString>,

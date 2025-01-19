@@ -69,7 +69,7 @@ unsafe impl UITraitEnvironment for EKEventEditViewController {}
 extern_methods!(
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl EKEventEditViewController {
-        #[method_id(@__retain_semantics Other editViewDelegate)]
+        #[method_id(@__method_family Other editViewDelegate)]
         pub unsafe fn editViewDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn EKEventEditViewDelegate>>>;
@@ -86,7 +86,7 @@ extern_methods!(
         /// The event store to use to save events.
         ///
         /// You must set this before presenting the view controller.
-        #[method_id(@__retain_semantics Other eventStore)]
+        #[method_id(@__method_family Other eventStore)]
         pub unsafe fn eventStore(&self) -> Option<Retained<EKEventStore>>;
 
         #[cfg(feature = "objc2-event-kit")]
@@ -101,7 +101,7 @@ extern_methods!(
         /// it set to nil and a new event will be created for you. If you pass an event
         /// here and it does not belong to the event store (if set) an exception will be
         /// raised.
-        #[method_id(@__retain_semantics Other event)]
+        #[method_id(@__method_family Other event)]
         pub unsafe fn event(&self) -> Option<Retained<EKEvent>>;
 
         #[cfg(feature = "objc2-event-kit")]
@@ -123,27 +123,27 @@ extern_methods!(
     /// Methods declared on superclass `UINavigationController`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl EKEventEditViewController {
-        #[method_id(@__retain_semantics Init initWithNavigationBarClass:toolbarClass:)]
+        #[method_id(@__method_family Init initWithNavigationBarClass:toolbarClass:)]
         pub unsafe fn initWithNavigationBarClass_toolbarClass(
             this: Allocated<Self>,
             navigation_bar_class: Option<&AnyClass>,
             toolbar_class: Option<&AnyClass>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithRootViewController:)]
+        #[method_id(@__method_family Init initWithRootViewController:)]
         pub unsafe fn initWithRootViewController(
             this: Allocated<Self>,
             root_view_controller: &UIViewController,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        #[method_id(@__method_family Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             a_decoder: &NSCoder,
@@ -155,10 +155,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-ui-kit")]
     unsafe impl EKEventEditViewController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -201,7 +201,7 @@ extern_protocol!(
         /// we set the calendar to a default. If this is not implemented by the delegate, the controller
         /// will use the store's defaultCalendarForNewEvents.
         #[optional]
-        #[method_id(@__retain_semantics Other eventEditViewControllerDefaultCalendarForNewEvents:)]
+        #[method_id(@__method_family Other eventEditViewControllerDefaultCalendarForNewEvents:)]
         unsafe fn eventEditViewControllerDefaultCalendarForNewEvents(
             &self,
             controller: &EKEventEditViewController,

@@ -82,7 +82,7 @@ unsafe impl NSObjectProtocol for MTLIntersectionFunctionTableDescriptor {}
 extern_methods!(
     unsafe impl MTLIntersectionFunctionTableDescriptor {
         /// Create an autoreleased intersection function table descriptor
-        #[method_id(@__retain_semantics Other intersectionFunctionTableDescriptor)]
+        #[method_id(@__method_family Other intersectionFunctionTableDescriptor)]
         pub unsafe fn intersectionFunctionTableDescriptor(
         ) -> Retained<MTLIntersectionFunctionTableDescriptor>;
 
@@ -99,10 +99,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLIntersectionFunctionTableDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub fn new() -> Retained<Self>;
     }
 );

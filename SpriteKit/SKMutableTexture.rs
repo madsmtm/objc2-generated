@@ -47,11 +47,11 @@ extern_methods!(
         ///
         ///
         /// Parameter `size`: the dimension to use when creating the given texture.
-        #[method_id(@__retain_semantics Init initWithSize:)]
+        #[method_id(@__method_family Init initWithSize:)]
         pub unsafe fn initWithSize(this: Allocated<Self>, size: CGSize) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other mutableTextureWithSize:)]
+        #[method_id(@__method_family Other mutableTextureWithSize:)]
         pub unsafe fn mutableTextureWithSize(size: CGSize) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -61,7 +61,7 @@ extern_methods!(
         /// Parameter `size`: the dimension to use when creating the given texture.
         ///
         /// Parameter `format`: the CoreVideo format type.  supported types include 'RGBA', 'RGhA', and 'RGfA' for byte, half-float, and float components.
-        #[method_id(@__retain_semantics Init initWithSize:pixelFormat:)]
+        #[method_id(@__method_family Init initWithSize:pixelFormat:)]
         pub unsafe fn initWithSize_pixelFormat(
             this: Allocated<Self>,
             size: CGSize,
@@ -86,7 +86,7 @@ extern_methods!(
         ///
         ///
         /// Parameter `name`: the name or path of the image to load.
-        #[method_id(@__retain_semantics Other textureWithImageNamed:)]
+        #[method_id(@__method_family Other textureWithImageNamed:)]
         pub unsafe fn textureWithImageNamed(name: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -96,7 +96,7 @@ extern_methods!(
         /// Parameter `rect`: the source rectangle to use in creating a logical copy of the given texture.
         ///
         /// Parameter `texture`: the existing texture to reference in the copy.
-        #[method_id(@__retain_semantics Other textureWithRect:inTexture:)]
+        #[method_id(@__method_family Other textureWithRect:inTexture:)]
         pub unsafe fn textureWithRect_inTexture(
             rect: CGRect,
             texture: &SKTexture,
@@ -110,7 +110,7 @@ extern_methods!(
         /// Parameter `size`: the size of the resulting texture.
         ///
         /// Parameter `smoothness`: how similar neighboring pixels are. A value of zero is like static, one is smooth.
-        #[method_id(@__retain_semantics Other textureVectorNoiseWithSmoothness:size:)]
+        #[method_id(@__method_family Other textureVectorNoiseWithSmoothness:size:)]
         pub unsafe fn textureVectorNoiseWithSmoothness_size(
             smoothness: CGFloat,
             size: CGSize,
@@ -125,7 +125,7 @@ extern_methods!(
         /// Parameter `smoothness`: how similar neighboring pixels are. A value of zero is like static, one is smooth.
         ///
         /// Parameter `grayscale`: if YES, RGB and A will all be the same. If no, RGB and A will all be different. A is not pre-multiplied, because the intent is that if you read a texel in a shader, all four values will be exactly the same value if grayscale, or four different, uncorrelated values if not grayscale.
-        #[method_id(@__retain_semantics Other textureNoiseWithSmoothness:size:grayscale:)]
+        #[method_id(@__method_family Other textureNoiseWithSmoothness:size:grayscale:)]
         pub unsafe fn textureNoiseWithSmoothness_size_grayscale(
             smoothness: CGFloat,
             size: CGSize,
@@ -137,12 +137,12 @@ extern_methods!(
         ///
         ///
         /// Parameter `image`: the CGImageRef to create the texture from
-        #[method_id(@__retain_semantics Other textureWithCGImage:)]
+        #[method_id(@__method_family Other textureWithCGImage:)]
         pub unsafe fn textureWithCGImage(image: &CGImage) -> Retained<Self>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(@__retain_semantics Other textureWithImage:)]
+        #[method_id(@__method_family Other textureWithImage:)]
         pub unsafe fn textureWithImage(image: &NSImage) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -152,11 +152,11 @@ extern_methods!(
         /// Parameter `pixelData`: the pixelData to read in creating the texture.
         ///
         /// Parameter `size`: the dimensions of the pixelData given.
-        #[method_id(@__retain_semantics Other textureWithData:size:)]
+        #[method_id(@__method_family Other textureWithData:size:)]
         pub unsafe fn textureWithData_size(pixel_data: &NSData, size: CGSize) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other textureWithData:size:flipped:)]
+        #[method_id(@__method_family Other textureWithData:size:flipped:)]
         pub unsafe fn textureWithData_size_flipped(
             pixel_data: &NSData,
             size: CGSize,
@@ -174,7 +174,7 @@ extern_methods!(
         /// Parameter `rowLength`: the length of each row in pixels (allows byte row pitches greater than the width for aligned data)
         ///
         /// Parameter `alignment`: the byte alignment of the data, provide 0 for tightly packed data.
-        #[method_id(@__retain_semantics Other textureWithData:size:rowLength:alignment:)]
+        #[method_id(@__method_family Other textureWithData:size:rowLength:alignment:)]
         pub unsafe fn textureWithData_size_rowLength_alignment(
             pixel_data: &NSData,
             size: CGSize,
@@ -188,10 +188,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "SKTexture")]
     unsafe impl SKMutableTexture {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

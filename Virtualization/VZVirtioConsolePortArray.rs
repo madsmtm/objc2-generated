@@ -24,15 +24,15 @@ unsafe impl NSObjectProtocol for VZVirtioConsolePortArray {}
 
 extern_methods!(
     unsafe impl VZVirtioConsolePortArray {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtioConsolePort")]
         /// Get a port at the specified index.
-        #[method_id(@__retain_semantics Other objectAtIndexedSubscript:)]
+        #[method_id(@__method_family Other objectAtIndexedSubscript:)]
         pub unsafe fn objectAtIndexedSubscript(
             &self,
             port_index: NSUInteger,

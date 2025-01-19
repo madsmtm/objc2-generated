@@ -23,7 +23,7 @@ unsafe impl NSObjectProtocol for NSATSTypesetter {}
 extern_methods!(
     #[cfg(feature = "NSTypesetter")]
     unsafe impl NSATSTypesetter {
-        #[method_id(@__retain_semantics Other sharedTypesetter)]
+        #[method_id(@__method_family Other sharedTypesetter)]
         pub unsafe fn sharedTypesetter() -> Retained<NSATSTypesetter>;
     }
 );
@@ -32,10 +32,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSTypesetter")]
     unsafe impl NSATSTypesetter {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -91,7 +91,7 @@ extern_methods!(
         pub unsafe fn setLineFragmentPadding(&self, line_fragment_padding: CGFloat);
 
         #[cfg(feature = "NSFont")]
-        #[method_id(@__retain_semantics Other substituteFontForFont:)]
+        #[method_id(@__method_family Other substituteFontForFont:)]
         pub unsafe fn substituteFontForFont(&self, original_font: &NSFont) -> Retained<NSFont>;
 
         #[cfg(all(
@@ -99,7 +99,7 @@ extern_methods!(
             feature = "NSText",
             feature = "objc2-core-foundation"
         ))]
-        #[method_id(@__retain_semantics Other textTabForGlyphLocation:writingDirection:maxLocation:)]
+        #[method_id(@__method_family Other textTabForGlyphLocation:writingDirection:maxLocation:)]
         pub unsafe fn textTabForGlyphLocation_writingDirection_maxLocation(
             &self,
             glyph_location: CGFloat,
@@ -114,7 +114,7 @@ extern_methods!(
         #[method(setBidiProcessingEnabled:)]
         pub unsafe fn setBidiProcessingEnabled(&self, bidi_processing_enabled: bool);
 
-        #[method_id(@__retain_semantics Other attributedString)]
+        #[method_id(@__method_family Other attributedString)]
         pub unsafe fn attributedString(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedString`][Self::attributedString].
@@ -165,11 +165,11 @@ extern_methods!(
         ) -> CGFloat;
 
         #[cfg(feature = "NSLayoutManager")]
-        #[method_id(@__retain_semantics Other layoutManager)]
+        #[method_id(@__method_family Other layoutManager)]
         pub unsafe fn layoutManager(&self) -> Option<Retained<NSLayoutManager>>;
 
         #[cfg(feature = "NSTextContainer")]
-        #[method_id(@__retain_semantics Other currentTextContainer)]
+        #[method_id(@__method_family Other currentTextContainer)]
         pub unsafe fn currentTextContainer(&self) -> Option<Retained<NSTextContainer>>;
 
         #[method(setHardInvalidation:forGlyphRange:)]

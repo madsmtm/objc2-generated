@@ -36,7 +36,7 @@ extern_methods!(
     unsafe impl HKAudiogramSample {
         #[cfg(feature = "HKAudiogramSensitivityPoint")]
         /// The hearing sensitivity readings associated with a hearing test.
-        #[method_id(@__retain_semantics Other sensitivityPoints)]
+        #[method_id(@__method_family Other sensitivityPoints)]
         pub unsafe fn sensitivityPoints(&self) -> Retained<NSArray<HKAudiogramSensitivityPoint>>;
 
         #[cfg(feature = "HKAudiogramSensitivityPoint")]
@@ -52,7 +52,7 @@ extern_methods!(
         ///
         /// Returns: A new instance of an audiogram sample.
         #[deprecated]
-        #[method_id(@__retain_semantics Other audiogramSampleWithSensitivityPoints:startDate:endDate:metadata:)]
+        #[method_id(@__method_family Other audiogramSampleWithSensitivityPoints:startDate:endDate:metadata:)]
         pub unsafe fn audiogramSampleWithSensitivityPoints_startDate_endDate_metadata(
             sensitivity_points: &NSArray<HKAudiogramSensitivityPoint>,
             start_date: &NSDate,
@@ -74,7 +74,7 @@ extern_methods!(
         /// Parameter `metadata`: Optional metadata associated with the sample.
         ///
         /// Returns: A new instance of an audiogram sample.
-        #[method_id(@__retain_semantics Other audiogramSampleWithSensitivityPoints:startDate:endDate:device:metadata:)]
+        #[method_id(@__method_family Other audiogramSampleWithSensitivityPoints:startDate:endDate:device:metadata:)]
         pub unsafe fn audiogramSampleWithSensitivityPoints_startDate_endDate_device_metadata(
             sensitivity_points: &NSArray<HKAudiogramSensitivityPoint>,
             start_date: &NSDate,
@@ -89,7 +89,7 @@ extern_methods!(
     /// Methods declared on superclass `HKObject`
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKAudiogramSample {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -98,7 +98,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
     unsafe impl HKAudiogramSample {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -91,7 +91,7 @@ extern_protocol!(
         #[cfg(feature = "MTLIOCommandBuffer")]
         /// Vends an autoreleased commandBuffer that can be used to
         /// encode  commands that read from handle objects and write to MTLResource objects.
-        #[method_id(@__retain_semantics Other commandBuffer)]
+        #[method_id(@__method_family Other commandBuffer)]
         unsafe fn commandBuffer(&self) -> Retained<ProtocolObject<dyn MTLIOCommandBuffer>>;
 
         #[cfg(feature = "MTLIOCommandBuffer")]
@@ -102,13 +102,13 @@ extern_protocol!(
         ///
         /// For correct execution its the application's responsibility to retain
         /// objects referenced by commands within the commandBuffer.
-        #[method_id(@__retain_semantics Other commandBufferWithUnretainedReferences)]
+        #[method_id(@__method_family Other commandBufferWithUnretainedReferences)]
         unsafe fn commandBufferWithUnretainedReferences(
             &self,
         ) -> Retained<ProtocolObject<dyn MTLIOCommandBuffer>>;
 
         /// An optional label for this handle.
-        #[method_id(@__retain_semantics Other label)]
+        #[method_id(@__method_family Other label)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
@@ -129,7 +129,7 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
-        #[method_id(@__retain_semantics Other buffer)]
+        #[method_id(@__method_family Other buffer)]
         unsafe fn buffer(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
     }
 );
@@ -152,7 +152,7 @@ extern_protocol!(
         /// is the smallest buffer that will allow the command to execute, however a larger buffer can be provided and
         /// susequent commands will be able to use it, thus avoiding the need for an additional callback. Returning nil
         /// from the function will result in the load command being skipped and the commandBuffer getting cancelled.
-        #[method_id(@__retain_semantics New newScratchBufferWithMinimumSize:)]
+        #[method_id(@__method_family New newScratchBufferWithMinimumSize:)]
         unsafe fn newScratchBufferWithMinimumSize(
             &self,
             minimum_size: NSUInteger,
@@ -218,7 +218,7 @@ extern_methods!(
         ///
         /// An application can manage scratch buffers manually by implemeting a class  conforming
         /// to the MTLIOScratchBufferAllocator protocol and creating an instance that is passed in here.
-        #[method_id(@__retain_semantics Other scratchBufferAllocator)]
+        #[method_id(@__method_family Other scratchBufferAllocator)]
         pub unsafe fn scratchBufferAllocator(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLIOScratchBufferAllocator>>>;
@@ -235,10 +235,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MTLIOCommandQueueDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -250,7 +250,7 @@ extern_protocol!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtliofilehandle?language=objc)
     pub unsafe trait MTLIOFileHandle: NSObjectProtocol {
         /// An optional label for this handle.
-        #[method_id(@__retain_semantics Other label)]
+        #[method_id(@__method_family Other label)]
         unsafe fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].

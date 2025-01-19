@@ -30,10 +30,10 @@ unsafe impl NSObjectProtocol for AVAssetVariant {}
 
 extern_methods!(
     unsafe impl AVAssetVariant {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// If it is not declared, the value will be negative.
@@ -45,11 +45,11 @@ extern_methods!(
         pub unsafe fn averageBitRate(&self) -> c_double;
 
         /// Provides  variant's video rendition attributes. If no video attributes are declared, it will be nil.
-        #[method_id(@__retain_semantics Other videoAttributes)]
+        #[method_id(@__method_family Other videoAttributes)]
         pub unsafe fn videoAttributes(&self) -> Option<Retained<AVAssetVariantVideoAttributes>>;
 
         /// Provides  variant's audio rendition attributes. If no audio attributes are declared, it will be nil.
-        #[method_id(@__retain_semantics Other audioAttributes)]
+        #[method_id(@__method_family Other audioAttributes)]
         pub unsafe fn audioAttributes(&self) -> Option<Retained<AVAssetVariantAudioAttributes>>;
     }
 );
@@ -69,19 +69,19 @@ unsafe impl NSObjectProtocol for AVAssetVariantVideoAttributes {}
 
 extern_methods!(
     unsafe impl AVAssetVariantVideoAttributes {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVMediaFormat")]
         /// Provides the video range of the variant. If it is not declared, it will be AVVideoRangeSDR.
-        #[method_id(@__retain_semantics Other videoRange)]
+        #[method_id(@__method_family Other videoRange)]
         pub unsafe fn videoRange(&self) -> Retained<AVVideoRange>;
 
         /// Provides an array of video sample codec types present in the variant's renditions if any are declared. Each value in the array is a NSNumber representation of CMVideoCodecType.
-        #[method_id(@__retain_semantics Other codecTypes)]
+        #[method_id(@__method_family Other codecTypes)]
         pub unsafe fn codecTypes(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -96,7 +96,7 @@ extern_methods!(
         /// Describes the video layout attributes.
         ///
         /// videoLayoutAttributes' count may be greater than one if this variant contains a collection of differing video layout media attributes over time.
-        #[method_id(@__retain_semantics Other videoLayoutAttributes)]
+        #[method_id(@__method_family Other videoLayoutAttributes)]
         pub unsafe fn videoLayoutAttributes(
             &self,
         ) -> Retained<NSArray<AVAssetVariantVideoLayoutAttributes>>;
@@ -120,10 +120,10 @@ unsafe impl NSObjectProtocol for AVAssetVariantVideoLayoutAttributes {}
 
 extern_methods!(
     unsafe impl AVAssetVariantVideoLayoutAttributes {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -153,21 +153,21 @@ unsafe impl NSObjectProtocol for AVAssetVariantAudioAttributes {}
 
 extern_methods!(
     unsafe impl AVAssetVariantAudioAttributes {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Provides an array of audio formats present in the variant's renditions if any are declared. Each value in the array is a NSNumber representation of AudioFormatID.
-        #[method_id(@__retain_semantics Other formatIDs)]
+        #[method_id(@__method_family Other formatIDs)]
         pub unsafe fn formatIDs(&self) -> Retained<NSArray<NSNumber>>;
 
         #[cfg(feature = "AVMediaSelectionGroup")]
         /// Provides attributes for a specific audio media selection option. If no rendition specific attributes are declared, it will be nil.
         ///
         /// Parameter `mediaSelectionOption`: The option to return rendition specific information for.
-        #[method_id(@__retain_semantics Other renditionSpecificAttributesForMediaOption:)]
+        #[method_id(@__method_family Other renditionSpecificAttributesForMediaOption:)]
         pub unsafe fn renditionSpecificAttributesForMediaOption(
             &self,
             media_selection_option: &AVMediaSelectionOption,
@@ -223,10 +223,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVAssetVariantAudioRenditionSpecificAttributes {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -256,29 +256,29 @@ unsafe impl NSObjectProtocol for AVAssetVariantQualifier {}
 
 extern_methods!(
     unsafe impl AVAssetVariantQualifier {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         /// Returns a qualifer for a predicate.
         ///
         /// Parameter `predicate`: The variant predicate. Must be a valid, non-nil NSPredicate.
-        #[method_id(@__retain_semantics Other assetVariantQualifierWithPredicate:)]
+        #[method_id(@__method_family Other assetVariantQualifierWithPredicate:)]
         pub unsafe fn assetVariantQualifierWithPredicate(predicate: &NSPredicate)
             -> Retained<Self>;
 
         /// Returns a qualifer for a particular asset variant.
         ///
         /// Parameter `variant`: A variant obtained from the -[AVAsset variants] or -[AVAssetDownloadConfiguration playableVariants]. Must be a valid, non-nil AVAssetVariant.
-        #[method_id(@__retain_semantics Other assetVariantQualifierWithVariant:)]
+        #[method_id(@__method_family Other assetVariantQualifierWithVariant:)]
         pub unsafe fn assetVariantQualifierWithVariant(variant: &AVAssetVariant) -> Retained<Self>;
 
         /// Returns a qualifer for finding variant with minimum value in the input key path.
         ///
         /// Parameter `keyPath`: AVAssetVariant keyPath. Allowed keyPath values are peakBitRate, averageBitRate, videoAttributes.presentationSize. Must be a valid, non-nil NSString.
-        #[method_id(@__retain_semantics Other assetVariantQualifierForMinimumValueInKeyPath:)]
+        #[method_id(@__method_family Other assetVariantQualifierForMinimumValueInKeyPath:)]
         pub unsafe fn assetVariantQualifierForMinimumValueInKeyPath(
             key_path: &NSString,
         ) -> Retained<Self>;
@@ -286,7 +286,7 @@ extern_methods!(
         /// Returns a qualifer for finding variant with maximum value in the input key path
         ///
         /// Parameter `keyPath`: AVAssetVariant keyPath. Allowed keyPath values are peakBitRate, averageBitRate, videoAttributes.presentationSize. Must be a valid, non-nil NSString.
-        #[method_id(@__retain_semantics Other assetVariantQualifierForMaximumValueInKeyPath:)]
+        #[method_id(@__method_family Other assetVariantQualifierForMaximumValueInKeyPath:)]
         pub unsafe fn assetVariantQualifierForMaximumValueInKeyPath(
             key_path: &NSString,
         ) -> Retained<Self>;
@@ -299,7 +299,7 @@ extern_methods!(
         /// Parameter `mediaSelectionOption`: The audio media selection option under consideration.
         ///
         /// Parameter `operatorType`: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
-        #[method_id(@__retain_semantics Other predicateForChannelCount:mediaSelectionOption:operatorType:)]
+        #[method_id(@__method_family Other predicateForChannelCount:mediaSelectionOption:operatorType:)]
         pub unsafe fn predicateForChannelCount_mediaSelectionOption_operatorType(
             channel_count: NSInteger,
             media_selection_option: &AVMediaSelectionOption,
@@ -312,7 +312,7 @@ extern_methods!(
         /// Parameter `isBinaural`: The RHS value for the value of isBinauralAudio in the predicate equation.
         ///
         /// Parameter `mediaSelectionOption`: The audio media selection option under consideration.
-        #[method_id(@__retain_semantics Other predicateForBinauralAudio:mediaSelectionOption:)]
+        #[method_id(@__method_family Other predicateForBinauralAudio:mediaSelectionOption:)]
         pub unsafe fn predicateForBinauralAudio_mediaSelectionOption(
             is_binaural_audio: bool,
             media_selection_option: &AVMediaSelectionOption,
@@ -324,7 +324,7 @@ extern_methods!(
         /// Parameter `isImmersiveAudio`: The RHS value for the value of isImmersiveAudio in the predicate equation.
         ///
         /// Parameter `mediaSelectionOption`: The audio media selection option under consideration.
-        #[method_id(@__retain_semantics Other predicateForImmersiveAudio:mediaSelectionOption:)]
+        #[method_id(@__method_family Other predicateForImmersiveAudio:mediaSelectionOption:)]
         pub unsafe fn predicateForImmersiveAudio_mediaSelectionOption(
             is_immersive_audio: bool,
             media_selection_option: &AVMediaSelectionOption,
@@ -336,7 +336,7 @@ extern_methods!(
         /// Parameter `isDownmixAudio`: The RHS value for the value of isDownmixAudio in the predicate equation.
         ///
         /// Parameter `mediaSelectionOption`: The audio media selection option under consideration.
-        #[method_id(@__retain_semantics Other predicateForDownmixAudio:mediaSelectionOption:)]
+        #[method_id(@__method_family Other predicateForDownmixAudio:mediaSelectionOption:)]
         pub unsafe fn predicateForDownmixAudio_mediaSelectionOption(
             is_downmix_audio: bool,
             media_selection_option: &AVMediaSelectionOption,
@@ -348,7 +348,7 @@ extern_methods!(
         /// Parameter `width`: The RHS value for the presentation size width in the predicate equation.
         ///
         /// Parameter `operatorType`: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
-        #[method_id(@__retain_semantics Other predicateForPresentationWidth:operatorType:)]
+        #[method_id(@__method_family Other predicateForPresentationWidth:operatorType:)]
         pub unsafe fn predicateForPresentationWidth_operatorType(
             width: CGFloat,
             operator_type: NSPredicateOperatorType,
@@ -360,7 +360,7 @@ extern_methods!(
         /// Parameter `height`: The RHS value for the presentation size height in the predicate equation.
         ///
         /// Parameter `operatorType`: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
-        #[method_id(@__retain_semantics Other predicateForPresentationHeight:operatorType:)]
+        #[method_id(@__method_family Other predicateForPresentationHeight:operatorType:)]
         pub unsafe fn predicateForPresentationHeight_operatorType(
             height: CGFloat,
             operator_type: NSPredicateOperatorType,
@@ -374,7 +374,7 @@ extern_methods!(
         /// Parameter `mediaSelectionOption`: The audio media selection option under consideration.
         ///
         /// Parameter `operatorType`: The valid values are NSLessThanPredicateOperatorType, NSLessThanOrEqualToPredicateOperatorType, NSGreaterThanPredicateOperatorType, NSGreaterThanOrEqualToPredicateOperatorType, NSEqualToPredicateOperatorType and NSNotEqualToPredicateOperatorType.
-        #[method_id(@__retain_semantics Other predicateForAudioSampleRate:mediaSelectionOption:operatorType:)]
+        #[method_id(@__method_family Other predicateForAudioSampleRate:mediaSelectionOption:operatorType:)]
         pub unsafe fn predicateForAudioSampleRate_mediaSelectionOption_operatorType(
             sample_rate: c_double,
             media_selection_option: &AVMediaSelectionOption,

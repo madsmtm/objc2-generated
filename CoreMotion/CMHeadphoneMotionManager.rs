@@ -28,7 +28,7 @@ extern_methods!(
         pub unsafe fn authorizationStatus() -> CMAuthorizationStatus;
 
         #[cfg(feature = "CMHeadphoneMotionManagerDelegate")]
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn CMHeadphoneMotionManagerDelegate>>>;
@@ -52,7 +52,7 @@ extern_methods!(
         pub unsafe fn isDeviceMotionActive(&self) -> bool;
 
         #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem"))]
-        #[method_id(@__retain_semantics Other deviceMotion)]
+        #[method_id(@__method_family Other deviceMotion)]
         pub unsafe fn deviceMotion(&self) -> Option<Retained<CMDeviceMotion>>;
 
         #[method(startDeviceMotionUpdates)]
@@ -80,10 +80,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMHeadphoneMotionManager {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

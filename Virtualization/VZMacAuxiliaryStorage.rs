@@ -74,10 +74,10 @@ unsafe impl NSObjectProtocol for VZMacAuxiliaryStorage {}
 
 extern_methods!(
     unsafe impl VZMacAuxiliaryStorage {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initialize the auxiliary storage from the URL of an existing file.
@@ -85,7 +85,7 @@ extern_methods!(
         /// Parameter `URL`: The URL of the auxiliary storage on the local file system.
         ///
         /// To create a new auxiliary storage, use -[VZMacAuxiliaryStorage initCreatingStorageAtURL:hardwareModel:options:error].
-        #[method_id(@__retain_semantics Init initWithURL:)]
+        #[method_id(@__method_family Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "VZMacHardwareModel")]
@@ -102,7 +102,7 @@ extern_methods!(
         /// Returns: A newly initialized VZMacAuxiliaryStorage on success. If an error was encountered returns
         /// `nil,`and
         /// `error`contains the error.
-        #[method_id(@__retain_semantics Init initCreatingStorageAtURL:hardwareModel:options:error:_)]
+        #[method_id(@__method_family Init initCreatingStorageAtURL:hardwareModel:options:error:_)]
         pub unsafe fn initCreatingStorageAtURL_hardwareModel_options_error(
             this: Allocated<Self>,
             url: &NSURL,
@@ -111,7 +111,7 @@ extern_methods!(
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         /// The URL of the auxiliary storage on the local file system.
-        #[method_id(@__retain_semantics Other URL)]
+        #[method_id(@__method_family Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
     }
 );
@@ -120,7 +120,7 @@ extern_methods!(
     /// VZDeprecated
     unsafe impl VZMacAuxiliaryStorage {
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:)]
+        #[method_id(@__method_family Init initWithContentsOfURL:)]
         pub unsafe fn initWithContentsOfURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
     }
 );

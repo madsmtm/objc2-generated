@@ -17,7 +17,7 @@ unsafe impl NSObjectProtocol for NSSpellServer {}
 
 extern_methods!(
     unsafe impl NSSpellServer {
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSSpellServerDelegate>>>;
@@ -53,10 +53,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSSpellServer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -96,7 +96,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[optional]
-        #[method_id(@__retain_semantics Other spellServer:suggestGuessesForWord:inLanguage:)]
+        #[method_id(@__method_family Other spellServer:suggestGuessesForWord:inLanguage:)]
         unsafe fn spellServer_suggestGuessesForWord_inLanguage(
             &self,
             sender: &NSSpellServer,
@@ -126,7 +126,7 @@ extern_protocol!(
 
         #[cfg(all(feature = "NSArray", feature = "NSRange", feature = "NSString"))]
         #[optional]
-        #[method_id(@__retain_semantics Other spellServer:suggestCompletionsForPartialWordRange:inString:language:)]
+        #[method_id(@__method_family Other spellServer:suggestCompletionsForPartialWordRange:inString:language:)]
         unsafe fn spellServer_suggestCompletionsForPartialWordRange_inString_language(
             &self,
             sender: &NSSpellServer,
@@ -159,7 +159,7 @@ extern_protocol!(
             feature = "NSTextCheckingResult"
         ))]
         #[optional]
-        #[method_id(@__retain_semantics Other spellServer:checkString:offset:types:options:orthography:wordCount:)]
+        #[method_id(@__method_family Other spellServer:checkString:offset:types:options:orthography:wordCount:)]
         unsafe fn spellServer_checkString_offset_types_options_orthography_wordCount(
             &self,
             sender: &NSSpellServer,

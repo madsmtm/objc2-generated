@@ -23,7 +23,7 @@ extern_protocol!(
         /// If a USB device object that conforms to this protocol is currently attached to a USB controller, this
         /// property includes a pointer to the USB controller object that the device is attached to.
         /// Otherwise, it contains nil.
-        #[method_id(@__retain_semantics Other usbController)]
+        #[method_id(@__method_family Other usbController)]
         unsafe fn usbController(&self) -> Option<Retained<VZUSBController>>;
 
         /// Device UUID.
@@ -31,7 +31,7 @@ extern_protocol!(
         /// Device UUID from device configuration objects that conform to `VZUSBDeviceConfiguration`.
         ///
         /// See: VZUSBDeviceConfiguration
-        #[method_id(@__retain_semantics Other uuid)]
+        #[method_id(@__method_family Other uuid)]
         unsafe fn uuid(&self) -> Retained<NSUUID>;
     }
 );

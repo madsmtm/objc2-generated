@@ -34,27 +34,27 @@ extern_methods!(
     unsafe impl DOMRGBColor {
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
-        #[method_id(@__retain_semantics Other red)]
+        #[method_id(@__method_family Other red)]
         pub unsafe fn red(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
-        #[method_id(@__retain_semantics Other green)]
+        #[method_id(@__method_family Other green)]
         pub unsafe fn green(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
-        #[method_id(@__retain_semantics Other blue)]
+        #[method_id(@__method_family Other blue)]
         pub unsafe fn blue(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(all(feature = "DOMCSSPrimitiveValue", feature = "DOMCSSValue"))]
         #[deprecated]
-        #[method_id(@__retain_semantics Other alpha)]
+        #[method_id(@__method_family Other alpha)]
         pub unsafe fn alpha(&self) -> Option<Retained<DOMCSSPrimitiveValue>>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         pub unsafe fn color(&self) -> Retained<NSColor>;
     }
 );
@@ -64,7 +64,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRGBColor {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -73,7 +73,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMRGBColor {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

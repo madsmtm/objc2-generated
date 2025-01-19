@@ -70,10 +70,10 @@ unsafe impl NSObjectProtocol for AVAssetWriter {}
 
 extern_methods!(
     unsafe impl AVAssetWriter {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVMediaFormat")]
@@ -92,7 +92,7 @@ extern_methods!(
         /// Writing will fail if a file already exists at the specified URL.
         ///
         /// UTIs for container formats that can be written are declared in AVMediaFormat.h.
-        #[method_id(@__retain_semantics Other assetWriterWithURL:fileType:error:_)]
+        #[method_id(@__method_family Other assetWriterWithURL:fileType:error:_)]
         pub unsafe fn assetWriterWithURL_fileType_error(
             output_url: &NSURL,
             output_file_type: &AVFileType,
@@ -114,7 +114,7 @@ extern_methods!(
         /// Writing will fail if a file already exists at the specified URL.
         ///
         /// This method throws an exception if the output file type is not declared in AVMediaFormat.h.
-        #[method_id(@__retain_semantics Init initWithURL:fileType:error:_)]
+        #[method_id(@__method_family Init initWithURL:fileType:error:_)]
         pub unsafe fn initWithURL_fileType_error(
             this: Allocated<Self>,
             output_url: &NSURL,
@@ -137,7 +137,7 @@ extern_methods!(
         /// /UTType.h>.
         ///
         /// This method throws an exception if the output content type UTI for container format is not declared in AVMediaFormat.h.
-        #[method_id(@__retain_semantics Init initWithContentType:)]
+        #[method_id(@__method_family Init initWithContentType:)]
         pub unsafe fn initWithContentType(
             this: Allocated<Self>,
             output_content_type: &UTType,
@@ -148,12 +148,12 @@ extern_methods!(
         /// You may use [[UTType typeWithIdentifier:outputFileType] preferredFilenameExtension] to obtain an appropriate path extension for the outputFileType you have specified. For more information, see
         /// <UniformTypeIdentifiers
         /// /UTType.h>.
-        #[method_id(@__retain_semantics Other outputURL)]
+        #[method_id(@__method_family Other outputURL)]
         pub unsafe fn outputURL(&self) -> Retained<NSURL>;
 
         #[cfg(feature = "AVMediaFormat")]
         /// The UTI of the file format of the file for which the instance of AVAssetWriter was initialized for writing.
-        #[method_id(@__retain_semantics Other outputFileType)]
+        #[method_id(@__method_family Other outputFileType)]
         pub unsafe fn outputFileType(&self) -> Retained<AVFileType>;
 
         #[cfg(feature = "AVMediaFormat")]
@@ -161,7 +161,7 @@ extern_methods!(
         ///
         ///
         /// Some media types may not be accepted within the file format with which an AVAssetWriter was initialized.
-        #[method_id(@__retain_semantics Other availableMediaTypes)]
+        #[method_id(@__method_family Other availableMediaTypes)]
         pub unsafe fn availableMediaTypes(&self) -> Retained<NSArray<AVMediaType>>;
 
         /// The status of writing samples to the receiver's output file.
@@ -175,7 +175,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSError that describes what caused the receiver to no longer be able to write to its output file. If the receiver's status is not AVAssetWriterStatusFailed, the value of this property is nil. This property is thread safe.
-        #[method_id(@__retain_semantics Other error)]
+        #[method_id(@__method_family Other error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
         #[cfg(feature = "AVMetadataItem")]
@@ -185,7 +185,7 @@ extern_methods!(
         /// The value of this property is an array of AVMetadataItem objects representing the collection of top-level metadata to be written in the output file.
         ///
         /// This property cannot be set after writing has started.
-        #[method_id(@__retain_semantics Other metadata)]
+        #[method_id(@__method_family Other metadata)]
         pub unsafe fn metadata(&self) -> Retained<NSArray<AVMetadataItem>>;
 
         #[cfg(feature = "AVMetadataItem")]
@@ -214,7 +214,7 @@ extern_methods!(
         /// When the value of this property is nil, the asset writer will choose a suitable location when writing temporary files.  The default value is nil.
         ///
         /// This property cannot be set after writing has started.  The asset writer will fail if a file cannot be created in this directory (for example, due to insufficient permissions).
-        #[method_id(@__retain_semantics Other directoryForTemporaryFiles)]
+        #[method_id(@__method_family Other directoryForTemporaryFiles)]
         pub unsafe fn directoryForTemporaryFiles(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`directoryForTemporaryFiles`][Self::directoryForTemporaryFiles].
@@ -228,7 +228,7 @@ extern_methods!(
         /// The inputs from which the asset writer receives media data.
         ///
         /// The value of this property is an NSArray containing concrete instances of AVAssetWriterInput. Inputs can be added to the receiver using the addInput: method.
-        #[method_id(@__retain_semantics Other inputs)]
+        #[method_id(@__method_family Other inputs)]
         pub unsafe fn inputs(&self) -> Retained<NSArray<AVAssetWriterInput>>;
 
         #[cfg(feature = "AVMediaFormat")]
@@ -518,7 +518,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray containing concrete instances of AVAssetWriterInputGroup.  Input groups can be added to the receiver using the addInputGroup: method.
-        #[method_id(@__retain_semantics Other inputGroups)]
+        #[method_id(@__method_family Other inputGroups)]
         pub unsafe fn inputGroups(&self) -> Retained<NSArray<AVAssetWriterInputGroup>>;
     }
 );
@@ -545,21 +545,21 @@ unsafe impl NSObjectProtocol for AVAssetWriterInputGroup {}
 extern_methods!(
     #[cfg(feature = "AVMediaSelectionGroup")]
     unsafe impl AVAssetWriterInputGroup {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "AVAssetWriterInput")]
-        #[method_id(@__retain_semantics Other assetWriterInputGroupWithInputs:defaultInput:)]
+        #[method_id(@__method_family Other assetWriterInputGroupWithInputs:defaultInput:)]
         pub unsafe fn assetWriterInputGroupWithInputs_defaultInput(
             inputs: &NSArray<AVAssetWriterInput>,
             default_input: Option<&AVAssetWriterInput>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "AVAssetWriterInput")]
-        #[method_id(@__retain_semantics Init initWithInputs:defaultInput:)]
+        #[method_id(@__method_family Init initWithInputs:defaultInput:)]
         pub unsafe fn initWithInputs_defaultInput(
             this: Allocated<Self>,
             inputs: &NSArray<AVAssetWriterInput>,
@@ -571,7 +571,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is an NSArray containing concrete instances of AVAssetWriterInput.
-        #[method_id(@__retain_semantics Other inputs)]
+        #[method_id(@__method_family Other inputs)]
         pub unsafe fn inputs(&self) -> Retained<NSArray<AVAssetWriterInput>>;
 
         #[cfg(feature = "AVAssetWriterInput")]
@@ -579,7 +579,7 @@ extern_methods!(
         ///
         ///
         /// The value of this property is a concrete instance of AVAssetWriterInput.
-        #[method_id(@__retain_semantics Other defaultInput)]
+        #[method_id(@__method_family Other defaultInput)]
         pub unsafe fn defaultInput(&self) -> Option<Retained<AVAssetWriterInput>>;
     }
 );
@@ -632,7 +632,7 @@ extern_methods!(
         /// File type profiles are declared in AVMediaFormat.h.
         ///
         /// This property cannot be set after writing has started.
-        #[method_id(@__retain_semantics Other outputFileTypeProfile)]
+        #[method_id(@__method_family Other outputFileTypeProfile)]
         pub unsafe fn outputFileTypeProfile(&self) -> Option<Retained<AVFileTypeProfile>>;
 
         #[cfg(feature = "AVMediaFormat")]
@@ -647,7 +647,7 @@ extern_methods!(
         ///
         ///
         /// This property cannot be set after writing has started.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn AVAssetWriterDelegate>>>;

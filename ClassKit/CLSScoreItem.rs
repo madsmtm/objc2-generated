@@ -60,7 +60,7 @@ extern_methods!(
         /// Parameter `score`: The score the user received.
         ///
         /// Parameter `maxScore`: The maximum score possible.
-        #[method_id(@__retain_semantics Init initWithIdentifier:title:score:maxScore:)]
+        #[method_id(@__method_family Init initWithIdentifier:title:score:maxScore:)]
         pub unsafe fn initWithIdentifier_title_score_maxScore(
             this: Allocated<Self>,
             identifier: &NSString,
@@ -75,10 +75,10 @@ extern_methods!(
     /// Methods declared on superclass `CLSActivityItem`
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]
     unsafe impl CLSScoreItem {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

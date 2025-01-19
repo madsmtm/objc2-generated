@@ -66,10 +66,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNConstraint {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -104,12 +104,12 @@ extern_methods!(
         /// Creates and returns a SCNLookAtConstraint object with the specified target.
         ///
         /// Parameter `target`: The target node to look at.
-        #[method_id(@__retain_semantics Other lookAtConstraintWithTarget:)]
+        #[method_id(@__method_family Other lookAtConstraintWithTarget:)]
         pub unsafe fn lookAtConstraintWithTarget(target: Option<&SCNNode>) -> Retained<Self>;
 
         #[cfg(feature = "SCNNode")]
         /// Defines the target node to look at.
-        #[method_id(@__retain_semantics Other target)]
+        #[method_id(@__method_family Other target)]
         pub unsafe fn target(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
@@ -162,10 +162,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNLookAtConstraint {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -223,7 +223,7 @@ extern_methods!(
         /// Creates and returns a SCNBillboardConstraint constraint.
         ///
         /// A billboard constraint forces the receiver to look into the direction of the current point of view.
-        #[method_id(@__retain_semantics Other billboardConstraint)]
+        #[method_id(@__method_family Other billboardConstraint)]
         pub unsafe fn billboardConstraint() -> Retained<Self>;
 
         /// Specifies the axes on which the billboarding orientation operates. Defaults to SCNBillboardAxisAll.
@@ -239,10 +239,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNBillboardConstraint {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -287,7 +287,7 @@ extern_methods!(
         /// Parameter `block`: The custom block to call to evaluate the constraint.
         ///
         /// The node and its transform are passed to the block. The transform returned by the block will be used to render the node.
-        #[method_id(@__retain_semantics Other transformConstraintInWorldSpace:withBlock:)]
+        #[method_id(@__method_family Other transformConstraintInWorldSpace:withBlock:)]
         pub unsafe fn transformConstraintInWorldSpace_withBlock(
             world: bool,
             block: &block2::Block<dyn Fn(NonNull<SCNNode>, SCNMatrix4) -> SCNMatrix4>,
@@ -306,7 +306,7 @@ extern_methods!(
         /// Parameter `block`: The custom block to call to evaluate the constraint.
         ///
         /// The node and its position are passed to the block. The position returned by the block will be used to render the node.
-        #[method_id(@__retain_semantics Other positionConstraintInWorldSpace:withBlock:)]
+        #[method_id(@__method_family Other positionConstraintInWorldSpace:withBlock:)]
         pub unsafe fn positionConstraintInWorldSpace_withBlock(
             world: bool,
             block: &block2::Block<dyn Fn(NonNull<SCNNode>, SCNVector3) -> SCNVector3>,
@@ -325,7 +325,7 @@ extern_methods!(
         /// Parameter `block`: The custom block to call to evaluate the constraint.
         ///
         /// The node and its quaternion are passed to the block. The quaternion returned by the block will be used to render the node.
-        #[method_id(@__retain_semantics Other orientationConstraintInWorldSpace:withBlock:)]
+        #[method_id(@__method_family Other orientationConstraintInWorldSpace:withBlock:)]
         pub unsafe fn orientationConstraintInWorldSpace_withBlock(
             world: bool,
             block: &block2::Block<dyn Fn(NonNull<SCNNode>, SCNQuaternion) -> SCNQuaternion>,
@@ -336,10 +336,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNTransformConstraint {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -376,7 +376,7 @@ extern_methods!(
         /// Parameter `chainRootNode`: The root node of the kinematic chain.
         ///
         /// "chainRootNode" must be an ancestor of the node on which the constraint is applied.
-        #[method_id(@__retain_semantics Init initWithChainRootNode:)]
+        #[method_id(@__method_family Init initWithChainRootNode:)]
         pub unsafe fn initWithChainRootNode(
             this: Allocated<Self>,
             chain_root_node: &SCNNode,
@@ -388,14 +388,14 @@ extern_methods!(
         /// Parameter `chainRootNode`: The root node of the kinematic chain.
         ///
         /// "chainRootNode" must be an ancestor of the node on which the constraint is applied.
-        #[method_id(@__retain_semantics Other inverseKinematicsConstraintWithChainRootNode:)]
+        #[method_id(@__method_family Other inverseKinematicsConstraintWithChainRootNode:)]
         pub unsafe fn inverseKinematicsConstraintWithChainRootNode(
             chain_root_node: &SCNNode,
         ) -> Retained<Self>;
 
         #[cfg(feature = "SCNNode")]
         /// Specifies the root node of the kinematic chain.
-        #[method_id(@__retain_semantics Other chainRootNode)]
+        #[method_id(@__method_family Other chainRootNode)]
         pub unsafe fn chainRootNode(&self) -> Retained<SCNNode>;
 
         #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
@@ -422,10 +422,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNIKConstraint {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -458,12 +458,12 @@ extern_methods!(
     unsafe impl SCNDistanceConstraint {
         #[cfg(feature = "SCNNode")]
         /// Creates and returns a SCNDistanceConstraint constraint.
-        #[method_id(@__retain_semantics Other distanceConstraintWithTarget:)]
+        #[method_id(@__method_family Other distanceConstraintWithTarget:)]
         pub unsafe fn distanceConstraintWithTarget(target: Option<&SCNNode>) -> Retained<Self>;
 
         #[cfg(feature = "SCNNode")]
         /// Defines the target node to keep distance with.
-        #[method_id(@__retain_semantics Other target)]
+        #[method_id(@__method_family Other target)]
         pub unsafe fn target(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
@@ -496,10 +496,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNDistanceConstraint {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -532,12 +532,12 @@ extern_methods!(
     unsafe impl SCNReplicatorConstraint {
         #[cfg(feature = "SCNNode")]
         /// Creates and returns a SCNReplicatorConstraint constraint.
-        #[method_id(@__retain_semantics Other replicatorConstraintWithTarget:)]
+        #[method_id(@__method_family Other replicatorConstraintWithTarget:)]
         pub unsafe fn replicatorConstraintWithTarget(target: Option<&SCNNode>) -> Retained<Self>;
 
         #[cfg(feature = "SCNNode")]
         /// Defines the target node to replicate
-        #[method_id(@__retain_semantics Other target)]
+        #[method_id(@__method_family Other target)]
         pub unsafe fn target(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
@@ -604,10 +604,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNReplicatorConstraint {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -639,7 +639,7 @@ unsafe impl SCNAnimatable for SCNAccelerationConstraint {}
 extern_methods!(
     unsafe impl SCNAccelerationConstraint {
         /// Creates and returns a SCNAccelerationConstraint object.
-        #[method_id(@__retain_semantics Other accelerationConstraint)]
+        #[method_id(@__method_family Other accelerationConstraint)]
         pub unsafe fn accelerationConstraint() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -691,10 +691,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNAccelerationConstraint {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -726,7 +726,7 @@ unsafe impl SCNAnimatable for SCNSliderConstraint {}
 extern_methods!(
     unsafe impl SCNSliderConstraint {
         /// Creates and returns a SCNSliderConstraint object.
-        #[method_id(@__retain_semantics Other sliderConstraint)]
+        #[method_id(@__method_family Other sliderConstraint)]
         pub unsafe fn sliderConstraint() -> Retained<Self>;
 
         /// Defines the category of node to collide against. Defaults to 0.
@@ -762,10 +762,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNSliderConstraint {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -825,12 +825,12 @@ extern_methods!(
     unsafe impl SCNAvoidOccluderConstraint {
         #[cfg(feature = "SCNNode")]
         /// Creates and returns a SCNAvoidOccluderConstraint object.
-        #[method_id(@__retain_semantics Other avoidOccluderConstraintWithTarget:)]
+        #[method_id(@__method_family Other avoidOccluderConstraintWithTarget:)]
         pub unsafe fn avoidOccluderConstraintWithTarget(target: Option<&SCNNode>)
             -> Retained<Self>;
 
         /// The receiver's delegate
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Retained<ProtocolObject<dyn SCNAvoidOccluderConstraintDelegate>>;
@@ -844,7 +844,7 @@ extern_methods!(
 
         #[cfg(feature = "SCNNode")]
         /// Defines the target node
-        #[method_id(@__retain_semantics Other target)]
+        #[method_id(@__method_family Other target)]
         pub unsafe fn target(&self) -> Option<Retained<SCNNode>>;
 
         #[cfg(feature = "SCNNode")]
@@ -877,10 +877,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCNAvoidOccluderConstraint {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

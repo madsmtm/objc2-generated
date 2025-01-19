@@ -91,7 +91,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCOptimizerDescriptor object.
         #[deprecated]
-        #[method_id(@__retain_semantics Other descriptorWithLearningRate:gradientRescale:regularizationType:regularizationScale:)]
+        #[method_id(@__method_family Other descriptorWithLearningRate:gradientRescale:regularizationType:regularizationScale:)]
         pub unsafe fn descriptorWithLearningRate_gradientRescale_regularizationType_regularizationScale(
             learning_rate: c_float,
             gradient_rescale: c_float,
@@ -118,7 +118,7 @@ extern_methods!(
         ///
         /// Returns: A new MLCOptimizerDescriptor object.
         #[deprecated]
-        #[method_id(@__retain_semantics Other descriptorWithLearningRate:gradientRescale:appliesGradientClipping:gradientClipMax:gradientClipMin:regularizationType:regularizationScale:)]
+        #[method_id(@__method_family Other descriptorWithLearningRate:gradientRescale:appliesGradientClipping:gradientClipMax:gradientClipMin:regularizationType:regularizationScale:)]
         pub unsafe fn descriptorWithLearningRate_gradientRescale_appliesGradientClipping_gradientClipMax_gradientClipMin_regularizationType_regularizationScale(
             learning_rate: c_float,
             gradient_rescale: c_float,
@@ -153,7 +153,7 @@ extern_methods!(
         /// Parameter `regularizationScale`: The regularization scale
         ///
         /// Returns: A new MLCOptimizerDescriptor object.
-        #[method_id(@__retain_semantics Other descriptorWithLearningRate:gradientRescale:appliesGradientClipping:gradientClippingType:gradientClipMax:gradientClipMin:maximumClippingNorm:customGlobalNorm:regularizationType:regularizationScale:)]
+        #[method_id(@__method_family Other descriptorWithLearningRate:gradientRescale:appliesGradientClipping:gradientClippingType:gradientClipMax:gradientClipMin:maximumClippingNorm:customGlobalNorm:regularizationType:regularizationScale:)]
         pub unsafe fn descriptorWithLearningRate_gradientRescale_appliesGradientClipping_gradientClippingType_gradientClipMax_gradientClipMin_maximumClippingNorm_customGlobalNorm_regularizationType_regularizationScale(
             learning_rate: c_float,
             gradient_rescale: c_float,
@@ -172,10 +172,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLCOptimizerDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

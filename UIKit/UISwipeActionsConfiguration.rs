@@ -20,14 +20,14 @@ unsafe impl NSObjectProtocol for UISwipeActionsConfiguration {}
 extern_methods!(
     unsafe impl UISwipeActionsConfiguration {
         #[cfg(feature = "UIContextualAction")]
-        #[method_id(@__retain_semantics Other configurationWithActions:)]
+        #[method_id(@__method_family Other configurationWithActions:)]
         pub unsafe fn configurationWithActions(
             actions: &NSArray<UIContextualAction>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIContextualAction")]
-        #[method_id(@__retain_semantics Other actions)]
+        #[method_id(@__method_family Other actions)]
         pub unsafe fn actions(&self) -> Retained<NSArray<UIContextualAction>>;
 
         #[method(performsFirstActionWithFullSwipe)]
@@ -45,10 +45,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISwipeActionsConfiguration {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -108,22 +108,22 @@ unsafe impl NSObjectProtocol for MPMusicPlayerController {}
 extern_methods!(
     unsafe impl MPMusicPlayerController {
         /// Playing items with applicationMusicPlayer does not affect Music's playback state.
-        #[method_id(@__retain_semantics Other applicationMusicPlayer)]
+        #[method_id(@__method_family Other applicationMusicPlayer)]
         pub unsafe fn applicationMusicPlayer() -> Retained<MPMusicPlayerController>;
 
         #[cfg(feature = "MPMusicPlayerApplicationController")]
         /// Similar to applicationMusicPlayer, but allows direct manipulation of the queue.
-        #[method_id(@__retain_semantics Other applicationQueuePlayer)]
+        #[method_id(@__method_family Other applicationQueuePlayer)]
         pub unsafe fn applicationQueuePlayer() -> Retained<MPMusicPlayerApplicationController>;
 
         /// Playing media items with the systemMusicPlayer will replace the user's current Music state.
-        #[method_id(@__retain_semantics Other systemMusicPlayer)]
+        #[method_id(@__method_family Other systemMusicPlayer)]
         pub unsafe fn systemMusicPlayer() -> Retained<MPMusicPlayerController>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[method(playbackState)]
@@ -153,7 +153,7 @@ extern_methods!(
         pub unsafe fn setVolume(&self, volume: c_float);
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
-        #[method_id(@__retain_semantics Other nowPlayingItem)]
+        #[method_id(@__method_family Other nowPlayingItem)]
         pub unsafe fn nowPlayingItem(&self) -> Option<Retained<MPMediaItem>>;
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
@@ -210,7 +210,7 @@ extern_methods!(
         pub unsafe fn endGeneratingPlaybackNotifications(&self);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other iPodMusicPlayer)]
+        #[method_id(@__method_family Other iPodMusicPlayer)]
         pub unsafe fn iPodMusicPlayer() -> Retained<MPMusicPlayerController>;
     }
 );

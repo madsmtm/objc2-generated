@@ -25,10 +25,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMSensorDataList {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -55,7 +55,7 @@ extern_methods!(
         #[method(isAuthorizedForRecording)]
         pub unsafe fn isAuthorizedForRecording() -> bool;
 
-        #[method_id(@__retain_semantics Other accelerometerDataFromDate:toDate:)]
+        #[method_id(@__method_family Other accelerometerDataFromDate:toDate:)]
         pub unsafe fn accelerometerDataFromDate_toDate(
             &self,
             from_date: &NSDate,
@@ -70,10 +70,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl CMSensorRecorder {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

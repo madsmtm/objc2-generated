@@ -113,7 +113,7 @@ extern_methods!(
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentPickerViewController {
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithDocumentTypes:inMode:)]
+        #[method_id(@__method_family Init initWithDocumentTypes:inMode:)]
         pub unsafe fn initWithDocumentTypes_inMode(
             this: Allocated<Self>,
             allowed_ut_is: &NSArray<NSString>,
@@ -124,7 +124,7 @@ extern_methods!(
         /// Initializes the picker instance for selecting a document in a remote location.
         ///
         /// Parameter `asCopy`: if true, the picker will give you access to a local copy of the document, otherwise you will have access to the original document
-        #[method_id(@__retain_semantics Init initForOpeningContentTypes:asCopy:)]
+        #[method_id(@__method_family Init initForOpeningContentTypes:asCopy:)]
         pub unsafe fn initForOpeningContentTypes_asCopy(
             this: Allocated<Self>,
             content_types: &NSArray<UTType>,
@@ -133,20 +133,20 @@ extern_methods!(
 
         #[cfg(feature = "objc2-uniform-type-identifiers")]
         /// Initializes the picker instance for selecting a document in a remote location, giving you access to the original document.
-        #[method_id(@__retain_semantics Init initForOpeningContentTypes:)]
+        #[method_id(@__method_family Init initForOpeningContentTypes:)]
         pub unsafe fn initForOpeningContentTypes(
             this: Allocated<Self>,
             content_types: &NSArray<UTType>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithURL:inMode:)]
+        #[method_id(@__method_family Init initWithURL:inMode:)]
         pub unsafe fn initWithURL_inMode(
             this: Allocated<Self>,
             url: &NSURL,
@@ -154,7 +154,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init initWithURLs:inMode:)]
+        #[method_id(@__method_family Init initWithURLs:inMode:)]
         pub unsafe fn initWithURLs_inMode(
             this: Allocated<Self>,
             urls: &NSArray<NSURL>,
@@ -164,7 +164,7 @@ extern_methods!(
         /// Initializes the picker for exporting local documents to an external location. The new locations will be returned using `didPickDocumentAtURLs:`.
         ///
         /// Parameter `asCopy`: if true, a copy will be exported to the destination, otherwise the original document will be moved to the destination. For performance reasons and to avoid copies, we recommend you set `asCopy` to false.
-        #[method_id(@__retain_semantics Init initForExportingURLs:asCopy:)]
+        #[method_id(@__method_family Init initForExportingURLs:asCopy:)]
         pub unsafe fn initForExportingURLs_asCopy(
             this: Allocated<Self>,
             urls: &NSArray<NSURL>,
@@ -172,13 +172,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Initializes the picker for exporting local documents to an external location. The new locations will be returned using `didPickDocumentAtURLs:`. The original document will be moved to the destination.
-        #[method_id(@__retain_semantics Init initForExportingURLs:)]
+        #[method_id(@__method_family Init initForExportingURLs:)]
         pub unsafe fn initForExportingURLs(
             this: Allocated<Self>,
             urls: &NSArray<NSURL>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIDocumentPickerDelegate>>>;
@@ -211,7 +211,7 @@ extern_methods!(
         pub unsafe fn setShouldShowFileExtensions(&self, should_show_file_extensions: bool);
 
         /// Picker will try to display this URL when presented
-        #[method_id(@__retain_semantics Other directoryURL)]
+        #[method_id(@__method_family Other directoryURL)]
         pub unsafe fn directoryURL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`directoryURL`][Self::directoryURL].
@@ -224,7 +224,7 @@ extern_methods!(
     /// Methods declared on superclass `UIViewController`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentPickerViewController {
-        #[method_id(@__retain_semantics Init initWithNibName:bundle:)]
+        #[method_id(@__method_family Init initWithNibName:bundle:)]
         pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
@@ -237,10 +237,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
     unsafe impl UIDocumentPickerViewController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

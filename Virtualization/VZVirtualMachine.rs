@@ -84,10 +84,10 @@ unsafe impl NSObjectProtocol for VZVirtualMachine {}
 
 extern_methods!(
     unsafe impl VZVirtualMachine {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "VZVirtualMachineConfiguration")]
@@ -99,7 +99,7 @@ extern_methods!(
         /// Parameter `configuration`: The configuration of the virtual machine.
         /// The configuration must be valid. Validation can be performed at runtime with [VZVirtualMachineConfiguration validateWithError:].
         /// The configuration is copied by the initializer.
-        #[method_id(@__retain_semantics Init initWithConfiguration:)]
+        #[method_id(@__method_family Init initWithConfiguration:)]
         pub unsafe fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &VZVirtualMachineConfiguration,
@@ -118,7 +118,7 @@ extern_methods!(
 
         #[cfg(feature = "VZVirtualMachineDelegate")]
         /// The virtual machine delegate.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn VZVirtualMachineDelegate>>>;
@@ -178,7 +178,7 @@ extern_methods!(
         /// See: VZVirtioConsoleDeviceConfiguration
         ///
         /// See: VZVirtualMachineConfiguration
-        #[method_id(@__retain_semantics Other consoleDevices)]
+        #[method_id(@__method_family Other consoleDevices)]
         pub unsafe fn consoleDevices(&self) -> Retained<NSArray<VZConsoleDevice>>;
 
         #[cfg(feature = "VZDirectorySharingDevice")]
@@ -187,7 +187,7 @@ extern_methods!(
         /// See: VZVirtioFileSystemDeviceConfiguration
         ///
         /// See: VZVirtualMachineConfiguration
-        #[method_id(@__retain_semantics Other directorySharingDevices)]
+        #[method_id(@__method_family Other directorySharingDevices)]
         pub unsafe fn directorySharingDevices(&self)
             -> Retained<NSArray<VZDirectorySharingDevice>>;
 
@@ -197,7 +197,7 @@ extern_methods!(
         /// See: VZGraphicsDeviceConfiguration
         ///
         /// See: VZVirtualMachineConfiguration
-        #[method_id(@__retain_semantics Other graphicsDevices)]
+        #[method_id(@__method_family Other graphicsDevices)]
         pub unsafe fn graphicsDevices(&self) -> Retained<NSArray<VZGraphicsDevice>>;
 
         #[cfg(feature = "VZMemoryBalloonDevice")]
@@ -206,7 +206,7 @@ extern_methods!(
         /// See: VZVirtioTraditionalMemoryBalloonDeviceConfiguration
         ///
         /// See: VZVirtualMachineConfiguration
-        #[method_id(@__retain_semantics Other memoryBalloonDevices)]
+        #[method_id(@__method_family Other memoryBalloonDevices)]
         pub unsafe fn memoryBalloonDevices(&self) -> Retained<NSArray<VZMemoryBalloonDevice>>;
 
         #[cfg(feature = "VZNetworkDevice")]
@@ -215,7 +215,7 @@ extern_methods!(
         /// See: VZVirtioNetworkDeviceConfiguration
         ///
         /// See: VZVirtualMachineConfiguration
-        #[method_id(@__retain_semantics Other networkDevices)]
+        #[method_id(@__method_family Other networkDevices)]
         pub unsafe fn networkDevices(&self) -> Retained<NSArray<VZNetworkDevice>>;
 
         #[cfg(feature = "VZSocketDevice")]
@@ -224,7 +224,7 @@ extern_methods!(
         /// See: VZVirtioSocketDeviceConfiguration
         ///
         /// See: VZVirtualMachineConfiguration
-        #[method_id(@__retain_semantics Other socketDevices)]
+        #[method_id(@__method_family Other socketDevices)]
         pub unsafe fn socketDevices(&self) -> Retained<NSArray<VZSocketDevice>>;
 
         #[cfg(feature = "VZUSBController")]
@@ -233,7 +233,7 @@ extern_methods!(
         /// See: VZUSBControllerConfiguration
         ///
         /// See: VZVirtualMachineConfiguration
-        #[method_id(@__retain_semantics Other usbControllers)]
+        #[method_id(@__method_family Other usbControllers)]
         pub unsafe fn usbControllers(&self) -> Retained<NSArray<VZUSBController>>;
 
         #[cfg(feature = "block2")]

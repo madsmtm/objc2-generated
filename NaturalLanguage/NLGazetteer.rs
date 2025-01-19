@@ -17,39 +17,39 @@ unsafe impl NSObjectProtocol for NLGazetteer {}
 
 extern_methods!(
     unsafe impl NLGazetteer {
-        #[method_id(@__retain_semantics Other gazetteerWithContentsOfURL:error:_)]
+        #[method_id(@__method_family Other gazetteerWithContentsOfURL:error:_)]
         pub unsafe fn gazetteerWithContentsOfURL_error(
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(@__retain_semantics Init initWithContentsOfURL:error:_)]
+        #[method_id(@__method_family Init initWithContentsOfURL:error:_)]
         pub unsafe fn initWithContentsOfURL_error(
             this: Allocated<Self>,
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(@__retain_semantics Init initWithData:error:_)]
+        #[method_id(@__method_family Init initWithData:error:_)]
         pub unsafe fn initWithData_error(
             this: Allocated<Self>,
             data: &NSData,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NLLanguage")]
-        #[method_id(@__retain_semantics Init initWithDictionary:language:error:_)]
+        #[method_id(@__method_family Init initWithDictionary:language:error:_)]
         pub unsafe fn initWithDictionary_language_error(
             this: Allocated<Self>,
             dictionary: &NSDictionary<NSString, NSArray<NSString>>,
             language: Option<&NLLanguage>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[method_id(@__retain_semantics Other labelForString:)]
+        #[method_id(@__method_family Other labelForString:)]
         pub unsafe fn labelForString(&self, string: &NSString) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NLLanguage")]
-        #[method_id(@__retain_semantics Other language)]
+        #[method_id(@__method_family Other language)]
         pub unsafe fn language(&self) -> Option<Retained<NLLanguage>>;
 
-        #[method_id(@__retain_semantics Other data)]
+        #[method_id(@__method_family Other data)]
         pub unsafe fn data(&self) -> Retained<NSData>;
 
         #[cfg(feature = "NLLanguage")]
@@ -65,10 +65,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NLGazetteer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

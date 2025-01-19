@@ -27,7 +27,7 @@ extern_methods!(
         #[method(isCurrentComplicationInfo)]
         pub unsafe fn isCurrentComplicationInfo(&self) -> bool;
 
-        #[method_id(@__retain_semantics Other userInfo)]
+        #[method_id(@__method_family Other userInfo)]
         pub unsafe fn userInfo(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[method(isTransferring)]
@@ -41,10 +41,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl WCSessionUserInfoTransfer {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

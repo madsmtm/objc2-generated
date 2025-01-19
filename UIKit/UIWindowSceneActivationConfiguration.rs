@@ -19,7 +19,7 @@ unsafe impl NSObjectProtocol for UIWindowSceneActivationConfiguration {}
 extern_methods!(
     unsafe impl UIWindowSceneActivationConfiguration {
         /// The user activity that will be used to request a scene
-        #[method_id(@__retain_semantics Other userActivity)]
+        #[method_id(@__method_family Other userActivity)]
         pub unsafe fn userActivity(&self) -> Retained<NSUserActivity>;
 
         #[cfg(all(
@@ -27,7 +27,7 @@ extern_methods!(
             feature = "UIWindowSceneActivationRequestOptions"
         ))]
         /// Options for customizing the scene request. If omitted default options are used.
-        #[method_id(@__retain_semantics Other options)]
+        #[method_id(@__method_family Other options)]
         pub unsafe fn options(
             &self,
             mtm: MainThreadMarker,
@@ -43,7 +43,7 @@ extern_methods!(
 
         #[cfg(feature = "UITargetedPreview")]
         /// An optional preview used to define the visual "source" of the newly activated scene for use in system animations.
-        #[method_id(@__retain_semantics Other preview)]
+        #[method_id(@__method_family Other preview)]
         pub unsafe fn preview(&self, mtm: MainThreadMarker) -> Option<Retained<UITargetedPreview>>;
 
         #[cfg(feature = "UITargetedPreview")]
@@ -51,16 +51,16 @@ extern_methods!(
         #[method(setPreview:)]
         pub unsafe fn setPreview(&self, preview: Option<&UITargetedPreview>);
 
-        #[method_id(@__retain_semantics Init initWithUserActivity:)]
+        #[method_id(@__method_family Init initWithUserActivity:)]
         pub unsafe fn initWithUserActivity(
             this: Allocated<Self>,
             user_activity: &NSUserActivity,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

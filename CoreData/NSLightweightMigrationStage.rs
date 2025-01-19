@@ -20,13 +20,13 @@ unsafe impl NSObjectProtocol for NSLightweightMigrationStage {}
 extern_methods!(
     #[cfg(feature = "NSMigrationStage")]
     unsafe impl NSLightweightMigrationStage {
-        #[method_id(@__retain_semantics Other versionChecksums)]
+        #[method_id(@__method_family Other versionChecksums)]
         pub unsafe fn versionChecksums(&self) -> Retained<NSArray<NSString>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithVersionChecksums:)]
+        #[method_id(@__method_family Init initWithVersionChecksums:)]
         pub unsafe fn initWithVersionChecksums(
             this: Allocated<Self>,
             version_checksums: &NSArray<NSString>,
@@ -38,7 +38,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSMigrationStage")]
     unsafe impl NSLightweightMigrationStage {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

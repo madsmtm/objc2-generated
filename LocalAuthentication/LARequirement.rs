@@ -22,7 +22,7 @@ extern_methods!(
         /// Requires user authentication
         ///
         /// Returns: `LAAuthenticationRequirement`instance
-        #[method_id(@__retain_semantics Other defaultRequirement)]
+        #[method_id(@__method_family Other defaultRequirement)]
         pub unsafe fn defaultRequirement() -> Retained<LAAuthenticationRequirement>;
 
         /// Requires biometric authentication
@@ -34,7 +34,7 @@ extern_methods!(
         /// • There are no biometric enrollments
         ///
         /// Returns: `LAAuthenticationRequirement`instance
-        #[method_id(@__retain_semantics Other biometryRequirement)]
+        #[method_id(@__method_family Other biometryRequirement)]
         pub unsafe fn biometryRequirement() -> Retained<LAAuthenticationRequirement>;
 
         /// Requires user authentication with the current biometric set
@@ -48,7 +48,7 @@ extern_methods!(
         /// • There is a change in the enrollment database -e.g a new TouchID finger is enrolled.
         ///
         /// Returns: `LAAuthenticationRequirement`instance
-        #[method_id(@__retain_semantics Other biometryCurrentSetRequirement)]
+        #[method_id(@__method_family Other biometryCurrentSetRequirement)]
         pub unsafe fn biometryCurrentSetRequirement() -> Retained<LAAuthenticationRequirement>;
 
         /// Requires biometric authentication or the given fallback method.
@@ -57,7 +57,7 @@ extern_methods!(
         /// not preferred by the user.
         ///
         /// Returns: `LAAuthenticationRequirement`instance
-        #[method_id(@__retain_semantics Other biometryRequirementWithFallback:)]
+        #[method_id(@__method_family Other biometryRequirementWithFallback:)]
         pub unsafe fn biometryRequirementWithFallback(
             fallback: &LABiometryFallbackRequirement,
         ) -> Retained<Self>;
@@ -67,10 +67,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl LAAuthenticationRequirement {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -91,13 +91,13 @@ extern_methods!(
         /// Use default biometric fallback
         ///
         /// Returns: `LABiometryFallbackRequirement`instance
-        #[method_id(@__retain_semantics Other defaultRequirement)]
+        #[method_id(@__method_family Other defaultRequirement)]
         pub unsafe fn defaultRequirement() -> Retained<LABiometryFallbackRequirement>;
 
         /// Requires authorization using the device passcode
         ///
         /// Returns: `LABiometryFallbackRequirement`instance
-        #[method_id(@__retain_semantics Other devicePasscodeRequirement)]
+        #[method_id(@__method_family Other devicePasscodeRequirement)]
         pub unsafe fn devicePasscodeRequirement() -> Retained<LABiometryFallbackRequirement>;
     }
 );
@@ -105,10 +105,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl LABiometryFallbackRequirement {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

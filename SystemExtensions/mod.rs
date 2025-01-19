@@ -172,7 +172,7 @@ unsafe impl NSObjectProtocol for OSSystemExtensionRequest {}
 extern_methods!(
     unsafe impl OSSystemExtensionRequest {
         /// A delegate to receive updates about the progress of a request
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn OSSystemExtensionRequestDelegate>>>;
@@ -186,7 +186,7 @@ extern_methods!(
         );
 
         /// The bundle identifier of the target extension
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
     }
 );
@@ -194,10 +194,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSSystemExtensionRequest {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -215,19 +215,19 @@ extern_methods!(
     unsafe impl OSSystemExtensionProperties {
         /// The file URL locating an indicating the extension bundle these properties
         /// were retreived from.
-        #[method_id(@__retain_semantics Other URL)]
+        #[method_id(@__method_family Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// The bundle identifier of the extension (CFBundleIdentifier)
-        #[method_id(@__retain_semantics Other bundleIdentifier)]
+        #[method_id(@__method_family Other bundleIdentifier)]
         pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
 
         /// The bundle version of the extension (CFBundleVersion)
-        #[method_id(@__retain_semantics Other bundleVersion)]
+        #[method_id(@__method_family Other bundleVersion)]
         pub unsafe fn bundleVersion(&self) -> Retained<NSString>;
 
         /// The bundle short version string of the extension (CFBundleShortVersionString)
-        #[method_id(@__retain_semantics Other bundleShortVersion)]
+        #[method_id(@__method_family Other bundleShortVersion)]
         pub unsafe fn bundleShortVersion(&self) -> Retained<NSString>;
 
         /// Returns the enabled state of the extension
@@ -247,10 +247,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSSystemExtensionProperties {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -364,13 +364,13 @@ unsafe impl NSObjectProtocol for OSSystemExtensionManager {}
 
 extern_methods!(
     unsafe impl OSSystemExtensionManager {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(&self) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other sharedManager)]
+        #[method_id(@__method_family Other sharedManager)]
         pub unsafe fn sharedManager() -> Retained<OSSystemExtensionManager>;
 
         /// Submits a System Extension request to the manager.
@@ -385,7 +385,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSSystemExtensionManager {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new_class() -> Retained<Self>;
     }
 );
@@ -406,15 +406,15 @@ unsafe impl NSObjectProtocol for OSSystemExtensionInfo {}
 extern_methods!(
     unsafe impl OSSystemExtensionInfo {
         /// The bundle identifier of the extension (CFBundleIdentifier)
-        #[method_id(@__retain_semantics Other bundleIdentifier)]
+        #[method_id(@__method_family Other bundleIdentifier)]
         pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
 
         /// The bundle version of the extension (CFBundleVersion)
-        #[method_id(@__retain_semantics Other bundleVersion)]
+        #[method_id(@__method_family Other bundleVersion)]
         pub unsafe fn bundleVersion(&self) -> Retained<NSString>;
 
         /// The bundle short version string of the extension (CFBundleShortVersionString)
-        #[method_id(@__retain_semantics Other bundleShortVersion)]
+        #[method_id(@__method_family Other bundleShortVersion)]
         pub unsafe fn bundleShortVersion(&self) -> Retained<NSString>;
     }
 );
@@ -422,10 +422,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSSystemExtensionInfo {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -476,7 +476,7 @@ unsafe impl NSObjectProtocol for OSSystemExtensionsWorkspace {}
 
 extern_methods!(
     unsafe impl OSSystemExtensionsWorkspace {
-        #[method_id(@__retain_semantics Other sharedWorkspace)]
+        #[method_id(@__method_family Other sharedWorkspace)]
         pub unsafe fn sharedWorkspace() -> Retained<OSSystemExtensionsWorkspace>;
 
         /// Start observing changes to System Extension(s) which are enabled or ready to be enabled.
@@ -498,10 +498,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl OSSystemExtensionsWorkspace {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

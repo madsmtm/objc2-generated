@@ -39,11 +39,11 @@ unsafe impl NSObjectProtocol for VZVirtioConsolePortConfiguration {}
 extern_methods!(
     #[cfg(feature = "VZConsolePortConfiguration")]
     unsafe impl VZVirtioConsolePortConfiguration {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The console port's name. The default behavior is to not use a name unless set.
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
@@ -64,7 +64,7 @@ extern_methods!(
     /// Methods declared on superclass `VZConsolePortConfiguration`
     #[cfg(feature = "VZConsolePortConfiguration")]
     unsafe impl VZVirtioConsolePortConfiguration {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -49,11 +49,11 @@ unsafe impl NSObjectProtocol for SCRunningApplication {}
 extern_methods!(
     unsafe impl SCRunningApplication {
         /// bundleIdentifier the bundleIdentifier for the SCRunningApplication
-        #[method_id(@__retain_semantics Other bundleIdentifier)]
+        #[method_id(@__method_family Other bundleIdentifier)]
         pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
 
         /// applicationName the application name for the SCRunningApplication
-        #[method_id(@__retain_semantics Other applicationName)]
+        #[method_id(@__method_family Other applicationName)]
         pub unsafe fn applicationName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "libc")]
@@ -61,10 +61,10 @@ extern_methods!(
         #[method(processID)]
         pub unsafe fn processID(&self) -> libc::pid_t;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -91,7 +91,7 @@ extern_methods!(
         pub unsafe fn frame(&self) -> CGRect;
 
         /// title the window title for the SCWindow
-        #[method_id(@__retain_semantics Other title)]
+        #[method_id(@__method_family Other title)]
         pub unsafe fn title(&self) -> Option<Retained<NSString>>;
 
         /// windowLayer the window layer for the SCWindow
@@ -99,7 +99,7 @@ extern_methods!(
         pub unsafe fn windowLayer(&self) -> NSInteger;
 
         /// owningApplication is the SCRunningApplication that owns this SCWindow
-        #[method_id(@__retain_semantics Other owningApplication)]
+        #[method_id(@__method_family Other owningApplication)]
         pub unsafe fn owningApplication(&self) -> Option<Retained<SCRunningApplication>>;
 
         /// onScreen the bool property denoting of the SCWindow is on the screen
@@ -110,10 +110,10 @@ extern_methods!(
         #[method(isActive)]
         pub unsafe fn isActive(&self) -> bool;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -147,10 +147,10 @@ extern_methods!(
         #[method(frame)]
         pub unsafe fn frame(&self) -> CGRect;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -188,10 +188,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl SCShareableContentInfo {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -286,25 +286,25 @@ extern_methods!(
         /// Parameter `filter`: content filter to translate to content details
         ///
         /// this method will create a SCShareableContentInformation object given a filter
-        #[method_id(@__retain_semantics Other infoForFilter:)]
+        #[method_id(@__method_family Other infoForFilter:)]
         pub unsafe fn infoForFilter(filter: &SCContentFilter) -> Retained<SCShareableContentInfo>;
 
         /// windows SCShareableContent property that contains all the sharable SCWindows
-        #[method_id(@__retain_semantics Other windows)]
+        #[method_id(@__method_family Other windows)]
         pub unsafe fn windows(&self) -> Retained<NSArray<SCWindow>>;
 
         /// displays SCShareableContent property that contains all the sharable SCDisplays
-        #[method_id(@__retain_semantics Other displays)]
+        #[method_id(@__method_family Other displays)]
         pub unsafe fn displays(&self) -> Retained<NSArray<SCDisplay>>;
 
         /// applications SCShareableContent property that contains all the sharable SCRunningApplications
-        #[method_id(@__retain_semantics Other applications)]
+        #[method_id(@__method_family Other applications)]
         pub unsafe fn applications(&self) -> Retained<NSArray<SCRunningApplication>>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

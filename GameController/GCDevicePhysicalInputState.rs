@@ -18,7 +18,7 @@ extern_protocol!(
     pub unsafe trait GCDevicePhysicalInputState: NSObjectProtocol {
         #[cfg(feature = "GCDevice")]
         /// The device that this profile is mapping input from.
-        #[method_id(@__retain_semantics Other device)]
+        #[method_id(@__method_family Other device)]
         unsafe fn device(&self) -> Option<Retained<ProtocolObject<dyn GCDevice>>>;
 
         /// The internal time stamp of the last event.
@@ -48,7 +48,7 @@ extern_protocol!(
         #[cfg(all(feature = "GCInputNames", feature = "GCPhysicalInputElement"))]
         /// The following properties allow for runtime lookup of any input element on a
         /// profile, when provided with a valid alias.
-        #[method_id(@__retain_semantics Other elements)]
+        #[method_id(@__method_family Other elements)]
         unsafe fn elements(
             &self,
         ) -> Retained<
@@ -60,7 +60,7 @@ extern_protocol!(
             feature = "GCInputNames",
             feature = "GCPhysicalInputElement"
         ))]
-        #[method_id(@__retain_semantics Other buttons)]
+        #[method_id(@__method_family Other buttons)]
         unsafe fn buttons(
             &self,
         ) -> Retained<GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCButtonElement>>>;
@@ -70,7 +70,7 @@ extern_protocol!(
             feature = "GCInputNames",
             feature = "GCPhysicalInputElement"
         ))]
-        #[method_id(@__retain_semantics Other axes)]
+        #[method_id(@__method_family Other axes)]
         unsafe fn axes(
             &self,
         ) -> Retained<GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCAxisElement>>>;
@@ -80,7 +80,7 @@ extern_protocol!(
             feature = "GCPhysicalInputElement",
             feature = "GCSwitchElement"
         ))]
-        #[method_id(@__retain_semantics Other switches)]
+        #[method_id(@__method_family Other switches)]
         unsafe fn switches(
             &self,
         ) -> Retained<GCPhysicalInputElementCollection<NSString, ProtocolObject<dyn GCSwitchElement>>>;
@@ -90,7 +90,7 @@ extern_protocol!(
             feature = "GCInputNames",
             feature = "GCPhysicalInputElement"
         ))]
-        #[method_id(@__retain_semantics Other dpads)]
+        #[method_id(@__method_family Other dpads)]
         unsafe fn dpads(
             &self,
         ) -> Retained<
@@ -104,7 +104,7 @@ extern_protocol!(
         ///
         ///
         /// Note: Equivalent to -elements
-        #[method_id(@__retain_semantics Other objectForKeyedSubscript:)]
+        #[method_id(@__method_family Other objectForKeyedSubscript:)]
         unsafe fn objectForKeyedSubscript(
             &self,
             key: &NSString,

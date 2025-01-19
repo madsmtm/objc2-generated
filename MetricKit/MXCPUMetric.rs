@@ -33,7 +33,7 @@ extern_methods!(
         /// The data here represents the total CPU time an application consumed over the date range of the containing payload.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[method_id(@__retain_semantics Other cumulativeCPUTime)]
+        #[method_id(@__method_family Other cumulativeCPUTime)]
         pub unsafe fn cumulativeCPUTime(&self) -> Retained<NSMeasurement<NSUnitDuration>>;
 
         /// CPU instructions retired aggregated cumulatively.
@@ -41,7 +41,7 @@ extern_methods!(
         /// The data here represents the total number of CPU instructions an application retired over the date range of the containing payload.
         ///
         /// Dimensionless.
-        #[method_id(@__retain_semantics Other cumulativeCPUInstructions)]
+        #[method_id(@__method_family Other cumulativeCPUInstructions)]
         pub unsafe fn cumulativeCPUInstructions(&self) -> Retained<NSMeasurement<NSUnit>>;
     }
 );
@@ -50,10 +50,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXCPUMetric {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

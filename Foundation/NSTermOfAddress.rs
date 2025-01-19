@@ -33,25 +33,25 @@ extern_methods!(
         /// Term of address that uses gender-neutral pronouns (e.g. they/them/theirs in
         /// English), and an epicene grammatical gender when inflecting verbs and
         /// adjectives referring to the person
-        #[method_id(@__retain_semantics Other neutral)]
+        #[method_id(@__method_family Other neutral)]
         pub unsafe fn neutral() -> Retained<Self>;
 
         /// Term of address that uses feminine pronouns (e.g. she/her/hers in English),
         /// and a feminine grammatical gender when inflecting verbs and adjectives
         /// referring to the person
-        #[method_id(@__retain_semantics Other feminine)]
+        #[method_id(@__method_family Other feminine)]
         pub unsafe fn feminine() -> Retained<Self>;
 
         /// Term of address that uses masculine pronouns (e.g. he/him/his in English),
         /// and a masculine grammatical gender when inflecting verbs and adjectives
         /// referring to the person
-        #[method_id(@__retain_semantics Other masculine)]
+        #[method_id(@__method_family Other masculine)]
         pub unsafe fn masculine() -> Retained<Self>;
 
         /// The term of address that should be used for addressing the user
         ///
         /// This term of address will only compare equal to another `+[NSTermOfAddress currentUser]`
-        #[method_id(@__retain_semantics Other currentUser)]
+        #[method_id(@__method_family Other currentUser)]
         pub unsafe fn currentUser() -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSMorphology", feature = "NSString"))]
@@ -61,26 +61,26 @@ extern_methods!(
         ///
         /// Parameter `pronouns`: A list of pronouns in the target language that can be used to
         /// refer to the person.
-        #[method_id(@__retain_semantics Other localizedForLanguageIdentifier:withPronouns:)]
+        #[method_id(@__method_family Other localizedForLanguageIdentifier:withPronouns:)]
         pub unsafe fn localizedForLanguageIdentifier_withPronouns(
             language: &NSString,
             pronouns: &NSArray<NSMorphologyPronoun>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSString")]
         /// The ISO language code if this is a localized term of address
-        #[method_id(@__retain_semantics Other languageIdentifier)]
+        #[method_id(@__method_family Other languageIdentifier)]
         pub unsafe fn languageIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSMorphology"))]
         /// A list of pronouns for a localized term of address
-        #[method_id(@__retain_semantics Other pronouns)]
+        #[method_id(@__method_family Other pronouns)]
         pub unsafe fn pronouns(&self) -> Option<Retained<NSArray<NSMorphologyPronoun>>>;
     }
 );

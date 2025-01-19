@@ -56,7 +56,7 @@ extern_methods!(
     #[cfg(feature = "NSPredicate")]
     unsafe impl NSCompoundPredicate {
         #[cfg(feature = "NSArray")]
-        #[method_id(@__retain_semantics Init initWithType:subpredicates:)]
+        #[method_id(@__method_family Init initWithType:subpredicates:)]
         pub unsafe fn initWithType_subpredicates(
             this: Allocated<Self>,
             r#type: NSCompoundPredicateType,
@@ -64,7 +64,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -74,23 +74,23 @@ extern_methods!(
         pub unsafe fn compoundPredicateType(&self) -> NSCompoundPredicateType;
 
         #[cfg(feature = "NSArray")]
-        #[method_id(@__retain_semantics Other subpredicates)]
+        #[method_id(@__method_family Other subpredicates)]
         pub unsafe fn subpredicates(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "NSArray")]
         /// * Convenience Methods **
-        #[method_id(@__retain_semantics Other andPredicateWithSubpredicates:)]
+        #[method_id(@__method_family Other andPredicateWithSubpredicates:)]
         pub unsafe fn andPredicateWithSubpredicates(
             subpredicates: &NSArray<NSPredicate>,
         ) -> Retained<NSCompoundPredicate>;
 
         #[cfg(feature = "NSArray")]
-        #[method_id(@__retain_semantics Other orPredicateWithSubpredicates:)]
+        #[method_id(@__method_family Other orPredicateWithSubpredicates:)]
         pub unsafe fn orPredicateWithSubpredicates(
             subpredicates: &NSArray<NSPredicate>,
         ) -> Retained<NSCompoundPredicate>;
 
-        #[method_id(@__retain_semantics Other notPredicateWithSubpredicate:)]
+        #[method_id(@__method_family Other notPredicateWithSubpredicate:)]
         pub unsafe fn notPredicateWithSubpredicate(
             predicate: &NSPredicate,
         ) -> Retained<NSCompoundPredicate>;
@@ -101,10 +101,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSPredicate")]
     unsafe impl NSCompoundPredicate {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -19,24 +19,24 @@ unsafe impl NSObjectProtocol for UIDragItem {}
 
 extern_methods!(
     unsafe impl UIDragItem {
-        #[method_id(@__retain_semantics Init initWithItemProvider:)]
+        #[method_id(@__method_family Init initWithItemProvider:)]
         pub unsafe fn initWithItemProvider(
             this: Allocated<Self>,
             item_provider: &NSItemProvider,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other itemProvider)]
+        #[method_id(@__method_family Other itemProvider)]
         pub unsafe fn itemProvider(&self) -> Retained<NSItemProvider>;
 
         /// Use `localObject` to attach additional information to
         /// this drag item, visible only inside the app that started the drag.
-        #[method_id(@__retain_semantics Other localObject)]
+        #[method_id(@__method_family Other localObject)]
         pub unsafe fn localObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`localObject`][Self::localObject].

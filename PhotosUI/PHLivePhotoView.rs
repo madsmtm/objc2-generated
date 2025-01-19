@@ -110,7 +110,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl PHLivePhotoView {
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn PHLivePhotoViewDelegate>>>;
@@ -125,7 +125,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-photos")]
         /// Live photo displayed in the receiver.
-        #[method_id(@__retain_semantics Other livePhoto)]
+        #[method_id(@__method_family Other livePhoto)]
         pub unsafe fn livePhoto(&self) -> Option<Retained<PHLivePhoto>>;
 
         #[cfg(feature = "objc2-photos")]
@@ -179,7 +179,7 @@ extern_methods!(
         pub unsafe fn stopPlaybackAnimated(&self, animated: bool);
 
         /// Directly access the livePhotoBadge in cases where it should be added to a different place in the view hierarchy and not the live photo view. This can be useful when the live photo view is added to a scroll view.
-        #[method_id(@__retain_semantics Other livePhotoBadgeView)]
+        #[method_id(@__method_family Other livePhotoBadgeView)]
         pub unsafe fn livePhotoBadgeView(&self) -> Option<Retained<NSView>>;
     }
 );
@@ -189,10 +189,10 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl PHLivePhotoView {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -205,7 +205,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl PHLivePhotoView {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -215,7 +215,7 @@ extern_methods!(
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
     unsafe impl PHLivePhotoView {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

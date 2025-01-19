@@ -52,7 +52,7 @@ unsafe impl NSObjectProtocol for HMCalendarEvent {}
 extern_methods!(
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
     unsafe impl HMCalendarEvent {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Creates a calendar event
@@ -69,7 +69,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the event trigger.
-        #[method_id(@__retain_semantics Init initWithFireDateComponents:)]
+        #[method_id(@__method_family Init initWithFireDateComponents:)]
         pub unsafe fn initWithFireDateComponents(
             this: Allocated<Self>,
             fire_date_components: &NSDateComponents,
@@ -83,7 +83,7 @@ extern_methods!(
         /// Minutes are used. Other NSDateComponents such as
         /// year, weekday, quarter, week of the year / month are not used in calculation for next fire date.
         /// If its expected to fire on the same day, it should be at least 1 minute ahead or it could get scheduled for the next recurrent day.
-        #[method_id(@__retain_semantics Other fireDateComponents)]
+        #[method_id(@__method_family Other fireDateComponents)]
         pub unsafe fn fireDateComponents(&self) -> Retained<NSDateComponents>;
     }
 );
@@ -93,7 +93,7 @@ extern_methods!(
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
     unsafe impl HMCalendarEvent {
         #[deprecated = "HMEvent is abstract"]
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -136,11 +136,11 @@ unsafe impl NSObjectProtocol for HMMutableCalendarEvent {}
 extern_methods!(
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
     unsafe impl HMMutableCalendarEvent {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The date component that specifies the time when the event is fired
-        #[method_id(@__retain_semantics Other fireDateComponents)]
+        #[method_id(@__method_family Other fireDateComponents)]
         pub unsafe fn fireDateComponents(&self) -> Retained<NSDateComponents>;
 
         /// Setter for [`fireDateComponents`][Self::fireDateComponents].
@@ -167,7 +167,7 @@ extern_methods!(
         ///
         ///
         /// Returns: Instance object representing the event trigger.
-        #[method_id(@__retain_semantics Init initWithFireDateComponents:)]
+        #[method_id(@__method_family Init initWithFireDateComponents:)]
         pub unsafe fn initWithFireDateComponents(
             this: Allocated<Self>,
             fire_date_components: &NSDateComponents,
@@ -180,7 +180,7 @@ extern_methods!(
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
     unsafe impl HMMutableCalendarEvent {
         #[deprecated = "HMEvent is abstract"]
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -63,11 +63,11 @@ unsafe impl NSObjectProtocol for NSNotificationQueue {}
 
 extern_methods!(
     unsafe impl NSNotificationQueue {
-        #[method_id(@__retain_semantics Other defaultQueue)]
+        #[method_id(@__method_family Other defaultQueue)]
         pub unsafe fn defaultQueue() -> Retained<NSNotificationQueue>;
 
         #[cfg(feature = "NSNotification")]
-        #[method_id(@__retain_semantics Init initWithNotificationCenter:)]
+        #[method_id(@__method_family Init initWithNotificationCenter:)]
         pub unsafe fn initWithNotificationCenter(
             this: Allocated<Self>,
             notification_center: &NSNotificationCenter,
@@ -109,10 +109,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSNotificationQueue {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

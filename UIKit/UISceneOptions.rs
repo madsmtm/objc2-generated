@@ -23,35 +23,35 @@ unsafe impl NSObjectProtocol for UISceneConnectionOptions {}
 
 extern_methods!(
     unsafe impl UISceneConnectionOptions {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIOpenURLContext")]
-        #[method_id(@__retain_semantics Other URLContexts)]
+        #[method_id(@__method_family Other URLContexts)]
         pub unsafe fn URLContexts(&self) -> Retained<NSSet<UIOpenURLContext>>;
 
-        #[method_id(@__retain_semantics Other sourceApplication)]
+        #[method_id(@__method_family Other sourceApplication)]
         pub unsafe fn sourceApplication(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__retain_semantics Other handoffUserActivityType)]
+        #[method_id(@__method_family Other handoffUserActivityType)]
         pub unsafe fn handoffUserActivityType(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__retain_semantics Other userActivities)]
+        #[method_id(@__method_family Other userActivities)]
         pub unsafe fn userActivities(&self) -> Retained<NSSet<NSUserActivity>>;
 
         #[cfg(feature = "objc2-user-notifications")]
-        #[method_id(@__retain_semantics Other notificationResponse)]
+        #[method_id(@__method_family Other notificationResponse)]
         pub unsafe fn notificationResponse(&self) -> Option<Retained<UNNotificationResponse>>;
 
         #[cfg(feature = "UIApplicationShortcutItem")]
-        #[method_id(@__retain_semantics Other shortcutItem)]
+        #[method_id(@__method_family Other shortcutItem)]
         pub unsafe fn shortcutItem(&self) -> Option<Retained<UIApplicationShortcutItem>>;
 
         #[cfg(feature = "objc2-cloud-kit")]
-        #[method_id(@__retain_semantics Other cloudKitShareMetadata)]
+        #[method_id(@__method_family Other cloudKitShareMetadata)]
         pub unsafe fn cloudKitShareMetadata(&self) -> Option<Retained<CKShareMetadata>>;
     }
 );
@@ -68,23 +68,23 @@ unsafe impl NSObjectProtocol for UISceneOpenURLOptions {}
 
 extern_methods!(
     unsafe impl UISceneOpenURLOptions {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other sourceApplication)]
+        #[method_id(@__method_family Other sourceApplication)]
         pub unsafe fn sourceApplication(&self) -> Option<Retained<NSString>>;
 
-        #[method_id(@__retain_semantics Other annotation)]
+        #[method_id(@__method_family Other annotation)]
         pub unsafe fn annotation(&self) -> Option<Retained<AnyObject>>;
 
         #[method(openInPlace)]
         pub unsafe fn openInPlace(&self) -> bool;
 
         #[cfg(feature = "UIEventAttribution")]
-        #[method_id(@__retain_semantics Other eventAttribution)]
+        #[method_id(@__method_family Other eventAttribution)]
         pub unsafe fn eventAttribution(&self) -> Option<Retained<UIEventAttribution>>;
     }
 );
@@ -109,7 +109,7 @@ extern_methods!(
         pub unsafe fn setUniversalLinksOnly(&self, universal_links_only: bool);
 
         #[cfg(feature = "UIEventAttribution")]
-        #[method_id(@__retain_semantics Other eventAttribution)]
+        #[method_id(@__method_family Other eventAttribution)]
         pub unsafe fn eventAttribution(&self) -> Option<Retained<UIEventAttribution>>;
 
         #[cfg(feature = "UIEventAttribution")]
@@ -122,10 +122,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISceneOpenExternalURLOptions {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -167,7 +167,7 @@ unsafe impl NSObjectProtocol for UISceneActivationRequestOptions {}
 extern_methods!(
     unsafe impl UISceneActivationRequestOptions {
         #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
-        #[method_id(@__retain_semantics Other requestingScene)]
+        #[method_id(@__method_family Other requestingScene)]
         pub unsafe fn requestingScene(&self) -> Option<Retained<UIScene>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
@@ -190,10 +190,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISceneActivationRequestOptions {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -215,10 +215,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISceneDestructionRequestOptions {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

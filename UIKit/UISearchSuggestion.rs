@@ -11,26 +11,26 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchsuggestion?language=objc)
     pub unsafe trait UISearchSuggestion: NSObjectProtocol + MainThreadOnly {
         /// The localized suggestion that will be displayed as the search string
-        #[method_id(@__retain_semantics Other localizedSuggestion)]
+        #[method_id(@__method_family Other localizedSuggestion)]
         unsafe fn localizedSuggestion(&self) -> Option<Retained<NSString>>;
 
         /// The localized description used as accessibility string
         #[optional]
-        #[method_id(@__retain_semantics Other localizedDescription)]
+        #[method_id(@__method_family Other localizedDescription)]
         unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UIImage")]
         /// Icon that represents this search suggestion item
         #[optional]
-        #[method_id(@__retain_semantics Other iconImage)]
+        #[method_id(@__method_family Other iconImage)]
         unsafe fn iconImage(&self) -> Option<Retained<UIImage>>;
 
         /// If non-null, will be displayed as the search string instead of localizedSuggestion
-        #[method_id(@__retain_semantics Other localizedAttributedSuggestion)]
+        #[method_id(@__method_family Other localizedAttributedSuggestion)]
         unsafe fn localizedAttributedSuggestion(&self) -> Option<Retained<NSAttributedString>>;
 
         /// User information
-        #[method_id(@__retain_semantics Other representedObject)]
+        #[method_id(@__method_family Other representedObject)]
         unsafe fn representedObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`representedObject`][Self::representedObject].
@@ -56,14 +56,14 @@ unsafe impl UISearchSuggestion for UISearchSuggestionItem {}
 extern_methods!(
     unsafe impl UISearchSuggestionItem {
         /// Returns a new search suggestion object with a specified suggestion string.
-        #[method_id(@__retain_semantics Other suggestionWithLocalizedSuggestion:)]
+        #[method_id(@__method_family Other suggestionWithLocalizedSuggestion:)]
         pub unsafe fn suggestionWithLocalizedSuggestion(
             suggestion: &NSString,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         /// Returns a new search suggestion object with a specified suggestion string and a description string.
-        #[method_id(@__retain_semantics Other suggestionWithLocalizedSuggestion:descriptionString:)]
+        #[method_id(@__method_family Other suggestionWithLocalizedSuggestion:descriptionString:)]
         pub unsafe fn suggestionWithLocalizedSuggestion_descriptionString(
             suggestion: &NSString,
             description: Option<&NSString>,
@@ -72,7 +72,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         /// Returns a new search suggestion object with a specified suggestion string, description string, and a search icon image.
-        #[method_id(@__retain_semantics Other suggestionWithLocalizedSuggestion:descriptionString:iconImage:)]
+        #[method_id(@__method_family Other suggestionWithLocalizedSuggestion:descriptionString:iconImage:)]
         pub unsafe fn suggestionWithLocalizedSuggestion_descriptionString_iconImage(
             suggestion: &NSString,
             description: Option<&NSString>,
@@ -81,13 +81,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Factory methods taking NSAttributedString instead of NSString for the suggestion
-        #[method_id(@__retain_semantics Other suggestionWithLocalizedAttributedSuggestion:)]
+        #[method_id(@__method_family Other suggestionWithLocalizedAttributedSuggestion:)]
         pub unsafe fn suggestionWithLocalizedAttributedSuggestion(
             suggestion: &NSAttributedString,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other suggestionWithLocalizedAttributedSuggestion:descriptionString:)]
+        #[method_id(@__method_family Other suggestionWithLocalizedAttributedSuggestion:descriptionString:)]
         pub unsafe fn suggestionWithLocalizedAttributedSuggestion_descriptionString(
             suggestion: &NSAttributedString,
             description: Option<&NSString>,
@@ -95,7 +95,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__retain_semantics Other suggestionWithLocalizedAttributedSuggestion:descriptionString:iconImage:)]
+        #[method_id(@__method_family Other suggestionWithLocalizedAttributedSuggestion:descriptionString:iconImage:)]
         pub unsafe fn suggestionWithLocalizedAttributedSuggestion_descriptionString_iconImage(
             suggestion: &NSAttributedString,
             description: Option<&NSString>,
@@ -104,14 +104,14 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Initializes a search suggestion object with a specified search suggestion string.
-        #[method_id(@__retain_semantics Init initWithLocalizedSuggestion:)]
+        #[method_id(@__method_family Init initWithLocalizedSuggestion:)]
         pub unsafe fn initWithLocalizedSuggestion(
             this: Allocated<Self>,
             suggestion: &NSString,
         ) -> Retained<Self>;
 
         /// Initializes a search suggestion object with a specified search suggestion string and a description string.
-        #[method_id(@__retain_semantics Init initWithLocalizedSuggestion:localizedDescription:)]
+        #[method_id(@__method_family Init initWithLocalizedSuggestion:localizedDescription:)]
         pub unsafe fn initWithLocalizedSuggestion_localizedDescription(
             this: Allocated<Self>,
             suggestion: &NSString,
@@ -120,7 +120,7 @@ extern_methods!(
 
         #[cfg(feature = "UIImage")]
         /// Initializes a search suggestion object with a specified search suggestion string, a description string, and a search icon image.
-        #[method_id(@__retain_semantics Init initWithLocalizedSuggestion:localizedDescription:iconImage:)]
+        #[method_id(@__method_family Init initWithLocalizedSuggestion:localizedDescription:iconImage:)]
         pub unsafe fn initWithLocalizedSuggestion_localizedDescription_iconImage(
             this: Allocated<Self>,
             suggestion: &NSString,
@@ -129,13 +129,13 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// Initializers taking NSAttributedString instead of NSString for the suggestion
-        #[method_id(@__retain_semantics Init initWithLocalizedAttributedSuggestion:)]
+        #[method_id(@__method_family Init initWithLocalizedAttributedSuggestion:)]
         pub unsafe fn initWithLocalizedAttributedSuggestion(
             this: Allocated<Self>,
             suggestion: &NSAttributedString,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithLocalizedAttributedSuggestion:localizedDescription:)]
+        #[method_id(@__method_family Init initWithLocalizedAttributedSuggestion:localizedDescription:)]
         pub unsafe fn initWithLocalizedAttributedSuggestion_localizedDescription(
             this: Allocated<Self>,
             suggestion: &NSAttributedString,
@@ -143,7 +143,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(feature = "UIImage")]
-        #[method_id(@__retain_semantics Init initWithLocalizedAttributedSuggestion:localizedDescription:iconImage:)]
+        #[method_id(@__method_family Init initWithLocalizedAttributedSuggestion:localizedDescription:iconImage:)]
         pub unsafe fn initWithLocalizedAttributedSuggestion_localizedDescription_iconImage(
             this: Allocated<Self>,
             suggestion: &NSAttributedString,
@@ -152,24 +152,24 @@ extern_methods!(
         ) -> Retained<Self>;
 
         /// If non-null, will be displayed as the search string instead of localizedSuggestion
-        #[method_id(@__retain_semantics Other localizedAttributedSuggestion)]
+        #[method_id(@__method_family Other localizedAttributedSuggestion)]
         pub unsafe fn localizedAttributedSuggestion(&self) -> Option<Retained<NSAttributedString>>;
 
         /// The localized suggestion that will be displayed as the search string
-        #[method_id(@__retain_semantics Other localizedSuggestion)]
+        #[method_id(@__method_family Other localizedSuggestion)]
         pub unsafe fn localizedSuggestion(&self) -> Option<Retained<NSString>>;
 
         /// The localized description used as accessibility string
-        #[method_id(@__retain_semantics Other localizedDescription)]
+        #[method_id(@__method_family Other localizedDescription)]
         pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UIImage")]
         /// Icon that represents this search suggestion item
-        #[method_id(@__retain_semantics Other iconImage)]
+        #[method_id(@__method_family Other iconImage)]
         pub unsafe fn iconImage(&self) -> Option<Retained<UIImage>>;
 
         /// User information
-        #[method_id(@__retain_semantics Other representedObject)]
+        #[method_id(@__method_family Other representedObject)]
         pub unsafe fn representedObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`representedObject`][Self::representedObject].
@@ -181,10 +181,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UISearchSuggestionItem {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

@@ -54,7 +54,7 @@ unsafe impl NSObjectProtocol for UIPageControlProgress {}
 extern_methods!(
     unsafe impl UIPageControlProgress {
         /// An object that defines the delegate of the page control progress.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPageControlProgressDelegate>>>;
@@ -86,10 +86,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIPageControlProgress {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -128,14 +128,14 @@ unsafe impl NSObjectProtocol for UIPageControlTimerProgress {}
 extern_methods!(
     unsafe impl UIPageControlTimerProgress {
         /// Creates a time interval progress with a specified preferred duration.
-        #[method_id(@__retain_semantics Init initWithPreferredDuration:)]
+        #[method_id(@__method_family Init initWithPreferredDuration:)]
         pub unsafe fn initWithPreferredDuration(
             this: Allocated<Self>,
             preferred_duration: NSTimeInterval,
         ) -> Retained<Self>;
 
         /// An object that defines the delegate of the page control progress.
-        #[method_id(@__retain_semantics Other delegate)]
+        #[method_id(@__method_family Other delegate)]
         pub unsafe fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPageControlTimerProgressDelegate>>>;
@@ -186,10 +186,10 @@ extern_methods!(
         #[method(durationForPage:)]
         pub unsafe fn durationForPage(&self, page: NSInteger) -> NSTimeInterval;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

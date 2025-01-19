@@ -24,31 +24,31 @@ unsafe impl NSObjectProtocol for NSPersistentStoreDescription {}
 
 extern_methods!(
     unsafe impl NSPersistentStoreDescription {
-        #[method_id(@__retain_semantics Other persistentStoreDescriptionWithURL:)]
+        #[method_id(@__method_family Other persistentStoreDescriptionWithURL:)]
         pub unsafe fn persistentStoreDescriptionWithURL(url: &NSURL) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other type)]
+        #[method_id(@__method_family Other type)]
         pub unsafe fn r#type(&self) -> Retained<NSString>;
 
         /// Setter for [`type`][Self::type].
         #[method(setType:)]
         pub unsafe fn setType(&self, r#type: &NSString);
 
-        #[method_id(@__retain_semantics Other configuration)]
+        #[method_id(@__method_family Other configuration)]
         pub unsafe fn configuration(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`configuration`][Self::configuration].
         #[method(setConfiguration:)]
         pub unsafe fn setConfiguration(&self, configuration: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other URL)]
+        #[method_id(@__method_family Other URL)]
         pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
         #[method(setURL:)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
-        #[method_id(@__retain_semantics Other options)]
+        #[method_id(@__method_family Other options)]
         pub unsafe fn options(&self) -> Retained<NSDictionary<NSString, NSObject>>;
 
         #[method(setOption:forKey:)]
@@ -68,7 +68,7 @@ extern_methods!(
         #[method(setTimeout:)]
         pub unsafe fn setTimeout(&self, timeout: NSTimeInterval);
 
-        #[method_id(@__retain_semantics Other sqlitePragmas)]
+        #[method_id(@__method_family Other sqlitePragmas)]
         pub unsafe fn sqlitePragmas(&self) -> Retained<NSDictionary<NSString, NSObject>>;
 
         #[method(setValue:forPragmaNamed:)]
@@ -101,7 +101,7 @@ extern_methods!(
             should_infer_mapping_model_automatically: bool,
         );
 
-        #[method_id(@__retain_semantics Init initWithURL:)]
+        #[method_id(@__method_family Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
     }
 );
@@ -109,10 +109,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSPersistentStoreDescription {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -123,7 +123,7 @@ extern_methods!(
         #[cfg(feature = "NSPersistentCloudKitContainerOptions")]
         /// Use this property to apply customized instances of NSPersistentCloudKitContainerOptions to
         /// a store description you wish to use with CloudKit.
-        #[method_id(@__retain_semantics Other cloudKitContainerOptions)]
+        #[method_id(@__method_family Other cloudKitContainerOptions)]
         pub unsafe fn cloudKitContainerOptions(
             &self,
         ) -> Option<Retained<NSPersistentCloudKitContainerOptions>>;

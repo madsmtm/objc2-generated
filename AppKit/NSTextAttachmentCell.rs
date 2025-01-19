@@ -51,7 +51,7 @@ extern_protocol!(
         unsafe fn cellBaselineOffset(&self) -> NSPoint;
 
         #[cfg(feature = "NSTextAttachment")]
-        #[method_id(@__retain_semantics Other attachment)]
+        #[method_id(@__method_family Other attachment)]
         unsafe fn attachment(&self) -> Option<Retained<NSTextAttachment>>;
 
         #[cfg(feature = "NSTextAttachment")]
@@ -162,20 +162,20 @@ extern_methods!(
     /// Methods declared on superclass `NSCell`
     #[cfg(feature = "NSCell")]
     unsafe impl NSTextAttachmentCell {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initTextCell:)]
+        #[method_id(@__method_family Init initTextCell:)]
         pub unsafe fn initTextCell(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
         #[cfg(feature = "NSImage")]
-        #[method_id(@__retain_semantics Init initImageCell:)]
+        #[method_id(@__method_family Init initImageCell:)]
         pub unsafe fn initImageCell(
             this: Allocated<Self>,
             image: Option<&NSImage>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
     }
 );
@@ -184,7 +184,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSCell")]
     unsafe impl NSTextAttachmentCell {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

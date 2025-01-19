@@ -26,7 +26,7 @@ unsafe impl NSSecureCoding for ILMessageCommunication {}
 extern_methods!(
     #[cfg(feature = "ILCommunication")]
     unsafe impl ILMessageCommunication {
-        #[method_id(@__retain_semantics Other messageBody)]
+        #[method_id(@__method_family Other messageBody)]
         pub unsafe fn messageBody(&self) -> Option<Retained<NSString>>;
 
         #[method(isEqualToMessageCommunication:)]
@@ -35,7 +35,7 @@ extern_methods!(
             communication: &ILMessageCommunication,
         ) -> bool;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -44,7 +44,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "ILCommunication")]
     unsafe impl ILMessageCommunication {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

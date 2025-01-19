@@ -34,14 +34,14 @@ extern_methods!(
         /// Dimensioned as NSUnitDuration.
         ///
         /// This represents the time when the first CA commit is finished.
-        #[method_id(@__retain_semantics Other histogrammedTimeToFirstDraw)]
+        #[method_id(@__method_family Other histogrammedTimeToFirstDraw)]
         pub unsafe fn histogrammedTimeToFirstDraw(&self) -> Retained<MXHistogram<NSUnitDuration>>;
 
         #[cfg(feature = "MXHistogram")]
         /// Histogrammed application resume time data.
         ///
         /// Dimensioned as NSUnitDuration.
-        #[method_id(@__retain_semantics Other histogrammedApplicationResumeTime)]
+        #[method_id(@__method_family Other histogrammedApplicationResumeTime)]
         pub unsafe fn histogrammedApplicationResumeTime(
             &self,
         ) -> Retained<MXHistogram<NSUnitDuration>>;
@@ -54,7 +54,7 @@ extern_methods!(
         /// This represents the time when the first CA commit is finished where the application launch has been optimized by the system.
         ///
         /// In iOS 15, the system will opportunistically start applications that are not running in the background to reduce the amount of time a user may have to wait before an application is usable. These launches can occur after a system reboot and periodically as system conditions allow.
-        #[method_id(@__retain_semantics Other histogrammedOptimizedTimeToFirstDraw)]
+        #[method_id(@__method_family Other histogrammedOptimizedTimeToFirstDraw)]
         pub unsafe fn histogrammedOptimizedTimeToFirstDraw(
             &self,
         ) -> Retained<MXHistogram<NSUnitDuration>>;
@@ -65,7 +65,7 @@ extern_methods!(
         /// Dimensioned as NSUnitDuration.
         ///
         /// This represents the time when the app has drawn the first frame and finishes all extended launch tasks that assigned by the developer.
-        #[method_id(@__retain_semantics Other histogrammedExtendedLaunch)]
+        #[method_id(@__method_family Other histogrammedExtendedLaunch)]
         pub unsafe fn histogrammedExtendedLaunch(&self) -> Retained<MXHistogram<NSUnitDuration>>;
     }
 );
@@ -74,10 +74,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "MXMetric")]
     unsafe impl MXAppLaunchMetric {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

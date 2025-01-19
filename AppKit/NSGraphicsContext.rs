@@ -79,26 +79,26 @@ unsafe impl NSObjectProtocol for NSGraphicsContext {}
 
 extern_methods!(
     unsafe impl NSGraphicsContext {
-        #[method_id(@__retain_semantics Other graphicsContextWithAttributes:)]
+        #[method_id(@__method_family Other graphicsContextWithAttributes:)]
         pub unsafe fn graphicsContextWithAttributes(
             attributes: &NSDictionary<NSGraphicsContextAttributeKey, AnyObject>,
         ) -> Option<Retained<NSGraphicsContext>>;
 
         #[cfg(all(feature = "NSBitmapImageRep", feature = "NSImageRep"))]
-        #[method_id(@__retain_semantics Other graphicsContextWithBitmapImageRep:)]
+        #[method_id(@__method_family Other graphicsContextWithBitmapImageRep:)]
         pub unsafe fn graphicsContextWithBitmapImageRep(
             bitmap_rep: &NSBitmapImageRep,
         ) -> Option<Retained<NSGraphicsContext>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(@__retain_semantics Other graphicsContextWithCGContext:flipped:)]
+        #[method_id(@__method_family Other graphicsContextWithCGContext:flipped:)]
         pub unsafe fn graphicsContextWithCGContext_flipped(
             graphics_port: &CGContext,
             initial_flipped_state: bool,
         ) -> Retained<NSGraphicsContext>;
 
-        #[method_id(@__retain_semantics Other currentContext)]
+        #[method_id(@__method_family Other currentContext)]
         pub unsafe fn currentContext() -> Option<Retained<NSGraphicsContext>>;
 
         /// Setter for [`currentContext`][Self::currentContext].
@@ -114,7 +114,7 @@ extern_methods!(
         #[method(restoreGraphicsState)]
         pub unsafe fn restoreGraphicsState_class();
 
-        #[method_id(@__retain_semantics Other attributes)]
+        #[method_id(@__method_family Other attributes)]
         pub unsafe fn attributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSGraphicsContextAttributeKey, AnyObject>>>;
@@ -133,7 +133,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-graphics")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(@__retain_semantics Other CGContext)]
+        #[method_id(@__method_family Other CGContext)]
         pub unsafe fn CGContext(&self) -> Retained<CGContext>;
 
         #[method(isFlipped)]
@@ -144,10 +144,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSGraphicsContext {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -204,7 +204,7 @@ extern_methods!(
     unsafe impl NSGraphicsContext {
         #[cfg(feature = "objc2-core-image")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(@__retain_semantics Other CIContext)]
+        #[method_id(@__method_family Other CIContext)]
         pub unsafe fn CIContext(&self) -> Option<Retained<CIContext>>;
     }
 );
@@ -217,7 +217,7 @@ extern_methods!(
         pub unsafe fn setGraphicsState(g_state: NSInteger);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other focusStack)]
+        #[method_id(@__method_family Other focusStack)]
         pub unsafe fn focusStack(&self) -> Option<Retained<AnyObject>>;
 
         #[deprecated]
@@ -225,7 +225,7 @@ extern_methods!(
         pub unsafe fn setFocusStack(&self, stack: Option<&AnyObject>);
 
         #[deprecated]
-        #[method_id(@__retain_semantics Other graphicsContextWithGraphicsPort:flipped:)]
+        #[method_id(@__method_family Other graphicsContextWithGraphicsPort:flipped:)]
         pub unsafe fn graphicsContextWithGraphicsPort_flipped(
             graphics_port: NonNull<c_void>,
             initial_flipped_state: bool,
@@ -237,7 +237,7 @@ extern_methods!(
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         #[deprecated = "Add instances of NSView to display content in a window"]
-        #[method_id(@__retain_semantics Other graphicsContextWithWindow:)]
+        #[method_id(@__method_family Other graphicsContextWithWindow:)]
         pub unsafe fn graphicsContextWithWindow(window: &NSWindow) -> Retained<NSGraphicsContext>;
     }
 );

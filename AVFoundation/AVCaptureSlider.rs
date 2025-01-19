@@ -41,7 +41,7 @@ extern_methods!(
         ///
         ///
         /// Continuous sliders are used when any value in the range `minValue...maxValue` is supported.
-        #[method_id(@__retain_semantics Init initWithLocalizedTitle:symbolName:minValue:maxValue:)]
+        #[method_id(@__method_family Init initWithLocalizedTitle:symbolName:minValue:maxValue:)]
         pub unsafe fn initWithLocalizedTitle_symbolName_minValue_maxValue(
             this: Allocated<Self>,
             localized_title: &NSString,
@@ -67,7 +67,7 @@ extern_methods!(
         ///
         ///
         /// Discrete sliders are used when only specific values are valid.
-        #[method_id(@__retain_semantics Init initWithLocalizedTitle:symbolName:minValue:maxValue:step:)]
+        #[method_id(@__method_family Init initWithLocalizedTitle:symbolName:minValue:maxValue:step:)]
         pub unsafe fn initWithLocalizedTitle_symbolName_minValue_maxValue_step(
             this: Allocated<Self>,
             localized_title: &NSString,
@@ -90,7 +90,7 @@ extern_methods!(
         ///
         ///
         /// Discrete sliders are used when only specific values are valid.
-        #[method_id(@__retain_semantics Init initWithLocalizedTitle:symbolName:values:)]
+        #[method_id(@__method_family Init initWithLocalizedTitle:symbolName:values:)]
         pub unsafe fn initWithLocalizedTitle_symbolName_values(
             this: Allocated<Self>,
             localized_title: &NSString,
@@ -129,7 +129,7 @@ extern_methods!(
         /// - `+ %
         /// @
         /// ` for "+ 20"
-        #[method_id(@__retain_semantics Other localizedValueFormat)]
+        #[method_id(@__method_family Other localizedValueFormat)]
         pub unsafe fn localizedValueFormat(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`localizedValueFormat`][Self::localizedValueFormat].
@@ -137,7 +137,7 @@ extern_methods!(
         pub unsafe fn setLocalizedValueFormat(&self, localized_value_format: Option<&NSString>);
 
         /// Values in this array may receive unique visual representations or behaviors.
-        #[method_id(@__retain_semantics Other prominentValues)]
+        #[method_id(@__method_family Other prominentValues)]
         pub unsafe fn prominentValues(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`prominentValues`][Self::prominentValues].
@@ -145,15 +145,15 @@ extern_methods!(
         pub unsafe fn setProminentValues(&self, prominent_values: &NSArray<NSNumber>);
 
         /// A localized string that describes the slider's `action`.
-        #[method_id(@__retain_semantics Other localizedTitle)]
+        #[method_id(@__method_family Other localizedTitle)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
 
         /// The name of a symbol to represent the slider.
-        #[method_id(@__retain_semantics Other symbolName)]
+        #[method_id(@__method_family Other symbolName)]
         pub unsafe fn symbolName(&self) -> Retained<NSString>;
 
         /// A string that identifies the slider.
-        #[method_id(@__retain_semantics Other accessibilityIdentifier)]
+        #[method_id(@__method_family Other accessibilityIdentifier)]
         pub unsafe fn accessibilityIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`accessibilityIdentifier`][Self::accessibilityIdentifier].
@@ -169,10 +169,10 @@ extern_methods!(
     /// Methods declared on superclass `AVCaptureControl`
     #[cfg(feature = "AVCaptureControl")]
     unsafe impl AVCaptureSlider {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

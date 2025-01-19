@@ -25,7 +25,7 @@ extern_methods!(
         #[cfg(feature = "MLCMatMulDescriptor")]
         /// The matrix multiplication descriptor
         #[deprecated]
-        #[method_id(@__retain_semantics Other descriptor)]
+        #[method_id(@__method_family Other descriptor)]
         pub unsafe fn descriptor(&self) -> Retained<MLCMatMulDescriptor>;
 
         #[cfg(feature = "MLCMatMulDescriptor")]
@@ -35,7 +35,7 @@ extern_methods!(
         ///
         /// Returns: A new layer for matrix multiplication.
         #[deprecated]
-        #[method_id(@__retain_semantics Other layerWithDescriptor:)]
+        #[method_id(@__method_family Other layerWithDescriptor:)]
         pub unsafe fn layerWithDescriptor(
             descriptor: &MLCMatMulDescriptor,
         ) -> Option<Retained<Self>>;
@@ -47,11 +47,11 @@ extern_methods!(
     #[cfg(feature = "MLCLayer")]
     unsafe impl MLCMatMulLayer {
         #[deprecated]
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

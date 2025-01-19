@@ -55,27 +55,27 @@ extern_methods!(
 
         #[cfg(feature = "objc2-metal")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other gpuDevices)]
+        #[method_id(@__method_family Other gpuDevices)]
         pub unsafe fn gpuDevices(&self) -> Retained<NSArray<ProtocolObject<dyn MTLDevice>>>;
 
         /// Creates a device which uses the CPU.
         ///
         /// Returns: A new device.
         #[deprecated]
-        #[method_id(@__retain_semantics Other cpuDevice)]
+        #[method_id(@__method_family Other cpuDevice)]
         pub unsafe fn cpuDevice() -> Retained<Self>;
 
         /// Creates a device which uses a GPU, if any.
         ///
         /// Returns: A new device, or `nil` if no GPU exists.
         #[deprecated]
-        #[method_id(@__retain_semantics Other gpuDevice)]
+        #[method_id(@__method_family Other gpuDevice)]
         pub unsafe fn gpuDevice() -> Option<Retained<Self>>;
 
         /// Creates a device which uses the Apple Neural Engine, if any.
         ///
         /// Returns: A new device, or `nil` if no ANE exists.
-        #[method_id(@__retain_semantics Other aneDevice)]
+        #[method_id(@__method_family Other aneDevice)]
         pub unsafe fn aneDevice() -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
@@ -85,7 +85,7 @@ extern_methods!(
         ///
         /// Returns: A new device object
         #[deprecated]
-        #[method_id(@__retain_semantics Other deviceWithType:)]
+        #[method_id(@__method_family Other deviceWithType:)]
         pub unsafe fn deviceWithType(r#type: MLCDeviceType) -> Option<Retained<Self>>;
 
         #[cfg(feature = "MLCTypes")]
@@ -96,7 +96,7 @@ extern_methods!(
         /// Parameter `selectsMultipleComputeDevices`: A boolean to indicate whether to select multiple compute devices
         ///
         /// Returns: A new device object
-        #[method_id(@__retain_semantics Other deviceWithType:selectsMultipleComputeDevices:)]
+        #[method_id(@__method_family Other deviceWithType:selectsMultipleComputeDevices:)]
         pub unsafe fn deviceWithType_selectsMultipleComputeDevices(
             r#type: MLCDeviceType,
             selects_multiple_compute_devices: bool,
@@ -111,7 +111,7 @@ extern_methods!(
         ///
         /// Returns: A new device object
         #[deprecated]
-        #[method_id(@__retain_semantics Other deviceWithGPUDevices:)]
+        #[method_id(@__method_family Other deviceWithGPUDevices:)]
         pub unsafe fn deviceWithGPUDevices(
             gpus: &NSArray<ProtocolObject<dyn MTLDevice>>,
         ) -> Option<Retained<Self>>;
@@ -121,10 +121,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MLCDevice {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

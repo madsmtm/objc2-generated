@@ -20,10 +20,10 @@ unsafe impl NSObjectProtocol for NSKeyValueSharedObserversSnapshot {}
 
 extern_methods!(
     unsafe impl NSKeyValueSharedObserversSnapshot {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -43,16 +43,16 @@ unsafe impl NSObjectProtocol for NSKeyValueSharedObservers {}
 extern_methods!(
     unsafe impl NSKeyValueSharedObservers {
         /// A new collection of observables for an observable object of the given class
-        #[method_id(@__retain_semantics Init initWithObservableClass:)]
+        #[method_id(@__method_family Init initWithObservableClass:)]
         pub unsafe fn initWithObservableClass(
             this: Allocated<Self>,
             observable_class: &AnyClass,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(feature = "NSKeyValueObserving", feature = "NSString"))]
@@ -92,7 +92,7 @@ extern_methods!(
 
         /// A momentary snapshot of all observers added to the collection thus far, that
         /// can be assigned to an observable using ``-[NSObject setSharedObservers:]``
-        #[method_id(@__retain_semantics Other snapshot)]
+        #[method_id(@__method_family Other snapshot)]
         pub unsafe fn snapshot(&self) -> Retained<NSKeyValueSharedObserversSnapshot>;
     }
 );

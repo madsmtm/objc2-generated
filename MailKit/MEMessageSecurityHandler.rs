@@ -48,7 +48,7 @@ extern_protocol!(
         /// Invoked by Mail to request a subclass of
         /// `MEExtensionViewController.`Extensions can maintain any additional state in their subclasses and associate it with
         /// `messsageComposeSession`instance.
-        #[method_id(@__retain_semantics Other extensionViewControllerForMessageSigners:)]
+        #[method_id(@__method_family Other extensionViewControllerForMessageSigners:)]
         unsafe fn extensionViewControllerForMessageSigners(
             &self,
             message_signers: &NSArray<MEMessageSigner>,
@@ -57,7 +57,7 @@ extern_protocol!(
         #[cfg(all(feature = "MEExtensionViewController", feature = "objc2-app-kit"))]
         /// Invoked by Mail to request a subclass of
         /// `MEExtensionViewController`when the user clicks a banner or on the extensions icon in the message header view.
-        #[method_id(@__retain_semantics Other extensionViewControllerForMessageContext:)]
+        #[method_id(@__method_family Other extensionViewControllerForMessageContext:)]
         unsafe fn extensionViewControllerForMessageContext(
             &self,
             context: &NSData,

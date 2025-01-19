@@ -59,7 +59,7 @@ extern_category!(
         ///
         /// Returns: Returns the object that exposes the plug-in's interface.  The class of this
         /// object can implement methods from the WebScripting informal protocol.
-        #[method_id(@__retain_semantics Other objectForWebScript)]
+        #[method_id(@__method_family Other objectForWebScript)]
         unsafe fn objectForWebScript(&self) -> Option<Retained<AnyObject>>;
 
         /// Called on the plug-in when WebKit receives -connection:didReceiveResponse:

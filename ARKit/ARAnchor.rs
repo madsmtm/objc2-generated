@@ -21,7 +21,7 @@ extern_protocol!(
         /// This method must be implemented for any ARAnchor subclasses that adds properties.
         ///
         /// Parameter `anchor`: The anchor from which to copy values.
-        #[method_id(@__retain_semantics Init initWithAnchor:)]
+        #[method_id(@__method_family Init initWithAnchor:)]
         unsafe fn initWithAnchor(this: Allocated<Self>, anchor: &ARAnchor) -> Retained<Self>;
     }
 );
@@ -85,12 +85,12 @@ extern_methods!(
     unsafe impl ARAnchor {
         #[cfg(feature = "objc2-foundation")]
         /// Unique identifier of the anchor.
-        #[method_id(@__retain_semantics Other identifier)]
+        #[method_id(@__method_family Other identifier)]
         pub unsafe fn identifier(&self) -> Retained<NSUUID>;
 
         #[cfg(feature = "objc2-foundation")]
         /// An optional name used to associate with the anchor.
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "objc2-foundation")]
@@ -98,14 +98,14 @@ extern_methods!(
         ///
         ///
         /// The session identifier will be assigned to anchor when added to the session.
-        #[method_id(@__retain_semantics Other sessionIdentifier)]
+        #[method_id(@__method_family Other sessionIdentifier)]
         pub unsafe fn sessionIdentifier(&self) -> Option<Retained<NSUUID>>;
 
         /// Unavailable
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

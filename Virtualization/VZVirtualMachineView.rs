@@ -53,7 +53,7 @@ extern_methods!(
     unsafe impl VZVirtualMachineView {
         #[cfg(feature = "VZVirtualMachine")]
         /// The virtual machine to display in the view.
-        #[method_id(@__retain_semantics Other virtualMachine)]
+        #[method_id(@__method_family Other virtualMachine)]
         pub unsafe fn virtualMachine(&self) -> Option<Retained<VZVirtualMachine>>;
 
         #[cfg(feature = "VZVirtualMachine")]
@@ -94,10 +94,10 @@ extern_methods!(
     /// Methods declared on superclass `NSView`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl VZVirtualMachineView {
-        #[method_id(@__retain_semantics Init initWithFrame:)]
+        #[method_id(@__method_family Init initWithFrame:)]
         pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
@@ -109,7 +109,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl VZVirtualMachineView {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -118,7 +118,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "objc2-app-kit")]
     unsafe impl VZVirtualMachineView {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

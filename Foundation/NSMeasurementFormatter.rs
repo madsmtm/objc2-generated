@@ -73,7 +73,7 @@ extern_methods!(
         pub unsafe fn setUnitStyle(&self, unit_style: NSFormattingUnitStyle);
 
         #[cfg(feature = "NSLocale")]
-        #[method_id(@__retain_semantics Other locale)]
+        #[method_id(@__method_family Other locale)]
         pub unsafe fn locale(&self) -> Retained<NSLocale>;
 
         #[cfg(feature = "NSLocale")]
@@ -82,7 +82,7 @@ extern_methods!(
         pub unsafe fn setLocale(&self, locale: Option<&NSLocale>);
 
         #[cfg(feature = "NSNumberFormatter")]
-        #[method_id(@__retain_semantics Other numberFormatter)]
+        #[method_id(@__method_family Other numberFormatter)]
         pub unsafe fn numberFormatter(&self) -> Retained<NSNumberFormatter>;
 
         #[cfg(feature = "NSNumberFormatter")]
@@ -91,14 +91,14 @@ extern_methods!(
         pub unsafe fn setNumberFormatter(&self, number_formatter: Option<&NSNumberFormatter>);
 
         #[cfg(all(feature = "NSMeasurement", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other stringFromMeasurement:)]
+        #[method_id(@__method_family Other stringFromMeasurement:)]
         pub unsafe fn stringFromMeasurement(
             &self,
             measurement: &NSMeasurement,
         ) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSString", feature = "NSUnit"))]
-        #[method_id(@__retain_semantics Other stringFromUnit:)]
+        #[method_id(@__method_family Other stringFromUnit:)]
         pub unsafe fn stringFromUnit(&self, unit: &NSUnit) -> Retained<NSString>;
     }
 );
@@ -107,10 +107,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSFormatter")]
     unsafe impl NSMeasurementFormatter {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

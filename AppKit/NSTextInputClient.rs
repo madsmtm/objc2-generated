@@ -76,14 +76,14 @@ extern_protocol!(
         #[method(hasMarkedText)]
         unsafe fn hasMarkedText(&self) -> bool;
 
-        #[method_id(@__retain_semantics Other attributedSubstringForProposedRange:actualRange:)]
+        #[method_id(@__method_family Other attributedSubstringForProposedRange:actualRange:)]
         unsafe fn attributedSubstringForProposedRange_actualRange(
             &self,
             range: NSRange,
             actual_range: NSRangePointer,
         ) -> Option<Retained<NSAttributedString>>;
 
-        #[method_id(@__retain_semantics Other validAttributesForMarkedText)]
+        #[method_id(@__method_family Other validAttributesForMarkedText)]
         unsafe fn validAttributesForMarkedText(&self) -> Retained<NSArray<NSAttributedStringKey>>;
 
         #[method(firstRectForCharacterRange:actualRange:)]
@@ -97,7 +97,7 @@ extern_protocol!(
         unsafe fn characterIndexForPoint(&self, point: NSPoint) -> NSUInteger;
 
         #[optional]
-        #[method_id(@__retain_semantics Other attributedString)]
+        #[method_id(@__method_family Other attributedString)]
         unsafe fn attributedString(&self) -> Retained<NSAttributedString>;
 
         #[cfg(feature = "objc2-core-foundation")]

@@ -40,13 +40,13 @@ extern_methods!(
         ///
         ///
         /// Returns: the VNCircle object describing the bounding circle or nil, if the algorithm failed. The latter case is accompanied by populating an 'error' output parameter
-        #[method_id(@__retain_semantics Other boundingCircleForContour:error:_)]
+        #[method_id(@__method_family Other boundingCircleForContour:error:_)]
         pub unsafe fn boundingCircleForContour_error(
             contour: &VNContour,
         ) -> Result<Retained<VNCircle>, Retained<NSError>>;
 
         #[cfg(feature = "VNGeometry")]
-        #[method_id(@__retain_semantics Other boundingCircleForPoints:error:_)]
+        #[method_id(@__method_family Other boundingCircleForPoints:error:_)]
         pub unsafe fn boundingCircleForPoints_error(
             points: &NSArray<VNPoint>,
         ) -> Result<Retained<VNCircle>, Retained<NSError>>;
@@ -106,10 +106,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl VNGeometryUtils {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

@@ -146,16 +146,16 @@ unsafe impl NSSecureCoding for UIFontDescriptor {}
 
 extern_methods!(
     unsafe impl UIFontDescriptor {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other postscriptName)]
+        #[method_id(@__method_family Other postscriptName)]
         pub unsafe fn postscriptName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -169,99 +169,99 @@ extern_methods!(
         #[method(symbolicTraits)]
         pub unsafe fn symbolicTraits(&self) -> UIFontDescriptorSymbolicTraits;
 
-        #[method_id(@__retain_semantics Other objectForKey:)]
+        #[method_id(@__method_family Other objectForKey:)]
         pub unsafe fn objectForKey(
             &self,
             an_attribute: &UIFontDescriptorAttributeName,
         ) -> Option<Retained<AnyObject>>;
 
-        #[method_id(@__retain_semantics Other fontAttributes)]
+        #[method_id(@__method_family Other fontAttributes)]
         pub unsafe fn fontAttributes(
             &self,
         ) -> Retained<NSDictionary<UIFontDescriptorAttributeName, AnyObject>>;
 
-        #[method_id(@__retain_semantics Other matchingFontDescriptorsWithMandatoryKeys:)]
+        #[method_id(@__method_family Other matchingFontDescriptorsWithMandatoryKeys:)]
         pub unsafe fn matchingFontDescriptorsWithMandatoryKeys(
             &self,
             mandatory_keys: Option<&NSSet<UIFontDescriptorAttributeName>>,
         ) -> Retained<NSArray<UIFontDescriptor>>;
 
-        #[method_id(@__retain_semantics Other fontDescriptorWithFontAttributes:)]
+        #[method_id(@__method_family Other fontDescriptorWithFontAttributes:)]
         pub unsafe fn fontDescriptorWithFontAttributes(
             attributes: &NSDictionary<UIFontDescriptorAttributeName, AnyObject>,
         ) -> Retained<UIFontDescriptor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other fontDescriptorWithName:size:)]
+        #[method_id(@__method_family Other fontDescriptorWithName:size:)]
         pub unsafe fn fontDescriptorWithName_size(
             font_name: &NSString,
             size: CGFloat,
         ) -> Retained<UIFontDescriptor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other fontDescriptorWithName:matrix:)]
+        #[method_id(@__method_family Other fontDescriptorWithName:matrix:)]
         pub unsafe fn fontDescriptorWithName_matrix(
             font_name: &NSString,
             matrix: CGAffineTransform,
         ) -> Retained<UIFontDescriptor>;
 
-        #[method_id(@__retain_semantics Other preferredFontDescriptorWithTextStyle:)]
+        #[method_id(@__method_family Other preferredFontDescriptorWithTextStyle:)]
         pub unsafe fn preferredFontDescriptorWithTextStyle(
             style: &UIFontTextStyle,
         ) -> Retained<UIFontDescriptor>;
 
         #[cfg(feature = "UITraitCollection")]
-        #[method_id(@__retain_semantics Other preferredFontDescriptorWithTextStyle:compatibleWithTraitCollection:)]
+        #[method_id(@__method_family Other preferredFontDescriptorWithTextStyle:compatibleWithTraitCollection:)]
         pub unsafe fn preferredFontDescriptorWithTextStyle_compatibleWithTraitCollection(
             style: &UIFontTextStyle,
             trait_collection: Option<&UITraitCollection>,
         ) -> Retained<UIFontDescriptor>;
 
-        #[method_id(@__retain_semantics Init initWithFontAttributes:)]
+        #[method_id(@__method_family Init initWithFontAttributes:)]
         pub unsafe fn initWithFontAttributes(
             this: Allocated<Self>,
             attributes: &NSDictionary<UIFontDescriptorAttributeName, AnyObject>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other fontDescriptorByAddingAttributes:)]
+        #[method_id(@__method_family Other fontDescriptorByAddingAttributes:)]
         pub unsafe fn fontDescriptorByAddingAttributes(
             &self,
             attributes: &NSDictionary<UIFontDescriptorAttributeName, AnyObject>,
         ) -> Retained<UIFontDescriptor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other fontDescriptorWithSize:)]
+        #[method_id(@__method_family Other fontDescriptorWithSize:)]
         pub unsafe fn fontDescriptorWithSize(
             &self,
             new_point_size: CGFloat,
         ) -> Retained<UIFontDescriptor>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other fontDescriptorWithMatrix:)]
+        #[method_id(@__method_family Other fontDescriptorWithMatrix:)]
         pub unsafe fn fontDescriptorWithMatrix(
             &self,
             matrix: CGAffineTransform,
         ) -> Retained<UIFontDescriptor>;
 
-        #[method_id(@__retain_semantics Other fontDescriptorWithFace:)]
+        #[method_id(@__method_family Other fontDescriptorWithFace:)]
         pub unsafe fn fontDescriptorWithFace(
             &self,
             new_face: &NSString,
         ) -> Retained<UIFontDescriptor>;
 
-        #[method_id(@__retain_semantics Other fontDescriptorWithFamily:)]
+        #[method_id(@__method_family Other fontDescriptorWithFamily:)]
         pub unsafe fn fontDescriptorWithFamily(
             &self,
             new_family: &NSString,
         ) -> Retained<UIFontDescriptor>;
 
-        #[method_id(@__retain_semantics Other fontDescriptorWithSymbolicTraits:)]
+        #[method_id(@__method_family Other fontDescriptorWithSymbolicTraits:)]
         pub unsafe fn fontDescriptorWithSymbolicTraits(
             &self,
             symbolic_traits: UIFontDescriptorSymbolicTraits,
         ) -> Option<Retained<UIFontDescriptor>>;
 
-        #[method_id(@__retain_semantics Other fontDescriptorWithDesign:)]
+        #[method_id(@__method_family Other fontDescriptorWithDesign:)]
         pub unsafe fn fontDescriptorWithDesign(
             &self,
             design: &UIFontDescriptorSystemDesign,
@@ -272,7 +272,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl UIFontDescriptor {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

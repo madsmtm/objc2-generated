@@ -152,7 +152,7 @@ unsafe impl NSUserInterfaceValidations for NSColorPanel {}
 extern_methods!(
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSColorPanel {
-        #[method_id(@__retain_semantics Other sharedColorPanel)]
+        #[method_id(@__method_family Other sharedColorPanel)]
         pub unsafe fn sharedColorPanel(mtm: MainThreadMarker) -> Retained<NSColorPanel>;
 
         #[method(sharedColorPanelExists)]
@@ -173,7 +173,7 @@ extern_methods!(
         pub unsafe fn setPickerMode(mode: NSColorPanelMode, mtm: MainThreadMarker);
 
         #[cfg(feature = "NSView")]
-        #[method_id(@__retain_semantics Other accessoryView)]
+        #[method_id(@__method_family Other accessoryView)]
         pub unsafe fn accessoryView(&self) -> Option<Retained<NSView>>;
 
         #[cfg(feature = "NSView")]
@@ -203,7 +203,7 @@ extern_methods!(
         pub unsafe fn setMode(&self, mode: NSColorPanelMode);
 
         #[cfg(feature = "NSColor")]
-        #[method_id(@__retain_semantics Other color)]
+        #[method_id(@__method_family Other color)]
         pub unsafe fn color(&self) -> Retained<NSColor>;
 
         #[cfg(feature = "NSColor")]
@@ -236,7 +236,7 @@ extern_methods!(
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSColorPanel {
         #[cfg(feature = "NSGraphics")]
-        #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:)]
+        #[method_id(@__method_family Init initWithContentRect:styleMask:backing:defer:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer(
             this: Allocated<Self>,
             content_rect: NSRect,
@@ -246,7 +246,7 @@ extern_methods!(
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSGraphics", feature = "NSScreen"))]
-        #[method_id(@__retain_semantics Init initWithContentRect:styleMask:backing:defer:screen:)]
+        #[method_id(@__method_family Init initWithContentRect:styleMask:backing:defer:screen:)]
         pub unsafe fn initWithContentRect_styleMask_backing_defer_screen(
             this: Allocated<Self>,
             content_rect: NSRect,
@@ -256,12 +256,12 @@ extern_methods!(
             screen: Option<&NSScreen>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
         #[cfg(feature = "NSViewController")]
         /// Convenience method for creating an autoreleased titled window with the given contentViewController. A basic NSWindow with the following attributes is made: titled, closable, resizable, miniaturizable. The window's title is automatically bound to the contentViewController's title. The size of the window can easily be controlled by utilizing autolayout and applying size constraints to the view (or its subviews). The window has isReleasedWhenClosed set to NO, and it must be explicitly retained to keep the window instance alive. To have it automatically be freed when it is closed, do the following: [window retain] and [window setReleasedWhenClosed:YES].
-        #[method_id(@__retain_semantics Other windowWithContentViewController:)]
+        #[method_id(@__method_family Other windowWithContentViewController:)]
         pub unsafe fn windowWithContentViewController(
             content_view_controller: &NSViewController,
         ) -> Retained<Self>;
@@ -272,7 +272,7 @@ extern_methods!(
     /// Methods declared on superclass `NSResponder`
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSColorPanel {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -281,7 +281,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "NSPanel", feature = "NSResponder", feature = "NSWindow"))]
     unsafe impl NSColorPanel {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

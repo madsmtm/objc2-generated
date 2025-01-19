@@ -28,32 +28,32 @@ unsafe impl NSObjectProtocol for NSTextRange {}
 
 extern_methods!(
     unsafe impl NSTextRange {
-        #[method_id(@__retain_semantics Init initWithLocation:endLocation:)]
+        #[method_id(@__method_family Init initWithLocation:endLocation:)]
         pub unsafe fn initWithLocation_endLocation(
             this: Allocated<Self>,
             location: &ProtocolObject<dyn NSTextLocation>,
             end_location: Option<&ProtocolObject<dyn NSTextLocation>>,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Init initWithLocation:)]
+        #[method_id(@__method_family Init initWithLocation:)]
         pub unsafe fn initWithLocation(
             this: Allocated<Self>,
             location: &ProtocolObject<dyn NSTextLocation>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
         #[method(isEmpty)]
         pub unsafe fn isEmpty(&self) -> bool;
 
-        #[method_id(@__retain_semantics Other location)]
+        #[method_id(@__method_family Other location)]
         pub unsafe fn location(&self) -> Retained<ProtocolObject<dyn NSTextLocation>>;
 
-        #[method_id(@__retain_semantics Other endLocation)]
+        #[method_id(@__method_family Other endLocation)]
         pub unsafe fn endLocation(&self) -> Retained<ProtocolObject<dyn NSTextLocation>>;
 
         #[method(isEqualToTextRange:)]
@@ -71,13 +71,13 @@ extern_methods!(
         #[method(intersectsWithTextRange:)]
         pub unsafe fn intersectsWithTextRange(&self, text_range: &NSTextRange) -> bool;
 
-        #[method_id(@__retain_semantics Other textRangeByIntersectingWithTextRange:)]
+        #[method_id(@__method_family Other textRangeByIntersectingWithTextRange:)]
         pub unsafe fn textRangeByIntersectingWithTextRange(
             &self,
             text_range: &NSTextRange,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other textRangeByFormingUnionWithTextRange:)]
+        #[method_id(@__method_family Other textRangeByFormingUnionWithTextRange:)]
         pub unsafe fn textRangeByFormingUnionWithTextRange(
             &self,
             text_range: &NSTextRange,

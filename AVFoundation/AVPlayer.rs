@@ -55,7 +55,7 @@ unsafe impl NSObjectProtocol for AVPlayer {}
 extern_methods!(
     unsafe impl AVPlayer {
         /// Initializes an AVPlayer with no player items.
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Returns an instance of AVPlayer that plays a single audiovisual resource referenced by URL.
@@ -64,7 +64,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayer
         ///
         /// Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
-        #[method_id(@__retain_semantics Other playerWithURL:)]
+        #[method_id(@__method_family Other playerWithURL:)]
         pub unsafe fn playerWithURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "AVPlayerItem")]
@@ -74,7 +74,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayer
         ///
         /// Useful in order to play items for which an AVAsset has previously been created. See -[AVPlayerItem initWithAsset:].
-        #[method_id(@__retain_semantics Other playerWithPlayerItem:)]
+        #[method_id(@__method_family Other playerWithPlayerItem:)]
         pub unsafe fn playerWithPlayerItem(
             item: Option<&AVPlayerItem>,
             mtm: MainThreadMarker,
@@ -86,7 +86,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayer
         ///
         /// Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
-        #[method_id(@__retain_semantics Init initWithURL:)]
+        #[method_id(@__method_family Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "AVPlayerItem")]
@@ -98,7 +98,7 @@ extern_methods!(
         /// Useful in order to play items for which an AVAsset has previously been created. See -[AVPlayerItem initWithAsset:].
         /// This method throws an exception if the item is not an AVPlayerItem, or if the item is
         /// associated with another AVPlayer.
-        #[method_id(@__retain_semantics Init initWithPlayerItem:)]
+        #[method_id(@__method_family Init initWithPlayerItem:)]
         pub unsafe fn initWithPlayerItem(
             this: Allocated<Self>,
             item: Option<&AVPlayerItem>,
@@ -119,7 +119,7 @@ extern_methods!(
         ///
         /// The value of this property is an NSError that describes what caused the receiver to no longer be able to play items.
         /// If the receiver's status is not AVPlayerStatusFailed, the value of this property is nil.
-        #[method_id(@__retain_semantics Other error)]
+        #[method_id(@__method_family Other error)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
     }
 );
@@ -127,7 +127,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVPlayer {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -324,7 +324,7 @@ extern_methods!(
         /// You can use the value of reasonForWaitingToPlay to show UI indicating the player's waiting state conditionally.
         /// This property is key value observable.
         /// Possible values are AVPlayerWaitingWithNoItemToPlayReason, AVPlayerWaitingWhileEvaluatingBufferingRateReason, and AVPlayerWaitingToMinimizeStallsReason.
-        #[method_id(@__retain_semantics Other reasonForWaitingToPlay)]
+        #[method_id(@__method_family Other reasonForWaitingToPlay)]
         pub unsafe fn reasonForWaitingToPlay(&self) -> Option<Retained<AVPlayerWaitingReason>>;
 
         /// Immediately plays the available media data at the specified rate.
@@ -378,7 +378,7 @@ extern_methods!(
     /// AVPlayerItemControl
     unsafe impl AVPlayer {
         #[cfg(feature = "AVPlayerItem")]
-        #[method_id(@__retain_semantics Other currentItem)]
+        #[method_id(@__method_family Other currentItem)]
         pub unsafe fn currentItem(&self) -> Option<Retained<AVPlayerItem>>;
 
         #[cfg(feature = "AVPlayerItem")]
@@ -595,7 +595,7 @@ extern_methods!(
         /// Set to override the automatic choice of source clock for item timebases.
         ///
         /// NULL by default. This is most useful for synchronizing video-only movies with audio played via other means. IMPORTANT NOTE: If you specify a source clock other than the appropriate audio device clock, audio may drift out of sync.
-        #[method_id(@__retain_semantics Other sourceClock)]
+        #[method_id(@__method_family Other sourceClock)]
         pub unsafe fn sourceClock(&self) -> Option<Retained<CMClock>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -688,7 +688,7 @@ extern_methods!(
         /// Parameter `mediaCharacteristic`: The media characteristic for which the selection criteria is to be returned. Supported values include AVMediaCharacteristicAudible, AVMediaCharacteristicLegible, and AVMediaCharacteristicVisual.
         ///
         /// Before macOS 13, iOS 16, tvOS 16, and watchOS 9, this method must be invoked on the main thread/queue.
-        #[method_id(@__retain_semantics Other mediaSelectionCriteriaForMediaCharacteristic:)]
+        #[method_id(@__method_family Other mediaSelectionCriteriaForMediaCharacteristic:)]
         pub unsafe fn mediaSelectionCriteriaForMediaCharacteristic(
             &self,
             media_characteristic: &AVMediaCharacteristic,
@@ -704,7 +704,7 @@ extern_methods!(
         /// By default, the value of this property is nil, indicating that the default audio output device is used. Otherwise the value of this property is an NSString containing the unique ID of the Core Audio output device to be used for audio output.
         ///
         /// Core Audio's kAudioDevicePropertyDeviceUID is a suitable source of audio output device unique IDs.
-        #[method_id(@__retain_semantics Other audioOutputDeviceUniqueID)]
+        #[method_id(@__method_family Other audioOutputDeviceUniqueID)]
         pub unsafe fn audioOutputDeviceUniqueID(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`audioOutputDeviceUniqueID`][Self::audioOutputDeviceUniqueID].
@@ -740,7 +740,7 @@ extern_methods!(
         );
 
         #[cfg(feature = "AVAnimation")]
-        #[method_id(@__retain_semantics Other externalPlaybackVideoGravity)]
+        #[method_id(@__method_family Other externalPlaybackVideoGravity)]
         pub unsafe fn externalPlaybackVideoGravity(&self) -> Retained<AVLayerVideoGravity>;
 
         #[cfg(feature = "AVAnimation")]
@@ -982,7 +982,7 @@ extern_methods!(
         /// A player with a connected playbackCoordinator will change behavior in situations that require the player to pause for internal reasons, such as a route change or a stall.
         /// When resuming after these events, the player will not resume at the stop time. Instead, it will attempt to rejoin the group, potentially seeking to match the other participant's progress.
         /// It is left to the owner of the AVPlayer to ensure that all participants are playing the same item. See the discussion of AVPlaybackCoordinator for considerations about item transitions.
-        #[method_id(@__retain_semantics Other playbackCoordinator)]
+        #[method_id(@__method_family Other playbackCoordinator)]
         pub unsafe fn playbackCoordinator(&self) -> Retained<AVPlayerPlaybackCoordinator>;
     }
 );
@@ -997,7 +997,7 @@ extern_methods!(
         ///
         /// Note: If an output is set while AVPlayer has a current item it may cause different data channels to be selected for that item, which can have a performance impact.
         /// As a result, when possible, it is best to set an output before setting items on an AVPlayer.
-        #[method_id(@__retain_semantics Other videoOutput)]
+        #[method_id(@__method_family Other videoOutput)]
         pub unsafe fn videoOutput(&self) -> Option<Retained<AVPlayerVideoOutput>>;
 
         #[cfg(feature = "AVPlayerOutput")]
@@ -1033,7 +1033,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-media")]
         #[deprecated]
-        #[method_id(@__retain_semantics Other masterClock)]
+        #[method_id(@__method_family Other masterClock)]
         pub unsafe fn masterClock(&self) -> Option<Retained<CMClock>>;
 
         #[cfg(feature = "objc2-core-media")]
@@ -1061,7 +1061,7 @@ extern_methods!(
         /// Parameter `items`: An NSArray of AVPlayerItems with which to populate the player's queue initially.
         ///
         /// Returns: An instance of AVQueuePlayer.
-        #[method_id(@__retain_semantics Other queuePlayerWithItems:)]
+        #[method_id(@__method_family Other queuePlayerWithItems:)]
         pub unsafe fn queuePlayerWithItems(
             items: &NSArray<AVPlayerItem>,
             mtm: MainThreadMarker,
@@ -1075,7 +1075,7 @@ extern_methods!(
         /// Returns: An instance of AVQueuePlayer.
         ///
         /// This method throws an exception if items contains duplicated values or values associated with another AVPlayer.
-        #[method_id(@__retain_semantics Init initWithItems:)]
+        #[method_id(@__method_family Init initWithItems:)]
         pub unsafe fn initWithItems(
             this: Allocated<Self>,
             items: &NSArray<AVPlayerItem>,
@@ -1085,7 +1085,7 @@ extern_methods!(
         /// Provides an array of the currently enqueued items.
         ///
         /// Returns: An NSArray containing the enqueued AVPlayerItems.
-        #[method_id(@__retain_semantics Other items)]
+        #[method_id(@__method_family Other items)]
         pub unsafe fn items(&self) -> Retained<NSArray<AVPlayerItem>>;
 
         /// Ends playback of the current item and initiates playback of the next item in the player's queue.
@@ -1147,7 +1147,7 @@ extern_methods!(
     /// Methods declared on superclass `AVPlayer`
     unsafe impl AVQueuePlayer {
         /// Initializes an AVPlayer with no player items.
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Returns an instance of AVPlayer that plays a single audiovisual resource referenced by URL.
@@ -1156,7 +1156,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayer
         ///
         /// Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
-        #[method_id(@__retain_semantics Other playerWithURL:)]
+        #[method_id(@__method_family Other playerWithURL:)]
         pub unsafe fn playerWithURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "AVPlayerItem")]
@@ -1166,7 +1166,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayer
         ///
         /// Useful in order to play items for which an AVAsset has previously been created. See -[AVPlayerItem initWithAsset:].
-        #[method_id(@__retain_semantics Other playerWithPlayerItem:)]
+        #[method_id(@__method_family Other playerWithPlayerItem:)]
         pub unsafe fn playerWithPlayerItem(
             item: Option<&AVPlayerItem>,
             mtm: MainThreadMarker,
@@ -1178,7 +1178,7 @@ extern_methods!(
         /// Returns: An instance of AVPlayer
         ///
         /// Implicitly creates an AVPlayerItem. Clients can obtain the AVPlayerItem as it becomes the player's currentItem.
-        #[method_id(@__retain_semantics Init initWithURL:)]
+        #[method_id(@__method_family Init initWithURL:)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "AVPlayerItem")]
@@ -1190,7 +1190,7 @@ extern_methods!(
         /// Useful in order to play items for which an AVAsset has previously been created. See -[AVPlayerItem initWithAsset:].
         /// This method throws an exception if the item is not an AVPlayerItem, or if the item is
         /// associated with another AVPlayer.
-        #[method_id(@__retain_semantics Init initWithPlayerItem:)]
+        #[method_id(@__method_family Init initWithPlayerItem:)]
         pub unsafe fn initWithPlayerItem(
             this: Allocated<Self>,
             item: Option<&AVPlayerItem>,
@@ -1201,7 +1201,7 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl AVQueuePlayer {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );

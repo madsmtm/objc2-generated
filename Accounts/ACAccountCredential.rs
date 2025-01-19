@@ -20,7 +20,7 @@ unsafe impl NSObjectProtocol for ACAccountCredential {}
 extern_methods!(
     unsafe impl ACAccountCredential {
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__retain_semantics Init initWithOAuthToken:tokenSecret:)]
+        #[method_id(@__method_family Init initWithOAuthToken:tokenSecret:)]
         pub unsafe fn initWithOAuthToken_tokenSecret(
             this: Allocated<Self>,
             token: Option<&NSString>,
@@ -28,7 +28,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__retain_semantics Init initWithOAuth2Token:refreshToken:expiryDate:)]
+        #[method_id(@__method_family Init initWithOAuth2Token:refreshToken:expiryDate:)]
         pub unsafe fn initWithOAuth2Token_refreshToken_expiryDate(
             this: Allocated<Self>,
             token: Option<&NSString>,
@@ -37,7 +37,7 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
-        #[method_id(@__retain_semantics Other oauthToken)]
+        #[method_id(@__method_family Other oauthToken)]
         pub unsafe fn oauthToken(&self) -> Retained<NSString>;
 
         /// Setter for [`oauthToken`][Self::oauthToken].
@@ -50,10 +50,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl ACAccountCredential {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

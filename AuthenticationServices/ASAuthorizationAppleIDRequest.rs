@@ -60,7 +60,7 @@ extern_methods!(
         ///
         ///
         /// See: ASAuthorizationAppleIDCredential doc for the description of this property in context of response.
-        #[method_id(@__retain_semantics Other user)]
+        #[method_id(@__method_family Other user)]
         pub unsafe fn user(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`user`][Self::user].
@@ -76,10 +76,10 @@ extern_methods!(
         feature = "ASAuthorizationRequest"
     ))]
     unsafe impl ASAuthorizationAppleIDRequest {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );

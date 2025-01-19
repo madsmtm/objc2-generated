@@ -24,14 +24,14 @@ unsafe impl NSObjectProtocol for MKLocalSearch {}
 extern_methods!(
     unsafe impl MKLocalSearch {
         #[cfg(feature = "MKLocalSearchRequest")]
-        #[method_id(@__retain_semantics Init initWithRequest:)]
+        #[method_id(@__method_family Init initWithRequest:)]
         pub unsafe fn initWithRequest(
             this: Allocated<Self>,
             request: &MKLocalSearchRequest,
         ) -> Retained<Self>;
 
         #[cfg(feature = "MKLocalPointsOfInterestRequest")]
-        #[method_id(@__retain_semantics Init initWithPointsOfInterestRequest:)]
+        #[method_id(@__method_family Init initWithPointsOfInterestRequest:)]
         pub unsafe fn initWithPointsOfInterestRequest(
             this: Allocated<Self>,
             request: &MKLocalPointsOfInterestRequest,
@@ -55,10 +55,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKLocalSearch {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

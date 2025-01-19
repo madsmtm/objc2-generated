@@ -31,18 +31,18 @@ unsafe impl NSObjectProtocol for NSRunLoop {}
 
 extern_methods!(
     unsafe impl NSRunLoop {
-        #[method_id(@__retain_semantics Other currentRunLoop)]
+        #[method_id(@__method_family Other currentRunLoop)]
         pub unsafe fn currentRunLoop() -> Retained<NSRunLoop>;
 
-        #[method_id(@__retain_semantics Other mainRunLoop)]
+        #[method_id(@__method_family Other mainRunLoop)]
         pub unsafe fn mainRunLoop() -> Retained<NSRunLoop>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other currentMode)]
+        #[method_id(@__method_family Other currentMode)]
         pub unsafe fn currentMode(&self) -> Option<Retained<NSRunLoopMode>>;
 
         #[cfg(feature = "objc2-core-foundation")]
-        #[method_id(@__retain_semantics Other getCFRunLoop)]
+        #[method_id(@__method_family Other getCFRunLoop)]
         pub unsafe fn getCFRunLoop(&self) -> Retained<CFRunLoop>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString", feature = "NSTimer"))]
@@ -58,7 +58,7 @@ extern_methods!(
         pub unsafe fn removePort_forMode(&self, a_port: &NSPort, mode: &NSRunLoopMode);
 
         #[cfg(all(feature = "NSDate", feature = "NSObjCRuntime", feature = "NSString"))]
-        #[method_id(@__retain_semantics Other limitDateForMode:)]
+        #[method_id(@__method_family Other limitDateForMode:)]
         pub unsafe fn limitDateForMode(&self, mode: &NSRunLoopMode) -> Option<Retained<NSDate>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSObjCRuntime", feature = "NSString"))]
@@ -74,10 +74,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl NSRunLoop {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

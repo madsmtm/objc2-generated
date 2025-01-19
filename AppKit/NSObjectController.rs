@@ -34,29 +34,29 @@ unsafe impl NSObjectProtocol for NSObjectController {}
 extern_methods!(
     #[cfg(feature = "NSController")]
     unsafe impl NSObjectController {
-        #[method_id(@__retain_semantics Init initWithContent:)]
+        #[method_id(@__method_family Init initWithContent:)]
         pub unsafe fn initWithContent(
             this: Allocated<Self>,
             content: Option<&AnyObject>,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init initWithCoder:)]
+        #[method_id(@__method_family Init initWithCoder:)]
         pub unsafe fn initWithCoder(
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[method_id(@__retain_semantics Other content)]
+        #[method_id(@__method_family Other content)]
         pub unsafe fn content(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`content`][Self::content].
         #[method(setContent:)]
         pub unsafe fn setContent(&self, content: Option<&AnyObject>);
 
-        #[method_id(@__retain_semantics Other selection)]
+        #[method_id(@__method_family Other selection)]
         pub unsafe fn selection(&self) -> Retained<AnyObject>;
 
-        #[method_id(@__retain_semantics Other selectedObjects)]
+        #[method_id(@__method_family Other selectedObjects)]
         pub unsafe fn selectedObjects(&self) -> Retained<NSArray>;
 
         #[method(automaticallyPreparesContent)]
@@ -76,7 +76,7 @@ extern_methods!(
         #[method(setObjectClass:)]
         pub unsafe fn setObjectClass(&self, object_class: Option<&AnyClass>);
 
-        #[method_id(@__retain_semantics New newObject)]
+        #[method_id(@__method_family New newObject)]
         pub unsafe fn newObject(&self) -> Retained<AnyObject>;
 
         #[method(addObject:)]
@@ -117,7 +117,7 @@ extern_methods!(
     /// Methods declared on superclass `NSController`
     #[cfg(feature = "NSController")]
     unsafe impl NSObjectController {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -126,7 +126,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "NSController")]
     unsafe impl NSObjectController {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     }
 );
@@ -137,7 +137,7 @@ extern_methods!(
     unsafe impl NSObjectController {
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(@__retain_semantics Other managedObjectContext)]
+        #[method_id(@__method_family Other managedObjectContext)]
         pub unsafe fn managedObjectContext(&self) -> Option<Retained<NSManagedObjectContext>>;
 
         #[cfg(feature = "objc2-core-data")]
@@ -149,14 +149,14 @@ extern_methods!(
             managed_object_context: Option<&NSManagedObjectContext>,
         );
 
-        #[method_id(@__retain_semantics Other entityName)]
+        #[method_id(@__method_family Other entityName)]
         pub unsafe fn entityName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`entityName`][Self::entityName].
         #[method(setEntityName:)]
         pub unsafe fn setEntityName(&self, entity_name: Option<&NSString>);
 
-        #[method_id(@__retain_semantics Other fetchPredicate)]
+        #[method_id(@__method_family Other fetchPredicate)]
         pub unsafe fn fetchPredicate(&self) -> Option<Retained<NSPredicate>>;
 
         /// Setter for [`fetchPredicate`][Self::fetchPredicate].
@@ -184,7 +184,7 @@ extern_methods!(
 
         #[cfg(feature = "objc2-core-data")]
         #[cfg(target_vendor = "apple")]
-        #[method_id(@__retain_semantics Other defaultFetchRequest)]
+        #[method_id(@__method_family Other defaultFetchRequest)]
         pub unsafe fn defaultFetchRequest(&self) -> Retained<NSFetchRequest>;
     }
 );

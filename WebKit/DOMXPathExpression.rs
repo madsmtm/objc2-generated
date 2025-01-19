@@ -31,7 +31,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMXPathExpression {
         #[cfg(all(feature = "DOMNode", feature = "DOMXPathResult"))]
-        #[method_id(@__retain_semantics Other evaluate:type:inResult:)]
+        #[method_id(@__method_family Other evaluate:type:inResult:)]
         pub unsafe fn evaluate_type_inResult(
             &self,
             context_node: Option<&DOMNode>,
@@ -46,7 +46,7 @@ extern_methods!(
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMXPathExpression {
         #[deprecated]
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
@@ -55,7 +55,7 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]
     unsafe impl DOMXPathExpression {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );
@@ -66,7 +66,7 @@ extern_methods!(
     unsafe impl DOMXPathExpression {
         #[cfg(all(feature = "DOMNode", feature = "DOMXPathResult"))]
         #[deprecated]
-        #[method_id(@__retain_semantics Other evaluate:::)]
+        #[method_id(@__method_family Other evaluate:::)]
         pub unsafe fn evaluate(
             &self,
             context_node: Option<&DOMNode>,

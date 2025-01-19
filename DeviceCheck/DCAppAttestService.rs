@@ -51,7 +51,7 @@ extern_methods!(
         ///
         /// Use the shared instance of the service to generate and to certify a
         /// cryptographic key, and then to assert your app’s validity using that key.
-        #[method_id(@__retain_semantics Other sharedService)]
+        #[method_id(@__method_family Other sharedService)]
         pub unsafe fn sharedService() -> Retained<DCAppAttestService>;
 
         /// A Boolean value that indicates whether a particular device provides the App
@@ -268,10 +268,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl DCAppAttestService {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

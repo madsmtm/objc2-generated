@@ -24,7 +24,7 @@ extern_methods!(
         /// this value will be stable while the extension is enabled. If the extension is
         /// disabled and re-enabled or the containing App is removed and re-installed this
         /// value will change.
-        #[method_id(@__retain_semantics Other localParticipantIdentifier)]
+        #[method_id(@__method_family Other localParticipantIdentifier)]
         pub unsafe fn localParticipantIdentifier(&self) -> Retained<NSUUID>;
 
         /// A NSArray of NSUUID instances, each uniquely identifies a remote participant in the conversation.
@@ -33,7 +33,7 @@ extern_methods!(
         /// this device. These values will be stable while the extension is enabled. If the extension
         /// is disabled and re-enabled or the containing App is removed and re-installed these
         /// values will change.
-        #[method_id(@__retain_semantics Other remoteParticipantIdentifiers)]
+        #[method_id(@__method_family Other remoteParticipantIdentifiers)]
         pub unsafe fn remoteParticipantIdentifiers(&self) -> Retained<NSArray<NSUUID>>;
 
         #[cfg(feature = "MSMessage")]
@@ -43,7 +43,7 @@ extern_methods!(
         /// a message in the conversation transcript this property will contain the message.
         /// Otherwise this property will be nil. The message object provided may be saved to the
         /// file system. Later, this saved object may be loaded, modified and staged for sending.
-        #[method_id(@__retain_semantics Other selectedMessage)]
+        #[method_id(@__method_family Other selectedMessage)]
         pub unsafe fn selectedMessage(&self) -> Option<Retained<MSMessage>>;
 
         #[cfg(all(feature = "MSMessage", feature = "block2"))]
@@ -184,10 +184,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MSConversation {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

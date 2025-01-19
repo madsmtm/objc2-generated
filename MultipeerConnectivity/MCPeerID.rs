@@ -27,13 +27,13 @@ unsafe impl NSSecureCoding for MCPeerID {}
 
 extern_methods!(
     unsafe impl MCPeerID {
-        #[method_id(@__retain_semantics Init initWithDisplayName:)]
+        #[method_id(@__method_family Init initWithDisplayName:)]
         pub unsafe fn initWithDisplayName(
             this: Allocated<Self>,
             my_display_name: &NSString,
         ) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Other displayName)]
+        #[method_id(@__method_family Other displayName)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;
     }
 );
@@ -41,10 +41,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MCPeerID {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

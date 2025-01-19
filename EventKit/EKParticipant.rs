@@ -31,11 +31,11 @@ extern_methods!(
     #[cfg(feature = "EKObject")]
     unsafe impl EKParticipant {
         /// URL representing this participant.
-        #[method_id(@__retain_semantics Other URL)]
+        #[method_id(@__method_family Other URL)]
         pub unsafe fn URL(&self) -> Retained<NSURL>;
 
         /// Name of this participant.
-        #[method_id(@__retain_semantics Other name)]
+        #[method_id(@__method_family Other name)]
         pub unsafe fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "EKTypes")]
@@ -69,7 +69,7 @@ extern_methods!(
         ///
         /// This method returns a predicate that can be used with a CNContactStore to fetch
         /// a CNContact instance for this participant, if one exists.
-        #[method_id(@__retain_semantics Other contactPredicate)]
+        #[method_id(@__method_family Other contactPredicate)]
         pub unsafe fn contactPredicate(&self) -> Retained<NSPredicate>;
     }
 );
@@ -78,10 +78,10 @@ extern_methods!(
     /// Methods declared on superclass `NSObject`
     #[cfg(feature = "EKObject")]
     unsafe impl EKParticipant {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

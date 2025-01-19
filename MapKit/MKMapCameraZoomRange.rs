@@ -36,7 +36,7 @@ unsafe impl NSSecureCoding for MKMapCameraZoomRange {}
 extern_methods!(
     unsafe impl MKMapCameraZoomRange {
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(@__retain_semantics Init initWithMinCenterCoordinateDistance:maxCenterCoordinateDistance:)]
+        #[method_id(@__method_family Init initWithMinCenterCoordinateDistance:maxCenterCoordinateDistance:)]
         pub unsafe fn initWithMinCenterCoordinateDistance_maxCenterCoordinateDistance(
             this: Allocated<Self>,
             min_distance: CLLocationDistance,
@@ -44,14 +44,14 @@ extern_methods!(
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(@__retain_semantics Init initWithMinCenterCoordinateDistance:)]
+        #[method_id(@__method_family Init initWithMinCenterCoordinateDistance:)]
         pub unsafe fn initWithMinCenterCoordinateDistance(
             this: Allocated<Self>,
             min_distance: CLLocationDistance,
         ) -> Option<Retained<Self>>;
 
         #[cfg(feature = "objc2-core-location")]
-        #[method_id(@__retain_semantics Init initWithMaxCenterCoordinateDistance:)]
+        #[method_id(@__method_family Init initWithMaxCenterCoordinateDistance:)]
         pub unsafe fn initWithMaxCenterCoordinateDistance(
             this: Allocated<Self>,
             max_distance: CLLocationDistance,
@@ -70,10 +70,10 @@ extern_methods!(
 extern_methods!(
     /// Methods declared on superclass `NSObject`
     unsafe impl MKMapCameraZoomRange {
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
     }
 );

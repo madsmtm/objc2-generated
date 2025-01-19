@@ -61,7 +61,7 @@ extern_methods!(
     unsafe impl ASAuthorizationOpenIDRequest {
         #[cfg(feature = "ASAuthorization")]
         /// The contact information to be requested from the user.  Only scopes for which this app was authorized for will be returned.
-        #[method_id(@__retain_semantics Other requestedScopes)]
+        #[method_id(@__method_family Other requestedScopes)]
         pub unsafe fn requestedScopes(&self) -> Option<Retained<NSArray<ASAuthorizationScope>>>;
 
         #[cfg(feature = "ASAuthorization")]
@@ -75,7 +75,7 @@ extern_methods!(
         /// State to be passed to the identity provider.  This value will be returned as a part of successful ASAuthorization response.
         ///
         /// Note: The state size may depend on the actual technology used and an error might be returned by the request execution.
-        #[method_id(@__retain_semantics Other state)]
+        #[method_id(@__method_family Other state)]
         pub unsafe fn state(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`state`][Self::state].
@@ -85,7 +85,7 @@ extern_methods!(
         /// Nonce to be passed to the identity provider.  This value can be verified with the identity token provided as a part of successful ASAuthorization response.
         ///
         /// Note: The nonce size may depend on the actual technology used and an error might be returned by the request execution.
-        #[method_id(@__retain_semantics Other nonce)]
+        #[method_id(@__method_family Other nonce)]
         pub unsafe fn nonce(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`nonce`][Self::nonce].
@@ -93,7 +93,7 @@ extern_methods!(
         pub unsafe fn setNonce(&self, nonce: Option<&NSString>);
 
         /// Operation to be executed by the request. The ASAuthorizationOperationImplicit operation interpretation depends on the credential provider implementation.
-        #[method_id(@__retain_semantics Other requestedOperation)]
+        #[method_id(@__method_family Other requestedOperation)]
         pub unsafe fn requestedOperation(&self) -> Retained<ASAuthorizationOpenIDOperation>;
 
         /// Setter for [`requestedOperation`][Self::requestedOperation].
@@ -109,10 +109,10 @@ extern_methods!(
     /// Methods declared on superclass `ASAuthorizationRequest`
     #[cfg(feature = "ASAuthorizationRequest")]
     unsafe impl ASAuthorizationOpenIDRequest {
-        #[method_id(@__retain_semantics New new)]
+        #[method_id(@__method_family New new)]
         pub unsafe fn new() -> Retained<Self>;
 
-        #[method_id(@__retain_semantics Init init)]
+        #[method_id(@__method_family Init init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     }
 );
